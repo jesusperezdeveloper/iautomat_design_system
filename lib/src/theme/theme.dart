@@ -5,6 +5,8 @@
 /// - Typography system with responsive text styles
 /// - Spacing system with consistent measurements
 /// - App theme configuration for Material 3
+library;
+
 export 'colors.dart';
 export 'typography.dart';
 export 'spacing.dart';

@@ -6,7 +6,6 @@ import 'package:iautomat_design_system/src/components/buttons/button_styles.dart
 import 'package:iautomat_design_system/src/theme/app_theme.dart';
 import 'package:iautomat_design_system/src/theme/colors.dart';
 import 'package:iautomat_design_system/src/theme/typography.dart';
-import 'package:iautomat_design_system/src/theme/spacing.dart';
 
 void main() {
   group('AppButton', () {
@@ -134,7 +133,8 @@ void main() {
     });
 
     group('Button Types', () {
-      testWidgets('primary variant should render ElevatedButton', (tester) async {
+      testWidgets('primary variant should render ElevatedButton',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -149,7 +149,8 @@ void main() {
         expect(find.byType(ElevatedButton), findsOneWidget);
       });
 
-      testWidgets('secondary variant should render ElevatedButton', (tester) async {
+      testWidgets('secondary variant should render ElevatedButton',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -164,7 +165,8 @@ void main() {
         expect(find.byType(ElevatedButton), findsOneWidget);
       });
 
-      testWidgets('outline variant should render OutlinedButton', (tester) async {
+      testWidgets('outline variant should render OutlinedButton',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -194,7 +196,8 @@ void main() {
         expect(find.byType(TextButton), findsOneWidget);
       });
 
-      testWidgets('danger variant should render ElevatedButton', (tester) async {
+      testWidgets('danger variant should render ElevatedButton',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -211,7 +214,8 @@ void main() {
     });
 
     group('States', () {
-      testWidgets('should be enabled when onPressed is provided', (tester) async {
+      testWidgets('should be enabled when onPressed is provided',
+          (tester) async {
         bool pressed = false;
 
         await tester.pumpWidget(
@@ -225,7 +229,8 @@ void main() {
           ),
         );
 
-        final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
         expect(button.onPressed, isNotNull);
 
         await tester.tap(find.byType(AppButton));
@@ -244,7 +249,8 @@ void main() {
           ),
         );
 
-        final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
         expect(button.onPressed, isNull);
       });
 
@@ -261,11 +267,13 @@ void main() {
           ),
         );
 
-        final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
         expect(button.onPressed, isNull);
       });
 
-      testWidgets('should show loading indicator when isLoading is true', (tester) async {
+      testWidgets('should show loading indicator when isLoading is true',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -303,7 +311,8 @@ void main() {
     });
 
     group('Size Configuration', () {
-      testWidgets('small button should have correct dimensions', (tester) async {
+      testWidgets('small button should have correct dimensions',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -316,13 +325,16 @@ void main() {
           ),
         );
 
-        final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
         final sizeConfig = AppButtonStyles.getSizeConfig(ButtonSize.small);
 
-        expect(button.style?.minimumSize?.resolve({}), Size(sizeConfig.minWidth, sizeConfig.height));
+        expect(button.style?.minimumSize?.resolve({}),
+            Size(sizeConfig.minWidth, sizeConfig.height));
       });
 
-      testWidgets('medium button should have correct dimensions', (tester) async {
+      testWidgets('medium button should have correct dimensions',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -335,13 +347,16 @@ void main() {
           ),
         );
 
-        final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
         final sizeConfig = AppButtonStyles.getSizeConfig(ButtonSize.medium);
 
-        expect(button.style?.minimumSize?.resolve({}), Size(sizeConfig.minWidth, sizeConfig.height));
+        expect(button.style?.minimumSize?.resolve({}),
+            Size(sizeConfig.minWidth, sizeConfig.height));
       });
 
-      testWidgets('large button should have correct dimensions', (tester) async {
+      testWidgets('large button should have correct dimensions',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -354,15 +369,18 @@ void main() {
           ),
         );
 
-        final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
         final sizeConfig = AppButtonStyles.getSizeConfig(ButtonSize.large);
 
-        expect(button.style?.minimumSize?.resolve({}), Size(sizeConfig.minWidth, sizeConfig.height));
+        expect(button.style?.minimumSize?.resolve({}),
+            Size(sizeConfig.minWidth, sizeConfig.height));
       });
     });
 
     group('Full Width', () {
-      testWidgets('should expand to full width when isFullWidth is true', (tester) async {
+      testWidgets('should expand to full width when isFullWidth is true',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -379,16 +397,19 @@ void main() {
         );
 
         final sizedBox = tester.widget<SizedBox>(
-          find.descendant(
-            of: find.byType(AppButton),
-            matching: find.byType(SizedBox),
-          ).first,
+          find
+              .descendant(
+                of: find.byType(AppButton),
+                matching: find.byType(SizedBox),
+              )
+              .first,
         );
 
         expect(sizedBox.width, equals(double.infinity));
       });
 
-      testWidgets('should not expand when isFullWidth is false', (tester) async {
+      testWidgets('should not expand when isFullWidth is false',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -410,15 +431,18 @@ void main() {
         );
 
         // Should not find a SizedBox with infinite width at the top level
-        expect(sizedBoxes.evaluate().any((element) {
-          final widget = element.widget as SizedBox;
-          return widget.width == double.infinity;
-        }), isFalse);
+        expect(
+            sizedBoxes.evaluate().any((element) {
+              final widget = element.widget as SizedBox;
+              return widget.width == double.infinity;
+            }),
+            isFalse);
       });
     });
 
     group('Colors', () {
-      testWidgets('primary button should have correct colors in light theme', (tester) async {
+      testWidgets('primary button should have correct colors in light theme',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             theme: AppTheme.lightTheme,
@@ -431,12 +455,15 @@ void main() {
           ),
         );
 
-        final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
         expect(button.style?.backgroundColor?.resolve({}), AppColors.primary);
-        expect(button.style?.foregroundColor?.resolve({}), AppColors.textOnColor);
+        expect(
+            button.style?.foregroundColor?.resolve({}), AppColors.textOnColor);
       });
 
-      testWidgets('primary button should have correct colors in dark theme', (tester) async {
+      testWidgets('primary button should have correct colors in dark theme',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             theme: AppTheme.darkTheme,
@@ -449,12 +476,16 @@ void main() {
           ),
         );
 
-        final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
-        expect(button.style?.backgroundColor?.resolve({}), AppColors.primaryDarkMode);
-        expect(button.style?.foregroundColor?.resolve({}), AppColors.backgroundDarkMode);
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        expect(button.style?.backgroundColor?.resolve({}),
+            AppColors.primaryDarkMode);
+        expect(button.style?.foregroundColor?.resolve({}),
+            AppColors.backgroundDarkMode);
       });
 
-      testWidgets('danger button should have correct error colors', (tester) async {
+      testWidgets('danger button should have correct error colors',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             theme: AppTheme.lightTheme,
@@ -467,11 +498,13 @@ void main() {
           ),
         );
 
-        final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
         expect(button.style?.backgroundColor?.resolve({}), AppColors.error);
       });
 
-      testWidgets('outline button should have transparent background', (tester) async {
+      testWidgets('outline button should have transparent background',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -483,7 +516,8 @@ void main() {
           ),
         );
 
-        final button = tester.widget<OutlinedButton>(find.byType(OutlinedButton));
+        final button =
+            tester.widget<OutlinedButton>(find.byType(OutlinedButton));
         expect(button.style?.backgroundColor?.resolve({}), Colors.transparent);
       });
     });
@@ -532,7 +566,8 @@ void main() {
         expect(find.byType(AnimatedBuilder), findsOneWidget);
       });
 
-      testWidgets('should provide haptic feedback when enabled', (tester) async {
+      testWidgets('should provide haptic feedback when enabled',
+          (tester) async {
         // Mock haptic feedback
         final List<MethodCall> calls = [];
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
@@ -556,14 +591,16 @@ void main() {
         await tester.tap(find.byType(AppButton));
 
         expect(calls, isNotEmpty);
-        expect(calls.any((call) => call.method == 'HapticFeedback.vibrate'), isTrue);
+        expect(calls.any((call) => call.method == 'HapticFeedback.vibrate'),
+            isTrue);
 
         // Clean up
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
             .setMockMethodCallHandler(SystemChannels.platform, null);
       });
 
-      testWidgets('should not provide haptic feedback when disabled', (tester) async {
+      testWidgets('should not provide haptic feedback when disabled',
+          (tester) async {
         // Mock haptic feedback
         final List<MethodCall> calls = [];
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
@@ -586,7 +623,8 @@ void main() {
 
         await tester.tap(find.byType(AppButton));
 
-        expect(calls.where((call) => call.method == 'HapticFeedback.vibrate'), isEmpty);
+        expect(calls.where((call) => call.method == 'HapticFeedback.vibrate'),
+            isEmpty);
 
         // Clean up
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
@@ -614,7 +652,8 @@ void main() {
         expect(tooltip.message, 'This is a tooltip');
       });
 
-      testWidgets('should not render tooltip when not provided', (tester) async {
+      testWidgets('should not render tooltip when not provided',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -652,7 +691,8 @@ void main() {
         expect(semantics.properties.enabled, isTrue);
       });
 
-      testWidgets('should indicate disabled state in semantics', (tester) async {
+      testWidgets('should indicate disabled state in semantics',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -701,8 +741,10 @@ void main() {
         final buttonSize = tester.getSize(find.byType(AppButton));
 
         // Minimum touch target should be 44x44 (iOS) or 48x48 (Android)
-        expect(buttonSize.height, greaterThanOrEqualTo(32.0)); // Small button height
-        expect(buttonSize.width, greaterThanOrEqualTo(64.0)); // Small button min width
+        expect(buttonSize.height,
+            greaterThanOrEqualTo(32.0)); // Small button height
+        expect(buttonSize.width,
+            greaterThanOrEqualTo(64.0)); // Small button min width
       });
     });
 
@@ -724,7 +766,8 @@ void main() {
           ),
         );
 
-        final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+        final button =
+            tester.widget<ElevatedButton>(find.byType(ElevatedButton));
 
         // Custom style should be merged with base style
         expect(button.style, isNotNull);
@@ -732,7 +775,8 @@ void main() {
     });
 
     group('Loading Animation', () {
-      testWidgets('should use custom loading animation duration', (tester) async {
+      testWidgets('should use custom loading animation duration',
+          (tester) async {
         const customDuration = Duration(milliseconds: 500);
 
         await tester.pumpWidget(
@@ -769,13 +813,15 @@ void main() {
           find.byType(CircularProgressIndicator),
         );
 
-        final animation = progressIndicator.valueColor as AlwaysStoppedAnimation<Color>;
+        final animation =
+            progressIndicator.valueColor as AlwaysStoppedAnimation<Color>;
         expect(animation.value, Colors.red);
       });
     });
 
     group('Button Group', () {
-      testWidgets('AppButtonGroup should render buttons horizontally', (tester) async {
+      testWidgets('AppButtonGroup should render buttons horizontally',
+          (tester) async {
         final buttons = [
           AppButton(text: 'First', onPressed: () {}),
           AppButton(text: 'Second', onPressed: () {}),
@@ -799,7 +845,8 @@ void main() {
         expect(find.text('Third'), findsOneWidget);
       });
 
-      testWidgets('AppButtonGroup should render buttons vertically', (tester) async {
+      testWidgets('AppButtonGroup should render buttons vertically',
+          (tester) async {
         final buttons = [
           AppButton(text: 'Top', onPressed: () {}),
           AppButton(text: 'Bottom', onPressed: () {}),
@@ -823,7 +870,8 @@ void main() {
     });
 
     group('Extension Methods', () {
-      testWidgets('copyWith should create button with modified properties', (tester) async {
+      testWidgets('copyWith should create button with modified properties',
+          (tester) async {
         final originalButton = AppButton(
           text: 'Original',
           variant: ButtonVariant.primary,
@@ -853,11 +901,14 @@ void main() {
           final config = AppButtonStyles.getSizeConfig(size);
 
           // Heights should be multiples of 8
-          expect(config.height % 8, 0, reason: '${size.name} height should be multiple of 8');
+          expect(config.height % 8, 0,
+              reason: '${size.name} height should be multiple of 8');
 
           // Padding should follow spacing system
-          expect(config.padding.horizontal % 2, 0, reason: '${size.name} padding should be even');
-          expect(config.padding.vertical % 2, 0, reason: '${size.name} padding should be even');
+          expect(config.padding.horizontal % 2, 0,
+              reason: '${size.name} padding should be even');
+          expect(config.padding.vertical % 2, 0,
+              reason: '${size.name} padding should be even');
         }
       });
 
@@ -867,9 +918,14 @@ void main() {
             home: Scaffold(
               body: Column(
                 children: [
-                  AppButton(text: 'Small', size: ButtonSize.small, onPressed: () {}),
-                  AppButton(text: 'Medium', size: ButtonSize.medium, onPressed: () {}),
-                  AppButton(text: 'Large', size: ButtonSize.large, onPressed: () {}),
+                  AppButton(
+                      text: 'Small', size: ButtonSize.small, onPressed: () {}),
+                  AppButton(
+                      text: 'Medium',
+                      size: ButtonSize.medium,
+                      onPressed: () {}),
+                  AppButton(
+                      text: 'Large', size: ButtonSize.large, onPressed: () {}),
                 ],
               ),
             ),

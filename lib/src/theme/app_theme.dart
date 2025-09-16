@@ -5,16 +5,16 @@ import 'colors.dart';
 import 'typography.dart';
 import 'spacing.dart';
 
-/// Configuración completa del tema para el Design System de IAutomat
+/// ConfiguraciÃ³n completa del tema para el Design System de IAutomat
 ///
 /// Implementa Material Design 3 con tokens personalizados del sistema.
-/// Incluye configuración completa para light y dark themes con:
+/// Incluye configuraciï¿½n completa para light y dark themes con:
 /// - ColorScheme personalizado integrado con AppColors
 /// - TextTheme basado en AppTypography
 /// - Component themes para todos los widgets de Material
-/// - Sistema de elevación y sombras consistente
+/// - Sistema de elevaciï¿½n y sombras consistente
 /// - Border radius system unificado
-/// - Duraciones y curvas de animación optimizadas
+/// - Duraciones y curvas de animaciï¿½n optimizadas
 ///
 /// Uso:
 /// ```dart
@@ -30,13 +30,13 @@ class AppTheme {
   // BORDER RADIUS SYSTEM
   // ==========================================================================
 
-  /// Radius extra small - Elementos muy pequeños (4px)
+  /// Radius extra small - Elementos muy pequeï¿½os (4px)
   static const BorderRadius radiusXs = BorderRadius.all(Radius.circular(4));
 
   /// Radius small - Elementos compactos (8px)
   static const BorderRadius radiusSm = BorderRadius.all(Radius.circular(8));
 
-  /// Radius medium - Elementos estándar (12px)
+  /// Radius medium - Elementos estï¿½ndar (12px)
   static const BorderRadius radiusMd = BorderRadius.all(Radius.circular(12));
 
   /// Radius large - Cards y contenedores (16px)
@@ -46,16 +46,17 @@ class AppTheme {
   static const BorderRadius radiusXl = BorderRadius.all(Radius.circular(20));
 
   /// Radius circular completo - Botones, avatares
-  static const BorderRadius radiusCircular = BorderRadius.all(Radius.circular(999));
+  static const BorderRadius radiusCircular =
+      BorderRadius.all(Radius.circular(999));
 
   // ==========================================================================
-  // SISTEMA DE ELEVACIÓN
+  // SISTEMA DE ELEVACIï¿½N
   // ==========================================================================
 
-  /// Elevación nivel 0 - Sin sombra
+  /// Elevaciï¿½n nivel 0 - Sin sombra
   static const List<BoxShadow> elevation0 = [];
 
-  /// Elevación nivel 1 - Elementos flotantes sutiles
+  /// Elevaciï¿½n nivel 1 - Elementos flotantes sutiles
   static const List<BoxShadow> elevation1 = [
     BoxShadow(
       color: Color(0x0D000000), // 5% opacidad
@@ -71,7 +72,7 @@ class AppTheme {
     ),
   ];
 
-  /// Elevación nivel 2 - Cards, botones elevados
+  /// Elevaciï¿½n nivel 2 - Cards, botones elevados
   static const List<BoxShadow> elevation2 = [
     BoxShadow(
       color: Color(0x0D000000),
@@ -87,7 +88,7 @@ class AppTheme {
     ),
   ];
 
-  /// Elevación nivel 3 - Modales, menús
+  /// Elevaciï¿½n nivel 3 - Modales, menï¿½s
   static const List<BoxShadow> elevation3 = [
     BoxShadow(
       color: Color(0x0D000000),
@@ -103,7 +104,7 @@ class AppTheme {
     ),
   ];
 
-  /// Elevación nivel 4 - Navigation drawers, sheets
+  /// Elevaciï¿½n nivel 4 - Navigation drawers, sheets
   static const List<BoxShadow> elevation4 = [
     BoxShadow(
       color: Color(0x0D000000),
@@ -119,7 +120,7 @@ class AppTheme {
     ),
   ];
 
-  /// Elevación nivel 5 - Diálogos, popovers principales
+  /// Elevaciï¿½n nivel 5 - Diï¿½logos, popovers principales
   static const List<BoxShadow> elevation5 = [
     BoxShadow(
       color: Color(0x0D000000),
@@ -136,25 +137,25 @@ class AppTheme {
   ];
 
   // ==========================================================================
-  // DURACIONES Y CURVAS DE ANIMACIÓN
+  // DURACIONES Y CURVAS DE ANIMACIï¿½N
   // ==========================================================================
 
-  /// Duración extra rápida - Micro interacciones (100ms)
+  /// Duraciï¿½n extra rï¿½pida - Micro interacciones (100ms)
   static const Duration durationExtraFast = Duration(milliseconds: 100);
 
-  /// Duración rápida - Hover states, ripples (200ms)
+  /// Duraciï¿½n rï¿½pida - Hover states, ripples (200ms)
   static const Duration durationFast = Duration(milliseconds: 200);
 
-  /// Duración normal - Transiciones estándar (300ms)
+  /// Duraciï¿½n normal - Transiciones estï¿½ndar (300ms)
   static const Duration durationNormal = Duration(milliseconds: 300);
 
-  /// Duración lenta - Animaciones complejas (500ms)
+  /// Duraciï¿½n lenta - Animaciones complejas (500ms)
   static const Duration durationSlow = Duration(milliseconds: 500);
 
-  /// Duración extra lenta - Animaciones dramáticas (800ms)
+  /// Duraciï¿½n extra lenta - Animaciones dramï¿½ticas (800ms)
   static const Duration durationExtraSlow = Duration(milliseconds: 800);
 
-  /// Curva estándar - Para la mayoría de animaciones
+  /// Curva estï¿½ndar - Para la mayorï¿½a de animaciones
   static const Curve curveStandard = Curves.easeInOut;
 
   /// Curva de entrada - Para elementos que aparecen
@@ -163,7 +164,7 @@ class AppTheme {
   /// Curva de salida - Para elementos que desaparecen
   static const Curve curveExit = Curves.easeIn;
 
-  /// Curva dramática - Para animaciones de énfasis
+  /// Curva dramï¿½tica - Para animaciones de ï¿½nfasis
   static const Curve curveEmphasized = Curves.easeInOutCubic;
 
   // ==========================================================================
@@ -199,12 +200,8 @@ class AppTheme {
         // Colores de superficie
         surface: AppColors.surface,
         onSurface: AppColors.textPrimary,
-        surfaceVariant: AppColors.surfaceVariant,
+        surfaceContainerHighest: AppColors.surfaceVariant,
         onSurfaceVariant: AppColors.textSecondary,
-
-        // Background
-        background: AppColors.background,
-        onBackground: AppColors.textPrimary,
 
         // Colores de outline
         outline: AppColors.gray300,
@@ -249,12 +246,8 @@ class AppTheme {
         // Colores de superficie
         surface: AppColors.backgroundSecondaryDarkMode,
         onSurface: AppColors.textPrimaryDarkMode,
-        surfaceVariant: AppColors.backgroundTertiaryDarkMode,
+        surfaceContainerHighest: AppColors.backgroundTertiaryDarkMode,
         onSurfaceVariant: AppColors.textSecondaryDarkMode,
-
-        // Background
-        background: AppColors.backgroundDarkMode,
-        onBackground: AppColors.textPrimaryDarkMode,
 
         // Colores de outline
         outline: AppColors.gray600,
@@ -302,8 +295,10 @@ class AppTheme {
         foregroundColor: AppColors.textPrimary,
         elevation: 0,
         centerTitle: false,
-        titleTextStyle: AppTypography.withColor(AppTypography.h6, AppColors.textPrimary),
-        toolbarTextStyle: AppTypography.withColor(AppTypography.bodyMedium, AppColors.textSecondary),
+        titleTextStyle:
+            AppTypography.withColor(AppTypography.h6, AppColors.textPrimary),
+        toolbarTextStyle: AppTypography.withColor(
+            AppTypography.bodyMedium, AppColors.textSecondary),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -402,9 +397,11 @@ class AppTheme {
         ),
         contentPadding: AppSpacing.inputPadding,
         labelStyle: AppTypography.labelMedium,
-        hintStyle: AppTypography.withColor(AppTypography.bodyMedium, AppColors.textTertiary),
+        hintStyle: AppTypography.withColor(
+            AppTypography.bodyMedium, AppColors.textTertiary),
         errorStyle: AppTypography.error(AppColors.error),
-        helperStyle: AppTypography.withColor(AppTypography.caption, AppColors.textTertiary),
+        helperStyle: AppTypography.withColor(
+            AppTypography.caption, AppColors.textTertiary),
       ),
 
       // Chip Theme
@@ -430,7 +427,8 @@ class AppTheme {
         minLeadingWidth: 40,
         shape: const RoundedRectangleBorder(borderRadius: radiusMd),
         titleTextStyle: AppTypography.bodyMedium,
-        subtitleTextStyle: AppTypography.withColor(AppTypography.bodySmall, AppColors.textSecondary),
+        subtitleTextStyle: AppTypography.withColor(
+            AppTypography.bodySmall, AppColors.textSecondary),
         leadingAndTrailingTextStyle: AppTypography.labelMedium,
       ),
 
@@ -472,35 +470,40 @@ class AppTheme {
 
       // Checkbox Theme
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) return AppColors.primary;
+        fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) return AppColors.primary;
           return AppColors.surface;
         }),
-        checkColor: MaterialStateProperty.all(AppColors.textOnColor),
-        overlayColor: MaterialStateProperty.all(AppColors.primary.withOpacity(0.1)),
+        checkColor: WidgetStateProperty.all(AppColors.textOnColor),
+        overlayColor:
+            WidgetStateProperty.all(AppColors.primary.withOpacity(0.1)),
         shape: const RoundedRectangleBorder(borderRadius: radiusXs),
       ),
 
       // Radio Theme
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) return AppColors.primary;
+        fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) return AppColors.primary;
           return AppColors.gray400;
         }),
-        overlayColor: MaterialStateProperty.all(AppColors.primary.withOpacity(0.1)),
+        overlayColor:
+            WidgetStateProperty.all(AppColors.primary.withOpacity(0.1)),
       ),
 
       // Switch Theme
       switchTheme: SwitchThemeData(
-        thumbColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) return AppColors.primary;
+        thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) return AppColors.primary;
           return AppColors.gray400;
         }),
-        trackColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) return AppColors.primary.withOpacity(0.3);
+        trackColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primary.withOpacity(0.3);
+          }
           return AppColors.gray300;
         }),
-        overlayColor: MaterialStateProperty.all(AppColors.primary.withOpacity(0.1)),
+        overlayColor:
+            WidgetStateProperty.all(AppColors.primary.withOpacity(0.1)),
       ),
 
       // Slider Theme
@@ -510,7 +513,8 @@ class AppTheme {
         thumbColor: AppColors.primary,
         overlayColor: AppColors.primary.withOpacity(0.1),
         valueIndicatorColor: AppColors.primary,
-        valueIndicatorTextStyle: AppTypography.withColor(AppTypography.labelSmall, AppColors.textOnColor),
+        valueIndicatorTextStyle: AppTypography.withColor(
+            AppTypography.labelSmall, AppColors.textOnColor),
       ),
 
       // Progress Indicator Theme
@@ -526,8 +530,10 @@ class AppTheme {
           color: AppColors.gray800,
           borderRadius: radiusSm,
         ),
-        textStyle: AppTypography.withColor(AppTypography.caption, AppColors.textOnColor),
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs, vertical: AppSpacing.xxs),
+        textStyle: AppTypography.withColor(
+            AppTypography.caption, AppColors.textOnColor),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xs, vertical: AppSpacing.xxs),
       ),
 
       // Navigation Bar Theme
@@ -535,9 +541,9 @@ class AppTheme {
         backgroundColor: AppColors.surface,
         elevation: 3,
         indicatorColor: AppColors.primary.withOpacity(0.1),
-        labelTextStyle: MaterialStateProperty.all(AppTypography.labelSmall),
-        iconTheme: MaterialStateProperty.resolveWith<IconThemeData>((states) {
-          if (states.contains(MaterialState.selected)) {
+        labelTextStyle: WidgetStateProperty.all(AppTypography.labelSmall),
+        iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
+          if (states.contains(WidgetState.selected)) {
             return const IconThemeData(color: AppColors.primary);
           }
           return const IconThemeData(color: AppColors.textSecondary);
@@ -595,8 +601,10 @@ class AppTheme {
         foregroundColor: AppColors.textPrimaryDarkMode,
         elevation: 0,
         centerTitle: false,
-        titleTextStyle: AppTypography.withColor(AppTypography.h6, AppColors.textPrimaryDarkMode),
-        toolbarTextStyle: AppTypography.withColor(AppTypography.bodyMedium, AppColors.textSecondaryDarkMode),
+        titleTextStyle: AppTypography.withColor(
+            AppTypography.h6, AppColors.textPrimaryDarkMode),
+        toolbarTextStyle: AppTypography.withColor(
+            AppTypography.bodyMedium, AppColors.textSecondaryDarkMode),
         systemOverlayStyle: SystemUiOverlayStyle.light,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -694,10 +702,14 @@ class AppTheme {
           borderSide: BorderSide(color: AppColors.gray700),
         ),
         contentPadding: AppSpacing.inputPadding,
-        labelStyle: AppTypography.withColor(AppTypography.labelMedium, AppColors.textSecondaryDarkMode),
-        hintStyle: AppTypography.withColor(AppTypography.bodyMedium, AppColors.textTertiaryDarkMode),
-        errorStyle: AppTypography.withColor(AppTypography.bodySmall, AppColors.errorDarkMode),
-        helperStyle: AppTypography.withColor(AppTypography.caption, AppColors.textTertiaryDarkMode),
+        labelStyle: AppTypography.withColor(
+            AppTypography.labelMedium, AppColors.textSecondaryDarkMode),
+        hintStyle: AppTypography.withColor(
+            AppTypography.bodyMedium, AppColors.textTertiaryDarkMode),
+        errorStyle: AppTypography.withColor(
+            AppTypography.bodySmall, AppColors.errorDarkMode),
+        helperStyle: AppTypography.withColor(
+            AppTypography.caption, AppColors.textTertiaryDarkMode),
       ),
 
       // Chip Theme
@@ -708,8 +720,10 @@ class AppTheme {
         secondarySelectedColor: AppColors.secondaryDarkMode.withOpacity(0.2),
         shadowColor: Colors.black,
         selectedShadowColor: Colors.black,
-        labelStyle: AppTypography.withColor(AppTypography.labelSmall, AppColors.textPrimaryDarkMode),
-        secondaryLabelStyle: AppTypography.withColor(AppTypography.labelSmall, AppColors.textPrimaryDarkMode),
+        labelStyle: AppTypography.withColor(
+            AppTypography.labelSmall, AppColors.textPrimaryDarkMode),
+        secondaryLabelStyle: AppTypography.withColor(
+            AppTypography.labelSmall, AppColors.textPrimaryDarkMode),
         brightness: Brightness.dark,
         elevation: 1,
         pressElevation: 4,
@@ -722,9 +736,12 @@ class AppTheme {
         contentPadding: AppSpacing.listItemPadding,
         minLeadingWidth: 40,
         shape: const RoundedRectangleBorder(borderRadius: radiusMd),
-        titleTextStyle: AppTypography.withColor(AppTypography.bodyMedium, AppColors.textPrimaryDarkMode),
-        subtitleTextStyle: AppTypography.withColor(AppTypography.bodySmall, AppColors.textSecondaryDarkMode),
-        leadingAndTrailingTextStyle: AppTypography.withColor(AppTypography.labelMedium, AppColors.textSecondaryDarkMode),
+        titleTextStyle: AppTypography.withColor(
+            AppTypography.bodyMedium, AppColors.textPrimaryDarkMode),
+        subtitleTextStyle: AppTypography.withColor(
+            AppTypography.bodySmall, AppColors.textSecondaryDarkMode),
+        leadingAndTrailingTextStyle: AppTypography.withColor(
+            AppTypography.labelMedium, AppColors.textSecondaryDarkMode),
       ),
 
       // Dialog Theme
@@ -733,8 +750,10 @@ class AppTheme {
         elevation: 24,
         shadowColor: Colors.black,
         shape: const RoundedRectangleBorder(borderRadius: radiusXl),
-        titleTextStyle: AppTypography.withColor(AppTypography.h5, AppColors.textPrimaryDarkMode),
-        contentTextStyle: AppTypography.withColor(AppTypography.bodyMedium, AppColors.textPrimaryDarkMode),
+        titleTextStyle: AppTypography.withColor(
+            AppTypography.h5, AppColors.textPrimaryDarkMode),
+        contentTextStyle: AppTypography.withColor(
+            AppTypography.bodyMedium, AppColors.textPrimaryDarkMode),
         actionsPadding: AppSpacing.dialogContentPadding,
         insetPadding: const EdgeInsets.all(AppSpacing.md),
       ),
@@ -754,8 +773,10 @@ class AppTheme {
       tabBarTheme: TabBarTheme(
         labelColor: AppColors.primaryDarkMode,
         unselectedLabelColor: AppColors.textSecondaryDarkMode,
-        labelStyle: AppTypography.withColor(AppTypography.labelLarge, AppColors.primaryDarkMode),
-        unselectedLabelStyle: AppTypography.withColor(AppTypography.labelMedium, AppColors.textSecondaryDarkMode),
+        labelStyle: AppTypography.withColor(
+            AppTypography.labelLarge, AppColors.primaryDarkMode),
+        unselectedLabelStyle: AppTypography.withColor(
+            AppTypography.labelMedium, AppColors.textSecondaryDarkMode),
         indicator: UnderlineTabIndicator(
           borderSide: BorderSide(color: AppColors.primaryDarkMode, width: 2),
         ),
@@ -765,35 +786,46 @@ class AppTheme {
 
       // Checkbox Theme
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) return AppColors.primaryDarkMode;
+        fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primaryDarkMode;
+          }
           return AppColors.backgroundTertiaryDarkMode;
         }),
-        checkColor: MaterialStateProperty.all(AppColors.backgroundDarkMode),
-        overlayColor: MaterialStateProperty.all(AppColors.primaryDarkMode.withOpacity(0.1)),
+        checkColor: WidgetStateProperty.all(AppColors.backgroundDarkMode),
+        overlayColor:
+            WidgetStateProperty.all(AppColors.primaryDarkMode.withOpacity(0.1)),
         shape: const RoundedRectangleBorder(borderRadius: radiusXs),
       ),
 
       // Radio Theme
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) return AppColors.primaryDarkMode;
+        fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primaryDarkMode;
+          }
           return AppColors.gray500;
         }),
-        overlayColor: MaterialStateProperty.all(AppColors.primaryDarkMode.withOpacity(0.1)),
+        overlayColor:
+            WidgetStateProperty.all(AppColors.primaryDarkMode.withOpacity(0.1)),
       ),
 
       // Switch Theme
       switchTheme: SwitchThemeData(
-        thumbColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) return AppColors.primaryDarkMode;
+        thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primaryDarkMode;
+          }
           return AppColors.gray500;
         }),
-        trackColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) return AppColors.primaryDarkMode.withOpacity(0.3);
+        trackColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.primaryDarkMode.withOpacity(0.3);
+          }
           return AppColors.gray600;
         }),
-        overlayColor: MaterialStateProperty.all(AppColors.primaryDarkMode.withOpacity(0.1)),
+        overlayColor:
+            WidgetStateProperty.all(AppColors.primaryDarkMode.withOpacity(0.1)),
       ),
 
       // Slider Theme
@@ -803,7 +835,8 @@ class AppTheme {
         thumbColor: AppColors.primaryDarkMode,
         overlayColor: AppColors.primaryDarkMode.withOpacity(0.1),
         valueIndicatorColor: AppColors.primaryDarkMode,
-        valueIndicatorTextStyle: AppTypography.withColor(AppTypography.labelSmall, AppColors.backgroundDarkMode),
+        valueIndicatorTextStyle: AppTypography.withColor(
+            AppTypography.labelSmall, AppColors.backgroundDarkMode),
       ),
 
       // Progress Indicator Theme
@@ -819,8 +852,10 @@ class AppTheme {
           color: AppColors.gray200,
           borderRadius: radiusSm,
         ),
-        textStyle: AppTypography.withColor(AppTypography.caption, AppColors.textPrimary),
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs, vertical: AppSpacing.xxs),
+        textStyle: AppTypography.withColor(
+            AppTypography.caption, AppColors.textPrimary),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xs, vertical: AppSpacing.xxs),
       ),
 
       // Navigation Bar Theme
@@ -828,9 +863,10 @@ class AppTheme {
         backgroundColor: AppColors.backgroundSecondaryDarkMode,
         elevation: 3,
         indicatorColor: AppColors.primaryDarkMode.withOpacity(0.1),
-        labelTextStyle: MaterialStateProperty.all(AppTypography.withColor(AppTypography.labelSmall, AppColors.textSecondaryDarkMode)),
-        iconTheme: MaterialStateProperty.resolveWith<IconThemeData>((states) {
-          if (states.contains(MaterialState.selected)) {
+        labelTextStyle: WidgetStateProperty.all(AppTypography.withColor(
+            AppTypography.labelSmall, AppColors.textSecondaryDarkMode)),
+        iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
+          if (states.contains(WidgetState.selected)) {
             return IconThemeData(color: AppColors.primaryDarkMode);
           }
           return IconThemeData(color: AppColors.textSecondaryDarkMode);
@@ -857,7 +893,7 @@ class AppTheme {
   }
 
   // ==========================================================================
-  // MÉTODOS UTILITARIOS
+  // Mï¿½TODOS UTILITARIOS
   // ==========================================================================
 
   /// Obtiene el tema apropiado basado en el brightness del sistema
@@ -880,7 +916,7 @@ class AppTheme {
     );
   }
 
-  /// Aplica elevación a un Container con el sistema de sombras
+  /// Aplica elevaciï¿½n a un Container con el sistema de sombras
   static BoxDecoration elevatedDecoration({
     required int level,
     Color? color,
@@ -917,7 +953,7 @@ class AppTheme {
     );
   }
 
-  /// Transición estándar para páginas
+  /// Transiciï¿½n estï¿½ndar para pï¿½ginas
   static PageRouteBuilder<T> pageTransition<T>({
     required Widget child,
     Duration? duration,

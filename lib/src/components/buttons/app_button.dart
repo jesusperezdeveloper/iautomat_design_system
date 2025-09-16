@@ -5,20 +5,20 @@ import 'button_styles.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/spacing.dart';
 
-/// Componente de botón personalizado para el Design System de IAutomat
+/// Componente de botÃ³n personalizado para el Design System de IAutomat
 ///
-/// AppButton es el componente base para todos los botones en la aplicación.
-/// Proporciona una interfaz consistente y accesible con múltiples variantes,
-/// tamaños y estados.
+/// AppButton es el componente base para todos los botones en la aplicaciÃ³n.
+/// Proporciona una interfaz consistente y accesible con mÃºltiples variantes,
+/// tamaÃ±os y estados.
 ///
-/// Características:
+/// CaracterÃ­sticas:
 /// - 5 variantes: primary, secondary, outline, ghost, danger
-/// - 3 tamaños: small, medium, large
+/// - 3 tamaÃ±os: small, medium, large
 /// - Estados: enabled, disabled, loading
 /// - Soporte para iconos leading y trailing
 /// - Full width opcional
 /// - Accesibilidad completa
-/// - Feedback táctil
+/// - Feedback tÃ¡ctil
 /// - Animaciones fluidas
 ///
 /// Ejemplo de uso:
@@ -32,28 +32,28 @@ import '../../theme/spacing.dart';
 /// )
 /// ```
 class AppButton extends StatefulWidget {
-  /// Texto del botón
+  /// Texto del botï¿½n
   final String text;
 
-  /// Variante del botón (primary, secondary, etc.)
+  /// Variante del botï¿½n (primary, secondary, etc.)
   final ButtonVariant variant;
 
-  /// Tamaño del botón (small, medium, large)
+  /// Tamaï¿½o del botï¿½n (small, medium, large)
   final ButtonSize size;
 
-  /// Callback cuando se presiona el botón
+  /// Callback cuando se presiona el botï¿½n
   final VoidCallback? onPressed;
 
-  /// Callback cuando se mantiene presionado el botón
+  /// Callback cuando se mantiene presionado el botï¿½n
   final VoidCallback? onLongPress;
 
-  /// Si el botón está en estado de carga
+  /// Si el botï¿½n estï¿½ en estado de carga
   final bool isLoading;
 
-  /// Icono al inicio del botón
+  /// Icono al inicio del botï¿½n
   final IconData? leadingIcon;
 
-  /// Icono al final del botón
+  /// Icono al final del botï¿½n
   final IconData? trailingIcon;
 
   /// Widget personalizado al inicio (toma precedencia sobre leadingIcon)
@@ -62,22 +62,22 @@ class AppButton extends StatefulWidget {
   /// Widget personalizado al final (toma precedencia sobre trailingIcon)
   final Widget? trailingWidget;
 
-  /// Si el botón debe ocupar todo el ancho disponible
+  /// Si el botï¿½n debe ocupar todo el ancho disponible
   final bool isFullWidth;
 
   /// Estilo personalizado que se aplica sobre el estilo base
   final ButtonStyle? style;
 
-  /// Tooltip del botón
+  /// Tooltip del botï¿½n
   final String? tooltip;
 
-  /// Clave semántica para testing y accesibilidad
+  /// Clave semï¿½ntica para testing y accesibilidad
   final String? semanticsLabel;
 
-  /// Si se debe activar feedback táctil al presionar
+  /// Si se debe activar feedback tï¿½ctil al presionar
   final bool enableFeedback;
 
-  /// Duración personalizada para la animación de loading
+  /// Duraciï¿½n personalizada para la animaciï¿½n de loading
   final Duration? loadingAnimationDuration;
 
   /// Color personalizado para el indicador de loading
@@ -105,7 +105,7 @@ class AppButton extends StatefulWidget {
     this.loadingIndicatorColor,
   });
 
-  /// Constructor para botón primary (atajo)
+  /// Constructor para botï¿½n primary (atajo)
   const AppButton.primary({
     super.key,
     required this.text,
@@ -126,7 +126,7 @@ class AppButton extends StatefulWidget {
     this.loadingIndicatorColor,
   }) : variant = ButtonVariant.primary;
 
-  /// Constructor para botón secondary (atajo)
+  /// Constructor para botï¿½n secondary (atajo)
   const AppButton.secondary({
     super.key,
     required this.text,
@@ -147,7 +147,7 @@ class AppButton extends StatefulWidget {
     this.loadingIndicatorColor,
   }) : variant = ButtonVariant.secondary;
 
-  /// Constructor para botón outline (atajo)
+  /// Constructor para botï¿½n outline (atajo)
   const AppButton.outline({
     super.key,
     required this.text,
@@ -168,7 +168,7 @@ class AppButton extends StatefulWidget {
     this.loadingIndicatorColor,
   }) : variant = ButtonVariant.outline;
 
-  /// Constructor para botón ghost (atajo)
+  /// Constructor para botï¿½n ghost (atajo)
   const AppButton.ghost({
     super.key,
     required this.text,
@@ -189,7 +189,7 @@ class AppButton extends StatefulWidget {
     this.loadingIndicatorColor,
   }) : variant = ButtonVariant.ghost;
 
-  /// Constructor para botón danger (atajo)
+  /// Constructor para botï¿½n danger (atajo)
   const AppButton.danger({
     super.key,
     required this.text,
@@ -247,21 +247,20 @@ class _AppButtonState extends State<AppButton>
     final isDark = theme.brightness == Brightness.dark;
     final sizeConfig = AppButtonStyles.getSizeConfig(widget.size);
 
-    // Estado del botón
+    // Estado del botÃ³n
     final isEnabled = widget.onPressed != null && !widget.isLoading;
-    final isDisabled = !isEnabled;
 
-    // Estilo del botón
+    // Estilo del botÃ³n
     final buttonStyle = AppButtonStyles.getVariantStyle(
       widget.variant,
       widget.size,
       isDark: isDark,
     ).merge(widget.style);
 
-    // Contenido del botón
+    // Contenido del botï¿½n
     Widget content = _buildButtonContent(context, sizeConfig, isDark);
 
-    // Botón base según variante
+    // Botï¿½n base segï¿½n variante
     Widget button = _buildButton(context, buttonStyle, content, isEnabled);
 
     // Full width wrapper
@@ -280,7 +279,7 @@ class _AppButtonState extends State<AppButton>
       );
     }
 
-    // Semántica y accesibilidad
+    // Semï¿½ntica y accesibilidad
     button = Semantics(
       label: widget.semanticsLabel ?? widget.text,
       hint: AppButtonStyles.getSemanticsProperties(
@@ -294,7 +293,7 @@ class _AppButtonState extends State<AppButton>
       child: button,
     );
 
-    // Animación de escala al presionar
+    // Animaciï¿½n de escala al presionar
     return AnimatedBuilder(
       animation: _scaleAnimation,
       builder: (context, child) {
@@ -306,7 +305,7 @@ class _AppButtonState extends State<AppButton>
     );
   }
 
-  /// Construye el botón apropiado según la variante
+  /// Construye el botï¿½n apropiado segï¿½n la variante
   Widget _buildButton(
     BuildContext context,
     ButtonStyle style,
@@ -346,7 +345,7 @@ class _AppButtonState extends State<AppButton>
     }
   }
 
-  /// Construye el contenido interno del botón
+  /// Construye el contenido interno del botï¿½n
   Widget _buildButtonContent(
     BuildContext context,
     _ButtonSizeConfig sizeConfig,
@@ -355,7 +354,9 @@ class _AppButtonState extends State<AppButton>
     final List<Widget> children = [];
 
     // Leading icon/widget
-    if (widget.isLoading && widget.leadingWidget == null && widget.leadingIcon == null) {
+    if (widget.isLoading &&
+        widget.leadingWidget == null &&
+        widget.leadingIcon == null) {
       children.add(_buildLoadingIndicator(sizeConfig, isDark));
       children.add(AppSpacing.horizontalXs);
     } else if (widget.leadingWidget != null) {
@@ -391,8 +392,10 @@ class _AppButtonState extends State<AppButton>
         widget.trailingIcon,
         size: sizeConfig.iconSize,
       ));
-    } else if (widget.isLoading && widget.leadingWidget == null && widget.leadingIcon == null) {
-      // Si está loading y no hay leading icon, mostrar loading indicator al final
+    } else if (widget.isLoading &&
+        widget.leadingWidget == null &&
+        widget.leadingIcon == null) {
+      // Si estï¿½ loading y no hay leading icon, mostrar loading indicator al final
       children.add(AppSpacing.horizontalXs);
       children.add(_buildLoadingIndicator(sizeConfig, isDark));
     }
@@ -425,7 +428,7 @@ class _AppButtonState extends State<AppButton>
       HapticFeedback.lightImpact();
     }
 
-    // Animación de escala
+    // Animaciï¿½n de escala
     _animationController.forward().then((_) {
       _animationController.reverse();
     });
@@ -445,12 +448,12 @@ class _AppButtonState extends State<AppButton>
 }
 
 // ==========================================================================
-// EXTENSIONES ÚTILES
+// EXTENSIONES ï¿½TILES
 // ==========================================================================
 
-/// Extensión para facilitar el uso de AppButton
+/// Extensiï¿½n para facilitar el uso de AppButton
 extension AppButtonExtension on AppButton {
-  /// Crea una copia del botón con propiedades modificadas
+  /// Crea una copia del botï¿½n con propiedades modificadas
   AppButton copyWith({
     String? text,
     ButtonVariant? variant,
@@ -487,8 +490,10 @@ extension AppButtonExtension on AppButton {
       tooltip: tooltip ?? this.tooltip,
       semanticsLabel: semanticsLabel ?? this.semanticsLabel,
       enableFeedback: enableFeedback ?? this.enableFeedback,
-      loadingAnimationDuration: loadingAnimationDuration ?? this.loadingAnimationDuration,
-      loadingIndicatorColor: loadingIndicatorColor ?? this.loadingIndicatorColor,
+      loadingAnimationDuration:
+          loadingAnimationDuration ?? this.loadingAnimationDuration,
+      loadingIndicatorColor:
+          loadingIndicatorColor ?? this.loadingIndicatorColor,
     );
   }
 }
@@ -497,21 +502,21 @@ extension AppButtonExtension on AppButton {
 // WIDGETS DE CONVENIENCIA
 // ==========================================================================
 
-/// Grupo de botones con spacing automático
+/// Grupo de botones con spacing automï¿½tico
 class AppButtonGroup extends StatelessWidget {
   /// Lista de botones a mostrar
   final List<AppButton> buttons;
 
-  /// Dirección del layout (horizontal o vertical)
+  /// Direcciï¿½n del layout (horizontal o vertical)
   final Axis direction;
 
   /// Espaciado entre botones
   final double spacing;
 
-  /// Alineación principal de los botones
+  /// Alineaciï¿½n principal de los botones
   final MainAxisAlignment mainAxisAlignment;
 
-  /// Alineación cruzada de los botones
+  /// Alineaciï¿½n cruzada de los botones
   final CrossAxisAlignment crossAxisAlignment;
 
   /// Crear un grupo de botones

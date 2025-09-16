@@ -16,12 +16,17 @@
 ///   home: MyApp(),
 /// )
 /// ```
+library;
 
 // Theme exports - complete theming system
-export 'package:iautomat_design_system/src/theme/theme.dart';
+export 'src/theme/app_theme.dart';
+export 'src/theme/colors.dart';
+export 'src/theme/spacing.dart';
+export 'src/theme/theme.dart';
+export 'src/theme/typography.dart';
 
 // Component exports - all UI components
-export 'package:iautomat_design_system/src/components/components.dart';
+export 'src/components/components.dart';
 
 // Utility exports - responsive and helper utilities
-export 'package:iautomat_design_system/src/utils/utils.dart';
+export 'src/utils/utils.dart';

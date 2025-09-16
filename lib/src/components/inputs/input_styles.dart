@@ -4,7 +4,7 @@ import '../../theme/spacing.dart';
 import '../../theme/typography.dart';
 import '../../theme/app_theme.dart';
 
-/// Enumeración para los tipos de input disponibles
+/// EnumeraciÃ³n para los tipos de input disponibles
 enum InputType {
   /// Input de texto normal
   text,
@@ -12,34 +12,34 @@ enum InputType {
   /// Input para email con teclado optimizado
   email,
 
-  /// Input para contraseña con ocultamiento de texto
+  /// Input para contraseï¿½a con ocultamiento de texto
   password,
 
-  /// Input para números con teclado numérico
+  /// Input para nï¿½meros con teclado numï¿½rico
   number,
 
-  /// Input de texto múltiple líneas
+  /// Input de texto mï¿½ltiple lï¿½neas
   multiline,
 
-  /// Input para búsqueda con iconografía específica
+  /// Input para bï¿½squeda con iconografï¿½a especï¿½fica
   search,
 
-  /// Input para URLs con validación específica
+  /// Input para URLs con validaciï¿½n especï¿½fica
   url,
 
-  /// Input para teléfonos con formato específico
+  /// Input para telï¿½fonos con formato especï¿½fico
   phone,
 }
 
-/// Enumeración para los estados visuales del input
+/// Enumeraciï¿½n para los estados visuales del input
 enum InputState {
-  /// Estado normal, sin interacción
+  /// Estado normal, sin interacciï¿½n
   normal,
 
   /// Estado cuando el input tiene focus
   focused,
 
-  /// Estado cuando hay un error de validación
+  /// Estado cuando hay un error de validaciï¿½n
   error,
 
   /// Estado deshabilitado
@@ -48,7 +48,7 @@ enum InputState {
   /// Estado de solo lectura
   readonly,
 
-  /// Estado de éxito (validación pasada)
+  /// Estado de ï¿½xito (validaciï¿½n pasada)
   success,
 }
 
@@ -56,10 +56,10 @@ enum InputState {
 ///
 /// Proporciona decoraciones consistentes para todos los estados
 /// y tipos de inputs en el Design System, incluyendo:
-/// - Colores específicos por estado
+/// - Colores especï¿½ficos por estado
 /// - Transiciones suaves entre estados
 /// - Decoraciones adaptadas al tema (light/dark)
-/// - Configuraciones específicas por tipo de input
+/// - Configuraciones especï¿½ficas por tipo de input
 /// - Animaciones y efectos visuales
 class AppInputStyles {
   AppInputStyles._();
@@ -68,13 +68,13 @@ class AppInputStyles {
   // CONFIGURACIONES GENERALES
   // ==========================================================================
 
-  /// Duración de las transiciones entre estados
+  /// Duraciï¿½n de las transiciones entre estados
   static const Duration transitionDuration = AppTheme.durationFast;
 
-  /// Curva de animación para transiciones
+  /// Curva de animaciï¿½n para transiciones
   static const Curve transitionCurve = AppTheme.curveStandard;
 
-  /// Radio de borde estándar para inputs
+  /// Radio de borde estï¿½ndar para inputs
   static const BorderRadius borderRadius = AppTheme.radiusMd;
 
   /// Ancho del borde en estado normal
@@ -84,7 +84,7 @@ class AppInputStyles {
   static const double focusedBorderWidth = 2.0;
 
   // ==========================================================================
-  // CONFIGURACIÓN DE TECLADOS POR TIPO
+  // CONFIGURACIï¿½N DE TECLADOS POR TIPO
   // ==========================================================================
 
   /// Obtiene el tipo de teclado apropiado para cada InputType
@@ -109,7 +109,7 @@ class AppInputStyles {
     }
   }
 
-  /// Obtiene la acción del teclado apropiada para cada InputType
+  /// Obtiene la acciï¿½n del teclado apropiada para cada InputType
   static TextInputAction getTextInputAction(InputType type, bool isMultiline) {
     if (isMultiline) return TextInputAction.newline;
 
@@ -131,7 +131,7 @@ class AppInputStyles {
   // DECORACIONES POR ESTADO
   // ==========================================================================
 
-  /// Obtiene la decoración completa para un estado específico
+  /// Obtiene la decoraciï¿½n completa para un estado especï¿½fico
   static InputDecoration getDecoration({
     required InputState state,
     required bool isDark,
@@ -164,7 +164,7 @@ class AppInputStyles {
       errorStyle: _getErrorStyle(isDark),
       errorMaxLines: 2,
 
-      // Íconos y widgets
+      // ï¿½conos y widgets
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,
       prefixText: prefixText,
@@ -195,7 +195,8 @@ class AppInputStyles {
       enabledBorder: _getBorder(colors.borderColor, normalBorderWidth),
       focusedBorder: _getBorder(colors.focusedBorderColor, focusedBorderWidth),
       errorBorder: _getBorder(colors.errorBorderColor, normalBorderWidth),
-      focusedErrorBorder: _getBorder(colors.errorBorderColor, focusedBorderWidth),
+      focusedErrorBorder:
+          _getBorder(colors.errorBorderColor, focusedBorderWidth),
       disabledBorder: _getBorder(colors.disabledBorderColor, normalBorderWidth),
 
       // Constraints
@@ -205,7 +206,7 @@ class AppInputStyles {
     );
   }
 
-  /// Crea un OutlineInputBorder con los parámetros especificados
+  /// Crea un OutlineInputBorder con los parï¿½metros especificados
   static OutlineInputBorder _getBorder(Color color, double width) {
     return OutlineInputBorder(
       borderRadius: borderRadius,
@@ -238,7 +239,8 @@ class AppInputStyles {
         color = isDark ? AppColors.successDarkMode : AppColors.success;
         break;
       default:
-        color = isDark ? AppColors.textSecondaryDarkMode : AppColors.textSecondary;
+        color =
+            isDark ? AppColors.textSecondaryDarkMode : AppColors.textSecondary;
     }
 
     return AppTypography.withColor(AppTypography.labelMedium, color);
@@ -267,13 +269,15 @@ class AppInputStyles {
 
   /// Estilo para el hint text
   static TextStyle _getHintStyle(bool isDark) {
-    final color = isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary;
+    final color =
+        isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary;
     return AppTypography.withColor(AppTypography.bodyMedium, color);
   }
 
   /// Estilo para el helper text
   static TextStyle _getHelperStyle(bool isDark) {
-    final color = isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary;
+    final color =
+        isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary;
     return AppTypography.withColor(AppTypography.caption, color);
   }
 
@@ -285,7 +289,8 @@ class AppInputStyles {
 
   /// Estilo para prefix/suffix text
   static TextStyle _getPrefixSuffixStyle(bool isDark) {
-    final color = isDark ? AppColors.textSecondaryDarkMode : AppColors.textSecondary;
+    final color =
+        isDark ? AppColors.textSecondaryDarkMode : AppColors.textSecondary;
     return AppTypography.withColor(AppTypography.bodyMedium, color);
   }
 
@@ -299,7 +304,9 @@ class AppInputStyles {
     Color color;
 
     if (state == InputState.error ||
-        (currentLength != null && maxLength != null && currentLength > maxLength)) {
+        (currentLength != null &&
+            maxLength != null &&
+            currentLength > maxLength)) {
       color = isDark ? AppColors.errorDarkMode : AppColors.error;
     } else {
       color = isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary;
@@ -317,23 +324,33 @@ class AppInputStyles {
     switch (state) {
       case InputState.normal:
         return _InputColors(
-          fillColor: isDark ? AppColors.backgroundTertiaryDarkMode : AppColors.surfaceVariant,
+          fillColor: isDark
+              ? AppColors.backgroundTertiaryDarkMode
+              : AppColors.surfaceVariant,
           borderColor: isDark ? AppColors.gray600 : AppColors.gray300,
-          focusedBorderColor: isDark ? AppColors.primaryDarkMode : AppColors.primary,
+          focusedBorderColor:
+              isDark ? AppColors.primaryDarkMode : AppColors.primary,
           errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
           disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
-          textColor: isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
-          iconColor: isDark ? AppColors.textSecondaryDarkMode : AppColors.textSecondary,
+          textColor:
+              isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
+          iconColor: isDark
+              ? AppColors.textSecondaryDarkMode
+              : AppColors.textSecondary,
         );
 
       case InputState.focused:
         return _InputColors(
-          fillColor: isDark ? AppColors.backgroundTertiaryDarkMode : AppColors.surfaceVariant,
+          fillColor: isDark
+              ? AppColors.backgroundTertiaryDarkMode
+              : AppColors.surfaceVariant,
           borderColor: isDark ? AppColors.primaryDarkMode : AppColors.primary,
-          focusedBorderColor: isDark ? AppColors.primaryDarkMode : AppColors.primary,
+          focusedBorderColor:
+              isDark ? AppColors.primaryDarkMode : AppColors.primary,
           errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
           disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
-          textColor: isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
+          textColor:
+              isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
           iconColor: isDark ? AppColors.primaryDarkMode : AppColors.primary,
         );
 
@@ -343,10 +360,12 @@ class AppInputStyles {
               ? AppColors.errorDarkMode.withOpacity(0.05)
               : AppColors.errorLight.withOpacity(0.05),
           borderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
-          focusedBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
+          focusedBorderColor:
+              isDark ? AppColors.errorDarkMode : AppColors.error,
           errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
           disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
-          textColor: isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
+          textColor:
+              isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
           iconColor: isDark ? AppColors.errorDarkMode : AppColors.error,
         );
 
@@ -356,10 +375,12 @@ class AppInputStyles {
               ? AppColors.successDarkMode.withOpacity(0.05)
               : AppColors.successLight.withOpacity(0.05),
           borderColor: isDark ? AppColors.successDarkMode : AppColors.success,
-          focusedBorderColor: isDark ? AppColors.successDarkMode : AppColors.success,
+          focusedBorderColor:
+              isDark ? AppColors.successDarkMode : AppColors.success,
           errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
           disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
-          textColor: isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
+          textColor:
+              isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
           iconColor: isDark ? AppColors.successDarkMode : AppColors.success,
         );
 
@@ -376,13 +397,17 @@ class AppInputStyles {
 
       case InputState.readonly:
         return _InputColors(
-          fillColor: isDark ? AppColors.gray700.withOpacity(0.5) : AppColors.gray50,
+          fillColor:
+              isDark ? AppColors.gray700.withOpacity(0.5) : AppColors.gray50,
           borderColor: isDark ? AppColors.gray600 : AppColors.gray300,
           focusedBorderColor: isDark ? AppColors.gray600 : AppColors.gray300,
           errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
           disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
-          textColor: isDark ? AppColors.textSecondaryDarkMode : AppColors.textSecondary,
-          iconColor: isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary,
+          textColor: isDark
+              ? AppColors.textSecondaryDarkMode
+              : AppColors.textSecondary,
+          iconColor:
+              isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary,
         );
     }
   }
@@ -391,7 +416,7 @@ class AppInputStyles {
   // ANIMACIONES
   // ==========================================================================
 
-  /// Crear un AnimatedContainer para transiciones suaves de decoración
+  /// Crear un AnimatedContainer para transiciones suaves de decoraciï¿½n
   static Widget animatedDecoration({
     required Widget child,
     required InputState currentState,
@@ -404,7 +429,7 @@ class AppInputStyles {
     );
   }
 
-  /// Transición de color animada para íconos
+  /// Transiciï¿½n de color animada para ï¿½conos
   static Widget animatedIcon({
     required IconData icon,
     required InputState state,
@@ -459,12 +484,12 @@ class AppInputStyles {
     required InputType type,
   }) {
     return showClearButton &&
-           text.isNotEmpty &&
-           isFocused &&
-           type != InputType.password;
+        text.isNotEmpty &&
+        isFocused &&
+        type != InputType.password;
   }
 
-  /// Obtiene el ícono apropiado para un tipo de input
+  /// Obtiene el ï¿½cono apropiado para un tipo de input
   static IconData? getDefaultIcon(InputType type) {
     switch (type) {
       case InputType.email:
@@ -483,7 +508,7 @@ class AppInputStyles {
   }
 }
 
-/// Clase interna para agrupar colores de un estado específico
+/// Clase interna para agrupar colores de un estado especï¿½fico
 class _InputColors {
   final Color fillColor;
   final Color borderColor;

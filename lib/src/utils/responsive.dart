@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import '../theme/spacing.dart';
-import '../theme/typography.dart';
 
-/// Enumeración para los tipos de breakpoints disponibles
+/// EnumeraciÃ³n para los tipos de breakpoints disponibles
 enum BreakpointType {
-  /// Móvil - pantallas pequeñas
+  /// MÃ³vil - pantallas pequeÃ±as
   mobile,
 
   /// Tablet - pantallas medianas
@@ -17,27 +16,27 @@ enum BreakpointType {
   ultraWide,
 }
 
-/// Enumeración para orientación del dispositivo
+/// Enumeraciï¿½n para orientaciï¿½n del dispositivo
 enum DeviceOrientation {
-  /// Orientación portrait (vertical)
+  /// Orientaciï¿½n portrait (vertical)
   portrait,
 
-  /// Orientación landscape (horizontal)
+  /// Orientaciï¿½n landscape (horizontal)
   landscape,
 }
 
 /// Sistema de utilidades responsive para el Design System de IAutomat
 ///
 /// Proporciona herramientas completas para crear interfaces adaptativas
-/// que respondan apropiadamente a diferentes tamaños de pantalla y orientaciones.
+/// que respondan apropiadamente a diferentes tamaï¿½os de pantalla y orientaciones.
 ///
-/// Características:
-/// - Breakpoints configurables y estándar de la industria
-/// - Detección automática de tipo de dispositivo
+/// Caracterï¿½sticas:
+/// - Breakpoints configurables y estï¿½ndar de la industria
+/// - Detecciï¿½n automï¿½tica de tipo de dispositivo
 /// - Widgets adaptativos para layouts responsive
-/// - Valores dinámicos según breakpoint
-/// - Helpers para tipografía, spacing y layouts
-/// - Soporte completo para orientación
+/// - Valores dinï¿½micos segï¿½n breakpoint
+/// - Helpers para tipografï¿½a, spacing y layouts
+/// - Soporte completo para orientaciï¿½n
 ///
 /// Ejemplo de uso:
 /// ```dart
@@ -54,7 +53,7 @@ class Responsive {
   // BREAKPOINTS CONFIGURABLES
   // ==========================================================================
 
-  /// Breakpoint para móviles (0 - 599px)
+  /// Breakpoint para mï¿½viles (0 - 599px)
   static const double mobileBreakpoint = 600;
 
   /// Breakpoint para tablets (600 - 899px)
@@ -66,7 +65,7 @@ class Responsive {
   /// Breakpoint para ultra wide (1200px+)
   static const double ultraWideBreakpoint = 1600;
 
-  /// Mapa de breakpoints para uso programático
+  /// Mapa de breakpoints para uso programï¿½tico
   static const Map<BreakpointType, double> breakpoints = {
     BreakpointType.mobile: mobileBreakpoint,
     BreakpointType.tablet: tabletBreakpoint,
@@ -75,10 +74,10 @@ class Responsive {
   };
 
   // ==========================================================================
-  // MÉTODOS DE DETECCIÓN DE DISPOSITIVO
+  // Mï¿½TODOS DE DETECCIï¿½N DE DISPOSITIVO
   // ==========================================================================
 
-  /// Determina si el dispositivo actual es móvil
+  /// Determina si el dispositivo actual es mï¿½vil
   ///
   /// [context] BuildContext para obtener el MediaQuery
   ///
@@ -91,7 +90,7 @@ class Responsive {
   ///
   /// [context] BuildContext para obtener el MediaQuery
   ///
-  /// Retorna true si el ancho está entre [mobileBreakpoint] y [tabletBreakpoint]
+  /// Retorna true si el ancho estï¿½ entre [mobileBreakpoint] y [tabletBreakpoint]
   static bool isTablet(BuildContext context) {
     final width = getScreenWidth(context);
     return width >= mobileBreakpoint && width < tabletBreakpoint;
@@ -101,7 +100,7 @@ class Responsive {
   ///
   /// [context] BuildContext para obtener el MediaQuery
   ///
-  /// Retorna true si el ancho está entre [tabletBreakpoint] y [desktopBreakpoint]
+  /// Retorna true si el ancho estï¿½ entre [tabletBreakpoint] y [desktopBreakpoint]
   static bool isDesktop(BuildContext context) {
     final width = getScreenWidth(context);
     return width >= tabletBreakpoint && width < ultraWideBreakpoint;
@@ -116,7 +115,7 @@ class Responsive {
     return getScreenWidth(context) >= ultraWideBreakpoint;
   }
 
-  /// Determina si la pantalla es pequeña (móvil o tablet en portrait)
+  /// Determina si la pantalla es pequeï¿½a (mï¿½vil o tablet en portrait)
   static bool isSmallScreen(BuildContext context) {
     return isMobile(context) || (isTablet(context) && isPortrait(context));
   }
@@ -127,32 +126,34 @@ class Responsive {
   }
 
   // ==========================================================================
-  // MÉTODOS DE ORIENTACIÓN
+  // Mï¿½TODOS DE ORIENTACIï¿½N
   // ==========================================================================
 
-  /// Determina si el dispositivo está en orientación portrait
+  /// Determina si el dispositivo estï¿½ en orientaciï¿½n portrait
   ///
   /// [context] BuildContext para obtener el MediaQuery
   static bool isPortrait(BuildContext context) {
     return MediaQuery.of(context).orientation == Orientation.portrait;
   }
 
-  /// Determina si el dispositivo está en orientación landscape
+  /// Determina si el dispositivo estï¿½ en orientaciï¿½n landscape
   ///
   /// [context] BuildContext para obtener el MediaQuery
   static bool isLandscape(BuildContext context) {
     return MediaQuery.of(context).orientation == Orientation.landscape;
   }
 
-  /// Obtiene la orientación actual como enum
+  /// Obtiene la orientaciï¿½n actual como enum
   ///
   /// [context] BuildContext para obtener el MediaQuery
   static DeviceOrientation getDeviceOrientation(BuildContext context) {
-    return isPortrait(context) ? DeviceOrientation.portrait : DeviceOrientation.landscape;
+    return isPortrait(context)
+        ? DeviceOrientation.portrait
+        : DeviceOrientation.landscape;
   }
 
   // ==========================================================================
-  // MÉTODOS DE INFORMACIÓN DE PANTALLA
+  // Mï¿½TODOS DE INFORMACIï¿½N DE PANTALLA
   // ==========================================================================
 
   /// Obtiene el breakpoint actual del dispositivo
@@ -183,7 +184,7 @@ class Responsive {
     return MediaQuery.of(context).size.height;
   }
 
-  /// Obtiene el tamaño completo de la pantalla
+  /// Obtiene el tamaï¿½o completo de la pantalla
   ///
   /// [context] BuildContext para obtener el MediaQuery
   static Size getScreenSize(BuildContext context) {
@@ -198,15 +199,15 @@ class Responsive {
   }
 
   // ==========================================================================
-  // HELPERS RESPONSIVE ESPECÍFICOS
+  // HELPERS RESPONSIVE ESPECï¿½FICOS
   // ==========================================================================
 
-  /// Obtiene un tamaño de fuente responsive
+  /// Obtiene un tamaï¿½o de fuente responsive
   ///
   /// [context] BuildContext para determinar el breakpoint
-  /// [mobile] Tamaño para móvil
-  /// [tablet] Tamaño para tablet (opcional, usa mobile si no se proporciona)
-  /// [desktop] Tamaño para desktop (opcional, usa tablet si no se proporciona)
+  /// [mobile] Tamaï¿½o para mï¿½vil
+  /// [tablet] Tamaï¿½o para tablet (opcional, usa mobile si no se proporciona)
+  /// [desktop] Tamaï¿½o para desktop (opcional, usa tablet si no se proporciona)
   static double getResponsiveFontSize(
     BuildContext context, {
     required double mobile,
@@ -225,7 +226,7 @@ class Responsive {
   /// Obtiene espaciado responsive
   ///
   /// [context] BuildContext para determinar el breakpoint
-  /// [mobile] Espaciado para móvil
+  /// [mobile] Espaciado para mï¿½vil
   /// [tablet] Espaciado para tablet
   /// [desktop] Espaciado para desktop
   static double getResponsiveSpacing(
@@ -243,10 +244,10 @@ class Responsive {
     ).getValue(context);
   }
 
-  /// Obtiene número de columnas para grids responsive
+  /// Obtiene nï¿½mero de columnas para grids responsive
   ///
   /// [context] BuildContext para determinar el breakpoint
-  /// [mobile] Columnas para móvil (default: 1)
+  /// [mobile] Columnas para mï¿½vil (default: 1)
   /// [tablet] Columnas para tablet (default: 2)
   /// [desktop] Columnas para desktop (default: 3)
   static int getResponsiveColumns(
@@ -264,7 +265,7 @@ class Responsive {
     ).getValue(context);
   }
 
-  /// Obtiene padding responsive basado en el tamaño de pantalla
+  /// Obtiene padding responsive basado en el tamaï¿½o de pantalla
   ///
   /// [context] BuildContext para determinar el breakpoint
   static EdgeInsets getResponsivePadding(BuildContext context) {
@@ -277,7 +278,7 @@ class Responsive {
     }
   }
 
-  /// Obtiene el ancho máximo para contenido centrado
+  /// Obtiene el ancho mï¿½ximo para contenido centrado
   ///
   /// [context] BuildContext para determinar el breakpoint
   static double getMaxContentWidth(BuildContext context) {
@@ -294,10 +295,10 @@ class Responsive {
 // RESPONSIVE VALUE CLASS
 // ==========================================================================
 
-/// Clase para definir valores que cambian según el breakpoint
+/// Clase para definir valores que cambian segï¿½n el breakpoint
 ///
-/// Permite especificar diferentes valores para cada tamaño de pantalla
-/// y obtiene automáticamente el valor apropiado según el contexto actual.
+/// Permite especificar diferentes valores para cada tamaï¿½o de pantalla
+/// y obtiene automï¿½ticamente el valor apropiado segï¿½n el contexto actual.
 ///
 /// Ejemplo:
 /// ```dart
@@ -310,7 +311,7 @@ class Responsive {
 /// Text('Hello', style: TextStyle(fontSize: fontSize.getValue(context)))
 /// ```
 class ResponsiveValue<T> {
-  /// Valor para móvil
+  /// Valor para mï¿½vil
   final T mobile;
 
   /// Valor para tablet
@@ -366,7 +367,7 @@ class ResponsiveValue<T> {
     }
   }
 
-  /// Obtiene el valor para un breakpoint específico
+  /// Obtiene el valor para un breakpoint especï¿½fico
   T getValueForBreakpoint(BreakpointType breakpoint) {
     switch (breakpoint) {
       case BreakpointType.mobile:
@@ -400,9 +401,9 @@ class ResponsiveValue<T> {
 // RESPONSIVE BUILDER WIDGET
 // ==========================================================================
 
-/// Widget builder que se adapta automáticamente según el breakpoint
+/// Widget builder que se adapta automï¿½ticamente segï¿½n el breakpoint
 ///
-/// Permite construir diferentes layouts para cada tamaño de pantalla
+/// Permite construir diferentes layouts para cada tamaï¿½o de pantalla
 /// de manera declarativa y eficiente.
 ///
 /// Ejemplo:
@@ -414,7 +415,7 @@ class ResponsiveValue<T> {
 /// )
 /// ```
 class ResponsiveBuilder extends StatelessWidget {
-  /// Builder para móvil
+  /// Builder para mï¿½vil
   final Widget Function(BuildContext context)? mobile;
 
   /// Builder para tablet
@@ -475,12 +476,12 @@ class ResponsiveBuilder extends StatelessWidget {
 // RESPONSIVE LAYOUT WIDGET
 // ==========================================================================
 
-/// Widget que cambia automáticamente entre layouts según el tamaño de pantalla
+/// Widget que cambia automï¿½ticamente entre layouts segï¿½n el tamaï¿½o de pantalla
 ///
-/// Versión simplificada del ResponsiveBuilder para casos comunes donde
-/// solo necesitas distinguir entre pequeño, mediano y grande.
+/// Versiï¿½n simplificada del ResponsiveBuilder para casos comunes donde
+/// solo necesitas distinguir entre pequeï¿½o, mediano y grande.
 class ResponsiveLayout extends StatelessWidget {
-  /// Layout para pantallas pequeñas (móvil)
+  /// Layout para pantallas pequeï¿½as (mï¿½vil)
   final Widget? small;
 
   /// Layout para pantallas medianas (tablet)
@@ -533,15 +534,15 @@ class ResponsiveLayout extends StatelessWidget {
 // RESPONSIVE GRID WIDGET
 // ==========================================================================
 
-/// Grid que se adapta automáticamente según el tamaño de pantalla
+/// Grid que se adapta automï¿½ticamente segï¿½n el tamaï¿½o de pantalla
 ///
-/// Cambia el número de columnas basado en breakpoints y
+/// Cambia el nï¿½mero de columnas basado en breakpoints y
 /// ajusta el spacing apropiadamente.
 class ResponsiveGrid extends StatelessWidget {
   /// Lista de widgets a mostrar en el grid
   final List<Widget> children;
 
-  /// Número de columnas para cada breakpoint
+  /// Nï¿½mero de columnas para cada breakpoint
   final ResponsiveValue<int> columns;
 
   /// Espaciado entre elementos
@@ -569,12 +570,13 @@ class ResponsiveGrid extends StatelessWidget {
     this.shrinkWrap = false,
     this.physics,
     this.padding,
-  }) : columns = columns ?? const ResponsiveValue<int>(
-         mobile: 1,
-         tablet: 2,
-         desktop: 3,
-         ultraWide: 4,
-       );
+  }) : columns = columns ??
+            const ResponsiveValue<int>(
+              mobile: 1,
+              tablet: 2,
+              desktop: 3,
+              ultraWide: 4,
+            );
 
   @override
   Widget build(BuildContext context) {
@@ -600,7 +602,7 @@ class ResponsiveGrid extends StatelessWidget {
 // RESPONSIVE WRAP WIDGET
 // ==========================================================================
 
-/// Wrap que adapta su spacing según el tamaño de pantalla
+/// Wrap que adapta su spacing segï¿½n el tamaï¿½o de pantalla
 class ResponsiveWrap extends StatelessWidget {
   /// Lista de widgets para el wrap
   final List<Widget> children;
@@ -611,13 +613,13 @@ class ResponsiveWrap extends StatelessWidget {
   /// Espaciado entre filas
   final ResponsiveValue<double>? runSpacing;
 
-  /// Alineación principal
+  /// Alineaciï¿½n principal
   final WrapAlignment alignment;
 
-  /// Alineación cruzada
+  /// Alineaciï¿½n cruzada
   final WrapCrossAlignment crossAxisAlignment;
 
-  /// Dirección del wrap
+  /// Direcciï¿½n del wrap
   final Axis direction;
 
   /// Crear un ResponsiveWrap
@@ -651,12 +653,12 @@ class ResponsiveWrap extends StatelessWidget {
 // RESPONSIVE TEXT WIDGET
 // ==========================================================================
 
-/// Text widget que adapta su tamaño automáticamente
+/// Text widget que adapta su tamaï¿½o automï¿½ticamente
 class ResponsiveText extends StatelessWidget {
   /// Texto a mostrar
   final String text;
 
-  /// Tamaño base para móvil
+  /// Tamaï¿½o base para mï¿½vil
   final double baseFontSize;
 
   /// Factor de escala para tablet
@@ -671,13 +673,13 @@ class ResponsiveText extends StatelessWidget {
   /// TextStyle base
   final TextStyle? style;
 
-  /// Alineación del texto
+  /// Alineaciï¿½n del texto
   final TextAlign? textAlign;
 
   /// Overflow del texto
   final TextOverflow? overflow;
 
-  /// Número máximo de líneas
+  /// Nï¿½mero mï¿½ximo de lï¿½neas
   final int? maxLines;
 
   /// Crear un ResponsiveText
@@ -714,12 +716,12 @@ class ResponsiveText extends StatelessWidget {
 }
 
 // ==========================================================================
-// EXTENSIONES ÚTILES
+// EXTENSIONES ï¿½TILES
 // ==========================================================================
 
 /// Extensiones para BuildContext que facilitan el uso de responsive
 extension ResponsiveExtension on BuildContext {
-  /// Acceso directo a métodos responsive
+  /// Acceso directo a mï¿½todos responsive
   bool get isMobile => Responsive.isMobile(this);
   bool get isTablet => Responsive.isTablet(this);
   bool get isDesktop => Responsive.isDesktop(this);
@@ -727,7 +729,7 @@ extension ResponsiveExtension on BuildContext {
   bool get isPortrait => Responsive.isPortrait(this);
   bool get isLandscape => Responsive.isLandscape(this);
 
-  /// Obtiene información de pantalla
+  /// Obtiene informaciï¿½n de pantalla
   BreakpointType get breakpoint => Responsive.getCurrentBreakpoint(this);
   double get screenWidth => Responsive.getScreenWidth(this);
   double get screenHeight => Responsive.getScreenHeight(this);

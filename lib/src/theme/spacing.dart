@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 /// - Escala base de espaciado (xxxs a xxxl)
 /// - Widgets SizedBox predefinidos para espaciado
 /// - EdgeInsets presets para casos comunes
-/// - Spacing responsive según dispositivo
+/// - Spacing responsive segÃºn dispositivo
 /// - Grid system para layouts
 /// - Max widths para contenido
 ///
 /// Principios del sistema:
-/// - Base de 8px (óptimo para múltiples resoluciones)
+/// - Base de 8px (Ã³ptimo para mÃºltiples resoluciones)
 /// - Escala proporcional y predecible
-/// - Spacing responsive automático
+/// - Spacing responsive automÃ¡tico
 /// - Consistent vertical rhythm
 class AppSpacing {
   AppSpacing._();
@@ -28,54 +28,54 @@ class AppSpacing {
   /// Unidad base del sistema de espaciado
   ///
   /// 8px es la base recomendada por Material Design y proporciona
-  /// una escala que funciona bien en múltiples densidades de pantalla.
+  /// una escala que funciona bien en mï¿½ltiples densidades de pantalla.
   static const double unit = 8.0;
 
   /// Espaciado extra extra extra small - 4px
   ///
-  /// Uso: Separación mínima entre elementos muy relacionados,
-  /// padding interno de chips, spacing en iconos pequeños
+  /// Uso: Separaciï¿½n mï¿½nima entre elementos muy relacionados,
+  /// padding interno de chips, spacing en iconos pequeï¿½os
   static const double xxxs = unit * 0.5; // 4px
 
   /// Espaciado extra extra small - 8px
   ///
-  /// Uso: Padding interno de elementos pequeños, separación entre
-  /// elementos íntimamente relacionados
+  /// Uso: Padding interno de elementos pequeï¿½os, separaciï¿½n entre
+  /// elementos ï¿½ntimamente relacionados
   static const double xxs = unit * 1; // 8px
 
   /// Espaciado extra small - 12px
   ///
-  /// Uso: Padding de elementos compactos, separación en listas densas
+  /// Uso: Padding de elementos compactos, separaciï¿½n en listas densas
   static const double xs = unit * 1.5; // 12px
 
   /// Espaciado small - 16px
   ///
-  /// Uso: Padding estándar de elementos, separación entre componentes relacionados
+  /// Uso: Padding estï¿½ndar de elementos, separaciï¿½n entre componentes relacionados
   static const double sm = unit * 2; // 16px
 
   /// Espaciado medium - 24px
   ///
-  /// Uso: Separación entre secciones, padding de cards, spacing vertical estándar
+  /// Uso: Separaciï¿½n entre secciones, padding de cards, spacing vertical estï¿½ndar
   static const double md = unit * 3; // 24px
 
   /// Espaciado large - 32px
   ///
-  /// Uso: Separación entre grupos de contenido, padding de páginas
+  /// Uso: Separaciï¿½n entre grupos de contenido, padding de pï¿½ginas
   static const double lg = unit * 4; // 32px
 
   /// Espaciado extra large - 40px
   ///
-  /// Uso: Separación entre secciones importantes, spacing de hero sections
+  /// Uso: Separaciï¿½n entre secciones importantes, spacing de hero sections
   static const double xl = unit * 5; // 40px
 
   /// Espaciado extra extra large - 48px
   ///
-  /// Uso: Separación entre secciones principales, padding de contenedores grandes
+  /// Uso: Separaciï¿½n entre secciones principales, padding de contenedores grandes
   static const double xxl = unit * 6; // 48px
 
   /// Espaciado extra extra extra large - 64px
   ///
-  /// Uso: Separación máxima entre secciones, spacing de layouts principales
+  /// Uso: Separaciï¿½n mï¿½xima entre secciones, spacing de layouts principales
   static const double xxxl = unit * 8; // 64px
 
   // ==========================================================================
@@ -144,12 +144,12 @@ class AppSpacing {
   // EDGEINSETS PRESETS - CASOS COMUNES
   // ==========================================================================
 
-  /// Padding para páginas principales
+  /// Padding para pï¿½ginas principales
   ///
-  /// Uso: Padding principal de Scaffold, contenedores de página
+  /// Uso: Padding principal de Scaffold, contenedores de pï¿½gina
   static const EdgeInsets pagePadding = EdgeInsets.all(md);
 
-  /// Padding para páginas en mobile (reducido)
+  /// Padding para pï¿½ginas en mobile (reducido)
   static const EdgeInsets pagePaddingMobile = EdgeInsets.all(sm);
 
   /// Padding para cards y contenedores
@@ -168,7 +168,7 @@ class AppSpacing {
     vertical: xs,
   );
 
-  /// Padding para botones pequeños
+  /// Padding para botones pequeï¿½os
   static const EdgeInsets buttonPaddingSmall = EdgeInsets.symmetric(
     horizontal: sm,
     vertical: xxs,
@@ -208,12 +208,12 @@ class AppSpacing {
     vertical: xxs,
   );
 
-  /// Padding para diálogos y modales
+  /// Padding para diï¿½logos y modales
   ///
   /// Uso: Padding interno de Dialog, BottomSheet, modales
   static const EdgeInsets dialogPadding = EdgeInsets.all(md);
 
-  /// Padding para secciones dentro de diálogos
+  /// Padding para secciones dentro de diï¿½logos
   static const EdgeInsets dialogContentPadding = EdgeInsets.symmetric(
     horizontal: md,
     vertical: sm,
@@ -226,29 +226,29 @@ class AppSpacing {
 
   /// Padding para chips y badges
   ///
-  /// Uso: Padding interno de Chip, badges pequeños
+  /// Uso: Padding interno de Chip, badges pequeï¿½os
   static const EdgeInsets chipPadding = EdgeInsets.symmetric(
     horizontal: xs,
     vertical: xxxs,
   );
 
   // ==========================================================================
-  // MÉTODOS HELPER PARA SPACING DINÁMICO
+  // Mï¿½TODOS HELPER PARA SPACING DINï¿½MICO
   // ==========================================================================
 
-  /// Crea espaciado vertical dinámico
+  /// Crea espaciado vertical dinï¿½mico
   ///
   /// [height] Altura del espaciado en pixels
   ///
-  /// Útil para spacing calculado dinámicamente o valores no estándar
+  /// ï¿½til para spacing calculado dinï¿½micamente o valores no estï¿½ndar
   static Widget vertical(double height) => SizedBox(height: height);
 
-  /// Crea espaciado horizontal dinámico
+  /// Crea espaciado horizontal dinï¿½mico
   ///
   /// [width] Ancho del espaciado en pixels
   static Widget horizontal(double width) => SizedBox(width: width);
 
-  /// Crea EdgeInsets simétricas
+  /// Crea EdgeInsets simï¿½tricas
   ///
   /// [horizontal] Padding horizontal
   /// [vertical] Padding vertical
@@ -261,7 +261,7 @@ class AppSpacing {
         vertical: vertical,
       );
 
-  /// Crea EdgeInsets con valores específicos para cada lado
+  /// Crea EdgeInsets con valores especï¿½ficos para cada lado
   ///
   /// [top] Padding superior
   /// [right] Padding derecho
@@ -283,9 +283,9 @@ class AppSpacing {
   /// Multiplica un valor de spacing base por un factor
   ///
   /// [baseSpacing] Valor base de spacing
-  /// [multiplier] Factor de multiplicación
+  /// [multiplier] Factor de multiplicaciï¿½n
   ///
-  /// Útil para crear spacing proporcional
+  /// ï¿½til para crear spacing proporcional
   static double scale(double baseSpacing, double multiplier) =>
       baseSpacing * multiplier;
 
@@ -296,7 +296,7 @@ class AppSpacing {
   /// Obtiene spacing responsive basado en el ancho de pantalla
   ///
   /// [context] BuildContext para obtener MediaQuery
-  /// [mobileSpacing] Spacing para móvil
+  /// [mobileSpacing] Spacing para mï¿½vil
   /// [tabletSpacing] Spacing para tablet
   /// [desktopSpacing] Spacing para desktop
   ///
@@ -321,7 +321,7 @@ class AppSpacing {
     }
   }
 
-  /// EdgeInsets responsive para padding de página
+  /// EdgeInsets responsive para padding de pï¿½gina
   static EdgeInsets pageResponsive(BuildContext context) {
     return EdgeInsets.all(
       responsive(
@@ -361,28 +361,28 @@ class AppSpacing {
   // CONSTANTES PARA MAX WIDTHS DE CONTENIDO
   // ==========================================================================
 
-  /// Ancho máximo para contenido de texto (óptimo para lectura)
+  /// Ancho mï¿½ximo para contenido de texto (ï¿½ptimo para lectura)
   ///
-  /// Basado en estudios de tipografía que recomiendan 45-75 caracteres por línea
+  /// Basado en estudios de tipografï¿½a que recomiendan 45-75 caracteres por lï¿½nea
   static const double maxContentWidth = 720.0;
 
-  /// Ancho máximo para contenido compacto (formularios, cards)
+  /// Ancho mï¿½ximo para contenido compacto (formularios, cards)
   static const double maxCompactWidth = 480.0;
 
-  /// Ancho máximo para contenido expandido (dashboards, tablas)
+  /// Ancho mï¿½ximo para contenido expandido (dashboards, tablas)
   static const double maxExpandedWidth = 1200.0;
 
-  /// Ancho máximo para contenido full-width (hero sections, imágenes)
+  /// Ancho mï¿½ximo para contenido full-width (hero sections, imï¿½genes)
   static const double maxFullWidth = 1440.0;
 
-  /// Ancho mínimo para contenido (prevent excessive compression)
+  /// Ancho mï¿½nimo para contenido (prevent excessive compression)
   static const double minContentWidth = 320.0;
 
   // ==========================================================================
   // GRID SPACING PARA LAYOUTS
   // ==========================================================================
 
-  /// Spacing estándar para grids de contenido
+  /// Spacing estï¿½ndar para grids de contenido
   static const double gridSpacing = sm;
 
   /// Spacing compacto para grids densos
@@ -394,10 +394,10 @@ class AppSpacing {
   /// Spacing para grids de cards
   static const double gridSpacingCards = md;
 
-  /// Spacing para grids de imágenes
+  /// Spacing para grids de imï¿½genes
   static const double gridSpacingImages = xxs;
 
-  /// Crea un SliverGrid con spacing estándar
+  /// Crea un SliverGrid con spacing estï¿½ndar
   static SliverGridDelegateWithFixedCrossAxisCount gridDelegate({
     required int crossAxisCount,
     double crossAxisSpacing = gridSpacing,
@@ -412,7 +412,7 @@ class AppSpacing {
     );
   }
 
-  /// Crea un GridView.count con spacing estándar
+  /// Crea un GridView.count con spacing estï¿½ndar
   static GridView gridView({
     required int crossAxisCount,
     required List<Widget> children,
@@ -456,7 +456,7 @@ class AppSpacing {
     );
   }
 
-  /// Column con spacing automático entre children
+  /// Column con spacing automï¿½tico entre children
   static Column spacedColumn({
     required List<Widget> children,
     double spacing = sm,
@@ -472,7 +472,7 @@ class AppSpacing {
     );
   }
 
-  /// Row con spacing automático entre children
+  /// Row con spacing automï¿½tico entre children
   static Row spacedRow({
     required List<Widget> children,
     double spacing = sm,
@@ -506,7 +506,7 @@ class AppSpacing {
   // CONSTANTES DE UTILIDAD
   // ==========================================================================
 
-  /// Mapa de todos los valores de spacing para uso programático
+  /// Mapa de todos los valores de spacing para uso programï¿½tico
   static const Map<String, double> spacingValues = {
     'xxxs': xxxs,
     'xxs': xxs,
@@ -540,7 +540,7 @@ class AppSpacing {
     'wide': 1800,
   };
 
-  /// Obtiene el nombre del spacing más cercano a un valor dado
+  /// Obtiene el nombre del spacing mï¿½s cercano a un valor dado
   static String getSpacingName(double value) {
     double closestDiff = double.infinity;
     String closestName = 'sm';
@@ -556,7 +556,7 @@ class AppSpacing {
     return closestName;
   }
 
-  /// Redondea un valor al spacing más cercano del sistema
+  /// Redondea un valor al spacing mï¿½s cercano del sistema
   static double roundToSpacing(double value) {
     final name = getSpacingName(value);
     return spacingValues[name] ?? sm;

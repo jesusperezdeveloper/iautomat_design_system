@@ -1,56 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import '../../theme/colors.dart';
-import '../../theme/spacing.dart';
+import '../../theme/s  /// Estilo para el botÃ³n primario
+  static ButtonStyle _primaryStyle(_ButtonSizeConfig config, bool isDark) {
+    final primaryColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
+    final onPrimaryColor =
+        isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
+    final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;.dart';
 import '../../theme/typography.dart';
 import '../../theme/app_theme.dart';
 
-/// Enumeración para las variantes de botones disponibles
+/// EnumeraciÃ³n para las variantes de botones disponibles
 enum ButtonVariant {
-  /// Botón principal - Para acciones primarias importantes
+  /// BotÃ³n principal - Para acciones primarias importantes
   primary,
 
-  /// Botón secundario - Para acciones secundarias
+  /// BotÃ³n secundario - Para acciones secundarias
   secondary,
 
-  /// Botón con borde - Para acciones alternativas
+  /// BotÃ³n con borde - Para acciones alternativas
   outline,
 
-  /// Botón fantasma - Para acciones sutiles
+  /// BotÃ³n fantasma - Para acciones sutiles
   ghost,
 
-  /// Botón de peligro - Para acciones destructivas
+  /// BotÃ³n de peligro - Para acciones destructivas
   danger,
 }
 
-/// Enumeración para los tamaños de botones disponibles
+/// ConfiguraciÃ³n de tamaÃ±os para botones
+class _ButtonSizeConfig {
+  final double height;
+  final double minWidth;
+  final EdgeInsets padding;
+  final double iconSize;
+  final double borderRadius;
+  final double spacing;
+  final TextStyle textStyle;
+
+  const _ButtonSizeConfig({
+    required this.height,
+    required this.minWidth,
+    required this.padding,
+    required this.iconSize,
+    required this.borderRadius,
+    required this.spacing,
+    required this.textStyle,
+  });
+}
+
+/// EnumeraciÃ³n para los tamaÃ±os de botones disponibles
 enum ButtonSize {
-  /// Botón pequeño - Para espacios reducidos
+  /// BotÃ³n pequeÃ±o - Para espacios reducidos
   small,
 
-  /// Botón mediano - Tamaño estándar
+  /// BotÃ³n mediano - TamaÃ±o estÃ¡ndar
   medium,
 
-  /// Botón grande - Para acciones importantes
+  /// Botï¿½n grande - Para acciones importantes
   large,
 }
 
 /// Sistema de estilos para AppButton
 ///
-/// Proporciona estilos consistentes para todas las variantes y tamaños
+/// Proporciona estilos consistentes para todas las variantes y tamaï¿½os
 /// de botones en el Design System, incluyendo:
-/// - Colores específicos por variante
-/// - Tamaños y espaciado según ButtonSize
+/// - Colores especï¿½ficos por variante
+/// - Tamaï¿½os y espaciado segï¿½n ButtonSize
 /// - Estados interactivos (hover, pressed, disabled)
 /// - Animaciones y efectos visuales
-/// - Integración completa con el tema
+/// - Integraciï¿½n completa con el tema
 class AppButtonStyles {
   AppButtonStyles._();
 
   // ==========================================================================
-  // CONFIGURACIÓN DE TAMAÑOS
+  // CONFIGURACIÃ“N DE TAMAÃ‘OS
   // ==========================================================================
 
-  /// Configuración de dimensiones según el tamaño del botón
+  /// ConfiguraciÃ³n de dimensiones segÃºn el tamaÃ±o del botÃ³n
   static Map<ButtonSize, _ButtonSizeConfig> get _sizeConfigs => {
         ButtonSize.small: _ButtonSizeConfig(
           height: 32,
@@ -58,6 +85,8 @@ class AppButtonStyles {
           padding: AppSpacing.buttonPaddingSmall,
           textStyle: AppTypography.labelSmall,
           iconSize: 16,
+          borderRadius: 4.0,
+          spacing: AppSpacing.xxs,
         ),
         ButtonSize.medium: _ButtonSizeConfig(
           height: 40,
@@ -65,6 +94,8 @@ class AppButtonStyles {
           padding: AppSpacing.buttonPadding,
           textStyle: AppTypography.button,
           iconSize: 20,
+          borderRadius: 6.0,
+          spacing: AppSpacing.xs,
         ),
         ButtonSize.large: _ButtonSizeConfig(
           height: 48,
@@ -72,10 +103,12 @@ class AppButtonStyles {
           padding: AppSpacing.buttonPaddingLarge,
           textStyle: AppTypography.labelLarge,
           iconSize: 24,
+          borderRadius: 8.0,
+          spacing: AppSpacing.unit,
         ),
       };
 
-  /// Obtiene la configuración de tamaño para un ButtonSize específico
+  /// Obtiene la configuraciï¿½n de tamaï¿½o para un ButtonSize especï¿½fico
   static _ButtonSizeConfig getSizeConfig(ButtonSize size) {
     return _sizeConfigs[size]!;
   }
@@ -84,7 +117,7 @@ class AppButtonStyles {
   // ESTILOS POR VARIANTE - LIGHT THEME
   // ==========================================================================
 
-  /// Obtiene el estilo para una variante específica en light theme
+  /// Obtiene el estilo para una variante especï¿½fica en light theme
   static ButtonStyle getVariantStyle(
     ButtonVariant variant,
     ButtonSize size, {
@@ -106,29 +139,34 @@ class AppButtonStyles {
     }
   }
 
-  /// Estilo para botón primary
+  /// Estilo para botï¿½n primary
   static ButtonStyle _primaryStyle(_ButtonSizeConfig config, bool isDark) {
     final primaryColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
-    final onPrimaryColor = isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
+    final onPrimaryColor =
+        isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
     final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;
 
-    return ElevatedButton.styleFrom(
-      backgroundColor: primaryColor,
-      foregroundColor: onPrimaryColor,
-      disabledBackgroundColor: disabledColor,
-      disabledForegroundColor: isDark ? AppColors.gray400 : AppColors.textDisabled,
-
-      // Elevación
-      elevation: 2,
-      focusElevation: 4,
-      hoverElevation: 4,
-      highlightElevation: 8,
-      disabledElevation: 0,
+    return ButtonStyle(
+      backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) return disabledColor;
+        return primaryColor;
+      }),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) return isDark ? AppColors.gray400 : AppColors.textDisabled;
+        return onPrimaryColor;
+      }),
+      elevation: MaterialStateProperty.resolveWith<double>((states) {
+        if (states.contains(MaterialState.disabled)) return 0;
+        if (states.contains(MaterialState.pressed)) return 8;
+        if (states.contains(MaterialState.hovered)) return 4;
+        if (states.contains(MaterialState.focused)) return 4;
+        return 2;
+      }),
 
       // Sombra
       shadowColor: isDark ? Colors.black : AppColors.shadow,
 
-      // Forma y tamaño
+      // Forma y tamaï¿½o
       shape: RoundedRectangleBorder(borderRadius: AppTheme.radiusMd),
       minimumSize: Size(config.minWidth, config.height),
       maximumSize: Size.infinite,
@@ -157,35 +195,41 @@ class AppButtonStyles {
     );
   }
 
-  /// Estilo para botón secondary
+  /// Estilo para botï¿½n secondary
   static ButtonStyle _secondaryStyle(_ButtonSizeConfig config, bool isDark) {
-    final secondaryColor = isDark ? AppColors.secondaryDarkMode : AppColors.secondary;
-    final onSecondaryColor = isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
+    final secondaryColor =
+        isDark ? AppColors.secondaryDarkMode : AppColors.secondary;
+    final onSecondaryColor =
+        isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
     final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;
 
-    return ElevatedButton.styleFrom(
-      backgroundColor: secondaryColor,
-      foregroundColor: onSecondaryColor,
+    return ButtonStyle(
+      backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) return disabledColor;
+        return primaryColor;
+      }),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) return isDark ? AppColors.gray400 : AppColors.textDisabled;
+        return onPrimaryColor;
+      }),
       disabledBackgroundColor: disabledColor,
-      disabledForegroundColor: isDark ? AppColors.gray400 : AppColors.textDisabled,
-
-      elevation: 1,
-      focusElevation: 3,
-      hoverElevation: 3,
-      highlightElevation: 6,
-      disabledElevation: 0,
-
+      disabledForegroundColor:
+          isDark ? AppColors.gray400 : AppColors.textDisabled,
+      elevation: MaterialStateProperty.resolveWith<double>((states) {
+        if (states.contains(MaterialState.disabled)) return 0;
+        if (states.contains(MaterialState.pressed)) return 6;
+        if (states.contains(MaterialState.hovered)) return 3;
+        if (states.contains(MaterialState.focused)) return 3;
+        return 1;
+      }),
       shadowColor: isDark ? Colors.black : AppColors.shadow,
-
       shape: RoundedRectangleBorder(borderRadius: AppTheme.radiusMd),
       minimumSize: Size(config.minWidth, config.height),
       maximumSize: Size.infinite,
       padding: config.padding,
-
       textStyle: config.textStyle,
       animationDuration: AppTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
-
       overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
         if (states.contains(MaterialState.hovered)) {
           return onSecondaryColor.withOpacity(0.08);
@@ -201,19 +245,19 @@ class AppButtonStyles {
     );
   }
 
-  /// Estilo para botón outline
+  /// Estilo para botï¿½n outline
   static ButtonStyle _outlineStyle(_ButtonSizeConfig config, bool isDark) {
     final borderColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
     final textColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
     final backgroundColor = isDark ? Colors.transparent : Colors.transparent;
     final disabledBorderColor = isDark ? AppColors.gray600 : AppColors.gray300;
-    final disabledTextColor = isDark ? AppColors.gray400 : AppColors.textDisabled;
+    final disabledTextColor =
+        isDark ? AppColors.gray400 : AppColors.textDisabled;
 
     return OutlinedButton.styleFrom(
       backgroundColor: backgroundColor,
       foregroundColor: textColor,
       disabledForegroundColor: disabledTextColor,
-
       side: MaterialStateProperty.resolveWith<BorderSide>((states) {
         if (states.contains(MaterialState.disabled)) {
           return BorderSide(color: disabledBorderColor, width: 1);
@@ -223,30 +267,26 @@ class AppButtonStyles {
         }
         return BorderSide(color: borderColor, width: 1);
       }),
-
       elevation: 0,
       focusElevation: 0,
       hoverElevation: 0,
       highlightElevation: 0,
       disabledElevation: 0,
-
       shape: RoundedRectangleBorder(borderRadius: AppTheme.radiusMd),
       minimumSize: Size(config.minWidth, config.height),
       maximumSize: Size.infinite,
       padding: config.padding,
-
       textStyle: config.textStyle,
       animationDuration: AppTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
-
-      overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-        if (states.contains(MaterialState.hovered)) {
+      overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
+        if (states.contains(WidgetState.hovered)) {
           return textColor.withOpacity(0.04);
         }
-        if (states.contains(MaterialState.focused)) {
+        if (states.contains(WidgetState.focused)) {
           return textColor.withOpacity(0.08);
         }
-        if (states.contains(MaterialState.pressed)) {
+        if (states.contains(WidgetState.pressed)) {
           return textColor.withOpacity(0.12);
         }
         return null;
@@ -254,39 +294,37 @@ class AppButtonStyles {
     );
   }
 
-  /// Estilo para botón ghost
+  /// Estilo para botï¿½n ghost
   static ButtonStyle _ghostStyle(_ButtonSizeConfig config, bool isDark) {
-    final textColor = isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary;
-    final disabledTextColor = isDark ? AppColors.gray400 : AppColors.textDisabled;
+    final textColor =
+        isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary;
+    final disabledTextColor =
+        isDark ? AppColors.gray400 : AppColors.textDisabled;
 
     return TextButton.styleFrom(
       backgroundColor: Colors.transparent,
       foregroundColor: textColor,
       disabledForegroundColor: disabledTextColor,
-
       elevation: 0,
       focusElevation: 0,
       hoverElevation: 0,
       highlightElevation: 0,
       disabledElevation: 0,
-
       shape: RoundedRectangleBorder(borderRadius: AppTheme.radiusMd),
       minimumSize: Size(config.minWidth, config.height),
       maximumSize: Size.infinite,
       padding: config.padding,
-
       textStyle: config.textStyle,
       animationDuration: AppTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
-
-      overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-        if (states.contains(MaterialState.hovered)) {
+      overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
+        if (states.contains(WidgetState.hovered)) {
           return textColor.withOpacity(0.04);
         }
-        if (states.contains(MaterialState.focused)) {
+        if (states.contains(WidgetState.focused)) {
           return textColor.withOpacity(0.08);
         }
-        if (states.contains(MaterialState.pressed)) {
+        if (states.contains(WidgetState.pressed)) {
           return textColor.withOpacity(0.12);
         }
         return null;
@@ -294,43 +332,47 @@ class AppButtonStyles {
     );
   }
 
-  /// Estilo para botón danger
+  /// Estilo para botï¿½n danger
   static ButtonStyle _dangerStyle(_ButtonSizeConfig config, bool isDark) {
     final dangerColor = isDark ? AppColors.errorDarkMode : AppColors.error;
-    final onDangerColor = isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
+    final onDangerColor =
+        isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
     final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;
 
-    return ElevatedButton.styleFrom(
-      backgroundColor: dangerColor,
-      foregroundColor: onDangerColor,
-      disabledBackgroundColor: disabledColor,
-      disabledForegroundColor: isDark ? AppColors.gray400 : AppColors.textDisabled,
-
-      elevation: 2,
-      focusElevation: 4,
-      hoverElevation: 4,
-      highlightElevation: 8,
-      disabledElevation: 0,
-
+    return ButtonStyle(
+      backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) return disabledColor;
+        return dangerColor;
+      }),
+      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+        if (states.contains(MaterialState.disabled)) {
+          return isDark ? AppColors.gray400 : AppColors.textDisabled;
+        }
+        return onDangerColor;
+      }),
+      elevation: MaterialStateProperty.resolveWith<double>((states) {
+        if (states.contains(MaterialState.disabled)) return 0;
+        if (states.contains(MaterialState.pressed)) return 8;
+        if (states.contains(MaterialState.hovered)) return 4;
+        if (states.contains(MaterialState.focused)) return 4;
+        return 2;
+      }),
       shadowColor: isDark ? Colors.black : AppColors.shadow,
-
       shape: RoundedRectangleBorder(borderRadius: AppTheme.radiusMd),
       minimumSize: Size(config.minWidth, config.height),
       maximumSize: Size.infinite,
       padding: config.padding,
-
       textStyle: config.textStyle,
       animationDuration: AppTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
-
-      overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-        if (states.contains(MaterialState.hovered)) {
+      overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
+        if (states.contains(WidgetState.hovered)) {
           return onDangerColor.withOpacity(0.08);
         }
-        if (states.contains(MaterialState.focused)) {
+        if (states.contains(WidgetState.focused)) {
           return onDangerColor.withOpacity(0.12);
         }
-        if (states.contains(MaterialState.pressed)) {
+        if (states.contains(WidgetState.pressed)) {
           return onDangerColor.withOpacity(0.16);
         }
         return null;
@@ -342,18 +384,18 @@ class AppButtonStyles {
   // EFECTOS VISUALES Y ANIMACIONES
   // ==========================================================================
 
-  /// Splash factory personalizado para efectos más suaves
+  /// Splash factory personalizado para efectos mï¿½s suaves
   static InteractiveInkFeatureFactory get customSplashFactory {
     return InkRipple.splashFactory;
   }
 
-  /// Duración de animación para hover effects
+  /// Duraciï¿½n de animaciï¿½n para hover effects
   static Duration get hoverAnimationDuration => AppTheme.durationFast;
 
-  /// Duración de animación para tap effects
+  /// Duraciï¿½n de animaciï¿½n para tap effects
   static Duration get tapAnimationDuration => AppTheme.durationExtraFast;
 
-  /// Curva de animación para efectos interactivos
+  /// Curva de animaciï¿½n para efectos interactivos
   static Curve get interactionCurve => AppTheme.curveStandard;
 
   // ==========================================================================
@@ -361,7 +403,8 @@ class AppButtonStyles {
   // ==========================================================================
 
   /// Obtiene el color de texto apropiado para una variante
-  static Color getTextColor(ButtonVariant variant, bool isDark, bool isDisabled) {
+  static Color getTextColor(
+      ButtonVariant variant, bool isDark, bool isDisabled) {
     if (isDisabled) {
       return isDark ? AppColors.gray400 : AppColors.textDisabled;
     }
@@ -381,7 +424,8 @@ class AppButtonStyles {
   }
 
   /// Obtiene el color de fondo para una variante
-  static Color getBackgroundColor(ButtonVariant variant, bool isDark, bool isDisabled) {
+  static Color getBackgroundColor(
+      ButtonVariant variant, bool isDark, bool isDisabled) {
     if (isDisabled) {
       return isDark ? AppColors.gray600 : AppColors.gray300;
     }
@@ -401,10 +445,10 @@ class AppButtonStyles {
   }
 
   // ==========================================================================
-  // CONFIGURACIÓN DE ACCESIBILIDAD
+  // CONFIGURACIï¿½N DE ACCESIBILIDAD
   // ==========================================================================
 
-  /// Configuración de semántica para accesibilidad
+  /// Configuraciï¿½n de semï¿½ntica para accesibilidad
   static SemanticsProperties getSemanticsProperties(
     ButtonVariant variant,
     String? text,
@@ -416,19 +460,19 @@ class AppButtonStyles {
 
     switch (variant) {
       case ButtonVariant.primary:
-        hint = 'Botón principal';
+        hint = 'Botï¿½n principal';
         break;
       case ButtonVariant.secondary:
-        hint = 'Botón secundario';
+        hint = 'Botï¿½n secundario';
         break;
       case ButtonVariant.outline:
-        hint = 'Botón con borde';
+        hint = 'Botï¿½n con borde';
         break;
       case ButtonVariant.ghost:
-        hint = 'Botón de texto';
+        hint = 'Botï¿½n de texto';
         break;
       case ButtonVariant.danger:
-        hint = 'Botón de acción destructiva';
+        hint = 'Botï¿½n de acciï¿½n destructiva';
         break;
     }
 
@@ -447,19 +491,5 @@ class AppButtonStyles {
   }
 }
 
-/// Configuración interna para tamaños de botón
-class _ButtonSizeConfig {
-  final double height;
-  final double minWidth;
-  final EdgeInsets padding;
-  final TextStyle textStyle;
-  final double iconSize;
+/// Configuraciï¿½n interna para tamaï¿½os de botï¿½n
 
-  const _ButtonSizeConfig({
-    required this.height,
-    required this.minWidth,
-    required this.padding,
-    required this.textStyle,
-    required this.iconSize,
-  });
-}

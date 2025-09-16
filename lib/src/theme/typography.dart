@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
-/// Sistema tipográfico completo para el Design System de IAutomat
+/// Sistema tipogrÃ¡fico completo para el Design System de IAutomat
 ///
 /// Basado en Material Design 3 guidelines con la fuente Inter como principal
 /// y fallbacks del sistema para garantizar compatibilidad universal.
 ///
 /// El sistema incluye:
-/// - Headers (h1-h6) para jerarquías de contenido
+/// - Headers (h1-h6) para jerarquÃ­as de contenido
 /// - Body text para contenido principal
 /// - Labels para formularios y UI elements
-/// - Estilos especiales para casos específicos
+/// - Estilos especiales para casos especï¿½ficos
 ///
-/// Todos los estilos están optimizados para:
+/// Todos los estilos estï¿½n optimizados para:
 /// - Legibilidad en diferentes dispositivos
-/// - Accesibilidad (contraste, tamaños mínimos)
+/// - Accesibilidad (contraste, tamaï¿½os mï¿½nimos)
 /// - Consistencia visual
 /// - Performance (cached TextStyles)
 class AppTypography {
   AppTypography._();
 
   // ==========================================================================
-  // CONFIGURACIÓN BASE
+  // CONFIGURACIï¿½N BASE
   // ==========================================================================
 
   /// Font family principal: Inter con fallbacks del sistema
@@ -40,30 +40,55 @@ class AppTypography {
     'sans-serif', // Generic fallback
   ];
 
-  /// Base line height para cálculos proporcionales
+  /// Base line height para cÃ¡lculos proporcionales
   static const double _baseLineHeight = 1.5;
 
   // ==========================================================================
-  // HEADERS - Para títulos y jerarquías de contenido
+  // UTILIDADES DE TIPOGRAFÃA
   // ==========================================================================
 
-  /// Header 1 - Título principal de página
+  /// Ajusta un TextStyle para una pantalla de cierto ancho
+  static TextStyle getResponsiveTextStyle(
+      TextStyle baseStyle, double screenWidth) {
+    // Factor de escala basado en el ancho de pantalla
+    final scaleFactor = (screenWidth / 375).clamp(0.8, 1.2);
+    return baseStyle.copyWith(
+      fontSize: baseStyle.fontSize! * scaleFactor,
+      height: baseStyle.height,
+    );
+  }
+
+  /// Modifica el peso de una fuente manteniendo sus otras propiedades
+  static TextStyle withWeight(TextStyle style, FontWeight weight) {
+    return style.copyWith(fontWeight: weight);
+  }
+
+  /// Modifica el tamaÃ±o de una fuente manteniendo sus otras propiedades
+  static TextStyle withSize(TextStyle style, double size) {
+    return style.copyWith(fontSize: size);
+  }
+
+  // ==========================================================================
+  // HEADERS - Para tÃ­tulos y jerarquÃ­as de contenido
+  // ==========================================================================
+
+  /// Header 1 - Tï¿½tulo principal de pï¿½gina
   ///
-  /// Uso: Títulos principales, headlines importantes, hero sections
-  /// Tamaño: 48px | Peso: 700 (Bold) | Line Height: 1.2
+  /// Uso: Tï¿½tulos principales, headlines importantes, hero sections
+  /// Tamaï¿½o: 48px | Peso: 700 (Bold) | Line Height: 1.2
   static const TextStyle h1 = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
     fontSize: 48,
     fontWeight: FontWeight.w700,
     height: 1.2,
-    letterSpacing: -0.5, // Mejor legibilidad en tamaños grandes
+    letterSpacing: -0.5, // Mejor legibilidad en tamaï¿½os grandes
   );
 
-  /// Header 2 - Título secundario
+  /// Header 2 - Tï¿½tulo secundario
   ///
-  /// Uso: Subtítulos importantes, secciones principales
-  /// Tamaño: 40px | Peso: 700 (Bold) | Line Height: 1.25
+  /// Uso: Subtï¿½tulos importantes, secciones principales
+  /// Tamaï¿½o: 40px | Peso: 700 (Bold) | Line Height: 1.25
   static const TextStyle h2 = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -73,10 +98,10 @@ class AppTypography {
     letterSpacing: -0.25,
   );
 
-  /// Header 3 - Título de sección
+  /// Header 3 - Tï¿½tulo de secciï¿½n
   ///
-  /// Uso: Títulos de sección, cards importantes, modales
-  /// Tamaño: 32px | Peso: 600 (SemiBold) | Line Height: 1.3
+  /// Uso: Tï¿½tulos de secciï¿½n, cards importantes, modales
+  /// Tamaï¿½o: 32px | Peso: 600 (SemiBold) | Line Height: 1.3
   static const TextStyle h3 = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -86,10 +111,10 @@ class AppTypography {
     letterSpacing: 0,
   );
 
-  /// Header 4 - Subtítulo de sección
+  /// Header 4 - Subtï¿½tulo de secciï¿½n
   ///
-  /// Uso: Subtítulos de sección, títulos de cards, headers de tabla
-  /// Tamaño: 28px | Peso: 600 (SemiBold) | Line Height: 1.35
+  /// Uso: Subtï¿½tulos de secciï¿½n, tï¿½tulos de cards, headers de tabla
+  /// Tamaï¿½o: 28px | Peso: 600 (SemiBold) | Line Height: 1.35
   static const TextStyle h4 = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -99,10 +124,10 @@ class AppTypography {
     letterSpacing: 0,
   );
 
-  /// Header 5 - Título menor
+  /// Header 5 - Tï¿½tulo menor
   ///
-  /// Uso: Títulos de subsecciones, labels importantes, breadcrumbs
-  /// Tamaño: 24px | Peso: 600 (SemiBold) | Line Height: 1.4
+  /// Uso: Tï¿½tulos de subsecciones, labels importantes, breadcrumbs
+  /// Tamaï¿½o: 24px | Peso: 600 (SemiBold) | Line Height: 1.4
   static const TextStyle h5 = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -112,10 +137,10 @@ class AppTypography {
     letterSpacing: 0,
   );
 
-  /// Header 6 - Título mínimo
+  /// Header 6 - Tï¿½tulo mï¿½nimo
   ///
-  /// Uso: Subtítulos menores, labels de grupos, headers de listas
-  /// Tamaño: 20px | Peso: 600 (SemiBold) | Line Height: 1.45
+  /// Uso: Subtï¿½tulos menores, labels de grupos, headers de listas
+  /// Tamaï¿½o: 20px | Peso: 600 (SemiBold) | Line Height: 1.45
   static const TextStyle h6 = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -131,8 +156,8 @@ class AppTypography {
 
   /// Body Large - Texto principal destacado
   ///
-  /// Uso: Párrafos principales, contenido importante, introducciones
-  /// Tamaño: 18px | Peso: 400 (Regular) | Line Height: 1.6
+  /// Uso: Pï¿½rrafos principales, contenido importante, introducciones
+  /// Tamaï¿½o: 18px | Peso: 400 (Regular) | Line Height: 1.6
   static const TextStyle bodyLarge = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -142,10 +167,10 @@ class AppTypography {
     letterSpacing: 0.15,
   );
 
-  /// Body Medium - Texto principal estándar
+  /// Body Medium - Texto principal estï¿½ndar
   ///
-  /// Uso: Párrafos normales, descripciones, contenido general
-  /// Tamaño: 16px | Peso: 400 (Regular) | Line Height: 1.5
+  /// Uso: Pï¿½rrafos normales, descripciones, contenido general
+  /// Tamaï¿½o: 16px | Peso: 400 (Regular) | Line Height: 1.5
   static const TextStyle bodyMedium = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -158,7 +183,7 @@ class AppTypography {
   /// Body Small - Texto secundario
   ///
   /// Uso: Texto secundario, notas, metadatos, fechas
-  /// Tamaño: 14px | Peso: 400 (Regular) | Line Height: 1.5
+  /// Tamaï¿½o: 14px | Peso: 400 (Regular) | Line Height: 1.5
   static const TextStyle bodySmall = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -174,8 +199,8 @@ class AppTypography {
 
   /// Label Large - Etiquetas principales
   ///
-  /// Uso: Labels de formularios principales, títulos de inputs
-  /// Tamaño: 16px | Peso: 500 (Medium) | Line Height: 1.4
+  /// Uso: Labels de formularios principales, tï¿½tulos de inputs
+  /// Tamaï¿½o: 16px | Peso: 500 (Medium) | Line Height: 1.4
   static const TextStyle labelLarge = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -185,10 +210,10 @@ class AppTypography {
     letterSpacing: 0.1,
   );
 
-  /// Label Medium - Etiquetas estándar
+  /// Label Medium - Etiquetas estï¿½ndar
   ///
-  /// Uso: Labels de formularios, navegación, tabs
-  /// Tamaño: 14px | Peso: 500 (Medium) | Line Height: 1.4
+  /// Uso: Labels de formularios, navegaciï¿½n, tabs
+  /// Tamaï¿½o: 14px | Peso: 500 (Medium) | Line Height: 1.4
   static const TextStyle labelMedium = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -201,7 +226,7 @@ class AppTypography {
   /// Label Small - Etiquetas menores
   ///
   /// Uso: Labels secundarios, hints, validaciones
-  /// Tamaño: 12px | Peso: 500 (Medium) | Line Height: 1.35
+  /// Tamaï¿½o: 12px | Peso: 500 (Medium) | Line Height: 1.35
   static const TextStyle labelSmall = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -212,14 +237,14 @@ class AppTypography {
   );
 
   // ==========================================================================
-  // ESTILOS ESPECIALES - Para casos específicos
+  // ESTILOS ESPECIALES - Para casos especï¿½ficos
   // ==========================================================================
 
   /// Button - Texto para botones
   ///
   /// Uso: Texto de botones, CTAs, elementos interactivos
-  /// Tamaño: 14px | Peso: 600 (SemiBold) | Line Height: 1.2
-  /// Letter spacing optimizado para legibilidad en elementos pequeños
+  /// Tamaï¿½o: 14px | Peso: 600 (SemiBold) | Line Height: 1.2
+  /// Letter spacing optimizado para legibilidad en elementos pequeï¿½os
   static const TextStyle button = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -231,8 +256,8 @@ class AppTypography {
 
   /// Caption - Texto de apoyo
   ///
-  /// Uso: Pie de imágenes, metadatos, información adicional
-  /// Tamaño: 12px | Peso: 400 (Regular) | Line Height: 1.35
+  /// Uso: Pie de imï¿½genes, metadatos, informaciï¿½n adicional
+  /// Tamaï¿½o: 12px | Peso: 400 (Regular) | Line Height: 1.35
   static const TextStyle caption = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -244,9 +269,9 @@ class AppTypography {
 
   /// Overline - Texto superior
   ///
-  /// Uso: Categorías, secciones, headers de grupos, breadcrumbs
-  /// Tamaño: 11px | Peso: 600 (SemiBold) | Line Height: 1.3
-  /// Todo en mayúsculas para mejor jerarquía visual
+  /// Uso: Categorï¿½as, secciones, headers de grupos, breadcrumbs
+  /// Tamaï¿½o: 11px | Peso: 600 (SemiBold) | Line Height: 1.3
+  /// Todo en mayï¿½sculas para mejor jerarquï¿½a visual
   static const TextStyle overline = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
@@ -276,10 +301,10 @@ class AppTypography {
       );
 
   // ==========================================================================
-  // MÉTODOS HELPER PARA COLORES PERSONALIZADOS
+  // Mï¿½TODOS HELPER PARA COLORES PERSONALIZADOS
   // ==========================================================================
 
-  /// Aplica un color personalizado a un estilo tipográfico
+  /// Aplica un color personalizado a un estilo tipogrï¿½fico
   ///
   /// [style] El TextStyle base al cual aplicar el color
   /// [color] El color a aplicar
@@ -297,7 +322,7 @@ class AppTypography {
     return style.copyWith(color: color);
   }
 
-  /// Aplica opacidad a un estilo tipográfico
+  /// Aplica opacidad a un estilo tipogrï¿½fico
   ///
   /// [style] El TextStyle base
   /// [opacity] La opacidad deseada (0.0 - 1.0)
@@ -309,13 +334,13 @@ class AppTypography {
     );
   }
 
-  /// Crea una variante del estilo con decoración personalizada
+  /// Crea una variante del estilo con decoraciï¿½n personalizada
   ///
   /// [style] El TextStyle base
-  /// [decoration] La decoración a aplicar (underline, lineThrough, etc.)
-  /// [decorationColor] Color opcional para la decoración
+  /// [decoration] La decoraciï¿½n a aplicar (underline, lineThrough, etc.)
+  /// [decorationColor] Color opcional para la decoraciï¿½n
   ///
-  /// Útil para links, texto tachado, etc.
+  /// ï¿½til para links, texto tachado, etc.
   static TextStyle withDecoration(
     TextStyle style,
     TextDecoration decoration, {
@@ -328,7 +353,7 @@ class AppTypography {
   }
 
   // ==========================================================================
-  // ESTILOS TEMÁTICOS PREDEFINIDOS
+  // ESTILOS TEMï¿½TICOS PREDEFINIDOS
   // ==========================================================================
 
   /// Texto para links - incluye underline y color azul
@@ -344,7 +369,7 @@ class AppTypography {
         errorColor,
       );
 
-  /// Texto para éxito - color verde con medium weight
+  /// Texto para ï¿½xito - color verde con medium weight
   static TextStyle success(Color successColor) => withColor(
         medium(bodySmall),
         successColor,
@@ -356,7 +381,7 @@ class AppTypography {
         warningColor,
       );
 
-  /// Texto para información - color azul con medium weight
+  /// Texto para informaciï¿½n - color azul con medium weight
   static TextStyle info(Color infoColor) => withColor(
         medium(bodySmall),
         infoColor,
@@ -377,7 +402,7 @@ class AppTypography {
   /// [style] El TextStyle base a escalar
   /// [scaleFactor] Factor de escalado (1.0 = sin cambios)
   ///
-  /// Útil para hacer texto responsive en diferentes dispositivos.
+  /// ï¿½til para hacer texto responsive en diferentes dispositivos.
   static TextStyle scale(TextStyle style, double scaleFactor) {
     return style.copyWith(
       fontSize: (style.fontSize ?? 16) * scaleFactor,
@@ -428,10 +453,10 @@ class AppTypography {
   // CONSTANTES DE UTILIDAD
   // ==========================================================================
 
-  /// Altura de línea base para cálculos
+  /// Altura de lï¿½nea base para cï¿½lculos
   static const double defaultLineHeight = _baseLineHeight;
 
-  /// Lista de font families para uso programático
+  /// Lista de font families para uso programï¿½tico
   static const List<String> fontFamilies = _fontFamilyFallback;
 
   /// Font weights disponibles en el sistema
@@ -442,7 +467,7 @@ class AppTypography {
     'bold': FontWeight.w700,
   };
 
-  /// Tamaños de fuente base para diferentes categorías
+  /// Tamaï¿½os de fuente base para diferentes categorï¿½as
   static const Map<String, double> baseSizes = {
     'display': 48,
     'headline': 32,

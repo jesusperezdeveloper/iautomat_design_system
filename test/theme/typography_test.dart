@@ -146,7 +146,8 @@ void main() {
           color: Colors.blue,
         );
 
-        final scaledStyle = AppTypography.getResponsiveTextStyle(baseStyle, 800);
+        final scaledStyle =
+            AppTypography.getResponsiveTextStyle(baseStyle, 800);
 
         expect(scaledStyle.fontWeight, baseStyle.fontWeight);
         expect(scaledStyle.letterSpacing, baseStyle.letterSpacing);
@@ -190,7 +191,8 @@ void main() {
 
       test('merge should combine styles correctly', () {
         const style1 = TextStyle(fontSize: 16, color: Colors.red);
-        const style2 = TextStyle(fontWeight: FontWeight.w700, color: Colors.blue);
+        const style2 =
+            TextStyle(fontWeight: FontWeight.w700, color: Colors.blue);
 
         final mergedStyle = AppTypography.merge(style1, style2);
 
@@ -243,9 +245,9 @@ void main() {
       test('font weights should be well-distributed', () {
         // Should have clear hierarchy with font weights
         expect(AppTypography.h1.fontWeight!.index,
-               greaterThan(AppTypography.bodyMedium.fontWeight!.index));
+            greaterThan(AppTypography.bodyMedium.fontWeight!.index));
         expect(AppTypography.labelMedium.fontWeight!.index,
-               greaterThan(AppTypography.bodyMedium.fontWeight!.index));
+            greaterThan(AppTypography.bodyMedium.fontWeight!.index));
       });
     });
 

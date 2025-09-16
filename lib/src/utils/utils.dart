@@ -4,4 +4,6 @@
 /// - Responsive utilities with breakpoints and adaptive widgets
 /// - Screen size detection and responsive builders
 /// - Responsive values and extensions
+library;
+
 export 'responsive.dart';

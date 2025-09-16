@@ -203,7 +203,8 @@ class Validators {
       if (value == null || value.isEmpty) return null;
 
       if (value.length < minLength) {
-        return message ?? 'La contraseña debe tener al menos $minLength caracteres';
+        return message ??
+            'La contraseña debe tener al menos $minLength caracteres';
       }
 
       return null;
@@ -247,7 +248,8 @@ class Validators {
         errors.add('un número');
       }
 
-      if (requireSpecialChars && !value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+      if (requireSpecialChars &&
+          !value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
         errors.add('un carácter especial');
       }
 

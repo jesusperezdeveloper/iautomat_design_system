@@ -5,6 +5,7 @@
 /// - Input components and validation
 /// - Card components and variants
 /// - All component styles and configurations
+library;
 
 export 'package:iautomat_design_system/src/components/buttons/buttons.dart';
 export 'package:iautomat_design_system/src/components/inputs/inputs.dart';

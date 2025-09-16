@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'input_styles.dart';
-import 'validators.dart';
-import '../../theme/app_theme.dart';
 
 /// Componente de input personalizado para el Design System de IAutomat
 ///
-/// AppInput es el componente base para todos los campos de entrada en la aplicación.
-/// Proporciona una interfaz consistente y accesible con múltiples tipos,
+/// AppInput es el componente base para todos los campos de entrada en la aplicaciÃ³n.
+/// Proporciona una interfaz consistente y accesible con mï¿½ltiples tipos,
 /// estados y funcionalidades avanzadas.
 ///
-/// Características:
-/// - Múltiples tipos: text, email, password, number, multiline, search, url, phone
+/// Caracterï¿½sticas:
+/// - Mï¿½ltiples tipos: text, email, password, number, multiline, search, url, phone
 /// - Estados completos: normal, focused, error, disabled, readonly, success
-/// - Validación integrada con FormField
+/// - Validaciï¿½n integrada con FormField
 /// - Soporte para prefijos y sufijos (iconos y widgets)
 /// - Character counter opcional
-/// - Clear button automático
+/// - Clear button automï¿½tico
 /// - Password visibility toggle
 /// - Accesibilidad completa
 /// - Transiciones animadas entre estados
@@ -51,49 +49,49 @@ class AppInput extends StatefulWidget {
   /// Tipo de input
   final InputType type;
 
-  /// Función de validación
+  /// Funciï¿½n de validaciï¿½n
   final String? Function(String?)? validator;
 
   /// Callback cuando cambia el valor
   final void Function(String)? onChanged;
 
-  /// Callback cuando se envía el formulario
+  /// Callback cuando se envï¿½a el formulario
   final void Function(String)? onSubmitted;
 
   /// Callback cuando se toca el campo
   final VoidCallback? onTap;
 
-  /// Si el input está habilitado
+  /// Si el input estï¿½ habilitado
   final bool enabled;
 
   /// Si el input es de solo lectura
   final bool readOnly;
 
-  /// Si se debe ocultar el texto (para contraseñas)
+  /// Si se debe ocultar el texto (para contraseï¿½as)
   final bool obscureText;
 
-  /// Carácter de oscurecimiento
+  /// Carï¿½cter de oscurecimiento
   final String obscuringCharacter;
 
-  /// Longitud máxima del texto
+  /// Longitud mï¿½xima del texto
   final int? maxLength;
 
-  /// Número máximo de líneas
+  /// Nï¿½mero mï¿½ximo de lï¿½neas
   final int? maxLines;
 
-  /// Número mínimo de líneas (para multiline)
+  /// Nï¿½mero mï¿½nimo de lï¿½neas (para multiline)
   final int? minLines;
 
   /// Si se debe mostrar el contador de caracteres
   final bool showCounter;
 
-  /// Si se debe mostrar el botón de limpiar
+  /// Si se debe mostrar el botï¿½n de limpiar
   final bool showClearButton;
 
   /// Si se debe mostrar toggle de visibilidad (password)
   final bool showVisibilityToggle;
 
-  /// Ícono de prefijo
+  /// ï¿½cono de prefijo
   final IconData? prefixIcon;
 
   /// Widget personalizado de prefijo
@@ -102,7 +100,7 @@ class AppInput extends StatefulWidget {
   /// Texto de prefijo
   final String? prefixText;
 
-  /// Ícono de sufijo
+  /// ï¿½cono de sufijo
   final IconData? suffixIcon;
 
   /// Widget personalizado de sufijo
@@ -117,7 +115,7 @@ class AppInput extends StatefulWidget {
   /// Auto focus del input
   final bool autofocus;
 
-  /// Acción del teclado
+  /// Acciï¿½n del teclado
   final TextInputAction? textInputAction;
 
   /// Nodo de focus personalizado
@@ -135,7 +133,7 @@ class AppInput extends StatefulWidget {
   /// Tooltip del input
   final String? tooltip;
 
-  /// Label semántico para accesibilidad
+  /// Label semï¿½ntico para accesibilidad
   final String? semanticsLabel;
 
   /// Crear un AppInput
@@ -177,9 +175,9 @@ class AppInput extends StatefulWidget {
     this.tooltip,
     this.semanticsLabel,
   }) : assert(
-         controller == null || initialValue == null,
-         'No se pueden proporcionar controller e initialValue al mismo tiempo',
-       );
+          controller == null || initialValue == null,
+          'No se pueden proporcionar controller e initialValue al mismo tiempo',
+        );
 
   /// Constructor para email
   const AppInput.email({
@@ -213,12 +211,12 @@ class AppInput extends StatefulWidget {
     this.formFieldKey,
     this.tooltip,
     this.semanticsLabel,
-  }) : type = InputType.email,
-       obscureText = false,
-       obscuringCharacter = '"',
-       maxLines = 1,
-       minLines = null,
-       showVisibilityToggle = false;
+  })  : type = InputType.email,
+        obscureText = false,
+        obscuringCharacter = '"',
+        maxLines = 1,
+        minLines = null,
+        showVisibilityToggle = false;
 
   /// Constructor para password
   const AppInput.password({
@@ -254,10 +252,10 @@ class AppInput extends StatefulWidget {
     this.formFieldKey,
     this.tooltip,
     this.semanticsLabel,
-  }) : type = InputType.password,
-       obscureText = true,
-       maxLines = 1,
-       minLines = null;
+  })  : type = InputType.password,
+        obscureText = true,
+        maxLines = 1,
+        minLines = null;
 
   /// Constructor para multiline
   const AppInput.multiline({
@@ -293,10 +291,10 @@ class AppInput extends StatefulWidget {
     this.formFieldKey,
     this.tooltip,
     this.semanticsLabel,
-  }) : type = InputType.multiline,
-       obscureText = false,
-       obscuringCharacter = '"',
-       showVisibilityToggle = false;
+  })  : type = InputType.multiline,
+        obscureText = false,
+        obscuringCharacter = '"',
+        showVisibilityToggle = false;
 
   /// Constructor para search
   const AppInput.search({
@@ -330,12 +328,12 @@ class AppInput extends StatefulWidget {
     this.formFieldKey,
     this.tooltip,
     this.semanticsLabel,
-  }) : type = InputType.search,
-       obscureText = false,
-       obscuringCharacter = '"',
-       maxLines = 1,
-       minLines = null,
-       showVisibilityToggle = false;
+  })  : type = InputType.search,
+        obscureText = false,
+        obscuringCharacter = '"',
+        maxLines = 1,
+        minLines = null,
+        showVisibilityToggle = false;
 
   @override
   State<AppInput> createState() => _AppInputState();
@@ -354,7 +352,8 @@ class _AppInputState extends State<AppInput> {
     super.initState();
 
     // Inicializar controller
-    _controller = widget.controller ?? TextEditingController(text: widget.initialValue);
+    _controller =
+        widget.controller ?? TextEditingController(text: widget.initialValue);
     _currentValue = _controller.text;
 
     // Inicializar focus node
@@ -382,7 +381,7 @@ class _AppInputState extends State<AppInput> {
   void didUpdateWidget(AppInput oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    // Actualizar obscureText si cambió
+    // Actualizar obscureText si cambiï¿½
     if (oldWidget.obscureText != widget.obscureText) {
       _obscureText = widget.obscureText;
     }
@@ -443,21 +442,21 @@ class _AppInputState extends State<AppInput> {
     // Configurar teclado y formatters
     final keyboardType = AppInputStyles.getKeyboardType(widget.type);
     final textInputAction = widget.textInputAction ??
-        AppInputStyles.getTextInputAction(widget.type, widget.type == InputType.multiline);
+        AppInputStyles.getTextInputAction(
+            widget.type, widget.type == InputType.multiline);
 
-    // Configurar máximo de líneas
+    // Configurar mï¿½ximo de lï¿½neas
     final maxLines = widget.type == InputType.multiline
         ? (widget.maxLines ?? 4)
         : (widget.maxLines ?? 1);
 
-    final minLines = widget.type == InputType.multiline
-        ? (widget.minLines ?? 2)
-        : null;
+    final minLines =
+        widget.type == InputType.multiline ? (widget.minLines ?? 2) : null;
 
     // Construir sufijos
     final suffixWidgets = _buildSuffixWidgets(inputState, isDark);
 
-    // Construir decoración
+    // Construir decoraciï¿½n
     final decoration = AppInputStyles.getDecoration(
       state: inputState,
       isDark: isDark,
@@ -475,7 +474,7 @@ class _AppInputState extends State<AppInput> {
       currentLength: _currentValue.length,
     );
 
-    // FormField para validación
+    // FormField para validaciï¿½n
     Widget textField = TextFormField(
       key: widget.formFieldKey,
       controller: _controller,
@@ -493,7 +492,8 @@ class _AppInputState extends State<AppInput> {
       maxLines: maxLines,
       minLines: minLines,
       inputFormatters: widget.inputFormatters,
-      autovalidateMode: widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
+      autovalidateMode:
+          widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
       validator: (value) {
         final error = widget.validator?.call(value);
         WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -503,7 +503,11 @@ class _AppInputState extends State<AppInput> {
       },
       onFieldSubmitted: _handleSubmitted,
       onTap: widget.onTap,
-      buildCounter: widget.showCounter ? null : (context, {required currentLength, required isFocused, maxLength}) => null,
+      buildCounter: widget.showCounter
+          ? null
+          : (context,
+                  {required currentLength, required isFocused, maxLength}) =>
+              null,
     );
 
     // Wrapper con tooltip
@@ -514,7 +518,7 @@ class _AppInputState extends State<AppInput> {
       );
     }
 
-    // Wrapper con semántica
+    // Wrapper con semï¿½ntica
     if (widget.semanticsLabel != null) {
       textField = Semantics(
         label: widget.semanticsLabel,
@@ -525,7 +529,7 @@ class _AppInputState extends State<AppInput> {
     return textField;
   }
 
-  /// Construye el ícono de prefijo
+  /// Construye el ï¿½cono de prefijo
   Widget? _buildPrefixIcon(InputState state, bool isDark) {
     if (widget.prefixWidget != null) return null;
     if (widget.prefixIcon != null) {
@@ -536,7 +540,7 @@ class _AppInputState extends State<AppInput> {
       );
     }
 
-    // Ícono por defecto según el tipo
+    // ï¿½cono por defecto segï¿½n el tipo
     final defaultIcon = AppInputStyles.getDefaultIcon(widget.type);
     if (defaultIcon != null) {
       return AppInputStyles.animatedIcon(
@@ -600,7 +604,7 @@ class _AppInputState extends State<AppInput> {
     if (suffixes.isEmpty) return null;
     if (suffixes.length == 1) return suffixes.first;
 
-    // Múltiples sufijos en fila
+    // Mï¿½ltiples sufijos en fila
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: suffixes,
@@ -609,10 +613,10 @@ class _AppInputState extends State<AppInput> {
 }
 
 // ==========================================================================
-// EXTENSIONES ÚTILES
+// EXTENSIONES ï¿½TILES
 // ==========================================================================
 
-/// Extensión para facilitar el uso de AppInput
+/// Extensiï¿½n para facilitar el uso de AppInput
 extension AppInputExtension on AppInput {
   /// Crea una copia del input con propiedades modificadas
   AppInput copyWith({
@@ -698,7 +702,7 @@ extension AppInputExtension on AppInput {
 // WIDGETS DE CONVENIENCIA
 // ==========================================================================
 
-/// Grupo de inputs con spacing automático
+/// Grupo de inputs con spacing automï¿½tico
 class AppInputGroup extends StatelessWidget {
   /// Lista de inputs a mostrar
   final List<Widget> children;

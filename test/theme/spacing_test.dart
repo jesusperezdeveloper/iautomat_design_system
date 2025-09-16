@@ -13,12 +13,12 @@ void main() {
     group('Spacing Scale', () {
       test('should have correct spacing values based on 8px unit', () {
         expect(AppSpacing.xxxs, 2.0); // unit * 0.25
-        expect(AppSpacing.xxs, 4.0);  // unit * 0.5
-        expect(AppSpacing.xs, 8.0);   // unit * 1
-        expect(AppSpacing.sm, 16.0);  // unit * 2
-        expect(AppSpacing.md, 24.0);  // unit * 3
-        expect(AppSpacing.lg, 32.0);  // unit * 4
-        expect(AppSpacing.xl, 48.0);  // unit * 6
+        expect(AppSpacing.xxs, 4.0); // unit * 0.5
+        expect(AppSpacing.xs, 8.0); // unit * 1
+        expect(AppSpacing.sm, 16.0); // unit * 2
+        expect(AppSpacing.md, 24.0); // unit * 3
+        expect(AppSpacing.lg, 32.0); // unit * 4
+        expect(AppSpacing.xl, 48.0); // unit * 6
         expect(AppSpacing.xxl, 64.0); // unit * 8
         expect(AppSpacing.xxxl, 96.0); // unit * 12
       });
@@ -32,7 +32,8 @@ void main() {
     });
 
     group('Spacing Widgets', () {
-      testWidgets('vertical spacing widgets should have correct height', (tester) async {
+      testWidgets('vertical spacing widgets should have correct height',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -66,7 +67,8 @@ void main() {
         expect(mdBox.height, AppSpacing.md);
       });
 
-      testWidgets('horizontal spacing widgets should have correct width', (tester) async {
+      testWidgets('horizontal spacing widgets should have correct width',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -119,7 +121,9 @@ void main() {
     });
 
     group('Responsive Spacing', () {
-      test('getResponsivePadding should return appropriate padding for screen sizes', () {
+      test(
+          'getResponsivePadding should return appropriate padding for screen sizes',
+          () {
         // Mobile
         final mobilePadding = AppSpacing.getResponsivePadding(400);
         expect(mobilePadding.left, 16.0); // sm padding
@@ -155,7 +159,8 @@ void main() {
     });
 
     group('Layout Utilities', () {
-      testWidgets('spaceBetween should distribute space correctly', (tester) async {
+      testWidgets('spaceBetween should distribute space correctly',
+          (tester) async {
         final children = [
           Container(width: 50, height: 50, color: Colors.red),
           Container(width: 50, height: 50, color: Colors.green),
@@ -181,7 +186,8 @@ void main() {
         expect(find.byType(SizedBox), findsNWidgets(2));
       });
 
-      testWidgets('wrapWithPadding should apply padding correctly', (tester) async {
+      testWidgets('wrapWithPadding should apply padding correctly',
+          (tester) async {
         const childWidget = Text('Test');
         final paddedWidget = AppSpacing.wrapWithPadding(
           childWidget,
@@ -284,12 +290,12 @@ void main() {
       test('spacing should follow 8pt grid system', () {
         // Most common spacings should be multiples of 8
         final eightMultiples = [
-          AppSpacing.xs,   // 8
-          AppSpacing.sm,   // 16
-          AppSpacing.md,   // 24
-          AppSpacing.lg,   // 32
-          AppSpacing.xl,   // 48
-          AppSpacing.xxl,  // 64
+          AppSpacing.xs, // 8
+          AppSpacing.sm, // 16
+          AppSpacing.md, // 24
+          AppSpacing.lg, // 32
+          AppSpacing.xl, // 48
+          AppSpacing.xxl, // 64
           AppSpacing.xxxl, // 96
         ];
 
@@ -320,9 +326,9 @@ void main() {
         expect(AppSpacing.unit, 8.0);
 
         // Common Material spacing patterns
-        expect(AppSpacing.sm, 16.0);  // Standard button/card padding
-        expect(AppSpacing.md, 24.0);  // Standard content padding
-        expect(AppSpacing.lg, 32.0);  // Large sections
+        expect(AppSpacing.sm, 16.0); // Standard button/card padding
+        expect(AppSpacing.md, 24.0); // Standard content padding
+        expect(AppSpacing.lg, 32.0); // Large sections
       });
 
       test('responsive spacing should follow Material breakpoints', () {

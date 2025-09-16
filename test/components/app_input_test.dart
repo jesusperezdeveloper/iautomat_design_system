@@ -5,7 +5,6 @@ import 'package:iautomat_design_system/src/components/inputs/app_input.dart';
 import 'package:iautomat_design_system/src/components/inputs/input_styles.dart';
 import 'package:iautomat_design_system/src/components/inputs/validators.dart';
 import 'package:iautomat_design_system/src/theme/app_theme.dart';
-import 'package:iautomat_design_system/src/theme/colors.dart';
 import 'package:iautomat_design_system/src/theme/spacing.dart';
 
 void main() {
@@ -93,19 +92,21 @@ void main() {
             home: Scaffold(
               body: AppInput(
                 label: 'With Text',
-                prefixText: '$',
+                prefixText: r'$',
                 suffixText: '.00',
               ),
             ),
           ),
         );
 
-        final textFormField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textFormField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textFormField.decoration?.prefixText, '\$');
         expect(textFormField.decoration?.suffixText, '.00');
       });
 
-      testWidgets('should render custom widgets as prefix/suffix', (tester) async {
+      testWidgets('should render custom widgets as prefix/suffix',
+          (tester) async {
         const prefixWidget = Icon(Icons.attach_money);
         const suffixWidget = Text('USD');
 
@@ -138,7 +139,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.keyboardType, TextInputType.emailAddress);
       });
 
@@ -153,7 +155,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.obscureText, isTrue);
       });
 
@@ -169,11 +172,13 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.keyboardType, TextInputType.number);
       });
 
-      testWidgets('multiline input should support multiple lines', (tester) async {
+      testWidgets('multiline input should support multiple lines',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -185,7 +190,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.maxLines, 5);
         expect(textField.keyboardType, TextInputType.multiline);
       });
@@ -201,7 +207,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.textInputAction, TextInputAction.search);
       });
 
@@ -217,7 +224,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.keyboardType, TextInputType.phone);
       });
 
@@ -233,7 +241,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.keyboardType, TextInputType.url);
       });
     });
@@ -250,7 +259,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.enabled, isTrue);
       });
 
@@ -266,7 +276,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.enabled, isFalse);
       });
 
@@ -282,7 +293,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.readOnly, isTrue);
       });
 
@@ -394,7 +406,8 @@ void main() {
               body: Form(
                 child: AppInput(
                   label: 'Validation Test',
-                  validator: (value) => value?.isEmpty == true ? 'Required field' : null,
+                  validator: (value) =>
+                      value?.isEmpty == true ? 'Required field' : null,
                   autovalidateMode: AutovalidateMode.always,
                 ),
               ),
@@ -478,7 +491,8 @@ void main() {
         await tester.pumpAndSettle();
 
         // Should show validation error
-        expect(find.text('La contraseña debe tener al menos 8 caracteres'), findsOneWidget);
+        expect(find.text('La contraseña debe tener al menos 8 caracteres'),
+            findsOneWidget);
       });
 
       testWidgets('should validate phone number format', (tester) async {
@@ -501,7 +515,8 @@ void main() {
         await tester.enterText(find.byType(AppInput), '123');
         await tester.pumpAndSettle();
 
-        expect(find.text('Ingresa un número de teléfono válido'), findsOneWidget);
+        expect(
+            find.text('Ingresa un número de teléfono válido'), findsOneWidget);
 
         // Enter valid phone
         await tester.enterText(find.byType(AppInput), '+1234567890');
@@ -512,7 +527,8 @@ void main() {
     });
 
     group('Clear Button', () {
-      testWidgets('should show clear button when text is not empty and focused', (tester) async {
+      testWidgets('should show clear button when text is not empty and focused',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -536,7 +552,8 @@ void main() {
         expect(find.byIcon(Icons.clear), findsOneWidget);
       });
 
-      testWidgets('should clear text when clear button is pressed', (tester) async {
+      testWidgets('should clear text when clear button is pressed',
+          (tester) async {
         String? currentValue;
 
         await tester.pumpWidget(
@@ -587,7 +604,8 @@ void main() {
     });
 
     group('Password Visibility Toggle', () {
-      testWidgets('should show visibility toggle for password input', (tester) async {
+      testWidgets('should show visibility toggle for password input',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -615,21 +633,24 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.obscureText, isTrue);
 
         // Tap visibility toggle
         await tester.tap(find.byIcon(Icons.visibility));
         await tester.pumpAndSettle();
 
-        final updatedTextField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final updatedTextField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(updatedTextField.obscureText, isFalse);
 
         // Should now show visibility_off icon
         expect(find.byIcon(Icons.visibility_off), findsOneWidget);
       });
 
-      testWidgets('should not show visibility toggle when disabled', (tester) async {
+      testWidgets('should not show visibility toggle when disabled',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -663,7 +684,8 @@ void main() {
         expect(find.text('0/10'), findsOneWidget);
       });
 
-      testWidgets('should update character counter as text changes', (tester) async {
+      testWidgets('should update character counter as text changes',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -733,7 +755,8 @@ void main() {
         expect(tooltip.message, 'This is helpful information');
       });
 
-      testWidgets('should handle tap gesture for accessibility', (tester) async {
+      testWidgets('should handle tap gesture for accessibility',
+          (tester) async {
         bool tapped = false;
 
         await tester.pumpWidget(
@@ -791,13 +814,16 @@ void main() {
         await tester.pumpAndSettle();
 
         // Should be limited to 5 characters
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         expect(textField.controller?.text.length, lessThanOrEqualTo(5));
       });
     });
 
     group('Input Group', () {
-      testWidgets('AppInputGroup should render multiple inputs with proper spacing', (tester) async {
+      testWidgets(
+          'AppInputGroup should render multiple inputs with proper spacing',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -821,7 +847,8 @@ void main() {
     });
 
     group('Extension Methods', () {
-      testWidgets('copyWith should create input with modified properties', (tester) async {
+      testWidgets('copyWith should create input with modified properties',
+          (tester) async {
         final originalInput = AppInput(
           label: 'Original',
           type: InputType.text,
@@ -838,7 +865,8 @@ void main() {
     });
 
     group('Error Handling', () {
-      testWidgets('should not allow both controller and initialValue', (tester) async {
+      testWidgets('should not allow both controller and initialValue',
+          (tester) async {
         expect(
           () => AppInput(
             controller: TextEditingController(),
@@ -882,7 +910,8 @@ void main() {
     });
 
     group('Performance', () {
-      testWidgets('should handle rapid text changes efficiently', (tester) async {
+      testWidgets('should handle rapid text changes efficiently',
+          (tester) async {
         int changeCount = 0;
 
         await tester.pumpWidget(
@@ -907,7 +936,8 @@ void main() {
     });
 
     group('Design System Consistency', () {
-      testWidgets('should use consistent spacing from design system', (tester) async {
+      testWidgets('should use consistent spacing from design system',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -918,7 +948,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
 
         // Should use design system padding
         expect(textField.decoration?.contentPadding, AppSpacing.inputPadding);
@@ -935,7 +966,8 @@ void main() {
           ),
         );
 
-        final textField = tester.widget<TextFormField>(find.byType(TextFormField));
+        final textField =
+            tester.widget<TextFormField>(find.byType(TextFormField));
         final border = textField.decoration?.border as OutlineInputBorder?;
 
         expect(border?.borderRadius, AppInputStyles.borderRadius);

@@ -137,9 +137,9 @@ class AppCard extends StatefulWidget {
     this.animationDuration = AppTheme.durationFast,
     this.animationCurve = AppTheme.curveStandard,
   }) : assert(
-         elevation >= 0 && elevation <= 5,
-         'Elevation must be between 0 and 5',
-       );
+          elevation >= 0 && elevation <= 5,
+          'Elevation must be between 0 and 5',
+        );
 
   /// Constructor para card flat (sin elevaci�n)
   const AppCard.flat({
@@ -163,9 +163,9 @@ class AppCard extends StatefulWidget {
     this.tooltip,
     this.animationDuration = AppTheme.durationFast,
     this.animationCurve = AppTheme.curveStandard,
-  }) : variant = CardVariant.flat,
-       elevation = 0,
-       gradient = null;
+  })  : variant = CardVariant.flat,
+        elevation = 0,
+        gradient = null;
 
   /// Constructor para card elevated (con sombra)
   const AppCard.elevated({
@@ -188,10 +188,10 @@ class AppCard extends StatefulWidget {
     this.tooltip,
     this.animationDuration = AppTheme.durationFast,
     this.animationCurve = AppTheme.curveStandard,
-  }) : variant = CardVariant.elevated,
-       gradient = null,
-       borderColor = null,
-       borderWidth = 0;
+  })  : variant = CardVariant.elevated,
+        gradient = null,
+        borderColor = null,
+        borderWidth = 0;
 
   /// Constructor para card outlined (con borde)
   const AppCard.outlined({
@@ -215,9 +215,9 @@ class AppCard extends StatefulWidget {
     this.tooltip,
     this.animationDuration = AppTheme.durationFast,
     this.animationCurve = AppTheme.curveStandard,
-  }) : variant = CardVariant.outlined,
-       elevation = 0,
-       gradient = null;
+  })  : variant = CardVariant.outlined,
+        elevation = 0,
+        gradient = null;
 
   /// Constructor para card gradient (con degradado)
   const AppCard.gradient({
@@ -240,10 +240,10 @@ class AppCard extends StatefulWidget {
     this.tooltip,
     this.animationDuration = AppTheme.durationFast,
     this.animationCurve = AppTheme.curveStandard,
-  }) : variant = CardVariant.gradient,
-       backgroundColor = null,
-       borderColor = null,
-       borderWidth = 0;
+  })  : variant = CardVariant.gradient,
+        backgroundColor = null,
+        borderColor = null,
+        borderWidth = 0;
 
   @override
   State<AppCard> createState() => _AppCardState();
@@ -272,16 +272,15 @@ class _AppCardState extends State<AppCard> with SingleTickerProviderStateMixin {
       ),
     );
 
-    _elevationAnimation =
-        Tween<double>(
-          begin: widget.elevation.toDouble(),
-          end: (widget.elevation + 2).clamp(0, 5).toDouble(),
-        ).animate(
-          CurvedAnimation(
-            parent: _animationController,
-            curve: widget.animationCurve,
-          ),
-        );
+    _elevationAnimation = Tween<double>(
+      begin: widget.elevation.toDouble(),
+      end: (widget.elevation + 2).clamp(0, 5).toDouble(),
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: widget.animationCurve,
+      ),
+    );
   }
 
   @override
@@ -421,19 +420,18 @@ class _AppCardState extends State<AppCard> with SingleTickerProviderStateMixin {
   /// Obtiene la configuraci�n del card seg�n el tema
   _CardConfig _getCardConfiguration(ThemeData theme, bool isDark) {
     return _CardConfig(
-      defaultBackgroundColor: isDark
-          ? AppColors.backgroundSecondaryDarkMode
-          : AppColors.surface,
+      defaultBackgroundColor:
+          isDark ? AppColors.backgroundSecondaryDarkMode : AppColors.surface,
       defaultBorderColor: isDark ? AppColors.gray600 : AppColors.gray300,
       defaultShadowColor: isDark ? Colors.black : AppColors.shadow,
       defaultSplashColor:
           (isDark ? AppColors.primaryDarkMode : AppColors.primary).withOpacity(
-            0.1,
-          ),
+        0.1,
+      ),
       defaultHighlightColor:
           (isDark ? AppColors.primaryDarkMode : AppColors.primary).withOpacity(
-            0.05,
-          ),
+        0.05,
+      ),
       defaultPadding: AppSpacing.cardPadding,
     );
   }
@@ -596,7 +594,6 @@ extension AppCardExtension on AppCard {
   }) {
     return AppCard(
       key: key ?? this.key,
-      child: child ?? this.child,
       variant: variant ?? this.variant,
       elevation: elevation ?? this.elevation,
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -618,6 +615,7 @@ extension AppCardExtension on AppCard {
       tooltip: tooltip ?? this.tooltip,
       animationDuration: animationDuration ?? this.animationDuration,
       animationCurve: animationCurve ?? this.animationCurve,
+      child: child ?? this.child,
     );
   }
 }
@@ -743,8 +741,7 @@ class AppActionCard extends StatelessWidget {
           Icon(
             icon,
             size: 48,
-            color:
-                iconColor ??
+            color: iconColor ??
                 (isDark ? AppColors.primaryDarkMode : AppColors.primary),
           ),
           AppSpacing.verticalSm,

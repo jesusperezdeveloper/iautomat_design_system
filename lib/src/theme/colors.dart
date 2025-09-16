@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 /// Sistema de colores completo para el Design System de IAutomat
 ///
-/// Incluye colores primarios, secundarios, semánticos, escala de grises
+/// Incluye colores primarios, secundarios, semÃ¡nticos, escala de grises
 /// y variantes para dark mode. Basado en Material Design 3 guidelines.
 ///
 /// Colores base de IAutomat:
 /// - Primary: Azul profesional (#2563EB) - representa confianza y profesionalismo
-/// - Secondary: Púrpura innovación (#7C3AED) - representa creatividad e innovación
+/// - Secondary: PÃºrpura innovaciÃ³n (#7C3AED) - representa creatividad e innovaciÃ³n
 /// - Success: Verde (#10B981) - para estados exitosos
 /// - Warning: Amarillo (#F59E0B) - para advertencias
 /// - Error: Rojo (#EF4444) - para errores
-/// - Info: Azul claro (#3B82F6) - para información
+/// - Info: Azul claro (#3B82F6) - para informaciï¿½n
 class AppColors {
   AppColors._();
 
@@ -25,55 +25,122 @@ class AppColors {
   /// Este color representa la confianza y profesionalismo de IAutomat.
   static const Color primary = Color(0xFF2563EB);
 
+  /// Variante clara del color primario para modo oscuro
+  static const Color primaryLightDarkMode = Color(0xFF93C5FD);
+
+  /// Variante oscura del color primario para modo oscuro
+  static const Color primaryDarkDarkMode = Color(0xFF3B82F6);
+
+  /// Color secundario claro para modo oscuro
+  static const Color secondaryLightDarkMode = Color(0xFFC084FC);
+
+  /// Color secundario oscuro para modo oscuro
+  static const Color secondaryDarkDarkMode = Color(0xFF8B5CF6);
+
+  /// Color de superficie para contenedores
+  static const Color surfaceContainer = Color(0xFFF3F4F6);
+
+  /// Color de superficie para contenedores con alto contraste
+  static const Color surfaceContainerHigh = Color(0xFFE5E7EB);
+
+  /// Color de superficie para modo oscuro
+  static const Color surfaceDark = Color(0xFF111827);
+
+  /// Variante del color de superficie para modo oscuro
+  static const Color surfaceVariantDark = Color(0xFF1F2937);
+
+  /// Color de superficie para contenedores en modo oscuro
+  static const Color surfaceContainerDark = Color(0xFF374151);
+
+  /// Color de superficie para contenedores de alto contraste en modo oscuro
+  static const Color surfaceContainerHighDark = Color(0xFF4B5563);
+
+  /// Color de texto primario en modo oscuro
+  static const Color textPrimaryDark = Color(0xFFFFFFFF);
+
+  /// Aclara un color en un porcentaje dado
+  static Color lighten(Color color, double amount) {
+    assert(amount >= 0 && amount <= 1);
+    final hsl = HSLColor.fromColor(color);
+    return hsl
+        .withLightness((hsl.lightness + amount).clamp(0.0, 1.0))
+        .toColor();
+  }
+
+  /// Oscurece un color en un porcentaje dado
+  static Color darken(Color color, double amount) {
+    assert(amount >= 0 && amount <= 1);
+    final hsl = HSLColor.fromColor(color);
+    return hsl
+        .withLightness((hsl.lightness - amount).clamp(0.0, 1.0))
+        .toColor();
+  }
+
+  /// Obtiene el color de texto que mejor contrasta con un color de fondo
+  static Color getContrastingTextColor(Color backgroundColor) {
+    final relativeLuminance = backgroundColor.computeLuminance();
+    return relativeLuminance > 0.5 ? Colors.black : Colors.white;
+  }
+
+  /// Determina si un color es claro basado en su luminancia
+  static bool isLight(Color color) {
+    return color.computeLuminance() > 0.5;
+  }
+
+  /// Determina si un color es oscuro basado en su luminancia
+  static bool isDark(Color color) {
+    return color.computeLuminance() <= 0.5;
+  }
+
   /// Variante clara del color primario
   ///
   /// Usado para backgrounds suaves, hover states y elementos secundarios.
   static const Color primaryLight = Color(0xFF60A5FA);
 
-  /// Variante más clara del color primario
+  /// Variante mï¿½s clara del color primario
   ///
   /// Usado para backgrounds muy suaves y elementos de apoyo.
   static const Color primaryLighter = Color(0xFF93C5FD);
 
   /// Variante oscura del color primario
   ///
-  /// Usado para pressed states, elementos de énfasis y contrastes altos.
+  /// Usado para pressed states, elementos de ï¿½nfasis y contrastes altos.
   static const Color primaryDark = Color(0xFF1D4ED8);
 
-  /// Variante más oscura del color primario
+  /// Variante mï¿½s oscura del color primario
   ///
-  /// Usado para elementos de máximo contraste y estados activos.
+  /// Usado para elementos de mï¿½ximo contraste y estados activos.
   static const Color primaryDarker = Color(0xFF1E40AF);
 
   // ==========================================================================
-  // COLORES SECUNDARIOS - Púrpura innovación
+  // COLORES SECUNDARIOS - Pï¿½rpura innovaciï¿½n
   // ==========================================================================
 
-  /// Color secundario principal - Púrpura innovación
+  /// Color secundario principal - Pï¿½rpura innovaciï¿½n
   ///
   /// Usado para elementos de apoyo, ilustraciones y detalles creativos.
-  /// Representa la innovación y creatividad de IAutomat.
+  /// Representa la innovaciï¿½n y creatividad de IAutomat.
   static const Color secondary = Color(0xFF7C3AED);
 
   /// Variante clara del color secundario
   static const Color secondaryLight = Color(0xFF8B5CF6);
 
-  /// Variante más clara del color secundario
+  /// Variante mï¿½s clara del color secundario
   static const Color secondaryLighter = Color(0xFFA78BFA);
 
   /// Variante oscura del color secundario
   static const Color secondaryDark = Color(0xFF5B21B6);
 
-  /// Variante más oscura del color secundario
+  /// Variante mï¿½s oscura del color secundario
   static const Color secondaryDarker = Color(0xFF4C1D95);
 
   // ==========================================================================
-  // COLORES SEMÁNTICOS - Para comunicar estados y acciones
+  // COLORES SEMï¿½NTICOS - Para comunicar estados y acciones
   // ==========================================================================
 
   /// Color para estados exitosos y confirmaciones positivas
   ///
-  /// Usado en mensajes de éxito, iconos de confirmación,
+  /// Usado en mensajes de ï¿½xito, iconos de confirmaciï¿½n,
   /// botones de acciones exitosas y elementos de progreso completado.
   static const Color success = Color(0xFF10B981);
   static const Color successLight = Color(0xFF34D399);
@@ -81,8 +148,8 @@ class AppColors {
 
   /// Color para advertencias y alertas importantes
   ///
-  /// Usado en mensajes de advertencia, elementos que requieren atención
-  /// y estados de precaución.
+  /// Usado en mensajes de advertencia, elementos que requieren atenciï¿½n
+  /// y estados de precauciï¿½n.
   static const Color warning = Color(0xFFF59E0B);
   static const Color warningLight = Color(0xFFFBBF24);
   static const Color warningDark = Color(0xFFD97706);
@@ -95,7 +162,7 @@ class AppColors {
   static const Color errorLight = Color(0xFFF87171);
   static const Color errorDark = Color(0xFFDC2626);
 
-  /// Color para información y elementos informativos
+  /// Color para informaciï¿½n y elementos informativos
   ///
   /// Usado en mensajes informativos, tooltips,
   /// elementos de ayuda y contenido explicativo.
@@ -107,13 +174,13 @@ class AppColors {
   // ESCALA DE GRISES - Para textos, backgrounds y elementos neutros
   // ==========================================================================
 
-  /// Gris más claro - backgrounds muy suaves
+  /// Gris mï¿½s claro - backgrounds muy suaves
   static const Color gray50 = Color(0xFFF9FAFB);
 
   /// Gris claro - backgrounds suaves, divisores sutiles
   static const Color gray100 = Color(0xFFF3F4F6);
 
-  /// Gris claro medio - backgrounds de sección, cards suaves
+  /// Gris claro medio - backgrounds de secciï¿½n, cards suaves
   static const Color gray200 = Color(0xFFE5E7EB);
 
   /// Gris medio claro - bordes, divisores, placeholders
@@ -134,7 +201,7 @@ class AppColors {
   /// Gris muy oscuro - texto principal en light mode
   static const Color gray800 = Color(0xFF1F2937);
 
-  /// Gris más oscuro - headers, elementos de máximo contraste
+  /// Gris mï¿½s oscuro - headers, elementos de mï¿½ximo contraste
   static const Color gray900 = Color(0xFF111827);
 
   // ==========================================================================
@@ -143,14 +210,14 @@ class AppColors {
 
   /// Color primario adaptado para dark mode
   ///
-  /// Versión más clara y vibrante del primary para mantener
+  /// Versiï¿½n mï¿½s clara y vibrante del primary para mantener
   /// buena legibilidad sobre fondos oscuros.
   static const Color primaryDarkMode = Color(0xFF60A5FA);
 
   /// Color secundario adaptado para dark mode
   static const Color secondaryDarkMode = Color(0xFF8B5CF6);
 
-  /// Colores semánticos para dark mode - más vibrantes
+  /// Colores semï¿½nticos para dark mode - mï¿½s vibrantes
   static const Color successDarkMode = Color(0xFF34D399);
   static const Color warningDarkMode = Color(0xFFFBBF24);
   static const Color errorDarkMode = Color(0xFFF87171);
@@ -178,7 +245,7 @@ class AppColors {
   // COLORES DE SUPERFICIE Y BACKGROUND
   // ==========================================================================
 
-  /// Background principal de la aplicación
+  /// Background principal de la aplicaciï¿½n
   static const Color background = Color(0xFFFFFFFF);
 
   /// Background para surfaces (cards, sheets, modals)
@@ -187,7 +254,7 @@ class AppColors {
   /// Background alternativo para secciones
   static const Color surfaceVariant = gray50;
 
-  /// Color para overlays y máscaras
+  /// Color para overlays y mï¿½scaras
   static const Color overlay = Color(0x80000000);
 
   /// Color para divisores y bordes sutiles
@@ -200,7 +267,7 @@ class AppColors {
   // COLORES DE TEXTO
   // ==========================================================================
 
-  /// Texto principal - máximo contraste
+  /// Texto principal - mï¿½ximo contraste
   static const Color textPrimary = gray900;
 
   /// Texto secundario - medio contraste
@@ -216,19 +283,30 @@ class AppColors {
   static const Color textDisabled = gray400;
 
   // ==========================================================================
-  // MÉTODOS UTILITARIOS
+  // Mï¿½TODOS UTILITARIOS
   // ==========================================================================
 
   /// Genera un MaterialColor a partir de un Color base
   ///
-  /// Útil para crear swatches personalizados que Flutter puede usar
+  /// ï¿½til para crear swatches personalizados que Flutter puede usar
   /// en temas y componentes que requieren MaterialColor.
   ///
   /// [color] El color base del cual generar el MaterialColor
   ///
-  /// Retorna un MaterialColor con variantes automáticamente generadas.
+  /// Retorna un MaterialColor con variantes automï¿½ticamente generadas.
   static MaterialColor createMaterialColor(Color color) {
-    final List<double> strengths = <double>[.05, .1, .2, .3, .4, .5, .6, .7, .8, .9];
+    final List<double> strengths = <double>[
+      .05,
+      .1,
+      .2,
+      .3,
+      .4,
+      .5,
+      .6,
+      .7,
+      .8,
+      .9
+    ];
     final Map<int, Color> swatch = <int, Color>{};
     final int r = color.red;
     final int g = color.green;
@@ -255,10 +333,10 @@ class AppColors {
 
   /// Obtiene el color de texto apropiado para un background dado
   ///
-  /// Calcula automáticamente si usar texto claro u oscuro
+  /// Calcula automï¿½ticamente si usar texto claro u oscuro
   /// basado en el contraste con el color de fondo.
   ///
-  /// [backgroundColor] El color de fondo sobre el cual se mostrará el texto
+  /// [backgroundColor] El color de fondo sobre el cual se mostrarï¿½ el texto
   ///
   /// Retorna [textOnColor] para fondos oscuros o [textPrimary] para fondos claros.
   static Color getTextColorForBackground(Color backgroundColor) {
