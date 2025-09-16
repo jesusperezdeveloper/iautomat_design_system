@@ -37,3 +37,18 @@ const like = 'sample';
 TODO: Tell users more about the package: where to find more information, how to
 contribute to the package, how to file issues, what response they can expect
 from the package authors, and more.
+
+## Flutter SDK version (project)
+
+This project is pinned to Flutter 3.35.3. To ensure consistent builds use one
+of the following tools to switch your local Flutter SDK:
+
+- FVM (recommended):
+	- Install FVM: `dart pub global activate fvm` or follow https://fvm.app
+	- Run `fvm use 3.35.3` in the repository root.
+- asdf (alternative):
+	- Add `flutter` plugin and run `asdf install flutter 3.35.3`.
+- Simple switch: create a `.flutter-version` file with `3.35.3` (already present).
+
+After switching, run `flutter pub get` (or `fvm flutter pub get`) in the repo root
+and in `example/`.
