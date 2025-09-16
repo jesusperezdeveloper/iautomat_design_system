@@ -5,6 +5,7 @@ import 'button_styles.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/spacing.dart';
 
+
 /// Componente de botón personalizado para el Design System de IAutomat
 ///
 /// AppButton es el componente base para todos los botones en la aplicación.
@@ -348,7 +349,7 @@ class _AppButtonState extends State<AppButton>
   /// Construye el contenido interno del bot�n
   Widget _buildButtonContent(
     BuildContext context,
-    _ButtonSizeConfig sizeConfig,
+    ButtonSizeConfig sizeConfig,
     bool isDark,
   ) {
     final List<Widget> children = [];
@@ -408,7 +409,7 @@ class _AppButtonState extends State<AppButton>
   }
 
   /// Construye el indicador de carga
-  Widget _buildLoadingIndicator(_ButtonSizeConfig sizeConfig, bool isDark) {
+  Widget _buildLoadingIndicator(ButtonSizeConfig sizeConfig, bool isDark) {
     final color = widget.loadingIndicatorColor ??
         AppButtonStyles.getTextColor(widget.variant, isDark, false);
 

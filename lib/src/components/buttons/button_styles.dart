@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import '../../theme/colors.dart';
-import '../../theme/s  /// Estilo para el botón primario
-  static ButtonStyle _primaryStyle(_ButtonSizeConfig config, bool isDark) {
-    final primaryColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
-    final onPrimaryColor =
-        isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
-    final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;.dart';
+import '../../theme/spacing.dart';
 import '../../theme/typography.dart';
 import '../../theme/app_theme.dart';
 
@@ -29,7 +24,7 @@ enum ButtonVariant {
 }
 
 /// Configuración de tamaños para botones
-class _ButtonSizeConfig {
+class ButtonSizeConfig {
   final double height;
   final double minWidth;
   final EdgeInsets padding;
@@ -38,7 +33,7 @@ class _ButtonSizeConfig {
   final double spacing;
   final TextStyle textStyle;
 
-  const _ButtonSizeConfig({
+  const ButtonSizeConfig({
     required this.height,
     required this.minWidth,
     required this.padding,
@@ -78,8 +73,8 @@ class AppButtonStyles {
   // ==========================================================================
 
   /// Configuración de dimensiones según el tamaño del botón
-  static Map<ButtonSize, _ButtonSizeConfig> get _sizeConfigs => {
-        ButtonSize.small: _ButtonSizeConfig(
+  static Map<ButtonSize, ButtonSizeConfig> get _sizeConfigs => {
+        ButtonSize.small: ButtonSizeConfig(
           height: 32,
           minWidth: 64,
           padding: AppSpacing.buttonPaddingSmall,
@@ -88,7 +83,7 @@ class AppButtonStyles {
           borderRadius: 4.0,
           spacing: AppSpacing.xxs,
         ),
-        ButtonSize.medium: _ButtonSizeConfig(
+        ButtonSize.medium: ButtonSizeConfig(
           height: 40,
           minWidth: 80,
           padding: AppSpacing.buttonPadding,
@@ -97,7 +92,7 @@ class AppButtonStyles {
           borderRadius: 6.0,
           spacing: AppSpacing.xs,
         ),
-        ButtonSize.large: _ButtonSizeConfig(
+        ButtonSize.large: ButtonSizeConfig(
           height: 48,
           minWidth: 120,
           padding: AppSpacing.buttonPaddingLarge,
@@ -109,7 +104,7 @@ class AppButtonStyles {
       };
 
   /// Obtiene la configuraci�n de tama�o para un ButtonSize espec�fico
-  static _ButtonSizeConfig getSizeConfig(ButtonSize size) {
+  static ButtonSizeConfig getSizeConfig(ButtonSize size) {
     return _sizeConfigs[size]!;
   }
 
@@ -140,55 +135,55 @@ class AppButtonStyles {
   }
 
   /// Estilo para bot�n primary
-  static ButtonStyle _primaryStyle(_ButtonSizeConfig config, bool isDark) {
+  static ButtonStyle _primaryStyle(ButtonSizeConfig config, bool isDark) {
     final primaryColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
     final onPrimaryColor =
         isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
     final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;
 
     return ButtonStyle(
-      backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.disabled)) return disabledColor;
+      backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.disabled)) return disabledColor;
         return primaryColor;
       }),
-      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.disabled)) return isDark ? AppColors.gray400 : AppColors.textDisabled;
+      foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.disabled)) return isDark ? AppColors.gray400 : AppColors.textDisabled;
         return onPrimaryColor;
       }),
-      elevation: MaterialStateProperty.resolveWith<double>((states) {
-        if (states.contains(MaterialState.disabled)) return 0;
-        if (states.contains(MaterialState.pressed)) return 8;
-        if (states.contains(MaterialState.hovered)) return 4;
-        if (states.contains(MaterialState.focused)) return 4;
+      elevation: WidgetStateProperty.resolveWith<double>((states) {
+        if (states.contains(WidgetState.disabled)) return 0;
+        if (states.contains(WidgetState.pressed)) return 8;
+        if (states.contains(WidgetState.hovered)) return 4;
+        if (states.contains(WidgetState.focused)) return 4;
         return 2;
       }),
 
       // Sombra
-      shadowColor: isDark ? Colors.black : AppColors.shadow,
+      shadowColor: WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
 
       // Forma y tama�o
-      shape: RoundedRectangleBorder(borderRadius: AppTheme.radiusMd),
-      minimumSize: Size(config.minWidth, config.height),
-      maximumSize: Size.infinite,
-      padding: config.padding,
+      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+      minimumSize: WidgetStateProperty.all(Size(config.minWidth, config.height)),
+      maximumSize: WidgetStateProperty.all(Size.infinite),
+      padding: WidgetStateProperty.all(config.padding),
 
       // Texto
-      textStyle: config.textStyle,
+      textStyle: WidgetStateProperty.all(config.textStyle),
 
       // Animaciones
       animationDuration: AppTheme.durationFast,
 
       // Splash
       splashFactory: InkRipple.splashFactory,
-      overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-        if (states.contains(MaterialState.hovered)) {
-          return onPrimaryColor.withOpacity(0.08);
+      overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
+        if (states.contains(WidgetState.hovered)) {
+          return onPrimaryColor.withValues(alpha: 0.08);
         }
-        if (states.contains(MaterialState.focused)) {
-          return onPrimaryColor.withOpacity(0.12);
+        if (states.contains(WidgetState.focused)) {
+          return onPrimaryColor.withValues(alpha: 0.12);
         }
-        if (states.contains(MaterialState.pressed)) {
-          return onPrimaryColor.withOpacity(0.16);
+        if (states.contains(WidgetState.pressed)) {
+          return onPrimaryColor.withValues(alpha: 0.16);
         }
         return null;
       }),
@@ -196,7 +191,7 @@ class AppButtonStyles {
   }
 
   /// Estilo para bot�n secondary
-  static ButtonStyle _secondaryStyle(_ButtonSizeConfig config, bool isDark) {
+  static ButtonStyle _secondaryStyle(ButtonSizeConfig config, bool isDark) {
     final secondaryColor =
         isDark ? AppColors.secondaryDarkMode : AppColors.secondary;
     final onSecondaryColor =
@@ -204,41 +199,38 @@ class AppButtonStyles {
     final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;
 
     return ButtonStyle(
-      backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.disabled)) return disabledColor;
-        return primaryColor;
+      backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.disabled)) return disabledColor;
+        return secondaryColor;
       }),
-      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.disabled)) return isDark ? AppColors.gray400 : AppColors.textDisabled;
-        return onPrimaryColor;
+      foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.disabled)) return isDark ? AppColors.gray400 : AppColors.textDisabled;
+        return onSecondaryColor;
       }),
-      disabledBackgroundColor: disabledColor,
-      disabledForegroundColor:
-          isDark ? AppColors.gray400 : AppColors.textDisabled,
-      elevation: MaterialStateProperty.resolveWith<double>((states) {
-        if (states.contains(MaterialState.disabled)) return 0;
-        if (states.contains(MaterialState.pressed)) return 6;
-        if (states.contains(MaterialState.hovered)) return 3;
-        if (states.contains(MaterialState.focused)) return 3;
+      elevation: WidgetStateProperty.resolveWith<double>((states) {
+        if (states.contains(WidgetState.disabled)) return 0;
+        if (states.contains(WidgetState.pressed)) return 6;
+        if (states.contains(WidgetState.hovered)) return 3;
+        if (states.contains(WidgetState.focused)) return 3;
         return 1;
       }),
-      shadowColor: isDark ? Colors.black : AppColors.shadow,
-      shape: RoundedRectangleBorder(borderRadius: AppTheme.radiusMd),
-      minimumSize: Size(config.minWidth, config.height),
-      maximumSize: Size.infinite,
-      padding: config.padding,
-      textStyle: config.textStyle,
+      shadowColor: WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
+      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+      minimumSize: WidgetStateProperty.all(Size(config.minWidth, config.height)),
+      maximumSize: WidgetStateProperty.all(Size.infinite),
+      padding: WidgetStateProperty.all(config.padding),
+      textStyle: WidgetStateProperty.all(config.textStyle),
       animationDuration: AppTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
-      overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-        if (states.contains(MaterialState.hovered)) {
-          return onSecondaryColor.withOpacity(0.08);
+      overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
+        if (states.contains(WidgetState.hovered)) {
+          return onSecondaryColor.withValues(alpha: 0.08);
         }
-        if (states.contains(MaterialState.focused)) {
-          return onSecondaryColor.withOpacity(0.12);
+        if (states.contains(WidgetState.focused)) {
+          return onSecondaryColor.withValues(alpha: 0.12);
         }
-        if (states.contains(MaterialState.pressed)) {
-          return onSecondaryColor.withOpacity(0.16);
+        if (states.contains(WidgetState.pressed)) {
+          return onSecondaryColor.withValues(alpha: 0.16);
         }
         return null;
       }),
@@ -246,7 +238,7 @@ class AppButtonStyles {
   }
 
   /// Estilo para bot�n outline
-  static ButtonStyle _outlineStyle(_ButtonSizeConfig config, bool isDark) {
+  static ButtonStyle _outlineStyle(ButtonSizeConfig config, bool isDark) {
     final borderColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
     final textColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
     final backgroundColor = isDark ? Colors.transparent : Colors.transparent;
@@ -254,40 +246,38 @@ class AppButtonStyles {
     final disabledTextColor =
         isDark ? AppColors.gray400 : AppColors.textDisabled;
 
-    return OutlinedButton.styleFrom(
-      backgroundColor: backgroundColor,
-      foregroundColor: textColor,
-      disabledForegroundColor: disabledTextColor,
-      side: MaterialStateProperty.resolveWith<BorderSide>((states) {
-        if (states.contains(MaterialState.disabled)) {
+    return ButtonStyle(
+      backgroundColor: WidgetStateProperty.all(backgroundColor),
+      foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.disabled)) return disabledTextColor;
+        return textColor;
+      }),
+      side: WidgetStateProperty.resolveWith<BorderSide>((states) {
+        if (states.contains(WidgetState.disabled)) {
           return BorderSide(color: disabledBorderColor, width: 1);
         }
-        if (states.contains(MaterialState.pressed)) {
+        if (states.contains(WidgetState.pressed)) {
           return BorderSide(color: borderColor, width: 2);
         }
         return BorderSide(color: borderColor, width: 1);
       }),
-      elevation: 0,
-      focusElevation: 0,
-      hoverElevation: 0,
-      highlightElevation: 0,
-      disabledElevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: AppTheme.radiusMd),
-      minimumSize: Size(config.minWidth, config.height),
-      maximumSize: Size.infinite,
-      padding: config.padding,
-      textStyle: config.textStyle,
+      elevation: WidgetStateProperty.all(0),
+      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+      minimumSize: WidgetStateProperty.all(Size(config.minWidth, config.height)),
+      maximumSize: WidgetStateProperty.all(Size.infinite),
+      padding: WidgetStateProperty.all(config.padding),
+      textStyle: WidgetStateProperty.all(config.textStyle),
       animationDuration: AppTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
       overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.hovered)) {
-          return textColor.withOpacity(0.04);
+          return textColor.withValues(alpha: 0.04);
         }
         if (states.contains(WidgetState.focused)) {
-          return textColor.withOpacity(0.08);
+          return textColor.withValues(alpha: 0.08);
         }
         if (states.contains(WidgetState.pressed)) {
-          return textColor.withOpacity(0.12);
+          return textColor.withValues(alpha: 0.12);
         }
         return null;
       }),
@@ -295,37 +285,35 @@ class AppButtonStyles {
   }
 
   /// Estilo para bot�n ghost
-  static ButtonStyle _ghostStyle(_ButtonSizeConfig config, bool isDark) {
+  static ButtonStyle _ghostStyle(ButtonSizeConfig config, bool isDark) {
     final textColor =
         isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary;
     final disabledTextColor =
         isDark ? AppColors.gray400 : AppColors.textDisabled;
 
-    return TextButton.styleFrom(
-      backgroundColor: Colors.transparent,
-      foregroundColor: textColor,
-      disabledForegroundColor: disabledTextColor,
-      elevation: 0,
-      focusElevation: 0,
-      hoverElevation: 0,
-      highlightElevation: 0,
-      disabledElevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: AppTheme.radiusMd),
-      minimumSize: Size(config.minWidth, config.height),
-      maximumSize: Size.infinite,
-      padding: config.padding,
-      textStyle: config.textStyle,
+    return ButtonStyle(
+      backgroundColor: WidgetStateProperty.all(Colors.transparent),
+      foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.disabled)) return disabledTextColor;
+        return textColor;
+      }),
+      elevation: WidgetStateProperty.all(0),
+      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+      minimumSize: WidgetStateProperty.all(Size(config.minWidth, config.height)),
+      maximumSize: WidgetStateProperty.all(Size.infinite),
+      padding: WidgetStateProperty.all(config.padding),
+      textStyle: WidgetStateProperty.all(config.textStyle),
       animationDuration: AppTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
       overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.hovered)) {
-          return textColor.withOpacity(0.04);
+          return textColor.withValues(alpha: 0.04);
         }
         if (states.contains(WidgetState.focused)) {
-          return textColor.withOpacity(0.08);
+          return textColor.withValues(alpha: 0.08);
         }
         if (states.contains(WidgetState.pressed)) {
-          return textColor.withOpacity(0.12);
+          return textColor.withValues(alpha: 0.12);
         }
         return null;
       }),
@@ -333,47 +321,47 @@ class AppButtonStyles {
   }
 
   /// Estilo para bot�n danger
-  static ButtonStyle _dangerStyle(_ButtonSizeConfig config, bool isDark) {
+  static ButtonStyle _dangerStyle(ButtonSizeConfig config, bool isDark) {
     final dangerColor = isDark ? AppColors.errorDarkMode : AppColors.error;
     final onDangerColor =
         isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
     final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;
 
     return ButtonStyle(
-      backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.disabled)) return disabledColor;
+      backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.disabled)) return disabledColor;
         return dangerColor;
       }),
-      foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-        if (states.contains(MaterialState.disabled)) {
+      foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.disabled)) {
           return isDark ? AppColors.gray400 : AppColors.textDisabled;
         }
         return onDangerColor;
       }),
-      elevation: MaterialStateProperty.resolveWith<double>((states) {
-        if (states.contains(MaterialState.disabled)) return 0;
-        if (states.contains(MaterialState.pressed)) return 8;
-        if (states.contains(MaterialState.hovered)) return 4;
-        if (states.contains(MaterialState.focused)) return 4;
+      elevation: WidgetStateProperty.resolveWith<double>((states) {
+        if (states.contains(WidgetState.disabled)) return 0;
+        if (states.contains(WidgetState.pressed)) return 8;
+        if (states.contains(WidgetState.hovered)) return 4;
+        if (states.contains(WidgetState.focused)) return 4;
         return 2;
       }),
-      shadowColor: isDark ? Colors.black : AppColors.shadow,
-      shape: RoundedRectangleBorder(borderRadius: AppTheme.radiusMd),
-      minimumSize: Size(config.minWidth, config.height),
-      maximumSize: Size.infinite,
-      padding: config.padding,
-      textStyle: config.textStyle,
+      shadowColor: WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
+      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+      minimumSize: WidgetStateProperty.all(Size(config.minWidth, config.height)),
+      maximumSize: WidgetStateProperty.all(Size.infinite),
+      padding: WidgetStateProperty.all(config.padding),
+      textStyle: WidgetStateProperty.all(config.textStyle),
       animationDuration: AppTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
       overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.hovered)) {
-          return onDangerColor.withOpacity(0.08);
+          return onDangerColor.withValues(alpha: 0.08);
         }
         if (states.contains(WidgetState.focused)) {
-          return onDangerColor.withOpacity(0.12);
+          return onDangerColor.withValues(alpha: 0.12);
         }
         if (states.contains(WidgetState.pressed)) {
-          return onDangerColor.withOpacity(0.16);
+          return onDangerColor.withValues(alpha: 0.16);
         }
         return null;
       }),
@@ -455,7 +443,6 @@ class AppButtonStyles {
     bool isEnabled,
     bool isLoading,
   ) {
-    String role = 'button';
     String? hint;
 
     switch (variant) {
@@ -490,6 +477,3 @@ class AppButtonStyles {
     );
   }
 }
-
-/// Configuraci�n interna para tama�os de bot�n
-

@@ -31,22 +31,22 @@ class AppSpacing {
   /// una escala que funciona bien en m�ltiples densidades de pantalla.
   static const double unit = 8.0;
 
-  /// Espaciado extra extra extra small - 4px
+  /// Espaciado extra extra extra small - 2px
   ///
   /// Uso: Separaci�n m�nima entre elementos muy relacionados,
   /// padding interno de chips, spacing en iconos peque�os
-  static const double xxxs = unit * 0.5; // 4px
+  static const double xxxs = unit * 0.25; // 2px
 
-  /// Espaciado extra extra small - 8px
+  /// Espaciado extra extra small - 4px
   ///
   /// Uso: Padding interno de elementos peque�os, separaci�n entre
   /// elementos �ntimamente relacionados
-  static const double xxs = unit * 1; // 8px
+  static const double xxs = unit * 0.5; // 4px
 
-  /// Espaciado extra small - 12px
+  /// Espaciado extra small - 8px
   ///
   /// Uso: Padding de elementos compactos, separaci�n en listas densas
-  static const double xs = unit * 1.5; // 12px
+  static const double xs = unit * 1; // 8px
 
   /// Espaciado small - 16px
   ///
@@ -63,20 +63,20 @@ class AppSpacing {
   /// Uso: Separaci�n entre grupos de contenido, padding de p�ginas
   static const double lg = unit * 4; // 32px
 
-  /// Espaciado extra large - 40px
+  /// Espaciado extra large - 48px
   ///
   /// Uso: Separaci�n entre secciones importantes, spacing de hero sections
-  static const double xl = unit * 5; // 40px
+  static const double xl = unit * 6; // 48px
 
-  /// Espaciado extra extra large - 48px
+  /// Espaciado extra extra large - 64px
   ///
   /// Uso: Separaci�n entre secciones principales, padding de contenedores grandes
-  static const double xxl = unit * 6; // 48px
+  static const double xxl = unit * 8; // 64px
 
-  /// Espaciado extra extra extra large - 64px
+  /// Espaciado extra extra extra large - 96px
   ///
   /// Uso: Separaci�n m�xima entre secciones, spacing de layouts principales
-  static const double xxxl = unit * 8; // 64px
+  static const double xxxl = unit * 12; // 96px
 
   // ==========================================================================
   // SIZEDBOX WIDGETS PREDEFINIDOS - VERTICAL
@@ -233,6 +233,38 @@ class AppSpacing {
   );
 
   // ==========================================================================
+  // PADDING PRESETS SIMPLES
+  // ==========================================================================
+
+  /// Padding extra small - 8px en todos los lados
+  static const EdgeInsets paddingXs = EdgeInsets.all(xs);
+
+  /// Padding small - 16px en todos los lados
+  static const EdgeInsets paddingSm = EdgeInsets.all(sm);
+
+  /// Padding medium - 24px en todos los lados
+  static const EdgeInsets paddingMd = EdgeInsets.all(md);
+
+  /// Padding large - 32px en todos los lados
+  static const EdgeInsets paddingLg = EdgeInsets.all(lg);
+
+  /// Padding extra large - 48px en todos los lados
+  static const EdgeInsets paddingXl = EdgeInsets.all(xl);
+
+  /// Padding para secciones principales - 32px en todos los lados
+  static const EdgeInsets sectionPadding = EdgeInsets.all(lg);
+
+  // ==========================================================================
+  // ACCESSIBILITY CONSTANTS
+  // ==========================================================================
+
+  /// Tama�o m�nimo de touch target seg�n Material Design
+  ///
+  /// 48dp es el m�nimo recomendado para garantizar que los elementos
+  /// sean accesibles y f�cilmente tocables en dispositivos m�viles.
+  static const double touchTarget = 48.0;
+
+  // ==========================================================================
   // M�TODOS HELPER PARA SPACING DIN�MICO
   // ==========================================================================
 
@@ -288,6 +320,25 @@ class AppSpacing {
   /// �til para crear spacing proporcional
   static double scale(double baseSpacing, double multiplier) =>
       baseSpacing * multiplier;
+
+  /// Crea EdgeInsets personalizadas con valores espec�ficos
+  ///
+  /// [top] Padding superior (por defecto 0)
+  /// [bottom] Padding inferior (por defecto 0)
+  /// [left] Padding izquierdo (por defecto 0)
+  /// [right] Padding derecho (por defecto 0)
+  static EdgeInsets custom({
+    double top = 0,
+    double bottom = 0,
+    double left = 0,
+    double right = 0,
+  }) =>
+      EdgeInsets.only(
+        top: top,
+        bottom: bottom,
+        left: left,
+        right: right,
+      );
 
   // ==========================================================================
   // RESPONSIVE SPACING
@@ -355,6 +406,49 @@ class AppSpacing {
         desktopSpacing: xxl,
       ),
     );
+  }
+
+  /// Obtiene padding responsive basado en el ancho de pantalla
+  ///
+  /// [screenWidth] Ancho de pantalla en pixels
+  ///
+  /// Retorna EdgeInsets apropiadas seg�n el tama�o de pantalla:
+  /// - Mobile (< 600px): padding sm (16px)
+  /// - Tablet (600-905px): padding md (24px)
+  /// - Desktop (905-1440px): padding lg (32px)
+  /// - Ultra wide (> 1440px): padding xl (48px)
+  static EdgeInsets getResponsivePadding(double screenWidth) {
+    if (screenWidth < 600) {
+      return paddingSm; // 16px
+    } else if (screenWidth < 905) {
+      return paddingMd; // 24px
+    } else if (screenWidth < 1440) {
+      return paddingLg; // 32px
+    } else {
+      return paddingXl; // 48px
+    }
+  }
+
+  /// Obtiene spacing responsive escalado seg�n el ancho de pantalla
+  ///
+  /// [baseSpacing] Spacing base de referencia
+  /// [screenWidth] Ancho de pantalla en pixels
+  ///
+  /// Aplica un factor de escala seg�n el tama�o de pantalla:
+  /// - Mobile (< 600px): factor 0.75x (reduce spacing)
+  /// - Tablet (600-905px): factor 1.0x (mantiene spacing)
+  /// - Desktop (905-1440px): factor 1.25x (aumenta spacing)
+  /// - Ultra wide (> 1440px): factor 1.5x (aumenta m�s el spacing)
+  static double getResponsiveSpacing(double baseSpacing, double screenWidth) {
+    if (screenWidth < 600) {
+      return baseSpacing * 0.75; // Reduce en mobile
+    } else if (screenWidth < 905) {
+      return baseSpacing; // Normal en tablet
+    } else if (screenWidth < 1440) {
+      return baseSpacing * 1.25; // Aumenta en desktop
+    } else {
+      return baseSpacing * 1.5; // Aumenta m�s en ultra wide
+    }
   }
 
   // ==========================================================================
@@ -502,21 +596,46 @@ class AppSpacing {
     return spacedChildren;
   }
 
+  /// Inserta spacing entre widgets hijos
+  ///
+  /// [children] Lista de widgets
+  /// [spacing] Valor del spacing a insertar
+  ///
+  /// Retorna una nueva lista con SizedBox de espaciado entre cada widget.
+  /// �til para crear listas de widgets con separaci�n uniforme.
+  static List<Widget> spaceBetween(List<Widget> children, double spacing) {
+    return _insertSpacing(children, SizedBox(height: spacing));
+  }
+
+  /// Envuelve un widget con padding
+  ///
+  /// [child] Widget hijo a envolver
+  /// [padding] EdgeInsets del padding a aplicar
+  ///
+  /// Retorna el widget envuelto en un Padding widget.
+  /// �til como helper para aplicar padding de forma programatica.
+  static Widget wrapWithPadding(Widget child, EdgeInsets padding) {
+    return Padding(
+      padding: padding,
+      child: child,
+    );
+  }
+
   // ==========================================================================
   // CONSTANTES DE UTILIDAD
   // ==========================================================================
 
   /// Mapa de todos los valores de spacing para uso program�tico
   static const Map<String, double> spacingValues = {
-    'xxxs': xxxs,
-    'xxs': xxs,
-    'xs': xs,
-    'sm': sm,
-    'md': md,
-    'lg': lg,
-    'xl': xl,
-    'xxl': xxl,
-    'xxxl': xxxl,
+    'xxxs': xxxs, // 2.0
+    'xxs': xxs, // 4.0
+    'xs': xs, // 8.0
+    'sm': sm, // 16.0
+    'md': md, // 24.0
+    'lg': lg, // 32.0
+    'xl': xl, // 48.0
+    'xxl': xxl, // 64.0
+    'xxxl': xxxl, // 96.0
   };
 
   /// Lista de todos los espaciados disponibles

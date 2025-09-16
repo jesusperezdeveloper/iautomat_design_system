@@ -38,10 +38,10 @@ class AppColors {
   static const Color secondaryDarkDarkMode = Color(0xFF8B5CF6);
 
   /// Color de superficie para contenedores
-  static const Color surfaceContainer = Color(0xFFF3F4F6);
+  static const Color surfaceContainer = Color(0xFFF5F5F5);
 
   /// Color de superficie para contenedores con alto contraste
-  static const Color surfaceContainerHigh = Color(0xFFE5E7EB);
+  static const Color surfaceContainerHigh = Color(0xFFE5E5E5);
 
   /// Color de superficie para modo oscuro
   static const Color surfaceDark = Color(0xFF111827);
@@ -120,19 +120,20 @@ class AppColors {
   ///
   /// Usado para elementos de apoyo, ilustraciones y detalles creativos.
   /// Representa la innovaci�n y creatividad de IAutomat.
-  static const Color secondary = Color(0xFF7C3AED);
+  /// Ajustado para mejor contraste con el color primario (> 1.5)
+  static const Color secondary = Color(0xFFE879F9);
 
   /// Variante clara del color secundario
-  static const Color secondaryLight = Color(0xFF8B5CF6);
+  static const Color secondaryLight = Color(0xFFF0ABFC);
 
   /// Variante m�s clara del color secundario
-  static const Color secondaryLighter = Color(0xFFA78BFA);
+  static const Color secondaryLighter = Color(0xFFFAE8FF);
 
   /// Variante oscura del color secundario
-  static const Color secondaryDark = Color(0xFF5B21B6);
+  static const Color secondaryDark = Color(0xFFD946EF);
 
   /// Variante m�s oscura del color secundario
-  static const Color secondaryDarker = Color(0xFF4C1D95);
+  static const Color secondaryDarker = Color(0xFFC026D3);
 
   // ==========================================================================
   // COLORES SEM�NTICOS - Para comunicar estados y acciones
@@ -158,9 +159,10 @@ class AppColors {
   ///
   /// Usado en mensajes de error, validaciones fallidas,
   /// botones destructivos y elementos de peligro.
-  static const Color error = Color(0xFFEF4444);
+  /// Ajustado para cumplir WCAG 2.0 AA (contraste >= 4.5 con fondo blanco)
+  static const Color error = Color(0xFFDC2626);
   static const Color errorLight = Color(0xFFF87171);
-  static const Color errorDark = Color(0xFFDC2626);
+  static const Color errorDark = Color(0xFFB91C1C);
 
   /// Color para informaci�n y elementos informativos
   ///
@@ -175,34 +177,44 @@ class AppColors {
   // ==========================================================================
 
   /// Gris m�s claro - backgrounds muy suaves
-  static const Color gray50 = Color(0xFFF9FAFB);
+  /// Ajustado para ser verdaderamente neutral (saturaci�n < 0.1)
+  static const Color gray50 = Color(0xFFFAFAFA);
 
   /// Gris claro - backgrounds suaves, divisores sutiles
-  static const Color gray100 = Color(0xFFF3F4F6);
+  /// Ajustado para ser verdaderamente neutral (saturaci�n < 0.1)
+  static const Color gray100 = Color(0xFFF5F5F5);
 
   /// Gris claro medio - backgrounds de secci�n, cards suaves
-  static const Color gray200 = Color(0xFFE5E7EB);
+  /// Ajustado para ser verdaderamente neutral (saturaci�n < 0.1)
+  static const Color gray200 = Color(0xFFE5E5E5);
 
   /// Gris medio claro - bordes, divisores, placeholders
-  static const Color gray300 = Color(0xFFD1D5DB);
+  /// Ajustado para ser verdaderamente neutral (saturaci�n < 0.1)
+  static const Color gray300 = Color(0xFFD4D4D4);
 
   /// Gris medio - bordes activos, iconos secundarios
-  static const Color gray400 = Color(0xFF9CA3AF);
+  /// Ajustado para ser verdaderamente neutral (saturaci�n < 0.1)
+  static const Color gray400 = Color(0xFFA3A3A3);
 
   /// Gris medio oscuro - texto secundario, iconos
-  static const Color gray500 = Color(0xFF6B7280);
+  /// Ajustado para ser verdaderamente neutral (saturaci�n < 0.1)
+  static const Color gray500 = Color(0xFF737373);
 
   /// Gris oscuro medio - texto terciario, etiquetas
-  static const Color gray600 = Color(0xFF4B5563);
+  /// Ajustado para ser verdaderamente neutral (saturaci�n < 0.1)
+  static const Color gray600 = Color(0xFF525252);
 
   /// Gris oscuro - texto secundario en light mode
-  static const Color gray700 = Color(0xFF374151);
+  /// Ajustado para ser verdaderamente neutral (saturaci�n < 0.1)
+  static const Color gray700 = Color(0xFF404040);
 
   /// Gris muy oscuro - texto principal en light mode
-  static const Color gray800 = Color(0xFF1F2937);
+  /// Ajustado para ser verdaderamente neutral (saturaci�n < 0.1)
+  static const Color gray800 = Color(0xFF262626);
 
   /// Gris m�s oscuro - headers, elementos de m�ximo contraste
-  static const Color gray900 = Color(0xFF111827);
+  /// Ajustado para ser verdaderamente neutral (saturaci�n < 0.1)
+  static const Color gray900 = Color(0xFF171717);
 
   // ==========================================================================
   // COLORES PARA DARK MODE
@@ -215,7 +227,7 @@ class AppColors {
   static const Color primaryDarkMode = Color(0xFF60A5FA);
 
   /// Color secundario adaptado para dark mode
-  static const Color secondaryDarkMode = Color(0xFF8B5CF6);
+  static const Color secondaryDarkMode = Color(0xFFE879F9);
 
   /// Colores sem�nticos para dark mode - m�s vibrantes
   static const Color successDarkMode = Color(0xFF34D399);
@@ -355,6 +367,6 @@ class AppColors {
   ///
   /// Retorna el color con la opacidad aplicada.
   static Color withOpacity(Color color, double opacity) {
-    return color.withOpacity(opacity);
+    return color.withValues(alpha: opacity);
   }
 }

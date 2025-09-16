@@ -1156,7 +1156,7 @@ class CardsExamples extends StatelessWidget {
           children: [
             AppImageCard(
               image: Container(
-                color: AppColors.primary.withOpacity(0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 child: const Center(
                   child: Icon(Icons.image, size: 64, color: AppColors.primary),
                 ),
@@ -1234,7 +1234,7 @@ class CardsExamples extends StatelessWidget {
               child: _buildSampleContent('Tap & Long Press'),
             ),
             AppCard.flat(
-              backgroundColor: AppColors.success.withOpacity(0.1),
+              backgroundColor: AppColors.success.withValues(alpha: 0.1),
               borderColor: AppColors.success,
               borderWidth: 2,
               child: _buildSampleContent('Custom Colors'),
@@ -1386,7 +1386,7 @@ class ResponsiveSection extends StatelessWidget {
 
   Widget _buildMobileExample() {
     return AppCard.outlined(
-      backgroundColor: AppColors.primary.withOpacity(0.1),
+      backgroundColor: AppColors.primary.withValues(alpha: 0.1),
       child: Column(
         children: [
           const Icon(Icons.phone_android, size: 48),
@@ -1400,7 +1400,7 @@ class ResponsiveSection extends StatelessWidget {
 
   Widget _buildTabletExample() {
     return AppCard.outlined(
-      backgroundColor: AppColors.secondary.withOpacity(0.1),
+      backgroundColor: AppColors.secondary.withValues(alpha: 0.1),
       child: Row(
         children: [
           const Icon(Icons.tablet_mac, size: 48),
@@ -1421,7 +1421,7 @@ class ResponsiveSection extends StatelessWidget {
 
   Widget _buildDesktopExample() {
     return AppCard.outlined(
-      backgroundColor: AppColors.success.withOpacity(0.1),
+      backgroundColor: AppColors.success.withValues(alpha: 0.1),
       child: Row(
         children: [
           Expanded(

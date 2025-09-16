@@ -6,5 +6,5 @@
 /// - Button size and state definitions
 library;
 
-export 'package:iautomat_design_system/src/components/buttons/app_button.dart';
-export 'package:iautomat_design_system/src/components/buttons/button_styles.dart';
+export 'app_button.dart';
+export 'button_styles.dart' show AppButtonStyles, ButtonVariant, ButtonSize, ButtonSizeConfig;

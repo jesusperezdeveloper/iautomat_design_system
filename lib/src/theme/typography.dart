@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'colors.dart';
 
 /// Sistema tipográfico completo para el Design System de IAutomat
 ///
@@ -51,7 +52,16 @@ class AppTypography {
   static TextStyle getResponsiveTextStyle(
       TextStyle baseStyle, double screenWidth) {
     // Factor de escala basado en el ancho de pantalla
-    final scaleFactor = (screenWidth / 375).clamp(0.8, 1.2);
+    // Para móvil (< 768): escalar hacia abajo
+    // Para desktop (>= 768): mantener o escalar hacia arriba
+    late double scaleFactor;
+    if (screenWidth < 768) {
+      // Móvil: reducir tamaño
+      scaleFactor = (screenWidth / 768).clamp(0.8, 1.0);
+    } else {
+      // Desktop: mantener o incrementar ligeramente
+      scaleFactor = (screenWidth / 768).clamp(1.0, 1.2);
+    }
     return baseStyle.copyWith(
       fontSize: baseStyle.fontSize! * scaleFactor,
       height: baseStyle.height,
@@ -81,8 +91,9 @@ class AppTypography {
     fontFamilyFallback: _fontFamilyFallback,
     fontSize: 48,
     fontWeight: FontWeight.w700,
-    height: 1.2,
-    letterSpacing: -0.5, // Mejor legibilidad en tama�os grandes
+    height: 1.1,
+    letterSpacing: -0.02,
+    color: AppColors.textPrimary,
   );
 
   /// Header 2 - T�tulo secundario
@@ -94,8 +105,8 @@ class AppTypography {
     fontFamilyFallback: _fontFamilyFallback,
     fontSize: 40,
     fontWeight: FontWeight.w700,
-    height: 1.25,
-    letterSpacing: -0.25,
+    height: 1.15,
+    letterSpacing: -0.02,
   );
 
   /// Header 3 - T�tulo de secci�n
@@ -107,8 +118,8 @@ class AppTypography {
     fontFamilyFallback: _fontFamilyFallback,
     fontSize: 32,
     fontWeight: FontWeight.w600,
-    height: 1.3,
-    letterSpacing: 0,
+    height: 1.2,
+    letterSpacing: -0.01,
   );
 
   /// Header 4 - Subt�tulo de secci�n
@@ -120,8 +131,8 @@ class AppTypography {
     fontFamilyFallback: _fontFamilyFallback,
     fontSize: 28,
     fontWeight: FontWeight.w600,
-    height: 1.35,
-    letterSpacing: 0,
+    height: 1.25,
+    letterSpacing: -0.01,
   );
 
   /// Header 5 - T�tulo menor
@@ -133,7 +144,7 @@ class AppTypography {
     fontFamilyFallback: _fontFamilyFallback,
     fontSize: 24,
     fontWeight: FontWeight.w600,
-    height: 1.4,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -146,8 +157,8 @@ class AppTypography {
     fontFamilyFallback: _fontFamilyFallback,
     fontSize: 20,
     fontWeight: FontWeight.w600,
-    height: 1.45,
-    letterSpacing: 0.15,
+    height: 1.35,
+    letterSpacing: 0,
   );
 
   // ==========================================================================
@@ -163,8 +174,8 @@ class AppTypography {
     fontFamilyFallback: _fontFamilyFallback,
     fontSize: 18,
     fontWeight: FontWeight.w400,
-    height: 1.6,
-    letterSpacing: 0.15,
+    height: 1.55,
+    letterSpacing: 0,
   );
 
   /// Body Medium - Texto principal est�ndar
@@ -177,7 +188,8 @@ class AppTypography {
     fontSize: 16,
     fontWeight: FontWeight.w400,
     height: 1.5,
-    letterSpacing: 0.15,
+    letterSpacing: 0,
+    color: AppColors.textPrimary,
   );
 
   /// Body Small - Texto secundario
@@ -189,8 +201,8 @@ class AppTypography {
     fontFamilyFallback: _fontFamilyFallback,
     fontSize: 14,
     fontWeight: FontWeight.w400,
-    height: 1.5,
-    letterSpacing: 0.25,
+    height: 1.45,
+    letterSpacing: 0,
   );
 
   // ==========================================================================
@@ -207,7 +219,8 @@ class AppTypography {
     fontSize: 16,
     fontWeight: FontWeight.w500,
     height: 1.4,
-    letterSpacing: 0.1,
+    letterSpacing: 0.01,
+    color: AppColors.textPrimary,
   );
 
   /// Label Medium - Etiquetas est�ndar
@@ -220,7 +233,7 @@ class AppTypography {
     fontSize: 14,
     fontWeight: FontWeight.w500,
     height: 1.4,
-    letterSpacing: 0.1,
+    letterSpacing: 0.01,
   );
 
   /// Label Small - Etiquetas menores
@@ -233,7 +246,7 @@ class AppTypography {
     fontSize: 12,
     fontWeight: FontWeight.w500,
     height: 1.35,
-    letterSpacing: 0.4,
+    letterSpacing: 0.02,
   );
 
   // ==========================================================================
@@ -248,10 +261,10 @@ class AppTypography {
   static const TextStyle button = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: FontWeight.w600,
-    height: 1.2,
-    letterSpacing: 0.5,
+    height: 1.25,
+    letterSpacing: 0.02,
   );
 
   /// Caption - Texto de apoyo
@@ -263,8 +276,8 @@ class AppTypography {
     fontFamilyFallback: _fontFamilyFallback,
     fontSize: 12,
     fontWeight: FontWeight.w400,
-    height: 1.35,
-    letterSpacing: 0.4,
+    height: 1.4,
+    letterSpacing: 0.01,
   );
 
   /// Overline - Texto superior
@@ -275,10 +288,10 @@ class AppTypography {
   static const TextStyle overline = TextStyle(
     fontFamily: _fontFamily,
     fontFamilyFallback: _fontFamilyFallback,
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: FontWeight.w600,
-    height: 1.3,
-    letterSpacing: 1.5,
+    height: 1.35,
+    letterSpacing: 0.08,
   );
 
   // ==========================================================================
@@ -318,6 +331,17 @@ class AppTypography {
   ///   style: AppTypography.withColor(AppTypography.h1, Colors.red),
   /// )
   /// ```
+  /// Combina dos TextStyles, donde el segundo tiene precedencia
+  ///
+  /// [base] El TextStyle base
+  /// [override] El TextStyle que sobrescribe las propiedades del base
+  ///
+  /// Retorna un nuevo TextStyle con las propiedades combinadas.
+  /// Las propiedades del [override] tienen precedencia sobre las del [base].
+  static TextStyle merge(TextStyle base, TextStyle override) {
+    return base.merge(override);
+  }
+
   static TextStyle withColor(TextStyle style, Color color) {
     return style.copyWith(color: color);
   }
@@ -330,7 +354,7 @@ class AppTypography {
   /// Retorna una copia del TextStyle con la opacidad aplicada.
   static TextStyle withOpacity(TextStyle style, double opacity) {
     return style.copyWith(
-      color: (style.color ?? const Color(0xFF000000)).withOpacity(opacity),
+      color: (style.color ?? const Color(0xFF000000)).withValues(alpha: opacity),
     );
   }
 
@@ -415,6 +439,25 @@ class AppTypography {
   static TextStyle get h3Mobile => scale(h3, 0.9);
 
   // ==========================================================================
+  // ESTILOS CON COLORES ESPECÍFICOS
+  // ==========================================================================
+
+  /// Body Small con color secundario
+  static TextStyle get bodySmallSecondary => bodySmall.copyWith(
+        color: AppColors.textSecondary,
+      );
+
+  /// Caption con color secundario
+  static TextStyle get captionSecondary => caption.copyWith(
+        color: AppColors.textSecondary,
+      );
+
+  /// Body Medium con color deshabilitado
+  static TextStyle get bodyMediumDisabled => bodyMedium.copyWith(
+        color: AppColors.textDisabled,
+      );
+
+  // ==========================================================================
   // MAPEO PARA MATERIAL THEME
   // ==========================================================================
 
@@ -458,6 +501,9 @@ class AppTypography {
 
   /// Lista de font families para uso program�tico
   static const List<String> fontFamilies = _fontFamilyFallback;
+
+  /// Font family base como string para tests
+  static const String baseFontFamily = _fontFamily;
 
   /// Font weights disponibles en el sistema
   static const Map<String, FontWeight> fontWeights = {

@@ -2,6 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../theme/colors.dart';
+import '../../theme/spacing.dart';
+
 /// Enumeraci�n para las variantes de cards disponibles
 enum CardVariant {
   /// Card plano sin elevaci�n
@@ -134,8 +137,8 @@ class AppCard extends StatefulWidget {
     this.clipBehavior = Clip.antiAlias,
     this.semanticsLabel,
     this.tooltip,
-    this.animationDuration = AppTheme.durationFast,
-    this.animationCurve = AppTheme.curveStandard,
+    this.animationDuration = const Duration(milliseconds: 200),
+    this.animationCurve = Curves.easeInOut,
   }) : assert(
           elevation >= 0 && elevation <= 5,
           'Elevation must be between 0 and 5',
@@ -161,8 +164,8 @@ class AppCard extends StatefulWidget {
     this.clipBehavior = Clip.antiAlias,
     this.semanticsLabel,
     this.tooltip,
-    this.animationDuration = AppTheme.durationFast,
-    this.animationCurve = AppTheme.curveStandard,
+    this.animationDuration = const Duration(milliseconds: 200),
+    this.animationCurve = Curves.easeInOut,
   })  : variant = CardVariant.flat,
         elevation = 0,
         gradient = null;
@@ -186,8 +189,8 @@ class AppCard extends StatefulWidget {
     this.clipBehavior = Clip.antiAlias,
     this.semanticsLabel,
     this.tooltip,
-    this.animationDuration = AppTheme.durationFast,
-    this.animationCurve = AppTheme.curveStandard,
+    this.animationDuration = const Duration(milliseconds: 200),
+    this.animationCurve = Curves.easeInOut,
   })  : variant = CardVariant.elevated,
         gradient = null,
         borderColor = null,
@@ -213,8 +216,8 @@ class AppCard extends StatefulWidget {
     this.clipBehavior = Clip.antiAlias,
     this.semanticsLabel,
     this.tooltip,
-    this.animationDuration = AppTheme.durationFast,
-    this.animationCurve = AppTheme.curveStandard,
+    this.animationDuration = const Duration(milliseconds: 200),
+    this.animationCurve = Curves.easeInOut,
   })  : variant = CardVariant.outlined,
         elevation = 0,
         gradient = null;
@@ -238,8 +241,8 @@ class AppCard extends StatefulWidget {
     this.clipBehavior = Clip.antiAlias,
     this.semanticsLabel,
     this.tooltip,
-    this.animationDuration = AppTheme.durationFast,
-    this.animationCurve = AppTheme.curveStandard,
+    this.animationDuration = const Duration(milliseconds: 200),
+    this.animationCurve = Curves.easeInOut,
   })  : variant = CardVariant.gradient,
         backgroundColor = null,
         borderColor = null,
@@ -386,9 +389,9 @@ class _AppCardState extends State<AppCard> with SingleTickerProviderStateMixin {
         onTapUp: (_) => _handlePressedState(false),
         onTapCancel: () => _handlePressedState(false),
         splashColor: widget.enableSplash
-            ? (widget.splashColor ?? config.splashColor)
+            ? (widget.splashColor ?? config.defaultSplashColor)
             : Colors.transparent,
-        highlightColor: widget.highlightColor ?? config.highlightColor,
+        highlightColor: widget.highlightColor ?? config.defaultHighlightColor,
         borderRadius: _getEffectiveBorderRadius(),
         child: child,
       ),
@@ -425,12 +428,12 @@ class _AppCardState extends State<AppCard> with SingleTickerProviderStateMixin {
       defaultBorderColor: isDark ? AppColors.gray600 : AppColors.gray300,
       defaultShadowColor: isDark ? Colors.black : AppColors.shadow,
       defaultSplashColor:
-          (isDark ? AppColors.primaryDarkMode : AppColors.primary).withOpacity(
-        0.1,
+          (isDark ? AppColors.primaryDarkMode : AppColors.primary).withValues(
+        alpha: 0.1,
       ),
       defaultHighlightColor:
-          (isDark ? AppColors.primaryDarkMode : AppColors.primary).withOpacity(
-        0.05,
+          (isDark ? AppColors.primaryDarkMode : AppColors.primary).withValues(
+        alpha: 0.05,
       ),
       defaultPadding: AppSpacing.cardPadding,
     );
@@ -461,7 +464,7 @@ class _AppCardState extends State<AppCard> with SingleTickerProviderStateMixin {
 
   /// Obtiene el BorderRadius efectivo
   BorderRadius _getEffectiveBorderRadius() {
-    return widget.borderRadius ?? AppTheme.radiusLg;
+    return widget.borderRadius ?? const BorderRadius.all(Radius.circular(16));
   }
 
   /// Obtiene las sombras del box
@@ -472,19 +475,91 @@ class _AppCardState extends State<AppCard> with SingleTickerProviderStateMixin {
 
     switch (elevationInt) {
       case 0:
-        return AppTheme.elevation0;
+        return [];
       case 1:
-        return AppTheme.elevation1;
+        return [
+          const BoxShadow(
+            color: Color(0x0D000000),
+            offset: Offset(0, 1),
+            blurRadius: 2,
+            spreadRadius: 0,
+          ),
+        ];
       case 2:
-        return AppTheme.elevation2;
+        return [
+          const BoxShadow(
+            color: Color(0x0D000000),
+            offset: Offset(0, 1),
+            blurRadius: 5,
+            spreadRadius: 0,
+          ),
+          const BoxShadow(
+            color: Color(0x1A000000),
+            offset: Offset(0, 4),
+            blurRadius: 8,
+            spreadRadius: 3,
+          ),
+        ];
       case 3:
-        return AppTheme.elevation3;
+        return [
+          const BoxShadow(
+            color: Color(0x0D000000),
+            offset: Offset(0, 4),
+            blurRadius: 8,
+            spreadRadius: 0,
+          ),
+          const BoxShadow(
+            color: Color(0x1A000000),
+            offset: Offset(0, 6),
+            blurRadius: 20,
+            spreadRadius: 5,
+          ),
+        ];
       case 4:
-        return AppTheme.elevation4;
+        return [
+          const BoxShadow(
+            color: Color(0x0D000000),
+            offset: Offset(0, 8),
+            blurRadius: 12,
+            spreadRadius: 0,
+          ),
+          const BoxShadow(
+            color: Color(0x1A000000),
+            offset: Offset(0, 12),
+            blurRadius: 40,
+            spreadRadius: 8,
+          ),
+        ];
       case 5:
-        return AppTheme.elevation5;
+        return [
+          const BoxShadow(
+            color: Color(0x0D000000),
+            offset: Offset(0, 12),
+            blurRadius: 16,
+            spreadRadius: 0,
+          ),
+          const BoxShadow(
+            color: Color(0x1A000000),
+            offset: Offset(0, 24),
+            blurRadius: 80,
+            spreadRadius: 12,
+          ),
+        ];
       default:
-        return AppTheme.elevation2;
+        return [
+          const BoxShadow(
+            color: Color(0x0D000000),
+            offset: Offset(0, 1),
+            blurRadius: 5,
+            spreadRadius: 0,
+          ),
+          const BoxShadow(
+            color: Color(0x1A000000),
+            offset: Offset(0, 4),
+            blurRadius: 8,
+            spreadRadius: 3,
+          ),
+        ];
     }
   }
 
@@ -663,7 +738,8 @@ class AppImageCard extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             ClipRRect(
-              borderRadius: borderRadius ?? AppTheme.radiusLg,
+              borderRadius:
+                  borderRadius ?? const BorderRadius.all(Radius.circular(16)),
               child: image,
             ),
             if (overlay != null)
@@ -678,11 +754,13 @@ class AppImageCard extends StatelessWidget {
                       end: Alignment.bottomCenter,
                       colors: [
                         Colors.transparent,
-                        Colors.black.withOpacity(0.7),
+                        Colors.black.withValues(alpha: 0.7),
                       ],
                     ),
                     borderRadius: BorderRadius.vertical(
-                      bottom: (borderRadius ?? AppTheme.radiusLg).bottomLeft,
+                      bottom: (borderRadius ??
+                              const BorderRadius.all(Radius.circular(16)))
+                          .bottomLeft,
                     ),
                   ),
                   padding: AppSpacing.cardPadding,

@@ -306,7 +306,7 @@ class AppTheme {
       ),
 
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.surface,
         shadowColor: AppColors.shadow,
         elevation: 2,
@@ -433,7 +433,7 @@ class AppTheme {
       ),
 
       // Dialog Theme
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         backgroundColor: AppColors.surface,
         elevation: 24,
         shadowColor: AppColors.shadow,
@@ -456,7 +456,7 @@ class AppTheme {
       ),
 
       // Tab Bar Theme
-      tabBarTheme: TabBarTheme(
+      tabBarTheme: TabBarThemeData(
         labelColor: AppColors.primary,
         unselectedLabelColor: AppColors.textSecondary,
         labelStyle: AppTypography.labelLarge,
@@ -476,7 +476,7 @@ class AppTheme {
         }),
         checkColor: WidgetStateProperty.all(AppColors.textOnColor),
         overlayColor:
-            WidgetStateProperty.all(AppColors.primary.withOpacity(0.1)),
+            WidgetStateProperty.all(AppColors.primary.withValues(alpha: 0.1)),
         shape: const RoundedRectangleBorder(borderRadius: radiusXs),
       ),
 
@@ -487,7 +487,7 @@ class AppTheme {
           return AppColors.gray400;
         }),
         overlayColor:
-            WidgetStateProperty.all(AppColors.primary.withOpacity(0.1)),
+            WidgetStateProperty.all(AppColors.primary.withValues(alpha: 0.1)),
       ),
 
       // Switch Theme
@@ -498,20 +498,20 @@ class AppTheme {
         }),
         trackColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.primary.withOpacity(0.3);
+            return AppColors.primary.withValues(alpha: 0.3);
           }
           return AppColors.gray300;
         }),
         overlayColor:
-            WidgetStateProperty.all(AppColors.primary.withOpacity(0.1)),
+            WidgetStateProperty.all(AppColors.primary.withValues(alpha: 0.1)),
       ),
 
       // Slider Theme
       sliderTheme: SliderThemeData(
         activeTrackColor: AppColors.primary,
-        inactiveTrackColor: AppColors.primary.withOpacity(0.3),
+        inactiveTrackColor: AppColors.primary.withValues(alpha: 0.3),
         thumbColor: AppColors.primary,
-        overlayColor: AppColors.primary.withOpacity(0.1),
+        overlayColor: AppColors.primary.withValues(alpha: 0.1),
         valueIndicatorColor: AppColors.primary,
         valueIndicatorTextStyle: AppTypography.withColor(
             AppTypography.labelSmall, AppColors.textOnColor),
@@ -540,7 +540,7 @@ class AppTheme {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: AppColors.surface,
         elevation: 3,
-        indicatorColor: AppColors.primary.withOpacity(0.1),
+        indicatorColor: AppColors.primary.withValues(alpha: 0.1),
         labelTextStyle: WidgetStateProperty.all(AppTypography.labelSmall),
         iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
           if (states.contains(WidgetState.selected)) {
@@ -612,7 +612,7 @@ class AppTheme {
       ),
 
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.backgroundSecondaryDarkMode,
         shadowColor: Colors.black,
         elevation: 2,
@@ -716,8 +716,8 @@ class AppTheme {
       chipTheme: ChipThemeData(
         backgroundColor: AppColors.backgroundTertiaryDarkMode,
         disabledColor: AppColors.gray700,
-        selectedColor: AppColors.primaryDarkMode.withOpacity(0.2),
-        secondarySelectedColor: AppColors.secondaryDarkMode.withOpacity(0.2),
+        selectedColor: AppColors.primaryDarkMode.withValues(alpha: 0.2),
+        secondarySelectedColor: AppColors.secondaryDarkMode.withValues(alpha: 0.2),
         shadowColor: Colors.black,
         selectedShadowColor: Colors.black,
         labelStyle: AppTypography.withColor(
@@ -745,7 +745,7 @@ class AppTheme {
       ),
 
       // Dialog Theme
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         backgroundColor: AppColors.backgroundSecondaryDarkMode,
         elevation: 24,
         shadowColor: Colors.black,
@@ -770,7 +770,7 @@ class AppTheme {
       ),
 
       // Tab Bar Theme
-      tabBarTheme: TabBarTheme(
+      tabBarTheme: TabBarThemeData(
         labelColor: AppColors.primaryDarkMode,
         unselectedLabelColor: AppColors.textSecondaryDarkMode,
         labelStyle: AppTypography.withColor(
@@ -794,7 +794,7 @@ class AppTheme {
         }),
         checkColor: WidgetStateProperty.all(AppColors.backgroundDarkMode),
         overlayColor:
-            WidgetStateProperty.all(AppColors.primaryDarkMode.withOpacity(0.1)),
+            WidgetStateProperty.all(AppColors.primaryDarkMode.withValues(alpha: 0.1)),
         shape: const RoundedRectangleBorder(borderRadius: radiusXs),
       ),
 
@@ -807,7 +807,7 @@ class AppTheme {
           return AppColors.gray500;
         }),
         overlayColor:
-            WidgetStateProperty.all(AppColors.primaryDarkMode.withOpacity(0.1)),
+            WidgetStateProperty.all(AppColors.primaryDarkMode.withValues(alpha: 0.1)),
       ),
 
       // Switch Theme
@@ -820,20 +820,20 @@ class AppTheme {
         }),
         trackColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.primaryDarkMode.withOpacity(0.3);
+            return AppColors.primaryDarkMode.withValues(alpha: 0.3);
           }
           return AppColors.gray600;
         }),
         overlayColor:
-            WidgetStateProperty.all(AppColors.primaryDarkMode.withOpacity(0.1)),
+            WidgetStateProperty.all(AppColors.primaryDarkMode.withValues(alpha: 0.1)),
       ),
 
       // Slider Theme
       sliderTheme: SliderThemeData(
         activeTrackColor: AppColors.primaryDarkMode,
-        inactiveTrackColor: AppColors.primaryDarkMode.withOpacity(0.3),
+        inactiveTrackColor: AppColors.primaryDarkMode.withValues(alpha: 0.3),
         thumbColor: AppColors.primaryDarkMode,
-        overlayColor: AppColors.primaryDarkMode.withOpacity(0.1),
+        overlayColor: AppColors.primaryDarkMode.withValues(alpha: 0.1),
         valueIndicatorColor: AppColors.primaryDarkMode,
         valueIndicatorTextStyle: AppTypography.withColor(
             AppTypography.labelSmall, AppColors.backgroundDarkMode),
@@ -862,7 +862,7 @@ class AppTheme {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: AppColors.backgroundSecondaryDarkMode,
         elevation: 3,
-        indicatorColor: AppColors.primaryDarkMode.withOpacity(0.1),
+        indicatorColor: AppColors.primaryDarkMode.withValues(alpha: 0.1),
         labelTextStyle: WidgetStateProperty.all(AppTypography.withColor(
             AppTypography.labelSmall, AppColors.textSecondaryDarkMode)),
         iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {

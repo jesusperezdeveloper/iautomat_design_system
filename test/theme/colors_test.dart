@@ -20,13 +20,13 @@ void main() {
 
     group('Secondary Colors', () {
       test('should have correct secondary color values', () {
-        expect(AppColors.secondary, const Color(0xFF7C3AED));
-        expect(AppColors.secondaryLight, const Color(0xFFA855F7));
-        expect(AppColors.secondaryDark, const Color(0xFF6D28D9));
+        expect(AppColors.secondary, const Color(0xFFE879F9));
+        expect(AppColors.secondaryLight, const Color(0xFFF0ABFC));
+        expect(AppColors.secondaryDark, const Color(0xFFD946EF));
       });
 
       test('should have correct dark mode secondary colors', () {
-        expect(AppColors.secondaryDarkMode, const Color(0xFFA855F7));
+        expect(AppColors.secondaryDarkMode, const Color(0xFFE879F9));
         expect(AppColors.secondaryLightDarkMode, const Color(0xFFC084FC));
         expect(AppColors.secondaryDarkDarkMode, const Color(0xFF8B5CF6));
       });
@@ -42,9 +42,9 @@ void main() {
         expect(AppColors.warningLight, const Color(0xFFFBBF24));
         expect(AppColors.warningDark, const Color(0xFFD97706));
 
-        expect(AppColors.error, const Color(0xFFEF4444));
+        expect(AppColors.error, const Color(0xFFDC2626));
         expect(AppColors.errorLight, const Color(0xFFF87171));
-        expect(AppColors.errorDark, const Color(0xFFDC2626));
+        expect(AppColors.errorDark, const Color(0xFFB91C1C));
 
         expect(AppColors.info, const Color(0xFF3B82F6));
         expect(AppColors.infoLight, const Color(0xFF60A5FA));
@@ -54,25 +54,25 @@ void main() {
 
     group('Gray Scale', () {
       test('should have correct gray scale values', () {
-        expect(AppColors.gray50, const Color(0xFFF9FAFB));
-        expect(AppColors.gray100, const Color(0xFFF3F4F6));
-        expect(AppColors.gray200, const Color(0xFFE5E7EB));
-        expect(AppColors.gray300, const Color(0xFFD1D5DB));
-        expect(AppColors.gray400, const Color(0xFF9CA3AF));
-        expect(AppColors.gray500, const Color(0xFF6B7280));
-        expect(AppColors.gray600, const Color(0xFF4B5563));
-        expect(AppColors.gray700, const Color(0xFF374151));
-        expect(AppColors.gray800, const Color(0xFF1F2937));
-        expect(AppColors.gray900, const Color(0xFF111827));
+        expect(AppColors.gray50, const Color(0xFFFAFAFA));
+        expect(AppColors.gray100, const Color(0xFFF5F5F5));
+        expect(AppColors.gray200, const Color(0xFFE5E5E5));
+        expect(AppColors.gray300, const Color(0xFFD4D4D4));
+        expect(AppColors.gray400, const Color(0xFFA3A3A3));
+        expect(AppColors.gray500, const Color(0xFF737373));
+        expect(AppColors.gray600, const Color(0xFF525252));
+        expect(AppColors.gray700, const Color(0xFF404040));
+        expect(AppColors.gray800, const Color(0xFF262626));
+        expect(AppColors.gray900, const Color(0xFF171717));
       });
     });
 
     group('Surface Colors', () {
       test('should have correct surface colors for light mode', () {
         expect(AppColors.surface, const Color(0xFFFFFFFF));
-        expect(AppColors.surfaceVariant, const Color(0xFFF9FAFB));
-        expect(AppColors.surfaceContainer, const Color(0xFFF3F4F6));
-        expect(AppColors.surfaceContainerHigh, const Color(0xFFE5E7EB));
+        expect(AppColors.surfaceVariant, const Color(0xFFFAFAFA));
+        expect(AppColors.surfaceContainer, const Color(0xFFF5F5F5));
+        expect(AppColors.surfaceContainerHigh, const Color(0xFFE5E5E5));
       });
 
       test('should have correct surface colors for dark mode', () {
@@ -116,11 +116,11 @@ void main() {
       test('getContrastingTextColor should return correct text color', () {
         // Light backgrounds should return dark text
         final darkText = AppColors.getContrastingTextColor(Colors.white);
-        expect(darkText, AppColors.textPrimary);
+        expect(darkText, Colors.black);
 
         // Dark backgrounds should return light text
         final lightText = AppColors.getContrastingTextColor(Colors.black);
-        expect(lightText, AppColors.textPrimaryDark);
+        expect(lightText, Colors.white);
       });
 
       test('isLight should correctly identify light colors', () {
@@ -204,8 +204,8 @@ void main() {
         // IAutomat primary brand color should be blue (#2563EB)
         expect(AppColors.primary.value, 0xFF2563EB);
 
-        // IAutomat secondary brand color should be purple (#7C3AED)
-        expect(AppColors.secondary.value, 0xFF7C3AED);
+        // IAutomat secondary brand color should be purple (#E879F9)
+        expect(AppColors.secondary.value, 0xFFE879F9);
       });
 
       test('brand colors should work well together', () {

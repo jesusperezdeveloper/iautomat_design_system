@@ -334,15 +334,15 @@ void main() {
       test('responsive spacing should follow Material breakpoints', () {
         // Mobile spacing (< 600dp)
         final mobileSpacing = AppSpacing.getResponsivePadding(500);
-        expect(mobileSpacing.horizontal, 16.0);
+        expect(mobileSpacing.left, 16.0);
 
         // Tablet spacing (600-905dp)
         final tabletSpacing = AppSpacing.getResponsivePadding(700);
-        expect(tabletSpacing.horizontal, 24.0);
+        expect(tabletSpacing.left, 24.0);
 
         // Desktop spacing (> 905dp)
         final desktopSpacing = AppSpacing.getResponsivePadding(1000);
-        expect(desktopSpacing.horizontal, greaterThanOrEqualTo(24.0));
+        expect(desktopSpacing.left, greaterThanOrEqualTo(24.0));
       });
     });
   });

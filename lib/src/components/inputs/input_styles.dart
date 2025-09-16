@@ -357,8 +357,8 @@ class AppInputStyles {
       case InputState.error:
         return _InputColors(
           fillColor: isDark
-              ? AppColors.errorDarkMode.withOpacity(0.05)
-              : AppColors.errorLight.withOpacity(0.05),
+              ? AppColors.errorDarkMode.withValues(alpha: 0.05)
+              : AppColors.errorLight.withValues(alpha: 0.05),
           borderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
           focusedBorderColor:
               isDark ? AppColors.errorDarkMode : AppColors.error,
@@ -372,8 +372,8 @@ class AppInputStyles {
       case InputState.success:
         return _InputColors(
           fillColor: isDark
-              ? AppColors.successDarkMode.withOpacity(0.05)
-              : AppColors.successLight.withOpacity(0.05),
+              ? AppColors.successDarkMode.withValues(alpha: 0.05)
+              : AppColors.successLight.withValues(alpha: 0.05),
           borderColor: isDark ? AppColors.successDarkMode : AppColors.success,
           focusedBorderColor:
               isDark ? AppColors.successDarkMode : AppColors.success,
@@ -398,7 +398,7 @@ class AppInputStyles {
       case InputState.readonly:
         return _InputColors(
           fillColor:
-              isDark ? AppColors.gray700.withOpacity(0.5) : AppColors.gray50,
+              isDark ? AppColors.gray700.withValues(alpha: 0.5) : AppColors.gray50,
           borderColor: isDark ? AppColors.gray600 : AppColors.gray300,
           focusedBorderColor: isDark ? AppColors.gray600 : AppColors.gray300,
           errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
