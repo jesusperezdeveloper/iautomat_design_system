@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
+import 'stories/app_scaffold_stories.dart';
+import 'stories/app_top_app_bar_stories.dart';
+import 'stories/app_navigation_story.dart';
+import 'stories/app_tabs_story.dart';
+import 'stories/app_breadcrumbs_story.dart';
+import 'stories/app_split_view_story.dart';
+import 'stories/app_fab_story.dart';
 
 void main() {
   runApp(const DesignSystemExampleApp());
@@ -165,6 +172,8 @@ class _DesignSystemHomePageState extends State<DesignSystemHomePage>
     const Tab(icon: Icon(Icons.color_lens), text: 'Colores'),
     const Tab(icon: Icon(Icons.text_fields), text: 'Tipografía'),
     const Tab(icon: Icon(Icons.widgets), text: 'Componentes'),
+    const Tab(icon: Icon(Icons.app_shortcut), text: 'AppScaffold'),
+    const Tab(icon: Icon(Icons.web_asset), text: 'AppTopAppBar'),
   ];
 
   @override
@@ -225,7 +234,14 @@ class _DesignSystemHomePageState extends State<DesignSystemHomePage>
           ),
           const ColorsShowcase(),
           const TypographyShowcase(),
-          const ComponentsShowcase(),
+          //ComponentsShowcase(),
+          const AppScaffoldStories(),
+          const AppTopAppBarStories(),
+          const AppNavigationStory(),
+          const AppTabsStory(),
+          const AppBreadcrumbsStory(),
+          const AppSplitViewStory(),
+          const AppFabStory(),
         ],
       ),
     );
@@ -396,10 +412,7 @@ class ThemesShowcase extends StatelessWidget {
               runSpacing: 4,
               children: selectedTheme.useCases.map((useCase) {
                 return Chip(
-                  label: Text(
-                    useCase,
-                    style: AppTypography.labelSmall,
-                  ),
+                  label: Text(useCase, style: AppTypography.labelSmall),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   visualDensity: VisualDensity.compact,
                 );
@@ -630,7 +643,9 @@ class ColorsShowcase extends StatelessWidget {
         LayoutBuilder(
           builder: (context, constraints) {
             final screenWidth = constraints.maxWidth;
-            final crossAxisCount = screenWidth > 600 ? 4 : (screenWidth > 400 ? 3 : 2);
+            final crossAxisCount = screenWidth > 600
+                ? 4
+                : (screenWidth > 400 ? 3 : 2);
 
             return GridView.builder(
               shrinkWrap: true,

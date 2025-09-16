@@ -12,7 +12,10 @@
       "Bash(flutter test:*)",
       "Bash(dart format:*)",
       "Bash(flutter:*)",
-      "Bash(xcrun simctl list:*)"
+      "Bash(xcrun simctl list:*)",
+      "Bash(tree:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(sed:*)"
     ],
     "deny": [],
     "ask": []

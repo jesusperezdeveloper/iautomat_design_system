@@ -537,3 +537,5 @@ El código debe cumplir con:
 - Ejemplos para cada componente
 - Compatible con Flutter 3.0+
 - Soporte completo para Material 3
+- no debes lanzar ningun emulador sin que te lo pida yo.
+- debes tener en cuenta los recursos de la maquina en la que corres. No tiene recursos ilimitados y tienes que optimiizar procesos
