@@ -5,6 +5,8 @@
 /// - Input components and validation
 /// - Card components and variants
 /// - FAB components and configurations
+/// - Icon Button components and configurations
+/// - Switch components and configurations
 /// - All component styles and configurations
 library;
 
@@ -12,6 +14,8 @@ export 'package:iautomat_design_system/src/components/buttons/buttons.dart';
 export 'package:iautomat_design_system/src/components/inputs/inputs.dart';
 export 'package:iautomat_design_system/src/components/cards/cards.dart';
 export 'package:iautomat_design_system/src/components/fab/fab.dart';
+export 'package:iautomat_design_system/src/components/icon_button/icon_button.dart';
+export 'package:iautomat_design_system/src/components/switch/switch.dart';
 export 'package:iautomat_design_system/src/components/scaffold/scaffold.dart';
 export 'package:iautomat_design_system/src/components/app_bars/app_bars.dart';
 export 'package:iautomat_design_system/src/components/navigation/navigation.dart';

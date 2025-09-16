@@ -7,6 +7,8 @@ import 'stories/app_tabs_story.dart';
 import 'stories/app_breadcrumbs_story.dart';
 import 'stories/app_split_view_story.dart';
 import 'stories/app_fab_story.dart';
+import 'stories/app_icon_button_story.dart';
+import 'stories/app_switch_story.dart';
 
 void main() {
   runApp(const DesignSystemExampleApp());
@@ -242,6 +244,8 @@ class _DesignSystemHomePageState extends State<DesignSystemHomePage>
           const AppBreadcrumbsStory(),
           const AppSplitViewStory(),
           const AppFabStory(),
+          const AppIconButtonStory(),
+          const AppSwitchStory(),
         ],
       ),
     );
