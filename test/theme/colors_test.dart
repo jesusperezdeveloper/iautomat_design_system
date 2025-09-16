@@ -89,10 +89,10 @@ void main() {
           AppColors.primary,
           0.5,
         );
-        expect(transparentPrimary.alpha, (255 * 0.5).round());
-        expect(transparentPrimary.red, AppColors.primary.red);
-        expect(transparentPrimary.green, AppColors.primary.green);
-        expect(transparentPrimary.blue, AppColors.primary.blue);
+        expect((transparentPrimary.a * 255.0).round() & 0xff, (255 * 0.5).round());
+        expect((transparentPrimary.r * 255.0).round() & 0xff, (AppColors.primary.r * 255.0).round() & 0xff);
+        expect((transparentPrimary.g * 255.0).round() & 0xff, (AppColors.primary.g * 255.0).round() & 0xff);
+        expect((transparentPrimary.b * 255.0).round() & 0xff, (AppColors.primary.b * 255.0).round() & 0xff);
       });
 
       test('lighten should return lighter color', () {
@@ -202,10 +202,10 @@ void main() {
     group('Brand Colors', () {
       test('should maintain brand color integrity', () {
         // IAutomat primary brand color should be blue (#2563EB)
-        expect(AppColors.primary.value, 0xFF2563EB);
+        expect(AppColors.primary.toARGB32(), 0xFF2563EB);
 
         // IAutomat secondary brand color should be purple (#E879F9)
-        expect(AppColors.secondary.value, 0xFFE879F9);
+        expect(AppColors.secondary.toARGB32(), 0xFFE879F9);
       });
 
       test('brand colors should work well together', () {

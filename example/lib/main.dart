@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-// Import the design system public API so example can access AppTheme, AppColors, etc.
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-/// App de ejemplo del Design System de IAutomat
-///
-/// Demuestra todos los componentes, estilos y funcionalidades
-/// del sistema de diseño en una aplicación interactiva completa.
 void main() {
   runApp(const DesignSystemExampleApp());
 }
@@ -19,6 +14,7 @@ class DesignSystemExampleApp extends StatefulWidget {
 
 class _DesignSystemExampleAppState extends State<DesignSystemExampleApp> {
   ThemeMode _themeMode = ThemeMode.system;
+  ThemePreset _selectedTheme = ThemePresets.corporateBlue;
 
   void _toggleTheme() {
     setState(() {
@@ -28,17 +24,115 @@ class _DesignSystemExampleAppState extends State<DesignSystemExampleApp> {
     });
   }
 
+  void _changeTheme(ThemePreset theme) {
+    setState(() {
+      _selectedTheme = theme;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'IAutomat Design System',
+      title: 'IAutomat Design System - 20 Temas Profesionales 2025',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      theme: _buildThemeData(_selectedTheme, false),
+      darkTheme: _buildThemeData(_selectedTheme, true),
       themeMode: _themeMode,
       home: DesignSystemHomePage(
         themeMode: _themeMode,
+        selectedTheme: _selectedTheme,
         onThemeToggle: _toggleTheme,
+        onThemeChange: _changeTheme,
+      ),
+    );
+  }
+
+  ThemeData _buildThemeData(ThemePreset preset, bool isDark) {
+    final colors = preset.getColors(isDark: isDark);
+
+    return ThemeData(
+      useMaterial3: true,
+      brightness: isDark ? Brightness.dark : Brightness.light,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: colors.primary,
+        brightness: isDark ? Brightness.dark : Brightness.light,
+        primary: colors.primary,
+        secondary: colors.secondary,
+        tertiary: colors.tertiary,
+        error: colors.error,
+        surface: colors.surface,
+        // background: colors.background, // Deprecated in favor of surface
+        onPrimary: colors.onPrimary,
+        onSecondary: colors.onSecondary,
+        onSurface: colors.onSurface,
+        outline: colors.outline,
+      ),
+      textTheme: AppTypography.textTheme,
+      appBarTheme: AppBarTheme(
+        backgroundColor: colors.surface,
+        foregroundColor: colors.onSurface,
+        elevation: preset.style.elevationValue,
+        centerTitle: false,
+        titleTextStyle: AppTypography.h6.copyWith(color: colors.onSurface),
+      ),
+      cardTheme: CardThemeData(
+        color: colors.surface,
+        elevation: preset.style.elevationValue,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
+        ),
+        margin: const EdgeInsets.all(16),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colors.primary,
+          foregroundColor: colors.onPrimary,
+          elevation: preset.style.elevationValue,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
+          ),
+          textStyle: AppTypography.button,
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: colors.primary,
+          side: BorderSide(color: colors.primary),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
+          ),
+          textStyle: AppTypography.button,
+        ),
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: colors.secondary,
+          foregroundColor: colors.onSecondary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
+          ),
+          textStyle: AppTypography.button,
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: colors.surfaceVariant,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
+          borderSide: BorderSide(color: colors.outline),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
+          borderSide: BorderSide(color: colors.outline),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
+          borderSide: BorderSide(color: colors.primary, width: 2),
+        ),
+        labelStyle: AppTypography.labelMedium,
+        hintStyle: AppTypography.bodyMedium.copyWith(
+          color: colors.onSurface.withValues(alpha: 0.6),
+        ),
       ),
     );
   }
@@ -46,12 +140,16 @@ class _DesignSystemExampleAppState extends State<DesignSystemExampleApp> {
 
 class DesignSystemHomePage extends StatefulWidget {
   final ThemeMode themeMode;
+  final ThemePreset selectedTheme;
   final VoidCallback onThemeToggle;
+  final Function(ThemePreset) onThemeChange;
 
   const DesignSystemHomePage({
     super.key,
     required this.themeMode,
+    required this.selectedTheme,
     required this.onThemeToggle,
+    required this.onThemeChange,
   });
 
   @override
@@ -61,27 +159,18 @@ class DesignSystemHomePage extends StatefulWidget {
 class _DesignSystemHomePageState extends State<DesignSystemHomePage>
     with TickerProviderStateMixin {
   late TabController _tabController;
-  int _currentIndex = 0;
 
   final List<Tab> _tabs = [
-    const Tab(icon: Icon(Icons.palette), text: 'Colors'),
-    const Tab(icon: Icon(Icons.text_fields), text: 'Typography'),
-    const Tab(icon: Icon(Icons.space_bar), text: 'Spacing'),
-    const Tab(icon: Icon(Icons.smart_button), text: 'Buttons'),
-    const Tab(icon: Icon(Icons.input), text: 'Inputs'),
-    const Tab(icon: Icon(Icons.crop_portrait), text: 'Cards'),
-    const Tab(icon: Icon(Icons.devices), text: 'Responsive'),
+    const Tab(icon: Icon(Icons.palette), text: 'Temas'),
+    const Tab(icon: Icon(Icons.color_lens), text: 'Colores'),
+    const Tab(icon: Icon(Icons.text_fields), text: 'Tipografía'),
+    const Tab(icon: Icon(Icons.widgets), text: 'Componentes'),
   ];
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: _tabs.length, vsync: this);
-    _tabController.addListener(() {
-      setState(() {
-        _currentIndex = _tabController.index;
-      });
-    });
   }
 
   @override
@@ -94,7 +183,16 @@ class _DesignSystemHomePageState extends State<DesignSystemHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('IAutomat Design System'),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('IAutomat Design System'),
+            Text(
+              widget.selectedTheme.displayName,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
         actions: [
           IconButton(
             icon: Icon(
@@ -103,58 +201,371 @@ class _DesignSystemHomePageState extends State<DesignSystemHomePage>
                   : Icons.light_mode,
             ),
             onPressed: widget.onThemeToggle,
-            tooltip: 'Toggle theme',
+            tooltip: 'Toggle theme mode',
           ),
-          const SizedBox(width: 8),
+          PopupMenuButton<ThemePreset>(
+            icon: const Icon(Icons.color_lens),
+            tooltip: 'Change theme',
+            onSelected: widget.onThemeChange,
+            itemBuilder: (context) => _buildThemeMenuItems(),
+          ),
         ],
-        bottom: context.isDesktop
-            ? TabBar(
-                controller: _tabController,
-                tabs: _tabs,
-                isScrollable: true,
-              )
-            : null,
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: _tabs,
+          isScrollable: true,
+        ),
       ),
-      body: ResponsiveBuilder(
-        mobile: (context) => _buildMobileLayout(),
-        desktop: (context) => _buildDesktopLayout(),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          ThemesShowcase(
+            selectedTheme: widget.selectedTheme,
+            onThemeChange: widget.onThemeChange,
+          ),
+          const ColorsShowcase(),
+          const TypographyShowcase(),
+          const ComponentsShowcase(),
+        ],
       ),
-      bottomNavigationBar: context.isDesktop
-          ? null
-          : BottomNavigationBar(
-              currentIndex: _currentIndex.clamp(0, 4),
-              onTap: (index) {
-                _tabController.animateTo(index);
-              },
-              type: BottomNavigationBarType.shifting,
-              items: _tabs.take(5).map((tab) {
-                return BottomNavigationBarItem(
-                  icon: tab.icon!,
-                  label: tab.text,
-                );
-              }).toList(),
-            ),
     );
   }
 
-  Widget _buildMobileLayout() {
-    return TabBarView(controller: _tabController, children: _buildTabViews());
-  }
-
-  Widget _buildDesktopLayout() {
-    return TabBarView(controller: _tabController, children: _buildTabViews());
-  }
-
-  List<Widget> _buildTabViews() {
-    return [
-      const ColorsShowcase(),
-      const TypographyShowcase(),
-      const SpacingDemo(),
-      const ButtonsGallery(),
-      const InputsPlayground(),
-      const CardsExamples(),
-      const ResponsiveSection(),
+  List<PopupMenuEntry<ThemePreset>> _buildThemeMenuItems() {
+    final categories = [
+      (ThemeCategory.corporate, 'Corporativo', ThemePresets.corporateThemes),
+      (ThemeCategory.modern, 'Moderno', ThemePresets.modernThemes),
+      (ThemeCategory.industry, 'Industria', ThemePresets.industryThemes),
+      (ThemeCategory.mood, 'Emocional', ThemePresets.moodThemes),
+      (ThemeCategory.special, 'Especial', ThemePresets.specialThemes),
     ];
+
+    final List<PopupMenuEntry<ThemePreset>> items = [];
+
+    for (final (category, categoryName, themes) in categories) {
+      items.add(
+        PopupMenuItem<ThemePreset>(
+          enabled: false,
+          child: Text(
+            categoryName,
+            style: AppTypography.labelLarge.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+        ),
+      );
+
+      for (final theme in themes) {
+        items.add(
+          PopupMenuItem<ThemePreset>(
+            value: theme,
+            child: Row(
+              children: [
+                Container(
+                  width: 16,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    color: theme.lightColors.primary,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.grey.shade300),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(child: Text(theme.displayName)),
+                if (theme == widget.selectedTheme)
+                  Icon(
+                    Icons.check,
+                    size: 16,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+              ],
+            ),
+          ),
+        );
+      }
+
+      if (category != ThemeCategory.special) {
+        items.add(const PopupMenuDivider());
+      }
+    }
+
+    return items;
+  }
+}
+
+// ==========================================================================
+// THEMES SHOWCASE
+// ==========================================================================
+
+class ThemesShowcase extends StatelessWidget {
+  final ThemePreset selectedTheme;
+  final Function(ThemePreset) onThemeChange;
+
+  const ThemesShowcase({
+    super.key,
+    required this.selectedTheme,
+    required this.onThemeChange,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('20 Temas Profesionales para 2025', style: AppTypography.h2),
+          const SizedBox(height: 24),
+
+          // Información del tema actual
+          _buildCurrentThemeInfo(context),
+          const SizedBox(height: 32),
+
+          // Categorías de temas
+          _buildThemeCategory(
+            context,
+            'Corporativo',
+            ThemePresets.corporateThemes,
+          ),
+          _buildThemeCategory(context, 'Moderno', ThemePresets.modernThemes),
+          _buildThemeCategory(
+            context,
+            'Industria',
+            ThemePresets.industryThemes,
+          ),
+          _buildThemeCategory(context, 'Emocional', ThemePresets.moodThemes),
+          _buildThemeCategory(context, 'Especial', ThemePresets.specialThemes),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCurrentThemeInfo(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: selectedTheme.lightColors.primary,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    selectedTheme.displayName,
+                    style: AppTypography.h5,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Chip(
+                  label: Text(
+                    selectedTheme.categoryName,
+                    style: AppTypography.labelSmall,
+                  ),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity.compact,
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(selectedTheme.description),
+            const SizedBox(height: 16),
+
+            // Paleta de colores actual
+            Text('Paleta de colores', style: AppTypography.labelLarge),
+            const SizedBox(height: 8),
+            _buildColorPalette(selectedTheme.lightColors),
+
+            const SizedBox(height: 16),
+
+            // Casos de uso
+            Text('Casos de uso:', style: AppTypography.labelLarge),
+            const SizedBox(height: 4),
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: selectedTheme.useCases.map((useCase) {
+                return Chip(
+                  label: Text(
+                    useCase,
+                    style: AppTypography.labelSmall,
+                  ),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity.compact,
+                );
+              }).toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildColorPalette(ThemeColors colors) {
+    final colorList = [
+      ('Primary', colors.primary),
+      ('Secondary', colors.secondary),
+      ('Tertiary', colors.tertiary),
+      ('Success', colors.success),
+      ('Warning', colors.warning),
+      ('Error', colors.error),
+    ];
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: colorList.map((colorData) {
+        return Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  height: 40,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: colorData.$2,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  colorData.$1,
+                  style: AppTypography.caption,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+              ],
+            ),
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildThemeCategory(
+    BuildContext context,
+    String categoryName,
+    List<ThemePreset> themes,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(categoryName, style: AppTypography.h4),
+        const SizedBox(height: 16),
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1.5,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+          ),
+          itemCount: themes.length,
+          itemBuilder: (context, index) {
+            final theme = themes[index];
+            final isSelected = theme == selectedTheme;
+
+            return GestureDetector(
+              onTap: () => onThemeChange(theme),
+              child: Card(
+                elevation: isSelected ? 8 : 2,
+                color: isSelected
+                    ? Theme.of(context).colorScheme.primaryContainer
+                    : null,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 16,
+                            height: 16,
+                            decoration: BoxDecoration(
+                              color: theme.lightColors.primary,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              theme.displayName,
+                              style: AppTypography.labelLarge,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          if (isSelected)
+                            Icon(
+                              Icons.check_circle,
+                              color: Theme.of(context).colorScheme.primary,
+                              size: 20,
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Expanded(
+                        child: Text(
+                          theme.description,
+                          style: AppTypography.caption,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Container(
+                            width: 12,
+                            height: 12,
+                            decoration: BoxDecoration(
+                              color: theme.lightColors.primary,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          Container(
+                            width: 12,
+                            height: 12,
+                            decoration: BoxDecoration(
+                              color: theme.lightColors.secondary,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          Container(
+                            width: 12,
+                            height: 12,
+                            decoration: BoxDecoration(
+                              color: theme.lightColors.tertiary,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 32),
+      ],
+    );
   }
 }
 
@@ -168,59 +579,42 @@ class ColorsShowcase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: context.responsivePadding,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Colors Palette', style: AppTypography.h2),
-          AppSpacing.verticalLg,
+          Text('Sistema de Colores', style: AppTypography.h2),
+          const SizedBox(height: 24),
 
-          _buildColorSection('Primary Colors', [
-            _ColorItem('Primary', AppColors.primary, 'AppColors.primary'),
-            _ColorItem(
-              'Primary Light',
-              AppColors.primaryLight,
-              'AppColors.primaryLight',
-            ),
-            _ColorItem(
-              'Primary Dark',
-              AppColors.primaryDark,
-              'AppColors.primaryDark',
-            ),
+          _buildColorSection('Primarios', [
+            _ColorItem('Primary', AppColors.primary),
+            _ColorItem('Primary Light', AppColors.primaryLight),
+            _ColorItem('Primary Dark', AppColors.primaryDark),
           ]),
 
-          _buildColorSection('Secondary Colors', [
-            _ColorItem('Secondary', AppColors.secondary, 'AppColors.secondary'),
-            _ColorItem(
-              'Secondary Light',
-              AppColors.secondaryLight,
-              'AppColors.secondaryLight',
-            ),
-            _ColorItem(
-              'Secondary Dark',
-              AppColors.secondaryDark,
-              'AppColors.secondaryDark',
-            ),
+          _buildColorSection('Secundarios', [
+            _ColorItem('Secondary', AppColors.secondary),
+            _ColorItem('Secondary Light', AppColors.secondaryLight),
+            _ColorItem('Secondary Dark', AppColors.secondaryDark),
           ]),
 
-          _buildColorSection('Semantic Colors', [
-            _ColorItem('Success', AppColors.success, 'AppColors.success'),
-            _ColorItem('Warning', AppColors.warning, 'AppColors.warning'),
-            _ColorItem('Error', AppColors.error, 'AppColors.error'),
-            _ColorItem('Info', AppColors.info, 'AppColors.info'),
+          _buildColorSection('Semánticos', [
+            _ColorItem('Success', AppColors.success),
+            _ColorItem('Warning', AppColors.warning),
+            _ColorItem('Error', AppColors.error),
+            _ColorItem('Info', AppColors.info),
           ]),
 
-          _buildColorSection('Gray Scale', [
-            _ColorItem('Gray 50', AppColors.gray50, 'AppColors.gray50'),
-            _ColorItem('Gray 100', AppColors.gray100, 'AppColors.gray100'),
-            _ColorItem('Gray 200', AppColors.gray200, 'AppColors.gray200'),
-            _ColorItem('Gray 300', AppColors.gray300, 'AppColors.gray300'),
-            _ColorItem('Gray 400', AppColors.gray400, 'AppColors.gray400'),
-            _ColorItem('Gray 500', AppColors.gray500, 'AppColors.gray500'),
-            _ColorItem('Gray 600', AppColors.gray600, 'AppColors.gray600'),
-            _ColorItem('Gray 700', AppColors.gray700, 'AppColors.gray700'),
-            _ColorItem('Gray 800', AppColors.gray800, 'AppColors.gray800'),
-            _ColorItem('Gray 900', AppColors.gray900, 'AppColors.gray900'),
+          _buildColorSection('Escala de Grises', [
+            _ColorItem('Gray 100', AppColors.gray100),
+            _ColorItem('Gray 200', AppColors.gray200),
+            _ColorItem('Gray 300', AppColors.gray300),
+            _ColorItem('Gray 400', AppColors.gray400),
+            _ColorItem('Gray 500', AppColors.gray500),
+            _ColorItem('Gray 600', AppColors.gray600),
+            _ColorItem('Gray 700', AppColors.gray700),
+            _ColorItem('Gray 800', AppColors.gray800),
+            _ColorItem('Gray 900', AppColors.gray900),
           ]),
         ],
       ),
@@ -232,52 +626,76 @@ class ColorsShowcase extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title, style: AppTypography.h4),
-        AppSpacing.verticalMd,
-        ResponsiveGrid(
-          columns: const ResponsiveValue(
-            mobile: 2,
-            tablet: 3,
-            desktop: 4,
-            ultraWide: 5,
-          ),
-          children: colors.map((color) => _buildColorCard(color)).toList(),
-        ),
-        AppSpacing.verticalXl,
-      ],
-    );
-  }
+        const SizedBox(height: 16),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final screenWidth = constraints.maxWidth;
+            final crossAxisCount = screenWidth > 600 ? 4 : (screenWidth > 400 ? 3 : 2);
 
-  Widget _buildColorCard(_ColorItem colorItem) {
-    return AppCard(
-      padding: EdgeInsets.zero,
-      child: Column(
-        children: [
-          Container(
-            height: 80,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: colorItem.color,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(16),
+            return GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                childAspectRatio: 0.9,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
               ),
-            ),
-          ),
-          Padding(
-            padding: AppSpacing.cardPadding,
-            child: Column(
-              children: [
-                Text(colorItem.name, style: AppTypography.labelMedium),
-                AppSpacing.verticalXs,
-                Text(
-                  colorItem.code,
-                  style: AppTypography.caption,
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+              itemCount: colors.length,
+              itemBuilder: (context, index) {
+                final color = colors[index];
+                return Card(
+                  clipBehavior: Clip.antiAlias,
+                  margin: EdgeInsets.zero,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Container(
+                          width: double.infinity,
+                          color: color.color,
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                color.name,
+                                style: AppTypography.labelSmall.copyWith(
+                                  fontSize: 10,
+                                ),
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                '#${color.color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
+                                style: AppTypography.caption.copyWith(
+                                  fontSize: 9,
+                                ),
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+        ),
+        const SizedBox(height: 32),
+      ],
     );
   }
 }
@@ -285,9 +703,8 @@ class ColorsShowcase extends StatelessWidget {
 class _ColorItem {
   final String name;
   final Color color;
-  final String code;
 
-  _ColorItem(this.name, this.color, this.code);
+  _ColorItem(this.name, this.color);
 }
 
 // ==========================================================================
@@ -300,98 +717,38 @@ class TypographyShowcase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: context.responsivePadding,
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Typography System', style: AppTypography.h2),
-          AppSpacing.verticalLg,
+          Text('Sistema Tipográfico', style: AppTypography.h2),
+          const SizedBox(height: 24),
 
           _buildTypographySection('Headers', [
-            _TypographyItem(
-              'H1 - Display Large',
-              AppTypography.h1,
-              'AppTypography.h1',
-            ),
-            _TypographyItem(
-              'H2 - Display Medium',
-              AppTypography.h2,
-              'AppTypography.h2',
-            ),
-            _TypographyItem(
-              'H3 - Display Small',
-              AppTypography.h3,
-              'AppTypography.h3',
-            ),
-            _TypographyItem(
-              'H4 - Headline Large',
-              AppTypography.h4,
-              'AppTypography.h4',
-            ),
-            _TypographyItem(
-              'H5 - Headline Medium',
-              AppTypography.h5,
-              'AppTypography.h5',
-            ),
-            _TypographyItem(
-              'H6 - Headline Small',
-              AppTypography.h6,
-              'AppTypography.h6',
-            ),
+            _TypographyItem('H1 - Display Large', AppTypography.h1),
+            _TypographyItem('H2 - Display Medium', AppTypography.h2),
+            _TypographyItem('H3 - Display Small', AppTypography.h3),
+            _TypographyItem('H4 - Headline Large', AppTypography.h4),
+            _TypographyItem('H5 - Headline Medium', AppTypography.h5),
+            _TypographyItem('H6 - Headline Small', AppTypography.h6),
           ]),
 
           _buildTypographySection('Body Text', [
-            _TypographyItem(
-              'Body Large',
-              AppTypography.bodyLarge,
-              'AppTypography.bodyLarge',
-            ),
-            _TypographyItem(
-              'Body Medium',
-              AppTypography.bodyMedium,
-              'AppTypography.bodyMedium',
-            ),
-            _TypographyItem(
-              'Body Small',
-              AppTypography.bodySmall,
-              'AppTypography.bodySmall',
-            ),
+            _TypographyItem('Body Large', AppTypography.bodyLarge),
+            _TypographyItem('Body Medium', AppTypography.bodyMedium),
+            _TypographyItem('Body Small', AppTypography.bodySmall),
           ]),
 
           _buildTypographySection('Labels', [
-            _TypographyItem(
-              'Label Large',
-              AppTypography.labelLarge,
-              'AppTypography.labelLarge',
-            ),
-            _TypographyItem(
-              'Label Medium',
-              AppTypography.labelMedium,
-              'AppTypography.labelMedium',
-            ),
-            _TypographyItem(
-              'Label Small',
-              AppTypography.labelSmall,
-              'AppTypography.labelSmall',
-            ),
+            _TypographyItem('Label Large', AppTypography.labelLarge),
+            _TypographyItem('Label Medium', AppTypography.labelMedium),
+            _TypographyItem('Label Small', AppTypography.labelSmall),
           ]),
 
-          _buildTypographySection('Special Styles', [
-            _TypographyItem(
-              'Button Text',
-              AppTypography.button,
-              'AppTypography.button',
-            ),
-            _TypographyItem(
-              'Caption Text',
-              AppTypography.caption,
-              'AppTypography.caption',
-            ),
-            _TypographyItem(
-              'OVERLINE TEXT',
-              AppTypography.overline,
-              'AppTypography.overline',
-            ),
+          _buildTypographySection('Especiales', [
+            _TypographyItem('Button Text', AppTypography.button),
+            _TypographyItem('Caption Text', AppTypography.caption),
+            _TypographyItem('OVERLINE TEXT', AppTypography.overline),
           ]),
         ],
       ),
@@ -403,1064 +760,340 @@ class TypographyShowcase extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title, style: AppTypography.h4),
-        AppSpacing.verticalMd,
+        const SizedBox(height: 16),
         ...items.map((item) => _buildTypographyCard(item)),
-        AppSpacing.verticalXl,
+        const SizedBox(height: 32),
       ],
     );
   }
 
   Widget _buildTypographyCard(_TypographyItem item) {
-    return AppCard.outlined(
-      margin: const EdgeInsets.only(bottom: AppSpacing.sm),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(item.example, style: item.style),
-          AppSpacing.verticalSm,
-          Container(
-            padding: const EdgeInsets.all(AppSpacing.xs),
-            decoration: BoxDecoration(
-              color: AppColors.gray100,
-              borderRadius: BorderRadius.circular(4),
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(item.text, style: item.style),
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                'Size: ${item.style.fontSize?.toStringAsFixed(0)}px, Weight: ${item.style.fontWeight.toString()}',
+                style: AppTypography.caption,
+              ),
             ),
-            child: Text(item.code, style: AppTypography.caption),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
 class _TypographyItem {
-  final String example;
+  final String text;
   final TextStyle style;
-  final String code;
 
-  _TypographyItem(this.example, this.style, this.code);
+  _TypographyItem(this.text, this.style);
 }
 
 // ==========================================================================
-// SPACING DEMO
+// COMPONENTS SHOWCASE
 // ==========================================================================
 
-class SpacingDemo extends StatelessWidget {
-  const SpacingDemo({super.key});
+class ComponentsShowcase extends StatefulWidget {
+  const ComponentsShowcase({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: context.responsivePadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Spacing System', style: AppTypography.h2),
-          AppSpacing.verticalLg,
-
-          Text('Spacing Scale', style: AppTypography.h4),
-          AppSpacing.verticalMd,
-
-          _buildSpacingItem('XXXS', AppSpacing.xxxs, 'AppSpacing.xxxs'),
-          _buildSpacingItem('XXS', AppSpacing.xxs, 'AppSpacing.xxs'),
-          _buildSpacingItem('XS', AppSpacing.xs, 'AppSpacing.xs'),
-          _buildSpacingItem('SM', AppSpacing.sm, 'AppSpacing.sm'),
-          _buildSpacingItem('MD', AppSpacing.md, 'AppSpacing.md'),
-          _buildSpacingItem('LG', AppSpacing.lg, 'AppSpacing.lg'),
-          _buildSpacingItem('XL', AppSpacing.xl, 'AppSpacing.xl'),
-          _buildSpacingItem('XXL', AppSpacing.xxl, 'AppSpacing.xxl'),
-          _buildSpacingItem('XXXL', AppSpacing.xxxl, 'AppSpacing.xxxl'),
-
-          AppSpacing.verticalXl,
-          Text('Spacing Widgets', style: AppTypography.h4),
-          AppSpacing.verticalMd,
-
-          AppCard.outlined(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Container(width: 50, height: 30, color: AppColors.primary),
-                    AppSpacing.horizontalSm,
-                    const Text('horizontalSm'),
-                    AppSpacing.horizontalSm,
-                    Container(
-                      width: 50,
-                      height: 30,
-                      color: AppColors.secondary,
-                    ),
-                  ],
-                ),
-                AppSpacing.verticalMd,
-                const Text('verticalMd spacing above'),
-                AppSpacing.verticalLg,
-                const Text('verticalLg spacing above'),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSpacingItem(String name, double size, String code) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: AppSpacing.md),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 60,
-            child: Text(name, style: AppTypography.labelMedium),
-          ),
-          Container(width: size, height: 20, color: AppColors.primary),
-          AppSpacing.horizontalSm,
-          Text('${size}px', style: AppTypography.bodySmall),
-          AppSpacing.horizontalSm,
-          Expanded(child: Text(code, style: AppTypography.caption)),
-        ],
-      ),
-    );
-  }
+  State<ComponentsShowcase> createState() => _ComponentsShowcaseState();
 }
 
-// ==========================================================================
-// BUTTONS GALLERY
-// ==========================================================================
-
-class ButtonsGallery extends StatefulWidget {
-  const ButtonsGallery({super.key});
-
-  @override
-  State<ButtonsGallery> createState() => _ButtonsGalleryState();
-}
-
-class _ButtonsGalleryState extends State<ButtonsGallery> {
-  bool _isLoading = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: context.responsivePadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Buttons Gallery', style: AppTypography.h2),
-          AppSpacing.verticalLg,
-
-          _buildVariantsSection(),
-          AppSpacing.verticalXl,
-          _buildSizesSection(),
-          AppSpacing.verticalXl,
-          _buildStatesSection(),
-          AppSpacing.verticalXl,
-          _buildIconButtonsSection(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildVariantsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Button Variants', style: AppTypography.h4),
-        AppSpacing.verticalMd,
-        ResponsiveWrap(
-          children: [
-            _buildButtonExample(
-              'Primary',
-              AppButton.primary(
-                text: 'Primary',
-                onPressed: () => _showSnackbar('Primary pressed'),
-              ),
-              'AppButton.primary(text: "Primary", onPressed: () {})',
-            ),
-            _buildButtonExample(
-              'Secondary',
-              AppButton.secondary(
-                text: 'Secondary',
-                onPressed: () => _showSnackbar('Secondary pressed'),
-              ),
-              'AppButton.secondary(text: "Secondary", onPressed: () {})',
-            ),
-            _buildButtonExample(
-              'Outline',
-              AppButton.outline(
-                text: 'Outline',
-                onPressed: () => _showSnackbar('Outline pressed'),
-              ),
-              'AppButton.outline(text: "Outline", onPressed: () {})',
-            ),
-            _buildButtonExample(
-              'Ghost',
-              AppButton.ghost(
-                text: 'Ghost',
-                onPressed: () => _showSnackbar('Ghost pressed'),
-              ),
-              'AppButton.ghost(text: "Ghost", onPressed: () {})',
-            ),
-            _buildButtonExample(
-              'Danger',
-              AppButton.danger(
-                text: 'Danger',
-                onPressed: () => _showSnackbar('Danger pressed'),
-              ),
-              'AppButton.danger(text: "Danger", onPressed: () {})',
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSizesSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Button Sizes', style: AppTypography.h4),
-        AppSpacing.verticalMd,
-        ResponsiveWrap(
-          children: [
-            _buildButtonExample(
-              'Small',
-              AppButton.primary(
-                text: 'Small',
-                size: ButtonSize.small,
-                onPressed: () => _showSnackbar('Small pressed'),
-              ),
-              'AppButton.primary(text: "Small", size: ButtonSize.small)',
-            ),
-            _buildButtonExample(
-              'Medium',
-              AppButton.primary(
-                text: 'Medium',
-                size: ButtonSize.medium,
-                onPressed: () => _showSnackbar('Medium pressed'),
-              ),
-              'AppButton.primary(text: "Medium", size: ButtonSize.medium)',
-            ),
-            _buildButtonExample(
-              'Large',
-              AppButton.primary(
-                text: 'Large',
-                size: ButtonSize.large,
-                onPressed: () => _showSnackbar('Large pressed'),
-              ),
-              'AppButton.primary(text: "Large", size: ButtonSize.large)',
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildStatesSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Button States', style: AppTypography.h4),
-        AppSpacing.verticalMd,
-        ResponsiveWrap(
-          children: [
-            _buildButtonExample(
-              'Enabled',
-              AppButton.primary(
-                text: 'Enabled',
-                onPressed: () => _showSnackbar('Enabled pressed'),
-              ),
-              'AppButton.primary(text: "Enabled", onPressed: () {})',
-            ),
-            _buildButtonExample(
-              'Disabled',
-              const AppButton.primary(text: 'Disabled', onPressed: null),
-              'AppButton.primary(text: "Disabled", onPressed: null)',
-            ),
-            _buildButtonExample(
-              'Loading',
-              AppButton.primary(
-                text: 'Loading',
-                isLoading: _isLoading,
-                onPressed: () {
-                  setState(() => _isLoading = true);
-                  Future.delayed(const Duration(seconds: 2), () {
-                    if (mounted) {
-                      setState(() => _isLoading = false);
-                    }
-                  });
-                },
-              ),
-              'AppButton.primary(text: "Loading", isLoading: true)',
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildIconButtonsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Icon Buttons', style: AppTypography.h4),
-        AppSpacing.verticalMd,
-        ResponsiveWrap(
-          children: [
-            _buildButtonExample(
-              'Leading Icon',
-              AppButton.primary(
-                text: 'Download',
-                leadingIcon: Icons.download,
-                onPressed: () => _showSnackbar('Download pressed'),
-              ),
-              'AppButton.primary(text: "Download", leadingIcon: Icons.download)',
-            ),
-            _buildButtonExample(
-              'Trailing Icon',
-              AppButton.primary(
-                text: 'Next',
-                trailingIcon: Icons.arrow_forward,
-                onPressed: () => _showSnackbar('Next pressed'),
-              ),
-              'AppButton.primary(text: "Next", trailingIcon: Icons.arrow_forward)',
-            ),
-            _buildButtonExample(
-              'Full Width',
-              AppButton.primary(
-                text: 'Full Width Button',
-                leadingIcon: Icons.check,
-                isFullWidth: true,
-                onPressed: () => _showSnackbar('Full width pressed'),
-              ),
-              'AppButton.primary(text: "Full Width", isFullWidth: true)',
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildButtonExample(String title, Widget button, String code) {
-    return AppCard.outlined(
-      width: context.isMobile ? null : 280,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(title, style: AppTypography.labelLarge),
-          AppSpacing.verticalSm,
-          button,
-          AppSpacing.verticalSm,
-          Container(
-            padding: const EdgeInsets.all(AppSpacing.xs),
-            decoration: BoxDecoration(
-              color: AppColors.gray100,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Text(code, style: AppTypography.caption),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showSnackbar(String message) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
-  }
-}
-
-// ==========================================================================
-// INPUTS PLAYGROUND
-// ==========================================================================
-
-class InputsPlayground extends StatefulWidget {
-  const InputsPlayground({super.key});
-
-  @override
-  State<InputsPlayground> createState() => _InputsPlaygroundState();
-}
-
-class _InputsPlaygroundState extends State<InputsPlayground> {
+class _ComponentsShowcaseState extends State<ComponentsShowcase> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _multilineController = TextEditingController();
-  final _searchController = TextEditingController();
+  final _textController = TextEditingController();
+  bool _switchValue = false;
+  bool _checkboxValue = false;
+  double _sliderValue = 50;
+  String _selectedOption = 'option1';
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    _multilineController.dispose();
-    _searchController.dispose();
+    _textController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: context.responsivePadding,
+      padding: const EdgeInsets.all(16),
       child: Form(
         key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Inputs Playground', style: AppTypography.h2),
-            AppSpacing.verticalLg,
+            Text('Componentes', style: AppTypography.h2),
+            const SizedBox(height: 24),
 
-            _buildInputTypesSection(),
-            AppSpacing.verticalXl,
-            _buildInputStatesSection(),
-            AppSpacing.verticalXl,
-            _buildSpecialFeaturesSection(),
-          ],
-        ),
-      ),
-    );
-  }
+            // Botones
+            Text('Botones', style: AppTypography.h4),
+            const SizedBox(height: 16),
+            Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              children: [
+                ElevatedButton(
+                  onPressed: () => _showSnackBar('ElevatedButton pressed'),
+                  child: const Text('Elevated Button'),
+                ),
+                OutlinedButton(
+                  onPressed: () => _showSnackBar('OutlinedButton pressed'),
+                  child: const Text('Outlined Button'),
+                ),
+                FilledButton(
+                  onPressed: () => _showSnackBar('FilledButton pressed'),
+                  child: const Text('Filled Button'),
+                ),
+                TextButton(
+                  onPressed: () => _showSnackBar('TextButton pressed'),
+                  child: const Text('Text Button'),
+                ),
+                const ElevatedButton(onPressed: null, child: Text('Disabled')),
+              ],
+            ),
+            const SizedBox(height: 32),
 
-  Widget _buildInputTypesSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Input Types', style: AppTypography.h4),
-        AppSpacing.verticalMd,
-        ResponsiveGrid(
-          columns: const ResponsiveValue(
-            mobile: 1,
-            tablet: 2,
-            desktop: 2,
-            ultraWide: 3,
-          ),
-          children: [
-            _buildInputExample(
-              'Email Input',
-              AppInput.email(
-                label: 'Email Address',
-                hint: 'Enter your email',
-                controller: _emailController,
-                validator: Validators.compose([
-                  Validators.required(),
-                  Validators.email(),
-                ]),
-                prefixIcon: Icons.email,
-              ),
-              'AppInput.email(label: "Email", validator: Validators.email())',
+            // Inputs
+            Text('Inputs', style: AppTypography.h4),
+            const SizedBox(height: 16),
+            Column(
+              children: [
+                TextFormField(
+                  controller: _textController,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    hintText: 'Ingresa tu email',
+                    prefixIcon: Icon(Icons.email),
+                  ),
+                  validator: (value) {
+                    if (value?.isEmpty ?? true) {
+                      return 'Email requerido';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Contraseña',
+                    hintText: 'Ingresa tu contraseña',
+                    prefixIcon: Icon(Icons.lock),
+                    suffixIcon: Icon(Icons.visibility),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  maxLines: 3,
+                  decoration: const InputDecoration(
+                    labelText: 'Comentarios',
+                    hintText: 'Escribe tus comentarios aquí...',
+                    alignLabelWithHint: true,
+                  ),
+                ),
+              ],
             ),
-            _buildInputExample(
-              'Password Input',
-              AppInput.password(
-                label: 'Password',
-                hint: 'Enter password',
-                controller: _passwordController,
-                validator: Validators.password(),
-              ),
-              'AppInput.password(label: "Password", validator: Validators.password())',
+            const SizedBox(height: 32),
+
+            // Controles
+            Text('Controles', style: AppTypography.h4),
+            const SizedBox(height: 16),
+            Column(
+              children: [
+                SwitchListTile(
+                  title: const Text('Notificaciones'),
+                  subtitle: const Text('Recibir notificaciones push'),
+                  value: _switchValue,
+                  onChanged: (value) {
+                    setState(() {
+                      _switchValue = value;
+                    });
+                  },
+                ),
+                CheckboxListTile(
+                  title: const Text('Términos y condiciones'),
+                  subtitle: const Text('He leído y acepto los términos'),
+                  value: _checkboxValue,
+                  onChanged: (value) {
+                    setState(() {
+                      _checkboxValue = value ?? false;
+                    });
+                  },
+                ),
+                ListTile(
+                  title: const Text('Volumen'),
+                  subtitle: Slider(
+                    value: _sliderValue,
+                    min: 0,
+                    max: 100,
+                    divisions: 100,
+                    label: _sliderValue.round().toString(),
+                    onChanged: (value) {
+                      setState(() {
+                        _sliderValue = value;
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
-            _buildInputExample(
-              'Search Input',
-              AppInput.search(
-                hint: 'Search...',
-                controller: _searchController,
-                onChanged: (value) {
-                  // Simular búsqueda
+            const SizedBox(height: 16),
+
+            // Opciones de selección (implementación personalizada sin deprecation warnings)
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Opciones', style: AppTypography.labelLarge),
+                    const SizedBox(height: 8),
+                    Column(
+                      children: [
+                        _buildCustomRadioOption('option1', 'Opción 1'),
+                        _buildCustomRadioOption('option2', 'Opción 2'),
+                        _buildCustomRadioOption('option3', 'Opción 3'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+
+            // Chips
+            Text('Chips', style: AppTypography.h4),
+            const SizedBox(height: 16),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                const Chip(avatar: Icon(Icons.person), label: Text('Usuario')),
+                ActionChip(
+                  avatar: const Icon(Icons.settings),
+                  label: const Text('Configuración'),
+                  onPressed: () => _showSnackBar('Configuración pressed'),
+                ),
+                FilterChip(
+                  label: const Text('Filtro'),
+                  selected: true,
+                  onSelected: (value) {},
+                ),
+                const Chip(
+                  label: Text('Etiqueta'),
+                  deleteIcon: Icon(Icons.close),
+                ),
+              ],
+            ),
+            const SizedBox(height: 32),
+
+            // Cards y dividers
+            Text('Cards y Dividers', style: AppTypography.h4),
+            const SizedBox(height: 16),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Card Example', style: AppTypography.h6),
+                    const SizedBox(height: 8),
+                    const Text('Este es un ejemplo de card con contenido.'),
+                    const Divider(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text('CANCELAR'),
+                        ),
+                        const SizedBox(width: 8),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: const Text('ACEPTAR'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+
+            // Botón de validación
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    _showSnackBar('Formulario válido!');
+                  } else {
+                    _showSnackBar('Por favor corrige los errores');
+                  }
                 },
+                child: const Text('Validar Formulario'),
               ),
-              'AppInput.search(hint: "Search...", onChanged: (value) {})',
-            ),
-            _buildInputExample(
-              'Number Input',
-              AppInput(
-                label: 'Age',
-                type: InputType.number,
-                validator: Validators.compose([
-                  Validators.required(),
-                  Validators.numeric(),
-                  Validators.range(18, 120),
-                ]),
-                prefixIcon: Icons.numbers,
-              ),
-              'AppInput(type: InputType.number, validator: Validators.numeric())',
-            ),
-            _buildInputExample(
-              'Phone Input',
-              AppInput(
-                label: 'Phone Number',
-                type: InputType.phone,
-                validator: Validators.phone(),
-                prefixText: '+57',
-              ),
-              'AppInput(type: InputType.phone, prefixText: "+57")',
-            ),
-            _buildInputExample(
-              'URL Input',
-              AppInput(
-                label: 'Website',
-                type: InputType.url,
-                validator: Validators.url(),
-                prefixIcon: Icons.link,
-              ),
-              'AppInput(type: InputType.url, validator: Validators.url())',
             ),
           ],
         ),
-      ],
-    );
-  }
-
-  Widget _buildInputStatesSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Input States', style: AppTypography.h4),
-        AppSpacing.verticalMd,
-        ResponsiveGrid(
-          columns: const ResponsiveValue(
-            mobile: 1,
-            tablet: 2,
-            desktop: 3,
-            ultraWide: 4,
-          ),
-          children: [
-            _buildInputExample(
-              'Normal State',
-              const AppInput(label: 'Normal Input', hint: 'Type something...'),
-              'AppInput(label: "Normal Input", hint: "Type something...")',
-            ),
-            _buildInputExample(
-              'Disabled State',
-              const AppInput(
-                label: 'Disabled Input',
-                hint: 'Cannot type here',
-                enabled: false,
-              ),
-              'AppInput(label: "Disabled Input", enabled: false)',
-            ),
-            _buildInputExample(
-              'Read Only',
-              const AppInput(
-                label: 'Read Only',
-                initialValue: 'This is read only',
-                readOnly: true,
-              ),
-              'AppInput(initialValue: "Read only", readOnly: true)',
-            ),
-            _buildInputExample(
-              'With Helper',
-              const AppInput(
-                label: 'Username',
-                helper: 'Must be unique',
-                hint: 'Enter username',
-              ),
-              'AppInput(label: "Username", helper: "Must be unique")',
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSpecialFeaturesSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Special Features', style: AppTypography.h4),
-        AppSpacing.verticalMd,
-
-        _buildInputExample(
-          'Multiline Input',
-          AppInput.multiline(
-            label: 'Description',
-            hint: 'Enter a detailed description...',
-            controller: _multilineController,
-            maxLength: 200,
-            showCounter: true,
-            maxLines: 5,
-            minLines: 3,
-            validator: Validators.minLength(10),
-          ),
-          '''AppInput.multiline(
-  label: "Description",
-  maxLength: 200,
-  showCounter: true,
-  maxLines: 5,
-  minLines: 3,
-)''',
-        ),
-
-        AppSpacing.verticalMd,
-
-        _buildInputExample(
-          'Input with Custom Validation',
-          AppInput(
-            label: 'Full Name',
-            validator: Validators.compose([
-              Validators.required('Name is required'),
-              Validators.fullName(),
-              Validators.minLength(5, 'Name too short'),
-            ]),
-            prefixIcon: Icons.person,
-            helper: 'Enter your first and last name',
-          ),
-          '''AppInput(
-  label: "Full Name",
-  validator: Validators.compose([
-    Validators.required(),
-    Validators.fullName(),
-    Validators.minLength(5),
-  ]),
-)''',
-        ),
-
-        AppSpacing.verticalMd,
-
-        AppButton.primary(
-          text: 'Validate Form',
-          onPressed: () {
-            if (_formKey.currentState?.validate() ?? false) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(const SnackBar(content: Text('Form is valid!')));
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Please fix the errors')),
-              );
-            }
-          },
-        ),
-      ],
-    );
-  }
-
-  Widget _buildInputExample(String title, Widget input, String code) {
-    return AppCard.outlined(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(title, style: AppTypography.labelLarge),
-          AppSpacing.verticalMd,
-          input,
-          AppSpacing.verticalSm,
-          Container(
-            padding: const EdgeInsets.all(AppSpacing.xs),
-            decoration: BoxDecoration(
-              color: AppColors.gray100,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Text(code, style: AppTypography.caption),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ==========================================================================
-// CARDS EXAMPLES
-// ==========================================================================
-
-class CardsExamples extends StatelessWidget {
-  const CardsExamples({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: context.responsivePadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Cards Examples', style: AppTypography.h2),
-          AppSpacing.verticalLg,
-
-          _buildCardVariantsSection(),
-          AppSpacing.verticalXl,
-          _buildSpecialCardsSection(),
-          AppSpacing.verticalXl,
-          _buildInteractiveCardsSection(),
-        ],
       ),
     );
   }
 
-  Widget _buildCardVariantsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Card Variants', style: AppTypography.h4),
-        AppSpacing.verticalMd,
-        ResponsiveGrid(
-          columns: const ResponsiveValue(
-            mobile: 1,
-            tablet: 2,
-            desktop: 2,
-            ultraWide: 3,
+  Widget _buildCustomRadioOption(String value, String label) {
+    final isSelected = _selectedOption == value;
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Container(
+        width: 20,
+        height: 20,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: isSelected
+                ? Theme.of(context).colorScheme.primary
+                : Colors.grey,
+            width: 2,
           ),
-          children: [
-            _buildCardExample(
-              'Flat Card',
-              AppCard.flat(child: _buildSampleContent('Flat Card Content')),
-              'AppCard.flat(child: content)',
-            ),
-            _buildCardExample(
-              'Elevated Card',
-              AppCard.elevated(
-                elevation: 3,
-                child: _buildSampleContent('Elevated Card Content'),
-              ),
-              'AppCard.elevated(elevation: 3, child: content)',
-            ),
-            _buildCardExample(
-              'Outlined Card',
-              AppCard.outlined(
-                borderColor: AppColors.primary,
-                child: _buildSampleContent('Outlined Card Content'),
-              ),
-              'AppCard.outlined(borderColor: AppColors.primary)',
-            ),
-            _buildCardExample(
-              'Gradient Card',
-              AppCard.gradient(
-                gradient: const LinearGradient(
-                  colors: [AppColors.primary, AppColors.secondary],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                child: _buildSampleContent('Gradient Card', isLight: true),
-              ),
-              '''AppCard.gradient(
-  gradient: LinearGradient(
-    colors: [AppColors.primary, AppColors.secondary],
-  ),
-)''',
-            ),
-          ],
         ),
-      ],
-    );
-  }
-
-  Widget _buildSpecialCardsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Special Cards', style: AppTypography.h4),
-        AppSpacing.verticalMd,
-        ResponsiveGrid(
-          columns: const ResponsiveValue(
-            mobile: 1,
-            tablet: 2,
-            desktop: 3,
-            ultraWide: 4,
-          ),
-          children: [
-            AppImageCard(
-              image: Container(
-                color: AppColors.primary.withValues(alpha: 0.1),
-                child: const Center(
-                  child: Icon(Icons.image, size: 64, color: AppColors.primary),
-                ),
-              ),
-              overlay: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Image Card',
-                    style: AppTypography.withColor(
-                      AppTypography.h6,
-                      Colors.white,
-                    ),
+        child: isSelected
+            ? Center(
+                child: Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
-                  Text(
-                    'With overlay content',
-                    style: AppTypography.withColor(
-                      AppTypography.bodySmall,
-                      Colors.white70,
-                    ),
-                  ),
-                ],
-              ),
-              height: 150,
-            ),
-            const AppActionCard(
-              icon: Icons.analytics,
-              title: 'Analytics',
-              description: 'View your data insights',
-            ),
-            const AppActionCard(
-              icon: Icons.settings,
-              title: 'Settings',
-              description: 'Configure your app',
-            ),
-            const AppActionCard(
-              icon: Icons.help,
-              title: 'Help',
-              description: 'Get support',
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildInteractiveCardsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Interactive Cards', style: AppTypography.h4),
-        AppSpacing.verticalMd,
-        ResponsiveGrid(
-          columns: const ResponsiveValue(
-            mobile: 1,
-            tablet: 2,
-            desktop: 3,
-            ultraWide: 4,
-          ),
-          children: [
-            AppCard.elevated(
-              onTap: () {
-                // Handle tap
-              },
-              child: _buildSampleContent('Tappable Card'),
-            ),
-            AppCard.outlined(
-              onTap: () {
-                // Handle tap
-              },
-              onLongPress: () {
-                // Handle long press
-              },
-              child: _buildSampleContent('Tap & Long Press'),
-            ),
-            AppCard.flat(
-              backgroundColor: AppColors.success.withValues(alpha: 0.1),
-              borderColor: AppColors.success,
-              borderWidth: 2,
-              child: _buildSampleContent('Custom Colors'),
-            ),
-            AppCard.elevated(
-              elevation: 5,
-              borderRadius: BorderRadius.circular(24),
-              child: _buildSampleContent('Custom Radius'),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildCardExample(String title, Widget card, String code) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(title, style: AppTypography.labelLarge),
-        AppSpacing.verticalSm,
-        card,
-        AppSpacing.verticalSm,
-        Container(
-          padding: const EdgeInsets.all(AppSpacing.xs),
-          decoration: BoxDecoration(
-            color: AppColors.gray100,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Text(code, style: AppTypography.caption),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSampleContent(String title, {bool isLight = false}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          title,
-          style: isLight
-              ? AppTypography.withColor(AppTypography.h6, Colors.white)
-              : AppTypography.h6,
-        ),
-        AppSpacing.verticalXs,
-        Text(
-          'This is sample content for the card component demonstration.',
-          style: isLight
-              ? AppTypography.withColor(AppTypography.bodySmall, Colors.white70)
-              : AppTypography.bodySmall,
-        ),
-      ],
-    );
-  }
-}
-
-// ==========================================================================
-// RESPONSIVE SECTION
-// ==========================================================================
-
-class ResponsiveSection extends StatelessWidget {
-  const ResponsiveSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final breakpoint = context.breakpoint;
-    final screenSize = context.screenSize;
-
-    return SingleChildScrollView(
-      padding: context.responsivePadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Responsive Utilities', style: AppTypography.h2),
-          AppSpacing.verticalLg,
-
-          // Info actual
-          AppCard.outlined(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Current Screen Info', style: AppTypography.h5),
-                AppSpacing.verticalMd,
-                Text('Breakpoint: ${breakpoint.toString().split('.').last}'),
-                Text(
-                  'Size: ${screenSize.width.round()} x ${screenSize.height.round()}px',
                 ),
-                Text(
-                  'Orientation: ${context.isPortrait ? 'Portrait' : 'Landscape'}',
-                ),
-                Text('Device: ${_getDeviceType(context)}'),
-              ],
-            ),
-          ),
-
-          AppSpacing.verticalXl,
-
-          // Responsive Builder Example
-          Text('ResponsiveBuilder Example', style: AppTypography.h4),
-          AppSpacing.verticalMd,
-
-          ResponsiveBuilder(
-            mobile: (context) => _buildMobileExample(),
-            tablet: (context) => _buildTabletExample(),
-            desktop: (context) => _buildDesktopExample(),
-          ),
-
-          AppSpacing.verticalXl,
-
-          // Responsive Grid Example
-          Text('ResponsiveGrid Example', style: AppTypography.h4),
-          AppSpacing.verticalMd,
-
-          ResponsiveGrid(
-            children: List.generate(
-              12,
-              (index) =>
-                  AppCard.elevated(child: Center(child: Text('${index + 1}'))),
-            ),
-          ),
-
-          AppSpacing.verticalXl,
-
-          // Responsive Values Example
-          Text('ResponsiveValue Example', style: AppTypography.h4),
-          AppSpacing.verticalMd,
-
-          AppCard.flat(
-            padding: EdgeInsets.all(
-              ResponsiveValue<double>(
-                mobile: 16,
-                tablet: 24,
-                desktop: 32,
-                ultraWide: 40,
-              ).getValue(context),
-            ),
-            child: ResponsiveText(
-              'This text and padding adapts to screen size',
-              baseFontSize: 16,
-              style: AppTypography.bodyMedium,
-            ),
-          ),
-        ],
+              )
+            : null,
       ),
+      title: Text(label),
+      onTap: () {
+        setState(() {
+          _selectedOption = value;
+        });
+      },
     );
   }
 
-  Widget _buildMobileExample() {
-    return AppCard.outlined(
-      backgroundColor: AppColors.primary.withValues(alpha: 0.1),
-      child: Column(
-        children: [
-          const Icon(Icons.phone_android, size: 48),
-          AppSpacing.verticalSm,
-          Text('Mobile Layout', style: AppTypography.h5),
-          const Text('Single column, stacked elements'),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTabletExample() {
-    return AppCard.outlined(
-      backgroundColor: AppColors.secondary.withValues(alpha: 0.1),
-      child: Row(
-        children: [
-          const Icon(Icons.tablet_mac, size: 48),
-          AppSpacing.horizontalMd,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Tablet Layout', style: AppTypography.h5),
-                const Text('Horizontal layout, more space'),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDesktopExample() {
-    return AppCard.outlined(
-      backgroundColor: AppColors.success.withValues(alpha: 0.1),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Desktop Layout', style: AppTypography.h5),
-                const Text('Full width, multiple columns, rich interactions'),
-              ],
-            ),
-          ),
-          AppSpacing.horizontalLg,
-          const Icon(Icons.desktop_mac, size: 64),
-          AppSpacing.horizontalMd,
-          Column(
-            children: [
-              AppButton.primary(
-                text: 'Action 1',
-                size: ButtonSize.small,
-                onPressed: () {},
-              ),
-              AppSpacing.verticalSm,
-              AppButton.outline(
-                text: 'Action 2',
-                size: ButtonSize.small,
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  String _getDeviceType(BuildContext context) {
-    if (context.isMobile) return 'Mobile';
-    if (context.isTablet) return 'Tablet';
-    if (context.isDesktop) return 'Desktop';
-    if (context.isUltraWide) return 'Ultra Wide';
-    return 'Unknown';
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 }

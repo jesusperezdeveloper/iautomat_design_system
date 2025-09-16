@@ -320,9 +320,9 @@ class AppColors {
       .9
     ];
     final Map<int, Color> swatch = <int, Color>{};
-    final int r = color.red;
-    final int g = color.green;
-    final int b = color.blue;
+    final int r = (color.r * 255.0).round() & 0xff;
+    final int g = (color.g * 255.0).round() & 0xff;
+    final int b = (color.b * 255.0).round() & 0xff;
 
     for (final double strength in strengths) {
       final double ds = 0.5 - strength;
@@ -334,7 +334,7 @@ class AppColors {
       );
     }
 
-    return MaterialColor(color.value, swatch);
+    return MaterialColor(color.toARGB32(), swatch);
   }
 
   /// MaterialColor primario para uso en ThemeData
