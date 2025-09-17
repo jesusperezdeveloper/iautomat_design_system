@@ -136,19 +136,30 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        ...AppNavigationVariant.values.map((variant) => RadioListTile<AppNavigationVariant>(
-          title: Text(variant.displayName),
-          subtitle: Text(
-            variant.description,
-            style: Theme.of(context).textTheme.bodySmall,
+        DropdownButtonFormField<AppNavigationVariant>(
+          initialValue: _selectedVariant,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           ),
-          value: variant,
-          groupValue: _selectedVariant,
+          items: AppNavigationVariant.values.map((variant) => DropdownMenuItem(
+            value: variant,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(variant.displayName),
+                Text(
+                  variant.description,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            ),
+          )).toList(),
           onChanged: (value) => setState(() {
             _selectedVariant = value!;
           }),
-          dense: true,
-        )),
+        ),
 
         const SizedBox(height: 16),
 
@@ -159,7 +170,7 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
         ),
         const SizedBox(height: 8),
         DropdownButtonFormField<AppNavigationState>(
-          value: _selectedState,
+          initialValue: _selectedState,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -247,7 +258,7 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
-            color: Theme.of(context).colorScheme.surfaceVariant,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

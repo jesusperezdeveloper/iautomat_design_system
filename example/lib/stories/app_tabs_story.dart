@@ -174,19 +174,30 @@ class _AppTabsStoryState extends State<AppTabsStory>
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        ...AppTabsVariant.values.map((variant) => RadioListTile<AppTabsVariant>(
-          title: Text(variant.displayName),
-          subtitle: Text(
-            variant.description,
-            style: Theme.of(context).textTheme.bodySmall,
+        DropdownButtonFormField<AppTabsVariant>(
+          initialValue: _selectedVariant,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           ),
-          value: variant,
-          groupValue: _selectedVariant,
+          items: AppTabsVariant.values.map((variant) => DropdownMenuItem(
+            value: variant,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(variant.displayName),
+                Text(
+                  variant.description,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            ),
+          )).toList(),
           onChanged: (value) => setState(() {
             _selectedVariant = value!;
           }),
-          dense: true,
-        )),
+        ),
 
         const SizedBox(height: 16),
 
@@ -197,7 +208,7 @@ class _AppTabsStoryState extends State<AppTabsStory>
         ),
         const SizedBox(height: 8),
         DropdownButtonFormField<AppTabsState>(
-          value: _selectedState,
+          initialValue: _selectedState,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -220,7 +231,7 @@ class _AppTabsStoryState extends State<AppTabsStory>
         ),
         const SizedBox(height: 8),
         DropdownButtonFormField<AppTabType>(
-          value: _selectedTabType,
+          initialValue: _selectedTabType,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
