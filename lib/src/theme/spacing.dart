@@ -491,6 +491,9 @@ class AppSpacing {
   /// Spacing para grids de im�genes
   static const double gridSpacingImages = xxs;
 
+  /// Spacing entre columnas de kanban
+  static const EdgeInsets columnSpacing = EdgeInsets.symmetric(horizontal: xs);
+
   /// Crea un SliverGrid con spacing est�ndar
   static SliverGridDelegateWithFixedCrossAxisCount gridDelegate({
     required int crossAxisCount,

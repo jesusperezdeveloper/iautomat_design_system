@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'list_item_config.freezed.dart';
@@ -350,6 +349,8 @@ class AppListItemSwipeAction with _$AppListItemSwipeAction {
 /// Swipe actions configuration
 @freezed
 class AppListItemSwipeActions with _$AppListItemSwipeActions {
+  const AppListItemSwipeActions._();
+
   const factory AppListItemSwipeActions({
     /// Leading swipe actions (start side)
     @Default([]) List<AppListItemSwipeAction> leading,
@@ -458,6 +459,8 @@ class AppListItemTheme with _$AppListItemTheme {
 /// List item style configuration
 @freezed
 class AppListItemStyle with _$AppListItemStyle {
+  const AppListItemStyle._();
+
   const factory AppListItemStyle({
     /// Content padding
     @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 8)) EdgeInsets contentPadding,
@@ -522,7 +525,6 @@ class AppListItemStyle with _$AppListItemStyle {
           vertical: contentPadding.vertical * 1.5,
         );
       case AppListItemDensity.standard:
-      default:
         return contentPadding;
     }
   }
@@ -546,6 +548,8 @@ class AppListItemStyle with _$AppListItemStyle {
 /// Main list item configuration
 @freezed
 class AppListItemConfig with _$AppListItemConfig {
+  const AppListItemConfig._();
+
   const factory AppListItemConfig({
     /// List item variant
     @Default(AppListItemVariant.oneLine) AppListItemVariant variant,

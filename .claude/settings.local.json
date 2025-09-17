@@ -17,7 +17,8 @@
       "mcp__ide__getDiagnostics",
       "Bash(sed:*)",
       "Bash(mkdir:*)",
-      "Bash(dart analyze:*)"
+      "Bash(dart analyze:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []
