@@ -500,7 +500,7 @@ void main() {
       );
 
       final result = colorValue.colorWithAlpha;
-      expect(result.alpha, equals((0.5 * 255).round()));
+      expect((result.a * 255.0).round(), equals((0.5 * 255).round()));
     });
   });
 

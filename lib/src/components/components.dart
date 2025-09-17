@@ -17,6 +17,11 @@
 /// - Date Picker components and configurations
 /// - Color Picker components and configurations
 /// - File Picker components and configurations
+/// - Pagination components and configurations
+/// - Filter Bar components and configurations
+/// - Outline Tree components and configurations
+/// - Data Table components and configurations
+/// - Simple Table components and configurations
 /// - All component styles and configurations
 library;
 
@@ -88,3 +93,27 @@ export 'toggle_view/toggle_view_story.dart' hide ToggleViewStoryExample;
 export 'command_palette/app_command_palette.dart';
 export 'command_palette/command_palette_config.dart';
 export 'command_palette/command_palette_story.dart';
+
+export 'in_page_search/app_in_page_search.dart';
+export 'in_page_search/in_page_search_config.dart';
+export 'in_page_search/in_page_search_story.dart';
+
+export 'pagination/app_pagination.dart';
+export 'pagination/pagination_config.dart';
+export 'pagination/pagination_story.dart' hide PaginationStoryExample;
+
+export 'filter_bar/app_filter_bar.dart';
+export 'filter_bar/filter_bar_config.dart';
+export 'filter_bar/filter_bar_story.dart' hide FilterBarStoryExample;
+
+export 'outline_tree/app_outline_tree.dart';
+export 'outline_tree/outline_tree_config.dart';
+export 'outline_tree/outline_tree_story.dart' hide FileExplorerExample;
+
+export 'data_table/app_data_table.dart';
+export 'data_table/data_table_config.dart';
+export 'data_table/data_table_story.dart';
+
+export 'simple_table/app_simple_table.dart';
+export 'simple_table/simple_table_config.dart';
+export 'simple_table/simple_table_story.dart' hide SimpleTableStoryExample;

@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/file_picker/app_file_picker.dart';
@@ -519,6 +518,9 @@ void main() {
 
         expect(find.byType(AppFilePicker), findsOneWidget);
         // Note: Validation testing would require mock file selection
+        // Variables are prepared for validation callback testing
+        expect(errorMessage, isNull); // No error yet without file selection
+        expect(errorFile, isNull);
       });
 
       testWidgets('uses custom validator when provided', (tester) async {

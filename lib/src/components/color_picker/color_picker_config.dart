@@ -236,7 +236,7 @@ class AppColorValue with _$AppColorValue {
   factory AppColorValue.fromColor(Color color, {ColorFormat format = ColorFormat.hex}) {
     return AppColorValue(
       color: color,
-      alpha: color.alpha / 255.0,
+      alpha: (color.a * 255.0).round() / 255.0,
       format: format,
     );
   }
@@ -245,16 +245,16 @@ class AppColorValue with _$AppColorValue {
   HSLColor get hsl => HSLColor.fromColor(color);
 
   String get hexString {
-    final hex = color.value.toRadixString(16).padLeft(8, '0').toUpperCase();
+    final hex = color.toARGB32().toRadixString(16).padLeft(8, '0').toUpperCase();
     return '#${hex.substring(2)}${hex.substring(0, 2)}';
   }
 
   String get rgbString {
-    return 'rgb(${color.red}, ${color.green}, ${color.blue})';
+    return 'rgb(${(color.r * 255.0).round()}, ${(color.g * 255.0).round()}, ${(color.b * 255.0).round()})';
   }
 
   String get rgbaString {
-    return 'rgba(${color.red}, ${color.green}, ${color.blue}, ${alpha.toStringAsFixed(2)})';
+    return 'rgba(${(color.r * 255.0).round()}, ${(color.g * 255.0).round()}, ${(color.b * 255.0).round()}, ${alpha.toStringAsFixed(2)})';
   }
 
   String get hslString {
@@ -472,9 +472,9 @@ class AppColorValidators {
   }
 
   static double _calculateLuminance(Color color) {
-    final r = _gamma(color.red / 255.0);
-    final g = _gamma(color.green / 255.0);
-    final b = _gamma(color.blue / 255.0);
+    final r = _gamma(color.r);
+    final g = _gamma(color.g);
+    final b = _gamma(color.b);
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   }
 
@@ -496,9 +496,9 @@ extension AppColorPickerHelpers on Color {
 
   /// Calculates the relative luminance of the color
   double _calculateLuminance() {
-    final r = _gamma(red / 255.0);
-    final g = _gamma(green / 255.0);
-    final b = _gamma(blue / 255.0);
+    final r = _gamma(this.r);
+    final g = _gamma(this.g);
+    final b = _gamma(this.b);
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   }
 
