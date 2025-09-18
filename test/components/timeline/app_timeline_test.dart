@@ -489,7 +489,7 @@ void main() {
         expect(event.hasSubtitle, isTrue);
         expect(event.hasDescription, isTrue);
         expect(event.hasTimestamp, isTrue);
-        expect(event.isEnabled, isTrue);
+        expect(event.enabled, isTrue);
         expect(event.isVisible, isTrue);
         expect(event.isSelected, isFalse);
         expect(event.displayTitle, equals('Test Event'));

@@ -1053,7 +1053,7 @@ class _AppCalendarState extends State<AppCalendar>
       });
       return KeyEventResult.handled;
     }
-
+    // ignore: dead_code
     return KeyEventResult.ignored;
   }
 }
