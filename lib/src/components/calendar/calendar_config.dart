@@ -4,51 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'calendar_config.freezed.dart';
-part 'calendar_config.g.dart';
 
-/// JsonConverter personalizado para Color
-class ColorConverter implements JsonConverter<Color?, int?> {
-  const ColorConverter();
-
-  @override
-  Color? fromJson(int? json) {
-    if (json == null) return null;
-    return Color(json);
-  }
-
-  @override
-  int? toJson(Color? color) {
-    return color?.toARGB32();
-  }
-}
-
-/// JsonConverter personalizado para IconData
-class IconDataConverter
-    implements JsonConverter<IconData?, Map<String, dynamic>?> {
-  const IconDataConverter();
-
-  @override
-  IconData? fromJson(Map<String, dynamic>? json) {
-    if (json == null) return null;
-    return IconData(
-      json['codePoint'] as int,
-      fontFamily: json['fontFamily'] as String?,
-      fontPackage: json['fontPackage'] as String?,
-      matchTextDirection: json['matchTextDirection'] as bool? ?? false,
-    );
-  }
-
-  @override
-  Map<String, dynamic>? toJson(IconData? icon) {
-    if (icon == null) return null;
-    return {
-      'codePoint': icon.codePoint,
-      'fontFamily': icon.fontFamily,
-      'fontPackage': icon.fontPackage,
-      'matchTextDirection': icon.matchTextDirection,
-    };
-  }
-}
 
 /// Tipos de callback para eventos del calendario
 typedef AppCalendarEventTapCallback = void Function(AppCalendarEvent event);
@@ -159,16 +115,16 @@ class AppCalendarEvent with _$AppCalendarEvent {
     @Default(AppCalendarEventPriority.normal) AppCalendarEventPriority priority,
 
     /// Color del evento (si no se especifica usa el del tipo)
-    @ColorConverter() Color? color,
+    Color? color,
 
     /// Color del texto del evento
-    @ColorConverter() Color? textColor,
+    Color? textColor,
 
     /// Color de fondo del evento
-    @ColorConverter() Color? backgroundColor,
+    Color? backgroundColor,
 
     /// Color del borde del evento
-    @ColorConverter() Color? borderColor,
+    Color? borderColor,
 
     /// Si el evento es de todo el día
     @Default(false) bool isAllDay,
@@ -213,8 +169,6 @@ class AppCalendarEvent with _$AppCalendarEvent {
     String? timeZone,
   }) = _AppCalendarEvent;
 
-  factory AppCalendarEvent.fromJson(Map<String, dynamic> json) =>
-      _$AppCalendarEventFromJson(json);
 }
 
 /// Configuración de un recurso del calendario (salas, personas, etc.)
@@ -231,19 +185,19 @@ class AppCalendarResource with _$AppCalendarResource {
     String? description,
 
     /// Color del recurso
-    @ColorConverter() Color? color,
+    Color? color,
 
     /// Color del texto del recurso
-    @ColorConverter() Color? textColor,
+    Color? textColor,
 
     /// Color de fondo del recurso
-    @ColorConverter() Color? backgroundColor,
+    Color? backgroundColor,
 
     /// Avatar/icono del recurso
     String? avatar,
 
     /// Icono del recurso
-    @IconDataConverter() IconData? icon,
+    IconData? icon,
 
     /// Email del recurso (si es una persona)
     String? email,
@@ -270,8 +224,6 @@ class AppCalendarResource with _$AppCalendarResource {
     @Default(<DateTime>[]) List<DateTime> nonWorkingDays,
   }) = _AppCalendarResource;
 
-  factory AppCalendarResource.fromJson(Map<String, dynamic> json) =>
-      _$AppCalendarResourceFromJson(json);
 }
 
 /// Configuración de horario de trabajo
@@ -291,8 +243,6 @@ class AppCalendarWorkingHours with _$AppCalendarWorkingHours {
     String? timeZone,
   }) = _AppCalendarWorkingHours;
 
-  factory AppCalendarWorkingHours.fromJson(Map<String, dynamic> json) =>
-      _$AppCalendarWorkingHoursFromJson(json);
 }
 
 /// Configuración de estilo para fechas especiales
@@ -300,13 +250,13 @@ class AppCalendarWorkingHours with _$AppCalendarWorkingHours {
 class AppCalendarDateStyle with _$AppCalendarDateStyle {
   const factory AppCalendarDateStyle({
     /// Color del texto
-    @ColorConverter() Color? textColor,
+    Color? textColor,
 
     /// Color de fondo
-    @ColorConverter() Color? backgroundColor,
+    Color? backgroundColor,
 
     /// Color del borde
-    @ColorConverter() Color? borderColor,
+    Color? borderColor,
 
     /// Estilo del texto
     @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? textStyle,
@@ -333,8 +283,6 @@ class AppCalendarDateStyle with _$AppCalendarDateStyle {
     @Default(false) bool isHoliday,
   }) = _AppCalendarDateStyle;
 
-  factory AppCalendarDateStyle.fromJson(Map<String, dynamic> json) =>
-      _$AppCalendarDateStyleFromJson(json);
 }
 
 /// Configuración de localización
@@ -417,8 +365,6 @@ class AppCalendarLocalization with _$AppCalendarLocalization {
     Map<String, String> labels,
   }) = _AppCalendarLocalization;
 
-  factory AppCalendarLocalization.fromJson(Map<String, dynamic> json) =>
-      _$AppCalendarLocalizationFromJson(json);
 }
 
 /// Configuración principal del calendario
@@ -531,52 +477,52 @@ class AppCalendarConfig with _$AppCalendarConfig {
     @JsonKey(includeFromJson: false, includeToJson: false) EdgeInsets? margin,
 
     /// Color de fondo del calendario
-    @ColorConverter() Color? backgroundColor,
+    Color? backgroundColor,
 
     /// Color de fondo del header
-    @ColorConverter() Color? headerBackgroundColor,
+    Color? headerBackgroundColor,
 
     /// Color del texto del header
-    @ColorConverter() Color? headerTextColor,
+    Color? headerTextColor,
 
     /// Color de fondo de las celdas
-    @ColorConverter() Color? cellBackgroundColor,
+    Color? cellBackgroundColor,
 
     /// Color del borde de las celdas
-    @ColorConverter() Color? cellBorderColor,
+    Color? cellBorderColor,
 
     /// Color de fondo del día actual
-    @ColorConverter() Color? todayBackgroundColor,
+    Color? todayBackgroundColor,
 
     /// Color del texto del día actual
-    @ColorConverter() Color? todayTextColor,
+    Color? todayTextColor,
 
     /// Color de fondo del día seleccionado
-    @ColorConverter() Color? selectedBackgroundColor,
+    Color? selectedBackgroundColor,
 
     /// Color del texto del día seleccionado
-    @ColorConverter() Color? selectedTextColor,
+    Color? selectedTextColor,
 
     /// Color de fondo de días deshabilitados
-    @ColorConverter() Color? disabledBackgroundColor,
+    Color? disabledBackgroundColor,
 
     /// Color del texto de días deshabilitados
-    @ColorConverter() Color? disabledTextColor,
+    Color? disabledTextColor,
 
     /// Color de fondo de fin de semana
-    @ColorConverter() Color? weekendBackgroundColor,
+    Color? weekendBackgroundColor,
 
     /// Color del texto de fin de semana
-    @ColorConverter() Color? weekendTextColor,
+    Color? weekendTextColor,
 
     /// Color de la línea de tiempo actual
-    @ColorConverter() Color? currentTimeLineColor,
+    Color? currentTimeLineColor,
 
     /// Color de fondo de horario de trabajo
-    @ColorConverter() Color? workingHoursBackgroundColor,
+    Color? workingHoursBackgroundColor,
 
     /// Color de fondo de horario no laboral
-    @ColorConverter() Color? nonWorkingHoursBackgroundColor,
+    Color? nonWorkingHoursBackgroundColor,
 
     /// Radio de borde de las celdas
     @JsonKey(includeFromJson: false, includeToJson: false) BorderRadius? cellBorderRadius,
@@ -639,8 +585,6 @@ class AppCalendarConfig with _$AppCalendarConfig {
     @Default(2.0) double maxZoomFactor,
   }) = _AppCalendarConfig;
 
-  factory AppCalendarConfig.fromJson(Map<String, dynamic> json) =>
-      _$AppCalendarConfigFromJson(json);
 }
 
 /// Helpers para crear configuraciones predefinidas

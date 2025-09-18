@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_checkout_forms_config.freezed.dart';
-part 'app_checkout_forms_config.g.dart';
 
 /// Configuración completa para el componente AppCheckoutForms
 ///
@@ -22,8 +21,6 @@ class AppCheckoutFormsConfig with _$AppCheckoutFormsConfig {
     AppCheckoutValidation? validation,
   }) = _AppCheckoutFormsConfig;
 
-  factory AppCheckoutFormsConfig.fromJson(Map<String, dynamic> json) =>
-      _$AppCheckoutFormsConfigFromJson(json);
 }
 
 /// Variantes del formulario de checkout
@@ -89,8 +86,6 @@ class AppCheckoutField with _$AppCheckoutField {
     Map<String, dynamic>? metadata,
   }) = _AppCheckoutField;
 
-  factory AppCheckoutField.fromJson(Map<String, dynamic> json) =>
-      _$AppCheckoutFieldFromJson(json);
 }
 
 /// Tipos de campos disponibles
@@ -146,8 +141,6 @@ class AppCheckoutColors with _$AppCheckoutColors {
     Color? skeletonColor,
   }) = _AppCheckoutColors;
 
-  factory AppCheckoutColors.fromJson(Map<String, dynamic> json) =>
-      _$AppCheckoutColorsFromJson(json);
 }
 
 /// Configuración de espaciado del formulario
@@ -167,8 +160,6 @@ class AppCheckoutSpacing with _$AppCheckoutSpacing {
     @Default(4.0) double focusedBorderWidth,
   }) = _AppCheckoutSpacing;
 
-  factory AppCheckoutSpacing.fromJson(Map<String, dynamic> json) =>
-      _$AppCheckoutSpacingFromJson(json);
 }
 
 /// Configuración de animaciones
@@ -185,8 +176,6 @@ class AppCheckoutAnimation with _$AppCheckoutAnimation {
     @Default(true) bool enableRippleEffect,
   }) = _AppCheckoutAnimation;
 
-  factory AppCheckoutAnimation.fromJson(Map<String, dynamic> json) =>
-      _$AppCheckoutAnimationFromJson(json);
 }
 
 /// Configuración de comportamiento
@@ -208,8 +197,6 @@ class AppCheckoutBehavior with _$AppCheckoutBehavior {
     @Default(true) bool showProgressIndicator,
   }) = _AppCheckoutBehavior;
 
-  factory AppCheckoutBehavior.fromJson(Map<String, dynamic> json) =>
-      _$AppCheckoutBehaviorFromJson(json);
 }
 
 /// Modos de envío del formulario
@@ -239,8 +226,6 @@ class AppCheckoutA11yConfig with _$AppCheckoutA11yConfig {
     @Default('Enviar formulario') String submitButtonSemanticLabel,
   }) = _AppCheckoutA11yConfig;
 
-  factory AppCheckoutA11yConfig.fromJson(Map<String, dynamic> json) =>
-      _$AppCheckoutA11yConfigFromJson(json);
 }
 
 /// Configuración de validación
@@ -256,8 +241,6 @@ class AppCheckoutValidation with _$AppCheckoutValidation {
     Map<String, RegExp>? customPatterns,
   }) = _AppCheckoutValidation;
 
-  factory AppCheckoutValidation.fromJson(Map<String, dynamic> json) =>
-      _$AppCheckoutValidationFromJson(json);
 }
 
 /// Resultado de la validación de un campo
@@ -271,8 +254,6 @@ class AppCheckoutFieldValidation with _$AppCheckoutFieldValidation {
     @Default(AppCheckoutValidationLevel.none) AppCheckoutValidationLevel level,
   }) = _AppCheckoutFieldValidation;
 
-  factory AppCheckoutFieldValidation.fromJson(Map<String, dynamic> json) =>
-      _$AppCheckoutFieldValidationFromJson(json);
 }
 
 /// Niveles de validación
@@ -298,8 +279,6 @@ class AppCheckoutFormData with _$AppCheckoutFormData {
     String? submissionId,
   }) = _AppCheckoutFormData;
 
-  factory AppCheckoutFormData.fromJson(Map<String, dynamic> json) =>
-      _$AppCheckoutFormDataFromJson(json);
 }
 
 /// Extensiones para AppCheckoutVariant

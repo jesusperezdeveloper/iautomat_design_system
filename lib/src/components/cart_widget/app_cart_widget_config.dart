@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_cart_widget_config.freezed.dart';
-part 'app_cart_widget_config.g.dart';
 
 /// Configuración completa para el componente AppCartWidget
 ///
@@ -20,9 +19,6 @@ class AppCartWidgetConfig with _$AppCartWidgetConfig {
     AppCartBehavior? behavior,
     AppCartA11yConfig? a11yConfig,
   }) = _AppCartWidgetConfig;
-
-  factory AppCartWidgetConfig.fromJson(Map<String, dynamic> json) =>
-      _$AppCartWidgetConfigFromJson(json);
 }
 
 /// Variantes del carrito
@@ -79,9 +75,6 @@ class AppCartItem with _$AppCartItem {
     @Default(1) int minQuantity,
     Map<String, dynamic>? metadata,
   }) = _AppCartItem;
-
-  factory AppCartItem.fromJson(Map<String, dynamic> json) =>
-      _$AppCartItemFromJson(json);
 }
 
 /// Configuración de colores del carrito
@@ -112,9 +105,6 @@ class AppCartColors with _$AppCartColors {
     Color? focusColor,
     Color? skeletonColor,
   }) = _AppCartColors;
-
-  factory AppCartColors.fromJson(Map<String, dynamic> json) =>
-      _$AppCartColorsFromJson(json);
 }
 
 /// Configuración de espaciado del carrito
@@ -135,9 +125,6 @@ class AppCartSpacing with _$AppCartSpacing {
     @Default(32.0) double quantityButtonSize,
     @Default(48.0) double checkoutButtonHeight,
   }) = _AppCartSpacing;
-
-  factory AppCartSpacing.fromJson(Map<String, dynamic> json) =>
-      _$AppCartSpacingFromJson(json);
 }
 
 /// Configuración de animaciones del carrito
@@ -156,9 +143,6 @@ class AppCartAnimation with _$AppCartAnimation {
     @Default(1.02) double hoverScale,
     @Default(0.98) double pressScale,
   }) = _AppCartAnimation;
-
-  factory AppCartAnimation.fromJson(Map<String, dynamic> json) =>
-      _$AppCartAnimationFromJson(json);
 }
 
 /// Configuración de comportamiento del carrito
@@ -180,9 +164,6 @@ class AppCartBehavior with _$AppCartBehavior {
     @Default(AppCartLayout.list) AppCartLayout layout,
     @Default(5) int maxVisibleItems,
   }) = _AppCartBehavior;
-
-  factory AppCartBehavior.fromJson(Map<String, dynamic> json) =>
-      _$AppCartBehaviorFromJson(json);
 }
 
 /// Layout del carrito
@@ -221,9 +202,6 @@ class AppCartA11yConfig with _$AppCartA11yConfig {
     @Default(true) bool enableKeyboardNavigation,
     @Default(true) bool enableSwipeActions,
   }) = _AppCartA11yConfig;
-
-  factory AppCartA11yConfig.fromJson(Map<String, dynamic> json) =>
-      _$AppCartA11yConfigFromJson(json);
 }
 
 /// Resumen del carrito
@@ -240,9 +218,6 @@ class AppCartSummary with _$AppCartSummary {
     String? currency,
     @Default('') String promoCode,
   }) = _AppCartSummary;
-
-  factory AppCartSummary.fromJson(Map<String, dynamic> json) =>
-      _$AppCartSummaryFromJson(json);
 }
 
 /// Extensiones para AppCartVariant

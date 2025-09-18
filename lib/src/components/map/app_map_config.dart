@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_map_config.freezed.dart';
-part 'app_map_config.g.dart';
 
 /// Configuración completa para el componente AppMap
 ///
@@ -22,8 +21,6 @@ class AppMapConfig with _$AppMapConfig {
     AppMapA11yConfig? a11yConfig,
   }) = _AppMapConfig;
 
-  factory AppMapConfig.fromJson(Map<String, dynamic> json) =>
-      _$AppMapConfigFromJson(json);
 }
 
 /// Variantes del mapa
@@ -125,8 +122,6 @@ class AppMapColors with _$AppMapColors {
     Color? skeletonColor,
   }) = _AppMapColors;
 
-  factory AppMapColors.fromJson(Map<String, dynamic> json) =>
-      _$AppMapColorsFromJson(json);
 }
 
 /// Configuración de espaciado del mapa
@@ -144,8 +139,6 @@ class AppMapSpacing with _$AppMapSpacing {
     @Default(2.0) double strokeWidth,
   }) = _AppMapSpacing;
 
-  factory AppMapSpacing.fromJson(Map<String, dynamic> json) =>
-      _$AppMapSpacingFromJson(json);
 }
 
 /// Configuración de animaciones del mapa
@@ -161,8 +154,6 @@ class AppMapAnimation with _$AppMapAnimation {
     @Default(true) bool enableZoomAnimation,
   }) = _AppMapAnimation;
 
-  factory AppMapAnimation.fromJson(Map<String, dynamic> json) =>
-      _$AppMapAnimationFromJson(json);
 }
 
 /// Configuración de comportamiento del mapa
@@ -183,8 +174,6 @@ class AppMapBehavior with _$AppMapBehavior {
     @Default(Duration(milliseconds: 500)) Duration debounceTime,
   }) = _AppMapBehavior;
 
-  factory AppMapBehavior.fromJson(Map<String, dynamic> json) =>
-      _$AppMapBehaviorFromJson(json);
 }
 
 /// Configuración de accesibilidad
@@ -203,8 +192,6 @@ class AppMapA11yConfig with _$AppMapA11yConfig {
     @Default('Forma en el mapa') String shapeLabel,
   }) = _AppMapA11yConfig;
 
-  factory AppMapA11yConfig.fromJson(Map<String, dynamic> json) =>
-      _$AppMapA11yConfigFromJson(json);
 }
 
 /// Coordenadas geográficas
@@ -215,8 +202,6 @@ class AppLatLng with _$AppLatLng {
     required double longitude,
   }) = _AppLatLng;
 
-  factory AppLatLng.fromJson(Map<String, dynamic> json) =>
-      _$AppLatLngFromJson(json);
 }
 
 /// Marcador en el mapa
@@ -237,8 +222,6 @@ class AppMapMarker with _$AppMapMarker {
     VoidCallback? onTap,
   }) = _AppMapMarker;
 
-  factory AppMapMarker.fromJson(Map<String, dynamic> json) =>
-      _$AppMapMarkerFromJson(json);
 }
 
 /// Forma geométrica en el mapa
@@ -258,8 +241,6 @@ class AppMapShape with _$AppMapShape {
     VoidCallback? onTap,
   }) = _AppMapShape;
 
-  factory AppMapShape.fromJson(Map<String, dynamic> json) =>
-      _$AppMapShapeFromJson(json);
 }
 
 /// Extensiones para AppMapVariant

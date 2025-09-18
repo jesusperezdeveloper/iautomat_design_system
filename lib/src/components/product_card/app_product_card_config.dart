@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_product_card_config.freezed.dart';
-part 'app_product_card_config.g.dart';
 
 /// Configuración completa para el componente AppProductCard
 ///
@@ -20,8 +19,6 @@ class AppProductCardConfig with _$AppProductCardConfig {
     AppProductCardA11yConfig? a11yConfig,
   }) = _AppProductCardConfig;
 
-  factory AppProductCardConfig.fromJson(Map<String, dynamic> json) =>
-      _$AppProductCardConfigFromJson(json);
 }
 
 /// Variantes de la tarjeta de producto
@@ -72,8 +69,6 @@ class AppDiscountChip with _$AppDiscountChip {
     @Default(AppDiscountChipPosition.topRight) AppDiscountChipPosition position,
   }) = _AppDiscountChip;
 
-  factory AppDiscountChip.fromJson(Map<String, dynamic> json) =>
-      _$AppDiscountChipFromJson(json);
 }
 
 /// Posición del chip de descuento
@@ -95,8 +90,6 @@ class AppProductImage with _$AppProductImage {
     Widget? errorWidget,
   }) = _AppProductImage;
 
-  factory AppProductImage.fromJson(Map<String, dynamic> json) =>
-      _$AppProductImageFromJson(json);
 }
 
 /// Configuración de precio
@@ -111,8 +104,6 @@ class AppProductPrice with _$AppProductPrice {
     @Default(2) int decimalPlaces,
   }) = _AppProductPrice;
 
-  factory AppProductPrice.fromJson(Map<String, dynamic> json) =>
-      _$AppProductPriceFromJson(json);
 }
 
 /// Formato de precio
@@ -148,8 +139,6 @@ class AppProductCardColors with _$AppProductCardColors {
     Color? skeletonColor,
   }) = _AppProductCardColors;
 
-  factory AppProductCardColors.fromJson(Map<String, dynamic> json) =>
-      _$AppProductCardColorsFromJson(json);
 }
 
 /// Configuración de espaciado
@@ -167,8 +156,6 @@ class AppProductCardSpacing with _$AppProductCardSpacing {
     @Default(1.5) double imageAspectRatio,
   }) = _AppProductCardSpacing;
 
-  factory AppProductCardSpacing.fromJson(Map<String, dynamic> json) =>
-      _$AppProductCardSpacingFromJson(json);
 }
 
 /// Configuración de animaciones
@@ -185,8 +172,6 @@ class AppProductCardAnimation with _$AppProductCardAnimation {
     @Default(0.98) double pressScale,
   }) = _AppProductCardAnimation;
 
-  factory AppProductCardAnimation.fromJson(Map<String, dynamic> json) =>
-      _$AppProductCardAnimationFromJson(json);
 }
 
 /// Configuración de comportamiento
@@ -202,8 +187,6 @@ class AppProductCardBehavior with _$AppProductCardBehavior {
     @Default(AppProductCardLayout.vertical) AppProductCardLayout layout,
   }) = _AppProductCardBehavior;
 
-  factory AppProductCardBehavior.fromJson(Map<String, dynamic> json) =>
-      _$AppProductCardBehaviorFromJson(json);
 }
 
 /// Layout de la tarjeta
@@ -235,8 +218,6 @@ class AppProductCardA11yConfig with _$AppProductCardA11yConfig {
     @Default(true) bool enableKeyboardNavigation,
   }) = _AppProductCardA11yConfig;
 
-  factory AppProductCardA11yConfig.fromJson(Map<String, dynamic> json) =>
-      _$AppProductCardA11yConfigFromJson(json);
 }
 
 /// Extensiones para AppProductCardVariant

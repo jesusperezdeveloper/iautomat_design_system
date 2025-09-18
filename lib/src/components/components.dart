@@ -3,6 +3,9 @@
 /// Provides a single entry point for all components:
 /// - Button components and utilities
 /// - Input components and validation
+/// - Currency Input components and configurations
+/// - Auth Screens components and configurations
+/// - Profile Preferences components and configurations
 /// - Card components and variants
 /// - FAB components and configurations
 /// - Icon Button components and configurations
@@ -237,3 +240,23 @@ export 'checkout_forms/app_checkout_forms.dart';
 export 'checkout_forms/app_checkout_forms_config.dart';
 export 'checkout_forms/app_checkout_forms_platform_adapter.dart';
 export 'checkout_forms/app_checkout_forms_a11y_helper.dart';
+
+export 'currency_input/app_currency_input.dart';
+export 'currency_input/app_currency_input_config.dart';
+export 'currency_input/app_currency_input_platform_adapter.dart';
+export 'currency_input/app_currency_input_a11y_helper.dart';
+
+export 'auth_screens/app_auth_screens.dart';
+export 'auth_screens/app_auth_screens_config.dart';
+export 'auth_screens/app_auth_screens_platform_adapter.dart';
+export 'auth_screens/app_auth_screens_a11y_helper.dart';
+
+export 'profile_preferences/app_profile_preferences.dart';
+export 'profile_preferences/app_profile_preferences_config.dart';
+export 'profile_preferences/app_profile_preferences_platform_adapter.dart' hide HapticFeedbackType;
+export 'profile_preferences/app_profile_preferences_a11y_helper.dart' hide SubmitFormIntent, CancelIntent;
+
+export 'role_visibility/app_role_visibility.dart';
+export 'role_visibility/app_role_visibility_config.dart';
+export 'role_visibility/app_role_visibility_platform_adapter.dart' hide HapticFeedbackType;
+export 'role_visibility/app_role_visibility_a11y_helper.dart' hide SubmitFormIntent, CancelIntent;
