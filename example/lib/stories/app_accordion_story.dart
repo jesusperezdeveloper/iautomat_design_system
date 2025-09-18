@@ -140,7 +140,7 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
 
             // Variant Control
             DropdownButtonFormField<AppAccordionVariant>(
-              value: _selectedVariant,
+              initialValue: _selectedVariant,
               decoration: const InputDecoration(labelText: 'Variante'),
               items: AppAccordionVariant.values.map((variant) {
                 return DropdownMenuItem(
@@ -161,7 +161,7 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
 
             // State Control
             DropdownButtonFormField<AppAccordionState>(
-              value: _selectedState,
+              initialValue: _selectedState,
               decoration: const InputDecoration(labelText: 'Estado'),
               items: AppAccordionState.values.map((state) {
                 return DropdownMenuItem(

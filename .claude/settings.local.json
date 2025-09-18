@@ -22,7 +22,8 @@
       "Bash(chmod:*)",
       "Bash(./regen.sh:*)",
       "Bash(pkill:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []

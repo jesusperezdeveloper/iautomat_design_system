@@ -11,7 +11,7 @@ class AppSkeletonStory extends StatefulWidget {
 class _AppSkeletonStoryState extends State<AppSkeletonStory> {
   AppSkeletonShape _selectedShape = AppSkeletonShape.rectangle;
   AppSkeletonState _selectedState = AppSkeletonState.skeleton;
-  AppSkeletonVariant _selectedVariant = AppSkeletonVariant.universal;
+  final AppSkeletonVariant _selectedVariant = AppSkeletonVariant.universal;
   double _width = 120;
   double _height = 80;
   bool _interactive = false;
