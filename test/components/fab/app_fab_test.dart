@@ -193,12 +193,14 @@ void main() {
         ));
         await tester.pumpAndSettle();
 
-        final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+        final gesture =
+            await tester.createGesture(kind: PointerDeviceKind.mouse);
         await gesture.addPointer(location: Offset.zero);
         addTearDown(gesture.removePointer);
         await tester.pump();
 
-        await gesture.moveTo(tester.getCenter(find.byType(FloatingActionButton)));
+        await gesture
+            .moveTo(tester.getCenter(find.byType(FloatingActionButton)));
         await tester.pumpAndSettle();
 
         expect(hovered, isTrue);
@@ -206,7 +208,8 @@ void main() {
     });
 
     group('Keyboard support', () {
-      testWidgets('responds to key events when keyboard support is enabled', (tester) async {
+      testWidgets('responds to key events when keyboard support is enabled',
+          (tester) async {
         var tapped = false;
 
         await tester.pumpWidget(createFabApp(
@@ -224,7 +227,8 @@ void main() {
         expect(tapped, isTrue);
       });
 
-      testWidgets('FAB can be tapped when keyboard support is disabled', (tester) async {
+      testWidgets('FAB can be tapped when keyboard support is disabled',
+          (tester) async {
         var tapped = false;
 
         await tester.pumpWidget(createFabApp(
@@ -244,7 +248,8 @@ void main() {
     });
 
     group('RTL support', () {
-      testWidgets('applies RTL directionality when isRtl is true', (tester) async {
+      testWidgets('applies RTL directionality when isRtl is true',
+          (tester) async {
         await tester.pumpWidget(createFabApp(
           config: const AppFabConfig(isRtl: true),
           icon: testIcon,
@@ -267,7 +272,8 @@ void main() {
     });
 
     group('Accessibility', () {
-      testWidgets('provides semantic labels when a11y is enabled', (tester) async {
+      testWidgets('provides semantic labels when a11y is enabled',
+          (tester) async {
         await tester.pumpWidget(createFabApp(
           config: const AppFabConfig(enableA11y: true),
           icon: testIcon,

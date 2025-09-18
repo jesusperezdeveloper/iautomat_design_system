@@ -48,7 +48,7 @@ class AppRadio<T> extends StatefulWidget {
     this.mainAxisSize = MainAxisSize.min,
     this.spacing,
     this.options,
-  }) : assert(
+  })  : assert(
           label == null || labelWidget == null,
           'Cannot provide both label and labelWidget',
         ),
@@ -61,7 +61,8 @@ class AppRadio<T> extends StatefulWidget {
   State<AppRadio<T>> createState() => _AppRadioState<T>();
 }
 
-class _AppRadioState<T> extends State<AppRadio<T>> with TickerProviderStateMixin {
+class _AppRadioState<T> extends State<AppRadio<T>>
+    with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
@@ -70,8 +71,7 @@ class _AppRadioState<T> extends State<AppRadio<T>> with TickerProviderStateMixin
   bool _isPressed = false;
   bool _isFocused = false;
 
-  AppRadioConfig get _config =>
-      widget.config ?? const AppRadioConfig();
+  AppRadioConfig get _config => widget.config ?? const AppRadioConfig();
 
   AppRadioColors get _colors =>
       widget.colors ?? AppRadioColors.fromTheme(Theme.of(context));
@@ -175,7 +175,8 @@ class _AppRadioState<T> extends State<AppRadio<T>> with TickerProviderStateMixin
   void _handleTap() {
     if (!_isEnabled) return;
 
-    if (_config.enableHapticFeedback && (Platform.isIOS || Platform.isAndroid)) {
+    if (_config.enableHapticFeedback &&
+        (Platform.isIOS || Platform.isAndroid)) {
       HapticFeedback.lightImpact();
     }
 
@@ -195,7 +196,8 @@ class _AppRadioState<T> extends State<AppRadio<T>> with TickerProviderStateMixin
 
   Widget _buildStandardRadio() {
     final theme = Theme.of(context);
-    final isRtl = (widget.textDirection ?? Directionality.of(context)) == TextDirection.rtl;
+    final isRtl = (widget.textDirection ?? Directionality.of(context)) ==
+        TextDirection.rtl;
 
     final radioWidget = _buildRadioControl();
 
@@ -203,12 +205,13 @@ class _AppRadioState<T> extends State<AppRadio<T>> with TickerProviderStateMixin
       return radioWidget;
     }
 
-    final labelWidget = widget.labelWidget ?? Text(
-      widget.label!,
-      style: theme.textTheme.bodyMedium?.copyWith(
-        color: _isEnabled ? _colors.labelColor : _colors.disabledLabelColor,
-      ),
-    );
+    final labelWidget = widget.labelWidget ??
+        Text(
+          widget.label!,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: _isEnabled ? _colors.labelColor : _colors.disabledLabelColor,
+          ),
+        );
 
     final spacing = SizedBox(width: widget.spacing ?? 8.0);
 
@@ -226,12 +229,14 @@ class _AppRadioState<T> extends State<AppRadio<T>> with TickerProviderStateMixin
         child: MouseRegion(
           onEnter: (_) => setState(() => _isHovered = true),
           onExit: (_) => setState(() => _isHovered = false),
-          cursor: _isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
+          cursor:
+              _isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
           child: Row(
             mainAxisAlignment: widget.mainAxisAlignment,
             crossAxisAlignment: widget.crossAxisAlignment,
             mainAxisSize: widget.mainAxisSize,
-            textDirection: widget.textDirection ?? (isRtl ? TextDirection.rtl : TextDirection.ltr),
+            textDirection: widget.textDirection ??
+                (isRtl ? TextDirection.rtl : TextDirection.ltr),
             children: children,
           ),
         ),
@@ -275,7 +280,8 @@ class _AppRadioState<T> extends State<AppRadio<T>> with TickerProviderStateMixin
                 config: _config,
                 onTap: () {
                   if (isOptionEnabled) {
-                    if (_config.enableHapticFeedback && (Platform.isIOS || Platform.isAndroid)) {
+                    if (_config.enableHapticFeedback &&
+                        (Platform.isIOS || Platform.isAndroid)) {
                       HapticFeedback.lightImpact();
                     }
                     widget.onChanged?.call(option.value);
@@ -355,12 +361,14 @@ class _AppRadioState<T> extends State<AppRadio<T>> with TickerProviderStateMixin
       child: GestureDetector(
         onTapDown: _isEnabled ? (_) => setState(() => _isPressed = true) : null,
         onTapUp: _isEnabled ? (_) => setState(() => _isPressed = false) : null,
-        onTapCancel: _isEnabled ? () => setState(() => _isPressed = false) : null,
+        onTapCancel:
+            _isEnabled ? () => setState(() => _isPressed = false) : null,
         onTap: _handleTap,
         child: MouseRegion(
           onEnter: _isEnabled ? (_) => setState(() => _isHovered = true) : null,
           onExit: _isEnabled ? (_) => setState(() => _isHovered = false) : null,
-          cursor: _isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
+          cursor:
+              _isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
           child: Container(
             width: _config.minimumTouchTargetSize,
             height: _config.minimumTouchTargetSize,
@@ -445,9 +453,7 @@ class _AppRadioState<T> extends State<AppRadio<T>> with TickerProviderStateMixin
       return const SizedBox.shrink();
     }
 
-    final dotColor = _isEnabled
-        ? _colors.dotColor
-        : _colors.disabledDotColor;
+    final dotColor = _isEnabled ? _colors.dotColor : _colors.disabledDotColor;
 
     return AnimatedBuilder(
       animation: _scaleAnimation,
@@ -510,10 +516,14 @@ class _SegmentedRadioItemState<T> extends State<_SegmentedRadioItem<T>> {
         : widget.colors.segmentTextColor;
 
     final borderRadius = BorderRadius.only(
-      topLeft: Radius.circular(widget.isFirst ? widget.config.segmentBorderRadius : 0),
-      bottomLeft: Radius.circular(widget.isFirst ? widget.config.segmentBorderRadius : 0),
-      topRight: Radius.circular(widget.isLast ? widget.config.segmentBorderRadius : 0),
-      bottomRight: Radius.circular(widget.isLast ? widget.config.segmentBorderRadius : 0),
+      topLeft: Radius.circular(
+          widget.isFirst ? widget.config.segmentBorderRadius : 0),
+      bottomLeft: Radius.circular(
+          widget.isFirst ? widget.config.segmentBorderRadius : 0),
+      topRight: Radius.circular(
+          widget.isLast ? widget.config.segmentBorderRadius : 0),
+      bottomRight: Radius.circular(
+          widget.isLast ? widget.config.segmentBorderRadius : 0),
     );
 
     return Semantics(
@@ -522,25 +532,36 @@ class _SegmentedRadioItemState<T> extends State<_SegmentedRadioItem<T>> {
       inMutuallyExclusiveGroup: true,
       label: widget.option.label,
       child: GestureDetector(
-        onTapDown: widget.isEnabled ? (_) => setState(() => _isPressed = true) : null,
-        onTapUp: widget.isEnabled ? (_) => setState(() => _isPressed = false) : null,
-        onTapCancel: widget.isEnabled ? () => setState(() => _isPressed = false) : null,
+        onTapDown:
+            widget.isEnabled ? (_) => setState(() => _isPressed = true) : null,
+        onTapUp:
+            widget.isEnabled ? (_) => setState(() => _isPressed = false) : null,
+        onTapCancel:
+            widget.isEnabled ? () => setState(() => _isPressed = false) : null,
         onTap: widget.isEnabled ? widget.onTap : null,
         child: MouseRegion(
-          onEnter: widget.isEnabled ? (_) => setState(() => _isHovered = true) : null,
-          onExit: widget.isEnabled ? (_) => setState(() => _isHovered = false) : null,
-          cursor: widget.isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
+          onEnter: widget.isEnabled
+              ? (_) => setState(() => _isHovered = true)
+              : null,
+          onExit: widget.isEnabled
+              ? (_) => setState(() => _isHovered = false)
+              : null,
+          cursor: widget.isEnabled
+              ? SystemMouseCursors.click
+              : SystemMouseCursors.basic,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 150),
             decoration: BoxDecoration(
               color: backgroundColor,
               borderRadius: borderRadius,
-              border: !widget.isLast ? Border(
-                right: BorderSide(
-                  color: widget.colors.segmentBorderColor,
-                  width: widget.config.segmentBorderWidth,
-                ),
-              ) : null,
+              border: !widget.isLast
+                  ? Border(
+                      right: BorderSide(
+                        color: widget.colors.segmentBorderColor,
+                        width: widget.config.segmentBorderWidth,
+                      ),
+                    )
+                  : null,
             ),
             child: Stack(
               children: [
@@ -554,12 +575,14 @@ class _SegmentedRadioItemState<T> extends State<_SegmentedRadioItem<T>> {
                 if (_isPressed && widget.isEnabled)
                   Container(
                     decoration: BoxDecoration(
-                      color: widget.colors.pressedOverlay.withValues(alpha: 0.12),
+                      color:
+                          widget.colors.pressedOverlay.withValues(alpha: 0.12),
                       borderRadius: borderRadius,
                     ),
                   ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
@@ -581,7 +604,9 @@ class _SegmentedRadioItemState<T> extends State<_SegmentedRadioItem<T>> {
                             color: widget.isEnabled
                                 ? textColor
                                 : widget.colors.disabledLabelColor,
-                            fontWeight: widget.isSelected ? FontWeight.w500 : FontWeight.w400,
+                            fontWeight: widget.isSelected
+                                ? FontWeight.w500
+                                : FontWeight.w400,
                           ),
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,

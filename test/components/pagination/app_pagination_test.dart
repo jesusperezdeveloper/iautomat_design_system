@@ -7,7 +7,8 @@ import 'package:iautomat_design_system/src/components/pagination/pagination_conf
 
 void main() {
   group('AppPagination', () {
-    testWidgets('pageBased constructor creates widget with correct properties', (tester) async {
+    testWidgets('pageBased constructor creates widget with correct properties',
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -23,10 +24,12 @@ void main() {
 
       expect(find.byType(AppPagination), findsOneWidget);
       expect(find.text('3'), findsOneWidget); // Current page
-      expect(find.text('21-30 of 100'), findsOneWidget); // Page info (page 3 = items 21-30)
+      expect(find.text('21-30 of 100'),
+          findsOneWidget); // Page info (page 3 = items 21-30)
     });
 
-    testWidgets('cursor constructor creates widget with correct properties', (tester) async {
+    testWidgets('cursor constructor creates widget with correct properties',
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -560,7 +563,8 @@ void main() {
     test('generatePageRange works correctly', () {
       expect(AppPaginationUtils.generatePageRange(5, 20, 5), [3, 4, 5, 6, 7]);
       expect(AppPaginationUtils.generatePageRange(1, 20, 5), [1, 2, 3, 4, 5]);
-      expect(AppPaginationUtils.generatePageRange(20, 20, 5), [16, 17, 18, 19, 20]);
+      expect(AppPaginationUtils.generatePageRange(20, 20, 5),
+          [16, 17, 18, 19, 20]);
       expect(AppPaginationUtils.generatePageRange(5, 5, 5), [1, 2, 3, 4, 5]);
     });
 
@@ -606,13 +610,16 @@ void main() {
       final pageLabel = AppPaginationUtils.getPageButtonSemanticLabel(5, 3, 10);
       expect(pageLabel, 'Go to page 5 of 10');
 
-      final currentPageLabel = AppPaginationUtils.getPageButtonSemanticLabel(3, 3, 10);
+      final currentPageLabel =
+          AppPaginationUtils.getPageButtonSemanticLabel(3, 3, 10);
       expect(currentPageLabel, 'Page 3 of 10, current page');
 
-      final nextLabel = AppPaginationUtils.getNavButtonSemanticLabel('next', true);
+      final nextLabel =
+          AppPaginationUtils.getNavButtonSemanticLabel('next', true);
       expect(nextLabel, 'Go to next page');
 
-      final disabledPrevLabel = AppPaginationUtils.getNavButtonSemanticLabel('previous', false);
+      final disabledPrevLabel =
+          AppPaginationUtils.getNavButtonSemanticLabel('previous', false);
       expect(disabledPrevLabel, 'Go to previous page, disabled');
     });
   });

@@ -224,7 +224,8 @@ void main() {
         ));
         await tester.pumpAndSettle();
 
-        final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+        final gesture =
+            await tester.createGesture(kind: PointerDeviceKind.mouse);
         await gesture.addPointer(location: Offset.zero);
         addTearDown(gesture.removePointer);
         await tester.pump();
@@ -283,7 +284,8 @@ void main() {
     });
 
     group('RTL support', () {
-      testWidgets('applies RTL directionality when isRtl is true', (tester) async {
+      testWidgets('applies RTL directionality when isRtl is true',
+          (tester) async {
         await tester.pumpWidget(createCardApp(
           config: const AppCardConfig(isRtl: true),
           body: bodyWidget,
@@ -306,7 +308,8 @@ void main() {
     });
 
     group('Accessibility', () {
-      testWidgets('provides semantic labels when a11y is enabled', (tester) async {
+      testWidgets('provides semantic labels when a11y is enabled',
+          (tester) async {
         await tester.pumpWidget(createCardApp(
           config: const AppCardConfig(enableA11y: true),
           body: bodyWidget,

@@ -278,7 +278,8 @@ void main() {
         ));
         await tester.pumpAndSettle();
 
-        final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+        final gesture =
+            await tester.createGesture(kind: PointerDeviceKind.mouse);
         await gesture.addPointer(location: Offset.zero);
         addTearDown(gesture.removePointer);
         await tester.pump();
@@ -291,7 +292,8 @@ void main() {
     });
 
     group('Danger state', () {
-      testWidgets('applies danger styling when isDanger is true', (tester) async {
+      testWidgets('applies danger styling when isDanger is true',
+          (tester) async {
         await tester.pumpWidget(createButtonApp(
           config: const AppButtonConfig(
             isDanger: true,
@@ -315,7 +317,8 @@ void main() {
     });
 
     group('Keyboard support', () {
-      testWidgets('responds to key events when keyboard support is enabled', (tester) async {
+      testWidgets('responds to key events when keyboard support is enabled',
+          (tester) async {
         var tapped = false;
 
         await tester.pumpWidget(createButtonApp(
@@ -334,7 +337,8 @@ void main() {
         expect(tapped, isTrue);
       });
 
-      testWidgets('button can be tapped when keyboard support is disabled', (tester) async {
+      testWidgets('button can be tapped when keyboard support is disabled',
+          (tester) async {
         var tapped = false;
 
         await tester.pumpWidget(createButtonApp(
@@ -355,7 +359,8 @@ void main() {
     });
 
     group('RTL support', () {
-      testWidgets('applies RTL directionality when isRtl is true', (tester) async {
+      testWidgets('applies RTL directionality when isRtl is true',
+          (tester) async {
         await tester.pumpWidget(createButtonApp(
           config: const AppButtonConfig(isRtl: true),
           label: labelText,
@@ -378,7 +383,8 @@ void main() {
     });
 
     group('Accessibility', () {
-      testWidgets('provides semantic labels when a11y is enabled', (tester) async {
+      testWidgets('provides semantic labels when a11y is enabled',
+          (tester) async {
         await tester.pumpWidget(createButtonApp(
           config: const AppButtonConfig(enableA11y: true),
           label: labelText,

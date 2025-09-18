@@ -334,7 +334,8 @@ void main() {
                 AppToggleView(
                   value: const ['spacing1'],
                   config: const AppToggleViewConfig(
-                    itemPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    itemPadding:
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     itemSpacing: 16,
                     borderRadius: 8,
                     fontSize: 16,

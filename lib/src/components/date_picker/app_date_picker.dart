@@ -326,7 +326,8 @@ class _AppDatePickerState extends State<AppDatePicker>
   Future<DateTime?> _showDatePicker() async {
     final currentValue = widget.value as DateTime?;
 
-    if (widget.adaptivePlatform && defaultTargetPlatform == TargetPlatform.iOS) {
+    if (widget.adaptivePlatform &&
+        defaultTargetPlatform == TargetPlatform.iOS) {
       return await _showCupertinoDatePicker(currentValue);
     }
 
@@ -398,7 +399,8 @@ class _AppDatePickerState extends State<AppDatePicker>
   Future<TimeOfDay?> _showTimePicker() async {
     final currentValue = widget.value as TimeOfDay?;
 
-    if (widget.adaptivePlatform && defaultTargetPlatform == TargetPlatform.iOS) {
+    if (widget.adaptivePlatform &&
+        defaultTargetPlatform == TargetPlatform.iOS) {
       return await _showCupertinoTimePicker(currentValue);
     }
 
@@ -481,7 +483,9 @@ class _AppDatePickerState extends State<AppDatePicker>
       context: context,
       firstDate: widget.firstDate ?? DateTime(1900),
       lastDate: widget.lastDate ?? DateTime(2100),
-      initialDateRange: currentValue != null && currentValue.start != null && currentValue.end != null
+      initialDateRange: currentValue != null &&
+              currentValue.start != null &&
+              currentValue.end != null
           ? DateTimeRange(start: currentValue.start!, end: currentValue.end!)
           : null,
       locale: widget.locale,
@@ -498,7 +502,9 @@ class _AppDatePickerState extends State<AppDatePicker>
       fieldEndLabelText: 'Fin',
     );
 
-    return result != null ? AppDateRange(start: result.start, end: result.end) : null;
+    return result != null
+        ? AppDateRange(start: result.start, end: result.end)
+        : null;
   }
 
   Widget _buildLoadingState() {
@@ -534,10 +540,10 @@ class _AppDatePickerState extends State<AppDatePicker>
     }
 
     final textStyle = Theme.of(context).textTheme.bodyLarge?.copyWith(
-      color: widget.value != null
-          ? _colors.inputTextColor
-          : _colors.inputHintColor,
-    );
+          color: widget.value != null
+              ? _colors.inputTextColor
+              : _colors.inputHintColor,
+        );
 
     return Row(
       children: [
@@ -595,21 +601,31 @@ class _AppDatePickerState extends State<AppDatePicker>
           focusNode: _focusNode,
           child: GestureDetector(
             onTap: widget.enabled ? _showPicker : null,
-            onTapDown: widget.enabled ? (_) {
-              setState(() => _isPressed = true);
-              _animationController.forward();
-            } : null,
-            onTapUp: widget.enabled ? (_) {
-              setState(() => _isPressed = false);
-              _animationController.reverse();
-            } : null,
-            onTapCancel: widget.enabled ? () {
-              setState(() => _isPressed = false);
-              _animationController.reverse();
-            } : null,
+            onTapDown: widget.enabled
+                ? (_) {
+                    setState(() => _isPressed = true);
+                    _animationController.forward();
+                  }
+                : null,
+            onTapUp: widget.enabled
+                ? (_) {
+                    setState(() => _isPressed = false);
+                    _animationController.reverse();
+                  }
+                : null,
+            onTapCancel: widget.enabled
+                ? () {
+                    setState(() => _isPressed = false);
+                    _animationController.reverse();
+                  }
+                : null,
             child: MouseRegion(
-              onEnter: widget.enabled ? (_) => setState(() => _isHovered = true) : null,
-              onExit: widget.enabled ? (_) => setState(() => _isHovered = false) : null,
+              onEnter: widget.enabled
+                  ? (_) => setState(() => _isHovered = true)
+                  : null,
+              onExit: widget.enabled
+                  ? (_) => setState(() => _isHovered = false)
+                  : null,
               child: AnimatedBuilder(
                 animation: _animationController,
                 builder: (context, child) {
@@ -627,8 +643,10 @@ class _AppDatePickerState extends State<AppDatePicker>
                           color: borderColor,
                           width: _config.borderWidth,
                         ),
-                        borderRadius: BorderRadius.circular(_config.borderRadius),
-                        boxShadow: _config.enableShadow && currentState != AppDatePickerState.disabled
+                        borderRadius:
+                            BorderRadius.circular(_config.borderRadius),
+                        boxShadow: _config.enableShadow &&
+                                currentState != AppDatePickerState.disabled
                             ? [
                                 BoxShadow(
                                   color: _colors.dialogShadowColor,

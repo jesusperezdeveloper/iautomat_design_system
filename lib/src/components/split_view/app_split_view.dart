@@ -53,10 +53,10 @@ class _AppSplitViewState extends State<AppSplitView>
 
   void _setupAnimations() {
     _stateAnimationController = AnimationController(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 300),
       vsync: this,
     );
-
 
     _scaleAnimation = Tween<double>(
       begin: 0.8,
@@ -125,7 +125,8 @@ class _AppSplitViewState extends State<AppSplitView>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
+    final isRtl =
+        widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
 
     return Directionality(
       textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
@@ -141,10 +142,12 @@ class _AppSplitViewState extends State<AppSplitView>
             builder: (context, child) {
               return AnimatedOpacity(
                 opacity: widget.config.state.opacity,
-                duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+                duration: Duration(
+                    milliseconds: widget.config.animation?.duration ?? 300),
                 child: AnimatedScale(
                   scale: _scaleAnimation.value,
-                  duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+                  duration: Duration(
+                      milliseconds: widget.config.animation?.duration ?? 300),
                   child: _buildSplitViewContent(theme, isRtl),
                 ),
               );
@@ -171,10 +174,12 @@ class _AppSplitViewState extends State<AppSplitView>
     return Container(
       width: widget.width,
       height: widget.height ?? widget.config.spacing?.minHeight ?? 200.0,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.padding ?? 4.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.padding ?? 4.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
       ),
       child: const Center(
         child: Column(
@@ -199,10 +204,12 @@ class _AppSplitViewState extends State<AppSplitView>
     return Container(
       width: widget.width,
       height: widget.height ?? widget.config.spacing?.minHeight ?? 200.0,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.padding ?? 4.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.padding ?? 4.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
       ),
       child: isHorizontal
           ? Row(
@@ -267,25 +274,26 @@ class _AppSplitViewState extends State<AppSplitView>
 
   Widget _buildResizableSplitView(ThemeData theme, bool isRtl) {
     final isHorizontal = widget.config.direction.isHorizontal;
-    final canResize = widget.config.state.canResize && (widget.config.behavior?.enableResize ?? true);
+    final canResize = widget.config.state.canResize &&
+        (widget.config.behavior?.enableResize ?? true);
 
     return Container(
       width: widget.width,
       height: widget.height,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.padding ?? 4.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.padding ?? 4.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
         border: widget.config.colors?.borderColor != null
             ? Border.all(color: widget.config.colors!.borderColor!)
             : null,
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final availableSize = isHorizontal
-              ? constraints.maxWidth
-              : constraints.maxHeight;
-
+          final availableSize =
+              isHorizontal ? constraints.maxWidth : constraints.maxHeight;
 
           if (isHorizontal) {
             return Row(
@@ -347,13 +355,15 @@ class _AppSplitViewState extends State<AppSplitView>
     return Container(
       width: widget.width,
       height: widget.height,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.padding ?? 4.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.padding ?? 4.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
         border: widget.config.colors?.borderColor != null
             ? Border.all(color: widget.config.colors!.borderColor!)
             : null,
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
       ),
       child: isHorizontal
           ? Row(
@@ -399,10 +409,12 @@ class _AppSplitViewState extends State<AppSplitView>
     Widget pane = Container(
       decoration: BoxDecoration(
         color: paneColor,
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
         child: child,
       ),
     );
@@ -418,11 +430,13 @@ class _AppSplitViewState extends State<AppSplitView>
     return pane;
   }
 
-  Widget _buildDivider(ThemeData theme, bool canResize, double availableSize, bool isHorizontal) {
+  Widget _buildDivider(ThemeData theme, bool canResize, double availableSize,
+      bool isHorizontal) {
     if (!canResize) {
       return Container(
         width: isHorizontal ? widget.config.spacing?.dividerWidth ?? 1.0 : null,
-        height: isHorizontal ? null : widget.config.spacing?.dividerWidth ?? 1.0,
+        height:
+            isHorizontal ? null : widget.config.spacing?.dividerWidth ?? 1.0,
         color: _getDividerColor(theme),
       );
     }
@@ -430,18 +444,24 @@ class _AppSplitViewState extends State<AppSplitView>
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovering = true),
       onExit: (_) => setState(() => _isHovering = false),
-      cursor: isHorizontal ? SystemMouseCursors.resizeColumn : SystemMouseCursors.resizeRow,
+      cursor: isHorizontal
+          ? SystemMouseCursors.resizeColumn
+          : SystemMouseCursors.resizeRow,
       child: GestureDetector(
         onPanStart: _handlePanStart,
-        onPanUpdate: (details) => _handlePanUpdate(details, availableSize, isHorizontal),
+        onPanUpdate: (details) =>
+            _handlePanUpdate(details, availableSize, isHorizontal),
         onPanEnd: _handlePanEnd,
         onTap: () => _handleDividerTap(theme),
         child: Container(
-          width: isHorizontal ? widget.config.spacing?.handleWidth ?? 8.0 : null,
-          height: isHorizontal ? null : widget.config.spacing?.handleHeight ?? 24.0,
+          width:
+              isHorizontal ? widget.config.spacing?.handleWidth ?? 8.0 : null,
+          height:
+              isHorizontal ? null : widget.config.spacing?.handleHeight ?? 24.0,
           decoration: BoxDecoration(
             color: _getDividerStateColor(theme),
-            borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 2.0),
+            borderRadius: BorderRadius.circular(
+                widget.config.spacing?.borderRadius ?? 2.0),
           ),
           child: _buildDividerHandle(theme, isHorizontal),
         ),
@@ -475,7 +495,8 @@ class _AppSplitViewState extends State<AppSplitView>
     }
   }
 
-  void _handlePanUpdate(DragUpdateDetails details, double availableSize, bool isHorizontal) {
+  void _handlePanUpdate(
+      DragUpdateDetails details, double availableSize, bool isHorizontal) {
     if (!widget.config.state.canResize || !_isDragging) return;
 
     final delta = isHorizontal ? details.delta.dx : details.delta.dy;
@@ -550,7 +571,8 @@ class _AppSplitViewState extends State<AppSplitView>
   }
 
   KeyEventResult _handleKeyEvent(FocusNode node, KeyEvent event) {
-    if (!widget.config.enableKeyboardSupport || !widget.config.state.canResize) {
+    if (!widget.config.enableKeyboardSupport ||
+        !widget.config.state.canResize) {
       return KeyEventResult.ignored;
     }
 
@@ -585,34 +607,32 @@ class _AppSplitViewState extends State<AppSplitView>
 
   // Color getters
   Color? _getBackgroundColor(ThemeData theme) {
-    return widget.config.colors?.backgroundColor ??
-           theme.colorScheme.surface;
+    return widget.config.colors?.backgroundColor ?? theme.colorScheme.surface;
   }
 
   Color? _getDividerColor(ThemeData theme) {
-    return widget.config.colors?.dividerColor ??
-           theme.colorScheme.outline;
+    return widget.config.colors?.dividerColor ?? theme.colorScheme.outline;
   }
 
   Color? _getDividerStateColor(ThemeData theme) {
     if (!widget.config.state.isInteractive) {
       return widget.config.colors?.dividerDisabledColor ??
-             theme.colorScheme.outline.withValues(alpha: 0.5);
+          theme.colorScheme.outline.withValues(alpha: 0.5);
     }
 
     if (_isDragging) {
       return widget.config.colors?.dividerPressedColor ??
-             theme.colorScheme.primary;
+          theme.colorScheme.primary;
     }
 
     if (_isHovering) {
       return widget.config.colors?.dividerHoverColor ??
-             theme.colorScheme.primary.withValues(alpha: 0.8);
+          theme.colorScheme.primary.withValues(alpha: 0.8);
     }
 
     if (_isFocused) {
       return widget.config.colors?.dividerFocusColor ??
-             theme.colorScheme.primary.withValues(alpha: 0.6);
+          theme.colorScheme.primary.withValues(alpha: 0.6);
     }
 
     return _getDividerColor(theme);
@@ -625,15 +645,15 @@ class _AppSplitViewState extends State<AppSplitView>
 
     if (_isDragging) {
       return widget.config.colors?.handlePressedColor ??
-             theme.colorScheme.onPrimary;
+          theme.colorScheme.onPrimary;
     }
 
     if (_isHovering) {
       return widget.config.colors?.handleHoverColor ??
-             theme.colorScheme.onPrimary.withValues(alpha: 0.8);
+          theme.colorScheme.onPrimary.withValues(alpha: 0.8);
     }
 
     return widget.config.colors?.handleColor ??
-           theme.colorScheme.onSurface.withValues(alpha: 0.6);
+        theme.colorScheme.onSurface.withValues(alpha: 0.6);
   }
 }

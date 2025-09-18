@@ -18,7 +18,8 @@ void main() {
 
         expect(timeline.config.variant, equals(AppTimelineVariant.activity));
         expect(timeline.config.events, equals(events));
-        expect(timeline.config.orientation, equals(AppTimelineOrientation.vertical));
+        expect(timeline.config.orientation,
+            equals(AppTimelineOrientation.vertical));
         expect(timeline.config.spacing, equals(AppTimelineSpacing.medium));
       });
 
@@ -28,7 +29,8 @@ void main() {
           orientation: AppTimelineOrientation.horizontal,
         );
 
-        expect(timeline.config.orientation, equals(AppTimelineOrientation.horizontal));
+        expect(timeline.config.orientation,
+            equals(AppTimelineOrientation.horizontal));
       });
 
       test('should create AppTimeline with custom connector style', () {
@@ -37,7 +39,8 @@ void main() {
           connectorStyle: AppTimelineConnectorStyle.dashed,
         );
 
-        expect(timeline.config.connectorStyle, equals(AppTimelineConnectorStyle.dashed));
+        expect(timeline.config.connectorStyle,
+            equals(AppTimelineConnectorStyle.dashed));
       });
 
       test('should create AppTimeline with custom indicator style', () {
@@ -46,7 +49,8 @@ void main() {
           indicatorStyle: AppTimelineIndicatorStyle.icon,
         );
 
-        expect(timeline.config.indicatorStyle, equals(AppTimelineIndicatorStyle.icon));
+        expect(timeline.config.indicatorStyle,
+            equals(AppTimelineIndicatorStyle.icon));
       });
     });
 
@@ -157,7 +161,7 @@ void main() {
         );
 
         expect(timeline1.config.getEffectiveConnectorWidth(),
-               equals(AppTimelineConstants.defaultConnectorWidth));
+            equals(AppTimelineConstants.defaultConnectorWidth));
         expect(timeline2.config.getEffectiveConnectorWidth(), equals(4.0));
       });
 
@@ -169,7 +173,7 @@ void main() {
         );
 
         expect(timeline1.config.getEffectiveIndicatorSize(),
-               equals(AppTimelineSpacing.medium.indicatorSize));
+            equals(AppTimelineSpacing.medium.indicatorSize));
         expect(timeline2.config.getEffectiveIndicatorSize(), equals(20.0));
       });
 
@@ -181,7 +185,7 @@ void main() {
         );
 
         expect(timeline1.config.getEffectiveItemSpacing(),
-               equals(AppTimelineSpacing.medium.itemSpacing));
+            equals(AppTimelineSpacing.medium.itemSpacing));
         expect(timeline2.config.getEffectiveItemSpacing(), equals(24.0));
       });
 
@@ -274,7 +278,8 @@ void main() {
         expect(find.byType(Container), findsWidgets);
       });
 
-      testWidgets('should render skeleton when skeleton is true', (tester) async {
+      testWidgets('should render skeleton when skeleton is true',
+          (tester) async {
         final timeline = AppTimeline.activity(
           events: [],
           skeleton: true,
@@ -287,7 +292,8 @@ void main() {
     });
 
     group('Interactions', () {
-      testWidgets('should call onEventTap when event is tapped', (tester) async {
+      testWidgets('should call onEventTap when event is tapped',
+          (tester) async {
         int? tappedIndex;
 
         final events = [
@@ -323,7 +329,8 @@ void main() {
         expect(tapped, isTrue);
       });
 
-      testWidgets('should not respond to interactions when disabled', (tester) async {
+      testWidgets('should not respond to interactions when disabled',
+          (tester) async {
         bool tapped = false;
 
         final timeline = AppTimeline.activity(
@@ -358,7 +365,8 @@ void main() {
         expect(find.text('Event 2'), findsOneWidget);
       });
 
-      testWidgets('should render horizontal timeline correctly', (tester) async {
+      testWidgets('should render horizontal timeline correctly',
+          (tester) async {
         final events = [
           AppTimelineEvent(id: '1', title: 'Event 1'),
           AppTimelineEvent(id: '2', title: 'Event 2'),
@@ -412,7 +420,8 @@ void main() {
         expect(find.byIcon(Icons.meeting_room), findsOneWidget);
       });
 
-      testWidgets('should render events with different statuses', (tester) async {
+      testWidgets('should render events with different statuses',
+          (tester) async {
         final events = [
           AppTimelineEvent(
             id: '1',

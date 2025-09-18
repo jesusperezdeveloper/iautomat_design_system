@@ -123,7 +123,8 @@ class CalendarStory {
           id: 'week-4',
           title: 'Recordatorio importante',
           startTime: DateTime.now().add(const Duration(days: 2, hours: 8)),
-          endTime: DateTime.now().add(const Duration(days: 2, hours: 8, minutes: 15)),
+          endTime: DateTime.now()
+              .add(const Duration(days: 2, hours: 8, minutes: 15)),
           type: AppCalendarEventType.reminder,
           priority: AppCalendarEventPriority.critical,
         ),
@@ -204,7 +205,8 @@ class CalendarStory {
         AppCalendarEvent(
           id: 'meeting-1',
           title: 'Reunión de planificación Q1',
-          description: 'Revisión de objetivos y estrategia para el primer trimestre',
+          description:
+              'Revisión de objetivos y estrategia para el primer trimestre',
           startTime: now.add(const Duration(days: 1, hours: 9)),
           endTime: now.add(const Duration(days: 1, hours: 11)),
           type: AppCalendarEventType.meeting,
@@ -317,7 +319,8 @@ class CalendarStory {
           id: 'resource-3',
           title: 'Presentación a stakeholders',
           startTime: DateTime.now().add(const Duration(days: 2, hours: 16)),
-          endTime: DateTime.now().add(const Duration(days: 2, hours: 17, minutes: 30)),
+          endTime: DateTime.now()
+              .add(const Duration(days: 2, hours: 17, minutes: 30)),
           type: AppCalendarEventType.meeting,
           priority: AppCalendarEventPriority.high,
         ),
@@ -378,8 +381,18 @@ class CalendarStory {
       ],
       localization: AppCalendarLocalization(
         monthNames: [
-          'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-          'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+          'Enero',
+          'Febrero',
+          'Marzo',
+          'Abril',
+          'Mayo',
+          'Junio',
+          'Julio',
+          'Agosto',
+          'Septiembre',
+          'Octubre',
+          'Noviembre',
+          'Diciembre'
         ],
         dayNames: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
         timeFormat: 24,

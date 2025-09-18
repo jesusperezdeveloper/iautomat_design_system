@@ -194,7 +194,8 @@ void main() {
 
     testWidgets('multiline variant', (tester) async {
       final controller = TextEditingController(
-        text: 'This is a multiline text field.\nIt supports multiple lines of text.\nLike this third line.',
+        text:
+            'This is a multiline text field.\nIt supports multiple lines of text.\nLike this third line.',
       );
 
       await tester.pumpWidget(

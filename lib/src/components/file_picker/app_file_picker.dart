@@ -278,17 +278,17 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   Widget _buildLabel() {
-    final colors = _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
-    final typography = _config.typography ?? AppFilePickerTypography.fromTheme(Theme.of(context));
+    final colors =
+        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+    final typography = _config.typography ??
+        AppFilePickerTypography.fromTheme(Theme.of(context));
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Text(
         widget.label!,
         style: typography.labelStyle.copyWith(
-          color: widget.enabled
-              ? colors.textColor
-              : colors.disabledTextColor,
+          color: widget.enabled ? colors.textColor : colors.disabledTextColor,
         ),
       ),
     );
@@ -304,7 +304,8 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   Widget _buildDragDropArea() {
-    final colors = _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+    final colors =
+        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
 
     return AnimatedBuilder(
       animation: Listenable.merge([_scaleAnimation, _hoverAnimation]),
@@ -387,8 +388,10 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   Widget _buildDragDropContent() {
-    final colors = _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
-    final typography = _config.typography ?? AppFilePickerTypography.fromTheme(Theme.of(context));
+    final colors =
+        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+    final typography = _config.typography ??
+        AppFilePickerTypography.fromTheme(Theme.of(context));
     final icons = _config.icons ?? const AppFilePickerIcons();
 
     if (widget.state == AppFilePickerState.loading) {
@@ -415,9 +418,8 @@ class _AppFilePickerState extends State<AppFilePicker>
           Text(
             _getDragDropMainText(),
             style: typography.dragLabelStyle.copyWith(
-              color: widget.enabled
-                  ? colors.textColor
-                  : colors.disabledTextColor,
+              color:
+                  widget.enabled ? colors.textColor : colors.disabledTextColor,
             ),
             textAlign: TextAlign.center,
           ),
@@ -446,7 +448,8 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   Widget _buildMultiSelector() {
-    final colors = _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+    final colors =
+        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
 
     return AnimatedBuilder(
       animation: _scaleAnimation,
@@ -507,8 +510,10 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   Widget _buildMultiSelectorContent() {
-    final colors = _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
-    final typography = _config.typography ?? AppFilePickerTypography.fromTheme(Theme.of(context));
+    final colors =
+        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+    final typography = _config.typography ??
+        AppFilePickerTypography.fromTheme(Theme.of(context));
     final icons = _config.icons ?? const AppFilePickerIcons();
 
     if (widget.state == AppFilePickerState.loading) {
@@ -547,8 +552,10 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   Widget _buildLoadingContent() {
-    final colors = _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
-    final typography = _config.typography ?? AppFilePickerTypography.fromTheme(Theme.of(context));
+    final colors =
+        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+    final typography = _config.typography ??
+        AppFilePickerTypography.fromTheme(Theme.of(context));
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -574,8 +581,10 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   Widget _buildHelperText() {
-    final colors = _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
-    final typography = _config.typography ?? AppFilePickerTypography.fromTheme(Theme.of(context));
+    final colors =
+        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+    final typography = _config.typography ??
+        AppFilePickerTypography.fromTheme(Theme.of(context));
 
     String? text;
     Color textColor;
@@ -619,8 +628,10 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   Widget _buildFilePreviewItem(AppFileData file) {
-    final colors = _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
-    final typography = _config.typography ?? AppFilePickerTypography.fromTheme(Theme.of(context));
+    final colors =
+        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+    final typography = _config.typography ??
+        AppFilePickerTypography.fromTheme(Theme.of(context));
     final icons = _config.icons ?? const AppFilePickerIcons();
 
     return Container(
@@ -676,7 +687,8 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   Widget _buildSkeleton() {
-    final colors = _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+    final colors =
+        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
 
     return Container(
       height: _config.minSize.height,
@@ -777,7 +789,8 @@ class _AppFilePickerState extends State<AppFilePicker>
       setState(() {
         if (widget.allowMultiple) {
           _selectedFiles.addAll(validFiles);
-          if (widget.maxFiles != null && _selectedFiles.length > widget.maxFiles!) {
+          if (widget.maxFiles != null &&
+              _selectedFiles.length > widget.maxFiles!) {
             _selectedFiles = _selectedFiles.take(widget.maxFiles!).toList();
           }
         } else {
@@ -796,21 +809,24 @@ class _AppFilePickerState extends State<AppFilePicker>
   bool _validateFile(AppFileData file) {
     // Size validation
     if (!AppFileValidators.validateSize(file, widget.maxSize)) {
-      final error = 'El archivo "${file.name}" excede el tamaño máximo de ${widget.maxSize.formatted}';
+      final error =
+          'El archivo "${file.name}" excede el tamaño máximo de ${widget.maxSize.formatted}';
       _handleValidationError(error, file);
       return false;
     }
 
     // Extension validation
     if (!AppFileValidators.validateExtension(file, widget.accept)) {
-      final error = 'El archivo "${file.name}" no tiene una extensión permitida';
+      final error =
+          'El archivo "${file.name}" no tiene una extensión permitida';
       _handleValidationError(error, file);
       return false;
     }
 
     // Custom validation
     if (widget.customValidator != null && !widget.customValidator!(file)) {
-      final error = 'El archivo "${file.name}" no pasó la validación personalizada';
+      final error =
+          'El archivo "${file.name}" no pasó la validación personalizada';
       _handleValidationError(error, file);
       return false;
     }

@@ -20,7 +20,6 @@ class AppScaffoldConfig with _$AppScaffoldConfig {
     SidePanelConfig? sidePanel,
     FloatingActionConfig? floatingAction,
   }) = _AppScaffoldConfig;
-
 }
 
 @freezed
@@ -32,7 +31,6 @@ class AppNavigationConfig with _$AppNavigationConfig {
     Widget? header,
     required List<NavigationItem> items,
   }) = _AppNavigationConfig;
-
 }
 
 @freezed
@@ -47,7 +45,6 @@ class AppBarConfig with _$AppBarConfig {
     Widget? leading,
     PreferredSizeWidget? bottom,
   }) = _AppBarConfig;
-
 }
 
 @freezed
@@ -58,7 +55,6 @@ class BodyConfig with _$BodyConfig {
     EdgeInsetsGeometry? padding,
     Widget? child,
   }) = _BodyConfig;
-
 }
 
 @freezed
@@ -70,7 +66,6 @@ class BottomBarConfig with _$BottomBarConfig {
     int? selectedIndex,
     ValueChanged<int>? onTap,
   }) = _BottomBarConfig;
-
 }
 
 @freezed
@@ -85,20 +80,19 @@ class SidePanelConfig with _$SidePanelConfig {
     int? selectedIndex,
     ValueChanged<int>? onDestinationSelected,
   }) = _SidePanelConfig;
-
 }
 
 @freezed
 class FloatingActionConfig with _$FloatingActionConfig {
   const factory FloatingActionConfig({
-    @Default(FloatingActionButtonLocation.endFloat) FloatingActionButtonLocation location,
+    @Default(FloatingActionButtonLocation.endFloat)
+    FloatingActionButtonLocation location,
     @Default(true) bool mini,
     Widget? child,
     VoidCallback? onPressed,
     String? tooltip,
     String? heroTag,
   }) = _FloatingActionConfig;
-
 }
 
 @freezed
@@ -112,7 +106,6 @@ class NavigationItem with _$NavigationItem {
     @Default(false) bool isSelected,
     @Default(false) bool disabled,
   }) = _NavigationItem;
-
 }
 
 @freezed
@@ -124,7 +117,6 @@ class BottomBarItem with _$BottomBarItem {
     String? tooltip,
     @Default(false) bool disabled,
   }) = _BottomBarItem;
-
 }
 
 enum AppScaffoldVariant {

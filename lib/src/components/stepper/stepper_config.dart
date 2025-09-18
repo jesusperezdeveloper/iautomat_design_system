@@ -15,7 +15,8 @@ class AppStepperConfig with _$AppStepperConfig {
     @Default(16.0) double horizontalSpacing,
     @Default(24.0) double verticalSpacing,
     @Default(EdgeInsets.all(16.0)) EdgeInsets contentPadding,
-    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)) EdgeInsets stepPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0))
+    EdgeInsets stepPadding,
     @Default(16.0) double titleSpacing,
     @Default(8.0) double subtitleSpacing,
     @Default(12.0) double iconSize,
@@ -146,7 +147,8 @@ class AppStepperColors with _$AppStepperColors {
       controlButtonColor: colorScheme.primary,
       controlButtonTextColor: colorScheme.onPrimary,
       controlButtonDisabledColor: colorScheme.onSurface.withValues(alpha: 0.12),
-      controlButtonDisabledTextColor: colorScheme.onSurface.withValues(alpha: 0.38),
+      controlButtonDisabledTextColor:
+          colorScheme.onSurface.withValues(alpha: 0.38),
     );
   }
 }
@@ -224,7 +226,8 @@ class AppStepperValidator {
     return null;
   }
 
-  static String? Function(String?) custom(bool Function(String?) validator, String message) {
+  static String? Function(String?) custom(
+      bool Function(String?) validator, String message) {
     return (String? value) {
       if (value != null && !validator(value)) {
         return message;
@@ -233,7 +236,8 @@ class AppStepperValidator {
     };
   }
 
-  static String? Function(AppStep) stepValidator(bool Function(AppStep) validator, String message) {
+  static String? Function(AppStep) stepValidator(
+      bool Function(AppStep) validator, String message) {
     return (AppStep step) {
       if (!validator(step)) {
         return message;
@@ -315,7 +319,8 @@ extension AppStepperExtensions on List<AppStep> {
   }
 
   List<AppStep> markStepCompleted(int index) {
-    return updateStepAt(index, stepAt(index)!.copyWith(state: AppStepState.completed));
+    return updateStepAt(
+        index, stepAt(index)!.copyWith(state: AppStepState.completed));
   }
 
   List<AppStep> markStepActive(int index) {

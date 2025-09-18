@@ -95,11 +95,15 @@ class _PaginationStoriesState extends State<PaginationStories> {
                     if (isNext) {
                       cursorPage++;
                       previousCursor = 'cursor-page-${cursorPage - 1}';
-                      nextCursor = cursorPage < 5 ? 'cursor-page-${cursorPage + 1}' : null;
+                      nextCursor = cursorPage < 5
+                          ? 'cursor-page-${cursorPage + 1}'
+                          : null;
                     } else {
                       cursorPage--;
                       nextCursor = 'cursor-page-${cursorPage + 1}';
-                      previousCursor = cursorPage > 1 ? 'cursor-page-${cursorPage - 1}' : null;
+                      previousCursor = cursorPage > 1
+                          ? 'cursor-page-${cursorPage - 1}'
+                          : null;
                     }
                   });
                 },
@@ -271,9 +275,15 @@ class _PaginationStoryExampleState extends State<PaginationStoryExample> {
                     ),
                     child: const Row(
                       children: [
-                        Expanded(child: Text('Name', style: TextStyle(fontWeight: FontWeight.bold))),
-                        Expanded(child: Text('Email', style: TextStyle(fontWeight: FontWeight.bold))),
-                        Expanded(child: Text('Role', style: TextStyle(fontWeight: FontWeight.bold))),
+                        Expanded(
+                            child: Text('Name',
+                                style: TextStyle(fontWeight: FontWeight.bold))),
+                        Expanded(
+                            child: Text('Email',
+                                style: TextStyle(fontWeight: FontWeight.bold))),
+                        Expanded(
+                            child: Text('Role',
+                                style: TextStyle(fontWeight: FontWeight.bold))),
                       ],
                     ),
                   ),
@@ -281,8 +291,11 @@ class _PaginationStoryExampleState extends State<PaginationStoryExample> {
                     child: ListView.builder(
                       itemCount: pageSize,
                       itemBuilder: (context, index) {
-                        final itemIndex = (currentPage - 1) * pageSize + index + 1;
-                        if (itemIndex > totalItems) return const SizedBox.shrink();
+                        final itemIndex =
+                            (currentPage - 1) * pageSize + index + 1;
+                        if (itemIndex > totalItems) {
+                          return const SizedBox.shrink();
+                        }
 
                         return Container(
                           padding: const EdgeInsets.all(16),
@@ -294,8 +307,11 @@ class _PaginationStoryExampleState extends State<PaginationStoryExample> {
                           child: Row(
                             children: [
                               Expanded(child: Text('User $itemIndex')),
-                              Expanded(child: Text('user$itemIndex@example.com')),
-                              Expanded(child: Text(itemIndex % 3 == 0 ? 'Admin' : 'User')),
+                              Expanded(
+                                  child: Text('user$itemIndex@example.com')),
+                              Expanded(
+                                  child: Text(
+                                      itemIndex % 3 == 0 ? 'Admin' : 'User')),
                             ],
                           ),
                         );

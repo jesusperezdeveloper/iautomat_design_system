@@ -7,7 +7,8 @@ part 'select_config.freezed.dart';
 @freezed
 class AppSelectConfig with _$AppSelectConfig {
   const factory AppSelectConfig({
-    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0)) EdgeInsets contentPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0))
+    EdgeInsets contentPadding,
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
     @Default(2.0) double borderWidth,
@@ -93,8 +94,8 @@ class AppSelectColors with _$AppSelectColors {
       errorBorderColor: colorScheme.error,
       disabledBorderColor: colorScheme.onSurface.withValues(alpha: 0.12),
       fillColor: isDark
-        ? colorScheme.surfaceContainerHighest
-        : colorScheme.surfaceContainerLowest,
+          ? colorScheme.surfaceContainerHighest
+          : colorScheme.surfaceContainerLowest,
       disabledFillColor: colorScheme.onSurface.withValues(alpha: 0.04),
       textColor: colorScheme.onSurface,
       disabledTextColor: colorScheme.onSurface.withValues(alpha: 0.38),
@@ -126,7 +127,8 @@ class AppSelectColors with _$AppSelectColors {
       chipBackgroundColor: colorScheme.secondaryContainer,
       chipTextColor: colorScheme.onSecondaryContainer,
       chipBorderColor: colorScheme.outline.withValues(alpha: 0.2),
-      chipDeleteIconColor: colorScheme.onSecondaryContainer.withValues(alpha: 0.7),
+      chipDeleteIconColor:
+          colorScheme.onSecondaryContainer.withValues(alpha: 0.7),
     );
   }
 }
@@ -193,7 +195,8 @@ class AppSelectValidator {
     };
   }
 
-  static String? Function(T?) combine<T>(List<String? Function(T?)> validators) {
+  static String? Function(T?) combine<T>(
+      List<String? Function(T?)> validators) {
     return (T? value) {
       for (final validator in validators) {
         final result = validator(value);

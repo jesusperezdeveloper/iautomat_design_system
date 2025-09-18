@@ -186,7 +186,8 @@ class _AppDataTableState extends State<AppDataTable>
       curve: widget.config.animationCurve,
     ));
 
-    _horizontalController = widget.horizontalScrollController ?? ScrollController();
+    _horizontalController =
+        widget.horizontalScrollController ?? ScrollController();
     _verticalController = widget.verticalScrollController ?? ScrollController();
 
     _initializeState();
@@ -218,7 +219,8 @@ class _AppDataTableState extends State<AppDataTable>
     }
 
     // Apply sorting if specified
-    if (_currentSort?.columnId != null && _currentSort!.direction != AppDataTableSortDirection.none) {
+    if (_currentSort?.columnId != null &&
+        _currentSort!.direction != AppDataTableSortDirection.none) {
       _applySorting(_currentSort!.columnId!, _currentSort!.direction);
     }
 
@@ -287,7 +289,8 @@ class _AppDataTableState extends State<AppDataTable>
     );
   }
 
-  Widget _buildTable(BuildContext context, ThemeData theme, TextDirection textDirection) {
+  Widget _buildTable(
+      BuildContext context, ThemeData theme, TextDirection textDirection) {
     return Container(
       constraints: BoxConstraints(
         minHeight: widget.config.minHeight,
@@ -295,7 +298,8 @@ class _AppDataTableState extends State<AppDataTable>
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(widget.config.borderRadius),
-        color: widget.config.theme?.rowBackgroundColor ?? theme.colorScheme.surface,
+        color: widget.config.theme?.rowBackgroundColor ??
+            theme.colorScheme.surface,
         boxShadow: [
           BoxShadow(
             color: theme.shadowColor.withValues(alpha: 0.1),
@@ -309,7 +313,8 @@ class _AppDataTableState extends State<AppDataTable>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (widget.config.showHeaders) _buildHeader(context, theme, textDirection),
+            if (widget.config.showHeaders)
+              _buildHeader(context, theme, textDirection),
             Flexible(
               child: _buildTableBody(context, theme, textDirection),
             ),
@@ -320,11 +325,13 @@ class _AppDataTableState extends State<AppDataTable>
     );
   }
 
-  Widget _buildHeader(BuildContext context, ThemeData theme, TextDirection textDirection) {
+  Widget _buildHeader(
+      BuildContext context, ThemeData theme, TextDirection textDirection) {
     return Container(
       height: widget.config.headerHeight,
       decoration: BoxDecoration(
-        color: widget.config.theme?.headerBackgroundColor ?? theme.colorScheme.surfaceContainerHighest,
+        color: widget.config.theme?.headerBackgroundColor ??
+            theme.colorScheme.surfaceContainerHighest,
         border: Border(
           bottom: BorderSide(
             color: widget.config.theme?.borderColor ?? theme.dividerColor,
@@ -336,8 +343,7 @@ class _AppDataTableState extends State<AppDataTable>
         children: [
           if (widget.config.showRowNumbers)
             _buildRowNumberHeader(context, theme),
-          if (_hasSelectionColumn())
-            _buildSelectionHeader(context, theme),
+          if (_hasSelectionColumn()) _buildSelectionHeader(context, theme),
           Expanded(
             child: _buildColumnsHeader(context, theme, textDirection),
           ),
@@ -360,8 +366,8 @@ class _AppDataTableState extends State<AppDataTable>
 
   Widget _buildSelectionHeader(BuildContext context, ThemeData theme) {
     final hasSelectAll = _currentSelection?.allowSelectAll == true;
-    final allSelected = _displayRows.isNotEmpty &&
-        _displayRows.every((row) => row.selected);
+    final allSelected =
+        _displayRows.isNotEmpty && _displayRows.every((row) => row.selected);
 
     return Container(
       width: 48,
@@ -377,8 +383,10 @@ class _AppDataTableState extends State<AppDataTable>
     );
   }
 
-  Widget _buildColumnsHeader(BuildContext context, ThemeData theme, TextDirection textDirection) {
-    if (widget.variant == AppDataTableVariant.pinned && widget.config.freezeConfig != null) {
+  Widget _buildColumnsHeader(
+      BuildContext context, ThemeData theme, TextDirection textDirection) {
+    if (widget.variant == AppDataTableVariant.pinned &&
+        widget.config.freezeConfig != null) {
       return _buildPinnedColumnsHeader(context, theme, textDirection);
     }
 
@@ -388,27 +396,35 @@ class _AppDataTableState extends State<AppDataTable>
       child: Row(
         children: widget.columns
             .where((column) => column.visible)
-            .map((column) => _buildColumnHeader(context, theme, textDirection, column))
+            .map((column) =>
+                _buildColumnHeader(context, theme, textDirection, column))
             .toList(),
       ),
     );
   }
 
-  Widget _buildPinnedColumnsHeader(BuildContext context, ThemeData theme, TextDirection textDirection) {
+  Widget _buildPinnedColumnsHeader(
+      BuildContext context, ThemeData theme, TextDirection textDirection) {
     final freezeConfig = widget.config.freezeConfig!;
-    final visibleColumns = widget.columns.where((column) => column.visible).toList();
+    final visibleColumns =
+        widget.columns.where((column) => column.visible).toList();
 
     final leftColumns = visibleColumns.take(freezeConfig.leftColumns).toList();
     final centerColumns = visibleColumns
         .skip(freezeConfig.leftColumns)
-        .take(visibleColumns.length - freezeConfig.leftColumns - freezeConfig.rightColumns)
+        .take(visibleColumns.length -
+            freezeConfig.leftColumns -
+            freezeConfig.rightColumns)
         .toList();
-    final rightColumns = visibleColumns.skip(visibleColumns.length - freezeConfig.rightColumns).toList();
+    final rightColumns = visibleColumns
+        .skip(visibleColumns.length - freezeConfig.rightColumns)
+        .toList();
 
     return Row(
       children: [
         // Left pinned columns
-        ...leftColumns.map((column) => _buildColumnHeader(context, theme, textDirection, column)),
+        ...leftColumns.map((column) =>
+            _buildColumnHeader(context, theme, textDirection, column)),
 
         // Scrollable center columns
         if (centerColumns.isNotEmpty)
@@ -418,14 +434,16 @@ class _AppDataTableState extends State<AppDataTable>
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: centerColumns
-                    .map((column) => _buildColumnHeader(context, theme, textDirection, column))
+                    .map((column) => _buildColumnHeader(
+                        context, theme, textDirection, column))
                     .toList(),
               ),
             ),
           ),
 
         // Right pinned columns
-        ...rightColumns.map((column) => _buildColumnHeader(context, theme, textDirection, column)),
+        ...rightColumns.map((column) =>
+            _buildColumnHeader(context, theme, textDirection, column)),
       ],
     );
   }
@@ -448,7 +466,8 @@ class _AppDataTableState extends State<AppDataTable>
         border: Border(
           right: widget.config.showColumnDividers
               ? BorderSide(
-                  color: widget.config.theme?.dividerColor ?? theme.dividerColor,
+                  color:
+                      widget.config.theme?.dividerColor ?? theme.dividerColor,
                   width: 1,
                 )
               : BorderSide.none,
@@ -499,14 +518,16 @@ class _AppDataTableState extends State<AppDataTable>
               Icon(
                 column.icon,
                 size: 16,
-                color: widget.config.theme?.headerTextColor ?? theme.colorScheme.onSurface,
+                color: widget.config.theme?.headerTextColor ??
+                    theme.colorScheme.onSurface,
               ),
               const SizedBox(width: 8),
             ],
             Flexible(
               child: Text(
                 column.label,
-                style: widget.config.theme?.headerStyle ?? theme.textTheme.titleSmall,
+                style: widget.config.theme?.headerStyle ??
+                    theme.textTheme.titleSmall,
                 overflow: TextOverflow.ellipsis,
                 semanticsLabel: column.semanticLabel ?? column.label,
               ),
@@ -540,18 +561,22 @@ class _AppDataTableState extends State<AppDataTable>
       size: 16,
       color: direction != AppDataTableSortDirection.none
           ? widget.config.theme?.sortIconColor ?? theme.colorScheme.primary
-          : widget.config.theme?.sortIconColor?.withValues(alpha: 0.5) ?? theme.colorScheme.onSurface.withValues(alpha: 0.5),
+          : widget.config.theme?.sortIconColor?.withValues(alpha: 0.5) ??
+              theme.colorScheme.onSurface.withValues(alpha: 0.5),
     );
   }
 
-  Widget _buildResizeHandle(BuildContext context, ThemeData theme, AppDataTableColumn column) {
+  Widget _buildResizeHandle(
+      BuildContext context, ThemeData theme, AppDataTableColumn column) {
     final resizeConfig = widget.config.resizeConfig!;
 
     return MouseRegion(
       cursor: SystemMouseCursors.resizeColumn,
       child: GestureDetector(
-        onPanStart: (details) => _startColumnResize(column.id, details.globalPosition.dx),
-        onPanUpdate: (details) => _updateColumnResize(details.globalPosition.dx),
+        onPanStart: (details) =>
+            _startColumnResize(column.id, details.globalPosition.dx),
+        onPanUpdate: (details) =>
+            _updateColumnResize(details.globalPosition.dx),
         onPanEnd: (details) => _endColumnResize(),
         child: Container(
           width: resizeConfig.handleWidth,
@@ -563,8 +588,10 @@ class _AppDataTableState extends State<AppDataTable>
     );
   }
 
-  Widget _buildTableBody(BuildContext context, ThemeData theme, TextDirection textDirection) {
-    if (widget.variant == AppDataTableVariant.pinned && widget.config.freezeConfig != null) {
+  Widget _buildTableBody(
+      BuildContext context, ThemeData theme, TextDirection textDirection) {
+    if (widget.variant == AppDataTableVariant.pinned &&
+        widget.config.freezeConfig != null) {
       return _buildPinnedTableBody(context, theme, textDirection);
     }
 
@@ -584,9 +611,11 @@ class _AppDataTableState extends State<AppDataTable>
     );
   }
 
-  Widget _buildPinnedTableBody(BuildContext context, ThemeData theme, TextDirection textDirection) {
+  Widget _buildPinnedTableBody(
+      BuildContext context, ThemeData theme, TextDirection textDirection) {
     final freezeConfig = widget.config.freezeConfig!;
-    final visibleColumns = widget.columns.where((column) => column.visible).toList();
+    final visibleColumns =
+        widget.columns.where((column) => column.visible).toList();
 
     return SingleChildScrollView(
       controller: _verticalController,
@@ -594,7 +623,8 @@ class _AppDataTableState extends State<AppDataTable>
         children: _displayRows.asMap().entries.map((entry) {
           final index = entry.key;
           final row = entry.value;
-          return _buildPinnedTableRow(context, theme, textDirection, row, index, visibleColumns, freezeConfig);
+          return _buildPinnedTableRow(context, theme, textDirection, row, index,
+              visibleColumns, freezeConfig);
         }).toList(),
       ),
     );
@@ -610,7 +640,8 @@ class _AppDataTableState extends State<AppDataTable>
     if (row.rowBuilder != null) {
       final cells = widget.columns
           .where((column) => column.visible)
-          .map((column) => _buildTableCell(context, theme, textDirection, row, column, index))
+          .map((column) => _buildTableCell(
+              context, theme, textDirection, row, column, index))
           .toList();
       return row.rowBuilder!(context, row, cells);
     }
@@ -621,11 +652,14 @@ class _AppDataTableState extends State<AppDataTable>
 
     Color? backgroundColor;
     if (isSelected) {
-      backgroundColor = widget.config.theme?.selectedRowBackgroundColor ?? theme.colorScheme.primaryContainer;
+      backgroundColor = widget.config.theme?.selectedRowBackgroundColor ??
+          theme.colorScheme.primaryContainer;
     } else if (isHovered && widget.config.showHoverEffects) {
-      backgroundColor = widget.config.theme?.hoveredRowBackgroundColor ?? theme.colorScheme.surfaceContainerHighest;
+      backgroundColor = widget.config.theme?.hoveredRowBackgroundColor ??
+          theme.colorScheme.surfaceContainerHighest;
     } else if (widget.config.alternateRowColors && isEven) {
-      backgroundColor = widget.config.theme?.alternateRowBackgroundColor ?? theme.colorScheme.surface.withValues(alpha: 0.5);
+      backgroundColor = widget.config.theme?.alternateRowBackgroundColor ??
+          theme.colorScheme.surface.withValues(alpha: 0.5);
     }
 
     return Container(
@@ -635,7 +669,8 @@ class _AppDataTableState extends State<AppDataTable>
         border: Border(
           bottom: widget.config.showRowDividers
               ? BorderSide(
-                  color: widget.config.theme?.dividerColor ?? theme.dividerColor,
+                  color:
+                      widget.config.theme?.dividerColor ?? theme.dividerColor,
                   width: 1,
                 )
               : BorderSide.none,
@@ -647,11 +682,10 @@ class _AppDataTableState extends State<AppDataTable>
           children: [
             if (widget.config.showRowNumbers)
               _buildRowNumberCell(context, theme, index),
-            if (_hasSelectionColumn())
-              _buildSelectionCell(context, theme, row),
-            ...widget.columns
-                .where((column) => column.visible)
-                .map((column) => _buildTableCell(context, theme, textDirection, row, column, index)),
+            if (_hasSelectionColumn()) _buildSelectionCell(context, theme, row),
+            ...widget.columns.where((column) => column.visible).map((column) =>
+                _buildTableCell(
+                    context, theme, textDirection, row, column, index)),
           ],
         ),
       ),
@@ -670,9 +704,13 @@ class _AppDataTableState extends State<AppDataTable>
     final leftColumns = visibleColumns.take(freezeConfig.leftColumns).toList();
     final centerColumns = visibleColumns
         .skip(freezeConfig.leftColumns)
-        .take(visibleColumns.length - freezeConfig.leftColumns - freezeConfig.rightColumns)
+        .take(visibleColumns.length -
+            freezeConfig.leftColumns -
+            freezeConfig.rightColumns)
         .toList();
-    final rightColumns = visibleColumns.skip(visibleColumns.length - freezeConfig.rightColumns).toList();
+    final rightColumns = visibleColumns
+        .skip(visibleColumns.length - freezeConfig.rightColumns)
+        .toList();
 
     final isSelected = row.selected;
     final isHovered = row.state == AppDataTableRowState.hovered;
@@ -680,11 +718,14 @@ class _AppDataTableState extends State<AppDataTable>
 
     Color? backgroundColor;
     if (isSelected) {
-      backgroundColor = widget.config.theme?.selectedRowBackgroundColor ?? theme.colorScheme.primaryContainer;
+      backgroundColor = widget.config.theme?.selectedRowBackgroundColor ??
+          theme.colorScheme.primaryContainer;
     } else if (isHovered && widget.config.showHoverEffects) {
-      backgroundColor = widget.config.theme?.hoveredRowBackgroundColor ?? theme.colorScheme.surfaceContainerHighest;
+      backgroundColor = widget.config.theme?.hoveredRowBackgroundColor ??
+          theme.colorScheme.surfaceContainerHighest;
     } else if (widget.config.alternateRowColors && isEven) {
-      backgroundColor = widget.config.theme?.alternateRowBackgroundColor ?? theme.colorScheme.surface.withValues(alpha: 0.5);
+      backgroundColor = widget.config.theme?.alternateRowBackgroundColor ??
+          theme.colorScheme.surface.withValues(alpha: 0.5);
     }
 
     return Container(
@@ -694,7 +735,8 @@ class _AppDataTableState extends State<AppDataTable>
         border: Border(
           bottom: widget.config.showRowDividers
               ? BorderSide(
-                  color: widget.config.theme?.dividerColor ?? theme.dividerColor,
+                  color:
+                      widget.config.theme?.dividerColor ?? theme.dividerColor,
                   width: 1,
                 )
               : BorderSide.none,
@@ -704,11 +746,11 @@ class _AppDataTableState extends State<AppDataTable>
         children: [
           if (widget.config.showRowNumbers)
             _buildRowNumberCell(context, theme, index),
-          if (_hasSelectionColumn())
-            _buildSelectionCell(context, theme, row),
+          if (_hasSelectionColumn()) _buildSelectionCell(context, theme, row),
 
           // Left pinned columns
-          ...leftColumns.map((column) => _buildTableCell(context, theme, textDirection, row, column, index)),
+          ...leftColumns.map((column) => _buildTableCell(
+              context, theme, textDirection, row, column, index)),
 
           // Scrollable center columns
           if (centerColumns.isNotEmpty)
@@ -718,14 +760,16 @@ class _AppDataTableState extends State<AppDataTable>
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: centerColumns
-                      .map((column) => _buildTableCell(context, theme, textDirection, row, column, index))
+                      .map((column) => _buildTableCell(
+                          context, theme, textDirection, row, column, index))
                       .toList(),
                 ),
               ),
             ),
 
           // Right pinned columns
-          ...rightColumns.map((column) => _buildTableCell(context, theme, textDirection, row, column, index)),
+          ...rightColumns.map((column) => _buildTableCell(
+              context, theme, textDirection, row, column, index)),
         ],
       ),
     );
@@ -745,14 +789,17 @@ class _AppDataTableState extends State<AppDataTable>
     );
   }
 
-  Widget _buildSelectionCell(BuildContext context, ThemeData theme, AppDataTableRow row) {
+  Widget _buildSelectionCell(
+      BuildContext context, ThemeData theme, AppDataTableRow row) {
     return Container(
       width: 48,
       alignment: Alignment.center,
       padding: widget.config.cellPadding,
       child: Checkbox(
         value: row.selected,
-        onChanged: row.disabled ? null : (selected) => _onRowSelect(row, selected ?? false),
+        onChanged: row.disabled
+            ? null
+            : (selected) => _onRowSelect(row, selected ?? false),
         semanticLabel: 'Select row ${row.id}',
       ),
     );
@@ -779,7 +826,8 @@ class _AppDataTableState extends State<AppDataTable>
     }
 
     if (isEditing && column.editable) {
-      return _buildEditCell(context, theme, textDirection, row, column, value, width);
+      return _buildEditCell(
+          context, theme, textDirection, row, column, value, width);
     }
 
     final alignment = column.getEffectiveAlignment(textDirection);
@@ -793,7 +841,8 @@ class _AppDataTableState extends State<AppDataTable>
         border: Border(
           right: widget.config.showColumnDividers
               ? BorderSide(
-                  color: widget.config.theme?.dividerColor ?? theme.dividerColor,
+                  color:
+                      widget.config.theme?.dividerColor ?? theme.dividerColor,
                   width: 1,
                 )
               : BorderSide.none,
@@ -804,7 +853,8 @@ class _AppDataTableState extends State<AppDataTable>
         onKeyEvent: (node, event) => _handleCellKeyEvent(event, row, column),
         child: InkWell(
           onTap: () => _onCellTap(row, column),
-          onDoubleTap: column.editable ? () => _startEditing(row, column) : null,
+          onDoubleTap:
+              column.editable ? () => _startEditing(row, column) : null,
           child: _buildCellContent(context, theme, column, displayValue, value),
         ),
       ),
@@ -818,14 +868,17 @@ class _AppDataTableState extends State<AppDataTable>
     String displayValue,
     dynamic value,
   ) {
-    final cellStyle = widget.config.theme?.cellStyles?[column.cellType] ?? theme.textTheme.bodyMedium;
+    final cellStyle = widget.config.theme?.cellStyles?[column.cellType] ??
+        theme.textTheme.bodyMedium;
 
     switch (column.cellType) {
       case AppDataTableCellType.boolean:
         return Icon(
           value == true ? Icons.check_circle : Icons.radio_button_unchecked,
           size: 16,
-          color: value == true ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.5),
+          color: value == true
+              ? theme.colorScheme.primary
+              : theme.colorScheme.onSurface.withValues(alpha: 0.5),
         );
 
       case AppDataTableCellType.icon:
@@ -843,7 +896,8 @@ class _AppDataTableState extends State<AppDataTable>
               width: 32,
               height: 32,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Icon(Icons.broken_image, size: 16),
+              errorBuilder: (context, error, stackTrace) =>
+                  Icon(Icons.broken_image, size: 16),
             ),
           );
         }
@@ -927,14 +981,20 @@ class _AppDataTableState extends State<AppDataTable>
               Icon(
                 emptyState.icon,
                 size: 64,
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
+                color: Theme.of(context)
+                    .colorScheme
+                    .onSurface
+                    .withValues(alpha: 0.5),
               ),
             const SizedBox(height: 16),
             Text(
               emptyState.message,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
-              ),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withValues(alpha: 0.7),
+                  ),
               textAlign: TextAlign.center,
             ),
             if (emptyState.action != null) ...[
@@ -959,7 +1019,8 @@ class _AppDataTableState extends State<AppDataTable>
       child: Center(
         child: widget.config.loadingIndicator ??
             CircularProgressIndicator(
-              color: widget.config.theme?.loadingIndicatorColor ?? theme.colorScheme.primary,
+              color: widget.config.theme?.loadingIndicatorColor ??
+                  theme.colorScheme.primary,
             ),
       ),
     );
@@ -1010,7 +1071,8 @@ class _AppDataTableState extends State<AppDataTable>
     );
   }
 
-  Widget _buildSkeletonHeaderCell(BuildContext context, ThemeData theme, AppDataTableColumn column) {
+  Widget _buildSkeletonHeaderCell(
+      BuildContext context, ThemeData theme, AppDataTableColumn column) {
     final width = _columnWidths[column.id] ?? column.width ?? 150.0;
 
     return Container(
@@ -1043,7 +1105,8 @@ class _AppDataTableState extends State<AppDataTable>
     );
   }
 
-  Widget _buildSkeletonCell(BuildContext context, ThemeData theme, AppDataTableColumn column) {
+  Widget _buildSkeletonCell(
+      BuildContext context, ThemeData theme, AppDataTableColumn column) {
     final width = _columnWidths[column.id] ?? column.width ?? 150.0;
 
     return Container(
@@ -1066,7 +1129,8 @@ class _AppDataTableState extends State<AppDataTable>
         _currentSelection?.showCheckboxes == true;
   }
 
-  Alignment _getAlignmentFromColumnAlignment(AppDataTableColumnAlignment alignment) {
+  Alignment _getAlignmentFromColumnAlignment(
+      AppDataTableColumnAlignment alignment) {
     switch (alignment) {
       case AppDataTableColumnAlignment.left:
         return Alignment.centerLeft;
@@ -1106,11 +1170,14 @@ class _AppDataTableState extends State<AppDataTable>
   void _applySorting(String columnId, AppDataTableSortDirection direction) {
     setState(() {
       _currentSort = widget.sorting?.copyWith(
-        columnId: direction != AppDataTableSortDirection.none ? columnId : null,
-        direction: direction,
-      ) ?? AppDataTableSort(columnId: columnId, direction: direction);
+            columnId:
+                direction != AppDataTableSortDirection.none ? columnId : null,
+            direction: direction,
+          ) ??
+          AppDataTableSort(columnId: columnId, direction: direction);
 
-      _displayRows = AppDataTableUtils.sortRows(_displayRows, columnId, direction);
+      _displayRows =
+          AppDataTableUtils.sortRows(_displayRows, columnId, direction);
     });
   }
 
@@ -1142,7 +1209,9 @@ class _AppDataTableState extends State<AppDataTable>
     if (_currentSelection?.mode == AppDataTableSelectionMode.none) return;
 
     setState(() {
-      _displayRows = _displayRows.map((row) => row.copyWith(selected: selectAll ?? false)).toList();
+      _displayRows = _displayRows
+          .map((row) => row.copyWith(selected: selectAll ?? false))
+          .toList();
     });
 
     if (_currentSelection?.onSelectionChanged != null) {
@@ -1170,7 +1239,9 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   void _startEditing(AppDataTableRow row, AppDataTableColumn column) {
-    if (!column.editable || widget.variant != AppDataTableVariant.inlineEdit) return;
+    if (!column.editable || widget.variant != AppDataTableVariant.inlineEdit) {
+      return;
+    }
 
     setState(() {
       _editingRowId = row.id;
@@ -1184,7 +1255,8 @@ class _AppDataTableState extends State<AppDataTable>
     }
   }
 
-  void _submitEdit(AppDataTableRow row, AppDataTableColumn column, String newValue) {
+  void _submitEdit(
+      AppDataTableRow row, AppDataTableColumn column, String newValue) {
     dynamic parsedValue = newValue;
 
     // Parse value based on cell type
@@ -1212,7 +1284,8 @@ class _AppDataTableState extends State<AppDataTable>
     _cancelEdit();
   }
 
-  void _onCellValueChanged(AppDataTableRow row, AppDataTableColumn column, dynamic newValue) {
+  void _onCellValueChanged(
+      AppDataTableRow row, AppDataTableColumn column, dynamic newValue) {
     if (widget.onEdit != null) {
       widget.onEdit!(row, column.field, newValue);
     }
@@ -1221,9 +1294,11 @@ class _AppDataTableState extends State<AppDataTable>
     setState(() {
       final rowIndex = _displayRows.indexWhere((r) => r.id == row.id);
       if (rowIndex != -1) {
-        final updatedData = Map<String, dynamic>.from(_displayRows[rowIndex].data);
+        final updatedData =
+            Map<String, dynamic>.from(_displayRows[rowIndex].data);
         updatedData[column.field] = newValue;
-        _displayRows[rowIndex] = _displayRows[rowIndex].copyWith(data: updatedData);
+        _displayRows[rowIndex] =
+            _displayRows[rowIndex].copyWith(data: updatedData);
       }
     });
   }
@@ -1249,12 +1324,17 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   void _updateColumnResize(double currentX) {
-    if (_resizingColumnId == null || _resizeStartX == null || _resizeStartWidth == null) return;
+    if (_resizingColumnId == null ||
+        _resizeStartX == null ||
+        _resizeStartWidth == null) {
+      return;
+    }
 
     final delta = currentX - _resizeStartX!;
     final newWidth = _resizeStartWidth! + delta;
 
-    final column = widget.columns.firstWhere((col) => col.id == _resizingColumnId);
+    final column =
+        widget.columns.firstWhere((col) => col.id == _resizingColumnId);
     final clampedWidth = newWidth.clamp(column.minWidth, column.maxWidth);
 
     setState(() {
@@ -1276,7 +1356,8 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   // Keyboard event handler
-  KeyEventResult _handleCellKeyEvent(KeyEvent event, AppDataTableRow row, AppDataTableColumn column) {
+  KeyEventResult _handleCellKeyEvent(
+      KeyEvent event, AppDataTableRow row, AppDataTableColumn column) {
     if (event is KeyDownEvent) {
       switch (event.logicalKey) {
         case LogicalKeyboardKey.arrowUp:
@@ -1314,11 +1395,14 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   void _moveFocus(int rowDelta, int columnDelta) {
-    final newRowIndex = (_focusedRowIndex + rowDelta).clamp(0, _displayRows.length - 1);
+    final newRowIndex =
+        (_focusedRowIndex + rowDelta).clamp(0, _displayRows.length - 1);
     final visibleColumns = widget.columns.where((col) => col.visible).toList();
-    final newColumnIndex = (_focusedColumnIndex + columnDelta).clamp(0, visibleColumns.length - 1);
+    final newColumnIndex =
+        (_focusedColumnIndex + columnDelta).clamp(0, visibleColumns.length - 1);
 
-    if (newRowIndex != _focusedRowIndex || newColumnIndex != _focusedColumnIndex) {
+    if (newRowIndex != _focusedRowIndex ||
+        newColumnIndex != _focusedColumnIndex) {
       final newRow = _displayRows[newRowIndex];
       final newColumn = visibleColumns[newColumnIndex];
       final cellKey = '${newRow.id}_${newColumn.id}';

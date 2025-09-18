@@ -105,9 +105,7 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                       color: Colors.grey[100],
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Center(
-                      child: Text('Gráfico de ejemplo'),
-                    ),
+                    child: const Center(child: Text('Gráfico de ejemplo')),
                   ),
                   const SizedBox(height: 16),
                   const LinearProgressIndicator(),
@@ -157,7 +155,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                         const SizedBox(width: 8),
                         DropdownButton<AppSplitViewVariant>(
                           value: _variant,
-                          onChanged: (value) => setState(() => _variant = value!),
+                          onChanged: (value) =>
+                              setState(() => _variant = value!),
                           items: AppSplitViewVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
@@ -193,7 +192,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                         const SizedBox(width: 8),
                         DropdownButton<AppSplitViewDirection>(
                           value: _direction,
-                          onChanged: (value) => setState(() => _direction = value!),
+                          onChanged: (value) =>
+                              setState(() => _direction = value!),
                           items: AppSplitViewDirection.values.map((direction) {
                             return DropdownMenuItem(
                               value: direction,
@@ -217,7 +217,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                             max: 0.9,
                             divisions: 16,
                             label: _initialRatio.toStringAsFixed(2),
-                            onChanged: (value) => setState(() => _initialRatio = value),
+                            onChanged: (value) =>
+                                setState(() => _initialRatio = value),
                           ),
                         ),
                         Text(_initialRatio.toStringAsFixed(2)),
@@ -237,7 +238,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                             max: 20.0,
                             divisions: 19,
                             label: _dividerWidth.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _dividerWidth = value),
+                            onChanged: (value) =>
+                                setState(() => _dividerWidth = value),
                           ),
                         ),
                         Text('${_dividerWidth.toStringAsFixed(0)}px'),
@@ -253,7 +255,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                           children: [
                             Switch(
                               value: _isRtl,
-                              onChanged: (value) => setState(() => _isRtl = value),
+                              onChanged: (value) =>
+                                  setState(() => _isRtl = value),
                             ),
                             const Text('RTL'),
                           ],
@@ -263,7 +266,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                           children: [
                             Switch(
                               value: _enableA11y,
-                              onChanged: (value) => setState(() => _enableA11y = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableA11y = value),
                             ),
                             const Text('Accesibilidad'),
                           ],
@@ -273,7 +277,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                           children: [
                             Switch(
                               value: _enableKeyboard,
-                              onChanged: (value) => setState(() => _enableKeyboard = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableKeyboard = value),
                             ),
                             const Text('Teclado'),
                           ],
@@ -283,7 +288,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                           children: [
                             Switch(
                               value: _enableResize,
-                              onChanged: (value) => setState(() => _enableResize = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableResize = value),
                             ),
                             const Text('Redimensionar'),
                           ],
@@ -293,7 +299,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                           children: [
                             Switch(
                               value: _snapToEdges,
-                              onChanged: (value) => setState(() => _snapToEdges = value),
+                              onChanged: (value) =>
+                                  setState(() => _snapToEdges = value),
                             ),
                             const Text('Snap to Edges'),
                           ],
@@ -442,7 +449,10 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                             height: 150,
                             child: AppSplitView(
                               config: AppSplitViewConfig(state: state),
-                              start: _buildSimplePanel('Start', Colors.blue[50]!),
+                              start: _buildSimplePanel(
+                                'Start',
+                                Colors.blue[50]!,
+                              ),
                               end: _buildSimplePanel('End', Colors.red[50]!),
                             ),
                           ),
@@ -465,10 +475,7 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
+        Text(title, style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         Container(
           height: 200,
@@ -490,10 +497,7 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
         borderRadius: BorderRadius.circular(4),
       ),
       child: Center(
-        child: Text(
-          text,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        child: Text(text, style: Theme.of(context).textTheme.titleLarge),
       ),
     );
   }

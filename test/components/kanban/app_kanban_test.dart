@@ -435,7 +435,8 @@ void main() {
           cards: [
             AppKanbanCard(
               id: 'card-1',
-              title: 'This is a very long card title that should be truncated properly when it exceeds the maximum allowed length',
+              title:
+                  'This is a very long card title that should be truncated properly when it exceeds the maximum allowed length',
               columnId: 'todo',
             ),
           ],

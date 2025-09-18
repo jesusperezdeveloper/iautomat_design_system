@@ -7,10 +7,12 @@ class DescriptionListStoryExample extends StatefulWidget {
   const DescriptionListStoryExample({super.key});
 
   @override
-  State<DescriptionListStoryExample> createState() => _DescriptionListStoryExampleState();
+  State<DescriptionListStoryExample> createState() =>
+      _DescriptionListStoryExampleState();
 }
 
-class _DescriptionListStoryExampleState extends State<DescriptionListStoryExample> {
+class _DescriptionListStoryExampleState
+    extends State<DescriptionListStoryExample> {
   AppDescriptionListState _selectedState = AppDescriptionListState.defaultState;
   AppDescriptionListLayout _selectedLayout = AppDescriptionListLayout.adaptive;
   AppDescriptionListDensity _selectedDensity = AppDescriptionListDensity.normal;
@@ -67,8 +69,8 @@ class _DescriptionListStoryExampleState extends State<DescriptionListStoryExampl
             Text(
               'Controles',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             Wrap(
@@ -187,7 +189,8 @@ class _DescriptionListStoryExampleState extends State<DescriptionListStoryExampl
           children: [
             Checkbox(
               value: _interactionEnabled,
-              onChanged: (value) => setState(() => _interactionEnabled = value!),
+              onChanged: (value) =>
+                  setState(() => _interactionEnabled = value!),
             ),
             const Text('Interacción'),
           ],
@@ -348,32 +351,39 @@ class _DescriptionListStoryExampleState extends State<DescriptionListStoryExampl
         layout: _selectedLayout,
         density: _selectedDensity,
         spacing: _selectedSpacing,
-        onTap: _interactionEnabled ? () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Lista presionada')),
-          );
-        } : null,
+        onTap: _interactionEnabled
+            ? () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Lista presionada')),
+                );
+              }
+            : null,
         items: [
           AppDescriptionListItem(
             term: 'Email Principal',
             description: 'contacto@empresa.com',
             icon: Icons.email,
-            onTap: _interactionEnabled ? () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Email presionado')),
-              );
-            } : null,
-            trailing: _interactionEnabled ? const Icon(Icons.open_in_new) : null,
+            onTap: _interactionEnabled
+                ? () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Email presionado')),
+                    );
+                  }
+                : null,
+            trailing:
+                _interactionEnabled ? const Icon(Icons.open_in_new) : null,
           ),
           AppDescriptionListItem(
             term: 'Teléfono',
             description: '+52 55 1234 5678',
             icon: Icons.phone,
-            onTap: _interactionEnabled ? () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Teléfono presionado')),
-              );
-            } : null,
+            onTap: _interactionEnabled
+                ? () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Teléfono presionado')),
+                    );
+                  }
+                : null,
             trailing: _interactionEnabled ? const Icon(Icons.call) : null,
           ),
           AppDescriptionListItem(
@@ -381,11 +391,13 @@ class _DescriptionListStoryExampleState extends State<DescriptionListStoryExampl
             description: 'Av. Insurgentes Sur 123',
             secondaryDescription: 'Ciudad de México, México',
             icon: Icons.location_on,
-            onTap: _interactionEnabled ? () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Dirección presionada')),
-              );
-            } : null,
+            onTap: _interactionEnabled
+                ? () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Dirección presionada')),
+                    );
+                  }
+                : null,
             trailing: _interactionEnabled ? const Icon(Icons.map) : null,
             divider: true,
           ),
@@ -393,11 +405,13 @@ class _DescriptionListStoryExampleState extends State<DescriptionListStoryExampl
             term: 'Sitio Web',
             description: 'www.empresa.com',
             icon: Icons.web,
-            onTap: _interactionEnabled ? () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Sitio web presionado')),
-              );
-            } : null,
+            onTap: _interactionEnabled
+                ? () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Sitio web presionado')),
+                    );
+                  }
+                : null,
             trailing: _interactionEnabled ? const Icon(Icons.launch) : null,
           ),
         ],
@@ -492,7 +506,8 @@ class _DescriptionListStoryExampleState extends State<DescriptionListStoryExampl
               value: true,
               onChanged: (value) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Notificaciones: ${value ? "On" : "Off"}')),
+                  SnackBar(
+                      content: Text('Notificaciones: ${value ? "On" : "Off"}')),
                 );
               },
             ),
@@ -505,7 +520,8 @@ class _DescriptionListStoryExampleState extends State<DescriptionListStoryExampl
               value: false,
               onChanged: (value) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Modo Oscuro: ${value ? "On" : "Off"}')),
+                  SnackBar(
+                      content: Text('Modo Oscuro: ${value ? "On" : "Off"}')),
                 );
               },
             ),
@@ -688,22 +704,23 @@ class _DescriptionListStoryExampleState extends State<DescriptionListStoryExampl
     );
   }
 
-  Widget _buildExampleSection(String title, String description, Widget example) {
+  Widget _buildExampleSection(
+      String title, String description, Widget example) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+                fontWeight: FontWeight.bold,
+              ),
         ),
         const SizedBox(height: 8),
         Text(
           description,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          ),
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
         ),
         const SizedBox(height: 16),
         Card(

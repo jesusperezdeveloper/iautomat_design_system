@@ -6,7 +6,8 @@ import 'package:iautomat_design_system/src/components/slider/slider_config.dart'
 void main() {
   group('AppSlider Unit Tests', () {
     group('Widget Rendering', () {
-      testWidgets('renders with required props for continuous variant', (tester) async {
+      testWidgets('renders with required props for continuous variant',
+          (tester) async {
         double value = 50.0;
         await tester.pumpWidget(
           MaterialApp(
@@ -26,7 +27,8 @@ void main() {
         expect(find.byType(Slider), findsOneWidget);
       });
 
-      testWidgets('renders with required props for discrete variant', (tester) async {
+      testWidgets('renders with required props for discrete variant',
+          (tester) async {
         double value = 3.0;
         await tester.pumpWidget(
           MaterialApp(
@@ -47,8 +49,10 @@ void main() {
         expect(find.byType(Slider), findsOneWidget);
       });
 
-      testWidgets('renders with required props for range variant', (tester) async {
-        AppSliderRangeValue value = const AppSliderRangeValue(start: 20.0, end: 80.0);
+      testWidgets('renders with required props for range variant',
+          (tester) async {
+        AppSliderRangeValue value =
+            const AppSliderRangeValue(start: 20.0, end: 80.0);
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -319,7 +323,8 @@ void main() {
     });
 
     group('Input Handling', () {
-      testWidgets('calls onChanged when value changes for continuous', (tester) async {
+      testWidgets('calls onChanged when value changes for continuous',
+          (tester) async {
         double? changedValue;
         await tester.pumpWidget(
           MaterialApp(
@@ -450,7 +455,8 @@ void main() {
     });
 
     group('Platform Adaptation', () {
-      testWidgets('shows platform-appropriate loading indicator', (tester) async {
+      testWidgets('shows platform-appropriate loading indicator',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(

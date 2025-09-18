@@ -120,7 +120,7 @@ class _AppTimelineState extends State<AppTimeline>
   void _initializeAnimations() {
     _animationController = AnimationController(
       duration: widget.config.animation?.duration ??
-               AppTimelineConstants.defaultAnimationDuration,
+          AppTimelineConstants.defaultAnimationDuration,
       vsync: this,
     );
 
@@ -128,7 +128,7 @@ class _AppTimelineState extends State<AppTimeline>
       widget.config.events.length,
       (index) => AnimationController(
         duration: widget.config.animation?.duration ??
-                 AppTimelineConstants.defaultAnimationDuration,
+            AppTimelineConstants.defaultAnimationDuration,
         vsync: this,
       ),
     );
@@ -138,7 +138,7 @@ class _AppTimelineState extends State<AppTimeline>
         CurvedAnimation(
           parent: controller,
           curve: widget.config.animation?.curve ??
-                AppTimelineConstants.defaultAnimationCurve,
+              AppTimelineConstants.defaultAnimationCurve,
         ),
       );
     }).toList();
@@ -168,8 +168,8 @@ class _AppTimelineState extends State<AppTimeline>
     for (int i = 0; i < _itemAnimationControllers.length; i++) {
       Future.delayed(
         Duration(
-          milliseconds: i *
-            (widget.config.animation?.staggerDelay.inMilliseconds ?? 100),
+          milliseconds:
+              i * (widget.config.animation?.staggerDelay.inMilliseconds ?? 100),
         ),
         () {
           if (mounted) {
@@ -272,7 +272,8 @@ class _AppTimelineState extends State<AppTimeline>
       _initializeAnimations();
     }
 
-    if (oldWidget.config.animation?.enabled != widget.config.animation?.enabled) {
+    if (oldWidget.config.animation?.enabled !=
+        widget.config.animation?.enabled) {
       if (widget.config.animation?.enabled == true) {
         _startAnimations();
       }
@@ -314,23 +315,22 @@ class _AppTimelineState extends State<AppTimeline>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final effectiveStyle = widget.config.style?.copyWithState(_currentState) ??
-                          AppTimelineStyle().copyWithState(_currentState);
+        AppTimelineStyle().copyWithState(_currentState);
 
     Widget timeline = Container(
       padding: widget.config.getEffectivePadding(),
       margin: widget.config.getEffectiveMargin(),
       decoration: effectiveStyle.decoration,
       child: widget.config.isHorizontal
-        ? _buildHorizontalTimeline(context, colorScheme)
-        : _buildVerticalTimeline(context, colorScheme),
+          ? _buildHorizontalTimeline(context, colorScheme)
+          : _buildVerticalTimeline(context, colorScheme),
     );
 
     if (widget.config.scrollable) {
       timeline = SingleChildScrollView(
         controller: widget.config.scrollController,
-        scrollDirection: widget.config.isHorizontal
-          ? Axis.horizontal
-          : Axis.vertical,
+        scrollDirection:
+            widget.config.isHorizontal ? Axis.horizontal : Axis.vertical,
         reverse: widget.config.reversed,
         child: timeline,
       );
@@ -345,24 +345,21 @@ class _AppTimelineState extends State<AppTimeline>
 
   Widget _buildVerticalTimeline(BuildContext context, ColorScheme colorScheme) {
     final events = widget.config.reversed
-      ? widget.config.events.reversed.toList()
-      : widget.config.events;
+        ? widget.config.events.reversed.toList()
+        : widget.config.events;
 
     return IntrinsicWidth(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: widget.config.shrinkWrap
-          ? MainAxisSize.min
-          : MainAxisSize.max,
+        mainAxisSize:
+            widget.config.shrinkWrap ? MainAxisSize.min : MainAxisSize.max,
         children: [
           for (int i = 0; i < events.length; i++)
             _buildTimelineItem(
               context,
               colorScheme,
               events[i],
-              widget.config.reversed
-                ? events.length - 1 - i
-                : i,
+              widget.config.reversed ? events.length - 1 - i : i,
               isFirst: i == 0,
               isLast: i == events.length - 1,
             ),
@@ -371,26 +368,24 @@ class _AppTimelineState extends State<AppTimeline>
     );
   }
 
-  Widget _buildHorizontalTimeline(BuildContext context, ColorScheme colorScheme) {
+  Widget _buildHorizontalTimeline(
+      BuildContext context, ColorScheme colorScheme) {
     final events = widget.config.reversed
-      ? widget.config.events.reversed.toList()
-      : widget.config.events;
+        ? widget.config.events.reversed.toList()
+        : widget.config.events;
 
     return IntrinsicHeight(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: widget.config.shrinkWrap
-          ? MainAxisSize.min
-          : MainAxisSize.max,
+        mainAxisSize:
+            widget.config.shrinkWrap ? MainAxisSize.min : MainAxisSize.max,
         children: [
           for (int i = 0; i < events.length; i++)
             _buildTimelineItem(
               context,
               colorScheme,
               events[i],
-              widget.config.reversed
-                ? events.length - 1 - i
-                : i,
+              widget.config.reversed ? events.length - 1 - i : i,
               isFirst: i == 0,
               isLast: i == events.length - 1,
             ),
@@ -403,8 +398,7 @@ class _AppTimelineState extends State<AppTimeline>
     BuildContext context,
     ColorScheme colorScheme,
     AppTimelineEvent event,
-    int originalIndex,
-    {
+    int originalIndex, {
     required bool isFirst,
     required bool isLast,
   }) {
@@ -415,30 +409,30 @@ class _AppTimelineState extends State<AppTimeline>
     final isSelected = widget.config.selectedIndex == originalIndex;
     final isHovered = _hoveredIndex == originalIndex;
     final animation = originalIndex < _itemAnimations.length
-      ? _itemAnimations[originalIndex]
-      : null;
+        ? _itemAnimations[originalIndex]
+        : null;
 
     Widget item = widget.config.isHorizontal
-      ? _buildHorizontalItem(
-          context,
-          colorScheme,
-          event,
-          originalIndex,
-          isFirst: isFirst,
-          isLast: isLast,
-          isSelected: isSelected,
-          isHovered: isHovered,
-        )
-      : _buildVerticalItem(
-          context,
-          colorScheme,
-          event,
-          originalIndex,
-          isFirst: isFirst,
-          isLast: isLast,
-          isSelected: isSelected,
-          isHovered: isHovered,
-        );
+        ? _buildHorizontalItem(
+            context,
+            colorScheme,
+            event,
+            originalIndex,
+            isFirst: isFirst,
+            isLast: isLast,
+            isSelected: isSelected,
+            isHovered: isHovered,
+          )
+        : _buildVerticalItem(
+            context,
+            colorScheme,
+            event,
+            originalIndex,
+            isFirst: isFirst,
+            isLast: isLast,
+            isSelected: isSelected,
+            isHovered: isHovered,
+          );
 
     if (animation != null && widget.config.animation?.enabled == true) {
       item = _wrapWithAnimation(item, animation);
@@ -451,8 +445,7 @@ class _AppTimelineState extends State<AppTimeline>
     BuildContext context,
     ColorScheme colorScheme,
     AppTimelineEvent event,
-    int index,
-    {
+    int index, {
     required bool isFirst,
     required bool isLast,
     required bool isSelected,
@@ -523,8 +516,7 @@ class _AppTimelineState extends State<AppTimeline>
     BuildContext context,
     ColorScheme colorScheme,
     AppTimelineEvent event,
-    int index,
-    {
+    int index, {
     required bool isFirst,
     required bool isLast,
     required bool isSelected,
@@ -589,8 +581,7 @@ class _AppTimelineState extends State<AppTimeline>
     BuildContext context,
     ColorScheme colorScheme,
     AppTimelineEvent event,
-    int index,
-    {
+    int index, {
     required bool isSelected,
     required bool isHovered,
   }) {
@@ -674,9 +665,9 @@ class _AppTimelineState extends State<AppTimeline>
           ),
           child: Icon(
             event.icon ??
-            event.type?.defaultIcon ??
-            event.status?.icon ??
-            Icons.circle,
+                event.type?.defaultIcon ??
+                event.status?.icon ??
+                Icons.circle,
             size: size * 0.6,
             color: color,
           ),
@@ -685,14 +676,14 @@ class _AppTimelineState extends State<AppTimeline>
 
       case AppTimelineIndicatorStyle.custom:
         indicator = event.leading ??
-          Container(
-            width: size,
-            height: size,
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-            ),
-          );
+            Container(
+              width: size,
+              height: size,
+              decoration: BoxDecoration(
+                color: color,
+                shape: BoxShape.circle,
+              ),
+            );
         break;
     }
 
@@ -720,8 +711,7 @@ class _AppTimelineState extends State<AppTimeline>
   }
 
   Widget _buildConnector(
-    ColorScheme colorScheme,
-    {
+    ColorScheme colorScheme, {
     required bool isVertical,
     double? length,
   }) {
@@ -769,8 +759,7 @@ class _AppTimelineState extends State<AppTimeline>
   }
 
   Widget _buildDashedConnector(
-    Color color,
-    {
+    Color color, {
     required bool isVertical,
     double? length,
     required double width,
@@ -789,8 +778,7 @@ class _AppTimelineState extends State<AppTimeline>
   }
 
   Widget _buildDottedConnector(
-    Color color,
-    {
+    Color color, {
     required bool isVertical,
     double? length,
     required double width,
@@ -812,8 +800,7 @@ class _AppTimelineState extends State<AppTimeline>
     BuildContext context,
     ColorScheme colorScheme,
     AppTimelineEvent event,
-    int index,
-    {
+    int index, {
     required bool isSelected,
     required bool isHovered,
   }) {
@@ -845,7 +832,6 @@ class _AppTimelineState extends State<AppTimeline>
                   ),
                 ),
               ),
-
             if (event.hasTitle)
               Padding(
                 padding: const EdgeInsets.only(bottom: 4),
@@ -856,7 +842,6 @@ class _AppTimelineState extends State<AppTimeline>
                   ),
                 ),
               ),
-
             if (event.hasSubtitle)
               Padding(
                 padding: const EdgeInsets.only(bottom: 4),
@@ -867,19 +852,16 @@ class _AppTimelineState extends State<AppTimeline>
                   ),
                 ),
               ),
-
             if (event.hasDescription)
               Text(
                 event.displayDescription,
                 style: theme.textTheme.bodySmall,
               ),
-
             if (event.hasContent)
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: event.content!,
               ),
-
             if (event.hasTrailing)
               Padding(
                 padding: const EdgeInsets.only(top: 8),
@@ -1081,8 +1063,8 @@ class _AppTimelineState extends State<AppTimeline>
   Widget _wrapWithSemantics(Widget child) {
     return Semantics(
       label: widget.config.semanticLabel ??
-             widget.config.accessibility?.semanticLabel ??
-             'Timeline con ${widget.config.events.length} eventos',
+          widget.config.accessibility?.semanticLabel ??
+          'Timeline con ${widget.config.events.length} eventos',
       hint: widget.config.accessibility?.onTapHint,
       button: widget.config.isInteractive,
       focusable: widget.config.interaction?.focusable ?? true,

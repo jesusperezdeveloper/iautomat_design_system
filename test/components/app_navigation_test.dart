@@ -462,7 +462,8 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(widgetSelectedIndex, equals(0));
-        expect(configSelectedIndex, isNull); // Config callback should not be called
+        expect(configSelectedIndex,
+            isNull); // Config callback should not be called
       });
     });
 
@@ -828,10 +829,13 @@ void main() {
   group('Extensions', () {
     group('AppNavigationVariantExtension', () {
       test('provides correct display names', () {
-        expect(AppNavigationVariant.bottomBar.displayName, equals('Bottom Bar'));
-        expect(AppNavigationVariant.rail.displayName, equals('Navigation Rail'));
+        expect(
+            AppNavigationVariant.bottomBar.displayName, equals('Bottom Bar'));
+        expect(
+            AppNavigationVariant.rail.displayName, equals('Navigation Rail'));
         expect(AppNavigationVariant.drawer.displayName, equals('Drawer'));
-        expect(AppNavigationVariant.permanentDrawer.displayName, equals('Permanent Drawer'));
+        expect(AppNavigationVariant.permanentDrawer.displayName,
+            equals('Permanent Drawer'));
       });
 
       test('provides correct descriptions', () {
@@ -866,10 +870,12 @@ void main() {
       });
 
       test('provides correct default widths', () {
-        expect(AppNavigationVariant.bottomBar.defaultWidth, equals(double.infinity));
+        expect(AppNavigationVariant.bottomBar.defaultWidth,
+            equals(double.infinity));
         expect(AppNavigationVariant.rail.defaultWidth, equals(72.0));
         expect(AppNavigationVariant.drawer.defaultWidth, equals(256.0));
-        expect(AppNavigationVariant.permanentDrawer.defaultWidth, equals(256.0));
+        expect(
+            AppNavigationVariant.permanentDrawer.defaultWidth, equals(256.0));
       });
     });
 

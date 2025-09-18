@@ -120,7 +120,8 @@ class AppDatePickerStory {
   static List<StoryExample> get accessibilityExamples => [
         StoryExample(
           name: 'With Semantic Labels',
-          description: 'Date picker with proper semantic labels for accessibility',
+          description:
+              'Date picker with proper semantic labels for accessibility',
           widget: _AccessibilityExample(),
         ),
         StoryExample(
@@ -222,7 +223,8 @@ class _TimePickerExampleState extends State<_TimePickerExample> {
             use24HourFormat: false,
           ),
           const SizedBox(height: 16),
-          Text('Hora seleccionada: ${selectedTime?.format(context) ?? 'Ninguna'}'),
+          Text(
+              'Hora seleccionada: ${selectedTime?.format(context) ?? 'Ninguna'}'),
         ],
       ),
     );
@@ -283,7 +285,8 @@ class _StateExamplesWidget extends StatelessWidget {
           const SizedBox(height: 12),
           _buildStateExample('Focus', AppDatePickerState.focus),
           const SizedBox(height: 12),
-          _buildStateExample('Selected', AppDatePickerState.selected, DateTime.now()),
+          _buildStateExample(
+              'Selected', AppDatePickerState.selected, DateTime.now()),
           const SizedBox(height: 12),
           _buildStateExample('Disabled', AppDatePickerState.disabled),
           const SizedBox(height: 12),
@@ -295,7 +298,8 @@ class _StateExamplesWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildStateExample(String stateName, AppDatePickerState state, [DateTime? value]) {
+  Widget _buildStateExample(String stateName, AppDatePickerState state,
+      [DateTime? value]) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -485,7 +489,8 @@ class _CustomIconsExampleState extends State<_CustomIconsExample> {
 
 class _PlatformAdaptiveExample extends StatefulWidget {
   @override
-  _PlatformAdaptiveExampleState createState() => _PlatformAdaptiveExampleState();
+  _PlatformAdaptiveExampleState createState() =>
+      _PlatformAdaptiveExampleState();
 }
 
 class _PlatformAdaptiveExampleState extends State<_PlatformAdaptiveExample> {
@@ -689,7 +694,8 @@ class _AccessibilityExampleState extends State<_AccessibilityExample> {
         onChanged: (date) => setState(() => selectedDate = date),
         labelText: 'Fecha de cita médica',
         hintText: 'Selecciona una fecha para tu cita',
-        semanticLabel: 'Selector de fecha para cita médica, toca para abrir calendario',
+        semanticLabel:
+            'Selector de fecha para cita médica, toca para abrir calendario',
         helperText: 'Usa el calendario para seleccionar una fecha disponible',
       ),
     );
@@ -698,10 +704,12 @@ class _AccessibilityExampleState extends State<_AccessibilityExample> {
 
 class _KeyboardNavigationExample extends StatefulWidget {
   @override
-  _KeyboardNavigationExampleState createState() => _KeyboardNavigationExampleState();
+  _KeyboardNavigationExampleState createState() =>
+      _KeyboardNavigationExampleState();
 }
 
-class _KeyboardNavigationExampleState extends State<_KeyboardNavigationExample> {
+class _KeyboardNavigationExampleState
+    extends State<_KeyboardNavigationExample> {
   DateTime? selectedDate;
   final FocusNode _focusNode = FocusNode();
 

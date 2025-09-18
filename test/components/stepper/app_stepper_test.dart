@@ -24,7 +24,8 @@ void main() {
     ];
 
     group('Widget Rendering', () {
-      testWidgets('renders with required props for vertical variant', (tester) async {
+      testWidgets('renders with required props for vertical variant',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -43,7 +44,8 @@ void main() {
         expect(find.text('Step 3'), findsOneWidget);
       });
 
-      testWidgets('renders with required props for horizontal variant', (tester) async {
+      testWidgets('renders with required props for horizontal variant',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -281,7 +283,8 @@ void main() {
         expect(tappedStep, 1);
       });
 
-      testWidgets('calls onStepContinue when continue button is pressed', (tester) async {
+      testWidgets('calls onStepContinue when continue button is pressed',
+          (tester) async {
         bool continueCalled = false;
         await tester.pumpWidget(
           MaterialApp(
@@ -302,7 +305,8 @@ void main() {
         expect(continueCalled, true);
       });
 
-      testWidgets('calls onStepCancel when cancel button is pressed', (tester) async {
+      testWidgets('calls onStepCancel when cancel button is pressed',
+          (tester) async {
         bool cancelCalled = false;
         await tester.pumpWidget(
           MaterialApp(
@@ -499,7 +503,8 @@ void main() {
     });
 
     group('Platform Adaptation', () {
-      testWidgets('shows platform-appropriate loading indicator', (tester) async {
+      testWidgets('shows platform-appropriate loading indicator',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -522,8 +527,10 @@ void main() {
   group('AppStep', () {
     test('has correct state properties', () {
       const activeStep = AppStep(title: 'Active', state: AppStepState.active);
-      const completedStep = AppStep(title: 'Completed', state: AppStepState.completed);
-      const disabledStep = AppStep(title: 'Disabled', state: AppStepState.disabled);
+      const completedStep =
+          AppStep(title: 'Completed', state: AppStepState.completed);
+      const disabledStep =
+          AppStep(title: 'Disabled', state: AppStepState.disabled);
       const errorStep = AppStep(title: 'Error', state: AppStepState.error);
 
       expect(activeStep.isActive, true);
@@ -548,9 +555,12 @@ void main() {
     });
 
     test('canInteract property works correctly', () {
-      const interactiveStep = AppStep(title: 'Interactive', isInteractive: true);
-      const nonInteractiveStep = AppStep(title: 'Non-interactive', isInteractive: false);
-      const disabledStep = AppStep(title: 'Disabled', state: AppStepState.disabled);
+      const interactiveStep =
+          AppStep(title: 'Interactive', isInteractive: true);
+      const nonInteractiveStep =
+          AppStep(title: 'Non-interactive', isInteractive: false);
+      const disabledStep =
+          AppStep(title: 'Disabled', state: AppStepState.disabled);
 
       expect(interactiveStep.canInteract, true);
       expect(nonInteractiveStep.canInteract, false);
@@ -610,7 +620,8 @@ void main() {
     test('markStepActive works correctly', () {
       final updatedSteps = testSteps.markStepActive(0);
       expect(updatedSteps[0].isActive, true);
-      expect(updatedSteps[1].isActive, false); // Previous active step should be inactive
+      expect(updatedSteps[1].isActive,
+          false); // Previous active step should be inactive
     });
 
     test('markStepError works correctly', () {

@@ -33,7 +33,8 @@ class AppNavigationDestination with _$AppNavigationDestination {
     Widget? selectedIcon,
     String? tooltip,
     @Default(false) bool disabled,
-    @Default(AppNavigationDestinationType.standard) AppNavigationDestinationType type,
+    @Default(AppNavigationDestinationType.standard)
+    AppNavigationDestinationType type,
     Widget? leading,
     Widget? trailing,
     VoidCallback? onTap,
@@ -109,13 +110,15 @@ class AppNavigationElevation with _$AppNavigationElevation {
 @freezed
 class AppNavigationBehavior with _$AppNavigationBehavior {
   const factory AppNavigationBehavior({
-    @Default(AppNavigationLabelBehavior.alwaysShow) AppNavigationLabelBehavior labelBehavior,
+    @Default(AppNavigationLabelBehavior.alwaysShow)
+    AppNavigationLabelBehavior labelBehavior,
     @Default(false) bool showTooltips,
     @Default(true) bool enableHapticFeedback,
     @Default(true) bool allowTabSwitching,
     @Default(false) bool persistentDrawer,
     @Default(true) bool enableSwipeGestures,
-    @Default(AppNavigationAnimationType.slide) AppNavigationAnimationType animationType,
+    @Default(AppNavigationAnimationType.slide)
+    AppNavigationAnimationType animationType,
     @Default(300) int animationDuration,
   }) = _AppNavigationBehavior;
 }

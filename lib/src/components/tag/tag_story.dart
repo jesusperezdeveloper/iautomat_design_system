@@ -261,7 +261,8 @@ class _TagStoryExampleState extends State<TagStoryExample> {
           leadingIcon: _hasLeadingIcon ? _selectedColor.icon : null,
           trailingIcon: _hasTrailingIcon ? Icons.arrow_forward : null,
           onTap: () => _showSnackBar('Tag presionado: $_label'),
-          onRemove: _removable ? () => _showSnackBar('Tag removido: $_label') : null,
+          onRemove:
+              _removable ? () => _showSnackBar('Tag removido: $_label') : null,
         ),
       ],
     );
@@ -987,9 +988,8 @@ class _TagStoryPlaygroundState extends State<TagStoryPlayground> {
   }
 
   Widget _buildAvailableTagsSection() {
-    final availableForSelection = _availableTags
-        .where((tag) => !_selectedTags.contains(tag))
-        .toList();
+    final availableForSelection =
+        _availableTags.where((tag) => !_selectedTags.contains(tag)).toList();
 
     return Card(
       child: Padding(

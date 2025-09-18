@@ -248,7 +248,8 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
             'ComboBox con validación',
             AppComboBox<String>(
               query: validationQuery,
-              onQueryChanged: (query) => setState(() => validationQuery = query),
+              onQueryChanged: (query) =>
+                  setState(() => validationQuery = query),
               suggestions: countries,
               onSelected: (suggestion) {
                 setState(() => validationQuery = suggestion.label);
@@ -427,7 +428,8 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
     );
   }
 
-  Future<List<AppComboBoxSuggestion<String>>> _performAsyncSearch(String query) async {
+  Future<List<AppComboBoxSuggestion<String>>> _performAsyncSearch(
+      String query) async {
     // Simular búsqueda asíncrona
     await Future.delayed(const Duration(milliseconds: 800));
 

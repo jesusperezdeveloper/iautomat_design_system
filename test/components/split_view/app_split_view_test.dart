@@ -221,7 +221,8 @@ void main() {
     });
 
     group('Keyboard support', () {
-      testWidgets('responds to arrow key navigation when focused', (tester) async {
+      testWidgets('responds to arrow key navigation when focused',
+          (tester) async {
         await tester.pumpWidget(createSplitViewApp(
           config: const AppSplitViewConfig(
             variant: AppSplitViewVariant.resizable,
@@ -269,7 +270,8 @@ void main() {
     });
 
     group('RTL support', () {
-      testWidgets('applies RTL directionality when isRtl is true', (tester) async {
+      testWidgets('applies RTL directionality when isRtl is true',
+          (tester) async {
         await tester.pumpWidget(createSplitViewApp(
           config: const AppSplitViewConfig(isRtl: true),
         ));
@@ -291,7 +293,8 @@ void main() {
     });
 
     group('Accessibility', () {
-      testWidgets('provides semantic labels when a11y is enabled', (tester) async {
+      testWidgets('provides semantic labels when a11y is enabled',
+          (tester) async {
         await tester.pumpWidget(createSplitViewApp(
           config: const AppSplitViewConfig(enableA11y: true),
         ));

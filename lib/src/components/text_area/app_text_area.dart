@@ -86,7 +86,8 @@ class AppTextArea extends StatefulWidget {
   State<AppTextArea> createState() => _AppTextAreaState();
 }
 
-class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin {
+class _AppTextAreaState extends State<AppTextArea>
+    with TickerProviderStateMixin {
   late TextEditingController _controller;
   late FocusNode _focusNode;
   late AnimationController _animationController;
@@ -98,8 +99,7 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
   bool _isFocused = false;
   String? _errorText;
 
-  AppTextAreaConfig get _config =>
-      widget.config ?? const AppTextAreaConfig();
+  AppTextAreaConfig get _config => widget.config ?? const AppTextAreaConfig();
 
   AppTextAreaColors get _colors =>
       widget.colors ?? AppTextAreaColors.fromTheme(Theme.of(context));
@@ -149,7 +149,8 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
 
   int? get _effectiveMaxLines {
     if (widget.maxLines != null) return widget.maxLines;
-    if (widget.variant == AppTextAreaVariant.autoResize && _config.enableAutoResize) {
+    if (widget.variant == AppTextAreaVariant.autoResize &&
+        _config.enableAutoResize) {
       return _config.defaultMaxLines;
     }
     return _config.defaultMaxLines;
@@ -174,7 +175,8 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
     );
 
     _skeletonAnimationController = AnimationController(
-      duration: Duration(milliseconds: (1000 / _config.skeletonShimmerSpeed).round()),
+      duration:
+          Duration(milliseconds: (1000 / _config.skeletonShimmerSpeed).round()),
       vsync: this,
     );
 
@@ -225,7 +227,8 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
   void _handleTap() {
     if (!_isEnabled) return;
 
-    if (_config.enableHapticFeedback && (Platform.isIOS || Platform.isAndroid)) {
+    if (_config.enableHapticFeedback &&
+        (Platform.isIOS || Platform.isAndroid)) {
       HapticFeedback.lightImpact();
     }
 
@@ -258,7 +261,8 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
                 height: 16,
                 width: 80,
                 decoration: BoxDecoration(
-                  color: _colors.skeletonBaseColor.withValues(alpha: _skeletonAnimation.value),
+                  color: _colors.skeletonBaseColor
+                      .withValues(alpha: _skeletonAnimation.value),
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -267,7 +271,8 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
             Container(
               height: _config.minimumHeight,
               decoration: BoxDecoration(
-                color: _colors.skeletonBaseColor.withValues(alpha: _skeletonAnimation.value),
+                color: _colors.skeletonBaseColor
+                    .withValues(alpha: _skeletonAnimation.value),
                 borderRadius: BorderRadius.circular(_config.borderRadius),
                 border: Border.all(
                   color: _colors.skeletonHighlightColor.withValues(alpha: 0.5),
@@ -281,7 +286,8 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
                 height: 12,
                 width: 120,
                 decoration: BoxDecoration(
-                  color: _colors.skeletonBaseColor.withValues(alpha: _skeletonAnimation.value),
+                  color: _colors.skeletonBaseColor
+                      .withValues(alpha: _skeletonAnimation.value),
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -387,7 +393,8 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
                       ),
                     ),
                   ),
-                  if (widget.maxLength != null && _config.enableCharacterCounter)
+                  if (widget.maxLength != null &&
+                      _config.enableCharacterCounter)
                     Text(
                       '${_controller.text.length}/${widget.maxLength}',
                       style: theme.textTheme.bodySmall?.copyWith(
@@ -412,75 +419,78 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
         maxHeight: _config.maximumHeight,
       ),
       child: TextFormField(
-          controller: _controller,
-          focusNode: _focusNode,
-          enabled: _isEnabled,
-          readOnly: widget.readOnly,
-          autofocus: widget.autoFocus,
-          maxLines: _effectiveMaxLines,
-          minLines: _effectiveMinLines,
-          maxLength: widget.maxLength,
-          keyboardType: _effectiveKeyboardType,
-          textInputAction: widget.textInputAction,
-          textDirection: widget.textDirection,
-          textAlign: widget.textAlign,
-          textAlignVertical: widget.textAlignVertical,
-          textCapitalization: widget.textCapitalization,
-          enableSuggestions: widget.enableSuggestions,
-          autocorrect: widget.autocorrect,
-          enableInteractiveSelection: widget.enableInteractiveSelection,
-          validator: widget.validator,
-          onChanged: _handleChanged,
-          onFieldSubmitted: widget.onSubmitted,
-          onEditingComplete: widget.onEditingComplete,
-          onTap: _handleTap,
-          onTapOutside: (_) => _focusNode.unfocus(),
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: _isEnabled ? _colors.textColor : _colors.disabledTextColor,
-            height: _config.lineHeight / (theme.textTheme.bodyMedium?.fontSize ?? 14),
+        controller: _controller,
+        focusNode: _focusNode,
+        enabled: _isEnabled,
+        readOnly: widget.readOnly,
+        autofocus: widget.autoFocus,
+        maxLines: _effectiveMaxLines,
+        minLines: _effectiveMinLines,
+        maxLength: widget.maxLength,
+        keyboardType: _effectiveKeyboardType,
+        textInputAction: widget.textInputAction,
+        textDirection: widget.textDirection,
+        textAlign: widget.textAlign,
+        textAlignVertical: widget.textAlignVertical,
+        textCapitalization: widget.textCapitalization,
+        enableSuggestions: widget.enableSuggestions,
+        autocorrect: widget.autocorrect,
+        enableInteractiveSelection: widget.enableInteractiveSelection,
+        validator: widget.validator,
+        onChanged: _handleChanged,
+        onFieldSubmitted: widget.onSubmitted,
+        onEditingComplete: widget.onEditingComplete,
+        onTap: _handleTap,
+        onTapOutside: (_) => _focusNode.unfocus(),
+        style: theme.textTheme.bodyMedium?.copyWith(
+          color: _isEnabled ? _colors.textColor : _colors.disabledTextColor,
+          height:
+              _config.lineHeight / (theme.textTheme.bodyMedium?.fontSize ?? 14),
+        ),
+        cursorColor: _colors.cursorColor,
+        selectionControls: theme.platform == TargetPlatform.iOS
+            ? cupertinoTextSelectionControls
+            : materialTextSelectionControls,
+        decoration: InputDecoration(
+          hintText: widget.hint,
+          labelText: _config.enableFloatingLabel ? widget.label : null,
+          prefixIcon: _buildPrefixIcon(),
+          suffixIcon: _buildSuffixIcon(),
+          prefix: widget.prefix,
+          suffix: widget.suffix,
+          counterText: '',
+          filled: true,
+          fillColor: _isEnabled ? _colors.fillColor : _colors.disabledFillColor,
+          contentPadding: _config.contentPadding,
+          border: _buildBorder(_colors.borderColor),
+          enabledBorder: _buildBorder(_colors.borderColor),
+          focusedBorder: _buildBorder(
+              _colors.focusedBorderColor, _config.focusBorderWidth),
+          errorBorder: _buildBorder(_colors.errorBorderColor),
+          focusedErrorBorder:
+              _buildBorder(_colors.errorBorderColor, _config.focusBorderWidth),
+          disabledBorder: _buildBorder(_colors.disabledBorderColor),
+          hintStyle: theme.textTheme.bodyMedium?.copyWith(
+            color: _isEnabled ? _colors.hintColor : _colors.disabledHintColor,
           ),
-          cursorColor: _colors.cursorColor,
-          selectionControls: theme.platform == TargetPlatform.iOS
-              ? cupertinoTextSelectionControls
-              : materialTextSelectionControls,
-          decoration: InputDecoration(
-            hintText: widget.hint,
-            labelText: _config.enableFloatingLabel ? widget.label : null,
-            prefixIcon: _buildPrefixIcon(),
-            suffixIcon: _buildSuffixIcon(),
-            prefix: widget.prefix,
-            suffix: widget.suffix,
-            counterText: '',
-            filled: true,
-            fillColor: _isEnabled ? _colors.fillColor : _colors.disabledFillColor,
-            contentPadding: _config.contentPadding,
-            border: _buildBorder(_colors.borderColor),
-            enabledBorder: _buildBorder(_colors.borderColor),
-            focusedBorder: _buildBorder(_colors.focusedBorderColor, _config.focusBorderWidth),
-            errorBorder: _buildBorder(_colors.errorBorderColor),
-            focusedErrorBorder: _buildBorder(_colors.errorBorderColor, _config.focusBorderWidth),
-            disabledBorder: _buildBorder(_colors.disabledBorderColor),
-            hintStyle: theme.textTheme.bodyMedium?.copyWith(
-              color: _isEnabled ? _colors.hintColor : _colors.disabledHintColor,
-            ),
-            labelStyle: theme.textTheme.bodyMedium?.copyWith(
-              color: _hasError
-                  ? _colors.errorLabelColor
-                  : _isFocused
-                      ? _colors.focusedLabelColor
-                      : _isEnabled
-                          ? _colors.labelColor
-                          : _colors.disabledLabelColor,
-            ),
-            floatingLabelStyle: theme.textTheme.bodySmall?.copyWith(
-              color: _hasError
-                  ? _colors.errorLabelColor
-                  : _isFocused
-                      ? _colors.focusedLabelColor
-                      : _colors.labelColor,
-            ),
+          labelStyle: theme.textTheme.bodyMedium?.copyWith(
+            color: _hasError
+                ? _colors.errorLabelColor
+                : _isFocused
+                    ? _colors.focusedLabelColor
+                    : _isEnabled
+                        ? _colors.labelColor
+                        : _colors.disabledLabelColor,
+          ),
+          floatingLabelStyle: theme.textTheme.bodySmall?.copyWith(
+            color: _hasError
+                ? _colors.errorLabelColor
+                : _isFocused
+                    ? _colors.focusedLabelColor
+                    : _colors.labelColor,
           ),
         ),
+      ),
     );
   }
 
@@ -490,7 +500,9 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
     return Icon(
       widget.prefixIcon,
       size: _config.iconSize,
-      color: _isEnabled ? _colors.prefixIconColor : _colors.disabledPrefixIconColor,
+      color: _isEnabled
+          ? _colors.prefixIconColor
+          : _colors.disabledPrefixIconColor,
     );
   }
 
@@ -500,7 +512,9 @@ class _AppTextAreaState extends State<AppTextArea> with TickerProviderStateMixin
     return Icon(
       widget.suffixIcon,
       size: _config.iconSize,
-      color: _isEnabled ? _colors.suffixIconColor : _colors.disabledSuffixIconColor,
+      color: _isEnabled
+          ? _colors.suffixIconColor
+          : _colors.disabledSuffixIconColor,
     );
   }
 

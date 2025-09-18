@@ -67,8 +67,8 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
             Text(
               'Controles',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             Wrap(
@@ -187,7 +187,8 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
           children: [
             Checkbox(
               value: _interactionEnabled,
-              onChanged: (value) => setState(() => _interactionEnabled = value!),
+              onChanged: (value) =>
+                  setState(() => _interactionEnabled = value!),
             ),
             const Text('Interacción'),
           ],
@@ -220,11 +221,14 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
               enabled: _animationEnabled,
               type: AppMetricCardAnimationType.fade,
             ),
-            onTap: _interactionEnabled ? () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Usuarios Activos presionado')),
-              );
-            } : null,
+            onTap: _interactionEnabled
+                ? () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('Usuarios Activos presionado')),
+                    );
+                  }
+                : null,
           ),
           AppMetricCard(
             variant: _selectedVariant,
@@ -240,11 +244,13 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
               enabled: _animationEnabled,
               type: AppMetricCardAnimationType.slide,
             ),
-            onTap: _interactionEnabled ? () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Ingresos presionado')),
-              );
-            } : null,
+            onTap: _interactionEnabled
+                ? () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Ingresos presionado')),
+                    );
+                  }
+                : null,
           ),
           AppMetricCard(
             variant: _selectedVariant,
@@ -868,22 +874,23 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
     );
   }
 
-  Widget _buildExampleSection(String title, String description, Widget example) {
+  Widget _buildExampleSection(
+      String title, String description, Widget example) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+                fontWeight: FontWeight.bold,
+              ),
         ),
         const SizedBox(height: 8),
         Text(
           description,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          ),
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
         ),
         const SizedBox(height: 16),
         Card(

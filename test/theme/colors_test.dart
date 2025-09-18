@@ -89,10 +89,14 @@ void main() {
           AppColors.primary,
           0.5,
         );
-        expect((transparentPrimary.a * 255.0).round() & 0xff, (255 * 0.5).round());
-        expect((transparentPrimary.r * 255.0).round() & 0xff, (AppColors.primary.r * 255.0).round() & 0xff);
-        expect((transparentPrimary.g * 255.0).round() & 0xff, (AppColors.primary.g * 255.0).round() & 0xff);
-        expect((transparentPrimary.b * 255.0).round() & 0xff, (AppColors.primary.b * 255.0).round() & 0xff);
+        expect(
+            (transparentPrimary.a * 255.0).round() & 0xff, (255 * 0.5).round());
+        expect((transparentPrimary.r * 255.0).round() & 0xff,
+            (AppColors.primary.r * 255.0).round() & 0xff);
+        expect((transparentPrimary.g * 255.0).round() & 0xff,
+            (AppColors.primary.g * 255.0).round() & 0xff);
+        expect((transparentPrimary.b * 255.0).round() & 0xff,
+            (AppColors.primary.b * 255.0).round() & 0xff);
       });
 
       test('lighten should return lighter color', () {

@@ -433,7 +433,8 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
                     height: AppChipUtils.getHeight(chipSize, sizes),
                     padding: widget.padding ??
                         AppChipUtils.getPadding(chipSize, sizes),
-                    decoration: _getDecoration(colors, chipSize, chipShape, sizes),
+                    decoration:
+                        _getDecoration(colors, chipSize, chipShape, sizes),
                     child: _buildChipContent(colors, chipSize, sizes),
                   ),
                 ),
@@ -445,8 +446,10 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildChipContent(AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
-    final typography = _config.typography ?? AppChipTypography.fromTheme(Theme.of(context));
+  Widget _buildChipContent(
+      AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
+    final typography =
+        _config.typography ?? AppChipTypography.fromTheme(Theme.of(context));
     final icons = _config.icons ?? const AppChipIcons();
 
     if (widget.state == AppChipState.loading) {
@@ -491,7 +494,8 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     );
   }
 
-  Widget? _buildAvatar(AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
+  Widget? _buildAvatar(
+      AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
     // Check data model first
     if (widget.data?.hasAvatar == true) {
       if (widget.data!.avatarUrl != null) {
@@ -527,8 +531,10 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     return null;
   }
 
-  Widget _buildTextAvatar(String text, AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
-    final typography = _config.typography ?? AppChipTypography.fromTheme(Theme.of(context));
+  Widget _buildTextAvatar(String text, AppChipColors colors,
+      AppChipSize chipSize, AppChipSizes sizes) {
+    final typography =
+        _config.typography ?? AppChipTypography.fromTheme(Theme.of(context));
     final avatarSize = AppChipUtils.getAvatarSize(chipSize, sizes);
 
     return Container(
@@ -549,7 +555,8 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildIcon(AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
+  Widget _buildIcon(
+      AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
     final iconData = widget.icon ?? widget.data?.icon;
     if (iconData == null) return const SizedBox.shrink();
 
@@ -563,7 +570,8 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildCheckmark(AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
+  Widget _buildCheckmark(
+      AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
     final icons = _config.icons ?? const AppChipIcons();
     final checkmarkSize = _getCheckmarkSize(chipSize, sizes);
 
@@ -586,7 +594,8 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildDeleteButton(AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes, AppChipIcons icons) {
+  Widget _buildDeleteButton(AppChipColors colors, AppChipSize chipSize,
+      AppChipSizes sizes, AppChipIcons icons) {
     final deleteIconSize = _getDeleteIconSize(chipSize, sizes);
     final deleteIconData = widget.deleteIcon ?? icons.deleteIcon;
 
@@ -614,7 +623,8 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
           height: _config.loadingIndicatorSize.height,
           child: CircularProgressIndicator(
             strokeWidth: 2,
-            valueColor: AlwaysStoppedAnimation<Color>(colors.loadingIndicatorColor),
+            valueColor:
+                AlwaysStoppedAnimation<Color>(colors.loadingIndicatorColor),
           ),
         ),
         SizedBox(width: _config.iconSpacing),
@@ -637,18 +647,21 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
       decoration: BoxDecoration(
         color: colors.skeletonBaseColor,
         borderRadius: widget.borderRadius ??
-            AppChipUtils.getBorderRadius(chipSize, widget.shape ?? _config.shape, sizes),
+            AppChipUtils.getBorderRadius(
+                chipSize, widget.shape ?? _config.shape, sizes),
       ),
     );
   }
 
   // Styling methods
   AppChipColors _getColors() {
-    final baseColors = _config.colors ?? AppChipColors.fromTheme(Theme.of(context));
+    final baseColors =
+        _config.colors ?? AppChipColors.fromTheme(Theme.of(context));
     return AppChipUtils.getVariantColors(widget.variant, baseColors);
   }
 
-  BoxDecoration _getDecoration(AppChipColors colors, AppChipSize chipSize, AppChipShape chipShape, AppChipSizes sizes) {
+  BoxDecoration _getDecoration(AppChipColors colors, AppChipSize chipSize,
+      AppChipShape chipShape, AppChipSizes sizes) {
     Color backgroundColor;
     Color borderColor;
     double borderWidth;
@@ -665,7 +678,8 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
       borderWidth = _config.borderWidth;
       elevation = widget.elevation ?? _config.elevation;
     } else if (widget.selected) {
-      backgroundColor = widget.backgroundColor ?? colors.selectedBackgroundColor;
+      backgroundColor =
+          widget.backgroundColor ?? colors.selectedBackgroundColor;
       borderColor = colors.selectedBorderColor;
       borderWidth = _config.borderWidth;
       elevation = widget.elevation ?? _config.elevation;
@@ -711,8 +725,10 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     );
   }
 
-  TextStyle _getTextStyle(AppChipColors colors, AppChipSize chipSize, AppChipTypography typography) {
-    final baseStyle = widget.textStyle ?? AppChipUtils.getTextStyle(chipSize, typography);
+  TextStyle _getTextStyle(AppChipColors colors, AppChipSize chipSize,
+      AppChipTypography typography) {
+    final baseStyle =
+        widget.textStyle ?? AppChipUtils.getTextStyle(chipSize, typography);
 
     Color textColor;
     if (!widget.enabled) {
@@ -735,7 +751,8 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
   }
 
   TextStyle _getLoadingTextStyle(AppChipColors colors) {
-    final typography = _config.typography ?? AppChipTypography.fromTheme(Theme.of(context));
+    final typography =
+        _config.typography ?? AppChipTypography.fromTheme(Theme.of(context));
     return typography.loadingStyle.copyWith(color: colors.loadingTextColor);
   }
 
@@ -867,13 +884,13 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
   bool _shouldShowCheckmark() {
     final showCheckmark = widget.showCheckmark ?? _config.showCheckmark;
     return showCheckmark &&
-           widget.variant == AppChipVariant.filter &&
-           widget.selected;
+        widget.variant == AppChipVariant.filter &&
+        widget.selected;
   }
 
   bool _shouldShowDeleteButton() {
     return widget.deletable &&
-           (widget.onDeleted != null || widget.data?.isDeletable == true) &&
-           _config.showDeleteIcon;
+        (widget.onDeleted != null || widget.data?.isDeletable == true) &&
+        _config.showDeleteIcon;
   }
 }

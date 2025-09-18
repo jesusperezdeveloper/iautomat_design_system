@@ -209,7 +209,8 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
             min: 1,
             max: 5,
             divisions: 4,
-            onChanged: (value) => setState(() => _maxGroupCount = value.round()),
+            onChanged: (value) =>
+                setState(() => _maxGroupCount = value.round()),
           ),
         ),
       ],
@@ -721,7 +722,8 @@ class AvatarStoryBasic extends StatelessWidget {
                 _buildBasicExample(
                   'Avatar con Imagen',
                   AppAvatar.image(
-                    imageUrl: 'https://api.dicebear.com/7.x/avataaars/png?seed=Felix',
+                    imageUrl:
+                        'https://api.dicebear.com/7.x/avataaars/png?seed=Felix',
                   ),
                 ),
                 _buildBasicExample(
@@ -767,7 +769,6 @@ class AvatarStoryPlayground extends StatefulWidget {
 }
 
 class _AvatarStoryPlaygroundState extends State<AvatarStoryPlayground> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -894,7 +895,8 @@ class _AvatarStoryPlaygroundState extends State<AvatarStoryPlayground> {
                 size: AppAvatarSize.small,
               ),
               title: Text(collaborator['name'] as String),
-              subtitle: Text((collaborator['presence'] as AppAvatarPresence).label),
+              subtitle:
+                  Text((collaborator['presence'] as AppAvatarPresence).label),
               onTap: () => _showSnackBar('Contactar a ${collaborator['name']}'),
             );
           }),

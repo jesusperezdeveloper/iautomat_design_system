@@ -565,17 +565,20 @@ class _AppToggleViewState extends State<AppToggleView>
     switch (widget.variant) {
       case AppToggleViewVariant.list:
         return Column(
-          children: List.generate(skeletonCount, (index) => _buildSkeletonItem()),
+          children:
+              List.generate(skeletonCount, (index) => _buildSkeletonItem()),
         );
       case AppToggleViewVariant.grid:
         return Wrap(
           spacing: _effectiveConfig.itemSpacing,
           runSpacing: _effectiveConfig.itemSpacing,
-          children: List.generate(skeletonCount, (index) => _buildSkeletonItem()),
+          children:
+              List.generate(skeletonCount, (index) => _buildSkeletonItem()),
         );
       case AppToggleViewVariant.compact:
         return Row(
-          children: List.generate(skeletonCount, (index) => _buildSkeletonItem()),
+          children:
+              List.generate(skeletonCount, (index) => _buildSkeletonItem()),
         );
     }
   }
@@ -619,8 +622,10 @@ class _AppToggleViewState extends State<AppToggleView>
   }
 
   int _calculateCrossAxisCount(double availableWidth) {
-    final itemWidth = AppToggleViewUtils.getItemSize(_effectiveConfig.size).width;
-    return AppToggleViewUtils.calculateOptimalCrossAxisCount(availableWidth, itemWidth);
+    final itemWidth =
+        AppToggleViewUtils.getItemSize(_effectiveConfig.size).width;
+    return AppToggleViewUtils.calculateOptimalCrossAxisCount(
+        availableWidth, itemWidth);
   }
 
   void _handleOptionTap(AppToggleViewOption option) {
@@ -768,7 +773,8 @@ class _ToggleOptionWidgetState extends State<_ToggleOptionWidget>
       vsync: this,
     );
     _hoverAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _hoverController, curve: widget.config.animationCurve),
+      CurvedAnimation(
+          parent: _hoverController, curve: widget.config.animationCurve),
     );
   }
 
@@ -857,13 +863,15 @@ class _ToggleOptionWidgetState extends State<_ToggleOptionWidget>
     Color shadowColor;
 
     if (!widget.isEnabled) {
-      backgroundColor = widget.config.disabledColor ?? colorScheme.onSurface.withValues(alpha: 0.12);
+      backgroundColor = widget.config.disabledColor ??
+          colorScheme.onSurface.withValues(alpha: 0.12);
       borderColor = backgroundColor;
       textColor = colorScheme.onSurface.withValues(alpha: 0.38);
       iconColor = textColor;
       shadowColor = Colors.transparent;
     } else if (widget.isSelected) {
-      backgroundColor = widget.config.selectedBackgroundColor ?? colorScheme.primary;
+      backgroundColor =
+          widget.config.selectedBackgroundColor ?? colorScheme.primary;
       borderColor = widget.config.selectedBorderColor ?? backgroundColor;
       textColor = widget.config.selectedTextColor ?? colorScheme.onPrimary;
       iconColor = widget.config.selectedIconColor ?? textColor;
@@ -878,8 +886,11 @@ class _ToggleOptionWidgetState extends State<_ToggleOptionWidget>
 
     // Apply hover and focus effects
     if (_isHovering && widget.isEnabled) {
-      final hoverColor = widget.config.hoverColor ?? colorScheme.primary.withValues(alpha: 0.08);
-      backgroundColor = Color.lerp(backgroundColor, hoverColor, _hoverAnimation.value) ?? backgroundColor;
+      final hoverColor = widget.config.hoverColor ??
+          colorScheme.primary.withValues(alpha: 0.08);
+      backgroundColor =
+          Color.lerp(backgroundColor, hoverColor, _hoverAnimation.value) ??
+              backgroundColor;
     }
 
     if (widget.isFocused && widget.config.showFocusIndicator) {
@@ -888,8 +899,10 @@ class _ToggleOptionWidgetState extends State<_ToggleOptionWidget>
     }
 
     if (_isPressed && widget.isEnabled) {
-      final splashColor = widget.config.splashColor ?? colorScheme.primary.withValues(alpha: 0.12);
-      backgroundColor = Color.lerp(backgroundColor, splashColor, 0.5) ?? backgroundColor;
+      final splashColor = widget.config.splashColor ??
+          colorScheme.primary.withValues(alpha: 0.12);
+      backgroundColor =
+          Color.lerp(backgroundColor, splashColor, 0.5) ?? backgroundColor;
     }
 
     return _OptionColors(
@@ -905,12 +918,14 @@ class _ToggleOptionWidgetState extends State<_ToggleOptionWidget>
     final theme = widget.theme;
     final colors = _getColors();
 
-    TextStyle baseStyle = widget.config.textStyle ?? theme.textTheme.labelLarge!;
+    TextStyle baseStyle =
+        widget.config.textStyle ?? theme.textTheme.labelLarge!;
 
     if (widget.isSelected) {
-      baseStyle = widget.config.selectedTextStyle ?? baseStyle.copyWith(
-        fontWeight: widget.config.selectedFontWeight,
-      );
+      baseStyle = widget.config.selectedTextStyle ??
+          baseStyle.copyWith(
+            fontWeight: widget.config.selectedFontWeight,
+          );
     } else {
       baseStyle = baseStyle.copyWith(
         fontWeight: widget.config.fontWeight,

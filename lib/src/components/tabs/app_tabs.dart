@@ -36,8 +36,7 @@ class AppTabs extends StatefulWidget {
   State<AppTabs> createState() => _AppTabsState();
 }
 
-class _AppTabsState extends State<AppTabs>
-    with TickerProviderStateMixin {
+class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _selectionAnimationController;
   late Animation<double> _scaleAnimation;
@@ -55,15 +54,16 @@ class _AppTabsState extends State<AppTabs>
 
   void _setupAnimations() {
     _stateAnimationController = AnimationController(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 300),
       vsync: this,
     );
 
     _selectionAnimationController = AnimationController(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 300),
       vsync: this,
     );
-
 
     _scaleAnimation = Tween<double>(
       begin: 0.8,
@@ -159,7 +159,8 @@ class _AppTabsState extends State<AppTabs>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
+    final isRtl =
+        widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
 
     return Directionality(
       textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
@@ -172,10 +173,12 @@ class _AppTabsState extends State<AppTabs>
           builder: (context, child) {
             return AnimatedOpacity(
               opacity: widget.config.state.opacity,
-              duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+              duration: Duration(
+                  milliseconds: widget.config.animation?.duration ?? 300),
               child: AnimatedScale(
                 scale: _scaleAnimation.value,
-                duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+                duration: Duration(
+                    milliseconds: widget.config.animation?.duration ?? 300),
                 child: _buildTabsContent(theme, isRtl),
               ),
             );
@@ -200,7 +203,8 @@ class _AppTabsState extends State<AppTabs>
   Widget _buildLoadingState(ThemeData theme) {
     return Container(
       height: widget.height ?? widget.config.spacing?.minTabHeight ?? 48.0,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.tabPadding ?? 12.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.tabPadding ?? 12.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
         border: Border(
@@ -219,7 +223,8 @@ class _AppTabsState extends State<AppTabs>
   Widget _buildSkeletonState(ThemeData theme) {
     return Container(
       height: widget.height ?? widget.config.spacing?.minTabHeight ?? 48.0,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.tabPadding ?? 12.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.tabPadding ?? 12.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
         border: Border(
@@ -230,35 +235,37 @@ class _AppTabsState extends State<AppTabs>
         ),
       ),
       child: Row(
-        children: List.generate(3, (index) => Expanded(
-          child: Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: widget.config.spacing?.tabSpacing ?? 4.0,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 16,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(4),
+        children: List.generate(
+            3,
+            (index) => Expanded(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: widget.config.spacing?.tabSpacing ?? 4.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: 16,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Container(
+                          width: 80,
+                          height: 12,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Container(
-                  width: 80,
-                  height: 12,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        )),
+                )),
       ),
     );
   }
@@ -307,7 +314,8 @@ class _AppTabsState extends State<AppTabs>
             unselectedLabelStyle: _getUnselectedLabelStyle(theme),
             overlayColor: WidgetStateProperty.all(_getOverlayColor(theme)),
             splashFactory: InkRipple.splashFactory,
-            enableFeedback: widget.config.behavior?.enableHapticFeedback ?? true,
+            enableFeedback:
+                widget.config.behavior?.enableHapticFeedback ?? true,
             onTap: _handleTabTap,
           ),
         ),
@@ -322,7 +330,8 @@ class _AppTabsState extends State<AppTabs>
     );
   }
 
-  Widget _buildScrollableTabs(List<AppTabItem> tabs, ThemeData theme, bool isRtl) {
+  Widget _buildScrollableTabs(
+      List<AppTabItem> tabs, ThemeData theme, bool isRtl) {
     return Column(
       children: [
         Container(
@@ -340,10 +349,14 @@ class _AppTabsState extends State<AppTabs>
             controller: _controller,
             tabs: tabs.map((tab) => _buildTab(tab, theme)).toList(),
             isScrollable: true,
-            tabAlignment: widget.config.behavior?.tabAlignment ?? TabAlignment.start,
+            tabAlignment:
+                widget.config.behavior?.tabAlignment ?? TabAlignment.start,
             indicatorColor: _getIndicatorColor(theme),
             indicatorWeight: widget.config.spacing?.indicatorWeight ?? 4.0,
-            indicatorSize: (widget.config.behavior?.indicatorSize == AppTabsIndicatorSize.tab) ? TabBarIndicatorSize.tab : TabBarIndicatorSize.label,
+            indicatorSize: (widget.config.behavior?.indicatorSize ==
+                    AppTabsIndicatorSize.tab)
+                ? TabBarIndicatorSize.tab
+                : TabBarIndicatorSize.label,
             indicatorPadding: EdgeInsets.symmetric(
               horizontal: widget.config.spacing?.indicatorPadding ?? 8.0,
             ),
@@ -353,7 +366,8 @@ class _AppTabsState extends State<AppTabs>
             unselectedLabelStyle: _getUnselectedLabelStyle(theme),
             overlayColor: WidgetStateProperty.all(_getOverlayColor(theme)),
             splashFactory: InkRipple.splashFactory,
-            enableFeedback: widget.config.behavior?.enableHapticFeedback ?? true,
+            enableFeedback:
+                widget.config.behavior?.enableHapticFeedback ?? true,
             onTap: _handleTabTap,
             padding: EdgeInsets.symmetric(
               horizontal: widget.config.spacing?.tabPadding ?? 12.0,
@@ -371,7 +385,8 @@ class _AppTabsState extends State<AppTabs>
     );
   }
 
-  Widget _buildTabsWithBadges(List<AppTabItem> tabs, ThemeData theme, bool isRtl) {
+  Widget _buildTabsWithBadges(
+      List<AppTabItem> tabs, ThemeData theme, bool isRtl) {
     return Column(
       children: [
         Container(
@@ -389,10 +404,14 @@ class _AppTabsState extends State<AppTabs>
             controller: _controller,
             tabs: tabs.map((tab) => _buildTabWithBadge(tab, theme)).toList(),
             isScrollable: true,
-            tabAlignment: widget.config.behavior?.tabAlignment ?? TabAlignment.start,
+            tabAlignment:
+                widget.config.behavior?.tabAlignment ?? TabAlignment.start,
             indicatorColor: _getIndicatorColor(theme),
             indicatorWeight: widget.config.spacing?.indicatorWeight ?? 4.0,
-            indicatorSize: (widget.config.behavior?.indicatorSize == AppTabsIndicatorSize.tab) ? TabBarIndicatorSize.tab : TabBarIndicatorSize.label,
+            indicatorSize: (widget.config.behavior?.indicatorSize ==
+                    AppTabsIndicatorSize.tab)
+                ? TabBarIndicatorSize.tab
+                : TabBarIndicatorSize.label,
             indicatorPadding: EdgeInsets.symmetric(
               horizontal: widget.config.spacing?.indicatorPadding ?? 8.0,
             ),
@@ -402,7 +421,8 @@ class _AppTabsState extends State<AppTabs>
             unselectedLabelStyle: _getUnselectedLabelStyle(theme),
             overlayColor: WidgetStateProperty.all(_getOverlayColor(theme)),
             splashFactory: InkRipple.splashFactory,
-            enableFeedback: widget.config.behavior?.enableHapticFeedback ?? true,
+            enableFeedback:
+                widget.config.behavior?.enableHapticFeedback ?? true,
             onTap: _handleTabTap,
             padding: EdgeInsets.symmetric(
               horizontal: widget.config.spacing?.tabPadding ?? 12.0,
@@ -445,7 +465,8 @@ class _AppTabsState extends State<AppTabs>
             Text(
               tab.text,
               style: _getLabelStyle(theme),
-              textAlign: widget.config.typography?.textAlign ?? TextAlign.center,
+              textAlign:
+                  widget.config.typography?.textAlign ?? TextAlign.center,
             ),
           ],
         );
@@ -464,11 +485,15 @@ class _AppTabsState extends State<AppTabs>
         animation: _selectionAnimation,
         builder: (context, child) {
           return Semantics(
-            label: widget.config.enableA11y ? tab.semanticLabel ?? tab.text : null,
+            label:
+                widget.config.enableA11y ? tab.semanticLabel ?? tab.text : null,
             button: widget.config.enableA11y,
-            selected: widget.config.enableA11y && _controller.index == _getTabs().indexOf(tab),
+            selected: widget.config.enableA11y &&
+                _controller.index == _getTabs().indexOf(tab),
             child: Tooltip(
-              message: (widget.config.behavior?.showTooltips ?? true) ? tab.tooltip ?? tab.text : '',
+              message: (widget.config.behavior?.showTooltips ?? true)
+                  ? tab.tooltip ?? tab.text
+                  : '',
               child: content,
             ),
           );
@@ -593,54 +618,54 @@ class _AppTabsState extends State<AppTabs>
   // Color getters
   Color? _getBackgroundColor(ThemeData theme) {
     return widget.backgroundColor ??
-           widget.config.colors?.backgroundColor ??
-           theme.colorScheme.surface;
+        widget.config.colors?.backgroundColor ??
+        theme.colorScheme.surface;
   }
 
   Color? _getIndicatorColor(ThemeData theme) {
     return widget.indicatorColor ??
-           widget.config.colors?.indicatorColor ??
-           theme.tabBarTheme.indicatorColor ??
-           theme.colorScheme.primary;
+        widget.config.colors?.indicatorColor ??
+        theme.tabBarTheme.indicatorColor ??
+        theme.colorScheme.primary;
   }
 
   Color? _getLabelColor(ThemeData theme) {
     return widget.labelColor ??
-           widget.config.colors?.selectedLabelColor ??
-           theme.tabBarTheme.labelColor ??
-           theme.colorScheme.primary;
+        widget.config.colors?.selectedLabelColor ??
+        theme.tabBarTheme.labelColor ??
+        theme.colorScheme.primary;
   }
 
   Color? _getUnselectedLabelColor(ThemeData theme) {
     return widget.unselectedLabelColor ??
-           widget.config.colors?.unselectedLabelColor ??
-           theme.tabBarTheme.unselectedLabelColor ??
-           theme.colorScheme.onSurfaceVariant;
+        widget.config.colors?.unselectedLabelColor ??
+        theme.tabBarTheme.unselectedLabelColor ??
+        theme.colorScheme.onSurfaceVariant;
   }
 
   Color? _getDividerColor(ThemeData theme) {
     return widget.config.colors?.dividerColor ??
-           theme.tabBarTheme.dividerColor ??
-           theme.dividerColor;
+        theme.tabBarTheme.dividerColor ??
+        theme.dividerColor;
   }
 
   Color? _getOverlayColor(ThemeData theme) {
     return widget.config.colors?.overlayColor ??
-           theme.colorScheme.primary.withValues(alpha: 0.12);
+        theme.colorScheme.primary.withValues(alpha: 0.12);
   }
 
   // Typography getters
   TextStyle? _getLabelStyle(ThemeData theme) {
     return widget.config.typography?.selectedLabelStyle ??
-           theme.tabBarTheme.labelStyle ??
-           theme.textTheme.labelLarge;
+        theme.tabBarTheme.labelStyle ??
+        theme.textTheme.labelLarge;
   }
 
   TextStyle? _getUnselectedLabelStyle(ThemeData theme) {
     return widget.config.typography?.unselectedLabelStyle ??
-           theme.tabBarTheme.unselectedLabelStyle ??
-           theme.textTheme.labelLarge?.copyWith(
-             color: _getUnselectedLabelColor(theme),
-           );
+        theme.tabBarTheme.unselectedLabelStyle ??
+        theme.textTheme.labelLarge?.copyWith(
+          color: _getUnselectedLabelColor(theme),
+        );
   }
 }

@@ -396,7 +396,8 @@ void main() {
           ),
         );
 
-        final select = tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+        final select =
+            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
         expect(select.config?.borderRadius, 16);
         expect(select.config?.minimumHeight, 60);
         expect(select.config?.borderWidth, 3);
@@ -483,7 +484,8 @@ void main() {
           ),
         );
 
-        final select = tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+        final select =
+            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
         expect(select.autoFocus, true);
       });
 
@@ -545,7 +547,8 @@ void main() {
 
         expect(validator(['item1']), null);
         expect(validator(['item1', 'item2']), null);
-        expect(validator(['item1', 'item2', 'item3']), 'Selecciona máximo 2 opciones');
+        expect(validator(['item1', 'item2', 'item3']),
+            'Selecciona máximo 2 opciones');
       });
 
       testWidgets('combined validators work', (tester) async {
@@ -559,7 +562,8 @@ void main() {
         expect(validator(['item1']), null);
         expect(validator(['item1', 'item2']), null);
         expect(validator(['item1', 'item2', 'item3']), null);
-        expect(validator(['item1', 'item2', 'item3', 'item4']), 'Selecciona máximo 3 opciones');
+        expect(validator(['item1', 'item2', 'item3', 'item4']),
+            'Selecciona máximo 3 opciones');
       });
     });
 

@@ -19,14 +19,16 @@ void main() {
     });
 
     group('Basic Widget Tests', () {
-      testWidgets('renders correctly with default configuration', (tester) async {
+      testWidgets('renders correctly with default configuration',
+          (tester) async {
         await tester.pumpWidget(testApp);
 
         expect(find.byType(AppColorPicker), findsOneWidget);
         expect(find.byIcon(Icons.colorize), findsOneWidget);
       });
 
-      testWidgets('displays hint text when no value is selected', (tester) async {
+      testWidgets('displays hint text when no value is selected',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -42,7 +44,8 @@ void main() {
         expect(find.text('Select a color'), findsOneWidget);
       });
 
-      testWidgets('displays formatted color when value is provided', (tester) async {
+      testWidgets('displays formatted color when value is provided',
+          (tester) async {
         final testColor = AppColorValue.fromColor(Colors.red);
 
         await tester.pumpWidget(
@@ -175,7 +178,8 @@ void main() {
         expect(find.byType(AlertDialog), findsNothing);
       });
 
-      testWidgets('does not call onChanged when onChanged is null', (tester) async {
+      testWidgets('does not call onChanged when onChanged is null',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -242,7 +246,8 @@ void main() {
           ),
         );
 
-        final appColorPicker = tester.widget<AppColorPicker>(find.byType(AppColorPicker));
+        final appColorPicker =
+            tester.widget<AppColorPicker>(find.byType(AppColorPicker));
         expect(appColorPicker.state, equals(AppColorPickerState.disabled));
       });
     });
@@ -268,14 +273,17 @@ void main() {
         );
 
         final container = tester.widget<Container>(
-          find.descendant(
-            of: find.byType(AppColorPicker),
-            matching: find.byType(Container),
-          ).last,
+          find
+              .descendant(
+                of: find.byType(AppColorPicker),
+                matching: find.byType(Container),
+              )
+              .last,
         );
 
         final decoration = container.decoration as BoxDecoration;
-        expect((decoration.borderRadius as BorderRadius).topLeft.x, equals(20.0));
+        expect(
+            (decoration.borderRadius as BorderRadius).topLeft.x, equals(20.0));
         expect((decoration.border as Border).top.width, equals(3.0));
       });
 
@@ -357,7 +365,8 @@ void main() {
     });
 
     group('Platform Adaptive Tests', () {
-      testWidgets('uses platform adaptive behavior when enabled', (tester) async {
+      testWidgets('uses platform adaptive behavior when enabled',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -370,11 +379,13 @@ void main() {
           ),
         );
 
-        final appColorPicker = tester.widget<AppColorPicker>(find.byType(AppColorPicker));
+        final appColorPicker =
+            tester.widget<AppColorPicker>(find.byType(AppColorPicker));
         expect(appColorPicker.adaptivePlatform, isTrue);
       });
 
-      testWidgets('does not use platform adaptive when disabled', (tester) async {
+      testWidgets('does not use platform adaptive when disabled',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -387,7 +398,8 @@ void main() {
           ),
         );
 
-        final appColorPicker = tester.widget<AppColorPicker>(find.byType(AppColorPicker));
+        final appColorPicker =
+            tester.widget<AppColorPicker>(find.byType(AppColorPicker));
         expect(appColorPicker.adaptivePlatform, isFalse);
       });
     });
@@ -486,8 +498,10 @@ void main() {
     });
 
     test('gets formatted string based on format', () {
-      final hexColor = AppColorValue.fromColor(Colors.red, format: ColorFormat.hex);
-      final rgbColor = AppColorValue.fromColor(Colors.red, format: ColorFormat.rgb);
+      final hexColor =
+          AppColorValue.fromColor(Colors.red, format: ColorFormat.hex);
+      final rgbColor =
+          AppColorValue.fromColor(Colors.red, format: ColorFormat.rgb);
 
       expect(hexColor.getFormattedString(), contains('#'));
       expect(rgbColor.getFormattedString(), contains('rgb('));
@@ -514,13 +528,16 @@ void main() {
 
     test('material palette has expected colors', () {
       expect(AppColorPalettes.material.length, greaterThan(10));
-      expect(AppColorPalettes.material, contains(const Color(0xFFF44336))); // Red
-      expect(AppColorPalettes.material, contains(const Color(0xFF2196F3))); // Blue
+      expect(
+          AppColorPalettes.material, contains(const Color(0xFFF44336))); // Red
+      expect(
+          AppColorPalettes.material, contains(const Color(0xFF2196F3))); // Blue
     });
 
     test('basic palette has primary colors', () {
       expect(AppColorPalettes.basic, contains(const Color(0xFFFF0000))); // Red
-      expect(AppColorPalettes.basic, contains(const Color(0xFF00FF00))); // Green
+      expect(
+          AppColorPalettes.basic, contains(const Color(0xFF00FF00))); // Green
       expect(AppColorPalettes.basic, contains(const Color(0xFF0000FF))); // Blue
     });
   });
@@ -604,7 +621,8 @@ void main() {
       final analogous = Colors.red.analogous;
 
       expect(analogous.length, equals(3));
-      expect(analogous[1], equals(Colors.red)); // Middle color should be original
+      expect(
+          analogous[1], equals(Colors.red)); // Middle color should be original
     });
 
     test('triadic returns three colors', () {

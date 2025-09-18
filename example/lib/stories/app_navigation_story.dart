@@ -104,17 +104,13 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surface,
               border: Border(
-                right: BorderSide(
-                  color: Theme.of(context).dividerColor,
-                ),
+                right: BorderSide(color: Theme.of(context).dividerColor),
               ),
             ),
             child: _buildConfigPanel(),
           ),
           // Vista principal con ejemplos
-          Expanded(
-            child: _buildMainContent(),
-          ),
+          Expanded(child: _buildMainContent()),
         ],
       ),
     );
@@ -124,17 +120,11 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Configuración',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
+        Text('Configuración', style: Theme.of(context).textTheme.headlineSmall),
         const SizedBox(height: 16),
 
         // Variante
-        Text(
-          'Variante',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
+        Text('Variante', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         DropdownButtonFormField<AppNavigationVariant>(
           initialValue: _selectedVariant,
@@ -142,20 +132,24 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           ),
-          items: AppNavigationVariant.values.map((variant) => DropdownMenuItem(
-            value: variant,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(variant.displayName),
-                Text(
-                  variant.description,
-                  style: Theme.of(context).textTheme.bodySmall,
+          items: AppNavigationVariant.values
+              .map(
+                (variant) => DropdownMenuItem(
+                  value: variant,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(variant.displayName),
+                      Text(
+                        variant.description,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          )).toList(),
+              )
+              .toList(),
           onChanged: (value) => setState(() {
             _selectedVariant = value!;
           }),
@@ -164,10 +158,7 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
         const SizedBox(height: 16),
 
         // Estado
-        Text(
-          'Estado',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
+        Text('Estado', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         DropdownButtonFormField<AppNavigationState>(
           initialValue: _selectedState,
@@ -175,10 +166,14 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           ),
-          items: AppNavigationState.values.map((state) => DropdownMenuItem(
-            value: state,
-            child: Text(state.displayName),
-          )).toList(),
+          items: AppNavigationState.values
+              .map(
+                (state) => DropdownMenuItem(
+                  value: state,
+                  child: Text(state.displayName),
+                ),
+              )
+              .toList(),
           onChanged: (value) => setState(() {
             _selectedState = value!;
           }),
@@ -187,10 +182,7 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
         const SizedBox(height: 16),
 
         // Configuraciones adicionales
-        Text(
-          'Opciones',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
+        Text('Opciones', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
 
         SwitchListTile(
@@ -298,9 +290,7 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
           ),
 
           // Contenido principal con navegación
-          Expanded(
-            child: _buildNavigationExample(),
-          ),
+          Expanded(child: _buildNavigationExample()),
         ],
       ),
     );
@@ -342,9 +332,7 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
       case AppNavigationVariant.bottomBar:
         return Column(
           children: [
-            Expanded(
-              child: _buildPageContent(),
-            ),
+            Expanded(child: _buildPageContent()),
             AppNavigation(config: config),
           ],
         );
@@ -354,18 +342,13 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
           children: [
             AppNavigation(config: config),
             const VerticalDivider(width: 1),
-            Expanded(
-              child: _buildPageContent(),
-            ),
+            Expanded(child: _buildPageContent()),
           ],
         );
 
       case AppNavigationVariant.drawer:
         return Scaffold(
-          drawer: SizedBox(
-            width: 280,
-            child: AppNavigation(config: config),
-          ),
+          drawer: SizedBox(width: 280, child: AppNavigation(config: config)),
           body: _buildPageContent(),
           appBar: AppBar(
             title: const Text('Drawer Navigation'),
@@ -381,14 +364,9 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
       case AppNavigationVariant.permanentDrawer:
         return Row(
           children: [
-            SizedBox(
-              width: 280,
-              child: AppNavigation(config: config),
-            ),
+            SizedBox(width: 280, child: AppNavigation(config: config)),
             const VerticalDivider(width: 1),
-            Expanded(
-              child: _buildPageContent(),
-            ),
+            Expanded(child: _buildPageContent()),
           ],
         );
     }
@@ -474,7 +452,10 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        _buildInfoCard('Variante', _selectedVariant.displayName),
+                        _buildInfoCard(
+                          'Variante',
+                          _selectedVariant.displayName,
+                        ),
                         _buildInfoCard('Estado', _selectedState.displayName),
                         _buildInfoCard('Índice', '$_currentIndex'),
                       ],
@@ -488,9 +469,15 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
                       const SizedBox(height: 8),
                       Wrap(
                         spacing: 8,
-                        children: _badges.map((badge) => Chip(
-                          label: Text('${badge.destinationId}: ${badge.type.displayName}'),
-                        )).toList(),
+                        children: _badges
+                            .map(
+                              (badge) => Chip(
+                                label: Text(
+                                  '${badge.destinationId}: ${badge.type.displayName}',
+                                ),
+                              ),
+                            )
+                            .toList(),
                       ),
                     ],
                   ],
@@ -505,15 +492,9 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
   Widget _buildInfoCard(String label, String value) {
     return Column(
       children: [
-        Text(
-          label,
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
+        Text(label, style: Theme.of(context).textTheme.bodySmall),
         const SizedBox(height: 4),
-        Text(
-          value,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
+        Text(value, style: Theme.of(context).textTheme.titleMedium),
       ],
     );
   }
@@ -526,9 +507,7 @@ class AppNavigationExamples extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('AppNavigation - Ejemplos Rápidos'),
-      ),
+      appBar: AppBar(title: const Text('AppNavigation - Ejemplos Rápidos')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -585,43 +564,33 @@ class AppNavigationExamples extends StatelessWidget {
   }
 
   void _showBasicBottomNavExample(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => _BasicBottomNavExample(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => _BasicBottomNavExample()));
   }
 
   void _showRailWithBadgesExample(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => _RailWithBadgesExample(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => _RailWithBadgesExample()));
   }
 
   void _showDrawerExample(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => _DrawerExample(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => _DrawerExample()));
   }
 
   void _showSpecialStatesExample(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => _SpecialStatesExample(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => _SpecialStatesExample()));
   }
 
   void _showRtlExample(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => _RtlExample(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => _RtlExample()));
   }
 }
 
@@ -817,10 +786,14 @@ class __SpecialStatesExampleState extends State<_SpecialStatesExample> {
         actions: [
           DropdownButton<AppNavigationState>(
             value: _currentState,
-            items: AppNavigationState.values.map((state) => DropdownMenuItem(
-              value: state,
-              child: Text(state.displayName),
-            )).toList(),
+            items: AppNavigationState.values
+                .map(
+                  (state) => DropdownMenuItem(
+                    value: state,
+                    child: Text(state.displayName),
+                  ),
+                )
+                .toList(),
             onChanged: (value) => setState(() => _currentState = value!),
           ),
         ],

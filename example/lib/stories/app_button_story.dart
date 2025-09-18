@@ -90,7 +90,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                         const SizedBox(width: 8),
                         DropdownButton<AppButtonVariant>(
                           value: _variant,
-                          onChanged: (value) => setState(() => _variant = value!),
+                          onChanged: (value) =>
+                              setState(() => _variant = value!),
                           items: AppButtonVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
@@ -150,7 +151,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                             max: 32.0,
                             divisions: 12,
                             label: _horizontalPadding.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _horizontalPadding = value),
+                            onChanged: (value) =>
+                                setState(() => _horizontalPadding = value),
                           ),
                         ),
                         Text('${_horizontalPadding.toStringAsFixed(0)}px'),
@@ -170,7 +172,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                             max: 16.0,
                             divisions: 16,
                             label: _elevation.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _elevation = value),
+                            onChanged: (value) =>
+                                setState(() => _elevation = value),
                           ),
                         ),
                         Text(_elevation.toStringAsFixed(0)),
@@ -190,7 +193,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                             max: 24.0,
                             divisions: 12,
                             label: _borderRadius.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _borderRadius = value),
+                            onChanged: (value) =>
+                                setState(() => _borderRadius = value),
                           ),
                         ),
                         Text('${_borderRadius.toStringAsFixed(0)}px'),
@@ -206,7 +210,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                           children: [
                             Switch(
                               value: _isDanger,
-                              onChanged: (value) => setState(() => _isDanger = value),
+                              onChanged: (value) =>
+                                  setState(() => _isDanger = value),
                             ),
                             const Text('Peligro'),
                           ],
@@ -216,7 +221,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                           children: [
                             Switch(
                               value: _isRtl,
-                              onChanged: (value) => setState(() => _isRtl = value),
+                              onChanged: (value) =>
+                                  setState(() => _isRtl = value),
                             ),
                             const Text('RTL'),
                           ],
@@ -226,7 +232,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                           children: [
                             Switch(
                               value: _enableA11y,
-                              onChanged: (value) => setState(() => _enableA11y = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableA11y = value),
                             ),
                             const Text('Accesibilidad'),
                           ],
@@ -236,7 +243,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                           children: [
                             Switch(
                               value: _enableKeyboard,
-                              onChanged: (value) => setState(() => _enableKeyboard = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableKeyboard = value),
                             ),
                             const Text('Teclado'),
                           ],
@@ -246,7 +254,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                           children: [
                             Switch(
                               value: _isInteractive,
-                              onChanged: (value) => setState(() => _isInteractive = value),
+                              onChanged: (value) =>
+                                  setState(() => _isInteractive = value),
                             ),
                             const Text('Interactivo'),
                           ],
@@ -256,7 +265,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                           children: [
                             Switch(
                               value: _hasLeading,
-                              onChanged: (value) => setState(() => _hasLeading = value),
+                              onChanged: (value) =>
+                                  setState(() => _hasLeading = value),
                             ),
                             const Text('Icono Leading'),
                           ],
@@ -266,7 +276,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                           children: [
                             Switch(
                               value: _hasTrailing,
-                              onChanged: (value) => setState(() => _hasTrailing = value),
+                              onChanged: (value) =>
+                                  setState(() => _hasTrailing = value),
                             ),
                             const Text('Icono Trailing'),
                           ],
@@ -314,9 +325,7 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                     horizontalPadding: _horizontalPadding,
                     borderRadius: _borderRadius,
                   ),
-                  elevation: AppButtonElevation(
-                    defaultElevation: _elevation,
-                  ),
+                  elevation: AppButtonElevation(defaultElevation: _elevation),
                   onPressed: _isInteractive ? _handlePressed : null,
                   onLongPress: _isInteractive ? _handleLongPress : null,
                   onHover: _isInteractive ? _handleHover : null,
@@ -458,10 +467,7 @@ class _AppButtonStoryState extends State<AppButtonStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        Text(title, style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12),
         child,
         const SizedBox(height: 24),

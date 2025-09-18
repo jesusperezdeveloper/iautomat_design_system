@@ -524,7 +524,8 @@ void main() {
       expect(AppInPageSearchUtils.isValidQuery(''), isFalse);
       expect(AppInPageSearchUtils.isValidQuery('   '), isFalse);
       expect(AppInPageSearchUtils.isValidQuery('valid query'), isTrue);
-      expect(AppInPageSearchUtils.isValidQuery('[invalid', useRegex: true), isFalse);
+      expect(AppInPageSearchUtils.isValidQuery('[invalid', useRegex: true),
+          isFalse);
       expect(AppInPageSearchUtils.isValidQuery(r'\d+', useRegex: true), isTrue);
     });
 

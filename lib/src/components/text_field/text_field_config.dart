@@ -76,8 +76,8 @@ class AppTextFieldColors with _$AppTextFieldColors {
       errorBorderColor: colorScheme.error,
       disabledBorderColor: colorScheme.onSurface.withValues(alpha: 0.12),
       fillColor: isDark
-        ? colorScheme.surfaceContainerHighest
-        : colorScheme.surfaceContainerLowest,
+          ? colorScheme.surfaceContainerHighest
+          : colorScheme.surfaceContainerLowest,
       disabledFillColor: colorScheme.onSurface.withValues(alpha: 0.04),
       textColor: colorScheme.onSurface,
       disabledTextColor: colorScheme.onSurface.withValues(alpha: 0.38),
@@ -134,7 +134,8 @@ class AppTextFieldValidator {
       return null;
     }
 
-    final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    final emailRegex =
+        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
     if (!emailRegex.hasMatch(value.trim())) {
       return 'Ingresa un email válido';
     }
@@ -176,7 +177,8 @@ class AppTextFieldValidator {
     return null;
   }
 
-  static String? Function(String?) combine(List<String? Function(String?)> validators) {
+  static String? Function(String?) combine(
+      List<String? Function(String?)> validators) {
     return (String? value) {
       for (final validator in validators) {
         final result = validator(value);
@@ -191,37 +193,37 @@ class AppTextFieldValidator {
 
 class AppTextFieldFormatters {
   static List<TextInputFormatter> numeric() => [
-    FilteringTextInputFormatter.digitsOnly,
-  ];
+        FilteringTextInputFormatter.digitsOnly,
+      ];
 
   static List<TextInputFormatter> decimal() => [
-    FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
-  ];
+        FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
+      ];
 
   static List<TextInputFormatter> alphanumeric() => [
-    FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
-  ];
+        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+      ];
 
   static List<TextInputFormatter> phoneNumber() => [
-    FilteringTextInputFormatter.digitsOnly,
-    LengthLimitingTextInputFormatter(10),
-  ];
+        FilteringTextInputFormatter.digitsOnly,
+        LengthLimitingTextInputFormatter(10),
+      ];
 
   static List<TextInputFormatter> upperCase() => [
-    UpperCaseTextFormatter(),
-  ];
+        UpperCaseTextFormatter(),
+      ];
 
   static List<TextInputFormatter> lowerCase() => [
-    LowerCaseTextFormatter(),
-  ];
+        LowerCaseTextFormatter(),
+      ];
 
   static List<TextInputFormatter> noSpaces() => [
-    FilteringTextInputFormatter.deny(RegExp(r'\s')),
-  ];
+        FilteringTextInputFormatter.deny(RegExp(r'\s')),
+      ];
 
   static List<TextInputFormatter> maxLength(int length) => [
-    LengthLimitingTextInputFormatter(length),
-  ];
+        LengthLimitingTextInputFormatter(length),
+      ];
 }
 
 class UpperCaseTextFormatter extends TextInputFormatter {

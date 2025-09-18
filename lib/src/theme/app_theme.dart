@@ -717,7 +717,8 @@ class AppTheme {
         backgroundColor: AppColors.backgroundTertiaryDarkMode,
         disabledColor: AppColors.gray700,
         selectedColor: AppColors.primaryDarkMode.withValues(alpha: 0.2),
-        secondarySelectedColor: AppColors.secondaryDarkMode.withValues(alpha: 0.2),
+        secondarySelectedColor:
+            AppColors.secondaryDarkMode.withValues(alpha: 0.2),
         shadowColor: Colors.black,
         selectedShadowColor: Colors.black,
         labelStyle: AppTypography.withColor(
@@ -793,8 +794,8 @@ class AppTheme {
           return AppColors.backgroundTertiaryDarkMode;
         }),
         checkColor: WidgetStateProperty.all(AppColors.backgroundDarkMode),
-        overlayColor:
-            WidgetStateProperty.all(AppColors.primaryDarkMode.withValues(alpha: 0.1)),
+        overlayColor: WidgetStateProperty.all(
+            AppColors.primaryDarkMode.withValues(alpha: 0.1)),
         shape: const RoundedRectangleBorder(borderRadius: radiusXs),
       ),
 
@@ -806,8 +807,8 @@ class AppTheme {
           }
           return AppColors.gray500;
         }),
-        overlayColor:
-            WidgetStateProperty.all(AppColors.primaryDarkMode.withValues(alpha: 0.1)),
+        overlayColor: WidgetStateProperty.all(
+            AppColors.primaryDarkMode.withValues(alpha: 0.1)),
       ),
 
       // Switch Theme
@@ -824,8 +825,8 @@ class AppTheme {
           }
           return AppColors.gray600;
         }),
-        overlayColor:
-            WidgetStateProperty.all(AppColors.primaryDarkMode.withValues(alpha: 0.1)),
+        overlayColor: WidgetStateProperty.all(
+            AppColors.primaryDarkMode.withValues(alpha: 0.1)),
       ),
 
       // Slider Theme

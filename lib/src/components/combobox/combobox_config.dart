@@ -7,7 +7,8 @@ part 'combobox_config.freezed.dart';
 @freezed
 class AppComboBoxConfig with _$AppComboBoxConfig {
   const factory AppComboBoxConfig({
-    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0)) EdgeInsets contentPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0))
+    EdgeInsets contentPadding,
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
     @Default(2.0) double borderWidth,
@@ -99,8 +100,8 @@ class AppComboBoxColors with _$AppComboBoxColors {
       errorBorderColor: colorScheme.error,
       disabledBorderColor: colorScheme.onSurface.withValues(alpha: 0.12),
       fillColor: isDark
-        ? colorScheme.surfaceContainerHighest
-        : colorScheme.surfaceContainerLowest,
+          ? colorScheme.surfaceContainerHighest
+          : colorScheme.surfaceContainerLowest,
       disabledFillColor: colorScheme.onSurface.withValues(alpha: 0.04),
       textColor: colorScheme.onSurface,
       disabledTextColor: colorScheme.onSurface.withValues(alpha: 0.38),
@@ -125,7 +126,8 @@ class AppComboBoxColors with _$AppComboBoxColors {
       suggestionItemHoverColor: colorScheme.onSurface.withValues(alpha: 0.08),
       suggestionItemSelectedColor: colorScheme.primary.withValues(alpha: 0.12),
       suggestionItemTextColor: colorScheme.onSurface,
-      suggestionItemDisabledTextColor: colorScheme.onSurface.withValues(alpha: 0.38),
+      suggestionItemDisabledTextColor:
+          colorScheme.onSurface.withValues(alpha: 0.38),
       suggestionItemSubtitleColor: colorScheme.onSurfaceVariant,
       highlightTextColor: colorScheme.primary,
       highlightBackgroundColor: colorScheme.primary.withValues(alpha: 0.12),
@@ -170,7 +172,8 @@ class AppComboBoxSuggestion<T> with _$AppComboBoxSuggestion<T> {
   String get effectiveSearchText => searchableText ?? label;
 
   /// Check if this suggestion matches the query
-  bool matches(String query, {bool caseSensitive = false, bool trimWhitespace = true}) {
+  bool matches(String query,
+      {bool caseSensitive = false, bool trimWhitespace = true}) {
     if (query.isEmpty) return true;
 
     String searchText = effectiveSearchText;
@@ -190,7 +193,8 @@ class AppComboBoxSuggestion<T> with _$AppComboBoxSuggestion<T> {
   }
 
   /// Get highlighted parts of the label for typeahead display
-  List<TextSpan> getHighlightedLabel(String query, Color textColor, Color highlightColor) {
+  List<TextSpan> getHighlightedLabel(
+      String query, Color textColor, Color highlightColor) {
     if (query.isEmpty) {
       return [TextSpan(text: label, style: TextStyle(color: textColor))];
     }
@@ -279,7 +283,8 @@ class AppComboBoxValidator {
 
   static String? email(String? value) {
     if (value == null || value.isEmpty) return null;
-    final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    final emailRegex =
+        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
     if (!emailRegex.hasMatch(value)) {
       return 'Formato de email inválido';
     }
@@ -295,7 +300,8 @@ class AppComboBoxValidator {
     return null;
   }
 
-  static String? Function(String?) combine(List<String? Function(String?)> validators) {
+  static String? Function(String?) combine(
+      List<String? Function(String?)> validators) {
     return (String? value) {
       for (final validator in validators) {
         final result = validator(value);

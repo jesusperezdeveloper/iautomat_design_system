@@ -21,8 +21,7 @@ class AppSwitch extends StatefulWidget {
   State<AppSwitch> createState() => _AppSwitchState();
 }
 
-class _AppSwitchState extends State<AppSwitch>
-    with TickerProviderStateMixin {
+class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _hoverAnimationController;
   late AnimationController _toggleAnimationController;
@@ -45,7 +44,8 @@ class _AppSwitchState extends State<AppSwitch>
 
   void _setupAnimations() {
     _stateAnimationController = AnimationController(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 200),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 200),
       vsync: this,
     );
 
@@ -55,7 +55,8 @@ class _AppSwitchState extends State<AppSwitch>
     );
 
     _toggleAnimationController = AnimationController(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 200),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 200),
       vsync: this,
     );
 
@@ -79,7 +80,6 @@ class _AppSwitchState extends State<AppSwitch>
       parent: _stateAnimationController,
       curve: Curves.easeInOut,
     ));
-
 
     _rotationAnimation = Tween<double>(
       begin: 0.0,
@@ -159,12 +159,15 @@ class _AppSwitchState extends State<AppSwitch>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
+    final isRtl =
+        widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
 
     return Directionality(
       textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
       child: Semantics(
-        label: widget.config.enableA11y ? (widget.semanticsLabel ?? widget.config.semanticsLabel) : null,
+        label: widget.config.enableA11y
+            ? (widget.semanticsLabel ?? widget.config.semanticsLabel)
+            : null,
         toggled: widget.config.enableA11y ? _value : null,
         enabled: widget.config.state.canInteract,
         child: AnimatedBuilder(
@@ -177,7 +180,8 @@ class _AppSwitchState extends State<AppSwitch>
           builder: (context, child) {
             return AnimatedOpacity(
               opacity: widget.config.state.opacity,
-              duration: Duration(milliseconds: widget.config.animation?.duration ?? 200),
+              duration: Duration(
+                  milliseconds: widget.config.animation?.duration ?? 200),
               child: _buildSwitchVariant(theme, isRtl),
             );
           },
@@ -235,7 +239,8 @@ class _AppSwitchState extends State<AppSwitch>
                 Colors.transparent,
               ],
               stops: const [0.0, 0.5, 1.0],
-              begin: Alignment(-1.0 + (_stateAnimationController.value * 2), 0.0),
+              begin:
+                  Alignment(-1.0 + (_stateAnimationController.value * 2), 0.0),
               end: Alignment(1.0 + (_stateAnimationController.value * 2), 0.0),
             ),
           ),
@@ -257,7 +262,7 @@ class _AppSwitchState extends State<AppSwitch>
 
     if (widget.config.enableKeyboardSupport) {
       switchWidget = Focus(
-          onKeyEvent: _handleKeyEvent,
+        onKeyEvent: _handleKeyEvent,
         child: switchWidget,
       );
     }
@@ -329,7 +334,8 @@ class _AppSwitchState extends State<AppSwitch>
       onChanged: widget.config.state.canInteract ? _handleToggle : null,
       activeTrackColor: _getActiveTrackColor(theme),
       inactiveTrackColor: _getInactiveTrackColor(theme),
-      thumbColor: _value ? _getActiveThumbColor(theme) : _getInactiveThumbColor(theme),
+      thumbColor:
+          _value ? _getActiveThumbColor(theme) : _getInactiveThumbColor(theme),
       focusColor: _getFocusColor(theme),
     );
   }
@@ -347,7 +353,8 @@ class _AppSwitchState extends State<AppSwitch>
     if (widget.config.animation?.type == AppSwitchAnimationType.fade) {
       wrappedSwitch = AnimatedOpacity(
         opacity: _fadeAnimation.value,
-        duration: Duration(milliseconds: widget.config.animation?.duration ?? 200),
+        duration:
+            Duration(milliseconds: widget.config.animation?.duration ?? 200),
         child: wrappedSwitch,
       );
     }
@@ -366,45 +373,47 @@ class _AppSwitchState extends State<AppSwitch>
   Color _getActiveTrackColor(ThemeData theme) {
     if (widget.config.state == AppSwitchState.disabled) {
       return widget.config.colors?.disabledTrackColor ??
-             theme.colorScheme.onSurface.withValues(alpha: 0.12);
+          theme.colorScheme.onSurface.withValues(alpha: 0.12);
     }
 
     return widget.config.colors?.activeTrackColor ??
-           widget.config.variant.getActiveTrackColor(theme.colorScheme);
+        widget.config.variant.getActiveTrackColor(theme.colorScheme);
   }
 
   Color _getInactiveTrackColor(ThemeData theme) {
     if (widget.config.state == AppSwitchState.disabled) {
       return widget.config.colors?.disabledTrackColor ??
-             theme.colorScheme.onSurface.withValues(alpha: 0.12);
+          theme.colorScheme.onSurface.withValues(alpha: 0.12);
     }
 
     return widget.config.colors?.inactiveTrackColor ??
-           widget.config.variant.getInactiveTrackColor(theme.colorScheme);
+        widget.config.variant.getInactiveTrackColor(theme.colorScheme);
   }
 
   Color _getActiveThumbColor(ThemeData theme) {
     if (widget.config.state == AppSwitchState.disabled) {
       return widget.config.colors?.disabledThumbColor ??
-             theme.colorScheme.onSurface.withValues(alpha: 0.38);
+          theme.colorScheme.onSurface.withValues(alpha: 0.38);
     }
 
     return widget.config.colors?.activeThumbColor ??
-           widget.config.variant.getActiveThumbColor(theme.colorScheme);
+        widget.config.variant.getActiveThumbColor(theme.colorScheme);
   }
 
   Color _getInactiveThumbColor(ThemeData theme) {
     if (widget.config.state == AppSwitchState.disabled) {
       return widget.config.colors?.disabledThumbColor ??
-             theme.colorScheme.onSurface.withValues(alpha: 0.38);
+          theme.colorScheme.onSurface.withValues(alpha: 0.38);
     }
 
     return widget.config.colors?.inactiveThumbColor ??
-           widget.config.variant.getInactiveThumbColor(theme.colorScheme);
+        widget.config.variant.getInactiveThumbColor(theme.colorScheme);
   }
 
   Color _getTrackColor(ThemeData theme, bool isActive) {
-    return isActive ? _getActiveTrackColor(theme) : _getInactiveTrackColor(theme);
+    return isActive
+        ? _getActiveTrackColor(theme)
+        : _getInactiveTrackColor(theme);
   }
 
   Color _getTrackBorderColor(ThemeData theme) {
@@ -413,12 +422,12 @@ class _AppSwitchState extends State<AppSwitch>
 
   Color _getFocusColor(ThemeData theme) {
     return widget.config.colors?.focusColor ??
-           theme.colorScheme.primary.withValues(alpha: 0.12);
+        theme.colorScheme.primary.withValues(alpha: 0.12);
   }
 
   Color _getHoverColor(ThemeData theme) {
     return widget.config.colors?.hoverColor ??
-           theme.colorScheme.primary.withValues(alpha: 0.08);
+        theme.colorScheme.primary.withValues(alpha: 0.08);
   }
 
   Color? _getOverlayColor(Set<WidgetState> states) {

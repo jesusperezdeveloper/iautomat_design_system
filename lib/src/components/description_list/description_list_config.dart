@@ -8,12 +8,17 @@ class AppDescriptionListConfig with _$AppDescriptionListConfig {
   const AppDescriptionListConfig._();
 
   const factory AppDescriptionListConfig({
-    @Default(AppDescriptionListVariant.responsive) AppDescriptionListVariant variant,
-    @Default(AppDescriptionListState.defaultState) AppDescriptionListState state,
+    @Default(AppDescriptionListVariant.responsive)
+    AppDescriptionListVariant variant,
+    @Default(AppDescriptionListState.defaultState)
+    AppDescriptionListState state,
     @Default(AppDescriptionListLayout.vertical) AppDescriptionListLayout layout,
-    @Default(AppDescriptionListDensity.normal) AppDescriptionListDensity density,
-    @Default(AppDescriptionListSpacing.normal) AppDescriptionListSpacing spacing,
-    @Default(AppDescriptionListAlignment.start) AppDescriptionListAlignment alignment,
+    @Default(AppDescriptionListDensity.normal)
+    AppDescriptionListDensity density,
+    @Default(AppDescriptionListSpacing.normal)
+    AppDescriptionListSpacing spacing,
+    @Default(AppDescriptionListAlignment.start)
+    AppDescriptionListAlignment alignment,
     @Default([]) List<AppDescriptionListItem> items,
     AppDescriptionListStyle? style,
     AppDescriptionListInteraction? interaction,
@@ -37,7 +42,8 @@ class AppDescriptionListConfig with _$AppDescriptionListConfig {
   bool get isLoading => loading || state == AppDescriptionListState.loading;
   bool get isSkeleton => skeleton || state == AppDescriptionListState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
-  bool get canInteract => isInteractive && !isDisabled && !isLoading && !isSkeleton;
+  bool get canInteract =>
+      isInteractive && !isDisabled && !isLoading && !isSkeleton;
 }
 
 @freezed
@@ -65,14 +71,16 @@ class AppDescriptionListItem with _$AppDescriptionListItem {
     @Default(false) bool divider,
   }) = _AppDescriptionListItem;
 
-  bool get hasSecondaryDescription => secondaryDescription != null && secondaryDescription!.isNotEmpty;
+  bool get hasSecondaryDescription =>
+      secondaryDescription != null && secondaryDescription!.isNotEmpty;
   bool get hasCustomTermWidget => termWidget != null;
   bool get hasCustomDescriptionWidget => descriptionWidget != null;
   bool get hasIcon => icon != null;
   bool get hasLeading => leading != null;
   bool get hasTrailing => trailing != null;
   bool get isInteractive => onTap != null || onLongPress != null;
-  bool get isDisabled => !enabled || state == AppDescriptionListItemState.disabled;
+  bool get isDisabled =>
+      !enabled || state == AppDescriptionListItemState.disabled;
   bool get canInteract => isInteractive && !isDisabled;
 }
 
@@ -216,17 +224,22 @@ class AppDescriptionListItemStyle with _$AppDescriptionListItemStyle {
     MainAxisAlignment? mainAxisAlignment,
   }) = _AppDescriptionListItemStyle;
 
-  AppDescriptionListItemStyle copyWithState(AppDescriptionListItemState state, {bool highlighted = false}) {
+  AppDescriptionListItemStyle copyWithState(AppDescriptionListItemState state,
+      {bool highlighted = false}) {
     switch (state) {
       case AppDescriptionListItemState.hover:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.08),
-          backgroundColor: highlighted ? highlightColor?.withValues(alpha: 0.08) : backgroundColor,
+          backgroundColor: highlighted
+              ? highlightColor?.withValues(alpha: 0.08)
+              : backgroundColor,
         );
       case AppDescriptionListItemState.pressed:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
-          backgroundColor: highlighted ? highlightColor?.withValues(alpha: 0.12) : backgroundColor,
+          backgroundColor: highlighted
+              ? highlightColor?.withValues(alpha: 0.12)
+              : backgroundColor,
         );
       case AppDescriptionListItemState.focus:
         return copyWith(
@@ -305,7 +318,8 @@ class AppDescriptionListAnimation with _$AppDescriptionListAnimation {
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(false) bool enabled,
-    @Default(AppDescriptionListAnimationType.fade) AppDescriptionListAnimationType type,
+    @Default(AppDescriptionListAnimationType.fade)
+    AppDescriptionListAnimationType type,
     Duration? delay,
     VoidCallback? onAnimationComplete,
   }) = _AppDescriptionListAnimation;
@@ -396,9 +410,10 @@ class AppDescriptionListResponsive with _$AppDescriptionListResponsive {
 }
 
 extension AppDescriptionListStateExtension on AppDescriptionListState {
-  bool get isInteractiveState => this == AppDescriptionListState.hover ||
-                                this == AppDescriptionListState.pressed ||
-                                this == AppDescriptionListState.focus;
+  bool get isInteractiveState =>
+      this == AppDescriptionListState.hover ||
+      this == AppDescriptionListState.pressed ||
+      this == AppDescriptionListState.focus;
 
   bool get isDisabledState => this == AppDescriptionListState.disabled;
   bool get isLoadingState => this == AppDescriptionListState.loading;
@@ -474,7 +489,8 @@ class AppDescriptionListConstants {
   static const Curve defaultAnimationCurve = Curves.easeInOut;
 
   static const EdgeInsetsGeometry defaultPadding = EdgeInsets.all(16.0);
-  static const EdgeInsetsGeometry defaultItemPadding = EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0);
+  static const EdgeInsetsGeometry defaultItemPadding =
+      EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0);
   static const EdgeInsetsGeometry defaultMargin = EdgeInsets.zero;
 
   static const BoxConstraints defaultConstraints = BoxConstraints(

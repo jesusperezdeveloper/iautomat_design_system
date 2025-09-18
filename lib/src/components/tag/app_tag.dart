@@ -332,7 +332,8 @@ class _AppTagState extends State<AppTag>
       result = _buildInteractiveWrapper(result);
     }
 
-    final semanticLabel = widget.config.semanticLabel ?? _generateSemanticLabel();
+    final semanticLabel =
+        widget.config.semanticLabel ?? _generateSemanticLabel();
     if (semanticLabel.isNotEmpty) {
       result = Semantics(
         label: semanticLabel,
@@ -355,7 +356,9 @@ class _AppTagState extends State<AppTag>
       child: MouseRegion(
         onEnter: (_) => _handleHover(true),
         onExit: (_) => _handleHover(false),
-        cursor: widget.config.canInteract ? SystemMouseCursors.click : SystemMouseCursors.basic,
+        cursor: widget.config.canInteract
+            ? SystemMouseCursors.click
+            : SystemMouseCursors.basic,
         child: Focus(
           onFocusChange: _handleFocusChange,
           child: child,
@@ -364,7 +367,8 @@ class _AppTagState extends State<AppTag>
     );
   }
 
-  Widget _buildTagContent(ThemeData theme, AppTagConfig config, AppTagStyle style) {
+  Widget _buildTagContent(
+      ThemeData theme, AppTagConfig config, AppTagStyle style) {
     final children = <Widget>[];
 
     // Leading widget or icon
@@ -467,7 +471,8 @@ class _AppTagState extends State<AppTag>
         boxShadow: style.elevation != null && style.elevation! > 0
             ? [
                 BoxShadow(
-                  color: style.shadowColor?.withValues(alpha: 0.2) ?? Colors.black.withValues(alpha: 0.1),
+                  color: style.shadowColor?.withValues(alpha: 0.2) ??
+                      Colors.black.withValues(alpha: 0.1),
                   blurRadius: style.elevation!,
                   offset: Offset(0, style.elevation! / 2),
                 ),
@@ -524,10 +529,13 @@ class _AppTagState extends State<AppTag>
     return math.max(width, 80.0); // Minimum width
   }
 
-  AppTagStyle _getEffectiveStyle(ThemeData theme, AppTagConfig config, AppTagState state) {
+  AppTagStyle _getEffectiveStyle(
+      ThemeData theme, AppTagConfig config, AppTagState state) {
     final colorScheme = theme.colorScheme;
-    final effectiveBackgroundColor = config.getEffectiveBackgroundColor(colorScheme);
-    final effectiveForegroundColor = config.getEffectiveForegroundColor(colorScheme);
+    final effectiveBackgroundColor =
+        config.getEffectiveBackgroundColor(colorScheme);
+    final effectiveForegroundColor =
+        config.getEffectiveForegroundColor(colorScheme);
     final effectiveBorderColor = config.getEffectiveBorderColor(colorScheme);
 
     final baseStyle = AppTagStyle(

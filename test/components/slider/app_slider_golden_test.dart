@@ -33,7 +33,8 @@ void main() {
               width: 300,
               child: variant == AppSliderVariant.range
                   ? AppSlider(
-                      rangeValue: rangeValue ?? const AppSliderRangeValue(start: 20.0, end: 80.0),
+                      rangeValue: rangeValue ??
+                          const AppSliderRangeValue(start: 20.0, end: 80.0),
                       min: 0.0,
                       max: 100.0,
                       onRangeChanged: (_) {},

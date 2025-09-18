@@ -43,7 +43,8 @@ void main() {
           home: Scaffold(
             body: AppListItem.threeLine(
               title: 'Test Title',
-              subtitle: 'Test Subtitle with more content that spans multiple lines',
+              subtitle:
+                  'Test Subtitle with more content that spans multiple lines',
             ),
           ),
         ),
@@ -51,7 +52,10 @@ void main() {
 
       expect(find.byType(AppListItem), findsOneWidget);
       expect(find.text('Test Title'), findsOneWidget);
-      expect(find.text('Test Subtitle with more content that spans multiple lines'), findsOneWidget);
+      expect(
+          find.text(
+              'Test Subtitle with more content that spans multiple lines'),
+          findsOneWidget);
     });
 
     testWidgets('handles tap correctly', (tester) async {
@@ -493,7 +497,8 @@ void main() {
 
       test('detects interactive leading correctly', () {
         const nonInteractive = AppListItemLeading();
-        const checkbox = AppListItemLeading(type: AppListItemLeadingType.checkbox);
+        const checkbox =
+            AppListItemLeading(type: AppListItemLeadingType.checkbox);
         const radio = AppListItemLeading(type: AppListItemLeadingType.radio);
 
         expect(nonInteractive.isInteractive, false);
@@ -526,9 +531,12 @@ void main() {
 
       test('detects interactive trailing correctly', () {
         const nonInteractive = AppListItemTrailing();
-        const withSwitch = AppListItemTrailing(type: AppListItemTrailingType.switchWidget);
-        const withCheckbox = AppListItemTrailing(type: AppListItemTrailingType.checkbox);
-        const withRadio = AppListItemTrailing(type: AppListItemTrailingType.radio);
+        const withSwitch =
+            AppListItemTrailing(type: AppListItemTrailingType.switchWidget);
+        const withCheckbox =
+            AppListItemTrailing(type: AppListItemTrailingType.checkbox);
+        const withRadio =
+            AppListItemTrailing(type: AppListItemTrailingType.radio);
 
         expect(nonInteractive.isInteractive, false);
         expect(withSwitch.isInteractive, true);

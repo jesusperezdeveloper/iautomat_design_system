@@ -16,9 +16,7 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
       title: 'Default AppShell',
       description: 'Scaffold básico con configuración por defecto',
       builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(
-          variant: AppScaffoldVariant.appShell,
-        ),
+        config: AppScaffoldConfig(variant: AppScaffoldVariant.appShell),
         body: _DemoContent(title: 'App Shell Básico'),
       ),
     ),
@@ -26,9 +24,7 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
       title: 'Loading State',
       description: 'Scaffold en estado de carga',
       builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(
-          state: AppScaffoldState.loading,
-        ),
+        config: AppScaffoldConfig(state: AppScaffoldState.loading),
         body: _DemoContent(title: 'Contenido Cargando'),
       ),
     ),
@@ -36,9 +32,7 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
       title: 'Skeleton State',
       description: 'Scaffold con esqueleto de carga',
       builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(
-          state: AppScaffoldState.skeleton,
-        ),
+        config: AppScaffoldConfig(state: AppScaffoldState.skeleton),
         body: _DemoContent(title: 'Contenido Esqueleto'),
       ),
     ),
@@ -57,9 +51,7 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
       title: 'Responsive Layout',
       description: 'Layout que se adapta al tamaño de pantalla',
       builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(
-          variant: AppScaffoldVariant.responsive,
-        ),
+        config: AppScaffoldConfig(variant: AppScaffoldVariant.responsive),
         body: _DemoContent(title: 'Layout Responsive'),
       ),
     ),
@@ -67,9 +59,7 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
       title: 'RTL Support',
       description: 'Scaffold con soporte para dirección RTL',
       builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(
-          isRtl: true,
-        ),
+        config: AppScaffoldConfig(isRtl: true),
         body: _DemoContent(title: 'محتوى RTL'),
       ),
     ),
@@ -77,11 +67,7 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
       title: 'With AppBar',
       description: 'Scaffold con barra de aplicación personalizada',
       builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(
-          appBar: AppBarConfig(
-            height: 64.0,
-          ),
-        ),
+        config: AppScaffoldConfig(appBar: AppBarConfig(height: 64.0)),
         appBar: _DemoAppBar(),
         body: _DemoContent(title: 'Con AppBar'),
       ),
@@ -100,18 +86,9 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
                 icon: Icons.dashboard,
                 isSelected: true,
               ),
-              NavigationItem(
-                label: 'Analytics',
-                icon: Icons.analytics,
-              ),
-              NavigationItem(
-                label: 'Users',
-                icon: Icons.people,
-              ),
-              NavigationItem(
-                label: 'Settings',
-                icon: Icons.settings,
-              ),
+              NavigationItem(label: 'Analytics', icon: Icons.analytics),
+              NavigationItem(label: 'Users', icon: Icons.people),
+              NavigationItem(label: 'Settings', icon: Icons.settings),
             ],
           ),
         ),
@@ -125,22 +102,10 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
         config: AppScaffoldConfig(
           bottomBar: BottomBarConfig(
             items: [
-              BottomBarItem(
-                label: 'Home',
-                icon: Icons.home,
-              ),
-              BottomBarItem(
-                label: 'Search',
-                icon: Icons.search,
-              ),
-              BottomBarItem(
-                label: 'Notifications',
-                icon: Icons.notifications,
-              ),
-              BottomBarItem(
-                label: 'Profile',
-                icon: Icons.person,
-              ),
+              BottomBarItem(label: 'Home', icon: Icons.home),
+              BottomBarItem(label: 'Search', icon: Icons.search),
+              BottomBarItem(label: 'Notifications', icon: Icons.notifications),
+              BottomBarItem(label: 'Profile', icon: Icons.person),
             ],
             selectedIndex: 0,
           ),
@@ -174,19 +139,9 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
           navigation: AppNavigationConfig(
             type: NavigationType.rail,
             items: [
-              NavigationItem(
-                label: 'Home',
-                icon: Icons.home,
-                isSelected: true,
-              ),
-              NavigationItem(
-                label: 'Explore',
-                icon: Icons.explore,
-              ),
-              NavigationItem(
-                label: 'Library',
-                icon: Icons.library_books,
-              ),
+              NavigationItem(label: 'Home', icon: Icons.home, isSelected: true),
+              NavigationItem(label: 'Explore', icon: Icons.explore),
+              NavigationItem(label: 'Library', icon: Icons.library_books),
             ],
           ),
         ),
@@ -208,40 +163,20 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
                 icon: Icons.dashboard,
                 isSelected: true,
               ),
-              NavigationItem(
-                label: 'Projects',
-                icon: Icons.work,
-              ),
-              NavigationItem(
-                label: 'Team',
-                icon: Icons.people,
-              ),
-              NavigationItem(
-                label: 'Settings',
-                icon: Icons.settings,
-              ),
+              NavigationItem(label: 'Projects', icon: Icons.work),
+              NavigationItem(label: 'Team', icon: Icons.people),
+              NavigationItem(label: 'Settings', icon: Icons.settings),
             ],
           ),
           bottomBar: BottomBarConfig(
             items: const [
-              BottomBarItem(
-                label: 'Home',
-                icon: Icons.home,
-              ),
-              BottomBarItem(
-                label: 'Search',
-                icon: Icons.search,
-              ),
-              BottomBarItem(
-                label: 'Profile',
-                icon: Icons.person,
-              ),
+              BottomBarItem(label: 'Home', icon: Icons.home),
+              BottomBarItem(label: 'Search', icon: Icons.search),
+              BottomBarItem(label: 'Profile', icon: Icons.person),
             ],
             selectedIndex: 0,
           ),
-          floatingAction: const FloatingActionConfig(
-            tooltip: 'Nuevo proyecto',
-          ),
+          floatingAction: const FloatingActionConfig(tooltip: 'Nuevo proyecto'),
         ),
         appBar: const _DemoAppBar(),
         floatingActionButton: FloatingActionButton(
@@ -257,7 +192,9 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AppScaffold Stories (${_currentStory + 1}/${_stories.length})'),
+        title: Text(
+          'AppScaffold Stories (${_currentStory + 1}/${_stories.length})',
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline),
@@ -286,7 +223,9 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
             ),
             IconButton(
               icon: const Icon(Icons.arrow_forward),
-              onPressed: _currentStory < _stories.length - 1 ? _nextStory : null,
+              onPressed: _currentStory < _stories.length - 1
+                  ? _nextStory
+                  : null,
               tooltip: 'Historia siguiente',
             ),
           ],
@@ -363,9 +302,7 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
                 controller: scrollController,
                 itemCount: _stories.length,
                 itemBuilder: (context, index) => ListTile(
-                  leading: CircleAvatar(
-                    child: Text('${index + 1}'),
-                  ),
+                  leading: CircleAvatar(child: Text('${index + 1}')),
                   title: Text(_stories[index].title),
                   subtitle: Text(_stories[index].description),
                   selected: index == _currentStory,
@@ -409,10 +346,7 @@ class _DemoContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          Text(title, style: Theme.of(context).textTheme.headlineMedium),
           const SizedBox(height: 16),
           const Card(
             child: Padding(
@@ -422,18 +356,19 @@ class _DemoContent extends StatelessWidget {
                 children: [
                   Text(
                     'Información del Componente',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Text(
                     'AppScaffold es un componente de scaffold avanzado que proporciona:',
                   ),
                   SizedBox(height: 8),
-                  Text('• Múltiples variantes (app shell, gutters, responsive)'),
-                  Text('• Estados dinámicos (loading, skeleton, disabled, etc.)'),
+                  Text(
+                    '• Múltiples variantes (app shell, gutters, responsive)',
+                  ),
+                  Text(
+                    '• Estados dinámicos (loading, skeleton, disabled, etc.)',
+                  ),
                   Text('• Soporte RTL completo'),
                   Text('• Comportamiento adaptativo por plataforma'),
                   Text('• Accesibilidad integrada'),
@@ -475,9 +410,7 @@ class _DemoContent extends StatelessWidget {
             (index) => Card(
               margin: const EdgeInsets.only(bottom: 8),
               child: ListTile(
-                leading: CircleAvatar(
-                  child: Text('${index + 1}'),
-                ),
+                leading: CircleAvatar(child: Text('${index + 1}')),
                 title: Text('Elemento ${index + 1}'),
                 subtitle: Text('Descripción del elemento ${index + 1}'),
                 trailing: const Icon(Icons.arrow_forward_ios),
@@ -498,14 +431,8 @@ class _DemoAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: const Text('Demo AppBar'),
       actions: [
-        IconButton(
-          icon: const Icon(Icons.search),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: const Icon(Icons.more_vert),
-          onPressed: () {},
-        ),
+        IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+        IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
       ],
     );
   }
@@ -513,4 +440,3 @@ class _DemoAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
-

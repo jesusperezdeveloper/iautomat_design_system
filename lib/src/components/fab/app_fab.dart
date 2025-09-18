@@ -24,8 +24,7 @@ class AppFab extends StatefulWidget {
   State<AppFab> createState() => _AppFabState();
 }
 
-class _AppFabState extends State<AppFab>
-    with TickerProviderStateMixin {
+class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _hoverAnimationController;
   late AnimationController _pressAnimationController;
@@ -53,7 +52,8 @@ class _AppFabState extends State<AppFab>
 
   void _setupAnimations() {
     _stateAnimationController = AnimationController(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 300),
       vsync: this,
     );
 
@@ -151,12 +151,15 @@ class _AppFabState extends State<AppFab>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
+    final isRtl =
+        widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
 
     return Directionality(
       textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
       child: Semantics(
-        label: widget.config.enableA11y ? (widget.label ?? 'Floating Action Button') : null,
+        label: widget.config.enableA11y
+            ? (widget.label ?? 'Floating Action Button')
+            : null,
         button: widget.config.enableA11y,
         enabled: widget.config.state.canInteract,
         child: AnimatedBuilder(
@@ -171,7 +174,8 @@ class _AppFabState extends State<AppFab>
               scale: _scaleAnimation,
               child: AnimatedOpacity(
                 opacity: widget.config.state.opacity,
-                duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+                duration: Duration(
+                    milliseconds: widget.config.animation?.duration ?? 300),
                 child: _buildFabVariant(theme, isRtl),
               ),
             );
@@ -182,16 +186,19 @@ class _AppFabState extends State<AppFab>
   }
 
   Widget _buildLoadingState(ThemeData theme) {
-    final size = widget.config.variant.getSize(widget.config.spacing ?? const AppFabSpacing());
+    final size = widget.config.variant
+        .getSize(widget.config.spacing ?? const AppFabSpacing());
     return Container(
       width: size,
       height: size,
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
-        shape: widget.config.variant.isExtended ? BoxShape.rectangle : BoxShape.circle,
+        shape: widget.config.variant.isExtended
+            ? BoxShape.rectangle
+            : BoxShape.circle,
         borderRadius: widget.config.variant.isExtended
-          ? BorderRadius.circular(widget.config.spacing?.borderRadius ?? 16.0)
-          : null,
+            ? BorderRadius.circular(widget.config.spacing?.borderRadius ?? 16.0)
+            : null,
         boxShadow: [
           BoxShadow(
             color: _getShadowColor(theme),
@@ -210,7 +217,8 @@ class _AppFabState extends State<AppFab>
             child: CircularProgressIndicator(
               strokeWidth: 2.0,
               valueColor: AlwaysStoppedAnimation<Color>(
-                widget.config.colors?.loadingColor ?? theme.colorScheme.onPrimaryContainer,
+                widget.config.colors?.loadingColor ??
+                    theme.colorScheme.onPrimaryContainer,
               ),
             ),
           ),
@@ -220,7 +228,8 @@ class _AppFabState extends State<AppFab>
   }
 
   Widget _buildSkeletonState(ThemeData theme) {
-    final size = widget.config.variant.getSize(widget.config.spacing ?? const AppFabSpacing());
+    final size = widget.config.variant
+        .getSize(widget.config.spacing ?? const AppFabSpacing());
     return AnimatedBuilder(
       animation: _stateAnimationController,
       builder: (context, child) {
@@ -229,10 +238,13 @@ class _AppFabState extends State<AppFab>
           height: size,
           decoration: BoxDecoration(
             color: widget.config.colors?.skeletonColor ?? Colors.grey[300],
-            shape: widget.config.variant.isExtended ? BoxShape.rectangle : BoxShape.circle,
+            shape: widget.config.variant.isExtended
+                ? BoxShape.rectangle
+                : BoxShape.circle,
             borderRadius: widget.config.variant.isExtended
-              ? BorderRadius.circular(widget.config.spacing?.borderRadius ?? 16.0)
-              : null,
+                ? BorderRadius.circular(
+                    widget.config.spacing?.borderRadius ?? 16.0)
+                : null,
             gradient: LinearGradient(
               colors: [
                 Colors.transparent,
@@ -240,7 +252,8 @@ class _AppFabState extends State<AppFab>
                 Colors.transparent,
               ],
               stops: const [0.0, 0.5, 1.0],
-              begin: Alignment(-1.0 + (_stateAnimationController.value * 2), 0.0),
+              begin:
+                  Alignment(-1.0 + (_stateAnimationController.value * 2), 0.0),
               end: Alignment(1.0 + (_stateAnimationController.value * 2), 0.0),
             ),
           ),
@@ -275,7 +288,7 @@ class _AppFabState extends State<AppFab>
 
     if (widget.config.enableKeyboardSupport) {
       fab = Focus(
-          onKeyEvent: _handleKeyEvent,
+        onKeyEvent: _handleKeyEvent,
         child: fab,
       );
     }
@@ -316,7 +329,8 @@ class _AppFabState extends State<AppFab>
       highlightElevation: widget.config.elevation?.pressedElevation,
       disabledElevation: widget.config.elevation?.disabledElevation,
       heroTag: widget.heroTag,
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       child: content,
     );
 
@@ -342,7 +356,8 @@ class _AppFabState extends State<AppFab>
       highlightElevation: widget.config.elevation?.pressedElevation,
       disabledElevation: widget.config.elevation?.disabledElevation,
       heroTag: widget.heroTag,
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       child: content,
     );
 
@@ -368,7 +383,8 @@ class _AppFabState extends State<AppFab>
       highlightElevation: widget.config.elevation?.pressedElevation,
       disabledElevation: widget.config.elevation?.disabledElevation,
       heroTag: widget.heroTag,
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       child: content,
     );
 
@@ -394,7 +410,8 @@ class _AppFabState extends State<AppFab>
       highlightElevation: widget.config.elevation?.pressedElevation,
       disabledElevation: widget.config.elevation?.disabledElevation,
       heroTag: widget.heroTag,
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       icon: widget.icon,
       label: Text(widget.label ?? 'Action'),
     );
@@ -417,10 +434,11 @@ class _AppFabState extends State<AppFab>
     }
 
     // Regular, Small, and Large FABs
-    Widget iconWidget = widget.icon ?? Icon(
-      Icons.add,
-      size: widget.config.variant.iconSize,
-    );
+    Widget iconWidget = widget.icon ??
+        Icon(
+          Icons.add,
+          size: widget.config.variant.iconSize,
+        );
 
     if (widget.config.state == AppFabState.loading) {
       return SizedBox(
@@ -436,7 +454,8 @@ class _AppFabState extends State<AppFab>
     }
 
     return AnimatedSwitcher(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 300),
       child: iconWidget,
     );
   }
@@ -444,27 +463,26 @@ class _AppFabState extends State<AppFab>
   Color _getBackgroundColor(ThemeData theme) {
     if (widget.config.state == AppFabState.disabled) {
       return widget.config.colors?.disabledColor ??
-             theme.colorScheme.onSurface.withValues(alpha: 0.12);
+          theme.colorScheme.onSurface.withValues(alpha: 0.12);
     }
-
 
     if (_isHovering && widget.config.state.canInteract) {
       return widget.config.colors?.hoverColor ??
-             theme.colorScheme.primaryContainer;
+          theme.colorScheme.primaryContainer;
     }
 
     if (_isFocused && widget.config.state.canInteract) {
       return widget.config.colors?.focusColor ??
-             theme.colorScheme.primaryContainer;
+          theme.colorScheme.primaryContainer;
     }
 
     if (widget.config.state == AppFabState.selected) {
       return widget.config.colors?.selectedColor ??
-             theme.colorScheme.secondaryContainer;
+          theme.colorScheme.secondaryContainer;
     }
 
     return widget.config.colors?.backgroundColor ??
-           theme.colorScheme.primaryContainer;
+        theme.colorScheme.primaryContainer;
   }
 
   Color _getForegroundColor(ThemeData theme) {
@@ -473,13 +491,13 @@ class _AppFabState extends State<AppFab>
     }
 
     return widget.config.colors?.foregroundColor ??
-           theme.colorScheme.onPrimaryContainer;
+        theme.colorScheme.onPrimaryContainer;
   }
 
   Color _getShadowColor(ThemeData theme) {
     return widget.config.elevation?.shadowColor ??
-           widget.config.colors?.shadowColor ??
-           theme.colorScheme.shadow;
+        widget.config.colors?.shadowColor ??
+        theme.colorScheme.shadow;
   }
 
   void _handleTap() {
@@ -560,7 +578,8 @@ class AppFabScaffold extends StatelessWidget {
       appBar: appBar,
       body: body,
       floatingActionButton: fab,
-      floatingActionButtonLocation: (fab.location ?? fab.config.location).flutterLocation,
+      floatingActionButtonLocation:
+          (fab.location ?? fab.config.location).flutterLocation,
       bottomNavigationBar: bottomNavigationBar,
       bottomSheet: bottomSheet,
       drawer: drawer,

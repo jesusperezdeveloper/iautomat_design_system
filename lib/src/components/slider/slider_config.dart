@@ -26,7 +26,8 @@ class AppSliderConfig with _$AppSliderConfig {
     @Default(true) bool showLabels,
     @Default(true) bool showTicks,
     @Default(true) bool showThumbLabel,
-    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)) EdgeInsets contentPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0))
+    EdgeInsets contentPadding,
     @Default(8.0) double skeletonShimmerSpeed,
     @Default(1.5) double skeletonOpacityRange,
     @Default(300.0) double maxSliderWidth,
@@ -249,7 +250,8 @@ class AppSliderValidator {
     };
   }
 
-  static String? Function(dynamic) combine(List<String? Function(dynamic)> validators) {
+  static String? Function(dynamic) combine(
+      List<String? Function(dynamic)> validators) {
     return (dynamic value) {
       for (final validator in validators) {
         final result = validator(value);

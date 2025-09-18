@@ -199,7 +199,8 @@ class AppListItemLeading with _$AppListItemLeading {
   }) = _AppListItemLeading;
 
   /// Whether the leading has interactive content
-  bool get isInteractive => onTap != null ||
+  bool get isInteractive =>
+      onTap != null ||
       type == AppListItemLeadingType.checkbox ||
       type == AppListItemLeadingType.radio;
 
@@ -285,7 +286,8 @@ class AppListItemTrailing with _$AppListItemTrailing {
   }) = _AppListItemTrailing;
 
   /// Whether the trailing has interactive content
-  bool get isInteractive => onTap != null ||
+  bool get isInteractive =>
+      onTap != null ||
       onSwitchChanged != null ||
       onCheckboxChanged != null ||
       onRadioChanged != null ||
@@ -336,7 +338,8 @@ class AppListItemSwipeAction with _$AppListItemSwipeAction {
     @Default(80.0) double width,
 
     /// Action position
-    @Default(AppListItemSwipeActionPosition.trailing) AppListItemSwipeActionPosition position,
+    @Default(AppListItemSwipeActionPosition.trailing)
+    AppListItemSwipeActionPosition position,
 
     /// Accessibility label
     String? semanticLabel,
@@ -359,7 +362,8 @@ class AppListItemSwipeActions with _$AppListItemSwipeActions {
     @Default([]) List<AppListItemSwipeAction> trailing,
 
     /// Swipe direction
-    @Default(AppListItemSwipeDirection.both) AppListItemSwipeDirection direction,
+    @Default(AppListItemSwipeDirection.both)
+    AppListItemSwipeDirection direction,
 
     /// Whether swipe is enabled
     @Default(true) bool enabled,
@@ -463,7 +467,8 @@ class AppListItemStyle with _$AppListItemStyle {
 
   const factory AppListItemStyle({
     /// Content padding
-    @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 8)) EdgeInsets contentPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 8))
+    EdgeInsets contentPadding,
 
     /// Minimum height
     double? minHeight,
@@ -487,7 +492,8 @@ class AppListItemStyle with _$AppListItemStyle {
     @Default(4.0) double titleSubtitleSpacing,
 
     /// Content alignment
-    @Default(AppListItemContentAlignment.center) AppListItemContentAlignment contentAlignment,
+    @Default(AppListItemContentAlignment.center)
+    AppListItemContentAlignment contentAlignment,
 
     /// Dense layout
     @Default(false) bool dense,
@@ -530,7 +536,8 @@ class AppListItemStyle with _$AppListItemStyle {
   }
 
   /// Get minimum height for the given variant and density
-  double getMinHeightForVariant(AppListItemVariant variant, AppListItemDensity density) {
+  double getMinHeightForVariant(
+      AppListItemVariant variant, AppListItemDensity density) {
     final baseHeight = switch (variant) {
       AppListItemVariant.oneLine => 48.0,
       AppListItemVariant.twoLine => 64.0,
@@ -714,22 +721,22 @@ extension AppListItemStateExtension on AppListItemState {
   /// Whether this state is interactive
   bool get isInteractive {
     return this != AppListItemState.disabled &&
-           this != AppListItemState.loading &&
-           this != AppListItemState.skeleton;
+        this != AppListItemState.loading &&
+        this != AppListItemState.skeleton;
   }
 
   /// Whether this state shows visual feedback
   bool get hasVisualFeedback {
     return this == AppListItemState.hover ||
-           this == AppListItemState.pressed ||
-           this == AppListItemState.focus ||
-           this == AppListItemState.selected;
+        this == AppListItemState.pressed ||
+        this == AppListItemState.focus ||
+        this == AppListItemState.selected;
   }
 
   /// Whether this state is temporary
   bool get isTemporary {
     return this == AppListItemState.hover ||
-           this == AppListItemState.pressed ||
-           this == AppListItemState.focus;
+        this == AppListItemState.pressed ||
+        this == AppListItemState.focus;
   }
 }

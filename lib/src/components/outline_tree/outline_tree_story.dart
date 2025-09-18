@@ -239,7 +239,8 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
                   debugPrint('Toggled: ${node.label}');
                 },
                 onSelect: (node, selected) {
-                  debugPrint('${node.label} ${selected ? 'selected' : 'deselected'}');
+                  debugPrint(
+                      '${node.label} ${selected ? 'selected' : 'deselected'}');
                 },
               ),
             ),
@@ -340,7 +341,9 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
               'Disabled State',
               AppOutlineTree(
                 variant: AppOutlineTreeVariant.async,
-                nodes: basicNodes.map((n) => n.copyWith(isDisabled: true)).toList(),
+                nodes: basicNodes
+                    .map((n) => n.copyWith(isDisabled: true))
+                    .toList(),
                 state: AppOutlineTreeState.disabled,
                 onToggle: (node) {},
               ),
@@ -665,7 +668,8 @@ class _FileExplorerExampleState extends State<FileExplorerExample> {
                                 // Simulate download
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Downloading ${selectedFiles.length} files...'),
+                                    content: Text(
+                                        'Downloading ${selectedFiles.length} files...'),
                                   ),
                                 );
                               }

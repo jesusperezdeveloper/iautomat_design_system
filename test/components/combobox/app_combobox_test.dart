@@ -33,7 +33,8 @@ void main() {
         expect(find.text('Search...'), findsOneWidget);
       });
 
-      testWidgets('renders with label when floating label disabled', (tester) async {
+      testWidgets('renders with label when floating label disabled',
+          (tester) async {
         String query = '';
 
         await tester.pumpWidget(
@@ -196,7 +197,8 @@ void main() {
           ),
         );
 
-        final combobox = tester.widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+        final combobox = tester
+            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
         expect(combobox.enabled, false);
       });
     });
@@ -228,7 +230,8 @@ void main() {
           ),
         );
 
-        final combobox = tester.widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+        final combobox = tester
+            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
         expect(combobox.config?.borderRadius, 16);
         expect(combobox.config?.minimumHeight, 60);
         expect(combobox.config?.borderWidth, 3);
@@ -292,7 +295,8 @@ void main() {
           ),
         );
 
-        final combobox = tester.widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+        final combobox = tester
+            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
         expect(combobox.colors, customColors);
       });
     });
@@ -362,7 +366,8 @@ void main() {
     });
 
     group('Suggestions', () {
-      testWidgets('handles suggestions with different properties', (tester) async {
+      testWidgets('handles suggestions with different properties',
+          (tester) async {
         final complexSuggestions = [
           AppComboBoxSuggestion(
             value: 'item1',
@@ -401,7 +406,8 @@ void main() {
           ),
         );
 
-        final combobox = tester.widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+        final combobox = tester
+            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
         expect(combobox.suggestions.length, 3);
         expect(combobox.suggestions[0].subtitle, 'Subtitle 1');
         expect(combobox.suggestions[1].enabled, false);
@@ -431,7 +437,8 @@ void main() {
 
         expect(suggestion2.matches('Custom'), true);
         expect(suggestion2.matches('Search'), true);
-        expect(suggestion2.matches('custom search', caseSensitive: false), true);
+        expect(
+            suggestion2.matches('custom search', caseSensitive: false), true);
         expect(suggestion2.matches('test'), false); // No está en searchableText
         expect(suggestion2.matches('Text'), true);
 
@@ -480,7 +487,8 @@ void main() {
           ),
         );
 
-        final combobox = tester.widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+        final combobox = tester
+            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
         expect(combobox.autoFocus, true);
       });
 
@@ -502,7 +510,8 @@ void main() {
           ),
         );
 
-        final combobox = tester.widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+        final combobox = tester
+            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
         expect(combobox.semanticLabel, 'Choose an option');
       });
 
@@ -562,7 +571,8 @@ void main() {
         expect(lastChangedValue, 'test input');
       });
 
-      testWidgets('calls onSelected when suggestion is selected', (tester) async {
+      testWidgets('calls onSelected when suggestion is selected',
+          (tester) async {
         String query = '';
 
         await tester.pumpWidget(
@@ -582,7 +592,8 @@ void main() {
 
         // We can't easily test the actual selection without the overlay
         // but we can verify the callback is set up
-        final combobox = tester.widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+        final combobox = tester
+            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
         expect(combobox.onSelected, isNotNull);
       });
 
@@ -604,7 +615,8 @@ void main() {
           ),
         );
 
-        final combobox = tester.widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+        final combobox = tester
+            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
         expect(combobox.keyboardType, TextInputType.emailAddress);
       });
     });
@@ -653,7 +665,8 @@ void main() {
           ),
         );
 
-        final combobox = tester.widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+        final combobox = tester
+            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
         expect(combobox.validator, isNotNull);
       });
     });

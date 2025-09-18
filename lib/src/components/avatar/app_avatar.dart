@@ -298,14 +298,16 @@ class _AppAvatarState extends State<AppAvatar>
 
   void _handleTapUp(TapUpDetails details) {
     if (widget.config.canInteract) {
-      _updateState(_isFocused ? AppAvatarState.focus : AppAvatarState.defaultState);
+      _updateState(
+          _isFocused ? AppAvatarState.focus : AppAvatarState.defaultState);
       setState(() => _isPressed = false);
     }
   }
 
   void _handleTapCancel() {
     if (widget.config.canInteract) {
-      _updateState(_isFocused ? AppAvatarState.focus : AppAvatarState.defaultState);
+      _updateState(
+          _isFocused ? AppAvatarState.focus : AppAvatarState.defaultState);
       setState(() => _isPressed = false);
     }
   }
@@ -431,7 +433,8 @@ class _AppAvatarState extends State<AppAvatar>
       result = _buildInteractiveWrapper(result);
     }
 
-    final semanticLabel = widget.config.semanticLabel ?? _generateSemanticLabel();
+    final semanticLabel =
+        widget.config.semanticLabel ?? _generateSemanticLabel();
     if (semanticLabel.isNotEmpty) {
       result = Semantics(
         label: semanticLabel,
@@ -454,7 +457,9 @@ class _AppAvatarState extends State<AppAvatar>
       child: MouseRegion(
         onEnter: (_) => _handleHover(true),
         onExit: (_) => _handleHover(false),
-        cursor: widget.config.canInteract ? SystemMouseCursors.click : SystemMouseCursors.basic,
+        cursor: widget.config.canInteract
+            ? SystemMouseCursors.click
+            : SystemMouseCursors.basic,
         child: Focus(
           onFocusChange: _handleFocusChange,
           child: child,
@@ -463,7 +468,8 @@ class _AppAvatarState extends State<AppAvatar>
     );
   }
 
-  Widget _buildAvatarContent(ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
+  Widget _buildAvatarContent(
+      ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
     switch (config.variant) {
       case AppAvatarVariant.image:
         return _buildImageAvatar(theme, config, style);
@@ -474,7 +480,8 @@ class _AppAvatarState extends State<AppAvatar>
     }
   }
 
-  Widget _buildImageAvatar(ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
+  Widget _buildImageAvatar(
+      ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
     final size = config.size.size;
     final borderRadius = config.shape.getBorderRadius(size);
 
@@ -507,7 +514,8 @@ class _AppAvatarState extends State<AppAvatar>
         boxShadow: style.elevation != null && style.elevation! > 0
             ? [
                 BoxShadow(
-                  color: style.shadowColor?.withValues(alpha: 0.2) ?? Colors.black.withValues(alpha: 0.1),
+                  color: style.shadowColor?.withValues(alpha: 0.2) ??
+                      Colors.black.withValues(alpha: 0.1),
                   blurRadius: style.elevation!,
                   offset: Offset(0, style.elevation! / 2),
                 ),
@@ -523,7 +531,8 @@ class _AppAvatarState extends State<AppAvatar>
     return Image.network(
       config.imageUrl!,
       fit: config.imageFit ?? AppAvatarConstants.defaultImageFit,
-      filterQuality: style.filterQuality ?? AppAvatarConstants.defaultFilterQuality,
+      filterQuality:
+          style.filterQuality ?? AppAvatarConstants.defaultFilterQuality,
       headers: config.imageHeaders ?? AppAvatarConstants.defaultImageHeaders,
       loadingBuilder: (context, child, loadingProgress) {
         if (loadingProgress == null) return child;
@@ -531,7 +540,8 @@ class _AppAvatarState extends State<AppAvatar>
           child: CircularProgressIndicator(
             strokeWidth: 2.0,
             value: loadingProgress.expectedTotalBytes != null
-                ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                ? loadingProgress.cumulativeBytesLoaded /
+                    loadingProgress.expectedTotalBytes!
                 : null,
           ),
         );
@@ -549,7 +559,8 @@ class _AppAvatarState extends State<AppAvatar>
     );
   }
 
-  Widget _buildInitialsAvatar(ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
+  Widget _buildInitialsAvatar(
+      ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
     final size = config.size.size;
     final borderRadius = config.shape.getBorderRadius(size);
 
@@ -568,7 +579,8 @@ class _AppAvatarState extends State<AppAvatar>
         boxShadow: style.elevation != null && style.elevation! > 0
             ? [
                 BoxShadow(
-                  color: style.shadowColor?.withValues(alpha: 0.2) ?? Colors.black.withValues(alpha: 0.1),
+                  color: style.shadowColor?.withValues(alpha: 0.2) ??
+                      Colors.black.withValues(alpha: 0.1),
                   blurRadius: style.elevation!,
                   offset: Offset(0, style.elevation! / 2),
                 ),
@@ -593,14 +605,16 @@ class _AppAvatarState extends State<AppAvatar>
     );
   }
 
-  Widget _buildGroupAvatar(ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
+  Widget _buildGroupAvatar(
+      ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
     final size = config.size.size;
     final groupImages = config.displayGroupImages;
     final groupInitials = config.displayGroupInitials;
     final remainingCount = config.remainingGroupCount;
 
     if (groupImages.isEmpty && groupInitials.isEmpty) {
-      return _buildInitialsAvatar(theme, config.copyWith(initials: '??'), style);
+      return _buildInitialsAvatar(
+          theme, config.copyWith(initials: '??'), style);
     }
 
     final children = <Widget>[];
@@ -622,7 +636,8 @@ class _AppAvatarState extends State<AppAvatar>
 
     // Agregar avatares de iniciales
     for (int i = 0; i < groupInitials.length; i++) {
-      final leftOffset = (groupImages.length + i) * (size - config.size.groupOverlap);
+      final leftOffset =
+          (groupImages.length + i) * (size - config.size.groupOverlap);
       children.add(
         Positioned(
           left: leftOffset,
@@ -653,8 +668,10 @@ class _AppAvatarState extends State<AppAvatar>
       );
     }
 
-    final totalDisplayed = math.min(config.maxGroupCount, groupImages.length + groupInitials.length);
-    final totalWidth = size + (totalDisplayed * (size - config.size.groupOverlap));
+    final totalDisplayed = math.min(
+        config.maxGroupCount, groupImages.length + groupInitials.length);
+    final totalWidth =
+        size + (totalDisplayed * (size - config.size.groupOverlap));
 
     return SizedBox(
       width: totalWidth,
@@ -680,7 +697,8 @@ class _AppAvatarState extends State<AppAvatar>
       content = Image.network(
         imageUrl,
         fit: config.imageFit ?? AppAvatarConstants.defaultImageFit,
-        filterQuality: style.filterQuality ?? AppAvatarConstants.defaultFilterQuality,
+        filterQuality:
+            style.filterQuality ?? AppAvatarConstants.defaultFilterQuality,
         headers: config.imageHeaders ?? AppAvatarConstants.defaultImageHeaders,
         errorBuilder: (context, error, stackTrace) {
           return Icon(
@@ -726,7 +744,8 @@ class _AppAvatarState extends State<AppAvatar>
     );
   }
 
-  Widget _buildAvatarWithPresence(ThemeData theme, AppAvatarConfig config, Widget avatar) {
+  Widget _buildAvatarWithPresence(
+      ThemeData theme, AppAvatarConfig config, Widget avatar) {
     final presence = config.presence!;
     final presenceSize = config.size.presenceSize;
 
@@ -783,10 +802,13 @@ class _AppAvatarState extends State<AppAvatar>
     );
   }
 
-  AppAvatarStyle _getEffectiveStyle(ThemeData theme, AppAvatarConfig config, AppAvatarState state) {
+  AppAvatarStyle _getEffectiveStyle(
+      ThemeData theme, AppAvatarConfig config, AppAvatarState state) {
     final colorScheme = theme.colorScheme;
-    final effectiveBackgroundColor = config.getEffectiveBackgroundColor(colorScheme);
-    final effectiveForegroundColor = config.getEffectiveForegroundColor(colorScheme);
+    final effectiveBackgroundColor =
+        config.getEffectiveBackgroundColor(colorScheme);
+    final effectiveForegroundColor =
+        config.getEffectiveForegroundColor(colorScheme);
     final effectiveBorderColor = config.getEffectiveBorderColor(colorScheme);
 
     final baseStyle = AppAvatarStyle(
@@ -838,7 +860,8 @@ class _AppAvatarState extends State<AppAvatar>
       case AppAvatarVariant.initials:
         return 'Avatar de ${config.displayInitials}${config.hasPresence ? ', ${config.presence!.label}' : ''}';
       case AppAvatarVariant.group:
-        final total = (config.groupImageUrls?.length ?? 0) + (config.groupInitials?.length ?? 0);
+        final total = (config.groupImageUrls?.length ?? 0) +
+            (config.groupInitials?.length ?? 0);
         return 'Avatar de grupo con $total miembros';
     }
   }

@@ -101,7 +101,8 @@ class _StandardBasicStatesStory extends StatefulWidget {
   const _StandardBasicStatesStory();
 
   @override
-  State<_StandardBasicStatesStory> createState() => _StandardBasicStatesStoryState();
+  State<_StandardBasicStatesStory> createState() =>
+      _StandardBasicStatesStoryState();
 }
 
 class _StandardBasicStatesStoryState extends State<_StandardBasicStatesStory> {
@@ -160,7 +161,8 @@ class _StandardWithLabelsStory extends StatefulWidget {
   const _StandardWithLabelsStory();
 
   @override
-  State<_StandardWithLabelsStory> createState() => _StandardWithLabelsStoryState();
+  State<_StandardWithLabelsStory> createState() =>
+      _StandardWithLabelsStoryState();
 }
 
 class _StandardWithLabelsStoryState extends State<_StandardWithLabelsStory> {
@@ -287,7 +289,8 @@ class _SegmentedWithIconsStory extends StatefulWidget {
   const _SegmentedWithIconsStory();
 
   @override
-  State<_SegmentedWithIconsStory> createState() => _SegmentedWithIconsStoryState();
+  State<_SegmentedWithIconsStory> createState() =>
+      _SegmentedWithIconsStoryState();
 }
 
 class _SegmentedWithIconsStoryState extends State<_SegmentedWithIconsStory> {
@@ -310,10 +313,18 @@ class _SegmentedWithIconsStoryState extends State<_SegmentedWithIconsStory> {
           onChanged: (value) => setState(() => _selectedAlignment = value),
           variant: AppRadioVariant.segmented,
           options: const [
-            AppRadioValue(value: 'left', label: 'Left', icon: Icons.format_align_left),
-            AppRadioValue(value: 'center', label: 'Center', icon: Icons.format_align_center),
-            AppRadioValue(value: 'right', label: 'Right', icon: Icons.format_align_right),
-            AppRadioValue(value: 'justify', label: 'Justify', icon: Icons.format_align_justify),
+            AppRadioValue(
+                value: 'left', label: 'Left', icon: Icons.format_align_left),
+            AppRadioValue(
+                value: 'center',
+                label: 'Center',
+                icon: Icons.format_align_center),
+            AppRadioValue(
+                value: 'right', label: 'Right', icon: Icons.format_align_right),
+            AppRadioValue(
+                value: 'justify',
+                label: 'Justify',
+                icon: Icons.format_align_justify),
           ],
         ),
         const SizedBox(height: 24),
@@ -328,9 +339,11 @@ class _SegmentedWithIconsStoryState extends State<_SegmentedWithIconsStory> {
           onChanged: (value) => setState(() => _selectedTheme = value),
           variant: AppRadioVariant.segmented,
           options: const [
-            AppRadioValue(value: 'light', label: 'Light', icon: Icons.light_mode),
+            AppRadioValue(
+                value: 'light', label: 'Light', icon: Icons.light_mode),
             AppRadioValue(value: 'dark', label: 'Dark', icon: Icons.dark_mode),
-            AppRadioValue(value: 'auto', label: 'Auto', icon: Icons.brightness_auto),
+            AppRadioValue(
+                value: 'auto', label: 'Auto', icon: Icons.brightness_auto),
           ],
         ),
       ],
@@ -342,7 +355,8 @@ class _InteractiveStatesStory extends StatefulWidget {
   const _InteractiveStatesStory();
 
   @override
-  State<_InteractiveStatesStory> createState() => _InteractiveStatesStoryState();
+  State<_InteractiveStatesStory> createState() =>
+      _InteractiveStatesStoryState();
 }
 
 class _InteractiveStatesStoryState extends State<_InteractiveStatesStory> {
@@ -605,7 +619,8 @@ class _CustomConfigStoryState extends State<_CustomConfigStory> {
             focusOverlay: Colors.purple.withValues(alpha: 0.12),
             pressedOverlay: Colors.purple.withValues(alpha: 0.12),
             labelColor: theme.colorScheme.onSurface,
-            disabledLabelColor: theme.colorScheme.onSurface.withValues(alpha: 0.38),
+            disabledLabelColor:
+                theme.colorScheme.onSurface.withValues(alpha: 0.38),
             segmentBackgroundColor: Colors.purple.withValues(alpha: 0.1),
             segmentSelectedBackgroundColor: Colors.purple,
             segmentBorderColor: Colors.purple,
@@ -640,7 +655,8 @@ class _CustomConfigStoryState extends State<_CustomConfigStory> {
             focusOverlay: Colors.orange.withValues(alpha: 0.12),
             pressedOverlay: Colors.orange.withValues(alpha: 0.12),
             labelColor: theme.colorScheme.onSurface,
-            disabledLabelColor: theme.colorScheme.onSurface.withValues(alpha: 0.38),
+            disabledLabelColor:
+                theme.colorScheme.onSurface.withValues(alpha: 0.38),
             segmentBackgroundColor: Colors.orange.withValues(alpha: 0.1),
             segmentSelectedBackgroundColor: Colors.orange,
             segmentBorderColor: Colors.orange,

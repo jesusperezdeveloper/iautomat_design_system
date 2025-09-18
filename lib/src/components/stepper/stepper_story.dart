@@ -109,7 +109,8 @@ class _AppStepperStoryState extends State<AppStepperStory> {
     ),
   ];
 
-  void _continueStep(List<AppStep> steps, int currentStep, Function(int) updateStep) {
+  void _continueStep(
+      List<AppStep> steps, int currentStep, Function(int) updateStep) {
     if (currentStep < steps.length - 1) {
       updateStep(currentStep + 1);
     }
@@ -151,7 +152,8 @@ class _AppStepperStoryState extends State<AppStepperStory> {
                     _currentVerticalStep,
                     (step) => setState(() => _currentVerticalStep = step),
                   ),
-                  onStepTapped: (step) => setState(() => _currentVerticalStep = step),
+                  onStepTapped: (step) =>
+                      setState(() => _currentVerticalStep = step),
                 ),
               ),
             ),
@@ -173,7 +175,8 @@ class _AppStepperStoryState extends State<AppStepperStory> {
                     _currentHorizontalStep,
                     (step) => setState(() => _currentHorizontalStep = step),
                   ),
-                  onStepTapped: (step) => setState(() => _currentHorizontalStep = step),
+                  onStepTapped: (step) =>
+                      setState(() => _currentHorizontalStep = step),
                 ),
               ),
             ),
@@ -195,7 +198,8 @@ class _AppStepperStoryState extends State<AppStepperStory> {
                     _currentValidationStep,
                     (step) => setState(() => _currentValidationStep = step),
                   ),
-                  onStepTapped: (step) => setState(() => _currentValidationStep = step),
+                  onStepTapped: (step) =>
+                      setState(() => _currentValidationStep = step),
                 ),
               ),
             ),
@@ -217,7 +221,8 @@ class _AppStepperStoryState extends State<AppStepperStory> {
                     _currentCustomStep,
                     (step) => setState(() => _currentCustomStep = step),
                   ),
-                  onStepTapped: (step) => setState(() => _currentCustomStep = step),
+                  onStepTapped: (step) =>
+                      setState(() => _currentCustomStep = step),
                 ),
               ),
             ),
@@ -419,8 +424,8 @@ class _AppStepperStoryState extends State<AppStepperStory> {
           Text(
             description,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
           ),
           const SizedBox(height: 16),
           child,

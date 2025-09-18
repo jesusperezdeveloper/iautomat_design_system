@@ -90,7 +90,8 @@ void main() {
 
     testWidgets('text area with content', (tester) async {
       final controller = TextEditingController(
-        text: 'This is a multi-line text area\nwith some content\nthat spans multiple lines.',
+        text:
+            'This is a multi-line text area\nwith some content\nthat spans multiple lines.',
       );
 
       await tester.pumpWidget(
@@ -257,7 +258,8 @@ void main() {
 
     testWidgets('long content with scrollbar', (tester) async {
       final controller = TextEditingController(
-        text: 'This is a very long text that will definitely exceed the maximum height of the text area. '
+        text:
+            'This is a very long text that will definitely exceed the maximum height of the text area. '
             'It should show a scrollbar when the content is longer than the available space. '
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
             'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '

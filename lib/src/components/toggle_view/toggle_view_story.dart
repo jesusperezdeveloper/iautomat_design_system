@@ -559,9 +559,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
             showShadow: true,
           ),
           options: const [
-            AppToggleViewOption(id: 'large1', label: 'Large Item 1', icon: Icons.star),
-            AppToggleViewOption(id: 'large2', label: 'Large Item 2', icon: Icons.favorite),
-            AppToggleViewOption(id: 'large3', label: 'Large Item 3', icon: Icons.thumb_up),
+            AppToggleViewOption(
+                id: 'large1', label: 'Large Item 1', icon: Icons.star),
+            AppToggleViewOption(
+                id: 'large2', label: 'Large Item 2', icon: Icons.favorite),
+            AppToggleViewOption(
+                id: 'large3', label: 'Large Item 3', icon: Icons.thumb_up),
           ],
           onChanged: (value) {
             setState(() {
@@ -613,9 +616,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
           value: _rtlSelection,
           textDirection: TextDirection.ltr,
           options: const [
-            AppToggleViewOption(id: 'ltr1', label: 'English 1', icon: Icons.language),
-            AppToggleViewOption(id: 'ltr2', label: 'English 2', icon: Icons.translate),
-            AppToggleViewOption(id: 'ltr3', label: 'English 3', icon: Icons.text_fields),
+            AppToggleViewOption(
+                id: 'ltr1', label: 'English 1', icon: Icons.language),
+            AppToggleViewOption(
+                id: 'ltr2', label: 'English 2', icon: Icons.translate),
+            AppToggleViewOption(
+                id: 'ltr3', label: 'English 3', icon: Icons.text_fields),
           ],
           onChanged: (value) {
             setState(() {
@@ -630,9 +636,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
           value: _rtlSelection,
           textDirection: TextDirection.rtl,
           options: const [
-            AppToggleViewOption(id: 'rtl1', label: 'عربي ١', icon: Icons.language),
-            AppToggleViewOption(id: 'rtl2', label: 'عربي ٢', icon: Icons.translate),
-            AppToggleViewOption(id: 'rtl3', label: 'عربي ٣', icon: Icons.text_fields),
+            AppToggleViewOption(
+                id: 'rtl1', label: 'عربي ١', icon: Icons.language),
+            AppToggleViewOption(
+                id: 'rtl2', label: 'عربي ٢', icon: Icons.translate),
+            AppToggleViewOption(
+                id: 'rtl3', label: 'عربي ٣', icon: Icons.text_fields),
           ],
           onChanged: (value) {
             setState(() {
@@ -656,9 +665,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
             useNativeScrolling: true,
           ),
           options: const [
-            AppToggleViewOption(id: 'mobile', label: 'Mobile', icon: Icons.phone_android),
-            AppToggleViewOption(id: 'tablet', label: 'Tablet', icon: Icons.tablet),
-            AppToggleViewOption(id: 'desktop', label: 'Desktop', icon: Icons.desktop_windows),
+            AppToggleViewOption(
+                id: 'mobile', label: 'Mobile', icon: Icons.phone_android),
+            AppToggleViewOption(
+                id: 'tablet', label: 'Tablet', icon: Icons.tablet),
+            AppToggleViewOption(
+                id: 'desktop', label: 'Desktop', icon: Icons.desktop_windows),
             AppToggleViewOption(id: 'web', label: 'Web', icon: Icons.web),
           ],
           onChanged: (value) {

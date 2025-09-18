@@ -58,7 +58,8 @@ class AppTopAppBarAction with _$AppTopAppBarAction {
     VoidCallback? onPressed,
     @Default(false) bool disabled,
     @Default(AppTopAppBarActionType.icon) AppTopAppBarActionType type,
-    @Default(AppTopAppBarActionPriority.primary) AppTopAppBarActionPriority priority,
+    @Default(AppTopAppBarActionPriority.primary)
+    AppTopAppBarActionPriority priority,
   }) = _AppTopAppBarAction;
 }
 

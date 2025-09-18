@@ -6,7 +6,8 @@ import 'package:iautomat_design_system/src/components/metric_card/metric_card_co
 
 void main() {
   group('AppMetricCard', () {
-    testWidgets('renderiza correctamente con propiedades básicas', (tester) async {
+    testWidgets('renderiza correctamente con propiedades básicas',
+        (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -115,7 +116,8 @@ void main() {
       expect(tapped, isFalse);
     });
 
-    testWidgets('muestra skeleton cuando está en estado loading', (tester) async {
+    testWidgets('muestra skeleton cuando está en estado loading',
+        (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -220,7 +222,8 @@ void main() {
     });
 
     group('Variante Sparkline', () {
-      testWidgets('renderiza correctamente con datos de tendencia', (tester) async {
+      testWidgets('renderiza correctamente con datos de tendencia',
+          (tester) async {
         final trend = List.generate(5, (index) {
           return AppMetricCardDataPoint(
             value: 50.0 + index * 10,
@@ -264,7 +267,8 @@ void main() {
     });
 
     group('Tamaños', () {
-      testWidgets('aplica constraints correctos para cada tamaño', (tester) async {
+      testWidgets('aplica constraints correctos para cada tamaño',
+          (tester) async {
         for (final size in AppMetricCardSize.values) {
           await tester.pumpWidget(
             MaterialApp(
@@ -364,7 +368,8 @@ void main() {
       expect(container.padding, equals(const EdgeInsets.all(20)));
     });
 
-    testWidgets('muestra widgets prefix y suffix cuando están presentes', (tester) async {
+    testWidgets('muestra widgets prefix y suffix cuando están presentes',
+        (tester) async {
       const prefixIcon = Icon(Icons.star, key: Key('prefix'));
       const suffixIcon = Icon(Icons.arrow_forward, key: Key('suffix'));
 
@@ -385,7 +390,8 @@ void main() {
       expect(find.byKey(const Key('suffix')), findsOneWidget);
     });
 
-    testWidgets('usa widget personalizado de valor cuando está proporcionado', (tester) async {
+    testWidgets('usa widget personalizado de valor cuando está proporcionado',
+        (tester) async {
       const customValueWidget = Text('Custom Value', key: Key('custom-value'));
 
       await tester.pumpWidget(
@@ -787,8 +793,10 @@ void main() {
     });
 
     group('Widget personalizados', () {
-      testWidgets('usa widget personalizado de delta cuando está proporcionado', (tester) async {
-        const customDeltaWidget = Text('Custom Delta', key: Key('custom-delta'));
+      testWidgets('usa widget personalizado de delta cuando está proporcionado',
+          (tester) async {
+        const customDeltaWidget =
+            Text('Custom Delta', key: Key('custom-delta'));
 
         await tester.pumpWidget(
           const MaterialApp(
@@ -809,8 +817,11 @@ void main() {
         expect(find.byKey(const Key('custom-delta')), findsOneWidget);
       });
 
-      testWidgets('usa widget personalizado de sparkline cuando está proporcionado', (tester) async {
-        const customSparklineWidget = Text('Custom Sparkline', key: Key('custom-sparkline'));
+      testWidgets(
+          'usa widget personalizado de sparkline cuando está proporcionado',
+          (tester) async {
+        const customSparklineWidget =
+            Text('Custom Sparkline', key: Key('custom-sparkline'));
 
         await tester.pumpWidget(
           MaterialApp(

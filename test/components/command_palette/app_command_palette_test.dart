@@ -7,7 +7,8 @@ import 'package:iautomat_design_system/src/components/command_palette/command_pa
 void main() {
   group('AppCommandPalette', () {
     group('Widget Tests', () {
-      testWidgets('renders correctly with default configuration', (tester) async {
+      testWidgets('renders correctly with default configuration',
+          (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
@@ -211,7 +212,8 @@ void main() {
         );
 
         await tester.enterText(find.byType(TextField), 'test query');
-        await tester.pump(const Duration(milliseconds: 300)); // Wait for debounce
+        await tester
+            .pump(const Duration(milliseconds: 300)); // Wait for debounce
 
         expect(queriedText, equals('test query'));
       });
@@ -362,7 +364,10 @@ void main() {
                   AppCommandResult(
                     id: 'shortcut',
                     title: 'With Shortcut',
-                    shortcut: [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyN],
+                    shortcut: [
+                      LogicalKeyboardKey.meta,
+                      LogicalKeyboardKey.keyN
+                    ],
                   ),
                 ],
                 config: AppCommandPaletteConfig(
@@ -395,7 +400,8 @@ void main() {
 
         // Enter search query
         await tester.enterText(find.byType(TextField), 'file');
-        await tester.pump(const Duration(milliseconds: 300)); // Wait for debounce
+        await tester
+            .pump(const Duration(milliseconds: 300)); // Wait for debounce
 
         // Should show filtered results
         expect(find.text('Create File'), findsOneWidget);
@@ -747,7 +753,9 @@ void main() {
       );
 
       expect(spans.length, greaterThan(1));
-      expect(spans.any((span) => span.text?.toLowerCase().contains('new') == true), isTrue);
+      expect(
+          spans.any((span) => span.text?.toLowerCase().contains('new') == true),
+          isTrue);
     });
   });
 }

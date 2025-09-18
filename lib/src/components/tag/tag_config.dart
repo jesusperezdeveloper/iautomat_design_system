@@ -49,7 +49,8 @@ class AppTagConfig with _$AppTagConfig {
   bool get isLoading => loading || state == AppTagState.loading;
   bool get isSkeleton => skeleton || state == AppTagState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
-  bool get canInteract => isInteractive && !isDisabled && !isLoading && !isSkeleton;
+  bool get canInteract =>
+      isInteractive && !isDisabled && !isLoading && !isSkeleton;
   bool get hasLabel => label.isNotEmpty;
   bool get hasLeadingIcon => leadingIcon != null;
   bool get hasTrailingIcon => trailingIcon != null;
@@ -114,7 +115,9 @@ class AppTagConfig with _$AppTagConfig {
 
   double getEffectiveElevation() {
     if (elevation != null) return elevation!;
-    return isSelected ? AppTagConstants.selectedElevation : AppTagConstants.defaultElevation;
+    return isSelected
+        ? AppTagConstants.selectedElevation
+        : AppTagConstants.defaultElevation;
   }
 
   Color _getContrastColor(Color backgroundColor, ColorScheme colorScheme) {
@@ -346,9 +349,10 @@ extension AppTagVariantExtension on AppTagVariant {
 }
 
 extension AppTagStateExtension on AppTagState {
-  bool get isInteractiveState => this == AppTagState.hover ||
-                                this == AppTagState.pressed ||
-                                this == AppTagState.focus;
+  bool get isInteractiveState =>
+      this == AppTagState.hover ||
+      this == AppTagState.pressed ||
+      this == AppTagState.focus;
 
   bool get isDisabledState => this == AppTagState.disabled;
   bool get isLoadingState => this == AppTagState.loading;
@@ -448,7 +452,8 @@ class AppTagConstants {
   static const Curve defaultAnimationCurve = Curves.easeInOut;
   static const Duration defaultPulseDuration = Duration(seconds: 2);
 
-  static const EdgeInsetsGeometry defaultPadding = EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0);
+  static const EdgeInsetsGeometry defaultPadding =
+      EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0);
   static const EdgeInsetsGeometry defaultMargin = EdgeInsets.zero;
 
   static const BoxConstraints defaultConstraints = BoxConstraints(

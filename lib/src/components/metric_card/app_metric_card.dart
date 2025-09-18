@@ -105,9 +105,9 @@ class AppMetricCard extends StatefulWidget {
     this.loading = false,
     this.skeleton = false,
     this.visible = true,
-  }) : variant = AppMetricCardVariant.delta,
-       trend = null,
-       customSparklineWidget = null;
+  })  : variant = AppMetricCardVariant.delta,
+        trend = null,
+        customSparklineWidget = null;
 
   const AppMetricCard.sparkline({
     super.key,
@@ -140,9 +140,9 @@ class AppMetricCard extends StatefulWidget {
     this.loading = false,
     this.skeleton = false,
     this.visible = true,
-  }) : variant = AppMetricCardVariant.sparkline,
-       delta = null,
-       customDeltaWidget = null;
+  })  : variant = AppMetricCardVariant.sparkline,
+        delta = null,
+        customDeltaWidget = null;
 
   @override
   State<AppMetricCard> createState() => _AppMetricCardState();
@@ -312,11 +312,14 @@ class _AppMetricCardState extends State<AppMetricCard>
     });
   }
 
-  bool get _canInteract => widget.enabled &&
-                          !widget.loading &&
-                          !widget.skeleton &&
-                          (widget.onTap != null || widget.onLongPress != null ||
-                           widget.interaction?.onTap != null || widget.interaction?.onLongPress != null);
+  bool get _canInteract =>
+      widget.enabled &&
+      !widget.loading &&
+      !widget.skeleton &&
+      (widget.onTap != null ||
+          widget.onLongPress != null ||
+          widget.interaction?.onTap != null ||
+          widget.interaction?.onLongPress != null);
 
   bool get _isInteractive => _canInteract;
 
@@ -396,7 +399,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     Widget cardWidget = _buildMetricCard(context, config);
 
     if (widget.animation?.enabled == true) {
-      final animationType = widget.animation?.type ?? AppMetricCardAnimationType.fade;
+      final animationType =
+          widget.animation?.type ?? AppMetricCardAnimationType.fade;
 
       switch (animationType) {
         case AppMetricCardAnimationType.fade:
@@ -442,7 +446,10 @@ class _AppMetricCardState extends State<AppMetricCard>
         focusable: widget.interaction?.focusable ?? true,
         enabled: widget.enabled,
         onTap: _isInteractive ? _handleTap : null,
-        onLongPress: widget.onLongPress != null || widget.interaction?.onLongPress != null ? _handleLongPress : null,
+        onLongPress: widget.onLongPress != null ||
+                widget.interaction?.onLongPress != null
+            ? _handleLongPress
+            : null,
         child: cardWidget,
       );
     }
@@ -475,7 +482,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     return _wrapWithInteraction(content, config, effectiveStyle);
   }
 
-  AppMetricCardStyle _getEffectiveStyle(ThemeData theme, AppMetricCardConfig config, AppMetricCardState state) {
+  AppMetricCardStyle _getEffectiveStyle(
+      ThemeData theme, AppMetricCardConfig config, AppMetricCardState state) {
     final baseStyle = AppMetricCardStyle(
       backgroundColor: theme.colorScheme.surface,
       foregroundColor: theme.colorScheme.onSurface,
@@ -590,7 +598,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     }
   }
 
-  Widget _buildVerticalLayout(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildVerticalLayout(BuildContext context, AppMetricCardConfig config,
+      AppMetricCardStyle style) {
     return Column(
       crossAxisAlignment: style.crossAxisAlignment ?? CrossAxisAlignment.start,
       mainAxisAlignment: style.mainAxisAlignment ?? MainAxisAlignment.start,
@@ -599,11 +608,13 @@ class _AppMetricCardState extends State<AppMetricCard>
         _buildHeader(context, config, style),
         SizedBox(height: style.spacing ?? 8.0),
         _buildMainContent(context, config, style),
-        if (config.variant == AppMetricCardVariant.delta && config.hasDelta) ...[
+        if (config.variant == AppMetricCardVariant.delta &&
+            config.hasDelta) ...[
           SizedBox(height: style.spacing ?? 8.0),
           _buildDeltaSection(context, config, style),
         ],
-        if (config.variant == AppMetricCardVariant.sparkline && config.hasTrend) ...[
+        if (config.variant == AppMetricCardVariant.sparkline &&
+            config.hasTrend) ...[
           SizedBox(height: style.spacing ?? 8.0),
           _buildSparklineSection(context, config, style),
         ],
@@ -611,7 +622,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildHorizontalLayout(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildHorizontalLayout(BuildContext context,
+      AppMetricCardConfig config, AppMetricCardStyle style) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -624,14 +636,16 @@ class _AppMetricCardState extends State<AppMetricCard>
               _buildHeader(context, config, style),
               SizedBox(height: style.spacing ?? 4.0),
               _buildMainContent(context, config, style),
-              if (config.variant == AppMetricCardVariant.delta && config.hasDelta) ...[
+              if (config.variant == AppMetricCardVariant.delta &&
+                  config.hasDelta) ...[
                 SizedBox(height: style.spacing ?? 4.0),
                 _buildDeltaSection(context, config, style),
               ],
             ],
           ),
         ),
-        if (config.variant == AppMetricCardVariant.sparkline && config.hasTrend) ...[
+        if (config.variant == AppMetricCardVariant.sparkline &&
+            config.hasTrend) ...[
           SizedBox(width: style.spacing ?? 16.0),
           Expanded(
             flex: 1,
@@ -642,7 +656,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildCompactLayout(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildCompactLayout(BuildContext context, AppMetricCardConfig config,
+      AppMetricCardStyle style) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -672,7 +687,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildHeader(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildHeader(BuildContext context, AppMetricCardConfig config,
+      AppMetricCardStyle style) {
     return Row(
       children: [
         if (config.hasPrefix) ...[
@@ -704,7 +720,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildMainContent(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildMainContent(BuildContext context, AppMetricCardConfig config,
+      AppMetricCardStyle style) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
@@ -718,7 +735,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildTitle(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildTitle(BuildContext context, AppMetricCardConfig config,
+      AppMetricCardStyle style) {
     return Text(
       config.title,
       style: style.titleTextStyle,
@@ -727,7 +745,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildSubtitle(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildSubtitle(BuildContext context, AppMetricCardConfig config,
+      AppMetricCardStyle style) {
     return Text(
       config.subtitle!,
       style: style.subtitleTextStyle,
@@ -736,7 +755,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildValue(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildValue(BuildContext context, AppMetricCardConfig config,
+      AppMetricCardStyle style) {
     if (config.hasCustomValueWidget) {
       return config.customValueWidget!;
     }
@@ -749,14 +769,16 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildUnit(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildUnit(BuildContext context, AppMetricCardConfig config,
+      AppMetricCardStyle style) {
     return Text(
       config.unit!,
       style: style.unitTextStyle,
     );
   }
 
-  Widget _buildIcon(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildIcon(BuildContext context, AppMetricCardConfig config,
+      AppMetricCardStyle style) {
     return Icon(
       config.icon,
       size: style.iconSize,
@@ -764,7 +786,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildDeltaSection(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildDeltaSection(BuildContext context, AppMetricCardConfig config,
+      AppMetricCardStyle style) {
     if (config.hasCustomDeltaWidget) {
       return config.customDeltaWidget!;
     }
@@ -781,7 +804,9 @@ class _AppMetricCardState extends State<AppMetricCard>
         deltaColor = delta.color ?? deltaStyle.negativeColor ?? Colors.red;
         break;
       case AppMetricCardDeltaType.neutral:
-        deltaColor = delta.color ?? deltaStyle.neutralColor ?? Theme.of(context).colorScheme.onSurfaceVariant;
+        deltaColor = delta.color ??
+            deltaStyle.neutralColor ??
+            Theme.of(context).colorScheme.onSurfaceVariant;
         break;
     }
 
@@ -820,7 +845,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildSparklineSection(BuildContext context, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _buildSparklineSection(BuildContext context,
+      AppMetricCardConfig config, AppMetricCardStyle style) {
     if (config.hasCustomSparklineWidget) {
       return config.customSparklineWidget!;
     }
@@ -841,7 +867,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildSkeletonCard(BuildContext context, AppMetricCardStyle style, AppMetricCardConfig config) {
+  Widget _buildSkeletonCard(BuildContext context, AppMetricCardStyle style,
+      AppMetricCardConfig config) {
     final theme = Theme.of(context);
     final shimmerColor = theme.colorScheme.surfaceContainerHighest;
 
@@ -849,16 +876,17 @@ class _AppMetricCardState extends State<AppMetricCard>
       padding: style.padding,
       margin: style.margin,
       constraints: style.constraints,
-      decoration: style.decoration ?? BoxDecoration(
-        color: style.backgroundColor,
-        borderRadius: BorderRadius.circular(style.borderRadius ?? 0),
-        border: style.borderWidth != null && style.borderColor != null
-            ? Border.all(
-                color: style.borderColor!,
-                width: style.borderWidth!,
-              )
-            : null,
-      ),
+      decoration: style.decoration ??
+          BoxDecoration(
+            color: style.backgroundColor,
+            borderRadius: BorderRadius.circular(style.borderRadius ?? 0),
+            border: style.borderWidth != null && style.borderColor != null
+                ? Border.all(
+                    color: style.borderColor!,
+                    width: style.borderWidth!,
+                  )
+                : null,
+          ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -906,31 +934,34 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _wrapWithInteraction(Widget child, AppMetricCardConfig config, AppMetricCardStyle style) {
+  Widget _wrapWithInteraction(
+      Widget child, AppMetricCardConfig config, AppMetricCardStyle style) {
     if (!_isInteractive) {
       return Container(
         padding: style.padding,
         margin: style.margin,
         constraints: style.constraints,
-        decoration: style.decoration ?? BoxDecoration(
-          color: style.backgroundColor,
-          borderRadius: BorderRadius.circular(style.borderRadius ?? 0),
-          border: style.borderWidth != null && style.borderColor != null
-              ? Border.all(
-                  color: style.borderColor!,
-                  width: style.borderWidth!,
-                )
-              : null,
-          boxShadow: style.elevation != null && style.elevation! > 0
-              ? [
-                  BoxShadow(
-                    color: style.shadowColor ?? Colors.black.withValues(alpha: 0.1),
-                    blurRadius: style.elevation! * 2,
-                    offset: Offset(0, style.elevation!),
-                  ),
-                ]
-              : null,
-        ),
+        decoration: style.decoration ??
+            BoxDecoration(
+              color: style.backgroundColor,
+              borderRadius: BorderRadius.circular(style.borderRadius ?? 0),
+              border: style.borderWidth != null && style.borderColor != null
+                  ? Border.all(
+                      color: style.borderColor!,
+                      width: style.borderWidth!,
+                    )
+                  : null,
+              boxShadow: style.elevation != null && style.elevation! > 0
+                  ? [
+                      BoxShadow(
+                        color: style.shadowColor ??
+                            Colors.black.withValues(alpha: 0.1),
+                        blurRadius: style.elevation! * 2,
+                        offset: Offset(0, style.elevation!),
+                      ),
+                    ]
+                  : null,
+            ),
         child: child,
       );
     }
@@ -953,25 +984,29 @@ class _AppMetricCardState extends State<AppMetricCard>
               padding: style.padding,
               margin: style.margin,
               constraints: style.constraints,
-              decoration: style.decoration ?? BoxDecoration(
-                color: style.backgroundColor,
-                borderRadius: BorderRadius.circular(style.borderRadius ?? 0),
-                border: style.borderWidth != null && style.borderColor != null
-                    ? Border.all(
-                        color: style.borderColor!,
-                        width: style.borderWidth!,
-                      )
-                    : null,
-                boxShadow: style.elevation != null && style.elevation! > 0
-                    ? [
-                        BoxShadow(
-                          color: style.shadowColor ?? Colors.black.withValues(alpha: 0.1),
-                          blurRadius: style.elevation! * 2,
-                          offset: Offset(0, style.elevation!),
-                        ),
-                      ]
-                    : null,
-              ),
+              decoration: style.decoration ??
+                  BoxDecoration(
+                    color: style.backgroundColor,
+                    borderRadius:
+                        BorderRadius.circular(style.borderRadius ?? 0),
+                    border:
+                        style.borderWidth != null && style.borderColor != null
+                            ? Border.all(
+                                color: style.borderColor!,
+                                width: style.borderWidth!,
+                              )
+                            : null,
+                    boxShadow: style.elevation != null && style.elevation! > 0
+                        ? [
+                            BoxShadow(
+                              color: style.shadowColor ??
+                                  Colors.black.withValues(alpha: 0.1),
+                              blurRadius: style.elevation! * 2,
+                              offset: Offset(0, style.elevation!),
+                            ),
+                          ]
+                        : null,
+                  ),
               child: Stack(
                 children: [
                   child,
@@ -980,7 +1015,8 @@ class _AppMetricCardState extends State<AppMetricCard>
                       child: Container(
                         decoration: BoxDecoration(
                           color: style.overlayColor,
-                          borderRadius: BorderRadius.circular(style.borderRadius ?? 0),
+                          borderRadius:
+                              BorderRadius.circular(style.borderRadius ?? 0),
                         ),
                       ),
                     ),

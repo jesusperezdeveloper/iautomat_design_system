@@ -7,7 +7,8 @@ import 'package:iautomat_design_system/src/components/toggle_view/toggle_view_co
 void main() {
   group('AppToggleView', () {
     group('Widget Tests', () {
-      testWidgets('renders correctly with default configuration', (tester) async {
+      testWidgets('renders correctly with default configuration',
+          (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
@@ -373,7 +374,8 @@ void main() {
                 size: AppToggleViewSize.large,
                 config: AppToggleViewConfig.large,
                 options: [
-                  AppToggleViewOption(id: 'large_config', label: 'Large Config'),
+                  AppToggleViewOption(
+                      id: 'large_config', label: 'Large Config'),
                 ],
               ),
             ),
@@ -425,7 +427,8 @@ void main() {
     });
 
     group('Grid Layout Tests', () {
-      testWidgets('renders grid layout with correct cross axis count', (tester) async {
+      testWidgets('renders grid layout with correct cross axis count',
+          (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
@@ -473,7 +476,8 @@ void main() {
         expect(find.text('Wrap 2'), findsOneWidget);
       });
 
-      testWidgets('renders compact layout with horizontal scroll', (tester) async {
+      testWidgets('renders compact layout with horizontal scroll',
+          (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
@@ -648,39 +652,49 @@ void main() {
 
     test('gets correct item size for toggle view size', () {
       expect(AppToggleViewUtils.getItemSize(AppToggleViewSize.small),
-             equals(const Size(80, 32)));
+          equals(const Size(80, 32)));
       expect(AppToggleViewUtils.getItemSize(AppToggleViewSize.medium),
-             equals(const Size(100, 40)));
+          equals(const Size(100, 40)));
       expect(AppToggleViewUtils.getItemSize(AppToggleViewSize.large),
-             equals(const Size(120, 48)));
+          equals(const Size(120, 48)));
     });
 
     test('gets correct padding for toggle view size', () {
       expect(AppToggleViewUtils.getPadding(AppToggleViewSize.small),
-             equals(const EdgeInsets.symmetric(horizontal: 8, vertical: 4)));
+          equals(const EdgeInsets.symmetric(horizontal: 8, vertical: 4)));
       expect(AppToggleViewUtils.getPadding(AppToggleViewSize.medium),
-             equals(const EdgeInsets.symmetric(horizontal: 12, vertical: 6)));
+          equals(const EdgeInsets.symmetric(horizontal: 12, vertical: 6)));
       expect(AppToggleViewUtils.getPadding(AppToggleViewSize.large),
-             equals(const EdgeInsets.symmetric(horizontal: 16, vertical: 8)));
+          equals(const EdgeInsets.symmetric(horizontal: 16, vertical: 8)));
     });
 
     test('gets correct icon size for toggle view size', () {
-      expect(AppToggleViewUtils.getIconSize(AppToggleViewSize.small), equals(16));
-      expect(AppToggleViewUtils.getIconSize(AppToggleViewSize.medium), equals(18));
-      expect(AppToggleViewUtils.getIconSize(AppToggleViewSize.large), equals(20));
+      expect(
+          AppToggleViewUtils.getIconSize(AppToggleViewSize.small), equals(16));
+      expect(
+          AppToggleViewUtils.getIconSize(AppToggleViewSize.medium), equals(18));
+      expect(
+          AppToggleViewUtils.getIconSize(AppToggleViewSize.large), equals(20));
     });
 
     test('checks platform support correctly', () {
-      expect(AppToggleViewUtils.isPlatformSupported(TargetPlatform.android), isTrue);
-      expect(AppToggleViewUtils.isPlatformSupported(TargetPlatform.iOS), isTrue);
-      expect(AppToggleViewUtils.isPlatformSupported(TargetPlatform.linux), isTrue);
+      expect(AppToggleViewUtils.isPlatformSupported(TargetPlatform.android),
+          isTrue);
+      expect(
+          AppToggleViewUtils.isPlatformSupported(TargetPlatform.iOS), isTrue);
+      expect(
+          AppToggleViewUtils.isPlatformSupported(TargetPlatform.linux), isTrue);
     });
 
     test('calculates optimal cross axis count', () {
-      expect(AppToggleViewUtils.calculateOptimalCrossAxisCount(300, 100), equals(3));
-      expect(AppToggleViewUtils.calculateOptimalCrossAxisCount(200, 100), equals(2));
-      expect(AppToggleViewUtils.calculateOptimalCrossAxisCount(50, 100), equals(1));
-      expect(AppToggleViewUtils.calculateOptimalCrossAxisCount(0, 100), equals(2));
+      expect(AppToggleViewUtils.calculateOptimalCrossAxisCount(300, 100),
+          equals(3));
+      expect(AppToggleViewUtils.calculateOptimalCrossAxisCount(200, 100),
+          equals(2));
+      expect(AppToggleViewUtils.calculateOptimalCrossAxisCount(50, 100),
+          equals(1));
+      expect(
+          AppToggleViewUtils.calculateOptimalCrossAxisCount(0, 100), equals(2));
     });
 
     test('validates toggle view data correctly', () {

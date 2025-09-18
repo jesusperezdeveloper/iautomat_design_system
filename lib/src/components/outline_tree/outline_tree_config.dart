@@ -105,7 +105,8 @@ class AppOutlineTreeConfig with _$AppOutlineTreeConfig {
     // Animation configuration
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
-    @Default(AppTreeExpansionAnimation.slide) AppTreeExpansionAnimation expansionAnimation,
+    @Default(AppTreeExpansionAnimation.slide)
+    AppTreeExpansionAnimation expansionAnimation,
 
     // Layout and spacing
     @Default(AppTreeLayout.vertical) AppTreeLayout layout,
@@ -359,7 +360,10 @@ class AppTreeNode with _$AppTreeNode {
 
   /// Create a copy with updated expansion state
   AppTreeNode withExpansion(bool expanded) {
-    return copyWith(isExpanded: expanded, state: expanded ? AppTreeNodeState.expanded : AppTreeNodeState.collapsed);
+    return copyWith(
+        isExpanded: expanded,
+        state:
+            expanded ? AppTreeNodeState.expanded : AppTreeNodeState.collapsed);
   }
 
   /// Create a copy with updated children
@@ -379,7 +383,8 @@ class AppTreeNode with _$AppTreeNode {
   AppTreeNode withError(String? error) {
     return copyWith(
       errorMessage: error,
-      state: error != null ? AppTreeNodeState.error : AppTreeNodeState.collapsed,
+      state:
+          error != null ? AppTreeNodeState.error : AppTreeNodeState.collapsed,
       isLoading: false,
     );
   }
@@ -397,7 +402,8 @@ class AppTreeNode with _$AppTreeNode {
   }
 
   /// Update a node by ID in this subtree
-  AppTreeNode updateNode(String nodeId, AppTreeNode Function(AppTreeNode) updater) {
+  AppTreeNode updateNode(
+      String nodeId, AppTreeNode Function(AppTreeNode) updater) {
     if (id == nodeId) {
       return updater(this);
     }
@@ -429,8 +435,10 @@ typedef OnNodeToggle = void Function(AppTreeNode node);
 typedef OnNodeSelect = void Function(AppTreeNode node, bool selected);
 typedef OnNodeExpand = void Function(AppTreeNode node, bool expanded);
 typedef OnAsyncLoad = Future<List<AppTreeNode>> Function(AppTreeNode node);
-typedef NodeBuilder = Widget Function(BuildContext context, AppTreeNode node, int depth);
-typedef NodeIconBuilder = Widget Function(BuildContext context, AppTreeNode node);
+typedef NodeBuilder = Widget Function(
+    BuildContext context, AppTreeNode node, int depth);
+typedef NodeIconBuilder = Widget Function(
+    BuildContext context, AppTreeNode node);
 
 /// Tree event data
 @freezed
@@ -512,7 +520,9 @@ class AppOutlineTreeUtils {
     bool selected,
     AppTreeSelectionMode mode,
   ) {
-    return nodes.map((node) => _updateNodeSelection(node, nodeId, selected, mode)).toList();
+    return nodes
+        .map((node) => _updateNodeSelection(node, nodeId, selected, mode))
+        .toList();
   }
 
   static AppTreeNode _updateNodeSelection(
@@ -545,14 +555,19 @@ class AppOutlineTreeUtils {
     // Update partial selection state
     if (mode == AppTreeSelectionMode.hierarchical) {
       final selectedCount = updatedChildren.where((c) => c.isSelected).length;
-      final partialCount = updatedChildren.where((c) => c.isPartiallySelected).length;
+      final partialCount =
+          updatedChildren.where((c) => c.isPartiallySelected).length;
 
-      if (selectedCount == updatedChildren.length && updatedChildren.isNotEmpty) {
-        updatedNode = updatedNode.copyWith(isSelected: true, isPartiallySelected: false);
+      if (selectedCount == updatedChildren.length &&
+          updatedChildren.isNotEmpty) {
+        updatedNode =
+            updatedNode.copyWith(isSelected: true, isPartiallySelected: false);
       } else if (selectedCount > 0 || partialCount > 0) {
-        updatedNode = updatedNode.copyWith(isSelected: false, isPartiallySelected: true);
+        updatedNode =
+            updatedNode.copyWith(isSelected: false, isPartiallySelected: true);
       } else {
-        updatedNode = updatedNode.copyWith(isSelected: false, isPartiallySelected: false);
+        updatedNode =
+            updatedNode.copyWith(isSelected: false, isPartiallySelected: false);
       }
     }
 
@@ -572,7 +587,8 @@ class AppOutlineTreeUtils {
   }
 
   /// Expand path to a specific node
-  static List<AppTreeNode> expandPath(List<AppTreeNode> nodes, List<String> path) {
+  static List<AppTreeNode> expandPath(
+      List<AppTreeNode> nodes, List<String> path) {
     if (path.isEmpty) return nodes;
 
     return nodes.map((node) {
@@ -640,7 +656,8 @@ class AppOutlineTreeUtils {
   }
 
   /// Generate semantic description for a node
-  static String getNodeSemanticLabel(AppTreeNode node, AppOutlineTreeConfig config) {
+  static String getNodeSemanticLabel(
+      AppTreeNode node, AppOutlineTreeConfig config) {
     final parts = <String>[];
 
     parts.add(node.label);

@@ -6,7 +6,8 @@ part 'app_breadcrumbs_config.freezed.dart';
 @freezed
 class AppBreadcrumbsConfig with _$AppBreadcrumbsConfig {
   const factory AppBreadcrumbsConfig({
-    @Default(AppBreadcrumbsVariant.defaultVariant) AppBreadcrumbsVariant variant,
+    @Default(AppBreadcrumbsVariant.defaultVariant)
+    AppBreadcrumbsVariant variant,
     @Default(AppBreadcrumbsState.defaultState) AppBreadcrumbsState state,
     @Default(true) bool isAdaptive,
     @Default(false) bool isRtl,
@@ -45,7 +46,8 @@ class AppBreadcrumbItem with _$AppBreadcrumbItem {
 @freezed
 class AppBreadcrumbSeparator with _$AppBreadcrumbSeparator {
   const factory AppBreadcrumbSeparator({
-    @Default(AppBreadcrumbSeparatorType.chevron) AppBreadcrumbSeparatorType type,
+    @Default(AppBreadcrumbSeparatorType.chevron)
+    AppBreadcrumbSeparatorType type,
     Widget? custom,
     String? text,
     IconData? icon,
@@ -116,7 +118,8 @@ class AppBreadcrumbsBehavior with _$AppBreadcrumbsBehavior {
     @Default(true) bool enableHapticFeedback,
     @Default(true) bool showTooltips,
     @Default(true) bool allowNavigation,
-    @Default(AppBreadcrumbsCollapseMode.ellipsis) AppBreadcrumbsCollapseMode collapseMode,
+    @Default(AppBreadcrumbsCollapseMode.ellipsis)
+    AppBreadcrumbsCollapseMode collapseMode,
     @Default(true) bool showCurrentAsText,
     @Default(true) bool enableKeyboardNavigation,
     @Default(300) int animationDuration,

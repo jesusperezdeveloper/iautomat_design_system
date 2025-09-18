@@ -208,7 +208,8 @@ class KanbanStory {
         AppKanbanCard(
           id: 'epic-1',
           title: 'Rediseño completo de la aplicación',
-          description: 'Modernizar la interfaz y mejorar la experiencia de usuario',
+          description:
+              'Modernizar la interfaz y mejorar la experiencia de usuario',
           columnId: 'new',
           type: AppKanbanCardType.epic,
           priority: AppKanbanCardPriority.high,

@@ -66,10 +66,7 @@ class _AppCardStoryState extends State<AppCardStory> {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const Spacer(),
-                IconButton(
-                  icon: const Icon(Icons.more_vert),
-                  onPressed: () {},
-                ),
+                IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
               ],
             )
           : null,
@@ -90,17 +87,11 @@ class _AppCardStoryState extends State<AppCardStory> {
             children: [
               const Icon(Icons.star, color: Colors.amber, size: 16),
               const SizedBox(width: 4),
-              Text(
-                '4.5',
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+              Text('4.5', style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(width: 16),
               const Icon(Icons.access_time, color: Colors.grey, size: 16),
               const SizedBox(width: 4),
-              Text(
-                '5 min ago',
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+              Text('5 min ago', style: Theme.of(context).textTheme.bodySmall),
             ],
           ),
         ],
@@ -109,14 +100,8 @@ class _AppCardStoryState extends State<AppCardStory> {
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('Cancel'),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Accept'),
-                ),
+                TextButton(onPressed: () {}, child: const Text('Cancel')),
+                ElevatedButton(onPressed: () {}, child: const Text('Accept')),
               ],
             )
           : null,
@@ -155,7 +140,8 @@ class _AppCardStoryState extends State<AppCardStory> {
                         const SizedBox(width: 8),
                         DropdownButton<AppCardVariant>(
                           value: _variant,
-                          onChanged: (value) => setState(() => _variant = value!),
+                          onChanged: (value) =>
+                              setState(() => _variant = value!),
                           items: AppCardVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
@@ -197,7 +183,8 @@ class _AppCardStoryState extends State<AppCardStory> {
                             max: 32.0,
                             divisions: 6,
                             label: _padding.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _padding = value),
+                            onChanged: (value) =>
+                                setState(() => _padding = value),
                           ),
                         ),
                         Text('${_padding.toStringAsFixed(0)}px'),
@@ -217,7 +204,8 @@ class _AppCardStoryState extends State<AppCardStory> {
                             max: 16.0,
                             divisions: 16,
                             label: _elevation.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _elevation = value),
+                            onChanged: (value) =>
+                                setState(() => _elevation = value),
                           ),
                         ),
                         Text(_elevation.toStringAsFixed(0)),
@@ -237,7 +225,8 @@ class _AppCardStoryState extends State<AppCardStory> {
                             max: 24.0,
                             divisions: 12,
                             label: _borderRadius.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _borderRadius = value),
+                            onChanged: (value) =>
+                                setState(() => _borderRadius = value),
                           ),
                         ),
                         Text('${_borderRadius.toStringAsFixed(0)}px'),
@@ -253,7 +242,8 @@ class _AppCardStoryState extends State<AppCardStory> {
                           children: [
                             Switch(
                               value: _isRtl,
-                              onChanged: (value) => setState(() => _isRtl = value),
+                              onChanged: (value) =>
+                                  setState(() => _isRtl = value),
                             ),
                             const Text('RTL'),
                           ],
@@ -263,7 +253,8 @@ class _AppCardStoryState extends State<AppCardStory> {
                           children: [
                             Switch(
                               value: _enableA11y,
-                              onChanged: (value) => setState(() => _enableA11y = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableA11y = value),
                             ),
                             const Text('Accesibilidad'),
                           ],
@@ -273,7 +264,8 @@ class _AppCardStoryState extends State<AppCardStory> {
                           children: [
                             Switch(
                               value: _enableKeyboard,
-                              onChanged: (value) => setState(() => _enableKeyboard = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableKeyboard = value),
                             ),
                             const Text('Teclado'),
                           ],
@@ -283,7 +275,8 @@ class _AppCardStoryState extends State<AppCardStory> {
                           children: [
                             Switch(
                               value: _isInteractive,
-                              onChanged: (value) => setState(() => _isInteractive = value),
+                              onChanged: (value) =>
+                                  setState(() => _isInteractive = value),
                             ),
                             const Text('Interactivo'),
                           ],
@@ -293,7 +286,8 @@ class _AppCardStoryState extends State<AppCardStory> {
                           children: [
                             Switch(
                               value: _hasHeader,
-                              onChanged: (value) => setState(() => _hasHeader = value),
+                              onChanged: (value) =>
+                                  setState(() => _hasHeader = value),
                             ),
                             const Text('Header'),
                           ],
@@ -303,7 +297,8 @@ class _AppCardStoryState extends State<AppCardStory> {
                           children: [
                             Switch(
                               value: _hasFooter,
-                              onChanged: (value) => setState(() => _hasFooter = value),
+                              onChanged: (value) =>
+                                  setState(() => _hasFooter = value),
                             ),
                             const Text('Footer'),
                           ],
@@ -351,9 +346,7 @@ class _AppCardStoryState extends State<AppCardStory> {
                     padding: _padding,
                     borderRadius: _borderRadius,
                   ),
-                  elevation: AppCardElevation(
-                    defaultElevation: _elevation,
-                  ),
+                  elevation: AppCardElevation(defaultElevation: _elevation),
                   onTap: _isInteractive ? _handleTap : null,
                   onDoubleTap: _isInteractive ? _handleDoubleTap : null,
                   onLongPress: _isInteractive ? _handleLongPress : null,
@@ -452,10 +445,7 @@ class _AppCardStoryState extends State<AppCardStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        Text(title, style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12),
         child,
         const SizedBox(height: 24),
@@ -470,8 +460,11 @@ class _AppCardStoryState extends State<AppCardStory> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            variant.hasElevation ? Icons.layers :
-            variant.hasBorder ? Icons.crop_free : Icons.square,
+            variant.hasElevation
+                ? Icons.layers
+                : variant.hasBorder
+                ? Icons.crop_free
+                : Icons.square,
             size: 32,
           ),
           const SizedBox(height: 8),
@@ -499,10 +492,7 @@ class _AppCardStoryState extends State<AppCardStory> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            _getStateIcon(state),
-            size: 24,
-          ),
+          Icon(_getStateIcon(state), size: 24),
           const SizedBox(height: 4),
           Text(
             state.displayName,
@@ -514,11 +504,14 @@ class _AppCardStoryState extends State<AppCardStory> {
     );
   }
 
-  Widget _buildUseCaseCard(String title, IconData icon, String subtitle, String description) {
+  Widget _buildUseCaseCard(
+    String title,
+    IconData icon,
+    String subtitle,
+    String description,
+  ) {
     return AppCard(
-      config: const AppCardConfig(
-        variant: AppCardVariant.elevated,
-      ),
+      config: const AppCardConfig(variant: AppCardVariant.elevated),
       body: Row(
         children: [
           Container(
@@ -538,15 +531,9 @@ class _AppCardStoryState extends State<AppCardStory> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  subtitle,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
+                Text(subtitle, style: Theme.of(context).textTheme.titleMedium),
                 const SizedBox(height: 4),
-                Text(
-                  description,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
+                Text(description, style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
           ),

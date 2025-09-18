@@ -205,7 +205,8 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(Checkbox), findsAtLeastNWidgets(2)); // Row checkboxes
+        expect(
+            find.byType(Checkbox), findsAtLeastNWidgets(2)); // Row checkboxes
       });
 
       testWidgets('handles row selection correctly', (tester) async {
@@ -261,7 +262,8 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(Checkbox), findsAtLeastNWidgets(3)); // Header + row checkboxes
+        expect(find.byType(Checkbox),
+            findsAtLeastNWidgets(3)); // Header + row checkboxes
       });
     });
 
@@ -281,7 +283,8 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byIcon(Icons.unfold_more), findsAtLeastNWidgets(2)); // ID and Name are sortable
+        expect(find.byIcon(Icons.unfold_more),
+            findsAtLeastNWidgets(2)); // ID and Name are sortable
       });
 
       testWidgets('handles column sorting correctly', (tester) async {
@@ -318,7 +321,8 @@ void main() {
     });
 
     group('Loading States', () {
-      testWidgets('displays loading indicator when showLoading is true', (tester) async {
+      testWidgets('displays loading indicator when showLoading is true',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -336,7 +340,8 @@ void main() {
         expect(find.byType(CircularProgressIndicator), findsOneWidget);
       });
 
-      testWidgets('displays skeleton loading when showSkeleton is true', (tester) async {
+      testWidgets('displays skeleton loading when showSkeleton is true',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -360,7 +365,9 @@ void main() {
     });
 
     group('Empty State', () {
-      testWidgets('displays empty state when no data and emptyState is configured', (tester) async {
+      testWidgets(
+          'displays empty state when no data and emptyState is configured',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -385,7 +392,8 @@ void main() {
     });
 
     group('Inline Editing', () {
-      testWidgets('starts editing on double tap for editable cells', (tester) async {
+      testWidgets('starts editing on double tap for editable cells',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -410,7 +418,8 @@ void main() {
         expect(find.byType(TextField), findsOneWidget);
       });
 
-      testWidgets('calls onEdit callback when edit is submitted', (tester) async {
+      testWidgets('calls onEdit callback when edit is submitted',
+          (tester) async {
         String? editedRowId;
         String? editedColumnId;
         dynamic editedValue;
@@ -699,7 +708,8 @@ void main() {
       expect(selectedRows.first.id, equals('1'));
     });
 
-    test('updateRowSelection updates selection correctly for multiple mode', () {
+    test('updateRowSelection updates selection correctly for multiple mode',
+        () {
       final updated = AppDataTableUtils.updateRowSelection(
         rows,
         '1',
@@ -725,7 +735,8 @@ void main() {
       ];
 
       final errors = AppDataTableUtils.validateColumns(invalidColumns);
-      expect(errors.any((error) => error.contains('Duplicate column ID')), isTrue);
+      expect(
+          errors.any((error) => error.contains('Duplicate column ID')), isTrue);
     });
 
     test('validateColumns catches empty labels', () {
@@ -734,7 +745,9 @@ void main() {
       ];
 
       final errors = AppDataTableUtils.validateColumns(invalidColumns);
-      expect(errors.any((error) => error.contains('Column label cannot be empty')), isTrue);
+      expect(
+          errors.any((error) => error.contains('Column label cannot be empty')),
+          isTrue);
     });
 
     test('validateRowData catches missing fields', () {
@@ -744,7 +757,8 @@ void main() {
       );
 
       final errors = AppDataTableUtils.validateRowData(invalidRow, columns);
-      expect(errors.any((error) => error.contains('Missing data for field')), isTrue);
+      expect(errors.any((error) => error.contains('Missing data for field')),
+          isTrue);
     });
   });
 
@@ -830,7 +844,8 @@ void main() {
       String testFormatter(dynamic value) => 'Formatted: $value';
 
       expect(testRow.getDisplayValue('name', null), equals('Test Name'));
-      expect(testRow.getDisplayValue('name', testFormatter), equals('Formatted: Test Name'));
+      expect(testRow.getDisplayValue('name', testFormatter),
+          equals('Formatted: Test Name'));
       expect(testRow.getDisplayValue('nonexistent', null), equals(''));
     });
 

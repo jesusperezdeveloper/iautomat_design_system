@@ -258,7 +258,8 @@ class AppFilePickerColors with _$AppFilePickerColors {
       buttonBackgroundColor: colorScheme.primary,
       buttonTextColor: colorScheme.onPrimary,
       buttonHoverBackgroundColor: colorScheme.primaryContainer,
-      buttonDisabledBackgroundColor: colorScheme.onSurface.withValues(alpha: 0.12),
+      buttonDisabledBackgroundColor:
+          colorScheme.onSurface.withValues(alpha: 0.12),
       buttonDisabledTextColor: colorScheme.onSurface.withValues(alpha: 0.38),
       progressColor: colorScheme.primary,
       progressBackgroundColor: colorScheme.surfaceContainerHighest,
@@ -495,13 +496,15 @@ class AppFileValidators {
   }
 
   /// Validate file extension
-  static bool validateExtension(AppFileData file, List<String> allowedExtensions) {
+  static bool validateExtension(
+      AppFileData file, List<String> allowedExtensions) {
     if (allowedExtensions.isEmpty) return true;
     return allowedExtensions.contains(file.extension);
   }
 
   /// Validate file MIME type
-  static bool validateMimeType(AppFileData file, List<String> allowedMimeTypes) {
+  static bool validateMimeType(
+      AppFileData file, List<String> allowedMimeTypes) {
     if (allowedMimeTypes.isEmpty) return true;
     return allowedMimeTypes.contains(file.type);
   }
@@ -516,7 +519,9 @@ class AppFileValidators {
 
   /// Get file size from bytes
   static AppFileSize getFileSize(int bytes) {
-    if (bytes < 1024) return AppFileSize(bytes.toDouble(), AppFileSizeUnit.bytes);
+    if (bytes < 1024) {
+      return AppFileSize(bytes.toDouble(), AppFileSizeUnit.bytes);
+    }
     if (bytes < 1024 * 1024) {
       return AppFileSize(bytes / 1024, AppFileSizeUnit.kb);
     }
@@ -615,9 +620,9 @@ class AppFilePickerUtils {
   /// Check if platform supports drag and drop
   static bool get supportsDragAndDrop {
     return kIsWeb ||
-           defaultTargetPlatform == TargetPlatform.macOS ||
-           defaultTargetPlatform == TargetPlatform.windows ||
-           defaultTargetPlatform == TargetPlatform.linux;
+        defaultTargetPlatform == TargetPlatform.macOS ||
+        defaultTargetPlatform == TargetPlatform.windows ||
+        defaultTargetPlatform == TargetPlatform.linux;
   }
 
   /// Check if platform supports native file picker

@@ -137,7 +137,8 @@ void main() {
         await tester.pumpWidget(
           buildTestWidget(
             variant: AppColorPickerVariant.hsv,
-            value: AppColorValue.fromColor(Colors.purple, format: ColorFormat.hex),
+            value:
+                AppColorValue.fromColor(Colors.purple, format: ColorFormat.hex),
             labelText: 'HEX Format',
           ),
         );
@@ -152,7 +153,8 @@ void main() {
         await tester.pumpWidget(
           buildTestWidget(
             variant: AppColorPickerVariant.hsv,
-            value: AppColorValue.fromColor(Colors.orange, format: ColorFormat.rgb),
+            value:
+                AppColorValue.fromColor(Colors.orange, format: ColorFormat.rgb),
             labelText: 'RGB Format',
           ),
         );
@@ -688,7 +690,8 @@ void main() {
                     variant: AppColorPickerVariant.hsv,
                     config: const AppColorPickerConfig(
                       minHeight: 40.0,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     ),
                     labelText: 'Compact',
                     onChanged: (_) {},

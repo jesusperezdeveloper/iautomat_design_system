@@ -211,7 +211,8 @@ void main() {
       expect(find.text('Config Title'), findsOneWidget);
     });
 
-    testWidgets('should render with custom actions from config', (tester) async {
+    testWidgets('should render with custom actions from config',
+        (tester) async {
       bool actionPressed = false;
 
       await tester.pumpWidget(

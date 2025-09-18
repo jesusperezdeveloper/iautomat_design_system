@@ -120,7 +120,8 @@ class AppSimpleTableColumn with _$AppSimpleTableColumn {
     @Default(true) bool visible,
 
     /// Column alignment
-    @Default(AppSimpleTableColumnAlignment.left) AppSimpleTableColumnAlignment alignment,
+    @Default(AppSimpleTableColumnAlignment.left)
+    AppSimpleTableColumnAlignment alignment,
 
     /// Cell type for this column
     @Default(AppSimpleTableCellType.text) AppSimpleTableCellType cellType,
@@ -147,7 +148,8 @@ class AppSimpleTableColumn with _$AppSimpleTableColumn {
     String? semanticLabel,
 
     /// Sort direction for this column
-    @Default(AppSimpleTableSortDirection.none) AppSimpleTableSortDirection sortDirection,
+    @Default(AppSimpleTableSortDirection.none)
+    AppSimpleTableSortDirection sortDirection,
   }) = _AppSimpleTableColumn;
 
   /// Whether the column has a custom cell builder
@@ -157,7 +159,8 @@ class AppSimpleTableColumn with _$AppSimpleTableColumn {
   bool get hasCustomHeaderBuilder => headerBuilder != null;
 
   /// Get the effective alignment for RTL layouts
-  AppSimpleTableColumnAlignment getEffectiveAlignment(TextDirection textDirection) {
+  AppSimpleTableColumnAlignment getEffectiveAlignment(
+      TextDirection textDirection) {
     if (textDirection == TextDirection.rtl) {
       switch (alignment) {
         case AppSimpleTableColumnAlignment.left:
@@ -219,7 +222,8 @@ class AppSimpleTableRow with _$AppSimpleTableRow {
   bool hasValue(String columnId) => data.containsKey(columnId);
 
   /// Get display value for a column with optional formatting
-  String getDisplayValue(String columnId, AppSimpleTableCellFormatter? formatter) {
+  String getDisplayValue(
+      String columnId, AppSimpleTableCellFormatter? formatter) {
     final value = getValue(columnId);
     if (formatter != null) {
       return formatter(value);
@@ -260,7 +264,8 @@ class AppSimpleTableSort with _$AppSimpleTableSort {
     String? columnId,
 
     /// Sort direction
-    @Default(AppSimpleTableSortDirection.none) AppSimpleTableSortDirection direction,
+    @Default(AppSimpleTableSortDirection.none)
+    AppSimpleTableSortDirection direction,
 
     /// Callback when sort changes
     AppSimpleTableSortCallback? onSortChanged,
@@ -401,7 +406,8 @@ class AppSimpleTableWebConfig with _$AppSimpleTableWebConfig {
 
 /// Accessibility configuration
 @freezed
-class AppSimpleTableAccessibilityConfig with _$AppSimpleTableAccessibilityConfig {
+class AppSimpleTableAccessibilityConfig
+    with _$AppSimpleTableAccessibilityConfig {
   const factory AppSimpleTableAccessibilityConfig({
     /// Whether to announce sort changes
     @Default(true) bool announceSortChanges,
@@ -455,10 +461,12 @@ class AppSimpleTableConfig with _$AppSimpleTableConfig {
     @Default(56.0) double headerHeight,
 
     /// Cell padding
-    @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 8)) EdgeInsets cellPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 8))
+    EdgeInsets cellPadding,
 
     /// Header padding
-    @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 12)) EdgeInsets headerPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 12))
+    EdgeInsets headerPadding,
 
     /// Table elevation
     @Default(2.0) double elevation,
@@ -735,10 +743,8 @@ class AppSimpleTableUtils {
     List<AppSimpleTableColumn> columns,
   ) {
     final errors = <String>[];
-    final requiredFields = columns
-        .where((col) => col.visible)
-        .map((col) => col.field)
-        .toSet();
+    final requiredFields =
+        columns.where((col) => col.visible).map((col) => col.field).toSet();
 
     for (final field in requiredFields) {
       if (!row.hasValue(field)) {
@@ -757,15 +763,18 @@ class AppSimpleTableUtils {
     VoidCallback? onEscape,
   }) {
     return {
-      LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyA): onSelectAll ?? () {},
-      LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyC): onCopy ?? () {},
+      LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyA):
+          onSelectAll ?? () {},
+      LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyC):
+          onCopy ?? () {},
       LogicalKeySet(LogicalKeyboardKey.delete): onDelete ?? () {},
       LogicalKeySet(LogicalKeyboardKey.escape): onEscape ?? () {},
     };
   }
 
   /// Platform-specific row height calculation
-  static double getPlatformRowHeight(AppSimpleTableDensity density, TargetPlatform platform) {
+  static double getPlatformRowHeight(
+      AppSimpleTableDensity density, TargetPlatform platform) {
     switch (density) {
       case AppSimpleTableDensity.compact:
         return platform == TargetPlatform.iOS ? 36.0 : 32.0;
@@ -777,7 +786,8 @@ class AppSimpleTableUtils {
   }
 
   /// Calculate row height based on density and config
-  static double getRowHeight(AppSimpleTableConfig config, TargetPlatform platform) {
+  static double getRowHeight(
+      AppSimpleTableConfig config, TargetPlatform platform) {
     if (config.variant == AppSimpleTableVariant.compact) {
       return getPlatformRowHeight(AppSimpleTableDensity.compact, platform);
     }
@@ -785,7 +795,8 @@ class AppSimpleTableUtils {
   }
 
   /// Calculate header height based on density and config
-  static double getHeaderHeight(AppSimpleTableConfig config, TargetPlatform platform) {
+  static double getHeaderHeight(
+      AppSimpleTableConfig config, TargetPlatform platform) {
     if (config.variant == AppSimpleTableVariant.compact) {
       return config.headerHeight * 0.8; // 20% smaller for compact
     }

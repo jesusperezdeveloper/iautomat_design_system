@@ -135,7 +135,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
       curve: widget.config.animationCurve,
     ));
 
-    _horizontalController = widget.horizontalScrollController ?? ScrollController();
+    _horizontalController =
+        widget.horizontalScrollController ?? ScrollController();
     _verticalController = widget.verticalScrollController ?? ScrollController();
 
     _initializeState();
@@ -160,7 +161,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     _displayRows = List.from(widget.rows);
 
     // Apply sorting if specified
-    if (_currentSort?.columnId != null && _currentSort!.direction != AppSimpleTableSortDirection.none) {
+    if (_currentSort?.columnId != null &&
+        _currentSort!.direction != AppSimpleTableSortDirection.none) {
       _applySorting(_currentSort!.columnId!, _currentSort!.direction);
     }
 
@@ -220,7 +222,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     );
   }
 
-  Widget _buildTable(BuildContext context, ThemeData theme, TextDirection textDirection) {
+  Widget _buildTable(
+      BuildContext context, ThemeData theme, TextDirection textDirection) {
     return Container(
       constraints: BoxConstraints(
         minHeight: widget.config.minHeight,
@@ -228,7 +231,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(widget.config.borderRadius),
-        color: widget.config.theme?.rowBackgroundColor ?? theme.colorScheme.surface,
+        color: widget.config.theme?.rowBackgroundColor ??
+            theme.colorScheme.surface,
         boxShadow: [
           BoxShadow(
             color: theme.shadowColor.withValues(alpha: 0.1),
@@ -242,7 +246,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (widget.config.showHeaders) _buildHeader(context, theme, textDirection),
+            if (widget.config.showHeaders)
+              _buildHeader(context, theme, textDirection),
             Flexible(
               child: _buildTableBody(context, theme, textDirection),
             ),
@@ -253,14 +258,17 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     );
   }
 
-  Widget _buildHeader(BuildContext context, ThemeData theme, TextDirection textDirection) {
-    final headerHeight = AppSimpleTableUtils.getHeaderHeight(widget.config, theme.platform);
+  Widget _buildHeader(
+      BuildContext context, ThemeData theme, TextDirection textDirection) {
+    final headerHeight =
+        AppSimpleTableUtils.getHeaderHeight(widget.config, theme.platform);
     final headerPadding = AppSimpleTableUtils.getHeaderPadding(widget.config);
 
     return Container(
       height: headerHeight,
       decoration: BoxDecoration(
-        color: widget.config.theme?.headerBackgroundColor ?? theme.colorScheme.surfaceContainerHighest,
+        color: widget.config.theme?.headerBackgroundColor ??
+            theme.colorScheme.surfaceContainerHighest,
         border: Border(
           bottom: BorderSide(
             color: widget.config.theme?.borderColor ?? theme.dividerColor,
@@ -275,14 +283,16 @@ class _AppSimpleTableState extends State<AppSimpleTable>
           if (_hasSelectionColumn())
             _buildSelectionHeader(context, theme, headerPadding),
           Expanded(
-            child: _buildColumnsHeader(context, theme, textDirection, headerPadding),
+            child: _buildColumnsHeader(
+                context, theme, textDirection, headerPadding),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildRowNumberHeader(BuildContext context, ThemeData theme, EdgeInsets padding) {
+  Widget _buildRowNumberHeader(
+      BuildContext context, ThemeData theme, EdgeInsets padding) {
     return Container(
       width: widget.config.rowNumberWidth,
       alignment: Alignment.center,
@@ -294,10 +304,11 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     );
   }
 
-  Widget _buildSelectionHeader(BuildContext context, ThemeData theme, EdgeInsets padding) {
+  Widget _buildSelectionHeader(
+      BuildContext context, ThemeData theme, EdgeInsets padding) {
     final hasSelectAll = _currentSelection?.allowSelectAll == true;
-    final allSelected = _displayRows.isNotEmpty &&
-        _displayRows.every((row) => row.selected);
+    final allSelected =
+        _displayRows.isNotEmpty && _displayRows.every((row) => row.selected);
 
     return Container(
       width: 48,
@@ -319,14 +330,16 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     TextDirection textDirection,
     EdgeInsets padding,
   ) {
-    final visibleColumns = widget.columns.where((column) => column.visible).toList();
+    final visibleColumns =
+        widget.columns.where((column) => column.visible).toList();
 
     return SingleChildScrollView(
       controller: _horizontalController,
       scrollDirection: Axis.horizontal,
       child: Row(
         children: visibleColumns
-            .map((column) => _buildColumnHeader(context, theme, textDirection, column, padding))
+            .map((column) => _buildColumnHeader(
+                context, theme, textDirection, column, padding))
             .toList(),
       ),
     );
@@ -362,7 +375,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
             border: Border(
               right: widget.config.showColumnDividers
                   ? BorderSide(
-                      color: widget.config.theme?.dividerColor ?? theme.dividerColor,
+                      color: widget.config.theme?.dividerColor ??
+                          theme.dividerColor,
                       width: 1,
                     )
                   : BorderSide.none,
@@ -375,14 +389,16 @@ class _AppSimpleTableState extends State<AppSimpleTable>
                 Icon(
                   column.icon,
                   size: 16,
-                  color: widget.config.theme?.headerTextColor ?? theme.colorScheme.onSurface,
+                  color: widget.config.theme?.headerTextColor ??
+                      theme.colorScheme.onSurface,
                 ),
                 const SizedBox(width: 8),
               ],
               Flexible(
                 child: Text(
                   column.label,
-                  style: widget.config.theme?.headerStyle ?? theme.textTheme.titleSmall,
+                  style: widget.config.theme?.headerStyle ??
+                      theme.textTheme.titleSmall,
                   overflow: TextOverflow.ellipsis,
                   semanticsLabel: column.semanticLabel ?? column.label,
                 ),
@@ -398,7 +414,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     );
   }
 
-  Widget _buildSortIcon(ThemeData theme, AppSimpleTableSortDirection direction) {
+  Widget _buildSortIcon(
+      ThemeData theme, AppSimpleTableSortDirection direction) {
     IconData iconData;
     switch (direction) {
       case AppSimpleTableSortDirection.ascending:
@@ -417,11 +434,13 @@ class _AppSimpleTableState extends State<AppSimpleTable>
       size: 16,
       color: direction != AppSimpleTableSortDirection.none
           ? widget.config.theme?.sortIconColor ?? theme.colorScheme.primary
-          : widget.config.theme?.sortIconColor?.withValues(alpha: 0.5) ?? theme.colorScheme.onSurface.withValues(alpha: 0.5),
+          : widget.config.theme?.sortIconColor?.withValues(alpha: 0.5) ??
+              theme.colorScheme.onSurface.withValues(alpha: 0.5),
     );
   }
 
-  Widget _buildTableBody(BuildContext context, ThemeData theme, TextDirection textDirection) {
+  Widget _buildTableBody(
+      BuildContext context, ThemeData theme, TextDirection textDirection) {
     return SingleChildScrollView(
       controller: _verticalController,
       child: SingleChildScrollView(
@@ -448,23 +467,28 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     if (row.rowBuilder != null) {
       final cells = widget.columns
           .where((column) => column.visible)
-          .map((column) => _buildTableCell(context, theme, textDirection, row, column, index))
+          .map((column) => _buildTableCell(
+              context, theme, textDirection, row, column, index))
           .toList();
       return row.rowBuilder!(context, row, cells);
     }
 
-    final rowHeight = AppSimpleTableUtils.getRowHeight(widget.config, theme.platform);
+    final rowHeight =
+        AppSimpleTableUtils.getRowHeight(widget.config, theme.platform);
     final isSelected = row.selected;
     final isHovered = row.state == AppSimpleTableRowState.hovered;
     final isEven = index.isEven;
 
     Color? backgroundColor;
     if (isSelected) {
-      backgroundColor = widget.config.theme?.selectedRowBackgroundColor ?? theme.colorScheme.primaryContainer;
+      backgroundColor = widget.config.theme?.selectedRowBackgroundColor ??
+          theme.colorScheme.primaryContainer;
     } else if (isHovered && widget.config.showHoverEffects) {
-      backgroundColor = widget.config.theme?.hoveredRowBackgroundColor ?? theme.colorScheme.surfaceContainerHighest;
+      backgroundColor = widget.config.theme?.hoveredRowBackgroundColor ??
+          theme.colorScheme.surfaceContainerHighest;
     } else if (widget.config.alternateRowColors && isEven) {
-      backgroundColor = widget.config.theme?.alternateRowBackgroundColor ?? theme.colorScheme.surface.withValues(alpha: 0.5);
+      backgroundColor = widget.config.theme?.alternateRowBackgroundColor ??
+          theme.colorScheme.surface.withValues(alpha: 0.5);
     }
 
     return Container(
@@ -474,7 +498,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
         border: Border(
           bottom: widget.config.showRowDividers
               ? BorderSide(
-                  color: widget.config.theme?.dividerColor ?? theme.dividerColor,
+                  color:
+                      widget.config.theme?.dividerColor ?? theme.dividerColor,
                   width: 1,
                 )
               : BorderSide.none,
@@ -486,8 +511,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
           children: [
             if (widget.config.showRowNumbers)
               _buildRowNumberCell(context, theme, index),
-            if (_hasSelectionColumn())
-              _buildSelectionCell(context, theme, row),
+            if (_hasSelectionColumn()) _buildSelectionCell(context, theme, row),
             Expanded(
               child: _buildRowCells(context, theme, textDirection, row, index),
             ),
@@ -513,7 +537,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     );
   }
 
-  Widget _buildSelectionCell(BuildContext context, ThemeData theme, AppSimpleTableRow row) {
+  Widget _buildSelectionCell(
+      BuildContext context, ThemeData theme, AppSimpleTableRow row) {
     final cellPadding = AppSimpleTableUtils.getCellPadding(widget.config);
 
     return Container(
@@ -522,7 +547,9 @@ class _AppSimpleTableState extends State<AppSimpleTable>
       padding: cellPadding,
       child: Checkbox(
         value: row.selected,
-        onChanged: row.disabled ? null : (selected) => _onRowSelect(row, selected ?? false),
+        onChanged: row.disabled
+            ? null
+            : (selected) => _onRowSelect(row, selected ?? false),
         semanticLabel: 'Select row ${row.id}',
       ),
     );
@@ -535,11 +562,13 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     AppSimpleTableRow row,
     int index,
   ) {
-    final visibleColumns = widget.columns.where((column) => column.visible).toList();
+    final visibleColumns =
+        widget.columns.where((column) => column.visible).toList();
 
     return Row(
       children: visibleColumns
-          .map((column) => _buildTableCell(context, theme, textDirection, row, column, index))
+          .map((column) => _buildTableCell(
+              context, theme, textDirection, row, column, index))
           .toList(),
     );
   }
@@ -580,13 +609,15 @@ class _AppSimpleTableState extends State<AppSimpleTable>
               border: Border(
                 right: widget.config.showColumnDividers
                     ? BorderSide(
-                        color: widget.config.theme?.dividerColor ?? theme.dividerColor,
+                        color: widget.config.theme?.dividerColor ??
+                            theme.dividerColor,
                         width: 1,
                       )
                     : BorderSide.none,
               ),
             ),
-            child: _buildCellContent(context, theme, column, displayValue, value),
+            child:
+                _buildCellContent(context, theme, column, displayValue, value),
           ),
         ),
       ),
@@ -600,14 +631,17 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     String displayValue,
     dynamic value,
   ) {
-    final cellStyle = widget.config.theme?.cellStyles?[column.cellType] ?? theme.textTheme.bodyMedium;
+    final cellStyle = widget.config.theme?.cellStyles?[column.cellType] ??
+        theme.textTheme.bodyMedium;
 
     switch (column.cellType) {
       case AppSimpleTableCellType.boolean:
         return Icon(
           value == true ? Icons.check_circle : Icons.radio_button_unchecked,
           size: 16,
-          color: value == true ? theme.colorScheme.primary : theme.colorScheme.onSurface.withValues(alpha: 0.5),
+          color: value == true
+              ? theme.colorScheme.primary
+              : theme.colorScheme.onSurface.withValues(alpha: 0.5),
         );
 
       case AppSimpleTableCellType.icon:
@@ -619,7 +653,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
       case AppSimpleTableCellType.number:
         return Text(
           displayValue,
-          style: cellStyle?.copyWith(fontFeatures: [const FontFeature.tabularFigures()]),
+          style: cellStyle
+              ?.copyWith(fontFeatures: [const FontFeature.tabularFigures()]),
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         );
@@ -655,14 +690,20 @@ class _AppSimpleTableState extends State<AppSimpleTable>
               Icon(
                 emptyState.icon,
                 size: 64,
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
+                color: Theme.of(context)
+                    .colorScheme
+                    .onSurface
+                    .withValues(alpha: 0.5),
               ),
             const SizedBox(height: 16),
             Text(
               emptyState.message,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
-              ),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withValues(alpha: 0.7),
+                  ),
               textAlign: TextAlign.center,
             ),
             if (emptyState.action != null) ...[
@@ -687,7 +728,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
       child: Center(
         child: widget.config.loadingIndicator ??
             CircularProgressIndicator(
-              color: widget.config.theme?.loadingIndicatorColor ?? theme.colorScheme.primary,
+              color: widget.config.theme?.loadingIndicatorColor ??
+                  theme.colorScheme.primary,
             ),
       ),
     );
@@ -721,7 +763,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   Widget _buildSkeletonHeader(BuildContext context, ThemeData theme) {
-    final headerHeight = AppSimpleTableUtils.getHeaderHeight(widget.config, theme.platform);
+    final headerHeight =
+        AppSimpleTableUtils.getHeaderHeight(widget.config, theme.platform);
     final headerPadding = AppSimpleTableUtils.getHeaderPadding(widget.config);
 
     return Container(
@@ -735,13 +778,15 @@ class _AppSimpleTableState extends State<AppSimpleTable>
       child: Row(
         children: widget.columns
             .where((column) => column.visible)
-            .map((column) => _buildSkeletonHeaderCell(context, theme, column, headerPadding))
+            .map((column) =>
+                _buildSkeletonHeaderCell(context, theme, column, headerPadding))
             .toList(),
       ),
     );
   }
 
-  Widget _buildSkeletonHeaderCell(BuildContext context, ThemeData theme, AppSimpleTableColumn column, EdgeInsets padding) {
+  Widget _buildSkeletonHeaderCell(BuildContext context, ThemeData theme,
+      AppSimpleTableColumn column, EdgeInsets padding) {
     return Expanded(
       flex: column.flex,
       child: Container(
@@ -758,7 +803,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   Widget _buildSkeletonRow(BuildContext context, ThemeData theme, int index) {
-    final rowHeight = AppSimpleTableUtils.getRowHeight(widget.config, theme.platform);
+    final rowHeight =
+        AppSimpleTableUtils.getRowHeight(widget.config, theme.platform);
     final cellPadding = AppSimpleTableUtils.getCellPadding(widget.config);
 
     return Container(
@@ -771,13 +817,15 @@ class _AppSimpleTableState extends State<AppSimpleTable>
       child: Row(
         children: widget.columns
             .where((column) => column.visible)
-            .map((column) => _buildSkeletonCell(context, theme, column, cellPadding))
+            .map((column) =>
+                _buildSkeletonCell(context, theme, column, cellPadding))
             .toList(),
       ),
     );
   }
 
-  Widget _buildSkeletonCell(BuildContext context, ThemeData theme, AppSimpleTableColumn column, EdgeInsets padding) {
+  Widget _buildSkeletonCell(BuildContext context, ThemeData theme,
+      AppSimpleTableColumn column, EdgeInsets padding) {
     return Expanded(
       flex: column.flex,
       child: Container(
@@ -800,7 +848,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
         _currentSelection?.showCheckboxes == true;
   }
 
-  Alignment _getAlignmentFromColumnAlignment(AppSimpleTableColumnAlignment alignment) {
+  Alignment _getAlignmentFromColumnAlignment(
+      AppSimpleTableColumnAlignment alignment) {
     switch (alignment) {
       case AppSimpleTableColumnAlignment.left:
         return Alignment.centerLeft;
@@ -840,11 +889,14 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   void _applySorting(String columnId, AppSimpleTableSortDirection direction) {
     setState(() {
       _currentSort = widget.sorting?.copyWith(
-        columnId: direction != AppSimpleTableSortDirection.none ? columnId : null,
-        direction: direction,
-      ) ?? AppSimpleTableSort(columnId: columnId, direction: direction);
+            columnId:
+                direction != AppSimpleTableSortDirection.none ? columnId : null,
+            direction: direction,
+          ) ??
+          AppSimpleTableSort(columnId: columnId, direction: direction);
 
-      _displayRows = AppSimpleTableUtils.sortRows(_displayRows, columnId, direction);
+      _displayRows =
+          AppSimpleTableUtils.sortRows(_displayRows, columnId, direction);
     });
   }
 
@@ -876,7 +928,9 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     if (_currentSelection?.mode == AppSimpleTableSelectionMode.none) return;
 
     setState(() {
-      _displayRows = _displayRows.map((row) => row.copyWith(selected: selectAll ?? false)).toList();
+      _displayRows = _displayRows
+          .map((row) => row.copyWith(selected: selectAll ?? false))
+          .toList();
     });
 
     if (_currentSelection?.onSelectionChanged != null) {
@@ -904,7 +958,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   // Keyboard event handler
-  KeyEventResult _handleCellKeyEvent(KeyEvent event, AppSimpleTableRow row, AppSimpleTableColumn column) {
+  KeyEventResult _handleCellKeyEvent(
+      KeyEvent event, AppSimpleTableRow row, AppSimpleTableColumn column) {
     if (event is KeyDownEvent) {
       switch (event.logicalKey) {
         case LogicalKeyboardKey.arrowUp:
@@ -932,11 +987,14 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   void _moveFocus(int rowDelta, int columnDelta) {
-    final newRowIndex = (_focusedRowIndex + rowDelta).clamp(0, _displayRows.length - 1);
+    final newRowIndex =
+        (_focusedRowIndex + rowDelta).clamp(0, _displayRows.length - 1);
     final visibleColumns = widget.columns.where((col) => col.visible).toList();
-    final newColumnIndex = (_focusedColumnIndex + columnDelta).clamp(0, visibleColumns.length - 1);
+    final newColumnIndex =
+        (_focusedColumnIndex + columnDelta).clamp(0, visibleColumns.length - 1);
 
-    if (newRowIndex != _focusedRowIndex || newColumnIndex != _focusedColumnIndex) {
+    if (newRowIndex != _focusedRowIndex ||
+        newColumnIndex != _focusedColumnIndex) {
       final newRow = _displayRows[newRowIndex];
       final newColumn = visibleColumns[newColumnIndex];
       final cellKey = '${newRow.id}_${newColumn.id}';

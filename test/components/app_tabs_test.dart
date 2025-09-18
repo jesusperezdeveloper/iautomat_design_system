@@ -728,7 +728,8 @@ void main() {
           MaterialApp(
             home: Builder(
               builder: (context) {
-                controller = TabController(length: 2, vsync: Scaffold.of(context));
+                controller =
+                    TabController(length: 2, vsync: Scaffold.of(context));
                 return Scaffold(
                   body: AppTabs(
                     controller: controller,
@@ -751,7 +752,8 @@ void main() {
         expect(controller.index, equals(1));
       });
 
-      testWidgets('creates internal controller when none provided', (tester) async {
+      testWidgets('creates internal controller when none provided',
+          (tester) async {
         const tabs = [
           AppTabItem(id: 'tab1', text: 'Tab 1'),
           AppTabItem(id: 'tab2', text: 'Tab 2'),
@@ -869,9 +871,12 @@ void main() {
       });
 
       test('provides correct default alignment', () {
-        expect(AppTabsVariant.fixed.defaultAlignment, equals(TabAlignment.fill));
-        expect(AppTabsVariant.scrollable.defaultAlignment, equals(TabAlignment.start));
-        expect(AppTabsVariant.withBadges.defaultAlignment, equals(TabAlignment.start));
+        expect(
+            AppTabsVariant.fixed.defaultAlignment, equals(TabAlignment.fill));
+        expect(AppTabsVariant.scrollable.defaultAlignment,
+            equals(TabAlignment.start));
+        expect(AppTabsVariant.withBadges.defaultAlignment,
+            equals(TabAlignment.start));
       });
     });
 
@@ -978,22 +983,32 @@ void main() {
       test('provides correct display names', () {
         expect(AppTabBadgePosition.topRight.displayName, equals('Top Right'));
         expect(AppTabBadgePosition.topLeft.displayName, equals('Top Left'));
-        expect(AppTabBadgePosition.bottomRight.displayName, equals('Bottom Right'));
-        expect(AppTabBadgePosition.bottomLeft.displayName, equals('Bottom Left'));
+        expect(AppTabBadgePosition.bottomRight.displayName,
+            equals('Bottom Right'));
+        expect(
+            AppTabBadgePosition.bottomLeft.displayName, equals('Bottom Left'));
       });
 
       test('provides correct alignments', () {
-        expect(AppTabBadgePosition.topRight.alignment, equals(Alignment.topRight));
-        expect(AppTabBadgePosition.topLeft.alignment, equals(Alignment.topLeft));
-        expect(AppTabBadgePosition.bottomRight.alignment, equals(Alignment.bottomRight));
-        expect(AppTabBadgePosition.bottomLeft.alignment, equals(Alignment.bottomLeft));
+        expect(
+            AppTabBadgePosition.topRight.alignment, equals(Alignment.topRight));
+        expect(
+            AppTabBadgePosition.topLeft.alignment, equals(Alignment.topLeft));
+        expect(AppTabBadgePosition.bottomRight.alignment,
+            equals(Alignment.bottomRight));
+        expect(AppTabBadgePosition.bottomLeft.alignment,
+            equals(Alignment.bottomLeft));
       });
 
       test('provides correct padding', () {
-        expect(AppTabBadgePosition.topRight.padding, equals(const EdgeInsets.only(top: 2, right: 2)));
-        expect(AppTabBadgePosition.topLeft.padding, equals(const EdgeInsets.only(top: 2, left: 2)));
-        expect(AppTabBadgePosition.bottomRight.padding, equals(const EdgeInsets.only(bottom: 2, right: 2)));
-        expect(AppTabBadgePosition.bottomLeft.padding, equals(const EdgeInsets.only(bottom: 2, left: 2)));
+        expect(AppTabBadgePosition.topRight.padding,
+            equals(const EdgeInsets.only(top: 2, right: 2)));
+        expect(AppTabBadgePosition.topLeft.padding,
+            equals(const EdgeInsets.only(top: 2, left: 2)));
+        expect(AppTabBadgePosition.bottomRight.padding,
+            equals(const EdgeInsets.only(bottom: 2, right: 2)));
+        expect(AppTabBadgePosition.bottomLeft.padding,
+            equals(const EdgeInsets.only(bottom: 2, left: 2)));
       });
     });
   });

@@ -110,7 +110,8 @@ void main() {
           AppFileData(
             name: 'presentation.pptx',
             size: 2 * 1024 * 1024,
-            type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+            type:
+                'application/vnd.openxmlformats-officedocument.presentationml.presentation',
             lastModified: DateTime(2023, 1, 1),
           ),
         ];
@@ -239,7 +240,8 @@ void main() {
                   child: AppFilePicker(
                     variant: AppFilePickerVariant.multi,
                     label: 'With Prefix Icon',
-                    prefixIcon: const Icon(Icons.cloud_upload, color: Colors.blue),
+                    prefixIcon:
+                        const Icon(Icons.cloud_upload, color: Colors.blue),
                     hint: 'Upload to cloud',
                     onFilesSelected: (files) {},
                   ),
@@ -267,7 +269,8 @@ void main() {
                   child: AppFilePicker(
                     variant: AppFilePickerVariant.multi,
                     label: 'With Suffix Icon',
-                    suffixIcon: const Icon(Icons.folder_open, color: Colors.orange),
+                    suffixIcon:
+                        const Icon(Icons.folder_open, color: Colors.orange),
                     hint: 'Browse files',
                     onFilesSelected: (files) {},
                   ),
@@ -295,8 +298,10 @@ void main() {
                   child: AppFilePicker(
                     variant: AppFilePickerVariant.multi,
                     label: 'With Both Icons',
-                    prefixIcon: const Icon(Icons.attach_file, color: Colors.green),
-                    suffixIcon: const Icon(Icons.arrow_forward, color: Colors.blue),
+                    prefixIcon:
+                        const Icon(Icons.attach_file, color: Colors.green),
+                    suffixIcon:
+                        const Icon(Icons.arrow_forward, color: Colors.blue),
                     hint: 'Attach files',
                     onFilesSelected: (files) {},
                   ),
@@ -353,7 +358,8 @@ void main() {
                   child: AppFilePicker(
                     variant: AppFilePickerVariant.dragAndDrop,
                     label: 'File Picker with Helper',
-                    helperText: 'Accepted formats: PDF, JPG, PNG. Maximum size: 10MB.',
+                    helperText:
+                        'Accepted formats: PDF, JPG, PNG. Maximum size: 10MB.',
                     onFilesSelected: (files) {},
                   ),
                 ),
@@ -552,7 +558,8 @@ void main() {
           AppFileData(
             name: 'data.xlsx',
             size: 2 * 1024 * 1024, // 2 MB
-            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            type:
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             lastModified: DateTime(2023, 1, 1),
           ),
         ];

@@ -53,7 +53,8 @@ class AppCheckbox extends StatefulWidget {
   State<AppCheckbox> createState() => _AppCheckboxState();
 }
 
-class _AppCheckboxState extends State<AppCheckbox> with TickerProviderStateMixin {
+class _AppCheckboxState extends State<AppCheckbox>
+    with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late AnimationController _animationController;
   late AnimationController _indeterminateAnimationController;
@@ -64,8 +65,7 @@ class _AppCheckboxState extends State<AppCheckbox> with TickerProviderStateMixin
   bool _isPressed = false;
   bool _isFocused = false;
 
-  AppCheckboxConfig get _config =>
-      widget.config ?? const AppCheckboxConfig();
+  AppCheckboxConfig get _config => widget.config ?? const AppCheckboxConfig();
 
   AppCheckboxColors get _colors =>
       widget.colors ?? AppCheckboxColors.fromTheme(Theme.of(context));
@@ -192,13 +192,13 @@ class _AppCheckboxState extends State<AppCheckbox> with TickerProviderStateMixin
   void _handleTap() {
     if (!_isEnabled) return;
 
-    if (_config.enableHapticFeedback && (Platform.isIOS || Platform.isAndroid)) {
+    if (_config.enableHapticFeedback &&
+        (Platform.isIOS || Platform.isAndroid)) {
       HapticFeedback.lightImpact();
     }
 
-    final newValue = widget.tristate
-        ? _getNextTriStateValue()
-        : _getNextBiStateValue();
+    final newValue =
+        widget.tristate ? _getNextTriStateValue() : _getNextBiStateValue();
 
     widget.onChanged?.call(newValue);
     _focusNode.requestFocus();
@@ -215,7 +215,9 @@ class _AppCheckboxState extends State<AppCheckbox> with TickerProviderStateMixin
       case AppCheckboxValue.unchecked:
         return AppCheckboxValue.checked;
       case AppCheckboxValue.checked:
-        return widget.tristate ? AppCheckboxValue.indeterminate : AppCheckboxValue.unchecked;
+        return widget.tristate
+            ? AppCheckboxValue.indeterminate
+            : AppCheckboxValue.unchecked;
       case AppCheckboxValue.indeterminate:
         return AppCheckboxValue.unchecked;
       case null:
@@ -226,7 +228,8 @@ class _AppCheckboxState extends State<AppCheckbox> with TickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = (widget.textDirection ?? Directionality.of(context)) == TextDirection.rtl;
+    final isRtl = (widget.textDirection ?? Directionality.of(context)) ==
+        TextDirection.rtl;
 
     final checkboxWidget = _buildCheckbox();
 
@@ -234,12 +237,13 @@ class _AppCheckboxState extends State<AppCheckbox> with TickerProviderStateMixin
       return checkboxWidget;
     }
 
-    final labelWidget = widget.labelWidget ?? Text(
-      widget.label!,
-      style: theme.textTheme.bodyMedium?.copyWith(
-        color: _isEnabled ? _colors.labelColor : _colors.disabledLabelColor,
-      ),
-    );
+    final labelWidget = widget.labelWidget ??
+        Text(
+          widget.label!,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: _isEnabled ? _colors.labelColor : _colors.disabledLabelColor,
+          ),
+        );
 
     final spacing = SizedBox(width: widget.spacing ?? 8.0);
 
@@ -257,12 +261,14 @@ class _AppCheckboxState extends State<AppCheckbox> with TickerProviderStateMixin
         child: MouseRegion(
           onEnter: (_) => setState(() => _isHovered = true),
           onExit: (_) => setState(() => _isHovered = false),
-          cursor: _isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
+          cursor:
+              _isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
           child: Row(
             mainAxisAlignment: widget.mainAxisAlignment,
             crossAxisAlignment: widget.crossAxisAlignment,
             mainAxisSize: widget.mainAxisSize,
-            textDirection: widget.textDirection ?? (isRtl ? TextDirection.rtl : TextDirection.ltr),
+            textDirection: widget.textDirection ??
+                (isRtl ? TextDirection.rtl : TextDirection.ltr),
             children: children,
           ),
         ),
@@ -336,12 +342,14 @@ class _AppCheckboxState extends State<AppCheckbox> with TickerProviderStateMixin
       child: GestureDetector(
         onTapDown: _isEnabled ? (_) => setState(() => _isPressed = true) : null,
         onTapUp: _isEnabled ? (_) => setState(() => _isPressed = false) : null,
-        onTapCancel: _isEnabled ? () => setState(() => _isPressed = false) : null,
+        onTapCancel:
+            _isEnabled ? () => setState(() => _isPressed = false) : null,
         onTap: _handleTap,
         child: MouseRegion(
           onEnter: _isEnabled ? (_) => setState(() => _isHovered = true) : null,
           onExit: _isEnabled ? (_) => setState(() => _isHovered = false) : null,
-          cursor: _isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
+          cursor:
+              _isEnabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
           child: Container(
             width: _config.minimumTouchTargetSize,
             height: _config.minimumTouchTargetSize,
@@ -429,9 +437,8 @@ class _AppCheckboxState extends State<AppCheckbox> with TickerProviderStateMixin
       return const SizedBox.shrink();
     }
 
-    final checkColor = _isEnabled
-        ? _colors.checkColor
-        : _colors.disabledCheckColor;
+    final checkColor =
+        _isEnabled ? _colors.checkColor : _colors.disabledCheckColor;
 
     if (widget.value == AppCheckboxValue.indeterminate) {
       return AnimatedBuilder(

@@ -535,7 +535,8 @@ class _InteractiveStatesStory extends StatefulWidget {
   const _InteractiveStatesStory();
 
   @override
-  State<_InteractiveStatesStory> createState() => _InteractiveStatesStoryState();
+  State<_InteractiveStatesStory> createState() =>
+      _InteractiveStatesStoryState();
 }
 
 class _InteractiveStatesStoryState extends State<_InteractiveStatesStory> {
@@ -628,7 +629,8 @@ class _PlatformAdaptiveStoryState extends State<_PlatformAdaptiveStory> {
           controller: _controller,
           label: 'Campo adaptativo',
           hint: 'Se adapta a iOS/Android/Web',
-          helperText: 'Los controles de selección y cursor cambian por plataforma',
+          helperText:
+              'Los controles de selección y cursor cambian por plataforma',
         ),
         const SizedBox(height: 16),
         Text(
@@ -883,7 +885,8 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
         AppTextField(
           label: 'Label visible',
           hint: 'Campo con semántica personalizada',
-          semanticLabel: 'Campo de entrada de texto con validación personalizada',
+          semanticLabel:
+              'Campo de entrada de texto con validación personalizada',
           helperText: 'Información adicional para lectores de pantalla',
         ),
         const SizedBox(height: 24),

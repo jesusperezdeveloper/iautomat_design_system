@@ -20,7 +20,8 @@ class AppFilePickerStory {
   static List<FilePickerStoryExample> get basicExamples => [
         FilePickerStoryExample(
           name: 'Drag & Drop - Default',
-          description: 'Basic drag and drop file picker with default configuration',
+          description:
+              'Basic drag and drop file picker with default configuration',
           widget: _DragDropFilePickerExample(),
         ),
         FilePickerStoryExample(
@@ -149,7 +150,8 @@ class AppFilePickerStory {
   static List<FilePickerStoryExample> get accessibilityExamples => [
         FilePickerStoryExample(
           name: 'With Semantic Labels',
-          description: 'File picker with proper semantic labels for accessibility',
+          description:
+              'File picker with proper semantic labels for accessibility',
           widget: _AccessibilityExample(),
         ),
         FilePickerStoryExample(
@@ -159,7 +161,8 @@ class AppFilePickerStory {
         ),
         FilePickerStoryExample(
           name: 'High Contrast',
-          description: 'File picker with high contrast colors for accessibility',
+          description:
+              'File picker with high contrast colors for accessibility',
           widget: _HighContrastExample(),
         ),
       ];
@@ -228,10 +231,12 @@ class FilePickerStoryExample {
 
 class _DragDropFilePickerExample extends StatefulWidget {
   @override
-  _DragDropFilePickerExampleState createState() => _DragDropFilePickerExampleState();
+  _DragDropFilePickerExampleState createState() =>
+      _DragDropFilePickerExampleState();
 }
 
-class _DragDropFilePickerExampleState extends State<_DragDropFilePickerExample> {
+class _DragDropFilePickerExampleState
+    extends State<_DragDropFilePickerExample> {
   List<AppFileData>? selectedFiles;
 
   @override
@@ -319,7 +324,8 @@ class _StateExamplesWidget extends StatelessWidget {
           const SizedBox(height: 16),
           _buildStateExample('Selected', AppFilePickerState.selected),
           const SizedBox(height: 16),
-          _buildStateExample('Disabled', AppFilePickerState.disabled, enabled: false),
+          _buildStateExample('Disabled', AppFilePickerState.disabled,
+              enabled: false),
           const SizedBox(height: 16),
           _buildStateExample('Loading', AppFilePickerState.loading),
         ],
@@ -327,7 +333,8 @@ class _StateExamplesWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildStateExample(String label, AppFilePickerState state, {bool enabled = true}) {
+  Widget _buildStateExample(String label, AppFilePickerState state,
+      {bool enabled = true}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -589,7 +596,8 @@ class _ValidationErrorExample extends StatelessWidget {
 
 class _CustomValidationExample extends StatefulWidget {
   @override
-  _CustomValidationExampleState createState() => _CustomValidationExampleState();
+  _CustomValidationExampleState createState() =>
+      _CustomValidationExampleState();
 }
 
 class _CustomValidationExampleState extends State<_CustomValidationExample> {
@@ -602,14 +610,16 @@ class _CustomValidationExampleState extends State<_CustomValidationExample> {
       child: AppFilePicker(
         variant: AppFilePickerVariant.dragAndDrop,
         label: 'Validación personalizada',
-        helperText: 'Solo se permiten archivos con nombres que contengan "test"',
+        helperText:
+            'Solo se permiten archivos con nombres que contengan "test"',
         errorText: errorMessage,
         customValidator: (file) {
           return file.name.toLowerCase().contains('test');
         },
         onValidationError: (error, file) {
           setState(() {
-            errorMessage = 'El archivo "${file?.name}" debe contener "test" en el nombre';
+            errorMessage =
+                'El archivo "${file?.name}" debe contener "test" en el nombre';
           });
         },
         onFilesSelected: (files) {
@@ -658,7 +668,8 @@ class _PreviewEnabledExample extends StatelessWidget {
       AppFileData(
         name: 'presentacion.pptx',
         size: 2 * 1024 * 1024,
-        type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        type:
+            'application/vnd.openxmlformats-officedocument.presentationml.presentation',
         lastModified: DateTime.now(),
       ),
     ];
@@ -873,7 +884,8 @@ class _AccessibilityExample extends StatelessWidget {
       child: AppFilePicker(
         variant: AppFilePickerVariant.dragAndDrop,
         label: 'Selector de archivos accesible',
-        semanticLabel: 'Seleccionar archivos para subir. Arrastra archivos aquí o usa el botón para explorar',
+        semanticLabel:
+            'Seleccionar archivos para subir. Arrastra archivos aquí o usa el botón para explorar',
         helperText: 'Usa Tab para navegar y Enter para seleccionar archivos',
         onFilesSelected: null,
       ),

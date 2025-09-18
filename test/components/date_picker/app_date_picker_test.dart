@@ -19,14 +19,16 @@ void main() {
     });
 
     group('Basic Widget Tests', () {
-      testWidgets('renders correctly with default configuration', (tester) async {
+      testWidgets('renders correctly with default configuration',
+          (tester) async {
         await tester.pumpWidget(testApp);
 
         expect(find.byType(AppDatePicker), findsOneWidget);
         expect(find.byIcon(Icons.calendar_today), findsOneWidget);
       });
 
-      testWidgets('displays hint text when no value is selected', (tester) async {
+      testWidgets('displays hint text when no value is selected',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -42,7 +44,8 @@ void main() {
         expect(find.text('Select a date'), findsOneWidget);
       });
 
-      testWidgets('displays formatted date when value is provided', (tester) async {
+      testWidgets('displays formatted date when value is provided',
+          (tester) async {
         final testDate = DateTime(2023, 12, 25);
 
         await tester.pumpWidget(
@@ -60,7 +63,8 @@ void main() {
         expect(find.text('25/12/2023'), findsOneWidget);
       });
 
-      testWidgets('displays formatted time when time variant is used', (tester) async {
+      testWidgets('displays formatted time when time variant is used',
+          (tester) async {
         const testTime = TimeOfDay(hour: 14, minute: 30);
 
         await tester.pumpWidget(
@@ -97,7 +101,8 @@ void main() {
         expect(find.text('14:30'), findsOneWidget);
       });
 
-      testWidgets('displays date range when range variant is used', (tester) async {
+      testWidgets('displays date range when range variant is used',
+          (tester) async {
         final testRange = AppDateRange(
           start: DateTime(2023, 12, 1),
           end: DateTime(2023, 12, 31),
@@ -179,7 +184,8 @@ void main() {
         expect(find.byType(DatePickerDialog), findsNothing);
       });
 
-      testWidgets('does not call onChanged when onChanged is null', (tester) async {
+      testWidgets('does not call onChanged when onChanged is null',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -246,7 +252,8 @@ void main() {
           ),
         );
 
-        final appDatePicker = tester.widget<AppDatePicker>(find.byType(AppDatePicker));
+        final appDatePicker =
+            tester.widget<AppDatePicker>(find.byType(AppDatePicker));
         expect(appDatePicker.state, equals(AppDatePickerState.disabled));
       });
     });
@@ -272,14 +279,17 @@ void main() {
         );
 
         final container = tester.widget<Container>(
-          find.descendant(
-            of: find.byType(AppDatePicker),
-            matching: find.byType(Container),
-          ).last,
+          find
+              .descendant(
+                of: find.byType(AppDatePicker),
+                matching: find.byType(Container),
+              )
+              .last,
         );
 
         final decoration = container.decoration as BoxDecoration;
-        expect((decoration.borderRadius as BorderRadius).topLeft.x, equals(20.0));
+        expect(
+            (decoration.borderRadius as BorderRadius).topLeft.x, equals(20.0));
         expect((decoration.border as Border).top.width, equals(3.0));
       });
 
@@ -497,7 +507,8 @@ void main() {
           ),
         );
 
-        final appDatePicker = tester.widget<AppDatePicker>(find.byType(AppDatePicker));
+        final appDatePicker =
+            tester.widget<AppDatePicker>(find.byType(AppDatePicker));
         expect(appDatePicker.firstDate, equals(firstDate));
         expect(appDatePicker.lastDate, equals(lastDate));
       });
@@ -529,7 +540,8 @@ void main() {
     });
 
     group('Platform Adaptive Tests', () {
-      testWidgets('uses platform adaptive behavior when enabled', (tester) async {
+      testWidgets('uses platform adaptive behavior when enabled',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -542,11 +554,13 @@ void main() {
           ),
         );
 
-        final appDatePicker = tester.widget<AppDatePicker>(find.byType(AppDatePicker));
+        final appDatePicker =
+            tester.widget<AppDatePicker>(find.byType(AppDatePicker));
         expect(appDatePicker.adaptivePlatform, isTrue);
       });
 
-      testWidgets('does not use platform adaptive when disabled', (tester) async {
+      testWidgets('does not use platform adaptive when disabled',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -559,7 +573,8 @@ void main() {
           ),
         );
 
-        final appDatePicker = tester.widget<AppDatePicker>(find.byType(AppDatePicker));
+        final appDatePicker =
+            tester.widget<AppDatePicker>(find.byType(AppDatePicker));
         expect(appDatePicker.adaptivePlatform, isFalse);
       });
     });
@@ -721,7 +736,6 @@ void main() {
       expect(time.hour, inInclusiveRange(0, 23));
       expect(time.minute, inInclusiveRange(0, 59));
     });
-
   });
 
   group('DateTime Extensions', () {

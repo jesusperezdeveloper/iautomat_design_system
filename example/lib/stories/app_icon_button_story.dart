@@ -115,7 +115,8 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                         const SizedBox(width: 8),
                         DropdownButton<AppIconButtonVariant>(
                           value: _variant,
-                          onChanged: (value) => setState(() => _variant = value!),
+                          onChanged: (value) =>
+                              setState(() => _variant = value!),
                           items: AppIconButtonVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
@@ -169,7 +170,8 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                         const SizedBox(width: 8),
                         DropdownButton<String>(
                           value: _selectedIcon,
-                          onChanged: (value) => setState(() => _selectedIcon = value!),
+                          onChanged: (value) =>
+                              setState(() => _selectedIcon = value!),
                           items: _iconOptions.keys.map((iconName) {
                             return DropdownMenuItem(
                               value: iconName,
@@ -200,7 +202,8 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                             max: 8.0,
                             divisions: 8,
                             label: _elevation.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _elevation = value),
+                            onChanged: (value) =>
+                                setState(() => _elevation = value),
                           ),
                         ),
                         Text(_elevation.toStringAsFixed(0)),
@@ -220,7 +223,8 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                             max: 24.0,
                             divisions: 12,
                             label: _borderRadius.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _borderRadius = value),
+                            onChanged: (value) =>
+                                setState(() => _borderRadius = value),
                           ),
                         ),
                         Text('${_borderRadius.toStringAsFixed(0)}px'),
@@ -236,7 +240,8 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                           children: [
                             Switch(
                               value: _isRtl,
-                              onChanged: (value) => setState(() => _isRtl = value),
+                              onChanged: (value) =>
+                                  setState(() => _isRtl = value),
                             ),
                             const Text('RTL'),
                           ],
@@ -246,7 +251,8 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                           children: [
                             Switch(
                               value: _enableA11y,
-                              onChanged: (value) => setState(() => _enableA11y = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableA11y = value),
                             ),
                             const Text('Accesibilidad'),
                           ],
@@ -256,7 +262,8 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                           children: [
                             Switch(
                               value: _enableKeyboard,
-                              onChanged: (value) => setState(() => _enableKeyboard = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableKeyboard = value),
                             ),
                             const Text('Teclado'),
                           ],
@@ -266,7 +273,8 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                           children: [
                             Switch(
                               value: _isInteractive,
-                              onChanged: (value) => setState(() => _isInteractive = value),
+                              onChanged: (value) =>
+                                  setState(() => _isInteractive = value),
                             ),
                             const Text('Interactivo'),
                           ],
@@ -276,7 +284,8 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                           children: [
                             Switch(
                               value: _enableToggle,
-                              onChanged: (value) => setState(() => _enableToggle = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableToggle = value),
                             ),
                             const Text('Toggle'),
                           ],
@@ -286,7 +295,10 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                           children: [
                             Switch(
                               value: _isToggled,
-                              onChanged: _enableToggle ? (value) => setState(() => _isToggled = value) : null,
+                              onChanged: _enableToggle
+                                  ? (value) =>
+                                        setState(() => _isToggled = value)
+                                  : null,
                             ),
                             const Text('Activado'),
                           ],
@@ -530,10 +542,7 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        Text(title, style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12),
         child,
         const SizedBox(height: 24),

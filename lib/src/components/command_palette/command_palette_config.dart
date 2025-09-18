@@ -99,7 +99,8 @@ class AppCommandPaletteConfig with _$AppCommandPaletteConfig {
 
     // Size and positioning
     @Default(AppCommandPaletteSize.medium) AppCommandPaletteSize size,
-    @Default(AppCommandPalettePosition.center) AppCommandPalettePosition position,
+    @Default(AppCommandPalettePosition.center)
+    AppCommandPalettePosition position,
     @Default(600.0) double maxWidth,
     @Default(400.0) double maxHeight,
     @Default(EdgeInsets.all(16.0)) EdgeInsets margin,
@@ -112,14 +113,16 @@ class AppCommandPaletteConfig with _$AppCommandPaletteConfig {
     @Default(true) bool highlightMatches,
 
     // Input configuration
-    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0)) EdgeInsets inputPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0))
+    EdgeInsets inputPadding,
     @Default(8.0) double inputBorderRadius,
     @Default(1.0) double inputBorderWidth,
     String? placeholder,
     @Default(TextInputType.text) TextInputType keyboardType,
 
     // Results configuration
-    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)) EdgeInsets resultPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0))
+    EdgeInsets resultPadding,
     @Default(48.0) double resultHeight,
     @Default(8.0) double resultSpacing,
     @Default(4.0) double resultBorderRadius,
@@ -373,8 +376,8 @@ class AppCommandResult with _$AppCommandResult {
     final lowerDescription = description?.toLowerCase() ?? '';
 
     return lowerTitle.contains(lowerQuery) ||
-           lowerDescription.contains(lowerQuery) ||
-           tags.any((tag) => tag.toLowerCase().contains(lowerQuery));
+        lowerDescription.contains(lowerQuery) ||
+        tags.any((tag) => tag.toLowerCase().contains(lowerQuery));
   }
 
   /// Calculate fuzzy match score
@@ -410,7 +413,8 @@ class AppCommandPaletteData with _$AppCommandPaletteData {
 
   const factory AppCommandPaletteData({
     /// Current variant
-    @Default(AppCommandPaletteVariant.globalSearch) AppCommandPaletteVariant variant,
+    @Default(AppCommandPaletteVariant.globalSearch)
+    AppCommandPaletteVariant variant,
 
     /// Current query
     @Default('') String query,
@@ -551,13 +555,21 @@ class AppCommandPaletteUtils {
 
     final keyNames = keys.map((key) {
       // Handle special keys
-      if (key == LogicalKeyboardKey.meta || key == LogicalKeyboardKey.metaLeft || key == LogicalKeyboardKey.metaRight) {
+      if (key == LogicalKeyboardKey.meta ||
+          key == LogicalKeyboardKey.metaLeft ||
+          key == LogicalKeyboardKey.metaRight) {
         return '⌘';
-      } else if (key == LogicalKeyboardKey.control || key == LogicalKeyboardKey.controlLeft || key == LogicalKeyboardKey.controlRight) {
+      } else if (key == LogicalKeyboardKey.control ||
+          key == LogicalKeyboardKey.controlLeft ||
+          key == LogicalKeyboardKey.controlRight) {
         return 'Ctrl';
-      } else if (key == LogicalKeyboardKey.alt || key == LogicalKeyboardKey.altLeft || key == LogicalKeyboardKey.altRight) {
+      } else if (key == LogicalKeyboardKey.alt ||
+          key == LogicalKeyboardKey.altLeft ||
+          key == LogicalKeyboardKey.altRight) {
         return 'Alt';
-      } else if (key == LogicalKeyboardKey.shift || key == LogicalKeyboardKey.shiftLeft || key == LogicalKeyboardKey.shiftRight) {
+      } else if (key == LogicalKeyboardKey.shift ||
+          key == LogicalKeyboardKey.shiftLeft ||
+          key == LogicalKeyboardKey.shiftRight) {
         return 'Shift';
       } else if (key == LogicalKeyboardKey.escape) {
         return 'Esc';
@@ -589,7 +601,8 @@ class AppCommandPaletteUtils {
   }
 
   /// Check if shortcut matches key event
-  static bool matchesShortcut(List<LogicalKeyboardKey> shortcut, KeyEvent event) {
+  static bool matchesShortcut(
+      List<LogicalKeyboardKey> shortcut, KeyEvent event) {
     if (shortcut.isEmpty) return false;
 
     final pressedKeys = <LogicalKeyboardKey>{};
@@ -617,7 +630,7 @@ class AppCommandPaletteUtils {
 
     // Check if all shortcut keys are pressed
     return shortcut.every((key) => pressedKeys.contains(key)) &&
-           pressedKeys.length == shortcut.length;
+        pressedKeys.length == shortcut.length;
   }
 
   /// Get appropriate position based on screen size

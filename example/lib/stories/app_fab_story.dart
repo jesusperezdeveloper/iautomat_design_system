@@ -95,7 +95,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                         const SizedBox(width: 8),
                         DropdownButton<AppFabVariant>(
                           value: _variant,
-                          onChanged: (value) => setState(() => _variant = value!),
+                          onChanged: (value) =>
+                              setState(() => _variant = value!),
                           items: AppFabVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
@@ -131,7 +132,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                         const SizedBox(width: 8),
                         DropdownButton<AppFabLocation>(
                           value: _location,
-                          onChanged: (value) => setState(() => _location = value!),
+                          onChanged: (value) =>
+                              setState(() => _location = value!),
                           items: AppFabLocation.values.map((location) {
                             return DropdownMenuItem(
                               value: location,
@@ -149,7 +151,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                         const SizedBox(width: 8),
                         DropdownButton<String>(
                           value: _selectedIcon,
-                          onChanged: (value) => setState(() => _selectedIcon = value!),
+                          onChanged: (value) =>
+                              setState(() => _selectedIcon = value!),
                           items: _iconOptions.keys.map((iconName) {
                             return DropdownMenuItem(
                               value: iconName,
@@ -180,7 +183,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                             max: 16.0,
                             divisions: 16,
                             label: _elevation.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _elevation = value),
+                            onChanged: (value) =>
+                                setState(() => _elevation = value),
                           ),
                         ),
                         Text(_elevation.toStringAsFixed(0)),
@@ -200,7 +204,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                             max: 32.0,
                             divisions: 16,
                             label: _borderRadius.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _borderRadius = value),
+                            onChanged: (value) =>
+                                setState(() => _borderRadius = value),
                           ),
                         ),
                         Text('${_borderRadius.toStringAsFixed(0)}px'),
@@ -216,7 +221,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                           children: [
                             Switch(
                               value: _isRtl,
-                              onChanged: (value) => setState(() => _isRtl = value),
+                              onChanged: (value) =>
+                                  setState(() => _isRtl = value),
                             ),
                             const Text('RTL'),
                           ],
@@ -226,7 +232,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                           children: [
                             Switch(
                               value: _enableA11y,
-                              onChanged: (value) => setState(() => _enableA11y = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableA11y = value),
                             ),
                             const Text('Accesibilidad'),
                           ],
@@ -236,7 +243,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                           children: [
                             Switch(
                               value: _enableKeyboard,
-                              onChanged: (value) => setState(() => _enableKeyboard = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableKeyboard = value),
                             ),
                             const Text('Teclado'),
                           ],
@@ -246,7 +254,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                           children: [
                             Switch(
                               value: _isInteractive,
-                              onChanged: (value) => setState(() => _isInteractive = value),
+                              onChanged: (value) =>
+                                  setState(() => _isInteractive = value),
                             ),
                             const Text('Interactivo'),
                           ],
@@ -256,7 +265,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                           children: [
                             Switch(
                               value: _hasIcon,
-                              onChanged: (value) => setState(() => _hasIcon = value),
+                              onChanged: (value) =>
+                                  setState(() => _hasIcon = value),
                             ),
                             const Text('Icono'),
                           ],
@@ -266,7 +276,8 @@ class _AppFabStoryState extends State<AppFabStory> {
                           children: [
                             Switch(
                               value: _hasLabel,
-                              onChanged: (value) => setState(() => _hasLabel = value),
+                              onChanged: (value) =>
+                                  setState(() => _hasLabel = value),
                             ),
                             const Text('Texto'),
                           ],
@@ -327,9 +338,7 @@ class _AppFabStoryState extends State<AppFabStory> {
                         enableA11y: _enableA11y,
                         enableKeyboardSupport: _enableKeyboard,
                         isInteractive: _isInteractive,
-                        spacing: AppFabSpacing(
-                          borderRadius: _borderRadius,
-                        ),
+                        spacing: AppFabSpacing(borderRadius: _borderRadius),
                         elevation: AppFabElevation(
                           defaultElevation: _elevation,
                         ),
@@ -339,7 +348,9 @@ class _AppFabStoryState extends State<AppFabStory> {
                         ),
                         onPressed: _isInteractive ? _handlePressed : null,
                         onHover: _isInteractive ? _handleHover : null,
-                        onFocusChange: _isInteractive ? _handleFocusChange : null,
+                        onFocusChange: _isInteractive
+                            ? _handleFocusChange
+                            : null,
                       ),
                     ),
                   ],
@@ -404,18 +415,36 @@ class _AppFabStoryState extends State<AppFabStory> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildLocationExample(AppFabLocation.endFloat, 'End Float'),
-                      _buildLocationExample(AppFabLocation.centerFloat, 'Center Float'),
-                      _buildLocationExample(AppFabLocation.startFloat, 'Start Float'),
+                      _buildLocationExample(
+                        AppFabLocation.endFloat,
+                        'End Float',
+                      ),
+                      _buildLocationExample(
+                        AppFabLocation.centerFloat,
+                        'Center Float',
+                      ),
+                      _buildLocationExample(
+                        AppFabLocation.startFloat,
+                        'Start Float',
+                      ),
                     ],
                   ),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildLocationExample(AppFabLocation.endDocked, 'End Docked'),
-                      _buildLocationExample(AppFabLocation.centerDocked, 'Center Docked'),
-                      _buildLocationExample(AppFabLocation.startDocked, 'Start Docked'),
+                      _buildLocationExample(
+                        AppFabLocation.endDocked,
+                        'End Docked',
+                      ),
+                      _buildLocationExample(
+                        AppFabLocation.centerDocked,
+                        'Center Docked',
+                      ),
+                      _buildLocationExample(
+                        AppFabLocation.startDocked,
+                        'Start Docked',
+                      ),
                     ],
                   ),
                 ],
@@ -506,10 +535,7 @@ class _AppFabStoryState extends State<AppFabStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        Text(title, style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12),
         child,
         const SizedBox(height: 24),
@@ -523,7 +549,9 @@ class _AppFabStoryState extends State<AppFabStory> {
       children: [
         AppFab(
           config: AppFabConfig(variant: variant),
-          icon: variant.isExtended ? const Icon(Icons.star) : const Icon(Icons.add),
+          icon: variant.isExtended
+              ? const Icon(Icons.star)
+              : const Icon(Icons.add),
           label: variant.isExtended ? variant.displayName : null,
         ),
         const SizedBox(height: 8),

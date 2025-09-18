@@ -50,11 +50,14 @@ class AppAvatarConfig with _$AppAvatarConfig {
   bool get isLoading => loading || state == AppAvatarState.loading;
   bool get isSkeleton => skeleton || state == AppAvatarState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
-  bool get canInteract => isInteractive && !isDisabled && !isLoading && !isSkeleton;
+  bool get canInteract =>
+      isInteractive && !isDisabled && !isLoading && !isSkeleton;
   bool get hasImageUrl => imageUrl != null && imageUrl!.isNotEmpty;
   bool get hasInitials => initials != null && initials!.isNotEmpty;
-  bool get hasGroupImages => groupImageUrls != null && groupImageUrls!.isNotEmpty;
-  bool get hasGroupInitials => groupInitials != null && groupInitials!.isNotEmpty;
+  bool get hasGroupImages =>
+      groupImageUrls != null && groupImageUrls!.isNotEmpty;
+  bool get hasGroupInitials =>
+      groupInitials != null && groupInitials!.isNotEmpty;
   bool get hasPlaceholder => placeholder != null;
   bool get hasErrorWidget => errorWidget != null;
   bool get hasPresence => presence != null && showPresence;
@@ -69,7 +72,10 @@ class AppAvatarConfig with _$AppAvatarConfig {
     if (words.length == 1) {
       return words[0].length >= 2 ? words[0].substring(0, 2) : words[0];
     } else {
-      return words.take(2).map((word) => word.isNotEmpty ? word[0] : '').join('');
+      return words
+          .take(2)
+          .map((word) => word.isNotEmpty ? word[0] : '')
+          .join('');
     }
   }
 
@@ -348,9 +354,10 @@ extension AppAvatarVariantExtension on AppAvatarVariant {
 }
 
 extension AppAvatarStateExtension on AppAvatarState {
-  bool get isInteractiveState => this == AppAvatarState.hover ||
-                                this == AppAvatarState.pressed ||
-                                this == AppAvatarState.focus;
+  bool get isInteractiveState =>
+      this == AppAvatarState.hover ||
+      this == AppAvatarState.pressed ||
+      this == AppAvatarState.focus;
 
   bool get isDisabledState => this == AppAvatarState.disabled;
   bool get isLoadingState => this == AppAvatarState.loading;

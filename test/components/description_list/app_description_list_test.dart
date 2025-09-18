@@ -6,7 +6,8 @@ import 'package:iautomat_design_system/src/components/description_list/descripti
 
 void main() {
   group('AppDescriptionList', () {
-    testWidgets('renderiza correctamente con elementos básicos', (tester) async {
+    testWidgets('renderiza correctamente con elementos básicos',
+        (tester) async {
       const items = [
         AppDescriptionListItem(
           term: 'Nombre',
@@ -62,7 +63,8 @@ void main() {
       expect(find.byIcon(Icons.email), findsOneWidget);
     });
 
-    testWidgets('muestra descripción secundaria cuando está presente', (tester) async {
+    testWidgets('muestra descripción secundaria cuando está presente',
+        (tester) async {
       const items = [
         AppDescriptionListItem(
           term: 'Dirección',
@@ -143,7 +145,8 @@ void main() {
       expect(tapped, isFalse);
     });
 
-    testWidgets('muestra skeleton cuando está en estado loading', (tester) async {
+    testWidgets('muestra skeleton cuando está en estado loading',
+        (tester) async {
       const items = [
         AppDescriptionListItem(
           term: 'Cargando',
@@ -231,7 +234,8 @@ void main() {
       await tester.binding.setSurfaceSize(null);
     });
 
-    testWidgets('muestra widgets leading y trailing cuando están presentes', (tester) async {
+    testWidgets('muestra widgets leading y trailing cuando están presentes',
+        (tester) async {
       const leadingIcon = Icon(Icons.star, key: Key('leading'));
       const trailingIcon = Icon(Icons.arrow_forward, key: Key('trailing'));
 
@@ -332,9 +336,11 @@ void main() {
       expect(find.byType(Divider), findsOneWidget);
     });
 
-    testWidgets('usa widgets personalizados cuando están proporcionados', (tester) async {
+    testWidgets('usa widgets personalizados cuando están proporcionados',
+        (tester) async {
       const customTermWidget = Text('Custom Term', key: Key('custom-term'));
-      const customDescriptionWidget = Text('Custom Description', key: Key('custom-description'));
+      const customDescriptionWidget =
+          Text('Custom Description', key: Key('custom-description'));
 
       const items = [
         AppDescriptionListItem(
@@ -386,7 +392,8 @@ void main() {
       expect(find.byType(FadeTransition), findsOneWidget);
     });
 
-    testWidgets('aplica configuración responsive correctamente', (tester) async {
+    testWidgets('aplica configuración responsive correctamente',
+        (tester) async {
       const items = [
         AppDescriptionListItem(
           term: 'Test',
@@ -610,11 +617,15 @@ void main() {
       test('AppDescriptionListDensity extensions funcionan correctamente', () {
         expect(AppDescriptionListDensity.compact.verticalSpacing, equals(8.0));
         expect(AppDescriptionListDensity.normal.verticalSpacing, equals(12.0));
-        expect(AppDescriptionListDensity.comfortable.verticalSpacing, equals(16.0));
+        expect(AppDescriptionListDensity.comfortable.verticalSpacing,
+            equals(16.0));
 
-        expect(AppDescriptionListDensity.compact.horizontalSpacing, equals(12.0));
-        expect(AppDescriptionListDensity.normal.horizontalSpacing, equals(16.0));
-        expect(AppDescriptionListDensity.comfortable.horizontalSpacing, equals(24.0));
+        expect(
+            AppDescriptionListDensity.compact.horizontalSpacing, equals(12.0));
+        expect(
+            AppDescriptionListDensity.normal.horizontalSpacing, equals(16.0));
+        expect(AppDescriptionListDensity.comfortable.horizontalSpacing,
+            equals(24.0));
       });
 
       test('AppDescriptionListSpacing extension funciona correctamente', () {
@@ -652,9 +663,12 @@ void main() {
           desktopLayout: AppDescriptionListLayout.grid,
         );
 
-        expect(responsive.getLayoutForWidth(400), equals(AppDescriptionListLayout.vertical));
-        expect(responsive.getLayoutForWidth(700), equals(AppDescriptionListLayout.horizontal));
-        expect(responsive.getLayoutForWidth(1000), equals(AppDescriptionListLayout.grid));
+        expect(responsive.getLayoutForWidth(400),
+            equals(AppDescriptionListLayout.vertical));
+        expect(responsive.getLayoutForWidth(700),
+            equals(AppDescriptionListLayout.horizontal));
+        expect(responsive.getLayoutForWidth(1000),
+            equals(AppDescriptionListLayout.grid));
       });
 
       test('getDensityForWidth devuelve densidad correcta', () {
@@ -666,9 +680,12 @@ void main() {
           desktopDensity: AppDescriptionListDensity.comfortable,
         );
 
-        expect(responsive.getDensityForWidth(400), equals(AppDescriptionListDensity.compact));
-        expect(responsive.getDensityForWidth(700), equals(AppDescriptionListDensity.normal));
-        expect(responsive.getDensityForWidth(1000), equals(AppDescriptionListDensity.comfortable));
+        expect(responsive.getDensityForWidth(400),
+            equals(AppDescriptionListDensity.compact));
+        expect(responsive.getDensityForWidth(700),
+            equals(AppDescriptionListDensity.normal));
+        expect(responsive.getDensityForWidth(1000),
+            equals(AppDescriptionListDensity.comfortable));
       });
 
       test('getColumnsForWidth devuelve número correcto de columnas', () {

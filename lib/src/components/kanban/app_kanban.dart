@@ -216,15 +216,14 @@ class _AppKanbanState extends State<AppKanban> {
       itemCount: cards.length,
       itemBuilder: (context, index) {
         final card = cards[index];
-        final isDragTarget = _dragTargetColumnId == column.id &&
-                           _dragTargetIndex == index;
+        final isDragTarget =
+            _dragTargetColumnId == column.id && _dragTargetIndex == index;
 
         return Column(
           children: [
             if (isDragTarget) _buildDropIndicator(context),
             _buildKanbanCard(context, card),
-            if (index < cards.length - 1)
-              const SizedBox(height: AppSpacing.sm),
+            if (index < cards.length - 1) const SizedBox(height: AppSpacing.sm),
           ],
         );
       },
@@ -375,7 +374,8 @@ class _AppKanbanState extends State<AppKanban> {
     return Text(
       card.description ?? '',
       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+            color:
+                Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
           ),
       maxLines: 3,
       overflow: TextOverflow.ellipsis,

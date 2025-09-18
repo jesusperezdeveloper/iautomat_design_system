@@ -105,7 +105,8 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
               AppFilterBar.chips(
                 filters: basicFilters,
                 onChanged: (filters) {
-                  debugPrint('Filters changed: ${filters.map((f) => f.displayValue)}');
+                  debugPrint(
+                      'Filters changed: ${filters.map((f) => f.displayValue)}');
                 },
               ),
             ),
@@ -115,7 +116,8 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
               AppFilterBar.popovers(
                 filters: basicFilters,
                 onChanged: (filters) {
-                  debugPrint('Filters changed: ${filters.map((f) => f.displayValue)}');
+                  debugPrint(
+                      'Filters changed: ${filters.map((f) => f.displayValue)}');
                 },
               ),
             ),
@@ -125,7 +127,8 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
               AppFilterBar.chips(
                 filters: advancedFilters,
                 onChanged: (filters) {
-                  debugPrint('Filters changed: ${filters.map((f) => f.displayValue)}');
+                  debugPrint(
+                      'Filters changed: ${filters.map((f) => f.displayValue)}');
                 },
               ),
             ),
@@ -332,14 +335,16 @@ class FilterBarStoryExample extends StatefulWidget {
 
 class _FilterBarStoryExampleState extends State<FilterBarStoryExample> {
   late List<AppFilter> filters;
-  List<Map<String, dynamic>> allProducts = List.generate(100, (index) => {
-    'id': index,
-    'name': 'Product ${index + 1}',
-    'category': ['electronics', 'clothing', 'books', 'food'][index % 4],
-    'price': (index * 10) % 1000,
-    'status': ['active', 'inactive', 'pending'][index % 3],
-    'featured': index % 3 == 0,
-  });
+  List<Map<String, dynamic>> allProducts = List.generate(
+      100,
+      (index) => {
+            'id': index,
+            'name': 'Product ${index + 1}',
+            'category': ['electronics', 'clothing', 'books', 'food'][index % 4],
+            'price': (index * 10) % 1000,
+            'status': ['active', 'inactive', 'pending'][index % 3],
+            'featured': index % 3 == 0,
+          });
 
   List<Map<String, dynamic>> filteredProducts = [];
 
@@ -487,12 +492,14 @@ class _FilterBarStoryExampleState extends State<FilterBarStoryExample> {
                         Row(
                           children: [
                             if (product['featured'] == true)
-                              const Icon(Icons.star, size: 16, color: Colors.amber),
+                              const Icon(Icons.star,
+                                  size: 16, color: Colors.amber),
                             const SizedBox(width: 4),
                             Expanded(
                               child: Text(
                                 product['name'],
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
@@ -509,7 +516,8 @@ class _FilterBarStoryExampleState extends State<FilterBarStoryExample> {
                         ),
                         const Spacer(),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 2),
                           decoration: BoxDecoration(
                             color: product['status'] == 'active'
                                 ? Colors.green.shade100

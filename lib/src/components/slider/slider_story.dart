@@ -12,7 +12,8 @@ class AppSliderStory extends StatefulWidget {
 class _AppSliderStoryState extends State<AppSliderStory> {
   double _continuousValue = 50.0;
   double _discreteValue = 3.0;
-  AppSliderRangeValue _rangeValue = const AppSliderRangeValue(start: 20.0, end: 80.0);
+  AppSliderRangeValue _rangeValue =
+      const AppSliderRangeValue(start: 20.0, end: 80.0);
   double _markedValue = 30.0;
   final double _disabledValue = 25.0;
   double _customConfigValue = 75.0;
@@ -66,7 +67,8 @@ class _AppSliderStoryState extends State<AppSliderStory> {
                   label: 'Rating',
                   helperText: 'Rate from 1 to 5 stars',
                   variant: AppSliderVariant.discrete,
-                  labelFormatter: (value) => '${value.toInt()} star${value > 1 ? 's' : ''}',
+                  labelFormatter: (value) =>
+                      '${value.toInt()} star${value > 1 ? 's' : ''}',
                 ),
               ],
             ),
@@ -349,7 +351,8 @@ class _AppSliderStoryState extends State<AppSliderStory> {
     );
   }
 
-  Widget _buildStorySection(String title, String description, List<Widget> children) {
+  Widget _buildStorySection(
+      String title, String description, List<Widget> children) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 32.0),
       child: Column(
@@ -363,8 +366,8 @@ class _AppSliderStoryState extends State<AppSliderStory> {
           Text(
             description,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
           ),
           const SizedBox(height: 16),
           ...children,

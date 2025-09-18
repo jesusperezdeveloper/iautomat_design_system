@@ -379,8 +379,9 @@ void main() {
     });
 
     testWidgets('all steps completed', (tester) async {
-      final completedSteps = testSteps.map((step) =>
-        step.copyWith(state: AppStepState.completed)).toList();
+      final completedSteps = testSteps
+          .map((step) => step.copyWith(state: AppStepState.completed))
+          .toList();
 
       await tester.pumpWidget(buildStepper(
         steps: completedSteps,

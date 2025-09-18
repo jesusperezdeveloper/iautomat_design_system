@@ -141,7 +141,8 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextField), 'Line 1\nLine 2\nLine 3');
+      await tester.enterText(
+          find.byType(AppTextField), 'Line 1\nLine 2\nLine 3');
       expect(controller.text, 'Line 1\nLine 2\nLine 3');
 
       controller.dispose();
@@ -206,7 +207,7 @@ void main() {
       // Check for loading indicator - platform specific
       expect(
         find.byType(CircularProgressIndicator).evaluate().isNotEmpty ||
-        find.byType(SizedBox).evaluate().length > 1,
+            find.byType(SizedBox).evaluate().length > 1,
         true,
       );
     });

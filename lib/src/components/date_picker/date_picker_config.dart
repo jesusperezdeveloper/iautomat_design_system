@@ -10,7 +10,8 @@ class AppDatePickerConfig with _$AppDatePickerConfig {
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
     @Default(EdgeInsets.all(16.0)) EdgeInsets contentPadding,
-    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0)) EdgeInsets inputPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0))
+    EdgeInsets inputPadding,
     @Default(12.0) double borderRadius,
     @Default(2.0) double borderWidth,
     @Default(2.0) double focusBorderWidth,
@@ -23,7 +24,8 @@ class AppDatePickerConfig with _$AppDatePickerConfig {
     @Default(true) bool allowManualInput,
     @Default(false) bool use24HourFormat,
     @Default(DatePickerMode.day) DatePickerMode initialDatePickerMode,
-    @Default(TimePickerEntryMode.dial) TimePickerEntryMode initialTimePickerMode,
+    @Default(TimePickerEntryMode.dial)
+    TimePickerEntryMode initialTimePickerMode,
     @Default(true) bool enableKeyboardNavigation,
     @Default(true) bool showHelperText,
     @Default(8.0) double helperSpacing,
@@ -209,9 +211,11 @@ class AppDateRange with _$AppDateRange {
 
   const AppDateRange._();
 
-  bool get isValid => start != null && end != null && start!.isBefore(end!) || (start == end);
+  bool get isValid =>
+      start != null && end != null && start!.isBefore(end!) || (start == end);
   bool get isEmpty => start == null && end == null;
-  bool get isPartial => (start != null && end == null) || (start == null && end != null);
+  bool get isPartial =>
+      (start != null && end == null) || (start == null && end != null);
 
   Duration? get duration {
     if (start == null || end == null) return null;
@@ -226,8 +230,8 @@ class AppDateRange with _$AppDateRange {
   bool contains(DateTime date) {
     if (start == null || end == null) return false;
     return date.isAfter(start!) && date.isBefore(end!) ||
-           date.isAtSameMomentAs(start!) ||
-           date.isAtSameMomentAs(end!);
+        date.isAtSameMomentAs(start!) ||
+        date.isAtSameMomentAs(end!);
   }
 
   AppDateRange copyWithStart(DateTime? newStart) {
@@ -307,9 +311,11 @@ class AppTimeValue with _$AppTimeValue {
   }
 
   bool isValid() {
-    return hour >= 0 && hour <= 23 &&
-           minute >= 0 && minute <= 59 &&
-           (second == null || (second! >= 0 && second! <= 59));
+    return hour >= 0 &&
+        hour <= 23 &&
+        minute >= 0 &&
+        minute <= 59 &&
+        (second == null || (second! >= 0 && second! <= 59));
   }
 }
 
@@ -321,7 +327,8 @@ class AppDatePickerValidator {
     return null;
   }
 
-  static String? Function(DateTime?) dateRange(DateTime? minDate, DateTime? maxDate) {
+  static String? Function(DateTime?) dateRange(
+      DateTime? minDate, DateTime? maxDate) {
     return (DateTime? value) {
       if (value == null) return null;
 
@@ -360,7 +367,8 @@ class AppDatePickerValidator {
   static String? Function(DateTime?) weekdaysOnly() {
     return (DateTime? value) {
       if (value == null) return null;
-      if (value.weekday == DateTime.saturday || value.weekday == DateTime.sunday) {
+      if (value.weekday == DateTime.saturday ||
+          value.weekday == DateTime.sunday) {
         return 'Solo se permiten días de semana';
       }
       return null;
@@ -370,7 +378,8 @@ class AppDatePickerValidator {
   static String? Function(DateTime?) excludeWeekends() {
     return (DateTime? value) {
       if (value == null) return null;
-      if (value.weekday == DateTime.saturday || value.weekday == DateTime.sunday) {
+      if (value.weekday == DateTime.saturday ||
+          value.weekday == DateTime.sunday) {
         return 'Los fines de semana no están permitidos';
       }
       return null;
@@ -392,7 +401,8 @@ class AppDatePickerValidator {
     };
   }
 
-  static String? Function(AppDateRange?) minimumRangeDuration(Duration minDuration) {
+  static String? Function(AppDateRange?) minimumRangeDuration(
+      Duration minDuration) {
     return (AppDateRange? value) {
       if (value == null || value.isEmpty || value.isPartial) return null;
       final duration = value.duration;
@@ -403,7 +413,8 @@ class AppDatePickerValidator {
     };
   }
 
-  static String? Function(AppDateRange?) maximumRangeDuration(Duration maxDuration) {
+  static String? Function(AppDateRange?) maximumRangeDuration(
+      Duration maxDuration) {
     return (AppDateRange? value) {
       if (value == null || value.isEmpty || value.isPartial) return null;
       final duration = value.duration;
@@ -426,7 +437,8 @@ class AppDatePickerValidator {
     };
   }
 
-  static String? Function(AppTimeValue?) timeRange(AppTimeValue? minTime, AppTimeValue? maxTime) {
+  static String? Function(AppTimeValue?) timeRange(
+      AppTimeValue? minTime, AppTimeValue? maxTime) {
     return (AppTimeValue? value) {
       if (value == null) return null;
 
@@ -450,7 +462,8 @@ class AppDatePickerValidator {
     };
   }
 
-  static String? Function(dynamic) combine(List<String? Function(dynamic)> validators) {
+  static String? Function(dynamic) combine(
+      List<String? Function(dynamic)> validators) {
     return (dynamic value) {
       for (final validator in validators) {
         final result = validator(value);
@@ -553,16 +566,36 @@ extension AppDatePickerHelpers on DateTime {
 
   String _getMonthName(int month) {
     const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
     ];
     return months[month - 1];
   }
 
   String _getMonthAbbrev(int month) {
     const months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
     ];
     return months[month - 1];
   }

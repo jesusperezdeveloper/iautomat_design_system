@@ -260,9 +260,18 @@ void main() {
                     onChanged: (_) {},
                     variant: AppRadioVariant.segmented,
                     options: const [
-                      AppRadioValue(value: 'left', label: 'Left', icon: Icons.format_align_left),
-                      AppRadioValue(value: 'center', label: 'Center', icon: Icons.format_align_center),
-                      AppRadioValue(value: 'right', label: 'Right', icon: Icons.format_align_right),
+                      AppRadioValue(
+                          value: 'left',
+                          label: 'Left',
+                          icon: Icons.format_align_left),
+                      AppRadioValue(
+                          value: 'center',
+                          label: 'Center',
+                          icon: Icons.format_align_center),
+                      AppRadioValue(
+                          value: 'right',
+                          label: 'Right',
+                          icon: Icons.format_align_right),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -274,9 +283,16 @@ void main() {
                     onChanged: (_) {},
                     variant: AppRadioVariant.segmented,
                     options: const [
-                      AppRadioValue(value: 'light', label: 'Light', icon: Icons.light_mode),
-                      AppRadioValue(value: 'dark', label: 'Dark', icon: Icons.dark_mode),
-                      AppRadioValue(value: 'auto', label: 'Auto', icon: Icons.brightness_auto),
+                      AppRadioValue(
+                          value: 'light',
+                          label: 'Light',
+                          icon: Icons.light_mode),
+                      AppRadioValue(
+                          value: 'dark', label: 'Dark', icon: Icons.dark_mode),
+                      AppRadioValue(
+                          value: 'auto',
+                          label: 'Auto',
+                          icon: Icons.brightness_auto),
                     ],
                   ),
                 ],
@@ -344,7 +360,8 @@ void main() {
                       pressedOverlay: Colors.purple.withValues(alpha: 0.12),
                       labelColor: Colors.black,
                       disabledLabelColor: Colors.grey,
-                      segmentBackgroundColor: Colors.purple.withValues(alpha: 0.1),
+                      segmentBackgroundColor:
+                          Colors.purple.withValues(alpha: 0.1),
                       segmentSelectedBackgroundColor: Colors.purple,
                       segmentBorderColor: Colors.purple,
                       segmentSelectedBorderColor: Colors.purple,
@@ -375,8 +392,10 @@ void main() {
                       focusOverlay: Colors.orange.withValues(alpha: 0.12),
                       pressedOverlay: Colors.orange.withValues(alpha: 0.12),
                       labelColor: theme.colorScheme.onSurface,
-                      disabledLabelColor: theme.colorScheme.onSurface.withValues(alpha: 0.38),
-                      segmentBackgroundColor: Colors.orange.withValues(alpha: 0.1),
+                      disabledLabelColor:
+                          theme.colorScheme.onSurface.withValues(alpha: 0.38),
+                      segmentBackgroundColor:
+                          Colors.orange.withValues(alpha: 0.1),
                       segmentSelectedBackgroundColor: Colors.orange,
                       segmentBorderColor: Colors.orange,
                       segmentSelectedBorderColor: Colors.orange,

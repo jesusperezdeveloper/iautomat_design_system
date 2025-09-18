@@ -274,7 +274,8 @@ class AppPaginationData with _$AppPaginationData {
   }
 
   /// Display text for current page info
-  String get pageInfoText => hasItems ? '$startIndex-$endIndex of $totalItems' : '0 of 0';
+  String get pageInfoText =>
+      hasItems ? '$startIndex-$endIndex of $totalItems' : '0 of 0';
 
   /// List of visible page numbers
   List<int> getVisiblePages(int maxVisible) {
@@ -333,7 +334,8 @@ class AppPaginationUtils {
   }
 
   /// Generate page range for display
-  static List<int> generatePageRange(int currentPage, int totalPages, int maxVisible) {
+  static List<int> generatePageRange(
+      int currentPage, int totalPages, int maxVisible) {
     if (totalPages <= maxVisible) {
       return List.generate(totalPages, (index) => index + 1);
     }
@@ -400,9 +402,7 @@ class AppPaginationUtils {
 
   /// Validate pagination configuration
   static bool isValidConfig(AppPaginationData data) {
-    return data.pageSize > 0 &&
-           data.currentPage > 0 &&
-           data.totalItems >= 0;
+    return data.pageSize > 0 && data.currentPage > 0 && data.totalItems >= 0;
   }
 
   /// Calculate optimal page size for screen size
@@ -415,7 +415,8 @@ class AppPaginationUtils {
   }
 
   /// Generate semantic label for page button
-  static String getPageButtonSemanticLabel(int page, int currentPage, int totalPages) {
+  static String getPageButtonSemanticLabel(
+      int page, int currentPage, int totalPages) {
     if (page == currentPage) {
       return 'Page $page of $totalPages, current page';
     }

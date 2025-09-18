@@ -122,7 +122,8 @@ class AppTabsBehavior with _$AppTabsBehavior {
     @Default(true) bool allowTabSwitching,
     @Default(false) bool automaticIndicatorColorAdjustment,
     @Default(AppTabsIndicatorSize.tab) AppTabsIndicatorSize indicatorSize,
-    @Default(AppTabsLabelBehavior.alwaysShow) AppTabsLabelBehavior labelBehavior,
+    @Default(AppTabsLabelBehavior.alwaysShow)
+    AppTabsLabelBehavior labelBehavior,
     @Default(TabAlignment.start) TabAlignment tabAlignment,
     @Default(300) int animationDuration,
   }) = _AppTabsBehavior;

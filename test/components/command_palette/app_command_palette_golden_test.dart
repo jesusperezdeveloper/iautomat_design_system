@@ -57,7 +57,8 @@ void main() {
         await tester.pump();
         await expectLater(
           find.byType(AppCommandPalette),
-          matchesGoldenFile('golden/app_command_palette/global_search_default.png'),
+          matchesGoldenFile(
+              'golden/app_command_palette/global_search_default.png'),
         );
       });
 
@@ -269,7 +270,8 @@ void main() {
         await tester.pump();
         await expectLater(
           find.byType(AppCommandPalette),
-          matchesGoldenFile('golden/app_command_palette/mixed_result_types.png'),
+          matchesGoldenFile(
+              'golden/app_command_palette/mixed_result_types.png'),
         );
       });
     });

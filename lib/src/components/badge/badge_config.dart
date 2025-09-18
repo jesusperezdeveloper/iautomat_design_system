@@ -44,7 +44,8 @@ class AppBadgeConfig with _$AppBadgeConfig {
   bool get isLoading => loading || state == AppBadgeState.loading;
   bool get isSkeleton => skeleton || state == AppBadgeState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
-  bool get canInteract => isInteractive && !isDisabled && !isLoading && !isSkeleton;
+  bool get canInteract =>
+      isInteractive && !isDisabled && !isLoading && !isSkeleton;
   bool get hasLabel => label != null && label!.isNotEmpty;
   bool get hasValue => value != null;
   bool get hasStatus => status != null;
@@ -310,9 +311,10 @@ extension AppBadgeVariantExtension on AppBadgeVariant {
 }
 
 extension AppBadgeStateExtension on AppBadgeState {
-  bool get isInteractiveState => this == AppBadgeState.hover ||
-                                this == AppBadgeState.pressed ||
-                                this == AppBadgeState.focus;
+  bool get isInteractiveState =>
+      this == AppBadgeState.hover ||
+      this == AppBadgeState.pressed ||
+      this == AppBadgeState.focus;
 
   bool get isDisabledState => this == AppBadgeState.disabled;
   bool get isLoadingState => this == AppBadgeState.loading;
@@ -405,8 +407,11 @@ extension AppBadgePositionExtension on AppBadgePosition {
   }
 
   Offset getOffset(AppBadgeSize size) {
-    final offsetValue = size == AppBadgeSize.small ? 4.0 :
-                      size == AppBadgeSize.medium ? 6.0 : 8.0;
+    final offsetValue = size == AppBadgeSize.small
+        ? 4.0
+        : size == AppBadgeSize.medium
+            ? 6.0
+            : 8.0;
 
     switch (this) {
       case AppBadgePosition.topLeft:
@@ -448,7 +453,8 @@ class AppBadgeConstants {
   static const Curve defaultAnimationCurve = Curves.easeInOut;
   static const Duration defaultPulseDuration = Duration(seconds: 2);
 
-  static const EdgeInsetsGeometry defaultPadding = EdgeInsets.symmetric(horizontal: 6.0, vertical: 3.0);
+  static const EdgeInsetsGeometry defaultPadding =
+      EdgeInsets.symmetric(horizontal: 6.0, vertical: 3.0);
   static const EdgeInsetsGeometry defaultMargin = EdgeInsets.zero;
 
   static const BoxConstraints defaultConstraints = BoxConstraints(

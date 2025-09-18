@@ -192,7 +192,8 @@ void main() {
         ));
         await tester.pumpAndSettle();
 
-        final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+        final gesture =
+            await tester.createGesture(kind: PointerDeviceKind.mouse);
         await gesture.addPointer(location: Offset.zero);
         addTearDown(gesture.removePointer);
         await tester.pump();
@@ -205,7 +206,8 @@ void main() {
     });
 
     group('Keyboard support', () {
-      testWidgets('responds to key events when keyboard support is enabled', (tester) async {
+      testWidgets('responds to key events when keyboard support is enabled',
+          (tester) async {
         var toggledValue = false;
 
         await tester.pumpWidget(createSwitchApp(
@@ -224,7 +226,8 @@ void main() {
         expect(toggledValue, isTrue);
       });
 
-      testWidgets('switch can be toggled when keyboard support is disabled', (tester) async {
+      testWidgets('switch can be toggled when keyboard support is disabled',
+          (tester) async {
         var toggledValue = false;
 
         await tester.pumpWidget(createSwitchApp(
@@ -244,7 +247,8 @@ void main() {
     });
 
     group('RTL support', () {
-      testWidgets('applies RTL directionality when isRtl is true', (tester) async {
+      testWidgets('applies RTL directionality when isRtl is true',
+          (tester) async {
         await tester.pumpWidget(createSwitchApp(
           config: const AppSwitchConfig(isRtl: true),
         ));
@@ -266,7 +270,8 @@ void main() {
     });
 
     group('Accessibility', () {
-      testWidgets('provides semantic labels when a11y is enabled', (tester) async {
+      testWidgets('provides semantic labels when a11y is enabled',
+          (tester) async {
         await tester.pumpWidget(createSwitchApp(
           config: const AppSwitchConfig(enableA11y: true),
           semanticsLabel: testSemanticLabel,
@@ -448,7 +453,8 @@ void main() {
         expect(configCallbackValue, isTrue);
       });
 
-      testWidgets('calls onChanged from config when widget prop is null', (tester) async {
+      testWidgets('calls onChanged from config when widget prop is null',
+          (tester) async {
         var configCallbackValue = false;
 
         await tester.pumpWidget(createSwitchApp(

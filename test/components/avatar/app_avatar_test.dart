@@ -405,7 +405,8 @@ void main() {
     });
 
     test('should detect content properties correctly', () {
-      const configWithImageUrl = AppAvatarConfig(imageUrl: 'http://example.com');
+      const configWithImageUrl =
+          AppAvatarConfig(imageUrl: 'http://example.com');
       const configWithInitials = AppAvatarConfig(initials: 'AB');
       const configWithGroupImages = AppAvatarConfig(groupImageUrls: ['url1']);
       const configWithGroupInitials = AppAvatarConfig(groupInitials: ['AB']);
@@ -468,7 +469,8 @@ void main() {
       const withCustomBorderWidth = AppAvatarConfig(borderWidth: 5.0);
       const noBorder = AppAvatarConfig(showBorder: false);
 
-      expect(withBorder.getEffectiveBorderWidth(), AppAvatarConstants.defaultBorderWidth);
+      expect(withBorder.getEffectiveBorderWidth(),
+          AppAvatarConstants.defaultBorderWidth);
       expect(withCustomBorderWidth.getEffectiveBorderWidth(), 5.0);
       expect(noBorder.getEffectiveBorderWidth(), 0.0);
     });

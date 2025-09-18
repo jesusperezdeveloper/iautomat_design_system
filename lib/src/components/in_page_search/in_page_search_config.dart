@@ -99,7 +99,8 @@ class AppInPageSearchConfig with _$AppInPageSearchConfig {
     @Default(true) bool showShadow,
 
     // Padding and spacing
-    @Default(EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0)) EdgeInsets padding,
+    @Default(EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0))
+    EdgeInsets padding,
     @Default(EdgeInsets.all(8.0)) EdgeInsets margin,
     @Default(8.0) double iconSpacing,
     @Default(16.0) double buttonSpacing,
@@ -153,10 +154,13 @@ class AppInPageSearchConfig with _$AppInPageSearchConfig {
     String? searchingMessage,
 
     // Keyboard shortcuts
-    @Default([LogicalKeyboardKey.escape]) List<LogicalKeyboardKey> closeShortcut,
-    @Default([LogicalKeyboardKey.enter]) List<LogicalKeyboardKey> searchShortcut,
+    @Default([LogicalKeyboardKey.escape])
+    List<LogicalKeyboardKey> closeShortcut,
+    @Default([LogicalKeyboardKey.enter])
+    List<LogicalKeyboardKey> searchShortcut,
     @Default([LogicalKeyboardKey.f3]) List<LogicalKeyboardKey> nextShortcut,
-    @Default([LogicalKeyboardKey.shift, LogicalKeyboardKey.f3]) List<LogicalKeyboardKey> previousShortcut,
+    @Default([LogicalKeyboardKey.shift, LogicalKeyboardKey.f3])
+    List<LogicalKeyboardKey> previousShortcut,
 
     // Accessibility configuration
     @Default(true) bool enableAccessibility,
@@ -296,10 +300,12 @@ class AppInPageSearchData with _$AppInPageSearchData {
   bool get hasResults => totalResults > 0;
 
   /// Whether there is an active highlight
-  bool get hasActiveHighlight => activeHighlightIndex >= 0 && activeHighlightIndex < highlights.length;
+  bool get hasActiveHighlight =>
+      activeHighlightIndex >= 0 && activeHighlightIndex < highlights.length;
 
   /// Current active highlight if any
-  AppSearchHighlight? get activeHighlight => hasActiveHighlight ? highlights[activeHighlightIndex] : null;
+  AppSearchHighlight? get activeHighlight =>
+      hasActiveHighlight ? highlights[activeHighlightIndex] : null;
 
   /// Whether we can navigate to next result
   bool get canNavigateNext => hasResults && currentResultIndex < totalResults;
@@ -346,11 +352,13 @@ class AppInPageSearchUtils {
       }
 
       final matches = pattern.allMatches(text);
-      return matches.map((match) => AppSearchHighlight(
-        start: match.start,
-        end: match.end,
-        text: match.group(0) ?? '',
-      )).toList();
+      return matches
+          .map((match) => AppSearchHighlight(
+                start: match.start,
+                end: match.end,
+                text: match.group(0) ?? '',
+              ))
+          .toList();
     } catch (e) {
       // Invalid regex or other error
       return [];
@@ -433,7 +441,8 @@ class AppInPageSearchUtils {
   }
 
   /// Calculate search score for relevance
-  static double calculateSearchScore(AppSearchHighlight highlight, String fullText) {
+  static double calculateSearchScore(
+      AppSearchHighlight highlight, String fullText) {
     // Basic scoring: longer matches and earlier positions get higher scores
     final lengthScore = highlight.text.length / fullText.length;
     final positionScore = 1.0 - (highlight.start / fullText.length);

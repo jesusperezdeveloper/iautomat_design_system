@@ -64,17 +64,18 @@ class AppSelect<T> extends StatefulWidget {
     this.searchHint,
     this.searchMatcher,
   }) : assert(
-    (variant == AppSelectVariant.single && onChanged != null) ||
-    (variant == AppSelectVariant.multi && onMultiChanged != null) ||
-    (variant == AppSelectVariant.searchable && onChanged != null),
-    'Value and callback must match the variant type',
-  );
+          (variant == AppSelectVariant.single && onChanged != null) ||
+              (variant == AppSelectVariant.multi && onMultiChanged != null) ||
+              (variant == AppSelectVariant.searchable && onChanged != null),
+          'Value and callback must match the variant type',
+        );
 
   @override
   State<AppSelect<T>> createState() => _AppSelectState<T>();
 }
 
-class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMixin {
+class _AppSelectState<T> extends State<AppSelect<T>>
+    with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late AnimationController _animationController;
   late AnimationController _skeletonAnimationController;
@@ -93,8 +94,7 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
   List<AppSelectItem<T>> _filteredItems = [];
   String _searchQuery = '';
 
-  AppSelectConfig get _config =>
-      widget.config ?? const AppSelectConfig();
+  AppSelectConfig get _config => widget.config ?? const AppSelectConfig();
 
   AppSelectColors get _colors =>
       widget.colors ?? AppSelectColors.fromTheme(Theme.of(context));
@@ -154,7 +154,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
         if (widget.value != null) {
           final item = widget.items.firstWhere(
             (item) => item.value == widget.value,
-            orElse: () => AppSelectItem(value: widget.value as T, label: widget.value.toString()),
+            orElse: () => AppSelectItem(
+                value: widget.value as T, label: widget.value.toString()),
           );
           return item.label;
         }
@@ -180,7 +181,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
     );
 
     _skeletonAnimationController = AnimationController(
-      duration: Duration(milliseconds: (1000 / _config.skeletonShimmerSpeed).round()),
+      duration:
+          Duration(milliseconds: (1000 / _config.skeletonShimmerSpeed).round()),
       vsync: this,
     );
 
@@ -243,7 +245,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
   void _handleTap() {
     if (!_isEnabled) return;
 
-    if (_config.enableHapticFeedback && (Platform.isIOS || Platform.isAndroid)) {
+    if (_config.enableHapticFeedback &&
+        (Platform.isIOS || Platform.isAndroid)) {
       HapticFeedback.lightImpact();
     }
 
@@ -306,7 +309,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
 
   void _handleSearch(String query) {
     _searchDebounceTimer?.cancel();
-    _searchDebounceTimer = Timer(Duration(milliseconds: _config.searchDebounceMs), () {
+    _searchDebounceTimer =
+        Timer(Duration(milliseconds: _config.searchDebounceMs), () {
       setState(() {
         _searchQuery = query.toLowerCase();
         _filteredItems = widget.items.where((item) {
@@ -347,7 +351,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
                 height: 16,
                 width: 80,
                 decoration: BoxDecoration(
-                  color: _colors.skeletonBaseColor.withValues(alpha: _skeletonAnimation.value),
+                  color: _colors.skeletonBaseColor
+                      .withValues(alpha: _skeletonAnimation.value),
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -357,7 +362,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
               height: _config.minimumHeight,
               width: widget.width ?? double.infinity,
               decoration: BoxDecoration(
-                color: _colors.skeletonBaseColor.withValues(alpha: _skeletonAnimation.value),
+                color: _colors.skeletonBaseColor
+                    .withValues(alpha: _skeletonAnimation.value),
                 borderRadius: BorderRadius.circular(_config.borderRadius),
                 border: Border.all(
                   color: _colors.skeletonHighlightColor.withValues(alpha: 0.5),
@@ -371,7 +377,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
                 height: 12,
                 width: 120,
                 decoration: BoxDecoration(
-                  color: _colors.skeletonBaseColor.withValues(alpha: _skeletonAnimation.value),
+                  color: _colors.skeletonBaseColor
+                      .withValues(alpha: _skeletonAnimation.value),
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -504,7 +511,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
                   : _isFocused
                       ? _colors.focusedBorderColor
                       : _colors.borderColor,
-              width: _isFocused ? _config.focusBorderWidth : _config.borderWidth,
+              width:
+                  _isFocused ? _config.focusBorderWidth : _config.borderWidth,
             ),
           ),
           child: Padding(
@@ -516,9 +524,10 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
                   SizedBox(width: _config.itemSpacing),
                 ],
                 Expanded(
-                  child: widget.variant == AppSelectVariant.multi && _hasSelection
-                      ? _buildMultiSelectChips()
-                      : _buildSingleSelectText(theme),
+                  child:
+                      widget.variant == AppSelectVariant.multi && _hasSelection
+                          ? _buildMultiSelectChips()
+                          : _buildSingleSelectText(theme),
                 ),
                 if (widget.suffixIcon != null) ...[
                   SizedBox(width: _config.itemSpacing),
@@ -531,7 +540,9 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
                   child: Icon(
                     Icons.keyboard_arrow_down,
                     size: _config.iconSize,
-                    color: _isEnabled ? _colors.dropdownIconColor : _colors.disabledIconColor,
+                    color: _isEnabled
+                        ? _colors.dropdownIconColor
+                        : _colors.disabledIconColor,
                   ),
                 ),
               ],
@@ -575,8 +586,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
           label: Text(
             item.label,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: _colors.chipTextColor,
-            ),
+                  color: _colors.chipTextColor,
+                ),
           ),
           backgroundColor: _colors.chipBackgroundColor,
           side: BorderSide(color: _colors.chipBorderColor),
@@ -605,7 +616,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
           showWhenUnlinked: false,
           offset: Offset(0, size.height + _config.dropdownOffset),
           child: Material(
-            elevation: _config.enableDropdownElevation ? _config.dropdownElevation : 0,
+            elevation:
+                _config.enableDropdownElevation ? _config.dropdownElevation : 0,
             borderRadius: BorderRadius.circular(_config.borderRadius),
             color: _colors.dropdownBackgroundColor,
             child: Container(
@@ -629,7 +641,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,
                       itemCount: _filteredItems.length,
-                      itemBuilder: (context, index) => _buildDropdownItem(_filteredItems[index]),
+                      itemBuilder: (context, index) =>
+                          _buildDropdownItem(_filteredItems[index]),
                     ),
                   ),
                 ],
@@ -673,7 +686,9 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
         height: _config.itemHeight,
         padding: EdgeInsets.symmetric(horizontal: _config.itemSpacing),
         decoration: BoxDecoration(
-          color: isSelected ? _colors.itemSelectedColor : _colors.itemBackgroundColor,
+          color: isSelected
+              ? _colors.itemSelectedColor
+              : _colors.itemBackgroundColor,
         ),
         child: Row(
           children: [
@@ -684,7 +699,8 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
             if (widget.variant == AppSelectVariant.multi)
               Checkbox(
                 value: isSelected,
-                onChanged: item.enabled ? (_) => _handleSelection(item.value) : null,
+                onChanged:
+                    item.enabled ? (_) => _handleSelection(item.value) : null,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 visualDensity: VisualDensity.compact,
               ),
@@ -698,20 +714,20 @@ class _AppSelectState<T> extends State<AppSelect<T>> with TickerProviderStateMix
                   Text(
                     item.label,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: item.enabled
-                          ? _colors.itemTextColor
-                          : _colors.itemDisabledTextColor,
-                    ),
+                          color: item.enabled
+                              ? _colors.itemTextColor
+                              : _colors.itemDisabledTextColor,
+                        ),
                     overflow: TextOverflow.ellipsis,
                   ),
                   if (item.subtitle != null)
                     Text(
                       item.subtitle!,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: item.enabled
-                            ? _colors.itemTextColor.withValues(alpha: 0.7)
-                            : _colors.itemDisabledTextColor,
-                      ),
+                            color: item.enabled
+                                ? _colors.itemTextColor.withValues(alpha: 0.7)
+                                : _colors.itemDisabledTextColor,
+                          ),
                       overflow: TextOverflow.ellipsis,
                     ),
                 ],

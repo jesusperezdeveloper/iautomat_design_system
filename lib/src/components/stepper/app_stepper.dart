@@ -133,7 +133,8 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
       _initializeStepKeys();
     }
 
-    if (widget.currentStep != oldWidget.currentStep && _config?.autoScrollToActiveStep == true) {
+    if (widget.currentStep != oldWidget.currentStep &&
+        _config?.autoScrollToActiveStep == true) {
       _scrollToStep(widget.currentStep);
     }
 
@@ -242,7 +243,8 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Scrollable.ensureVisible(
         context,
-        duration: _config?.scrollAnimationDuration ?? const Duration(milliseconds: 300),
+        duration: _config?.scrollAnimationDuration ??
+            const Duration(milliseconds: 300),
         curve: _config?.scrollAnimationCurve ?? Curves.easeOutCubic,
       );
     });
@@ -259,7 +261,8 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
         height: 24,
         child: CircularProgressIndicator(
           strokeWidth: 2,
-          valueColor: AlwaysStoppedAnimation<Color>(_colors!.loadingIndicatorColor),
+          valueColor:
+              AlwaysStoppedAnimation<Color>(_colors!.loadingIndicatorColor),
         ),
       );
     }
@@ -305,7 +308,8 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
       child: LinearProgressIndicator(
         value: progress,
         backgroundColor: _colors!.inactiveConnectorColor,
-        valueColor: AlwaysStoppedAnimation<Color>(_colors!.progressIndicatorColor),
+        valueColor:
+            AlwaysStoppedAnimation<Color>(_colors!.progressIndicatorColor),
       ),
     );
   }
@@ -463,7 +467,8 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
   }
 
   Widget _buildStepConnector(int index) {
-    if (!(_config?.showConnectors ?? true) || index >= widget.steps.length - 1) {
+    if (!(_config?.showConnectors ?? true) ||
+        index >= widget.steps.length - 1) {
       return const SizedBox.shrink();
     }
 
@@ -490,7 +495,8 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
         width: _config!.connectorThickness,
         height: _config!.verticalSpacing,
         color: connectorColor,
-        margin: EdgeInsets.symmetric(horizontal: _config!.stepRadius - _config!.connectorThickness / 2),
+        margin: EdgeInsets.symmetric(
+            horizontal: _config!.stepRadius - _config!.connectorThickness / 2),
       );
     }
   }
@@ -543,16 +549,19 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
       final builder = widget.controlsBuilder!;
 
       final continueButton = builder.continueButton ??
-        ElevatedButton(
-          onPressed: (builder.enableContinue ?? continueEnabled) ? _handleContinue : null,
-          child: Text(builder.continueLabel ?? continueLabel),
-        );
+          ElevatedButton(
+            onPressed: (builder.enableContinue ?? continueEnabled)
+                ? _handleContinue
+                : null,
+            child: Text(builder.continueLabel ?? continueLabel),
+          );
 
       final cancelButton = builder.cancelButton ??
-        TextButton(
-          onPressed: (builder.enableCancel ?? cancelEnabled) ? _handleCancel : null,
-          child: Text(builder.cancelLabel ?? cancelLabel),
-        );
+          TextButton(
+            onPressed:
+                (builder.enableCancel ?? cancelEnabled) ? _handleCancel : null,
+            child: Text(builder.cancelLabel ?? cancelLabel),
+          );
 
       return Padding(
         padding: EdgeInsets.only(top: _config!.verticalSpacing),
@@ -562,8 +571,7 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
               cancelButton,
               SizedBox(width: _config!.horizontalSpacing),
             ],
-            if (builder.showContinue ?? true)
-              continueButton,
+            if (builder.showContinue ?? true) continueButton,
           ],
         ),
       );
@@ -579,8 +587,8 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
               onPressed: cancelEnabled ? _handleCancel : null,
               style: TextButton.styleFrom(
                 foregroundColor: cancelEnabled
-                  ? _colors!.controlButtonColor
-                  : _colors!.controlButtonDisabledColor,
+                    ? _colors!.controlButtonColor
+                    : _colors!.controlButtonDisabledColor,
               ),
               child: Text(cancelLabel),
             ),
@@ -590,11 +598,11 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
             onPressed: continueEnabled ? _handleContinue : null,
             style: ElevatedButton.styleFrom(
               backgroundColor: continueEnabled
-                ? _colors!.controlButtonColor
-                : _colors!.controlButtonDisabledColor,
+                  ? _colors!.controlButtonColor
+                  : _colors!.controlButtonDisabledColor,
               foregroundColor: continueEnabled
-                ? _colors!.controlButtonTextColor
-                : _colors!.controlButtonDisabledTextColor,
+                  ? _colors!.controlButtonTextColor
+                  : _colors!.controlButtonDisabledTextColor,
             ),
             child: Text(continueLabel),
           ),
@@ -612,9 +620,10 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
           for (int i = 0; i < widget.steps.length; i++) ...[
             InkWell(
               key: _stepKeys[i],
-              onTap: widget.steps[i].canInteract && (_config?.allowStepTapping ?? true)
-                ? () => _handleStepTapped(i)
-                : null,
+              onTap: widget.steps[i].canInteract &&
+                      (_config?.allowStepTapping ?? true)
+                  ? () => _handleStepTapped(i)
+                  : null,
               borderRadius: BorderRadius.circular(_config!.stepRadius),
               child: Container(
                 padding: _config!.stepPadding,
@@ -649,9 +658,10 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
           for (int i = 0; i < widget.steps.length; i++) ...[
             InkWell(
               key: _stepKeys[i],
-              onTap: widget.steps[i].canInteract && (_config?.allowStepTapping ?? true)
-                ? () => _handleStepTapped(i)
-                : null,
+              onTap: widget.steps[i].canInteract &&
+                      (_config?.allowStepTapping ?? true)
+                  ? () => _handleStepTapped(i)
+                  : null,
               borderRadius: BorderRadius.circular(8),
               child: Container(
                 padding: _config!.stepPadding,
@@ -696,7 +706,8 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
     return Directionality(
       textDirection: directionality,
       child: Semantics(
-        label: widget.semanticLabel ?? 'Stepper with ${widget.steps.length} steps',
+        label:
+            widget.semanticLabel ?? 'Stepper with ${widget.steps.length} steps',
         child: Container(
           width: widget.width,
           height: widget.height,

@@ -180,7 +180,8 @@ class _AppNavigationState extends State<AppNavigation>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
+    final isRtl =
+        widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
 
     return Directionality(
       textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
@@ -203,7 +204,8 @@ class _AppNavigationState extends State<AppNavigation>
     );
   }
 
-  Widget _buildNavigationVariant(BuildContext context, ThemeData theme, bool isRtl) {
+  Widget _buildNavigationVariant(
+      BuildContext context, ThemeData theme, bool isRtl) {
     if (_isLoading) {
       return _buildLoadingNavigation(context, theme);
     }
@@ -224,7 +226,8 @@ class _AppNavigationState extends State<AppNavigation>
     }
   }
 
-  Widget _buildBottomNavigation(BuildContext context, ThemeData theme, bool isRtl) {
+  Widget _buildBottomNavigation(
+      BuildContext context, ThemeData theme, bool isRtl) {
     final destinations = _getDestinations();
     if (destinations.isEmpty) return const SizedBox.shrink();
 
@@ -236,15 +239,15 @@ class _AppNavigationState extends State<AppNavigation>
           color: _getBackgroundColor(theme),
           child: Center(
             child: destinations.isEmpty
-              ? const Text('No destinations provided')
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    destinations.first.icon,
-                    const SizedBox(width: 8),
-                    Text(destinations.first.label),
-                  ],
-                ),
+                ? const Text('No destinations provided')
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      destinations.first.icon,
+                      const SizedBox(width: 8),
+                      Text(destinations.first.label),
+                    ],
+                  ),
           ),
         ),
       );
@@ -279,7 +282,8 @@ class _AppNavigationState extends State<AppNavigation>
     );
   }
 
-  Widget _buildNavigationRail(BuildContext context, ThemeData theme, bool isRtl) {
+  Widget _buildNavigationRail(
+      BuildContext context, ThemeData theme, bool isRtl) {
     final destinations = _getDestinations();
     if (destinations.isEmpty) return const SizedBox.shrink();
 
@@ -303,8 +307,8 @@ class _AppNavigationState extends State<AppNavigation>
         onDestinationSelected: _handleDestinationTap,
         backgroundColor: _getBackgroundColor(theme),
         elevation: widget.config.elevation?.railElevation == 0.0
-          ? null
-          : widget.config.elevation?.railElevation,
+            ? null
+            : widget.config.elevation?.railElevation,
         labelType: _getRailLabelType(),
         groupAlignment: 0.0,
         leading: widget.header,
@@ -317,18 +321,21 @@ class _AppNavigationState extends State<AppNavigation>
     );
   }
 
-  Widget _buildNavigationDrawer(BuildContext context, ThemeData theme, bool isRtl) {
+  Widget _buildNavigationDrawer(
+      BuildContext context, ThemeData theme, bool isRtl) {
     return _buildDrawerContent(context, theme, isRtl);
   }
 
-  Widget _buildPermanentDrawer(BuildContext context, ThemeData theme, bool isRtl) {
+  Widget _buildPermanentDrawer(
+      BuildContext context, ThemeData theme, bool isRtl) {
     return SizedBox(
       width: widget.width ?? widget.config.spacing?.drawerWidth ?? 256.0,
       child: _buildDrawerContent(context, theme, isRtl),
     );
   }
 
-  Widget _buildDrawerContent(BuildContext context, ThemeData theme, bool isRtl) {
+  Widget _buildDrawerContent(
+      BuildContext context, ThemeData theme, bool isRtl) {
     final destinations = _getDestinations();
 
     return Drawer(
@@ -363,7 +370,8 @@ class _AppNavigationState extends State<AppNavigation>
     int index,
   ) {
     final isSelected = index == _currentIndex;
-    final isInteractive = !destination.disabled && widget.config.state.isInteractive;
+    final isInteractive =
+        !destination.disabled && widget.config.state.isInteractive;
 
     return AnimatedBuilder(
       animation: _selectionAnimation,
@@ -372,7 +380,8 @@ class _AppNavigationState extends State<AppNavigation>
           onEnter: (_) => _setHovered(destination.id, true),
           onExit: (_) => _setHovered(destination.id, false),
           child: ListTile(
-            leading: destination.leading ?? _buildIconWithBadge(destination, index, isSelected),
+            leading: destination.leading ??
+                _buildIconWithBadge(destination, index, isSelected),
             title: Text(destination.label),
             trailing: destination.trailing,
             selected: isSelected,
@@ -380,8 +389,12 @@ class _AppNavigationState extends State<AppNavigation>
             onTap: isInteractive ? () => _handleDestinationTap(index) : null,
             hoverColor: theme.colorScheme.onSurface.withValues(alpha: 0.08),
             selectedColor: _getSelectedItemColor(theme),
-            iconColor: isSelected ? _getSelectedIconColor(theme) : _getUnselectedIconColor(theme),
-            textColor: isSelected ? _getSelectedLabelColor(theme) : _getUnselectedLabelColor(theme),
+            iconColor: isSelected
+                ? _getSelectedIconColor(theme)
+                : _getUnselectedIconColor(theme),
+            textColor: isSelected
+                ? _getSelectedLabelColor(theme)
+                : _getUnselectedLabelColor(theme),
             style: ListTileStyle.drawer,
             visualDensity: VisualDensity.standard,
             contentPadding: EdgeInsets.symmetric(
@@ -397,7 +410,8 @@ class _AppNavigationState extends State<AppNavigation>
     switch (widget.config.variant) {
       case AppNavigationVariant.bottomBar:
         return Container(
-          height: widget.height ?? widget.config.spacing?.bottomBarHeight ?? 80.0,
+          height:
+              widget.height ?? widget.config.spacing?.bottomBarHeight ?? 80.0,
           color: _getBackgroundColor(theme),
           child: Center(
             child: CircularProgressIndicator(
@@ -447,7 +461,8 @@ class _AppNavigationState extends State<AppNavigation>
     switch (widget.config.variant) {
       case AppNavigationVariant.bottomBar:
         return Container(
-          height: widget.height ?? widget.config.spacing?.bottomBarHeight ?? 80.0,
+          height:
+              widget.height ?? widget.config.spacing?.bottomBarHeight ?? 80.0,
           color: _getBackgroundColor(theme),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -514,7 +529,8 @@ class _AppNavigationState extends State<AppNavigation>
                       width: 24,
                       height: 24,
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
+                        color:
+                            theme.colorScheme.onSurface.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -523,7 +539,8 @@ class _AppNavigationState extends State<AppNavigation>
                       width: 80,
                       height: 16,
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
+                        color:
+                            theme.colorScheme.onSurface.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
@@ -612,14 +629,14 @@ class _AppNavigationState extends State<AppNavigation>
   AppNavigationBadge? _getBadgeForDestination(String destinationId) {
     final badges = widget.badges ?? widget.config.badges;
     return badges.cast<AppNavigationBadge?>().firstWhere(
-      (badge) => badge?.destinationId == destinationId,
-      orElse: () => null,
-    );
+          (badge) => badge?.destinationId == destinationId,
+          orElse: () => null,
+        );
   }
 
-
   NavigationRailLabelType _getRailLabelType() {
-    final behavior = widget.config.behavior?.labelBehavior ?? AppNavigationLabelBehavior.alwaysShow;
+    final behavior = widget.config.behavior?.labelBehavior ??
+        AppNavigationLabelBehavior.alwaysShow;
 
     switch (behavior) {
       case AppNavigationLabelBehavior.alwaysShow:
@@ -638,57 +655,51 @@ class _AppNavigationState extends State<AppNavigation>
   // Color getters
   Color? _getBackgroundColor(ThemeData theme) {
     return widget.backgroundColor ??
-           widget.config.colors?.backgroundColor ??
-           theme.navigationBarTheme.backgroundColor;
+        widget.config.colors?.backgroundColor ??
+        theme.navigationBarTheme.backgroundColor;
   }
 
   Color? _getSelectedItemColor(ThemeData theme) {
     return widget.config.colors?.selectedItemColor ??
-           theme.navigationBarTheme.indicatorColor;
+        theme.navigationBarTheme.indicatorColor;
   }
-
 
   Color? _getSelectedIconColor(ThemeData theme) {
     return widget.config.colors?.selectedIconColor ??
-           theme.colorScheme.onSurface;
+        theme.colorScheme.onSurface;
   }
 
   Color? _getUnselectedIconColor(ThemeData theme) {
     return widget.config.colors?.unselectedIconColor ??
-           theme.colorScheme.onSurface;
+        theme.colorScheme.onSurface;
   }
 
   Color? _getSelectedLabelColor(ThemeData theme) {
     return widget.config.colors?.selectedLabelColor ??
-           theme.colorScheme.onSurface;
+        theme.colorScheme.onSurface;
   }
 
   Color? _getUnselectedLabelColor(ThemeData theme) {
     return widget.config.colors?.unselectedLabelColor ??
-           theme.colorScheme.onSurface;
+        theme.colorScheme.onSurface;
   }
 
   Color? _getIndicatorColor(ThemeData theme) {
     return widget.config.colors?.indicatorColor ??
-           theme.navigationRailTheme.indicatorColor;
+        theme.navigationRailTheme.indicatorColor;
   }
 
   Color? _getSurfaceTintColor(ThemeData theme) {
-    return widget.surfaceTintColor ??
-           widget.config.colors?.surfaceTintColor;
+    return widget.surfaceTintColor ?? widget.config.colors?.surfaceTintColor;
   }
 
   Color? _getShadowColor(ThemeData theme) {
-    return widget.shadowColor ??
-           widget.config.colors?.shadowColor;
+    return widget.shadowColor ?? widget.config.colors?.shadowColor;
   }
-
 
   // Other getters
   double _getElevation() {
-    return widget.elevation ??
-           widget.config.elevation?.defaultElevation ??
-           8.0;
+    return widget.elevation ?? widget.config.elevation?.defaultElevation ?? 8.0;
   }
 
   double _getDrawerElevation() {
@@ -709,5 +720,4 @@ class _AppNavigationState extends State<AppNavigation>
         return NavigationDestinationLabelBehavior.alwaysShow;
     }
   }
-
 }

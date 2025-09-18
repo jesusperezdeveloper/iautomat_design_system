@@ -57,13 +57,15 @@ class AppKanbanConfig with _$AppKanbanConfig {
     Map<String, dynamic>? metadata,
   }) = _AppKanbanConfig;
 
-  bool get isInteractive => onMove != null || onCardTap != null || onColumnTap != null;
+  bool get isInteractive =>
+      onMove != null || onCardTap != null || onColumnTap != null;
   bool get isHoverable => onHover != null;
   bool get isDisabled => !enabled || state == AppKanbanState.disabled;
   bool get isLoading => loading || state == AppKanbanState.loading;
   bool get isSkeleton => skeleton || state == AppKanbanState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
-  bool get canInteract => isInteractive && !isDisabled && !isLoading && !isSkeleton;
+  bool get canInteract =>
+      isInteractive && !isDisabled && !isLoading && !isSkeleton;
   bool get hasColumns => columns.isNotEmpty;
   bool get hasCards => cards.isNotEmpty;
   bool get canDrag => draggable && canInteract;
@@ -195,7 +197,8 @@ class AppKanbanColumn with _$AppKanbanColumn {
   bool get hasFooter => footer != null;
   bool get hasLeading => leading != null;
   bool get hasTrailing => trailing != null;
-  bool get isInteractive => onTap != null || onLongPress != null || onHover != null;
+  bool get isInteractive =>
+      onTap != null || onLongPress != null || onHover != null;
   bool get isEnabled => enabled;
   bool get isVisible => visible;
   bool get isSelected => selected;
@@ -294,7 +297,8 @@ class AppKanbanCard with _$AppKanbanCard {
   bool get hasImage => imageUrl != null && imageUrl!.isNotEmpty;
   bool get hasDueDate => dueDate != null;
   bool get hasTags => tags != null && tags!.isNotEmpty;
-  bool get isInteractive => onTap != null || onLongPress != null || onHover != null;
+  bool get isInteractive =>
+      onTap != null || onLongPress != null || onHover != null;
   bool get isEnabled => enabled;
   bool get isVisible => visible;
   bool get isSelected => selected;
@@ -437,8 +441,10 @@ enum AppKanbanCardType {
 }
 
 // Type definitions
-typedef AppKanbanMoveCallback = void Function(String cardId, String fromColumnId, String toColumnId, int newIndex);
-typedef AppKanbanDropCallback = void Function(String cardId, String columnId, int index);
+typedef AppKanbanMoveCallback = void Function(
+    String cardId, String fromColumnId, String toColumnId, int newIndex);
+typedef AppKanbanDropCallback = void Function(
+    String cardId, String columnId, int index);
 typedef AppKanbanDragStartCallback = void Function(String cardId);
 typedef AppKanbanDragEndCallback = void Function(String cardId, bool success);
 typedef AppKanbanColumnCallback = void Function(String columnId);
@@ -450,9 +456,10 @@ extension AppKanbanVariantExtension on AppKanbanVariant {
 }
 
 extension AppKanbanStateExtension on AppKanbanState {
-  bool get isInteractiveState => this == AppKanbanState.hover ||
-                                this == AppKanbanState.pressed ||
-                                this == AppKanbanState.focus;
+  bool get isInteractiveState =>
+      this == AppKanbanState.hover ||
+      this == AppKanbanState.pressed ||
+      this == AppKanbanState.focus;
 
   bool get isDisabledState => this == AppKanbanState.disabled;
   bool get isLoadingState => this == AppKanbanState.loading;

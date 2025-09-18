@@ -92,7 +92,8 @@ void main() {
           AppKanbanCard(
             id: 'card-1',
             title: 'Epic: User Management System',
-            description: 'Comprehensive user management with roles and permissions',
+            description:
+                'Comprehensive user management with roles and permissions',
             type: AppKanbanCardType.epic,
             priority: AppKanbanCardPriority.high,
             tags: ['epic', 'backend'],
@@ -101,7 +102,8 @@ void main() {
           AppKanbanCard(
             id: 'card-2',
             title: 'Fix login bug',
-            description: 'Users cannot login with special characters in password',
+            description:
+                'Users cannot login with special characters in password',
             type: AppKanbanCardType.bug,
             priority: AppKanbanCardPriority.critical,
             tags: ['bug', 'auth'],
@@ -140,7 +142,8 @@ void main() {
     });
 
     testWidgets('kanban with cards with due dates', (tester) async {
-      final now = DateTime(2024, 1, 15); // Fixed date for consistent golden tests
+      final now =
+          DateTime(2024, 1, 15); // Fixed date for consistent golden tests
 
       final config = AppKanbanConfig(
         variant: AppKanbanVariant.dragDrop,
@@ -269,7 +272,8 @@ void main() {
             id: 'card-$index',
             title: 'Task ${index + 1}',
             description: 'Description for task ${index + 1}',
-            type: index % 2 == 0 ? AppKanbanCardType.task : AppKanbanCardType.bug,
+            type:
+                index % 2 == 0 ? AppKanbanCardType.task : AppKanbanCardType.bug,
             priority: AppKanbanCardPriority.values[index % 4],
             columnId: 'backlog',
           );

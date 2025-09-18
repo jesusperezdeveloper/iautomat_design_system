@@ -41,7 +41,8 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextArea), 'Hello World\nMultiple lines');
+      await tester.enterText(
+          find.byType(AppTextArea), 'Hello World\nMultiple lines');
       expect(controller.text, 'Hello World\nMultiple lines');
 
       controller.dispose();
@@ -101,7 +102,8 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextArea), 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5');
+      await tester.enterText(
+          find.byType(AppTextArea), 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5');
       expect(controller.text, 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5');
 
       controller.dispose();
@@ -166,7 +168,7 @@ void main() {
       // Check for loading indicator - platform specific
       expect(
         find.byType(CircularProgressIndicator).evaluate().isNotEmpty ||
-        find.byType(SizedBox).evaluate().length > 1,
+            find.byType(SizedBox).evaluate().length > 1,
         true,
       );
     });
@@ -586,7 +588,8 @@ void main() {
         );
 
         // Test long text
-        await tester.enterText(find.byType(AppTextArea), 'This text is way too long for the maximum limit');
+        await tester.enterText(find.byType(AppTextArea),
+            'This text is way too long for the maximum limit');
         formKey.currentState!.validate();
         await tester.pump();
 
@@ -658,14 +661,16 @@ void main() {
         );
 
         // Test too many words
-        await tester.enterText(find.byType(AppTextArea), 'This is a text with more than five words total');
+        await tester.enterText(find.byType(AppTextArea),
+            'This is a text with more than five words total');
         formKey.currentState!.validate();
         await tester.pump();
 
         expect(find.text('Máximo 5 palabras'), findsOneWidget);
 
         // Test valid word count
-        await tester.enterText(find.byType(AppTextArea), 'Five words exactly here now');
+        await tester.enterText(
+            find.byType(AppTextArea), 'Five words exactly here now');
         formKey.currentState!.validate();
         await tester.pump();
 

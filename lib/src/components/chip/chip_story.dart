@@ -465,7 +465,8 @@ class _AllVariantsExample extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Input Chips', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Input Chips',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
@@ -475,34 +476,42 @@ class _AllVariantsExample extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          const Text('Filter Chips', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Filter Chips',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip.filter(label: 'Active', selected: true, onSelected: (s) {}),
-              AppChip.filter(label: 'Inactive', selected: false, onSelected: (s) {}),
+              AppChip.filter(
+                  label: 'Active', selected: true, onSelected: (s) {}),
+              AppChip.filter(
+                  label: 'Inactive', selected: false, onSelected: (s) {}),
             ],
           ),
           const SizedBox(height: 16),
-          const Text('Choice Chips', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Choice Chips',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip.choice(label: 'Small', selected: true, onSelected: (s) {}),
+              AppChip.choice(
+                  label: 'Small', selected: true, onSelected: (s) {}),
               AppChip.choice(label: 'Medium', onSelected: (s) {}),
               AppChip.choice(label: 'Large', onSelected: (s) {}),
             ],
           ),
           const SizedBox(height: 16),
-          const Text('Assist Chips', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Assist Chips',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip.assist(label: 'Edit', icon: Icons.edit, onSelected: (s) {}),
-              AppChip.assist(label: 'Delete', icon: Icons.delete, onSelected: (s) {}),
+              AppChip.assist(
+                  label: 'Edit', icon: Icons.edit, onSelected: (s) {}),
+              AppChip.assist(
+                  label: 'Delete', icon: Icons.delete, onSelected: (s) {}),
             ],
           ),
         ],
@@ -513,11 +522,19 @@ class _AllVariantsExample extends StatelessWidget {
 
 class _InputChipsCollectionExample extends StatefulWidget {
   @override
-  _InputChipsCollectionExampleState createState() => _InputChipsCollectionExampleState();
+  _InputChipsCollectionExampleState createState() =>
+      _InputChipsCollectionExampleState();
 }
 
-class _InputChipsCollectionExampleState extends State<_InputChipsCollectionExample> {
-  List<String> tags = ['Flutter', 'Dart', 'Mobile', 'Cross-platform', 'UI Framework'];
+class _InputChipsCollectionExampleState
+    extends State<_InputChipsCollectionExample> {
+  List<String> tags = [
+    'Flutter',
+    'Dart',
+    'Mobile',
+    'Cross-platform',
+    'UI Framework'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -531,14 +548,16 @@ class _InputChipsCollectionExampleState extends State<_InputChipsCollectionExamp
           Wrap(
             spacing: 8.0,
             runSpacing: 8.0,
-            children: tags.map((tag) => AppChip.input(
-              label: tag,
-              onDeleted: () {
-                setState(() {
-                  tags.remove(tag);
-                });
-              },
-            )).toList(),
+            children: tags
+                .map((tag) => AppChip.input(
+                      label: tag,
+                      onDeleted: () {
+                        setState(() {
+                          tags.remove(tag);
+                        });
+                      },
+                    ))
+                .toList(),
           ),
         ],
       ),
@@ -548,12 +567,20 @@ class _InputChipsCollectionExampleState extends State<_InputChipsCollectionExamp
 
 class _FilterChipsCollectionExample extends StatefulWidget {
   @override
-  _FilterChipsCollectionExampleState createState() => _FilterChipsCollectionExampleState();
+  _FilterChipsCollectionExampleState createState() =>
+      _FilterChipsCollectionExampleState();
 }
 
-class _FilterChipsCollectionExampleState extends State<_FilterChipsCollectionExample> {
+class _FilterChipsCollectionExampleState
+    extends State<_FilterChipsCollectionExample> {
   Set<String> selectedFilters = {'Programming'};
-  final filters = ['Programming', 'Design', 'Testing', 'DevOps', 'Documentation'];
+  final filters = [
+    'Programming',
+    'Design',
+    'Testing',
+    'DevOps',
+    'Documentation'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -567,19 +594,21 @@ class _FilterChipsCollectionExampleState extends State<_FilterChipsCollectionExa
           Wrap(
             spacing: 8.0,
             runSpacing: 8.0,
-            children: filters.map((filter) => AppChip.filter(
-              label: filter,
-              selected: selectedFilters.contains(filter),
-              onSelected: (selected) {
-                setState(() {
-                  if (selected) {
-                    selectedFilters.add(filter);
-                  } else {
-                    selectedFilters.remove(filter);
-                  }
-                });
-              },
-            )).toList(),
+            children: filters
+                .map((filter) => AppChip.filter(
+                      label: filter,
+                      selected: selectedFilters.contains(filter),
+                      onSelected: (selected) {
+                        setState(() {
+                          if (selected) {
+                            selectedFilters.add(filter);
+                          } else {
+                            selectedFilters.remove(filter);
+                          }
+                        });
+                      },
+                    ))
+                .toList(),
           ),
           const SizedBox(height: 16),
           Text('Selected: ${selectedFilters.join(', ')}'),
@@ -591,10 +620,12 @@ class _FilterChipsCollectionExampleState extends State<_FilterChipsCollectionExa
 
 class _ChoiceChipsCollectionExample extends StatefulWidget {
   @override
-  _ChoiceChipsCollectionExampleState createState() => _ChoiceChipsCollectionExampleState();
+  _ChoiceChipsCollectionExampleState createState() =>
+      _ChoiceChipsCollectionExampleState();
 }
 
-class _ChoiceChipsCollectionExampleState extends State<_ChoiceChipsCollectionExample> {
+class _ChoiceChipsCollectionExampleState
+    extends State<_ChoiceChipsCollectionExample> {
   String selectedSize = 'Medium';
   final sizes = ['Small', 'Medium', 'Large', 'Extra Large'];
 
@@ -605,20 +636,23 @@ class _ChoiceChipsCollectionExampleState extends State<_ChoiceChipsCollectionExa
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Size Selection:', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Size Selection:',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             runSpacing: 8.0,
-            children: sizes.map((size) => AppChip.choice(
-              label: size,
-              selected: selectedSize == size,
-              onSelected: (selected) {
-                setState(() {
-                  selectedSize = size;
-                });
-              },
-            )).toList(),
+            children: sizes
+                .map((size) => AppChip.choice(
+                      label: size,
+                      selected: selectedSize == size,
+                      onSelected: (selected) {
+                        setState(() {
+                          selectedSize = size;
+                        });
+                      },
+                    ))
+                .toList(),
           ),
           const SizedBox(height: 16),
           Text('Selected size: $selectedSize'),
@@ -639,7 +673,8 @@ class _StateExamplesWidget extends StatelessWidget {
           const SizedBox(height: 8),
           _buildStateExample('Selected', AppChipState.selected, selected: true),
           const SizedBox(height: 8),
-          _buildStateExample('Disabled', AppChipState.defaultState, enabled: false),
+          _buildStateExample('Disabled', AppChipState.defaultState,
+              enabled: false),
           const SizedBox(height: 8),
           _buildStateExample('Loading', AppChipState.loading),
           const SizedBox(height: 8),
@@ -649,7 +684,8 @@ class _StateExamplesWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildStateExample(String label, AppChipState state, {bool enabled = true, bool selected = false}) {
+  Widget _buildStateExample(String label, AppChipState state,
+      {bool enabled = true, bool selected = false}) {
     return Row(
       children: [
         SizedBox(
@@ -983,33 +1019,50 @@ class _SizeExamplesWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Small Chips', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Small Chips',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip(label: 'Small', size: AppChipSize.small, onSelected: (s) {}),
-              AppChip.filter(label: 'Small Filter', size: AppChipSize.small, onSelected: (s) {}),
+              AppChip(
+                  label: 'Small', size: AppChipSize.small, onSelected: (s) {}),
+              AppChip.filter(
+                  label: 'Small Filter',
+                  size: AppChipSize.small,
+                  onSelected: (s) {}),
             ],
           ),
           const SizedBox(height: 16),
-          const Text('Medium Chips', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Medium Chips',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip(label: 'Medium', size: AppChipSize.medium, onSelected: (s) {}),
-              AppChip.filter(label: 'Medium Filter', size: AppChipSize.medium, onSelected: (s) {}),
+              AppChip(
+                  label: 'Medium',
+                  size: AppChipSize.medium,
+                  onSelected: (s) {}),
+              AppChip.filter(
+                  label: 'Medium Filter',
+                  size: AppChipSize.medium,
+                  onSelected: (s) {}),
             ],
           ),
           const SizedBox(height: 16),
-          const Text('Large Chips', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Large Chips',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip(label: 'Large', size: AppChipSize.large, onSelected: (s) {}),
-              AppChip.filter(label: 'Large Filter', size: AppChipSize.large, onSelected: (s) {}),
+              AppChip(
+                  label: 'Large', size: AppChipSize.large, onSelected: (s) {}),
+              AppChip.filter(
+                  label: 'Large Filter',
+                  size: AppChipSize.large,
+                  onSelected: (s) {}),
             ],
           ),
         ],
@@ -1027,12 +1080,24 @@ class _SmallChipsExample extends StatelessWidget {
         spacing: 6.0,
         runSpacing: 6.0,
         children: [
-          AppChip.input(label: 'Tag 1', size: AppChipSize.small, onDeleted: () {}),
-          AppChip.input(label: 'Tag 2', size: AppChipSize.small, onDeleted: () {}),
-          AppChip.filter(label: 'Filter 1', size: AppChipSize.small, onSelected: (s) {}),
-          AppChip.filter(label: 'Filter 2', size: AppChipSize.small, selected: true, onSelected: (s) {}),
-          AppChip.choice(label: 'Choice 1', size: AppChipSize.small, onSelected: (s) {}),
-          AppChip.assist(label: 'Action', size: AppChipSize.small, icon: Icons.add, onSelected: (s) {}),
+          AppChip.input(
+              label: 'Tag 1', size: AppChipSize.small, onDeleted: () {}),
+          AppChip.input(
+              label: 'Tag 2', size: AppChipSize.small, onDeleted: () {}),
+          AppChip.filter(
+              label: 'Filter 1', size: AppChipSize.small, onSelected: (s) {}),
+          AppChip.filter(
+              label: 'Filter 2',
+              size: AppChipSize.small,
+              selected: true,
+              onSelected: (s) {}),
+          AppChip.choice(
+              label: 'Choice 1', size: AppChipSize.small, onSelected: (s) {}),
+          AppChip.assist(
+              label: 'Action',
+              size: AppChipSize.small,
+              icon: Icons.add,
+              onSelected: (s) {}),
         ],
       ),
     );
@@ -1086,23 +1151,37 @@ class _ShapeExamplesWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Rounded Chips', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Rounded Chips',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip(label: 'Rounded', shape: AppChipShape.rounded, onSelected: (s) {}),
-              AppChip.filter(label: 'Filter', shape: AppChipShape.rounded, onSelected: (s) {}),
+              AppChip(
+                  label: 'Rounded',
+                  shape: AppChipShape.rounded,
+                  onSelected: (s) {}),
+              AppChip.filter(
+                  label: 'Filter',
+                  shape: AppChipShape.rounded,
+                  onSelected: (s) {}),
             ],
           ),
           const SizedBox(height: 16),
-          const Text('Stadium Chips', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Stadium Chips',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip(label: 'Stadium', shape: AppChipShape.stadium, onSelected: (s) {}),
-              AppChip.filter(label: 'Filter', shape: AppChipShape.stadium, onSelected: (s) {}),
+              AppChip(
+                  label: 'Stadium',
+                  shape: AppChipShape.stadium,
+                  onSelected: (s) {}),
+              AppChip.filter(
+                  label: 'Filter',
+                  shape: AppChipShape.stadium,
+                  onSelected: (s) {}),
             ],
           ),
         ],
@@ -1342,22 +1421,25 @@ class _DeletableChipsExampleState extends State<_DeletableChipsExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Deletable Items:', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Deletable Items:',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             runSpacing: 8.0,
-            children: items.map((item) => AppChip.input(
-              label: item,
-              onDeleted: () {
-                setState(() {
-                  items.remove(item);
-                });
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Deleted: $item')),
-                );
-              },
-            )).toList(),
+            children: items
+                .map((item) => AppChip.input(
+                      label: item,
+                      onDeleted: () {
+                        setState(() {
+                          items.remove(item);
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Deleted: $item')),
+                        );
+                      },
+                    ))
+                .toList(),
           ),
           if (items.isEmpty)
             const Padding(
@@ -1386,27 +1468,31 @@ class _SelectableChipsExampleState extends State<_SelectableChipsExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Multi-select Options:', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Multi-select Options:',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
             runSpacing: 8.0,
-            children: items.map((item) => AppChip.filter(
-              label: item,
-              selected: selectedItems.contains(item),
-              onSelected: (selected) {
-                setState(() {
-                  if (selected) {
-                    selectedItems.add(item);
-                  } else {
-                    selectedItems.remove(item);
-                  }
-                });
-              },
-            )).toList(),
+            children: items
+                .map((item) => AppChip.filter(
+                      label: item,
+                      selected: selectedItems.contains(item),
+                      onSelected: (selected) {
+                        setState(() {
+                          if (selected) {
+                            selectedItems.add(item);
+                          } else {
+                            selectedItems.remove(item);
+                          }
+                        });
+                      },
+                    ))
+                .toList(),
           ),
           const SizedBox(height: 16),
-          Text('Selected: ${selectedItems.isEmpty ? 'None' : selectedItems.join(', ')}'),
+          Text(
+              'Selected: ${selectedItems.isEmpty ? 'None' : selectedItems.join(', ')}'),
         ],
       ),
     );
@@ -1481,52 +1567,61 @@ class _ChipGroupsExampleState extends State<_ChipGroupsExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Priority (Single Select):', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Priority (Single Select):',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
-            children: ['Low', 'Medium', 'High'].map((priority) => AppChip.choice(
-              label: priority,
-              selected: selectedPriority == priority,
-              onSelected: (selected) {
-                setState(() {
-                  selectedPriority = priority;
-                });
-              },
-            )).toList(),
+            children: ['Low', 'Medium', 'High']
+                .map((priority) => AppChip.choice(
+                      label: priority,
+                      selected: selectedPriority == priority,
+                      onSelected: (selected) {
+                        setState(() {
+                          selectedPriority = priority;
+                        });
+                      },
+                    ))
+                .toList(),
           ),
           const SizedBox(height: 16),
-          const Text('Categories (Multi Select):', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Categories (Multi Select):',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
-            children: ['Work', 'Personal', 'Study'].map((category) => AppChip.filter(
-              label: category,
-              selected: selectedCategories.contains(category),
-              onSelected: (selected) {
-                setState(() {
-                  if (selected) {
-                    selectedCategories.add(category);
-                  } else {
-                    selectedCategories.remove(category);
-                  }
-                });
-              },
-            )).toList(),
+            children: ['Work', 'Personal', 'Study']
+                .map((category) => AppChip.filter(
+                      label: category,
+                      selected: selectedCategories.contains(category),
+                      onSelected: (selected) {
+                        setState(() {
+                          if (selected) {
+                            selectedCategories.add(category);
+                          } else {
+                            selectedCategories.remove(category);
+                          }
+                        });
+                      },
+                    ))
+                .toList(),
           ),
           const SizedBox(height: 16),
-          const Text('Tags (Deletable):', style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text('Tags (Deletable):',
+              style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8.0,
-            children: tags.map((tag) => AppChip.input(
-              label: tag,
-              onDeleted: () {
-                setState(() {
-                  tags.remove(tag);
-                });
-              },
-            )).toList(),
+            children: tags
+                .map((tag) => AppChip.input(
+                      label: tag,
+                      onDeleted: () {
+                        setState(() {
+                          tags.remove(tag);
+                        });
+                      },
+                    ))
+                .toList(),
           ),
         ],
       ),
@@ -1750,19 +1845,22 @@ class _RTLWithDeleteExampleState extends State<_RTLWithDeleteExample> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('عناصر قابلة للحذف:', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('عناصر قابلة للحذف:',
+                style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8.0,
               runSpacing: 8.0,
-              children: items.map((item) => AppChip.input(
-                label: item,
-                onDeleted: () {
-                  setState(() {
-                    items.remove(item);
-                  });
-                },
-              )).toList(),
+              children: items
+                  .map((item) => AppChip.input(
+                        label: item,
+                        onDeleted: () {
+                          setState(() {
+                            items.remove(item);
+                          });
+                        },
+                      ))
+                  .toList(),
             ),
           ],
         ),
@@ -1790,7 +1888,8 @@ class _PlatformAdaptiveExample extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
-          const Text('These chips adapt their behavior based on the current platform'),
+          const Text(
+              'These chips adapt their behavior based on the current platform'),
           const SizedBox(height: 16),
           Wrap(
             spacing: 8.0,

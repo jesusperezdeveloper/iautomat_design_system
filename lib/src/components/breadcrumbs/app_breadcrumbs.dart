@@ -43,11 +43,10 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
 
   void _setupAnimations() {
     _stateAnimationController = AnimationController(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 300),
       vsync: this,
     );
-
-
 
     _scaleAnimation = Tween<double>(
       begin: 0.8,
@@ -56,7 +55,6 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
       parent: _stateAnimationController,
       curve: widget.config.animation?.curve ?? Curves.easeInOut,
     ));
-
 
     _stateAnimationController.forward();
   }
@@ -94,7 +92,8 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
+    final isRtl =
+        widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
 
     return Directionality(
       textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
@@ -107,10 +106,12 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
           builder: (context, child) {
             return AnimatedOpacity(
               opacity: widget.config.state.opacity,
-              duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+              duration: Duration(
+                  milliseconds: widget.config.animation?.duration ?? 300),
               child: AnimatedScale(
                 scale: _scaleAnimation.value,
-                duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+                duration: Duration(
+                    milliseconds: widget.config.animation?.duration ?? 300),
                 child: _buildBreadcrumbsContent(theme, isRtl),
               ),
             );
@@ -135,7 +136,8 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   Widget _buildLoadingState(ThemeData theme) {
     return Container(
       height: widget.height ?? widget.config.spacing?.minHeight ?? 48.0,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.containerPadding ?? 16.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.containerPadding ?? 16.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
       ),
@@ -156,7 +158,8 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   Widget _buildSkeletonState(ThemeData theme) {
     return Container(
       height: widget.height ?? widget.config.spacing?.minHeight ?? 48.0,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.containerPadding ?? 16.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.containerPadding ?? 16.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
       ),
@@ -209,10 +212,12 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     }
   }
 
-  Widget _buildDefaultBreadcrumbs(List<AppBreadcrumbItem> items, ThemeData theme, bool isRtl) {
+  Widget _buildDefaultBreadcrumbs(
+      List<AppBreadcrumbItem> items, ThemeData theme, bool isRtl) {
     return Container(
       height: widget.height ?? widget.config.spacing?.minHeight ?? 48.0,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.containerPadding ?? 16.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.containerPadding ?? 16.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
         border: widget.config.colors?.borderColor != null
@@ -228,7 +233,8 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     );
   }
 
-  Widget _buildCollapsingBreadcrumbs(List<AppBreadcrumbItem> items, ThemeData theme, bool isRtl) {
+  Widget _buildCollapsingBreadcrumbs(
+      List<AppBreadcrumbItem> items, ThemeData theme, bool isRtl) {
     final maxVisible = widget.config.maxVisibleItems;
     final shouldCollapse = items.length > maxVisible;
 
@@ -237,24 +243,29 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     if (shouldCollapse) {
       // Mostrar primer elemento
       if (items.isNotEmpty) {
-        breadcrumbWidgets.add(_buildBreadcrumbItem(items.first, 0, theme, isRtl, false));
+        breadcrumbWidgets
+            .add(_buildBreadcrumbItem(items.first, 0, theme, isRtl, false));
         breadcrumbWidgets.add(_buildSeparator(theme));
       }
 
       // Mostrar indicador de colapso
-      if (widget.config.behavior?.collapseMode.showsCollapsedIndicator ?? true) {
+      if (widget.config.behavior?.collapseMode.showsCollapsedIndicator ??
+          true) {
         breadcrumbWidgets.add(_buildCollapseIndicator(items, theme));
         breadcrumbWidgets.add(_buildSeparator(theme));
       }
 
       // Mostrar últimos elementos
-      final remainingItems = items.length > 2 ? items.sublist(items.length - (maxVisible - 1)) : items.sublist(1);
+      final remainingItems = items.length > 2
+          ? items.sublist(items.length - (maxVisible - 1))
+          : items.sublist(1);
       for (int i = 0; i < remainingItems.length; i++) {
         final item = remainingItems[i];
         final originalIndex = items.indexOf(item);
         final isLast = i == remainingItems.length - 1;
 
-        breadcrumbWidgets.add(_buildBreadcrumbItem(item, originalIndex, theme, isRtl, isLast));
+        breadcrumbWidgets.add(
+            _buildBreadcrumbItem(item, originalIndex, theme, isRtl, isLast));
 
         if (!isLast) {
           breadcrumbWidgets.add(_buildSeparator(theme));
@@ -266,7 +277,8 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
 
     return Container(
       height: widget.height ?? widget.config.spacing?.minHeight ?? 48.0,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.containerPadding ?? 16.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.containerPadding ?? 16.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
         border: widget.config.colors?.borderColor != null
@@ -280,7 +292,8 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     );
   }
 
-  List<Widget> _buildBreadcrumbItems(List<AppBreadcrumbItem> items, ThemeData theme, bool isRtl) {
+  List<Widget> _buildBreadcrumbItems(
+      List<AppBreadcrumbItem> items, ThemeData theme, bool isRtl) {
     List<Widget> widgets = [];
 
     for (int i = 0; i < items.length; i++) {
@@ -297,19 +310,23 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     return widgets;
   }
 
-  Widget _buildBreadcrumbItem(AppBreadcrumbItem item, int index, ThemeData theme, bool isRtl, bool isLast) {
-    final isClickable = !isLast && widget.config.state.isInteractive && !item.disabled;
+  Widget _buildBreadcrumbItem(AppBreadcrumbItem item, int index,
+      ThemeData theme, bool isRtl, bool isLast) {
+    final isClickable =
+        !isLast && widget.config.state.isInteractive && !item.disabled;
 
     Widget content = _buildItemContent(item, theme, isLast);
 
     if (isClickable) {
       content = InkWell(
         onTap: () => _handleItemTap(item),
-        onHover: widget.config.behavior?.enableHapticFeedback ?? true ? (hovering) {
-          if (hovering) {
-            HapticFeedback.selectionClick();
-          }
-        } : null,
+        onHover: widget.config.behavior?.enableHapticFeedback ?? true
+            ? (hovering) {
+                if (hovering) {
+                  HapticFeedback.selectionClick();
+                }
+              }
+            : null,
         borderRadius: BorderRadius.circular(4),
         child: Padding(
           padding: EdgeInsets.all(widget.config.spacing?.itemPadding ?? 8.0),
@@ -324,16 +341,21 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     }
 
     return Semantics(
-      label: widget.config.enableA11y ? _buildSemanticLabel(item, index, isLast) : null,
+      label: widget.config.enableA11y
+          ? _buildSemanticLabel(item, index, isLast)
+          : null,
       button: widget.config.enableA11y && isClickable,
       child: Tooltip(
-        message: (widget.config.behavior?.showTooltips ?? true) ? item.tooltip ?? item.title : '',
+        message: (widget.config.behavior?.showTooltips ?? true)
+            ? item.tooltip ?? item.title
+            : '',
         child: content,
       ),
     );
   }
 
-  Widget _buildItemContent(AppBreadcrumbItem item, ThemeData theme, bool isLast) {
+  Widget _buildItemContent(
+      AppBreadcrumbItem item, ThemeData theme, bool isLast) {
     switch (item.type) {
       case AppBreadcrumbType.text:
         return Text(
@@ -343,11 +365,12 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
           maxLines: widget.config.typography?.maxLines ?? 1,
         );
       case AppBreadcrumbType.icon:
-        return item.icon ?? Icon(
-          Icons.folder,
-          size: 16,
-          color: _getTextColor(theme, isLast),
-        );
+        return item.icon ??
+            Icon(
+              Icons.folder,
+              size: 16,
+              color: _getTextColor(theme, isLast),
+            );
       case AppBreadcrumbType.textWithIcon:
         return Row(
           mainAxisSize: MainAxisSize.min,
@@ -360,7 +383,8 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
               child: Text(
                 item.title,
                 style: _getTextStyle(theme, isLast),
-                overflow: widget.config.typography?.overflow ?? TextOverflow.ellipsis,
+                overflow:
+                    widget.config.typography?.overflow ?? TextOverflow.ellipsis,
                 maxLines: widget.config.typography?.maxLines ?? 1,
               ),
             ),
@@ -372,19 +396,22 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   }
 
   Widget _buildSeparator(ThemeData theme) {
-    final separator = widget.separator ?? widget.config.separator ?? const AppBreadcrumbSeparator();
+    final separator = widget.separator ??
+        widget.config.separator ??
+        const AppBreadcrumbSeparator();
 
     Widget separatorWidget;
 
     switch (separator.type) {
       case AppBreadcrumbSeparatorType.custom:
-        separatorWidget = separator.custom ?? Text(
-          separator.text ?? '>',
-          style: TextStyle(
-            color: separator.color ?? _getSeparatorColor(theme),
-            fontSize: separator.size,
-          ),
-        );
+        separatorWidget = separator.custom ??
+            Text(
+              separator.text ?? '>',
+              style: TextStyle(
+                color: separator.color ?? _getSeparatorColor(theme),
+                fontSize: separator.size,
+              ),
+            );
         break;
       default:
         if (separator.text?.isNotEmpty == true) {
@@ -413,8 +440,10 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     );
   }
 
-  Widget _buildCollapseIndicator(List<AppBreadcrumbItem> items, ThemeData theme) {
-    final mode = widget.config.behavior?.collapseMode ?? AppBreadcrumbsCollapseMode.ellipsis;
+  Widget _buildCollapseIndicator(
+      List<AppBreadcrumbItem> items, ThemeData theme) {
+    final mode = widget.config.behavior?.collapseMode ??
+        AppBreadcrumbsCollapseMode.ellipsis;
 
     switch (mode) {
       case AppBreadcrumbsCollapseMode.ellipsis:
@@ -434,10 +463,12 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
           ),
           itemBuilder: (context) {
             final hiddenItems = _getHiddenItems(items);
-            return hiddenItems.map((item) => PopupMenuItem<AppBreadcrumbItem>(
-              value: item,
-              child: Text(item.title),
-            )).toList();
+            return hiddenItems
+                .map((item) => PopupMenuItem<AppBreadcrumbItem>(
+                      value: item,
+                      child: Text(item.title),
+                    ))
+                .toList();
           },
           onSelected: _handleItemTap,
         );
@@ -476,7 +507,9 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   List<AppBreadcrumbItem> _getItems() {
     final items = widget.items ?? widget.config.items;
 
-    if (widget.config.showHome && items.isNotEmpty && items.first.id != 'home') {
+    if (widget.config.showHome &&
+        items.isNotEmpty &&
+        items.first.id != 'home') {
       return [
         const AppBreadcrumbItem(
           id: 'home',
@@ -494,38 +527,38 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   // Color getters
   Color? _getBackgroundColor(ThemeData theme) {
     return widget.backgroundColor ??
-           widget.config.colors?.backgroundColor ??
-           theme.scaffoldBackgroundColor;
+        widget.config.colors?.backgroundColor ??
+        theme.scaffoldBackgroundColor;
   }
 
   Color? _getTextColor(ThemeData theme, bool isLast) {
     if (isLast) {
       return widget.config.colors?.selectedTextColor ??
-             theme.colorScheme.primary;
+          theme.colorScheme.primary;
     } else {
       return widget.textColor ??
-             widget.config.colors?.textColor ??
-             theme.colorScheme.onSurface;
+          widget.config.colors?.textColor ??
+          theme.colorScheme.onSurface;
     }
   }
 
   Color? _getSeparatorColor(ThemeData theme) {
     return widget.config.colors?.separatorColor ??
-           theme.colorScheme.onSurfaceVariant;
+        theme.colorScheme.onSurfaceVariant;
   }
 
   // Typography getters
   TextStyle? _getTextStyle(ThemeData theme, bool isLast) {
     final baseStyle = widget.textStyle ??
-                     widget.config.typography?.textStyle ??
-                     theme.textTheme.bodyMedium;
+        widget.config.typography?.textStyle ??
+        theme.textTheme.bodyMedium;
 
     if (isLast) {
       return widget.config.typography?.selectedTextStyle ??
-             baseStyle?.copyWith(
-               color: _getTextColor(theme, isLast),
-               fontWeight: FontWeight.w600,
-             );
+          baseStyle?.copyWith(
+            color: _getTextColor(theme, isLast),
+            fontWeight: FontWeight.w600,
+          );
     } else {
       return baseStyle?.copyWith(
         color: _getTextColor(theme, isLast),

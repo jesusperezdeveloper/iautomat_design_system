@@ -213,7 +213,8 @@ class _DataTableStoriesState extends State<DataTableStories> {
       const AppDataTableRow(
         id: 'emp_1',
         data: {
-          'avatar': 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150',
+          'avatar':
+              'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150',
           'employee_id': 'EMP001',
           'full_name': 'John Anderson',
           'department': 'Engineering',
@@ -226,7 +227,8 @@ class _DataTableStoriesState extends State<DataTableStories> {
       const AppDataTableRow(
         id: 'emp_2',
         data: {
-          'avatar': 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
+          'avatar':
+              'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
           'employee_id': 'EMP002',
           'full_name': 'Sarah Johnson',
           'department': 'Engineering',
@@ -239,7 +241,8 @@ class _DataTableStoriesState extends State<DataTableStories> {
       const AppDataTableRow(
         id: 'emp_3',
         data: {
-          'avatar': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
+          'avatar':
+              'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
           'employee_id': 'EMP003',
           'full_name': 'Michael Chen',
           'department': 'Design',
@@ -252,7 +255,8 @@ class _DataTableStoriesState extends State<DataTableStories> {
       const AppDataTableRow(
         id: 'emp_4',
         data: {
-          'avatar': 'https://images.unsplash.com/photo-1494790108755-2616b9d6c0d0?w=150',
+          'avatar':
+              'https://images.unsplash.com/photo-1494790108755-2616b9d6c0d0?w=150',
           'employee_id': 'EMP004',
           'full_name': 'Emily Rodriguez',
           'department': 'Marketing',
@@ -265,7 +269,8 @@ class _DataTableStoriesState extends State<DataTableStories> {
       const AppDataTableRow(
         id: 'emp_5',
         data: {
-          'avatar': 'https://images.unsplash.com/photo-1566492031773-4f4e44671d66?w=150',
+          'avatar':
+              'https://images.unsplash.com/photo-1566492031773-4f4e44671d66?w=150',
           'employee_id': 'EMP005',
           'full_name': 'David Wilson',
           'department': 'Sales',
@@ -278,7 +283,8 @@ class _DataTableStoriesState extends State<DataTableStories> {
       const AppDataTableRow(
         id: 'emp_6',
         data: {
-          'avatar': 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150',
+          'avatar':
+              'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150',
           'employee_id': 'EMP006',
           'full_name': 'Lisa Thompson',
           'department': 'HR',
@@ -369,21 +375,25 @@ class _DataTableStoriesState extends State<DataTableStories> {
         Text(
           title,
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+                fontWeight: FontWeight.bold,
+              ),
         ),
         const SizedBox(height: 4),
         Text(
           description,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
-          ),
+                color: Theme.of(context)
+                    .colorScheme
+                    .onSurface
+                    .withValues(alpha: 0.7),
+              ),
         ),
         const SizedBox(height: 16),
         Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
+              color:
+                  Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
             ),
             borderRadius: BorderRadius.circular(8),
           ),
@@ -440,7 +450,7 @@ class _DataTableStoriesState extends State<DataTableStories> {
         showRowDividers: true,
         maxHeight: 400,
         freezeConfig: AppDataTableFreezeConfig(
-          leftColumns: 2,  // Pin ID and Name columns
+          leftColumns: 2, // Pin ID and Name columns
           rightColumns: 1, // Pin Active column
           showDividers: true,
         ),
@@ -459,7 +469,8 @@ class _DataTableStoriesState extends State<DataTableStories> {
         editMode: AppDataTableEditMode.cell,
       ),
       onEdit: (row, columnId, newValue) {
-        debugPrint('Edited row ${row.id}, column $columnId, new value: $newValue');
+        debugPrint(
+            'Edited row ${row.id}, column $columnId, new value: $newValue');
         // Handle edit here - update your data source
       },
     );
@@ -715,7 +726,8 @@ class _ProductTableExampleState extends State<ProductTableExample> {
             debugPrint('Updated product ${row.id}: $columnId = $newValue');
           },
           onRowSelect: (row, selected) {
-            debugPrint('Product ${row.id} ${selected ? 'selected' : 'deselected'}');
+            debugPrint(
+                'Product ${row.id} ${selected ? 'selected' : 'deselected'}');
           },
         ),
       ),

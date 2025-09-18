@@ -48,7 +48,8 @@ class AppMetricCardConfig with _$AppMetricCardConfig {
   bool get isLoading => loading || state == AppMetricCardState.loading;
   bool get isSkeleton => skeleton || state == AppMetricCardState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
-  bool get canInteract => isInteractive && !isDisabled && !isLoading && !isSkeleton;
+  bool get canInteract =>
+      isInteractive && !isDisabled && !isLoading && !isSkeleton;
   bool get hasDelta => delta != null;
   bool get hasTrend => trend != null && trend!.isNotEmpty;
   bool get hasIcon => icon != null;
@@ -347,9 +348,10 @@ enum AppMetricCardAnimationType {
 }
 
 extension AppMetricCardStateExtension on AppMetricCardState {
-  bool get isInteractiveState => this == AppMetricCardState.hover ||
-                                this == AppMetricCardState.pressed ||
-                                this == AppMetricCardState.focus;
+  bool get isInteractiveState =>
+      this == AppMetricCardState.hover ||
+      this == AppMetricCardState.pressed ||
+      this == AppMetricCardState.focus;
 
   bool get isDisabledState => this == AppMetricCardState.disabled;
   bool get isLoadingState => this == AppMetricCardState.loading;
@@ -465,7 +467,8 @@ class AppMetricCardConstants {
 
   static const EdgeInsetsGeometry defaultPadding = EdgeInsets.all(16.0);
   static const EdgeInsetsGeometry defaultMargin = EdgeInsets.zero;
-  static const EdgeInsetsGeometry defaultDeltaPadding = EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0);
+  static const EdgeInsetsGeometry defaultDeltaPadding =
+      EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0);
 
   static const BoxConstraints defaultConstraints = BoxConstraints(
     minWidth: 0.0,

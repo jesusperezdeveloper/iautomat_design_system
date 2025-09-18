@@ -82,8 +82,8 @@ class AppTextAreaColors with _$AppTextAreaColors {
       errorBorderColor: colorScheme.error,
       disabledBorderColor: colorScheme.onSurface.withValues(alpha: 0.12),
       fillColor: isDark
-        ? colorScheme.surfaceContainerHighest
-        : colorScheme.surfaceContainerLowest,
+          ? colorScheme.surfaceContainerHighest
+          : colorScheme.surfaceContainerLowest,
       disabledFillColor: colorScheme.onSurface.withValues(alpha: 0.04),
       textColor: colorScheme.onSurface,
       disabledTextColor: colorScheme.onSurface.withValues(alpha: 0.38),
@@ -185,7 +185,8 @@ class AppTextAreaValidator {
     };
   }
 
-  static String? Function(String?) combine(List<String? Function(String?)> validators) {
+  static String? Function(String?) combine(
+      List<String? Function(String?)> validators) {
     return (String? value) {
       for (final validator in validators) {
         final result = validator(value);

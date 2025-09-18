@@ -78,15 +78,23 @@ void main() {
           AppCalendarEvent(
             id: 'week-3',
             title: 'Code Review',
-            startTime: baseDate.add(const Duration(days: 1)).copyWith(hour: 15, minute: 0),
-            endTime: baseDate.add(const Duration(days: 1)).copyWith(hour: 16, minute: 0),
+            startTime: baseDate
+                .add(const Duration(days: 1))
+                .copyWith(hour: 15, minute: 0),
+            endTime: baseDate
+                .add(const Duration(days: 1))
+                .copyWith(hour: 16, minute: 0),
             type: AppCalendarEventType.task,
           ),
           AppCalendarEvent(
             id: 'week-4',
             title: 'Important Reminder',
-            startTime: baseDate.add(const Duration(days: 2)).copyWith(hour: 8, minute: 0),
-            endTime: baseDate.add(const Duration(days: 2)).copyWith(hour: 8, minute: 15),
+            startTime: baseDate
+                .add(const Duration(days: 2))
+                .copyWith(hour: 8, minute: 0),
+            endTime: baseDate
+                .add(const Duration(days: 2))
+                .copyWith(hour: 8, minute: 15),
             type: AppCalendarEventType.reminder,
             priority: AppCalendarEventPriority.critical,
           ),
@@ -354,7 +362,8 @@ void main() {
       );
     });
 
-    testWidgets('calendar with different event types and priorities', (tester) async {
+    testWidgets('calendar with different event types and priorities',
+        (tester) async {
       final baseDate = DateTime(2024, 1, 15);
       final config = AppCalendarConfig(
         variant: AppCalendarVariant.month,
@@ -380,7 +389,8 @@ void main() {
             id: 'reminder-critical',
             title: 'Critical Reminder',
             startTime: baseDate.add(const Duration(days: 3, hours: 8)),
-            endTime: baseDate.add(const Duration(days: 3, hours: 8, minutes: 15)),
+            endTime:
+                baseDate.add(const Duration(days: 3, hours: 8, minutes: 15)),
             type: AppCalendarEventType.reminder,
             priority: AppCalendarEventPriority.critical,
           ),

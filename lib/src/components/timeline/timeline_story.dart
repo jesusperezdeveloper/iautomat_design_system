@@ -279,11 +279,13 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
             scrollable: _scrollable,
             reversed: _reversed,
             selectedIndex: _selectedIndex,
-            animation: _showAnimation ? AppTimelineAnimation(
-              enabled: true,
-              staggered: _staggered,
-              type: AppTimelineAnimationType.fade,
-            ) : null,
+            animation: _showAnimation
+                ? AppTimelineAnimation(
+                    enabled: true,
+                    staggered: _staggered,
+                    type: AppTimelineAnimationType.fade,
+                  )
+                : null,
             onEventTap: (index) {
               setState(() {
                 _selectedIndex = _selectedIndex == index ? null : index;
@@ -444,7 +446,8 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
         id: '2',
         title: 'Reunión programada',
         subtitle: 'Revisión de Sprint',
-        description: 'Reunión de revisión del sprint actual programada para mañana',
+        description:
+            'Reunión de revisión del sprint actual programada para mañana',
         timestamp: DateTime.now().subtract(const Duration(hours: 4)),
         type: AppTimelineEventType.meeting,
         status: AppTimelineEventStatus.pending,
@@ -453,7 +456,8 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
         id: '3',
         title: 'Tarea completada',
         subtitle: 'Feature: Sistema de autenticación',
-        description: 'Se completó la implementación del sistema de autenticación con OAuth2',
+        description:
+            'Se completó la implementación del sistema de autenticación con OAuth2',
         timestamp: DateTime.now().subtract(const Duration(hours: 6)),
         type: AppTimelineEventType.task,
         status: AppTimelineEventStatus.completed,
@@ -476,7 +480,8 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
         id: '4',
         title: 'Error reportado',
         subtitle: 'Bug en el login',
-        description: 'Usuario reporta error al intentar iniciar sesión con credenciales válidas',
+        description:
+            'Usuario reporta error al intentar iniciar sesión con credenciales válidas',
         timestamp: DateTime.now().subtract(const Duration(hours: 8)),
         type: AppTimelineEventType.error,
         status: AppTimelineEventStatus.inProgress,
@@ -647,7 +652,8 @@ class TimelineStoryPlayground extends StatefulWidget {
   const TimelineStoryPlayground({super.key});
 
   @override
-  State<TimelineStoryPlayground> createState() => _TimelineStoryPlaygroundState();
+  State<TimelineStoryPlayground> createState() =>
+      _TimelineStoryPlaygroundState();
 }
 
 class _TimelineStoryPlaygroundState extends State<TimelineStoryPlayground> {
@@ -780,24 +786,24 @@ class _TimelineStoryPlaygroundState extends State<TimelineStoryPlayground> {
           // Timeline
           Expanded(
             child: _events.isEmpty
-              ? const Center(
-                  child: Text('Agrega eventos para ver el timeline'),
-                )
-              : Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: AppTimeline.activity(
-                    events: _events,
-                    orientation: AppTimelineOrientation.vertical,
-                    indicatorStyle: AppTimelineIndicatorStyle.icon,
-                    spacing: AppTimelineSpacing.medium,
-                    animation: AppTimelineAnimation(
-                      enabled: true,
-                      staggered: true,
-                      type: AppTimelineAnimationType.slideUp,
+                ? const Center(
+                    child: Text('Agrega eventos para ver el timeline'),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: AppTimeline.activity(
+                      events: _events,
+                      orientation: AppTimelineOrientation.vertical,
+                      indicatorStyle: AppTimelineIndicatorStyle.icon,
+                      spacing: AppTimelineSpacing.medium,
+                      animation: AppTimelineAnimation(
+                        enabled: true,
+                        staggered: true,
+                        type: AppTimelineAnimationType.slideUp,
+                      ),
+                      onEventTap: _removeEvent,
                     ),
-                    onEventTap: _removeEvent,
                   ),
-                ),
           ),
         ],
       ),
@@ -812,8 +818,8 @@ class _TimelineStoryPlaygroundState extends State<TimelineStoryPlayground> {
             id: DateTime.now().millisecondsSinceEpoch.toString(),
             title: _titleController.text,
             subtitle: _subtitleController.text.isNotEmpty
-              ? _subtitleController.text
-              : null,
+                ? _subtitleController.text
+                : null,
             timestamp: DateTime.now(),
             type: _selectedType,
             status: _selectedStatus,

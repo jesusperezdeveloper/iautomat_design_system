@@ -339,7 +339,9 @@ void main() {
           home: Scaffold(
             body: Center(
               child: AppFilterBar.chips(
-                filters: basicFilters.map((f) => f.copyWith(isDisabled: true)).toList(),
+                filters: basicFilters
+                    .map((f) => f.copyWith(isDisabled: true))
+                    .toList(),
                 state: AppFilterBarState.disabled,
                 onChanged: (filters) {},
               ),

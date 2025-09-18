@@ -63,7 +63,8 @@ void main() {
               padding: const EdgeInsets.all(16),
               child: AppListItem.threeLine(
                 title: 'Team Meeting',
-                subtitle: 'Discuss project milestones and upcoming deadlines. Review current progress and plan next steps.',
+                subtitle:
+                    'Discuss project milestones and upcoming deadlines. Review current progress and plan next steps.',
               ),
             ),
           ),
@@ -659,7 +660,8 @@ void main() {
                   ),
                   AppListItem.threeLine(
                     title: 'Third item',
-                    subtitle: 'With longer subtitle that spans multiple lines for better content display',
+                    subtitle:
+                        'With longer subtitle that spans multiple lines for better content display',
                     trailing: const AppListItemTrailing(
                       type: AppListItemTrailingType.text,
                       text: '12:30',

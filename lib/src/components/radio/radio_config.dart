@@ -58,8 +58,8 @@ class AppRadioColors with _$AppRadioColors {
 
     return AppRadioColors(
       borderColor: isDark
-        ? colorScheme.onSurface.withValues(alpha: 0.6)
-        : colorScheme.onSurfaceVariant,
+          ? colorScheme.onSurface.withValues(alpha: 0.6)
+          : colorScheme.onSurfaceVariant,
       fillColor: colorScheme.primary,
       dotColor: colorScheme.onPrimary,
       disabledBorderColor: colorScheme.onSurface.withValues(alpha: 0.12),

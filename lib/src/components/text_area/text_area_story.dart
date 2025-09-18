@@ -130,7 +130,8 @@ class TextAreaStory extends StatelessWidget {
             'Text area with pre-filled long content',
             AppTextArea(
               controller: TextEditingController(
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
+                text:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
                     'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
                     'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris '
                     'nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in '

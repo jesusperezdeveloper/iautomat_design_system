@@ -411,9 +411,12 @@ class AppChipSizes with _$AppChipSizes {
     EdgeInsets largePadding,
 
     // Border radius configurations
-    @Default(BorderRadius.all(Radius.circular(6.0))) BorderRadius smallBorderRadius,
-    @Default(BorderRadius.all(Radius.circular(8.0))) BorderRadius mediumBorderRadius,
-    @Default(BorderRadius.all(Radius.circular(10.0))) BorderRadius largeBorderRadius,
+    @Default(BorderRadius.all(Radius.circular(6.0)))
+    BorderRadius smallBorderRadius,
+    @Default(BorderRadius.all(Radius.circular(8.0)))
+    BorderRadius mediumBorderRadius,
+    @Default(BorderRadius.all(Radius.circular(10.0)))
+    BorderRadius largeBorderRadius,
   }) = _AppChipSizes;
 }
 
@@ -605,7 +608,8 @@ class AppChipUtils {
   }
 
   /// Get text style based on chip size
-  static TextStyle getTextStyle(AppChipSize size, AppChipTypography typography) {
+  static TextStyle getTextStyle(
+      AppChipSize size, AppChipTypography typography) {
     switch (size) {
       case AppChipSize.small:
         return typography.smallLabelStyle;
@@ -617,7 +621,8 @@ class AppChipUtils {
   }
 
   /// Get avatar text style based on chip size
-  static TextStyle getAvatarTextStyle(AppChipSize size, AppChipTypography typography) {
+  static TextStyle getAvatarTextStyle(
+      AppChipSize size, AppChipTypography typography) {
     switch (size) {
       case AppChipSize.small:
         return typography.smallAvatarTextStyle;
@@ -631,15 +636,15 @@ class AppChipUtils {
   /// Check if platform supports advanced interactions
   static bool get supportsAdvancedInteractions {
     return !kIsWeb &&
-           (defaultTargetPlatform == TargetPlatform.iOS ||
+        (defaultTargetPlatform == TargetPlatform.iOS ||
             defaultTargetPlatform == TargetPlatform.android);
   }
 
   /// Check if platform supports hover interactions
   static bool get supportsHover {
     return kIsWeb ||
-           defaultTargetPlatform == TargetPlatform.macOS ||
-           defaultTargetPlatform == TargetPlatform.windows ||
-           defaultTargetPlatform == TargetPlatform.linux;
+        defaultTargetPlatform == TargetPlatform.macOS ||
+        defaultTargetPlatform == TargetPlatform.windows ||
+        defaultTargetPlatform == TargetPlatform.linux;
   }
 }

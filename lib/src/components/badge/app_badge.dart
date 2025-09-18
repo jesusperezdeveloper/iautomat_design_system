@@ -87,14 +87,14 @@ class AppBadge extends StatefulWidget {
     this.loading = false,
     this.skeleton = false,
     this.visible = true,
-  }) : variant = AppBadgeVariant.dot,
-       label = null,
-       value = null,
-       status = null,
-       textColor = null,
-       icon = null,
-       showZero = false,
-       maxValue = 99;
+  })  : variant = AppBadgeVariant.dot,
+        label = null,
+        value = null,
+        status = null,
+        textColor = null,
+        icon = null,
+        showZero = false,
+        maxValue = 99;
 
   const AppBadge.counter({
     super.key,
@@ -122,10 +122,10 @@ class AppBadge extends StatefulWidget {
     this.visible = true,
     this.showZero = false,
     this.maxValue = 99,
-  }) : variant = AppBadgeVariant.counter,
-       label = null,
-       status = null,
-       icon = null;
+  })  : variant = AppBadgeVariant.counter,
+        label = null,
+        status = null,
+        icon = null;
 
   const AppBadge.status({
     super.key,
@@ -153,17 +153,16 @@ class AppBadge extends StatefulWidget {
     this.loading = false,
     this.skeleton = false,
     this.visible = true,
-  }) : variant = AppBadgeVariant.status,
-       value = null,
-       showZero = false,
-       maxValue = 99;
+  })  : variant = AppBadgeVariant.status,
+        value = null,
+        showZero = false,
+        maxValue = 99;
 
   @override
   State<AppBadge> createState() => _AppBadgeState();
 }
 
-class _AppBadgeState extends State<AppBadge>
-    with TickerProviderStateMixin {
+class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
   late final AnimationController _animationController;
   late final AnimationController _pulseController;
   late final Animation<double> _fadeAnimation;
@@ -345,11 +344,14 @@ class _AppBadgeState extends State<AppBadge>
     });
   }
 
-  bool get _canInteract => widget.enabled &&
-                          !widget.loading &&
-                          !widget.skeleton &&
-                          (widget.onTap != null || widget.onLongPress != null ||
-                           widget.interaction?.onTap != null || widget.interaction?.onLongPress != null);
+  bool get _canInteract =>
+      widget.enabled &&
+      !widget.loading &&
+      !widget.skeleton &&
+      (widget.onTap != null ||
+          widget.onLongPress != null ||
+          widget.interaction?.onTap != null ||
+          widget.interaction?.onLongPress != null);
 
   bool get _isInteractive => _canInteract;
 
@@ -459,12 +461,17 @@ class _AppBadgeState extends State<AppBadge>
 
     if (widget.accessibility?.excludeSemantics != true) {
       badgeWidget = Semantics(
-        label: widget.semanticLabel ?? widget.accessibility?.semanticLabel ?? _getSemanticLabel(config),
+        label: widget.semanticLabel ??
+            widget.accessibility?.semanticLabel ??
+            _getSemanticLabel(config),
         button: _isInteractive,
         focusable: widget.interaction?.focusable ?? true,
         enabled: widget.enabled,
         onTap: _isInteractive ? _handleTap : null,
-        onLongPress: widget.onLongPress != null || widget.interaction?.onLongPress != null ? _handleLongPress : null,
+        onLongPress: widget.onLongPress != null ||
+                widget.interaction?.onLongPress != null
+            ? _handleLongPress
+            : null,
         child: badgeWidget,
       );
     }
@@ -484,10 +491,22 @@ class _AppBadgeState extends State<AppBadge>
       children: [
         widget.child!,
         Positioned(
-          top: config.position == AppBadgePosition.topLeft || config.position == AppBadgePosition.topRight ? 0 : null,
-          bottom: config.position == AppBadgePosition.bottomLeft || config.position == AppBadgePosition.bottomRight ? 0 : null,
-          left: config.position == AppBadgePosition.topLeft || config.position == AppBadgePosition.bottomLeft ? 0 : null,
-          right: config.position == AppBadgePosition.topRight || config.position == AppBadgePosition.bottomRight ? 0 : null,
+          top: config.position == AppBadgePosition.topLeft ||
+                  config.position == AppBadgePosition.topRight
+              ? 0
+              : null,
+          bottom: config.position == AppBadgePosition.bottomLeft ||
+                  config.position == AppBadgePosition.bottomRight
+              ? 0
+              : null,
+          left: config.position == AppBadgePosition.topLeft ||
+                  config.position == AppBadgePosition.bottomLeft
+              ? 0
+              : null,
+          right: config.position == AppBadgePosition.topRight ||
+                  config.position == AppBadgePosition.bottomRight
+              ? 0
+              : null,
           child: Transform.translate(
             offset: config.position.getOffset(config.size),
             child: badgeWidget,
@@ -505,12 +524,17 @@ class _AppBadgeState extends State<AppBadge>
 
     if (widget.accessibility?.excludeSemantics != true) {
       result = Semantics(
-        label: widget.semanticLabel ?? widget.accessibility?.semanticLabel ?? _getSemanticLabel(config),
+        label: widget.semanticLabel ??
+            widget.accessibility?.semanticLabel ??
+            _getSemanticLabel(config),
         button: _isInteractive,
         focusable: widget.interaction?.focusable ?? true,
         enabled: widget.enabled,
         onTap: _isInteractive ? _handleTap : null,
-        onLongPress: widget.onLongPress != null || widget.interaction?.onLongPress != null ? _handleLongPress : null,
+        onLongPress: widget.onLongPress != null ||
+                widget.interaction?.onLongPress != null
+            ? _handleLongPress
+            : null,
         child: result,
       );
     }
@@ -543,7 +567,8 @@ class _AppBadgeState extends State<AppBadge>
     return _wrapWithInteraction(content, config, effectiveStyle);
   }
 
-  Widget _buildDotBadge(BuildContext context, AppBadgeConfig config, AppBadgeStyle style) {
+  Widget _buildDotBadge(
+      BuildContext context, AppBadgeConfig config, AppBadgeStyle style) {
     final size = config.size.dotSize;
 
     return Container(
@@ -561,7 +586,8 @@ class _AppBadgeState extends State<AppBadge>
         boxShadow: style.elevation != null && style.elevation! > 0
             ? [
                 BoxShadow(
-                  color: style.shadowColor ?? Colors.black.withValues(alpha: 0.2),
+                  color:
+                      style.shadowColor ?? Colors.black.withValues(alpha: 0.2),
                   blurRadius: style.elevation! * 2,
                   offset: Offset(0, style.elevation!),
                 ),
@@ -571,7 +597,8 @@ class _AppBadgeState extends State<AppBadge>
     );
   }
 
-  Widget _buildCounterBadge(BuildContext context, AppBadgeConfig config, AppBadgeStyle style) {
+  Widget _buildCounterBadge(
+      BuildContext context, AppBadgeConfig config, AppBadgeStyle style) {
     if (!config.shouldShowValue) {
       return const SizedBox.shrink();
     }
@@ -596,7 +623,8 @@ class _AppBadgeState extends State<AppBadge>
         boxShadow: style.elevation != null && style.elevation! > 0
             ? [
                 BoxShadow(
-                  color: style.shadowColor ?? Colors.black.withValues(alpha: 0.2),
+                  color:
+                      style.shadowColor ?? Colors.black.withValues(alpha: 0.2),
                   blurRadius: style.elevation! * 2,
                   offset: Offset(0, style.elevation!),
                 ),
@@ -613,7 +641,8 @@ class _AppBadgeState extends State<AppBadge>
     );
   }
 
-  Widget _buildStatusBadge(BuildContext context, AppBadgeConfig config, AppBadgeStyle style) {
+  Widget _buildStatusBadge(
+      BuildContext context, AppBadgeConfig config, AppBadgeStyle style) {
     final minSize = config.size.statusSize;
     final hasLabel = config.hasLabel;
     final hasStatus = config.hasStatus;
@@ -684,7 +713,8 @@ class _AppBadgeState extends State<AppBadge>
         boxShadow: style.elevation != null && style.elevation! > 0
             ? [
                 BoxShadow(
-                  color: style.shadowColor ?? Colors.black.withValues(alpha: 0.2),
+                  color:
+                      style.shadowColor ?? Colors.black.withValues(alpha: 0.2),
                   blurRadius: style.elevation! * 2,
                   offset: Offset(0, style.elevation!),
                 ),
@@ -695,12 +725,15 @@ class _AppBadgeState extends State<AppBadge>
     );
   }
 
-  Widget _buildSkeletonBadge(BuildContext context, AppBadgeStyle style, AppBadgeConfig config) {
+  Widget _buildSkeletonBadge(
+      BuildContext context, AppBadgeStyle style, AppBadgeConfig config) {
     final theme = Theme.of(context);
     final shimmerColor = theme.colorScheme.surfaceContainerHighest;
-    final size = config.variant.isDot ? config.size.dotSize :
-                config.variant.isCounter ? config.size.counterSize :
-                config.size.statusSize;
+    final size = config.variant.isDot
+        ? config.size.dotSize
+        : config.variant.isCounter
+            ? config.size.counterSize
+            : config.size.statusSize;
 
     return Container(
       width: size,
@@ -712,9 +745,11 @@ class _AppBadgeState extends State<AppBadge>
     );
   }
 
-  AppBadgeStyle _getEffectiveStyle(ThemeData theme, AppBadgeConfig config, AppBadgeState state) {
+  AppBadgeStyle _getEffectiveStyle(
+      ThemeData theme, AppBadgeConfig config, AppBadgeState state) {
     final colorScheme = theme.colorScheme;
-    final effectiveBackgroundColor = config.getEffectiveBackgroundColor(colorScheme);
+    final effectiveBackgroundColor =
+        config.getEffectiveBackgroundColor(colorScheme);
     final effectiveTextColor = config.getEffectiveTextColor(colorScheme);
 
     final baseStyle = AppBadgeStyle(
@@ -735,12 +770,16 @@ class _AppBadgeState extends State<AppBadge>
       ),
       iconSize: config.size.iconSize,
       dotSize: config.size.dotSize,
-      minWidth: config.variant.isDot ? config.size.dotSize :
-                config.variant.isCounter ? config.size.counterSize :
-                config.size.statusSize,
-      minHeight: config.variant.isDot ? config.size.dotSize :
-                 config.variant.isCounter ? config.size.counterSize :
-                 config.size.statusSize,
+      minWidth: config.variant.isDot
+          ? config.size.dotSize
+          : config.variant.isCounter
+              ? config.size.counterSize
+              : config.size.statusSize,
+      minHeight: config.variant.isDot
+          ? config.size.dotSize
+          : config.variant.isCounter
+              ? config.size.counterSize
+              : config.size.statusSize,
     );
 
     final customStyle = config.style ?? const AppBadgeStyle();
@@ -823,7 +862,8 @@ class _AppBadgeState extends State<AppBadge>
     }
   }
 
-  Widget _wrapWithInteraction(Widget child, AppBadgeConfig config, AppBadgeStyle style) {
+  Widget _wrapWithInteraction(
+      Widget child, AppBadgeConfig config, AppBadgeStyle style) {
     if (!_isInteractive) {
       return child;
     }
@@ -849,9 +889,11 @@ class _AppBadgeState extends State<AppBadge>
                     decoration: BoxDecoration(
                       color: style.overlayColor,
                       borderRadius: config.shape.getBorderRadius(
-                        config.variant.isDot ? config.size.dotSize :
-                        config.variant.isCounter ? config.size.counterSize :
-                        config.size.statusSize,
+                        config.variant.isDot
+                            ? config.size.dotSize
+                            : config.variant.isCounter
+                                ? config.size.counterSize
+                                : config.size.statusSize,
                       ),
                     ),
                   ),

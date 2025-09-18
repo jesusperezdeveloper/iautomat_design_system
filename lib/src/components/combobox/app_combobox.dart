@@ -43,7 +43,8 @@ class AppComboBox<T> extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final String? noResultsText;
   final Widget? loadingWidget;
-  final Future<List<AppComboBoxSuggestion<T>>> Function(String)? onQuerySubmitted;
+  final Future<List<AppComboBoxSuggestion<T>>> Function(String)?
+      onQuerySubmitted;
 
   const AppComboBox({
     super.key,
@@ -84,15 +85,16 @@ class AppComboBox<T> extends StatefulWidget {
     this.loadingWidget,
     this.onQuerySubmitted,
   }) : assert(
-    onQueryChanged != null || controller != null,
-    'Either onQueryChanged or controller must be provided',
-  );
+          onQueryChanged != null || controller != null,
+          'Either onQueryChanged or controller must be provided',
+        );
 
   @override
   State<AppComboBox<T>> createState() => _AppComboBoxState<T>();
 }
 
-class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStateMixin {
+class _AppComboBoxState<T> extends State<AppComboBox<T>>
+    with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late TextEditingController _controller;
   late AnimationController _animationController;
@@ -117,7 +119,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
   String _lastQuery = '';
   int _selectedSuggestionIndex = -1;
 
-  bool get _isEnabled => widget.enabled && widget.overrideState != AppComboBoxState.disabled;
+  bool get _isEnabled =>
+      widget.enabled && widget.overrideState != AppComboBoxState.disabled;
   bool get _hasError => widget.errorText != null || _effectiveErrorText != null;
   String? get _effectiveErrorText => widget.errorText ?? _validationError;
   String? _validationError;
@@ -129,7 +132,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
     super.initState();
 
     _focusNode = widget.focusNode ?? FocusNode();
-    _controller = widget.controller ?? TextEditingController(text: widget.query);
+    _controller =
+        widget.controller ?? TextEditingController(text: widget.query);
     _focusNode.addListener(_handleFocusChange);
 
     _animationController = AnimationController(
@@ -265,7 +269,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
       _debounceTimer?.cancel();
 
       if (query.length >= _config.minQueryLength) {
-        _debounceTimer = Timer(Duration(milliseconds: _config.typeaheadDebounceMs), () {
+        _debounceTimer =
+            Timer(Duration(milliseconds: _config.typeaheadDebounceMs), () {
           _performSearch(query);
         });
       } else {
@@ -292,7 +297,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
         final results = await widget.onQuerySubmitted!(query);
         if (mounted && query == _currentQuery) {
           setState(() {
-            _filteredSuggestions = results.take(_config.maxSuggestions).toList();
+            _filteredSuggestions =
+                results.take(_config.maxSuggestions).toList();
             _isLoading = false;
           });
           _showSuggestions();
@@ -373,7 +379,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
       _focusNode.unfocus();
     }
 
-    if (_config.enableHapticFeedback && (Platform.isIOS || Platform.isAndroid)) {
+    if (_config.enableHapticFeedback &&
+        (Platform.isIOS || Platform.isAndroid)) {
       HapticFeedback.selectionClick();
     }
   }
@@ -396,7 +403,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
     if (!_isSuggestionsOpen || _filteredSuggestions.isEmpty) return;
 
     setState(() {
-      _selectedSuggestionIndex = (_selectedSuggestionIndex + 1) % _filteredSuggestions.length;
+      _selectedSuggestionIndex =
+          (_selectedSuggestionIndex + 1) % _filteredSuggestions.length;
     });
   }
 
@@ -441,7 +449,9 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
           showWhenUnlinked: false,
           offset: Offset(0, size.height + _config.suggestionsOffset),
           child: Material(
-            elevation: _config.enableSuggestionsElevation ? _config.suggestionsElevation : 0,
+            elevation: _config.enableSuggestionsElevation
+                ? _config.suggestionsElevation
+                : 0,
             borderRadius: BorderRadius.circular(_config.borderRadius),
             color: _colors.suggestionsBackgroundColor,
             shadowColor: _colors.suggestionsShadowColor,
@@ -480,8 +490,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
             Text(
               'Buscando...',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: _colors.suggestionItemTextColor,
-              ),
+                    color: _colors.suggestionItemTextColor,
+                  ),
             ),
           ],
         ),
@@ -496,8 +506,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
           child: Text(
             widget.noResultsText ?? 'No se encontraron resultados',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: _colors.noResultsTextColor,
-            ),
+                  color: _colors.noResultsTextColor,
+                ),
           ),
         );
       }
@@ -522,11 +532,16 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
     );
   }
 
-  Widget _buildSuggestionItem(AppComboBoxSuggestion<T> suggestion, bool isSelected, int index) {
+  Widget _buildSuggestionItem(
+      AppComboBoxSuggestion<T> suggestion, bool isSelected, int index) {
     return Material(
-      color: isSelected ? _colors.suggestionItemSelectedColor : _colors.suggestionItemBackgroundColor,
+      color: isSelected
+          ? _colors.suggestionItemSelectedColor
+          : _colors.suggestionItemBackgroundColor,
       child: InkWell(
-        onTap: suggestion.enabled ? () => _handleSuggestionSelected(suggestion) : null,
+        onTap: suggestion.enabled
+            ? () => _handleSuggestionSelected(suggestion)
+            : null,
         onHover: (hovering) {
           if (hovering && suggestion.enabled) {
             setState(() {
@@ -564,17 +579,17 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
                       Text(
                         suggestion.label,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: suggestion.enabled
-                              ? _colors.suggestionItemTextColor
-                              : _colors.suggestionItemDisabledTextColor,
-                        ),
+                              color: suggestion.enabled
+                                  ? _colors.suggestionItemTextColor
+                                  : _colors.suggestionItemDisabledTextColor,
+                            ),
                       ),
                     if (suggestion.subtitle != null)
                       Text(
                         suggestion.subtitle!,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: _colors.suggestionItemSubtitleColor,
-                        ),
+                              color: _colors.suggestionItemSubtitleColor,
+                            ),
                       ),
                   ],
                 ),
@@ -661,8 +676,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
             Text(
               widget.label!,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: _colors.labelColor,
-              ),
+                    color: _colors.labelColor,
+                  ),
             ),
             SizedBox(height: _config.labelSpacing),
           ],
@@ -689,8 +704,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
                 Text(
                   'Cargando...',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: _colors.disabledTextColor,
-                  ),
+                        color: _colors.disabledTextColor,
+                      ),
                 ),
               ],
             ),
@@ -784,8 +799,9 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
           inputFormatters: widget.inputFormatters,
           textDirection: widget.textDirection,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: _isEnabled ? _colors.textColor : _colors.disabledTextColor,
-          ),
+                color:
+                    _isEnabled ? _colors.textColor : _colors.disabledTextColor,
+              ),
           cursorColor: _colors.cursorColor,
           onChanged: _handleQueryChanged,
           onTap: widget.onTap,
@@ -799,7 +815,8 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>> with TickerProviderStat
             prefixIcon: widget.prefixIcon,
             suffixIcon: _buildSuffixIcon(),
             filled: true,
-            fillColor: _isEnabled ? _colors.fillColor : _colors.disabledFillColor,
+            fillColor:
+                _isEnabled ? _colors.fillColor : _colors.disabledFillColor,
             contentPadding: _config.contentPadding,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(_config.borderRadius),

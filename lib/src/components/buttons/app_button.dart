@@ -28,8 +28,7 @@ class AppButton extends StatefulWidget {
   State<AppButton> createState() => _AppButtonState();
 }
 
-class _AppButtonState extends State<AppButton>
-    with TickerProviderStateMixin {
+class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _hoverAnimationController;
   late AnimationController _pressAnimationController;
@@ -51,7 +50,8 @@ class _AppButtonState extends State<AppButton>
 
   void _setupAnimations() {
     _stateAnimationController = AnimationController(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 300),
       vsync: this,
     );
 
@@ -129,7 +129,8 @@ class _AppButtonState extends State<AppButton>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
+    final isRtl =
+        widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
 
     return Directionality(
       textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
@@ -146,11 +147,13 @@ class _AppButtonState extends State<AppButton>
           builder: (context, child) {
             return AnimatedScale(
               scale: _getScale(),
-              duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+              duration: Duration(
+                  milliseconds: widget.config.animation?.duration ?? 300),
               curve: widget.config.animation?.curve ?? Curves.easeInOut,
               child: AnimatedOpacity(
                 opacity: widget.config.state.opacity,
-                duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+                duration: Duration(
+                    milliseconds: widget.config.animation?.duration ?? 300),
                 child: _buildButtonVariant(theme, isRtl),
               ),
             );
@@ -196,14 +199,16 @@ class _AppButtonState extends State<AppButton>
       height: _getSize().minHeight,
       decoration: BoxDecoration(
         color: widget.config.colors?.skeletonColor ?? Colors.grey[300],
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
       ),
       child: AnimatedBuilder(
         animation: _stateAnimationController,
         builder: (context, child) {
           return Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+              borderRadius: BorderRadius.circular(
+                  widget.config.spacing?.borderRadius ?? 12.0),
               gradient: LinearGradient(
                 colors: [
                   Colors.transparent,
@@ -211,8 +216,10 @@ class _AppButtonState extends State<AppButton>
                   Colors.transparent,
                 ],
                 stops: const [0.0, 0.5, 1.0],
-                begin: Alignment(-1.0 + (_stateAnimationController.value * 2), 0.0),
-                end: Alignment(1.0 + (_stateAnimationController.value * 2), 0.0),
+                begin: Alignment(
+                    -1.0 + (_stateAnimationController.value * 2), 0.0),
+                end:
+                    Alignment(1.0 + (_stateAnimationController.value * 2), 0.0),
               ),
             ),
           );
@@ -226,7 +233,8 @@ class _AppButtonState extends State<AppButton>
 
     if (_isPressed && widget.config.animation?.enablePressAnimation == true) {
       scale *= 0.95;
-    } else if (_isHovering && widget.config.animation?.enableHoverAnimation == true) {
+    } else if (_isHovering &&
+        widget.config.animation?.enableHoverAnimation == true) {
       scale *= 1.02;
     }
 
@@ -282,8 +290,10 @@ class _AppButtonState extends State<AppButton>
       elevation: _getElevation(),
       shadowColor: _getShadowColor(theme),
       surfaceTintColor: _getSurfaceTintColor(theme),
-      borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      borderRadius:
+          BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       color: _getBackgroundColor(theme),
       child: content,
     );
@@ -293,9 +303,11 @@ class _AppButtonState extends State<AppButton>
     return Container(
       decoration: BoxDecoration(
         color: _getTonalBackgroundColor(theme),
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
       ),
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       child: content,
     );
   }
@@ -305,9 +317,11 @@ class _AppButtonState extends State<AppButton>
       decoration: BoxDecoration(
         color: Colors.transparent,
         border: _getBorder(theme),
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
       ),
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       child: content,
     );
   }
@@ -316,9 +330,11 @@ class _AppButtonState extends State<AppButton>
     return Container(
       decoration: BoxDecoration(
         color: _getStateOverlayColor(theme),
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
       ),
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       child: content,
     );
   }
@@ -340,12 +356,14 @@ class _AppButtonState extends State<AppButton>
     return Container(
       decoration: BoxDecoration(
         color: widget.config.state == AppButtonState.selected
-          ? _getSelectedBackgroundColor(theme)
-          : _getBackgroundColor(theme),
+            ? _getSelectedBackgroundColor(theme)
+            : _getBackgroundColor(theme),
         border: _getBorder(theme),
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 8.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 8.0),
       ),
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       child: content,
     );
   }
@@ -358,11 +376,14 @@ class _AppButtonState extends State<AppButton>
       width: widget.width,
       height: widget.height,
       constraints: BoxConstraints(
-        minWidth: widget.config.variant.isIconOnly ? size.minHeight : size.horizontalPadding * 4,
+        minWidth: widget.config.variant.isIconOnly
+            ? size.minHeight
+            : size.horizontalPadding * 4,
         minHeight: size.minHeight,
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: widget.config.variant.isIconOnly ? 0 : size.horizontalPadding,
+        horizontal:
+            widget.config.variant.isIconOnly ? 0 : size.horizontalPadding,
         vertical: size.verticalPadding,
       ),
       decoration: BoxDecoration(
@@ -400,13 +421,15 @@ class _AppButtonState extends State<AppButton>
     return button;
   }
 
-  Widget _buildButtonContent(ThemeData theme, AppButtonSize size, bool isDanger, bool isRtl) {
+  Widget _buildButtonContent(
+      ThemeData theme, AppButtonSize size, bool isDanger, bool isRtl) {
     if (widget.config.variant.isIconOnly) {
-      return widget.leading ?? Icon(
-        Icons.star,
-        size: size.iconSize,
-        color: _getForegroundColor(theme, isDanger),
-      );
+      return widget.leading ??
+          Icon(
+            Icons.star,
+            size: size.iconSize,
+            color: _getForegroundColor(theme, isDanger),
+          );
     }
 
     final List<Widget> children = [];
@@ -414,7 +437,8 @@ class _AppButtonState extends State<AppButton>
     if (widget.leading != null) {
       children.add(widget.leading!);
       if (widget.label != null) {
-        children.add(SizedBox(width: widget.config.spacing?.iconSpacing ?? 8.0));
+        children
+            .add(SizedBox(width: widget.config.spacing?.iconSpacing ?? 8.0));
       }
     }
 
@@ -437,7 +461,8 @@ class _AppButtonState extends State<AppButton>
 
     if (widget.trailing != null) {
       if (widget.label != null) {
-        children.add(SizedBox(width: widget.config.spacing?.iconSpacing ?? 8.0));
+        children
+            .add(SizedBox(width: widget.config.spacing?.iconSpacing ?? 8.0));
       }
       children.add(widget.trailing!);
     }
@@ -458,25 +483,25 @@ class _AppButtonState extends State<AppButton>
 
     if (widget.config.state == AppButtonState.disabled) {
       return widget.config.colors?.disabledColor ??
-             theme.colorScheme.onSurface.withValues(alpha: 0.12);
+          theme.colorScheme.onSurface.withValues(alpha: 0.12);
     }
 
     switch (widget.config.variant) {
       case AppButtonVariant.filled:
         return widget.config.colors?.backgroundColor ??
-               theme.colorScheme.primary;
+            theme.colorScheme.primary;
       case AppButtonVariant.tonal:
         return widget.config.colors?.backgroundColor ??
-               theme.colorScheme.secondaryContainer;
+            theme.colorScheme.secondaryContainer;
       case AppButtonVariant.outline:
       case AppButtonVariant.text:
         return Colors.transparent;
       case AppButtonVariant.icon:
         return widget.config.colors?.backgroundColor ??
-               theme.colorScheme.surfaceContainerHighest;
+            theme.colorScheme.surfaceContainerHighest;
       case AppButtonVariant.segmented:
         return widget.config.colors?.backgroundColor ??
-               theme.colorScheme.surface;
+            theme.colorScheme.surface;
     }
   }
 
@@ -485,32 +510,32 @@ class _AppButtonState extends State<AppButton>
 
     if (isDanger) {
       return widget.config.colors?.dangerColor?.withValues(alpha: 0.12) ??
-             theme.colorScheme.error.withValues(alpha: 0.12);
+          theme.colorScheme.error.withValues(alpha: 0.12);
     }
 
     return widget.config.colors?.backgroundColor ??
-           theme.colorScheme.secondaryContainer;
+        theme.colorScheme.secondaryContainer;
   }
 
   Color? _getSelectedBackgroundColor(ThemeData theme) {
     return widget.config.colors?.selectedColor ??
-           theme.colorScheme.secondaryContainer;
+        theme.colorScheme.secondaryContainer;
   }
 
   Color? _getStateOverlayColor(ThemeData theme) {
     if (_isPressed && widget.config.state.canInteract) {
       return widget.config.colors?.pressedColor ??
-             theme.colorScheme.primary.withValues(alpha: 0.12);
+          theme.colorScheme.primary.withValues(alpha: 0.12);
     }
 
     if (_isHovering && widget.config.state.canInteract) {
       return widget.config.colors?.hoverColor ??
-             theme.colorScheme.primary.withValues(alpha: 0.08);
+          theme.colorScheme.primary.withValues(alpha: 0.08);
     }
 
     if (_isFocused && widget.config.state.canInteract) {
       return widget.config.colors?.focusColor ??
-             theme.colorScheme.primary.withValues(alpha: 0.12);
+          theme.colorScheme.primary.withValues(alpha: 0.12);
     }
 
     return null;
@@ -519,9 +544,9 @@ class _AppButtonState extends State<AppButton>
   Color? _getForegroundColor(ThemeData theme, bool isDanger) {
     if (isDanger) {
       return widget.config.colors?.dangerForegroundColor ??
-             (widget.config.variant == AppButtonVariant.filled
-               ? theme.colorScheme.onError
-               : theme.colorScheme.error);
+          (widget.config.variant == AppButtonVariant.filled
+              ? theme.colorScheme.onError
+              : theme.colorScheme.error);
     }
 
     if (widget.config.state == AppButtonState.disabled) {
@@ -531,37 +556,36 @@ class _AppButtonState extends State<AppButton>
     switch (widget.config.variant) {
       case AppButtonVariant.filled:
         return widget.config.colors?.foregroundColor ??
-               theme.colorScheme.onPrimary;
+            theme.colorScheme.onPrimary;
       case AppButtonVariant.tonal:
         return widget.config.colors?.foregroundColor ??
-               theme.colorScheme.onSecondaryContainer;
+            theme.colorScheme.onSecondaryContainer;
       case AppButtonVariant.outline:
       case AppButtonVariant.text:
       case AppButtonVariant.segmented:
         return widget.config.colors?.foregroundColor ??
-               theme.colorScheme.primary;
+            theme.colorScheme.primary;
       case AppButtonVariant.icon:
         return widget.config.colors?.foregroundColor ??
-               theme.colorScheme.onSurfaceVariant;
+            theme.colorScheme.onSurfaceVariant;
     }
   }
 
   Color? _getShadowColor(ThemeData theme) {
     return widget.config.elevation?.shadowColor ??
-           widget.config.colors?.shadowColor ??
-           theme.colorScheme.shadow;
+        widget.config.colors?.shadowColor ??
+        theme.colorScheme.shadow;
   }
 
   Color? _getSurfaceTintColor(ThemeData theme) {
     return widget.config.elevation?.surfaceTintColor ??
-           theme.colorScheme.surfaceTint;
+        theme.colorScheme.surfaceTint;
   }
 
   Border? _getBorder(ThemeData theme) {
     if (widget.config.variant.hasBorder) {
       return Border.all(
-        color: widget.config.colors?.borderColor ??
-               theme.colorScheme.outline,
+        color: widget.config.colors?.borderColor ?? theme.colorScheme.outline,
         width: widget.config.spacing?.borderWidth ?? 1.0,
       );
     }

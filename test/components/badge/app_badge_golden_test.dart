@@ -649,14 +649,16 @@ void main() {
                       ),
                       Column(
                         children: [
-                          AppBadge.counter(value: 99, size: AppBadgeSize.medium),
+                          AppBadge.counter(
+                              value: 99, size: AppBadgeSize.medium),
                           SizedBox(height: 8),
                           Text('Medium Counter'),
                         ],
                       ),
                       Column(
                         children: [
-                          AppBadge.counter(value: 999, size: AppBadgeSize.large),
+                          AppBadge.counter(
+                              value: 999, size: AppBadgeSize.large),
                           SizedBox(height: 8),
                           Text('Large Counter'),
                         ],

@@ -181,7 +181,8 @@ class AppDataTableColumn with _$AppDataTableColumn {
     @Default(false) bool pinned,
 
     /// Column alignment
-    @Default(AppDataTableColumnAlignment.left) AppDataTableColumnAlignment alignment,
+    @Default(AppDataTableColumnAlignment.left)
+    AppDataTableColumnAlignment alignment,
 
     /// Cell type for this column
     @Default(AppDataTableCellType.text) AppDataTableCellType cellType,
@@ -220,7 +221,8 @@ class AppDataTableColumn with _$AppDataTableColumn {
     String? semanticLabel,
 
     /// Sort direction for this column
-    @Default(AppDataTableSortDirection.none) AppDataTableSortDirection sortDirection,
+    @Default(AppDataTableSortDirection.none)
+    AppDataTableSortDirection sortDirection,
 
     /// Sort priority (for multi-column sorting)
     int? sortPriority,
@@ -233,10 +235,13 @@ class AppDataTableColumn with _$AppDataTableColumn {
   bool get hasCustomHeaderBuilder => headerBuilder != null;
 
   /// Whether the column supports editing
-  bool get supportsEditing => editable && (cellType != AppDataTableCellType.custom || editCellBuilder != null);
+  bool get supportsEditing =>
+      editable &&
+      (cellType != AppDataTableCellType.custom || editCellBuilder != null);
 
   /// Get the effective alignment for RTL layouts
-  AppDataTableColumnAlignment getEffectiveAlignment(TextDirection textDirection) {
+  AppDataTableColumnAlignment getEffectiveAlignment(
+      TextDirection textDirection) {
     if (textDirection == TextDirection.rtl) {
       switch (alignment) {
         case AppDataTableColumnAlignment.left:
@@ -313,7 +318,8 @@ class AppDataTableRow with _$AppDataTableRow {
   bool isCellEditing(String columnId) => editingCells.contains(columnId);
 
   /// Get display value for a column with optional formatting
-  String getDisplayValue(String columnId, AppDataTableCellFormatter? formatter) {
+  String getDisplayValue(
+      String columnId, AppDataTableCellFormatter? formatter) {
     final value = getValue(columnId);
     if (formatter != null) {
       return formatter(value);
@@ -354,7 +360,8 @@ class AppDataTableSort with _$AppDataTableSort {
     String? columnId,
 
     /// Sort direction
-    @Default(AppDataTableSortDirection.none) AppDataTableSortDirection direction,
+    @Default(AppDataTableSortDirection.none)
+    AppDataTableSortDirection direction,
 
     /// Whether multi-column sorting is enabled
     @Default(false) bool multiColumn,
@@ -433,10 +440,12 @@ class AppDataTableConfig with _$AppDataTableConfig {
     @Default(56.0) double headerHeight,
 
     /// Cell padding
-    @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 8)) EdgeInsets cellPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 8))
+    EdgeInsets cellPadding,
 
     /// Header padding
-    @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 12)) EdgeInsets headerPadding,
+    @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 12))
+    EdgeInsets headerPadding,
 
     /// Table elevation
     @Default(2.0) double elevation,
@@ -995,12 +1004,15 @@ class AppDataTableUtils {
       }
 
       if (column.maxWidth < column.minWidth) {
-        errors.add('Maximum width cannot be less than minimum width for column: ${column.id}');
+        errors.add(
+            'Maximum width cannot be less than minimum width for column: ${column.id}');
       }
 
       if (column.width != null &&
-          (column.width! < column.minWidth || column.width! > column.maxWidth)) {
-        errors.add('Width must be between min and max width for column: ${column.id}');
+          (column.width! < column.minWidth ||
+              column.width! > column.maxWidth)) {
+        errors.add(
+            'Width must be between min and max width for column: ${column.id}');
       }
     }
 
@@ -1013,10 +1025,8 @@ class AppDataTableUtils {
     List<AppDataTableColumn> columns,
   ) {
     final errors = <String>[];
-    final requiredFields = columns
-        .where((col) => col.visible)
-        .map((col) => col.field)
-        .toSet();
+    final requiredFields =
+        columns.where((col) => col.visible).map((col) => col.field).toSet();
 
     for (final field in requiredFields) {
       if (!row.hasValue(field)) {
@@ -1036,14 +1046,16 @@ class AppDataTableUtils {
     double maxWidth = column.minWidth;
 
     // Calculate header width
-    final headerWidth = _calculateTextWidth(column.label, textStyle) + 32; // padding
+    final headerWidth =
+        _calculateTextWidth(column.label, textStyle) + 32; // padding
     maxWidth = math.max(maxWidth, headerWidth);
 
     // Calculate content width for first 100 rows (performance optimization)
     final sampleRows = rows.take(100);
     for (final row in sampleRows) {
       final value = row.getDisplayValue(column.field, column.formatter);
-      final contentWidth = _calculateTextWidth(value, textStyle) + 32; // padding
+      final contentWidth =
+          _calculateTextWidth(value, textStyle) + 32; // padding
       maxWidth = math.max(maxWidth, contentWidth);
     }
 
@@ -1069,8 +1081,10 @@ class AppDataTableUtils {
     VoidCallback? onEscape,
   }) {
     return {
-      LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyA): onSelectAll ?? () {},
-      LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyC): onCopy ?? () {},
+      LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyA):
+          onSelectAll ?? () {},
+      LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyC):
+          onCopy ?? () {},
       LogicalKeySet(LogicalKeyboardKey.delete): onDelete ?? () {},
       LogicalKeySet(LogicalKeyboardKey.f2): onEdit ?? () {},
       LogicalKeySet(LogicalKeyboardKey.escape): onEscape ?? () {},
@@ -1078,7 +1092,8 @@ class AppDataTableUtils {
   }
 
   /// Platform-specific row height calculation
-  static double getPlatformRowHeight(AppDataTableDensity density, TargetPlatform platform) {
+  static double getPlatformRowHeight(
+      AppDataTableDensity density, TargetPlatform platform) {
     switch (density) {
       case AppDataTableDensity.compact:
         return platform == TargetPlatform.iOS ? 36.0 : 32.0;

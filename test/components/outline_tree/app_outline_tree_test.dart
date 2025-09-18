@@ -42,7 +42,8 @@ void main() {
       ];
     });
 
-    testWidgets('async variant creates widget with correct nodes', (tester) async {
+    testWidgets('async variant creates widget with correct nodes',
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -60,7 +61,8 @@ void main() {
       expect(find.text('Second Root'), findsOneWidget);
     });
 
-    testWidgets('multiSelect variant creates widget with checkboxes', (tester) async {
+    testWidgets('multiSelect variant creates widget with checkboxes',
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -639,7 +641,8 @@ void main() {
       var node = const AppTreeNode(id: '1', label: 'Test', isSelected: true);
       expect(node.selectionState, TreeSelectionState.selected);
 
-      node = const AppTreeNode(id: '2', label: 'Test', isPartiallySelected: true);
+      node =
+          const AppTreeNode(id: '2', label: 'Test', isPartiallySelected: true);
       expect(node.selectionState, TreeSelectionState.partial);
 
       node = const AppTreeNode(id: '3', label: 'Test');
@@ -664,7 +667,8 @@ void main() {
               depth: 1,
               isExpanded: true,
               children: [
-                const AppTreeNode(id: '1.2.1', label: 'Grandchild 1.2.1', depth: 2),
+                const AppTreeNode(
+                    id: '1.2.1', label: 'Grandchild 1.2.1', depth: 2),
               ],
             ),
           ],

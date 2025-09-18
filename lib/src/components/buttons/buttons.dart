@@ -8,4 +8,5 @@ library;
 
 export 'app_button.dart';
 export 'app_button_config.dart';
-export 'button_styles.dart' show AppButtonStyles, ButtonVariant, ButtonSize, ButtonSizeConfig;
+export 'button_styles.dart'
+    show AppButtonStyles, ButtonVariant, ButtonSize, ButtonSizeConfig;

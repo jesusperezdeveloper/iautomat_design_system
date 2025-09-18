@@ -99,7 +99,8 @@ class AppSplitViewBehavior with _$AppSplitViewBehavior {
 @freezed
 class AppSplitViewAnimation with _$AppSplitViewAnimation {
   const factory AppSplitViewAnimation({
-    @Default(AppSplitViewAnimationType.easeInOut) AppSplitViewAnimationType type,
+    @Default(AppSplitViewAnimationType.easeInOut)
+    AppSplitViewAnimationType type,
     @Default(300) int duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(true) bool enableStateTransitions,

@@ -30,8 +30,7 @@ class AppCard extends StatefulWidget {
   State<AppCard> createState() => _AppCardState();
 }
 
-class _AppCardState extends State<AppCard>
-    with TickerProviderStateMixin {
+class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _hoverAnimationController;
   late AnimationController _pressAnimationController;
@@ -53,7 +52,8 @@ class _AppCardState extends State<AppCard>
 
   void _setupAnimations() {
     _stateAnimationController = AnimationController(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 300),
       vsync: this,
     );
 
@@ -66,7 +66,6 @@ class _AppCardState extends State<AppCard>
       duration: const Duration(milliseconds: 100),
       vsync: this,
     );
-
 
     _scaleAnimation = Tween<double>(
       begin: 0.95,
@@ -132,13 +131,15 @@ class _AppCardState extends State<AppCard>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
+    final isRtl =
+        widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
 
     return Directionality(
       textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
       child: Focus(
         focusNode: _focusNode,
-        canRequestFocus: widget.config.enableKeyboardSupport && widget.config.state.canInteract,
+        canRequestFocus: widget.config.enableKeyboardSupport &&
+            widget.config.state.canInteract,
         child: Semantics(
           label: widget.config.enableA11y ? 'Card' : null,
           container: widget.config.enableA11y,
@@ -152,10 +153,12 @@ class _AppCardState extends State<AppCard>
             builder: (context, child) {
               return AnimatedOpacity(
                 opacity: widget.config.state.opacity,
-                duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+                duration: Duration(
+                    milliseconds: widget.config.animation?.duration ?? 300),
                 child: AnimatedScale(
                   scale: _getScaleValue(),
-                  duration: Duration(milliseconds: widget.config.animation?.duration ?? 300),
+                  duration: Duration(
+                      milliseconds: widget.config.animation?.duration ?? 300),
                   child: _buildCardContent(theme, isRtl),
                 ),
               );
@@ -182,10 +185,12 @@ class _AppCardState extends State<AppCard>
     return Container(
       width: widget.width,
       height: widget.height ?? widget.config.spacing?.minHeight ?? 120.0,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.padding ?? 16.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.padding ?? 16.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
         border: _getBorder(theme),
       ),
       child: Center(
@@ -217,10 +222,12 @@ class _AppCardState extends State<AppCard>
     return Container(
       width: widget.width,
       height: widget.height ?? widget.config.spacing?.minHeight ?? 120.0,
-      padding: widget.padding ?? EdgeInsets.all(widget.config.spacing?.padding ?? 16.0),
+      padding: widget.padding ??
+          EdgeInsets.all(widget.config.spacing?.padding ?? 16.0),
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
         border: _getBorder(theme),
       ),
       child: Column(
@@ -277,8 +284,10 @@ class _AppCardState extends State<AppCard>
       elevation: _getElevation(),
       shadowColor: _getShadowColor(theme),
       surfaceTintColor: _getSurfaceTintColor(theme),
-      borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      borderRadius:
+          BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       child: content,
     );
   }
@@ -287,9 +296,11 @@ class _AppCardState extends State<AppCard>
     return Container(
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
       ),
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       child: content,
     );
   }
@@ -299,9 +310,11 @@ class _AppCardState extends State<AppCard>
       decoration: BoxDecoration(
         color: _getBackgroundColor(theme),
         border: _getBorder(theme),
-        borderRadius: BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
+        borderRadius:
+            BorderRadius.circular(widget.config.spacing?.borderRadius ?? 12.0),
       ),
-      clipBehavior: widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
+      clipBehavior:
+          widget.config.behavior?.clipBehavior.flutterClip ?? Clip.antiAlias,
       child: content,
     );
   }
@@ -341,10 +354,11 @@ class _AppCardState extends State<AppCard>
       constraints: BoxConstraints(
         minHeight: spacing?.minHeight ?? 48.0,
       ),
-      decoration: widget.decoration ?? BoxDecoration(
-        color: _getStateOverlayColor(theme),
-        borderRadius: BorderRadius.circular(spacing?.borderRadius ?? 12.0),
-      ),
+      decoration: widget.decoration ??
+          BoxDecoration(
+            color: _getStateOverlayColor(theme),
+            borderRadius: BorderRadius.circular(spacing?.borderRadius ?? 12.0),
+          ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -367,8 +381,9 @@ class _AppCardState extends State<AppCard>
       ),
       child: DefaultTextStyle(
         style: theme.textTheme.titleMedium?.copyWith(
-          color: _getHeaderTextColor(theme),
-        ) ?? const TextStyle(),
+              color: _getHeaderTextColor(theme),
+            ) ??
+            const TextStyle(),
         child: widget.header!,
       ),
     );
@@ -383,8 +398,9 @@ class _AppCardState extends State<AppCard>
         ),
         child: DefaultTextStyle(
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: _getBodyTextColor(theme),
-          ) ?? const TextStyle(),
+                color: _getBodyTextColor(theme),
+              ) ??
+              const TextStyle(),
           child: widget.body!,
         ),
       ),
@@ -401,8 +417,9 @@ class _AppCardState extends State<AppCard>
       ),
       child: DefaultTextStyle(
         style: theme.textTheme.bodySmall?.copyWith(
-          color: _getFooterTextColor(theme),
-        ) ?? const TextStyle(),
+              color: _getFooterTextColor(theme),
+            ) ??
+            const TextStyle(),
         child: widget.footer!,
       ),
     );
@@ -410,7 +427,10 @@ class _AppCardState extends State<AppCard>
 
   // Event handlers
   void _handleHoverEnter() {
-    if (!widget.config.state.canInteract || !(widget.config.behavior?.enableHover ?? true)) return;
+    if (!widget.config.state.canInteract ||
+        !(widget.config.behavior?.enableHover ?? true)) {
+      return;
+    }
 
     setState(() {
       _isHovering = true;
@@ -490,7 +510,8 @@ class _AppCardState extends State<AppCard>
 
     if (_isPressed && widget.config.animation?.enablePressAnimation == true) {
       scale *= 0.95;
-    } else if (_isHovering && widget.config.animation?.enableHoverAnimation == true) {
+    } else if (_isHovering &&
+        widget.config.animation?.enableHoverAnimation == true) {
       scale *= 1.02;
     }
 
@@ -498,9 +519,8 @@ class _AppCardState extends State<AppCard>
   }
 
   double _getElevation() {
-    final baseElevation = widget.elevation ??
-                         widget.config.elevation?.defaultElevation ??
-                         1.0;
+    final baseElevation =
+        widget.elevation ?? widget.config.elevation?.defaultElevation ?? 1.0;
 
     if (!widget.config.state.canInteract) {
       return widget.config.elevation?.disabledElevation ?? 0.0;
@@ -516,39 +536,38 @@ class _AppCardState extends State<AppCard>
   Color? _getBackgroundColor(ThemeData theme) {
     if (widget.config.state == AppCardState.disabled) {
       return widget.config.colors?.disabledColor ??
-             theme.colorScheme.surface.withValues(alpha: 0.5);
+          theme.colorScheme.surface.withValues(alpha: 0.5);
     }
 
     if (widget.config.state == AppCardState.selected) {
       return widget.config.colors?.selectedColor ??
-             theme.colorScheme.primaryContainer;
+          theme.colorScheme.primaryContainer;
     }
 
     switch (widget.config.variant) {
       case AppCardVariant.elevated:
       case AppCardVariant.filled:
         return widget.config.colors?.backgroundColor ??
-               theme.colorScheme.surface;
+            theme.colorScheme.surface;
       case AppCardVariant.outlined:
-        return widget.config.colors?.backgroundColor ??
-               Colors.transparent;
+        return widget.config.colors?.backgroundColor ?? Colors.transparent;
     }
   }
 
   Color? _getStateOverlayColor(ThemeData theme) {
     if (_isPressed && widget.config.state.canInteract) {
       return widget.config.colors?.pressedColor ??
-             theme.colorScheme.primary.withValues(alpha: 0.12);
+          theme.colorScheme.primary.withValues(alpha: 0.12);
     }
 
     if (_isHovering && widget.config.state.canInteract) {
       return widget.config.colors?.hoverColor ??
-             theme.colorScheme.primary.withValues(alpha: 0.08);
+          theme.colorScheme.primary.withValues(alpha: 0.08);
     }
 
     if (_isFocused && widget.config.state.canInteract) {
       return widget.config.colors?.focusColor ??
-             theme.colorScheme.primary.withValues(alpha: 0.12);
+          theme.colorScheme.primary.withValues(alpha: 0.12);
     }
 
     return null;
@@ -556,13 +575,13 @@ class _AppCardState extends State<AppCard>
 
   Color? _getShadowColor(ThemeData theme) {
     return widget.config.elevation?.shadowColor ??
-           widget.config.colors?.shadowColor ??
-           theme.colorScheme.shadow;
+        widget.config.colors?.shadowColor ??
+        theme.colorScheme.shadow;
   }
 
   Color? _getSurfaceTintColor(ThemeData theme) {
     return widget.config.elevation?.surfaceTintColor ??
-           theme.colorScheme.surfaceTint;
+        theme.colorScheme.surfaceTint;
   }
 
   Color? _getTextColor(ThemeData theme) {
@@ -570,25 +589,22 @@ class _AppCardState extends State<AppCard>
   }
 
   Color? _getHeaderTextColor(ThemeData theme) {
-    return widget.config.colors?.headerTextColor ??
-           theme.colorScheme.onSurface;
+    return widget.config.colors?.headerTextColor ?? theme.colorScheme.onSurface;
   }
 
   Color? _getBodyTextColor(ThemeData theme) {
-    return widget.config.colors?.bodyTextColor ??
-           theme.colorScheme.onSurface;
+    return widget.config.colors?.bodyTextColor ?? theme.colorScheme.onSurface;
   }
 
   Color? _getFooterTextColor(ThemeData theme) {
     return widget.config.colors?.footerTextColor ??
-           theme.colorScheme.onSurfaceVariant;
+        theme.colorScheme.onSurfaceVariant;
   }
 
   Border? _getBorder(ThemeData theme) {
     if (widget.config.variant.hasBorder) {
       return Border.all(
-        color: widget.config.colors?.borderColor ??
-               theme.colorScheme.outline,
+        color: widget.config.colors?.borderColor ?? theme.colorScheme.outline,
         width: widget.config.spacing?.borderWidth ?? 1.0,
       );
     }

@@ -251,7 +251,6 @@ class _AppFilterBarState extends State<AppFilterBar>
     widget.onChanged?.call(_currentFilters);
   }
 
-
   void _handleClearAll() {
     if (_effectiveConfig.enableHapticFeedback) {
       HapticFeedback.mediumImpact();
@@ -271,7 +270,8 @@ class _AppFilterBarState extends State<AppFilterBar>
     // Remove existing overlay if any
     _overlayEntries[filter.id]?.remove();
 
-    final RenderBox renderBox = key.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox renderBox =
+        key.currentContext!.findRenderObject() as RenderBox;
     final position = renderBox.localToGlobal(Offset.zero);
     final size = renderBox.size;
 
@@ -301,7 +301,8 @@ class _AppFilterBarState extends State<AppFilterBar>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final isRTL = Directionality.of(context) == TextDirection.rtl ||
-        (_effectiveConfig.enableRTL && _effectiveConfig.textDirection == TextDirection.rtl);
+        (_effectiveConfig.enableRTL &&
+            _effectiveConfig.textDirection == TextDirection.rtl);
 
     if (!widget.isVisible) {
       return const SizedBox.shrink();
@@ -323,7 +324,8 @@ class _AppFilterBarState extends State<AppFilterBar>
                     : null,
                 child: Semantics(
                   label: _effectiveConfig.semanticLabel ?? 'Filter bar',
-                  hint: _effectiveConfig.semanticHint ?? 'Use arrow keys to navigate filters',
+                  hint: _effectiveConfig.semanticHint ??
+                      'Use arrow keys to navigate filters',
                   enabled: widget.state != AppFilterBarState.disabled,
                   child: Container(
                     constraints: _effectiveConfig.constraints,
@@ -352,7 +354,8 @@ class _AppFilterBarState extends State<AppFilterBar>
 
   Widget _buildNormalState(BuildContext context, ColorScheme colorScheme) {
     final activeFilters = AppFilterBarUtils.getActiveFilters(_currentFilters);
-    final showSummary = _effectiveConfig.showSummary && activeFilters.isNotEmpty;
+    final showSummary =
+        _effectiveConfig.showSummary && activeFilters.isNotEmpty;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -387,9 +390,13 @@ class _AppFilterBarState extends State<AppFilterBar>
       spacing: _effectiveConfig.spacing,
       runSpacing: _effectiveConfig.runSpacing,
       children: [
-        ...displayFilters.map((filter) => _buildFilterChip(context, colorScheme, filter)),
-        if (showMore) _buildMoreChip(context, colorScheme, visibleFilters.length - _effectiveConfig.maxVisibleChips),
-        if (_effectiveConfig.enableClearAll && AppFilterBarUtils.getActiveFilters(_currentFilters).isNotEmpty)
+        ...displayFilters
+            .map((filter) => _buildFilterChip(context, colorScheme, filter)),
+        if (showMore)
+          _buildMoreChip(context, colorScheme,
+              visibleFilters.length - _effectiveConfig.maxVisibleChips),
+        if (_effectiveConfig.enableClearAll &&
+            AppFilterBarUtils.getActiveFilters(_currentFilters).isNotEmpty)
           _buildClearAllChip(context, colorScheme),
       ],
     );
@@ -402,18 +409,22 @@ class _AppFilterBarState extends State<AppFilterBar>
       spacing: _effectiveConfig.spacing,
       runSpacing: _effectiveConfig.runSpacing,
       children: [
-        ...visibleFilters.map((filter) => _buildFilterPopoverButton(context, colorScheme, filter)),
-        if (_effectiveConfig.enableClearAll && AppFilterBarUtils.getActiveFilters(_currentFilters).isNotEmpty)
+        ...visibleFilters.map((filter) =>
+            _buildFilterPopoverButton(context, colorScheme, filter)),
+        if (_effectiveConfig.enableClearAll &&
+            AppFilterBarUtils.getActiveFilters(_currentFilters).isNotEmpty)
           _buildClearAllChip(context, colorScheme),
       ],
     );
   }
 
-  Widget _buildFilterChip(BuildContext context, ColorScheme colorScheme, AppFilter filter) {
+  Widget _buildFilterChip(
+      BuildContext context, ColorScheme colorScheme, AppFilter filter) {
     final isHovered = _hoveredFilterId == filter.id;
     final isFocused = _focusedFilterId == filter.id;
     final isPressed = _pressedFilterId == filter.id;
-    final isDisabled = filter.isDisabled || widget.state == AppFilterBarState.disabled;
+    final isDisabled =
+        filter.isDisabled || widget.state == AppFilterBarState.disabled;
     final isActive = filter.isActive;
 
     Color? backgroundColor;
@@ -421,20 +432,30 @@ class _AppFilterBarState extends State<AppFilterBar>
     Color? textColor;
 
     if (isDisabled) {
-      backgroundColor = _effectiveConfig.disabledBackgroundColor ?? colorScheme.surfaceContainerHighest.withValues(alpha: 0.12);
-      borderColor = _effectiveConfig.disabledBorderColor ?? colorScheme.outline.withValues(alpha: 0.12);
-      textColor = _effectiveConfig.disabledTextColor ?? colorScheme.onSurface.withValues(alpha: 0.38);
+      backgroundColor = _effectiveConfig.disabledBackgroundColor ??
+          colorScheme.surfaceContainerHighest.withValues(alpha: 0.12);
+      borderColor = _effectiveConfig.disabledBorderColor ??
+          colorScheme.outline.withValues(alpha: 0.12);
+      textColor = _effectiveConfig.disabledTextColor ??
+          colorScheme.onSurface.withValues(alpha: 0.38);
     } else if (isActive) {
-      backgroundColor = _effectiveConfig.selectedBackgroundColor ?? colorScheme.primaryContainer;
+      backgroundColor = _effectiveConfig.selectedBackgroundColor ??
+          colorScheme.primaryContainer;
       borderColor = _effectiveConfig.selectedBorderColor ?? colorScheme.primary;
-      textColor = _effectiveConfig.selectedTextColor ?? colorScheme.onPrimaryContainer;
+      textColor =
+          _effectiveConfig.selectedTextColor ?? colorScheme.onPrimaryContainer;
     } else if (isPressed) {
-      backgroundColor = _effectiveConfig.selectedBackgroundColor ?? colorScheme.primaryContainer.withValues(alpha: 0.8);
-      borderColor = _effectiveConfig.selectedBorderColor ?? colorScheme.primary.withValues(alpha: 0.8);
-      textColor = _effectiveConfig.selectedTextColor ?? colorScheme.onPrimaryContainer;
+      backgroundColor = _effectiveConfig.selectedBackgroundColor ??
+          colorScheme.primaryContainer.withValues(alpha: 0.8);
+      borderColor = _effectiveConfig.selectedBorderColor ??
+          colorScheme.primary.withValues(alpha: 0.8);
+      textColor =
+          _effectiveConfig.selectedTextColor ?? colorScheme.onPrimaryContainer;
     } else if (isHovered) {
-      backgroundColor = _effectiveConfig.hoverBackgroundColor ?? colorScheme.surfaceContainerHighest.withValues(alpha: 0.08);
-      borderColor = _effectiveConfig.hoverBorderColor ?? colorScheme.primary.withValues(alpha: 0.5);
+      backgroundColor = _effectiveConfig.hoverBackgroundColor ??
+          colorScheme.surfaceContainerHighest.withValues(alpha: 0.08);
+      borderColor = _effectiveConfig.hoverBorderColor ??
+          colorScheme.primary.withValues(alpha: 0.5);
       textColor = _effectiveConfig.hoverTextColor ?? colorScheme.onSurface;
     } else if (isFocused) {
       backgroundColor = _effectiveConfig.backgroundColor ?? Colors.transparent;
@@ -448,20 +469,30 @@ class _AppFilterBarState extends State<AppFilterBar>
 
     return MouseRegion(
       key: _filterKeys[filter.id],
-      cursor: isDisabled ? SystemMouseCursors.forbidden : SystemMouseCursors.click,
-      onEnter: isDisabled ? null : (_) => setState(() => _hoveredFilterId = filter.id),
-      onExit: isDisabled ? null : (_) => setState(() => _hoveredFilterId = null),
+      cursor:
+          isDisabled ? SystemMouseCursors.forbidden : SystemMouseCursors.click,
+      onEnter: isDisabled
+          ? null
+          : (_) => setState(() => _hoveredFilterId = filter.id),
+      onExit:
+          isDisabled ? null : (_) => setState(() => _hoveredFilterId = null),
       child: GestureDetector(
-        onTapDown: isDisabled ? null : (_) => setState(() => _pressedFilterId = filter.id),
-        onTapUp: isDisabled ? null : (_) => setState(() => _pressedFilterId = null),
-        onTapCancel: isDisabled ? null : () => setState(() => _pressedFilterId = null),
-        onTap: isDisabled ? null : () {
-          if (filter.type == FilterType.boolean) {
-            _handleFilterChanged(filter, !filter.value);
-          } else {
-            _showFilterPopover(filter);
-          }
-        },
+        onTapDown: isDisabled
+            ? null
+            : (_) => setState(() => _pressedFilterId = filter.id),
+        onTapUp:
+            isDisabled ? null : (_) => setState(() => _pressedFilterId = null),
+        onTapCancel:
+            isDisabled ? null : () => setState(() => _pressedFilterId = null),
+        onTap: isDisabled
+            ? null
+            : () {
+                if (filter.type == FilterType.boolean) {
+                  _handleFilterChanged(filter, !filter.value);
+                } else {
+                  _showFilterPopover(filter);
+                }
+              },
         child: AnimatedContainer(
           duration: _effectiveConfig.animationDuration,
           curve: _effectiveConfig.animationCurve,
@@ -497,22 +528,26 @@ class _AppFilterBarState extends State<AppFilterBar>
               if (filter.hasValue) ...[
                 SizedBox(width: _effectiveConfig.iconSpacing),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: _effectiveConfig.badgeBackgroundColor ?? colorScheme.primary,
+                    color: _effectiveConfig.badgeBackgroundColor ??
+                        colorScheme.primary,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
                     filter.selectedCount.toString(),
                     style: TextStyle(
                       fontSize: _effectiveConfig.fontSize - 2,
-                      color: _effectiveConfig.badgeTextColor ?? colorScheme.onPrimary,
+                      color: _effectiveConfig.badgeTextColor ??
+                          colorScheme.onPrimary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ],
-              if (_effectiveConfig.showDropdownIcon && filter.type != FilterType.boolean) ...[
+              if (_effectiveConfig.showDropdownIcon &&
+                  filter.type != FilterType.boolean) ...[
                 SizedBox(width: _effectiveConfig.iconSpacing),
                 Icon(
                   _effectiveConfig.dropdownIcon,
@@ -527,11 +562,13 @@ class _AppFilterBarState extends State<AppFilterBar>
     );
   }
 
-  Widget _buildFilterPopoverButton(BuildContext context, ColorScheme colorScheme, AppFilter filter) {
+  Widget _buildFilterPopoverButton(
+      BuildContext context, ColorScheme colorScheme, AppFilter filter) {
     return _buildFilterChip(context, colorScheme, filter);
   }
 
-  Widget _buildMoreChip(BuildContext context, ColorScheme colorScheme, int count) {
+  Widget _buildMoreChip(
+      BuildContext context, ColorScheme colorScheme, int count) {
     return Container(
       height: _effectiveConfig.chipHeight,
       padding: EdgeInsets.symmetric(horizontal: _effectiveConfig.padding),
@@ -599,9 +636,11 @@ class _AppFilterBarState extends State<AppFilterBar>
     );
   }
 
-  Widget _buildSummary(BuildContext context, ColorScheme colorScheme, List<AppFilter> activeFilters) {
+  Widget _buildSummary(BuildContext context, ColorScheme colorScheme,
+      List<AppFilter> activeFilters) {
     if (widget.summaryBuilder != null) {
-      return widget.summaryBuilder!(context, activeFilters, _currentFilters.length);
+      return widget.summaryBuilder!(
+          context, activeFilters, _currentFilters.length);
     }
 
     final summaryText = AppFilterBarUtils.generateSummaryText(
@@ -685,7 +724,8 @@ class _AppFilterBarState extends State<AppFilterBar>
               width: 100.0 + (index * 20.0 % 60),
               height: _effectiveConfig.chipHeight,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(_effectiveConfig.borderRadius),
+                borderRadius:
+                    BorderRadius.circular(_effectiveConfig.borderRadius),
                 gradient: LinearGradient(
                   begin: Alignment(-1 + _skeletonAnimation.value, 0),
                   end: Alignment(1 + _skeletonAnimation.value, 0),
@@ -716,7 +756,8 @@ class _AppFilterBarState extends State<AppFilterBar>
       final visibleFilters = _currentFilters.where((f) => f.isVisible).toList();
       if (visibleFilters.isEmpty) return KeyEventResult.ignored;
 
-      final currentIndex = visibleFilters.indexWhere((f) => f.id == _focusedFilterId);
+      final currentIndex =
+          visibleFilters.indexWhere((f) => f.id == _focusedFilterId);
       final nextIndex = HardwareKeyboard.instance.isShiftPressed
           ? (currentIndex - 1 + visibleFilters.length) % visibleFilters.length
           : (currentIndex + 1) % visibleFilters.length;
@@ -806,11 +847,13 @@ class _FilterPopoverState extends State<_FilterPopover> {
             borderRadius: BorderRadius.circular(widget.config.borderRadius * 2),
             child: Container(
               width: widget.config.popoverWidth,
-              constraints: BoxConstraints(maxHeight: widget.config.popoverMaxHeight),
+              constraints:
+                  BoxConstraints(maxHeight: widget.config.popoverMaxHeight),
               padding: widget.config.popoverPadding,
               decoration: BoxDecoration(
                 color: colorScheme.surface,
-                borderRadius: BorderRadius.circular(widget.config.borderRadius * 2),
+                borderRadius:
+                    BorderRadius.circular(widget.config.borderRadius * 2),
                 border: Border.all(
                   color: colorScheme.outline.withValues(alpha: 0.2),
                   width: 1,
@@ -821,7 +864,8 @@ class _FilterPopoverState extends State<_FilterPopover> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   _buildPopoverHeader(colorScheme),
-                  if (widget.config.enableSearch && widget.filter.options.length > 5) ...[
+                  if (widget.config.enableSearch &&
+                      widget.filter.options.length > 5) ...[
                     const SizedBox(height: 8),
                     _buildSearchField(colorScheme),
                   ],
@@ -940,7 +984,8 @@ class _FilterPopoverState extends State<_FilterPopover> {
         return ListTile(
           dense: true,
           leading: option.icon != null
-              ? Icon(option.icon, size: widget.config.iconSize, color: option.color)
+              ? Icon(option.icon,
+                  size: widget.config.iconSize, color: option.color)
               : null,
           title: Text(
             option.label,
@@ -981,7 +1026,8 @@ class _FilterPopoverState extends State<_FilterPopover> {
   }
 
   Widget _buildTextInput(ColorScheme colorScheme) {
-    final controller = TextEditingController(text: _currentValue?.toString() ?? '');
+    final controller =
+        TextEditingController(text: _currentValue?.toString() ?? '');
     return TextField(
       controller: controller,
       decoration: InputDecoration(
@@ -1018,8 +1064,10 @@ class _FilterPopoverState extends State<_FilterPopover> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('${values[0]}', style: TextStyle(fontSize: widget.config.fontSize)),
-            Text('${values[1]}', style: TextStyle(fontSize: widget.config.fontSize)),
+            Text('${values[0]}',
+                style: TextStyle(fontSize: widget.config.fontSize)),
+            Text('${values[1]}',
+                style: TextStyle(fontSize: widget.config.fontSize)),
           ],
         ),
       ],

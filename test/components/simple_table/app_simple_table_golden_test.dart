@@ -247,7 +247,8 @@ void main() {
       );
     });
 
-    testWidgets('Table with alternating row colors golden test', (tester) async {
+    testWidgets('Table with alternating row colors golden test',
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: ThemeData.light(),
@@ -411,7 +412,8 @@ void main() {
       );
     });
 
-    testWidgets('Table with different column alignments golden test', (tester) async {
+    testWidgets('Table with different column alignments golden test',
+        (tester) async {
       final alignmentColumns = [
         const AppSimpleTableColumn(
           id: 'name',

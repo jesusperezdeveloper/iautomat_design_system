@@ -609,7 +609,8 @@ void main() {
                     variant: AppDatePickerVariant.date,
                     config: const AppDatePickerConfig(
                       minHeight: 40.0,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     ),
                     labelText: 'Compact',
                     onChanged: (_) {},

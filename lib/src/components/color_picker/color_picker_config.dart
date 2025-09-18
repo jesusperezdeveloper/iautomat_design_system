@@ -233,7 +233,8 @@ class AppColorValue with _$AppColorValue {
 
   const AppColorValue._();
 
-  factory AppColorValue.fromColor(Color color, {ColorFormat format = ColorFormat.hex}) {
+  factory AppColorValue.fromColor(Color color,
+      {ColorFormat format = ColorFormat.hex}) {
     return AppColorValue(
       color: color,
       alpha: (color.a * 255.0).round() / 255.0,
@@ -245,7 +246,8 @@ class AppColorValue with _$AppColorValue {
   HSLColor get hsl => HSLColor.fromColor(color);
 
   String get hexString {
-    final hex = color.toARGB32().toRadixString(16).padLeft(8, '0').toUpperCase();
+    final hex =
+        color.toARGB32().toRadixString(16).padLeft(8, '0').toUpperCase();
     return '#${hex.substring(2)}${hex.substring(0, 2)}';
   }
 
@@ -440,7 +442,8 @@ class AppColorValidators {
     };
   }
 
-  static String? Function(AppColorValue?) contrast(Color background, double minRatio) {
+  static String? Function(AppColorValue?) contrast(
+      Color background, double minRatio) {
     return (AppColorValue? value) {
       if (value == null) return null;
       final ratio = _calculateContrastRatio(value.colorWithAlpha, background);
@@ -451,7 +454,8 @@ class AppColorValidators {
     };
   }
 
-  static String? Function(dynamic) combine(List<String? Function(dynamic)> validators) {
+  static String? Function(dynamic) combine(
+      List<String? Function(dynamic)> validators) {
     return (dynamic value) {
       for (final validator in validators) {
         final result = validator(value);
@@ -479,7 +483,9 @@ class AppColorValidators {
   }
 
   static double _gamma(double value) {
-    return value <= 0.03928 ? value / 12.92 : pow((value + 0.055) / 1.055, 2.4).toDouble();
+    return value <= 0.03928
+        ? value / 12.92
+        : pow((value + 0.055) / 1.055, 2.4).toDouble();
   }
 }
 
@@ -503,31 +509,41 @@ extension AppColorPickerHelpers on Color {
   }
 
   double _gamma(double value) {
-    return value <= 0.03928 ? value / 12.92 : pow((value + 0.055) / 1.055, 2.4).toDouble();
+    return value <= 0.03928
+        ? value / 12.92
+        : pow((value + 0.055) / 1.055, 2.4).toDouble();
   }
 
   /// Creates a lighter version of the color
   Color lighten([double amount = 0.1]) {
     final hsl = HSLColor.fromColor(this);
-    return hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0)).toColor();
+    return hsl
+        .withLightness((hsl.lightness + amount).clamp(0.0, 1.0))
+        .toColor();
   }
 
   /// Creates a darker version of the color
   Color darken([double amount = 0.1]) {
     final hsl = HSLColor.fromColor(this);
-    return hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0)).toColor();
+    return hsl
+        .withLightness((hsl.lightness - amount).clamp(0.0, 1.0))
+        .toColor();
   }
 
   /// Creates a more saturated version of the color
   Color saturate([double amount = 0.1]) {
     final hsl = HSLColor.fromColor(this);
-    return hsl.withSaturation((hsl.saturation + amount).clamp(0.0, 1.0)).toColor();
+    return hsl
+        .withSaturation((hsl.saturation + amount).clamp(0.0, 1.0))
+        .toColor();
   }
 
   /// Creates a less saturated version of the color
   Color desaturate([double amount = 0.1]) {
     final hsl = HSLColor.fromColor(this);
-    return hsl.withSaturation((hsl.saturation - amount).clamp(0.0, 1.0)).toColor();
+    return hsl
+        .withSaturation((hsl.saturation - amount).clamp(0.0, 1.0))
+        .toColor();
   }
 
   /// Rotates the hue of the color
@@ -562,4 +578,3 @@ extension AppColorPickerHelpers on Color {
         rotateHue(270),
       ];
 }
-

@@ -76,7 +76,8 @@ class AppToggleViewConfig with _$AppToggleViewConfig {
 
     // Size and spacing configuration
     @Default(AppToggleViewSize.medium) AppToggleViewSize size,
-    @Default(AppToggleViewOrientation.auto) AppToggleViewOrientation orientation,
+    @Default(AppToggleViewOrientation.auto)
+    AppToggleViewOrientation orientation,
     @Default(EdgeInsets.all(8.0)) EdgeInsets padding,
     @Default(EdgeInsets.symmetric(horizontal: 4.0)) EdgeInsets itemPadding,
     @Default(8.0) double itemSpacing,
@@ -97,7 +98,8 @@ class AppToggleViewConfig with _$AppToggleViewConfig {
     // Compact specific configuration
     @Default(true) bool compactWrapItems,
     @Default(WrapAlignment.start) WrapAlignment compactAlignment,
-    @Default(WrapCrossAlignment.center) WrapCrossAlignment compactCrossAlignment,
+    @Default(WrapCrossAlignment.center)
+    WrapCrossAlignment compactCrossAlignment,
 
     // Visual configuration
     @Default(true) bool showBorder,
@@ -315,7 +317,9 @@ class AppToggleViewData with _$AppToggleViewData {
 
   /// Get selected options
   List<AppToggleViewOption> get selectedOptions {
-    return options.where((option) => selectedValues.contains(option.id)).toList();
+    return options
+        .where((option) => selectedValues.contains(option.id))
+        .toList();
   }
 
   /// Get enabled options
@@ -334,7 +338,8 @@ class AppToggleViewUtils {
     AppToggleViewVariant variant = AppToggleViewVariant.list,
     List<String>? selectedValues,
   }) {
-    final options = items.map((item) => AppToggleViewOption.fromString(item)).toList();
+    final options =
+        items.map((item) => AppToggleViewOption.fromString(item)).toList();
     return AppToggleViewData(
       variant: variant,
       options: options,
@@ -450,7 +455,8 @@ class AppToggleViewUtils {
   }
 
   /// Calculate optimal grid cross axis count based on available width
-  static int calculateOptimalCrossAxisCount(double availableWidth, double itemWidth) {
+  static int calculateOptimalCrossAxisCount(
+      double availableWidth, double itemWidth) {
     if (availableWidth <= 0 || itemWidth <= 0) return 2;
     return (availableWidth / itemWidth).floor().clamp(1, 6);
   }

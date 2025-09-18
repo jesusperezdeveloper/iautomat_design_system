@@ -8,7 +8,8 @@ import 'package:iautomat_design_system/src/components/file_picker/file_picker_co
 void main() {
   group('AppFilePicker', () {
     group('Widget Tests', () {
-      testWidgets('renders correctly with default configuration', (tester) async {
+      testWidgets('renders correctly with default configuration',
+          (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
@@ -198,7 +199,8 @@ void main() {
         expect(find.byType(CircularProgressIndicator), findsOneWidget);
       });
 
-      testWidgets('shows selected files count when files are present', (tester) async {
+      testWidgets('shows selected files count when files are present',
+          (tester) async {
         final mockFiles = [
           AppFileData(
             name: 'test.pdf',
@@ -336,7 +338,8 @@ void main() {
         expect(find.text('test.pdf'), findsOneWidget);
       });
 
-      testWidgets('does not show preview when preview is disabled', (tester) async {
+      testWidgets('does not show preview when preview is disabled',
+          (tester) async {
         final mockFiles = [
           AppFileData(
             name: 'test.pdf',
@@ -497,7 +500,8 @@ void main() {
     });
 
     group('Validation Tests', () {
-      testWidgets('calls validation error callback on invalid file', (tester) async {
+      testWidgets('calls validation error callback on invalid file',
+          (tester) async {
         String? errorMessage;
         AppFileData? errorFile;
 
@@ -587,7 +591,8 @@ void main() {
           ),
         );
 
-        final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+        final gesture =
+            await tester.createGesture(kind: PointerDeviceKind.mouse);
         await gesture.addPointer(location: Offset.zero);
         addTearDown(gesture.removePointer);
 
@@ -732,8 +737,10 @@ void main() {
 
       const allowedExtensions = ['pdf', 'doc', 'docx'];
 
-      expect(AppFileValidators.validateExtension(pdfFile, allowedExtensions), isTrue);
-      expect(AppFileValidators.validateExtension(txtFile, allowedExtensions), isFalse);
+      expect(AppFileValidators.validateExtension(pdfFile, allowedExtensions),
+          isTrue);
+      expect(AppFileValidators.validateExtension(txtFile, allowedExtensions),
+          isFalse);
     });
 
     test('validates empty extension list as allowing all files', () {
@@ -749,7 +756,8 @@ void main() {
 
     test('validates file names correctly', () {
       expect(AppFileValidators.validateFileName('valid_file.txt'), isTrue);
-      expect(AppFileValidators.validateFileName('file with spaces.pdf'), isTrue);
+      expect(
+          AppFileValidators.validateFileName('file with spaces.pdf'), isTrue);
       expect(AppFileValidators.validateFileName(''), isFalse);
       expect(AppFileValidators.validateFileName('invalid/file.txt'), isFalse);
       expect(AppFileValidators.validateFileName('invalid\\file.txt'), isFalse);
@@ -790,7 +798,8 @@ void main() {
     test('formats file size correctly', () {
       expect(AppFilePickerUtils.formatFileSize(500), equals('500 B'));
       expect(AppFilePickerUtils.formatFileSize(1536), equals('1.5 KB'));
-      expect(AppFilePickerUtils.formatFileSize(2 * 1024 * 1024), equals('2.0 MB'));
+      expect(
+          AppFilePickerUtils.formatFileSize(2 * 1024 * 1024), equals('2.0 MB'));
     });
 
     test('checks platform support correctly', () {

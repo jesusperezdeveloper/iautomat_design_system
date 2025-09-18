@@ -50,8 +50,8 @@ class AppCheckboxColors with _$AppCheckboxColors {
 
     return AppCheckboxColors(
       borderColor: isDark
-        ? colorScheme.onSurface.withValues(alpha: 0.6)
-        : colorScheme.onSurfaceVariant,
+          ? colorScheme.onSurface.withValues(alpha: 0.6)
+          : colorScheme.onSurfaceVariant,
       fillColor: colorScheme.primary,
       checkColor: colorScheme.onPrimary,
       disabledBorderColor: colorScheme.onSurface.withValues(alpha: 0.12),

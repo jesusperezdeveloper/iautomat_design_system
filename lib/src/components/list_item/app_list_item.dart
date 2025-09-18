@@ -84,9 +84,9 @@ class AppListItem extends StatefulWidget {
     this.titleBuilder,
     this.leadingBuilder,
     this.trailingBuilder,
-  }) : variant = AppListItemVariant.oneLine,
-       subtitle = null,
-       subtitleBuilder = null;
+  })  : variant = AppListItemVariant.oneLine,
+        subtitle = null,
+        subtitleBuilder = null;
 
   /// Creates an AppListItem with two lines
   const AppListItem.twoLine({
@@ -175,7 +175,7 @@ class _AppListItemState extends State<AppListItem>
 
     _animationController = AnimationController(
       duration: widget.config.style?.animationDuration ??
-                const Duration(milliseconds: 200),
+          const Duration(milliseconds: 200),
       vsync: this,
     );
 
@@ -238,8 +238,8 @@ class _AppListItemState extends State<AppListItem>
     Future.delayed(const Duration(milliseconds: 100), () {
       if (mounted) {
         _updateState(_isFocused
-          ? AppListItemState.focus
-          : AppListItemState.defaultState);
+            ? AppListItemState.focus
+            : AppListItemState.defaultState);
       }
     });
 
@@ -277,9 +277,8 @@ class _AppListItemState extends State<AppListItem>
     if (focused) {
       _updateState(AppListItemState.focus);
     } else if (_currentState == AppListItemState.focus) {
-      _updateState(_isHovered
-        ? AppListItemState.hover
-        : AppListItemState.defaultState);
+      _updateState(
+          _isHovered ? AppListItemState.hover : AppListItemState.defaultState);
     }
 
     widget.onFocusChange?.call(focused);
@@ -295,7 +294,8 @@ class _AppListItemState extends State<AppListItem>
 
     final delta = details.delta.dx;
     final sensitivity = 1.0;
-    _swipeController.value += delta / (context.size?.width ?? 300) * sensitivity;
+    _swipeController.value +=
+        delta / (context.size?.width ?? 300) * sensitivity;
     _swipeController.value = _swipeController.value.clamp(0.0, 1.0);
   }
 
@@ -354,7 +354,8 @@ class _AppListItemState extends State<AppListItem>
 
     final backgroundColor = _getBackgroundColor(theme, listItemTheme, config);
     final contentPadding = style.getContentPaddingForDensity(config.density);
-    final minHeight = style.getMinHeightForVariant(config.variant, config.density);
+    final minHeight =
+        style.getMinHeightForVariant(config.variant, config.density);
 
     Widget child = Container(
       constraints: BoxConstraints(
@@ -366,8 +367,8 @@ class _AppListItemState extends State<AppListItem>
         color: backgroundColor,
         elevation: listItemTheme.elevation,
         borderRadius: listItemTheme.borderRadius > 0
-          ? BorderRadius.circular(listItemTheme.borderRadius)
-          : null,
+            ? BorderRadius.circular(listItemTheme.borderRadius)
+            : null,
         clipBehavior: style.clipBehavior,
         child: InkWell(
           onTap: config.isInteractive ? _handleTap : null,
@@ -377,8 +378,8 @@ class _AppListItemState extends State<AppListItem>
           focusNode: _focusNode,
           autofocus: config.autofocus,
           borderRadius: listItemTheme.borderRadius > 0
-            ? BorderRadius.circular(listItemTheme.borderRadius)
-            : null,
+              ? BorderRadius.circular(listItemTheme.borderRadius)
+              : null,
           splashColor: listItemTheme.splashColor,
           highlightColor: listItemTheme.highlightColor,
           child: Padding(
@@ -474,32 +475,35 @@ class _AppListItemState extends State<AppListItem>
     final listItemTheme = config.theme ?? const AppListItemTheme();
 
     final titleStyle = _getTitleStyle(theme, style, listItemTheme, config);
-    final subtitleStyle = _getSubtitleStyle(theme, style, listItemTheme, config);
+    final subtitleStyle =
+        _getSubtitleStyle(theme, style, listItemTheme, config);
 
     final children = <Widget>[
       // Title
       widget.titleBuilder?.call(context, widget.title, _currentState) ??
-      Text(
-        widget.title,
-        style: titleStyle,
-        maxLines: config.variant == AppListItemVariant.oneLine ? 1 :
-                 (config.variant == AppListItemVariant.twoLine ? 1 : 2),
-        overflow: TextOverflow.ellipsis,
-        semanticsLabel: config.semanticLabel,
-      ),
+          Text(
+            widget.title,
+            style: titleStyle,
+            maxLines: config.variant == AppListItemVariant.oneLine
+                ? 1
+                : (config.variant == AppListItemVariant.twoLine ? 1 : 2),
+            overflow: TextOverflow.ellipsis,
+            semanticsLabel: config.semanticLabel,
+          ),
     ];
 
     // Subtitle (for two-line and three-line variants)
     if (widget.subtitle != null && config.variant.supportsSubtitle) {
       children.add(SizedBox(height: style.titleSubtitleSpacing));
       children.add(
-        widget.subtitleBuilder?.call(context, widget.subtitle!, _currentState) ??
-        Text(
-          widget.subtitle!,
-          style: subtitleStyle,
-          maxLines: config.variant == AppListItemVariant.twoLine ? 1 : 2,
-          overflow: TextOverflow.ellipsis,
-        ),
+        widget.subtitleBuilder
+                ?.call(context, widget.subtitle!, _currentState) ??
+            Text(
+              widget.subtitle!,
+              style: subtitleStyle,
+              maxLines: config.variant == AppListItemVariant.twoLine ? 1 : 2,
+              overflow: TextOverflow.ellipsis,
+            ),
       );
     }
 
@@ -556,9 +560,7 @@ class _AppListItemState extends State<AppListItem>
           radius: leading.avatarRadius,
           backgroundColor: leading.avatarBackgroundColor,
           backgroundImage: leading.avatarImage,
-          child: leading.avatarText != null
-            ? Text(leading.avatarText!)
-            : null,
+          child: leading.avatarText != null ? Text(leading.avatarText!) : null,
         );
         break;
 
@@ -577,9 +579,11 @@ class _AppListItemState extends State<AppListItem>
       case AppListItemLeadingType.checkbox:
         content = Checkbox(
           value: leading.checkboxValue ?? false,
-          onChanged: config.isInteractive ? (value) {
-            // Handle checkbox change
-          } : null,
+          onChanged: config.isInteractive
+              ? (value) {
+                  // Handle checkbox change
+                }
+              : null,
         );
         break;
 
@@ -595,17 +599,17 @@ class _AppListItemState extends State<AppListItem>
             ),
           ),
           child: leading.radioValue == true
-            ? Center(
-                child: Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: theme.colorScheme.primary,
+              ? Center(
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: theme.colorScheme.primary,
+                    ),
                   ),
-                ),
-              )
-            : null,
+                )
+              : null,
         );
         break;
 
@@ -702,17 +706,17 @@ class _AppListItemState extends State<AppListItem>
             ),
           ),
           child: trailing.radioValue == true
-            ? Center(
-                child: Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: theme.colorScheme.primary,
+              ? Center(
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: theme.colorScheme.primary,
+                    ),
                   ),
-                ),
-              )
-            : null,
+                )
+              : null,
         );
         break;
 
@@ -749,8 +753,8 @@ class _AppListItemState extends State<AppListItem>
       key: Key('list_item_${widget.title}'),
       direction: _getDismissDirection(),
       onDismissed: widget.swipeActions?.dismissible == true
-        ? (direction) => widget.swipeActions?.onDismiss?.call()
-        : null,
+          ? (direction) => widget.swipeActions?.onDismiss?.call()
+          : null,
       background: _buildSwipeBackground(context, theme, true),
       secondaryBackground: _buildSwipeBackground(context, theme, false),
       child: child,
@@ -763,8 +767,8 @@ class _AppListItemState extends State<AppListItem>
     bool isLeading,
   ) {
     final actions = isLeading
-      ? widget.swipeActions?.leading ?? []
-      : widget.swipeActions?.trailing ?? [];
+        ? widget.swipeActions?.leading ?? []
+        : widget.swipeActions?.trailing ?? [];
 
     if (actions.isEmpty) return Container();
 
@@ -825,7 +829,8 @@ class _AppListItemState extends State<AppListItem>
   ) {
     final style = config.style ?? const AppListItemStyle();
     final contentPadding = style.getContentPaddingForDensity(config.density);
-    final minHeight = style.getMinHeightForVariant(config.variant, config.density);
+    final minHeight =
+        style.getMinHeightForVariant(config.variant, config.density);
 
     return Container(
       constraints: BoxConstraints(minHeight: minHeight),
@@ -904,7 +909,8 @@ class _AppListItemState extends State<AppListItem>
       case AppListItemState.focus:
         return listItemTheme.focusColor ?? theme.focusColor;
       case AppListItemState.selected:
-        return listItemTheme.selectedColor ?? theme.colorScheme.primaryContainer;
+        return listItemTheme.selectedColor ??
+            theme.colorScheme.primaryContainer;
       case AppListItemState.disabled:
         return listItemTheme.disabledColor ?? theme.disabledColor;
       default:
@@ -948,7 +954,8 @@ class _AppListItemState extends State<AppListItem>
     return baseStyle.copyWith(color: textColor);
   }
 
-  CrossAxisAlignment _getCrossAxisAlignment(AppListItemContentAlignment alignment) {
+  CrossAxisAlignment _getCrossAxisAlignment(
+      AppListItemContentAlignment alignment) {
     switch (alignment) {
       case AppListItemContentAlignment.top:
         return CrossAxisAlignment.start;
@@ -959,7 +966,8 @@ class _AppListItemState extends State<AppListItem>
     }
   }
 
-  MainAxisAlignment _getMainAxisAlignment(AppListItemContentAlignment alignment) {
+  MainAxisAlignment _getMainAxisAlignment(
+      AppListItemContentAlignment alignment) {
     switch (alignment) {
       case AppListItemContentAlignment.top:
         return MainAxisAlignment.start;
@@ -971,7 +979,8 @@ class _AppListItemState extends State<AppListItem>
   }
 
   DismissDirection _getDismissDirection() {
-    final direction = widget.swipeActions?.direction ?? AppListItemSwipeDirection.both;
+    final direction =
+        widget.swipeActions?.direction ?? AppListItemSwipeDirection.both;
 
     switch (direction) {
       case AppListItemSwipeDirection.startToEnd:

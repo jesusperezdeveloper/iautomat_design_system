@@ -385,10 +385,10 @@ class _AppColorPickerState extends State<AppColorPicker>
     }
 
     final textStyle = Theme.of(context).textTheme.bodyLarge?.copyWith(
-      color: widget.value != null
-          ? _colors.inputTextColor
-          : _colors.inputHintColor,
-    );
+          color: widget.value != null
+              ? _colors.inputTextColor
+              : _colors.inputHintColor,
+        );
 
     return Row(
       children: [
@@ -448,21 +448,31 @@ class _AppColorPickerState extends State<AppColorPicker>
           focusNode: _focusNode,
           child: GestureDetector(
             onTap: widget.enabled ? _showColorPicker : null,
-            onTapDown: widget.enabled ? (_) {
-              setState(() => _isPressed = true);
-              _animationController.forward();
-            } : null,
-            onTapUp: widget.enabled ? (_) {
-              setState(() => _isPressed = false);
-              _animationController.reverse();
-            } : null,
-            onTapCancel: widget.enabled ? () {
-              setState(() => _isPressed = false);
-              _animationController.reverse();
-            } : null,
+            onTapDown: widget.enabled
+                ? (_) {
+                    setState(() => _isPressed = true);
+                    _animationController.forward();
+                  }
+                : null,
+            onTapUp: widget.enabled
+                ? (_) {
+                    setState(() => _isPressed = false);
+                    _animationController.reverse();
+                  }
+                : null,
+            onTapCancel: widget.enabled
+                ? () {
+                    setState(() => _isPressed = false);
+                    _animationController.reverse();
+                  }
+                : null,
             child: MouseRegion(
-              onEnter: widget.enabled ? (_) => setState(() => _isHovered = true) : null,
-              onExit: widget.enabled ? (_) => setState(() => _isHovered = false) : null,
+              onEnter: widget.enabled
+                  ? (_) => setState(() => _isHovered = true)
+                  : null,
+              onExit: widget.enabled
+                  ? (_) => setState(() => _isHovered = false)
+                  : null,
               child: AnimatedBuilder(
                 animation: _animationController,
                 builder: (context, child) {
@@ -479,8 +489,10 @@ class _AppColorPickerState extends State<AppColorPicker>
                           color: borderColor,
                           width: _config.borderWidth,
                         ),
-                        borderRadius: BorderRadius.circular(_config.borderRadius),
-                        boxShadow: _config.enableShadow && currentState != AppColorPickerState.disabled
+                        borderRadius:
+                            BorderRadius.circular(_config.borderRadius),
+                        boxShadow: _config.enableShadow &&
+                                currentState != AppColorPickerState.disabled
                             ? [
                                 BoxShadow(
                                   color: _colors.dialogShadowColor,
@@ -588,14 +600,12 @@ class _HSVColorPickerDialogState extends State<_HSVColorPickerDialog> {
                   const SizedBox(height: 12),
 
                   // Alpha slider
-                  if (widget.config.showAlphaChannel)
-                    _buildAlphaSlider(),
+                  if (widget.config.showAlphaChannel) _buildAlphaSlider(),
 
                   const SizedBox(height: 16),
 
                   // Color value display
-                  if (widget.config.showColorValue)
-                    _buildColorValueDisplay(),
+                  if (widget.config.showColorValue) _buildColorValueDisplay(),
                 ],
               ),
             ),
@@ -669,8 +679,10 @@ class _HSVColorPickerDialogState extends State<_HSVColorPickerDialog> {
           onPanUpdate: (details) {
             final box = context.findRenderObject() as RenderBox;
             final localPosition = box.globalToLocal(details.globalPosition);
-            final saturation = (localPosition.dx / box.size.width).clamp(0.0, 1.0);
-            final value = 1.0 - (localPosition.dy / box.size.height).clamp(0.0, 1.0);
+            final saturation =
+                (localPosition.dx / box.size.width).clamp(0.0, 1.0);
+            final value =
+                1.0 - (localPosition.dy / box.size.height).clamp(0.0, 1.0);
 
             _updateColor(_hsvColor.withSaturation(saturation).withValue(value));
           },
@@ -700,7 +712,8 @@ class _HSVColorPickerDialogState extends State<_HSVColorPickerDialog> {
                 children: [
                   Positioned(
                     left: _hsvColor.saturation * (context.size?.width ?? 0) - 6,
-                    top: (1.0 - _hsvColor.value) * (context.size?.height ?? 0) - 6,
+                    top: (1.0 - _hsvColor.value) * (context.size?.height ?? 0) -
+                        6,
                     child: Container(
                       width: 12,
                       height: 12,
@@ -792,7 +805,8 @@ class _PaletteColorPickerDialog extends StatefulWidget {
   });
 
   @override
-  State<_PaletteColorPickerDialog> createState() => _PaletteColorPickerDialogState();
+  State<_PaletteColorPickerDialog> createState() =>
+      _PaletteColorPickerDialogState();
 }
 
 class _PaletteColorPickerDialogState extends State<_PaletteColorPickerDialog> {

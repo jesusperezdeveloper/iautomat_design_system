@@ -11,8 +11,10 @@ class AppBreadcrumbsStory extends StatefulWidget {
 class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
   AppBreadcrumbsVariant _variant = AppBreadcrumbsVariant.defaultVariant;
   AppBreadcrumbsState _state = AppBreadcrumbsState.defaultState;
-  AppBreadcrumbSeparatorType _separatorType = AppBreadcrumbSeparatorType.chevron;
-  AppBreadcrumbsCollapseMode _collapseMode = AppBreadcrumbsCollapseMode.ellipsis;
+  AppBreadcrumbSeparatorType _separatorType =
+      AppBreadcrumbSeparatorType.chevron;
+  AppBreadcrumbsCollapseMode _collapseMode =
+      AppBreadcrumbsCollapseMode.ellipsis;
   bool _isRtl = false;
   bool _showHome = true;
   bool _enableA11y = true;
@@ -128,7 +130,8 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                         const SizedBox(width: 8),
                         DropdownButton<AppBreadcrumbsVariant>(
                           value: _variant,
-                          onChanged: (value) => setState(() => _variant = value!),
+                          onChanged: (value) =>
+                              setState(() => _variant = value!),
                           items: AppBreadcrumbsVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
@@ -164,7 +167,8 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                         const SizedBox(width: 8),
                         DropdownButton<AppBreadcrumbSeparatorType>(
                           value: _separatorType,
-                          onChanged: (value) => setState(() => _separatorType = value!),
+                          onChanged: (value) =>
+                              setState(() => _separatorType = value!),
                           items: AppBreadcrumbSeparatorType.values.map((type) {
                             return DropdownMenuItem(
                               value: type,
@@ -183,8 +187,11 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                           const SizedBox(width: 8),
                           DropdownButton<AppBreadcrumbsCollapseMode>(
                             value: _collapseMode,
-                            onChanged: (value) => setState(() => _collapseMode = value!),
-                            items: AppBreadcrumbsCollapseMode.values.map((mode) {
+                            onChanged: (value) =>
+                                setState(() => _collapseMode = value!),
+                            items: AppBreadcrumbsCollapseMode.values.map((
+                              mode,
+                            ) {
                               return DropdownMenuItem(
                                 value: mode,
                                 child: Text(mode.displayName),
@@ -207,7 +214,9 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                               max: 6,
                               divisions: 4,
                               label: _maxVisibleItems.toString(),
-                              onChanged: (value) => setState(() => _maxVisibleItems = value.round()),
+                              onChanged: (value) => setState(
+                                () => _maxVisibleItems = value.round(),
+                              ),
                             ),
                           ),
                           Text(_maxVisibleItems.toString()),
@@ -224,7 +233,8 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                           children: [
                             Switch(
                               value: _isRtl,
-                              onChanged: (value) => setState(() => _isRtl = value),
+                              onChanged: (value) =>
+                                  setState(() => _isRtl = value),
                             ),
                             const Text('RTL'),
                           ],
@@ -234,7 +244,8 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                           children: [
                             Switch(
                               value: _showHome,
-                              onChanged: (value) => setState(() => _showHome = value),
+                              onChanged: (value) =>
+                                  setState(() => _showHome = value),
                             ),
                             const Text('Mostrar Home'),
                           ],
@@ -244,7 +255,8 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                           children: [
                             Switch(
                               value: _enableA11y,
-                              onChanged: (value) => setState(() => _enableA11y = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableA11y = value),
                             ),
                             const Text('Accesibilidad'),
                           ],
@@ -271,10 +283,7 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
             const SizedBox(height: 24),
 
             // Ejemplos
-            Text(
-              'Ejemplos',
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
+            Text('Ejemplos', style: Theme.of(context).textTheme.headlineSmall),
             const SizedBox(height: 16),
 
             // Breadcrumbs configurables
@@ -297,9 +306,7 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                         showHome: _showHome,
                         enableA11y: _enableA11y,
                         maxVisibleItems: _maxVisibleItems,
-                        separator: AppBreadcrumbSeparator(
-                          type: _separatorType,
-                        ),
+                        separator: AppBreadcrumbSeparator(type: _separatorType),
                         behavior: AppBreadcrumbsBehavior(
                           collapseMode: _collapseMode,
                         ),
@@ -327,9 +334,7 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                     ),
                     const SizedBox(height: 16),
                     AppBreadcrumbs(
-                      config: const AppBreadcrumbsConfig(
-                        showHome: false,
-                      ),
+                      config: const AppBreadcrumbsConfig(showHome: false),
                       items: _iconItems,
                       onTap: _handleBreadcrumbTap,
                     ),
@@ -368,7 +373,10 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                               config: AppBreadcrumbsConfig(
                                 separator: AppBreadcrumbSeparator(
                                   type: type,
-                                  text: type == AppBreadcrumbSeparatorType.custom ? ' | ' : null,
+                                  text:
+                                      type == AppBreadcrumbSeparatorType.custom
+                                      ? ' | '
+                                      : null,
                                 ),
                                 showHome: false,
                               ),

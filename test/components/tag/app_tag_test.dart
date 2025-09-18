@@ -255,7 +255,8 @@ void main() {
         expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
       });
 
-      testWidgets('should render remove button for removable tags', (tester) async {
+      testWidgets('should render remove button for removable tags',
+          (tester) async {
         final tag = AppTag.semantic(
           label: 'Removable Tag',
           removable: true,
@@ -307,7 +308,8 @@ void main() {
         expect(longPressed, isTrue);
       });
 
-      testWidgets('should call onRemove when remove button is tapped', (tester) async {
+      testWidgets('should call onRemove when remove button is tapped',
+          (tester) async {
         bool removed = false;
 
         final tag = AppTag.semantic(
@@ -322,7 +324,8 @@ void main() {
         expect(removed, isTrue);
       });
 
-      testWidgets('should not respond to interactions when disabled', (tester) async {
+      testWidgets('should not respond to interactions when disabled',
+          (tester) async {
         bool tapped = false;
 
         final tag = AppTag.semantic(
@@ -410,7 +413,8 @@ void main() {
         );
 
         final borderRadius = tag.config.shape.getBorderRadius(tag.config.size);
-        expect(borderRadius, equals(BorderRadius.circular(16.0))); // medium size border radius
+        expect(borderRadius,
+            equals(BorderRadius.circular(16.0))); // medium size border radius
       });
 
       test('should apply pill shape correctly', () {

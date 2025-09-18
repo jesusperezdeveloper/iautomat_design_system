@@ -111,14 +111,16 @@ class _AppCalendarState extends State<AppCalendar>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final localization = widget.config.localization ?? AppCalendarDefaults.spanish();
+    final localization =
+        widget.config.localization ?? AppCalendarDefaults.spanish();
 
     return AnimatedBuilder(
       animation: _fadeAnimation,
       builder: (context, child) {
         return Opacity(
           opacity: _fadeAnimation.value,
-          child: _buildCalendarContent(context, theme, colorScheme, localization),
+          child:
+              _buildCalendarContent(context, theme, colorScheme, localization),
         );
       },
     );
@@ -149,7 +151,8 @@ class _AppCalendarState extends State<AppCalendar>
       child: Column(
         children: [
           // Header del calendario
-          if (widget.config.showHeader) _buildHeader(context, theme, localization),
+          if (widget.config.showHeader)
+            _buildHeader(context, theme, localization),
 
           // Contenido principal del calendario
           Expanded(
@@ -171,7 +174,8 @@ class _AppCalendarState extends State<AppCalendar>
       height: widget.config.headerHeight,
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
       decoration: BoxDecoration(
-        color: widget.config.headerBackgroundColor ?? colorScheme.surfaceContainerHighest,
+        color: widget.config.headerBackgroundColor ??
+            colorScheme.surfaceContainerHighest,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
       ),
       child: Row(
@@ -240,7 +244,8 @@ class _AppCalendarState extends State<AppCalendar>
     String title;
     switch (_currentVariant) {
       case AppCalendarVariant.month:
-        title = '${localization.monthNames[_currentDate.month - 1]} ${_currentDate.year}';
+        title =
+            '${localization.monthNames[_currentDate.month - 1]} ${_currentDate.year}';
         break;
       case AppCalendarVariant.week:
         final startOfWeek = _getStartOfWeek(_currentDate);
@@ -313,7 +318,8 @@ class _AppCalendarState extends State<AppCalendar>
   ) {
     return Focus(
       focusNode: _calendarFocusNode,
-      onKeyEvent: widget.config.keyboardNavigationEnabled ? _handleKeyEvent : null,
+      onKeyEvent:
+          widget.config.keyboardNavigationEnabled ? _handleKeyEvent : null,
       child: Builder(
         builder: (context) {
           switch (_currentVariant) {
@@ -468,14 +474,18 @@ class _AppCalendarState extends State<AppCalendar>
     Color? textColor;
 
     if (isSelected) {
-      backgroundColor = widget.config.selectedBackgroundColor ?? colorScheme.primary;
+      backgroundColor =
+          widget.config.selectedBackgroundColor ?? colorScheme.primary;
       textColor = widget.config.selectedTextColor ?? colorScheme.onPrimary;
     } else if (isToday) {
-      backgroundColor = widget.config.todayBackgroundColor ?? colorScheme.primaryContainer;
-      textColor = widget.config.todayTextColor ?? colorScheme.onPrimaryContainer;
+      backgroundColor =
+          widget.config.todayBackgroundColor ?? colorScheme.primaryContainer;
+      textColor =
+          widget.config.todayTextColor ?? colorScheme.onPrimaryContainer;
     } else if (!isCurrentMonth) {
       backgroundColor = widget.config.disabledBackgroundColor;
-      textColor = widget.config.disabledTextColor ?? colorScheme.onSurface.withValues(alpha: 0.4);
+      textColor = widget.config.disabledTextColor ??
+          colorScheme.onSurface.withValues(alpha: 0.4);
     } else if (_isWeekend(date)) {
       backgroundColor = widget.config.weekendBackgroundColor;
       textColor = widget.config.weekendTextColor ?? colorScheme.onSurface;
@@ -490,11 +500,13 @@ class _AppCalendarState extends State<AppCalendar>
         margin: const EdgeInsets.all(1),
         decoration: BoxDecoration(
           color: backgroundColor,
-          borderRadius: widget.config.cellBorderRadius ?? BorderRadius.circular(4),
+          borderRadius:
+              widget.config.cellBorderRadius ?? BorderRadius.circular(4),
           border: isFocused
               ? Border.all(color: colorScheme.primary, width: 2)
               : Border.all(
-                  color: widget.config.cellBorderColor ?? colorScheme.outline.withValues(alpha: 0.2),
+                  color: widget.config.cellBorderColor ??
+                      colorScheme.outline.withValues(alpha: 0.2),
                 ),
         ),
         child: Column(
@@ -505,7 +517,8 @@ class _AppCalendarState extends State<AppCalendar>
               padding: const EdgeInsets.all(4),
               child: Text(
                 '${date.day}',
-                style: widget.config.dateTextStyle?.copyWith(color: textColor) ??
+                style: widget.config.dateTextStyle
+                        ?.copyWith(color: textColor) ??
                     theme.textTheme.bodyMedium?.copyWith(
                       color: textColor,
                       fontWeight: isToday ? FontWeight.w600 : FontWeight.normal,
@@ -535,7 +548,8 @@ class _AppCalendarState extends State<AppCalendar>
 
     return Column(
       children: [
-        ...visibleEvents.map((event) => _buildMonthEventIndicator(context, theme, event)),
+        ...visibleEvents
+            .map((event) => _buildMonthEventIndicator(context, theme, event)),
         if (remainingCount > 0)
           Container(
             width: double.infinity,
@@ -543,7 +557,8 @@ class _AppCalendarState extends State<AppCalendar>
             margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
             decoration: BoxDecoration(
               color: theme.colorScheme.outline.withValues(alpha: 0.3),
-              borderRadius: BorderRadius.circular(widget.config.eventBorderRadius),
+              borderRadius:
+                  BorderRadius.circular(widget.config.eventBorderRadius),
             ),
             child: Center(
               child: Text(
@@ -634,7 +649,8 @@ class _AppCalendarState extends State<AppCalendar>
               _buildTimeGrid(context, theme),
 
               // Eventos
-              ...events.map((event) => _buildTimeEvent(context, theme, event, date)),
+              ...events
+                  .map((event) => _buildTimeEvent(context, theme, event, date)),
 
               // Línea de tiempo actual
               if (widget.config.showCurrentTimeLine && isToday)
@@ -733,7 +749,8 @@ class _AppCalendarState extends State<AppCalendar>
         child: Container(
           decoration: BoxDecoration(
             color: _getEventColor(event),
-            borderRadius: BorderRadius.circular(widget.config.eventBorderRadius),
+            borderRadius:
+                BorderRadius.circular(widget.config.eventBorderRadius),
             border: Border.all(
               color: _getEventColor(event).withValues(alpha: 0.8),
             ),
@@ -915,7 +932,8 @@ class _AppCalendarState extends State<AppCalendar>
   // Métodos de utilidad
 
   DateTime _getStartOfWeek(DateTime date) {
-    final localization = widget.config.localization ?? AppCalendarDefaults.spanish();
+    final localization =
+        widget.config.localization ?? AppCalendarDefaults.spanish();
     final firstDayOfWeek = localization.firstDayOfWeek;
     final daysFromFirstDay = (date.weekday - firstDayOfWeek) % 7;
     return date.subtract(Duration(days: daysFromFirstDay));
@@ -974,13 +992,15 @@ class _AppCalendarState extends State<AppCalendar>
   }
 
   String _formatDate(DateTime date) {
-    final localization = widget.config.localization ?? AppCalendarDefaults.spanish();
+    final localization =
+        widget.config.localization ?? AppCalendarDefaults.spanish();
     final monthName = localization.monthNamesShort[date.month - 1];
     return '$monthName ${date.day}';
   }
 
   String _formatHour(int hour) {
-    final localization = widget.config.localization ?? AppCalendarDefaults.spanish();
+    final localization =
+        widget.config.localization ?? AppCalendarDefaults.spanish();
     if (localization.timeFormat == 12) {
       final displayHour = hour == 0 ? 12 : (hour > 12 ? hour - 12 : hour);
       final amPm = hour < 12 ? 'AM' : 'PM';
@@ -1002,7 +1022,8 @@ class _AppCalendarState extends State<AppCalendar>
 
       if (_timeScrollController.hasClients) {
         _timeScrollController.animateTo(
-          targetOffset.clamp(0.0, _timeScrollController.position.maxScrollExtent),
+          targetOffset.clamp(
+              0.0, _timeScrollController.position.maxScrollExtent),
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeInOut,
         );
@@ -1018,16 +1039,20 @@ class _AppCalendarState extends State<AppCalendar>
 
     switch (event.logicalKey) {
       case LogicalKeyboardKey.arrowLeft:
-        newFocusedDate = (_focusedDate ?? _currentDate).subtract(const Duration(days: 1));
+        newFocusedDate =
+            (_focusedDate ?? _currentDate).subtract(const Duration(days: 1));
         break;
       case LogicalKeyboardKey.arrowRight:
-        newFocusedDate = (_focusedDate ?? _currentDate).add(const Duration(days: 1));
+        newFocusedDate =
+            (_focusedDate ?? _currentDate).add(const Duration(days: 1));
         break;
       case LogicalKeyboardKey.arrowUp:
-        newFocusedDate = (_focusedDate ?? _currentDate).subtract(const Duration(days: 7));
+        newFocusedDate =
+            (_focusedDate ?? _currentDate).subtract(const Duration(days: 7));
         break;
       case LogicalKeyboardKey.arrowDown:
-        newFocusedDate = (_focusedDate ?? _currentDate).add(const Duration(days: 7));
+        newFocusedDate =
+            (_focusedDate ?? _currentDate).add(const Duration(days: 7));
         break;
       case LogicalKeyboardKey.enter:
       case LogicalKeyboardKey.space:

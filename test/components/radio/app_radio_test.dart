@@ -168,7 +168,7 @@ void main() {
       // Check for loading indicator - platform specific
       expect(
         find.byType(CircularProgressIndicator).evaluate().isNotEmpty ||
-        find.byType(SizedBox).evaluate().length > 1,
+            find.byType(SizedBox).evaluate().length > 1,
         true,
       );
     });
@@ -292,7 +292,8 @@ void main() {
       await tester.pumpAndSettle();
 
       // Verify configuration is applied
-      final radio = tester.widget<AppRadio<String>>(find.byType(AppRadio<String>));
+      final radio =
+          tester.widget<AppRadio<String>>(find.byType(AppRadio<String>));
       expect(radio.config?.size, customSize);
       expect(radio.config?.borderWidth, customBorderWidth);
     });
@@ -449,17 +450,21 @@ void main() {
       );
 
       final gestureDetector = tester.widget<GestureDetector>(
-        find.descendant(
-          of: find.byType(AppRadio<String>),
-          matching: find.byType(GestureDetector),
-        ).first,
+        find
+            .descendant(
+              of: find.byType(AppRadio<String>),
+              matching: find.byType(GestureDetector),
+            )
+            .first,
       );
 
       final container = tester.widget<Container>(
-        find.descendant(
-          of: find.byWidget(gestureDetector),
-          matching: find.byType(Container),
-        ).first,
+        find
+            .descendant(
+              of: find.byWidget(gestureDetector),
+              matching: find.byType(Container),
+            )
+            .first,
       );
 
       expect(container.constraints?.minWidth, 48);
@@ -538,7 +543,8 @@ void main() {
         expect(selectedValue, 'option2');
       });
 
-      testWidgets('segmented radio with icons renders correctly', (tester) async {
+      testWidgets('segmented radio with icons renders correctly',
+          (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -548,9 +554,18 @@ void main() {
                 onChanged: (_) {},
                 variant: AppRadioVariant.segmented,
                 options: const [
-                  AppRadioValue(value: 'left', label: 'Left', icon: Icons.format_align_left),
-                  AppRadioValue(value: 'center', label: 'Center', icon: Icons.format_align_center),
-                  AppRadioValue(value: 'right', label: 'Right', icon: Icons.format_align_right),
+                  AppRadioValue(
+                      value: 'left',
+                      label: 'Left',
+                      icon: Icons.format_align_left),
+                  AppRadioValue(
+                      value: 'center',
+                      label: 'Center',
+                      icon: Icons.format_align_center),
+                  AppRadioValue(
+                      value: 'right',
+                      label: 'Right',
+                      icon: Icons.format_align_right),
                 ],
               ),
             ),
@@ -565,7 +580,8 @@ void main() {
         expect(find.text('Right'), findsOneWidget);
       });
 
-      testWidgets('segmented radio disabled options work correctly', (tester) async {
+      testWidgets('segmented radio disabled options work correctly',
+          (tester) async {
         bool wasCalled = false;
 
         await tester.pumpWidget(
@@ -580,7 +596,8 @@ void main() {
                 variant: AppRadioVariant.segmented,
                 options: const [
                   AppRadioValue(value: 'option1', label: 'Option 1'),
-                  AppRadioValue(value: 'option2', label: 'Option 2', enabled: false),
+                  AppRadioValue(
+                      value: 'option2', label: 'Option 2', enabled: false),
                   AppRadioValue(value: 'option3', label: 'Option 3'),
                 ],
               ),

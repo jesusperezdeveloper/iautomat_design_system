@@ -23,7 +23,8 @@ class ColorConverter implements JsonConverter<Color?, int?> {
 }
 
 /// JsonConverter personalizado para IconData
-class IconDataConverter implements JsonConverter<IconData?, Map<String, dynamic>?> {
+class IconDataConverter
+    implements JsonConverter<IconData?, Map<String, dynamic>?> {
   const IconDataConverter();
 
   @override
@@ -311,7 +312,8 @@ class AppCalendarDateStyle with _$AppCalendarDateStyle {
     @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? textStyle,
 
     /// Decoración del contenedor
-    @JsonKey(includeFromJson: false, includeToJson: false) BoxDecoration? decoration,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    BoxDecoration? decoration,
 
     /// Si está habilitado
     @Default(true) bool enabled,
@@ -345,23 +347,53 @@ class AppCalendarLocalization with _$AppCalendarLocalization {
 
     /// Nombres de los meses
     @Default(<String>[
-      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-    ]) List<String> monthNames,
+      'Enero',
+      'Febrero',
+      'Marzo',
+      'Abril',
+      'Mayo',
+      'Junio',
+      'Julio',
+      'Agosto',
+      'Septiembre',
+      'Octubre',
+      'Noviembre',
+      'Diciembre'
+    ])
+    List<String> monthNames,
 
     /// Nombres cortos de los meses
     @Default(<String>[
-      'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
-      'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
-    ]) List<String> monthNamesShort,
+      'Ene',
+      'Feb',
+      'Mar',
+      'Abr',
+      'May',
+      'Jun',
+      'Jul',
+      'Ago',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dic'
+    ])
+    List<String> monthNamesShort,
 
     /// Nombres de los días de la semana
     @Default(<String>[
-      'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
-    ]) List<String> dayNames,
+      'Lunes',
+      'Martes',
+      'Miércoles',
+      'Jueves',
+      'Viernes',
+      'Sábado',
+      'Domingo'
+    ])
+    List<String> dayNames,
 
     /// Nombres cortos de los días
-    @Default(<String>['L', 'M', 'X', 'J', 'V', 'S', 'D']) List<String> dayNamesShort,
+    @Default(<String>['L', 'M', 'X', 'J', 'V', 'S', 'D'])
+    List<String> dayNamesShort,
 
     /// Primer día de la semana (1=lunes, 7=domingo)
     @Default(1) int firstDayOfWeek,
@@ -382,7 +414,8 @@ class AppCalendarLocalization with _$AppCalendarLocalization {
       'previous': 'Anterior',
       'next': 'Siguiente',
       'loading': 'Cargando...',
-    }) Map<String, String> labels,
+    })
+    Map<String, String> labels,
   }) = _AppCalendarLocalization;
 
   factory AppCalendarLocalization.fromJson(Map<String, dynamic> json) =>
@@ -406,7 +439,8 @@ class AppCalendarConfig with _$AppCalendarConfig {
     DateTime? selectedDate,
 
     /// Rango de fechas seleccionado
-    @JsonKey(includeFromJson: false, includeToJson: false) DateTimeRange? selectedRange,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    DateTimeRange? selectedRange,
 
     /// Fecha mínima seleccionable
     DateTime? minDate,
@@ -466,28 +500,37 @@ class AppCalendarConfig with _$AppCalendarConfig {
     AppCalendarLocalization? localization,
 
     /// Callback cuando se toca un evento
-    @JsonKey(includeFromJson: false, includeToJson: false) AppCalendarEventTapCallback? onEventTap,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    AppCalendarEventTapCallback? onEventTap,
 
     /// Callback cuando se toca una fecha
-    @JsonKey(includeFromJson: false, includeToJson: false) AppCalendarDateTapCallback? onDateTap,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    AppCalendarDateTapCallback? onDateTap,
 
     /// Callback cuando se selecciona un rango
-    @JsonKey(includeFromJson: false, includeToJson: false) AppCalendarDateRangeSelectCallback? onRangeSelect,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    AppCalendarDateRangeSelectCallback? onRangeSelect,
 
     /// Callback cuando cambia la vista
-    @JsonKey(includeFromJson: false, includeToJson: false) void Function(AppCalendarVariant variant)? onViewChange,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    void Function(AppCalendarVariant variant)? onViewChange,
 
     /// Callback cuando cambia la fecha
-    @JsonKey(includeFromJson: false, includeToJson: false) void Function(DateTime date)? onDateChange,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    void Function(DateTime date)? onDateChange,
 
     /// Callback cuando se crea un evento
-    @JsonKey(includeFromJson: false, includeToJson: false) void Function(DateTime start, DateTime end)? onEventCreate,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    void Function(DateTime start, DateTime end)? onEventCreate,
 
     /// Callback cuando se mueve un evento
-    @JsonKey(includeFromJson: false, includeToJson: false) void Function(AppCalendarEvent event, DateTime newStart)? onEventMove,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    void Function(AppCalendarEvent event, DateTime newStart)? onEventMove,
 
     /// Callback cuando se redimensiona un evento
-    @JsonKey(includeFromJson: false, includeToJson: false) void Function(AppCalendarEvent event, DateTime newStart, DateTime newEnd)? onEventResize,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    void Function(AppCalendarEvent event, DateTime newStart, DateTime newEnd)?
+        onEventResize,
 
     // Propiedades de estilo usando design tokens
 
@@ -546,25 +589,32 @@ class AppCalendarConfig with _$AppCalendarConfig {
     @ColorConverter() Color? nonWorkingHoursBackgroundColor,
 
     /// Radio de borde de las celdas
-    @JsonKey(includeFromJson: false, includeToJson: false) BorderRadius? cellBorderRadius,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    BorderRadius? cellBorderRadius,
 
     /// Radio de borde del calendario
-    @JsonKey(includeFromJson: false, includeToJson: false) BorderRadius? borderRadius,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    BorderRadius? borderRadius,
 
     /// Sombra del calendario
-    @JsonKey(includeFromJson: false, includeToJson: false) List<BoxShadow>? boxShadow,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    List<BoxShadow>? boxShadow,
 
     /// Estilo del texto del header
-    @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? headerTextStyle,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    TextStyle? headerTextStyle,
 
     /// Estilo del texto de las fechas
-    @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? dateTextStyle,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    TextStyle? dateTextStyle,
 
     /// Estilo del texto de los eventos
-    @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? eventTextStyle,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    TextStyle? eventTextStyle,
 
     /// Estilo del texto de las horas
-    @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? timeTextStyle,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    TextStyle? timeTextStyle,
 
     /// Altura del header
     @Default(56.0) double headerHeight,
@@ -682,15 +732,41 @@ class AppCalendarDefaults {
     return const AppCalendarLocalization(
       locale: 'es',
       monthNames: [
-        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        'Enero',
+        'Febrero',
+        'Marzo',
+        'Abril',
+        'Mayo',
+        'Junio',
+        'Julio',
+        'Agosto',
+        'Septiembre',
+        'Octubre',
+        'Noviembre',
+        'Diciembre'
       ],
       monthNamesShort: [
-        'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
-        'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
+        'Ene',
+        'Feb',
+        'Mar',
+        'Abr',
+        'May',
+        'Jun',
+        'Jul',
+        'Ago',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dic'
       ],
       dayNames: [
-        'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
+        'Lunes',
+        'Martes',
+        'Miércoles',
+        'Jueves',
+        'Viernes',
+        'Sábado',
+        'Domingo'
       ],
       dayNamesShort: ['L', 'M', 'X', 'J', 'V', 'S', 'D'],
       firstDayOfWeek: 1,
@@ -716,15 +792,41 @@ class AppCalendarDefaults {
     return const AppCalendarLocalization(
       locale: 'en',
       monthNames: [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
       ],
       monthNamesShort: [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
       ],
       dayNames: [
-        'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
       ],
       dayNamesShort: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
       firstDayOfWeek: 1,

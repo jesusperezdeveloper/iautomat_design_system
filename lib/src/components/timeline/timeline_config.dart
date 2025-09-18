@@ -11,9 +11,12 @@ class AppTimelineConfig with _$AppTimelineConfig {
     @Default(AppTimelineVariant.activity) AppTimelineVariant variant,
     @Default(AppTimelineState.defaultState) AppTimelineState state,
     @Default(<AppTimelineEvent>[]) List<AppTimelineEvent> events,
-    @Default(AppTimelineOrientation.vertical) AppTimelineOrientation orientation,
-    @Default(AppTimelineConnectorStyle.solid) AppTimelineConnectorStyle connectorStyle,
-    @Default(AppTimelineIndicatorStyle.dot) AppTimelineIndicatorStyle indicatorStyle,
+    @Default(AppTimelineOrientation.vertical)
+    AppTimelineOrientation orientation,
+    @Default(AppTimelineConnectorStyle.solid)
+    AppTimelineConnectorStyle connectorStyle,
+    @Default(AppTimelineIndicatorStyle.dot)
+    AppTimelineIndicatorStyle indicatorStyle,
     @Default(AppTimelineAlignment.start) AppTimelineAlignment alignment,
     @Default(AppTimelineSpacing.medium) AppTimelineSpacing spacing,
     Color? connectorColor,
@@ -55,7 +58,8 @@ class AppTimelineConfig with _$AppTimelineConfig {
   bool get isLoading => loading || state == AppTimelineState.loading;
   bool get isSkeleton => skeleton || state == AppTimelineState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
-  bool get canInteract => isInteractive && !isDisabled && !isLoading && !isSkeleton;
+  bool get canInteract =>
+      isInteractive && !isDisabled && !isLoading && !isSkeleton;
   bool get hasEvents => events.isNotEmpty;
   bool get isHorizontal => orientation == AppTimelineOrientation.horizontal;
   bool get isVertical => orientation == AppTimelineOrientation.vertical;
@@ -148,7 +152,8 @@ class AppTimelineEvent with _$AppTimelineEvent {
   bool get hasTrailing => trailing != null;
   bool get hasIcon => icon != null;
   bool get hasTimestamp => timestamp != null;
-  bool get isInteractive => onTap != null || onLongPress != null || onHover != null;
+  bool get isInteractive =>
+      onTap != null || onLongPress != null || onHover != null;
   bool get isDisabled => !enabled;
   bool get isVisible => visible;
   bool get isSelected => selected;
@@ -254,9 +259,10 @@ extension AppTimelineVariantExtension on AppTimelineVariant {
 }
 
 extension AppTimelineStateExtension on AppTimelineState {
-  bool get isInteractiveState => this == AppTimelineState.hover ||
-                                this == AppTimelineState.pressed ||
-                                this == AppTimelineState.focus;
+  bool get isInteractiveState =>
+      this == AppTimelineState.hover ||
+      this == AppTimelineState.pressed ||
+      this == AppTimelineState.focus;
 
   bool get isDisabledState => this == AppTimelineState.disabled;
   bool get isLoadingState => this == AppTimelineState.loading;
@@ -578,7 +584,8 @@ class AppTimelineConstants {
 
   static const EdgeInsetsGeometry defaultPadding = EdgeInsets.all(12.0);
   static const EdgeInsetsGeometry defaultMargin = EdgeInsets.zero;
-  static const EdgeInsetsGeometry defaultItemPadding = EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0);
+  static const EdgeInsetsGeometry defaultItemPadding =
+      EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0);
 
   static const BoxConstraints defaultConstraints = BoxConstraints(
     minWidth: double.infinity,

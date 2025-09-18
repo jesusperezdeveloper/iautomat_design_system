@@ -115,7 +115,8 @@ class AppColorPickerStory {
   static List<ColorPickerStoryExample> get accessibilityExamples => [
         ColorPickerStoryExample(
           name: 'With Semantic Labels',
-          description: 'Color picker with proper semantic labels for accessibility',
+          description:
+              'Color picker with proper semantic labels for accessibility',
           widget: _AccessibilityExample(),
         ),
         ColorPickerStoryExample(
@@ -204,7 +205,8 @@ class _HSVColorPickerExampleState extends State<_HSVColorPickerExample> {
             hintText: 'Selecciona un color',
           ),
           const SizedBox(height: 16),
-          Text('Color seleccionado: ${selectedColor?.getFormattedString() ?? 'Ninguno'}'),
+          Text(
+              'Color seleccionado: ${selectedColor?.getFormattedString() ?? 'Ninguno'}'),
           if (selectedColor != null) ...[
             const SizedBox(height: 8),
             Container(
@@ -225,10 +227,12 @@ class _HSVColorPickerExampleState extends State<_HSVColorPickerExample> {
 
 class _PaletteColorPickerExample extends StatefulWidget {
   @override
-  _PaletteColorPickerExampleState createState() => _PaletteColorPickerExampleState();
+  _PaletteColorPickerExampleState createState() =>
+      _PaletteColorPickerExampleState();
 }
 
-class _PaletteColorPickerExampleState extends State<_PaletteColorPickerExample> {
+class _PaletteColorPickerExampleState
+    extends State<_PaletteColorPickerExample> {
   AppColorValue? selectedColor;
 
   @override
@@ -246,7 +250,8 @@ class _PaletteColorPickerExampleState extends State<_PaletteColorPickerExample> 
             hintText: 'Elige de la paleta',
           ),
           const SizedBox(height: 16),
-          Text('Color seleccionado: ${selectedColor?.getFormattedString() ?? 'Ninguno'}'),
+          Text(
+              'Color seleccionado: ${selectedColor?.getFormattedString() ?? 'Ninguno'}'),
           if (selectedColor != null) ...[
             const SizedBox(height: 8),
             Container(
@@ -279,7 +284,8 @@ class _StateExamplesWidget extends StatelessWidget {
           const SizedBox(height: 12),
           _buildStateExample('Focus', AppColorPickerState.focus),
           const SizedBox(height: 12),
-          _buildStateExample('Selected', AppColorPickerState.selected, AppColorValue.fromColor(Colors.blue)),
+          _buildStateExample('Selected', AppColorPickerState.selected,
+              AppColorValue.fromColor(Colors.blue)),
           const SizedBox(height: 12),
           _buildStateExample('Disabled', AppColorPickerState.disabled),
           const SizedBox(height: 12),
@@ -291,7 +297,8 @@ class _StateExamplesWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildStateExample(String stateName, AppColorPickerState state, [AppColorValue? value]) {
+  Widget _buildStateExample(String stateName, AppColorPickerState state,
+      [AppColorValue? value]) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -510,7 +517,8 @@ class _CustomIconsExampleState extends State<_CustomIconsExample> {
 
 class _PlatformAdaptiveExample extends StatefulWidget {
   @override
-  _PlatformAdaptiveExampleState createState() => _PlatformAdaptiveExampleState();
+  _PlatformAdaptiveExampleState createState() =>
+      _PlatformAdaptiveExampleState();
 }
 
 class _PlatformAdaptiveExampleState extends State<_PlatformAdaptiveExample> {
@@ -763,8 +771,10 @@ class _AccessibilityExampleState extends State<_AccessibilityExample> {
         onChanged: (color) => setState(() => selectedColor = color),
         labelText: 'Color accesible',
         hintText: 'Selecciona un color accesible',
-        semanticLabel: 'Selector de color para tema accesible, toca para abrir el picker',
-        helperText: 'Elige un color que cumpla con los estándares de accesibilidad',
+        semanticLabel:
+            'Selector de color para tema accesible, toca para abrir el picker',
+        helperText:
+            'Elige un color que cumpla con los estándares de accesibilidad',
       ),
     );
   }
@@ -772,10 +782,12 @@ class _AccessibilityExampleState extends State<_AccessibilityExample> {
 
 class _KeyboardNavigationExample extends StatefulWidget {
   @override
-  _KeyboardNavigationExampleState createState() => _KeyboardNavigationExampleState();
+  _KeyboardNavigationExampleState createState() =>
+      _KeyboardNavigationExampleState();
 }
 
-class _KeyboardNavigationExampleState extends State<_KeyboardNavigationExample> {
+class _KeyboardNavigationExampleState
+    extends State<_KeyboardNavigationExample> {
   AppColorValue? selectedColor;
   final FocusNode _focusNode = FocusNode();
 
@@ -852,13 +864,13 @@ class _HexFormatExampleState extends State<_HexFormatExample> {
           AppColorPicker(
             variant: AppColorPickerVariant.hsv,
             value: selectedColor,
-            onChanged: (color) => setState(() => selectedColor = color.copyWithFormat(ColorFormat.hex)),
+            onChanged: (color) => setState(
+                () => selectedColor = color.copyWithFormat(ColorFormat.hex)),
             labelText: 'Color en formato HEX',
             hintText: 'Formato HEX (#RRGGBB)',
           ),
           const SizedBox(height: 16),
-          if (selectedColor != null)
-            Text('HEX: ${selectedColor!.hexString}'),
+          if (selectedColor != null) Text('HEX: ${selectedColor!.hexString}'),
         ],
       ),
     );
@@ -883,13 +895,13 @@ class _RgbFormatExampleState extends State<_RgbFormatExample> {
           AppColorPicker(
             variant: AppColorPickerVariant.hsv,
             value: selectedColor,
-            onChanged: (color) => setState(() => selectedColor = color.copyWithFormat(ColorFormat.rgb)),
+            onChanged: (color) => setState(
+                () => selectedColor = color.copyWithFormat(ColorFormat.rgb)),
             labelText: 'Color en formato RGB',
             hintText: 'Formato RGB',
           ),
           const SizedBox(height: 16),
-          if (selectedColor != null)
-            Text('RGB: ${selectedColor!.rgbString}'),
+          if (selectedColor != null) Text('RGB: ${selectedColor!.rgbString}'),
         ],
       ),
     );
@@ -914,13 +926,13 @@ class _HslFormatExampleState extends State<_HslFormatExample> {
           AppColorPicker(
             variant: AppColorPickerVariant.hsv,
             value: selectedColor,
-            onChanged: (color) => setState(() => selectedColor = color.copyWithFormat(ColorFormat.hsl)),
+            onChanged: (color) => setState(
+                () => selectedColor = color.copyWithFormat(ColorFormat.hsl)),
             labelText: 'Color en formato HSL',
             hintText: 'Formato HSL',
           ),
           const SizedBox(height: 16),
-          if (selectedColor != null)
-            Text('HSL: ${selectedColor!.hslString}'),
+          if (selectedColor != null) Text('HSL: ${selectedColor!.hslString}'),
         ],
       ),
     );

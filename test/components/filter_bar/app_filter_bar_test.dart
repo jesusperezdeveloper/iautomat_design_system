@@ -37,7 +37,8 @@ void main() {
       ];
     });
 
-    testWidgets('chips variant creates widget with correct filters', (tester) async {
+    testWidgets('chips variant creates widget with correct filters',
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -55,7 +56,8 @@ void main() {
       expect(find.text('Search'), findsOneWidget);
     });
 
-    testWidgets('popovers variant creates widget with correct filters', (tester) async {
+    testWidgets('popovers variant creates widget with correct filters',
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -72,7 +74,8 @@ void main() {
       expect(find.text('Category'), findsOneWidget);
     });
 
-    testWidgets('filter chip shows active state when has value', (tester) async {
+    testWidgets('filter chip shows active state when has value',
+        (tester) async {
       final filtersWithValue = [
         testFilters[0].copyWith(value: 'active', isActive: true),
       ];
@@ -130,7 +133,8 @@ void main() {
       expect(changedFilters, isNotNull);
     });
 
-    testWidgets('clear all button appears when filters are active', (tester) async {
+    testWidgets('clear all button appears when filters are active',
+        (tester) async {
       final activeFilters = [
         testFilters[0].copyWith(value: 'active', isActive: true),
       ];
@@ -483,7 +487,8 @@ void main() {
       var summary = AppFilterBarUtils.getFilterSummary(filters);
       expect(summary, '1 filter');
 
-      filters.add(const AppFilter(id: '3', label: 'F3', value: 'val', isActive: true));
+      filters.add(
+          const AppFilter(id: '3', label: 'F3', value: 'val', isActive: true));
       summary = AppFilterBarUtils.getFilterSummary(filters);
       expect(summary, '2 filters');
     });
@@ -549,8 +554,10 @@ void main() {
 
     test('generateSummaryText creates summary string', () {
       final filters = [
-        const AppFilter(id: '1', label: 'Status', value: 'Active', isActive: true),
-        const AppFilter(id: '2', label: 'Category', value: 'Electronics', isActive: true),
+        const AppFilter(
+            id: '1', label: 'Status', value: 'Active', isActive: true),
+        const AppFilter(
+            id: '2', label: 'Category', value: 'Electronics', isActive: true),
       ];
 
       final summary = AppFilterBarUtils.generateSummaryText(filters);

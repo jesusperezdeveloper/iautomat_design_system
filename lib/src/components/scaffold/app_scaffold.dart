@@ -127,7 +127,8 @@ class _AppScaffoldState extends State<AppScaffold>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
+    final isRtl =
+        widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
     final responsive = context;
 
     return Directionality(
@@ -189,11 +190,13 @@ class _AppScaffoldState extends State<AppScaffold>
       appBar: _buildAppBar(context, theme),
       body: Row(
         children: [
-          if (navigation != null && !isRtl) _buildNavigationRail(navigation, theme),
+          if (navigation != null && !isRtl)
+            _buildNavigationRail(navigation, theme),
           if (sidePanel != null && !isRtl) _buildSidePanel(sidePanel, theme),
           Expanded(child: body),
           if (sidePanel != null && isRtl) _buildSidePanel(sidePanel, theme),
-          if (navigation != null && isRtl) _buildNavigationRail(navigation, theme),
+          if (navigation != null && isRtl)
+            _buildNavigationRail(navigation, theme),
         ],
       ),
       floatingActionButton: _buildFloatingActionButton(context, theme),
@@ -246,7 +249,8 @@ class _AppScaffoldState extends State<AppScaffold>
     bool isRtl,
   ) {
     final body = _buildBody(context, theme);
-    final gutterWidth = Responsive.isMobile(responsive) ? AppSpacing.md : AppSpacing.xl;
+    final gutterWidth =
+        Responsive.isMobile(responsive) ? AppSpacing.md : AppSpacing.xl;
 
     return Scaffold(
       key: widget.key,
@@ -431,7 +435,8 @@ class _AppScaffoldState extends State<AppScaffold>
       );
     }).toList();
 
-    final selectedIndex = navigation.items.indexWhere((item) => item.isSelected);
+    final selectedIndex =
+        navigation.items.indexWhere((item) => item.isSelected);
 
     return NavigationRail(
       destinations: items,

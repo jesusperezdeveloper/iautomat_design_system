@@ -225,7 +225,7 @@ void main() {
       // Check for loading indicator - platform specific
       expect(
         find.byType(CircularProgressIndicator).evaluate().isNotEmpty ||
-        find.byType(SizedBox).evaluate().length > 1,
+            find.byType(SizedBox).evaluate().length > 1,
         true,
       );
     });
@@ -511,17 +511,21 @@ void main() {
       );
 
       final gestureDetector = tester.widget<GestureDetector>(
-        find.descendant(
-          of: find.byType(AppCheckbox),
-          matching: find.byType(GestureDetector),
-        ).first,
+        find
+            .descendant(
+              of: find.byType(AppCheckbox),
+              matching: find.byType(GestureDetector),
+            )
+            .first,
       );
 
       final container = tester.widget<Container>(
-        find.descendant(
-          of: find.byWidget(gestureDetector),
-          matching: find.byType(Container),
-        ).first,
+        find
+            .descendant(
+              of: find.byWidget(gestureDetector),
+              matching: find.byType(Container),
+            )
+            .first,
       );
 
       expect(container.constraints?.minWidth, 48);

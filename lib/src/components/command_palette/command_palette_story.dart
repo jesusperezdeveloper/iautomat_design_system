@@ -9,10 +9,12 @@ class CommandPaletteStoryExample extends StatefulWidget {
   const CommandPaletteStoryExample({super.key});
 
   @override
-  State<CommandPaletteStoryExample> createState() => _CommandPaletteStoryExampleState();
+  State<CommandPaletteStoryExample> createState() =>
+      _CommandPaletteStoryExampleState();
 }
 
-class _CommandPaletteStoryExampleState extends State<CommandPaletteStoryExample> {
+class _CommandPaletteStoryExampleState
+    extends State<CommandPaletteStoryExample> {
   bool _showGlobalSearch = false;
   bool _showActions = false;
   bool _showCustom = false;
@@ -67,7 +69,11 @@ class _CommandPaletteStoryExampleState extends State<CommandPaletteStoryExample>
       description: 'Search across all project files',
       icon: Icons.search,
       type: AppCommandResultType.search,
-      shortcut: [LogicalKeyboardKey.meta, LogicalKeyboardKey.shift, LogicalKeyboardKey.keyF],
+      shortcut: [
+        LogicalKeyboardKey.meta,
+        LogicalKeyboardKey.shift,
+        LogicalKeyboardKey.keyF
+      ],
     ),
     AppCommandResult(
       id: 'search5',
@@ -164,16 +170,11 @@ class _CommandPaletteStoryExampleState extends State<CommandPaletteStoryExample>
           ),
 
           // Overlays for command palettes
-          if (_showGlobalSearch)
-            _buildGlobalSearchOverlay(),
-          if (_showActions)
-            _buildActionsOverlay(),
-          if (_showCustom)
-            _buildCustomOverlay(),
-          if (_showLoading)
-            _buildLoadingOverlay(),
-          if (_showSkeleton)
-            _buildSkeletonOverlay(),
+          if (_showGlobalSearch) _buildGlobalSearchOverlay(),
+          if (_showActions) _buildActionsOverlay(),
+          if (_showCustom) _buildCustomOverlay(),
+          if (_showLoading) _buildLoadingOverlay(),
+          if (_showSkeleton) _buildSkeletonOverlay(),
         ],
       ),
     );
@@ -323,8 +324,8 @@ class _CommandPaletteStoryExampleState extends State<CommandPaletteStoryExample>
             child: Text(
               shortcut,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontFamily: 'monospace',
-              ),
+                    fontFamily: 'monospace',
+                  ),
             ),
           ),
           const SizedBox(width: 8),
@@ -408,9 +409,11 @@ class _CommandPaletteStoryExampleState extends State<CommandPaletteStoryExample>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Current Query: "${_currentQuery.isEmpty ? "None" : _currentQuery}"'),
+              Text(
+                  'Current Query: "${_currentQuery.isEmpty ? "None" : _currentQuery}"'),
               const SizedBox(height: 8),
-              Text('Last Invoked: "${_lastInvokedCommand.isEmpty ? "None" : _lastInvokedCommand}"'),
+              Text(
+                  'Last Invoked: "${_lastInvokedCommand.isEmpty ? "None" : _lastInvokedCommand}"'),
             ],
           ),
         ),
@@ -441,9 +444,12 @@ class _CommandPaletteStoryExampleState extends State<CommandPaletteStoryExample>
               },
               onClose: () => setState(() => _showGlobalSearch = false),
               shortcuts: {
-                [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyN]: _searchResults[0],
-                [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyO]: _searchResults[1],
-                [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyS]: _searchResults[2],
+                [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyN]:
+                    _searchResults[0],
+                [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyO]:
+                    _searchResults[1],
+                [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyS]:
+                    _searchResults[2],
               },
             ),
           ),

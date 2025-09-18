@@ -84,7 +84,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                         const SizedBox(width: 8),
                         DropdownButton<AppSwitchVariant>(
                           value: _variant,
-                          onChanged: (value) => setState(() => _variant = value!),
+                          onChanged: (value) =>
+                              setState(() => _variant = value!),
                           items: AppSwitchVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
@@ -126,7 +127,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                             max: 20.0,
                             divisions: 12,
                             label: _thumbRadius.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _thumbRadius = value),
+                            onChanged: (value) =>
+                                setState(() => _thumbRadius = value),
                           ),
                         ),
                         Text('${_thumbRadius.toStringAsFixed(0)}px'),
@@ -146,7 +148,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                             max: 70.0,
                             divisions: 15,
                             label: _trackWidth.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _trackWidth = value),
+                            onChanged: (value) =>
+                                setState(() => _trackWidth = value),
                           ),
                         ),
                         Text('${_trackWidth.toStringAsFixed(0)}px'),
@@ -166,7 +169,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                             max: 32.0,
                             divisions: 16,
                             label: _trackHeight.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _trackHeight = value),
+                            onChanged: (value) =>
+                                setState(() => _trackHeight = value),
                           ),
                         ),
                         Text('${_trackHeight.toStringAsFixed(0)}px'),
@@ -186,7 +190,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                             max: 8.0,
                             divisions: 8,
                             label: _elevation.toStringAsFixed(0),
-                            onChanged: (value) => setState(() => _elevation = value),
+                            onChanged: (value) =>
+                                setState(() => _elevation = value),
                           ),
                         ),
                         Text(_elevation.toStringAsFixed(0)),
@@ -202,7 +207,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                           children: [
                             Switch(
                               value: _isAdaptive,
-                              onChanged: (value) => setState(() => _isAdaptive = value),
+                              onChanged: (value) =>
+                                  setState(() => _isAdaptive = value),
                             ),
                             const Text('Adaptativo'),
                           ],
@@ -212,7 +218,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                           children: [
                             Switch(
                               value: _isRtl,
-                              onChanged: (value) => setState(() => _isRtl = value),
+                              onChanged: (value) =>
+                                  setState(() => _isRtl = value),
                             ),
                             const Text('RTL'),
                           ],
@@ -222,7 +229,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                           children: [
                             Switch(
                               value: _enableA11y,
-                              onChanged: (value) => setState(() => _enableA11y = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableA11y = value),
                             ),
                             const Text('Accesibilidad'),
                           ],
@@ -232,7 +240,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                           children: [
                             Switch(
                               value: _enableKeyboard,
-                              onChanged: (value) => setState(() => _enableKeyboard = value),
+                              onChanged: (value) =>
+                                  setState(() => _enableKeyboard = value),
                             ),
                             const Text('Teclado'),
                           ],
@@ -242,7 +251,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                           children: [
                             Switch(
                               value: _isInteractive,
-                              onChanged: (value) => setState(() => _isInteractive = value),
+                              onChanged: (value) =>
+                                  setState(() => _isInteractive = value),
                             ),
                             const Text('Interactivo'),
                           ],
@@ -252,7 +262,9 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                           children: [
                             Switch(
                               value: _value,
-                              onChanged: _isInteractive ? (value) => setState(() => _value = value) : null,
+                              onChanged: _isInteractive
+                                  ? (value) => setState(() => _value = value)
+                                  : null,
                             ),
                             const Text('Valor'),
                           ],
@@ -423,16 +435,12 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                       _buildUseCaseExample(
                         'Deshabilitado',
                         'Función no disponible',
-                        const AppSwitchConfig(
-                          state: AppSwitchState.disabled,
-                        ),
+                        const AppSwitchConfig(state: AppSwitchState.disabled),
                       ),
                       _buildUseCaseExample(
                         'Cargando',
                         'Sincronizando...',
-                        const AppSwitchConfig(
-                          state: AppSwitchState.loading,
-                        ),
+                        const AppSwitchConfig(state: AppSwitchState.loading),
                       ),
                     ],
                   ),
@@ -451,10 +459,7 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        Text(title, style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12),
         child,
         const SizedBox(height: 24),
@@ -500,7 +505,11 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
     );
   }
 
-  Widget _buildUseCaseExample(String title, String description, AppSwitchConfig config) {
+  Widget _buildUseCaseExample(
+    String title,
+    String description,
+    AppSwitchConfig config,
+  ) {
     return SizedBox(
       width: 160,
       child: Column(

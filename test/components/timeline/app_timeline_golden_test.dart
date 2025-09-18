@@ -4,7 +4,8 @@ import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
   group('AppTimeline Golden Tests', () {
-    testWidgets('should render basic vertical timeline correctly', (tester) async {
+    testWidgets('should render basic vertical timeline correctly',
+        (tester) async {
       final events = [
         AppTimelineEvent(
           id: '1',
@@ -98,7 +99,8 @@ void main() {
       );
     });
 
-    testWidgets('should render different indicator styles correctly', (tester) async {
+    testWidgets('should render different indicator styles correctly',
+        (tester) async {
       final events = [
         AppTimelineEvent(
           id: '1',
@@ -165,7 +167,8 @@ void main() {
       );
     });
 
-    testWidgets('should render different connector styles correctly', (tester) async {
+    testWidgets('should render different connector styles correctly',
+        (tester) async {
       final events = [
         AppTimelineEvent(id: '1', title: 'Evento 1'),
         AppTimelineEvent(id: '2', title: 'Evento 2'),
@@ -636,7 +639,8 @@ void main() {
           id: '1',
           title: 'Project Kickoff',
           subtitle: 'Initial planning meeting',
-          description: 'Team gathered to discuss project requirements and timeline',
+          description:
+              'Team gathered to discuss project requirements and timeline',
           timestamp: DateTime(2024, 1, 1, 9, 0),
           type: AppTimelineEventType.milestone,
           status: AppTimelineEventStatus.completed,

@@ -182,7 +182,8 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
             children: [
               AppListItem.threeLine(
                 title: 'Team Meeting',
-                subtitle: 'Discuss project milestones and upcoming deadlines. Review current progress and plan next steps.',
+                subtitle:
+                    'Discuss project milestones and upcoming deadlines. Review current progress and plan next steps.',
                 leading: const AppListItemLeading(
                   type: AppListItemLeadingType.icon,
                   icon: Icons.calendar_today,
@@ -196,7 +197,8 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
               ),
               AppListItem.threeLine(
                 title: 'Alice Cooper',
-                subtitle: 'Hey, are you available for the call this afternoon? I wanted to discuss the new feature requirements...',
+                subtitle:
+                    'Hey, are you available for the call this afternoon? I wanted to discuss the new feature requirements...',
                 leading: const AppListItemLeading(
                   type: AppListItemLeadingType.avatar,
                   avatarText: 'AC',
@@ -374,7 +376,8 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
                 ),
                 onTap: () {
                   setState(() {
-                    selectedItem = selectedItem == 'selectable1' ? null : 'selectable1';
+                    selectedItem =
+                        selectedItem == 'selectable1' ? null : 'selectable1';
                   });
                 },
               ),
@@ -568,7 +571,8 @@ class ListItemUsageExamples {
   static Widget threeLineExample() {
     return AppListItem.threeLine(
       title: 'Meeting Notes',
-      subtitle: 'Weekly team sync - Discussed project progress, upcoming milestones, and resource allocation for next quarter.',
+      subtitle:
+          'Weekly team sync - Discussed project progress, upcoming milestones, and resource allocation for next quarter.',
       leading: const AppListItemLeading(
         type: AppListItemLeadingType.icon,
         icon: Icons.notes,

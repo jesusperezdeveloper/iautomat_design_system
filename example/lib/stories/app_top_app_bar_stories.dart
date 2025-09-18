@@ -17,9 +17,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       description: 'AppBar estándar con configuración primaria',
       builder: (context) => _DemoScaffold(
         appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            variant: AppTopAppBarVariant.primary,
-          ),
+          config: AppTopAppBarConfig(variant: AppTopAppBarVariant.primary),
           title: Text('Primary AppBar'),
         ),
       ),
@@ -29,9 +27,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       description: 'AppBar con título centrado',
       builder: (context) => _DemoScaffold(
         appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            variant: AppTopAppBarVariant.center,
-          ),
+          config: AppTopAppBarConfig(variant: AppTopAppBarVariant.center),
           title: Text('Center AppBar'),
         ),
       ),
@@ -41,9 +37,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       description: 'AppBar grande con título prominente',
       builder: (context) => _DemoScaffold(
         appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            variant: AppTopAppBarVariant.large,
-          ),
+          config: AppTopAppBarConfig(variant: AppTopAppBarVariant.large),
           title: Text('Large AppBar'),
         ),
       ),
@@ -53,9 +47,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       description: 'AppBar colapsado para espacios reducidos',
       builder: (context) => _DemoScaffold(
         appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            variant: AppTopAppBarVariant.collapsed,
-          ),
+          config: AppTopAppBarConfig(variant: AppTopAppBarVariant.collapsed),
           title: Text('Collapsed'),
         ),
       ),
@@ -65,9 +57,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       description: 'AppBar en estado de carga',
       builder: (context) => _DemoScaffold(
         appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            state: AppTopAppBarState.loading,
-          ),
+          config: AppTopAppBarConfig(state: AppTopAppBarState.loading),
         ),
       ),
     ),
@@ -76,9 +66,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       description: 'AppBar con esqueleto de carga',
       builder: (context) => _DemoScaffold(
         appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            state: AppTopAppBarState.skeleton,
-          ),
+          config: AppTopAppBarConfig(state: AppTopAppBarState.skeleton),
         ),
       ),
     ),
@@ -87,9 +75,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       description: 'AppBar en estado deshabilitado',
       builder: (context) => _DemoScaffold(
         appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            state: AppTopAppBarState.disabled,
-          ),
+          config: AppTopAppBarConfig(state: AppTopAppBarState.disabled),
           title: Text('Disabled AppBar'),
         ),
       ),
@@ -99,9 +85,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       description: 'AppBar con soporte para dirección RTL',
       builder: (context) => _DemoScaffold(
         appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            isRtl: true,
-          ),
+          config: AppTopAppBarConfig(isRtl: true),
           title: Text('مرحبا بك'),
         ),
       ),
@@ -321,10 +305,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
             ),
           ),
           title: Text('Espaciado Custom'),
-          actions: [
-            Icon(Icons.settings),
-            SizedBox(width: 16),
-          ],
+          actions: [Icon(Icons.settings), SizedBox(width: 16)],
         ),
       ),
     ),
@@ -405,7 +386,9 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AppTopAppBar Stories (${_currentStory + 1}/${_stories.length})'),
+        title: Text(
+          'AppTopAppBar Stories (${_currentStory + 1}/${_stories.length})',
+        ),
         backgroundColor: Theme.of(context).colorScheme.inverseSurface,
         foregroundColor: Theme.of(context).colorScheme.onInverseSurface,
         actions: [
@@ -436,7 +419,9 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
             ),
             IconButton(
               icon: const Icon(Icons.arrow_forward),
-              onPressed: _currentStory < _stories.length - 1 ? _nextStory : null,
+              onPressed: _currentStory < _stories.length - 1
+                  ? _nextStory
+                  : null,
               tooltip: 'Historia siguiente',
             ),
           ],
@@ -483,7 +468,9 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
             ),
             const SizedBox(height: 8),
             const Text('• 4 variantes: primary, center, large, collapsed'),
-            const Text('• 8 estados: default, hover, pressed, focus, selected, disabled, loading, skeleton'),
+            const Text(
+              '• 8 estados: default, hover, pressed, focus, selected, disabled, loading, skeleton',
+            ),
             const Text('• Soporte RTL completo'),
             const Text('• Comportamiento adaptativo por plataforma'),
             const Text('• Accesibilidad integrada'),
@@ -532,9 +519,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
                 controller: scrollController,
                 itemCount: _stories.length,
                 itemBuilder: (context, index) => ListTile(
-                  leading: CircleAvatar(
-                    child: Text('${index + 1}'),
-                  ),
+                  leading: CircleAvatar(child: Text('${index + 1}')),
                   title: Text(_stories[index].title),
                   subtitle: Text(_stories[index].description),
                   selected: index == _currentStory,
@@ -569,9 +554,7 @@ class StoryItem {
 class _DemoScaffold extends StatelessWidget {
   final PreferredSizeWidget appBar;
 
-  const _DemoScaffold({
-    required this.appBar,
-  });
+  const _DemoScaffold({required this.appBar});
 
   @override
   Widget build(BuildContext context) {
@@ -597,8 +580,12 @@ class _DemoScaffold extends StatelessWidget {
                       'AppTopAppBar es un componente de barra de aplicación avanzado que proporciona:',
                     ),
                     const SizedBox(height: 8),
-                    const Text('• Múltiples variantes (primary, center, large, collapsed)'),
-                    const Text('• Estados dinámicos (loading, skeleton, disabled, etc.)'),
+                    const Text(
+                      '• Múltiples variantes (primary, center, large, collapsed)',
+                    ),
+                    const Text(
+                      '• Estados dinámicos (loading, skeleton, disabled, etc.)',
+                    ),
                     const Text('• Soporte RTL completo'),
                     const Text('• Comportamiento adaptativo por plataforma'),
                     const Text('• Accesibilidad integrada'),
@@ -621,10 +608,19 @@ class _DemoScaffold extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 8),
-                    _buildVariantChip('Primary', 'AppBar estándar con título a la izquierda'),
+                    _buildVariantChip(
+                      'Primary',
+                      'AppBar estándar con título a la izquierda',
+                    ),
                     _buildVariantChip('Center', 'AppBar con título centrado'),
-                    _buildVariantChip('Large', 'AppBar grande con título prominente'),
-                    _buildVariantChip('Collapsed', 'AppBar colapsado para espacios reducidos'),
+                    _buildVariantChip(
+                      'Large',
+                      'AppBar grande con título prominente',
+                    ),
+                    _buildVariantChip(
+                      'Collapsed',
+                      'AppBar colapsado para espacios reducidos',
+                    ),
                   ],
                 ),
               ),
@@ -689,7 +685,10 @@ class _DemoScaffold extends StatelessWidget {
                         ),
                         Chip(
                           label: const Text('RTL Ready'),
-                          avatar: const Icon(Icons.text_rotation_none, size: 16),
+                          avatar: const Icon(
+                            Icons.text_rotation_none,
+                            size: 16,
+                          ),
                         ),
                         Chip(
                           label: const Text('Accessible'),
@@ -711,9 +710,7 @@ class _DemoScaffold extends StatelessWidget {
               (index) => Card(
                 margin: const EdgeInsets.only(bottom: 8),
                 child: ListTile(
-                  leading: CircleAvatar(
-                    child: Text('${index + 1}'),
-                  ),
+                  leading: CircleAvatar(child: Text('${index + 1}')),
                   title: Text('Contenido de ejemplo ${index + 1}'),
                   subtitle: Text('Descripción del contenido ${index + 1}'),
                   trailing: const Icon(Icons.arrow_forward_ios),
@@ -737,10 +734,7 @@ class _DemoScaffold extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Expanded(
-            child: Text(
-              description,
-              style: const TextStyle(fontSize: 12),
-            ),
+            child: Text(description, style: const TextStyle(fontSize: 12)),
           ),
         ],
       ),

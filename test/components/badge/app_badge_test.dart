@@ -385,7 +385,8 @@ void main() {
       expect(find.byType(AppBadge), findsOneWidget);
     });
 
-    testWidgets('should generate automatic semantic label for counter', (tester) async {
+    testWidgets('should generate automatic semantic label for counter',
+        (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -397,7 +398,8 @@ void main() {
       expect(find.byType(AppBadge), findsOneWidget);
     });
 
-    testWidgets('should generate automatic semantic label for status', (tester) async {
+    testWidgets('should generate automatic semantic label for status',
+        (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -625,11 +627,13 @@ void main() {
     });
 
     test('should calculate correct offsets', () {
-      final topRightOffset = AppBadgePosition.topRight.getOffset(AppBadgeSize.medium);
+      final topRightOffset =
+          AppBadgePosition.topRight.getOffset(AppBadgeSize.medium);
       expect(topRightOffset.dx, 6.0);
       expect(topRightOffset.dy, -6.0);
 
-      final centerOffset = AppBadgePosition.center.getOffset(AppBadgeSize.medium);
+      final centerOffset =
+          AppBadgePosition.center.getOffset(AppBadgeSize.medium);
       expect(centerOffset, Offset.zero);
     });
   });

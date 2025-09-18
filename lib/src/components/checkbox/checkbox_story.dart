@@ -220,9 +220,8 @@ class _TristateStoryState extends State<_TristateStory> {
   ];
 
   void _updateParentValue() {
-    final checkedCount = _childValues
-        .where((v) => v == AppCheckboxValue.checked)
-        .length;
+    final checkedCount =
+        _childValues.where((v) => v == AppCheckboxValue.checked).length;
 
     setState(() {
       if (checkedCount == 0) {
@@ -346,8 +345,7 @@ class _PlatformAdaptiveStory extends StatefulWidget {
   const _PlatformAdaptiveStory();
 
   @override
-  State<_PlatformAdaptiveStory> createState() =>
-      _PlatformAdaptiveStoryState();
+  State<_PlatformAdaptiveStory> createState() => _PlatformAdaptiveStoryState();
 }
 
 class _PlatformAdaptiveStoryState extends State<_PlatformAdaptiveStory> {
@@ -483,7 +481,8 @@ class _CustomConfigStoryState extends State<_CustomConfigStory> {
             focusOverlay: Colors.purple.withValues(alpha: 0.12),
             pressedOverlay: Colors.purple.withValues(alpha: 0.12),
             labelColor: theme.colorScheme.onSurface,
-            disabledLabelColor: theme.colorScheme.onSurface.withValues(alpha: 0.38),
+            disabledLabelColor:
+                theme.colorScheme.onSurface.withValues(alpha: 0.38),
           ),
         ),
         const SizedBox(height: 16),

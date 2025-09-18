@@ -50,7 +50,8 @@ class _AppIconButtonState extends State<AppIconButton>
 
   void _setupAnimations() {
     _stateAnimationController = AnimationController(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 200),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 200),
       vsync: this,
     );
 
@@ -162,7 +163,8 @@ class _AppIconButtonState extends State<AppIconButton>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isRtl = widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
+    final isRtl =
+        widget.config.isRtl || Directionality.of(context) == TextDirection.rtl;
 
     return Directionality(
       textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
@@ -180,7 +182,8 @@ class _AppIconButtonState extends State<AppIconButton>
           builder: (context, child) {
             return AnimatedOpacity(
               opacity: widget.config.state.opacity,
-              duration: Duration(milliseconds: widget.config.animation?.duration ?? 200),
+              duration: Duration(
+                  milliseconds: widget.config.animation?.duration ?? 200),
               child: _buildIconButtonVariant(theme, isRtl),
             );
           },
@@ -235,7 +238,8 @@ class _AppIconButtonState extends State<AppIconButton>
                 Colors.transparent,
               ],
               stops: const [0.0, 0.5, 1.0],
-              begin: Alignment(-1.0 + (_stateAnimationController.value * 2), 0.0),
+              begin:
+                  Alignment(-1.0 + (_stateAnimationController.value * 2), 0.0),
               end: Alignment(1.0 + (_stateAnimationController.value * 2), 0.0),
             ),
           ),
@@ -390,13 +394,15 @@ class _AppIconButtonState extends State<AppIconButton>
     if (widget.config.animation?.type == AppIconButtonAnimationType.fade) {
       iconWidget = AnimatedOpacity(
         opacity: _fadeAnimation.value,
-        duration: Duration(milliseconds: widget.config.animation?.duration ?? 200),
+        duration:
+            Duration(milliseconds: widget.config.animation?.duration ?? 200),
         child: iconWidget,
       );
     }
 
     return AnimatedSwitcher(
-      duration: Duration(milliseconds: widget.config.animation?.duration ?? 200),
+      duration:
+          Duration(milliseconds: widget.config.animation?.duration ?? 200),
       child: iconWidget,
     );
   }
@@ -447,31 +453,33 @@ class _AppIconButtonState extends State<AppIconButton>
   Color _getBackgroundColor(ThemeData theme) {
     if (widget.config.state == AppIconButtonState.disabled) {
       return widget.config.colors?.disabledColor ??
-             theme.colorScheme.onSurface.withValues(alpha: 0.12);
+          theme.colorScheme.onSurface.withValues(alpha: 0.12);
     }
 
     if (_isHovering && widget.config.state.canInteract) {
       return widget.config.colors?.hoverColor ??
-             widget.config.variant.getBackgroundColor(theme.colorScheme, _isToggled);
+          widget.config.variant
+              .getBackgroundColor(theme.colorScheme, _isToggled);
     }
 
     if (_isFocused && widget.config.state.canInteract) {
       return widget.config.colors?.focusColor ??
-             widget.config.variant.getBackgroundColor(theme.colorScheme, _isToggled);
+          widget.config.variant
+              .getBackgroundColor(theme.colorScheme, _isToggled);
     }
 
     if (widget.config.state == AppIconButtonState.selected) {
       return widget.config.colors?.selectedColor ??
-             widget.config.variant.getBackgroundColor(theme.colorScheme, true);
+          widget.config.variant.getBackgroundColor(theme.colorScheme, true);
     }
 
     if (_isToggled) {
       return widget.config.colors?.toggledBackgroundColor ??
-             widget.config.variant.getBackgroundColor(theme.colorScheme, true);
+          widget.config.variant.getBackgroundColor(theme.colorScheme, true);
     }
 
     return widget.config.colors?.backgroundColor ??
-           widget.config.variant.getBackgroundColor(theme.colorScheme, false);
+        widget.config.variant.getBackgroundColor(theme.colorScheme, false);
   }
 
   Color _getForegroundColor(ThemeData theme) {
@@ -481,17 +489,17 @@ class _AppIconButtonState extends State<AppIconButton>
 
     if (_isToggled) {
       return widget.config.colors?.toggledColor ??
-             widget.config.variant.getForegroundColor(theme.colorScheme, true);
+          widget.config.variant.getForegroundColor(theme.colorScheme, true);
     }
 
     return widget.config.colors?.foregroundColor ??
-           widget.config.variant.getForegroundColor(theme.colorScheme, false);
+        widget.config.variant.getForegroundColor(theme.colorScheme, false);
   }
 
   Color _getShadowColor(ThemeData theme) {
     return widget.config.elevation?.shadowColor ??
-           widget.config.colors?.shadowColor ??
-           theme.colorScheme.shadow;
+        widget.config.colors?.shadowColor ??
+        theme.colorScheme.shadow;
   }
 
   void _handleTap() {
@@ -501,7 +509,8 @@ class _AppIconButtonState extends State<AppIconButton>
 
     if (widget.config.animation?.type == AppIconButtonAnimationType.rotation) {
       _rotationController.forward(from: 0.0);
-    } else if (widget.config.animation?.type == AppIconButtonAnimationType.scale) {
+    } else if (widget.config.animation?.type ==
+        AppIconButtonAnimationType.scale) {
       _pressAnimationController.forward().then((_) {
         _pressAnimationController.reverse();
       });

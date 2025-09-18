@@ -81,7 +81,8 @@ class AppIconButtonBehavior with _$AppIconButtonBehavior {
     @Default(true) bool enableHover,
     @Default(true) bool enableFocus,
     @Default(true) bool maintainState,
-    @Default(AppIconButtonClipBehavior.antiAlias) AppIconButtonClipBehavior clipBehavior,
+    @Default(AppIconButtonClipBehavior.antiAlias)
+    AppIconButtonClipBehavior clipBehavior,
     @Default(200) int animationDuration,
     @Default(true) bool showLoadingIndicator,
     @Default(true) bool showSkeletonAnimation,

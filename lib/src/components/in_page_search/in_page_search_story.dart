@@ -313,7 +313,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
                   Container(
                     padding: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                      color:
+                          Theme.of(context).colorScheme.surfaceContainerHighest,
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: const Text(
@@ -342,7 +343,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
                   currentResultIndex: 2,
                   highlights: [
                     AppSearchHighlight(start: 0, end: 7, text: 'flutter'),
-                    AppSearchHighlight(start: 15, end: 22, text: 'flutter', isActive: true),
+                    AppSearchHighlight(
+                        start: 15, end: 22, text: 'flutter', isActive: true),
                     AppSearchHighlight(start: 30, end: 37, text: 'flutter'),
                   ],
                 ),
@@ -515,15 +517,15 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
             Text(
               title,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
             const SizedBox(height: 4.0),
             Text(
               description,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
             ),
             const SizedBox(height: 16.0),
             child,

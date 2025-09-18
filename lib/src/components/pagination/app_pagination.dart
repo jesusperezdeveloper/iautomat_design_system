@@ -69,10 +69,12 @@ class AppPagination extends StatefulWidget {
   final bool hasPreviousPage;
 
   /// Custom page builder for advanced customization
-  final Widget Function(BuildContext context, int page, bool isSelected)? pageBuilder;
+  final Widget Function(BuildContext context, int page, bool isSelected)?
+      pageBuilder;
 
   /// Custom navigation button builder
-  final Widget Function(BuildContext context, String action, bool enabled)? navButtonBuilder;
+  final Widget Function(BuildContext context, String action, bool enabled)?
+      navButtonBuilder;
 
   /// Custom loading builder
   final Widget Function(BuildContext context)? loadingBuilder;
@@ -380,7 +382,8 @@ class _AppPaginationState extends State<AppPagination>
     );
   }
 
-  Widget _buildPaginationWidget(BuildContext context, ThemeData theme, ColorScheme colorScheme, bool isRTL) {
+  Widget _buildPaginationWidget(BuildContext context, ThemeData theme,
+      ColorScheme colorScheme, bool isRTL) {
     if (widget.state == AppPaginationState.skeleton) {
       return _buildSkeletonWidget(context, theme);
     }
@@ -400,7 +403,8 @@ class _AppPaginationState extends State<AppPagination>
     );
   }
 
-  Widget _buildContent(BuildContext context, ColorScheme colorScheme, bool isRTL) {
+  Widget _buildContent(
+      BuildContext context, ColorScheme colorScheme, bool isRTL) {
     switch (widget.variant) {
       case AppPaginationVariant.pageBased:
         return _buildPageBasedPagination(context, colorScheme, isRTL);
@@ -409,7 +413,8 @@ class _AppPaginationState extends State<AppPagination>
     }
   }
 
-  Widget _buildPageBasedPagination(BuildContext context, ColorScheme colorScheme, bool isRTL) {
+  Widget _buildPageBasedPagination(
+      BuildContext context, ColorScheme colorScheme, bool isRTL) {
     final data = _effectiveData;
 
     if (data.totalPages <= 1 && !_effectiveConfig.showPageInfo) {
@@ -428,14 +433,17 @@ class _AppPaginationState extends State<AppPagination>
     final navChildren = <Widget>[];
 
     // First page button
-    if (_effectiveConfig.showFirstLast && data.totalPages > _effectiveConfig.maxVisiblePages) {
-      navChildren.add(_buildNavButton(context, colorScheme, 'first', data.currentPage > 1));
+    if (_effectiveConfig.showFirstLast &&
+        data.totalPages > _effectiveConfig.maxVisiblePages) {
+      navChildren.add(
+          _buildNavButton(context, colorScheme, 'first', data.currentPage > 1));
       navChildren.add(SizedBox(width: _effectiveConfig.spacing));
     }
 
     // Previous button
     if (_effectiveConfig.showPrevNext) {
-      navChildren.add(_buildNavButton(context, colorScheme, 'previous', data.canGoToPrevious));
+      navChildren.add(_buildNavButton(
+          context, colorScheme, 'previous', data.canGoToPrevious));
       navChildren.add(SizedBox(width: _effectiveConfig.spacing));
     }
 
@@ -447,13 +455,16 @@ class _AppPaginationState extends State<AppPagination>
     // Next button
     if (_effectiveConfig.showPrevNext) {
       navChildren.add(SizedBox(width: _effectiveConfig.spacing));
-      navChildren.add(_buildNavButton(context, colorScheme, 'next', data.canGoToNext));
+      navChildren
+          .add(_buildNavButton(context, colorScheme, 'next', data.canGoToNext));
     }
 
     // Last page button
-    if (_effectiveConfig.showFirstLast && data.totalPages > _effectiveConfig.maxVisiblePages) {
+    if (_effectiveConfig.showFirstLast &&
+        data.totalPages > _effectiveConfig.maxVisiblePages) {
       navChildren.add(SizedBox(width: _effectiveConfig.spacing));
-      navChildren.add(_buildNavButton(context, colorScheme, 'last', data.currentPage < data.totalPages));
+      navChildren.add(_buildNavButton(
+          context, colorScheme, 'last', data.currentPage < data.totalPages));
     }
 
     children.add(
@@ -469,12 +480,14 @@ class _AppPaginationState extends State<AppPagination>
     return _wrapWithLayout(children);
   }
 
-  Widget _buildCursorPagination(BuildContext context, ColorScheme colorScheme, bool isRTL) {
+  Widget _buildCursorPagination(
+      BuildContext context, ColorScheme colorScheme, bool isRTL) {
     final data = _effectiveData;
     final children = <Widget>[];
 
     // Previous button
-    children.add(_buildNavButton(context, colorScheme, 'previous', data.hasPreviousPage));
+    children.add(_buildNavButton(
+        context, colorScheme, 'previous', data.hasPreviousPage));
     children.add(SizedBox(width: _effectiveConfig.spacing));
 
     // Load more button (if enabled)
@@ -484,7 +497,8 @@ class _AppPaginationState extends State<AppPagination>
     }
 
     // Next button
-    children.add(_buildNavButton(context, colorScheme, 'next', data.hasNextPage));
+    children
+        .add(_buildNavButton(context, colorScheme, 'next', data.hasNextPage));
 
     return Directionality(
       textDirection: isRTL ? TextDirection.rtl : TextDirection.ltr,
@@ -529,13 +543,15 @@ class _AppPaginationState extends State<AppPagination>
     );
   }
 
-  List<Widget> _buildPageNumbers(BuildContext context, ColorScheme colorScheme) {
+  List<Widget> _buildPageNumbers(
+      BuildContext context, ColorScheme colorScheme) {
     final data = _effectiveData;
     final visiblePages = data.getVisiblePages(_effectiveConfig.maxVisiblePages);
     final children = <Widget>[];
 
     // Start ellipsis
-    if (_effectiveConfig.showEllipsis && data.shouldShowStartEllipsis(visiblePages)) {
+    if (_effectiveConfig.showEllipsis &&
+        data.shouldShowStartEllipsis(visiblePages)) {
       children.add(_buildPageButton(context, colorScheme, 1, false));
       children.add(SizedBox(width: _effectiveConfig.spacing));
       children.add(_buildEllipsis(context, colorScheme));
@@ -555,17 +571,20 @@ class _AppPaginationState extends State<AppPagination>
     }
 
     // End ellipsis
-    if (_effectiveConfig.showEllipsis && data.shouldShowEndEllipsis(visiblePages)) {
+    if (_effectiveConfig.showEllipsis &&
+        data.shouldShowEndEllipsis(visiblePages)) {
       children.add(SizedBox(width: _effectiveConfig.spacing));
       children.add(_buildEllipsis(context, colorScheme));
       children.add(SizedBox(width: _effectiveConfig.spacing));
-      children.add(_buildPageButton(context, colorScheme, data.totalPages, false));
+      children
+          .add(_buildPageButton(context, colorScheme, data.totalPages, false));
     }
 
     return children;
   }
 
-  Widget _buildPageButton(BuildContext context, ColorScheme colorScheme, int page, bool isSelected) {
+  Widget _buildPageButton(BuildContext context, ColorScheme colorScheme,
+      int page, bool isSelected) {
     if (widget.pageBuilder != null) {
       return widget.pageBuilder!(context, page, isSelected);
     }
@@ -580,15 +599,19 @@ class _AppPaginationState extends State<AppPagination>
     if (isDisabled) {
       backgroundColor = _effectiveConfig.disabledBackgroundColor;
       borderColor = _effectiveConfig.disabledBorderColor;
-      textColor = _effectiveConfig.disabledTextColor ?? colorScheme.onSurface.withValues(alpha: 0.38);
+      textColor = _effectiveConfig.disabledTextColor ??
+          colorScheme.onSurface.withValues(alpha: 0.38);
     } else if (isSelected) {
-      backgroundColor = _effectiveConfig.selectedBackgroundColor ?? colorScheme.primary;
+      backgroundColor =
+          _effectiveConfig.selectedBackgroundColor ?? colorScheme.primary;
       borderColor = _effectiveConfig.selectedBorderColor ?? colorScheme.primary;
       textColor = _effectiveConfig.selectedTextColor ?? colorScheme.onPrimary;
     } else if (isHovered) {
-      backgroundColor = _effectiveConfig.hoverBackgroundColor ?? colorScheme.primaryContainer;
+      backgroundColor =
+          _effectiveConfig.hoverBackgroundColor ?? colorScheme.primaryContainer;
       borderColor = _effectiveConfig.hoverBorderColor ?? colorScheme.outline;
-      textColor = _effectiveConfig.hoverTextColor ?? colorScheme.onPrimaryContainer;
+      textColor =
+          _effectiveConfig.hoverTextColor ?? colorScheme.onPrimaryContainer;
     } else {
       backgroundColor = _effectiveConfig.backgroundColor ?? Colors.transparent;
       borderColor = _effectiveConfig.borderColor ?? colorScheme.outline;
@@ -617,7 +640,8 @@ class _AppPaginationState extends State<AppPagination>
             borderRadius: BorderRadius.circular(_effectiveConfig.borderRadius),
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(_effectiveConfig.borderRadius),
+                borderRadius:
+                    BorderRadius.circular(_effectiveConfig.borderRadius),
                 border: Border.all(
                   color: borderColor ?? Colors.transparent,
                   width: _effectiveConfig.borderWidth,
@@ -641,7 +665,8 @@ class _AppPaginationState extends State<AppPagination>
     );
   }
 
-  Widget _buildNavButton(BuildContext context, ColorScheme colorScheme, String action, bool enabled) {
+  Widget _buildNavButton(BuildContext context, ColorScheme colorScheme,
+      String action, bool enabled) {
     if (widget.navButtonBuilder != null) {
       return widget.navButtonBuilder!(context, action, enabled);
     }
@@ -660,24 +685,34 @@ class _AppPaginationState extends State<AppPagination>
         icon = _effectiveConfig.previousIcon;
         label = _effectiveConfig.previousLabel ?? 'Previous';
         if (widget.variant == AppPaginationVariant.pageBased) {
-          onPressed = enabled ? () => _handlePageChanged(_effectiveData.currentPage - 1) : null;
+          onPressed = enabled
+              ? () => _handlePageChanged(_effectiveData.currentPage - 1)
+              : null;
         } else {
-          onPressed = enabled ? () => _handleCursorChanged(_effectiveData.previousCursor, false) : null;
+          onPressed = enabled
+              ? () => _handleCursorChanged(_effectiveData.previousCursor, false)
+              : null;
         }
         break;
       case 'next':
         icon = _effectiveConfig.nextIcon;
         label = _effectiveConfig.nextLabel ?? 'Next';
         if (widget.variant == AppPaginationVariant.pageBased) {
-          onPressed = enabled ? () => _handlePageChanged(_effectiveData.currentPage + 1) : null;
+          onPressed = enabled
+              ? () => _handlePageChanged(_effectiveData.currentPage + 1)
+              : null;
         } else {
-          onPressed = enabled ? () => _handleCursorChanged(_effectiveData.nextCursor, true) : null;
+          onPressed = enabled
+              ? () => _handleCursorChanged(_effectiveData.nextCursor, true)
+              : null;
         }
         break;
       case 'last':
         icon = _effectiveConfig.lastIcon;
         label = _effectiveConfig.lastLabel ?? 'Last';
-        onPressed = enabled ? () => _handlePageChanged(_effectiveData.totalPages) : null;
+        onPressed = enabled
+            ? () => _handlePageChanged(_effectiveData.totalPages)
+            : null;
         break;
       default:
         icon = Icons.help;
@@ -696,12 +731,14 @@ class _AppPaginationState extends State<AppPagination>
           iconSize: _effectiveConfig.iconSize,
           color: enabled
               ? _effectiveConfig.iconColor ?? colorScheme.onSurface
-              : _effectiveConfig.disabledIconColor ?? colorScheme.onSurface.withValues(alpha: 0.38),
+              : _effectiveConfig.disabledIconColor ??
+                  colorScheme.onSurface.withValues(alpha: 0.38),
           tooltip: label,
           style: IconButton.styleFrom(
             backgroundColor: _effectiveConfig.backgroundColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(_effectiveConfig.borderRadius),
+              borderRadius:
+                  BorderRadius.circular(_effectiveConfig.borderRadius),
               side: BorderSide(
                 color: _effectiveConfig.borderColor ?? colorScheme.outline,
                 width: _effectiveConfig.borderWidth,
@@ -731,7 +768,9 @@ class _AppPaginationState extends State<AppPagination>
     final isLoading = _effectiveData.isLoadingMore;
 
     return ElevatedButton(
-      onPressed: isLoading ? null : () => _handleCursorChanged(_effectiveData.nextCursor, true),
+      onPressed: isLoading
+          ? null
+          : () => _handleCursorChanged(_effectiveData.nextCursor, true),
       child: isLoading
           ? SizedBox(
               width: _effectiveConfig.iconSize,
@@ -767,7 +806,8 @@ class _AppPaginationState extends State<AppPagination>
                 width: _effectiveConfig.buttonSize,
                 height: _effectiveConfig.buttonSize,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(_effectiveConfig.borderRadius),
+                  borderRadius:
+                      BorderRadius.circular(_effectiveConfig.borderRadius),
                   gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,

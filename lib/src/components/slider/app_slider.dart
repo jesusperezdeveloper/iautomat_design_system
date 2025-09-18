@@ -70,17 +70,23 @@ class AppSlider extends StatefulWidget {
     this.labelFormatter,
     this.showLabels = true,
     this.showTicks = true,
-  }) : assert(
-    (variant == AppSliderVariant.range && rangeValue != null && onRangeChanged != null) ||
-    (variant != AppSliderVariant.range && value != null && onChanged != null),
-    'Range sliders require rangeValue and onRangeChanged, others require value and onChanged',
-  ), assert(
-    min < max,
-    'min must be less than max',
-  ), assert(
-    step == null || step > 0,
-    'step must be positive',
-  );
+  })  : assert(
+          (variant == AppSliderVariant.range &&
+                  rangeValue != null &&
+                  onRangeChanged != null) ||
+              (variant != AppSliderVariant.range &&
+                  value != null &&
+                  onChanged != null),
+          'Range sliders require rangeValue and onRangeChanged, others require value and onChanged',
+        ),
+        assert(
+          min < max,
+          'min must be less than max',
+        ),
+        assert(
+          step == null || step > 0,
+          'step must be positive',
+        );
 
   @override
   State<AppSlider> createState() => _AppSliderState();
@@ -216,7 +222,8 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
       HapticFeedback.selectionClick();
     }
 
-    final rangeValue = AppSliderRangeValue(start: values.start, end: values.end);
+    final rangeValue =
+        AppSliderRangeValue(start: values.start, end: values.end);
 
     // Validate the range
     if (widget.rangeValidator != null) {
@@ -268,7 +275,8 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
         height: 16,
         child: CircularProgressIndicator(
           strokeWidth: 2,
-          valueColor: AlwaysStoppedAnimation<Color>(_colors!.loadingIndicatorColor),
+          valueColor:
+              AlwaysStoppedAnimation<Color>(_colors!.loadingIndicatorColor),
         ),
       );
     }
@@ -366,10 +374,12 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
         onChangeStart: widget.enabled ? (_) => _handleChangeStart() : null,
         onChangeEnd: widget.enabled ? (_) => _handleChangeEnd() : null,
         semanticFormatterCallback: (value) => _formatValue(value),
-        labels: widget.showLabels ? RangeLabels(
-          _formatValue(widget.rangeValue!.start),
-          _formatValue(widget.rangeValue!.end),
-        ) : null,
+        labels: widget.showLabels
+            ? RangeLabels(
+                _formatValue(widget.rangeValue!.start),
+                _formatValue(widget.rangeValue!.end),
+              )
+            : null,
       ),
     );
   }
@@ -402,7 +412,9 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
       inactiveTickMarkColor: _colors!.tickMarkColor,
       disabledActiveTickMarkColor: _colors!.disabledTickMarkColor,
       disabledInactiveTickMarkColor: _colors!.disabledTickMarkColor,
-      showValueIndicator: widget.showLabels ? ShowValueIndicator.onlyForDiscrete : ShowValueIndicator.never,
+      showValueIndicator: widget.showLabels
+          ? ShowValueIndicator.onlyForDiscrete
+          : ShowValueIndicator.never,
     );
   }
 
@@ -460,7 +472,6 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
     return const SizedBox.shrink(); // Simplified for now to avoid layout issues
   }
 
-
   Widget _buildLabel() {
     if (widget.label == null) return const SizedBox.shrink();
 
@@ -482,7 +493,8 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
     if (text == null) return const SizedBox.shrink();
 
     final isError = _validationError != null || widget.errorText != null;
-    final color = isError ? _colors!.valueIndicatorTextColor : _colors!.labelColor;
+    final color =
+        isError ? _colors!.valueIndicatorTextColor : _colors!.labelColor;
 
     return Padding(
       padding: EdgeInsets.only(top: _config!.contentPadding.top),
@@ -510,18 +522,22 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
             : _formatValue(widget.value ?? 0),
         enabled: widget.enabled,
         child: MouseRegion(
-          onEnter: widget.enabled ? (_) {
-            setState(() {
-              _isHovered = true;
-              _updateState();
-            });
-          } : null,
-          onExit: widget.enabled ? (_) {
-            setState(() {
-              _isHovered = false;
-              _updateState();
-            });
-          } : null,
+          onEnter: widget.enabled
+              ? (_) {
+                  setState(() {
+                    _isHovered = true;
+                    _updateState();
+                  });
+                }
+              : null,
+          onExit: widget.enabled
+              ? (_) {
+                  setState(() {
+                    _isHovered = false;
+                    _updateState();
+                  });
+                }
+              : null,
           child: Container(
             width: widget.width,
             padding: _config!.contentPadding,
@@ -534,7 +550,8 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
                   height: _config!.minimumHeight,
                   child: _currentState == AppSliderState.loading
                       ? Center(
-                          child: widget.loadingWidget ?? _buildLoadingIndicator(),
+                          child:
+                              widget.loadingWidget ?? _buildLoadingIndicator(),
                         )
                       : _currentState == AppSliderState.skeleton
                           ? _buildSkeleton()

@@ -105,13 +105,17 @@ void main() {
     });
 
     testWidgets('expanded tree with selected nodes', (tester) async {
-      final expandedNodes = basicNodes.map((node) => node.copyWith(
-        isExpanded: true,
-        children: node.children.map((child) => child.copyWith(
-          isExpanded: true,
-          isSelected: child.id == '1-1',
-        )).toList(),
-      )).toList();
+      final expandedNodes = basicNodes
+          .map((node) => node.copyWith(
+                isExpanded: true,
+                children: node.children
+                    .map((child) => child.copyWith(
+                          isExpanded: true,
+                          isSelected: child.id == '1-1',
+                        ))
+                    .toList(),
+              ))
+          .toList();
 
       await tester.pumpWidget(
         MaterialApp(
@@ -137,14 +141,19 @@ void main() {
       );
     });
 
-    testWidgets('multi-select variant with multiple selections', (tester) async {
-      final multiSelectNodes = basicNodes.map((node) => node.copyWith(
-        isExpanded: true,
-        isSelected: node.id == '1',
-        children: node.children.map((child) => child.copyWith(
-          isSelected: child.id == '1-1' || child.id == '1-2',
-        )).toList(),
-      )).toList();
+    testWidgets('multi-select variant with multiple selections',
+        (tester) async {
+      final multiSelectNodes = basicNodes
+          .map((node) => node.copyWith(
+                isExpanded: true,
+                isSelected: node.id == '1',
+                children: node.children
+                    .map((child) => child.copyWith(
+                          isSelected: child.id == '1-1' || child.id == '1-2',
+                        ))
+                    .toList(),
+              ))
+          .toList();
 
       await tester.pumpWidget(
         MaterialApp(
@@ -218,12 +227,16 @@ void main() {
     });
 
     testWidgets('disabled nodes', (tester) async {
-      final disabledNodes = basicNodes.map((node) => node.copyWith(
-        isDisabled: node.id == '1',
-        children: node.children.map((child) => child.copyWith(
-          isDisabled: child.id == '1-1',
-        )).toList(),
-      )).toList();
+      final disabledNodes = basicNodes
+          .map((node) => node.copyWith(
+                isDisabled: node.id == '1',
+                children: node.children
+                    .map((child) => child.copyWith(
+                          isDisabled: child.id == '1-1',
+                        ))
+                    .toList(),
+              ))
+          .toList();
 
       await tester.pumpWidget(
         MaterialApp(
@@ -250,9 +263,11 @@ void main() {
     });
 
     testWidgets('complex tree with icons', (tester) async {
-      final expandedComplexNodes = complexNodes.map((node) => node.copyWith(
-        isExpanded: true,
-      )).toList();
+      final expandedComplexNodes = complexNodes
+          .map((node) => node.copyWith(
+                isExpanded: true,
+              ))
+          .toList();
 
       await tester.pumpWidget(
         MaterialApp(
@@ -288,9 +303,11 @@ void main() {
               height: 400,
               child: AppOutlineTree(
                 variant: AppOutlineTreeVariant.async,
-                nodes: basicNodes.map((node) => node.copyWith(
-                  isExpanded: true,
-                )).toList(),
+                nodes: basicNodes
+                    .map((node) => node.copyWith(
+                          isExpanded: true,
+                        ))
+                    .toList(),
                 onToggle: (_) {},
                 onSelect: (_, __) {},
               ),
@@ -342,9 +359,11 @@ void main() {
                 height: 400,
                 child: AppOutlineTree(
                   variant: AppOutlineTreeVariant.async,
-                  nodes: basicNodes.map((node) => node.copyWith(
-                    isExpanded: true,
-                  )).toList(),
+                  nodes: basicNodes
+                      .map((node) => node.copyWith(
+                            isExpanded: true,
+                          ))
+                      .toList(),
                   onToggle: (_) {},
                   onSelect: (_, __) {},
                 ),

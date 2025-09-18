@@ -91,7 +91,9 @@ class AppCommandPalette extends StatefulWidget {
   final Widget Function(BuildContext context, String query)? emptyBuilder;
 
   /// Custom result builder
-  final Widget Function(BuildContext context, AppCommandResult result, bool isSelected)? resultBuilder;
+  final Widget Function(
+          BuildContext context, AppCommandResult result, bool isSelected)?
+      resultBuilder;
 
   /// Whether to enable haptic feedback
   final bool enableHapticFeedback;
@@ -581,7 +583,8 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
         vertical: _effectiveConfig.resultSpacing / 2,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(_effectiveConfig.resultBorderRadius),
+        borderRadius:
+            BorderRadius.circular(_effectiveConfig.resultBorderRadius),
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
@@ -761,7 +764,8 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
   void _scrollToSelected() {
     if (_selectedIndex < 0) return;
 
-    final itemHeight = _effectiveConfig.resultHeight + _effectiveConfig.resultSpacing;
+    final itemHeight =
+        _effectiveConfig.resultHeight + _effectiveConfig.resultSpacing;
     final targetOffset = _selectedIndex * itemHeight;
 
     _scrollController.animateTo(
@@ -777,7 +781,8 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
   }
 
   Color _getShadowColor(ThemeData theme) {
-    return _effectiveConfig.shadowColor ?? theme.colorScheme.shadow.withValues(alpha: 0.2);
+    return _effectiveConfig.shadowColor ??
+        theme.colorScheme.shadow.withValues(alpha: 0.2);
   }
 
   Color _getInputBorderColor(ThemeData theme) {
@@ -787,7 +792,8 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
   }
 
   Color _getIconColor(ThemeData theme) {
-    return _effectiveConfig.resultIconColor ?? theme.colorScheme.onSurfaceVariant;
+    return _effectiveConfig.resultIconColor ??
+        theme.colorScheme.onSurfaceVariant;
   }
 
   TextStyle _getInputTextStyle(ThemeData theme) {
@@ -800,7 +806,8 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
 
   TextStyle _getPlaceholderStyle(ThemeData theme) {
     return _getInputTextStyle(theme).copyWith(
-      color: _effectiveConfig.placeholderColor ?? theme.colorScheme.onSurfaceVariant,
+      color: _effectiveConfig.placeholderColor ??
+          theme.colorScheme.onSurfaceVariant,
     );
   }
 
@@ -849,14 +856,17 @@ class _ResultItemWidgetState extends State<_ResultItemWidget> {
         child: Container(
           height: widget.config.resultHeight,
           padding: widget.config.resultPadding,
-          margin: EdgeInsets.symmetric(vertical: widget.config.resultSpacing / 2),
+          margin:
+              EdgeInsets.symmetric(vertical: widget.config.resultSpacing / 2),
           decoration: BoxDecoration(
             color: _getBackgroundColor(),
-            borderRadius: BorderRadius.circular(widget.config.resultBorderRadius),
+            borderRadius:
+                BorderRadius.circular(widget.config.resultBorderRadius),
           ),
           child: Row(
             children: [
-              if (widget.config.showResultIcons && widget.result.icon != null) ...[
+              if (widget.config.showResultIcons &&
+                  widget.result.icon != null) ...[
                 Icon(
                   widget.result.icon,
                   size: widget.config.iconSize,
@@ -870,7 +880,8 @@ class _ResultItemWidgetState extends State<_ResultItemWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTitle(),
-                    if (widget.config.showResultDescriptions && widget.result.description != null)
+                    if (widget.config.showResultDescriptions &&
+                        widget.result.description != null)
                       _buildDescription(),
                   ],
                 ),
@@ -959,14 +970,16 @@ class _ResultItemWidgetState extends State<_ResultItemWidget> {
   }
 
   Color _getIconColor() {
-    return widget.config.resultIconColor ?? widget.theme.colorScheme.onSurfaceVariant;
+    return widget.config.resultIconColor ??
+        widget.theme.colorScheme.onSurfaceVariant;
   }
 
   TextStyle _getTitleStyle() {
     return widget.config.resultTitleStyle ??
         widget.theme.textTheme.bodyMedium!.copyWith(
           fontSize: widget.config.resultTitleFontSize,
-          color: widget.config.resultTextColor ?? widget.theme.colorScheme.onSurface,
+          color: widget.config.resultTextColor ??
+              widget.theme.colorScheme.onSurface,
           fontWeight: widget.isSelected ? FontWeight.w500 : FontWeight.normal,
         );
   }

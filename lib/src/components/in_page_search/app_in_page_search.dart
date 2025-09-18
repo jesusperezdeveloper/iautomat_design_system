@@ -6,7 +6,8 @@ import 'package:flutter/services.dart';
 import 'in_page_search_config.dart';
 
 /// Callback function type for search find operation
-typedef OnInPageSearchFind = void Function(String query, List<AppSearchHighlight> highlights);
+typedef OnInPageSearchFind = void Function(
+    String query, List<AppSearchHighlight> highlights);
 
 /// Callback function type for search controller actions
 typedef OnInPageSearchAction = void Function(AppInPageSearchData data);
@@ -88,7 +89,8 @@ class AppInPageSearch extends StatefulWidget {
   final bool enableSoundEffects;
 
   /// Custom result builder
-  final Widget Function(BuildContext context, AppInPageSearchData data)? resultBuilder;
+  final Widget Function(BuildContext context, AppInPageSearchData data)?
+      resultBuilder;
 
   /// Custom loading builder
   final Widget Function(BuildContext context)? loadingBuilder;
@@ -173,7 +175,8 @@ class AppInPageSearchController extends ChangeNotifier {
   /// Navigate to next result
   void nextResult() {
     if (_data.canNavigateNext) {
-      final newIndex = (_data.activeHighlightIndex + 1) % _data.highlights.length;
+      final newIndex =
+          (_data.activeHighlightIndex + 1) % _data.highlights.length;
       _data = _data.copyWith(
         activeHighlightIndex: newIndex,
         currentResultIndex: newIndex + 1,
@@ -247,8 +250,8 @@ class _AppInPageSearchState extends State<AppInPageSearch>
 
   AppInPageSearchData get _effectiveData {
     return widget.searchController?.data ??
-           widget.data ??
-           const AppInPageSearchData();
+        widget.data ??
+        const AppInPageSearchData();
   }
 
   @override
@@ -360,7 +363,8 @@ class _AppInPageSearchState extends State<AppInPageSearch>
   }
 
   void _performSearch(String query) {
-    if (!AppInPageSearchUtils.isValidQuery(query, useRegex: _effectiveData.useRegex)) {
+    if (!AppInPageSearchUtils.isValidQuery(query,
+        useRegex: _effectiveData.useRegex)) {
       return;
     }
 
@@ -473,7 +477,8 @@ class _AppInPageSearchState extends State<AppInPageSearch>
     );
   }
 
-  Widget _buildSearchWidget(BuildContext context, ThemeData theme, ColorScheme colorScheme, bool isRTL) {
+  Widget _buildSearchWidget(BuildContext context, ThemeData theme,
+      ColorScheme colorScheme, bool isRTL) {
     if (widget.state == AppInPageSearchState.skeleton) {
       return _buildSkeletonWidget(context, theme);
     }
@@ -497,7 +502,8 @@ class _AppInPageSearchState extends State<AppInPageSearch>
         boxShadow: _effectiveConfig.showShadow
             ? [
                 BoxShadow(
-                  color: _effectiveConfig.shadowColor ?? colorScheme.shadow.withValues(alpha: 0.1),
+                  color: _effectiveConfig.shadowColor ??
+                      colorScheme.shadow.withValues(alpha: 0.1),
                   blurRadius: _effectiveConfig.elevation,
                   offset: const Offset(0, 2),
                 ),
@@ -514,11 +520,13 @@ class _AppInPageSearchState extends State<AppInPageSearch>
             Expanded(child: _buildTextField(context, theme, colorScheme)),
             if (_effectiveConfig.showResultCount && _effectiveData.hasResults)
               _buildResultCount(colorScheme),
-            if (_effectiveConfig.showNavigationButtons && _effectiveData.hasResults) ...[
+            if (_effectiveConfig.showNavigationButtons &&
+                _effectiveData.hasResults) ...[
               SizedBox(width: _effectiveConfig.buttonSpacing),
               _buildNavigationButtons(colorScheme),
             ],
-            if (_effectiveConfig.showClearButton && _queryController.text.isNotEmpty) ...[
+            if (_effectiveConfig.showClearButton &&
+                _queryController.text.isNotEmpty) ...[
               SizedBox(width: _effectiveConfig.buttonSpacing),
               _buildClearButton(colorScheme),
             ],
@@ -540,7 +548,8 @@ class _AppInPageSearchState extends State<AppInPageSearch>
     );
   }
 
-  Widget _buildTextField(BuildContext context, ThemeData theme, ColorScheme colorScheme) {
+  Widget _buildTextField(
+      BuildContext context, ThemeData theme, ColorScheme colorScheme) {
     return TextField(
       controller: _queryController,
       focusNode: _focusNode,
@@ -555,7 +564,8 @@ class _AppInPageSearchState extends State<AppInPageSearch>
         border: InputBorder.none,
         hintText: _effectiveConfig.placeholder ?? 'Search...',
         hintStyle: TextStyle(
-          color: _effectiveConfig.placeholderColor ?? colorScheme.onSurfaceVariant,
+          color:
+              _effectiveConfig.placeholderColor ?? colorScheme.onSurfaceVariant,
         ),
         isDense: true,
         contentPadding: EdgeInsets.zero,

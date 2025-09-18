@@ -173,7 +173,8 @@ void main() {
                   AppDescriptionListItem(
                     term: 'Estado',
                     description: 'Activo',
-                    leading: const Icon(Icons.circle, color: Colors.green, size: 12),
+                    leading:
+                        const Icon(Icons.circle, color: Colors.green, size: 12),
                     trailing: Switch(
                       value: true,
                       onChanged: (value) {},
@@ -643,7 +644,8 @@ void main() {
                     term: 'Original Term',
                     description: 'Original Description',
                     termWidget: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         color: Colors.blue.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12),
@@ -733,7 +735,8 @@ void main() {
                       child: const Icon(Icons.star, color: Colors.blue),
                     ),
                     trailing: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         color: Colors.green.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12),

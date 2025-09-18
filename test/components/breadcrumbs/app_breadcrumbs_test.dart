@@ -186,7 +186,8 @@ void main() {
         ),
       ];
 
-      testWidgets('shows ellipsis when items exceed maxVisibleItems', (tester) async {
+      testWidgets('shows ellipsis when items exceed maxVisibleItems',
+          (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
           config: const AppBreadcrumbsConfig(
             variant: AppBreadcrumbsVariant.collapsing,
@@ -204,7 +205,8 @@ void main() {
         expect(find.text('Actual'), findsOneWidget);
       });
 
-      testWidgets('shows dropdown when collapse mode is dropdown', (tester) async {
+      testWidgets('shows dropdown when collapse mode is dropdown',
+          (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
           config: const AppBreadcrumbsConfig(
             variant: AppBreadcrumbsVariant.collapsing,
@@ -241,7 +243,8 @@ void main() {
         expect(find.text('Nivel 3'), findsOneWidget);
       });
 
-      testWidgets('does not show collapse indicator when items fit', (tester) async {
+      testWidgets('does not show collapse indicator when items fit',
+          (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
           config: const AppBreadcrumbsConfig(
             variant: AppBreadcrumbsVariant.collapsing,
@@ -345,7 +348,8 @@ void main() {
     });
 
     group('RTL support', () {
-      testWidgets('applies RTL directionality when isRtl is true', (tester) async {
+      testWidgets('applies RTL directionality when isRtl is true',
+          (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
           config: const AppBreadcrumbsConfig(isRtl: true),
           items: defaultItems,
@@ -369,7 +373,8 @@ void main() {
     });
 
     group('Accessibility', () {
-      testWidgets('provides semantic labels when a11y is enabled', (tester) async {
+      testWidgets('provides semantic labels when a11y is enabled',
+          (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
           config: const AppBreadcrumbsConfig(enableA11y: true),
           items: defaultItems,

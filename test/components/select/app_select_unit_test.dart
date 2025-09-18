@@ -12,7 +12,8 @@ void main() {
     ];
 
     group('Widget Rendering', () {
-      testWidgets('renders with required props for single select', (tester) async {
+      testWidgets('renders with required props for single select',
+          (tester) async {
         String? selectedValue;
 
         await tester.pumpWidget(
@@ -33,7 +34,8 @@ void main() {
         expect(find.text('Select an item'), findsOneWidget);
       });
 
-      testWidgets('renders with label when floating label disabled', (tester) async {
+      testWidgets('renders with label when floating label disabled',
+          (tester) async {
         String? selectedValue;
 
         await tester.pumpWidget(
@@ -224,7 +226,8 @@ void main() {
           ),
         );
 
-        final select = tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+        final select =
+            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
         expect(select.config?.borderRadius, 16);
         expect(select.config?.minimumHeight, 60);
         expect(select.config?.borderWidth, 3);
@@ -288,7 +291,8 @@ void main() {
           ),
         );
 
-        final select = tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+        final select =
+            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
         expect(select.colors, customColors);
       });
     });
@@ -321,7 +325,8 @@ void main() {
 
         expect(validator(['item1']), null);
         expect(validator(['item1', 'item2']), null);
-        expect(validator(['item1', 'item2', 'item3']), 'Selecciona máximo 2 opciones');
+        expect(validator(['item1', 'item2', 'item3']),
+            'Selecciona máximo 2 opciones');
       });
 
       test('combined validators work', () {
@@ -335,7 +340,8 @@ void main() {
         expect(validator(['item1']), null);
         expect(validator(['item1', 'item2']), null);
         expect(validator(['item1', 'item2', 'item3']), null);
-        expect(validator(['item1', 'item2', 'item3', 'item4']), 'Selecciona máximo 3 opciones');
+        expect(validator(['item1', 'item2', 'item3', 'item4']),
+            'Selecciona máximo 3 opciones');
       });
     });
 
@@ -376,7 +382,8 @@ void main() {
           ),
         );
 
-        final select = tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+        final select =
+            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
         expect(select.items.length, 3);
         expect(select.items[0].subtitle, 'Subtitle 1');
         expect(select.items[1].enabled, false);
@@ -403,7 +410,8 @@ void main() {
           ),
         );
 
-        final select = tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+        final select =
+            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
         expect(select.autoFocus, true);
       });
 
@@ -425,7 +433,8 @@ void main() {
           ),
         );
 
-        final select = tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+        final select =
+            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
         expect(select.semanticLabel, 'Choose an option');
       });
 
@@ -447,7 +456,8 @@ void main() {
           ),
         );
 
-        final select = tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+        final select =
+            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
         expect(select.enabled, false);
       });
     });

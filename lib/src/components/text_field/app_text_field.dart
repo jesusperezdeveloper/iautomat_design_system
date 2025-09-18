@@ -92,7 +92,8 @@ class AppTextField extends StatefulWidget {
   State<AppTextField> createState() => _AppTextFieldState();
 }
 
-class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMixin {
+class _AppTextFieldState extends State<AppTextField>
+    with TickerProviderStateMixin {
   late TextEditingController _controller;
   late FocusNode _focusNode;
   late AnimationController _animationController;
@@ -105,8 +106,7 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
   bool _obscureText = false;
   String? _errorText;
 
-  AppTextFieldConfig get _config =>
-      widget.config ?? const AppTextFieldConfig();
+  AppTextFieldConfig get _config => widget.config ?? const AppTextFieldConfig();
 
   AppTextFieldColors get _colors =>
       widget.colors ?? AppTextFieldColors.fromTheme(Theme.of(context));
@@ -215,7 +215,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
     );
 
     _skeletonAnimationController = AnimationController(
-      duration: Duration(milliseconds: (1000 / _config.skeletonShimmerSpeed).round()),
+      duration:
+          Duration(milliseconds: (1000 / _config.skeletonShimmerSpeed).round()),
       vsync: this,
     );
 
@@ -286,7 +287,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
   void _handleTap() {
     if (!_isEnabled) return;
 
-    if (_config.enableHapticFeedback && (Platform.isIOS || Platform.isAndroid)) {
+    if (_config.enableHapticFeedback &&
+        (Platform.isIOS || Platform.isAndroid)) {
       HapticFeedback.lightImpact();
     }
 
@@ -325,7 +327,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
                 height: 16,
                 width: 80,
                 decoration: BoxDecoration(
-                  color: _colors.skeletonBaseColor.withValues(alpha: _skeletonAnimation.value),
+                  color: _colors.skeletonBaseColor
+                      .withValues(alpha: _skeletonAnimation.value),
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -334,7 +337,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
             Container(
               height: _config.minimumHeight,
               decoration: BoxDecoration(
-                color: _colors.skeletonBaseColor.withValues(alpha: _skeletonAnimation.value),
+                color: _colors.skeletonBaseColor
+                    .withValues(alpha: _skeletonAnimation.value),
                 borderRadius: BorderRadius.circular(_config.borderRadius),
                 border: Border.all(
                   color: _colors.skeletonHighlightColor.withValues(alpha: 0.5),
@@ -348,7 +352,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
                 height: 12,
                 width: 120,
                 decoration: BoxDecoration(
-                  color: _colors.skeletonBaseColor.withValues(alpha: _skeletonAnimation.value),
+                  color: _colors.skeletonBaseColor
+                      .withValues(alpha: _skeletonAnimation.value),
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
@@ -367,8 +372,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
           Text(
             widget.label!,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: _colors.disabledLabelColor,
-            ),
+                  color: _colors.disabledLabelColor,
+                ),
           ),
           SizedBox(height: _config.labelSpacing),
         ],
@@ -389,8 +394,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
                 child: Text(
                   widget.hint ?? '',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: _colors.disabledHintColor,
-                  ),
+                        color: _colors.disabledHintColor,
+                      ),
                 ),
               ),
               if (Platform.isIOS || Platform.isMacOS)
@@ -404,7 +409,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
                   height: 16,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation(_colors.disabledHintColor),
+                    valueColor:
+                        AlwaysStoppedAnimation(_colors.disabledHintColor),
                   ),
                 ),
             ],
@@ -415,8 +421,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
           Text(
             widget.helperText!,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: _colors.disabledLabelColor,
-            ),
+                  color: _colors.disabledLabelColor,
+                ),
           ),
         ],
       ],
@@ -434,7 +440,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
         child: MouseRegion(
           onEnter: (_) => setState(() => _isHovered = true),
           onExit: (_) => setState(() => _isHovered = false),
-          cursor: _isEnabled ? SystemMouseCursors.text : SystemMouseCursors.basic,
+          cursor:
+              _isEnabled ? SystemMouseCursors.text : SystemMouseCursors.basic,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -474,7 +481,8 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
                         ),
                       ),
                     ),
-                    if (widget.maxLength != null && _config.enableCharacterCounter)
+                    if (widget.maxLength != null &&
+                        _config.enableCharacterCounter)
                       Text(
                         '${_controller.text.length}/${widget.maxLength}',
                         style: theme.textTheme.bodySmall?.copyWith(
@@ -541,9 +549,11 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
         contentPadding: _config.contentPadding,
         border: _buildBorder(_colors.borderColor),
         enabledBorder: _buildBorder(_colors.borderColor),
-        focusedBorder: _buildBorder(_colors.focusedBorderColor, _config.focusBorderWidth),
+        focusedBorder:
+            _buildBorder(_colors.focusedBorderColor, _config.focusBorderWidth),
         errorBorder: _buildBorder(_colors.errorBorderColor),
-        focusedErrorBorder: _buildBorder(_colors.errorBorderColor, _config.focusBorderWidth),
+        focusedErrorBorder:
+            _buildBorder(_colors.errorBorderColor, _config.focusBorderWidth),
         disabledBorder: _buildBorder(_colors.disabledBorderColor),
         hintStyle: theme.textTheme.bodyMedium?.copyWith(
           color: _isEnabled ? _colors.hintColor : _colors.disabledHintColor,
@@ -574,7 +584,9 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
     return Icon(
       widget.prefixIcon,
       size: _config.iconSize,
-      color: _isEnabled ? _colors.prefixIconColor : _colors.disabledPrefixIconColor,
+      color: _isEnabled
+          ? _colors.prefixIconColor
+          : _colors.disabledPrefixIconColor,
     );
   }
 
@@ -584,7 +596,9 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
         icon: Icon(
           _obscureText ? Icons.visibility : Icons.visibility_off,
           size: _config.iconSize,
-          color: _isEnabled ? _colors.suffixIconColor : _colors.disabledSuffixIconColor,
+          color: _isEnabled
+              ? _colors.suffixIconColor
+              : _colors.disabledSuffixIconColor,
         ),
         onPressed: _isEnabled ? _togglePasswordVisibility : null,
         tooltip: _obscureText ? 'Mostrar contraseña' : 'Ocultar contraseña',
@@ -596,7 +610,9 @@ class _AppTextFieldState extends State<AppTextField> with TickerProviderStateMix
     return Icon(
       widget.suffixIcon,
       size: _config.iconSize,
-      color: _isEnabled ? _colors.suffixIconColor : _colors.disabledSuffixIconColor,
+      color: _isEnabled
+          ? _colors.suffixIconColor
+          : _colors.disabledSuffixIconColor,
     );
   }
 

@@ -294,7 +294,10 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
 
       setState(() {
         _currentNodes = _updateNodeInTree(_currentNodes, node.id, (n) {
-          return n.withChildren(children).withLoading(false).withExpansion(true);
+          return n
+              .withChildren(children)
+              .withLoading(false)
+              .withExpansion(true);
         });
       });
     } catch (error) {
@@ -343,7 +346,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final isRTL = Directionality.of(context) == TextDirection.rtl ||
-        (_effectiveConfig.enableRTL && _effectiveConfig.textDirection == TextDirection.rtl);
+        (_effectiveConfig.enableRTL &&
+            _effectiveConfig.textDirection == TextDirection.rtl);
 
     if (!widget.isVisible) {
       return const SizedBox.shrink();
@@ -363,7 +367,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
                   : null,
               child: Semantics(
                 label: _effectiveConfig.semanticLabel ?? 'Tree view',
-                hint: _effectiveConfig.semanticHint ?? 'Use arrow keys to navigate',
+                hint: _effectiveConfig.semanticHint ??
+                    'Use arrow keys to navigate',
                 enabled: widget.state != AppOutlineTreeState.disabled,
                 child: Container(
                   constraints: _effectiveConfig.constraints,
@@ -404,16 +409,21 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
       controller: _scrollController,
       child: _effectiveConfig.layout == AppTreeLayout.vertical
           ? Column(
-              children: flattenedNodes.map((node) => _buildTreeNode(context, colorScheme, node)).toList(),
+              children: flattenedNodes
+                  .map((node) => _buildTreeNode(context, colorScheme, node))
+                  .toList(),
             )
           : Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: flattenedNodes.map((node) => _buildTreeNode(context, colorScheme, node)).toList(),
+              children: flattenedNodes
+                  .map((node) => _buildTreeNode(context, colorScheme, node))
+                  .toList(),
             ),
     );
   }
 
-  Widget _buildTreeNode(BuildContext context, ColorScheme colorScheme, AppTreeNode node) {
+  Widget _buildTreeNode(
+      BuildContext context, ColorScheme colorScheme, AppTreeNode node) {
     if (widget.nodeBuilder != null) {
       return widget.nodeBuilder!(context, node, node.depth);
     }
@@ -421,9 +431,11 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     final isHovered = _hoveredNodeId == node.id;
     final isFocused = _focusedNodeId == node.id;
     final isPressed = _pressedNodeId == node.id;
-    final isDisabled = node.isDisabled || widget.state == AppOutlineTreeState.disabled;
+    final isDisabled =
+        node.isDisabled || widget.state == AppOutlineTreeState.disabled;
 
-    return _buildExpandableNode(context, colorScheme, node, isHovered, isFocused, isPressed, isDisabled);
+    return _buildExpandableNode(context, colorScheme, node, isHovered,
+        isFocused, isPressed, isDisabled);
   }
 
   Widget _buildExpandableNode(
@@ -447,7 +459,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildNodeItem(context, colorScheme, node, isHovered, isFocused, isPressed, isDisabled),
+        _buildNodeItem(context, colorScheme, node, isHovered, isFocused,
+            isPressed, isDisabled),
         if (node.canExpand && node.children.isNotEmpty)
           AnimatedBuilder(
             animation: animation,
@@ -455,15 +468,18 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
               return ClipRect(
                 child: Align(
                   alignment: Alignment.topLeft,
-                  heightFactor: _effectiveConfig.expansionAnimation == AppTreeExpansionAnimation.slide
+                  heightFactor: _effectiveConfig.expansionAnimation ==
+                          AppTreeExpansionAnimation.slide
                       ? animation.value
                       : null,
                   child: Opacity(
-                    opacity: _effectiveConfig.expansionAnimation == AppTreeExpansionAnimation.fade
+                    opacity: _effectiveConfig.expansionAnimation ==
+                            AppTreeExpansionAnimation.fade
                         ? animation.value
                         : 1.0,
                     child: Transform.scale(
-                      scale: _effectiveConfig.expansionAnimation == AppTreeExpansionAnimation.scale
+                      scale: _effectiveConfig.expansionAnimation ==
+                              AppTreeExpansionAnimation.scale
                           ? animation.value
                           : 1.0,
                       alignment: Alignment.topLeft,
@@ -492,23 +508,35 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     Color? iconColor;
 
     if (isDisabled) {
-      backgroundColor = _effectiveConfig.disabledBackgroundColor ?? colorScheme.surfaceContainerHighest.withValues(alpha: 0.12);
-      textColor = _effectiveConfig.disabledTextColor ?? colorScheme.onSurface.withValues(alpha: 0.38);
-      iconColor = _effectiveConfig.disabledIconColor ?? colorScheme.onSurface.withValues(alpha: 0.38);
+      backgroundColor = _effectiveConfig.disabledBackgroundColor ??
+          colorScheme.surfaceContainerHighest.withValues(alpha: 0.12);
+      textColor = _effectiveConfig.disabledTextColor ??
+          colorScheme.onSurface.withValues(alpha: 0.38);
+      iconColor = _effectiveConfig.disabledIconColor ??
+          colorScheme.onSurface.withValues(alpha: 0.38);
     } else if (node.isSelected) {
-      backgroundColor = _effectiveConfig.selectedBackgroundColor ?? colorScheme.primaryContainer;
-      textColor = _effectiveConfig.selectedTextColor ?? colorScheme.onPrimaryContainer;
-      iconColor = _effectiveConfig.selectedIconColor ?? colorScheme.onPrimaryContainer;
+      backgroundColor = _effectiveConfig.selectedBackgroundColor ??
+          colorScheme.primaryContainer;
+      textColor =
+          _effectiveConfig.selectedTextColor ?? colorScheme.onPrimaryContainer;
+      iconColor =
+          _effectiveConfig.selectedIconColor ?? colorScheme.onPrimaryContainer;
     } else if (isPressed) {
-      backgroundColor = _effectiveConfig.selectedBackgroundColor?.withValues(alpha: 0.8) ?? colorScheme.primaryContainer.withValues(alpha: 0.8);
-      textColor = _effectiveConfig.selectedTextColor ?? colorScheme.onPrimaryContainer;
-      iconColor = _effectiveConfig.selectedIconColor ?? colorScheme.onPrimaryContainer;
+      backgroundColor =
+          _effectiveConfig.selectedBackgroundColor?.withValues(alpha: 0.8) ??
+              colorScheme.primaryContainer.withValues(alpha: 0.8);
+      textColor =
+          _effectiveConfig.selectedTextColor ?? colorScheme.onPrimaryContainer;
+      iconColor =
+          _effectiveConfig.selectedIconColor ?? colorScheme.onPrimaryContainer;
     } else if (isHovered) {
-      backgroundColor = _effectiveConfig.hoverBackgroundColor ?? colorScheme.surfaceContainerHighest.withValues(alpha: 0.08);
+      backgroundColor = _effectiveConfig.hoverBackgroundColor ??
+          colorScheme.surfaceContainerHighest.withValues(alpha: 0.08);
       textColor = _effectiveConfig.hoverTextColor ?? colorScheme.onSurface;
       iconColor = _effectiveConfig.hoverIconColor ?? colorScheme.onSurface;
     } else if (isFocused) {
-      backgroundColor = _effectiveConfig.focusBackgroundColor ?? colorScheme.surfaceContainerHighest.withValues(alpha: 0.12);
+      backgroundColor = _effectiveConfig.focusBackgroundColor ??
+          colorScheme.surfaceContainerHighest.withValues(alpha: 0.12);
       textColor = _effectiveConfig.focusTextColor ?? colorScheme.onSurface;
       iconColor = _effectiveConfig.iconColor ?? colorScheme.onSurface;
     } else {
@@ -518,52 +546,66 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     }
 
     return MouseRegion(
-      cursor: isDisabled ? SystemMouseCursors.forbidden : SystemMouseCursors.click,
-      onEnter: isDisabled ? null : (_) => setState(() => _hoveredNodeId = node.id),
+      cursor:
+          isDisabled ? SystemMouseCursors.forbidden : SystemMouseCursors.click,
+      onEnter:
+          isDisabled ? null : (_) => setState(() => _hoveredNodeId = node.id),
       onExit: isDisabled ? null : (_) => setState(() => _hoveredNodeId = null),
       child: GestureDetector(
-        onTapDown: isDisabled ? null : (_) => setState(() => _pressedNodeId = node.id),
-        onTapUp: isDisabled ? null : (_) => setState(() => _pressedNodeId = null),
-        onTapCancel: isDisabled ? null : () => setState(() => _pressedNodeId = null),
+        onTapDown:
+            isDisabled ? null : (_) => setState(() => _pressedNodeId = node.id),
+        onTapUp:
+            isDisabled ? null : (_) => setState(() => _pressedNodeId = null),
+        onTapCancel:
+            isDisabled ? null : () => setState(() => _pressedNodeId = null),
         onTap: isDisabled ? null : () => _handleNodeSelect(node),
         child: AnimatedContainer(
           duration: _effectiveConfig.animationDuration,
           curve: _effectiveConfig.animationCurve,
           height: _effectiveConfig.itemHeight,
           padding: EdgeInsets.only(
-            left: node.depth * _effectiveConfig.indentSize + _effectiveConfig.itemPadding,
+            left: node.depth * _effectiveConfig.indentSize +
+                _effectiveConfig.itemPadding,
             right: _effectiveConfig.itemPadding,
             top: _effectiveConfig.itemPadding,
             bottom: _effectiveConfig.itemPadding,
           ),
-          margin: EdgeInsets.symmetric(vertical: _effectiveConfig.itemSpacing / 2),
+          margin:
+              EdgeInsets.symmetric(vertical: _effectiveConfig.itemSpacing / 2),
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.circular(_effectiveConfig.borderRadius),
             border: isFocused
                 ? Border.all(
-                    color: _effectiveConfig.focusBorderColor ?? colorScheme.primary,
+                    color: _effectiveConfig.focusBorderColor ??
+                        colorScheme.primary,
                     width: _effectiveConfig.borderWidth,
                   )
                 : null,
           ),
           child: Semantics(
-            label: AppOutlineTreeUtils.getNodeSemanticLabel(node, _effectiveConfig),
+            label: AppOutlineTreeUtils.getNodeSemanticLabel(
+                node, _effectiveConfig),
             selected: node.isSelected,
             button: true,
             onTap: isDisabled ? null : () => _handleNodeSelect(node),
             child: Row(
               children: [
                 if (node.canExpand && _effectiveConfig.enableExpansion)
-                  _buildExpanderIcon(context, colorScheme, node, iconColor, isDisabled),
+                  _buildExpanderIcon(
+                      context, colorScheme, node, iconColor, isDisabled),
                 if (_effectiveConfig.showSelectionCheckboxes &&
-                    _effectiveConfig.selectionMode != AppTreeSelectionMode.single)
+                    _effectiveConfig.selectionMode !=
+                        AppTreeSelectionMode.single)
                   _buildSelectionIcon(context, colorScheme, node, iconColor),
-                if (_effectiveConfig.showIcons) _buildNodeIcon(context, colorScheme, node, iconColor),
+                if (_effectiveConfig.showIcons)
+                  _buildNodeIcon(context, colorScheme, node, iconColor),
                 Expanded(child: _buildNodeContent(context, node, textColor)),
                 if (node.badge != null) _buildBadge(context, colorScheme, node),
-                if (node.isLoading) _buildLoadingIndicator(context, colorScheme),
-                if (node.state == AppTreeNodeState.error) _buildErrorIcon(context, colorScheme),
+                if (node.isLoading)
+                  _buildLoadingIndicator(context, colorScheme),
+                if (node.state == AppTreeNodeState.error)
+                  _buildErrorIcon(context, colorScheme),
               ],
             ),
           ),
@@ -580,7 +622,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     bool isDisabled,
   ) {
     if (!node.canExpand) {
-      return SizedBox(width: _effectiveConfig.iconSize + _effectiveConfig.iconSpacing);
+      return SizedBox(
+          width: _effectiveConfig.iconSize + _effectiveConfig.iconSpacing);
     }
 
     return GestureDetector(
@@ -593,7 +636,9 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
           turns: node.isExpanded ? 0.25 : 0.0,
           duration: _effectiveConfig.animationDuration,
           child: Icon(
-            node.isExpanded ? _effectiveConfig.collapseIcon : _effectiveConfig.expandIcon,
+            node.isExpanded
+                ? _effectiveConfig.collapseIcon
+                : _effectiveConfig.expandIcon,
             size: _effectiveConfig.iconSize,
             color: iconColor,
           ),
@@ -612,7 +657,9 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     Color? finalIconColor = iconColor;
 
     if (_effectiveConfig.selectionMode == AppTreeSelectionMode.single) {
-      iconData = node.isSelected ? _effectiveConfig.radioCheckedIcon : _effectiveConfig.radioUncheckedIcon;
+      iconData = node.isSelected
+          ? _effectiveConfig.radioCheckedIcon
+          : _effectiveConfig.radioUncheckedIcon;
     } else {
       if (node.isSelected) {
         iconData = _effectiveConfig.checkedIcon;
@@ -651,7 +698,9 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     if (node.icon != null) {
       iconData = node.icon!;
     } else if (node.canExpand) {
-      iconData = node.isExpanded ? _effectiveConfig.folderOpenIcon : _effectiveConfig.folderIcon;
+      iconData = node.isExpanded
+          ? _effectiveConfig.folderOpenIcon
+          : _effectiveConfig.folderIcon;
     } else {
       iconData = _effectiveConfig.fileIcon;
     }
@@ -668,7 +717,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     );
   }
 
-  Widget _buildNodeContent(BuildContext context, AppTreeNode node, Color? textColor) {
+  Widget _buildNodeContent(
+      BuildContext context, AppTreeNode node, Color? textColor) {
     if (node.customWidget != null) {
       return node.customWidget!;
     }
@@ -694,7 +744,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     return content;
   }
 
-  Widget _buildBadge(BuildContext context, ColorScheme colorScheme, AppTreeNode node) {
+  Widget _buildBadge(
+      BuildContext context, ColorScheme colorScheme, AppTreeNode node) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
@@ -741,7 +792,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     );
   }
 
-  Widget _buildChildren(BuildContext context, ColorScheme colorScheme, AppTreeNode node) {
+  Widget _buildChildren(
+      BuildContext context, ColorScheme colorScheme, AppTreeNode node) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: node.children
@@ -828,7 +880,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
       height: _effectiveConfig.itemHeight,
       margin: EdgeInsets.symmetric(vertical: _effectiveConfig.itemSpacing / 2),
       padding: EdgeInsets.only(
-        left: depth * _effectiveConfig.indentSize + _effectiveConfig.itemPadding,
+        left:
+            depth * _effectiveConfig.indentSize + _effectiveConfig.itemPadding,
         right: _effectiveConfig.itemPadding,
       ),
       child: Row(
@@ -837,7 +890,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
             width: _effectiveConfig.iconSize,
             height: _effectiveConfig.iconSize,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(_effectiveConfig.borderRadius / 2),
+              borderRadius:
+                  BorderRadius.circular(_effectiveConfig.borderRadius / 2),
               gradient: LinearGradient(
                 begin: Alignment(-1 + _skeletonAnimation.value, 0),
                 end: Alignment(1 + _skeletonAnimation.value, 0),
@@ -854,7 +908,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
             width: width,
             height: _effectiveConfig.fontSize,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(_effectiveConfig.borderRadius / 2),
+              borderRadius:
+                  BorderRadius.circular(_effectiveConfig.borderRadius / 2),
               gradient: LinearGradient(
                 begin: Alignment(-1 + _skeletonAnimation.value, 0),
                 end: Alignment(1 + _skeletonAnimation.value, 0),
