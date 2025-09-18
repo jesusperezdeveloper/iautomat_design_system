@@ -147,7 +147,9 @@ class AppButtonStyles {
         return primaryColor;
       }),
       foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
-        if (states.contains(WidgetState.disabled)) return isDark ? AppColors.gray400 : AppColors.textDisabled;
+        if (states.contains(WidgetState.disabled)) {
+          return isDark ? AppColors.gray400 : AppColors.textDisabled;
+        }
         return onPrimaryColor;
       }),
       elevation: WidgetStateProperty.resolveWith<double>((states) {
@@ -159,11 +161,14 @@ class AppButtonStyles {
       }),
 
       // Sombra
-      shadowColor: WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
+      shadowColor:
+          WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
 
       // Forma y tama�o
-      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
-      minimumSize: WidgetStateProperty.all(Size(config.minWidth, config.height)),
+      shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+      minimumSize:
+          WidgetStateProperty.all(Size(config.minWidth, config.height)),
       maximumSize: WidgetStateProperty.all(Size.infinite),
       padding: WidgetStateProperty.all(config.padding),
 
@@ -204,7 +209,9 @@ class AppButtonStyles {
         return secondaryColor;
       }),
       foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
-        if (states.contains(WidgetState.disabled)) return isDark ? AppColors.gray400 : AppColors.textDisabled;
+        if (states.contains(WidgetState.disabled)) {
+          return isDark ? AppColors.gray400 : AppColors.textDisabled;
+        }
         return onSecondaryColor;
       }),
       elevation: WidgetStateProperty.resolveWith<double>((states) {
@@ -214,9 +221,12 @@ class AppButtonStyles {
         if (states.contains(WidgetState.focused)) return 3;
         return 1;
       }),
-      shadowColor: WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
-      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
-      minimumSize: WidgetStateProperty.all(Size(config.minWidth, config.height)),
+      shadowColor:
+          WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
+      shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+      minimumSize:
+          WidgetStateProperty.all(Size(config.minWidth, config.height)),
       maximumSize: WidgetStateProperty.all(Size.infinite),
       padding: WidgetStateProperty.all(config.padding),
       textStyle: WidgetStateProperty.all(config.textStyle),
@@ -262,8 +272,10 @@ class AppButtonStyles {
         return BorderSide(color: borderColor, width: 1);
       }),
       elevation: WidgetStateProperty.all(0),
-      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
-      minimumSize: WidgetStateProperty.all(Size(config.minWidth, config.height)),
+      shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+      minimumSize:
+          WidgetStateProperty.all(Size(config.minWidth, config.height)),
       maximumSize: WidgetStateProperty.all(Size.infinite),
       padding: WidgetStateProperty.all(config.padding),
       textStyle: WidgetStateProperty.all(config.textStyle),
@@ -298,8 +310,10 @@ class AppButtonStyles {
         return textColor;
       }),
       elevation: WidgetStateProperty.all(0),
-      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
-      minimumSize: WidgetStateProperty.all(Size(config.minWidth, config.height)),
+      shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+      minimumSize:
+          WidgetStateProperty.all(Size(config.minWidth, config.height)),
       maximumSize: WidgetStateProperty.all(Size.infinite),
       padding: WidgetStateProperty.all(config.padding),
       textStyle: WidgetStateProperty.all(config.textStyle),
@@ -345,9 +359,12 @@ class AppButtonStyles {
         if (states.contains(WidgetState.focused)) return 4;
         return 2;
       }),
-      shadowColor: WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
-      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
-      minimumSize: WidgetStateProperty.all(Size(config.minWidth, config.height)),
+      shadowColor:
+          WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
+      shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+      minimumSize:
+          WidgetStateProperty.all(Size(config.minWidth, config.height)),
       maximumSize: WidgetStateProperty.all(Size.infinite),
       padding: WidgetStateProperty.all(config.padding),
       textStyle: WidgetStateProperty.all(config.textStyle),

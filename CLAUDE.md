@@ -537,3 +537,9 @@ El código debe cumplir con:
 - Ejemplos para cada componente
 - Compatible con Flutter 3.0+
 - Soporte completo para Material 3
+- no debes lanzar ningun emulador sin que te lo pida yo.
+- debes tener en cuenta los recursos de la maquina en la que corres. No tiene recursos ilimitados y tienes que optimiizar procesos
+- Asegúrate siempre de que de que codificas con la ultima version disponible de la API de Flutter, para evitar deprecados.
+- Cada vez que termines una feature, evalua warnings y resuelvelos antes de terminar
+- todo el código que escribas debes adaptarlo a la version 3.35.3 de Flutter y la 3.9.2 de Dart. No esta permitido que escribas código deprecado.
+- tienes el compromiso de escribir código 100% libre de warnings

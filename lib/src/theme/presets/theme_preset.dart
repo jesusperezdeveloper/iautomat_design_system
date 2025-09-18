@@ -74,18 +74,18 @@ enum ThemeStyleType {
 
 /// Nivel de border radius
 enum BorderRadiusLevel {
-  sharp,   // 4px
-  medium,  // 8px
+  sharp, // 4px
+  medium, // 8px
   rounded, // 16px
-  full,    // 24px
+  full, // 24px
 }
 
 /// Nivel de elevación
 enum ElevationLevel {
-  flat,    // 0-1
-  subtle,  // 1-2
-  medium,  // 2-4
-  high,    // 4-8
+  flat, // 0-1
+  subtle, // 1-2
+  medium, // 2-4
+  high, // 4-8
 }
 
 /// Configuración de estilo de un tema

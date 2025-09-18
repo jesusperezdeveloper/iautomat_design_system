@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
+import 'stories/app_scaffold_stories.dart';
+import 'stories/app_top_app_bar_stories.dart';
+import 'stories/app_media_viewer_story.dart';
+import 'stories/app_cart_widget_story.dart';
+import 'stories/app_checkout_forms_story.dart';
+import 'pages/camera_picker_story.dart';
 
 void main() {
   runApp(const DesignSystemExampleApp());
@@ -165,6 +171,12 @@ class _DesignSystemHomePageState extends State<DesignSystemHomePage>
     const Tab(icon: Icon(Icons.color_lens), text: 'Colores'),
     const Tab(icon: Icon(Icons.text_fields), text: 'Tipografía'),
     const Tab(icon: Icon(Icons.widgets), text: 'Componentes'),
+    const Tab(icon: Icon(Icons.app_shortcut), text: 'AppScaffold'),
+    const Tab(icon: Icon(Icons.web_asset), text: 'AppTopAppBar'),
+    const Tab(icon: Icon(Icons.photo_library), text: 'MediaViewer'),
+    const Tab(icon: Icon(Icons.shopping_cart), text: 'CartWidget'),
+    const Tab(icon: Icon(Icons.payment), text: 'CheckoutForms'),
+    const Tab(icon: Icon(Icons.add_a_photo), text: 'CameraPicker'),
   ];
 
   @override
@@ -226,6 +238,12 @@ class _DesignSystemHomePageState extends State<DesignSystemHomePage>
           const ColorsShowcase(),
           const TypographyShowcase(),
           const ComponentsShowcase(),
+          const AppScaffoldStories(),
+          const AppTopAppBarStories(),
+          const AppMediaViewerStory(),
+          const AppCartWidgetStory(),
+          const AppCheckoutFormsStory(),
+          const CameraPickerStory(),
         ],
       ),
     );
@@ -396,10 +414,7 @@ class ThemesShowcase extends StatelessWidget {
               runSpacing: 4,
               children: selectedTheme.useCases.map((useCase) {
                 return Chip(
-                  label: Text(
-                    useCase,
-                    style: AppTypography.labelSmall,
-                  ),
+                  label: Text(useCase, style: AppTypography.labelSmall),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   visualDensity: VisualDensity.compact,
                 );
@@ -630,7 +645,9 @@ class ColorsShowcase extends StatelessWidget {
         LayoutBuilder(
           builder: (context, constraints) {
             final screenWidth = constraints.maxWidth;
-            final crossAxisCount = screenWidth > 600 ? 4 : (screenWidth > 400 ? 3 : 2);
+            final crossAxisCount = screenWidth > 600
+                ? 4
+                : (screenWidth > 400 ? 3 : 2);
 
             return GridView.builder(
               shrinkWrap: true,

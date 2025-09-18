@@ -397,8 +397,9 @@ class AppInputStyles {
 
       case InputState.readonly:
         return _InputColors(
-          fillColor:
-              isDark ? AppColors.gray700.withValues(alpha: 0.5) : AppColors.gray50,
+          fillColor: isDark
+              ? AppColors.gray700.withValues(alpha: 0.5)
+              : AppColors.gray50,
           borderColor: isDark ? AppColors.gray600 : AppColors.gray300,
           focusedBorderColor: isDark ? AppColors.gray600 : AppColors.gray300,
           errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,

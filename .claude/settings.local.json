@@ -12,7 +12,18 @@
       "Bash(flutter test:*)",
       "Bash(dart format:*)",
       "Bash(flutter:*)",
-      "Bash(xcrun simctl list:*)"
+      "Bash(xcrun simctl list:*)",
+      "Bash(tree:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(sed:*)",
+      "Bash(mkdir:*)",
+      "Bash(dart analyze:*)",
+      "Bash(find:*)",
+      "Bash(chmod:*)",
+      "Bash(./regen.sh:*)",
+      "Bash(pkill:*)",
+      "WebSearch",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []
