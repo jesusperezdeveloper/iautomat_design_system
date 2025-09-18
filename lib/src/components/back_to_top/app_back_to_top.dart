@@ -68,6 +68,11 @@ class _AppBackToTopState extends State<AppBackToTop>
     super.initState();
     _platformAdapter = AppBackToTopPlatformAdapter();
     _a11yHelper = AppBackToTopA11yHelper();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _initializeConfig();
     _initializeAnimations();
     _initializeScrollController();

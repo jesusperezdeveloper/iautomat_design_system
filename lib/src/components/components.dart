@@ -35,6 +35,7 @@
 /// - Bottom Sheet components and configurations
 /// - Menu components and configurations
 /// - Drawer components and configurations
+/// - Back to Top components and configurations
 /// - All component styles and configurations
 library;
 
@@ -281,3 +282,8 @@ export 'skeleton/app_skeleton.dart';
 export 'skeleton/app_skeleton_config.dart';
 export 'skeleton/app_skeleton_platform_adapter.dart' hide HapticFeedbackType;
 export 'skeleton/app_skeleton_a11y_helper.dart';
+
+export 'back_to_top/app_back_to_top.dart';
+export 'back_to_top/app_back_to_top_config.dart';
+export 'back_to_top/app_back_to_top_platform_adapter.dart' hide HapticFeedbackType;
+export 'back_to_top/app_back_to_top_a11y_helper.dart';

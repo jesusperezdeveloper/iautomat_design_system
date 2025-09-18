@@ -372,7 +372,6 @@ class _AppClipboardShareState extends State<AppClipboardShare>
     final config = _effectiveConfig!;
     final colors = config.colors!;
     final spacing = config.spacing!;
-    final typography = config.typography!;
 
     return Container(
       constraints: BoxConstraints(
