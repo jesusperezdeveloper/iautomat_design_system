@@ -312,8 +312,7 @@ class AppCalendarDateStyle with _$AppCalendarDateStyle {
     @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? textStyle,
 
     /// Decoración del contenedor
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    BoxDecoration? decoration,
+    @JsonKey(includeFromJson: false, includeToJson: false) BoxDecoration? decoration,
 
     /// Si está habilitado
     @Default(true) bool enabled,
@@ -439,8 +438,7 @@ class AppCalendarConfig with _$AppCalendarConfig {
     DateTime? selectedDate,
 
     /// Rango de fechas seleccionado
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    DateTimeRange? selectedRange,
+    @JsonKey(includeFromJson: false, includeToJson: false) DateTimeRange? selectedRange,
 
     /// Fecha mínima seleccionable
     DateTime? minDate,
@@ -500,36 +498,28 @@ class AppCalendarConfig with _$AppCalendarConfig {
     AppCalendarLocalization? localization,
 
     /// Callback cuando se toca un evento
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    AppCalendarEventTapCallback? onEventTap,
+    @JsonKey(includeFromJson: false, includeToJson: false) AppCalendarEventTapCallback? onEventTap,
 
     /// Callback cuando se toca una fecha
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    AppCalendarDateTapCallback? onDateTap,
+    @JsonKey(includeFromJson: false, includeToJson: false) AppCalendarDateTapCallback? onDateTap,
 
     /// Callback cuando se selecciona un rango
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    AppCalendarDateRangeSelectCallback? onRangeSelect,
+    @JsonKey(includeFromJson: false, includeToJson: false) AppCalendarDateRangeSelectCallback? onRangeSelect,
 
     /// Callback cuando cambia la vista
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    void Function(AppCalendarVariant variant)? onViewChange,
+    @JsonKey(includeFromJson: false, includeToJson: false) void Function(AppCalendarVariant variant)? onViewChange,
 
     /// Callback cuando cambia la fecha
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    void Function(DateTime date)? onDateChange,
+    @JsonKey(includeFromJson: false, includeToJson: false) void Function(DateTime date)? onDateChange,
 
     /// Callback cuando se crea un evento
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    void Function(DateTime start, DateTime end)? onEventCreate,
+    @JsonKey(includeFromJson: false, includeToJson: false) void Function(DateTime start, DateTime end)? onEventCreate,
 
     /// Callback cuando se mueve un evento
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    void Function(AppCalendarEvent event, DateTime newStart)? onEventMove,
+    @JsonKey(includeFromJson: false, includeToJson: false) void Function(AppCalendarEvent event, DateTime newStart)? onEventMove,
 
     /// Callback cuando se redimensiona un evento
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    void Function(AppCalendarEvent event, DateTime newStart, DateTime newEnd)?
+    @JsonKey(includeFromJson: false, includeToJson: false) void Function(AppCalendarEvent event, DateTime newStart, DateTime newEnd)?
         onEventResize,
 
     // Propiedades de estilo usando design tokens
@@ -589,32 +579,25 @@ class AppCalendarConfig with _$AppCalendarConfig {
     @ColorConverter() Color? nonWorkingHoursBackgroundColor,
 
     /// Radio de borde de las celdas
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    BorderRadius? cellBorderRadius,
+    @JsonKey(includeFromJson: false, includeToJson: false) BorderRadius? cellBorderRadius,
 
     /// Radio de borde del calendario
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    BorderRadius? borderRadius,
+    @JsonKey(includeFromJson: false, includeToJson: false) BorderRadius? borderRadius,
 
     /// Sombra del calendario
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    List<BoxShadow>? boxShadow,
+    @JsonKey(includeFromJson: false, includeToJson: false) List<BoxShadow>? boxShadow,
 
     /// Estilo del texto del header
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    TextStyle? headerTextStyle,
+    @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? headerTextStyle,
 
     /// Estilo del texto de las fechas
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    TextStyle? dateTextStyle,
+    @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? dateTextStyle,
 
     /// Estilo del texto de los eventos
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    TextStyle? eventTextStyle,
+    @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? eventTextStyle,
 
     /// Estilo del texto de las horas
-    @JsonKey(includeFromJson: false, includeToJson: false)
-    TextStyle? timeTextStyle,
+    @JsonKey(includeFromJson: false, includeToJson: false) TextStyle? timeTextStyle,
 
     /// Altura del header
     @Default(56.0) double headerHeight,

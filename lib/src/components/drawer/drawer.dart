@@ -2,11 +2,13 @@
 ///
 /// Provides a single entry point for all drawer-related components:
 /// - AppDrawer widget with modal and permanent variants
+/// - AppDrawerConfig with Freezed models for configuration
 /// - DrawerVariant, DrawerSide, and AppDrawerState enums
 /// - AppDrawerController for programmatic control
 /// - AppDrawerHelper for common drawer patterns
 /// - Drawer story examples for development
 library;
 
-export 'app_drawer.dart';
+export 'app_drawer.dart' hide AppDrawerState;
+export 'app_drawer_config.dart';
 export 'drawer_story.dart';

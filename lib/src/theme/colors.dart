@@ -58,6 +58,9 @@ class AppColors {
   /// Color de texto primario en modo oscuro
   static const Color textPrimaryDark = Color(0xFFFFFFFF);
 
+  /// Color de línea/contorno
+  static const Color outline = Color(0xFF79747E);
+
   /// Aclara un color en un porcentaje dado
   static Color lighten(Color color, double amount) {
     assert(amount >= 0 && amount <= 1);
