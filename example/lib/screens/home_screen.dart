@@ -134,11 +134,18 @@ class HomeScreen extends StatelessWidget {
   Widget _buildNavigationGrid(BuildContext context) {
     final items = [
       _NavigationItem(
+        title: 'Theme Showcase',
+        description: '100 temas profesionales con galería completa',
+        icon: Icons.auto_awesome,
+        route: '/theme-showcase',
+        color: Theme.of(context).colorScheme.primary,
+      ),
+      _NavigationItem(
         title: 'Galería de Temas',
         description: '20 temas profesionales para 2025',
         icon: Icons.color_lens,
         route: '/themes',
-        color: Theme.of(context).colorScheme.primary,
+        color: Colors.indigo,
       ),
       _NavigationItem(
         title: 'Sistema de Colores',
@@ -166,14 +173,24 @@ class HomeScreen extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isTablet = constraints.maxWidth > 600;
+        final isDesktop = constraints.maxWidth > 900;
+
+        // Ajustar columnas según el dispositivo y número de elementos (5)
+        int crossAxisCount = 2; // Por defecto móvil
+        if (isDesktop) {
+          crossAxisCount = 3; // Desktop: 3 columnas para 5 items
+        } else if (isTablet) {
+          crossAxisCount = 2; // Tablet: 2 columnas
+        }
+
         return GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: isTablet ? 1.1 : 0.95, // Más altura en mobile
-            crossAxisSpacing: isTablet ? 16 : 8,
-            mainAxisSpacing: isTablet ? 16 : 8,
+            crossAxisCount: crossAxisCount,
+            childAspectRatio: isDesktop ? 1.2 : (isTablet ? 1.1 : 0.95),
+            crossAxisSpacing: isDesktop ? 20 : (isTablet ? 16 : 8),
+            mainAxisSpacing: isDesktop ? 20 : (isTablet ? 16 : 8),
           ),
           itemCount: items.length,
           itemBuilder: (context, index) {

@@ -6,7 +6,7 @@ import 'providers/theme_provider.dart';
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
+      create: (context) => DSThemeProvider()..applyDemoConfiguration(),
       child: const DesignSystemExampleApp(),
     ),
   );
@@ -17,14 +17,14 @@ class DesignSystemExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
+    return Consumer<DSThemeProvider>(
       builder: (context, themeProvider, child) {
         return MaterialApp.router(
-          title: 'IAutomat Design System - 20 Temas Profesionales 2025',
+          title: 'IAutomat Design System - 100 Temas Profesionales 2025',
           debugShowCheckedModeBanner: false,
-          theme: themeProvider.buildThemeData(themeProvider.selectedTheme, false),
-          darkTheme: themeProvider.buildThemeData(themeProvider.selectedTheme, true),
-          themeMode: themeProvider.themeMode,
+          theme: themeProvider.lightThemeData,
+          darkTheme: themeProvider.darkThemeData,
+          themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
           routerConfig: AppRouter.router,
         );
       },

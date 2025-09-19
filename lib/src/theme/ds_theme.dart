@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'colors.dart';
 import 'typography.dart';
 import 'spacing.dart';
+import 'custom/custom.dart';
 
 /// Configuración completa del tema para el Design System de IAutomat
 ///
@@ -46,8 +47,9 @@ class DSTheme {
   static const BorderRadius radiusXl = BorderRadius.all(Radius.circular(20));
 
   /// Radius circular completo - Botones, avatares
-  static const BorderRadius radiusCircular =
-      BorderRadius.all(Radius.circular(999));
+  static const BorderRadius radiusCircular = BorderRadius.all(
+    Radius.circular(999),
+  );
 
   // ==========================================================================
   // SISTEMA DE ELEVACI�N
@@ -173,95 +175,95 @@ class DSTheme {
 
   /// ColorScheme para light theme
   static ColorScheme get _lightColorScheme => ColorScheme.light(
-        // Colores principales
-        primary: DSColors.primary,
-        onPrimary: DSColors.textOnColor,
-        primaryContainer: DSColors.primaryLight,
-        onPrimaryContainer: DSColors.primaryDarker,
+    // Colores principales
+    primary: DSColors.primary,
+    onPrimary: DSColors.textOnColor,
+    primaryContainer: DSColors.primaryLight,
+    onPrimaryContainer: DSColors.primaryDarker,
 
-        // Colores secundarios
-        secondary: DSColors.secondary,
-        onSecondary: DSColors.textOnColor,
-        secondaryContainer: DSColors.secondaryLight,
-        onSecondaryContainer: DSColors.secondaryDarker,
+    // Colores secundarios
+    secondary: DSColors.secondary,
+    onSecondary: DSColors.textOnColor,
+    secondaryContainer: DSColors.secondaryLight,
+    onSecondaryContainer: DSColors.secondaryDarker,
 
-        // Colores terciarios (usando info como terciario)
-        tertiary: DSColors.info,
-        onTertiary: DSColors.textOnColor,
-        tertiaryContainer: DSColors.infoLight,
-        onTertiaryContainer: DSColors.infoDark,
+    // Colores terciarios (usando info como terciario)
+    tertiary: DSColors.info,
+    onTertiary: DSColors.textOnColor,
+    tertiaryContainer: DSColors.infoLight,
+    onTertiaryContainer: DSColors.infoDark,
 
-        // Colores de error
-        error: DSColors.error,
-        onError: DSColors.textOnColor,
-        errorContainer: DSColors.errorLight,
-        onErrorContainer: DSColors.errorDark,
+    // Colores de error
+    error: DSColors.error,
+    onError: DSColors.textOnColor,
+    errorContainer: DSColors.errorLight,
+    onErrorContainer: DSColors.errorDark,
 
-        // Colores de superficie
-        surface: DSColors.surface,
-        onSurface: DSColors.textPrimary,
-        surfaceContainerHighest: DSColors.surfaceVariant,
-        onSurfaceVariant: DSColors.textSecondary,
+    // Colores de superficie
+    surface: DSColors.surface,
+    onSurface: DSColors.textPrimary,
+    surfaceContainerHighest: DSColors.surfaceVariant,
+    onSurfaceVariant: DSColors.textSecondary,
 
-        // Colores de outline
-        outline: DSColors.gray300,
-        outlineVariant: DSColors.gray200,
+    // Colores de outline
+    outline: DSColors.gray300,
+    outlineVariant: DSColors.gray200,
 
-        // Colores de superficie inversa
-        inverseSurface: DSColors.gray800,
-        onInverseSurface: DSColors.textOnColor,
-        inversePrimary: DSColors.primaryLight,
+    // Colores de superficie inversa
+    inverseSurface: DSColors.gray800,
+    onInverseSurface: DSColors.textOnColor,
+    inversePrimary: DSColors.primaryLight,
 
-        // Shadow y scrim
-        shadow: DSColors.shadow,
-        scrim: DSColors.overlay,
-      );
+    // Shadow y scrim
+    shadow: DSColors.shadow,
+    scrim: DSColors.overlay,
+  );
 
   /// ColorScheme para dark theme
   static ColorScheme get _darkColorScheme => ColorScheme.dark(
-        // Colores principales
-        primary: DSColors.primaryDarkMode,
-        onPrimary: DSColors.backgroundDarkMode,
-        primaryContainer: DSColors.primaryDark,
-        onPrimaryContainer: DSColors.primaryLighter,
+    // Colores principales
+    primary: DSColors.primaryDarkMode,
+    onPrimary: DSColors.backgroundDarkMode,
+    primaryContainer: DSColors.primaryDark,
+    onPrimaryContainer: DSColors.primaryLighter,
 
-        // Colores secundarios
-        secondary: DSColors.secondaryDarkMode,
-        onSecondary: DSColors.backgroundDarkMode,
-        secondaryContainer: DSColors.secondaryDark,
-        onSecondaryContainer: DSColors.secondaryLighter,
+    // Colores secundarios
+    secondary: DSColors.secondaryDarkMode,
+    onSecondary: DSColors.backgroundDarkMode,
+    secondaryContainer: DSColors.secondaryDark,
+    onSecondaryContainer: DSColors.secondaryLighter,
 
-        // Colores terciarios
-        tertiary: DSColors.infoDarkMode,
-        onTertiary: DSColors.backgroundDarkMode,
-        tertiaryContainer: DSColors.infoDark,
-        onTertiaryContainer: DSColors.infoLight,
+    // Colores terciarios
+    tertiary: DSColors.infoDarkMode,
+    onTertiary: DSColors.backgroundDarkMode,
+    tertiaryContainer: DSColors.infoDark,
+    onTertiaryContainer: DSColors.infoLight,
 
-        // Colores de error
-        error: DSColors.errorDarkMode,
-        onError: DSColors.backgroundDarkMode,
-        errorContainer: DSColors.errorDark,
-        onErrorContainer: DSColors.errorLight,
+    // Colores de error
+    error: DSColors.errorDarkMode,
+    onError: DSColors.backgroundDarkMode,
+    errorContainer: DSColors.errorDark,
+    onErrorContainer: DSColors.errorLight,
 
-        // Colores de superficie
-        surface: DSColors.backgroundSecondaryDarkMode,
-        onSurface: DSColors.textPrimaryDarkMode,
-        surfaceContainerHighest: DSColors.backgroundTertiaryDarkMode,
-        onSurfaceVariant: DSColors.textSecondaryDarkMode,
+    // Colores de superficie
+    surface: DSColors.backgroundSecondaryDarkMode,
+    onSurface: DSColors.textPrimaryDarkMode,
+    surfaceContainerHighest: DSColors.backgroundTertiaryDarkMode,
+    onSurfaceVariant: DSColors.textSecondaryDarkMode,
 
-        // Colores de outline
-        outline: DSColors.gray600,
-        outlineVariant: DSColors.gray700,
+    // Colores de outline
+    outline: DSColors.gray600,
+    outlineVariant: DSColors.gray700,
 
-        // Colores de superficie inversa
-        inverseSurface: DSColors.gray100,
-        onInverseSurface: DSColors.textPrimary,
-        inversePrimary: DSColors.primary,
+    // Colores de superficie inversa
+    inverseSurface: DSColors.gray100,
+    onInverseSurface: DSColors.textPrimary,
+    inversePrimary: DSColors.primary,
 
-        // Shadow y scrim
-        shadow: Color(0xFF000000),
-        scrim: Color(0x99000000),
-      );
+    // Shadow y scrim
+    shadow: Color(0xFF000000),
+    scrim: Color(0x99000000),
+  );
 
   // ==========================================================================
   // LIGHT THEME
@@ -295,10 +297,14 @@ class DSTheme {
         foregroundColor: DSColors.textPrimary,
         elevation: 0,
         centerTitle: false,
-        titleTextStyle:
-            DSTypography.withColor(DSTypography.h6, DSColors.textPrimary),
+        titleTextStyle: DSTypography.withColor(
+          DSTypography.h6,
+          DSColors.textPrimary,
+        ),
         toolbarTextStyle: DSTypography.withColor(
-            DSTypography.bodyMedium, DSColors.textSecondary),
+          DSTypography.bodyMedium,
+          DSColors.textSecondary,
+        ),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -398,10 +404,14 @@ class DSTheme {
         contentPadding: DSSpacing.inputPadding,
         labelStyle: DSTypography.labelMedium,
         hintStyle: DSTypography.withColor(
-            DSTypography.bodyMedium, DSColors.textTertiary),
+          DSTypography.bodyMedium,
+          DSColors.textTertiary,
+        ),
         errorStyle: DSTypography.error(DSColors.error),
         helperStyle: DSTypography.withColor(
-            DSTypography.caption, DSColors.textTertiary),
+          DSTypography.caption,
+          DSColors.textTertiary,
+        ),
       ),
 
       // Chip Theme
@@ -428,7 +438,9 @@ class DSTheme {
         shape: const RoundedRectangleBorder(borderRadius: radiusMd),
         titleTextStyle: DSTypography.bodyMedium,
         subtitleTextStyle: DSTypography.withColor(
-            DSTypography.bodySmall, DSColors.textSecondary),
+          DSTypography.bodySmall,
+          DSColors.textSecondary,
+        ),
         leadingAndTrailingTextStyle: DSTypography.labelMedium,
       ),
 
@@ -475,8 +487,9 @@ class DSTheme {
           return DSColors.surface;
         }),
         checkColor: WidgetStateProperty.all(DSColors.textOnColor),
-        overlayColor:
-            WidgetStateProperty.all(DSColors.primary.withValues(alpha: 0.1)),
+        overlayColor: WidgetStateProperty.all(
+          DSColors.primary.withValues(alpha: 0.1),
+        ),
         shape: const RoundedRectangleBorder(borderRadius: radiusXs),
       ),
 
@@ -486,8 +499,9 @@ class DSTheme {
           if (states.contains(WidgetState.selected)) return DSColors.primary;
           return DSColors.gray400;
         }),
-        overlayColor:
-            WidgetStateProperty.all(DSColors.primary.withValues(alpha: 0.1)),
+        overlayColor: WidgetStateProperty.all(
+          DSColors.primary.withValues(alpha: 0.1),
+        ),
       ),
 
       // Switch Theme
@@ -502,8 +516,9 @@ class DSTheme {
           }
           return DSColors.gray300;
         }),
-        overlayColor:
-            WidgetStateProperty.all(DSColors.primary.withValues(alpha: 0.1)),
+        overlayColor: WidgetStateProperty.all(
+          DSColors.primary.withValues(alpha: 0.1),
+        ),
       ),
 
       // Slider Theme
@@ -514,7 +529,9 @@ class DSTheme {
         overlayColor: DSColors.primary.withValues(alpha: 0.1),
         valueIndicatorColor: DSColors.primary,
         valueIndicatorTextStyle: DSTypography.withColor(
-            DSTypography.labelSmall, DSColors.textOnColor),
+          DSTypography.labelSmall,
+          DSColors.textOnColor,
+        ),
       ),
 
       // Progress Indicator Theme
@@ -531,9 +548,13 @@ class DSTheme {
           borderRadius: radiusSm,
         ),
         textStyle: DSTypography.withColor(
-            DSTypography.caption, DSColors.textOnColor),
+          DSTypography.caption,
+          DSColors.textOnColor,
+        ),
         padding: const EdgeInsets.symmetric(
-            horizontal: DSSpacing.xs, vertical: DSSpacing.xxs),
+          horizontal: DSSpacing.xs,
+          vertical: DSSpacing.xxs,
+        ),
       ),
 
       // Navigation Bar Theme
@@ -558,10 +579,7 @@ class DSTheme {
       ),
 
       // Icon Theme
-      iconTheme: const IconThemeData(
-        color: DSColors.textSecondary,
-        size: 24,
-      ),
+      iconTheme: const IconThemeData(color: DSColors.textSecondary, size: 24),
       primaryIconTheme: const IconThemeData(
         color: DSColors.textOnColor,
         size: 24,
@@ -602,9 +620,13 @@ class DSTheme {
         elevation: 0,
         centerTitle: false,
         titleTextStyle: DSTypography.withColor(
-            DSTypography.h6, DSColors.textPrimaryDarkMode),
+          DSTypography.h6,
+          DSColors.textPrimaryDarkMode,
+        ),
         toolbarTextStyle: DSTypography.withColor(
-            DSTypography.bodyMedium, DSColors.textSecondaryDarkMode),
+          DSTypography.bodyMedium,
+          DSColors.textSecondaryDarkMode,
+        ),
         systemOverlayStyle: SystemUiOverlayStyle.light,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -703,13 +725,21 @@ class DSTheme {
         ),
         contentPadding: DSSpacing.inputPadding,
         labelStyle: DSTypography.withColor(
-            DSTypography.labelMedium, DSColors.textSecondaryDarkMode),
+          DSTypography.labelMedium,
+          DSColors.textSecondaryDarkMode,
+        ),
         hintStyle: DSTypography.withColor(
-            DSTypography.bodyMedium, DSColors.textTertiaryDarkMode),
+          DSTypography.bodyMedium,
+          DSColors.textTertiaryDarkMode,
+        ),
         errorStyle: DSTypography.withColor(
-            DSTypography.bodySmall, DSColors.errorDarkMode),
+          DSTypography.bodySmall,
+          DSColors.errorDarkMode,
+        ),
         helperStyle: DSTypography.withColor(
-            DSTypography.caption, DSColors.textTertiaryDarkMode),
+          DSTypography.caption,
+          DSColors.textTertiaryDarkMode,
+        ),
       ),
 
       // Chip Theme
@@ -717,14 +747,19 @@ class DSTheme {
         backgroundColor: DSColors.backgroundTertiaryDarkMode,
         disabledColor: DSColors.gray700,
         selectedColor: DSColors.primaryDarkMode.withValues(alpha: 0.2),
-        secondarySelectedColor:
-            DSColors.secondaryDarkMode.withValues(alpha: 0.2),
+        secondarySelectedColor: DSColors.secondaryDarkMode.withValues(
+          alpha: 0.2,
+        ),
         shadowColor: Colors.black,
         selectedShadowColor: Colors.black,
         labelStyle: DSTypography.withColor(
-            DSTypography.labelSmall, DSColors.textPrimaryDarkMode),
+          DSTypography.labelSmall,
+          DSColors.textPrimaryDarkMode,
+        ),
         secondaryLabelStyle: DSTypography.withColor(
-            DSTypography.labelSmall, DSColors.textPrimaryDarkMode),
+          DSTypography.labelSmall,
+          DSColors.textPrimaryDarkMode,
+        ),
         brightness: Brightness.dark,
         elevation: 1,
         pressElevation: 4,
@@ -738,11 +773,17 @@ class DSTheme {
         minLeadingWidth: 40,
         shape: const RoundedRectangleBorder(borderRadius: radiusMd),
         titleTextStyle: DSTypography.withColor(
-            DSTypography.bodyMedium, DSColors.textPrimaryDarkMode),
+          DSTypography.bodyMedium,
+          DSColors.textPrimaryDarkMode,
+        ),
         subtitleTextStyle: DSTypography.withColor(
-            DSTypography.bodySmall, DSColors.textSecondaryDarkMode),
+          DSTypography.bodySmall,
+          DSColors.textSecondaryDarkMode,
+        ),
         leadingAndTrailingTextStyle: DSTypography.withColor(
-            DSTypography.labelMedium, DSColors.textSecondaryDarkMode),
+          DSTypography.labelMedium,
+          DSColors.textSecondaryDarkMode,
+        ),
       ),
 
       // Dialog Theme
@@ -752,9 +793,13 @@ class DSTheme {
         shadowColor: Colors.black,
         shape: const RoundedRectangleBorder(borderRadius: radiusXl),
         titleTextStyle: DSTypography.withColor(
-            DSTypography.h5, DSColors.textPrimaryDarkMode),
+          DSTypography.h5,
+          DSColors.textPrimaryDarkMode,
+        ),
         contentTextStyle: DSTypography.withColor(
-            DSTypography.bodyMedium, DSColors.textPrimaryDarkMode),
+          DSTypography.bodyMedium,
+          DSColors.textPrimaryDarkMode,
+        ),
         actionsPadding: DSSpacing.dialogContentPadding,
         insetPadding: const EdgeInsets.all(DSSpacing.md),
       ),
@@ -775,9 +820,13 @@ class DSTheme {
         labelColor: DSColors.primaryDarkMode,
         unselectedLabelColor: DSColors.textSecondaryDarkMode,
         labelStyle: DSTypography.withColor(
-            DSTypography.labelLarge, DSColors.primaryDarkMode),
+          DSTypography.labelLarge,
+          DSColors.primaryDarkMode,
+        ),
         unselectedLabelStyle: DSTypography.withColor(
-            DSTypography.labelMedium, DSColors.textSecondaryDarkMode),
+          DSTypography.labelMedium,
+          DSColors.textSecondaryDarkMode,
+        ),
         indicator: UnderlineTabIndicator(
           borderSide: BorderSide(color: DSColors.primaryDarkMode, width: 2),
         ),
@@ -795,7 +844,8 @@ class DSTheme {
         }),
         checkColor: WidgetStateProperty.all(DSColors.backgroundDarkMode),
         overlayColor: WidgetStateProperty.all(
-            DSColors.primaryDarkMode.withValues(alpha: 0.1)),
+          DSColors.primaryDarkMode.withValues(alpha: 0.1),
+        ),
         shape: const RoundedRectangleBorder(borderRadius: radiusXs),
       ),
 
@@ -808,7 +858,8 @@ class DSTheme {
           return DSColors.gray500;
         }),
         overlayColor: WidgetStateProperty.all(
-            DSColors.primaryDarkMode.withValues(alpha: 0.1)),
+          DSColors.primaryDarkMode.withValues(alpha: 0.1),
+        ),
       ),
 
       // Switch Theme
@@ -826,7 +877,8 @@ class DSTheme {
           return DSColors.gray600;
         }),
         overlayColor: WidgetStateProperty.all(
-            DSColors.primaryDarkMode.withValues(alpha: 0.1)),
+          DSColors.primaryDarkMode.withValues(alpha: 0.1),
+        ),
       ),
 
       // Slider Theme
@@ -837,7 +889,9 @@ class DSTheme {
         overlayColor: DSColors.primaryDarkMode.withValues(alpha: 0.1),
         valueIndicatorColor: DSColors.primaryDarkMode,
         valueIndicatorTextStyle: DSTypography.withColor(
-            DSTypography.labelSmall, DSColors.backgroundDarkMode),
+          DSTypography.labelSmall,
+          DSColors.backgroundDarkMode,
+        ),
       ),
 
       // Progress Indicator Theme
@@ -854,9 +908,13 @@ class DSTheme {
           borderRadius: radiusSm,
         ),
         textStyle: DSTypography.withColor(
-            DSTypography.caption, DSColors.textPrimary),
+          DSTypography.caption,
+          DSColors.textPrimary,
+        ),
         padding: const EdgeInsets.symmetric(
-            horizontal: DSSpacing.xs, vertical: DSSpacing.xxs),
+          horizontal: DSSpacing.xs,
+          vertical: DSSpacing.xxs,
+        ),
       ),
 
       // Navigation Bar Theme
@@ -864,8 +922,12 @@ class DSTheme {
         backgroundColor: DSColors.backgroundSecondaryDarkMode,
         elevation: 3,
         indicatorColor: DSColors.primaryDarkMode.withValues(alpha: 0.1),
-        labelTextStyle: WidgetStateProperty.all(DSTypography.withColor(
-            DSTypography.labelSmall, DSColors.textSecondaryDarkMode)),
+        labelTextStyle: WidgetStateProperty.all(
+          DSTypography.withColor(
+            DSTypography.labelSmall,
+            DSColors.textSecondaryDarkMode,
+          ),
+        ),
         iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
           if (states.contains(WidgetState.selected)) {
             return IconThemeData(color: DSColors.primaryDarkMode);
@@ -882,10 +944,7 @@ class DSTheme {
       ),
 
       // Icon Theme
-      iconTheme: IconThemeData(
-        color: DSColors.textSecondaryDarkMode,
-        size: 24,
-      ),
+      iconTheme: IconThemeData(color: DSColors.textSecondaryDarkMode, size: 24),
       primaryIconTheme: IconThemeData(
         color: DSColors.backgroundDarkMode,
         size: 24,
@@ -970,11 +1029,99 @@ class DSTheme {
         final tween = Tween(begin: begin, end: end).chain(curveTween);
         final offsetAnimation = animation.drive(tween);
 
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
+        return SlideTransition(position: offsetAnimation, child: child);
       },
     );
+  }
+
+  // ==========================================================================
+  // CORPORATE THEME GENERATION
+  // ==========================================================================
+
+  /// Crea un tema personalizado desde colores corporativos
+  ///
+  /// Permite a desarrolladores crear temas usando colores de identidad
+  /// corporativa manteniendo toda la consistencia del design system.
+  ///
+  /// Ejemplo:
+  /// ```dart
+  /// final customTheme = DSTheme.fromCorporateColors(
+  ///   primary: Color(0xFF1E40AF),      // Azul corporativo
+  ///   secondary: Color(0xFFDB2777),    // Rosa corporativo
+  ///   accent: Color(0xFF059669),       // Verde corporativo
+  ///   neutral: Color(0xFF374151),      // Gris corporativo
+  /// );
+  ///
+  /// MaterialApp(
+  ///   theme: customTheme.lightTheme,
+  ///   darkTheme: customTheme.darkTheme,
+  /// )
+  /// ```
+  ///
+  /// Características:
+  /// - Genera automáticamente variantes y contrastes apropiados
+  /// - Cumple con WCAG 2.0 AA por defecto
+  /// - Compatible con todos los componentes DS existentes
+  /// - Optimización automática para dark mode
+  /// - Validación de accesibilidad integrada
+  static CorporateThemeResult fromCorporateColors({
+    required Color primary,
+    required Color secondary,
+    Color? accent,
+    Color? neutral,
+    Color? success,
+    Color? warning,
+    Color? error,
+    Color? info,
+    CorporatePaletteConfig? config,
+  }) {
+    // Crear paleta corporativa
+    final palette = CorporatePalette(
+      primary: primary,
+      secondary: secondary,
+      accent: accent,
+      neutral: neutral,
+      success: success,
+      warning: warning,
+      error: error,
+      info: info,
+      config: config ?? const CorporatePaletteConfig(),
+    );
+
+    // Generar tema usando el builder corporativo
+    return CorporateThemeBuilder.buildFromPalette(palette);
+  }
+
+  /// Valida una paleta corporativa
+  ///
+  /// Útil para verificar accesibilidad antes de aplicar el tema.
+  ///
+  /// Ejemplo:
+  /// ```dart
+  /// final results = DSTheme.validateCorporatePalette(
+  ///   primary: Color(0xFF1E40AF),
+  ///   secondary: Color(0xFFDB2777),
+  /// );
+  ///
+  /// if (results.every((r) => r.isValid)) {
+  ///   // Paleta válida, aplicar tema
+  /// }
+  /// ```
+  static List<ValidationResult> validateCorporatePalette({
+    required Color primary,
+    required Color secondary,
+    Color? accent,
+    Color? neutral,
+    ContrastLevel contrastLevel = ContrastLevel.aa,
+  }) {
+    final palette = CorporatePalette(
+      primary: primary,
+      secondary: secondary,
+      accent: accent,
+      neutral: neutral,
+      config: CorporatePaletteConfig(contrastLevel: contrastLevel),
+    );
+
+    return CustomThemeValidator.validateCorporatePalette(palette);
   }
 }

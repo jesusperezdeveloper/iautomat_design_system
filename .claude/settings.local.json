@@ -34,7 +34,9 @@
       "Bash(git commit:*)",
       "Bash(./rename_script.sh)",
       "Bash(./update_imports.sh)",
-      "Bash(nc:*)"
+      "Bash(nc:*)",
+      "Bash(dart:*)",
+      "Read(//tmp/**)"
     ],
     "deny": [],
     "ask": []

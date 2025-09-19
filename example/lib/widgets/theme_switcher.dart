@@ -8,16 +8,14 @@ class ThemeSwitcherButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
+    return Consumer<DSThemeProvider>(
       builder: (context, themeProvider, child) {
         return IconButton(
           icon: Icon(
-            themeProvider.themeMode == ThemeMode.light
-                ? Icons.dark_mode
-                : Icons.light_mode,
+            themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
           ),
           onPressed: () {
-            themeProvider.toggleTheme();
+            themeProvider.toggleDarkMode();
           },
           tooltip: 'Toggle theme mode',
         );
@@ -31,13 +29,13 @@ class ThemePickerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
+    return Consumer<DSThemeProvider>(
       builder: (context, themeProvider, child) {
-        return PopupMenuButton<ThemePreset>(
+        return PopupMenuButton<DSThemePreset>(
           icon: const Icon(Icons.color_lens),
           tooltip: 'Change theme',
           onSelected: (theme) {
-            themeProvider.changeTheme(theme);
+            themeProvider.applyTheme(theme);
           },
           itemBuilder: (context) =>
               _buildThemeMenuItems(context, themeProvider),
@@ -46,23 +44,25 @@ class ThemePickerButton extends StatelessWidget {
     );
   }
 
-  List<PopupMenuEntry<ThemePreset>> _buildThemeMenuItems(
+  List<PopupMenuEntry<DSThemePreset>> _buildThemeMenuItems(
     BuildContext context,
-    ThemeProvider themeProvider,
+    DSThemeProvider themeProvider,
   ) {
     final categories = [
-      (ThemeCategory.corporate, 'Corporativo', ThemePresets.corporateThemes),
-      (ThemeCategory.modern, 'Moderno', ThemePresets.modernThemes),
-      (ThemeCategory.industry, 'Industria', ThemePresets.industryThemes),
-      (ThemeCategory.mood, 'Emocional', ThemePresets.moodThemes),
-      (ThemeCategory.special, 'Especial', ThemePresets.specialThemes),
+      (ThemeCategory.corporate, 'Corporativo'),
+      (ThemeCategory.technology, 'Tecnología'),
+      (ThemeCategory.creative, 'Creativo'),
+      (ThemeCategory.healthcare, 'Salud'),
+      (ThemeCategory.financial, 'Financiero'),
     ];
 
-    final List<PopupMenuEntry<ThemePreset>> items = [];
+    final List<PopupMenuEntry<DSThemePreset>> items = [];
 
-    for (final (category, categoryName, themes) in categories) {
+    for (final (category, categoryName) in categories) {
+      final themes = DSThemeCatalog.getByCategory(category).take(3).toList();
+
       items.add(
-        PopupMenuItem<ThemePreset>(
+        PopupMenuItem<DSThemePreset>(
           enabled: false,
           child: Text(
             categoryName,
@@ -75,7 +75,7 @@ class ThemePickerButton extends StatelessWidget {
 
       for (final theme in themes) {
         items.add(
-          PopupMenuItem<ThemePreset>(
+          PopupMenuItem<DSThemePreset>(
             value: theme,
             child: Row(
               children: [
@@ -83,14 +83,14 @@ class ThemePickerButton extends StatelessWidget {
                   width: 16,
                   height: 16,
                   decoration: BoxDecoration(
-                    color: theme.lightColors.primary,
+                    color: theme.lightColorScheme.primary,
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.grey.shade300),
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(child: Text(theme.displayName)),
-                if (theme == themeProvider.selectedTheme)
+                if (theme.id == themeProvider.currentTheme.id)
                   Icon(
                     Icons.check,
                     size: 16,
@@ -102,7 +102,7 @@ class ThemePickerButton extends StatelessWidget {
         );
       }
 
-      if (category != ThemeCategory.special) {
+      if (category != ThemeCategory.financial) {
         items.add(const PopupMenuDivider());
       }
     }
@@ -116,7 +116,7 @@ class ThemeStatusWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
+    return Consumer<DSThemeProvider>(
       builder: (context, themeProvider, child) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -127,7 +127,7 @@ class ThemeStatusWidget extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Tema: ${themeProvider.selectedTheme.displayName}',
+                    'Tema: ${themeProvider.currentTheme.displayName}',
                     style: DSTypography.labelMedium.copyWith(
                       color:
                           Theme.of(context).appBarTheme.foregroundColor ??
@@ -138,7 +138,7 @@ class ThemeStatusWidget extends StatelessWidget {
                 ],
               ),
               Text(
-                'Modo: ${_getThemeModeDisplayName(themeProvider.themeMode)}',
+                'Modo: ${themeProvider.isDarkMode ? "Oscuro" : "Claro"}',
                 style: DSTypography.caption.copyWith(
                   color:
                       (Theme.of(context).appBarTheme.foregroundColor ??
@@ -151,16 +151,5 @@ class ThemeStatusWidget extends StatelessWidget {
         );
       },
     );
-  }
-
-  String _getThemeModeDisplayName(ThemeMode mode) {
-    switch (mode) {
-      case ThemeMode.light:
-        return 'Claro';
-      case ThemeMode.dark:
-        return 'Oscuro';
-      case ThemeMode.system:
-        return 'Sistema';
-    }
   }
 }

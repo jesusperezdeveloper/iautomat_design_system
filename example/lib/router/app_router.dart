@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../widgets/theme_switcher.dart';
 import '../screens/home_screen.dart';
 import '../screens/theme_gallery_screen.dart';
+import '../screens/theme_showcase_screen.dart';
 import '../screens/colors_screen.dart';
 import '../screens/typography_screen.dart';
 import '../screens/components/buttons_demo_screen.dart';
@@ -24,11 +25,18 @@ class AppRouter {
         builder: (context, state) => const HomeScreen(),
       ),
 
-      // Galería de temas
+      // Galería de temas (original)
       GoRoute(
         path: '/themes',
         name: 'themes',
         builder: (context, state) => const ThemeGalleryScreen(),
+      ),
+
+      // Theme Showcase (nueva galería completa)
+      GoRoute(
+        path: '/theme-showcase',
+        name: 'theme-showcase',
+        builder: (context, state) => const ThemeShowcaseScreen(),
       ),
 
       // Sistema de colores
