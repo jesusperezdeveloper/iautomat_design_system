@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/date_picker/app_date_picker.dart';
+import 'package:iautomat_design_system/src/components/date_picker/ds_date_picker.dart';
 import 'package:iautomat_design_system/src/components/date_picker/date_picker_config.dart';
 
 /// Storybook examples for DSDatePicker component

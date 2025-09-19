@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_radio.dart';
+import 'ds_radio.dart';
 import 'radio_config.dart';
 
 class RadioStory extends StatelessWidget {

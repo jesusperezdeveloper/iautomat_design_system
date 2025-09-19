@@ -244,7 +244,7 @@ class DSSearchHighlight with _$DSSearchHighlight {
 
     /// Additional metadata
     Map<String, dynamic>? metadata,
-  }) = _AppSearchHighlight;
+  }) = _DSSearchHighlight;
 }
 
 /// Data model for search controller state
@@ -294,7 +294,7 @@ class DSInPageSearchData with _$DSInPageSearchData {
 
     /// Whether regex search is enabled
     @Default(false) bool useRegex,
-  }) = _AppInPageSearchData;
+  }) = _DSInPageSearchData;
 
   /// Whether there are any results
   bool get hasResults => totalResults > 0;

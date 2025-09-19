@@ -142,7 +142,7 @@ class DSTimelineEvent with _$DSTimelineEvent {
     @Default(false) bool highlighted,
     @Default(false) bool isStart,
     @Default(false) bool isEnd,
-  }) = _AppTimelineEvent;
+  }) = _DSTimelineEvent;
 
   bool get hasTitle => title != null && title!.isNotEmpty;
   bool get hasSubtitle => subtitle != null && subtitle!.isNotEmpty;
@@ -470,7 +470,7 @@ class DSTimelineStyle with _$DSTimelineStyle {
     TextStyle? descriptionStyle,
     TextStyle? timestampStyle,
     Offset? offset,
-  }) = _AppTimelineStyle;
+  }) = _DSTimelineStyle;
 
   DSTimelineStyle copyWithState(DSTimelineState state) {
     switch (state) {
@@ -526,7 +526,7 @@ class DSTimelineInteraction with _$DSTimelineInteraction {
     ValueChanged<int>? onEventLongPress,
     ValueChanged<int>? onEventHover,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppTimelineInteraction;
+  }) = _DSTimelineInteraction;
 }
 
 @freezed
@@ -544,7 +544,7 @@ class DSTimelineAccessibility with _$DSTimelineAccessibility {
     @Default(false) bool button,
     @Default(false) bool list,
     @Default(false) bool readOnly,
-  }) = _AppTimelineAccessibility;
+  }) = _DSTimelineAccessibility;
 }
 
 @freezed
@@ -559,7 +559,7 @@ class DSTimelineAnimation with _$DSTimelineAnimation {
     @Default(false) bool staggered,
     @Default(Duration(milliseconds: 100)) Duration staggerDelay,
     @Default(false) bool autoPlay,
-  }) = _AppTimelineAnimation;
+  }) = _DSTimelineAnimation;
 }
 
 enum DSTimelineAnimationType {

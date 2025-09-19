@@ -1,2 +1,2 @@
-export 'app_card.dart';
-export 'app_card_config.dart';
+export 'ds_card.dart';
+export 'ds_card_config.dart';

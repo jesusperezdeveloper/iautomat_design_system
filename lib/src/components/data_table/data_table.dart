@@ -7,6 +7,6 @@
 /// - Table stories and examples
 library;
 
-export 'app_data_table.dart';
+export 'ds_data_table.dart';
 export 'data_table_config.dart';
 export 'data_table_story.dart';

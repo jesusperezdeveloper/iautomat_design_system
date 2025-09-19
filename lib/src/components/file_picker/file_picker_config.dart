@@ -218,7 +218,7 @@ class DSFilePickerColors with _$DSFilePickerColors {
     // Skeleton colors
     @Default(Color(0xFFE0E0E0)) Color skeletonBaseColor,
     @Default(Color(0xFFF5F5F5)) Color skeletonHighlightColor,
-  }) = _AppFilePickerColors;
+  }) = _DSFilePickerColors;
 
   const DSFilePickerColors._();
 
@@ -302,7 +302,7 @@ class DSFilePickerTypography with _$DSFilePickerTypography {
     // Loading text styles
     @Default(TextStyle(fontSize: 14, fontWeight: FontWeight.w400))
     TextStyle loadingStyle,
-  }) = _AppFilePickerTypography;
+  }) = _DSFilePickerTypography;
 
   const DSFilePickerTypography._();
 
@@ -363,7 +363,7 @@ class DSFilePickerIcons with _$DSFilePickerIcons {
     // Drag and drop icons
     @Default(Icons.file_upload) IconData dragUploadIcon,
     @Default(Icons.drag_indicator) IconData dragIndicatorIcon,
-  }) = _AppFilePickerIcons;
+  }) = _DSFilePickerIcons;
 }
 
 /// File size model
@@ -372,7 +372,7 @@ class DSFileSize with _$DSFileSize {
   const factory DSFileSize(
     double value,
     DSFileSizeUnit unit,
-  ) = _AppFileSize;
+  ) = _DSFileSize;
 
   const DSFileSize._();
 
@@ -417,7 +417,7 @@ class DSFileData with _$DSFileData {
     String? url,
     DateTime? lastModified,
     Map<String, dynamic>? metadata,
-  }) = _AppFileData;
+  }) = _DSFileData;
 
   const DSFileData._();
 

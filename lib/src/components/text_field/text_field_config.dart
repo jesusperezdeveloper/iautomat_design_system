@@ -62,7 +62,7 @@ class DSTextFieldColors with _$DSTextFieldColors {
     required Color counterTextColor,
     required Color skeletonBaseColor,
     required Color skeletonHighlightColor,
-  }) = _AppTextFieldColors;
+  }) = _DSTextFieldColors;
 
   const DSTextFieldColors._();
 

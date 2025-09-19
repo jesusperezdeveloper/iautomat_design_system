@@ -150,7 +150,7 @@ class DSSimpleTableColumn with _$DSSimpleTableColumn {
     /// Sort direction for this column
     @Default(DSSimpleTableSortDirection.none)
     DSSimpleTableSortDirection sortDirection,
-  }) = _AppSimpleTableColumn;
+  }) = _DSSimpleTableColumn;
 
   /// Whether the column has a custom cell builder
   bool get hasCustomCellBuilder => cellBuilder != null;
@@ -213,7 +213,7 @@ class DSSimpleTableRow with _$DSSimpleTableRow {
 
     /// Accessibility label for the row
     String? semanticLabel,
-  }) = _AppSimpleTableRow;
+  }) = _DSSimpleTableRow;
 
   /// Get value for a specific column
   dynamic getValue(String columnId) => data[columnId];
@@ -253,7 +253,7 @@ class DSSimpleTableSelection with _$DSSimpleTableSelection {
 
     /// Callback when selection changes
     DSSimpleTableSelectionCallback? onSelectionChanged,
-  }) = _AppSimpleTableSelection;
+  }) = _DSSimpleTableSelection;
 }
 
 /// Sort configuration
@@ -269,7 +269,7 @@ class DSSimpleTableSort with _$DSSimpleTableSort {
 
     /// Callback when sort changes
     DSSimpleTableSortCallback? onSortChanged,
-  }) = _AppSimpleTableSort;
+  }) = _DSSimpleTableSort;
 }
 
 /// Empty state configuration
@@ -341,7 +341,7 @@ class DSSimpleTableTheme with _$DSSimpleTableTheme {
 
     /// Custom header style
     TextStyle? headerStyle,
-  }) = _AppSimpleTableTheme;
+  }) = _DSSimpleTableTheme;
 }
 
 /// Platform-specific configuration

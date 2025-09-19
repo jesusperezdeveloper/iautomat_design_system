@@ -40,7 +40,7 @@ class DSCheckboxColors with _$DSCheckboxColors {
     required Color pressedOverlay,
     required Color labelColor,
     required Color disabledLabelColor,
-  }) = _AppCheckboxColors;
+  }) = _DSCheckboxColors;
 
   const DSCheckboxColors._();
 

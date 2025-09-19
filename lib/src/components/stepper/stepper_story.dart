@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_stepper.dart';
+import 'ds_stepper.dart';
 import 'stepper_config.dart';
 
 class DSStepperStory extends StatefulWidget {

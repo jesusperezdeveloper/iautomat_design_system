@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/empty_state/app_empty_state.dart';
+import 'package:iautomat_design_system/src/components/empty_state/ds_empty_state.dart';
 
 /// Story interactivo que demuestra el uso del widget DSEmptyState
 /// con todas sus variantes, estados y configuraciones

@@ -3,7 +3,7 @@ import 'package:flutter/semantics.dart';
 import '../../theme/colors.dart';
 import '../../theme/spacing.dart';
 import '../../theme/typography.dart';
-import '../../theme/app_theme.dart';
+import '../../theme/ds_theme.dart';
 
 /// Enumeración para las variantes de botones disponibles
 enum ButtonVariant {

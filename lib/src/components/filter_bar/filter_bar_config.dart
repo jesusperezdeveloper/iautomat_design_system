@@ -380,7 +380,7 @@ class DSFilter with _$DSFilter {
 
     /// Error message
     String? errorMessage,
-  }) = _AppFilter;
+  }) = _DSFilter;
 
   /// Whether the filter has a value set
   bool get hasValue {
@@ -493,7 +493,7 @@ class DSFilterOption with _$DSFilterOption {
 
     /// Child options for hierarchical filters
     @Default([]) List<DSFilterOption> children,
-  }) = _AppFilterOption;
+  }) = _DSFilterOption;
 }
 
 /// Filter group for organizing related filters
@@ -517,7 +517,7 @@ class DSFilterGroup with _$DSFilterGroup {
 
     /// Whether the group is visible
     @Default(true) bool isVisible,
-  }) = _AppFilterGroup;
+  }) = _DSFilterGroup;
 }
 
 /// Summary builder function type

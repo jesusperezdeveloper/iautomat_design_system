@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/progress/app_progress.dart';
+import 'package:iautomat_design_system/src/components/progress/ds_progress.dart';
 
 /// Story interactivo que demuestra el uso del widget DSProgress
 /// con todas sus variantes, estados y configuraciones

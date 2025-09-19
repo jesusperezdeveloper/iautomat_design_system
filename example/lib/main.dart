@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
-import 'stories/app_scaffold_stories.dart';
-import 'stories/app_top_app_bar_stories.dart';
-import 'stories/app_media_viewer_story.dart';
-import 'stories/app_cart_widget_story.dart';
-import 'stories/app_checkout_forms_story.dart';
+import 'stories/ds_scaffold_stories.dart';
+import 'stories/ds_top_app_bar_stories.dart';
+import 'stories/ds_media_viewer_story.dart';
+import 'stories/ds_cart_widget_story.dart';
+import 'stories/ds_checkout_forms_story.dart';
 import 'pages/camera_picker_story.dart';
 
 void main() {

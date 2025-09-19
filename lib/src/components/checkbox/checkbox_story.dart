@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_checkbox.dart';
+import 'ds_checkbox.dart';
 import 'checkbox_config.dart';
 
 class CheckboxStory extends StatelessWidget {

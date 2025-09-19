@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/tour/app_tour.dart';
-import 'package:iautomat_design_system/src/components/tour/app_tour_config.dart';
+import 'package:iautomat_design_system/src/components/tour/ds_tour.dart';
+import 'package:iautomat_design_system/src/components/tour/ds_tour_config.dart';
 
 /// Story examples for DSTour component
 ///

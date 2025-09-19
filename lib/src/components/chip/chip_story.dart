@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/chip/app_chip.dart';
+import 'package:iautomat_design_system/src/components/chip/ds_chip.dart';
 import 'package:iautomat_design_system/src/components/chip/chip_config.dart';
 
 /// Storybook examples for DSChip component

@@ -77,7 +77,7 @@ class DSMetricCardDelta with _$DSMetricCardDelta {
     Color? color,
     IconData? icon,
     DSMetricCardDeltaStyle? style,
-  }) = _AppMetricCardDelta;
+  }) = _DSMetricCardDelta;
 
   bool get isPositive => value > 0;
   bool get isNegative => value < 0;
@@ -127,7 +127,7 @@ class DSMetricCardDataPoint with _$DSMetricCardDataPoint {
     required DateTime timestamp,
     String? label,
     Color? color,
-  }) = _AppMetricCardDataPoint;
+  }) = _DSMetricCardDataPoint;
 }
 
 enum DSMetricCardVariant {
@@ -213,7 +213,7 @@ class DSMetricCardStyle with _$DSMetricCardStyle {
     double? spacing,
     CrossAxisAlignment? crossAxisAlignment,
     MainAxisAlignment? mainAxisAlignment,
-  }) = _AppMetricCardStyle;
+  }) = _DSMetricCardStyle;
 
   DSMetricCardStyle copyWithState(DSMetricCardState state) {
     switch (state) {
@@ -268,7 +268,7 @@ class DSMetricCardDeltaStyle with _$DSMetricCardDeltaStyle {
     TextStyle? textStyle,
     double? iconSize,
     double? spacing,
-  }) = _AppMetricCardDeltaStyle;
+  }) = _DSMetricCardDeltaStyle;
 }
 
 @freezed
@@ -287,7 +287,7 @@ class DSMetricCardSparklineStyle with _$DSMetricCardSparklineStyle {
     @Default(false) bool showPoints,
     double? pointRadius,
     Color? pointColor,
-  }) = _AppMetricCardSparklineStyle;
+  }) = _DSMetricCardSparklineStyle;
 }
 
 @freezed
@@ -305,7 +305,7 @@ class DSMetricCardInteraction with _$DSMetricCardInteraction {
     GestureLongPressCallback? onLongPress,
     GestureTapCallback? onSecondaryTap,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppMetricCardInteraction;
+  }) = _DSMetricCardInteraction;
 }
 
 @freezed
@@ -324,7 +324,7 @@ class DSMetricCardAccessibility with _$DSMetricCardAccessibility {
     @Default(false) bool link,
     @Default(false) bool header,
     @Default(false) bool readOnly,
-  }) = _AppMetricCardAccessibility;
+  }) = _DSMetricCardAccessibility;
 }
 
 @freezed
@@ -336,7 +336,7 @@ class DSMetricCardAnimation with _$DSMetricCardAnimation {
     @Default(DSMetricCardAnimationType.fade) DSMetricCardAnimationType type,
     Duration? delay,
     VoidCallback? onAnimationComplete,
-  }) = _AppMetricCardAnimation;
+  }) = _DSMetricCardAnimation;
 }
 
 enum DSMetricCardAnimationType {

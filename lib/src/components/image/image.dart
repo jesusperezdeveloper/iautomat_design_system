@@ -8,8 +8,8 @@
 /// - ImageStory: Examples and stories for the component
 library;
 
-export 'app_image.dart';
-export 'app_image_config.dart';
-export 'app_image_responsive_helper.dart';
-export 'app_image_a11y_helper.dart';
+export 'ds_image.dart';
+export 'ds_image_config.dart';
+export 'ds_image_responsive_helper.dart';
+export 'ds_image_a11y_helper.dart';
 export 'image_story.dart';

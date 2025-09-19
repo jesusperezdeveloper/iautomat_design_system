@@ -243,7 +243,7 @@ class DSTagStyle with _$DSTagStyle {
     double? iconSize,
     double? spacing,
     Offset? offset,
-  }) = _AppTagStyle;
+  }) = _DSTagStyle;
 
   DSTagStyle copyWithState(DSTagState state) {
     switch (state) {
@@ -298,7 +298,7 @@ class DSTagInteraction with _$DSTagInteraction {
     GestureTapCallback? onSecondaryTap,
     VoidCallback? onRemove,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppTagInteraction;
+  }) = _DSTagInteraction;
 }
 
 @freezed
@@ -318,7 +318,7 @@ class DSTagAccessibility with _$DSTagAccessibility {
     @Default(false) bool link,
     @Default(false) bool chip,
     @Default(false) bool readOnly,
-  }) = _AppTagAccessibility;
+  }) = _DSTagAccessibility;
 }
 
 @freezed
@@ -332,7 +332,7 @@ class DSTagAnimation with _$DSTagAnimation {
     VoidCallback? onAnimationComplete,
     @Default(false) bool pulse,
     @Default(Duration(seconds: 2)) Duration pulseDuration,
-  }) = _AppTagAnimation;
+  }) = _DSTagAnimation;
 }
 
 enum DSTagAnimationType {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'calendar_config.dart';
-import 'app_calendar.dart';
+import 'ds_calendar.dart';
 
 /// Story configurations para demostrar el componente DSCalendar
 ///

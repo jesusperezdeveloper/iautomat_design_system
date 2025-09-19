@@ -80,7 +80,7 @@ class DSSelectColors with _$DSSelectColors {
     required Color chipTextColor,
     required Color chipBorderColor,
     required Color chipDeleteIconColor,
-  }) = _AppSelectColors;
+  }) = _DSSelectColors;
 
   const DSSelectColors._();
 
@@ -161,7 +161,7 @@ class DSSelectItem<T> with _$DSSelectItem<T> {
     Widget? trailing,
     @Default(true) bool enabled,
     String? searchableText,
-  }) = _AppSelectItem<T>;
+  }) = _DSSelectItem<T>;
 
   const DSSelectItem._();
 }

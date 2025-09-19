@@ -233,7 +233,7 @@ class DSChipColors with _$DSChipColors {
     @Default(Color(0xFFE8F5E8)) Color filterSurfaceColor,
     @Default(Color(0xFFE3F2FD)) Color choiceSurfaceColor,
     @Default(Color(0xFFFFF3E0)) Color assistSurfaceColor,
-  }) = _AppChipColors;
+  }) = _DSChipColors;
 
   const DSChipColors._();
 
@@ -314,7 +314,7 @@ class DSChipTypography with _$DSChipTypography {
     // Loading text styles
     @Default(TextStyle(fontSize: 14, fontWeight: FontWeight.w400))
     TextStyle loadingStyle,
-  }) = _AppChipTypography;
+  }) = _DSChipTypography;
 
   const DSChipTypography._();
 
@@ -365,7 +365,7 @@ class DSChipIcons with _$DSChipIcons {
     // Action icons
     @Default(Icons.edit) IconData editIcon,
     @Default(Icons.more_horiz) IconData moreIcon,
-  }) = _AppChipIcons;
+  }) = _DSChipIcons;
 }
 
 /// Size configuration for DSChip
@@ -417,7 +417,7 @@ class DSChipSizes with _$DSChipSizes {
     BorderRadius mediumBorderRadius,
     @Default(BorderRadius.all(Radius.circular(10.0)))
     BorderRadius largeBorderRadius,
-  }) = _AppChipSizes;
+  }) = _DSChipSizes;
 }
 
 /// Chip data model for complex chip configurations
@@ -436,7 +436,7 @@ class DSChipData with _$DSChipData {
     bool? deletable,
     bool? enabled,
     Map<String, dynamic>? metadata,
-  }) = _AppChipData;
+  }) = _DSChipData;
 
   const DSChipData._();
 

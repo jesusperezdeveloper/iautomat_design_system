@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'kanban_config.dart';
-import 'app_kanban.dart';
+import 'ds_kanban.dart';
 
 /// Story configurations para demostrar el componente DSKanban
 ///

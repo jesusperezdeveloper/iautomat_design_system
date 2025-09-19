@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_bottom_sheet.dart';
+import 'ds_bottom_sheet.dart';
 
 /// Story para demostrar las diferentes variantes y configuraciones del DSBottomSheet
 class BottomSheetStory extends StatefulWidget {

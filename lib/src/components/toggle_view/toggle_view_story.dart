@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_toggle_view.dart';
+import 'ds_toggle_view.dart';
 import 'toggle_view_config.dart';
 
 /// Story examples for DSToggleView component

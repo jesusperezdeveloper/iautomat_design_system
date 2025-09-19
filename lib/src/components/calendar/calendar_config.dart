@@ -167,7 +167,7 @@ class DSCalendarEvent with _$DSCalendarEvent {
 
     /// Zona horaria del evento
     String? timeZone,
-  }) = _AppCalendarEvent;
+  }) = _DSCalendarEvent;
 
 }
 
@@ -222,7 +222,7 @@ class DSCalendarResource with _$DSCalendarResource {
 
     /// Días no laborables
     @Default(<DateTime>[]) List<DateTime> nonWorkingDays,
-  }) = _AppCalendarResource;
+  }) = _DSCalendarResource;
 
 }
 
@@ -241,7 +241,7 @@ class DSCalendarWorkingHours with _$DSCalendarWorkingHours {
 
     /// Zona horaria
     String? timeZone,
-  }) = _AppCalendarWorkingHours;
+  }) = _DSCalendarWorkingHours;
 
 }
 
@@ -281,7 +281,7 @@ class DSCalendarDateStyle with _$DSCalendarDateStyle {
 
     /// Si es día festivo
     @Default(false) bool isHoliday,
-  }) = _AppCalendarDateStyle;
+  }) = _DSCalendarDateStyle;
 
 }
 
@@ -363,7 +363,7 @@ class DSCalendarLocalization with _$DSCalendarLocalization {
       'loading': 'Cargando...',
     })
     Map<String, String> labels,
-  }) = _AppCalendarLocalization;
+  }) = _DSCalendarLocalization;
 
 }
 

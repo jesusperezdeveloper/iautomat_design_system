@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/menu/app_menu.dart';
+import 'package:iautomat_design_system/src/components/menu/ds_menu.dart';
 
 /// Stories para DSMenu - Ejemplos interactivos del menú
 class MenuStoryExample extends StatefulWidget {

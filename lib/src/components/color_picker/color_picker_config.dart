@@ -123,7 +123,7 @@ class DSColorPickerColors with _$DSColorPickerColors {
     required Color pickerIndicatorColor,
     required Color recentColorsBackgroundColor,
     required Color recentColorsBorderColor,
-  }) = _AppColorPickerColors;
+  }) = _DSColorPickerColors;
 
   const DSColorPickerColors._();
 
@@ -229,7 +229,7 @@ class DSColorValue with _$DSColorValue {
     required Color color,
     @Default(1.0) double alpha,
     @Default(ColorFormat.hex) ColorFormat format,
-  }) = _AppColorValue;
+  }) = _DSColorValue;
 
   const DSColorValue._();
 

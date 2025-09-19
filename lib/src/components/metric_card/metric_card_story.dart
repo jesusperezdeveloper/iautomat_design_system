@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_metric_card.dart';
+import 'ds_metric_card.dart';
 import 'metric_card_config.dart';
 
 class MetricCardStoryExample extends StatefulWidget {

@@ -238,7 +238,7 @@ class DSToggleViewOption with _$DSToggleViewOption {
 
     /// Additional metadata
     Map<String, dynamic>? metadata,
-  }) = _AppToggleViewOption;
+  }) = _DSToggleViewOption;
 
   /// Create option from simple string
   factory DSToggleViewOption.fromString(String label) {
@@ -298,7 +298,7 @@ class DSToggleViewData with _$DSToggleViewData {
 
     /// Additional metadata
     Map<String, dynamic>? metadata,
-  }) = _AppToggleViewData;
+  }) = _DSToggleViewData;
 
   /// Check if a specific option is selected
   bool isSelected(String optionId) {

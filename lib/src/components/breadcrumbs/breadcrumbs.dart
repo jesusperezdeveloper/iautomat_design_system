@@ -1,2 +1,2 @@
-export 'app_breadcrumbs.dart';
-export 'app_breadcrumbs_config.dart';
+export 'ds_breadcrumbs.dart';
+export 'ds_breadcrumbs_config.dart';

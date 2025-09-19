@@ -9,6 +9,6 @@
 /// - Drawer story examples for development
 library;
 
-export 'app_drawer.dart' hide DSDrawerState;
-export 'app_drawer_config.dart';
+export 'ds_drawer.dart' hide DSDrawerState;
+export 'ds_drawer_config.dart';
 export 'drawer_story.dart';

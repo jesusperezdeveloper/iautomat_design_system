@@ -196,7 +196,7 @@ class DSListItemLeading with _$DSListItemLeading {
 
     /// Custom data
     Map<String, dynamic>? customData,
-  }) = _AppListItemLeading;
+  }) = _DSListItemLeading;
 
   /// Whether the leading has interactive content
   bool get isInteractive =>
@@ -283,7 +283,7 @@ class DSListItemTrailing with _$DSListItemTrailing {
 
     /// Custom data
     Map<String, dynamic>? customData,
-  }) = _AppListItemTrailing;
+  }) = _DSListItemTrailing;
 
   /// Whether the trailing has interactive content
   bool get isInteractive =>
@@ -346,7 +346,7 @@ class DSListItemSwipeAction with _$DSListItemSwipeAction {
 
     /// Custom data
     Map<String, dynamic>? customData,
-  }) = _AppListItemSwipeAction;
+  }) = _DSListItemSwipeAction;
 }
 
 /// Swipe actions configuration
@@ -379,7 +379,7 @@ class DSListItemSwipeActions with _$DSListItemSwipeActions {
 
     /// Custom data
     Map<String, dynamic>? customData,
-  }) = _AppListItemSwipeActions;
+  }) = _DSListItemSwipeActions;
 
   /// Whether there are any swipe actions
   bool get hasActions => leading.isNotEmpty || trailing.isNotEmpty;
@@ -457,7 +457,7 @@ class DSListItemTheme with _$DSListItemTheme {
 
     /// Custom properties
     Map<String, dynamic>? customProperties,
-  }) = _AppListItemTheme;
+  }) = _DSListItemTheme;
 }
 
 /// List item style configuration
@@ -515,7 +515,7 @@ class DSListItemStyle with _$DSListItemStyle {
 
     /// Custom properties
     Map<String, dynamic>? customProperties,
-  }) = _AppListItemStyle;
+  }) = _DSListItemStyle;
 
   /// Get content padding for the given density
   EdgeInsets getContentPaddingForDensity(DSListItemDensity density) {

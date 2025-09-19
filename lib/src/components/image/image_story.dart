@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:iautomat_design_system/src/components/image/app_image.dart';
-import 'package:iautomat_design_system/src/components/image/app_image_config.dart';
+import 'package:iautomat_design_system/src/components/image/ds_image.dart';
+import 'package:iautomat_design_system/src/components/image/ds_image_config.dart';
 import 'package:iautomat_design_system/src/theme/colors.dart';
 import 'package:iautomat_design_system/src/theme/spacing.dart';
 

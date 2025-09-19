@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/drawer/app_drawer.dart';
+import 'package:iautomat_design_system/src/components/drawer/ds_drawer.dart';
 
 /// Stories para DSDrawer - Ejemplos interactivos del drawer
 class DrawerStoryExample extends StatefulWidget {

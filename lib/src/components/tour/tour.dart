@@ -11,6 +11,6 @@
 /// - Tour story examples for development
 library;
 
-export 'app_tour.dart';
-export 'app_tour_config.dart';
+export 'ds_tour.dart';
+export 'ds_tour_config.dart';
 export 'tour_story.dart';

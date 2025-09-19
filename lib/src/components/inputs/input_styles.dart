@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../theme/colors.dart';
 import '../../theme/spacing.dart';
 import '../../theme/typography.dart';
-import '../../theme/app_theme.dart';
+import '../../theme/ds_theme.dart';
 
 /// Enumeración para los tipos de input disponibles
 enum InputType {

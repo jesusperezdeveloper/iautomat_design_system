@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_combobox.dart';
+import 'ds_combobox.dart';
 import 'combobox_config.dart';
 
 class ComboBoxStory extends StatefulWidget {

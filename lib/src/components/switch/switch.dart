@@ -1,2 +1,2 @@
-export 'app_switch.dart';
-export 'app_switch_config.dart';
+export 'ds_switch.dart';
+export 'ds_switch_config.dart';

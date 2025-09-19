@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import 'app_chart.dart';
+import 'ds_chart.dart';
 
 class ChartStory extends StatefulWidget {
   const ChartStory({super.key});

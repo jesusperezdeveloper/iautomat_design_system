@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_tooltip.dart';
+import 'ds_tooltip.dart';
 
 class TooltipStory extends StatefulWidget {
   const TooltipStory({super.key});

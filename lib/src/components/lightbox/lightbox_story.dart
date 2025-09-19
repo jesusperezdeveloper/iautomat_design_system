@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/lightbox/app_lightbox.dart';
-import 'package:iautomat_design_system/src/components/lightbox/app_lightbox_config.dart';
+import 'package:iautomat_design_system/src/components/lightbox/ds_lightbox.dart';
+import 'package:iautomat_design_system/src/components/lightbox/ds_lightbox_config.dart';
 
 /// Story examples for DSLightbox component
 ///

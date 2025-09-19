@@ -187,7 +187,7 @@ class DSKanbanColumn with _$DSKanbanColumn {
     double? width,
     double? minHeight,
     double? maxHeight,
-  }) = _AppKanbanColumn;
+  }) = _DSKanbanColumn;
 
   bool get hasTitle => title.isNotEmpty;
   bool get hasSubtitle => subtitle != null && subtitle!.isNotEmpty;
@@ -282,7 +282,7 @@ class DSKanbanCard with _$DSKanbanCard {
     @Default(false) bool archived,
     double? height,
     int? order,
-  }) = _AppKanbanCard;
+  }) = _DSKanbanCard;
 
   bool get hasTitle => title != null && title!.isNotEmpty;
   bool get hasSubtitle => subtitle != null && subtitle!.isNotEmpty;
@@ -777,7 +777,7 @@ class DSKanbanStyle with _$DSKanbanStyle {
     TextStyle? subtitleStyle,
     TextStyle? descriptionStyle,
     Offset? offset,
-  }) = _AppKanbanStyle;
+  }) = _DSKanbanStyle;
 
   DSKanbanStyle copyWithState(DSKanbanState state) {
     switch (state) {
@@ -836,7 +836,7 @@ class DSKanbanInteraction with _$DSKanbanInteraction {
     DSKanbanColumnCallback? onColumnTap,
     DSKanbanCardCallback? onCardTap,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppKanbanInteraction;
+  }) = _DSKanbanInteraction;
 }
 
 @freezed
@@ -856,7 +856,7 @@ class DSKanbanAccessibility with _$DSKanbanAccessibility {
     @Default(false) bool button,
     @Default(false) bool list,
     @Default(false) bool readOnly,
-  }) = _AppKanbanAccessibility;
+  }) = _DSKanbanAccessibility;
 }
 
 @freezed
@@ -873,7 +873,7 @@ class DSKanbanAnimation with _$DSKanbanAnimation {
     @Default(false) bool autoPlay,
     @Default(Duration(milliseconds: 300)) Duration dragDuration,
     @Default(Curves.elasticOut) Curve dragCurve,
-  }) = _AppKanbanAnimation;
+  }) = _DSKanbanAnimation;
 }
 
 enum DSKanbanAnimationType {

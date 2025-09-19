@@ -112,7 +112,7 @@ class DSDatePickerColors with _$DSDatePickerColors {
     required Color clearButtonHoverColor,
     required Color dialogBarrierColor,
     required Color dialogShadowColor,
-  }) = _AppDatePickerColors;
+  }) = _DSDatePickerColors;
 
   const DSDatePickerColors._();
 
@@ -207,7 +207,7 @@ class DSDateRange with _$DSDateRange {
   const factory DSDateRange({
     DateTime? start,
     DateTime? end,
-  }) = _AppDateRange;
+  }) = _DSDateRange;
 
   const DSDateRange._();
 
@@ -253,7 +253,7 @@ class DSTimeValue with _$DSTimeValue {
     required int hour,
     required int minute,
     int? second,
-  }) = _AppTimeValue;
+  }) = _DSTimeValue;
 
   const DSTimeValue._();
 

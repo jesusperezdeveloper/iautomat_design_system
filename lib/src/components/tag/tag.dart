@@ -1,2 +1,2 @@
-export 'app_tag.dart';
+export 'ds_tag.dart';
 export 'tag_config.dart';

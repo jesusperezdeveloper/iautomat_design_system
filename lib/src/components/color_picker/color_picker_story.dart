@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/color_picker/app_color_picker.dart';
+import 'package:iautomat_design_system/src/components/color_picker/ds_color_picker.dart';
 import 'package:iautomat_design_system/src/components/color_picker/color_picker_config.dart';
 
 /// Storybook examples for DSColorPicker component

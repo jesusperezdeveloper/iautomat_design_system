@@ -80,7 +80,7 @@ class DSSliderColors with _$DSSliderColors {
     required Color loadingIndicatorColor,
     required Color rangeSelectionColor,
     required Color rangeThumbColor,
-  }) = _AppSliderColors;
+  }) = _DSSliderColors;
 
   const DSSliderColors._();
 
@@ -148,7 +148,7 @@ class DSSliderMark with _$DSSliderMark {
     Widget? icon,
     Color? color,
     Map<String, dynamic>? metadata,
-  }) = _AppSliderMark;
+  }) = _DSSliderMark;
 
   const DSSliderMark._();
 
@@ -168,7 +168,7 @@ class DSSliderRangeValue with _$DSSliderRangeValue {
   const factory DSSliderRangeValue({
     required double start,
     required double end,
-  }) = _AppSliderRangeValue;
+  }) = _DSSliderRangeValue;
 
   const DSSliderRangeValue._();
 

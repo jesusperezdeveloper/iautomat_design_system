@@ -246,7 +246,7 @@ class DSAvatarStyle with _$DSAvatarStyle {
     Offset? offset,
     BoxFit? imageFit,
     FilterQuality? filterQuality,
-  }) = _AppAvatarStyle;
+  }) = _DSAvatarStyle;
 
   DSAvatarStyle copyWithState(DSAvatarState state) {
     switch (state) {
@@ -302,7 +302,7 @@ class DSAvatarInteraction with _$DSAvatarInteraction {
     GestureLongPressCallback? onLongPress,
     GestureTapCallback? onSecondaryTap,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppAvatarInteraction;
+  }) = _DSAvatarInteraction;
 }
 
 @freezed
@@ -321,7 +321,7 @@ class DSAvatarAccessibility with _$DSAvatarAccessibility {
     @Default(false) bool image,
     @Default(false) bool header,
     @Default(false) bool readOnly,
-  }) = _AppAvatarAccessibility;
+  }) = _DSAvatarAccessibility;
 }
 
 @freezed
@@ -335,7 +335,7 @@ class DSAvatarAnimation with _$DSAvatarAnimation {
     VoidCallback? onAnimationComplete,
     @Default(false) bool pulse,
     @Default(Duration(seconds: 2)) Duration pulseDuration,
-  }) = _AppAvatarAnimation;
+  }) = _DSAvatarAnimation;
 }
 
 enum DSAvatarAnimationType {

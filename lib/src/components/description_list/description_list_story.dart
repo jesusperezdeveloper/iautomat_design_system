@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_description_list.dart';
+import 'ds_description_list.dart';
 import 'description_list_config.dart';
 
 class DescriptionListStoryExample extends StatefulWidget {

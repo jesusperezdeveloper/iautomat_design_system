@@ -246,7 +246,7 @@ class DSPaginationData with _$DSPaginationData {
     // Metadata
     DateTime? lastUpdated,
     Map<String, dynamic>? metadata,
-  }) = _AppPaginationData;
+  }) = _DSPaginationData;
 
   /// Whether there are any items
   bool get hasItems => totalItems > 0;

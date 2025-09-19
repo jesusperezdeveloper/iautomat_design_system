@@ -6,6 +6,6 @@
 /// - Filter bar stories and examples
 library;
 
-export 'app_filter_bar.dart';
+export 'ds_filter_bar.dart';
 export 'filter_bar_config.dart';
 export 'filter_bar_story.dart';

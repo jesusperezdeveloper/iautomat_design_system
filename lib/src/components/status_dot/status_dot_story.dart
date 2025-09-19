@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/status_dot/app_status_dot.dart';
+import 'package:iautomat_design_system/src/components/status_dot/ds_status_dot.dart';
 
 /// Story interactivo que demuestra el uso del widget DSStatusDot
 /// con todas sus variantes, estados y configuraciones

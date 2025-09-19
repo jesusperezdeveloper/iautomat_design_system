@@ -314,7 +314,7 @@ class DSTreeNode with _$DSTreeNode {
 
     /// Custom data associated with the node
     dynamic data,
-  }) = _AppTreeNode;
+  }) = _DSTreeNode;
 
   /// Whether the node can be expanded
   bool get canExpand => !isLeaf && (children.isNotEmpty || hasChildren);

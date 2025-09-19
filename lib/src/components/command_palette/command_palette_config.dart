@@ -287,7 +287,7 @@ class DSCommandResult with _$DSCommandResult {
 
     /// Category for grouping
     String? category,
-  }) = _AppCommandResult;
+  }) = _DSCommandResult;
 
   /// Create a navigation result
   factory DSCommandResult.navigation({
@@ -445,7 +445,7 @@ class DSCommandPaletteData with _$DSCommandPaletteData {
 
     /// Additional metadata
     Map<String, dynamic>? metadata,
-  }) = _AppCommandPaletteData;
+  }) = _DSCommandPaletteData;
 
   /// Get currently selected result
   DSCommandResult? get selectedResult {

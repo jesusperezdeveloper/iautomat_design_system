@@ -6,6 +6,6 @@
 /// - Validators for form validation
 library;
 
-export 'package:iautomat_design_system/src/components/inputs/app_input.dart';
+export 'package:iautomat_design_system/src/components/inputs/ds_input.dart';
 export 'package:iautomat_design_system/src/components/inputs/input_styles.dart';
 export 'package:iautomat_design_system/src/components/inputs/validators.dart';

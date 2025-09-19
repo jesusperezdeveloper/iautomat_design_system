@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:iautomat_design_system/src/components/drawer/app_drawer.dart';
+import 'package:iautomat_design_system/src/components/drawer/ds_drawer.dart';
 import 'package:iautomat_design_system/src/components/drawer/drawer_story.dart';
 
 void main() {

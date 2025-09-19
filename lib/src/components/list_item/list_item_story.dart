@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/list_item/app_list_item.dart';
+import 'package:iautomat_design_system/src/components/list_item/ds_list_item.dart';
 import 'package:iautomat_design_system/src/components/list_item/list_item_config.dart';
 
 /// List Item Stories and Examples

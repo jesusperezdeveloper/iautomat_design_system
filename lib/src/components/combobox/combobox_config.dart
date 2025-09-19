@@ -86,7 +86,7 @@ class DSComboBoxColors with _$DSComboBoxColors {
     required Color highlightBackgroundColor,
     required Color loadingIndicatorColor,
     required Color noResultsTextColor,
-  }) = _AppComboBoxColors;
+  }) = _DSComboBoxColors;
 
   const DSComboBoxColors._();
 
@@ -164,7 +164,7 @@ class DSComboBoxSuggestion<T> with _$DSComboBoxSuggestion<T> {
     @Default(true) bool enabled,
     String? searchableText,
     Map<String, dynamic>? metadata,
-  }) = _AppComboBoxSuggestion<T>;
+  }) = _DSComboBoxSuggestion<T>;
 
   const DSComboBoxSuggestion._();
 

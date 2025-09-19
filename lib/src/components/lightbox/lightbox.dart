@@ -10,6 +10,6 @@
 /// - Lightbox story examples for development
 library;
 
-export 'app_lightbox.dart';
-export 'app_lightbox_config.dart';
+export 'ds_lightbox.dart';
+export 'ds_lightbox_config.dart';
 export 'lightbox_story.dart';

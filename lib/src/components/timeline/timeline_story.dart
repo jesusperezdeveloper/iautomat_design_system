@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_timeline.dart';
+import 'ds_timeline.dart';
 import 'timeline_config.dart';
 
 class TimelineStoryExample extends StatefulWidget {

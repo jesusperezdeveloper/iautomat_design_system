@@ -9,7 +9,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'app_filter_bar.dart';
+import 'ds_filter_bar.dart';
 import 'filter_bar_config.dart';
 
 /// Stories collection for DSFilterBar component

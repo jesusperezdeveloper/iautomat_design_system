@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:iautomat_design_system/src/components/menu/app_menu.dart';
+import 'package:iautomat_design_system/src/components/menu/ds_menu.dart';
 import 'package:iautomat_design_system/src/components/menu/menu_story.dart';
 
 void main() {

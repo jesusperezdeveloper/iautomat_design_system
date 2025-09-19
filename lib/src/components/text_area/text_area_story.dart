@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_text_area.dart';
+import 'ds_text_area.dart';
 import 'text_area_config.dart';
 
 class TextAreaStory extends StatelessWidget {

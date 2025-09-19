@@ -6,7 +6,7 @@
 /// - Button size and state definitions
 library;
 
-export 'app_button.dart';
-export 'app_button_config.dart';
+export 'ds_button.dart';
+export 'ds_button_config.dart';
 export 'button_styles.dart'
     show DSButtonStyles, ButtonVariant, ButtonSize, ButtonSizeConfig;

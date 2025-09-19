@@ -31,7 +31,9 @@
       "Bash(xargs sed:*)",
       "Bash(python3:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(./rename_script.sh)",
+      "Bash(./update_imports.sh)"
     ],
     "deny": [],
     "ask": []

@@ -1,4 +1,4 @@
 library;
 
-export 'app_scaffold.dart';
-export 'app_scaffold_config.dart';
+export 'ds_scaffold.dart';
+export 'ds_scaffold_config.dart';

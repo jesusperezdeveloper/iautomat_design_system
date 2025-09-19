@@ -9,7 +9,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'app_pagination.dart';
+import 'ds_pagination.dart';
 import 'pagination_config.dart';
 
 /// Stories collection for DSPagination component

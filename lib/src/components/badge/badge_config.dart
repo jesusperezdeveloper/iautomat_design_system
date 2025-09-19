@@ -203,7 +203,7 @@ class DSBadgeStyle with _$DSBadgeStyle {
     double? minWidth,
     double? minHeight,
     Offset? offset,
-  }) = _AppBadgeStyle;
+  }) = _DSBadgeStyle;
 
   DSBadgeStyle copyWithState(DSBadgeState state) {
     switch (state) {
@@ -259,7 +259,7 @@ class DSBadgeInteraction with _$DSBadgeInteraction {
     GestureLongPressCallback? onLongPress,
     GestureTapCallback? onSecondaryTap,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppBadgeInteraction;
+  }) = _DSBadgeInteraction;
 }
 
 @freezed
@@ -278,7 +278,7 @@ class DSBadgeAccessibility with _$DSBadgeAccessibility {
     @Default(false) bool link,
     @Default(false) bool header,
     @Default(false) bool readOnly,
-  }) = _AppBadgeAccessibility;
+  }) = _DSBadgeAccessibility;
 }
 
 @freezed
@@ -292,7 +292,7 @@ class DSBadgeAnimation with _$DSBadgeAnimation {
     VoidCallback? onAnimationComplete,
     @Default(false) bool pulse,
     @Default(Duration(seconds: 2)) Duration pulseDuration,
-  }) = _AppBadgeAnimation;
+  }) = _DSBadgeAnimation;
 }
 
 enum DSBadgeAnimationType {

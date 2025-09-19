@@ -69,7 +69,7 @@ class DSDescriptionListItem with _$DSDescriptionListItem {
     @Default(true) bool enabled,
     @Default(false) bool highlighted,
     @Default(false) bool divider,
-  }) = _AppDescriptionListItem;
+  }) = _DSDescriptionListItem;
 
   bool get hasSecondaryDescription =>
       secondaryDescription != null && secondaryDescription!.isNotEmpty;
@@ -157,7 +157,7 @@ class DSDescriptionListStyle with _$DSDescriptionListStyle {
     TextStyle? secondaryDescriptionTextStyle,
     DSDescriptionListItemStyle? itemStyle,
     DSDescriptionListDividerStyle? dividerStyle,
-  }) = _AppDescriptionListStyle;
+  }) = _DSDescriptionListStyle;
 
   DSDescriptionListStyle copyWithState(DSDescriptionListState state) {
     switch (state) {
@@ -222,7 +222,7 @@ class DSDescriptionListItemStyle with _$DSDescriptionListItemStyle {
     double? descriptionWidth,
     CrossAxisAlignment? crossAxisAlignment,
     MainAxisAlignment? mainAxisAlignment,
-  }) = _AppDescriptionListItemStyle;
+  }) = _DSDescriptionListItemStyle;
 
   DSDescriptionListItemStyle copyWithState(DSDescriptionListItemState state,
       {bool highlighted = false}) {
@@ -270,7 +270,7 @@ class DSDescriptionListDividerStyle with _$DSDescriptionListDividerStyle {
     double? height,
     double? indent,
     double? endIndent,
-  }) = _AppDescriptionListDividerStyle;
+  }) = _DSDescriptionListDividerStyle;
 }
 
 @freezed
@@ -288,7 +288,7 @@ class DSDescriptionListInteraction with _$DSDescriptionListInteraction {
     GestureLongPressCallback? onLongPress,
     GestureTapCallback? onSecondaryTap,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppDescriptionListInteraction;
+  }) = _DSDescriptionListInteraction;
 }
 
 @freezed
@@ -309,7 +309,7 @@ class DSDescriptionListAccessibility with _$DSDescriptionListAccessibility {
     @Default(false) bool textField,
     @Default(false) bool readOnly,
     @Default(false) bool keyboardKey,
-  }) = _AppDescriptionListAccessibility;
+  }) = _DSDescriptionListAccessibility;
 }
 
 @freezed
@@ -322,7 +322,7 @@ class DSDescriptionListAnimation with _$DSDescriptionListAnimation {
     DSDescriptionListAnimationType type,
     Duration? delay,
     VoidCallback? onAnimationComplete,
-  }) = _AppDescriptionListAnimation;
+  }) = _DSDescriptionListAnimation;
 }
 
 enum DSDescriptionListAnimationType {
@@ -356,7 +356,7 @@ class DSDescriptionListResponsive with _$DSDescriptionListResponsive {
     double? mobileTermWidth,
     double? tabletTermWidth,
     double? desktopTermWidth,
-  }) = _AppDescriptionListResponsive;
+  }) = _DSDescriptionListResponsive;
 
   DSDescriptionListLayout getLayoutForWidth(double width) {
     if (width < mobileBreakpoint) {

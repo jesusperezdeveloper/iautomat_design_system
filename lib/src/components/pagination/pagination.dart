@@ -6,6 +6,6 @@
 /// - Pagination stories and examples
 library;
 
-export 'app_pagination.dart';
+export 'ds_pagination.dart';
 export 'pagination_config.dart';
 export 'pagination_story.dart';

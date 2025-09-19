@@ -68,7 +68,7 @@ class DSTextAreaColors with _$DSTextAreaColors {
     required Color skeletonHighlightColor,
     required Color scrollbarColor,
     required Color scrollbarThumbColor,
-  }) = _AppTextAreaColors;
+  }) = _DSTextAreaColors;
 
   const DSTextAreaColors._();
 

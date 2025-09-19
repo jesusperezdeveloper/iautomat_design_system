@@ -12,6 +12,6 @@ export 'colors.dart';
 export 'typography.dart';
 export 'spacing.dart';
 export 'borders.dart';
-export 'app_theme.dart';
+export 'ds_theme.dart';
 export 'presets/theme_preset.dart';
 export 'presets/theme_presets.dart';

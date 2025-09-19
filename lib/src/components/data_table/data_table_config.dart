@@ -226,7 +226,7 @@ class DSDataTableColumn with _$DSDataTableColumn {
 
     /// Sort priority (for multi-column sorting)
     int? sortPriority,
-  }) = _AppDataTableColumn;
+  }) = _DSDataTableColumn;
 
   /// Whether the column has a custom cell builder
   bool get hasCustomCellBuilder => cellBuilder != null;
@@ -306,7 +306,7 @@ class DSDataTableRow with _$DSDataTableRow {
 
     /// Which cells are currently being edited (column IDs)
     @Default([]) List<String> editingCells,
-  }) = _AppDataTableRow;
+  }) = _DSDataTableRow;
 
   /// Get value for a specific column
   dynamic getValue(String columnId) => data[columnId];
@@ -349,7 +349,7 @@ class DSDataTableSelection with _$DSDataTableSelection {
 
     /// Callback when selection changes
     DSDataTableSelectionCallback? onSelectionChanged,
-  }) = _AppDataTableSelection;
+  }) = _DSDataTableSelection;
 }
 
 /// Sort configuration
@@ -371,7 +371,7 @@ class DSDataTableSort with _$DSDataTableSort {
 
     /// Callback when sort changes
     DSDataTableSortCallback? onSortChanged,
-  }) = _AppDataTableSort;
+  }) = _DSDataTableSort;
 }
 
 /// Individual sort item for multi-column sorting
@@ -381,7 +381,7 @@ class DSDataTableSortItem with _$DSDataTableSortItem {
     required String columnId,
     required DSDataTableSortDirection direction,
     required int priority,
-  }) = _AppDataTableSortItem;
+  }) = _DSDataTableSortItem;
 }
 
 /// Empty state configuration
@@ -573,7 +573,7 @@ class DSDataTableRowAction with _$DSDataTableRowAction {
     @Default(true) bool visible,
     @Default(true) bool enabled,
     Color? color,
-  }) = _AppDataTableRowAction;
+  }) = _DSDataTableRowAction;
 }
 
 /// Bulk action configuration
@@ -588,7 +588,7 @@ class DSDataTableBulkAction with _$DSDataTableBulkAction {
     @Default(true) bool visible,
     @Default(true) bool enabled,
     Color? color,
-  }) = _AppDataTableBulkAction;
+  }) = _DSDataTableBulkAction;
 }
 
 /// Context menu item configuration
@@ -601,7 +601,7 @@ class DSDataTableContextMenuItem with _$DSDataTableContextMenuItem {
     required DSDataTableContextMenuCallback callback,
     @Default(true) bool enabled,
     @Default(false) bool isDivider,
-  }) = _AppDataTableContextMenuItem;
+  }) = _DSDataTableContextMenuItem;
 }
 
 /// Theme configuration for the table
@@ -652,7 +652,7 @@ class DSDataTableTheme with _$DSDataTableTheme {
 
     /// Custom header style
     TextStyle? headerStyle,
-  }) = _AppDataTableTheme;
+  }) = _DSDataTableTheme;
 }
 
 /// Platform-specific configuration

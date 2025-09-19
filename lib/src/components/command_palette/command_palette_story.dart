@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'app_command_palette.dart';
+import 'ds_command_palette.dart';
 import 'command_palette_config.dart';
 
 /// Story examples for DSCommandPalette component

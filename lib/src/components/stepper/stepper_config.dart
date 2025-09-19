@@ -96,7 +96,7 @@ class DSStepperColors with _$DSStepperColors {
     required Color controlButtonTextColor,
     required Color controlButtonDisabledColor,
     required Color controlButtonDisabledTextColor,
-  }) = _AppStepperColors;
+  }) = _DSStepperColors;
 
   const DSStepperColors._();
 
@@ -191,7 +191,7 @@ class DSStep with _$DSStep {
     Map<String, dynamic>? metadata,
     VoidCallback? onTap,
     String? semanticLabel,
-  }) = _AppStep;
+  }) = _DSStep;
 
   const DSStep._();
 
@@ -213,7 +213,7 @@ class DSStepperControlsBuilder with _$DSStepperControlsBuilder {
     bool? showCancel,
     bool? enableContinue,
     bool? enableCancel,
-  }) = _AppStepperControlsBuilder;
+  }) = _DSStepperControlsBuilder;
 
   const DSStepperControlsBuilder._();
 }

@@ -48,7 +48,7 @@ class DSRadioColors with _$DSRadioColors {
     required Color segmentSelectedBorderColor,
     required Color segmentTextColor,
     required Color segmentSelectedTextColor,
-  }) = _AppRadioColors;
+  }) = _DSRadioColors;
 
   const DSRadioColors._();
 

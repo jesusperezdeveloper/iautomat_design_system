@@ -8,7 +8,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'app_outline_tree.dart';
+import 'ds_outline_tree.dart';
 import 'outline_tree_config.dart';
 
 /// Stories collection for DSOutlineTree component

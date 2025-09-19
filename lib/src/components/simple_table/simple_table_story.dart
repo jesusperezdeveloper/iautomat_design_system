@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/simple_table/app_simple_table.dart';
+import 'package:iautomat_design_system/src/components/simple_table/ds_simple_table.dart';
 import 'package:iautomat_design_system/src/components/simple_table/simple_table_config.dart';
 
 /// Simple Table Stories and Examples

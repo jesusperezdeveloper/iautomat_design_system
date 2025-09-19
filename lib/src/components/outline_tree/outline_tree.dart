@@ -7,6 +7,6 @@
 /// - Tree stories and examples
 library;
 
-export 'app_outline_tree.dart';
+export 'ds_outline_tree.dart';
 export 'outline_tree_config.dart';
 export 'outline_tree_story.dart';

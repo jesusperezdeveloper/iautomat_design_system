@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/file_picker/app_file_picker.dart';
+import 'package:iautomat_design_system/src/components/file_picker/ds_file_picker.dart';
 import 'package:iautomat_design_system/src/components/file_picker/file_picker_config.dart';
 
 /// Storybook examples for DSFilePicker component

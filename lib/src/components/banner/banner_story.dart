@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_banner.dart';
+import 'ds_banner.dart';
 
 class BannerStory extends StatefulWidget {
   const BannerStory({super.key});

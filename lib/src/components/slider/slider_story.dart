@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_slider.dart';
+import 'ds_slider.dart';
 import 'slider_config.dart';
 
 class DSSliderStory extends StatefulWidget {

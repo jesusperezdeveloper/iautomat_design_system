@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_data_table.dart';
+import 'ds_data_table.dart';
 import 'data_table_config.dart';
 
 /// Stories for DSDataTable component demonstrating different variants and configurations

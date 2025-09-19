@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'app_in_page_search.dart';
+import 'ds_in_page_search.dart';
 import 'in_page_search_config.dart';
 
 /// Story examples for DSInPageSearch component

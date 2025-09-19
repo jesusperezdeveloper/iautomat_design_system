@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_dialog.dart';
+import 'ds_dialog.dart';
 
 /// Story para demostrar las diferentes variantes y configuraciones del DSDialog
 class DialogStory extends StatefulWidget {
