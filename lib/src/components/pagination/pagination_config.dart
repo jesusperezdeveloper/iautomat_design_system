@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'pagination_config.freezed.dart';
 
 /// Pagination variant types
-enum AppPaginationVariant {
+enum DSPaginationVariant {
   /// Page-based pagination with numbered pages
   pageBased,
 
@@ -14,7 +14,7 @@ enum AppPaginationVariant {
 }
 
 /// Pagination state types
-enum AppPaginationState {
+enum DSPaginationState {
   /// Default state
   defaultState,
 
@@ -41,7 +41,7 @@ enum AppPaginationState {
 }
 
 /// Pagination size variants
-enum AppPaginationSize {
+enum DSPaginationSize {
   /// Small pagination controls
   small,
 
@@ -53,7 +53,7 @@ enum AppPaginationSize {
 }
 
 /// Pagination layout orientation
-enum AppPaginationLayout {
+enum DSPaginationLayout {
   /// Horizontal layout
   horizontal,
 
@@ -65,7 +65,7 @@ enum AppPaginationLayout {
 }
 
 /// Page button style variants
-enum AppPageButtonStyle {
+enum DSPageButtonStyle {
   /// Filled button style
   filled,
 
@@ -79,18 +79,18 @@ enum AppPageButtonStyle {
   icon,
 }
 
-/// Configuration model for AppPagination
+/// Configuration model for DSPagination
 @freezed
-class AppPaginationConfig with _$AppPaginationConfig {
-  const factory AppPaginationConfig({
+class DSPaginationConfig with _$DSPaginationConfig {
+  const factory DSPaginationConfig({
     // Animation configuration
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
 
     // Size and layout
-    @Default(AppPaginationSize.medium) AppPaginationSize size,
-    @Default(AppPaginationLayout.horizontal) AppPaginationLayout layout,
-    @Default(AppPageButtonStyle.outlined) AppPageButtonStyle buttonStyle,
+    @Default(DSPaginationSize.medium) DSPaginationSize size,
+    @Default(DSPaginationLayout.horizontal) DSPaginationLayout layout,
+    @Default(DSPageButtonStyle.outlined) DSPageButtonStyle buttonStyle,
 
     // Dimensions
     @Default(40.0) double buttonSize,
@@ -181,11 +181,11 @@ class AppPaginationConfig with _$AppPaginationConfig {
     BoxConstraints? constraints,
     EdgeInsets? padding,
     EdgeInsets? margin,
-  }) = _AppPaginationConfig;
+  }) = _DSPaginationConfig;
 
   /// Default configuration for small size
-  static const AppPaginationConfig small = AppPaginationConfig(
-    size: AppPaginationSize.small,
+  static const DSPaginationConfig small = DSPaginationConfig(
+    size: DSPaginationSize.small,
     buttonSize: 32.0,
     spacing: 4.0,
     fontSize: 12.0,
@@ -193,8 +193,8 @@ class AppPaginationConfig with _$AppPaginationConfig {
   );
 
   /// Default configuration for medium size
-  static const AppPaginationConfig medium = AppPaginationConfig(
-    size: AppPaginationSize.medium,
+  static const DSPaginationConfig medium = DSPaginationConfig(
+    size: DSPaginationSize.medium,
     buttonSize: 40.0,
     spacing: 8.0,
     fontSize: 14.0,
@@ -202,8 +202,8 @@ class AppPaginationConfig with _$AppPaginationConfig {
   );
 
   /// Default configuration for large size
-  static const AppPaginationConfig large = AppPaginationConfig(
-    size: AppPaginationSize.large,
+  static const DSPaginationConfig large = DSPaginationConfig(
+    size: DSPaginationSize.large,
     buttonSize: 48.0,
     spacing: 12.0,
     fontSize: 16.0,
@@ -213,10 +213,10 @@ class AppPaginationConfig with _$AppPaginationConfig {
 
 /// Data model for pagination state
 @freezed
-class AppPaginationData with _$AppPaginationData {
-  const AppPaginationData._();
+class DSPaginationData with _$DSPaginationData {
+  const DSPaginationData._();
 
-  const factory AppPaginationData({
+  const factory DSPaginationData({
     // Current pagination state
     @Default(1) int currentPage,
     @Default(10) int pageSize,
@@ -246,7 +246,7 @@ class AppPaginationData with _$AppPaginationData {
     // Metadata
     DateTime? lastUpdated,
     Map<String, dynamic>? metadata,
-  }) = _AppPaginationData;
+  }) = _DSPaginationData;
 
   /// Whether there are any items
   bool get hasItems => totalItems > 0;
@@ -318,8 +318,8 @@ typedef OnCursorChanged = void Function(String? cursor, bool isNext);
 /// Callback function type for page size changes
 typedef OnPageSizeChanged = void Function(int pageSize);
 
-/// Utility functions for AppPagination
-class AppPaginationUtils {
+/// Utility functions for DSPagination
+class DSPaginationUtils {
   /// Calculate total pages from total items and page size
   static int calculateTotalPages(int totalItems, int pageSize) {
     if (pageSize <= 0) return 0;
@@ -401,7 +401,7 @@ class AppPaginationUtils {
   }
 
   /// Validate pagination configuration
-  static bool isValidConfig(AppPaginationData data) {
+  static bool isValidConfig(DSPaginationData data) {
     return data.pageSize > 0 && data.currentPage > 0 && data.totalItems >= 0;
   }
 

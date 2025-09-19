@@ -1,7 +1,7 @@
 name: iautomat_design_system
-description: "A new Flutter package project."
+description: "Sistema de diseño empresarial completo para Flutter - 70+ componentes con prefijo DS, Material 3, accesibilidad WCAG 2.0"
 publish_to: none
-version: 0.0.1
+version: 1.0.0
 
 
 environment:

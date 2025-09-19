@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'app_dialog.dart';
+import 'ds_dialog.dart';
 
-/// Story para demostrar las diferentes variantes y configuraciones del AppDialog
+/// Story para demostrar las diferentes variantes y configuraciones del DSDialog
 class DialogStory extends StatefulWidget {
   const DialogStory({super.key});
 
@@ -11,7 +11,7 @@ class DialogStory extends StatefulWidget {
 
 class _DialogStoryState extends State<DialogStory> {
   DialogVariant _selectedVariant = DialogVariant.md;
-  AppDialogState _selectedState = AppDialogState.defaultState;
+  DSDialogState _selectedState = DSDialogState.defaultState;
   bool _barrierDismissible = true;
   bool _showTitle = true;
   bool _showContent = true;
@@ -23,7 +23,7 @@ class _DialogStoryState extends State<DialogStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppDialog Story'),
+        title: const Text('DSDialog Story'),
         backgroundColor: Theme.of(context).colorScheme.surface,
       ),
       body: Row(
@@ -72,7 +72,7 @@ class _DialogStoryState extends State<DialogStory> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Ejemplos de AppDialog',
+                      'Ejemplos de DSDialog',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 32),
@@ -151,13 +151,13 @@ class _DialogStoryState extends State<DialogStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        DropdownButtonFormField<AppDialogState>(
+        DropdownButtonFormField<DSDialogState>(
           initialValue: _selectedState,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             labelText: 'Estado del dialog',
           ),
-          items: AppDialogState.values.map((state) {
+          items: DSDialogState.values.map((state) {
             return DropdownMenuItem(
               value: state,
               child: Text(_getStateName(state)),
@@ -388,7 +388,7 @@ class _DialogStoryState extends State<DialogStory> {
   }
 
   void _showConfiguredDialog() {
-    final dialog = AppDialog(
+    final dialog = DSDialog(
       variant: _selectedVariant,
       state: _selectedState,
       title: _showTitle ? _getTitleForVariant(_selectedVariant) : null,
@@ -399,29 +399,29 @@ class _DialogStoryState extends State<DialogStory> {
       accessibilitySupport: _accessibilitySupport,
     );
 
-    AppDialog.show(context: context, dialog: dialog);
+    DSDialog.show(context: context, dialog: dialog);
   }
 
   void _showExampleDialog(DialogVariant variant) {
-    final dialog = AppDialog(
+    final dialog = DSDialog(
       variant: variant,
       title: _getTitleForVariant(variant),
       content: _getContentForVariant(variant),
       actions: _getActionsForVariant(variant),
     );
 
-    AppDialog.show(context: context, dialog: dialog);
+    DSDialog.show(context: context, dialog: dialog);
   }
 
   void _showLoadingDialog() {
-    final dialog = AppDialog.md(
+    final dialog = DSDialog.md(
       title: 'Procesando',
       content: const Text('Por favor espere mientras procesamos su solicitud...'),
-      state: AppDialogState.loading,
+      state: DSDialogState.loading,
       barrierDismissible: false,
     );
 
-    AppDialog.show(context: context, dialog: dialog);
+    DSDialog.show(context: context, dialog: dialog);
 
     // Simular carga
     Future.delayed(const Duration(seconds: 3), () {
@@ -432,10 +432,10 @@ class _DialogStoryState extends State<DialogStory> {
   }
 
   void _showSkeletonDialog() {
-    final dialog = AppDialog.md(
+    final dialog = DSDialog.md(
       title: 'Cargando contenido',
       content: const Text('El contenido se está cargando...'),
-      state: AppDialogState.skeleton,
+      state: DSDialogState.skeleton,
       actions: [
         DialogAction(
           label: 'Cancelar',
@@ -444,11 +444,11 @@ class _DialogStoryState extends State<DialogStory> {
       ],
     );
 
-    AppDialog.show(context: context, dialog: dialog);
+    DSDialog.show(context: context, dialog: dialog);
   }
 
   void _showDeleteConfirmation() {
-    final dialog = AppDialog.destructive(
+    final dialog = DSDialog.destructive(
       title: '¿Eliminar elemento?',
       content: const Text(
         'Esta acción no se puede deshacer. El elemento será eliminado permanentemente.',
@@ -473,7 +473,7 @@ class _DialogStoryState extends State<DialogStory> {
       ],
     );
 
-    AppDialog.show(context: context, dialog: dialog);
+    DSDialog.show(context: context, dialog: dialog);
   }
 
   void _showContactForm() {
@@ -481,7 +481,7 @@ class _DialogStoryState extends State<DialogStory> {
     final emailController = TextEditingController();
     final messageController = TextEditingController();
 
-    final dialog = AppDialog.form(
+    final dialog = DSDialog.form(
       title: 'Formulario de Contacto',
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -531,11 +531,11 @@ class _DialogStoryState extends State<DialogStory> {
       ],
     );
 
-    AppDialog.show(context: context, dialog: dialog);
+    DSDialog.show(context: context, dialog: dialog);
   }
 
   void _showDetailedInfo() {
-    final dialog = AppDialog.lg(
+    final dialog = DSDialog.lg(
       title: 'Información Detallada del Sistema',
       content: const SingleChildScrollView(
         child: Column(
@@ -586,7 +586,7 @@ class _DialogStoryState extends State<DialogStory> {
       ],
     );
 
-    AppDialog.show(context: context, dialog: dialog);
+    DSDialog.show(context: context, dialog: dialog);
   }
 
   String _getVariantName(DialogVariant variant) {
@@ -619,23 +619,23 @@ class _DialogStoryState extends State<DialogStory> {
     }
   }
 
-  String _getStateName(AppDialogState state) {
+  String _getStateName(DSDialogState state) {
     switch (state) {
-      case AppDialogState.defaultState:
+      case DSDialogState.defaultState:
         return 'Default';
-      case AppDialogState.hover:
+      case DSDialogState.hover:
         return 'Hover';
-      case AppDialogState.pressed:
+      case DSDialogState.pressed:
         return 'Pressed';
-      case AppDialogState.focus:
+      case DSDialogState.focus:
         return 'Focus';
-      case AppDialogState.selected:
+      case DSDialogState.selected:
         return 'Selected';
-      case AppDialogState.disabled:
+      case DSDialogState.disabled:
         return 'Disabled';
-      case AppDialogState.loading:
+      case DSDialogState.loading:
         return 'Loading';
-      case AppDialogState.skeleton:
+      case DSDialogState.skeleton:
         return 'Skeleton';
     }
   }

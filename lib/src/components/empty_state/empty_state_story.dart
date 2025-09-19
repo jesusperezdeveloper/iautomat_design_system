@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/empty_state/app_empty_state.dart';
+import 'package:iautomat_design_system/src/components/empty_state/ds_empty_state.dart';
 
-/// Story interactivo que demuestra el uso del widget AppEmptyState
+/// Story interactivo que demuestra el uso del widget DSEmptyState
 /// con todas sus variantes, estados y configuraciones
 class EmptyStateStory extends StatefulWidget {
   const EmptyStateStory({super.key});
@@ -12,7 +12,7 @@ class EmptyStateStory extends StatefulWidget {
 
 class _EmptyStateStoryState extends State<EmptyStateStory> {
   EmptyStateVariant _selectedVariant = EmptyStateVariant.illustration;
-  AppEmptyStateState _selectedState = AppEmptyStateState.defaultState;
+  DSEmptyStateState _selectedState = DSEmptyStateState.defaultState;
   String _customTitle = 'No items found';
   String _customDescription =
       'There are no items to display at the moment. Try adding some or adjusting your filters.';
@@ -26,7 +26,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppEmptyState Story'),
+        title: const Text('DSEmptyState Story'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -118,15 +118,15 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
       children: [
         const Text('State:', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
-        DropdownButton<AppEmptyStateState>(
+        DropdownButton<DSEmptyStateState>(
           value: _selectedState,
-          items: AppEmptyStateState.values.map((state) {
+          items: DSEmptyStateState.values.map((state) {
             return DropdownMenuItem(
               value: state,
               child: Text(state.name),
             );
           }).toList(),
-          onChanged: (AppEmptyStateState? value) {
+          onChanged: (DSEmptyStateState? value) {
             if (value != null) {
               setState(() {
                 _selectedState = value;
@@ -327,7 +327,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
             ),
             const SizedBox(height: 24),
             Center(
-              child: AppEmptyState(
+              child: DSEmptyState(
                 variant: _selectedVariant,
                 title: _customTitle,
                 description: _hasDescription ? _customDescription : null,
@@ -382,7 +382,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
             _buildVariantExample(
               'Illustration Variant',
               'Enfoque en la ilustración visual para contexto',
-              AppEmptyState.illustration(
+              DSEmptyState.illustration(
                 title: 'No files found',
                 description:
                     'Upload some files to get started with your project.',
@@ -404,7 +404,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
             _buildVariantExample(
               'CTA Variant',
               'Enfocado en acciones rápidas del usuario',
-              AppEmptyState.cta(
+              DSEmptyState.cta(
                 title: 'Start your first project',
                 description: 'Create a new project to begin working.',
                 defaultIcon: Icons.add_circle_outline,
@@ -464,7 +464,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
               childAspectRatio: 1.5,
               mainAxisSpacing: 16,
               crossAxisSpacing: 16,
-              children: AppEmptyStateState.values.map((state) {
+              children: DSEmptyStateState.values.map((state) {
                 return _buildStateExample(state);
               }).toList(),
             ),
@@ -474,7 +474,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
     );
   }
 
-  Widget _buildStateExample(AppEmptyStateState state) {
+  Widget _buildStateExample(DSEmptyStateState state) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -491,7 +491,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
           ),
           const SizedBox(height: 12),
           Expanded(
-            child: AppEmptyState.cta(
+            child: DSEmptyState.cta(
               title: 'State Demo',
               description: 'Example state',
               state: state,
@@ -521,7 +521,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
             _buildPlatformExample(
               'Desktop Style',
               'Optimizado para pantallas grandes e interacción con mouse',
-              AppEmptyState.illustration(
+              DSEmptyState.illustration(
                 title: 'Welcome to the Dashboard',
                 description:
                     'This is your main workspace. Get started by creating your first project or exploring the available templates.',
@@ -548,7 +548,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
             _buildPlatformExample(
               'Mobile Style',
               'Compacto y optimizado para interacción táctil',
-              AppEmptyState.cta(
+              DSEmptyState.cta(
                 title: 'No messages yet',
                 description: 'Start a conversation with someone new.',
                 defaultIcon: Icons.message_outlined,
@@ -568,7 +568,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
               'Soporte completo para right-to-left',
               Directionality(
                 textDirection: TextDirection.rtl,
-                child: AppEmptyState.illustration(
+                child: DSEmptyState.illustration(
                   title: 'لا توجد عناصر',
                   description:
                       'قم بإضافة بعض العناصر للبدء في استخدام التطبيق.',
@@ -626,7 +626,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
             const SizedBox(height: 16),
             _buildRealWorldExample(
               'E-commerce: Carrito Vacío',
-              AppEmptyState.illustration(
+              DSEmptyState.illustration(
                 title: 'Your cart is empty',
                 description:
                     'Looks like you haven\'t added anything to your cart yet. Start shopping to fill it up!',
@@ -647,7 +647,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
             const SizedBox(height: 24),
             _buildRealWorldExample(
               'Social: Sin Notificaciones',
-              AppEmptyState.cta(
+              DSEmptyState.cta(
                 title: 'You\'re all caught up!',
                 description: 'No new notifications right now.',
                 defaultIcon: Icons.notifications_none,
@@ -663,7 +663,7 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
             const SizedBox(height: 24),
             _buildRealWorldExample(
               'Productividad: Sin Tareas',
-              AppEmptyState.illustration(
+              DSEmptyState.illustration(
                 title: 'No tasks for today',
                 description:
                     'You\'ve completed all your tasks! Take a break or plan ahead for tomorrow.',
@@ -684,11 +684,11 @@ class _EmptyStateStoryState extends State<EmptyStateStory> {
             const SizedBox(height: 24),
             _buildRealWorldExample(
               'Error: Sin Conexión',
-              AppEmptyState.cta(
+              DSEmptyState.cta(
                 title: 'No internet connection',
                 description: 'Please check your connection and try again.',
                 defaultIcon: Icons.wifi_off,
-                state: AppEmptyStateState.disabled,
+                state: DSEmptyStateState.disabled,
                 actions: const [
                   EmptyStateAction(
                     text: 'Retry',

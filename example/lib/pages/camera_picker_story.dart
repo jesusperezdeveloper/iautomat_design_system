@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-/// Story de AppCameraPicker con ejemplos y casos de uso
+/// Story de DSCameraPicker con ejemplos y casos de uso
 class CameraPickerStory extends StatefulWidget {
   const CameraPickerStory({super.key});
 
@@ -10,12 +10,12 @@ class CameraPickerStory extends StatefulWidget {
 }
 
 class _CameraPickerStoryState extends State<CameraPickerStory> {
-  List<AppCameraPickerFile> _selectedFiles = [];
+  List<DSCameraPickerFile> _selectedFiles = [];
   String? _lastError;
   bool _permissionDenied = false;
   bool _cancelled = false;
 
-  void _onPicked(List<AppCameraPickerFile> files) {
+  void _onPicked(List<DSCameraPickerFile> files) {
     setState(() {
       _selectedFiles = files;
       _lastError = null;
@@ -50,17 +50,17 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppCameraPicker Story'),
+        title: const Text('DSCameraPicker Story'),
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(AppSpacing.md),
+        padding: const EdgeInsets.all(DSSpacing.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Información de estado
             _buildStatusCard(),
-            const SizedBox(height: AppSpacing.lg),
+            const SizedBox(height: DSSpacing.lg),
 
             // Casos de uso básicos
             _buildSection(
@@ -69,26 +69,26 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Picker por Defecto',
                   description: 'Permite elegir entre cámara y galería',
-                  widget: const AppCameraPicker(),
+                  widget: const DSCameraPicker(),
                 ),
                 _buildExample(
                   title: 'Solo Cámara',
                   description: 'Acceso directo a la cámara',
-                  widget: const AppCameraPicker(
-                    source: AppCameraPickerSource.camera,
+                  widget: const DSCameraPicker(
+                    source: DSCameraPickerSource.camera,
                   ),
                 ),
                 _buildExample(
                   title: 'Solo Galería',
                   description: 'Acceso directo a la galería',
-                  widget: const AppCameraPicker(
-                    source: AppCameraPickerSource.gallery,
+                  widget: const DSCameraPicker(
+                    source: DSCameraPickerSource.gallery,
                   ),
                 ),
                 _buildExample(
                   title: 'Selección Múltiple',
                   description: 'Permite seleccionar múltiples archivos',
-                  widget: AppCameraPicker(
+                  widget: DSCameraPicker(
                     allowMultiple: true,
                     onPicked: _onPicked,
                     onError: _onError,
@@ -106,34 +106,34 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Estado Deshabilitado',
                   description: 'Componente no interactivo',
-                  widget: const AppCameraPicker(
+                  widget: const DSCameraPicker(
                     enabled: false,
                   ),
                 ),
                 _buildExample(
                   title: 'Estado de Carga',
                   description: 'Muestra indicador de progreso',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      state: AppCameraPickerState.loading,
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      state: DSCameraPickerState.loading,
                     ),
                   ),
                 ),
                 _buildExample(
                   title: 'Estado Skeleton',
                   description: 'Placeholder durante carga inicial',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      state: AppCameraPickerState.skeleton,
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      state: DSCameraPickerState.skeleton,
                     ),
                   ),
                 ),
                 _buildExample(
                   title: 'Estado Focus',
                   description: 'Resaltado para navegación por teclado',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      state: AppCameraPickerState.focus,
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      state: DSCameraPickerState.focus,
                     ),
                   ),
                 ),
@@ -147,27 +147,27 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Variante iOS',
                   description: 'UI estilo iOS con ActionSheet',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      variant: AppCameraPickerVariant.ios,
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      variant: DSCameraPickerVariant.ios,
                     ),
                   ),
                 ),
                 _buildExample(
                   title: 'Variante Android',
                   description: 'UI estilo Android con BottomSheet',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      variant: AppCameraPickerVariant.android,
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      variant: DSCameraPickerVariant.android,
                     ),
                   ),
                 ),
                 _buildExample(
                   title: 'Variante Web',
                   description: 'UI optimizada para navegadores',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      variant: AppCameraPickerVariant.web,
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      variant: DSCameraPickerVariant.web,
                     ),
                   ),
                 ),
@@ -181,7 +181,7 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Textos Personalizados',
                   description: 'Textos e iconos customizados',
-                  widget: const AppCameraPicker(
+                  widget: const DSCameraPicker(
                     buttonText: 'Subir Archivo',
                     buttonIcon: Icons.cloud_upload,
                   ),
@@ -189,9 +189,9 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Colores Personalizados',
                   description: 'Paleta de colores customizada',
-                  widget: AppCameraPicker(
-                    config: AppCameraPickerConfig(
-                      colors: const AppCameraPickerColors(
+                  widget: DSCameraPicker(
+                    config: DSCameraPickerConfig(
+                      colors: const DSCameraPickerColors(
                         backgroundColor: Colors.deepPurple,
                         textColor: Colors.white,
                         iconColor: Colors.white,
@@ -203,9 +203,9 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Espaciado Personalizado',
                   description: 'Tamaños y padding ajustados',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      spacing: AppCameraPickerSpacing(
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      spacing: DSCameraPickerSpacing(
                         borderRadius: 20.0,
                         padding: EdgeInsets.all(20.0),
                         minHeight: 80.0,
@@ -217,9 +217,9 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Sin Animaciones',
                   description: 'Comportamiento estático',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      animation: AppCameraPickerAnimation(
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      animation: DSCameraPickerAnimation(
                         enabled: false,
                       ),
                     ),
@@ -235,10 +235,10 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Solo Videos',
                   description: 'Restricción a archivos de video',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      fileType: AppCameraPickerFileType.video,
-                      behavior: AppCameraPickerBehavior(
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      fileType: DSCameraPickerFileType.video,
+                      behavior: DSCameraPickerBehavior(
                         allowMultiple: true,
                         maxFiles: 3,
                       ),
@@ -248,9 +248,9 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Calidad Personalizada',
                   description: 'Control de calidad de imagen',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      behavior: AppCameraPickerBehavior(
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      behavior: DSCameraPickerBehavior(
                         allowMultiple: false,
                         maxFiles: 1,
                       ),
@@ -260,13 +260,13 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Con Callbacks Completos',
                   description: 'Manejo completo de eventos',
-                  widget: AppCameraPicker(
+                  widget: DSCameraPicker(
                     onPicked: _onPicked,
                     onError: _onError,
                     onPermissionDenied: _onPermissionDenied,
                     onCancelled: _onCancelled,
-                    config: const AppCameraPickerConfig(
-                      behavior: AppCameraPickerBehavior(
+                    config: const DSCameraPickerConfig(
+                      behavior: DSCameraPickerBehavior(
                         allowMultiple: true,
                         maxFiles: 5,
                       ),
@@ -283,9 +283,9 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 _buildExample(
                   title: 'Configuración A11y Completa',
                   description: 'Optimizado para lectores de pantalla',
-                  widget: AppCameraPicker(
-                    config: const AppCameraPickerConfig(
-                      a11yConfig: AppCameraPickerA11yConfig(
+                  widget: DSCameraPicker(
+                    config: const DSCameraPickerConfig(
+                      a11yConfig: DSCameraPickerA11yConfig(
                         semanticsLabel: 'Selector de imágenes personalizado',
                         semanticsDescription: 'Permite seleccionar imágenes desde cámara o galería',
                         semanticsHint: 'Toca dos veces para activar',
@@ -300,7 +300,7 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                   description: 'Soporte para idiomas de derecha a izquierda',
                   widget: Directionality(
                     textDirection: TextDirection.rtl,
-                    child: const AppCameraPicker(
+                    child: const DSCameraPicker(
                       buttonText: 'اختيار صورة',
                     ),
                   ),
@@ -324,57 +324,57 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
   Widget _buildStatusCard() {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
+        padding: const EdgeInsets.all(DSSpacing.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Estado Actual',
-              style: AppTypography.h6,
+              style: DSTypography.h6,
             ),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: DSSpacing.sm),
             if (_selectedFiles.isNotEmpty) ...[
               Text(
                 'Archivos seleccionados: ${_selectedFiles.length}',
-                style: AppTypography.bodyMedium.copyWith(
-                  color: AppColors.success,
+                style: DSTypography.bodyMedium.copyWith(
+                  color: DSColors.success,
                 ),
               ),
               for (final file in _selectedFiles)
                 Padding(
-                  padding: const EdgeInsets.only(left: AppSpacing.md, top: 4),
+                  padding: const EdgeInsets.only(left: DSSpacing.md, top: 4),
                   child: Text(
                     '• ${file.name} (${file.formattedSize})',
-                    style: AppTypography.bodySmall,
+                    style: DSTypography.bodySmall,
                   ),
                 ),
             ],
             if (_lastError != null)
               Text(
                 'Error: $_lastError',
-                style: AppTypography.bodyMedium.copyWith(
-                  color: AppColors.error,
+                style: DSTypography.bodyMedium.copyWith(
+                  color: DSColors.error,
                 ),
               ),
             if (_permissionDenied)
               Text(
                 'Permisos denegados',
-                style: AppTypography.bodyMedium.copyWith(
-                  color: AppColors.warning,
+                style: DSTypography.bodyMedium.copyWith(
+                  color: DSColors.warning,
                 ),
               ),
             if (_cancelled)
               Text(
                 'Operación cancelada',
-                style: AppTypography.bodyMedium.copyWith(
-                  color: AppColors.gray600,
+                style: DSTypography.bodyMedium.copyWith(
+                  color: DSColors.gray600,
                 ),
               ),
             if (_selectedFiles.isEmpty && _lastError == null && !_permissionDenied && !_cancelled)
               Text(
                 'Ningún archivo seleccionado',
-                style: AppTypography.bodyMedium.copyWith(
-                  color: AppColors.gray600,
+                style: DSTypography.bodyMedium.copyWith(
+                  color: DSColors.gray600,
                 ),
               ),
           ],
@@ -392,11 +392,11 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
       children: [
         Text(
           title,
-          style: AppTypography.h5,
+          style: DSTypography.h5,
         ),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: DSSpacing.md),
         ...children,
-        const SizedBox(height: AppSpacing.lg),
+        const SizedBox(height: DSSpacing.lg),
       ],
     );
   }
@@ -407,24 +407,24 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
     required Widget widget,
   }) {
     return Card(
-      margin: const EdgeInsets.only(bottom: AppSpacing.md),
+      margin: const EdgeInsets.only(bottom: DSSpacing.md),
       child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
+        padding: const EdgeInsets.all(DSSpacing.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
-              style: AppTypography.labelLarge,
+              style: DSTypography.labelLarge,
             ),
             const SizedBox(height: 4),
             Text(
               description,
-              style: AppTypography.bodySmall.copyWith(
-                color: AppColors.gray600,
+              style: DSTypography.bodySmall.copyWith(
+                color: DSColors.gray600,
               ),
             ),
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: DSSpacing.md),
             Center(
               child: SizedBox(
                 width: 300,
@@ -440,24 +440,24 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
 
   Widget _buildFormExample() {
     return Card(
-      margin: const EdgeInsets.only(bottom: AppSpacing.md),
+      margin: const EdgeInsets.only(bottom: DSSpacing.md),
       child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
+        padding: const EdgeInsets.all(DSSpacing.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Formulario de Perfil',
-              style: AppTypography.labelLarge,
+              style: DSTypography.labelLarge,
             ),
             const SizedBox(height: 4),
             Text(
               'Ejemplo de uso en un formulario real',
-              style: AppTypography.bodySmall.copyWith(
-                color: AppColors.gray600,
+              style: DSTypography.bodySmall.copyWith(
+                color: DSColors.gray600,
               ),
             ),
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: DSSpacing.md),
 
             // Simulación de formulario
             TextFormField(
@@ -466,7 +466,7 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: DSSpacing.md),
 
             TextFormField(
               decoration: const InputDecoration(
@@ -474,7 +474,7 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: DSSpacing.md),
 
             // Campo de foto de perfil
             Column(
@@ -482,17 +482,17 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
               children: [
                 Text(
                   'Foto de Perfil',
-                  style: AppTypography.labelMedium,
+                  style: DSTypography.labelMedium,
                 ),
-                const SizedBox(height: AppSpacing.sm),
-                AppCameraPicker(
+                const SizedBox(height: DSSpacing.sm),
+                DSCameraPicker(
                   buttonText: 'Seleccionar Foto',
                   buttonIcon: Icons.person,
                   onPicked: _onPicked,
                   onError: _onError,
-                  config: const AppCameraPickerConfig(
-                    fileType: AppCameraPickerFileType.image,
-                    behavior: AppCameraPickerBehavior(
+                  config: const DSCameraPickerConfig(
+                    fileType: DSCameraPickerFileType.image,
+                    behavior: DSCameraPickerBehavior(
                       allowMultiple: false,
                       maxFiles: 1,
                     ),
@@ -500,7 +500,7 @@ class _CameraPickerStoryState extends State<CameraPickerStory> {
                 ),
               ],
             ),
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: DSSpacing.md),
 
             SizedBox(
               width: double.infinity,

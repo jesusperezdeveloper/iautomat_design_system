@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_radio.dart';
+import 'ds_radio.dart';
 import 'radio_config.dart';
 
 class RadioStory extends StatelessWidget {
@@ -9,7 +9,7 @@ class RadioStory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppRadio Stories'),
+        title: const Text('DSRadio Stories'),
       ),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(24.0),
@@ -113,44 +113,44 @@ class _StandardBasicStatesStoryState extends State<_StandardBasicStatesStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'option1',
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
         ),
         const SizedBox(height: 16),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'option2',
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
         ),
         const SizedBox(height: 16),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'option3',
           groupValue: _selectedValue,
           onChanged: null,
           enabled: false,
         ),
         const SizedBox(height: 16),
-        const AppRadio<String>(
+        const DSRadio<String>(
           value: 'option4',
           groupValue: 'option4',
           onChanged: null,
           enabled: false,
         ),
         const SizedBox(height: 16),
-        const AppRadio<String>(
+        const DSRadio<String>(
           value: 'loading',
           groupValue: null,
           onChanged: null,
-          overrideState: AppRadioState.loading,
+          overrideState: DSRadioState.loading,
         ),
         const SizedBox(height: 16),
-        const AppRadio<String>(
+        const DSRadio<String>(
           value: 'skeleton',
           groupValue: null,
           onChanged: null,
-          overrideState: AppRadioState.skeleton,
+          overrideState: DSRadioState.skeleton,
         ),
       ],
     );
@@ -173,28 +173,28 @@ class _StandardWithLabelsStoryState extends State<_StandardWithLabelsStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'small',
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
           label: 'Small (8oz)',
         ),
         const SizedBox(height: 16),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'medium',
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
           label: 'Medium (12oz)',
         ),
         const SizedBox(height: 16),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'large',
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
           label: 'Large (16oz)',
         ),
         const SizedBox(height: 16),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'extra_large',
           groupValue: _selectedValue,
           onChanged: null,
@@ -202,7 +202,7 @@ class _StandardWithLabelsStoryState extends State<_StandardWithLabelsStory> {
           enabled: false,
         ),
         const SizedBox(height: 16),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'custom',
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
@@ -251,15 +251,15 @@ class _SegmentedBasicStoryState extends State<_SegmentedBasicStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 12),
-        AppRadio<String>(
+        DSRadio<String>(
           value: _selectedView,
           groupValue: _selectedView,
           onChanged: (value) => setState(() => _selectedView = value),
-          variant: AppRadioVariant.segmented,
+          variant: DSRadioVariant.segmented,
           options: const [
-            AppRadioValue(value: 'list', label: 'List'),
-            AppRadioValue(value: 'grid', label: 'Grid'),
-            AppRadioValue(value: 'card', label: 'Card'),
+            DSRadioValue(value: 'list', label: 'List'),
+            DSRadioValue(value: 'grid', label: 'Grid'),
+            DSRadioValue(value: 'card', label: 'Card'),
           ],
         ),
         const SizedBox(height: 24),
@@ -268,16 +268,16 @@ class _SegmentedBasicStoryState extends State<_SegmentedBasicStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 12),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'pdf',
           groupValue: 'pdf',
           onChanged: (value) => {},
-          variant: AppRadioVariant.segmented,
+          variant: DSRadioVariant.segmented,
           options: const [
-            AppRadioValue(value: 'pdf', label: 'PDF'),
-            AppRadioValue(value: 'docx', label: 'DOCX'),
-            AppRadioValue(value: 'txt', label: 'TXT'),
-            AppRadioValue(value: 'csv', label: 'CSV', enabled: false),
+            DSRadioValue(value: 'pdf', label: 'PDF'),
+            DSRadioValue(value: 'docx', label: 'DOCX'),
+            DSRadioValue(value: 'txt', label: 'TXT'),
+            DSRadioValue(value: 'csv', label: 'CSV', enabled: false),
           ],
         ),
       ],
@@ -307,21 +307,21 @@ class _SegmentedWithIconsStoryState extends State<_SegmentedWithIconsStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 12),
-        AppRadio<String>(
+        DSRadio<String>(
           value: _selectedAlignment,
           groupValue: _selectedAlignment,
           onChanged: (value) => setState(() => _selectedAlignment = value),
-          variant: AppRadioVariant.segmented,
+          variant: DSRadioVariant.segmented,
           options: const [
-            AppRadioValue(
+            DSRadioValue(
                 value: 'left', label: 'Left', icon: Icons.format_align_left),
-            AppRadioValue(
+            DSRadioValue(
                 value: 'center',
                 label: 'Center',
                 icon: Icons.format_align_center),
-            AppRadioValue(
+            DSRadioValue(
                 value: 'right', label: 'Right', icon: Icons.format_align_right),
-            AppRadioValue(
+            DSRadioValue(
                 value: 'justify',
                 label: 'Justify',
                 icon: Icons.format_align_justify),
@@ -333,16 +333,16 @@ class _SegmentedWithIconsStoryState extends State<_SegmentedWithIconsStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 12),
-        AppRadio<String>(
+        DSRadio<String>(
           value: _selectedTheme,
           groupValue: _selectedTheme,
           onChanged: (value) => setState(() => _selectedTheme = value),
-          variant: AppRadioVariant.segmented,
+          variant: DSRadioVariant.segmented,
           options: const [
-            AppRadioValue(
+            DSRadioValue(
                 value: 'light', label: 'Light', icon: Icons.light_mode),
-            AppRadioValue(value: 'dark', label: 'Dark', icon: Icons.dark_mode),
-            AppRadioValue(
+            DSRadioValue(value: 'dark', label: 'Dark', icon: Icons.dark_mode),
+            DSRadioValue(
                 value: 'auto', label: 'Auto', icon: Icons.brightness_auto),
           ],
         ),
@@ -361,7 +361,7 @@ class _InteractiveStatesStory extends StatefulWidget {
 
 class _InteractiveStatesStoryState extends State<_InteractiveStatesStory> {
   String? _selectedValue = 'default';
-  AppRadioState? _overrideState;
+  DSRadioState? _overrideState;
 
   @override
   Widget build(BuildContext context) {
@@ -378,27 +378,27 @@ class _InteractiveStatesStoryState extends State<_InteractiveStatesStory> {
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppRadioState.hover),
+                  setState(() => _overrideState = DSRadioState.hover),
               child: const Text('Hover'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppRadioState.pressed),
+                  setState(() => _overrideState = DSRadioState.pressed),
               child: const Text('Pressed'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppRadioState.focus),
+                  setState(() => _overrideState = DSRadioState.focus),
               child: const Text('Focus'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppRadioState.loading),
+                  setState(() => _overrideState = DSRadioState.loading),
               child: const Text('Loading'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppRadioState.skeleton),
+                  setState(() => _overrideState = DSRadioState.skeleton),
               child: const Text('Skeleton'),
             ),
           ],
@@ -409,7 +409,7 @@ class _InteractiveStatesStoryState extends State<_InteractiveStatesStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 12),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'interactive',
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
@@ -422,16 +422,16 @@ class _InteractiveStatesStoryState extends State<_InteractiveStatesStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 12),
-        AppRadio<String>(
+        DSRadio<String>(
           value: _selectedValue,
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
-          variant: AppRadioVariant.segmented,
+          variant: DSRadioVariant.segmented,
           overrideState: _overrideState,
           options: const [
-            AppRadioValue(value: 'option1', label: 'Option 1'),
-            AppRadioValue(value: 'option2', label: 'Option 2'),
-            AppRadioValue(value: 'option3', label: 'Option 3'),
+            DSRadioValue(value: 'option1', label: 'Option 1'),
+            DSRadioValue(value: 'option2', label: 'Option 2'),
+            DSRadioValue(value: 'option3', label: 'Option 3'),
           ],
         ),
       ],
@@ -459,21 +459,21 @@ class _PlatformAdaptiveStoryState extends State<_PlatformAdaptiveStory> {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 16),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'ios',
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
           label: 'iOS optimized',
         ),
         const SizedBox(height: 8),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'android',
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
           label: 'Android optimized',
         ),
         const SizedBox(height: 8),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'web',
           groupValue: _selectedValue,
           onChanged: (value) => setState(() => _selectedValue = value),
@@ -485,12 +485,12 @@ class _PlatformAdaptiveStoryState extends State<_PlatformAdaptiveStory> {
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 16),
-        const AppRadio<String>(
+        const DSRadio<String>(
           value: 'loading',
           groupValue: null,
           onChanged: null,
           label: 'Loading state',
-          overrideState: AppRadioState.loading,
+          overrideState: DSRadioState.loading,
         ),
       ],
     );
@@ -518,7 +518,7 @@ class _RtlSupportStoryState extends State<_RtlSupportStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'ltr',
           groupValue: _selectedValue1,
           onChanged: (value) => setState(() => _selectedValue1 = value),
@@ -531,7 +531,7 @@ class _RtlSupportStoryState extends State<_RtlSupportStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'rtl',
           groupValue: _selectedValue2,
           onChanged: (value) => setState(() => _selectedValue2 = value),
@@ -544,16 +544,16 @@ class _RtlSupportStoryState extends State<_RtlSupportStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppRadio<String>(
+        DSRadio<String>(
           value: _selectedValue2,
           groupValue: _selectedValue2,
           onChanged: (value) => setState(() => _selectedValue2 = value),
-          variant: AppRadioVariant.segmented,
+          variant: DSRadioVariant.segmented,
           textDirection: TextDirection.rtl,
           options: const [
-            AppRadioValue(value: 'option1', label: 'خيار 1'),
-            AppRadioValue(value: 'option2', label: 'خيار 2'),
-            AppRadioValue(value: 'rtl', label: 'خيار 3'),
+            DSRadioValue(value: 'option1', label: 'خيار 1'),
+            DSRadioValue(value: 'option2', label: 'خيار 2'),
+            DSRadioValue(value: 'rtl', label: 'خيار 3'),
           ],
         ),
       ],
@@ -581,34 +581,34 @@ class _CustomConfigStoryState extends State<_CustomConfigStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'large',
           groupValue: _selectedValue1,
           onChanged: (value) => setState(() => _selectedValue1 = value),
           label: 'Large radio (28px)',
-          config: const AppRadioConfig(
+          config: const DSRadioConfig(
             size: 28,
             borderWidth: 3,
           ),
         ),
         const SizedBox(height: 16),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'small',
           groupValue: _selectedValue2,
           onChanged: (value) => setState(() => _selectedValue2 = value),
           label: 'Small radio (16px)',
-          config: const AppRadioConfig(
+          config: const DSRadioConfig(
             size: 16,
             borderWidth: 1.5,
           ),
         ),
         const SizedBox(height: 16),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'purple',
           groupValue: _selectedValue3,
           onChanged: (value) => setState(() => _selectedValue3 = value),
           label: 'Custom colors',
-          colors: AppRadioColors(
+          colors: DSRadioColors(
             borderColor: Colors.purple,
             fillColor: Colors.purple,
             dotColor: Colors.white,
@@ -635,16 +635,16 @@ class _CustomConfigStoryState extends State<_CustomConfigStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 12),
-        AppRadio<String>(
+        DSRadio<String>(
           value: _selectedValue4,
           groupValue: _selectedValue4,
           onChanged: (value) => setState(() => _selectedValue4 = value),
-          variant: AppRadioVariant.segmented,
-          config: const AppRadioConfig(
+          variant: DSRadioVariant.segmented,
+          config: const DSRadioConfig(
             segmentBorderRadius: 16,
             segmentBorderWidth: 2,
           ),
-          colors: AppRadioColors(
+          colors: DSRadioColors(
             borderColor: Colors.orange,
             fillColor: Colors.orange,
             dotColor: Colors.white,
@@ -665,9 +665,9 @@ class _CustomConfigStoryState extends State<_CustomConfigStory> {
             segmentSelectedTextColor: Colors.white,
           ),
           options: const [
-            AppRadioValue(value: 'rounded', label: 'Rounded'),
-            AppRadioValue(value: 'style', label: 'Style'),
-            AppRadioValue(value: 'custom', label: 'Custom'),
+            DSRadioValue(value: 'rounded', label: 'Rounded'),
+            DSRadioValue(value: 'style', label: 'Style'),
+            DSRadioValue(value: 'custom', label: 'Custom'),
           ],
         ),
       ],
@@ -708,7 +708,7 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 16),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'first',
           groupValue: _selectedValue1,
           onChanged: (value) => setState(() => _selectedValue1 = value),
@@ -716,7 +716,7 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           autoFocus: true,
         ),
         const SizedBox(height: 8),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'second',
           groupValue: _selectedValue1,
           onChanged: (value) => setState(() => _selectedValue1 = value),
@@ -734,7 +734,7 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppRadio<String>(
+        DSRadio<String>(
           value: 'semantic',
           groupValue: _selectedValue1,
           onChanged: (value) => setState(() => _selectedValue1 = value),
@@ -756,11 +756,11 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           decoration: BoxDecoration(
             border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
           ),
-          child: AppRadio<String>(
+          child: DSRadio<String>(
             value: 'touch_target',
             groupValue: _selectedValue1,
             onChanged: (value) => setState(() => _selectedValue1 = value),
-            config: const AppRadioConfig(
+            config: const DSRadioConfig(
               minimumTouchTargetSize: 48,
             ),
           ),
@@ -771,15 +771,15 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppRadio<String>(
+        DSRadio<String>(
           value: _selectedValue2,
           groupValue: _selectedValue2,
           onChanged: (value) => setState(() => _selectedValue2 = value),
-          variant: AppRadioVariant.segmented,
+          variant: DSRadioVariant.segmented,
           options: const [
-            AppRadioValue(value: 'option1', label: 'Accessible'),
-            AppRadioValue(value: 'option2', label: 'Options'),
-            AppRadioValue(value: 'option3', label: 'Here'),
+            DSRadioValue(value: 'option1', label: 'Accessible'),
+            DSRadioValue(value: 'option2', label: 'Options'),
+            DSRadioValue(value: 'option3', label: 'Here'),
           ],
         ),
       ],

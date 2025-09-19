@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 part 'date_picker_config.freezed.dart';
 
 @freezed
-class AppDatePickerConfig with _$AppDatePickerConfig {
-  const factory AppDatePickerConfig({
+class DSDatePickerConfig with _$DSDatePickerConfig {
+  const factory DSDatePickerConfig({
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
     @Default(EdgeInsets.all(16.0)) EdgeInsets contentPadding,
@@ -48,7 +48,7 @@ class AppDatePickerConfig with _$AppDatePickerConfig {
     @Default(true) bool highlightToday,
     @Default(true) bool allowPastDates,
     @Default(true) bool allowFutureDates,
-    // Additional properties needed by AppDatePicker
+    // Additional properties needed by DSDatePicker
     @Default(0.95) double pressedScale,
     @Default(48.0) double minHeight,
     double? maxHeight,
@@ -57,15 +57,15 @@ class AppDatePickerConfig with _$AppDatePickerConfig {
     @Default(4.0) double shadowBlurRadius,
     @Default(Offset(0, 2)) Offset shadowOffset,
     @Default(0.0) double shadowSpreadRadius,
-    AppDatePickerColors? colors,
-  }) = _AppDatePickerConfig;
+    DSDatePickerColors? colors,
+  }) = _DSDatePickerConfig;
 
-  const AppDatePickerConfig._();
+  const DSDatePickerConfig._();
 }
 
 @freezed
-class AppDatePickerColors with _$AppDatePickerColors {
-  const factory AppDatePickerColors({
+class DSDatePickerColors with _$DSDatePickerColors {
+  const factory DSDatePickerColors({
     required Color inputFillColor,
     required Color inputBorderColor,
     required Color inputFocusedBorderColor,
@@ -112,14 +112,14 @@ class AppDatePickerColors with _$AppDatePickerColors {
     required Color clearButtonHoverColor,
     required Color dialogBarrierColor,
     required Color dialogShadowColor,
-  }) = _AppDatePickerColors;
+  }) = _DSDatePickerColors;
 
-  const AppDatePickerColors._();
+  const DSDatePickerColors._();
 
-  factory AppDatePickerColors.fromTheme(ThemeData theme) {
+  factory DSDatePickerColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
 
-    return AppDatePickerColors(
+    return DSDatePickerColors(
       inputFillColor: colorScheme.surfaceContainerLowest,
       inputBorderColor: colorScheme.outline,
       inputFocusedBorderColor: colorScheme.primary,
@@ -170,7 +170,7 @@ class AppDatePickerColors with _$AppDatePickerColors {
   }
 }
 
-enum AppDatePickerState {
+enum DSDatePickerState {
   defaultState,
   hover,
   pressed,
@@ -181,7 +181,7 @@ enum AppDatePickerState {
   skeleton,
 }
 
-enum AppDatePickerVariant {
+enum DSDatePickerVariant {
   date,
   time,
   range,
@@ -203,13 +203,13 @@ enum TimeFormat {
 }
 
 @freezed
-class AppDateRange with _$AppDateRange {
-  const factory AppDateRange({
+class DSDateRange with _$DSDateRange {
+  const factory DSDateRange({
     DateTime? start,
     DateTime? end,
-  }) = _AppDateRange;
+  }) = _DSDateRange;
 
-  const AppDateRange._();
+  const DSDateRange._();
 
   bool get isValid =>
       start != null && end != null && start!.isBefore(end!) || (start == end);
@@ -234,40 +234,40 @@ class AppDateRange with _$AppDateRange {
         date.isAtSameMomentAs(end!);
   }
 
-  AppDateRange copyWithStart(DateTime? newStart) {
-    return AppDateRange(start: newStart, end: end);
+  DSDateRange copyWithStart(DateTime? newStart) {
+    return DSDateRange(start: newStart, end: end);
   }
 
-  AppDateRange copyWithEnd(DateTime? newEnd) {
-    return AppDateRange(start: start, end: newEnd);
+  DSDateRange copyWithEnd(DateTime? newEnd) {
+    return DSDateRange(start: start, end: newEnd);
   }
 
-  AppDateRange clear() {
-    return const AppDateRange(start: null, end: null);
+  DSDateRange clear() {
+    return const DSDateRange(start: null, end: null);
   }
 }
 
 @freezed
-class AppTimeValue with _$AppTimeValue {
-  const factory AppTimeValue({
+class DSTimeValue with _$DSTimeValue {
+  const factory DSTimeValue({
     required int hour,
     required int minute,
     int? second,
-  }) = _AppTimeValue;
+  }) = _DSTimeValue;
 
-  const AppTimeValue._();
+  const DSTimeValue._();
 
-  factory AppTimeValue.now() {
+  factory DSTimeValue.now() {
     final now = DateTime.now();
-    return AppTimeValue(
+    return DSTimeValue(
       hour: now.hour,
       minute: now.minute,
       second: now.second,
     );
   }
 
-  factory AppTimeValue.fromTimeOfDay(TimeOfDay timeOfDay) {
-    return AppTimeValue(
+  factory DSTimeValue.fromTimeOfDay(TimeOfDay timeOfDay) {
+    return DSTimeValue(
       hour: timeOfDay.hour,
       minute: timeOfDay.minute,
     );
@@ -319,7 +319,7 @@ class AppTimeValue with _$AppTimeValue {
   }
 }
 
-class AppDatePickerValidator {
+class DSDatePickerValidator {
   static String? required(DateTime? value) {
     if (value == null) {
       return 'La fecha es requerida';
@@ -386,8 +386,8 @@ class AppDatePickerValidator {
     };
   }
 
-  static String? Function(AppDateRange?) rangeRequired() {
-    return (AppDateRange? value) {
+  static String? Function(DSDateRange?) rangeRequired() {
+    return (DSDateRange? value) {
       if (value == null || value.isEmpty) {
         return 'El rango de fechas es requerido';
       }
@@ -401,9 +401,9 @@ class AppDatePickerValidator {
     };
   }
 
-  static String? Function(AppDateRange?) minimumRangeDuration(
+  static String? Function(DSDateRange?) minimumRangeDuration(
       Duration minDuration) {
-    return (AppDateRange? value) {
+    return (DSDateRange? value) {
       if (value == null || value.isEmpty || value.isPartial) return null;
       final duration = value.duration;
       if (duration != null && duration < minDuration) {
@@ -413,9 +413,9 @@ class AppDatePickerValidator {
     };
   }
 
-  static String? Function(AppDateRange?) maximumRangeDuration(
+  static String? Function(DSDateRange?) maximumRangeDuration(
       Duration maxDuration) {
-    return (AppDateRange? value) {
+    return (DSDateRange? value) {
       if (value == null || value.isEmpty || value.isPartial) return null;
       final duration = value.duration;
       if (duration != null && duration > maxDuration) {
@@ -425,8 +425,8 @@ class AppDatePickerValidator {
     };
   }
 
-  static String? Function(AppTimeValue?) timeRequired() {
-    return (AppTimeValue? value) {
+  static String? Function(DSTimeValue?) timeRequired() {
+    return (DSTimeValue? value) {
       if (value == null) {
         return 'La hora es requerida';
       }
@@ -437,9 +437,9 @@ class AppDatePickerValidator {
     };
   }
 
-  static String? Function(AppTimeValue?) timeRange(
-      AppTimeValue? minTime, AppTimeValue? maxTime) {
-    return (AppTimeValue? value) {
+  static String? Function(DSTimeValue?) timeRange(
+      DSTimeValue? minTime, DSTimeValue? maxTime) {
+    return (DSTimeValue? value) {
       if (value == null) return null;
 
       if (minTime != null) {
@@ -480,7 +480,7 @@ class AppDatePickerValidator {
   }
 }
 
-extension AppDatePickerHelpers on DateTime {
+extension DSDatePickerHelpers on DateTime {
   bool isSameDay(DateTime other) {
     return year == other.year && month == other.month && day == other.day;
   }

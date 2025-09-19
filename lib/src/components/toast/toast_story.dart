@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_toast.dart';
+import 'ds_toast.dart';
 
 class ToastStory extends StatefulWidget {
   const ToastStory({super.key});
@@ -34,11 +34,11 @@ class _ToastStoryState extends State<ToastStory> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppToast Story'),
+        title: const Text('DSToast Story'),
         backgroundColor: theme.colorScheme.inversePrimary,
         actions: [
           IconButton(
-            onPressed: () => AppToastManager.removeAll(),
+            onPressed: () => DSToastManager.removeAll(),
             icon: const Icon(Icons.clear_all),
             tooltip: 'Clear All Toasts',
           ),
@@ -249,7 +249,7 @@ class _ToastStoryState extends State<ToastStory> {
               runSpacing: 12,
               children: [
                 ElevatedButton.icon(
-                  onPressed: () => AppToast.info(
+                  onPressed: () => DSToast.info(
                     context,
                     message: 'This is an info message',
                     position: _selectedPosition,
@@ -258,7 +258,7 @@ class _ToastStoryState extends State<ToastStory> {
                   label: const Text('Show Info'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => AppToast.success(
+                  onPressed: () => DSToast.success(
                     context,
                     message: 'Operation completed successfully!',
                     position: _selectedPosition,
@@ -271,7 +271,7 @@ class _ToastStoryState extends State<ToastStory> {
                   label: const Text('Show Success'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => AppToast.warning(
+                  onPressed: () => DSToast.warning(
                     context,
                     message: 'Please review your settings',
                     position: _selectedPosition,
@@ -280,7 +280,7 @@ class _ToastStoryState extends State<ToastStory> {
                   label: const Text('Show Warning'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => AppToast.error(
+                  onPressed: () => DSToast.error(
                     context,
                     message: 'Something went wrong. Please try again.',
                     position: _selectedPosition,
@@ -322,7 +322,7 @@ class _ToastStoryState extends State<ToastStory> {
               runSpacing: 8,
               children: ToastPosition.values.map((position) {
                 return OutlinedButton(
-                  onPressed: () => AppToast.info(
+                  onPressed: () => DSToast.info(
                     context,
                     message: 'Toast at ${_formatPositionName(position)}',
                     position: position,
@@ -341,7 +341,7 @@ class _ToastStoryState extends State<ToastStory> {
               runSpacing: 8,
               children: [
                 OutlinedButton(
-                  onPressed: () => AppToast.info(
+                  onPressed: () => DSToast.info(
                     context,
                     message: 'Quick toast (1s)',
                     duration: const Duration(seconds: 1),
@@ -350,7 +350,7 @@ class _ToastStoryState extends State<ToastStory> {
                   child: const Text('1 Second'),
                 ),
                 OutlinedButton(
-                  onPressed: () => AppToast.info(
+                  onPressed: () => DSToast.info(
                     context,
                     message: 'Normal toast (4s)',
                     duration: const Duration(seconds: 4),
@@ -359,7 +359,7 @@ class _ToastStoryState extends State<ToastStory> {
                   child: const Text('4 Seconds'),
                 ),
                 OutlinedButton(
-                  onPressed: () => AppToast.info(
+                  onPressed: () => DSToast.info(
                     context,
                     message: 'Long toast (8s)',
                     duration: const Duration(seconds: 8),
@@ -368,7 +368,7 @@ class _ToastStoryState extends State<ToastStory> {
                   child: const Text('8 Seconds'),
                 ),
                 OutlinedButton(
-                  onPressed: () => AppToast.info(
+                  onPressed: () => DSToast.info(
                     context,
                     message: 'Persistent toast (tap to close)',
                     duration: Duration.zero,
@@ -419,12 +419,12 @@ class _ToastStoryState extends State<ToastStory> {
                 ),
                 OutlinedButton(
                   onPressed: () =>
-                      AppToastManager.removeAllAtPosition(_selectedPosition),
+                      DSToastManager.removeAllAtPosition(_selectedPosition),
                   child:
                       Text('Clear ${_formatPositionName(_selectedPosition)}'),
                 ),
                 OutlinedButton(
-                  onPressed: () => AppToastManager.removeAll(),
+                  onPressed: () => DSToastManager.removeAll(),
                   child: const Text('Clear All'),
                 ),
               ],
@@ -436,7 +436,7 @@ class _ToastStoryState extends State<ToastStory> {
   }
 
   void _showConfiguredToast() {
-    AppToast.show(
+    DSToast.show(
       context,
       message: _customMessage,
       type: _selectedType,
@@ -456,7 +456,7 @@ class _ToastStoryState extends State<ToastStory> {
     for (int i = 1; i <= 3; i++) {
       Future.delayed(Duration(milliseconds: i * 200), () {
         if (mounted) {
-          AppToast.info(
+          DSToast.info(
             context,
             message: 'Stacked toast #$i',
             position: _selectedPosition,
@@ -485,7 +485,7 @@ class _ToastStoryState extends State<ToastStory> {
     for (int i = 0; i < messages.length; i++) {
       Future.delayed(Duration(milliseconds: i * 1000), () {
         if (mounted) {
-          AppToast.show(
+          DSToast.show(
             context,
             message: messages[i],
             type: types[i],
@@ -507,7 +507,7 @@ class _ToastStoryState extends State<ToastStory> {
     for (int i = 0; i < positions.length; i++) {
       Future.delayed(Duration(milliseconds: i * 300), () {
         if (mounted) {
-          AppToast.info(
+          DSToast.info(
             context,
             message: 'Toast at ${_formatPositionName(positions[i])}',
             position: positions[i],

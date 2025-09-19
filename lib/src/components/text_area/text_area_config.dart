@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 part 'text_area_config.freezed.dart';
 
 @freezed
-class AppTextAreaConfig with _$AppTextAreaConfig {
-  const factory AppTextAreaConfig({
+class DSTextAreaConfig with _$DSTextAreaConfig {
+  const factory DSTextAreaConfig({
     @Default(EdgeInsets.all(16.0)) EdgeInsets contentPadding,
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
@@ -32,14 +32,14 @@ class AppTextAreaConfig with _$AppTextAreaConfig {
     @Default(true) bool enableAutoResize,
     @Default(20.0) double lineHeight,
     @Default(true) bool enableScrollPhysics,
-  }) = _AppTextAreaConfig;
+  }) = _DSTextAreaConfig;
 
-  const AppTextAreaConfig._();
+  const DSTextAreaConfig._();
 }
 
 @freezed
-class AppTextAreaColors with _$AppTextAreaColors {
-  const factory AppTextAreaColors({
+class DSTextAreaColors with _$DSTextAreaColors {
+  const factory DSTextAreaColors({
     required Color borderColor,
     required Color focusedBorderColor,
     required Color errorBorderColor,
@@ -68,15 +68,15 @@ class AppTextAreaColors with _$AppTextAreaColors {
     required Color skeletonHighlightColor,
     required Color scrollbarColor,
     required Color scrollbarThumbColor,
-  }) = _AppTextAreaColors;
+  }) = _DSTextAreaColors;
 
-  const AppTextAreaColors._();
+  const DSTextAreaColors._();
 
-  factory AppTextAreaColors.fromTheme(ThemeData theme) {
+  factory DSTextAreaColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
 
-    return AppTextAreaColors(
+    return DSTextAreaColors(
       borderColor: colorScheme.outline,
       focusedBorderColor: colorScheme.primary,
       errorBorderColor: colorScheme.error,
@@ -111,7 +111,7 @@ class AppTextAreaColors with _$AppTextAreaColors {
   }
 }
 
-enum AppTextAreaState {
+enum DSTextAreaState {
   defaultState,
   hover,
   pressed,
@@ -123,11 +123,11 @@ enum AppTextAreaState {
   error,
 }
 
-enum AppTextAreaVariant {
+enum DSTextAreaVariant {
   autoResize,
 }
 
-class AppTextAreaValidator {
+class DSTextAreaValidator {
   static String? required(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'Este campo es requerido';

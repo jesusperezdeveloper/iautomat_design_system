@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_tooltip.dart';
+import 'ds_tooltip.dart';
 
 class TooltipStory extends StatefulWidget {
   const TooltipStory({super.key});
@@ -11,7 +11,7 @@ class TooltipStory extends StatefulWidget {
 class _TooltipStoryState extends State<TooltipStory> {
   TooltipVariant _selectedVariant = TooltipVariant.hover;
   TooltipPosition _selectedPosition = TooltipPosition.top;
-  AppTooltipState _selectedState = AppTooltipState.defaultState;
+  DSTooltipState _selectedState = DSTooltipState.defaultState;
   Duration _showDelay = const Duration(milliseconds: 500);
   Duration _hideDelay = const Duration(milliseconds: 150);
   bool _rtlSupport = true;
@@ -47,7 +47,7 @@ class _TooltipStoryState extends State<TooltipStory> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppTooltip Story'),
+        title: const Text('DSTooltip Story'),
         backgroundColor: theme.colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -183,10 +183,10 @@ class _TooltipStoryState extends State<TooltipStory> {
             // State Selector
             Text('State:', style: theme.textTheme.titleSmall),
             const SizedBox(height: 8),
-            DropdownButton<AppTooltipState>(
+            DropdownButton<DSTooltipState>(
               value: _selectedState,
               isExpanded: true,
-              items: AppTooltipState.values.map((state) {
+              items: DSTooltipState.values.map((state) {
                 return DropdownMenuItem(
                   value: state,
                   child: Text(_formatStateName(state)),
@@ -300,7 +300,7 @@ class _TooltipStoryState extends State<TooltipStory> {
             ),
             const SizedBox(height: 16),
             Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message: _customMessage,
                 variant: _selectedVariant,
                 state: _selectedState,
@@ -365,7 +365,7 @@ class _TooltipStoryState extends State<TooltipStory> {
             const SizedBox(height: 8),
             Row(
               children: [
-                AppTooltip.hover(
+                DSTooltip.hover(
                   message: 'Appears on mouse hover (desktop)',
                   showDelay: const Duration(milliseconds: 300),
                   child: Container(
@@ -399,7 +399,7 @@ class _TooltipStoryState extends State<TooltipStory> {
             const SizedBox(height: 8),
             Row(
               children: [
-                AppTooltip.focus(
+                DSTooltip.focus(
                   message: 'Appears when element gains focus',
                   showDelay: const Duration(milliseconds: 100),
                   child: ElevatedButton.icon(
@@ -422,7 +422,7 @@ class _TooltipStoryState extends State<TooltipStory> {
             const SizedBox(height: 8),
             Row(
               children: [
-                AppTooltip.longPress(
+                DSTooltip.longPress(
                   message: 'Long press to show tooltip',
                   showDelay: const Duration(milliseconds: 750),
                   child: Container(
@@ -489,7 +489,7 @@ class _TooltipStoryState extends State<TooltipStory> {
                     Positioned(
                       left: 135,
                       top: 85,
-                      child: AppTooltip.hover(
+                      child: DSTooltip.hover(
                         message: 'Center element',
                         child: Container(
                           width: 30,
@@ -505,7 +505,7 @@ class _TooltipStoryState extends State<TooltipStory> {
                     Positioned(
                       left: 135,
                       top: 20,
-                      child: AppTooltip(
+                      child: DSTooltip(
                         message: 'Top tooltip',
                         variant: TooltipVariant.hover,
                         preferredPosition: TooltipPosition.top,
@@ -526,7 +526,7 @@ class _TooltipStoryState extends State<TooltipStory> {
                     Positioned(
                       left: 135,
                       bottom: 20,
-                      child: AppTooltip(
+                      child: DSTooltip(
                         message: 'Bottom tooltip',
                         variant: TooltipVariant.hover,
                         preferredPosition: TooltipPosition.bottom,
@@ -547,7 +547,7 @@ class _TooltipStoryState extends State<TooltipStory> {
                     Positioned(
                       left: 20,
                       top: 85,
-                      child: AppTooltip(
+                      child: DSTooltip(
                         message: 'Left tooltip',
                         variant: TooltipVariant.hover,
                         preferredPosition: TooltipPosition.left,
@@ -568,7 +568,7 @@ class _TooltipStoryState extends State<TooltipStory> {
                     Positioned(
                       right: 20,
                       top: 85,
-                      child: AppTooltip(
+                      child: DSTooltip(
                         message: 'Right tooltip',
                         variant: TooltipVariant.hover,
                         preferredPosition: TooltipPosition.right,
@@ -616,8 +616,8 @@ class _TooltipStoryState extends State<TooltipStory> {
             Wrap(
               spacing: 12,
               runSpacing: 12,
-              children: AppTooltipState.values.map((state) {
-                return AppTooltip.hover(
+              children: DSTooltipState.values.map((state) {
+                return DSTooltip.hover(
                   message: 'Tooltip in ${_formatStateName(state)} state',
                   child: Container(
                     padding: const EdgeInsets.symmetric(
@@ -629,7 +629,7 @@ class _TooltipStoryState extends State<TooltipStory> {
                       borderRadius: BorderRadius.circular(6),
                       border: Border.all(color: theme.colorScheme.outline),
                     ),
-                    child: AppTooltip(
+                    child: DSTooltip(
                       message: 'State: ${_formatStateName(state)}',
                       variant: TooltipVariant.hover,
                       state: state,
@@ -664,7 +664,7 @@ class _TooltipStoryState extends State<TooltipStory> {
             // Custom Styling
             Text('Custom Styling:', style: theme.textTheme.titleMedium),
             const SizedBox(height: 8),
-            AppTooltip.hover(
+            DSTooltip.hover(
               message: 'Custom styled tooltip with longer text that wraps',
               child: Container(
                 padding: const EdgeInsets.all(12),
@@ -680,7 +680,7 @@ class _TooltipStoryState extends State<TooltipStory> {
             // Multiple Lines
             Text('Multi-line Tooltip:', style: theme.textTheme.titleMedium),
             const SizedBox(height: 8),
-            AppTooltip.hover(
+            DSTooltip.hover(
               message:
                   'This is a very long tooltip message that demonstrates how the tooltip handles text wrapping and maintains proper readability across multiple lines of content.',
               child: ElevatedButton.icon(
@@ -696,7 +696,7 @@ class _TooltipStoryState extends State<TooltipStory> {
             const SizedBox(height: 8),
             Directionality(
               textDirection: TextDirection.rtl,
-              child: AppTooltip.hover(
+              child: DSTooltip.hover(
                 message: 'هذا مثال على نص باللغة العربية',
                 child: Container(
                   padding: const EdgeInsets.all(12),
@@ -721,7 +721,7 @@ class _TooltipStoryState extends State<TooltipStory> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                AppTooltip.hover(
+                DSTooltip.hover(
                   message: 'Save your work',
                   onShow: () => debugPrint('Save tooltip shown'),
                   onHide: () => debugPrint('Save tooltip hidden'),
@@ -730,14 +730,14 @@ class _TooltipStoryState extends State<TooltipStory> {
                     child: const Icon(Icons.save),
                   ),
                 ),
-                AppTooltip.focus(
+                DSTooltip.focus(
                   message: 'Edit settings',
                   child: FloatingActionButton.small(
                     onPressed: () {},
                     child: const Icon(Icons.settings),
                   ),
                 ),
-                AppTooltip.longPress(
+                DSTooltip.longPress(
                   message: 'Delete item',
                   child: FloatingActionButton.small(
                     onPressed: () {},
@@ -796,23 +796,23 @@ class _TooltipStoryState extends State<TooltipStory> {
     }
   }
 
-  String _formatStateName(AppTooltipState state) {
+  String _formatStateName(DSTooltipState state) {
     switch (state) {
-      case AppTooltipState.defaultState:
+      case DSTooltipState.defaultState:
         return 'Default';
-      case AppTooltipState.hover:
+      case DSTooltipState.hover:
         return 'Hover';
-      case AppTooltipState.pressed:
+      case DSTooltipState.pressed:
         return 'Pressed';
-      case AppTooltipState.focus:
+      case DSTooltipState.focus:
         return 'Focus';
-      case AppTooltipState.selected:
+      case DSTooltipState.selected:
         return 'Selected';
-      case AppTooltipState.disabled:
+      case DSTooltipState.disabled:
         return 'Disabled';
-      case AppTooltipState.loading:
+      case DSTooltipState.loading:
         return 'Loading';
-      case AppTooltipState.skeleton:
+      case DSTooltipState.skeleton:
         return 'Skeleton';
     }
   }

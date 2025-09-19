@@ -5,13 +5,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'in_page_search_config.freezed.dart';
 
 /// In-page search variant types
-enum AppInPageSearchVariant {
+enum DSInPageSearchVariant {
   /// Inline search within content
   inline,
 }
 
 /// In-page search state types
-enum AppInPageSearchState {
+enum DSInPageSearchState {
   /// Default state
   defaultState,
 
@@ -38,7 +38,7 @@ enum AppInPageSearchState {
 }
 
 /// In-page search size variants
-enum AppInPageSearchSize {
+enum DSInPageSearchSize {
   /// Small search bar
   small,
 
@@ -50,7 +50,7 @@ enum AppInPageSearchSize {
 }
 
 /// In-page search position
-enum AppInPageSearchPosition {
+enum DSInPageSearchPosition {
   /// Top of the container
   top,
 
@@ -62,7 +62,7 @@ enum AppInPageSearchPosition {
 }
 
 /// Search result highlight style
-enum AppHighlightStyle {
+enum DSHighlightStyle {
   /// Solid background highlight
   solid,
 
@@ -76,18 +76,18 @@ enum AppHighlightStyle {
   shadow,
 }
 
-/// Configuration model for AppInPageSearch
+/// Configuration model for DSInPageSearch
 @freezed
-class AppInPageSearchConfig with _$AppInPageSearchConfig {
-  const factory AppInPageSearchConfig({
+class DSInPageSearchConfig with _$DSInPageSearchConfig {
+  const factory DSInPageSearchConfig({
     // Animation configuration
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
     @Default(Duration(milliseconds: 300)) Duration debounceDelay,
 
     // Size and positioning
-    @Default(AppInPageSearchSize.medium) AppInPageSearchSize size,
-    @Default(AppInPageSearchPosition.top) AppInPageSearchPosition position,
+    @Default(DSInPageSearchSize.medium) DSInPageSearchSize size,
+    @Default(DSInPageSearchPosition.top) DSInPageSearchPosition position,
     @Default(320.0) double width,
     @Default(40.0) double height,
 
@@ -129,7 +129,7 @@ class AppInPageSearchConfig with _$AppInPageSearchConfig {
     Color? shadowColor,
 
     // Highlight configuration
-    @Default(AppHighlightStyle.solid) AppHighlightStyle highlightStyle,
+    @Default(DSHighlightStyle.solid) DSHighlightStyle highlightStyle,
     Color? highlightColor,
     Color? highlightTextColor,
     @Default(2.0) double highlightBorderWidth,
@@ -187,11 +187,11 @@ class AppInPageSearchConfig with _$AppInPageSearchConfig {
     double? maxWidth,
     double? minHeight,
     double? maxHeight,
-  }) = _AppInPageSearchConfig;
+  }) = _DSInPageSearchConfig;
 
   /// Default configuration for small size
-  static const AppInPageSearchConfig small = AppInPageSearchConfig(
-    size: AppInPageSearchSize.small,
+  static const DSInPageSearchConfig small = DSInPageSearchConfig(
+    size: DSInPageSearchSize.small,
     width: 280.0,
     height: 32.0,
     fontSize: 12.0,
@@ -200,8 +200,8 @@ class AppInPageSearchConfig with _$AppInPageSearchConfig {
   );
 
   /// Default configuration for medium size
-  static const AppInPageSearchConfig medium = AppInPageSearchConfig(
-    size: AppInPageSearchSize.medium,
+  static const DSInPageSearchConfig medium = DSInPageSearchConfig(
+    size: DSInPageSearchSize.medium,
     width: 320.0,
     height: 40.0,
     fontSize: 14.0,
@@ -210,8 +210,8 @@ class AppInPageSearchConfig with _$AppInPageSearchConfig {
   );
 
   /// Default configuration for large size
-  static const AppInPageSearchConfig large = AppInPageSearchConfig(
-    size: AppInPageSearchSize.large,
+  static const DSInPageSearchConfig large = DSInPageSearchConfig(
+    size: DSInPageSearchSize.large,
     width: 400.0,
     height: 48.0,
     fontSize: 16.0,
@@ -222,8 +222,8 @@ class AppInPageSearchConfig with _$AppInPageSearchConfig {
 
 /// Data model for search highlights
 @freezed
-class AppSearchHighlight with _$AppSearchHighlight {
-  const factory AppSearchHighlight({
+class DSSearchHighlight with _$DSSearchHighlight {
+  const factory DSSearchHighlight({
     /// Start position of the highlight
     required int start,
 
@@ -237,27 +237,27 @@ class AppSearchHighlight with _$AppSearchHighlight {
     @Default(false) bool isActive,
 
     /// Custom style for this highlight
-    AppHighlightStyle? style,
+    DSHighlightStyle? style,
 
     /// Custom color for this highlight
     Color? color,
 
     /// Additional metadata
     Map<String, dynamic>? metadata,
-  }) = _AppSearchHighlight;
+  }) = _DSSearchHighlight;
 }
 
 /// Data model for search controller state
 @freezed
-class AppInPageSearchData with _$AppInPageSearchData {
-  const AppInPageSearchData._();
+class DSInPageSearchData with _$DSInPageSearchData {
+  const DSInPageSearchData._();
 
-  const factory AppInPageSearchData({
+  const factory DSInPageSearchData({
     /// Current search query
     @Default('') String query,
 
     /// Current search results/highlights
-    @Default([]) List<AppSearchHighlight> highlights,
+    @Default([]) List<DSSearchHighlight> highlights,
 
     /// Currently active highlight index
     @Default(-1) int activeHighlightIndex,
@@ -294,7 +294,7 @@ class AppInPageSearchData with _$AppInPageSearchData {
 
     /// Whether regex search is enabled
     @Default(false) bool useRegex,
-  }) = _AppInPageSearchData;
+  }) = _DSInPageSearchData;
 
   /// Whether there are any results
   bool get hasResults => totalResults > 0;
@@ -304,7 +304,7 @@ class AppInPageSearchData with _$AppInPageSearchData {
       activeHighlightIndex >= 0 && activeHighlightIndex < highlights.length;
 
   /// Current active highlight if any
-  AppSearchHighlight? get activeHighlight =>
+  DSSearchHighlight? get activeHighlight =>
       hasActiveHighlight ? highlights[activeHighlightIndex] : null;
 
   /// Whether we can navigate to next result
@@ -320,10 +320,10 @@ class AppInPageSearchData with _$AppInPageSearchData {
   }
 }
 
-/// Utility functions for AppInPageSearch
-class AppInPageSearchUtils {
+/// Utility functions for DSInPageSearch
+class DSInPageSearchUtils {
   /// Filter highlights based on search query
-  static List<AppSearchHighlight> filterHighlights(
+  static List<DSSearchHighlight> filterHighlights(
     String text,
     String query, {
     bool caseSensitive = false,
@@ -353,7 +353,7 @@ class AppInPageSearchUtils {
 
       final matches = pattern.allMatches(text);
       return matches
-          .map((match) => AppSearchHighlight(
+          .map((match) => DSSearchHighlight(
                 start: match.start,
                 end: match.end,
                 text: match.group(0) ?? '',
@@ -379,7 +379,7 @@ class AppInPageSearchUtils {
   /// Create highlighted text spans
   static List<TextSpan> createHighlightedTextSpans(
     String text,
-    List<AppSearchHighlight> highlights, {
+    List<DSSearchHighlight> highlights, {
     TextStyle? defaultStyle,
     TextStyle? highlightStyle,
     int? activeHighlightIndex,
@@ -442,7 +442,7 @@ class AppInPageSearchUtils {
 
   /// Calculate search score for relevance
   static double calculateSearchScore(
-      AppSearchHighlight highlight, String fullText) {
+      DSSearchHighlight highlight, String fullText) {
     // Basic scoring: longer matches and earlier positions get higher scores
     final lengthScore = highlight.text.length / fullText.length;
     final positionScore = 1.0 - (highlight.start / fullText.length);

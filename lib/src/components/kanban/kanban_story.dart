@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'kanban_config.dart';
-import 'app_kanban.dart';
+import 'ds_kanban.dart';
 
-/// Story configurations para demostrar el componente AppKanban
+/// Story configurations para demostrar el componente DSKanban
 ///
 /// Incluye ejemplos básicos y avanzados de tableros Kanban con:
 /// - Configuraciones básicas y complejas
@@ -14,14 +14,14 @@ import 'app_kanban.dart';
 class KanbanStory {
   /// Historia básica con configuración simple
   static Widget basic() {
-    return AppKanban(
+    return DSKanban(
       config: _basicConfig(),
     );
   }
 
   /// Historia con múltiples columnas y tarjetas
   static Widget complete() {
-    return AppKanban(
+    return DSKanban(
       config: _completeConfig(),
       onChanged: () => debugPrint('Kanban changed'),
     );
@@ -29,52 +29,52 @@ class KanbanStory {
 
   /// Historia con tarjetas personalizadas
   static Widget customCards() {
-    return AppKanban(
+    return DSKanban(
       config: _customCardsConfig(),
     );
   }
 
   /// Historia con estilo personalizado
   static Widget styled() {
-    return AppKanban(
+    return DSKanban(
       config: _styledConfig(),
     );
   }
 
   // Configuraciones privadas
 
-  static AppKanbanConfig _basicConfig() {
-    return AppKanbanConfig(
-      variant: AppKanbanVariant.dragDrop,
+  static DSKanbanConfig _basicConfig() {
+    return DSKanbanConfig(
+      variant: DSKanbanVariant.dragDrop,
       columns: [
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'todo',
           title: 'Por Hacer',
           icon: Icons.assignment_outlined,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'inprogress',
           title: 'En Progreso',
           icon: Icons.play_circle_outline,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'done',
           title: 'Completado',
           icon: Icons.check_circle_outline,
         ),
       ],
       cards: [
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'card-1',
           title: 'Diseñar interfaz de usuario',
           columnId: 'todo',
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'card-2',
           title: 'Implementar API REST',
           columnId: 'inprogress',
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'card-3',
           title: 'Configurar base de datos',
           columnId: 'done',
@@ -86,35 +86,35 @@ class KanbanStory {
     );
   }
 
-  static AppKanbanConfig _completeConfig() {
-    return AppKanbanConfig(
-      variant: AppKanbanVariant.dragDrop,
+  static DSKanbanConfig _completeConfig() {
+    return DSKanbanConfig(
+      variant: DSKanbanVariant.dragDrop,
       columns: [
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'backlog',
           title: 'Backlog',
           icon: Icons.inventory_2_outlined,
           backgroundColor: Colors.blue.shade50,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'todo',
           title: 'Por Hacer',
           icon: Icons.assignment_outlined,
           backgroundColor: Colors.orange.shade50,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'inprogress',
           title: 'En Progreso',
           icon: Icons.play_circle_outline,
           backgroundColor: Colors.yellow.shade50,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'review',
           title: 'En Revisión',
           icon: Icons.rate_review_outlined,
           backgroundColor: Colors.purple.shade50,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'done',
           title: 'Completado',
           icon: Icons.check_circle_outline,
@@ -122,53 +122,53 @@ class KanbanStory {
         ),
       ],
       cards: [
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'card-1',
           title: 'Implementar autenticación de usuarios',
           description: 'Crear sistema de login/registro con JWT',
           columnId: 'backlog',
-          type: AppKanbanCardType.feature,
-          priority: AppKanbanCardPriority.high,
+          type: DSKanbanCardType.feature,
+          priority: DSKanbanCardPriority.high,
           tags: ['backend', 'seguridad'],
           dueDate: DateTime.now().add(const Duration(days: 7)),
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'card-2',
           title: 'Diseñar dashboard principal',
           description: 'Crear mockups y prototipos de la página principal',
           columnId: 'todo',
-          type: AppKanbanCardType.task,
-          priority: AppKanbanCardPriority.medium,
+          type: DSKanbanCardType.task,
+          priority: DSKanbanCardPriority.medium,
           tags: ['frontend', 'ui'],
           dueDate: DateTime.now().add(const Duration(days: 3)),
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'card-3',
           title: 'Configurar pipeline CI/CD',
           description: 'Automatizar deploy a staging y producción',
           columnId: 'inprogress',
-          type: AppKanbanCardType.task,
-          priority: AppKanbanCardPriority.high,
+          type: DSKanbanCardType.task,
+          priority: DSKanbanCardPriority.high,
           tags: ['devops', 'automatización'],
           dueDate: DateTime.now().add(const Duration(days: 1)),
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'card-4',
           title: 'Corregir bug en validación de formularios',
           description: 'Los campos no se validan correctamente en Chrome',
           columnId: 'review',
-          type: AppKanbanCardType.bug,
-          priority: AppKanbanCardPriority.critical,
+          type: DSKanbanCardType.bug,
+          priority: DSKanbanCardPriority.critical,
           tags: ['bug', 'frontend'],
           dueDate: DateTime.now().subtract(const Duration(days: 1)),
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'card-5',
           title: 'Documentar API endpoints',
           description: 'Actualizar documentación con Swagger',
           columnId: 'done',
-          type: AppKanbanCardType.task,
-          priority: AppKanbanCardPriority.low,
+          type: DSKanbanCardType.task,
+          priority: DSKanbanCardPriority.low,
           tags: ['documentación', 'api'],
           dueDate: DateTime.now().subtract(const Duration(days: 3)),
         ),
@@ -179,70 +179,70 @@ class KanbanStory {
     );
   }
 
-  static AppKanbanConfig _customCardsConfig() {
-    return AppKanbanConfig(
-      variant: AppKanbanVariant.dragDrop,
+  static DSKanbanConfig _customCardsConfig() {
+    return DSKanbanConfig(
+      variant: DSKanbanVariant.dragDrop,
       columns: [
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'new',
           title: 'Nuevas Ideas',
           icon: Icons.lightbulb_outline,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'development',
           title: 'Desarrollo',
           icon: Icons.code,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'testing',
           title: 'Testing',
           icon: Icons.bug_report_outlined,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'released',
           title: 'Publicado',
           icon: Icons.rocket_launch_outlined,
         ),
       ],
       cards: [
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'epic-1',
           title: 'Rediseño completo de la aplicación',
           description:
               'Modernizar la interfaz y mejorar la experiencia de usuario',
           columnId: 'new',
-          type: AppKanbanCardType.epic,
-          priority: AppKanbanCardPriority.high,
+          type: DSKanbanCardType.epic,
+          priority: DSKanbanCardPriority.high,
           tags: ['epic', 'ui/ux', 'frontend'],
           backgroundColor: Colors.purple.shade100,
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'feature-1',
           title: 'Sistema de notificaciones push',
           description: 'Implementar notificaciones en tiempo real',
           columnId: 'development',
-          type: AppKanbanCardType.feature,
-          priority: AppKanbanCardPriority.medium,
+          type: DSKanbanCardType.feature,
+          priority: DSKanbanCardPriority.medium,
           tags: ['feature', 'realtime'],
           backgroundColor: Colors.blue.shade100,
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'bug-1',
           title: 'Optimizar performance en mobile',
           description: 'La app es lenta en dispositivos Android antiguos',
           columnId: 'testing',
-          type: AppKanbanCardType.bug,
-          priority: AppKanbanCardPriority.critical,
+          type: DSKanbanCardType.bug,
+          priority: DSKanbanCardPriority.critical,
           tags: ['performance', 'mobile'],
           backgroundColor: Colors.red.shade100,
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'story-1',
           title: 'Como usuario quiero exportar datos',
           description: 'Permitir export en formato CSV y PDF',
           columnId: 'released',
-          type: AppKanbanCardType.story,
-          priority: AppKanbanCardPriority.low,
+          type: DSKanbanCardType.story,
+          priority: DSKanbanCardPriority.low,
           tags: ['export', 'csv', 'pdf'],
           backgroundColor: Colors.green.shade100,
         ),
@@ -253,25 +253,25 @@ class KanbanStory {
     );
   }
 
-  static AppKanbanConfig _styledConfig() {
-    return AppKanbanConfig(
-      variant: AppKanbanVariant.dragDrop,
+  static DSKanbanConfig _styledConfig() {
+    return DSKanbanConfig(
+      variant: DSKanbanVariant.dragDrop,
       padding: const EdgeInsets.all(24),
       backgroundColor: Colors.grey.shade100,
       columns: [
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'ideas',
           title: 'Ideas',
           icon: Icons.lightbulb,
           backgroundColor: Colors.yellow.shade100,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'working',
           title: 'Trabajando',
           icon: Icons.work,
           backgroundColor: Colors.blue.shade100,
         ),
-        AppKanbanColumn(
+        DSKanbanColumn(
           id: 'finished',
           title: 'Finalizado',
           icon: Icons.done_all,
@@ -279,21 +279,21 @@ class KanbanStory {
         ),
       ],
       cards: [
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'styled-1',
           title: 'Tarjeta con estilo personalizado',
           description: 'Esta tarjeta tiene un diseño único',
           columnId: 'ideas',
           backgroundColor: Colors.white,
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'styled-2',
           title: 'Otra tarjeta estilizada',
           description: 'Con diferentes colores y sombras',
           columnId: 'working',
           backgroundColor: Colors.blue.shade50,
         ),
-        AppKanbanCard(
+        DSKanbanCard(
           id: 'styled-3',
           title: 'Tarjeta terminada',
           description: 'Con estilo de completado',

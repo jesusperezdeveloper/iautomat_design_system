@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_text_field.dart';
+import 'ds_text_field.dart';
 import 'text_field_config.dart';
 
 class TextFieldStory extends StatelessWidget {
@@ -9,7 +9,7 @@ class TextFieldStory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppTextField Stories'),
+        title: const Text('DSTextField Stories'),
       ),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(24.0),
@@ -132,14 +132,14 @@ class _SingleLineStoryState extends State<_SingleLineStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppTextField(
+        DSTextField(
           controller: _controller1,
           label: 'Nombre completo',
           hint: 'Ingresa tu nombre',
-          variant: AppTextFieldVariant.single,
+          variant: DSTextFieldVariant.single,
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _controller2,
           label: 'Email',
           hint: 'ejemplo@correo.com',
@@ -147,36 +147,36 @@ class _SingleLineStoryState extends State<_SingleLineStory> {
           prefixIcon: Icons.email,
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _controller3,
           label: 'Teléfono',
           hint: '123 456 7890',
           keyboardType: TextInputType.phone,
           prefixIcon: Icons.phone,
-          inputFormatters: AppTextFieldFormatters.phoneNumber(),
+          inputFormatters: DSTextFieldFormatters.phoneNumber(),
         ),
         const SizedBox(height: 16),
-        const AppTextField(
+        const DSTextField(
           label: 'Campo deshabilitado',
           hint: 'No puedes escribir aquí',
           enabled: false,
         ),
         const SizedBox(height: 16),
-        const AppTextField(
+        const DSTextField(
           label: 'Campo de solo lectura',
           hint: 'Solo lectura',
           readOnly: true,
         ),
         const SizedBox(height: 16),
-        const AppTextField(
+        const DSTextField(
           label: 'Estado de carga',
           hint: 'Cargando...',
-          overrideState: AppTextFieldState.loading,
+          overrideState: DSTextFieldState.loading,
         ),
         const SizedBox(height: 16),
-        const AppTextField(
+        const DSTextField(
           label: 'Estado skeleton',
-          overrideState: AppTextFieldState.skeleton,
+          overrideState: DSTextFieldState.skeleton,
         ),
       ],
     );
@@ -206,29 +206,29 @@ class _MultilineStoryState extends State<_MultilineStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppTextField(
+        DSTextField(
           controller: _controller1,
           label: 'Descripción',
           hint: 'Escribe una descripción detallada...',
-          variant: AppTextFieldVariant.multiline,
+          variant: DSTextFieldVariant.multiline,
           maxLines: 4,
           helperText: 'Máximo 500 caracteres',
           maxLength: 500,
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _controller2,
           label: 'Comentarios',
           hint: 'Comparte tus comentarios...',
-          variant: AppTextFieldVariant.multiline,
+          variant: DSTextFieldVariant.multiline,
           minLines: 3,
           maxLines: 6,
         ),
         const SizedBox(height: 16),
-        const AppTextField(
+        const DSTextField(
           label: 'Multiline deshabilitado',
           hint: 'Campo multilinea deshabilitado',
-          variant: AppTextFieldVariant.multiline,
+          variant: DSTextFieldVariant.multiline,
           enabled: false,
           maxLines: 3,
         ),
@@ -260,23 +260,23 @@ class _PasswordStoryState extends State<_PasswordStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppTextField(
+        DSTextField(
           controller: _passwordController,
           label: 'Contraseña',
           hint: 'Ingresa tu contraseña',
-          variant: AppTextFieldVariant.password,
-          validator: AppTextFieldValidator.combine([
-            AppTextFieldValidator.required,
-            AppTextFieldValidator.minLength(8),
+          variant: DSTextFieldVariant.password,
+          validator: DSTextFieldValidator.combine([
+            DSTextFieldValidator.required,
+            DSTextFieldValidator.minLength(8),
           ]),
           helperText: 'Mínimo 8 caracteres',
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _confirmPasswordController,
           label: 'Confirmar contraseña',
           hint: 'Confirma tu contraseña',
-          variant: AppTextFieldVariant.password,
+          variant: DSTextFieldVariant.password,
           validator: (value) {
             if (value != _passwordController.text) {
               return 'Las contraseñas no coinciden';
@@ -285,10 +285,10 @@ class _PasswordStoryState extends State<_PasswordStory> {
           },
         ),
         const SizedBox(height: 16),
-        const AppTextField(
+        const DSTextField(
           label: 'Contraseña deshabilitada',
           hint: 'Contraseña deshabilitada',
-          variant: AppTextFieldVariant.password,
+          variant: DSTextFieldVariant.password,
           enabled: false,
         ),
       ],
@@ -319,7 +319,7 @@ class _WithIconsStoryState extends State<_WithIconsStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppTextField(
+        DSTextField(
           controller: _searchController,
           label: 'Buscar',
           hint: 'Buscar productos...',
@@ -327,7 +327,7 @@ class _WithIconsStoryState extends State<_WithIconsStory> {
           suffixIcon: Icons.mic,
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _amountController,
           label: 'Monto',
           hint: '0.00',
@@ -340,10 +340,10 @@ class _WithIconsStoryState extends State<_WithIconsStory> {
             padding: EdgeInsets.only(left: 8, right: 12),
             child: Text('USD'),
           ),
-          inputFormatters: AppTextFieldFormatters.decimal(),
+          inputFormatters: DSTextFieldFormatters.decimal(),
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           label: 'Ubicación',
           hint: 'Ingresa tu ubicación',
           prefixIcon: Icons.location_on,
@@ -386,41 +386,41 @@ class _ValidationStoryState extends State<_ValidationStory> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppTextField(
+          DSTextField(
             controller: _nameController,
             label: 'Nombre requerido',
             hint: 'Tu nombre completo',
-            validator: AppTextFieldValidator.required,
+            validator: DSTextFieldValidator.required,
             prefixIcon: Icons.person,
           ),
           const SizedBox(height: 16),
-          AppTextField(
+          DSTextField(
             controller: _emailController,
             label: 'Email válido',
             hint: 'correo@ejemplo.com',
             keyboardType: TextInputType.emailAddress,
-            validator: AppTextFieldValidator.combine([
-              AppTextFieldValidator.required,
-              AppTextFieldValidator.email,
+            validator: DSTextFieldValidator.combine([
+              DSTextFieldValidator.required,
+              DSTextFieldValidator.email,
             ]),
             prefixIcon: Icons.email,
           ),
           const SizedBox(height: 16),
-          AppTextField(
+          DSTextField(
             controller: _phoneController,
             label: 'Teléfono (solo números)',
             hint: '1234567890',
             keyboardType: TextInputType.phone,
-            validator: AppTextFieldValidator.combine([
-              AppTextFieldValidator.required,
-              AppTextFieldValidator.numeric,
-              AppTextFieldValidator.minLength(10),
+            validator: DSTextFieldValidator.combine([
+              DSTextFieldValidator.required,
+              DSTextFieldValidator.numeric,
+              DSTextFieldValidator.minLength(10),
             ]),
-            inputFormatters: AppTextFieldFormatters.numeric(),
+            inputFormatters: DSTextFieldFormatters.numeric(),
             prefixIcon: Icons.phone,
           ),
           const SizedBox(height: 16),
-          const AppTextField(
+          const DSTextField(
             label: 'Campo con error',
             hint: 'Este campo tiene un error',
             errorText: 'Este es un mensaje de error',
@@ -483,47 +483,47 @@ class _InputFormattersStoryState extends State<_InputFormattersStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppTextField(
+        DSTextField(
           controller: _numericController,
           label: 'Solo números',
           hint: '123456',
-          inputFormatters: AppTextFieldFormatters.numeric(),
+          inputFormatters: DSTextFieldFormatters.numeric(),
           keyboardType: TextInputType.number,
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _upperCaseController,
           label: 'Mayúsculas automáticas',
           hint: 'TEXTO EN MAYÚSCULAS',
-          inputFormatters: AppTextFieldFormatters.upperCase(),
+          inputFormatters: DSTextFieldFormatters.upperCase(),
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _lowerCaseController,
           label: 'Minúsculas automáticas',
           hint: 'texto en minúsculas',
-          inputFormatters: AppTextFieldFormatters.lowerCase(),
+          inputFormatters: DSTextFieldFormatters.lowerCase(),
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _alphanumericController,
           label: 'Solo alfanumérico',
           hint: 'abc123',
-          inputFormatters: AppTextFieldFormatters.alphanumeric(),
+          inputFormatters: DSTextFieldFormatters.alphanumeric(),
           helperText: 'Solo letras y números permitidos',
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           label: 'Máximo 10 caracteres',
           hint: 'Máx 10 chars',
-          inputFormatters: AppTextFieldFormatters.maxLength(10),
+          inputFormatters: DSTextFieldFormatters.maxLength(10),
           maxLength: 10,
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           label: 'Sin espacios',
           hint: 'SinEspacios',
-          inputFormatters: AppTextFieldFormatters.noSpaces(),
+          inputFormatters: DSTextFieldFormatters.noSpaces(),
           helperText: 'Los espacios se eliminan automáticamente',
         ),
       ],
@@ -540,7 +540,7 @@ class _InteractiveStatesStory extends StatefulWidget {
 }
 
 class _InteractiveStatesStoryState extends State<_InteractiveStatesStory> {
-  AppTextFieldState? _overrideState;
+  DSTextFieldState? _overrideState;
 
   @override
   Widget build(BuildContext context) {
@@ -557,38 +557,38 @@ class _InteractiveStatesStoryState extends State<_InteractiveStatesStory> {
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppTextFieldState.hover),
+                  setState(() => _overrideState = DSTextFieldState.hover),
               child: const Text('Hover'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppTextFieldState.focus),
+                  setState(() => _overrideState = DSTextFieldState.focus),
               child: const Text('Focus'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppTextFieldState.error),
+                  setState(() => _overrideState = DSTextFieldState.error),
               child: const Text('Error'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppTextFieldState.disabled),
+                  setState(() => _overrideState = DSTextFieldState.disabled),
               child: const Text('Disabled'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppTextFieldState.loading),
+                  setState(() => _overrideState = DSTextFieldState.loading),
               child: const Text('Loading'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppTextFieldState.skeleton),
+                  setState(() => _overrideState = DSTextFieldState.skeleton),
               child: const Text('Skeleton'),
             ),
           ],
         ),
         const SizedBox(height: 24),
-        AppTextField(
+        DSTextField(
           label: 'Campo interactivo',
           hint: 'Cambia el estado arriba',
           overrideState: _overrideState,
@@ -625,7 +625,7 @@ class _PlatformAdaptiveStoryState extends State<_PlatformAdaptiveStory> {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _controller,
           label: 'Campo adaptativo',
           hint: 'Se adapta a iOS/Android/Web',
@@ -638,9 +638,9 @@ class _PlatformAdaptiveStoryState extends State<_PlatformAdaptiveStory> {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 16),
-        const AppTextField(
+        const DSTextField(
           label: 'Cargando (adaptativo)',
-          overrideState: AppTextFieldState.loading,
+          overrideState: DSTextFieldState.loading,
           helperText: 'Indicador de carga específico por plataforma',
         ),
       ],
@@ -676,7 +676,7 @@ class _RtlSupportStoryState extends State<_RtlSupportStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppTextField(
+        DSTextField(
           controller: _ltrController,
           label: 'English text field',
           hint: 'Type in English...',
@@ -689,7 +689,7 @@ class _RtlSupportStoryState extends State<_RtlSupportStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppTextField(
+        DSTextField(
           controller: _rtlController,
           label: 'حقل النص العربي',
           hint: 'اكتب باللغة العربية...',
@@ -703,10 +703,10 @@ class _RtlSupportStoryState extends State<_RtlSupportStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppTextField(
+        DSTextField(
           label: 'نص متعدد الأسطر',
           hint: 'اكتب نصاً متعدد الأسطر...',
-          variant: AppTextFieldVariant.multiline,
+          variant: DSTextFieldVariant.multiline,
           textDirection: TextDirection.rtl,
           textAlign: TextAlign.right,
           maxLines: 3,
@@ -743,32 +743,32 @@ class _CustomConfigStoryState extends State<_CustomConfigStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppTextField(
+        DSTextField(
           controller: _controller1,
           label: 'Campo compacto',
           hint: 'Configuración compacta',
-          config: const AppTextFieldConfig(
+          config: const DSTextFieldConfig(
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             borderRadius: 8,
             minimumHeight: 40,
           ),
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _controller2,
           label: 'Campo redondeado',
           hint: 'Bordes muy redondeados',
-          config: const AppTextFieldConfig(
+          config: const DSTextFieldConfig(
             borderRadius: 24,
             contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           ),
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _controller3,
           label: 'Colores personalizados',
           hint: 'Tema personalizado',
-          colors: AppTextFieldColors(
+          colors: DSTextFieldColors(
             borderColor: Colors.purple,
             focusedBorderColor: Colors.purple,
             errorBorderColor: Colors.red,
@@ -799,19 +799,19 @@ class _CustomConfigStoryState extends State<_CustomConfigStory> {
           prefixIcon: Icons.palette,
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           label: 'Sin label flotante',
           hint: 'Label fijo arriba',
-          config: const AppTextFieldConfig(
+          config: const DSTextFieldConfig(
             enableFloatingLabel: false,
           ),
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           label: 'Con contador personalizado',
           hint: 'Escribe algo...',
           maxLength: 50,
-          config: const AppTextFieldConfig(
+          config: const DSTextFieldConfig(
             enableCharacterCounter: true,
           ),
           helperText: 'Contador de caracteres habilitado',
@@ -856,7 +856,7 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _controller1,
           label: 'Primer campo (autofocus)',
           hint: 'Se enfoca automáticamente',
@@ -864,7 +864,7 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           textInputAction: TextInputAction.next,
         ),
         const SizedBox(height: 16),
-        AppTextField(
+        DSTextField(
           controller: _controller2,
           label: 'Segundo campo',
           hint: 'Navega con Tab',
@@ -882,7 +882,7 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppTextField(
+        DSTextField(
           label: 'Label visible',
           hint: 'Campo con semántica personalizada',
           semanticLabel:
@@ -895,14 +895,14 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppTextField(
+        DSTextField(
           label: 'Campo de alto contraste',
           hint: 'Optimizado para accesibilidad',
           helperText: 'Colores optimizados para mejor contraste',
-          colors: AppTextFieldColors.fromTheme(Theme.of(context)),
+          colors: DSTextFieldColors.fromTheme(Theme.of(context)),
         ),
         const SizedBox(height: 16),
-        const AppTextField(
+        const DSTextField(
           label: 'Campo con error accesible',
           hint: 'Error claramente visible',
           errorText: 'Mensaje de error con alto contraste',

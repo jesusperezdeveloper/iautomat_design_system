@@ -1,2 +1,2 @@
-export 'app_badge.dart';
+export 'ds_badge.dart';
 export 'badge_config.dart';

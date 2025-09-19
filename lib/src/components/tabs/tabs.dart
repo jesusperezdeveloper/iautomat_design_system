@@ -1,4 +1,4 @@
 library;
 
-export 'app_tabs.dart';
-export 'app_tabs_config.dart';
+export 'ds_tabs.dart';
+export 'ds_tabs_config.dart';

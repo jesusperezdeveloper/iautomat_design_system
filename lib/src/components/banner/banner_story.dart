@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_banner.dart';
+import 'ds_banner.dart';
 
 class BannerStory extends StatefulWidget {
   const BannerStory({super.key});
@@ -37,11 +37,11 @@ class _BannerStoryState extends State<BannerStory> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppBanner Story'),
+        title: const Text('DSBanner Story'),
         backgroundColor: theme.colorScheme.inversePrimary,
         actions: [
           IconButton(
-            onPressed: () => AppBannerManager.removeAll(),
+            onPressed: () => DSBannerManager.removeAll(),
             icon: const Icon(Icons.clear_all),
             tooltip: 'Dismiss All Global Banners',
           ),
@@ -277,7 +277,7 @@ class _BannerStoryState extends State<BannerStory> {
             const SizedBox(height: 16),
 
             // Info Banner
-            AppBanner(
+            DSBanner(
               variant: BannerVariant.inline,
               type: BannerType.info,
               message: 'This is an informational message',
@@ -288,7 +288,7 @@ class _BannerStoryState extends State<BannerStory> {
             const SizedBox(height: 12),
 
             // Success Banner with Action
-            AppBanner(
+            DSBanner(
               variant: BannerVariant.inline,
               type: BannerType.success,
               message: 'Operation completed successfully!',
@@ -305,7 +305,7 @@ class _BannerStoryState extends State<BannerStory> {
             const SizedBox(height: 12),
 
             // Warning Banner
-            AppBanner(
+            DSBanner(
               variant: BannerVariant.inline,
               type: BannerType.warning,
               message: 'Please review your settings before continuing',
@@ -316,7 +316,7 @@ class _BannerStoryState extends State<BannerStory> {
             const SizedBox(height: 12),
 
             // Error Banner with Multiple Actions
-            AppBanner(
+            DSBanner(
               variant: BannerVariant.inline,
               type: BannerType.error,
               message: 'Unable to save changes. Please try again.',
@@ -363,7 +363,7 @@ class _BannerStoryState extends State<BannerStory> {
               runSpacing: 12,
               children: [
                 ElevatedButton.icon(
-                  onPressed: () => AppBanner.showGlobal(
+                  onPressed: () => DSBanner.showGlobal(
                     context,
                     type: BannerType.info,
                     message: 'Global info banner',
@@ -373,7 +373,7 @@ class _BannerStoryState extends State<BannerStory> {
                   label: const Text('Show Global Info'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => AppBanner.showGlobal(
+                  onPressed: () => DSBanner.showGlobal(
                     context,
                     type: BannerType.success,
                     message: 'Task completed successfully!',
@@ -389,7 +389,7 @@ class _BannerStoryState extends State<BannerStory> {
                   label: const Text('Show Global Success'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => AppBanner.showGlobal(
+                  onPressed: () => DSBanner.showGlobal(
                     context,
                     type: BannerType.warning,
                     message: 'System maintenance in 10 minutes',
@@ -400,7 +400,7 @@ class _BannerStoryState extends State<BannerStory> {
                   label: const Text('Show Global Warning'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => AppBanner.showGlobal(
+                  onPressed: () => DSBanner.showGlobal(
                     context,
                     type: BannerType.error,
                     message: 'Critical system error detected',
@@ -418,7 +418,7 @@ class _BannerStoryState extends State<BannerStory> {
                   label: const Text('Show Critical Error'),
                 ),
                 OutlinedButton(
-                  onPressed: () => AppBannerManager.removeAll(),
+                  onPressed: () => DSBannerManager.removeAll(),
                   child: const Text('Dismiss All Global'),
                 ),
               ],
@@ -445,7 +445,7 @@ class _BannerStoryState extends State<BannerStory> {
             const SizedBox(height: 12),
             ...BannerType.values.map((type) => Padding(
                   padding: const EdgeInsets.only(bottom: 8),
-                  child: AppBanner(
+                  child: DSBanner(
                     variant: BannerVariant.inline,
                     type: type,
                     message: _getTypeExampleMessage(type),
@@ -489,7 +489,7 @@ class _BannerStoryState extends State<BannerStory> {
                   child: const Text('Show Mixed Priorities'),
                 ),
                 OutlinedButton(
-                  onPressed: () => AppBannerManager.removeAll(),
+                  onPressed: () => DSBannerManager.removeAll(),
                   child: const Text('Clear All'),
                 ),
               ],
@@ -516,7 +516,7 @@ class _BannerStoryState extends State<BannerStory> {
             // Custom Styling Example
             Text('Custom Styling:', style: theme.textTheme.titleMedium),
             const SizedBox(height: 8),
-            AppBanner(
+            DSBanner(
               variant: BannerVariant.inline,
               type: BannerType.neutral,
               message: 'Custom styled banner with neutral type',
@@ -530,7 +530,7 @@ class _BannerStoryState extends State<BannerStory> {
             // Long Message Example
             Text('Long Message Handling:', style: theme.textTheme.titleMedium),
             const SizedBox(height: 8),
-            AppBanner(
+            DSBanner(
               variant: BannerVariant.inline,
               type: BannerType.info,
               message:
@@ -555,7 +555,7 @@ class _BannerStoryState extends State<BannerStory> {
               runSpacing: 12,
               children: [
                 OutlinedButton(
-                  onPressed: () => AppBanner.showGlobal(
+                  onPressed: () => DSBanner.showGlobal(
                     context,
                     type: BannerType.info,
                     message: 'Auto-dismiss banner (5 seconds)',
@@ -564,7 +564,7 @@ class _BannerStoryState extends State<BannerStory> {
                   child: const Text('Auto-dismiss Banner'),
                 ),
                 OutlinedButton(
-                  onPressed: () => AppBanner.showGlobal(
+                  onPressed: () => DSBanner.showGlobal(
                     context,
                     type: BannerType.warning,
                     message: 'Persistent banner (no auto-dismiss)',
@@ -598,7 +598,7 @@ class _BannerStoryState extends State<BannerStory> {
         ),
       );
     } else {
-      AppBanner.showGlobal(context,
+      DSBanner.showGlobal(context,
           type: _selectedType,
           message: _customMessage,
           priority: _selectedPriority,
@@ -626,7 +626,7 @@ class _BannerStoryState extends State<BannerStory> {
     for (int i = 0; i < priorities.length; i++) {
       Future.delayed(Duration(milliseconds: i * 500), () {
         if (mounted) {
-          AppBanner.showGlobal(
+          DSBanner.showGlobal(
             context,
             type: BannerType.info,
             message: 'Priority: ${_formatPriorityName(priorities[i])}',
@@ -650,7 +650,7 @@ class _BannerStoryState extends State<BannerStory> {
     for (int i = 0; i < banners.length; i++) {
       Future.delayed(Duration(milliseconds: i * 300), () {
         if (mounted) {
-          AppBanner.showGlobal(
+          DSBanner.showGlobal(
             context,
             type: BannerType.info,
             message: banners[i].$2,
@@ -673,7 +673,7 @@ class _BannerStoryState extends State<BannerStory> {
     for (int i = 0; i < types.length; i++) {
       Future.delayed(Duration(milliseconds: i * 1000), () {
         if (mounted) {
-          AppBanner.showGlobal(
+          DSBanner.showGlobal(
             context,
             type: types[i],
             message: messages[i],

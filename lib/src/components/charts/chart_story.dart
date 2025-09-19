@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import 'app_chart.dart';
+import 'ds_chart.dart';
 
 class ChartStory extends StatefulWidget {
   const ChartStory({super.key});
@@ -159,7 +159,7 @@ class _ChartStoryState extends State<ChartStory> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppChart Story'),
+        title: const Text('DSChart Story'),
         backgroundColor: theme.colorScheme.inversePrimary,
       ),
       body: Column(
@@ -170,7 +170,7 @@ class _ChartStoryState extends State<ChartStory> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Center(
-                child: AppChart(
+                child: DSChart(
                   key: ValueKey('${_selectedVariant}_$_selectedState'),
                   variant: _selectedVariant,
                   series: _getCurrentData(),

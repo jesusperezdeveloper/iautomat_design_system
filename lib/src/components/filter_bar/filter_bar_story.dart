@@ -9,10 +9,10 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'app_filter_bar.dart';
+import 'ds_filter_bar.dart';
 import 'filter_bar_config.dart';
 
-/// Stories collection for AppFilterBar component
+/// Stories collection for DSFilterBar component
 class FilterBarStories extends StatefulWidget {
   const FilterBarStories({super.key});
 
@@ -21,30 +21,30 @@ class FilterBarStories extends StatefulWidget {
 }
 
 class _FilterBarStoriesState extends State<FilterBarStories> {
-  List<AppFilter> basicFilters = [
-    AppFilter(
+  List<DSFilter> basicFilters = [
+    DSFilter(
       id: 'status',
       label: 'Status',
       type: FilterType.single,
       options: [
-        const AppFilterOption(value: 'active', label: 'Active'),
-        const AppFilterOption(value: 'inactive', label: 'Inactive'),
-        const AppFilterOption(value: 'pending', label: 'Pending'),
+        const DSFilterOption(value: 'active', label: 'Active'),
+        const DSFilterOption(value: 'inactive', label: 'Inactive'),
+        const DSFilterOption(value: 'pending', label: 'Pending'),
       ],
     ),
-    AppFilter(
+    DSFilter(
       id: 'category',
       label: 'Category',
       type: FilterType.multiple,
       icon: Icons.category,
       options: [
-        const AppFilterOption(value: 'electronics', label: 'Electronics'),
-        const AppFilterOption(value: 'clothing', label: 'Clothing'),
-        const AppFilterOption(value: 'books', label: 'Books'),
-        const AppFilterOption(value: 'food', label: 'Food'),
+        const DSFilterOption(value: 'electronics', label: 'Electronics'),
+        const DSFilterOption(value: 'clothing', label: 'Clothing'),
+        const DSFilterOption(value: 'books', label: 'Books'),
+        const DSFilterOption(value: 'food', label: 'Food'),
       ],
     ),
-    const AppFilter(
+    const DSFilter(
       id: 'price',
       label: 'Price Range',
       type: FilterType.range,
@@ -53,7 +53,7 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
       maxValue: 1000,
       stepValue: 10,
     ),
-    const AppFilter(
+    const DSFilter(
       id: 'search',
       label: 'Search',
       type: FilterType.text,
@@ -62,26 +62,26 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
     ),
   ];
 
-  List<AppFilter> advancedFilters = [
-    const AppFilter(
+  List<DSFilter> advancedFilters = [
+    const DSFilter(
       id: 'date',
       label: 'Date',
       type: FilterType.date,
       icon: Icons.calendar_today,
     ),
-    const AppFilter(
+    const DSFilter(
       id: 'dateRange',
       label: 'Date Range',
       type: FilterType.dateRange,
       icon: Icons.date_range,
     ),
-    const AppFilter(
+    const DSFilter(
       id: 'color',
       label: 'Color',
       type: FilterType.color,
       icon: Icons.palette,
     ),
-    const AppFilter(
+    const DSFilter(
       id: 'featured',
       label: 'Featured Only',
       type: FilterType.boolean,
@@ -93,7 +93,7 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppFilterBar Stories'),
+        title: const Text('DSFilterBar Stories'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
@@ -102,7 +102,7 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
           children: [
             _buildStorySection(
               'Chips Variant - Basic',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: basicFilters,
                 onChanged: (filters) {
                   debugPrint(
@@ -113,7 +113,7 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Popovers Variant - Basic',
-              AppFilterBar.popovers(
+              DSFilterBar.popovers(
                 filters: basicFilters,
                 onChanged: (filters) {
                   debugPrint(
@@ -124,7 +124,7 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Advanced Filter Types',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: advancedFilters,
                 onChanged: (filters) {
                   debugPrint(
@@ -135,28 +135,28 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Small Size Configuration',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: basicFilters.take(3).toList(),
-                config: AppFilterBarConfig.small,
+                config: DSFilterBarConfig.small,
                 onChanged: (filters) {},
               ),
             ),
             const SizedBox(height: 32),
             _buildStorySection(
               'Large Size Configuration',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: basicFilters.take(3).toList(),
-                config: AppFilterBarConfig.large,
+                config: DSFilterBarConfig.large,
                 onChanged: (filters) {},
               ),
             ),
             const SizedBox(height: 32),
             _buildStorySection(
               'Custom Styled Chips',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: basicFilters,
-                config: const AppFilterBarConfig(
-                  chipStyle: AppFilterChipStyle.filled,
+                config: const DSFilterBarConfig(
+                  chipStyle: DSFilterChipStyle.filled,
                   backgroundColor: Colors.blue,
                   selectedBackgroundColor: Colors.orange,
                   borderRadius: 16.0,
@@ -168,19 +168,19 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Loading State',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: const [],
-                state: AppFilterBarState.loading,
+                state: DSFilterBarState.loading,
                 onChanged: (filters) {},
               ),
             ),
             const SizedBox(height: 32),
             _buildStorySection(
               'Skeleton State',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: const [],
-                state: AppFilterBarState.skeleton,
-                config: const AppFilterBarConfig(
+                state: DSFilterBarState.skeleton,
+                config: const DSFilterBarConfig(
                   skeletonFilterCount: 5,
                 ),
                 onChanged: (filters) {},
@@ -189,18 +189,18 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Disabled State',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: basicFilters
                     .map((f) => f.copyWith(isDisabled: true))
                     .toList(),
-                state: AppFilterBarState.disabled,
+                state: DSFilterBarState.disabled,
                 onChanged: (filters) {},
               ),
             ),
             const SizedBox(height: 32),
             _buildStorySection(
               'With Custom Summary',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: basicFilters,
                 summaryBuilder: (context, activeFilters, total) {
                   return Container(
@@ -224,14 +224,14 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Max Visible Chips',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: [
                   ...basicFilters,
-                  const AppFilter(id: 'extra1', label: 'Extra Filter 1'),
-                  const AppFilter(id: 'extra2', label: 'Extra Filter 2'),
-                  const AppFilter(id: 'extra3', label: 'Extra Filter 3'),
+                  const DSFilter(id: 'extra1', label: 'Extra Filter 1'),
+                  const DSFilter(id: 'extra2', label: 'Extra Filter 2'),
+                  const DSFilter(id: 'extra3', label: 'Extra Filter 3'),
                 ],
-                config: const AppFilterBarConfig(
+                config: const DSFilterBarConfig(
                   maxVisibleChips: 3,
                 ),
                 onChanged: (filters) {},
@@ -240,10 +240,10 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Vertical Layout',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: basicFilters,
-                config: const AppFilterBarConfig(
-                  layout: AppFilterBarLayout.vertical,
+                config: const DSFilterBarConfig(
+                  layout: DSFilterBarLayout.vertical,
                 ),
                 onChanged: (filters) {},
               ),
@@ -251,43 +251,43 @@ class _FilterBarStoriesState extends State<FilterBarStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'With Groups',
-              AppFilterBar.chips(
+              DSFilterBar.chips(
                 filters: [
-                  AppFilter(
+                  DSFilter(
                     id: 'type',
                     label: 'Type',
                     group: 'product',
                     options: const [
-                      AppFilterOption(value: 'new', label: 'New'),
-                      AppFilterOption(value: 'used', label: 'Used'),
+                      DSFilterOption(value: 'new', label: 'New'),
+                      DSFilterOption(value: 'used', label: 'Used'),
                     ],
                   ),
-                  AppFilter(
+                  DSFilter(
                     id: 'brand',
                     label: 'Brand',
                     group: 'product',
                     options: const [
-                      AppFilterOption(value: 'apple', label: 'Apple'),
-                      AppFilterOption(value: 'samsung', label: 'Samsung'),
+                      DSFilterOption(value: 'apple', label: 'Apple'),
+                      DSFilterOption(value: 'samsung', label: 'Samsung'),
                     ],
                   ),
-                  AppFilter(
+                  DSFilter(
                     id: 'shipping',
                     label: 'Shipping',
                     group: 'delivery',
                     options: const [
-                      AppFilterOption(value: 'free', label: 'Free Shipping'),
-                      AppFilterOption(value: 'express', label: 'Express'),
+                      DSFilterOption(value: 'free', label: 'Free Shipping'),
+                      DSFilterOption(value: 'express', label: 'Express'),
                     ],
                   ),
                 ],
                 groups: const [
-                  AppFilterGroup(
+                  DSFilterGroup(
                     id: 'product',
                     label: 'Product Filters',
                     icon: Icons.shopping_cart,
                   ),
-                  AppFilterGroup(
+                  DSFilterGroup(
                     id: 'delivery',
                     label: 'Delivery Options',
                     icon: Icons.local_shipping,
@@ -334,7 +334,7 @@ class FilterBarStoryExample extends StatefulWidget {
 }
 
 class _FilterBarStoryExampleState extends State<FilterBarStoryExample> {
-  late List<AppFilter> filters;
+  late List<DSFilter> filters;
   List<Map<String, dynamic>> allProducts = List.generate(
       100,
       (index) => {
@@ -352,30 +352,30 @@ class _FilterBarStoryExampleState extends State<FilterBarStoryExample> {
   void initState() {
     super.initState();
     filters = [
-      AppFilter(
+      DSFilter(
         id: 'category',
         label: 'Category',
         type: FilterType.multiple,
         icon: Icons.category,
         options: const [
-          AppFilterOption(value: 'electronics', label: 'Electronics'),
-          AppFilterOption(value: 'clothing', label: 'Clothing'),
-          AppFilterOption(value: 'books', label: 'Books'),
-          AppFilterOption(value: 'food', label: 'Food'),
+          DSFilterOption(value: 'electronics', label: 'Electronics'),
+          DSFilterOption(value: 'clothing', label: 'Clothing'),
+          DSFilterOption(value: 'books', label: 'Books'),
+          DSFilterOption(value: 'food', label: 'Food'),
         ],
       ),
-      AppFilter(
+      DSFilter(
         id: 'status',
         label: 'Status',
         type: FilterType.single,
         icon: Icons.info,
         options: const [
-          AppFilterOption(value: 'active', label: 'Active'),
-          AppFilterOption(value: 'inactive', label: 'Inactive'),
-          AppFilterOption(value: 'pending', label: 'Pending'),
+          DSFilterOption(value: 'active', label: 'Active'),
+          DSFilterOption(value: 'inactive', label: 'Inactive'),
+          DSFilterOption(value: 'pending', label: 'Pending'),
         ],
       ),
-      const AppFilter(
+      const DSFilter(
         id: 'price',
         label: 'Price Range',
         type: FilterType.range,
@@ -384,7 +384,7 @@ class _FilterBarStoryExampleState extends State<FilterBarStoryExample> {
         maxValue: 1000,
         stepValue: 50,
       ),
-      const AppFilter(
+      const DSFilter(
         id: 'featured',
         label: 'Featured',
         type: FilterType.boolean,
@@ -394,7 +394,7 @@ class _FilterBarStoryExampleState extends State<FilterBarStoryExample> {
     filteredProducts = allProducts;
   }
 
-  void _applyFilters(List<AppFilter> updatedFilters) {
+  void _applyFilters(List<DSFilter> updatedFilters) {
     setState(() {
       filters = updatedFilters;
       filteredProducts = allProducts.where((product) {
@@ -449,10 +449,10 @@ class _FilterBarStoryExampleState extends State<FilterBarStoryExample> {
                 bottom: BorderSide(color: Colors.grey.shade300),
               ),
             ),
-            child: AppFilterBar.chips(
+            child: DSFilterBar.chips(
               filters: filters,
               onChanged: _applyFilters,
-              config: const AppFilterBarConfig(
+              config: const DSFilterBarConfig(
                 showSummary: true,
                 enableClearAll: true,
               ),

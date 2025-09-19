@@ -4,21 +4,21 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'timeline_config.freezed.dart';
 
 @freezed
-class AppTimelineConfig with _$AppTimelineConfig {
-  const AppTimelineConfig._();
+class DSTimelineConfig with _$DSTimelineConfig {
+  const DSTimelineConfig._();
 
-  const factory AppTimelineConfig({
-    @Default(AppTimelineVariant.activity) AppTimelineVariant variant,
-    @Default(AppTimelineState.defaultState) AppTimelineState state,
-    @Default(<AppTimelineEvent>[]) List<AppTimelineEvent> events,
-    @Default(AppTimelineOrientation.vertical)
-    AppTimelineOrientation orientation,
-    @Default(AppTimelineConnectorStyle.solid)
-    AppTimelineConnectorStyle connectorStyle,
-    @Default(AppTimelineIndicatorStyle.dot)
-    AppTimelineIndicatorStyle indicatorStyle,
-    @Default(AppTimelineAlignment.start) AppTimelineAlignment alignment,
-    @Default(AppTimelineSpacing.medium) AppTimelineSpacing spacing,
+  const factory DSTimelineConfig({
+    @Default(DSTimelineVariant.activity) DSTimelineVariant variant,
+    @Default(DSTimelineState.defaultState) DSTimelineState state,
+    @Default(<DSTimelineEvent>[]) List<DSTimelineEvent> events,
+    @Default(DSTimelineOrientation.vertical)
+    DSTimelineOrientation orientation,
+    @Default(DSTimelineConnectorStyle.solid)
+    DSTimelineConnectorStyle connectorStyle,
+    @Default(DSTimelineIndicatorStyle.dot)
+    DSTimelineIndicatorStyle indicatorStyle,
+    @Default(DSTimelineAlignment.start) DSTimelineAlignment alignment,
+    @Default(DSTimelineSpacing.medium) DSTimelineSpacing spacing,
     Color? connectorColor,
     Color? indicatorColor,
     Color? backgroundColor,
@@ -28,10 +28,10 @@ class AppTimelineConfig with _$AppTimelineConfig {
     double? itemSpacing,
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry? margin,
-    AppTimelineStyle? style,
-    AppTimelineInteraction? interaction,
-    AppTimelineAccessibility? accessibility,
-    AppTimelineAnimation? animation,
+    DSTimelineStyle? style,
+    DSTimelineInteraction? interaction,
+    DSTimelineAccessibility? accessibility,
+    DSTimelineAnimation? animation,
     ValueChanged<int>? onEventTap,
     ValueChanged<int>? onEventLongPress,
     ValueChanged<int>? onEventHover,
@@ -50,25 +50,25 @@ class AppTimelineConfig with _$AppTimelineConfig {
     @Default(false) bool shrinkWrap,
     int? selectedIndex,
     ScrollController? scrollController,
-  }) = _AppTimelineConfig;
+  }) = _DSTimelineConfig;
 
   bool get isInteractive => onTap != null || onEventTap != null || interactive;
   bool get isHoverable => onHover != null || onEventHover != null;
-  bool get isDisabled => !enabled || state == AppTimelineState.disabled;
-  bool get isLoading => loading || state == AppTimelineState.loading;
-  bool get isSkeleton => skeleton || state == AppTimelineState.skeleton;
+  bool get isDisabled => !enabled || state == DSTimelineState.disabled;
+  bool get isLoading => loading || state == DSTimelineState.loading;
+  bool get isSkeleton => skeleton || state == DSTimelineState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
   bool get canInteract =>
       isInteractive && !isDisabled && !isLoading && !isSkeleton;
   bool get hasEvents => events.isNotEmpty;
-  bool get isHorizontal => orientation == AppTimelineOrientation.horizontal;
-  bool get isVertical => orientation == AppTimelineOrientation.vertical;
+  bool get isHorizontal => orientation == DSTimelineOrientation.horizontal;
+  bool get isVertical => orientation == DSTimelineOrientation.vertical;
   bool get hasSelection => selectedIndex != null;
   bool get isReversed => reversed;
 
   double getEffectiveConnectorWidth() {
     if (connectorWidth != null) return connectorWidth!;
-    return AppTimelineConstants.defaultConnectorWidth;
+    return DSTimelineConstants.defaultConnectorWidth;
   }
 
   double getEffectiveIndicatorSize() {
@@ -108,15 +108,15 @@ class AppTimelineConfig with _$AppTimelineConfig {
 
   EdgeInsetsGeometry getEffectiveMargin() {
     if (margin != null) return margin!;
-    return AppTimelineConstants.defaultMargin;
+    return DSTimelineConstants.defaultMargin;
   }
 }
 
 @freezed
-class AppTimelineEvent with _$AppTimelineEvent {
-  const AppTimelineEvent._();
+class DSTimelineEvent with _$DSTimelineEvent {
+  const DSTimelineEvent._();
 
-  const factory AppTimelineEvent({
+  const factory DSTimelineEvent({
     required String id,
     String? title,
     String? subtitle,
@@ -130,8 +130,8 @@ class AppTimelineEvent with _$AppTimelineEvent {
     Color? backgroundColor,
     Color? borderColor,
     String? semanticLabel,
-    AppTimelineEventType? type,
-    AppTimelineEventStatus? status,
+    DSTimelineEventType? type,
+    DSTimelineEventStatus? status,
     Map<String, dynamic>? metadata,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
@@ -142,7 +142,7 @@ class AppTimelineEvent with _$AppTimelineEvent {
     @Default(false) bool highlighted,
     @Default(false) bool isStart,
     @Default(false) bool isEnd,
-  }) = _AppTimelineEvent;
+  }) = _DSTimelineEvent;
 
   bool get hasTitle => title != null && title!.isNotEmpty;
   bool get hasSubtitle => subtitle != null && subtitle!.isNotEmpty;
@@ -185,11 +185,11 @@ class AppTimelineEvent with _$AppTimelineEvent {
   }
 }
 
-enum AppTimelineVariant {
+enum DSTimelineVariant {
   activity,
 }
 
-enum AppTimelineState {
+enum DSTimelineState {
   defaultState,
   hover,
   pressed,
@@ -200,19 +200,19 @@ enum AppTimelineState {
   skeleton,
 }
 
-enum AppTimelineOrientation {
+enum DSTimelineOrientation {
   vertical,
   horizontal,
 }
 
-enum AppTimelineConnectorStyle {
+enum DSTimelineConnectorStyle {
   solid,
   dashed,
   dotted,
   none,
 }
 
-enum AppTimelineIndicatorStyle {
+enum DSTimelineIndicatorStyle {
   dot,
   circle,
   square,
@@ -221,20 +221,20 @@ enum AppTimelineIndicatorStyle {
   custom,
 }
 
-enum AppTimelineAlignment {
+enum DSTimelineAlignment {
   start,
   center,
   end,
   alternate,
 }
 
-enum AppTimelineSpacing {
+enum DSTimelineSpacing {
   compact,
   medium,
   comfortable,
 }
 
-enum AppTimelineEventType {
+enum DSTimelineEventType {
   milestone,
   task,
   meeting,
@@ -246,7 +246,7 @@ enum AppTimelineEventType {
   info,
 }
 
-enum AppTimelineEventStatus {
+enum DSTimelineEventStatus {
   pending,
   inProgress,
   completed,
@@ -254,202 +254,202 @@ enum AppTimelineEventStatus {
   overdue,
 }
 
-extension AppTimelineVariantExtension on AppTimelineVariant {
-  bool get isActivity => this == AppTimelineVariant.activity;
+extension DSTimelineVariantExtension on DSTimelineVariant {
+  bool get isActivity => this == DSTimelineVariant.activity;
 }
 
-extension AppTimelineStateExtension on AppTimelineState {
+extension DSTimelineStateExtension on DSTimelineState {
   bool get isInteractiveState =>
-      this == AppTimelineState.hover ||
-      this == AppTimelineState.pressed ||
-      this == AppTimelineState.focus;
+      this == DSTimelineState.hover ||
+      this == DSTimelineState.pressed ||
+      this == DSTimelineState.focus;
 
-  bool get isDisabledState => this == AppTimelineState.disabled;
-  bool get isLoadingState => this == AppTimelineState.loading;
-  bool get isSkeletonState => this == AppTimelineState.skeleton;
-  bool get isSelectedState => this == AppTimelineState.selected;
+  bool get isDisabledState => this == DSTimelineState.disabled;
+  bool get isLoadingState => this == DSTimelineState.loading;
+  bool get isSkeletonState => this == DSTimelineState.skeleton;
+  bool get isSelectedState => this == DSTimelineState.selected;
 }
 
-extension AppTimelineSpacingExtension on AppTimelineSpacing {
+extension DSTimelineSpacingExtension on DSTimelineSpacing {
   double get itemSpacing {
     switch (this) {
-      case AppTimelineSpacing.compact:
+      case DSTimelineSpacing.compact:
         return 12.0;
-      case AppTimelineSpacing.medium:
+      case DSTimelineSpacing.medium:
         return 16.0;
-      case AppTimelineSpacing.comfortable:
+      case DSTimelineSpacing.comfortable:
         return 24.0;
     }
   }
 
   double get indicatorSize {
     switch (this) {
-      case AppTimelineSpacing.compact:
+      case DSTimelineSpacing.compact:
         return 12.0;
-      case AppTimelineSpacing.medium:
+      case DSTimelineSpacing.medium:
         return 16.0;
-      case AppTimelineSpacing.comfortable:
+      case DSTimelineSpacing.comfortable:
         return 20.0;
     }
   }
 
   double get connectorIndent {
     switch (this) {
-      case AppTimelineSpacing.compact:
+      case DSTimelineSpacing.compact:
         return 24.0;
-      case AppTimelineSpacing.medium:
+      case DSTimelineSpacing.medium:
         return 32.0;
-      case AppTimelineSpacing.comfortable:
+      case DSTimelineSpacing.comfortable:
         return 40.0;
     }
   }
 
   EdgeInsetsGeometry get padding {
     switch (this) {
-      case AppTimelineSpacing.compact:
+      case DSTimelineSpacing.compact:
         return const EdgeInsets.all(8.0);
-      case AppTimelineSpacing.medium:
+      case DSTimelineSpacing.medium:
         return const EdgeInsets.all(12.0);
-      case AppTimelineSpacing.comfortable:
+      case DSTimelineSpacing.comfortable:
         return const EdgeInsets.all(16.0);
     }
   }
 
   EdgeInsetsGeometry get itemPadding {
     switch (this) {
-      case AppTimelineSpacing.compact:
+      case DSTimelineSpacing.compact:
         return const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0);
-      case AppTimelineSpacing.medium:
+      case DSTimelineSpacing.medium:
         return const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0);
-      case AppTimelineSpacing.comfortable:
+      case DSTimelineSpacing.comfortable:
         return const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0);
     }
   }
 }
 
-extension AppTimelineEventTypeExtension on AppTimelineEventType {
+extension DSTimelineEventTypeExtension on DSTimelineEventType {
   IconData get defaultIcon {
     switch (this) {
-      case AppTimelineEventType.milestone:
+      case DSTimelineEventType.milestone:
         return Icons.flag;
-      case AppTimelineEventType.task:
+      case DSTimelineEventType.task:
         return Icons.task_alt;
-      case AppTimelineEventType.meeting:
+      case DSTimelineEventType.meeting:
         return Icons.meeting_room;
-      case AppTimelineEventType.deadline:
+      case DSTimelineEventType.deadline:
         return Icons.schedule;
-      case AppTimelineEventType.note:
+      case DSTimelineEventType.note:
         return Icons.note;
-      case AppTimelineEventType.success:
+      case DSTimelineEventType.success:
         return Icons.check_circle;
-      case AppTimelineEventType.warning:
+      case DSTimelineEventType.warning:
         return Icons.warning;
-      case AppTimelineEventType.error:
+      case DSTimelineEventType.error:
         return Icons.error;
-      case AppTimelineEventType.info:
+      case DSTimelineEventType.info:
         return Icons.info;
     }
   }
 
   Color getColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppTimelineEventType.milestone:
+      case DSTimelineEventType.milestone:
         return colorScheme.primary;
-      case AppTimelineEventType.task:
+      case DSTimelineEventType.task:
         return colorScheme.secondary;
-      case AppTimelineEventType.meeting:
+      case DSTimelineEventType.meeting:
         return Colors.blue;
-      case AppTimelineEventType.deadline:
+      case DSTimelineEventType.deadline:
         return Colors.orange;
-      case AppTimelineEventType.note:
+      case DSTimelineEventType.note:
         return colorScheme.outline;
-      case AppTimelineEventType.success:
+      case DSTimelineEventType.success:
         return Colors.green;
-      case AppTimelineEventType.warning:
+      case DSTimelineEventType.warning:
         return Colors.orange;
-      case AppTimelineEventType.error:
+      case DSTimelineEventType.error:
         return colorScheme.error;
-      case AppTimelineEventType.info:
+      case DSTimelineEventType.info:
         return Colors.blue;
     }
   }
 
   String get label {
     switch (this) {
-      case AppTimelineEventType.milestone:
+      case DSTimelineEventType.milestone:
         return 'Hito';
-      case AppTimelineEventType.task:
+      case DSTimelineEventType.task:
         return 'Tarea';
-      case AppTimelineEventType.meeting:
+      case DSTimelineEventType.meeting:
         return 'Reunión';
-      case AppTimelineEventType.deadline:
+      case DSTimelineEventType.deadline:
         return 'Fecha límite';
-      case AppTimelineEventType.note:
+      case DSTimelineEventType.note:
         return 'Nota';
-      case AppTimelineEventType.success:
+      case DSTimelineEventType.success:
         return 'Éxito';
-      case AppTimelineEventType.warning:
+      case DSTimelineEventType.warning:
         return 'Advertencia';
-      case AppTimelineEventType.error:
+      case DSTimelineEventType.error:
         return 'Error';
-      case AppTimelineEventType.info:
+      case DSTimelineEventType.info:
         return 'Información';
     }
   }
 }
 
-extension AppTimelineEventStatusExtension on AppTimelineEventStatus {
+extension DSTimelineEventStatusExtension on DSTimelineEventStatus {
   Color getColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppTimelineEventStatus.pending:
+      case DSTimelineEventStatus.pending:
         return colorScheme.outline;
-      case AppTimelineEventStatus.inProgress:
+      case DSTimelineEventStatus.inProgress:
         return Colors.blue;
-      case AppTimelineEventStatus.completed:
+      case DSTimelineEventStatus.completed:
         return Colors.green;
-      case AppTimelineEventStatus.cancelled:
+      case DSTimelineEventStatus.cancelled:
         return colorScheme.error;
-      case AppTimelineEventStatus.overdue:
+      case DSTimelineEventStatus.overdue:
         return Colors.red;
     }
   }
 
   IconData get icon {
     switch (this) {
-      case AppTimelineEventStatus.pending:
+      case DSTimelineEventStatus.pending:
         return Icons.pending;
-      case AppTimelineEventStatus.inProgress:
+      case DSTimelineEventStatus.inProgress:
         return Icons.play_circle;
-      case AppTimelineEventStatus.completed:
+      case DSTimelineEventStatus.completed:
         return Icons.check_circle;
-      case AppTimelineEventStatus.cancelled:
+      case DSTimelineEventStatus.cancelled:
         return Icons.cancel;
-      case AppTimelineEventStatus.overdue:
+      case DSTimelineEventStatus.overdue:
         return Icons.warning;
     }
   }
 
   String get label {
     switch (this) {
-      case AppTimelineEventStatus.pending:
+      case DSTimelineEventStatus.pending:
         return 'Pendiente';
-      case AppTimelineEventStatus.inProgress:
+      case DSTimelineEventStatus.inProgress:
         return 'En progreso';
-      case AppTimelineEventStatus.completed:
+      case DSTimelineEventStatus.completed:
         return 'Completado';
-      case AppTimelineEventStatus.cancelled:
+      case DSTimelineEventStatus.cancelled:
         return 'Cancelado';
-      case AppTimelineEventStatus.overdue:
+      case DSTimelineEventStatus.overdue:
         return 'Vencido';
     }
   }
 }
 
 @freezed
-class AppTimelineStyle with _$AppTimelineStyle {
-  const AppTimelineStyle._();
+class DSTimelineStyle with _$DSTimelineStyle {
+  const DSTimelineStyle._();
 
-  const factory AppTimelineStyle({
+  const factory DSTimelineStyle({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? connectorColor,
@@ -470,35 +470,35 @@ class AppTimelineStyle with _$AppTimelineStyle {
     TextStyle? descriptionStyle,
     TextStyle? timestampStyle,
     Offset? offset,
-  }) = _AppTimelineStyle;
+  }) = _DSTimelineStyle;
 
-  AppTimelineStyle copyWithState(AppTimelineState state) {
+  DSTimelineStyle copyWithState(DSTimelineState state) {
     switch (state) {
-      case AppTimelineState.hover:
+      case DSTimelineState.hover:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.08),
           elevation: (elevation ?? 0) + 1,
         );
-      case AppTimelineState.pressed:
+      case DSTimelineState.pressed:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
           elevation: (elevation ?? 0) + 0.5,
         );
-      case AppTimelineState.focus:
+      case DSTimelineState.focus:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
         );
-      case AppTimelineState.selected:
+      case DSTimelineState.selected:
         return copyWith(
           elevation: (elevation ?? 0) + 2,
         );
-      case AppTimelineState.disabled:
+      case DSTimelineState.disabled:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.38),
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
         );
-      case AppTimelineState.loading:
-      case AppTimelineState.skeleton:
+      case DSTimelineState.loading:
+      case DSTimelineState.skeleton:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.6),
         );
@@ -509,8 +509,8 @@ class AppTimelineStyle with _$AppTimelineStyle {
 }
 
 @freezed
-class AppTimelineInteraction with _$AppTimelineInteraction {
-  const factory AppTimelineInteraction({
+class DSTimelineInteraction with _$DSTimelineInteraction {
+  const factory DSTimelineInteraction({
     @Default(true) bool enabled,
     @Default(true) bool focusable,
     @Default(true) bool hoverable,
@@ -526,12 +526,12 @@ class AppTimelineInteraction with _$AppTimelineInteraction {
     ValueChanged<int>? onEventLongPress,
     ValueChanged<int>? onEventHover,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppTimelineInteraction;
+  }) = _DSTimelineInteraction;
 }
 
 @freezed
-class AppTimelineAccessibility with _$AppTimelineAccessibility {
-  const factory AppTimelineAccessibility({
+class DSTimelineAccessibility with _$DSTimelineAccessibility {
+  const factory DSTimelineAccessibility({
     String? semanticLabel,
     String? tooltip,
     bool? excludeSemantics,
@@ -544,25 +544,25 @@ class AppTimelineAccessibility with _$AppTimelineAccessibility {
     @Default(false) bool button,
     @Default(false) bool list,
     @Default(false) bool readOnly,
-  }) = _AppTimelineAccessibility;
+  }) = _DSTimelineAccessibility;
 }
 
 @freezed
-class AppTimelineAnimation with _$AppTimelineAnimation {
-  const factory AppTimelineAnimation({
+class DSTimelineAnimation with _$DSTimelineAnimation {
+  const factory DSTimelineAnimation({
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(false) bool enabled,
-    @Default(AppTimelineAnimationType.fade) AppTimelineAnimationType type,
+    @Default(DSTimelineAnimationType.fade) DSTimelineAnimationType type,
     Duration? delay,
     VoidCallback? onAnimationComplete,
     @Default(false) bool staggered,
     @Default(Duration(milliseconds: 100)) Duration staggerDelay,
     @Default(false) bool autoPlay,
-  }) = _AppTimelineAnimation;
+  }) = _DSTimelineAnimation;
 }
 
-enum AppTimelineAnimationType {
+enum DSTimelineAnimationType {
   none,
   fade,
   slide,
@@ -574,7 +574,7 @@ enum AppTimelineAnimationType {
   stagger,
 }
 
-class AppTimelineConstants {
+class DSTimelineConstants {
   static const double defaultConnectorWidth = 2.0;
   static const double defaultIndicatorSize = 16.0;
   static const double defaultItemSpacing = 16.0;

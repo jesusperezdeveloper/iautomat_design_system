@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:iautomat_design_system/src/components/drawer/app_drawer.dart';
+import 'package:iautomat_design_system/src/components/drawer/ds_drawer.dart';
 import 'package:iautomat_design_system/src/components/drawer/drawer_story.dart';
 
 void main() {
   group('Drawer Integration Tests', () {
-    test('can import AppDrawer from components barrel', () {
-      // Verify that AppDrawer and related classes are exported properly
-      expect(AppDrawer, isNotNull);
+    test('can import DSDrawer from components barrel', () {
+      // Verify that DSDrawer and related classes are exported properly
+      expect(DSDrawer, isNotNull);
       expect(DrawerVariant, isNotNull);
-      expect(AppDrawerState, isNotNull);
+      expect(DSDrawerState, isNotNull);
       expect(DrawerSide, isNotNull);
-      expect(AppDrawerController, isNotNull);
-      expect(AppDrawerHelper, isNotNull);
+      expect(DSDrawerController, isNotNull);
+      expect(DSDrawerHelper, isNotNull);
     });
 
-    test('AppDrawer enums contain expected values', () {
+    test('DSDrawer enums contain expected values', () {
       // Test DrawerVariant enum
       expect(DrawerVariant.values.length, equals(2));
       expect(DrawerVariant.values, contains(DrawerVariant.modal));
       expect(DrawerVariant.values, contains(DrawerVariant.permanent));
 
-      // Test AppDrawerState enum
-      expect(AppDrawerState.values.length, equals(8));
-      expect(AppDrawerState.values, contains(AppDrawerState.defaultState));
-      expect(AppDrawerState.values, contains(AppDrawerState.hover));
-      expect(AppDrawerState.values, contains(AppDrawerState.pressed));
-      expect(AppDrawerState.values, contains(AppDrawerState.focus));
-      expect(AppDrawerState.values, contains(AppDrawerState.selected));
-      expect(AppDrawerState.values, contains(AppDrawerState.disabled));
-      expect(AppDrawerState.values, contains(AppDrawerState.loading));
-      expect(AppDrawerState.values, contains(AppDrawerState.skeleton));
+      // Test DSDrawerState enum
+      expect(DSDrawerState.values.length, equals(8));
+      expect(DSDrawerState.values, contains(DSDrawerState.defaultState));
+      expect(DSDrawerState.values, contains(DSDrawerState.hover));
+      expect(DSDrawerState.values, contains(DSDrawerState.pressed));
+      expect(DSDrawerState.values, contains(DSDrawerState.focus));
+      expect(DSDrawerState.values, contains(DSDrawerState.selected));
+      expect(DSDrawerState.values, contains(DSDrawerState.disabled));
+      expect(DSDrawerState.values, contains(DSDrawerState.loading));
+      expect(DSDrawerState.values, contains(DSDrawerState.skeleton));
 
       // Test DrawerSide enum
       expect(DrawerSide.values.length, equals(2));
@@ -38,12 +38,12 @@ void main() {
       expect(DrawerSide.values, contains(DrawerSide.right));
     });
 
-    test('AppDrawer factory constructors work correctly', () {
-      const modalDrawer = AppDrawer.modal(
+    test('DSDrawer factory constructors work correctly', () {
+      const modalDrawer = DSDrawer.modal(
         content: Text('Modal Test'),
       );
 
-      const permanentDrawer = AppDrawer.permanent(
+      const permanentDrawer = DSDrawer.permanent(
         content: Text('Permanent Test'),
       );
 
@@ -60,24 +60,24 @@ void main() {
       expect(permanentDrawer.enableDragGesture, isFalse);
     });
 
-    test('AppDrawerController can be instantiated', () {
-      final controller = AppDrawerController();
+    test('DSDrawerController can be instantiated', () {
+      final controller = DSDrawerController();
       expect(controller, isNotNull);
       expect(controller.key, isNotNull);
       // Note: isClosed and isOpen require widget binding, tested in widget tests
     });
 
-    test('AppDrawerHelper can create drawers', () {
-      final modalDrawer = AppDrawerHelper.createModalDrawer(
+    test('DSDrawerHelper can create drawers', () {
+      final modalDrawer = DSDrawerHelper.createModalDrawer(
         content: const Text('Modal Test'),
       );
 
-      final permanentDrawer = AppDrawerHelper.createPermanentDrawer(
+      final permanentDrawer = DSDrawerHelper.createPermanentDrawer(
         content: const Text('Permanent Test'),
       );
 
-      expect(modalDrawer, isA<AppDrawer>());
-      expect(permanentDrawer, isA<AppDrawer>());
+      expect(modalDrawer, isA<DSDrawer>());
+      expect(permanentDrawer, isA<DSDrawer>());
     });
 
     test('can access DrawerStoryExample from exports', () {

@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'data_table_config.freezed.dart';
 
 /// Data table variant types
-enum AppDataTableVariant {
+enum DSDataTableVariant {
   /// Resizable columns table
   resizable,
 
@@ -18,7 +18,7 @@ enum AppDataTableVariant {
 }
 
 /// Data table state types
-enum AppDataTableState {
+enum DSDataTableState {
   /// Default state
   defaultState,
 
@@ -45,21 +45,21 @@ enum AppDataTableState {
 }
 
 /// Column alignment options
-enum AppDataTableColumnAlignment {
+enum DSDataTableColumnAlignment {
   left,
   center,
   right,
 }
 
 /// Sort direction for columns
-enum AppDataTableSortDirection {
+enum DSDataTableSortDirection {
   ascending,
   descending,
   none,
 }
 
 /// Selection mode for rows
-enum AppDataTableSelectionMode {
+enum DSDataTableSelectionMode {
   /// No selection allowed
   none,
 
@@ -71,7 +71,7 @@ enum AppDataTableSelectionMode {
 }
 
 /// Row state
-enum AppDataTableRowState {
+enum DSDataTableRowState {
   normal,
   selected,
   hovered,
@@ -81,7 +81,7 @@ enum AppDataTableRowState {
 }
 
 /// Cell type for different data types
-enum AppDataTableCellType {
+enum DSDataTableCellType {
   text,
   number,
   boolean,
@@ -93,7 +93,7 @@ enum AppDataTableCellType {
 }
 
 /// Edit mode for inline editing
-enum AppDataTableEditMode {
+enum DSDataTableEditMode {
   none,
   cell,
   row,
@@ -101,8 +101,8 @@ enum AppDataTableEditMode {
 
 /// Freeze configuration for pinned columns
 @freezed
-class AppDataTableFreezeConfig with _$AppDataTableFreezeConfig {
-  const factory AppDataTableFreezeConfig({
+class DSDataTableFreezeConfig with _$DSDataTableFreezeConfig {
+  const factory DSDataTableFreezeConfig({
     /// Number of columns to freeze from the left
     @Default(0) int leftColumns,
 
@@ -117,13 +117,13 @@ class AppDataTableFreezeConfig with _$AppDataTableFreezeConfig {
 
     /// Freeze divider width
     @Default(2.0) double dividerWidth,
-  }) = _AppDataTableFreezeConfig;
+  }) = _DSDataTableFreezeConfig;
 }
 
 /// Resize configuration for resizable columns
 @freezed
-class AppDataTableResizeConfig with _$AppDataTableResizeConfig {
-  const factory AppDataTableResizeConfig({
+class DSDataTableResizeConfig with _$DSDataTableResizeConfig {
+  const factory DSDataTableResizeConfig({
     /// Whether columns are resizable
     @Default(true) bool enabled,
 
@@ -141,15 +141,15 @@ class AppDataTableResizeConfig with _$AppDataTableResizeConfig {
 
     /// Whether to show resize handles on hover
     @Default(true) bool showOnHover,
-  }) = _AppDataTableResizeConfig;
+  }) = _DSDataTableResizeConfig;
 }
 
 /// Column configuration
 @freezed
-class AppDataTableColumn with _$AppDataTableColumn {
-  const AppDataTableColumn._();
+class DSDataTableColumn with _$DSDataTableColumn {
+  const DSDataTableColumn._();
 
-  const factory AppDataTableColumn({
+  const factory DSDataTableColumn({
     /// Unique identifier for the column
     required String id,
 
@@ -181,29 +181,29 @@ class AppDataTableColumn with _$AppDataTableColumn {
     @Default(false) bool pinned,
 
     /// Column alignment
-    @Default(AppDataTableColumnAlignment.left)
-    AppDataTableColumnAlignment alignment,
+    @Default(DSDataTableColumnAlignment.left)
+    DSDataTableColumnAlignment alignment,
 
     /// Cell type for this column
-    @Default(AppDataTableCellType.text) AppDataTableCellType cellType,
+    @Default(DSDataTableCellType.text) DSDataTableCellType cellType,
 
     /// Whether cells in this column are editable
     @Default(false) bool editable,
 
     /// Custom cell builder
-    AppDataTableCellBuilder? cellBuilder,
+    DSDataTableCellBuilder? cellBuilder,
 
     /// Custom header builder
-    AppDataTableHeaderBuilder? headerBuilder,
+    DSDataTableHeaderBuilder? headerBuilder,
 
     /// Custom edit cell builder for inline editing
-    AppDataTableEditCellBuilder? editCellBuilder,
+    DSDataTableEditCellBuilder? editCellBuilder,
 
     /// Validator for cell values during editing
-    AppDataTableCellValidator? validator,
+    DSDataTableCellValidator? validator,
 
     /// Formatter for displaying cell values
-    AppDataTableCellFormatter? formatter,
+    DSDataTableCellFormatter? formatter,
 
     /// Tooltip for the column header
     String? tooltip,
@@ -221,12 +221,12 @@ class AppDataTableColumn with _$AppDataTableColumn {
     String? semanticLabel,
 
     /// Sort direction for this column
-    @Default(AppDataTableSortDirection.none)
-    AppDataTableSortDirection sortDirection,
+    @Default(DSDataTableSortDirection.none)
+    DSDataTableSortDirection sortDirection,
 
     /// Sort priority (for multi-column sorting)
     int? sortPriority,
-  }) = _AppDataTableColumn;
+  }) = _DSDataTableColumn;
 
   /// Whether the column has a custom cell builder
   bool get hasCustomCellBuilder => cellBuilder != null;
@@ -237,19 +237,19 @@ class AppDataTableColumn with _$AppDataTableColumn {
   /// Whether the column supports editing
   bool get supportsEditing =>
       editable &&
-      (cellType != AppDataTableCellType.custom || editCellBuilder != null);
+      (cellType != DSDataTableCellType.custom || editCellBuilder != null);
 
   /// Get the effective alignment for RTL layouts
-  AppDataTableColumnAlignment getEffectiveAlignment(
+  DSDataTableColumnAlignment getEffectiveAlignment(
       TextDirection textDirection) {
     if (textDirection == TextDirection.rtl) {
       switch (alignment) {
-        case AppDataTableColumnAlignment.left:
-          return AppDataTableColumnAlignment.right;
-        case AppDataTableColumnAlignment.right:
-          return AppDataTableColumnAlignment.left;
-        case AppDataTableColumnAlignment.center:
-          return AppDataTableColumnAlignment.center;
+        case DSDataTableColumnAlignment.left:
+          return DSDataTableColumnAlignment.right;
+        case DSDataTableColumnAlignment.right:
+          return DSDataTableColumnAlignment.left;
+        case DSDataTableColumnAlignment.center:
+          return DSDataTableColumnAlignment.center;
       }
     }
     return alignment;
@@ -258,10 +258,10 @@ class AppDataTableColumn with _$AppDataTableColumn {
 
 /// Row data configuration
 @freezed
-class AppDataTableRow with _$AppDataTableRow {
-  const AppDataTableRow._();
+class DSDataTableRow with _$DSDataTableRow {
+  const DSDataTableRow._();
 
-  const factory AppDataTableRow({
+  const factory DSDataTableRow({
     /// Unique identifier for the row
     required String id,
 
@@ -278,10 +278,10 @@ class AppDataTableRow with _$AppDataTableRow {
     @Default(true) bool visible,
 
     /// Row state
-    @Default(AppDataTableRowState.normal) AppDataTableRowState state,
+    @Default(DSDataTableRowState.normal) DSDataTableRowState state,
 
     /// Custom row builder
-    AppDataTableRowBuilder? rowBuilder,
+    DSDataTableRowBuilder? rowBuilder,
 
     /// Row height override
     double? height,
@@ -306,7 +306,7 @@ class AppDataTableRow with _$AppDataTableRow {
 
     /// Which cells are currently being edited (column IDs)
     @Default([]) List<String> editingCells,
-  }) = _AppDataTableRow;
+  }) = _DSDataTableRow;
 
   /// Get value for a specific column
   dynamic getValue(String columnId) => data[columnId];
@@ -319,7 +319,7 @@ class AppDataTableRow with _$AppDataTableRow {
 
   /// Get display value for a column with optional formatting
   String getDisplayValue(
-      String columnId, AppDataTableCellFormatter? formatter) {
+      String columnId, DSDataTableCellFormatter? formatter) {
     final value = getValue(columnId);
     if (formatter != null) {
       return formatter(value);
@@ -330,10 +330,10 @@ class AppDataTableRow with _$AppDataTableRow {
 
 /// Selection configuration
 @freezed
-class AppDataTableSelection with _$AppDataTableSelection {
-  const factory AppDataTableSelection({
+class DSDataTableSelection with _$DSDataTableSelection {
+  const factory DSDataTableSelection({
     /// Selection mode
-    @Default(AppDataTableSelectionMode.none) AppDataTableSelectionMode mode,
+    @Default(DSDataTableSelectionMode.none) DSDataTableSelectionMode mode,
 
     /// Selected row IDs
     @Default([]) List<String> selectedRows,
@@ -348,46 +348,46 @@ class AppDataTableSelection with _$AppDataTableSelection {
     int? maxSelections,
 
     /// Callback when selection changes
-    AppDataTableSelectionCallback? onSelectionChanged,
-  }) = _AppDataTableSelection;
+    DSDataTableSelectionCallback? onSelectionChanged,
+  }) = _DSDataTableSelection;
 }
 
 /// Sort configuration
 @freezed
-class AppDataTableSort with _$AppDataTableSort {
-  const factory AppDataTableSort({
+class DSDataTableSort with _$DSDataTableSort {
+  const factory DSDataTableSort({
     /// Column ID being sorted
     String? columnId,
 
     /// Sort direction
-    @Default(AppDataTableSortDirection.none)
-    AppDataTableSortDirection direction,
+    @Default(DSDataTableSortDirection.none)
+    DSDataTableSortDirection direction,
 
     /// Whether multi-column sorting is enabled
     @Default(false) bool multiColumn,
 
     /// Sort configurations for multi-column sorting
-    @Default([]) List<AppDataTableSortItem> sortItems,
+    @Default([]) List<DSDataTableSortItem> sortItems,
 
     /// Callback when sort changes
-    AppDataTableSortCallback? onSortChanged,
-  }) = _AppDataTableSort;
+    DSDataTableSortCallback? onSortChanged,
+  }) = _DSDataTableSort;
 }
 
 /// Individual sort item for multi-column sorting
 @freezed
-class AppDataTableSortItem with _$AppDataTableSortItem {
-  const factory AppDataTableSortItem({
+class DSDataTableSortItem with _$DSDataTableSortItem {
+  const factory DSDataTableSortItem({
     required String columnId,
-    required AppDataTableSortDirection direction,
+    required DSDataTableSortDirection direction,
     required int priority,
-  }) = _AppDataTableSortItem;
+  }) = _DSDataTableSortItem;
 }
 
 /// Empty state configuration
 @freezed
-class AppDataTableEmptyState with _$AppDataTableEmptyState {
-  const factory AppDataTableEmptyState({
+class DSDataTableEmptyState with _$DSDataTableEmptyState {
+  const factory DSDataTableEmptyState({
     /// Empty state message
     @Default('No data available') String message,
 
@@ -404,16 +404,16 @@ class AppDataTableEmptyState with _$AppDataTableEmptyState {
     @Default(true) bool show,
 
     /// Custom empty state builder
-    AppDataTableEmptyStateBuilder? builder,
-  }) = _AppDataTableEmptyState;
+    DSDataTableEmptyStateBuilder? builder,
+  }) = _DSDataTableEmptyState;
 }
 
-/// Main configuration for AppDataTable
+/// Main configuration for DSDataTable
 @freezed
-class AppDataTableConfig with _$AppDataTableConfig {
-  const factory AppDataTableConfig({
+class DSDataTableConfig with _$DSDataTableConfig {
+  const factory DSDataTableConfig({
     /// Table variant
-    @Default(AppDataTableVariant.resizable) AppDataTableVariant variant,
+    @Default(DSDataTableVariant.resizable) DSDataTableVariant variant,
 
     /// Whether to show column headers
     @Default(true) bool showHeaders,
@@ -463,13 +463,13 @@ class AppDataTableConfig with _$AppDataTableConfig {
     @Default(true) bool verticalScrollable,
 
     /// Resize configuration
-    AppDataTableResizeConfig? resizeConfig,
+    DSDataTableResizeConfig? resizeConfig,
 
     /// Freeze configuration for pinned columns
-    AppDataTableFreezeConfig? freezeConfig,
+    DSDataTableFreezeConfig? freezeConfig,
 
     /// Edit mode configuration
-    @Default(AppDataTableEditMode.none) AppDataTableEditMode editMode,
+    @Default(DSDataTableEditMode.none) DSDataTableEditMode editMode,
 
     /// Whether to show loading state
     @Default(false) bool showLoading,
@@ -484,7 +484,7 @@ class AppDataTableConfig with _$AppDataTableConfig {
     Widget? loadingIndicator,
 
     /// Skeleton row builder
-    AppDataTableSkeletonBuilder? skeletonBuilder,
+    DSDataTableSkeletonBuilder? skeletonBuilder,
 
     /// Animation duration for state changes
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
@@ -499,13 +499,13 @@ class AppDataTableConfig with _$AppDataTableConfig {
     @Default(true) bool enableAccessibility,
 
     /// Custom row actions
-    List<AppDataTableRowAction>? rowActions,
+    List<DSDataTableRowAction>? rowActions,
 
     /// Bulk actions for selected rows
-    List<AppDataTableBulkAction>? bulkActions,
+    List<DSDataTableBulkAction>? bulkActions,
 
     /// Context menu items
-    List<AppDataTableContextMenuItem>? contextMenuItems,
+    List<DSDataTableContextMenuItem>? contextMenuItems,
 
     /// Custom header actions
     List<Widget>? headerActions,
@@ -523,39 +523,39 @@ class AppDataTableConfig with _$AppDataTableConfig {
     @Default(false) bool enableDragAndDrop,
 
     /// Drag and drop callback
-    AppDataTableDragDropCallback? onDragDrop,
+    DSDataTableDragDropCallback? onDragDrop,
 
     /// Whether to enable column reordering
     @Default(false) bool enableColumnReordering,
 
     /// Column reorder callback
-    AppDataTableColumnReorderCallback? onColumnReorder,
+    DSDataTableColumnReorderCallback? onColumnReorder,
 
     /// Whether to enable column hiding
     @Default(false) bool enableColumnHiding,
 
     /// Column visibility callback
-    AppDataTableColumnVisibilityCallback? onColumnVisibilityChanged,
+    DSDataTableColumnVisibilityCallback? onColumnVisibilityChanged,
 
     /// Density for the table (compact, standard, comfortable)
-    @Default(AppDataTableDensity.standard) AppDataTableDensity density,
+    @Default(DSDataTableDensity.standard) DSDataTableDensity density,
 
     /// Custom theme overrides
-    AppDataTableTheme? theme,
+    DSDataTableTheme? theme,
 
     /// Platform-specific configurations
-    AppDataTablePlatformConfig? platformConfig,
+    DSDataTablePlatformConfig? platformConfig,
 
     /// RTL support configuration
     @Default(true) bool supportRTL,
 
     /// Accessibility configuration
-    AppDataTableAccessibilityConfig? accessibilityConfig,
-  }) = _AppDataTableConfig;
+    DSDataTableAccessibilityConfig? accessibilityConfig,
+  }) = _DSDataTableConfig;
 }
 
 /// Table density options
-enum AppDataTableDensity {
+enum DSDataTableDensity {
   compact,
   standard,
   comfortable,
@@ -563,51 +563,51 @@ enum AppDataTableDensity {
 
 /// Row action configuration
 @freezed
-class AppDataTableRowAction with _$AppDataTableRowAction {
-  const factory AppDataTableRowAction({
+class DSDataTableRowAction with _$DSDataTableRowAction {
+  const factory DSDataTableRowAction({
     required String id,
     required String label,
     required IconData icon,
-    required AppDataTableRowActionCallback callback,
+    required DSDataTableRowActionCallback callback,
     String? tooltip,
     @Default(true) bool visible,
     @Default(true) bool enabled,
     Color? color,
-  }) = _AppDataTableRowAction;
+  }) = _DSDataTableRowAction;
 }
 
 /// Bulk action configuration
 @freezed
-class AppDataTableBulkAction with _$AppDataTableBulkAction {
-  const factory AppDataTableBulkAction({
+class DSDataTableBulkAction with _$DSDataTableBulkAction {
+  const factory DSDataTableBulkAction({
     required String id,
     required String label,
     required IconData icon,
-    required AppDataTableBulkActionCallback callback,
+    required DSDataTableBulkActionCallback callback,
     String? tooltip,
     @Default(true) bool visible,
     @Default(true) bool enabled,
     Color? color,
-  }) = _AppDataTableBulkAction;
+  }) = _DSDataTableBulkAction;
 }
 
 /// Context menu item configuration
 @freezed
-class AppDataTableContextMenuItem with _$AppDataTableContextMenuItem {
-  const factory AppDataTableContextMenuItem({
+class DSDataTableContextMenuItem with _$DSDataTableContextMenuItem {
+  const factory DSDataTableContextMenuItem({
     required String id,
     required String label,
     IconData? icon,
-    required AppDataTableContextMenuCallback callback,
+    required DSDataTableContextMenuCallback callback,
     @Default(true) bool enabled,
     @Default(false) bool isDivider,
-  }) = _AppDataTableContextMenuItem;
+  }) = _DSDataTableContextMenuItem;
 }
 
 /// Theme configuration for the table
 @freezed
-class AppDataTableTheme with _$AppDataTableTheme {
-  const factory AppDataTableTheme({
+class DSDataTableTheme with _$DSDataTableTheme {
+  const factory DSDataTableTheme({
     /// Header background color
     Color? headerBackgroundColor,
 
@@ -648,32 +648,32 @@ class AppDataTableTheme with _$AppDataTableTheme {
     Color? loadingIndicatorColor,
 
     /// Custom cell styles
-    Map<AppDataTableCellType, TextStyle>? cellStyles,
+    Map<DSDataTableCellType, TextStyle>? cellStyles,
 
     /// Custom header style
     TextStyle? headerStyle,
-  }) = _AppDataTableTheme;
+  }) = _DSDataTableTheme;
 }
 
 /// Platform-specific configuration
 @freezed
-class AppDataTablePlatformConfig with _$AppDataTablePlatformConfig {
-  const factory AppDataTablePlatformConfig({
+class DSDataTablePlatformConfig with _$DSDataTablePlatformConfig {
+  const factory DSDataTablePlatformConfig({
     /// iOS-specific configurations
-    AppDataTableIOSConfig? ios,
+    DSDataTableIOSConfig? ios,
 
     /// Android-specific configurations
-    AppDataTableAndroidConfig? android,
+    DSDataTableAndroidConfig? android,
 
     /// Web-specific configurations
-    AppDataTableWebConfig? web,
-  }) = _AppDataTablePlatformConfig;
+    DSDataTableWebConfig? web,
+  }) = _DSDataTablePlatformConfig;
 }
 
 /// iOS-specific configuration
 @freezed
-class AppDataTableIOSConfig with _$AppDataTableIOSConfig {
-  const factory AppDataTableIOSConfig({
+class DSDataTableIOSConfig with _$DSDataTableIOSConfig {
+  const factory DSDataTableIOSConfig({
     /// Whether to use iOS-style scrollbars
     @Default(true) bool useIOSScrollbars,
 
@@ -682,25 +682,25 @@ class AppDataTableIOSConfig with _$AppDataTableIOSConfig {
 
     /// iOS-specific row height
     double? rowHeight,
-  }) = _AppDataTableIOSConfig;
+  }) = _DSDataTableIOSConfig;
 }
 
 /// Android-specific configuration
 @freezed
-class AppDataTableAndroidConfig with _$AppDataTableAndroidConfig {
-  const factory AppDataTableAndroidConfig({
+class DSDataTableAndroidConfig with _$DSDataTableAndroidConfig {
+  const factory DSDataTableAndroidConfig({
     /// Whether to use Material ripple effects
     @Default(true) bool useMaterialRipple,
 
     /// Android-specific row height
     double? rowHeight,
-  }) = _AppDataTableAndroidConfig;
+  }) = _DSDataTableAndroidConfig;
 }
 
 /// Web-specific configuration
 @freezed
-class AppDataTableWebConfig with _$AppDataTableWebConfig {
-  const factory AppDataTableWebConfig({
+class DSDataTableWebConfig with _$DSDataTableWebConfig {
+  const factory DSDataTableWebConfig({
     /// Whether to show horizontal scrollbar
     @Default(true) bool showHorizontalScrollbar,
 
@@ -712,13 +712,13 @@ class AppDataTableWebConfig with _$AppDataTableWebConfig {
 
     /// Web-specific row height
     double? rowHeight,
-  }) = _AppDataTableWebConfig;
+  }) = _DSDataTableWebConfig;
 }
 
 /// Accessibility configuration
 @freezed
-class AppDataTableAccessibilityConfig with _$AppDataTableAccessibilityConfig {
-  const factory AppDataTableAccessibilityConfig({
+class DSDataTableAccessibilityConfig with _$DSDataTableAccessibilityConfig {
+  const factory DSDataTableAccessibilityConfig({
     /// Whether to announce sort changes
     @Default(true) bool announceSortChanges,
 
@@ -736,143 +736,143 @@ class AppDataTableAccessibilityConfig with _$AppDataTableAccessibilityConfig {
 
     /// Custom semantics for cells
     Map<String, String>? cellSemantics,
-  }) = _AppDataTableAccessibilityConfig;
+  }) = _DSDataTableAccessibilityConfig;
 }
 
 /// Callback function types
-typedef AppDataTableCellBuilder = Widget Function(
+typedef DSDataTableCellBuilder = Widget Function(
   BuildContext context,
-  AppDataTableRow row,
-  AppDataTableColumn column,
+  DSDataTableRow row,
+  DSDataTableColumn column,
   dynamic value,
 );
 
-typedef AppDataTableHeaderBuilder = Widget Function(
+typedef DSDataTableHeaderBuilder = Widget Function(
   BuildContext context,
-  AppDataTableColumn column,
+  DSDataTableColumn column,
 );
 
-typedef AppDataTableEditCellBuilder = Widget Function(
+typedef DSDataTableEditCellBuilder = Widget Function(
   BuildContext context,
-  AppDataTableRow row,
-  AppDataTableColumn column,
+  DSDataTableRow row,
+  DSDataTableColumn column,
   dynamic value,
   ValueChanged<dynamic> onChanged,
 );
 
-typedef AppDataTableCellValidator = String? Function(dynamic value);
+typedef DSDataTableCellValidator = String? Function(dynamic value);
 
-typedef AppDataTableCellFormatter = String Function(dynamic value);
+typedef DSDataTableCellFormatter = String Function(dynamic value);
 
-typedef AppDataTableRowBuilder = Widget Function(
+typedef DSDataTableRowBuilder = Widget Function(
   BuildContext context,
-  AppDataTableRow row,
+  DSDataTableRow row,
   List<Widget> cells,
 );
 
-typedef AppDataTableEmptyStateBuilder = Widget Function(
+typedef DSDataTableEmptyStateBuilder = Widget Function(
   BuildContext context,
 );
 
-typedef AppDataTableSkeletonBuilder = Widget Function(
+typedef DSDataTableSkeletonBuilder = Widget Function(
   BuildContext context,
   int rowIndex,
 );
 
-typedef AppDataTableSelectionCallback = void Function(
+typedef DSDataTableSelectionCallback = void Function(
   List<String> selectedRowIds,
 );
 
-typedef AppDataTableSortCallback = void Function(
+typedef DSDataTableSortCallback = void Function(
   String columnId,
-  AppDataTableSortDirection direction,
+  DSDataTableSortDirection direction,
 );
 
-typedef AppDataTableRowActionCallback = void Function(
-  AppDataTableRow row,
+typedef DSDataTableRowActionCallback = void Function(
+  DSDataTableRow row,
 );
 
-typedef AppDataTableBulkActionCallback = void Function(
-  List<AppDataTableRow> rows,
+typedef DSDataTableBulkActionCallback = void Function(
+  List<DSDataTableRow> rows,
 );
 
-typedef AppDataTableContextMenuCallback = void Function(
-  AppDataTableRow? row,
-  AppDataTableColumn? column,
+typedef DSDataTableContextMenuCallback = void Function(
+  DSDataTableRow? row,
+  DSDataTableColumn? column,
 );
 
-typedef AppDataTableDragDropCallback = void Function(
-  AppDataTableRow draggedRow,
+typedef DSDataTableDragDropCallback = void Function(
+  DSDataTableRow draggedRow,
   int newIndex,
 );
 
-typedef AppDataTableColumnReorderCallback = void Function(
-  List<AppDataTableColumn> reorderedColumns,
+typedef DSDataTableColumnReorderCallback = void Function(
+  List<DSDataTableColumn> reorderedColumns,
 );
 
-typedef AppDataTableColumnVisibilityCallback = void Function(
-  AppDataTableColumn column,
+typedef DSDataTableColumnVisibilityCallback = void Function(
+  DSDataTableColumn column,
   bool visible,
 );
 
-typedef AppDataTableEditCallback = void Function(
-  AppDataTableRow row,
+typedef DSDataTableEditCallback = void Function(
+  DSDataTableRow row,
   String columnId,
   dynamic newValue,
 );
 
-typedef AppDataTableRowSelectCallback = void Function(
-  AppDataTableRow row,
+typedef DSDataTableRowSelectCallback = void Function(
+  DSDataTableRow row,
   bool selected,
 );
 
 /// Data table event types
 @freezed
-class AppDataTableEvent with _$AppDataTableEvent {
-  const factory AppDataTableEvent.sort({
+class DSDataTableEvent with _$DSDataTableEvent {
+  const factory DSDataTableEvent.sort({
     required String columnId,
-    required AppDataTableSortDirection direction,
-  }) = AppDataTableSortEvent;
+    required DSDataTableSortDirection direction,
+  }) = DSDataTableSortEvent;
 
-  const factory AppDataTableEvent.select({
+  const factory DSDataTableEvent.select({
     required String rowId,
     required bool selected,
-  }) = AppDataTableSelectEvent;
+  }) = DSDataTableSelectEvent;
 
-  const factory AppDataTableEvent.edit({
+  const factory DSDataTableEvent.edit({
     required String rowId,
     required String columnId,
     required dynamic oldValue,
     required dynamic newValue,
-  }) = AppDataTableEditEvent;
+  }) = DSDataTableEditEvent;
 
-  const factory AppDataTableEvent.resize({
+  const factory DSDataTableEvent.resize({
     required String columnId,
     required double newWidth,
-  }) = AppDataTableResizeEvent;
+  }) = DSDataTableResizeEvent;
 
-  const factory AppDataTableEvent.reorder({
+  const factory DSDataTableEvent.reorder({
     required List<String> newColumnOrder,
-  }) = AppDataTableReorderEvent;
+  }) = DSDataTableReorderEvent;
 
-  const factory AppDataTableEvent.expand({
+  const factory DSDataTableEvent.expand({
     required String rowId,
     required bool expanded,
-  }) = AppDataTableExpandEvent;
+  }) = DSDataTableExpandEvent;
 }
 
-/// Utility functions for AppDataTable
-class AppDataTableUtils {
+/// Utility functions for DSDataTable
+class DSDataTableUtils {
   /// Calculate total width of visible columns
-  static double calculateTotalWidth(List<AppDataTableColumn> columns) {
+  static double calculateTotalWidth(List<DSDataTableColumn> columns) {
     return columns
         .where((col) => col.visible)
         .fold(0.0, (sum, col) => sum + (col.width ?? 150.0));
   }
 
   /// Filter rows based on search criteria
-  static List<AppDataTableRow> filterRows(
-    List<AppDataTableRow> rows,
+  static List<DSDataTableRow> filterRows(
+    List<DSDataTableRow> rows,
     String searchQuery, {
     List<String>? searchColumns,
     bool caseSensitive = false,
@@ -893,14 +893,14 @@ class AppDataTableUtils {
   }
 
   /// Sort rows by column
-  static List<AppDataTableRow> sortRows(
-    List<AppDataTableRow> rows,
+  static List<DSDataTableRow> sortRows(
+    List<DSDataTableRow> rows,
     String columnId,
-    AppDataTableSortDirection direction,
+    DSDataTableSortDirection direction,
   ) {
-    if (direction == AppDataTableSortDirection.none) return rows;
+    if (direction == DSDataTableSortDirection.none) return rows;
 
-    final sortedRows = List<AppDataTableRow>.from(rows);
+    final sortedRows = List<DSDataTableRow>.from(rows);
 
     sortedRows.sort((a, b) {
       final aValue = a.getValue(columnId);
@@ -920,7 +920,7 @@ class AppDataTableUtils {
         comparison = aValue.toString().compareTo(bValue.toString());
       }
 
-      return direction == AppDataTableSortDirection.ascending
+      return direction == DSDataTableSortDirection.ascending
           ? comparison
           : -comparison;
     });
@@ -929,21 +929,21 @@ class AppDataTableUtils {
   }
 
   /// Get selected rows from a list
-  static List<AppDataTableRow> getSelectedRows(List<AppDataTableRow> rows) {
+  static List<DSDataTableRow> getSelectedRows(List<DSDataTableRow> rows) {
     return rows.where((row) => row.selected).toList();
   }
 
   /// Update row selection
-  static List<AppDataTableRow> updateRowSelection(
-    List<AppDataTableRow> rows,
+  static List<DSDataTableRow> updateRowSelection(
+    List<DSDataTableRow> rows,
     String rowId,
     bool selected,
-    AppDataTableSelectionMode mode,
+    DSDataTableSelectionMode mode,
   ) {
     return rows.map((row) {
       if (row.id == rowId) {
         return row.copyWith(selected: selected);
-      } else if (mode == AppDataTableSelectionMode.single && selected) {
+      } else if (mode == DSDataTableSelectionMode.single && selected) {
         // Deselect other rows for single selection
         return row.copyWith(selected: false);
       }
@@ -953,8 +953,8 @@ class AppDataTableUtils {
 
   /// Calculate row index considering sorting and filtering
   static int getActualRowIndex(
-    List<AppDataTableRow> originalRows,
-    AppDataTableRow targetRow,
+    List<DSDataTableRow> originalRows,
+    DSDataTableRow targetRow,
   ) {
     return originalRows.indexWhere((row) => row.id == targetRow.id);
   }
@@ -970,8 +970,8 @@ class AppDataTableUtils {
 
   /// Generate semantic label for cell
   static String generateCellSemanticLabel(
-    AppDataTableRow row,
-    AppDataTableColumn column,
+    DSDataTableRow row,
+    DSDataTableColumn column,
     dynamic value,
     int rowIndex,
     int columnIndex,
@@ -981,7 +981,7 @@ class AppDataTableUtils {
   }
 
   /// Validate column configuration
-  static List<String> validateColumns(List<AppDataTableColumn> columns) {
+  static List<String> validateColumns(List<DSDataTableColumn> columns) {
     final errors = <String>[];
     final ids = <String>{};
 
@@ -1021,8 +1021,8 @@ class AppDataTableUtils {
 
   /// Validate row data against columns
   static List<String> validateRowData(
-    AppDataTableRow row,
-    List<AppDataTableColumn> columns,
+    DSDataTableRow row,
+    List<DSDataTableColumn> columns,
   ) {
     final errors = <String>[];
     final requiredFields =
@@ -1039,8 +1039,8 @@ class AppDataTableUtils {
 
   /// Calculate column width based on content
   static double calculateColumnWidth(
-    AppDataTableColumn column,
-    List<AppDataTableRow> rows,
+    DSDataTableColumn column,
+    List<DSDataTableRow> rows,
     TextStyle textStyle,
   ) {
     double maxWidth = column.minWidth;
@@ -1093,13 +1093,13 @@ class AppDataTableUtils {
 
   /// Platform-specific row height calculation
   static double getPlatformRowHeight(
-      AppDataTableDensity density, TargetPlatform platform) {
+      DSDataTableDensity density, TargetPlatform platform) {
     switch (density) {
-      case AppDataTableDensity.compact:
+      case DSDataTableDensity.compact:
         return platform == TargetPlatform.iOS ? 36.0 : 32.0;
-      case AppDataTableDensity.standard:
+      case DSDataTableDensity.standard:
         return platform == TargetPlatform.iOS ? 48.0 : 48.0;
-      case AppDataTableDensity.comfortable:
+      case DSDataTableDensity.comfortable:
         return platform == TargetPlatform.iOS ? 60.0 : 56.0;
     }
   }

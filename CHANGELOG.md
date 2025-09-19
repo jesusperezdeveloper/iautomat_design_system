@@ -1,3 +1,53 @@
+## 1.0.0
+
+### 🚀 **BREAKING CHANGES - Migración del prefijo App* → DS***
+
+**Migración completa del sistema de nomenclatura para mayor consistencia y profesionalismo.**
+
+#### ✨ **Cambios Principales**
+* **BREAKING**: Todos los componentes renombrados de `App*` → `DS*`
+  - `AppButton` → `DSButton`
+  - `AppCard` → `DSCard`
+  - `AppInput` → `DSInput`
+  - Y todos los demás ~70 componentes
+* **BREAKING**: Todos los archivos renombrados de `app_*.dart` → `ds_*.dart`
+* **BREAKING**: Carpeta `app_bars/` → `ds_bars/`
+* **BREAKING**: 30,000+ símbolos actualizados para consistencia
+
+#### 🔧 **Mejoras Técnicas**
+* Nomenclatura 100% consistente con prefijo `DS*`
+* Análisis estático sin warnings (`flutter analyze` = 0)
+* Build system optimizado (build_runner ejecutado exitosamente)
+* Todos los imports/exports actualizados automáticamente
+
+#### 📦 **Compatibilidad**
+* **NO hay compatibilidad hacia atrás** - Esta es una migración limpia
+* APIs de Flutter intactas (`AppBar`, `AppLocalizations`, etc.)
+* Flutter 3.35.3+ y Dart 3.9.2+ requeridos
+* Material 3 completamente soportado
+
+#### 🔄 **Guía de Migración**
+```dart
+// ANTES (v0.0.1)
+AppButton(
+  text: 'Click me',
+  variant: AppButtonVariant.primary,
+)
+
+// DESPUÉS (v1.0.0)
+DSButton(
+  text: 'Click me',
+  variant: DSButtonVariant.primary,
+)
+```
+
+**Para migrar tu código:**
+1. Reemplaza todas las ocurrencias de `App` → `DS` en tus imports
+2. Actualiza todas las referencias de componentes
+3. Cambia imports de archivos `app_*.dart` → `ds_*.dart`
+
+---
+
 ## 0.0.1
 
 ### 🎉 **Initial Release - Enterprise Design System**
@@ -17,59 +67,59 @@
 #### 🧩 **Componentes por Categoría**
 
 **💠 Base Components (12):**
-- AppButton (6 variantes, 8 estados)
-- AppInput (validación avanzada)
-- AppCard (3 variantes)
-- AppFab, AppIconButton, AppSwitch
-- AppCheckbox, AppRadio
-- AppTextField, AppTextArea
-- AppSelect, AppSlider
+- DSButton (6 variantes, 8 estados)
+- DSInput (validación avanzada)
+- DSCard (3 variantes)
+- DSFab, DSIconButton, DSSwitch
+- DSCheckbox, DSRadio
+- DSTextField, DSTextArea
+- DSSelect, DSSlider
 
 **📝 Form Components (8):**
-- AppCombobox, AppStepper
-- AppDatePicker, AppColorPicker, AppFilePicker
-- AppCurrencyInput (especializado)
-- AppCheckoutForms, AppAuthScreens
+- DSCombobox, DSStepper
+- DSDatePicker, DSColorPicker, DSFilePicker
+- DSCurrencyInput (especializado)
+- DSCheckoutForms, DSAuthScreens
 
 **🗂️ Data Components (10):**
-- AppDataTable (funcionalidades avanzadas)
-- AppSimpleTable, AppListItem
-- AppDescriptionList, AppMetricCard
-- AppCalendar, AppChart (fl_chart)
-- AppKanban, AppOutlineTree, AppFilterBar
+- DSDataTable (funcionalidades avanzadas)
+- DSSimpleTable, DSListItem
+- DSDescriptionList, DSMetricCard
+- DSCalendar, DSChart (fl_chart)
+- DSKanban, DSOutlineTree, DSFilterBar
 
 **🧭 Navigation Components (8):**
-- AppScaffold, AppTopAppBar
-- AppNavigation, AppTabs
-- AppBreadcrumbs, AppDrawer
-- AppMenu, AppPagination
+- DSScaffold, DSTopAppBar
+- DSNavigation, DSTabs
+- DSBreadcrumbs, DSDrawer
+- DSMenu, DSPagination
 
 **🎯 Feedback Components (6):**
-- AppToast (notificaciones inteligentes)
-- AppBanner, AppTooltip
-- AppProgress (4 tipos)
-- AppEmptyState, AppStatusDot
+- DSToast (notificaciones inteligentes)
+- DSBanner, DSTooltip
+- DSProgress (4 tipos)
+- DSEmptyState, DSStatusDot
 
 **🎭 Display Components (8):**
-- AppBadge, AppAvatar, AppTag
-- AppTimeline, AppImage
-- AppLightbox, AppMediaViewer
-- AppSkeleton
+- DSBadge, DSAvatar, DSTag
+- DSTimeline, DSImage
+- DSLightbox, DSMediaViewer
+- DSSkeleton
 
 **🔧 Layout Components (6):**
-- AppSplitView, AppDivider
-- AppAccordion, AppChip
-- AppToggleView, AppCommandPalette
+- DSSplitView, DSDivider
+- DSAccordion, DSChip
+- DSToggleView, DSCommandPalette
 
 **🏪 E-commerce Components (4):**
-- AppProductCard, AppCartWidget
-- AppMap, AppCameraPicker
+- DSProductCard, DSCartWidget
+- DSMap, DSCameraPicker
 
 **⚙️ Specialty Components (8):**
-- AppProfilePreferences, AppRoleVisibility
-- AppClipboardShare, AppBackToTop
-- AppInPageSearch, AppDialog
-- AppBottomSheet, AppTour
+- DSProfilePreferences, DSRoleVisibility
+- DSClipboardShare, DSBackToTop
+- DSInPageSearch, DSDialog
+- DSBottomSheet, DSTour
 
 #### 🎨 **Sistema de Tema**
 

@@ -4,27 +4,27 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'description_list_config.freezed.dart';
 
 @freezed
-class AppDescriptionListConfig with _$AppDescriptionListConfig {
-  const AppDescriptionListConfig._();
+class DSDescriptionListConfig with _$DSDescriptionListConfig {
+  const DSDescriptionListConfig._();
 
-  const factory AppDescriptionListConfig({
-    @Default(AppDescriptionListVariant.responsive)
-    AppDescriptionListVariant variant,
-    @Default(AppDescriptionListState.defaultState)
-    AppDescriptionListState state,
-    @Default(AppDescriptionListLayout.vertical) AppDescriptionListLayout layout,
-    @Default(AppDescriptionListDensity.normal)
-    AppDescriptionListDensity density,
-    @Default(AppDescriptionListSpacing.normal)
-    AppDescriptionListSpacing spacing,
-    @Default(AppDescriptionListAlignment.start)
-    AppDescriptionListAlignment alignment,
-    @Default([]) List<AppDescriptionListItem> items,
-    AppDescriptionListStyle? style,
-    AppDescriptionListInteraction? interaction,
-    AppDescriptionListAccessibility? accessibility,
-    AppDescriptionListAnimation? animation,
-    AppDescriptionListResponsive? responsive,
+  const factory DSDescriptionListConfig({
+    @Default(DSDescriptionListVariant.responsive)
+    DSDescriptionListVariant variant,
+    @Default(DSDescriptionListState.defaultState)
+    DSDescriptionListState state,
+    @Default(DSDescriptionListLayout.vertical) DSDescriptionListLayout layout,
+    @Default(DSDescriptionListDensity.normal)
+    DSDescriptionListDensity density,
+    @Default(DSDescriptionListSpacing.normal)
+    DSDescriptionListSpacing spacing,
+    @Default(DSDescriptionListAlignment.start)
+    DSDescriptionListAlignment alignment,
+    @Default([]) List<DSDescriptionListItem> items,
+    DSDescriptionListStyle? style,
+    DSDescriptionListInteraction? interaction,
+    DSDescriptionListAccessibility? accessibility,
+    DSDescriptionListAnimation? animation,
+    DSDescriptionListResponsive? responsive,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
     VoidCallback? onHover,
@@ -34,23 +34,23 @@ class AppDescriptionListConfig with _$AppDescriptionListConfig {
     @Default(false) bool loading,
     @Default(false) bool skeleton,
     @Default(true) bool visible,
-  }) = _AppDescriptionListConfig;
+  }) = _DSDescriptionListConfig;
 
   bool get isInteractive => onTap != null || onLongPress != null;
   bool get isHoverable => onHover != null;
-  bool get isDisabled => !enabled || state == AppDescriptionListState.disabled;
-  bool get isLoading => loading || state == AppDescriptionListState.loading;
-  bool get isSkeleton => skeleton || state == AppDescriptionListState.skeleton;
+  bool get isDisabled => !enabled || state == DSDescriptionListState.disabled;
+  bool get isLoading => loading || state == DSDescriptionListState.loading;
+  bool get isSkeleton => skeleton || state == DSDescriptionListState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
   bool get canInteract =>
       isInteractive && !isDisabled && !isLoading && !isSkeleton;
 }
 
 @freezed
-class AppDescriptionListItem with _$AppDescriptionListItem {
-  const AppDescriptionListItem._();
+class DSDescriptionListItem with _$DSDescriptionListItem {
+  const DSDescriptionListItem._();
 
-  const factory AppDescriptionListItem({
+  const factory DSDescriptionListItem({
     required String term,
     required String description,
     String? secondaryDescription,
@@ -60,8 +60,8 @@ class AppDescriptionListItem with _$AppDescriptionListItem {
     Widget? trailing,
     IconData? icon,
     Color? iconColor,
-    AppDescriptionListItemStyle? style,
-    AppDescriptionListItemState? state,
+    DSDescriptionListItemStyle? style,
+    DSDescriptionListItemState? state,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
     String? semanticLabel,
@@ -69,7 +69,7 @@ class AppDescriptionListItem with _$AppDescriptionListItem {
     @Default(true) bool enabled,
     @Default(false) bool highlighted,
     @Default(false) bool divider,
-  }) = _AppDescriptionListItem;
+  }) = _DSDescriptionListItem;
 
   bool get hasSecondaryDescription =>
       secondaryDescription != null && secondaryDescription!.isNotEmpty;
@@ -80,15 +80,15 @@ class AppDescriptionListItem with _$AppDescriptionListItem {
   bool get hasTrailing => trailing != null;
   bool get isInteractive => onTap != null || onLongPress != null;
   bool get isDisabled =>
-      !enabled || state == AppDescriptionListItemState.disabled;
+      !enabled || state == DSDescriptionListItemState.disabled;
   bool get canInteract => isInteractive && !isDisabled;
 }
 
-enum AppDescriptionListVariant {
+enum DSDescriptionListVariant {
   responsive,
 }
 
-enum AppDescriptionListState {
+enum DSDescriptionListState {
   defaultState,
   hover,
   pressed,
@@ -99,34 +99,34 @@ enum AppDescriptionListState {
   skeleton,
 }
 
-enum AppDescriptionListLayout {
+enum DSDescriptionListLayout {
   vertical,
   horizontal,
   grid,
   adaptive,
 }
 
-enum AppDescriptionListDensity {
+enum DSDescriptionListDensity {
   compact,
   normal,
   comfortable,
 }
 
-enum AppDescriptionListSpacing {
+enum DSDescriptionListSpacing {
   none,
   small,
   normal,
   large,
 }
 
-enum AppDescriptionListAlignment {
+enum DSDescriptionListAlignment {
   start,
   center,
   end,
   justify,
 }
 
-enum AppDescriptionListItemState {
+enum DSDescriptionListItemState {
   defaultState,
   hover,
   pressed,
@@ -136,10 +136,10 @@ enum AppDescriptionListItemState {
 }
 
 @freezed
-class AppDescriptionListStyle with _$AppDescriptionListStyle {
-  const AppDescriptionListStyle._();
+class DSDescriptionListStyle with _$DSDescriptionListStyle {
+  const DSDescriptionListStyle._();
 
-  const factory AppDescriptionListStyle({
+  const factory DSDescriptionListStyle({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
@@ -155,36 +155,36 @@ class AppDescriptionListStyle with _$AppDescriptionListStyle {
     TextStyle? termTextStyle,
     TextStyle? descriptionTextStyle,
     TextStyle? secondaryDescriptionTextStyle,
-    AppDescriptionListItemStyle? itemStyle,
-    AppDescriptionListDividerStyle? dividerStyle,
-  }) = _AppDescriptionListStyle;
+    DSDescriptionListItemStyle? itemStyle,
+    DSDescriptionListDividerStyle? dividerStyle,
+  }) = _DSDescriptionListStyle;
 
-  AppDescriptionListStyle copyWithState(AppDescriptionListState state) {
+  DSDescriptionListStyle copyWithState(DSDescriptionListState state) {
     switch (state) {
-      case AppDescriptionListState.hover:
+      case DSDescriptionListState.hover:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.08),
         );
-      case AppDescriptionListState.pressed:
+      case DSDescriptionListState.pressed:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
         );
-      case AppDescriptionListState.focus:
+      case DSDescriptionListState.focus:
         return copyWith(
           borderColor: borderColor,
           borderWidth: 2.0,
         );
-      case AppDescriptionListState.selected:
+      case DSDescriptionListState.selected:
         return copyWith(
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
         );
-      case AppDescriptionListState.disabled:
+      case DSDescriptionListState.disabled:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.38),
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
         );
-      case AppDescriptionListState.loading:
-      case AppDescriptionListState.skeleton:
+      case DSDescriptionListState.loading:
+      case DSDescriptionListState.skeleton:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.6),
         );
@@ -195,10 +195,10 @@ class AppDescriptionListStyle with _$AppDescriptionListStyle {
 }
 
 @freezed
-class AppDescriptionListItemStyle with _$AppDescriptionListItemStyle {
-  const AppDescriptionListItemStyle._();
+class DSDescriptionListItemStyle with _$DSDescriptionListItemStyle {
+  const DSDescriptionListItemStyle._();
 
-  const factory AppDescriptionListItemStyle({
+  const factory DSDescriptionListItemStyle({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
@@ -222,35 +222,35 @@ class AppDescriptionListItemStyle with _$AppDescriptionListItemStyle {
     double? descriptionWidth,
     CrossAxisAlignment? crossAxisAlignment,
     MainAxisAlignment? mainAxisAlignment,
-  }) = _AppDescriptionListItemStyle;
+  }) = _DSDescriptionListItemStyle;
 
-  AppDescriptionListItemStyle copyWithState(AppDescriptionListItemState state,
+  DSDescriptionListItemStyle copyWithState(DSDescriptionListItemState state,
       {bool highlighted = false}) {
     switch (state) {
-      case AppDescriptionListItemState.hover:
+      case DSDescriptionListItemState.hover:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.08),
           backgroundColor: highlighted
               ? highlightColor?.withValues(alpha: 0.08)
               : backgroundColor,
         );
-      case AppDescriptionListItemState.pressed:
+      case DSDescriptionListItemState.pressed:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
           backgroundColor: highlighted
               ? highlightColor?.withValues(alpha: 0.12)
               : backgroundColor,
         );
-      case AppDescriptionListItemState.focus:
+      case DSDescriptionListItemState.focus:
         return copyWith(
           borderColor: borderColor,
           borderWidth: 2.0,
         );
-      case AppDescriptionListItemState.selected:
+      case DSDescriptionListItemState.selected:
         return copyWith(
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
         );
-      case AppDescriptionListItemState.disabled:
+      case DSDescriptionListItemState.disabled:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.38),
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
@@ -263,19 +263,19 @@ class AppDescriptionListItemStyle with _$AppDescriptionListItemStyle {
 }
 
 @freezed
-class AppDescriptionListDividerStyle with _$AppDescriptionListDividerStyle {
-  const factory AppDescriptionListDividerStyle({
+class DSDescriptionListDividerStyle with _$DSDescriptionListDividerStyle {
+  const factory DSDescriptionListDividerStyle({
     Color? color,
     double? thickness,
     double? height,
     double? indent,
     double? endIndent,
-  }) = _AppDescriptionListDividerStyle;
+  }) = _DSDescriptionListDividerStyle;
 }
 
 @freezed
-class AppDescriptionListInteraction with _$AppDescriptionListInteraction {
-  const factory AppDescriptionListInteraction({
+class DSDescriptionListInteraction with _$DSDescriptionListInteraction {
+  const factory DSDescriptionListInteraction({
     @Default(true) bool enabled,
     @Default(true) bool focusable,
     @Default(true) bool hoverable,
@@ -288,12 +288,12 @@ class AppDescriptionListInteraction with _$AppDescriptionListInteraction {
     GestureLongPressCallback? onLongPress,
     GestureTapCallback? onSecondaryTap,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppDescriptionListInteraction;
+  }) = _DSDescriptionListInteraction;
 }
 
 @freezed
-class AppDescriptionListAccessibility with _$AppDescriptionListAccessibility {
-  const factory AppDescriptionListAccessibility({
+class DSDescriptionListAccessibility with _$DSDescriptionListAccessibility {
+  const factory DSDescriptionListAccessibility({
     String? semanticLabel,
     String? tooltip,
     bool? excludeSemantics,
@@ -309,23 +309,23 @@ class AppDescriptionListAccessibility with _$AppDescriptionListAccessibility {
     @Default(false) bool textField,
     @Default(false) bool readOnly,
     @Default(false) bool keyboardKey,
-  }) = _AppDescriptionListAccessibility;
+  }) = _DSDescriptionListAccessibility;
 }
 
 @freezed
-class AppDescriptionListAnimation with _$AppDescriptionListAnimation {
-  const factory AppDescriptionListAnimation({
+class DSDescriptionListAnimation with _$DSDescriptionListAnimation {
+  const factory DSDescriptionListAnimation({
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(false) bool enabled,
-    @Default(AppDescriptionListAnimationType.fade)
-    AppDescriptionListAnimationType type,
+    @Default(DSDescriptionListAnimationType.fade)
+    DSDescriptionListAnimationType type,
     Duration? delay,
     VoidCallback? onAnimationComplete,
-  }) = _AppDescriptionListAnimation;
+  }) = _DSDescriptionListAnimation;
 }
 
-enum AppDescriptionListAnimationType {
+enum DSDescriptionListAnimationType {
   none,
   fade,
   slide,
@@ -334,57 +334,57 @@ enum AppDescriptionListAnimationType {
 }
 
 @freezed
-class AppDescriptionListResponsive with _$AppDescriptionListResponsive {
-  const AppDescriptionListResponsive._();
+class DSDescriptionListResponsive with _$DSDescriptionListResponsive {
+  const DSDescriptionListResponsive._();
 
-  const factory AppDescriptionListResponsive({
+  const factory DSDescriptionListResponsive({
     @Default(600) double mobileBreakpoint,
     @Default(900) double tabletBreakpoint,
     @Default(1200) double desktopBreakpoint,
-    AppDescriptionListLayout? mobileLayout,
-    AppDescriptionListLayout? tabletLayout,
-    AppDescriptionListLayout? desktopLayout,
-    AppDescriptionListDensity? mobileDensity,
-    AppDescriptionListDensity? tabletDensity,
-    AppDescriptionListDensity? desktopDensity,
-    AppDescriptionListSpacing? mobileSpacing,
-    AppDescriptionListSpacing? tabletSpacing,
-    AppDescriptionListSpacing? desktopSpacing,
+    DSDescriptionListLayout? mobileLayout,
+    DSDescriptionListLayout? tabletLayout,
+    DSDescriptionListLayout? desktopLayout,
+    DSDescriptionListDensity? mobileDensity,
+    DSDescriptionListDensity? tabletDensity,
+    DSDescriptionListDensity? desktopDensity,
+    DSDescriptionListSpacing? mobileSpacing,
+    DSDescriptionListSpacing? tabletSpacing,
+    DSDescriptionListSpacing? desktopSpacing,
     int? mobileColumns,
     int? tabletColumns,
     int? desktopColumns,
     double? mobileTermWidth,
     double? tabletTermWidth,
     double? desktopTermWidth,
-  }) = _AppDescriptionListResponsive;
+  }) = _DSDescriptionListResponsive;
 
-  AppDescriptionListLayout getLayoutForWidth(double width) {
+  DSDescriptionListLayout getLayoutForWidth(double width) {
     if (width < mobileBreakpoint) {
-      return mobileLayout ?? AppDescriptionListLayout.vertical;
+      return mobileLayout ?? DSDescriptionListLayout.vertical;
     } else if (width < tabletBreakpoint) {
-      return tabletLayout ?? AppDescriptionListLayout.horizontal;
+      return tabletLayout ?? DSDescriptionListLayout.horizontal;
     } else {
-      return desktopLayout ?? AppDescriptionListLayout.horizontal;
+      return desktopLayout ?? DSDescriptionListLayout.horizontal;
     }
   }
 
-  AppDescriptionListDensity getDensityForWidth(double width) {
+  DSDescriptionListDensity getDensityForWidth(double width) {
     if (width < mobileBreakpoint) {
-      return mobileDensity ?? AppDescriptionListDensity.compact;
+      return mobileDensity ?? DSDescriptionListDensity.compact;
     } else if (width < tabletBreakpoint) {
-      return tabletDensity ?? AppDescriptionListDensity.normal;
+      return tabletDensity ?? DSDescriptionListDensity.normal;
     } else {
-      return desktopDensity ?? AppDescriptionListDensity.comfortable;
+      return desktopDensity ?? DSDescriptionListDensity.comfortable;
     }
   }
 
-  AppDescriptionListSpacing getSpacingForWidth(double width) {
+  DSDescriptionListSpacing getSpacingForWidth(double width) {
     if (width < mobileBreakpoint) {
-      return mobileSpacing ?? AppDescriptionListSpacing.small;
+      return mobileSpacing ?? DSDescriptionListSpacing.small;
     } else if (width < tabletBreakpoint) {
-      return tabletSpacing ?? AppDescriptionListSpacing.normal;
+      return tabletSpacing ?? DSDescriptionListSpacing.normal;
     } else {
-      return desktopSpacing ?? AppDescriptionListSpacing.large;
+      return desktopSpacing ?? DSDescriptionListSpacing.large;
     }
   }
 
@@ -409,76 +409,76 @@ class AppDescriptionListResponsive with _$AppDescriptionListResponsive {
   }
 }
 
-extension AppDescriptionListStateExtension on AppDescriptionListState {
+extension DSDescriptionListStateExtension on DSDescriptionListState {
   bool get isInteractiveState =>
-      this == AppDescriptionListState.hover ||
-      this == AppDescriptionListState.pressed ||
-      this == AppDescriptionListState.focus;
+      this == DSDescriptionListState.hover ||
+      this == DSDescriptionListState.pressed ||
+      this == DSDescriptionListState.focus;
 
-  bool get isDisabledState => this == AppDescriptionListState.disabled;
-  bool get isLoadingState => this == AppDescriptionListState.loading;
-  bool get isSkeletonState => this == AppDescriptionListState.skeleton;
-  bool get isSelectedState => this == AppDescriptionListState.selected;
+  bool get isDisabledState => this == DSDescriptionListState.disabled;
+  bool get isLoadingState => this == DSDescriptionListState.loading;
+  bool get isSkeletonState => this == DSDescriptionListState.skeleton;
+  bool get isSelectedState => this == DSDescriptionListState.selected;
 }
 
-extension AppDescriptionListLayoutExtension on AppDescriptionListLayout {
-  bool get isVertical => this == AppDescriptionListLayout.vertical;
-  bool get isHorizontal => this == AppDescriptionListLayout.horizontal;
-  bool get isGrid => this == AppDescriptionListLayout.grid;
-  bool get isAdaptive => this == AppDescriptionListLayout.adaptive;
+extension DSDescriptionListLayoutExtension on DSDescriptionListLayout {
+  bool get isVertical => this == DSDescriptionListLayout.vertical;
+  bool get isHorizontal => this == DSDescriptionListLayout.horizontal;
+  bool get isGrid => this == DSDescriptionListLayout.grid;
+  bool get isAdaptive => this == DSDescriptionListLayout.adaptive;
 }
 
-extension AppDescriptionListDensityExtension on AppDescriptionListDensity {
+extension DSDescriptionListDensityExtension on DSDescriptionListDensity {
   double get verticalSpacing {
     switch (this) {
-      case AppDescriptionListDensity.compact:
+      case DSDescriptionListDensity.compact:
         return 8.0;
-      case AppDescriptionListDensity.normal:
+      case DSDescriptionListDensity.normal:
         return 12.0;
-      case AppDescriptionListDensity.comfortable:
+      case DSDescriptionListDensity.comfortable:
         return 16.0;
     }
   }
 
   double get horizontalSpacing {
     switch (this) {
-      case AppDescriptionListDensity.compact:
+      case DSDescriptionListDensity.compact:
         return 12.0;
-      case AppDescriptionListDensity.normal:
+      case DSDescriptionListDensity.normal:
         return 16.0;
-      case AppDescriptionListDensity.comfortable:
+      case DSDescriptionListDensity.comfortable:
         return 24.0;
     }
   }
 
   EdgeInsetsGeometry get padding {
     switch (this) {
-      case AppDescriptionListDensity.compact:
+      case DSDescriptionListDensity.compact:
         return const EdgeInsets.all(8.0);
-      case AppDescriptionListDensity.normal:
+      case DSDescriptionListDensity.normal:
         return const EdgeInsets.all(12.0);
-      case AppDescriptionListDensity.comfortable:
+      case DSDescriptionListDensity.comfortable:
         return const EdgeInsets.all(16.0);
     }
   }
 }
 
-extension AppDescriptionListSpacingExtension on AppDescriptionListSpacing {
+extension DSDescriptionListSpacingExtension on DSDescriptionListSpacing {
   double get value {
     switch (this) {
-      case AppDescriptionListSpacing.none:
+      case DSDescriptionListSpacing.none:
         return 0.0;
-      case AppDescriptionListSpacing.small:
+      case DSDescriptionListSpacing.small:
         return 8.0;
-      case AppDescriptionListSpacing.normal:
+      case DSDescriptionListSpacing.normal:
         return 16.0;
-      case AppDescriptionListSpacing.large:
+      case DSDescriptionListSpacing.large:
         return 24.0;
     }
   }
 }
 
-class AppDescriptionListConstants {
+class DSDescriptionListConstants {
   static const double defaultBorderRadius = 8.0;
   static const double defaultElevation = 2.0;
   static const double defaultBorderWidth = 1.0;

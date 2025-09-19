@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_checkbox.dart';
+import 'ds_checkbox.dart';
 import 'checkbox_config.dart';
 
 class CheckboxStory extends StatelessWidget {
@@ -9,7 +9,7 @@ class CheckboxStory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppCheckbox Stories'),
+        title: const Text('DSCheckbox Stories'),
       ),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(24.0),
@@ -100,47 +100,47 @@ class _BasicStatesStory extends StatefulWidget {
 }
 
 class _BasicStatesStoryState extends State<_BasicStatesStory> {
-  AppCheckboxValue? _value1 = AppCheckboxValue.unchecked;
-  AppCheckboxValue? _value2 = AppCheckboxValue.checked;
-  final AppCheckboxValue _value3 = AppCheckboxValue.unchecked;
+  DSCheckboxValue? _value1 = DSCheckboxValue.unchecked;
+  DSCheckboxValue? _value2 = DSCheckboxValue.checked;
+  final DSCheckboxValue _value3 = DSCheckboxValue.unchecked;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppCheckbox(
+        DSCheckbox(
           value: _value1,
           onChanged: (value) => setState(() => _value1 = value),
         ),
         const SizedBox(height: 16),
-        AppCheckbox(
+        DSCheckbox(
           value: _value2,
           onChanged: (value) => setState(() => _value2 = value),
         ),
         const SizedBox(height: 16),
-        AppCheckbox(
+        DSCheckbox(
           value: _value3,
           onChanged: null,
           enabled: false,
         ),
         const SizedBox(height: 16),
-        const AppCheckbox(
-          value: AppCheckboxValue.checked,
+        const DSCheckbox(
+          value: DSCheckboxValue.checked,
           onChanged: null,
           enabled: false,
         ),
         const SizedBox(height: 16),
-        const AppCheckbox(
+        const DSCheckbox(
           value: null,
           onChanged: null,
-          overrideState: AppCheckboxState.loading,
+          overrideState: DSCheckboxState.loading,
         ),
         const SizedBox(height: 16),
-        const AppCheckbox(
+        const DSCheckbox(
           value: null,
           onChanged: null,
-          overrideState: AppCheckboxState.skeleton,
+          overrideState: DSCheckboxState.skeleton,
         ),
       ],
     );
@@ -155,35 +155,35 @@ class _WithLabelsStory extends StatefulWidget {
 }
 
 class _WithLabelsStoryState extends State<_WithLabelsStory> {
-  AppCheckboxValue? _value1 = AppCheckboxValue.unchecked;
-  AppCheckboxValue? _value2 = AppCheckboxValue.checked;
-  final AppCheckboxValue _value3 = AppCheckboxValue.unchecked;
+  DSCheckboxValue? _value1 = DSCheckboxValue.unchecked;
+  DSCheckboxValue? _value2 = DSCheckboxValue.checked;
+  final DSCheckboxValue _value3 = DSCheckboxValue.unchecked;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppCheckbox(
+        DSCheckbox(
           value: _value1,
           onChanged: (value) => setState(() => _value1 = value),
           label: 'Accept terms and conditions',
         ),
         const SizedBox(height: 16),
-        AppCheckbox(
+        DSCheckbox(
           value: _value2,
           onChanged: (value) => setState(() => _value2 = value),
           label: 'Subscribe to newsletter',
         ),
         const SizedBox(height: 16),
-        AppCheckbox(
+        DSCheckbox(
           value: _value3,
           onChanged: null,
           label: 'Disabled with label',
           enabled: false,
         ),
         const SizedBox(height: 16),
-        AppCheckbox(
+        DSCheckbox(
           value: _value1,
           onChanged: (value) => setState(() => _value1 = value),
           labelWidget: Row(
@@ -212,35 +212,35 @@ class _TristateStory extends StatefulWidget {
 }
 
 class _TristateStoryState extends State<_TristateStory> {
-  AppCheckboxValue? _parentValue = AppCheckboxValue.indeterminate;
-  List<AppCheckboxValue?> _childValues = [
-    AppCheckboxValue.checked,
-    AppCheckboxValue.unchecked,
-    AppCheckboxValue.checked,
+  DSCheckboxValue? _parentValue = DSCheckboxValue.indeterminate;
+  List<DSCheckboxValue?> _childValues = [
+    DSCheckboxValue.checked,
+    DSCheckboxValue.unchecked,
+    DSCheckboxValue.checked,
   ];
 
   void _updateParentValue() {
     final checkedCount =
-        _childValues.where((v) => v == AppCheckboxValue.checked).length;
+        _childValues.where((v) => v == DSCheckboxValue.checked).length;
 
     setState(() {
       if (checkedCount == 0) {
-        _parentValue = AppCheckboxValue.unchecked;
+        _parentValue = DSCheckboxValue.unchecked;
       } else if (checkedCount == _childValues.length) {
-        _parentValue = AppCheckboxValue.checked;
+        _parentValue = DSCheckboxValue.checked;
       } else {
-        _parentValue = AppCheckboxValue.indeterminate;
+        _parentValue = DSCheckboxValue.indeterminate;
       }
     });
   }
 
-  void _onParentChanged(AppCheckboxValue? value) {
+  void _onParentChanged(DSCheckboxValue? value) {
     setState(() {
       _parentValue = value;
-      if (value == AppCheckboxValue.checked) {
-        _childValues = List.filled(3, AppCheckboxValue.checked);
-      } else if (value == AppCheckboxValue.unchecked) {
-        _childValues = List.filled(3, AppCheckboxValue.unchecked);
+      if (value == DSCheckboxValue.checked) {
+        _childValues = List.filled(3, DSCheckboxValue.checked);
+      } else if (value == DSCheckboxValue.unchecked) {
+        _childValues = List.filled(3, DSCheckboxValue.unchecked);
       }
     });
   }
@@ -250,7 +250,7 @@ class _TristateStoryState extends State<_TristateStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppCheckbox(
+        DSCheckbox(
           value: _parentValue,
           onChanged: _onParentChanged,
           label: 'Select all items',
@@ -260,7 +260,7 @@ class _TristateStoryState extends State<_TristateStory> {
         ...List.generate(3, (index) {
           return Padding(
             padding: const EdgeInsets.only(left: 32, top: 8),
-            child: AppCheckbox(
+            child: DSCheckbox(
               value: _childValues[index],
               onChanged: (value) {
                 setState(() {
@@ -286,8 +286,8 @@ class _InteractiveStatesStory extends StatefulWidget {
 }
 
 class _InteractiveStatesStoryState extends State<_InteractiveStatesStory> {
-  AppCheckboxValue? _value = AppCheckboxValue.unchecked;
-  AppCheckboxState? _overrideState;
+  DSCheckboxValue? _value = DSCheckboxValue.unchecked;
+  DSCheckboxState? _overrideState;
 
   @override
   Widget build(BuildContext context) {
@@ -304,33 +304,33 @@ class _InteractiveStatesStoryState extends State<_InteractiveStatesStory> {
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppCheckboxState.hover),
+                  setState(() => _overrideState = DSCheckboxState.hover),
               child: const Text('Hover'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppCheckboxState.pressed),
+                  setState(() => _overrideState = DSCheckboxState.pressed),
               child: const Text('Pressed'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppCheckboxState.focus),
+                  setState(() => _overrideState = DSCheckboxState.focus),
               child: const Text('Focus'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppCheckboxState.loading),
+                  setState(() => _overrideState = DSCheckboxState.loading),
               child: const Text('Loading'),
             ),
             ElevatedButton(
               onPressed: () =>
-                  setState(() => _overrideState = AppCheckboxState.skeleton),
+                  setState(() => _overrideState = DSCheckboxState.skeleton),
               child: const Text('Skeleton'),
             ),
           ],
         ),
         const SizedBox(height: 24),
-        AppCheckbox(
+        DSCheckbox(
           value: _value,
           onChanged: (value) => setState(() => _value = value),
           label: 'Interactive checkbox',
@@ -349,7 +349,7 @@ class _PlatformAdaptiveStory extends StatefulWidget {
 }
 
 class _PlatformAdaptiveStoryState extends State<_PlatformAdaptiveStory> {
-  AppCheckboxValue? _value = AppCheckboxValue.unchecked;
+  DSCheckboxValue? _value = DSCheckboxValue.unchecked;
 
   @override
   Widget build(BuildContext context) {
@@ -361,7 +361,7 @@ class _PlatformAdaptiveStoryState extends State<_PlatformAdaptiveStory> {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 16),
-        AppCheckbox(
+        DSCheckbox(
           value: _value,
           onChanged: (value) => setState(() => _value = value),
           label: 'Platform adaptive checkbox',
@@ -372,11 +372,11 @@ class _PlatformAdaptiveStoryState extends State<_PlatformAdaptiveStory> {
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 16),
-        const AppCheckbox(
+        const DSCheckbox(
           value: null,
           onChanged: null,
           label: 'Loading state',
-          overrideState: AppCheckboxState.loading,
+          overrideState: DSCheckboxState.loading,
         ),
       ],
     );
@@ -391,8 +391,8 @@ class _RtlSupportStory extends StatefulWidget {
 }
 
 class _RtlSupportStoryState extends State<_RtlSupportStory> {
-  AppCheckboxValue? _value1 = AppCheckboxValue.unchecked;
-  AppCheckboxValue? _value2 = AppCheckboxValue.checked;
+  DSCheckboxValue? _value1 = DSCheckboxValue.unchecked;
+  DSCheckboxValue? _value2 = DSCheckboxValue.checked;
 
   @override
   Widget build(BuildContext context) {
@@ -404,7 +404,7 @@ class _RtlSupportStoryState extends State<_RtlSupportStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppCheckbox(
+        DSCheckbox(
           value: _value1,
           onChanged: (value) => setState(() => _value1 = value),
           label: 'English text checkbox',
@@ -416,7 +416,7 @@ class _RtlSupportStoryState extends State<_RtlSupportStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppCheckbox(
+        DSCheckbox(
           value: _value2,
           onChanged: (value) => setState(() => _value2 = value),
           label: 'نص عربي',
@@ -435,9 +435,9 @@ class _CustomConfigStory extends StatefulWidget {
 }
 
 class _CustomConfigStoryState extends State<_CustomConfigStory> {
-  AppCheckboxValue? _value1 = AppCheckboxValue.unchecked;
-  AppCheckboxValue? _value2 = AppCheckboxValue.checked;
-  AppCheckboxValue? _value3 = AppCheckboxValue.unchecked;
+  DSCheckboxValue? _value1 = DSCheckboxValue.unchecked;
+  DSCheckboxValue? _value2 = DSCheckboxValue.checked;
+  DSCheckboxValue? _value3 = DSCheckboxValue.unchecked;
 
   @override
   Widget build(BuildContext context) {
@@ -446,31 +446,31 @@ class _CustomConfigStoryState extends State<_CustomConfigStory> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppCheckbox(
+        DSCheckbox(
           value: _value1,
           onChanged: (value) => setState(() => _value1 = value),
           label: 'Large checkbox (28px)',
-          config: const AppCheckboxConfig(
+          config: const DSCheckboxConfig(
             size: 28,
             borderWidth: 3,
           ),
         ),
         const SizedBox(height: 16),
-        AppCheckbox(
+        DSCheckbox(
           value: _value2,
           onChanged: (value) => setState(() => _value2 = value),
           label: 'Small checkbox (16px)',
-          config: const AppCheckboxConfig(
+          config: const DSCheckboxConfig(
             size: 16,
             borderWidth: 1.5,
           ),
         ),
         const SizedBox(height: 16),
-        AppCheckbox(
+        DSCheckbox(
           value: _value3,
           onChanged: (value) => setState(() => _value3 = value),
           label: 'Custom colors',
-          colors: AppCheckboxColors(
+          colors: DSCheckboxColors(
             borderColor: Colors.purple,
             fillColor: Colors.purple,
             checkColor: Colors.white,
@@ -486,11 +486,11 @@ class _CustomConfigStoryState extends State<_CustomConfigStory> {
           ),
         ),
         const SizedBox(height: 16),
-        AppCheckbox(
+        DSCheckbox(
           value: _value1,
           onChanged: (value) => setState(() => _value1 = value),
           label: 'Circular checkbox',
-          config: const AppCheckboxConfig(
+          config: const DSCheckboxConfig(
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
         ),
@@ -507,8 +507,8 @@ class _AccessibilityStory extends StatefulWidget {
 }
 
 class _AccessibilityStoryState extends State<_AccessibilityStory> {
-  AppCheckboxValue? _value1 = AppCheckboxValue.unchecked;
-  AppCheckboxValue? _value2 = AppCheckboxValue.checked;
+  DSCheckboxValue? _value1 = DSCheckboxValue.unchecked;
+  DSCheckboxValue? _value2 = DSCheckboxValue.checked;
   final _focusNode = FocusNode();
 
   @override
@@ -532,14 +532,14 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 16),
-        AppCheckbox(
+        DSCheckbox(
           value: _value1,
           onChanged: (value) => setState(() => _value1 = value),
           label: 'First checkbox (autofocus)',
           autoFocus: true,
         ),
         const SizedBox(height: 8),
-        AppCheckbox(
+        DSCheckbox(
           value: _value2,
           onChanged: (value) => setState(() => _value2 = value),
           label: 'Second checkbox',
@@ -556,7 +556,7 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        AppCheckbox(
+        DSCheckbox(
           value: _value1,
           onChanged: (value) => setState(() => _value1 = value),
           label: 'Visible label',
@@ -577,10 +577,10 @@ class _AccessibilityStoryState extends State<_AccessibilityStory> {
           decoration: BoxDecoration(
             border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
           ),
-          child: AppCheckbox(
+          child: DSCheckbox(
             value: _value2,
             onChanged: (value) => setState(() => _value2 = value),
-            config: const AppCheckboxConfig(
+            config: const DSCheckboxConfig(
               minimumTouchTargetSize: 48,
             ),
           ),

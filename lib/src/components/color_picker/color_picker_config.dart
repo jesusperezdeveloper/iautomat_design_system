@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 part 'color_picker_config.freezed.dart';
 
 @freezed
-class AppColorPickerConfig with _$AppColorPickerConfig {
-  const factory AppColorPickerConfig({
+class DSColorPickerConfig with _$DSColorPickerConfig {
+  const factory DSColorPickerConfig({
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
     @Default(EdgeInsets.all(16.0)) EdgeInsets contentPadding,
@@ -49,15 +49,15 @@ class AppColorPickerConfig with _$AppColorPickerConfig {
     @Default(true) bool showHexInput,
     @Default(true) bool showRgbInputs,
     @Default(true) bool showHslInputs,
-    AppColorPickerColors? colors,
-  }) = _AppColorPickerConfig;
+    DSColorPickerColors? colors,
+  }) = _DSColorPickerConfig;
 
-  const AppColorPickerConfig._();
+  const DSColorPickerConfig._();
 }
 
 @freezed
-class AppColorPickerColors with _$AppColorPickerColors {
-  const factory AppColorPickerColors({
+class DSColorPickerColors with _$DSColorPickerColors {
+  const factory DSColorPickerColors({
     required Color inputFillColor,
     required Color inputBorderColor,
     required Color inputFocusedBorderColor,
@@ -123,14 +123,14 @@ class AppColorPickerColors with _$AppColorPickerColors {
     required Color pickerIndicatorColor,
     required Color recentColorsBackgroundColor,
     required Color recentColorsBorderColor,
-  }) = _AppColorPickerColors;
+  }) = _DSColorPickerColors;
 
-  const AppColorPickerColors._();
+  const DSColorPickerColors._();
 
-  factory AppColorPickerColors.fromTheme(ThemeData theme) {
+  factory DSColorPickerColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
 
-    return AppColorPickerColors(
+    return DSColorPickerColors(
       inputFillColor: colorScheme.surface,
       inputBorderColor: colorScheme.outline,
       inputFocusedBorderColor: colorScheme.primary,
@@ -200,7 +200,7 @@ class AppColorPickerColors with _$AppColorPickerColors {
   }
 }
 
-enum AppColorPickerState {
+enum DSColorPickerState {
   defaultState,
   hover,
   pressed,
@@ -211,7 +211,7 @@ enum AppColorPickerState {
   skeleton,
 }
 
-enum AppColorPickerVariant {
+enum DSColorPickerVariant {
   hsv,
   palette,
 }
@@ -224,18 +224,18 @@ enum ColorFormat {
 }
 
 @freezed
-class AppColorValue with _$AppColorValue {
-  const factory AppColorValue({
+class DSColorValue with _$DSColorValue {
+  const factory DSColorValue({
     required Color color,
     @Default(1.0) double alpha,
     @Default(ColorFormat.hex) ColorFormat format,
-  }) = _AppColorValue;
+  }) = _DSColorValue;
 
-  const AppColorValue._();
+  const DSColorValue._();
 
-  factory AppColorValue.fromColor(Color color,
+  factory DSColorValue.fromColor(Color color,
       {ColorFormat format = ColorFormat.hex}) {
-    return AppColorValue(
+    return DSColorValue(
       color: color,
       alpha: (color.a * 255.0).round() / 255.0,
       format: format,
@@ -295,21 +295,21 @@ class AppColorValue with _$AppColorValue {
   bool get isTransparent => alpha == 0.0;
   bool get isOpaque => alpha == 1.0;
 
-  AppColorValue copyWithAlpha(double newAlpha) {
+  DSColorValue copyWithAlpha(double newAlpha) {
     return copyWith(alpha: newAlpha.clamp(0.0, 1.0));
   }
 
-  AppColorValue copyWithColor(Color newColor) {
+  DSColorValue copyWithColor(Color newColor) {
     return copyWith(color: newColor);
   }
 
-  AppColorValue copyWithFormat(ColorFormat newFormat) {
+  DSColorValue copyWithFormat(ColorFormat newFormat) {
     return copyWith(format: newFormat);
   }
 }
 
 /// Predefined color palettes for the palette variant
-class AppColorPalettes {
+class DSColorPalettes {
   static const List<Color> material = [
     Color(0xFFF44336), // Red
     Color(0xFFE91E63), // Pink
@@ -400,9 +400,9 @@ class AppColorPalettes {
 }
 
 /// Validation helpers for color values
-class AppColorValidators {
-  static String? Function(AppColorValue?) required() {
-    return (AppColorValue? value) {
+class DSColorValidators {
+  static String? Function(DSColorValue?) required() {
+    return (DSColorValue? value) {
       if (value == null) {
         return 'El color es requerido';
       }
@@ -410,8 +410,8 @@ class AppColorValidators {
     };
   }
 
-  static String? Function(AppColorValue?) hexFormat() {
-    return (AppColorValue? value) {
+  static String? Function(DSColorValue?) hexFormat() {
+    return (DSColorValue? value) {
       if (value == null) return null;
       final hex = value.hexString;
       final hexRegex = RegExp(r'^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$');
@@ -422,8 +422,8 @@ class AppColorValidators {
     };
   }
 
-  static String? Function(AppColorValue?) alphaRange(double min, double max) {
-    return (AppColorValue? value) {
+  static String? Function(DSColorValue?) alphaRange(double min, double max) {
+    return (DSColorValue? value) {
       if (value == null) return null;
       if (value.alpha < min || value.alpha > max) {
         return 'El valor alpha debe estar entre $min y $max';
@@ -432,8 +432,8 @@ class AppColorValidators {
     };
   }
 
-  static String? Function(AppColorValue?) notTransparent() {
-    return (AppColorValue? value) {
+  static String? Function(DSColorValue?) notTransparent() {
+    return (DSColorValue? value) {
       if (value == null) return null;
       if (value.isTransparent) {
         return 'El color no puede ser transparente';
@@ -442,9 +442,9 @@ class AppColorValidators {
     };
   }
 
-  static String? Function(AppColorValue?) contrast(
+  static String? Function(DSColorValue?) contrast(
       Color background, double minRatio) {
-    return (AppColorValue? value) {
+    return (DSColorValue? value) {
       if (value == null) return null;
       final ratio = _calculateContrastRatio(value.colorWithAlpha, background);
       if (ratio < minRatio) {
@@ -490,7 +490,7 @@ class AppColorValidators {
 }
 
 /// Extension for additional color utilities
-extension AppColorPickerHelpers on Color {
+extension DSColorPickerHelpers on Color {
   /// Checks if the color is light (luminance > 0.5)
   bool get isLight => _calculateLuminance() > 0.5;
 

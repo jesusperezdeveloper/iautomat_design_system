@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/tour/app_tour.dart';
-import 'package:iautomat_design_system/src/components/tour/app_tour_config.dart';
+import 'package:iautomat_design_system/src/components/tour/ds_tour.dart';
+import 'package:iautomat_design_system/src/components/tour/ds_tour_config.dart';
 
-/// Story examples for AppTour component
+/// Story examples for DSTour component
 ///
 /// This file provides interactive examples demonstrating:
 /// - Basic coachmarks tour with multiple steps
@@ -32,9 +32,9 @@ class _TourStoryPageState extends State<TourStoryPage> {
   final GlobalKey _profileKey = GlobalKey();
   final GlobalKey _settingsKey = GlobalKey();
 
-  late List<AppTourStep> _basicTourSteps;
-  late List<AppTourStep> _customTourSteps;
-  late List<AppTourStep> _rtlTourSteps;
+  late List<DSTourStep> _basicTourSteps;
+  late List<DSTourStep> _customTourSteps;
+  late List<DSTourStep> _rtlTourSteps;
 
   @override
   void initState() {
@@ -44,73 +44,73 @@ class _TourStoryPageState extends State<TourStoryPage> {
 
   void _setupTourSteps() {
     _basicTourSteps = [
-      AppTourStep(
+      DSTourStep(
         id: 'step_1',
         targetKey: _appBarKey,
         title: 'Barra de Aplicación',
         description: 'Aquí encontrarás el título de la aplicación y las acciones principales.',
-        position: AppTourPosition.bottom,
-        alignment: AppTourAlignment.center,
+        position: DSTourPosition.bottom,
+        alignment: DSTourAlignment.center,
       ),
-      AppTourStep(
+      DSTourStep(
         id: 'step_2',
         targetKey: _drawerKey,
         title: 'Menú de Navegación',
         description: 'Toca aquí para abrir el menú lateral con todas las opciones de navegación.',
-        position: AppTourPosition.right,
-        alignment: AppTourAlignment.center,
+        position: DSTourPosition.right,
+        alignment: DSTourAlignment.center,
       ),
-      AppTourStep(
+      DSTourStep(
         id: 'step_3',
         targetKey: _searchKey,
         title: 'Búsqueda',
         description: 'Utiliza esta función para encontrar contenido específico rápidamente.',
-        position: AppTourPosition.bottom,
-        alignment: AppTourAlignment.end,
+        position: DSTourPosition.bottom,
+        alignment: DSTourAlignment.end,
       ),
-      AppTourStep(
+      DSTourStep(
         id: 'step_4',
         targetKey: _fabKey,
         title: 'Botón de Acción',
         description: 'Este botón flotante te permite crear nuevo contenido fácilmente.',
-        position: AppTourPosition.top,
-        alignment: AppTourAlignment.center,
+        position: DSTourPosition.top,
+        alignment: DSTourAlignment.center,
       ),
     ];
 
     _customTourSteps = [
-      AppTourStep(
+      DSTourStep(
         id: 'custom_1',
         targetKey: _profileKey,
         title: 'Perfil de Usuario',
         description: 'Gestiona tu perfil y configuración personal desde aquí.',
-        position: AppTourPosition.auto,
+        position: DSTourPosition.auto,
         targetRadius: 16.0,
       ),
-      AppTourStep(
+      DSTourStep(
         id: 'custom_2',
         targetKey: _settingsKey,
         title: 'Configuración',
         description: 'Accede a todas las opciones de configuración de la aplicación.',
-        position: AppTourPosition.left,
+        position: DSTourPosition.left,
         targetPadding: const EdgeInsets.all(12.0),
       ),
     ];
 
     _rtlTourSteps = [
-      AppTourStep(
+      DSTourStep(
         id: 'rtl_1',
         targetKey: _menuKey,
         title: 'القائمة الجانبية',
         description: 'اضغط هنا للوصول إلى القائمة الجانبية مع جميع خيارات التنقل.',
-        position: AppTourPosition.bottom,
+        position: DSTourPosition.bottom,
       ),
-      AppTourStep(
+      DSTourStep(
         id: 'rtl_2',
         targetKey: _searchKey,
         title: 'البحث',
         description: 'استخدم هذه الميزة للعثور على المحتوى المحدد بسرعة.',
-        position: AppTourPosition.bottom,
+        position: DSTourPosition.bottom,
       ),
     ];
   }
@@ -120,7 +120,7 @@ class _TourStoryPageState extends State<TourStoryPage> {
     return Scaffold(
       appBar: AppBar(
         key: _appBarKey,
-        title: const Text('AppTour Stories'),
+        title: const Text('DSTour Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         leading: IconButton(
           key: _drawerKey,
@@ -202,9 +202,9 @@ class _TourStoryPageState extends State<TourStoryPage> {
 
           // Tours
           if (_isTourActive)
-            AppTour(
-              config: const AppTourConfig(
-                variant: AppTourVariant.coachmarks,
+            DSTour(
+              config: const DSTourConfig(
+                variant: DSTourVariant.coachmarks,
                 enableSkip: true,
                 enableKeyboardNavigation: true,
                 showProgress: true,
@@ -215,13 +215,13 @@ class _TourStoryPageState extends State<TourStoryPage> {
             ),
 
           if (_isCustomTourActive)
-            AppTour(
-              config: const AppTourConfig(
-                variant: AppTourVariant.coachmarks,
+            DSTour(
+              config: const DSTourConfig(
+                variant: DSTourVariant.coachmarks,
                 enableSkip: true,
                 enableKeyboardNavigation: true,
                 showProgress: true,
-                colors: AppTourColors(
+                colors: DSTourColors(
                   backgroundColor: Color(0xFF2E3440),
                   overlayColor: Color(0xAA000000),
                   textColor: Color(0xFFECEFF4),
@@ -232,7 +232,7 @@ class _TourStoryPageState extends State<TourStoryPage> {
                   targetHighlightColor: Color(0xFF81A1C1),
                   targetBorderColor: Color(0xFF5E81AC),
                 ),
-                spacing: AppTourSpacing(
+                spacing: DSTourSpacing(
                   borderRadius: 12.0,
                   elevation: 12.0,
                   targetPadding: 16.0,
@@ -246,14 +246,14 @@ class _TourStoryPageState extends State<TourStoryPage> {
           if (_isRtlTourActive)
             Directionality(
               textDirection: TextDirection.rtl,
-              child: AppTour(
-                config: const AppTourConfig(
-                  variant: AppTourVariant.coachmarks,
+              child: DSTour(
+                config: const DSTourConfig(
+                  variant: DSTourVariant.coachmarks,
                   enableSkip: true,
                   enableKeyboardNavigation: true,
                   showProgress: true,
                   isRtl: true,
-                  controls: AppTourControls(
+                  controls: DSTourControls(
                     skipButtonText: 'تخطي',
                     nextButtonText: 'التالي',
                     previousButtonText: 'السابق',
@@ -396,7 +396,7 @@ class _TourStoryPageState extends State<TourStoryPage> {
   }
 }
 
-/// Example of how to use AppTour in a real application
+/// Example of how to use DSTour in a real application
 class TourStoryExample extends StatelessWidget {
   const TourStoryExample({super.key});
 

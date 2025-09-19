@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/progress/app_progress.dart';
+import 'package:iautomat_design_system/src/components/progress/ds_progress.dart';
 
-/// Story interactivo que demuestra el uso del widget AppProgress
+/// Story interactivo que demuestra el uso del widget DSProgress
 /// con todas sus variantes, estados y configuraciones
 class ProgressStory extends StatefulWidget {
   const ProgressStory({super.key});
@@ -13,7 +13,7 @@ class ProgressStory extends StatefulWidget {
 class _ProgressStoryState extends State<ProgressStory>
     with TickerProviderStateMixin {
   ProgressVariant _selectedVariant = ProgressVariant.linear;
-  AppProgressState _selectedState = AppProgressState.defaultState;
+  DSProgressState _selectedState = DSProgressState.defaultState;
   double? _progressValue = 0.7;
   bool _isIndeterminate = false;
   bool _hasLabel = true;
@@ -46,7 +46,7 @@ class _ProgressStoryState extends State<ProgressStory>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppProgress Story'),
+        title: const Text('DSProgress Story'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -150,15 +150,15 @@ class _ProgressStoryState extends State<ProgressStory>
       children: [
         const Text('State:', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
-        DropdownButton<AppProgressState>(
+        DropdownButton<DSProgressState>(
           value: _selectedState,
-          items: AppProgressState.values.map((state) {
+          items: DSProgressState.values.map((state) {
             return DropdownMenuItem(
               value: state,
               child: Text(state.name),
             );
           }).toList(),
-          onChanged: (AppProgressState? value) {
+          onChanged: (DSProgressState? value) {
             if (value != null) {
               setState(() {
                 _selectedState = value;
@@ -256,7 +256,7 @@ class _ProgressStoryState extends State<ProgressStory>
             Center(
               child: SizedBox(
                 width: _selectedVariant == ProgressVariant.linear ? 300 : 100,
-                child: AppProgress(
+                child: DSProgress(
                   variant: _selectedVariant,
                   value: _progressValue,
                   label: _hasLabel ? _customLabel : null,
@@ -297,7 +297,7 @@ class _ProgressStoryState extends State<ProgressStory>
             _buildVariantExample(
               'Linear Progress',
               'Ideal para mostrar progreso de cargas lineales',
-              AppProgress.linear(
+              DSProgress.linear(
                 value: 0.65,
                 label: 'Uploading files',
               ),
@@ -306,7 +306,7 @@ class _ProgressStoryState extends State<ProgressStory>
             _buildVariantExample(
               'Circular Progress',
               'Perfecto para indicadores de carga compactos',
-              AppProgress.circular(
+              DSProgress.circular(
                 value: 0.80,
                 label: 'Processing',
               ),
@@ -315,13 +315,13 @@ class _ProgressStoryState extends State<ProgressStory>
             _buildVariantExample(
               'Indeterminate Linear',
               'Para procesos sin duración conocida',
-              AppProgress.linear(),
+              DSProgress.linear(),
             ),
             const SizedBox(height: 24),
             _buildVariantExample(
               'Indeterminate Circular',
               'Spinner clásico para cargas',
-              AppProgress.circular(),
+              DSProgress.circular(),
             ),
           ],
         ),
@@ -339,7 +339,7 @@ class _ProgressStoryState extends State<ProgressStory>
         Text(description, style: Theme.of(context).textTheme.bodySmall),
         const SizedBox(height: 12),
         SizedBox(
-          width: progress is AppProgress &&
+          width: progress is DSProgress &&
                   progress.variant == ProgressVariant.linear
               ? 250
               : 60,
@@ -364,7 +364,7 @@ class _ProgressStoryState extends State<ProgressStory>
             Wrap(
               spacing: 16,
               runSpacing: 16,
-              children: AppProgressState.values.map((state) {
+              children: DSProgressState.values.map((state) {
                 return _buildStateExample(state);
               }).toList(),
             ),
@@ -374,7 +374,7 @@ class _ProgressStoryState extends State<ProgressStory>
     );
   }
 
-  Widget _buildStateExample(AppProgressState state) {
+  Widget _buildStateExample(DSProgressState state) {
     return SizedBox(
       width: 120,
       child: Column(
@@ -385,7 +385,7 @@ class _ProgressStoryState extends State<ProgressStory>
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
-          AppProgress.circular(
+          DSProgress.circular(
             value: 0.6,
             state: state,
             radius: 20,
@@ -410,7 +410,7 @@ class _ProgressStoryState extends State<ProgressStory>
             _buildPlatformExample(
               'Desktop Hover',
               'Interacción con hover en desktop',
-              AppProgress.linear(
+              DSProgress.linear(
                 value: 0.45,
                 label: 'Download Progress',
                 onHover: () {
@@ -427,7 +427,7 @@ class _ProgressStoryState extends State<ProgressStory>
             _buildPlatformExample(
               'Mobile Touch',
               'Optimizado para interacción táctil',
-              AppProgress.circular(
+              DSProgress.circular(
                 value: 0.75,
                 label: 'Sync',
                 onTap: () {
@@ -443,7 +443,7 @@ class _ProgressStoryState extends State<ProgressStory>
               'Soporte completo para right-to-left',
               Directionality(
                 textDirection: TextDirection.rtl,
-                child: AppProgress.linear(
+                child: DSProgress.linear(
                   value: 0.55,
                   label: 'تحميل الملفات',
                   rtlSupport: true,
@@ -489,12 +489,12 @@ class _ProgressStoryState extends State<ProgressStory>
               builder: (context, child) {
                 return Column(
                   children: [
-                    AppProgress.linear(
+                    DSProgress.linear(
                       value: _progressAnimation.value,
                       label: 'Animated Progress',
                     ),
                     const SizedBox(height: 16),
-                    AppProgress.circular(
+                    DSProgress.circular(
                       value: _progressAnimation.value,
                       label:
                           'Sync ${(_progressAnimation.value * 100).round()}%',

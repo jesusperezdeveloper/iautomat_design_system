@@ -65,7 +65,7 @@ dart: ">=3.9.2 <4.0.0"
 **1. Agregar dependencia:**
 ```yaml
 dependencies:
-  iautomat_design_system: ^0.0.1
+  iautomat_design_system: ^1.0.0
 ```
 
 **2. Instalar paquetes:**
@@ -87,8 +87,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Mi App Empresarial',
-      theme: AppTheme.lightTheme,           // Tema claro
-      darkTheme: AppTheme.darkTheme,        // Tema oscuro automático
+      theme: DSTheme.lightTheme,           // Tema claro
+      darkTheme: DSTheme.darkTheme,        // Tema oscuro automático
       home: HomePage(),
       // Responsive automático activado
       builder: (context, child) => ResponsiveWrapper(child: child),
@@ -120,29 +120,29 @@ theme: ThemePresets.creativeMagenta.lightTheme,
 #### **Paleta Principal**
 ```dart
 // Colores de Marca IAutomat
-AppColors.primary           // #2563EB - Azul profesional confiable
-AppColors.secondary         // #E879F9 - Púrpura innovación (ajustado contraste)
-AppColors.primaryDarkMode   // #60A5FA - Optimizado para modo oscuro
+DSColors.primary           // #2563EB - Azul profesional confiable
+DSColors.secondary         // #E879F9 - Púrpura innovación (ajustado contraste)
+DSColors.primaryDarkMode   // #60A5FA - Optimizado para modo oscuro
 
 // Colores Semánticos WCAG 2.0 AA
-AppColors.success          // #10B981 - Verde éxito
-AppColors.warning          // #F59E0B - Amarillo precaución
-AppColors.error            // #DC2626 - Rojo error (4.5:1 contraste)
-AppColors.info             // #3B82F6 - Azul informativo
+DSColors.success          // #10B981 - Verde éxito
+DSColors.warning          // #F59E0B - Amarillo precaución
+DSColors.error            // #DC2626 - Rojo error (4.5:1 contraste)
+DSColors.info             // #3B82F6 - Azul informativo
 ```
 
 #### **Escala de Grises Neutrales**
 ```dart
-AppColors.gray50           // #FAFAFA - Fondos sutiles
-AppColors.gray100          // #F5F5F5 - Fondos de sección
-AppColors.gray200          // #E5E5E5 - Bordes suaves
-AppColors.gray300          // #D4D4D4 - Bordes normales
-AppColors.gray400          // #A3A3A3 - Texto placeholder
-AppColors.gray500          // #737373 - Texto secundario
-AppColors.gray600          // #525252 - Texto normal
-AppColors.gray700          // #404040 - Texto importante
-AppColors.gray800          // #262626 - Texto principal
-AppColors.gray900          // #171717 - Headers y títulos
+DSColors.gray50           // #FAFAFA - Fondos sutiles
+DSColors.gray100          // #F5F5F5 - Fondos de sección
+DSColors.gray200          // #E5E5E5 - Bordes suaves
+DSColors.gray300          // #D4D4D4 - Bordes normales
+DSColors.gray400          // #A3A3A3 - Texto placeholder
+DSColors.gray500          // #737373 - Texto secundario
+DSColors.gray600          // #525252 - Texto normal
+DSColors.gray700          // #404040 - Texto importante
+DSColors.gray800          // #262626 - Texto principal
+DSColors.gray900          // #171717 - Headers y títulos
 ```
 
 ### ✍️ Sistema Tipográfico Inter
@@ -151,53 +151,53 @@ AppColors.gray900          // #171717 - Headers y títulos
 
 ```dart
 // Headers Corporativos
-AppTypography.h1          // 48px Bold - Hero sections, páginas principales
-AppTypography.h2          // 40px Bold - Títulos de sección importantes
-AppTypography.h3          // 32px SemiBold - Subtítulos de área
-AppTypography.h4          // 28px SemiBold - Headers de componente
-AppTypography.h5          // 24px SemiBold - Títulos menores
-AppTypography.h6          // 20px SemiBold - Headers de lista/tabla
+DSTypography.h1          // 48px Bold - Hero sections, páginas principales
+DSTypography.h2          // 40px Bold - Títulos de sección importantes
+DSTypography.h3          // 32px SemiBold - Subtítulos de área
+DSTypography.h4          // 28px SemiBold - Headers de componente
+DSTypography.h5          // 24px SemiBold - Títulos menores
+DSTypography.h6          // 20px SemiBold - Headers de lista/tabla
 
 // Texto de Cuerpo
-AppTypography.bodyLarge   // 18px Regular - Texto destacado, intros
-AppTypography.bodyMedium  // 16px Regular - Texto estándar, párrafos
-AppTypography.bodySmall   // 14px Regular - Texto secundario, notas
+DSTypography.bodyLarge   // 18px Regular - Texto destacado, intros
+DSTypography.bodyMedium  // 16px Regular - Texto estándar, párrafos
+DSTypography.bodySmall   // 14px Regular - Texto secundario, notas
 
 // Labels y UI
-AppTypography.labelLarge  // 16px Medium - Formularios principales
-AppTypography.labelMedium // 14px Medium - Navegación, tabs, botones
-AppTypography.labelSmall  // 12px Medium - Hints, validaciones
+DSTypography.labelLarge  // 16px Medium - Formularios principales
+DSTypography.labelMedium // 14px Medium - Navegación, tabs, botones
+DSTypography.labelSmall  // 12px Medium - Hints, validaciones
 
 // Especiales
-AppTypography.button      // 16px SemiBold - Call-to-actions
-AppTypography.caption     // 12px Regular - Metadatos, timestamps
-AppTypography.overline    // 12px SemiBold - Categorías, breadcrumbs
+DSTypography.button      // 16px SemiBold - Call-to-actions
+DSTypography.caption     // 12px Regular - Metadatos, timestamps
+DSTypography.overline    // 12px SemiBold - Categorías, breadcrumbs
 ```
 
 ### 📏 Sistema de Espaciado (8px Grid)
 
 ```dart
 // Escala de Espaciado Base
-AppSpacing.xxxs    // 2px  - Separadores mínimos
-AppSpacing.xxs     // 4px  - Padding interno pequeño
-AppSpacing.xs      // 8px  - Espaciado básico
-AppSpacing.sm      // 16px - Espaciado estándar
-AppSpacing.md      // 24px - Espaciado generoso
-AppSpacing.lg      // 32px - Separación de secciones
-AppSpacing.xl      // 48px - Espaciado de página
-AppSpacing.xxl     // 64px - Separaciones principales
-AppSpacing.xxxl    // 96px - Máximo espaciado
+DSSpacing.xxxs    // 2px  - Separadores mínimos
+DSSpacing.xxs     // 4px  - Padding interno pequeño
+DSSpacing.xs      // 8px  - Espaciado básico
+DSSpacing.sm      // 16px - Espaciado estándar
+DSSpacing.md      // 24px - Espaciado generoso
+DSSpacing.lg      // 32px - Separación de secciones
+DSSpacing.xl      // 48px - Espaciado de página
+DSSpacing.xxl     // 64px - Separaciones principales
+DSSpacing.xxxl    // 96px - Máximo espaciado
 
 // Widgets de Espaciado Predefinidos
-AppSpacing.verticalMd      // SizedBox(height: 24)
-AppSpacing.horizontalLg    // SizedBox(width: 32)
+DSSpacing.verticalMd      // SizedBox(height: 24)
+DSSpacing.horizontalLg    // SizedBox(width: 32)
 
 // EdgeInsets Presets Empresariales
-AppSpacing.pagePadding     // Padding de página responsive
-AppSpacing.cardPadding     // Padding interno de cards
-AppSpacing.buttonPadding   // Padding de botones optimizado
-AppSpacing.inputPadding    // Padding de campos de formulario
-AppSpacing.dialogPadding   // Padding de modales
+DSSpacing.pagePadding     // Padding de página responsive
+DSSpacing.cardPadding     // Padding interno de cards
+DSSpacing.buttonPadding   // Padding de botones optimizado
+DSSpacing.inputPadding    // Padding de campos de formulario
+DSSpacing.dialogPadding   // Padding de modales
 ```
 
 ### 🎨 20 Presets de Tema Profesionales para 2025

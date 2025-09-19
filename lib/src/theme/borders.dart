@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 ///
 /// Define bordes reutilizables con radio consistente siguiendo
 /// las guías de Material Design 3.
-class AppBorders {
-  AppBorders._();
+class DSBorders {
+  DSBorders._();
 
   // ==========================================================================
   // BORDER RADIUS PRESETS

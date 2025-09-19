@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/date_picker/app_date_picker.dart';
+import 'package:iautomat_design_system/src/components/date_picker/ds_date_picker.dart';
 import 'package:iautomat_design_system/src/components/date_picker/date_picker_config.dart';
 
-/// Storybook examples for AppDatePicker component
+/// Storybook examples for DSDatePicker component
 ///
 /// This file contains various configurations and usage examples
-/// of the AppDatePicker component for demonstration and testing purposes.
-class AppDatePickerStory {
+/// of the DSDatePicker component for demonstration and testing purposes.
+class DSDatePickerStory {
   static Widget get title => const Text(
-        'AppDatePicker',
+        'DSDatePicker',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       );
 
@@ -182,8 +182,8 @@ class _DatePickerExampleState extends State<_DatePickerExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppDatePicker(
-            variant: AppDatePickerVariant.date,
+          DSDatePicker(
+            variant: DSDatePickerVariant.date,
             value: selectedDate,
             onChanged: (date) => setState(() => selectedDate = date),
             labelText: 'Fecha de nacimiento',
@@ -214,8 +214,8 @@ class _TimePickerExampleState extends State<_TimePickerExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppDatePicker(
-            variant: AppDatePickerVariant.time,
+          DSDatePicker(
+            variant: DSDatePickerVariant.time,
             value: selectedTime,
             onChanged: (time) => setState(() => selectedTime = time),
             labelText: 'Hora de reunión',
@@ -237,7 +237,7 @@ class _DateRangePickerExample extends StatefulWidget {
 }
 
 class _DateRangePickerExampleState extends State<_DateRangePickerExample> {
-  AppDateRange? selectedRange;
+  DSDateRange? selectedRange;
 
   @override
   Widget build(BuildContext context) {
@@ -246,8 +246,8 @@ class _DateRangePickerExampleState extends State<_DateRangePickerExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppDatePicker(
-            variant: AppDatePickerVariant.range,
+          DSDatePicker(
+            variant: DSDatePickerVariant.range,
             value: selectedRange,
             onChanged: (range) => setState(() => selectedRange = range),
             labelText: 'Período de vacaciones',
@@ -262,7 +262,7 @@ class _DateRangePickerExampleState extends State<_DateRangePickerExample> {
     );
   }
 
-  String _formatRange(AppDateRange? range) {
+  String _formatRange(DSDateRange? range) {
     if (range == null || range.isEmpty) return 'Ninguno';
     if (range.isPartial) {
       return 'Inicio: ${range.start?.toString() ?? 'No seleccionado'}';
@@ -279,37 +279,37 @@ class _StateExamplesWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildStateExample('Default', AppDatePickerState.defaultState),
+          _buildStateExample('Default', DSDatePickerState.defaultState),
           const SizedBox(height: 12),
-          _buildStateExample('Hover', AppDatePickerState.hover),
+          _buildStateExample('Hover', DSDatePickerState.hover),
           const SizedBox(height: 12),
-          _buildStateExample('Focus', AppDatePickerState.focus),
+          _buildStateExample('Focus', DSDatePickerState.focus),
           const SizedBox(height: 12),
           _buildStateExample(
-              'Selected', AppDatePickerState.selected, DateTime.now()),
+              'Selected', DSDatePickerState.selected, DateTime.now()),
           const SizedBox(height: 12),
-          _buildStateExample('Disabled', AppDatePickerState.disabled),
+          _buildStateExample('Disabled', DSDatePickerState.disabled),
           const SizedBox(height: 12),
-          _buildStateExample('Loading', AppDatePickerState.loading),
+          _buildStateExample('Loading', DSDatePickerState.loading),
           const SizedBox(height: 12),
-          _buildStateExample('Skeleton', AppDatePickerState.skeleton),
+          _buildStateExample('Skeleton', DSDatePickerState.skeleton),
         ],
       ),
     );
   }
 
-  Widget _buildStateExample(String stateName, AppDatePickerState state,
+  Widget _buildStateExample(String stateName, DSDatePickerState state,
       [DateTime? value]) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(stateName, style: const TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
-        AppDatePicker(
-          variant: AppDatePickerVariant.date,
+        DSDatePicker(
+          variant: DSDatePickerVariant.date,
           state: state,
           value: value,
-          onChanged: state == AppDatePickerState.disabled ? null : (_) {},
+          onChanged: state == DSDatePickerState.disabled ? null : (_) {},
           labelText: 'Fecha $stateName',
           hintText: 'Estado: $stateName',
         ),
@@ -323,8 +323,8 @@ class _DisabledExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
         enabled: false,
         labelText: 'Fecha (Deshabilitada)',
         hintText: 'Este campo está deshabilitado',
@@ -339,9 +339,9 @@ class _LoadingExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
-        state: AppDatePickerState.loading,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
+        state: DSDatePickerState.loading,
         labelText: 'Cargando datos...',
         hintText: 'Por favor espera',
         onChanged: (_) {},
@@ -355,9 +355,9 @@ class _SkeletonExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
-        state: AppDatePickerState.skeleton,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
+        state: DSDatePickerState.skeleton,
         labelText: 'Cargando...',
         onChanged: (_) {},
       ),
@@ -377,13 +377,13 @@ class _CustomConfigExampleState extends State<_CustomConfigExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
         value: selectedDate,
         onChanged: (date) => setState(() => selectedDate = date),
         labelText: 'Fecha personalizada',
         hintText: 'Estilo personalizado',
-        config: const AppDatePickerConfig(
+        config: const DSDatePickerConfig(
           borderRadius: 20.0,
           borderWidth: 3.0,
           enableShadow: true,
@@ -422,8 +422,8 @@ class _ValidationExampleState extends State<_ValidationExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
         value: selectedDate,
         onChanged: (date) {
           setState(() => selectedDate = date);
@@ -450,8 +450,8 @@ class _LocaleExampleState extends State<_LocaleExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
         value: selectedDate,
         onChanged: (date) => setState(() => selectedDate = date),
         labelText: 'Fecha con locale español',
@@ -474,8 +474,8 @@ class _CustomIconsExampleState extends State<_CustomIconsExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
         value: selectedDate,
         onChanged: (date) => setState(() => selectedDate = date),
         labelText: 'Fecha con iconos personalizados',
@@ -500,8 +500,8 @@ class _PlatformAdaptiveExampleState extends State<_PlatformAdaptiveExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
         value: selectedDate,
         onChanged: (date) => setState(() => selectedDate = date),
         labelText: 'Fecha adaptativa',
@@ -524,8 +524,8 @@ class _CupertinoExampleState extends State<_CupertinoExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
         value: selectedDate,
         onChanged: (date) => setState(() => selectedDate = date),
         labelText: 'Fecha estilo Cupertino',
@@ -548,8 +548,8 @@ class _MaterialExampleState extends State<_MaterialExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
         value: selectedDate,
         onChanged: (date) => setState(() => selectedDate = date),
         labelText: 'Fecha estilo Material',
@@ -579,8 +579,8 @@ class _FormIntegrationExampleState extends State<_FormIntegrationExample> {
         key: _formKey,
         child: Column(
           children: [
-            AppDatePicker(
-              variant: AppDatePickerVariant.date,
+            DSDatePicker(
+              variant: DSDatePickerVariant.date,
               value: startDate,
               onChanged: (date) => setState(() => startDate = date),
               labelText: 'Fecha de inicio',
@@ -588,8 +588,8 @@ class _FormIntegrationExampleState extends State<_FormIntegrationExample> {
               validator: (value) => value == null ? 'Fecha requerida' : null,
             ),
             const SizedBox(height: 16),
-            AppDatePicker(
-              variant: AppDatePickerVariant.date,
+            DSDatePicker(
+              variant: DSDatePickerVariant.date,
               value: endDate,
               onChanged: (date) => setState(() => endDate = date),
               labelText: 'Fecha de fin',
@@ -604,8 +604,8 @@ class _FormIntegrationExampleState extends State<_FormIntegrationExample> {
               },
             ),
             const SizedBox(height: 16),
-            AppDatePicker(
-              variant: AppDatePickerVariant.time,
+            DSDatePicker(
+              variant: DSDatePickerVariant.time,
               value: startTime,
               onChanged: (time) => setState(() => startTime = time),
               labelText: 'Hora de inicio',
@@ -638,7 +638,7 @@ class _MultiplePickersExample extends StatefulWidget {
 class _MultiplePickersExampleState extends State<_MultiplePickersExample> {
   DateTime? checkIn;
   DateTime? checkOut;
-  AppDateRange? vacationRange;
+  DSDateRange? vacationRange;
 
   @override
   Widget build(BuildContext context) {
@@ -646,16 +646,16 @@ class _MultiplePickersExampleState extends State<_MultiplePickersExample> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          AppDatePicker(
-            variant: AppDatePickerVariant.date,
+          DSDatePicker(
+            variant: DSDatePickerVariant.date,
             value: checkIn,
             onChanged: (date) => setState(() => checkIn = date),
             labelText: 'Check-in',
             hintText: 'Fecha de entrada',
           ),
           const SizedBox(height: 16),
-          AppDatePicker(
-            variant: AppDatePickerVariant.date,
+          DSDatePicker(
+            variant: DSDatePickerVariant.date,
             value: checkOut,
             onChanged: (date) => setState(() => checkOut = date),
             labelText: 'Check-out',
@@ -663,8 +663,8 @@ class _MultiplePickersExampleState extends State<_MultiplePickersExample> {
             firstDate: checkIn,
           ),
           const SizedBox(height: 16),
-          AppDatePicker(
-            variant: AppDatePickerVariant.range,
+          DSDatePicker(
+            variant: DSDatePickerVariant.range,
             value: vacationRange,
             onChanged: (range) => setState(() => vacationRange = range),
             labelText: 'Período de vacaciones',
@@ -688,8 +688,8 @@ class _AccessibilityExampleState extends State<_AccessibilityExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppDatePicker(
-        variant: AppDatePickerVariant.date,
+      child: DSDatePicker(
+        variant: DSDatePickerVariant.date,
         value: selectedDate,
         onChanged: (date) => setState(() => selectedDate = date),
         labelText: 'Fecha de cita médica',
@@ -721,8 +721,8 @@ class _KeyboardNavigationExampleState
         children: [
           const Text('Usa Tab para navegar, Enter/Space para activar'),
           const SizedBox(height: 16),
-          AppDatePicker(
-            variant: AppDatePickerVariant.date,
+          DSDatePicker(
+            variant: DSDatePickerVariant.date,
             value: selectedDate,
             onChanged: (date) => setState(() => selectedDate = date),
             labelText: 'Fecha con navegación por teclado',
@@ -755,8 +755,8 @@ class _RTLExampleState extends State<_RTLExample> {
       textDirection: TextDirection.rtl,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: AppDatePicker(
-          variant: AppDatePickerVariant.date,
+        child: DSDatePicker(
+          variant: DSDatePickerVariant.date,
           value: selectedDate,
           onChanged: (date) => setState(() => selectedDate = date),
           labelText: 'تاریخ انتخاب کنید',

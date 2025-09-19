@@ -11,15 +11,15 @@
 /// import 'package:iautomat_design_system/iautomat_design_system.dart';
 ///
 /// MaterialApp(
-///   theme: AppTheme.lightTheme,
-///   darkTheme: AppTheme.darkTheme,
+///   theme: DSTheme.lightTheme,
+///   darkTheme: DSTheme.darkTheme,
 ///   home: MyApp(),
 /// )
 /// ```
 library;
 
 // Theme exports - complete theming system
-export 'src/theme/app_theme.dart';
+export 'src/theme/ds_theme.dart';
 export 'src/theme/colors.dart';
 export 'src/theme/spacing.dart';
 export 'src/theme/theme.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-/// Story de AppProductCard con ejemplos y casos de uso
+/// Story de DSProductCard con ejemplos y casos de uso
 class ProductCardStory extends StatefulWidget {
   const ProductCardStory({super.key});
 
@@ -11,9 +11,9 @@ class ProductCardStory extends StatefulWidget {
 
 class _ProductCardStoryState extends State<ProductCardStory> {
   // Estado de la configuración
-  AppProductCardVariant _selectedVariant = AppProductCardVariant.discount;
-  AppProductCardLayout _selectedLayout = AppProductCardLayout.vertical;
-  AppProductCardState _selectedState = AppProductCardState.defaultState;
+  DSProductCardVariant _selectedVariant = DSProductCardVariant.discount;
+  DSProductCardLayout _selectedLayout = DSProductCardLayout.vertical;
+  DSProductCardState _selectedState = DSProductCardState.defaultState;
   bool _showImage = true;
   bool _showDiscountChip = true;
   bool _showAdditionalInfo = true;
@@ -106,7 +106,7 @@ class _ProductCardStoryState extends State<ProductCardStory> {
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      title: const Text('AppProductCard Story'),
+      title: const Text('DSProductCard Story'),
       actions: [
         // Toggle dark mode
         IconButton(
@@ -150,10 +150,10 @@ class _ProductCardStoryState extends State<ProductCardStory> {
           const SizedBox(height: 16),
 
           // Variante
-          _buildDropdown<AppProductCardVariant>(
+          _buildDropdown<DSProductCardVariant>(
             label: 'Variante',
             value: _selectedVariant,
-            items: AppProductCardVariant.values,
+            items: DSProductCardVariant.values,
             onChanged: (value) {
               setState(() {
                 _selectedVariant = value!;
@@ -164,10 +164,10 @@ class _ProductCardStoryState extends State<ProductCardStory> {
           const SizedBox(height: 16),
 
           // Layout
-          _buildDropdown<AppProductCardLayout>(
+          _buildDropdown<DSProductCardLayout>(
             label: 'Layout',
             value: _selectedLayout,
-            items: AppProductCardLayout.values,
+            items: DSProductCardLayout.values,
             onChanged: (value) {
               setState(() {
                 _selectedLayout = value!;
@@ -178,10 +178,10 @@ class _ProductCardStoryState extends State<ProductCardStory> {
           const SizedBox(height: 16),
 
           // Estado
-          _buildDropdown<AppProductCardState>(
+          _buildDropdown<DSProductCardState>(
             label: 'Estado',
             value: _selectedState,
-            items: AppProductCardState.values,
+            items: DSProductCardState.values,
             onChanged: (value) {
               setState(() {
                 _selectedState = value!;
@@ -306,8 +306,8 @@ class _ProductCardStoryState extends State<ProductCardStory> {
   }
 
   Widget _buildProductGrid() {
-    final isCompact = _selectedLayout == AppProductCardLayout.compact;
-    final isHorizontal = _selectedLayout == AppProductCardLayout.horizontal;
+    final isCompact = _selectedLayout == DSProductCardLayout.compact;
+    final isHorizontal = _selectedLayout == DSProductCardLayout.horizontal;
 
     return GridView.builder(
       padding: const EdgeInsets.all(16),
@@ -316,7 +316,7 @@ class _ProductCardStoryState extends State<ProductCardStory> {
             ? 1
             : isHorizontal
                 ? 2
-                : _selectedLayout == AppProductCardLayout.overlay
+                : _selectedLayout == DSProductCardLayout.overlay
                     ? 2
                     : 3,
         mainAxisSpacing: 16,
@@ -325,7 +325,7 @@ class _ProductCardStoryState extends State<ProductCardStory> {
             ? 4.0
             : isHorizontal
                 ? 1.5
-                : _selectedLayout == AppProductCardLayout.overlay
+                : _selectedLayout == DSProductCardLayout.overlay
                     ? 1.0
                     : 0.7,
       ),
@@ -338,16 +338,16 @@ class _ProductCardStoryState extends State<ProductCardStory> {
   }
 
   Widget _buildProductCard(ProductData product) {
-    return AppProductCard(
+    return DSProductCard(
       title: product.title,
-      price: AppProductPrice(
+      price: DSProductPrice(
         amount: product.price,
         currency: '\$',
         originalPrice: product.originalPrice,
-        format: AppPriceFormat.withThousands,
+        format: DSPriceFormat.withThousands,
       ),
       image: _showImage
-          ? AppProductImage(
+          ? DSProductImage(
               url: product.image,
               errorWidget: const Center(
                 child: Icon(Icons.image_not_supported, size: 48),
@@ -355,9 +355,9 @@ class _ProductCardStoryState extends State<ProductCardStory> {
             )
           : null,
       discountChip: _showDiscountChip &&
-              _selectedVariant == AppProductCardVariant.discount &&
+              _selectedVariant == DSProductCardVariant.discount &&
               product.discount != null
-          ? AppDiscountChip(
+          ? DSDiscountChip(
               text: product.discount!,
               icon: Icons.local_offer,
             )
@@ -366,7 +366,7 @@ class _ProductCardStoryState extends State<ProductCardStory> {
       initialState: _selectedState,
       layout: _selectedLayout,
       selected: _selectedProducts.contains(product.id),
-      enabled: _selectedState != AppProductCardState.disabled,
+      enabled: _selectedState != DSProductCardState.disabled,
       additionalInfo: _showAdditionalInfo && product.additionalInfo != null
           ? Row(
               children: [
@@ -595,18 +595,18 @@ class _EcommerceExample extends StatelessWidget {
               itemBuilder: (context, index) {
                 return SizedBox(
                   width: 250,
-                  child: AppProductCard(
+                  child: DSProductCard(
                     title: 'Producto Premium ${index + 1}',
-                    price: AppProductPrice(
+                    price: DSProductPrice(
                       amount: 299.99 + (index * 100),
                       currency: '\$',
                       originalPrice: 399.99 + (index * 100),
                     ),
-                    image: AppProductImage(
+                    image: DSProductImage(
                       url: 'https://via.placeholder.com/400',
                     ),
-                    variant: AppProductCardVariant.discount,
-                    discountChip: AppDiscountChip(
+                    variant: DSProductCardVariant.discount,
+                    discountChip: DSDiscountChip(
                       text: '-25%',
                       backgroundColor: Colors.red,
                     ),
@@ -704,13 +704,13 @@ class _ComparisonExampleState extends State<_ComparisonExample> {
               itemCount: 9,
               itemBuilder: (context, index) {
                 final isSelected = _selectedForComparison.contains(index);
-                return AppProductCard(
+                return DSProductCard(
                   title: 'Laptop ${index + 1}',
-                  price: AppProductPrice(
+                  price: DSProductPrice(
                     amount: 999.99 + (index * 200),
                     currency: '\$',
                   ),
-                  image: AppProductImage(
+                  image: DSProductImage(
                     url: 'https://via.placeholder.com/400',
                   ),
                   selected: isSelected,
@@ -765,20 +765,20 @@ class _AccessibilityExample extends StatelessWidget {
           // Productos con soporte completo de accesibilidad
           SizedBox(
             height: 400,
-            child: AppProductCard(
+            child: DSProductCard(
               title: 'Producto con accesibilidad completa',
-              price: const AppProductPrice(
+              price: const DSProductPrice(
                 amount: 149.99,
                 currency: '\$',
                 originalPrice: 199.99,
               ),
-              image: const AppProductImage(
+              image: const DSProductImage(
                 url: 'https://via.placeholder.com/400',
               ),
-              variant: AppProductCardVariant.discount,
-              discountChip: const AppDiscountChip(text: '-25%'),
-              config: const AppProductCardConfig(
-                a11yConfig: AppProductCardA11yConfig(
+              variant: DSProductCardVariant.discount,
+              discountChip: const DSDiscountChip(text: '-25%'),
+              config: const DSProductCardConfig(
+                a11yConfig: DSProductCardA11yConfig(
                   productLabel: 'Producto tecnológico',
                   priceLabel: 'Precio actual',
                   discountLabel: 'Descuento aplicado',

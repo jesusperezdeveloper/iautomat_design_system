@@ -9,10 +9,10 @@ class AvatarStoryExample extends StatefulWidget {
 }
 
 class _AvatarStoryExampleState extends State<AvatarStoryExample> {
-  AppAvatarVariant _selectedVariant = AppAvatarVariant.image;
-  AppAvatarSize _selectedSize = AppAvatarSize.medium;
-  AppAvatarShape _selectedShape = AppAvatarShape.circle;
-  AppAvatarPresence? _selectedPresence = AppAvatarPresence.online;
+  DSAvatarVariant _selectedVariant = DSAvatarVariant.image;
+  DSAvatarSize _selectedSize = DSAvatarSize.medium;
+  DSAvatarShape _selectedShape = DSAvatarShape.circle;
+  DSAvatarPresence? _selectedPresence = DSAvatarPresence.online;
   bool _enabled = true;
   bool _loading = false;
   bool _skeleton = false;
@@ -102,10 +102,10 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Variante:'),
-        DropdownButton<AppAvatarVariant>(
+        DropdownButton<DSAvatarVariant>(
           value: _selectedVariant,
           onChanged: (value) => setState(() => _selectedVariant = value!),
-          items: AppAvatarVariant.values.map((variant) {
+          items: DSAvatarVariant.values.map((variant) {
             return DropdownMenuItem(
               value: variant,
               child: Text(variant.name),
@@ -121,10 +121,10 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Tamaño:'),
-        DropdownButton<AppAvatarSize>(
+        DropdownButton<DSAvatarSize>(
           value: _selectedSize,
           onChanged: (value) => setState(() => _selectedSize = value!),
-          items: AppAvatarSize.values.map((size) {
+          items: DSAvatarSize.values.map((size) {
             return DropdownMenuItem(
               value: size,
               child: Text(size.name),
@@ -140,10 +140,10 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Forma:'),
-        DropdownButton<AppAvatarShape>(
+        DropdownButton<DSAvatarShape>(
           value: _selectedShape,
           onChanged: (value) => setState(() => _selectedShape = value!),
-          items: AppAvatarShape.values.map((shape) {
+          items: DSAvatarShape.values.map((shape) {
             return DropdownMenuItem(
               value: shape,
               child: Text(shape.name),
@@ -159,15 +159,15 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Presencia:'),
-        DropdownButton<AppAvatarPresence?>(
+        DropdownButton<DSAvatarPresence?>(
           value: _selectedPresence,
           onChanged: (value) => setState(() => _selectedPresence = value),
           items: [
-            const DropdownMenuItem<AppAvatarPresence?>(
+            const DropdownMenuItem<DSAvatarPresence?>(
               value: null,
               child: Text('Ninguna'),
             ),
-            ...AppAvatarPresence.values.map((presence) {
+            ...DSAvatarPresence.values.map((presence) {
               return DropdownMenuItem(
                 value: presence,
                 child: Text(presence.label),
@@ -272,8 +272,8 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
 
   Widget _buildConfiguredAvatar() {
     switch (_selectedVariant) {
-      case AppAvatarVariant.image:
-        return AppAvatar.image(
+      case DSAvatarVariant.image:
+        return DSAvatar.image(
           imageUrl: _imageUrl,
           size: _selectedSize,
           shape: _selectedShape,
@@ -286,8 +286,8 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
           showBorder: _showBorder,
           onTap: () => _showSnackBar('Avatar presionado'),
         );
-      case AppAvatarVariant.initials:
-        return AppAvatar.initials(
+      case DSAvatarVariant.initials:
+        return DSAvatar.initials(
           initials: _initials,
           size: _selectedSize,
           shape: _selectedShape,
@@ -300,8 +300,8 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
           showBorder: _showBorder,
           onTap: () => _showSnackBar('Avatar presionado'),
         );
-      case AppAvatarVariant.group:
-        return AppAvatar.group(
+      case DSAvatarVariant.group:
+        return DSAvatar.group(
           groupImageUrls: _sampleImageUrls,
           size: _selectedSize,
           shape: _selectedShape,
@@ -320,15 +320,15 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
     return _buildExampleSection(
       'Variantes de Avatar',
       [
-        AppAvatar.image(
+        DSAvatar.image(
           imageUrl: _sampleImageUrls[0],
           onTap: () => _showSnackBar('Avatar con imagen'),
         ),
-        AppAvatar.initials(
+        DSAvatar.initials(
           initials: 'AB',
           onTap: () => _showSnackBar('Avatar con iniciales'),
         ),
-        AppAvatar.group(
+        DSAvatar.group(
           groupImageUrls: _sampleImageUrls.take(3).toList(),
           onTap: () => _showSnackBar('Avatar de grupo'),
         ),
@@ -339,10 +339,10 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
   Widget _buildSizeExamples() {
     return _buildExampleSection(
       'Tamaños',
-      AppAvatarSize.values.map((size) {
+      DSAvatarSize.values.map((size) {
         return Column(
           children: [
-            AppAvatar.initials(
+            DSAvatar.initials(
               initials: 'AB',
               size: size,
             ),
@@ -360,13 +360,13 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
   Widget _buildShapeExamples() {
     return _buildExampleSection(
       'Formas',
-      AppAvatarShape.values.map((shape) {
+      DSAvatarShape.values.map((shape) {
         return Column(
           children: [
-            AppAvatar.image(
+            DSAvatar.image(
               imageUrl: _sampleImageUrls[0],
               shape: shape,
-              size: AppAvatarSize.large,
+              size: DSAvatarSize.large,
             ),
             const SizedBox(height: 8),
             Text(
@@ -382,10 +382,10 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
   Widget _buildPresenceExamples() {
     return _buildExampleSection(
       'Estados de Presencia',
-      AppAvatarPresence.values.map((presence) {
+      DSAvatarPresence.values.map((presence) {
         return Column(
           children: [
-            AppAvatar.image(
+            DSAvatar.image(
               imageUrl: _sampleImageUrls[0],
               presence: presence,
               showPresence: true,
@@ -408,7 +408,7 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
       [
         Column(
           children: [
-            AppAvatar.initials(
+            DSAvatar.initials(
               initials: 'AB',
               enabled: true,
             ),
@@ -418,7 +418,7 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
         ),
         Column(
           children: [
-            AppAvatar.initials(
+            DSAvatar.initials(
               initials: 'CD',
               enabled: false,
             ),
@@ -428,7 +428,7 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
         ),
         Column(
           children: [
-            AppAvatar.initials(
+            DSAvatar.initials(
               initials: 'EF',
               loading: true,
             ),
@@ -438,7 +438,7 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
         ),
         Column(
           children: [
-            AppAvatar.initials(
+            DSAvatar.initials(
               initials: 'GH',
               skeleton: true,
             ),
@@ -456,7 +456,7 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
       [
         Column(
           children: [
-            AppAvatar.group(
+            DSAvatar.group(
               groupImageUrls: _sampleImageUrls.take(2).toList(),
               maxGroupCount: 2,
             ),
@@ -466,7 +466,7 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
         ),
         Column(
           children: [
-            AppAvatar.group(
+            DSAvatar.group(
               groupImageUrls: _sampleImageUrls.take(3).toList(),
               maxGroupCount: 3,
             ),
@@ -476,7 +476,7 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
         ),
         Column(
           children: [
-            AppAvatar.group(
+            DSAvatar.group(
               groupImageUrls: _sampleImageUrls,
               maxGroupCount: 3,
             ),
@@ -486,7 +486,7 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
         ),
         Column(
           children: [
-            AppAvatar.group(
+            DSAvatar.group(
               groupInitials: _sampleInitials.take(3).toList(),
               maxGroupCount: 3,
             ),
@@ -502,15 +502,15 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
     return _buildExampleSection(
       'Avatares Interactivos',
       [
-        AppAvatar.image(
+        DSAvatar.image(
           imageUrl: _sampleImageUrls[0],
           onTap: () => _showSnackBar('Avatar con Tap'),
         ),
-        AppAvatar.initials(
+        DSAvatar.initials(
           initials: 'LG',
           onLongPress: () => _showSnackBar('Avatar con Long Press'),
         ),
-        AppAvatar.group(
+        DSAvatar.group(
           groupImageUrls: _sampleImageUrls.take(2).toList(),
           onHover: () => _showSnackBar('Avatar con Hover'),
         ),
@@ -542,10 +542,10 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            AppAvatar.image(
+            DSAvatar.image(
               imageUrl: _sampleImageUrls[0],
-              size: AppAvatarSize.large,
-              presence: AppAvatarPresence.online,
+              size: DSAvatarSize.large,
+              presence: DSAvatarPresence.online,
               showPresence: true,
               onTap: () => _showSnackBar('Perfil de usuario'),
             ),
@@ -592,14 +592,14 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
           ),
           ...List.generate(3, (index) {
             final presenceStates = [
-              AppAvatarPresence.online,
-              AppAvatarPresence.away,
-              AppAvatarPresence.busy,
+              DSAvatarPresence.online,
+              DSAvatarPresence.away,
+              DSAvatarPresence.busy,
             ];
             final names = ['Ana García', 'Carlos López', 'María Rodríguez'];
 
             return ListTile(
-              leading: AppAvatar.image(
+              leading: DSAvatar.image(
                 imageUrl: _sampleImageUrls[index + 1],
                 presence: presenceStates[index],
                 showPresence: true,
@@ -628,7 +628,7 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const Spacer(),
-                AppAvatar.group(
+                DSAvatar.group(
                   groupImageUrls: _sampleImageUrls,
                   maxGroupCount: 4,
                   onTap: () => _showSnackBar('Ver todo el equipo'),
@@ -648,9 +648,9 @@ class _AvatarStoryExampleState extends State<AvatarStoryExample> {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    AppAvatar.initials(
+                    DSAvatar.initials(
                       initials: _sampleInitials[index % _sampleInitials.length],
-                      size: AppAvatarSize.medium,
+                      size: DSAvatarSize.medium,
                       onTap: () => _showSnackBar('Miembro ${index + 1}'),
                     ),
                     const SizedBox(height: 4),
@@ -721,20 +721,20 @@ class AvatarStoryBasic extends StatelessWidget {
               children: [
                 _buildBasicExample(
                   'Avatar con Imagen',
-                  AppAvatar.image(
+                  DSAvatar.image(
                     imageUrl:
                         'https://api.dicebear.com/7.x/avataaars/png?seed=Felix',
                   ),
                 ),
                 _buildBasicExample(
                   'Avatar con Iniciales',
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'JD',
                   ),
                 ),
                 _buildBasicExample(
                   'Avatar de Grupo',
-                  AppAvatar.group(
+                  DSAvatar.group(
                     groupImageUrls: [
                       'https://api.dicebear.com/7.x/avataaars/png?seed=Felix',
                       'https://api.dicebear.com/7.x/avataaars/png?seed=Aneka',
@@ -775,10 +775,10 @@ class _AvatarStoryPlaygroundState extends State<AvatarStoryPlayground> {
       appBar: AppBar(
         title: const Text('Avatar Playground'),
         actions: [
-          AppAvatar.initials(
+          DSAvatar.initials(
             initials: 'JP',
-            size: AppAvatarSize.small,
-            presence: AppAvatarPresence.online,
+            size: DSAvatarSize.small,
+            presence: DSAvatarPresence.online,
             showPresence: true,
             onTap: () => _showProfileDialog(),
           ),
@@ -807,9 +807,9 @@ class _AvatarStoryPlaygroundState extends State<AvatarStoryPlayground> {
   Widget _buildMessagesCard() {
     return Card(
       child: ListTile(
-        leading: AppAvatar.image(
+        leading: DSAvatar.image(
           imageUrl: 'https://api.dicebear.com/7.x/avataaars/png?seed=Sarah',
-          presence: AppAvatarPresence.online,
+          presence: DSAvatarPresence.online,
           showPresence: true,
         ),
         title: const Text('Sarah Connor'),
@@ -834,7 +834,7 @@ class _AvatarStoryPlaygroundState extends State<AvatarStoryPlayground> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
-                AppAvatar.group(
+                DSAvatar.group(
                   groupImageUrls: [
                     'https://api.dicebear.com/7.x/avataaars/png?seed=Felix',
                     'https://api.dicebear.com/7.x/avataaars/png?seed=Aneka',
@@ -843,7 +843,7 @@ class _AvatarStoryPlaygroundState extends State<AvatarStoryPlayground> {
                     'https://api.dicebear.com/7.x/avataaars/png?seed=Mike',
                   ],
                   maxGroupCount: 3,
-                  size: AppAvatarSize.small,
+                  size: DSAvatarSize.small,
                   onTap: () => _showSnackBar('Ver todos los miembros'),
                 ),
               ],
@@ -861,17 +861,17 @@ class _AvatarStoryPlaygroundState extends State<AvatarStoryPlayground> {
       {
         'name': 'Alex Johnson',
         'initials': 'AJ',
-        'presence': AppAvatarPresence.away,
+        'presence': DSAvatarPresence.away,
       },
       {
         'name': 'Lisa Kim',
         'initials': 'LK',
-        'presence': AppAvatarPresence.busy,
+        'presence': DSAvatarPresence.busy,
       },
       {
         'name': 'Mike Rodriguez',
         'initials': 'MR',
-        'presence': AppAvatarPresence.online,
+        'presence': DSAvatarPresence.online,
       },
     ];
 
@@ -888,15 +888,15 @@ class _AvatarStoryPlaygroundState extends State<AvatarStoryPlayground> {
           ),
           ...collaborators.map((collaborator) {
             return ListTile(
-              leading: AppAvatar.initials(
+              leading: DSAvatar.initials(
                 initials: collaborator['initials'] as String,
-                presence: collaborator['presence'] as AppAvatarPresence,
+                presence: collaborator['presence'] as DSAvatarPresence,
                 showPresence: true,
-                size: AppAvatarSize.small,
+                size: DSAvatarSize.small,
               ),
               title: Text(collaborator['name'] as String),
               subtitle:
-                  Text((collaborator['presence'] as AppAvatarPresence).label),
+                  Text((collaborator['presence'] as DSAvatarPresence).label),
               onTap: () => _showSnackBar('Contactar a ${collaborator['name']}'),
             );
           }),
@@ -912,10 +912,10 @@ class _AvatarStoryPlaygroundState extends State<AvatarStoryPlayground> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AppAvatar.image(
+            DSAvatar.image(
               imageUrl: 'https://api.dicebear.com/7.x/avataaars/png?seed=Felix',
-              size: AppAvatarSize.xlarge,
-              presence: AppAvatarPresence.online,
+              size: DSAvatarSize.xlarge,
+              presence: DSAvatarPresence.online,
               showPresence: true,
             ),
             const SizedBox(height: 16),

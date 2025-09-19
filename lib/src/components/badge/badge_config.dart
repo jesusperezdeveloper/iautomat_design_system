@@ -4,27 +4,27 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'badge_config.freezed.dart';
 
 @freezed
-class AppBadgeConfig with _$AppBadgeConfig {
-  const AppBadgeConfig._();
+class DSBadgeConfig with _$DSBadgeConfig {
+  const DSBadgeConfig._();
 
-  const factory AppBadgeConfig({
-    @Default(AppBadgeVariant.dot) AppBadgeVariant variant,
-    @Default(AppBadgeState.defaultState) AppBadgeState state,
-    @Default(AppBadgeSize.medium) AppBadgeSize size,
-    @Default(AppBadgePosition.topRight) AppBadgePosition position,
-    @Default(AppBadgeShape.circle) AppBadgeShape shape,
+  const factory DSBadgeConfig({
+    @Default(DSBadgeVariant.dot) DSBadgeVariant variant,
+    @Default(DSBadgeState.defaultState) DSBadgeState state,
+    @Default(DSBadgeSize.medium) DSBadgeSize size,
+    @Default(DSBadgePosition.topRight) DSBadgePosition position,
+    @Default(DSBadgeShape.circle) DSBadgeShape shape,
     String? label,
     int? value,
-    AppBadgeStatus? status,
+    DSBadgeStatus? status,
     Color? color,
     Color? backgroundColor,
     Color? textColor,
     Widget? child,
     IconData? icon,
-    AppBadgeStyle? style,
-    AppBadgeInteraction? interaction,
-    AppBadgeAccessibility? accessibility,
-    AppBadgeAnimation? animation,
+    DSBadgeStyle? style,
+    DSBadgeInteraction? interaction,
+    DSBadgeAccessibility? accessibility,
+    DSBadgeAnimation? animation,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
     VoidCallback? onHover,
@@ -36,13 +36,13 @@ class AppBadgeConfig with _$AppBadgeConfig {
     @Default(true) bool visible,
     @Default(false) bool showZero,
     @Default(99) int maxValue,
-  }) = _AppBadgeConfig;
+  }) = _DSBadgeConfig;
 
   bool get isInteractive => onTap != null || onLongPress != null;
   bool get isHoverable => onHover != null;
-  bool get isDisabled => !enabled || state == AppBadgeState.disabled;
-  bool get isLoading => loading || state == AppBadgeState.loading;
-  bool get isSkeleton => skeleton || state == AppBadgeState.skeleton;
+  bool get isDisabled => !enabled || state == DSBadgeState.disabled;
+  bool get isLoading => loading || state == DSBadgeState.loading;
+  bool get isSkeleton => skeleton || state == DSBadgeState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
   bool get canInteract =>
       isInteractive && !isDisabled && !isLoading && !isSkeleton;
@@ -65,11 +65,11 @@ class AppBadgeConfig with _$AppBadgeConfig {
     if (color != null) return color!;
 
     switch (variant) {
-      case AppBadgeVariant.dot:
+      case DSBadgeVariant.dot:
         return colorScheme.error;
-      case AppBadgeVariant.counter:
+      case DSBadgeVariant.counter:
         return colorScheme.error;
-      case AppBadgeVariant.status:
+      case DSBadgeVariant.status:
         return status?.getColor(colorScheme) ?? colorScheme.primary;
     }
   }
@@ -88,13 +88,13 @@ class AppBadgeConfig with _$AppBadgeConfig {
   }
 }
 
-enum AppBadgeVariant {
+enum DSBadgeVariant {
   dot,
   counter,
   status,
 }
 
-enum AppBadgeState {
+enum DSBadgeState {
   defaultState,
   hover,
   pressed,
@@ -105,13 +105,13 @@ enum AppBadgeState {
   skeleton,
 }
 
-enum AppBadgeSize {
+enum DSBadgeSize {
   small,
   medium,
   large,
 }
 
-enum AppBadgePosition {
+enum DSBadgePosition {
   topLeft,
   topRight,
   bottomLeft,
@@ -119,13 +119,13 @@ enum AppBadgePosition {
   center,
 }
 
-enum AppBadgeShape {
+enum DSBadgeShape {
   circle,
   square,
   rounded,
 }
 
-enum AppBadgeStatus {
+enum DSBadgeStatus {
   success,
   warning,
   error,
@@ -133,58 +133,58 @@ enum AppBadgeStatus {
   neutral,
 }
 
-extension AppBadgeStatusExtension on AppBadgeStatus {
+extension DSBadgeStatusExtension on DSBadgeStatus {
   Color getColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppBadgeStatus.success:
+      case DSBadgeStatus.success:
         return Colors.green;
-      case AppBadgeStatus.warning:
+      case DSBadgeStatus.warning:
         return Colors.orange;
-      case AppBadgeStatus.error:
+      case DSBadgeStatus.error:
         return colorScheme.error;
-      case AppBadgeStatus.info:
+      case DSBadgeStatus.info:
         return Colors.blue;
-      case AppBadgeStatus.neutral:
+      case DSBadgeStatus.neutral:
         return colorScheme.outline;
     }
   }
 
   IconData get icon {
     switch (this) {
-      case AppBadgeStatus.success:
+      case DSBadgeStatus.success:
         return Icons.check_circle;
-      case AppBadgeStatus.warning:
+      case DSBadgeStatus.warning:
         return Icons.warning;
-      case AppBadgeStatus.error:
+      case DSBadgeStatus.error:
         return Icons.error;
-      case AppBadgeStatus.info:
+      case DSBadgeStatus.info:
         return Icons.info;
-      case AppBadgeStatus.neutral:
+      case DSBadgeStatus.neutral:
         return Icons.circle;
     }
   }
 
   String get label {
     switch (this) {
-      case AppBadgeStatus.success:
+      case DSBadgeStatus.success:
         return 'Éxito';
-      case AppBadgeStatus.warning:
+      case DSBadgeStatus.warning:
         return 'Advertencia';
-      case AppBadgeStatus.error:
+      case DSBadgeStatus.error:
         return 'Error';
-      case AppBadgeStatus.info:
+      case DSBadgeStatus.info:
         return 'Información';
-      case AppBadgeStatus.neutral:
+      case DSBadgeStatus.neutral:
         return 'Neutral';
     }
   }
 }
 
 @freezed
-class AppBadgeStyle with _$AppBadgeStyle {
-  const AppBadgeStyle._();
+class DSBadgeStyle with _$DSBadgeStyle {
+  const DSBadgeStyle._();
 
-  const factory AppBadgeStyle({
+  const factory DSBadgeStyle({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
@@ -203,38 +203,38 @@ class AppBadgeStyle with _$AppBadgeStyle {
     double? minWidth,
     double? minHeight,
     Offset? offset,
-  }) = _AppBadgeStyle;
+  }) = _DSBadgeStyle;
 
-  AppBadgeStyle copyWithState(AppBadgeState state) {
+  DSBadgeStyle copyWithState(DSBadgeState state) {
     switch (state) {
-      case AppBadgeState.hover:
+      case DSBadgeState.hover:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.08),
           elevation: (elevation ?? 0) + 1,
         );
-      case AppBadgeState.pressed:
+      case DSBadgeState.pressed:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
           elevation: (elevation ?? 0) + 0.5,
         );
-      case AppBadgeState.focus:
+      case DSBadgeState.focus:
         return copyWith(
           borderColor: borderColor,
           borderWidth: 2.0,
         );
-      case AppBadgeState.selected:
+      case DSBadgeState.selected:
         return copyWith(
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
           borderColor: borderColor,
           borderWidth: 2.0,
         );
-      case AppBadgeState.disabled:
+      case DSBadgeState.disabled:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.38),
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
         );
-      case AppBadgeState.loading:
-      case AppBadgeState.skeleton:
+      case DSBadgeState.loading:
+      case DSBadgeState.skeleton:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.6),
         );
@@ -245,8 +245,8 @@ class AppBadgeStyle with _$AppBadgeStyle {
 }
 
 @freezed
-class AppBadgeInteraction with _$AppBadgeInteraction {
-  const factory AppBadgeInteraction({
+class DSBadgeInteraction with _$DSBadgeInteraction {
+  const factory DSBadgeInteraction({
     @Default(true) bool enabled,
     @Default(true) bool focusable,
     @Default(true) bool hoverable,
@@ -259,12 +259,12 @@ class AppBadgeInteraction with _$AppBadgeInteraction {
     GestureLongPressCallback? onLongPress,
     GestureTapCallback? onSecondaryTap,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppBadgeInteraction;
+  }) = _DSBadgeInteraction;
 }
 
 @freezed
-class AppBadgeAccessibility with _$AppBadgeAccessibility {
-  const factory AppBadgeAccessibility({
+class DSBadgeAccessibility with _$DSBadgeAccessibility {
+  const factory DSBadgeAccessibility({
     String? semanticLabel,
     String? tooltip,
     bool? excludeSemantics,
@@ -278,24 +278,24 @@ class AppBadgeAccessibility with _$AppBadgeAccessibility {
     @Default(false) bool link,
     @Default(false) bool header,
     @Default(false) bool readOnly,
-  }) = _AppBadgeAccessibility;
+  }) = _DSBadgeAccessibility;
 }
 
 @freezed
-class AppBadgeAnimation with _$AppBadgeAnimation {
-  const factory AppBadgeAnimation({
+class DSBadgeAnimation with _$DSBadgeAnimation {
+  const factory DSBadgeAnimation({
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(false) bool enabled,
-    @Default(AppBadgeAnimationType.fade) AppBadgeAnimationType type,
+    @Default(DSBadgeAnimationType.fade) DSBadgeAnimationType type,
     Duration? delay,
     VoidCallback? onAnimationComplete,
     @Default(false) bool pulse,
     @Default(Duration(seconds: 2)) Duration pulseDuration,
-  }) = _AppBadgeAnimation;
+  }) = _DSBadgeAnimation;
 }
 
-enum AppBadgeAnimationType {
+enum DSBadgeAnimationType {
   none,
   fade,
   slide,
@@ -304,144 +304,144 @@ enum AppBadgeAnimationType {
   pulse,
 }
 
-extension AppBadgeVariantExtension on AppBadgeVariant {
-  bool get isDot => this == AppBadgeVariant.dot;
-  bool get isCounter => this == AppBadgeVariant.counter;
-  bool get isStatus => this == AppBadgeVariant.status;
+extension DSBadgeVariantExtension on DSBadgeVariant {
+  bool get isDot => this == DSBadgeVariant.dot;
+  bool get isCounter => this == DSBadgeVariant.counter;
+  bool get isStatus => this == DSBadgeVariant.status;
 }
 
-extension AppBadgeStateExtension on AppBadgeState {
+extension DSBadgeStateExtension on DSBadgeState {
   bool get isInteractiveState =>
-      this == AppBadgeState.hover ||
-      this == AppBadgeState.pressed ||
-      this == AppBadgeState.focus;
+      this == DSBadgeState.hover ||
+      this == DSBadgeState.pressed ||
+      this == DSBadgeState.focus;
 
-  bool get isDisabledState => this == AppBadgeState.disabled;
-  bool get isLoadingState => this == AppBadgeState.loading;
-  bool get isSkeletonState => this == AppBadgeState.skeleton;
-  bool get isSelectedState => this == AppBadgeState.selected;
+  bool get isDisabledState => this == DSBadgeState.disabled;
+  bool get isLoadingState => this == DSBadgeState.loading;
+  bool get isSkeletonState => this == DSBadgeState.skeleton;
+  bool get isSelectedState => this == DSBadgeState.selected;
 }
 
-extension AppBadgeSizeExtension on AppBadgeSize {
+extension DSBadgeSizeExtension on DSBadgeSize {
   double get dotSize {
     switch (this) {
-      case AppBadgeSize.small:
+      case DSBadgeSize.small:
         return 8.0;
-      case AppBadgeSize.medium:
+      case DSBadgeSize.medium:
         return 12.0;
-      case AppBadgeSize.large:
+      case DSBadgeSize.large:
         return 16.0;
     }
   }
 
   double get counterSize {
     switch (this) {
-      case AppBadgeSize.small:
+      case DSBadgeSize.small:
         return 16.0;
-      case AppBadgeSize.medium:
+      case DSBadgeSize.medium:
         return 20.0;
-      case AppBadgeSize.large:
+      case DSBadgeSize.large:
         return 24.0;
     }
   }
 
   double get statusSize {
     switch (this) {
-      case AppBadgeSize.small:
+      case DSBadgeSize.small:
         return 20.0;
-      case AppBadgeSize.medium:
+      case DSBadgeSize.medium:
         return 24.0;
-      case AppBadgeSize.large:
+      case DSBadgeSize.large:
         return 28.0;
     }
   }
 
   double get fontSize {
     switch (this) {
-      case AppBadgeSize.small:
+      case DSBadgeSize.small:
         return 10.0;
-      case AppBadgeSize.medium:
+      case DSBadgeSize.medium:
         return 12.0;
-      case AppBadgeSize.large:
+      case DSBadgeSize.large:
         return 14.0;
     }
   }
 
   double get iconSize {
     switch (this) {
-      case AppBadgeSize.small:
+      case DSBadgeSize.small:
         return 12.0;
-      case AppBadgeSize.medium:
+      case DSBadgeSize.medium:
         return 16.0;
-      case AppBadgeSize.large:
+      case DSBadgeSize.large:
         return 20.0;
     }
   }
 
   EdgeInsetsGeometry get padding {
     switch (this) {
-      case AppBadgeSize.small:
+      case DSBadgeSize.small:
         return const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0);
-      case AppBadgeSize.medium:
+      case DSBadgeSize.medium:
         return const EdgeInsets.symmetric(horizontal: 6.0, vertical: 3.0);
-      case AppBadgeSize.large:
+      case DSBadgeSize.large:
         return const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0);
     }
   }
 }
 
-extension AppBadgePositionExtension on AppBadgePosition {
+extension DSBadgePositionExtension on DSBadgePosition {
   AlignmentGeometry get alignment {
     switch (this) {
-      case AppBadgePosition.topLeft:
+      case DSBadgePosition.topLeft:
         return Alignment.topLeft;
-      case AppBadgePosition.topRight:
+      case DSBadgePosition.topRight:
         return Alignment.topRight;
-      case AppBadgePosition.bottomLeft:
+      case DSBadgePosition.bottomLeft:
         return Alignment.bottomLeft;
-      case AppBadgePosition.bottomRight:
+      case DSBadgePosition.bottomRight:
         return Alignment.bottomRight;
-      case AppBadgePosition.center:
+      case DSBadgePosition.center:
         return Alignment.center;
     }
   }
 
-  Offset getOffset(AppBadgeSize size) {
-    final offsetValue = size == AppBadgeSize.small
+  Offset getOffset(DSBadgeSize size) {
+    final offsetValue = size == DSBadgeSize.small
         ? 4.0
-        : size == AppBadgeSize.medium
+        : size == DSBadgeSize.medium
             ? 6.0
             : 8.0;
 
     switch (this) {
-      case AppBadgePosition.topLeft:
+      case DSBadgePosition.topLeft:
         return Offset(-offsetValue, -offsetValue);
-      case AppBadgePosition.topRight:
+      case DSBadgePosition.topRight:
         return Offset(offsetValue, -offsetValue);
-      case AppBadgePosition.bottomLeft:
+      case DSBadgePosition.bottomLeft:
         return Offset(-offsetValue, offsetValue);
-      case AppBadgePosition.bottomRight:
+      case DSBadgePosition.bottomRight:
         return Offset(offsetValue, offsetValue);
-      case AppBadgePosition.center:
+      case DSBadgePosition.center:
         return Offset.zero;
     }
   }
 }
 
-extension AppBadgeShapeExtension on AppBadgeShape {
+extension DSBadgeShapeExtension on DSBadgeShape {
   BorderRadius? getBorderRadius(double size) {
     switch (this) {
-      case AppBadgeShape.circle:
+      case DSBadgeShape.circle:
         return BorderRadius.circular(size / 2);
-      case AppBadgeShape.square:
+      case DSBadgeShape.square:
         return BorderRadius.zero;
-      case AppBadgeShape.rounded:
+      case DSBadgeShape.rounded:
         return BorderRadius.circular(4.0);
     }
   }
 }
 
-class AppBadgeConstants {
+class DSBadgeConstants {
   static const double defaultBorderWidth = 1.0;
   static const double defaultElevation = 2.0;
   static const double defaultDotSize = 12.0;

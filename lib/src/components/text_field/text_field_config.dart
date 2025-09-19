@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 part 'text_field_config.freezed.dart';
 
 @freezed
-class AppTextFieldConfig with _$AppTextFieldConfig {
-  const factory AppTextFieldConfig({
+class DSTextFieldConfig with _$DSTextFieldConfig {
+  const factory DSTextFieldConfig({
     @Default(EdgeInsets.all(16.0)) EdgeInsets contentPadding,
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
@@ -28,14 +28,14 @@ class AppTextFieldConfig with _$AppTextFieldConfig {
     @Default(24.0) double iconSize,
     @Default(8.0) double skeletonShimmerSpeed,
     @Default(1.5) double skeletonOpacityRange,
-  }) = _AppTextFieldConfig;
+  }) = _DSTextFieldConfig;
 
-  const AppTextFieldConfig._();
+  const DSTextFieldConfig._();
 }
 
 @freezed
-class AppTextFieldColors with _$AppTextFieldColors {
-  const factory AppTextFieldColors({
+class DSTextFieldColors with _$DSTextFieldColors {
+  const factory DSTextFieldColors({
     required Color borderColor,
     required Color focusedBorderColor,
     required Color errorBorderColor,
@@ -62,15 +62,15 @@ class AppTextFieldColors with _$AppTextFieldColors {
     required Color counterTextColor,
     required Color skeletonBaseColor,
     required Color skeletonHighlightColor,
-  }) = _AppTextFieldColors;
+  }) = _DSTextFieldColors;
 
-  const AppTextFieldColors._();
+  const DSTextFieldColors._();
 
-  factory AppTextFieldColors.fromTheme(ThemeData theme) {
+  factory DSTextFieldColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
 
-    return AppTextFieldColors(
+    return DSTextFieldColors(
       borderColor: colorScheme.outline,
       focusedBorderColor: colorScheme.primary,
       errorBorderColor: colorScheme.error,
@@ -103,7 +103,7 @@ class AppTextFieldColors with _$AppTextFieldColors {
   }
 }
 
-enum AppTextFieldState {
+enum DSTextFieldState {
   defaultState,
   hover,
   pressed,
@@ -115,13 +115,13 @@ enum AppTextFieldState {
   error,
 }
 
-enum AppTextFieldVariant {
+enum DSTextFieldVariant {
   single,
   multiline,
   password,
 }
 
-class AppTextFieldValidator {
+class DSTextFieldValidator {
   static String? required(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'Este campo es requerido';
@@ -191,7 +191,7 @@ class AppTextFieldValidator {
   }
 }
 
-class AppTextFieldFormatters {
+class DSTextFieldFormatters {
   static List<TextInputFormatter> numeric() => [
         FilteringTextInputFormatter.digitsOnly,
       ];

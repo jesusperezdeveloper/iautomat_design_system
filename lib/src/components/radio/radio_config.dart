@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 part 'radio_config.freezed.dart';
 
 @freezed
-class AppRadioConfig with _$AppRadioConfig {
-  const factory AppRadioConfig({
+class DSRadioConfig with _$DSRadioConfig {
+  const factory DSRadioConfig({
     @Default(20.0) double size,
     @Default(2.0) double borderWidth,
     @Default(EdgeInsets.symmetric(horizontal: 8.0)) EdgeInsets contentPadding,
@@ -23,14 +23,14 @@ class AppRadioConfig with _$AppRadioConfig {
     @Default(8.0) double segmentSpacing,
     @Default(4.0) double segmentBorderRadius,
     @Default(1.0) double segmentBorderWidth,
-  }) = _AppRadioConfig;
+  }) = _DSRadioConfig;
 
-  const AppRadioConfig._();
+  const DSRadioConfig._();
 }
 
 @freezed
-class AppRadioColors with _$AppRadioColors {
-  const factory AppRadioColors({
+class DSRadioColors with _$DSRadioColors {
+  const factory DSRadioColors({
     required Color borderColor,
     required Color fillColor,
     required Color dotColor,
@@ -48,15 +48,15 @@ class AppRadioColors with _$AppRadioColors {
     required Color segmentSelectedBorderColor,
     required Color segmentTextColor,
     required Color segmentSelectedTextColor,
-  }) = _AppRadioColors;
+  }) = _DSRadioColors;
 
-  const AppRadioColors._();
+  const DSRadioColors._();
 
-  factory AppRadioColors.fromTheme(ThemeData theme) {
+  factory DSRadioColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
 
-    return AppRadioColors(
+    return DSRadioColors(
       borderColor: isDark
           ? colorScheme.onSurface.withValues(alpha: 0.6)
           : colorScheme.onSurfaceVariant,
@@ -80,7 +80,7 @@ class AppRadioColors with _$AppRadioColors {
   }
 }
 
-enum AppRadioState {
+enum DSRadioState {
   defaultState,
   hover,
   pressed,
@@ -91,13 +91,13 @@ enum AppRadioState {
   skeleton,
 }
 
-enum AppRadioVariant {
+enum DSRadioVariant {
   standard,
   segmented,
 }
 
-class AppRadioValue<T> {
-  const AppRadioValue({
+class DSRadioValue<T> {
+  const DSRadioValue({
     required this.value,
     required this.label,
     this.enabled = true,
@@ -112,7 +112,7 @@ class AppRadioValue<T> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AppRadioValue &&
+      other is DSRadioValue &&
           runtimeType == other.runtimeType &&
           value == other.value;
 
@@ -121,5 +121,5 @@ class AppRadioValue<T> {
 
   @override
   String toString() =>
-      'AppRadioValue(value: $value, label: $label, enabled: $enabled)';
+      'DSRadioValue(value: $value, label: $label, enabled: $enabled)';
 }

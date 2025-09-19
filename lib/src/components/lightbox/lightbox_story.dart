@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/lightbox/app_lightbox.dart';
-import 'package:iautomat_design_system/src/components/lightbox/app_lightbox_config.dart';
+import 'package:iautomat_design_system/src/components/lightbox/ds_lightbox.dart';
+import 'package:iautomat_design_system/src/components/lightbox/ds_lightbox_config.dart';
 
-/// Story examples for AppLightbox component
+/// Story examples for DSLightbox component
 ///
 /// This file provides interactive examples demonstrating:
 /// - Zoom variant with single image
@@ -26,29 +26,29 @@ class _LightboxStoryPageState extends State<LightboxStoryPage> {
   bool _isCustomLightboxVisible = false;
   int _currentIndex = 0;
 
-  static const List<AppLightboxImage> _galleryImages = [
-    AppLightboxImage(
+  static const List<DSLightboxImage> _galleryImages = [
+    DSLightboxImage(
       id: 'image_1',
       imageProvider: NetworkImage('https://picsum.photos/800/600?random=1'),
       title: 'Imagen de Paisaje 1',
       description: 'Una hermosa vista de montañas al atardecer',
       alt: 'Paisaje montañoso con atardecer dorado',
     ),
-    AppLightboxImage(
+    DSLightboxImage(
       id: 'image_2',
       imageProvider: NetworkImage('https://picsum.photos/800/600?random=2'),
       title: 'Imagen de Paisaje 2',
       description: 'Bosque verde con un río serpenteante',
       alt: 'Bosque frondoso atravesado por un río',
     ),
-    AppLightboxImage(
+    DSLightboxImage(
       id: 'image_3',
       imageProvider: NetworkImage('https://picsum.photos/800/600?random=3'),
       title: 'Imagen de Paisaje 3',
       description: 'Costa oceánica con acantilados rocosos',
       alt: 'Acantilados rocosos frente al océano azul',
     ),
-    AppLightboxImage(
+    DSLightboxImage(
       id: 'image_4',
       imageProvider: NetworkImage('https://picsum.photos/800/600?random=4'),
       title: 'Imagen de Paisaje 4',
@@ -57,7 +57,7 @@ class _LightboxStoryPageState extends State<LightboxStoryPage> {
     ),
   ];
 
-  static const AppLightboxImage _singleImage = AppLightboxImage(
+  static const DSLightboxImage _singleImage = DSLightboxImage(
     id: 'single_image',
     imageProvider: NetworkImage('https://picsum.photos/1200/800?random=5'),
     title: 'Imagen Principal',
@@ -65,7 +65,7 @@ class _LightboxStoryPageState extends State<LightboxStoryPage> {
     alt: 'Imagen de demostración para lightbox zoom',
   );
 
-  static const AppLightboxImage _loadingImage = AppLightboxImage(
+  static const DSLightboxImage _loadingImage = DSLightboxImage(
     id: 'loading_image',
     imageProvider: NetworkImage('https://httpstat.us/200?sleep=5000'),
     title: 'Imagen Cargando',
@@ -78,7 +78,7 @@ class _LightboxStoryPageState extends State<LightboxStoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppLightbox Stories'),
+        title: const Text('DSLightbox Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Stack(
@@ -145,9 +145,9 @@ class _LightboxStoryPageState extends State<LightboxStoryPage> {
 
           // Lightbox Zoom
           if (_isZoomLightboxVisible)
-            AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.zoom,
+            DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.zoom,
                 enableCounter: false,
                 enableThumbnails: false,
               ),
@@ -157,9 +157,9 @@ class _LightboxStoryPageState extends State<LightboxStoryPage> {
 
           // Lightbox Gallery
           if (_isGalleryLightboxVisible)
-            AppLightbox(
-              config: AppLightboxConfig(
-                variant: AppLightboxVariant.gallery,
+            DSLightbox(
+              config: DSLightboxConfig(
+                variant: DSLightboxVariant.gallery,
                 initialIndex: _currentIndex,
                 enableCounter: true,
                 enableThumbnails: true,
@@ -172,10 +172,10 @@ class _LightboxStoryPageState extends State<LightboxStoryPage> {
 
           // Lightbox Loading
           if (_isLoadingLightboxVisible)
-            AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.zoom,
-                state: AppLightboxState.loading,
+            DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.zoom,
+                state: DSLightboxState.loading,
               ),
               images: [_loadingImage],
               onClose: () => setState(() => _isLoadingLightboxVisible = false),
@@ -183,20 +183,20 @@ class _LightboxStoryPageState extends State<LightboxStoryPage> {
 
           // Lightbox Personalizado
           if (_isCustomLightboxVisible)
-            AppLightbox(
-              config: AppLightboxConfig(
-                variant: AppLightboxVariant.zoom,
-                colors: const AppLightboxColors(
+            DSLightbox(
+              config: DSLightboxConfig(
+                variant: DSLightboxVariant.zoom,
+                colors: const DSLightboxColors(
                   backgroundColor: Color(0xFF1A1A1A),
                   overlayColor: Color(0x99000000),
                   controlsColor: Color(0xFFFFFFFF),
                   closeButtonColor: Color(0xFFFF5722),
                 ),
-                controls: const AppLightboxControls(
+                controls: const DSLightboxControls(
                   showZoomControls: true,
                   autoHideControls: false,
                 ),
-                animation: const AppLightboxAnimation(
+                animation: const DSLightboxAnimation(
                   fadeInDuration: Duration(milliseconds: 500),
                   enableZoomTransition: true,
                 ),
@@ -282,7 +282,7 @@ class _LightboxStoryPageState extends State<LightboxStoryPage> {
     );
   }
 
-  Widget _buildImagePreview(AppLightboxImage image) {
+  Widget _buildImagePreview(DSLightboxImage image) {
     return Container(
       height: 120,
       width: double.infinity,
@@ -362,7 +362,7 @@ class _LightboxStoryPageState extends State<LightboxStoryPage> {
   }
 }
 
-/// Example of how to use AppLightbox in a real application
+/// Example of how to use DSLightbox in a real application
 class LightboxStoryExample extends StatelessWidget {
   const LightboxStoryExample({super.key});
 

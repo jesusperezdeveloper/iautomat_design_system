@@ -9,9 +9,9 @@ class TagStoryExample extends StatefulWidget {
 }
 
 class _TagStoryExampleState extends State<TagStoryExample> {
-  AppTagSemanticColor _selectedColor = AppTagSemanticColor.primary;
-  AppTagSize _selectedSize = AppTagSize.medium;
-  AppTagShape _selectedShape = AppTagShape.rounded;
+  DSTagSemanticColor _selectedColor = DSTagSemanticColor.primary;
+  DSTagSize _selectedSize = DSTagSize.medium;
+  DSTagShape _selectedShape = DSTagShape.rounded;
   bool _enabled = true;
   bool _loading = false;
   bool _skeleton = false;
@@ -112,10 +112,10 @@ class _TagStoryExampleState extends State<TagStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Color Semántico:'),
-        DropdownButton<AppTagSemanticColor>(
+        DropdownButton<DSTagSemanticColor>(
           value: _selectedColor,
           onChanged: (value) => setState(() => _selectedColor = value!),
-          items: AppTagSemanticColor.values.map((color) {
+          items: DSTagSemanticColor.values.map((color) {
             return DropdownMenuItem(
               value: color,
               child: Text(color.label),
@@ -131,10 +131,10 @@ class _TagStoryExampleState extends State<TagStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Tamaño:'),
-        DropdownButton<AppTagSize>(
+        DropdownButton<DSTagSize>(
           value: _selectedSize,
           onChanged: (value) => setState(() => _selectedSize = value!),
-          items: AppTagSize.values.map((size) {
+          items: DSTagSize.values.map((size) {
             return DropdownMenuItem(
               value: size,
               child: Text(size.name),
@@ -150,10 +150,10 @@ class _TagStoryExampleState extends State<TagStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Forma:'),
-        DropdownButton<AppTagShape>(
+        DropdownButton<DSTagShape>(
           value: _selectedShape,
           onChanged: (value) => setState(() => _selectedShape = value!),
-          items: AppTagShape.values.map((shape) {
+          items: DSTagShape.values.map((shape) {
             return DropdownMenuItem(
               value: shape,
               child: Text(shape.name),
@@ -246,7 +246,7 @@ class _TagStoryExampleState extends State<TagStoryExample> {
     return _buildExampleSection(
       'Ejemplo Principal',
       [
-        AppTag.semantic(
+        DSTag.semantic(
           label: _label,
           semanticColor: _selectedColor,
           size: _selectedSize,
@@ -271,17 +271,17 @@ class _TagStoryExampleState extends State<TagStoryExample> {
   Widget _buildSemanticColorExamples() {
     return _buildExampleSection(
       'Colores Semánticos',
-      AppTagSemanticColor.values.map((color) {
+      DSTagSemanticColor.values.map((color) {
         return Column(
           children: [
-            AppTag.semantic(
+            DSTag.semantic(
               label: color.label,
               semanticColor: color,
               leadingIcon: color.icon,
               onTap: () => _showSnackBar('Color: ${color.label}'),
             ),
             const SizedBox(height: 8),
-            AppTag.semantic(
+            DSTag.semantic(
               label: color.label,
               semanticColor: color,
               outlined: true,
@@ -297,13 +297,13 @@ class _TagStoryExampleState extends State<TagStoryExample> {
   Widget _buildSizeExamples() {
     return _buildExampleSection(
       'Tamaños',
-      AppTagSize.values.map((size) {
+      DSTagSize.values.map((size) {
         return Column(
           children: [
-            AppTag.semantic(
+            DSTag.semantic(
               label: size.name.toUpperCase(),
               size: size,
-              semanticColor: AppTagSemanticColor.primary,
+              semanticColor: DSTagSemanticColor.primary,
               leadingIcon: Icons.star,
             ),
             const SizedBox(height: 4),
@@ -320,13 +320,13 @@ class _TagStoryExampleState extends State<TagStoryExample> {
   Widget _buildShapeExamples() {
     return _buildExampleSection(
       'Formas',
-      AppTagShape.values.map((shape) {
+      DSTagShape.values.map((shape) {
         return Column(
           children: [
-            AppTag.semantic(
+            DSTag.semantic(
               label: shape.name,
               shape: shape,
-              semanticColor: AppTagSemanticColor.secondary,
+              semanticColor: DSTagSemanticColor.secondary,
             ),
             const SizedBox(height: 8),
             Text(
@@ -345,9 +345,9 @@ class _TagStoryExampleState extends State<TagStoryExample> {
       [
         Column(
           children: [
-            AppTag.semantic(
+            DSTag.semantic(
               label: 'Normal',
-              semanticColor: AppTagSemanticColor.primary,
+              semanticColor: DSTagSemanticColor.primary,
             ),
             const SizedBox(height: 4),
             const Text('Normal'),
@@ -355,9 +355,9 @@ class _TagStoryExampleState extends State<TagStoryExample> {
         ),
         Column(
           children: [
-            AppTag.semantic(
+            DSTag.semantic(
               label: 'Seleccionado',
-              semanticColor: AppTagSemanticColor.primary,
+              semanticColor: DSTagSemanticColor.primary,
               selected: true,
             ),
             const SizedBox(height: 4),
@@ -366,9 +366,9 @@ class _TagStoryExampleState extends State<TagStoryExample> {
         ),
         Column(
           children: [
-            AppTag.semantic(
+            DSTag.semantic(
               label: 'Deshabilitado',
-              semanticColor: AppTagSemanticColor.primary,
+              semanticColor: DSTagSemanticColor.primary,
               enabled: false,
             ),
             const SizedBox(height: 4),
@@ -377,9 +377,9 @@ class _TagStoryExampleState extends State<TagStoryExample> {
         ),
         Column(
           children: [
-            AppTag.semantic(
+            DSTag.semantic(
               label: 'Cargando',
-              semanticColor: AppTagSemanticColor.primary,
+              semanticColor: DSTagSemanticColor.primary,
               loading: true,
             ),
             const SizedBox(height: 4),
@@ -388,9 +388,9 @@ class _TagStoryExampleState extends State<TagStoryExample> {
         ),
         Column(
           children: [
-            AppTag.semantic(
+            DSTag.semantic(
               label: 'Esqueleto',
-              semanticColor: AppTagSemanticColor.primary,
+              semanticColor: DSTagSemanticColor.primary,
               skeleton: true,
             ),
             const SizedBox(height: 4),
@@ -405,25 +405,25 @@ class _TagStoryExampleState extends State<TagStoryExample> {
     return _buildExampleSection(
       'Con Iconos',
       [
-        AppTag.semantic(
+        DSTag.semantic(
           label: 'Solo icono inicial',
-          semanticColor: AppTagSemanticColor.info,
+          semanticColor: DSTagSemanticColor.info,
           leadingIcon: Icons.info,
         ),
-        AppTag.semantic(
+        DSTag.semantic(
           label: 'Solo icono final',
-          semanticColor: AppTagSemanticColor.success,
+          semanticColor: DSTagSemanticColor.success,
           trailingIcon: Icons.check,
         ),
-        AppTag.semantic(
+        DSTag.semantic(
           label: 'Ambos iconos',
-          semanticColor: AppTagSemanticColor.warning,
+          semanticColor: DSTagSemanticColor.warning,
           leadingIcon: Icons.warning,
           trailingIcon: Icons.arrow_forward,
         ),
-        AppTag.semantic(
+        DSTag.semantic(
           label: 'Removible',
-          semanticColor: AppTagSemanticColor.error,
+          semanticColor: DSTagSemanticColor.error,
           removable: true,
           onRemove: () => _showSnackBar('Tag removido'),
         ),
@@ -435,24 +435,24 @@ class _TagStoryExampleState extends State<TagStoryExample> {
     return _buildExampleSection(
       'Tags Interactivos',
       [
-        AppTag.semantic(
+        DSTag.semantic(
           label: 'Tap',
-          semanticColor: AppTagSemanticColor.primary,
+          semanticColor: DSTagSemanticColor.primary,
           onTap: () => _showSnackBar('Tag con Tap'),
         ),
-        AppTag.semantic(
+        DSTag.semantic(
           label: 'Long Press',
-          semanticColor: AppTagSemanticColor.secondary,
+          semanticColor: DSTagSemanticColor.secondary,
           onLongPress: () => _showSnackBar('Tag con Long Press'),
         ),
-        AppTag.semantic(
+        DSTag.semantic(
           label: 'Hover',
-          semanticColor: AppTagSemanticColor.info,
+          semanticColor: DSTagSemanticColor.info,
           onHover: () => _showSnackBar('Tag con Hover'),
         ),
-        AppTag.semantic(
+        DSTag.semantic(
           label: 'Removible',
-          semanticColor: AppTagSemanticColor.error,
+          semanticColor: DSTagSemanticColor.error,
           removable: true,
           onRemove: () => _showSnackBar('Tag removido'),
         ),
@@ -494,26 +494,26 @@ class _TagStoryExampleState extends State<TagStoryExample> {
               spacing: 8.0,
               runSpacing: 8.0,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Todos',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                   selected: true,
-                  size: AppTagSize.small,
+                  size: DSTagSize.small,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Activos',
-                  semanticColor: AppTagSemanticColor.success,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.success,
+                  size: DSTagSize.small,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Pendientes',
-                  semanticColor: AppTagSemanticColor.warning,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.warning,
+                  size: DSTagSize.small,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Completados',
-                  semanticColor: AppTagSemanticColor.info,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.info,
+                  size: DSTagSize.small,
                 ),
               ],
             ),
@@ -539,12 +539,12 @@ class _TagStoryExampleState extends State<TagStoryExample> {
               spacing: 8.0,
               runSpacing: 8.0,
               children: _sampleTags.take(10).map((tag) {
-                final colors = AppTagSemanticColor.values;
+                final colors = DSTagSemanticColor.values;
                 final colorIndex = tag.hashCode % colors.length;
-                return AppTag.semantic(
+                return DSTag.semantic(
                   label: tag,
                   semanticColor: colors[colorIndex],
-                  size: AppTagSize.small,
+                  size: DSTagSize.small,
                   removable: true,
                   onRemove: () => _showSnackBar('Removido: $tag'),
                 );
@@ -572,33 +572,33 @@ class _TagStoryExampleState extends State<TagStoryExample> {
               spacing: 8.0,
               runSpacing: 8.0,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Frontend',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                   leadingIcon: Icons.web,
                   outlined: true,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Backend',
-                  semanticColor: AppTagSemanticColor.secondary,
+                  semanticColor: DSTagSemanticColor.secondary,
                   leadingIcon: Icons.storage,
                   outlined: true,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Mobile',
-                  semanticColor: AppTagSemanticColor.success,
+                  semanticColor: DSTagSemanticColor.success,
                   leadingIcon: Icons.phone_android,
                   outlined: true,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'DevOps',
-                  semanticColor: AppTagSemanticColor.warning,
+                  semanticColor: DSTagSemanticColor.warning,
                   leadingIcon: Icons.cloud,
                   outlined: true,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Design',
-                  semanticColor: AppTagSemanticColor.info,
+                  semanticColor: DSTagSemanticColor.info,
                   leadingIcon: Icons.palette,
                   outlined: true,
                 ),
@@ -643,10 +643,10 @@ class _TagStoryExampleState extends State<TagStoryExample> {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'En progreso',
-                  semanticColor: AppTagSemanticColor.warning,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.warning,
+                  size: DSTagSize.small,
                 ),
               ],
             ),
@@ -660,20 +660,20 @@ class _TagStoryExampleState extends State<TagStoryExample> {
               spacing: 6.0,
               runSpacing: 6.0,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Flutter',
-                  semanticColor: AppTagSemanticColor.primary,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.primary,
+                  size: DSTagSize.small,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'UI/UX',
-                  semanticColor: AppTagSemanticColor.info,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.info,
+                  size: DSTagSize.small,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Design Tokens',
-                  semanticColor: AppTagSemanticColor.secondary,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.secondary,
+                  size: DSTagSize.small,
                 ),
               ],
             ),
@@ -694,14 +694,14 @@ class _TagStoryExampleState extends State<TagStoryExample> {
               children: [
                 Expanded(
                   child: Text(
-                    'Implementar componente AppTag',
+                    'Implementar componente DSTag',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Alta prioridad',
-                  semanticColor: AppTagSemanticColor.error,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.error,
+                  size: DSTagSize.small,
                   leadingIcon: Icons.priority_high,
                 ),
               ],
@@ -711,22 +711,22 @@ class _TagStoryExampleState extends State<TagStoryExample> {
               spacing: 6.0,
               runSpacing: 6.0,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Frontend',
-                  semanticColor: AppTagSemanticColor.primary,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.primary,
+                  size: DSTagSize.small,
                   outlined: true,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: '2 días',
-                  semanticColor: AppTagSemanticColor.neutral,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.neutral,
+                  size: DSTagSize.small,
                   leadingIcon: Icons.schedule,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Juan Pérez',
-                  semanticColor: AppTagSemanticColor.info,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.info,
+                  size: DSTagSize.small,
                   leadingIcon: Icons.person,
                 ),
               ],
@@ -765,10 +765,10 @@ class _TagStoryExampleState extends State<TagStoryExample> {
                     ],
                   ),
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Disponible',
-                  semanticColor: AppTagSemanticColor.success,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.success,
+                  size: DSTagSize.small,
                   leadingIcon: Icons.check_circle,
                 ),
               ],
@@ -783,30 +783,30 @@ class _TagStoryExampleState extends State<TagStoryExample> {
               spacing: 6.0,
               runSpacing: 6.0,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Flutter',
-                  semanticColor: AppTagSemanticColor.primary,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.primary,
+                  size: DSTagSize.small,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Dart',
-                  semanticColor: AppTagSemanticColor.primary,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.primary,
+                  size: DSTagSize.small,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'UI Design',
-                  semanticColor: AppTagSemanticColor.info,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.info,
+                  size: DSTagSize.small,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'State Management',
-                  semanticColor: AppTagSemanticColor.secondary,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.secondary,
+                  size: DSTagSize.small,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: '+3 más',
-                  semanticColor: AppTagSemanticColor.neutral,
-                  size: AppTagSize.small,
+                  semanticColor: DSTagSemanticColor.neutral,
+                  size: DSTagSize.small,
                   outlined: true,
                 ),
               ],
@@ -868,24 +868,24 @@ class TagStoryBasic extends StatelessWidget {
               children: [
                 _buildBasicExample(
                   'Tag Primario',
-                  AppTag.semantic(
+                  DSTag.semantic(
                     label: 'Primario',
-                    semanticColor: AppTagSemanticColor.primary,
+                    semanticColor: DSTagSemanticColor.primary,
                   ),
                 ),
                 _buildBasicExample(
                   'Tag de Éxito',
-                  AppTag.semantic(
+                  DSTag.semantic(
                     label: 'Éxito',
-                    semanticColor: AppTagSemanticColor.success,
+                    semanticColor: DSTagSemanticColor.success,
                     leadingIcon: Icons.check,
                   ),
                 ),
                 _buildBasicExample(
                   'Tag Removible',
-                  AppTag.semantic(
+                  DSTag.semantic(
                     label: 'Removible',
-                    semanticColor: AppTagSemanticColor.error,
+                    semanticColor: DSTagSemanticColor.error,
                     removable: true,
                   ),
                 ),
@@ -973,9 +973,9 @@ class _TagStoryPlaygroundState extends State<TagStoryPlayground> {
                 spacing: 8.0,
                 runSpacing: 8.0,
                 children: _selectedTags.map((tag) {
-                  return AppTag.semantic(
+                  return DSTag.semantic(
                     label: tag,
-                    semanticColor: AppTagSemanticColor.primary,
+                    semanticColor: DSTagSemanticColor.primary,
                     removable: true,
                     onRemove: () => _removeTag(tag),
                   );
@@ -1009,9 +1009,9 @@ class _TagStoryPlaygroundState extends State<TagStoryPlayground> {
                 spacing: 8.0,
                 runSpacing: 8.0,
                 children: availableForSelection.map((tag) {
-                  return AppTag.semantic(
+                  return DSTag.semantic(
                     label: tag,
-                    semanticColor: AppTagSemanticColor.neutral,
+                    semanticColor: DSTagSemanticColor.neutral,
                     outlined: true,
                     onTap: () => _addTag(tag),
                   );
@@ -1039,24 +1039,24 @@ class _TagStoryPlaygroundState extends State<TagStoryPlayground> {
               spacing: 8.0,
               runSpacing: 8.0,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Todos',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                   selected: true,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Frontend',
-                  semanticColor: AppTagSemanticColor.info,
+                  semanticColor: DSTagSemanticColor.info,
                   leadingIcon: Icons.web,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Backend',
-                  semanticColor: AppTagSemanticColor.secondary,
+                  semanticColor: DSTagSemanticColor.secondary,
                   leadingIcon: Icons.storage,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Mobile',
-                  semanticColor: AppTagSemanticColor.success,
+                  semanticColor: DSTagSemanticColor.success,
                   leadingIcon: Icons.phone_android,
                 ),
               ],
@@ -1083,24 +1083,24 @@ class _TagStoryPlaygroundState extends State<TagStoryPlayground> {
               spacing: 8.0,
               runSpacing: 8.0,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Activo',
-                  semanticColor: AppTagSemanticColor.success,
+                  semanticColor: DSTagSemanticColor.success,
                   leadingIcon: Icons.play_arrow,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'En pausa',
-                  semanticColor: AppTagSemanticColor.warning,
+                  semanticColor: DSTagSemanticColor.warning,
                   leadingIcon: Icons.pause,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Completado',
-                  semanticColor: AppTagSemanticColor.info,
+                  semanticColor: DSTagSemanticColor.info,
                   leadingIcon: Icons.check_circle,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Cancelado',
-                  semanticColor: AppTagSemanticColor.error,
+                  semanticColor: DSTagSemanticColor.error,
                   leadingIcon: Icons.cancel,
                 ),
               ],

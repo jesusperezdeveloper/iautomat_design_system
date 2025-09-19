@@ -1,2 +1,2 @@
-export 'app_progress.dart';
+export 'ds_progress.dart';
 export 'progress_story.dart';

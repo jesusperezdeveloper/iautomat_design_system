@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'calendar_config.dart';
-import 'app_calendar.dart';
+import 'ds_calendar.dart';
 
-/// Story configurations para demostrar el componente AppCalendar
+/// Story configurations para demostrar el componente DSCalendar
 ///
 /// Incluye ejemplos básicos y avanzados de calendarios con:
 /// - Configuraciones básicas para las tres variantes (day/week/month)
@@ -14,28 +14,28 @@ import 'app_calendar.dart';
 class CalendarStory {
   /// Historia básica con vista de mes
   static Widget monthView() {
-    return AppCalendar(
+    return DSCalendar(
       config: _monthViewConfig(),
     );
   }
 
   /// Historia con vista de semana
   static Widget weekView() {
-    return AppCalendar(
+    return DSCalendar(
       config: _weekViewConfig(),
     );
   }
 
   /// Historia con vista de día
   static Widget dayView() {
-    return AppCalendar(
+    return DSCalendar(
       config: _dayViewConfig(),
     );
   }
 
   /// Historia con múltiples eventos y tipos
   static Widget withEvents() {
-    return AppCalendar(
+    return DSCalendar(
       config: _eventsConfig(),
       onChanged: () => debugPrint('Calendar changed'),
     );
@@ -43,47 +43,47 @@ class CalendarStory {
 
   /// Historia con recursos (personas, salas, etc.)
   static Widget withResources() {
-    return AppCalendar(
+    return DSCalendar(
       config: _resourcesConfig(),
     );
   }
 
   /// Historia con estilo personalizado
   static Widget customStyled() {
-    return AppCalendar(
+    return DSCalendar(
       config: _customStyledConfig(),
     );
   }
 
   // Configuraciones privadas
 
-  static AppCalendarConfig _monthViewConfig() {
-    return AppCalendarConfig(
-      variant: AppCalendarVariant.month,
+  static DSCalendarConfig _monthViewConfig() {
+    return DSCalendarConfig(
+      variant: DSCalendarVariant.month,
       selectedDate: DateTime.now(),
       events: [
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'event-1',
           title: 'Reunión de equipo',
           startTime: DateTime.now().add(const Duration(days: 1, hours: 9)),
           endTime: DateTime.now().add(const Duration(days: 1, hours: 10)),
-          type: AppCalendarEventType.meeting,
+          type: DSCalendarEventType.meeting,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'event-2',
           title: 'Presentación proyecto',
           startTime: DateTime.now().add(const Duration(days: 3, hours: 14)),
           endTime: DateTime.now().add(const Duration(days: 3, hours: 16)),
-          type: AppCalendarEventType.task,
-          priority: AppCalendarEventPriority.high,
+          type: DSCalendarEventType.task,
+          priority: DSCalendarEventPriority.high,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'event-3',
           title: 'Almuerzo con cliente',
           startTime: DateTime.now().add(const Duration(days: 5, hours: 13)),
           endTime: DateTime.now().add(const Duration(days: 5, hours: 14)),
-          type: AppCalendarEventType.event,
-          priority: AppCalendarEventPriority.normal,
+          type: DSCalendarEventType.event,
+          priority: DSCalendarEventPriority.normal,
         ),
       ],
       onEventTap: (event) => debugPrint('Evento tocado: ${event.title}'),
@@ -91,42 +91,42 @@ class CalendarStory {
     );
   }
 
-  static AppCalendarConfig _weekViewConfig() {
-    return AppCalendarConfig(
-      variant: AppCalendarVariant.week,
+  static DSCalendarConfig _weekViewConfig() {
+    return DSCalendarConfig(
+      variant: DSCalendarVariant.week,
       selectedDate: DateTime.now(),
       events: [
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'week-1',
           title: 'Standup diario',
           startTime: DateTime.now().add(const Duration(hours: 9)),
           endTime: DateTime.now().add(const Duration(hours: 9, minutes: 30)),
-          type: AppCalendarEventType.meeting,
+          type: DSCalendarEventType.meeting,
           isRecurring: true,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'week-2',
           title: 'Desarrollo feature X',
           startTime: DateTime.now().add(const Duration(hours: 10)),
           endTime: DateTime.now().add(const Duration(hours: 12)),
-          type: AppCalendarEventType.task,
-          priority: AppCalendarEventPriority.high,
+          type: DSCalendarEventType.task,
+          priority: DSCalendarEventPriority.high,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'week-3',
           title: 'Code review',
           startTime: DateTime.now().add(const Duration(days: 1, hours: 15)),
           endTime: DateTime.now().add(const Duration(days: 1, hours: 16)),
-          type: AppCalendarEventType.task,
+          type: DSCalendarEventType.task,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'week-4',
           title: 'Recordatorio importante',
           startTime: DateTime.now().add(const Duration(days: 2, hours: 8)),
           endTime: DateTime.now()
               .add(const Duration(days: 2, hours: 8, minutes: 15)),
-          type: AppCalendarEventType.reminder,
-          priority: AppCalendarEventPriority.critical,
+          type: DSCalendarEventType.reminder,
+          priority: DSCalendarEventPriority.critical,
         ),
       ],
       showWorkingHours: true,
@@ -134,57 +134,57 @@ class CalendarStory {
     );
   }
 
-  static AppCalendarConfig _dayViewConfig() {
+  static DSCalendarConfig _dayViewConfig() {
     final today = DateTime.now();
-    return AppCalendarConfig(
-      variant: AppCalendarVariant.day,
+    return DSCalendarConfig(
+      variant: DSCalendarVariant.day,
       selectedDate: today,
       events: [
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'day-1',
           title: 'Café de la mañana',
           startTime: today.copyWith(hour: 8, minute: 0),
           endTime: today.copyWith(hour: 8, minute: 30),
-          type: AppCalendarEventType.event,
+          type: DSCalendarEventType.event,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'day-2',
           title: 'Planificación sprint',
           startTime: today.copyWith(hour: 9, minute: 0),
           endTime: today.copyWith(hour: 10, minute: 30),
-          type: AppCalendarEventType.meeting,
-          priority: AppCalendarEventPriority.high,
+          type: DSCalendarEventType.meeting,
+          priority: DSCalendarEventPriority.high,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'day-3',
           title: 'Trabajo concentrado',
           startTime: today.copyWith(hour: 11, minute: 0),
           endTime: today.copyWith(hour: 13, minute: 0),
-          type: AppCalendarEventType.busy,
-          priority: AppCalendarEventPriority.normal,
+          type: DSCalendarEventType.busy,
+          priority: DSCalendarEventPriority.normal,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'day-4',
           title: 'Almuerzo',
           startTime: today.copyWith(hour: 13, minute: 0),
           endTime: today.copyWith(hour: 14, minute: 0),
-          type: AppCalendarEventType.allDay,
+          type: DSCalendarEventType.allDay,
           isAllDay: false,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'day-5',
           title: 'Revisión de código',
           startTime: today.copyWith(hour: 15, minute: 0),
           endTime: today.copyWith(hour: 16, minute: 0),
-          type: AppCalendarEventType.task,
+          type: DSCalendarEventType.task,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'day-6',
           title: 'Llamada con cliente',
           startTime: today.copyWith(hour: 17, minute: 0),
           endTime: today.copyWith(hour: 17, minute: 45),
-          type: AppCalendarEventType.tentative,
-          priority: AppCalendarEventPriority.normal,
+          type: DSCalendarEventType.tentative,
+          priority: DSCalendarEventPriority.normal,
         ),
       ],
       startHour: 7,
@@ -195,68 +195,68 @@ class CalendarStory {
     );
   }
 
-  static AppCalendarConfig _eventsConfig() {
+  static DSCalendarConfig _eventsConfig() {
     final now = DateTime.now();
-    return AppCalendarConfig(
-      variant: AppCalendarVariant.month,
+    return DSCalendarConfig(
+      variant: DSCalendarVariant.month,
       selectedDate: now,
       events: [
         // Eventos de diferentes tipos
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'meeting-1',
           title: 'Reunión de planificación Q1',
           description:
               'Revisión de objetivos y estrategia para el primer trimestre',
           startTime: now.add(const Duration(days: 1, hours: 9)),
           endTime: now.add(const Duration(days: 1, hours: 11)),
-          type: AppCalendarEventType.meeting,
-          priority: AppCalendarEventPriority.high,
+          type: DSCalendarEventType.meeting,
+          priority: DSCalendarEventPriority.high,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'task-1',
           title: 'Implementar nueva funcionalidad',
           description: 'Desarrollo del módulo de autenticación avanzada',
           startTime: now.add(const Duration(days: 2, hours: 10)),
           endTime: now.add(const Duration(days: 2, hours: 16)),
-          type: AppCalendarEventType.task,
-          priority: AppCalendarEventPriority.normal,
+          type: DSCalendarEventType.task,
+          priority: DSCalendarEventPriority.normal,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'reminder-1',
           title: 'Recordatorio: Backup de datos',
           description: 'Ejecutar backup semanal de la base de datos',
           startTime: now.add(const Duration(days: 3, hours: 22)),
           endTime: now.add(const Duration(days: 3, hours: 22, minutes: 30)),
-          type: AppCalendarEventType.reminder,
-          priority: AppCalendarEventPriority.critical,
+          type: DSCalendarEventType.reminder,
+          priority: DSCalendarEventPriority.critical,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'allday-1',
           title: 'Conferencia de desarrolladores',
           description: 'Asistencia a conferencia anual de tecnología',
           startTime: now.add(const Duration(days: 7)),
           endTime: now.add(const Duration(days: 9)),
-          type: AppCalendarEventType.allDay,
+          type: DSCalendarEventType.allDay,
           isAllDay: true,
-          priority: AppCalendarEventPriority.normal,
+          priority: DSCalendarEventPriority.normal,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'busy-1',
           title: 'Tiempo bloqueado - Deep Work',
           description: 'Sesión de trabajo concentrado sin interrupciones',
           startTime: now.add(const Duration(days: 4, hours: 14)),
           endTime: now.add(const Duration(days: 4, hours: 17)),
-          type: AppCalendarEventType.busy,
-          priority: AppCalendarEventPriority.high,
+          type: DSCalendarEventType.busy,
+          priority: DSCalendarEventPriority.high,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'tentative-1',
           title: 'Posible reunión con cliente',
           description: 'Pendiente de confirmar disponibilidad del cliente',
           startTime: now.add(const Duration(days: 6, hours: 15)),
           endTime: now.add(const Duration(days: 6, hours: 16)),
-          type: AppCalendarEventType.tentative,
-          priority: AppCalendarEventPriority.normal,
+          type: DSCalendarEventType.tentative,
+          priority: DSCalendarEventPriority.normal,
         ),
       ],
       onEventTap: (event) => debugPrint('Evento complejo: ${event.title}'),
@@ -264,12 +264,12 @@ class CalendarStory {
     );
   }
 
-  static AppCalendarConfig _resourcesConfig() {
-    return AppCalendarConfig(
-      variant: AppCalendarVariant.week,
+  static DSCalendarConfig _resourcesConfig() {
+    return DSCalendarConfig(
+      variant: DSCalendarVariant.week,
       selectedDate: DateTime.now(),
       resources: [
-        AppCalendarResource(
+        DSCalendarResource(
           id: 'dev-1',
           name: 'María García',
           description: 'Desarrolladora Senior',
@@ -277,7 +277,7 @@ class CalendarStory {
           color: Colors.blue.shade300,
           icon: Icons.person,
         ),
-        AppCalendarResource(
+        DSCalendarResource(
           id: 'dev-2',
           name: 'Carlos López',
           description: 'Desarrollador Frontend',
@@ -285,14 +285,14 @@ class CalendarStory {
           color: Colors.green.shade300,
           icon: Icons.person,
         ),
-        AppCalendarResource(
+        DSCalendarResource(
           id: 'room-1',
           name: 'Sala de Reuniones A',
           description: 'Capacidad para 8 personas, TV 4K',
           color: Colors.purple.shade300,
           icon: Icons.meeting_room,
         ),
-        AppCalendarResource(
+        DSCalendarResource(
           id: 'room-2',
           name: 'Sala de Conferencias',
           description: 'Capacidad para 20 personas, videoconferencia',
@@ -301,37 +301,37 @@ class CalendarStory {
         ),
       ],
       events: [
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'resource-1',
           title: 'Standup del equipo',
           startTime: DateTime.now().add(const Duration(hours: 9)),
           endTime: DateTime.now().add(const Duration(hours: 9, minutes: 30)),
-          type: AppCalendarEventType.meeting,
+          type: DSCalendarEventType.meeting,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'resource-2',
           title: 'Sesión de pair programming',
           startTime: DateTime.now().add(const Duration(days: 1, hours: 14)),
           endTime: DateTime.now().add(const Duration(days: 1, hours: 17)),
-          type: AppCalendarEventType.task,
+          type: DSCalendarEventType.task,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'resource-3',
           title: 'Presentación a stakeholders',
           startTime: DateTime.now().add(const Duration(days: 2, hours: 16)),
           endTime: DateTime.now()
               .add(const Duration(days: 2, hours: 17, minutes: 30)),
-          type: AppCalendarEventType.meeting,
-          priority: AppCalendarEventPriority.high,
+          type: DSCalendarEventType.meeting,
+          priority: DSCalendarEventPriority.high,
         ),
       ],
       onEventTap: (event) => debugPrint('Evento con recursos: ${event.title}'),
     );
   }
 
-  static AppCalendarConfig _customStyledConfig() {
-    return AppCalendarConfig(
-      variant: AppCalendarVariant.month,
+  static DSCalendarConfig _customStyledConfig() {
+    return DSCalendarConfig(
+      variant: DSCalendarVariant.month,
       selectedDate: DateTime.now(),
       backgroundColor: Colors.grey.shade50,
       headerBackgroundColor: Colors.indigo.shade100,
@@ -351,7 +351,7 @@ class CalendarStory {
       cellHeight: 50.0,
       eventBorderRadius: 8.0,
       events: [
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'styled-1',
           title: 'Evento personalizado 1',
           startTime: DateTime.now().add(const Duration(days: 1, hours: 10)),
@@ -360,7 +360,7 @@ class CalendarStory {
           textColor: Colors.purple.shade800,
           borderColor: Colors.purple.shade300,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'styled-2',
           title: 'Evento personalizado 2',
           startTime: DateTime.now().add(const Duration(days: 3, hours: 14)),
@@ -369,7 +369,7 @@ class CalendarStory {
           textColor: Colors.teal.shade800,
           borderColor: Colors.teal.shade300,
         ),
-        AppCalendarEvent(
+        DSCalendarEvent(
           id: 'styled-3',
           title: 'Evento personalizado 3',
           startTime: DateTime.now().add(const Duration(days: 5, hours: 16)),
@@ -379,7 +379,7 @@ class CalendarStory {
           borderColor: Colors.pink.shade300,
         ),
       ],
-      localization: AppCalendarLocalization(
+      localization: DSCalendarLocalization(
         monthNames: [
           'Enero',
           'Febrero',

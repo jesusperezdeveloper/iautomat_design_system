@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'app_toggle_view.dart';
+import 'ds_toggle_view.dart';
 import 'toggle_view_config.dart';
 
-/// Story examples for AppToggleView component
+/// Story examples for DSToggleView component
 class ToggleViewStoryExample extends StatefulWidget {
   const ToggleViewStoryExample({super.key});
 
@@ -28,7 +28,7 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppToggleView Stories'),
+        title: const Text('DSToggleView Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -137,12 +137,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
   Widget _buildBasicUsage() {
     return Column(
       children: [
-        AppToggleView(
+        DSToggleView(
           value: _basicSelection,
           options: const [
-            AppToggleViewOption(id: 'option1', label: 'Option 1'),
-            AppToggleViewOption(id: 'option2', label: 'Option 2'),
-            AppToggleViewOption(id: 'option3', label: 'Option 3'),
+            DSToggleViewOption(id: 'option1', label: 'Option 1'),
+            DSToggleViewOption(id: 'option2', label: 'Option 2'),
+            DSToggleViewOption(id: 'option3', label: 'Option 3'),
           ],
           onChanged: (value) {
             setState(() {
@@ -161,12 +161,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
       children: [
         const Text('List Variant:'),
         const SizedBox(height: 8),
-        AppToggleView.list(
+        DSToggleView.list(
           value: _basicSelection,
           options: const [
-            AppToggleViewOption(id: 'option1', label: 'Option 1'),
-            AppToggleViewOption(id: 'option2', label: 'Option 2'),
-            AppToggleViewOption(id: 'option3', label: 'Option 3'),
+            DSToggleViewOption(id: 'option1', label: 'Option 1'),
+            DSToggleViewOption(id: 'option2', label: 'Option 2'),
+            DSToggleViewOption(id: 'option3', label: 'Option 3'),
           ],
           onChanged: (value) {
             setState(() {
@@ -177,15 +177,15 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 24),
         const Text('Grid Variant:'),
         const SizedBox(height: 8),
-        AppToggleView.grid(
+        DSToggleView.grid(
           value: _gridSelection,
           options: const [
-            AppToggleViewOption(id: 'grid1', label: 'Grid 1'),
-            AppToggleViewOption(id: 'grid2', label: 'Grid 2'),
-            AppToggleViewOption(id: 'grid3', label: 'Grid 3'),
-            AppToggleViewOption(id: 'grid4', label: 'Grid 4'),
+            DSToggleViewOption(id: 'grid1', label: 'Grid 1'),
+            DSToggleViewOption(id: 'grid2', label: 'Grid 2'),
+            DSToggleViewOption(id: 'grid3', label: 'Grid 3'),
+            DSToggleViewOption(id: 'grid4', label: 'Grid 4'),
           ],
-          config: const AppToggleViewConfig(
+          config: const DSToggleViewConfig(
             gridCrossAxisCount: 2,
           ),
           onChanged: (value) {
@@ -197,14 +197,14 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 24),
         const Text('Compact Variant:'),
         const SizedBox(height: 8),
-        AppToggleView.compact(
+        DSToggleView.compact(
           value: _compactSelection,
           options: const [
-            AppToggleViewOption(id: 'tag1', label: 'Tag 1'),
-            AppToggleViewOption(id: 'tag2', label: 'Tag 2'),
-            AppToggleViewOption(id: 'tag3', label: 'Tag 3'),
-            AppToggleViewOption(id: 'tag4', label: 'Tag 4'),
-            AppToggleViewOption(id: 'tag5', label: 'Tag 5'),
+            DSToggleViewOption(id: 'tag1', label: 'Tag 1'),
+            DSToggleViewOption(id: 'tag2', label: 'Tag 2'),
+            DSToggleViewOption(id: 'tag3', label: 'Tag 3'),
+            DSToggleViewOption(id: 'tag4', label: 'Tag 4'),
+            DSToggleViewOption(id: 'tag5', label: 'Tag 5'),
           ],
           onChanged: (value) {
             setState(() {
@@ -221,12 +221,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
       children: [
         const Text('Default State:'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _stateSelection,
-          state: AppToggleViewState.defaultState,
+          state: DSToggleViewState.defaultState,
           options: const [
-            AppToggleViewOption(id: 'default1', label: 'Default 1'),
-            AppToggleViewOption(id: 'default2', label: 'Default 2'),
+            DSToggleViewOption(id: 'default1', label: 'Default 1'),
+            DSToggleViewOption(id: 'default2', label: 'Default 2'),
           ],
           onChanged: (value) {
             setState(() {
@@ -237,12 +237,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 16),
         const Text('Disabled State:'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _stateSelection,
           enabled: false,
           options: const [
-            AppToggleViewOption(id: 'disabled1', label: 'Disabled 1'),
-            AppToggleViewOption(id: 'disabled2', label: 'Disabled 2'),
+            DSToggleViewOption(id: 'disabled1', label: 'Disabled 1'),
+            DSToggleViewOption(id: 'disabled2', label: 'Disabled 2'),
           ],
           onChanged: (value) {
             setState(() {
@@ -253,23 +253,23 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 16),
         const Text('Loading State:'),
         const SizedBox(height: 8),
-        const AppToggleView(
+        const DSToggleView(
           value: [],
-          state: AppToggleViewState.loading,
+          state: DSToggleViewState.loading,
           options: [
-            AppToggleViewOption(id: 'loading1', label: 'Loading 1'),
-            AppToggleViewOption(id: 'loading2', label: 'Loading 2'),
+            DSToggleViewOption(id: 'loading1', label: 'Loading 1'),
+            DSToggleViewOption(id: 'loading2', label: 'Loading 2'),
           ],
         ),
         const SizedBox(height: 16),
         const Text('Skeleton State:'),
         const SizedBox(height: 8),
-        const AppToggleView(
+        const DSToggleView(
           value: [],
-          state: AppToggleViewState.skeleton,
+          state: DSToggleViewState.skeleton,
           options: [
-            AppToggleViewOption(id: 'skeleton1', label: 'Skeleton 1'),
-            AppToggleViewOption(id: 'skeleton2', label: 'Skeleton 2'),
+            DSToggleViewOption(id: 'skeleton1', label: 'Skeleton 1'),
+            DSToggleViewOption(id: 'skeleton2', label: 'Skeleton 2'),
           ],
         ),
       ],
@@ -279,15 +279,15 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
   Widget _buildMultiSelection() {
     return Column(
       children: [
-        AppToggleView(
+        DSToggleView(
           value: _multiSelection,
           allowMultipleSelection: true,
           allowDeselection: true,
           options: const [
-            AppToggleViewOption(id: 'option1', label: 'Option 1'),
-            AppToggleViewOption(id: 'option2', label: 'Option 2'),
-            AppToggleViewOption(id: 'option3', label: 'Option 3'),
-            AppToggleViewOption(id: 'option4', label: 'Option 4'),
+            DSToggleViewOption(id: 'option1', label: 'Option 1'),
+            DSToggleViewOption(id: 'option2', label: 'Option 2'),
+            DSToggleViewOption(id: 'option3', label: 'Option 3'),
+            DSToggleViewOption(id: 'option4', label: 'Option 4'),
           ],
           onChanged: (value) {
             setState(() {
@@ -300,14 +300,14 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 16),
         const Text('Single Selection Only:'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _basicSelection,
           allowMultipleSelection: false,
           allowDeselection: true,
           options: const [
-            AppToggleViewOption(id: 'single1', label: 'Single 1'),
-            AppToggleViewOption(id: 'single2', label: 'Single 2'),
-            AppToggleViewOption(id: 'single3', label: 'Single 3'),
+            DSToggleViewOption(id: 'single1', label: 'Single 1'),
+            DSToggleViewOption(id: 'single2', label: 'Single 2'),
+            DSToggleViewOption(id: 'single3', label: 'Single 3'),
           ],
           onChanged: (value) {
             setState(() {
@@ -322,25 +322,25 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
   Widget _buildWithIcons() {
     return Column(
       children: [
-        AppToggleView(
+        DSToggleView(
           value: _iconSelection,
           options: const [
-            AppToggleViewOption(
+            DSToggleViewOption(
               id: 'home',
               label: 'Home',
               icon: Icons.home,
             ),
-            AppToggleViewOption(
+            DSToggleViewOption(
               id: 'work',
               label: 'Work',
               icon: Icons.work,
             ),
-            AppToggleViewOption(
+            DSToggleViewOption(
               id: 'school',
               label: 'School',
               icon: Icons.school,
             ),
-            AppToggleViewOption(
+            DSToggleViewOption(
               id: 'shopping',
               label: 'Shopping',
               icon: Icons.shopping_cart,
@@ -363,12 +363,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
       children: [
         const Text('Small Size:'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _sizeSelection,
-          size: AppToggleViewSize.small,
+          size: DSToggleViewSize.small,
           options: const [
-            AppToggleViewOption(id: 'small', label: 'Small'),
-            AppToggleViewOption(id: 'option', label: 'Option'),
+            DSToggleViewOption(id: 'small', label: 'Small'),
+            DSToggleViewOption(id: 'option', label: 'Option'),
           ],
           onChanged: (value) {
             setState(() {
@@ -379,12 +379,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 16),
         const Text('Medium Size:'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _sizeSelection,
-          size: AppToggleViewSize.medium,
+          size: DSToggleViewSize.medium,
           options: const [
-            AppToggleViewOption(id: 'medium', label: 'Medium'),
-            AppToggleViewOption(id: 'option', label: 'Option'),
+            DSToggleViewOption(id: 'medium', label: 'Medium'),
+            DSToggleViewOption(id: 'option', label: 'Option'),
           ],
           onChanged: (value) {
             setState(() {
@@ -395,12 +395,12 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 16),
         const Text('Large Size:'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _sizeSelection,
-          size: AppToggleViewSize.large,
+          size: DSToggleViewSize.large,
           options: const [
-            AppToggleViewOption(id: 'large', label: 'Large'),
-            AppToggleViewOption(id: 'option', label: 'Option'),
+            DSToggleViewOption(id: 'large', label: 'Large'),
+            DSToggleViewOption(id: 'option', label: 'Option'),
           ],
           onChanged: (value) {
             setState(() {
@@ -417,21 +417,21 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
       children: [
         const Text('2 Columns Grid:'),
         const SizedBox(height: 8),
-        AppToggleView.grid(
+        DSToggleView.grid(
           value: _gridSelection,
-          config: const AppToggleViewConfig(
+          config: const DSToggleViewConfig(
             gridCrossAxisCount: 2,
             gridChildAspectRatio: 2.5,
             gridMainAxisSpacing: 8,
             gridCrossAxisSpacing: 8,
           ),
           options: const [
-            AppToggleViewOption(id: 'grid1', label: 'Grid Item 1'),
-            AppToggleViewOption(id: 'grid2', label: 'Grid Item 2'),
-            AppToggleViewOption(id: 'grid3', label: 'Grid Item 3'),
-            AppToggleViewOption(id: 'grid4', label: 'Grid Item 4'),
-            AppToggleViewOption(id: 'grid5', label: 'Grid Item 5'),
-            AppToggleViewOption(id: 'grid6', label: 'Grid Item 6'),
+            DSToggleViewOption(id: 'grid1', label: 'Grid Item 1'),
+            DSToggleViewOption(id: 'grid2', label: 'Grid Item 2'),
+            DSToggleViewOption(id: 'grid3', label: 'Grid Item 3'),
+            DSToggleViewOption(id: 'grid4', label: 'Grid Item 4'),
+            DSToggleViewOption(id: 'grid5', label: 'Grid Item 5'),
+            DSToggleViewOption(id: 'grid6', label: 'Grid Item 6'),
           ],
           onChanged: (value) {
             setState(() {
@@ -442,19 +442,19 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 24),
         const Text('3 Columns Grid:'),
         const SizedBox(height: 8),
-        AppToggleView.grid(
+        DSToggleView.grid(
           value: _gridSelection,
-          config: const AppToggleViewConfig(
+          config: const DSToggleViewConfig(
             gridCrossAxisCount: 3,
             gridChildAspectRatio: 1.5,
           ),
           options: const [
-            AppToggleViewOption(id: 'grid1', label: 'Item 1'),
-            AppToggleViewOption(id: 'grid2', label: 'Item 2'),
-            AppToggleViewOption(id: 'grid3', label: 'Item 3'),
-            AppToggleViewOption(id: 'grid4', label: 'Item 4'),
-            AppToggleViewOption(id: 'grid5', label: 'Item 5'),
-            AppToggleViewOption(id: 'grid6', label: 'Item 6'),
+            DSToggleViewOption(id: 'grid1', label: 'Item 1'),
+            DSToggleViewOption(id: 'grid2', label: 'Item 2'),
+            DSToggleViewOption(id: 'grid3', label: 'Item 3'),
+            DSToggleViewOption(id: 'grid4', label: 'Item 4'),
+            DSToggleViewOption(id: 'grid5', label: 'Item 5'),
+            DSToggleViewOption(id: 'grid6', label: 'Item 6'),
           ],
           onChanged: (value) {
             setState(() {
@@ -471,19 +471,19 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
       children: [
         const Text('Wrapped Compact:'),
         const SizedBox(height: 8),
-        AppToggleView.compact(
+        DSToggleView.compact(
           value: _compactSelection,
-          config: const AppToggleViewConfig(
+          config: const DSToggleViewConfig(
             compactWrapItems: true,
             compactAlignment: WrapAlignment.start,
           ),
           options: const [
-            AppToggleViewOption(id: 'tag1', label: 'JavaScript'),
-            AppToggleViewOption(id: 'tag2', label: 'Flutter'),
-            AppToggleViewOption(id: 'tag3', label: 'React'),
-            AppToggleViewOption(id: 'tag4', label: 'Vue.js'),
-            AppToggleViewOption(id: 'tag5', label: 'Angular'),
-            AppToggleViewOption(id: 'tag6', label: 'Svelte'),
+            DSToggleViewOption(id: 'tag1', label: 'JavaScript'),
+            DSToggleViewOption(id: 'tag2', label: 'Flutter'),
+            DSToggleViewOption(id: 'tag3', label: 'React'),
+            DSToggleViewOption(id: 'tag4', label: 'Vue.js'),
+            DSToggleViewOption(id: 'tag5', label: 'Angular'),
+            DSToggleViewOption(id: 'tag6', label: 'Svelte'),
           ],
           onChanged: (value) {
             setState(() {
@@ -494,17 +494,17 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 24),
         const Text('Horizontal Scrolling Compact:'),
         const SizedBox(height: 8),
-        AppToggleView.compact(
+        DSToggleView.compact(
           value: _compactSelection,
-          config: const AppToggleViewConfig(
+          config: const DSToggleViewConfig(
             compactWrapItems: false,
           ),
           options: const [
-            AppToggleViewOption(id: 'scroll1', label: 'Technology'),
-            AppToggleViewOption(id: 'scroll2', label: 'Programming'),
-            AppToggleViewOption(id: 'scroll3', label: 'Mobile Development'),
-            AppToggleViewOption(id: 'scroll4', label: 'Web Development'),
-            AppToggleViewOption(id: 'scroll5', label: 'Desktop Applications'),
+            DSToggleViewOption(id: 'scroll1', label: 'Technology'),
+            DSToggleViewOption(id: 'scroll2', label: 'Programming'),
+            DSToggleViewOption(id: 'scroll3', label: 'Mobile Development'),
+            DSToggleViewOption(id: 'scroll4', label: 'Web Development'),
+            DSToggleViewOption(id: 'scroll5', label: 'Desktop Applications'),
           ],
           onChanged: (value) {
             setState(() {
@@ -521,9 +521,9 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
       children: [
         const Text('Custom Colors:'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _customSelection,
-          config: const AppToggleViewConfig(
+          config: const DSToggleViewConfig(
             backgroundColor: Colors.grey,
             selectedBackgroundColor: Colors.purple,
             selectedTextColor: Colors.white,
@@ -534,9 +534,9 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
             fontWeight: FontWeight.w600,
           ),
           options: const [
-            AppToggleViewOption(id: 'custom1', label: 'Custom 1'),
-            AppToggleViewOption(id: 'custom2', label: 'Custom 2'),
-            AppToggleViewOption(id: 'custom3', label: 'Custom 3'),
+            DSToggleViewOption(id: 'custom1', label: 'Custom 1'),
+            DSToggleViewOption(id: 'custom2', label: 'Custom 2'),
+            DSToggleViewOption(id: 'custom3', label: 'Custom 3'),
           ],
           onChanged: (value) {
             setState(() {
@@ -547,9 +547,9 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 24),
         const Text('Custom Size and Spacing:'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _customSelection,
-          config: const AppToggleViewConfig(
+          config: const DSToggleViewConfig(
             itemPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             itemSpacing: 12,
             borderRadius: 8,
@@ -559,11 +559,11 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
             showShadow: true,
           ),
           options: const [
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'large1', label: 'Large Item 1', icon: Icons.star),
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'large2', label: 'Large Item 2', icon: Icons.favorite),
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'large3', label: 'Large Item 3', icon: Icons.thumb_up),
           ],
           onChanged: (value) {
@@ -581,19 +581,19 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
       children: [
         const Text('Use arrow keys to navigate, Enter/Space to select:'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _keyboardSelection,
-          config: const AppToggleViewConfig(
+          config: const DSToggleViewConfig(
             enableKeyboardNavigation: true,
             showFocusIndicator: true,
             focusIndicatorColor: Colors.blue,
             focusIndicatorWidth: 2,
           ),
           options: const [
-            AppToggleViewOption(id: 'key1', label: 'Keyboard 1'),
-            AppToggleViewOption(id: 'key2', label: 'Keyboard 2'),
-            AppToggleViewOption(id: 'key3', label: 'Keyboard 3'),
-            AppToggleViewOption(id: 'key4', label: 'Keyboard 4'),
+            DSToggleViewOption(id: 'key1', label: 'Keyboard 1'),
+            DSToggleViewOption(id: 'key2', label: 'Keyboard 2'),
+            DSToggleViewOption(id: 'key3', label: 'Keyboard 3'),
+            DSToggleViewOption(id: 'key4', label: 'Keyboard 4'),
           ],
           onChanged: (value) {
             setState(() {
@@ -612,15 +612,15 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
       children: [
         const Text('Left-to-Right (LTR):'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _rtlSelection,
           textDirection: TextDirection.ltr,
           options: const [
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'ltr1', label: 'English 1', icon: Icons.language),
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'ltr2', label: 'English 2', icon: Icons.translate),
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'ltr3', label: 'English 3', icon: Icons.text_fields),
           ],
           onChanged: (value) {
@@ -632,15 +632,15 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 16),
         const Text('Right-to-Left (RTL):'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _rtlSelection,
           textDirection: TextDirection.rtl,
           options: const [
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'rtl1', label: 'عربي ١', icon: Icons.language),
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'rtl2', label: 'عربي ٢', icon: Icons.translate),
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'rtl3', label: 'عربي ٣', icon: Icons.text_fields),
           ],
           onChanged: (value) {
@@ -658,20 +658,20 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
       children: [
         const Text('Platform Adaptive Behavior:'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _adaptiveSelection,
-          config: const AppToggleViewConfig(
+          config: const DSToggleViewConfig(
             adaptToPlatform: true,
             useNativeScrolling: true,
           ),
           options: const [
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'mobile', label: 'Mobile', icon: Icons.phone_android),
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'tablet', label: 'Tablet', icon: Icons.tablet),
-            AppToggleViewOption(
+            DSToggleViewOption(
                 id: 'desktop', label: 'Desktop', icon: Icons.desktop_windows),
-            AppToggleViewOption(id: 'web', label: 'Web', icon: Icons.web),
+            DSToggleViewOption(id: 'web', label: 'Web', icon: Icons.web),
           ],
           onChanged: (value) {
             setState(() {
@@ -684,13 +684,13 @@ class _ToggleViewStoryExampleState extends State<ToggleViewStoryExample> {
         const SizedBox(height: 16),
         const Text('Auto Orientation (changes based on screen orientation):'),
         const SizedBox(height: 8),
-        AppToggleView(
+        DSToggleView(
           value: _adaptiveSelection,
-          orientation: AppToggleViewOrientation.auto,
+          orientation: DSToggleViewOrientation.auto,
           options: const [
-            AppToggleViewOption(id: 'portrait', label: 'Portrait'),
-            AppToggleViewOption(id: 'landscape', label: 'Landscape'),
-            AppToggleViewOption(id: 'auto', label: 'Auto'),
+            DSToggleViewOption(id: 'portrait', label: 'Portrait'),
+            DSToggleViewOption(id: 'landscape', label: 'Landscape'),
+            DSToggleViewOption(id: 'auto', label: 'Auto'),
           ],
           onChanged: (value) {
             setState(() {

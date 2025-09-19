@@ -9,10 +9,10 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'app_pagination.dart';
+import 'ds_pagination.dart';
 import 'pagination_config.dart';
 
-/// Stories collection for AppPagination component
+/// Stories collection for DSPagination component
 class PaginationStories extends StatefulWidget {
   const PaginationStories({super.key});
 
@@ -32,7 +32,7 @@ class _PaginationStoriesState extends State<PaginationStories> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppPagination Stories'),
+        title: const Text('DSPagination Stories'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
@@ -41,7 +41,7 @@ class _PaginationStoriesState extends State<PaginationStories> {
           children: [
             _buildStorySection(
               'Page-based Pagination - Default',
-              AppPagination.pageBased(
+              DSPagination.pageBased(
                 page: currentPage,
                 pageSize: 10,
                 total: 250,
@@ -55,11 +55,11 @@ class _PaginationStoriesState extends State<PaginationStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Page-based Pagination - Small Size',
-              AppPagination.pageBased(
+              DSPagination.pageBased(
                 page: currentPageSmall,
                 pageSize: 20,
                 total: 100,
-                config: AppPaginationConfig.small,
+                config: DSPaginationConfig.small,
                 onPageChanged: (page) {
                   setState(() {
                     currentPageSmall = page;
@@ -70,11 +70,11 @@ class _PaginationStoriesState extends State<PaginationStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Page-based Pagination - Large Size',
-              AppPagination.pageBased(
+              DSPagination.pageBased(
                 page: currentPageLarge,
                 pageSize: 5,
                 total: 500,
-                config: AppPaginationConfig.large,
+                config: DSPaginationConfig.large,
                 onPageChanged: (page) {
                   setState(() {
                     currentPageLarge = page;
@@ -85,7 +85,7 @@ class _PaginationStoriesState extends State<PaginationStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Cursor-based Pagination',
-              AppPagination.cursor(
+              DSPagination.cursor(
                 hasNextPage: nextCursor != null,
                 hasPreviousPage: previousCursor != null,
                 nextCursor: nextCursor,
@@ -112,11 +112,11 @@ class _PaginationStoriesState extends State<PaginationStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Loading State',
-              AppPagination.pageBased(
+              DSPagination.pageBased(
                 page: 3,
                 pageSize: 10,
                 total: 100,
-                data: const AppPaginationData(
+                data: const DSPaginationData(
                   currentPage: 3,
                   pageSize: 10,
                   totalItems: 100,
@@ -129,11 +129,11 @@ class _PaginationStoriesState extends State<PaginationStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Loading More State',
-              AppPagination.pageBased(
+              DSPagination.pageBased(
                 page: 1,
                 pageSize: 10,
                 total: 100,
-                data: const AppPaginationData(
+                data: const DSPaginationData(
                   currentPage: 1,
                   pageSize: 10,
                   totalItems: 100,
@@ -146,13 +146,13 @@ class _PaginationStoriesState extends State<PaginationStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Custom Configuration',
-              AppPagination.pageBased(
+              DSPagination.pageBased(
                 page: 2,
                 pageSize: 15,
                 total: 300,
-                config: const AppPaginationConfig(
-                  size: AppPaginationSize.medium,
-                  buttonStyle: AppPageButtonStyle.filled,
+                config: const DSPaginationConfig(
+                  size: DSPaginationSize.medium,
+                  buttonStyle: DSPageButtonStyle.filled,
                   maxVisiblePages: 7,
                   showJumpToPage: true,
                   backgroundColor: Colors.blue,
@@ -165,11 +165,11 @@ class _PaginationStoriesState extends State<PaginationStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Minimal Configuration',
-              AppPagination.pageBased(
+              DSPagination.pageBased(
                 page: 1,
                 pageSize: 10,
                 total: 50,
-                config: const AppPaginationConfig(
+                config: const DSPaginationConfig(
                   showFirstLast: false,
                   showPageInfo: false,
                   maxVisiblePages: 3,
@@ -180,13 +180,13 @@ class _PaginationStoriesState extends State<PaginationStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Compact Layout',
-              AppPagination.pageBased(
+              DSPagination.pageBased(
                 page: 5,
                 pageSize: 10,
                 total: 200,
-                config: const AppPaginationConfig(
-                  layout: AppPaginationLayout.compact,
-                  size: AppPaginationSize.small,
+                config: const DSPaginationConfig(
+                  layout: DSPaginationLayout.compact,
+                  size: DSPaginationSize.small,
                 ),
                 onPageChanged: (page) {},
               ),
@@ -194,12 +194,12 @@ class _PaginationStoriesState extends State<PaginationStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Text Button Style',
-              AppPagination.pageBased(
+              DSPagination.pageBased(
                 page: 3,
                 pageSize: 10,
                 total: 120,
-                config: const AppPaginationConfig(
-                  buttonStyle: AppPageButtonStyle.text,
+                config: const DSPaginationConfig(
+                  buttonStyle: DSPageButtonStyle.text,
                 ),
                 onPageChanged: (page) {},
               ),
@@ -325,7 +325,7 @@ class _PaginationStoryExampleState extends State<PaginationStoryExample> {
           // Pagination
           Container(
             padding: const EdgeInsets.all(16),
-            child: AppPagination.pageBased(
+            child: DSPagination.pageBased(
               page: currentPage,
               pageSize: pageSize,
               total: totalItems,

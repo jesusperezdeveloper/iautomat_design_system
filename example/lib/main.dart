@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
-import 'stories/app_scaffold_stories.dart';
-import 'stories/app_top_app_bar_stories.dart';
-import 'stories/app_media_viewer_story.dart';
-import 'stories/app_cart_widget_story.dart';
-import 'stories/app_checkout_forms_story.dart';
+import 'stories/ds_scaffold_stories.dart';
+import 'stories/ds_top_app_bar_stories.dart';
+import 'stories/ds_media_viewer_story.dart';
+import 'stories/ds_cart_widget_story.dart';
+import 'stories/ds_checkout_forms_story.dart';
 import 'pages/camera_picker_story.dart';
 
 void main() {
@@ -73,13 +73,13 @@ class _DesignSystemExampleAppState extends State<DesignSystemExampleApp> {
         onSurface: colors.onSurface,
         outline: colors.outline,
       ),
-      textTheme: AppTypography.textTheme,
+      textTheme: DSTypography.textTheme,
       appBarTheme: AppBarTheme(
         backgroundColor: colors.surface,
         foregroundColor: colors.onSurface,
         elevation: preset.style.elevationValue,
         centerTitle: false,
-        titleTextStyle: AppTypography.h6.copyWith(color: colors.onSurface),
+        titleTextStyle: DSTypography.h6.copyWith(color: colors.onSurface),
       ),
       cardTheme: CardThemeData(
         color: colors.surface,
@@ -97,7 +97,7 @@ class _DesignSystemExampleAppState extends State<DesignSystemExampleApp> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
           ),
-          textStyle: AppTypography.button,
+          textStyle: DSTypography.button,
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -107,7 +107,7 @@ class _DesignSystemExampleAppState extends State<DesignSystemExampleApp> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
           ),
-          textStyle: AppTypography.button,
+          textStyle: DSTypography.button,
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
@@ -117,7 +117,7 @@ class _DesignSystemExampleAppState extends State<DesignSystemExampleApp> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
           ),
-          textStyle: AppTypography.button,
+          textStyle: DSTypography.button,
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
@@ -135,8 +135,8 @@ class _DesignSystemExampleAppState extends State<DesignSystemExampleApp> {
           borderRadius: BorderRadius.circular(preset.style.borderRadiusValue),
           borderSide: BorderSide(color: colors.primary, width: 2),
         ),
-        labelStyle: AppTypography.labelMedium,
-        hintStyle: AppTypography.bodyMedium.copyWith(
+        labelStyle: DSTypography.labelMedium,
+        hintStyle: DSTypography.bodyMedium.copyWith(
           color: colors.onSurface.withValues(alpha: 0.6),
         ),
       ),
@@ -171,8 +171,8 @@ class _DesignSystemHomePageState extends State<DesignSystemHomePage>
     const Tab(icon: Icon(Icons.color_lens), text: 'Colores'),
     const Tab(icon: Icon(Icons.text_fields), text: 'Tipografía'),
     const Tab(icon: Icon(Icons.widgets), text: 'Componentes'),
-    const Tab(icon: Icon(Icons.app_shortcut), text: 'AppScaffold'),
-    const Tab(icon: Icon(Icons.web_asset), text: 'AppTopAppBar'),
+    const Tab(icon: Icon(Icons.app_shortcut), text: 'DSScaffold'),
+    const Tab(icon: Icon(Icons.web_asset), text: 'DSTopAppBar'),
     const Tab(icon: Icon(Icons.photo_library), text: 'MediaViewer'),
     const Tab(icon: Icon(Icons.shopping_cart), text: 'CartWidget'),
     const Tab(icon: Icon(Icons.payment), text: 'CheckoutForms'),
@@ -238,11 +238,11 @@ class _DesignSystemHomePageState extends State<DesignSystemHomePage>
           const ColorsShowcase(),
           const TypographyShowcase(),
           const ComponentsShowcase(),
-          const AppScaffoldStories(),
-          const AppTopAppBarStories(),
-          const AppMediaViewerStory(),
-          const AppCartWidgetStory(),
-          const AppCheckoutFormsStory(),
+          const DSScaffoldStories(),
+          const DSTopAppBarStories(),
+          const DSMediaViewerStory(),
+          const DSCartWidgetStory(),
+          const DSCheckoutFormsStory(),
           const CameraPickerStory(),
         ],
       ),
@@ -266,7 +266,7 @@ class _DesignSystemHomePageState extends State<DesignSystemHomePage>
           enabled: false,
           child: Text(
             categoryName,
-            style: AppTypography.labelLarge.copyWith(
+            style: DSTypography.labelLarge.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
@@ -332,7 +332,7 @@ class ThemesShowcase extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('20 Temas Profesionales para 2025', style: AppTypography.h2),
+          Text('20 Temas Profesionales para 2025', style: DSTypography.h2),
           const SizedBox(height: 24),
 
           // Información del tema actual
@@ -380,7 +380,7 @@ class ThemesShowcase extends StatelessWidget {
                 Expanded(
                   child: Text(
                     selectedTheme.displayName,
-                    style: AppTypography.h5,
+                    style: DSTypography.h5,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -388,7 +388,7 @@ class ThemesShowcase extends StatelessWidget {
                 Chip(
                   label: Text(
                     selectedTheme.categoryName,
-                    style: AppTypography.labelSmall,
+                    style: DSTypography.labelSmall,
                   ),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   visualDensity: VisualDensity.compact,
@@ -400,21 +400,21 @@ class ThemesShowcase extends StatelessWidget {
             const SizedBox(height: 16),
 
             // Paleta de colores actual
-            Text('Paleta de colores', style: AppTypography.labelLarge),
+            Text('Paleta de colores', style: DSTypography.labelLarge),
             const SizedBox(height: 8),
             _buildColorPalette(selectedTheme.lightColors),
 
             const SizedBox(height: 16),
 
             // Casos de uso
-            Text('Casos de uso:', style: AppTypography.labelLarge),
+            Text('Casos de uso:', style: DSTypography.labelLarge),
             const SizedBox(height: 4),
             Wrap(
               spacing: 8,
               runSpacing: 4,
               children: selectedTheme.useCases.map((useCase) {
                 return Chip(
-                  label: Text(useCase, style: AppTypography.labelSmall),
+                  label: Text(useCase, style: DSTypography.labelSmall),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   visualDensity: VisualDensity.compact,
                 );
@@ -456,7 +456,7 @@ class ThemesShowcase extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   colorData.$1,
-                  style: AppTypography.caption,
+                  style: DSTypography.caption,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
@@ -477,7 +477,7 @@ class ThemesShowcase extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(categoryName, style: AppTypography.h4),
+        Text(categoryName, style: DSTypography.h4),
         const SizedBox(height: 16),
         GridView.builder(
           shrinkWrap: true,
@@ -519,7 +519,7 @@ class ThemesShowcase extends StatelessWidget {
                           Expanded(
                             child: Text(
                               theme.displayName,
-                              style: AppTypography.labelLarge,
+                              style: DSTypography.labelLarge,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -535,7 +535,7 @@ class ThemesShowcase extends StatelessWidget {
                       Expanded(
                         child: Text(
                           theme.description,
-                          style: AppTypography.caption,
+                          style: DSTypography.caption,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -598,38 +598,38 @@ class ColorsShowcase extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Sistema de Colores', style: AppTypography.h2),
+          Text('Sistema de Colores', style: DSTypography.h2),
           const SizedBox(height: 24),
 
           _buildColorSection('Primarios', [
-            _ColorItem('Primary', AppColors.primary),
-            _ColorItem('Primary Light', AppColors.primaryLight),
-            _ColorItem('Primary Dark', AppColors.primaryDark),
+            _ColorItem('Primary', DSColors.primary),
+            _ColorItem('Primary Light', DSColors.primaryLight),
+            _ColorItem('Primary Dark', DSColors.primaryDark),
           ]),
 
           _buildColorSection('Secundarios', [
-            _ColorItem('Secondary', AppColors.secondary),
-            _ColorItem('Secondary Light', AppColors.secondaryLight),
-            _ColorItem('Secondary Dark', AppColors.secondaryDark),
+            _ColorItem('Secondary', DSColors.secondary),
+            _ColorItem('Secondary Light', DSColors.secondaryLight),
+            _ColorItem('Secondary Dark', DSColors.secondaryDark),
           ]),
 
           _buildColorSection('Semánticos', [
-            _ColorItem('Success', AppColors.success),
-            _ColorItem('Warning', AppColors.warning),
-            _ColorItem('Error', AppColors.error),
-            _ColorItem('Info', AppColors.info),
+            _ColorItem('Success', DSColors.success),
+            _ColorItem('Warning', DSColors.warning),
+            _ColorItem('Error', DSColors.error),
+            _ColorItem('Info', DSColors.info),
           ]),
 
           _buildColorSection('Escala de Grises', [
-            _ColorItem('Gray 100', AppColors.gray100),
-            _ColorItem('Gray 200', AppColors.gray200),
-            _ColorItem('Gray 300', AppColors.gray300),
-            _ColorItem('Gray 400', AppColors.gray400),
-            _ColorItem('Gray 500', AppColors.gray500),
-            _ColorItem('Gray 600', AppColors.gray600),
-            _ColorItem('Gray 700', AppColors.gray700),
-            _ColorItem('Gray 800', AppColors.gray800),
-            _ColorItem('Gray 900', AppColors.gray900),
+            _ColorItem('Gray 100', DSColors.gray100),
+            _ColorItem('Gray 200', DSColors.gray200),
+            _ColorItem('Gray 300', DSColors.gray300),
+            _ColorItem('Gray 400', DSColors.gray400),
+            _ColorItem('Gray 500', DSColors.gray500),
+            _ColorItem('Gray 600', DSColors.gray600),
+            _ColorItem('Gray 700', DSColors.gray700),
+            _ColorItem('Gray 800', DSColors.gray800),
+            _ColorItem('Gray 900', DSColors.gray900),
           ]),
         ],
       ),
@@ -640,7 +640,7 @@ class ColorsShowcase extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: AppTypography.h4),
+        Text(title, style: DSTypography.h4),
         const SizedBox(height: 16),
         LayoutBuilder(
           builder: (context, constraints) {
@@ -683,7 +683,7 @@ class ColorsShowcase extends StatelessWidget {
                             children: [
                               Text(
                                 color.name,
-                                style: AppTypography.labelSmall.copyWith(
+                                style: DSTypography.labelSmall.copyWith(
                                   fontSize: 10,
                                 ),
                                 textAlign: TextAlign.center,
@@ -693,7 +693,7 @@ class ColorsShowcase extends StatelessWidget {
                               const SizedBox(height: 2),
                               Text(
                                 '#${color.color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
-                                style: AppTypography.caption.copyWith(
+                                style: DSTypography.caption.copyWith(
                                   fontSize: 9,
                                 ),
                                 textAlign: TextAlign.center,
@@ -738,34 +738,34 @@ class TypographyShowcase extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Sistema Tipográfico', style: AppTypography.h2),
+          Text('Sistema Tipográfico', style: DSTypography.h2),
           const SizedBox(height: 24),
 
           _buildTypographySection('Headers', [
-            _TypographyItem('H1 - Display Large', AppTypography.h1),
-            _TypographyItem('H2 - Display Medium', AppTypography.h2),
-            _TypographyItem('H3 - Display Small', AppTypography.h3),
-            _TypographyItem('H4 - Headline Large', AppTypography.h4),
-            _TypographyItem('H5 - Headline Medium', AppTypography.h5),
-            _TypographyItem('H6 - Headline Small', AppTypography.h6),
+            _TypographyItem('H1 - Display Large', DSTypography.h1),
+            _TypographyItem('H2 - Display Medium', DSTypography.h2),
+            _TypographyItem('H3 - Display Small', DSTypography.h3),
+            _TypographyItem('H4 - Headline Large', DSTypography.h4),
+            _TypographyItem('H5 - Headline Medium', DSTypography.h5),
+            _TypographyItem('H6 - Headline Small', DSTypography.h6),
           ]),
 
           _buildTypographySection('Body Text', [
-            _TypographyItem('Body Large', AppTypography.bodyLarge),
-            _TypographyItem('Body Medium', AppTypography.bodyMedium),
-            _TypographyItem('Body Small', AppTypography.bodySmall),
+            _TypographyItem('Body Large', DSTypography.bodyLarge),
+            _TypographyItem('Body Medium', DSTypography.bodyMedium),
+            _TypographyItem('Body Small', DSTypography.bodySmall),
           ]),
 
           _buildTypographySection('Labels', [
-            _TypographyItem('Label Large', AppTypography.labelLarge),
-            _TypographyItem('Label Medium', AppTypography.labelMedium),
-            _TypographyItem('Label Small', AppTypography.labelSmall),
+            _TypographyItem('Label Large', DSTypography.labelLarge),
+            _TypographyItem('Label Medium', DSTypography.labelMedium),
+            _TypographyItem('Label Small', DSTypography.labelSmall),
           ]),
 
           _buildTypographySection('Especiales', [
-            _TypographyItem('Button Text', AppTypography.button),
-            _TypographyItem('Caption Text', AppTypography.caption),
-            _TypographyItem('OVERLINE TEXT', AppTypography.overline),
+            _TypographyItem('Button Text', DSTypography.button),
+            _TypographyItem('Caption Text', DSTypography.caption),
+            _TypographyItem('OVERLINE TEXT', DSTypography.overline),
           ]),
         ],
       ),
@@ -776,7 +776,7 @@ class TypographyShowcase extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: AppTypography.h4),
+        Text(title, style: DSTypography.h4),
         const SizedBox(height: 16),
         ...items.map((item) => _buildTypographyCard(item)),
         const SizedBox(height: 32),
@@ -801,7 +801,7 @@ class TypographyShowcase extends StatelessWidget {
               ),
               child: Text(
                 'Size: ${item.style.fontSize?.toStringAsFixed(0)}px, Weight: ${item.style.fontWeight.toString()}',
-                style: AppTypography.caption,
+                style: DSTypography.caption,
               ),
             ),
           ],
@@ -852,11 +852,11 @@ class _ComponentsShowcaseState extends State<ComponentsShowcase> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Componentes', style: AppTypography.h2),
+            Text('Componentes', style: DSTypography.h2),
             const SizedBox(height: 24),
 
             // Botones
-            Text('Botones', style: AppTypography.h4),
+            Text('Botones', style: DSTypography.h4),
             const SizedBox(height: 16),
             Wrap(
               spacing: 16,
@@ -884,7 +884,7 @@ class _ComponentsShowcaseState extends State<ComponentsShowcase> {
             const SizedBox(height: 32),
 
             // Inputs
-            Text('Inputs', style: AppTypography.h4),
+            Text('Inputs', style: DSTypography.h4),
             const SizedBox(height: 16),
             Column(
               children: [
@@ -926,7 +926,7 @@ class _ComponentsShowcaseState extends State<ComponentsShowcase> {
             const SizedBox(height: 32),
 
             // Controles
-            Text('Controles', style: AppTypography.h4),
+            Text('Controles', style: DSTypography.h4),
             const SizedBox(height: 16),
             Column(
               children: [
@@ -976,7 +976,7 @@ class _ComponentsShowcaseState extends State<ComponentsShowcase> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Opciones', style: AppTypography.labelLarge),
+                    Text('Opciones', style: DSTypography.labelLarge),
                     const SizedBox(height: 8),
                     Column(
                       children: [
@@ -992,7 +992,7 @@ class _ComponentsShowcaseState extends State<ComponentsShowcase> {
             const SizedBox(height: 32),
 
             // Chips
-            Text('Chips', style: AppTypography.h4),
+            Text('Chips', style: DSTypography.h4),
             const SizedBox(height: 16),
             Wrap(
               spacing: 8,
@@ -1018,7 +1018,7 @@ class _ComponentsShowcaseState extends State<ComponentsShowcase> {
             const SizedBox(height: 32),
 
             // Cards y dividers
-            Text('Cards y Dividers', style: AppTypography.h4),
+            Text('Cards y Dividers', style: DSTypography.h4),
             const SizedBox(height: 16),
             Card(
               child: Padding(
@@ -1026,7 +1026,7 @@ class _ComponentsShowcaseState extends State<ComponentsShowcase> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Card Example', style: AppTypography.h6),
+                    Text('Card Example', style: DSTypography.h6),
                     const SizedBox(height: 8),
                     const Text('Este es un ejemplo de card con contenido.'),
                     const Divider(),

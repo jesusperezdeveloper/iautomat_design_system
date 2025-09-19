@@ -1,82 +1,82 @@
 import 'package:flutter/material.dart';
-import 'app_stepper.dart';
+import 'ds_stepper.dart';
 import 'stepper_config.dart';
 
-class AppStepperStory extends StatefulWidget {
-  const AppStepperStory({super.key});
+class DSStepperStory extends StatefulWidget {
+  const DSStepperStory({super.key});
 
   @override
-  State<AppStepperStory> createState() => _AppStepperStoryState();
+  State<DSStepperStory> createState() => _DSStepperStoryState();
 }
 
-class _AppStepperStoryState extends State<AppStepperStory> {
+class _DSStepperStoryState extends State<DSStepperStory> {
   int _currentVerticalStep = 0;
   int _currentHorizontalStep = 1;
   int _currentValidationStep = 0;
   int _currentCustomStep = 0;
 
-  final List<AppStep> _basicSteps = [
-    const AppStep(
+  final List<DSStep> _basicSteps = [
+    const DSStep(
       title: 'Información Personal',
       subtitle: 'Ingresa tus datos básicos',
-      state: AppStepState.completed,
+      state: DSStepState.completed,
       content: Text('Formulario de información personal aquí'),
     ),
-    const AppStep(
+    const DSStep(
       title: 'Dirección',
       subtitle: 'Agrega tu dirección de envío',
-      state: AppStepState.active,
+      state: DSStepState.active,
       content: Text('Formulario de dirección aquí'),
     ),
-    const AppStep(
+    const DSStep(
       title: 'Pago',
       subtitle: 'Configura tu método de pago',
-      state: AppStepState.inactive,
+      state: DSStepState.inactive,
       content: Text('Formulario de pago aquí'),
     ),
-    const AppStep(
+    const DSStep(
       title: 'Confirmación',
       subtitle: 'Revisa y confirma tu pedido',
-      state: AppStepState.inactive,
+      state: DSStepState.inactive,
       isOptional: true,
       content: Text('Confirmación del pedido aquí'),
     ),
   ];
 
-  final List<AppStep> _validationSteps = [
-    const AppStep(
+  final List<DSStep> _validationSteps = [
+    const DSStep(
       title: 'Paso 1',
       subtitle: 'Primer paso completado',
-      state: AppStepState.completed,
+      state: DSStepState.completed,
     ),
-    const AppStep(
+    const DSStep(
       title: 'Paso 2',
       subtitle: 'Paso actual con error',
-      state: AppStepState.error,
+      state: DSStepState.error,
       errorText: 'Hay un error en este paso',
     ),
-    const AppStep(
+    const DSStep(
       title: 'Paso 3',
       subtitle: 'Paso deshabilitado',
-      state: AppStepState.disabled,
+      state: DSStepState.disabled,
     ),
   ];
 
-  final List<AppStep> _customSteps = [
-    AppStep(
+  final List<DSStep> _customSteps = [
+    DSStep(
       title: 'Inicio',
       subtitle: 'Paso con icono personalizado',
-      state: AppStepState.completed,
+      state: DSStepState.completed,
       icon: const Icon(Icons.home, color: Colors.white),
       content: Container(
         padding: const EdgeInsets.all(16),
         child: const Text('Contenido del paso de inicio'),
       ),
     ),
-    AppStep(
+    DSStep(
       title: 'Configuración',
       subtitle: 'Configurar preferencias',
-      state: AppStepState.active,
+      state: DSStepState.active,
       icon: const Icon(Icons.settings, color: Colors.white),
       content: Container(
         padding: const EdgeInsets.all(16),
@@ -97,10 +97,10 @@ class _AppStepperStoryState extends State<AppStepperStory> {
         ),
       ),
     ),
-    AppStep(
+    DSStep(
       title: 'Finalizar',
       subtitle: 'Completar configuración',
-      state: AppStepState.inactive,
+      state: DSStepState.inactive,
       icon: const Icon(Icons.check_circle, color: Colors.white),
       content: Container(
         padding: const EdgeInsets.all(16),
@@ -110,7 +110,7 @@ class _AppStepperStoryState extends State<AppStepperStory> {
   ];
 
   void _continueStep(
-      List<AppStep> steps, int currentStep, Function(int) updateStep) {
+      List<DSStep> steps, int currentStep, Function(int) updateStep) {
     if (currentStep < steps.length - 1) {
       updateStep(currentStep + 1);
     }
@@ -126,7 +126,7 @@ class _AppStepperStoryState extends State<AppStepperStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppStepper Stories'),
+        title: const Text('DSStepper Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -139,10 +139,10 @@ class _AppStepperStoryState extends State<AppStepperStory> {
               'Stepper vertical básico con pasos interactivos',
               SizedBox(
                 height: 400,
-                child: AppStepper(
+                child: DSStepper(
                   currentStep: _currentVerticalStep,
                   steps: _basicSteps,
-                  variant: AppStepperVariant.vertical,
+                  variant: DSStepperVariant.vertical,
                   onStepContinue: () => _continueStep(
                     _basicSteps,
                     _currentVerticalStep,
@@ -162,10 +162,10 @@ class _AppStepperStoryState extends State<AppStepperStory> {
               'Stepper horizontal con navegación por pasos',
               SizedBox(
                 height: 300,
-                child: AppStepper(
+                child: DSStepper(
                   currentStep: _currentHorizontalStep,
                   steps: _basicSteps,
-                  variant: AppStepperVariant.horizontal,
+                  variant: DSStepperVariant.horizontal,
                   onStepContinue: () => _continueStep(
                     _basicSteps,
                     _currentHorizontalStep,
@@ -185,10 +185,10 @@ class _AppStepperStoryState extends State<AppStepperStory> {
               'Stepper mostrando diferentes estados de validación',
               SizedBox(
                 height: 300,
-                child: AppStepper(
+                child: DSStepper(
                   currentStep: _currentValidationStep,
                   steps: _validationSteps,
-                  variant: AppStepperVariant.vertical,
+                  variant: DSStepperVariant.vertical,
                   onStepContinue: () => _continueStep(
                     _validationSteps,
                     _currentValidationStep,
@@ -208,10 +208,10 @@ class _AppStepperStoryState extends State<AppStepperStory> {
               'Stepper con iconos y contenido personalizado',
               SizedBox(
                 height: 400,
-                child: AppStepper(
+                child: DSStepper(
                   currentStep: _currentCustomStep,
                   steps: _customSteps,
-                  variant: AppStepperVariant.vertical,
+                  variant: DSStepperVariant.vertical,
                   onStepContinue: () => _continueStep(
                     _customSteps,
                     _currentCustomStep,
@@ -234,33 +234,33 @@ class _AppStepperStoryState extends State<AppStepperStory> {
                   const Text('Estado Deshabilitado'),
                   SizedBox(
                     height: 200,
-                    child: AppStepper(
+                    child: DSStepper(
                       currentStep: 0,
                       steps: _basicSteps.take(2).toList(),
                       enabled: false,
-                      variant: AppStepperVariant.vertical,
+                      variant: DSStepperVariant.vertical,
                     ),
                   ),
                   const SizedBox(height: 16),
                   const Text('Estado de Carga'),
                   SizedBox(
                     height: 100,
-                    child: AppStepper(
+                    child: DSStepper(
                       currentStep: 0,
                       steps: _basicSteps.take(2).toList(),
-                      overrideState: AppStepperState.loading,
-                      variant: AppStepperVariant.vertical,
+                      overrideState: DSStepperState.loading,
+                      variant: DSStepperVariant.vertical,
                     ),
                   ),
                   const SizedBox(height: 16),
                   const Text('Estado Skeleton'),
                   SizedBox(
                     height: 100,
-                    child: AppStepper(
+                    child: DSStepper(
                       currentStep: 0,
                       steps: _basicSteps.take(2).toList(),
-                      overrideState: AppStepperState.skeleton,
-                      variant: AppStepperVariant.vertical,
+                      overrideState: DSStepperState.skeleton,
+                      variant: DSStepperVariant.vertical,
                     ),
                   ),
                 ],
@@ -271,11 +271,11 @@ class _AppStepperStoryState extends State<AppStepperStory> {
               'Stepper con configuración y colores personalizados',
               SizedBox(
                 height: 300,
-                child: AppStepper(
+                child: DSStepper(
                   currentStep: 1,
                   steps: _basicSteps,
-                  variant: AppStepperVariant.vertical,
-                  config: const AppStepperConfig(
+                  variant: DSStepperVariant.vertical,
+                  config: const DSStepperConfig(
                     stepRadius: 16.0,
                     stepBorderWidth: 3.0,
                     horizontalSpacing: 24.0,
@@ -292,11 +292,11 @@ class _AppStepperStoryState extends State<AppStepperStory> {
               'Stepper con botones de control personalizados',
               SizedBox(
                 height: 300,
-                child: AppStepper(
+                child: DSStepper(
                   currentStep: 1,
                   steps: _basicSteps,
-                  variant: AppStepperVariant.vertical,
-                  controlsBuilder: AppStepperControlsBuilder(
+                  variant: DSStepperVariant.vertical,
+                  controlsBuilder: DSStepperControlsBuilder(
                     continueButton: ElevatedButton.icon(
                       onPressed: () {},
                       icon: const Icon(Icons.arrow_forward),
@@ -327,10 +327,10 @@ class _AppStepperStoryState extends State<AppStepperStory> {
                   ),
                   child: SizedBox(
                     height: 300,
-                    child: AppStepper(
+                    child: DSStepper(
                       currentStep: 1,
                       steps: _basicSteps,
-                      variant: AppStepperVariant.vertical,
+                      variant: DSStepperVariant.vertical,
                       onStepTapped: (step) {},
                     ),
                   ),
@@ -344,26 +344,26 @@ class _AppStepperStoryState extends State<AppStepperStory> {
                 textDirection: TextDirection.rtl,
                 child: SizedBox(
                   height: 300,
-                  child: AppStepper(
+                  child: DSStepper(
                     currentStep: 1,
                     steps: const [
-                      AppStep(
+                      DSStep(
                         title: 'المعلومات الشخصية',
                         subtitle: 'أدخل بياناتك الأساسية',
-                        state: AppStepState.completed,
+                        state: DSStepState.completed,
                       ),
-                      AppStep(
+                      DSStep(
                         title: 'العنوان',
                         subtitle: 'أضف عنوان الشحن',
-                        state: AppStepState.active,
+                        state: DSStepState.active,
                       ),
-                      AppStep(
+                      DSStep(
                         title: 'الدفع',
                         subtitle: 'اختر طريقة الدفع',
-                        state: AppStepState.inactive,
+                        state: DSStepState.inactive,
                       ),
                     ],
-                    variant: AppStepperVariant.vertical,
+                    variant: DSStepperVariant.vertical,
                     onStepTapped: (step) {},
                   ),
                 ),
@@ -374,12 +374,12 @@ class _AppStepperStoryState extends State<AppStepperStory> {
               'Versión compacta para espacios reducidos',
               SizedBox(
                 height: 250,
-                child: AppStepper(
+                child: DSStepper(
                   currentStep: 1,
                   steps: _basicSteps,
-                  variant: AppStepperVariant.vertical,
+                  variant: DSStepperVariant.vertical,
                   dense: true,
-                  config: const AppStepperConfig(
+                  config: const DSStepperConfig(
                     compactMode: true,
                     minimumStepHeight: 32.0,
                     stepRadius: 12.0,
@@ -395,10 +395,10 @@ class _AppStepperStoryState extends State<AppStepperStory> {
               'Stepper sin botones de control',
               SizedBox(
                 height: 250,
-                child: AppStepper(
+                child: DSStepper(
                   currentStep: 1,
                   steps: _basicSteps,
-                  variant: AppStepperVariant.vertical,
+                  variant: DSStepperVariant.vertical,
                   showControls: false,
                   onStepTapped: (step) {},
                 ),

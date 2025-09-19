@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/src/components/color_picker/app_color_picker.dart';
+import 'package:iautomat_design_system/src/components/color_picker/ds_color_picker.dart';
 import 'package:iautomat_design_system/src/components/color_picker/color_picker_config.dart';
 
-/// Storybook examples for AppColorPicker component
+/// Storybook examples for DSColorPicker component
 ///
 /// This file contains various configurations and usage examples
-/// of the AppColorPicker component for demonstration and testing purposes.
-class AppColorPickerStory {
+/// of the DSColorPicker component for demonstration and testing purposes.
+class DSColorPickerStory {
   static Widget get title => const Text(
-        'AppColorPicker',
+        'DSColorPicker',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       );
 
@@ -188,7 +188,7 @@ class _HSVColorPickerExample extends StatefulWidget {
 }
 
 class _HSVColorPickerExampleState extends State<_HSVColorPickerExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
@@ -197,8 +197,8 @@ class _HSVColorPickerExampleState extends State<_HSVColorPickerExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppColorPicker(
-            variant: AppColorPickerVariant.hsv,
+          DSColorPicker(
+            variant: DSColorPickerVariant.hsv,
             value: selectedColor,
             onChanged: (color) => setState(() => selectedColor = color),
             labelText: 'Color primario',
@@ -233,7 +233,7 @@ class _PaletteColorPickerExample extends StatefulWidget {
 
 class _PaletteColorPickerExampleState
     extends State<_PaletteColorPickerExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
@@ -242,8 +242,8 @@ class _PaletteColorPickerExampleState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppColorPicker(
-            variant: AppColorPickerVariant.palette,
+          DSColorPicker(
+            variant: DSColorPickerVariant.palette,
             value: selectedColor,
             onChanged: (color) => setState(() => selectedColor = color),
             labelText: 'Color de paleta',
@@ -278,37 +278,37 @@ class _StateExamplesWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildStateExample('Default', AppColorPickerState.defaultState),
+          _buildStateExample('Default', DSColorPickerState.defaultState),
           const SizedBox(height: 12),
-          _buildStateExample('Hover', AppColorPickerState.hover),
+          _buildStateExample('Hover', DSColorPickerState.hover),
           const SizedBox(height: 12),
-          _buildStateExample('Focus', AppColorPickerState.focus),
+          _buildStateExample('Focus', DSColorPickerState.focus),
           const SizedBox(height: 12),
-          _buildStateExample('Selected', AppColorPickerState.selected,
-              AppColorValue.fromColor(Colors.blue)),
+          _buildStateExample('Selected', DSColorPickerState.selected,
+              DSColorValue.fromColor(Colors.blue)),
           const SizedBox(height: 12),
-          _buildStateExample('Disabled', AppColorPickerState.disabled),
+          _buildStateExample('Disabled', DSColorPickerState.disabled),
           const SizedBox(height: 12),
-          _buildStateExample('Loading', AppColorPickerState.loading),
+          _buildStateExample('Loading', DSColorPickerState.loading),
           const SizedBox(height: 12),
-          _buildStateExample('Skeleton', AppColorPickerState.skeleton),
+          _buildStateExample('Skeleton', DSColorPickerState.skeleton),
         ],
       ),
     );
   }
 
-  Widget _buildStateExample(String stateName, AppColorPickerState state,
-      [AppColorValue? value]) {
+  Widget _buildStateExample(String stateName, DSColorPickerState state,
+      [DSColorValue? value]) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(stateName, style: const TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
-        AppColorPicker(
-          variant: AppColorPickerVariant.hsv,
+        DSColorPicker(
+          variant: DSColorPickerVariant.hsv,
           state: state,
           value: value,
-          onChanged: state == AppColorPickerState.disabled ? null : (_) {},
+          onChanged: state == DSColorPickerState.disabled ? null : (_) {},
           labelText: 'Color $stateName',
           hintText: 'Estado: $stateName',
         ),
@@ -322,8 +322,8 @@ class _DisabledExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppColorPicker(
-        variant: AppColorPickerVariant.hsv,
+      child: DSColorPicker(
+        variant: DSColorPickerVariant.hsv,
         enabled: false,
         labelText: 'Color (Deshabilitado)',
         hintText: 'Este campo está deshabilitado',
@@ -338,9 +338,9 @@ class _LoadingExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppColorPicker(
-        variant: AppColorPickerVariant.hsv,
-        state: AppColorPickerState.loading,
+      child: DSColorPicker(
+        variant: DSColorPickerVariant.hsv,
+        state: DSColorPickerState.loading,
         labelText: 'Cargando colores...',
         hintText: 'Por favor espera',
         onChanged: (_) {},
@@ -354,9 +354,9 @@ class _SkeletonExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppColorPicker(
-        variant: AppColorPickerVariant.hsv,
-        state: AppColorPickerState.skeleton,
+      child: DSColorPicker(
+        variant: DSColorPickerVariant.hsv,
+        state: DSColorPickerState.skeleton,
         labelText: 'Cargando...',
         onChanged: (_) {},
       ),
@@ -370,19 +370,19 @@ class _CustomConfigExample extends StatefulWidget {
 }
 
 class _CustomConfigExampleState extends State<_CustomConfigExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppColorPicker(
-        variant: AppColorPickerVariant.hsv,
+      child: DSColorPicker(
+        variant: DSColorPickerVariant.hsv,
         value: selectedColor,
         onChanged: (color) => setState(() => selectedColor = color),
         labelText: 'Color personalizado',
         hintText: 'Estilo personalizado',
-        config: const AppColorPickerConfig(
+        config: const DSColorPickerConfig(
           borderRadius: 20.0,
           borderWidth: 3.0,
           enableShadow: true,
@@ -404,7 +404,7 @@ class _AlphaChannelExample extends StatefulWidget {
 }
 
 class _AlphaChannelExampleState extends State<_AlphaChannelExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
@@ -413,14 +413,14 @@ class _AlphaChannelExampleState extends State<_AlphaChannelExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppColorPicker(
-            variant: AppColorPickerVariant.hsv,
+          DSColorPicker(
+            variant: DSColorPickerVariant.hsv,
             value: selectedColor,
             onChanged: (color) => setState(() => selectedColor = color),
             labelText: 'Color con transparencia',
             hintText: 'Incluye canal alpha',
             showAlphaChannel: true,
-            config: const AppColorPickerConfig(showAlphaChannel: true),
+            config: const DSColorPickerConfig(showAlphaChannel: true),
           ),
           const SizedBox(height: 16),
           if (selectedColor != null) ...[
@@ -448,7 +448,7 @@ class _CustomPaletteExample extends StatefulWidget {
 }
 
 class _CustomPaletteExampleState extends State<_CustomPaletteExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   static const List<Color> customPalette = [
     Color(0xFFE8F5E8),
@@ -477,8 +477,8 @@ class _CustomPaletteExampleState extends State<_CustomPaletteExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppColorPicker(
-        variant: AppColorPickerVariant.palette,
+      child: DSColorPicker(
+        variant: DSColorPickerVariant.palette,
         value: selectedColor,
         onChanged: (color) => setState(() => selectedColor = color),
         labelText: 'Paleta personalizada',
@@ -496,14 +496,14 @@ class _CustomIconsExample extends StatefulWidget {
 }
 
 class _CustomIconsExampleState extends State<_CustomIconsExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppColorPicker(
-        variant: AppColorPickerVariant.hsv,
+      child: DSColorPicker(
+        variant: DSColorPickerVariant.hsv,
         value: selectedColor,
         onChanged: (color) => setState(() => selectedColor = color),
         labelText: 'Color con iconos personalizados',
@@ -522,14 +522,14 @@ class _PlatformAdaptiveExample extends StatefulWidget {
 }
 
 class _PlatformAdaptiveExampleState extends State<_PlatformAdaptiveExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppColorPicker(
-        variant: AppColorPickerVariant.hsv,
+      child: DSColorPicker(
+        variant: DSColorPickerVariant.hsv,
         value: selectedColor,
         onChanged: (color) => setState(() => selectedColor = color),
         labelText: 'Color adaptativo',
@@ -546,14 +546,14 @@ class _MaterialExample extends StatefulWidget {
 }
 
 class _MaterialExampleState extends State<_MaterialExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppColorPicker(
-        variant: AppColorPickerVariant.hsv,
+      child: DSColorPicker(
+        variant: DSColorPickerVariant.hsv,
         value: selectedColor,
         onChanged: (color) => setState(() => selectedColor = color),
         labelText: 'Color Material Design',
@@ -571,9 +571,9 @@ class _FormIntegrationExample extends StatefulWidget {
 
 class _FormIntegrationExampleState extends State<_FormIntegrationExample> {
   final _formKey = GlobalKey<FormState>();
-  AppColorValue? primaryColor;
-  AppColorValue? secondaryColor;
-  AppColorValue? accentColor;
+  DSColorValue? primaryColor;
+  DSColorValue? secondaryColor;
+  DSColorValue? accentColor;
 
   @override
   Widget build(BuildContext context) {
@@ -583,26 +583,26 @@ class _FormIntegrationExampleState extends State<_FormIntegrationExample> {
         key: _formKey,
         child: Column(
           children: [
-            AppColorPicker(
-              variant: AppColorPickerVariant.hsv,
+            DSColorPicker(
+              variant: DSColorPickerVariant.hsv,
               value: primaryColor,
               onChanged: (color) => setState(() => primaryColor = color),
               labelText: 'Color primario',
               hintText: 'Selecciona color primario',
-              validator: AppColorValidators.required(),
+              validator: DSColorValidators.required(),
             ),
             const SizedBox(height: 16),
-            AppColorPicker(
-              variant: AppColorPickerVariant.palette,
+            DSColorPicker(
+              variant: DSColorPickerVariant.palette,
               value: secondaryColor,
               onChanged: (color) => setState(() => secondaryColor = color),
               labelText: 'Color secundario',
               hintText: 'Selecciona color secundario',
-              validator: AppColorValidators.required(),
+              validator: DSColorValidators.required(),
             ),
             const SizedBox(height: 16),
-            AppColorPicker(
-              variant: AppColorPickerVariant.hsv,
+            DSColorPicker(
+              variant: DSColorPickerVariant.hsv,
               value: accentColor,
               onChanged: (color) => setState(() => accentColor = color),
               labelText: 'Color de acento',
@@ -610,8 +610,8 @@ class _FormIntegrationExampleState extends State<_FormIntegrationExample> {
               showAlphaChannel: true,
               validator: (value) {
                 final validators = [
-                  AppColorValidators.required(),
-                  AppColorValidators.alphaRange(0.5, 1.0),
+                  DSColorValidators.required(),
+                  DSColorValidators.alphaRange(0.5, 1.0),
                 ];
                 for (final validator in validators) {
                   final result = validator(value);
@@ -644,9 +644,9 @@ class _MultiplePickersExample extends StatefulWidget {
 }
 
 class _MultiplePickersExampleState extends State<_MultiplePickersExample> {
-  AppColorValue? textColor;
-  AppColorValue? backgroundColor;
-  AppColorValue? borderColor;
+  DSColorValue? textColor;
+  DSColorValue? backgroundColor;
+  DSColorValue? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -654,24 +654,24 @@ class _MultiplePickersExampleState extends State<_MultiplePickersExample> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          AppColorPicker(
-            variant: AppColorPickerVariant.hsv,
+          DSColorPicker(
+            variant: DSColorPickerVariant.hsv,
             value: textColor,
             onChanged: (color) => setState(() => textColor = color),
             labelText: 'Color del texto',
             hintText: 'Color para el texto',
           ),
           const SizedBox(height: 16),
-          AppColorPicker(
-            variant: AppColorPickerVariant.palette,
+          DSColorPicker(
+            variant: DSColorPickerVariant.palette,
             value: backgroundColor,
             onChanged: (color) => setState(() => backgroundColor = color),
             labelText: 'Color de fondo',
             hintText: 'Color de fondo',
           ),
           const SizedBox(height: 16),
-          AppColorPicker(
-            variant: AppColorPickerVariant.hsv,
+          DSColorPicker(
+            variant: DSColorPickerVariant.hsv,
             value: borderColor,
             onChanged: (color) => setState(() => borderColor = color),
             labelText: 'Color del borde',
@@ -712,15 +712,15 @@ class _ValidationExample extends StatefulWidget {
 }
 
 class _ValidationExampleState extends State<_ValidationExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
   String? errorText;
 
-  void _validateColor(AppColorValue? color) {
+  void _validateColor(DSColorValue? color) {
     setState(() {
       final validators = [
-        AppColorValidators.required(),
-        AppColorValidators.notTransparent(),
-        AppColorValidators.contrast(Colors.white, 4.5),
+        DSColorValidators.required(),
+        DSColorValidators.notTransparent(),
+        DSColorValidators.contrast(Colors.white, 4.5),
       ];
       for (final validator in validators) {
         final result = validator(color);
@@ -737,8 +737,8 @@ class _ValidationExampleState extends State<_ValidationExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppColorPicker(
-        variant: AppColorPickerVariant.hsv,
+      child: DSColorPicker(
+        variant: DSColorPickerVariant.hsv,
         value: selectedColor,
         onChanged: (color) {
           setState(() => selectedColor = color);
@@ -759,14 +759,14 @@ class _AccessibilityExample extends StatefulWidget {
 }
 
 class _AccessibilityExampleState extends State<_AccessibilityExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppColorPicker(
-        variant: AppColorPickerVariant.hsv,
+      child: DSColorPicker(
+        variant: DSColorPickerVariant.hsv,
         value: selectedColor,
         onChanged: (color) => setState(() => selectedColor = color),
         labelText: 'Color accesible',
@@ -788,7 +788,7 @@ class _KeyboardNavigationExample extends StatefulWidget {
 
 class _KeyboardNavigationExampleState
     extends State<_KeyboardNavigationExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
   final FocusNode _focusNode = FocusNode();
 
   @override
@@ -799,8 +799,8 @@ class _KeyboardNavigationExampleState
         children: [
           const Text('Usa Tab para navegar, Enter/Space para activar'),
           const SizedBox(height: 16),
-          AppColorPicker(
-            variant: AppColorPickerVariant.hsv,
+          DSColorPicker(
+            variant: DSColorPickerVariant.hsv,
             value: selectedColor,
             onChanged: (color) => setState(() => selectedColor = color),
             labelText: 'Color con navegación por teclado',
@@ -825,7 +825,7 @@ class _RTLExample extends StatefulWidget {
 }
 
 class _RTLExampleState extends State<_RTLExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
@@ -833,8 +833,8 @@ class _RTLExampleState extends State<_RTLExample> {
       textDirection: TextDirection.rtl,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: AppColorPicker(
-          variant: AppColorPickerVariant.hsv,
+        child: DSColorPicker(
+          variant: DSColorPickerVariant.hsv,
           value: selectedColor,
           onChanged: (color) => setState(() => selectedColor = color),
           labelText: 'اختر اللون',
@@ -852,7 +852,7 @@ class _HexFormatExample extends StatefulWidget {
 }
 
 class _HexFormatExampleState extends State<_HexFormatExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
@@ -861,8 +861,8 @@ class _HexFormatExampleState extends State<_HexFormatExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppColorPicker(
-            variant: AppColorPickerVariant.hsv,
+          DSColorPicker(
+            variant: DSColorPickerVariant.hsv,
             value: selectedColor,
             onChanged: (color) => setState(
                 () => selectedColor = color.copyWithFormat(ColorFormat.hex)),
@@ -883,7 +883,7 @@ class _RgbFormatExample extends StatefulWidget {
 }
 
 class _RgbFormatExampleState extends State<_RgbFormatExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
@@ -892,8 +892,8 @@ class _RgbFormatExampleState extends State<_RgbFormatExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppColorPicker(
-            variant: AppColorPickerVariant.hsv,
+          DSColorPicker(
+            variant: DSColorPickerVariant.hsv,
             value: selectedColor,
             onChanged: (color) => setState(
                 () => selectedColor = color.copyWithFormat(ColorFormat.rgb)),
@@ -914,7 +914,7 @@ class _HslFormatExample extends StatefulWidget {
 }
 
 class _HslFormatExampleState extends State<_HslFormatExample> {
-  AppColorValue? selectedColor;
+  DSColorValue? selectedColor;
 
   @override
   Widget build(BuildContext context) {
@@ -923,8 +923,8 @@ class _HslFormatExampleState extends State<_HslFormatExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppColorPicker(
-            variant: AppColorPickerVariant.hsv,
+          DSColorPicker(
+            variant: DSColorPickerVariant.hsv,
             value: selectedColor,
             onChanged: (color) => setState(
                 () => selectedColor = color.copyWithFormat(ColorFormat.hsl)),

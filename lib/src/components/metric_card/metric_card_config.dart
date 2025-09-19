@@ -4,22 +4,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'metric_card_config.freezed.dart';
 
 @freezed
-class AppMetricCardConfig with _$AppMetricCardConfig {
-  const AppMetricCardConfig._();
+class DSMetricCardConfig with _$DSMetricCardConfig {
+  const DSMetricCardConfig._();
 
-  const factory AppMetricCardConfig({
-    @Default(AppMetricCardVariant.delta) AppMetricCardVariant variant,
-    @Default(AppMetricCardState.defaultState) AppMetricCardState state,
-    @Default(AppMetricCardSize.medium) AppMetricCardSize size,
-    @Default(AppMetricCardLayout.vertical) AppMetricCardLayout layout,
-    @Default(AppMetricCardAlignment.start) AppMetricCardAlignment alignment,
-    @Default(AppMetricCardSpacing.normal) AppMetricCardSpacing spacing,
+  const factory DSMetricCardConfig({
+    @Default(DSMetricCardVariant.delta) DSMetricCardVariant variant,
+    @Default(DSMetricCardState.defaultState) DSMetricCardState state,
+    @Default(DSMetricCardSize.medium) DSMetricCardSize size,
+    @Default(DSMetricCardLayout.vertical) DSMetricCardLayout layout,
+    @Default(DSMetricCardAlignment.start) DSMetricCardAlignment alignment,
+    @Default(DSMetricCardSpacing.normal) DSMetricCardSpacing spacing,
     required String title,
     required String value,
     String? subtitle,
     String? unit,
-    AppMetricCardDelta? delta,
-    List<AppMetricCardDataPoint>? trend,
+    DSMetricCardDelta? delta,
+    List<DSMetricCardDataPoint>? trend,
     IconData? icon,
     Color? iconColor,
     Widget? prefix,
@@ -27,10 +27,10 @@ class AppMetricCardConfig with _$AppMetricCardConfig {
     Widget? customValueWidget,
     Widget? customDeltaWidget,
     Widget? customSparklineWidget,
-    AppMetricCardStyle? style,
-    AppMetricCardInteraction? interaction,
-    AppMetricCardAccessibility? accessibility,
-    AppMetricCardAnimation? animation,
+    DSMetricCardStyle? style,
+    DSMetricCardInteraction? interaction,
+    DSMetricCardAccessibility? accessibility,
+    DSMetricCardAnimation? animation,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
     VoidCallback? onHover,
@@ -40,13 +40,13 @@ class AppMetricCardConfig with _$AppMetricCardConfig {
     @Default(false) bool loading,
     @Default(false) bool skeleton,
     @Default(true) bool visible,
-  }) = _AppMetricCardConfig;
+  }) = _DSMetricCardConfig;
 
   bool get isInteractive => onTap != null || onLongPress != null;
   bool get isHoverable => onHover != null;
-  bool get isDisabled => !enabled || state == AppMetricCardState.disabled;
-  bool get isLoading => loading || state == AppMetricCardState.loading;
-  bool get isSkeleton => skeleton || state == AppMetricCardState.skeleton;
+  bool get isDisabled => !enabled || state == DSMetricCardState.disabled;
+  bool get isLoading => loading || state == DSMetricCardState.loading;
+  bool get isSkeleton => skeleton || state == DSMetricCardState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
   bool get canInteract =>
       isInteractive && !isDisabled && !isLoading && !isSkeleton;
@@ -63,21 +63,21 @@ class AppMetricCardConfig with _$AppMetricCardConfig {
 }
 
 @freezed
-class AppMetricCardDelta with _$AppMetricCardDelta {
-  const AppMetricCardDelta._();
+class DSMetricCardDelta with _$DSMetricCardDelta {
+  const DSMetricCardDelta._();
 
-  const factory AppMetricCardDelta({
+  const factory DSMetricCardDelta({
     required double value,
-    required AppMetricCardDeltaType type,
+    required DSMetricCardDeltaType type,
     String? label,
     String? unit,
     @Default(true) bool showIcon,
     @Default(true) bool showPercentage,
-    @Default(AppMetricCardDeltaPeriod.day) AppMetricCardDeltaPeriod period,
+    @Default(DSMetricCardDeltaPeriod.day) DSMetricCardDeltaPeriod period,
     Color? color,
     IconData? icon,
-    AppMetricCardDeltaStyle? style,
-  }) = _AppMetricCardDelta;
+    DSMetricCardDeltaStyle? style,
+  }) = _DSMetricCardDelta;
 
   bool get isPositive => value > 0;
   bool get isNegative => value < 0;
@@ -98,11 +98,11 @@ class AppMetricCardDelta with _$AppMetricCardDelta {
   IconData get defaultIcon {
     if (hasCustomIcon) return icon!;
     switch (type) {
-      case AppMetricCardDeltaType.increase:
+      case DSMetricCardDeltaType.increase:
         return Icons.trending_up;
-      case AppMetricCardDeltaType.decrease:
+      case DSMetricCardDeltaType.decrease:
         return Icons.trending_down;
-      case AppMetricCardDeltaType.neutral:
+      case DSMetricCardDeltaType.neutral:
         return Icons.trending_flat;
     }
   }
@@ -110,32 +110,32 @@ class AppMetricCardDelta with _$AppMetricCardDelta {
   Color getDefaultColor(ColorScheme colorScheme) {
     if (hasCustomColor) return color!;
     switch (type) {
-      case AppMetricCardDeltaType.increase:
+      case DSMetricCardDeltaType.increase:
         return Colors.green;
-      case AppMetricCardDeltaType.decrease:
+      case DSMetricCardDeltaType.decrease:
         return Colors.red;
-      case AppMetricCardDeltaType.neutral:
+      case DSMetricCardDeltaType.neutral:
         return colorScheme.onSurfaceVariant;
     }
   }
 }
 
 @freezed
-class AppMetricCardDataPoint with _$AppMetricCardDataPoint {
-  const factory AppMetricCardDataPoint({
+class DSMetricCardDataPoint with _$DSMetricCardDataPoint {
+  const factory DSMetricCardDataPoint({
     required double value,
     required DateTime timestamp,
     String? label,
     Color? color,
-  }) = _AppMetricCardDataPoint;
+  }) = _DSMetricCardDataPoint;
 }
 
-enum AppMetricCardVariant {
+enum DSMetricCardVariant {
   delta,
   sparkline,
 }
 
-enum AppMetricCardState {
+enum DSMetricCardState {
   defaultState,
   hover,
   pressed,
@@ -146,37 +146,37 @@ enum AppMetricCardState {
   skeleton,
 }
 
-enum AppMetricCardSize {
+enum DSMetricCardSize {
   small,
   medium,
   large,
 }
 
-enum AppMetricCardLayout {
+enum DSMetricCardLayout {
   vertical,
   horizontal,
   compact,
 }
 
-enum AppMetricCardAlignment {
+enum DSMetricCardAlignment {
   start,
   center,
   end,
 }
 
-enum AppMetricCardSpacing {
+enum DSMetricCardSpacing {
   tight,
   normal,
   relaxed,
 }
 
-enum AppMetricCardDeltaType {
+enum DSMetricCardDeltaType {
   increase,
   decrease,
   neutral,
 }
 
-enum AppMetricCardDeltaPeriod {
+enum DSMetricCardDeltaPeriod {
   hour,
   day,
   week,
@@ -186,10 +186,10 @@ enum AppMetricCardDeltaPeriod {
 }
 
 @freezed
-class AppMetricCardStyle with _$AppMetricCardStyle {
-  const AppMetricCardStyle._();
+class DSMetricCardStyle with _$DSMetricCardStyle {
+  const DSMetricCardStyle._();
 
-  const factory AppMetricCardStyle({
+  const factory DSMetricCardStyle({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
@@ -206,46 +206,46 @@ class AppMetricCardStyle with _$AppMetricCardStyle {
     TextStyle? valueTextStyle,
     TextStyle? subtitleTextStyle,
     TextStyle? unitTextStyle,
-    AppMetricCardDeltaStyle? deltaStyle,
-    AppMetricCardSparklineStyle? sparklineStyle,
+    DSMetricCardDeltaStyle? deltaStyle,
+    DSMetricCardSparklineStyle? sparklineStyle,
     double? iconSize,
     Color? iconColor,
     double? spacing,
     CrossAxisAlignment? crossAxisAlignment,
     MainAxisAlignment? mainAxisAlignment,
-  }) = _AppMetricCardStyle;
+  }) = _DSMetricCardStyle;
 
-  AppMetricCardStyle copyWithState(AppMetricCardState state) {
+  DSMetricCardStyle copyWithState(DSMetricCardState state) {
     switch (state) {
-      case AppMetricCardState.hover:
+      case DSMetricCardState.hover:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.08),
           elevation: (elevation ?? 0) + 2,
         );
-      case AppMetricCardState.pressed:
+      case DSMetricCardState.pressed:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
           elevation: (elevation ?? 0) + 1,
         );
-      case AppMetricCardState.focus:
+      case DSMetricCardState.focus:
         return copyWith(
           borderColor: borderColor,
           borderWidth: 2.0,
         );
-      case AppMetricCardState.selected:
+      case DSMetricCardState.selected:
         return copyWith(
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
           borderColor: borderColor,
           borderWidth: 2.0,
         );
-      case AppMetricCardState.disabled:
+      case DSMetricCardState.disabled:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.38),
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
           iconColor: iconColor?.withValues(alpha: 0.38),
         );
-      case AppMetricCardState.loading:
-      case AppMetricCardState.skeleton:
+      case DSMetricCardState.loading:
+      case DSMetricCardState.skeleton:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.6),
         );
@@ -256,8 +256,8 @@ class AppMetricCardStyle with _$AppMetricCardStyle {
 }
 
 @freezed
-class AppMetricCardDeltaStyle with _$AppMetricCardDeltaStyle {
-  const factory AppMetricCardDeltaStyle({
+class DSMetricCardDeltaStyle with _$DSMetricCardDeltaStyle {
+  const factory DSMetricCardDeltaStyle({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? positiveColor,
@@ -268,12 +268,12 @@ class AppMetricCardDeltaStyle with _$AppMetricCardDeltaStyle {
     TextStyle? textStyle,
     double? iconSize,
     double? spacing,
-  }) = _AppMetricCardDeltaStyle;
+  }) = _DSMetricCardDeltaStyle;
 }
 
 @freezed
-class AppMetricCardSparklineStyle with _$AppMetricCardSparklineStyle {
-  const factory AppMetricCardSparklineStyle({
+class DSMetricCardSparklineStyle with _$DSMetricCardSparklineStyle {
+  const factory DSMetricCardSparklineStyle({
     Color? lineColor,
     Color? fillColor,
     Color? gridColor,
@@ -287,12 +287,12 @@ class AppMetricCardSparklineStyle with _$AppMetricCardSparklineStyle {
     @Default(false) bool showPoints,
     double? pointRadius,
     Color? pointColor,
-  }) = _AppMetricCardSparklineStyle;
+  }) = _DSMetricCardSparklineStyle;
 }
 
 @freezed
-class AppMetricCardInteraction with _$AppMetricCardInteraction {
-  const factory AppMetricCardInteraction({
+class DSMetricCardInteraction with _$DSMetricCardInteraction {
+  const factory DSMetricCardInteraction({
     @Default(true) bool enabled,
     @Default(true) bool focusable,
     @Default(true) bool hoverable,
@@ -305,12 +305,12 @@ class AppMetricCardInteraction with _$AppMetricCardInteraction {
     GestureLongPressCallback? onLongPress,
     GestureTapCallback? onSecondaryTap,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
-  }) = _AppMetricCardInteraction;
+  }) = _DSMetricCardInteraction;
 }
 
 @freezed
-class AppMetricCardAccessibility with _$AppMetricCardAccessibility {
-  const factory AppMetricCardAccessibility({
+class DSMetricCardAccessibility with _$DSMetricCardAccessibility {
+  const factory DSMetricCardAccessibility({
     String? semanticLabel,
     String? tooltip,
     bool? excludeSemantics,
@@ -324,22 +324,22 @@ class AppMetricCardAccessibility with _$AppMetricCardAccessibility {
     @Default(false) bool link,
     @Default(false) bool header,
     @Default(false) bool readOnly,
-  }) = _AppMetricCardAccessibility;
+  }) = _DSMetricCardAccessibility;
 }
 
 @freezed
-class AppMetricCardAnimation with _$AppMetricCardAnimation {
-  const factory AppMetricCardAnimation({
+class DSMetricCardAnimation with _$DSMetricCardAnimation {
+  const factory DSMetricCardAnimation({
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(false) bool enabled,
-    @Default(AppMetricCardAnimationType.fade) AppMetricCardAnimationType type,
+    @Default(DSMetricCardAnimationType.fade) DSMetricCardAnimationType type,
     Duration? delay,
     VoidCallback? onAnimationComplete,
-  }) = _AppMetricCardAnimation;
+  }) = _DSMetricCardAnimation;
 }
 
-enum AppMetricCardAnimationType {
+enum DSMetricCardAnimationType {
   none,
   fade,
   slide,
@@ -347,114 +347,114 @@ enum AppMetricCardAnimationType {
   bounce,
 }
 
-extension AppMetricCardStateExtension on AppMetricCardState {
+extension DSMetricCardStateExtension on DSMetricCardState {
   bool get isInteractiveState =>
-      this == AppMetricCardState.hover ||
-      this == AppMetricCardState.pressed ||
-      this == AppMetricCardState.focus;
+      this == DSMetricCardState.hover ||
+      this == DSMetricCardState.pressed ||
+      this == DSMetricCardState.focus;
 
-  bool get isDisabledState => this == AppMetricCardState.disabled;
-  bool get isLoadingState => this == AppMetricCardState.loading;
-  bool get isSkeletonState => this == AppMetricCardState.skeleton;
-  bool get isSelectedState => this == AppMetricCardState.selected;
+  bool get isDisabledState => this == DSMetricCardState.disabled;
+  bool get isLoadingState => this == DSMetricCardState.loading;
+  bool get isSkeletonState => this == DSMetricCardState.skeleton;
+  bool get isSelectedState => this == DSMetricCardState.selected;
 }
 
-extension AppMetricCardVariantExtension on AppMetricCardVariant {
-  bool get isDelta => this == AppMetricCardVariant.delta;
-  bool get isSparkline => this == AppMetricCardVariant.sparkline;
+extension DSMetricCardVariantExtension on DSMetricCardVariant {
+  bool get isDelta => this == DSMetricCardVariant.delta;
+  bool get isSparkline => this == DSMetricCardVariant.sparkline;
 }
 
-extension AppMetricCardSizeExtension on AppMetricCardSize {
+extension DSMetricCardSizeExtension on DSMetricCardSize {
   double get height {
     switch (this) {
-      case AppMetricCardSize.small:
+      case DSMetricCardSize.small:
         return 80.0;
-      case AppMetricCardSize.medium:
+      case DSMetricCardSize.medium:
         return 120.0;
-      case AppMetricCardSize.large:
+      case DSMetricCardSize.large:
         return 160.0;
     }
   }
 
   double get iconSize {
     switch (this) {
-      case AppMetricCardSize.small:
+      case DSMetricCardSize.small:
         return 20.0;
-      case AppMetricCardSize.medium:
+      case DSMetricCardSize.medium:
         return 24.0;
-      case AppMetricCardSize.large:
+      case DSMetricCardSize.large:
         return 28.0;
     }
   }
 
   EdgeInsetsGeometry get padding {
     switch (this) {
-      case AppMetricCardSize.small:
+      case DSMetricCardSize.small:
         return const EdgeInsets.all(12.0);
-      case AppMetricCardSize.medium:
+      case DSMetricCardSize.medium:
         return const EdgeInsets.all(16.0);
-      case AppMetricCardSize.large:
+      case DSMetricCardSize.large:
         return const EdgeInsets.all(20.0);
     }
   }
 }
 
-extension AppMetricCardLayoutExtension on AppMetricCardLayout {
-  bool get isVertical => this == AppMetricCardLayout.vertical;
-  bool get isHorizontal => this == AppMetricCardLayout.horizontal;
-  bool get isCompact => this == AppMetricCardLayout.compact;
+extension DSMetricCardLayoutExtension on DSMetricCardLayout {
+  bool get isVertical => this == DSMetricCardLayout.vertical;
+  bool get isHorizontal => this == DSMetricCardLayout.horizontal;
+  bool get isCompact => this == DSMetricCardLayout.compact;
 }
 
-extension AppMetricCardSpacingExtension on AppMetricCardSpacing {
+extension DSMetricCardSpacingExtension on DSMetricCardSpacing {
   double get value {
     switch (this) {
-      case AppMetricCardSpacing.tight:
+      case DSMetricCardSpacing.tight:
         return 8.0;
-      case AppMetricCardSpacing.normal:
+      case DSMetricCardSpacing.normal:
         return 12.0;
-      case AppMetricCardSpacing.relaxed:
+      case DSMetricCardSpacing.relaxed:
         return 16.0;
     }
   }
 }
 
-extension AppMetricCardDeltaPeriodExtension on AppMetricCardDeltaPeriod {
+extension DSMetricCardDeltaPeriodExtension on DSMetricCardDeltaPeriod {
   String get label {
     switch (this) {
-      case AppMetricCardDeltaPeriod.hour:
+      case DSMetricCardDeltaPeriod.hour:
         return 'vs última hora';
-      case AppMetricCardDeltaPeriod.day:
+      case DSMetricCardDeltaPeriod.day:
         return 'vs ayer';
-      case AppMetricCardDeltaPeriod.week:
+      case DSMetricCardDeltaPeriod.week:
         return 'vs semana pasada';
-      case AppMetricCardDeltaPeriod.month:
+      case DSMetricCardDeltaPeriod.month:
         return 'vs mes pasado';
-      case AppMetricCardDeltaPeriod.quarter:
+      case DSMetricCardDeltaPeriod.quarter:
         return 'vs trimestre pasado';
-      case AppMetricCardDeltaPeriod.year:
+      case DSMetricCardDeltaPeriod.year:
         return 'vs año pasado';
     }
   }
 
   String get shortLabel {
     switch (this) {
-      case AppMetricCardDeltaPeriod.hour:
+      case DSMetricCardDeltaPeriod.hour:
         return '1h';
-      case AppMetricCardDeltaPeriod.day:
+      case DSMetricCardDeltaPeriod.day:
         return '1d';
-      case AppMetricCardDeltaPeriod.week:
+      case DSMetricCardDeltaPeriod.week:
         return '1w';
-      case AppMetricCardDeltaPeriod.month:
+      case DSMetricCardDeltaPeriod.month:
         return '1m';
-      case AppMetricCardDeltaPeriod.quarter:
+      case DSMetricCardDeltaPeriod.quarter:
         return '1q';
-      case AppMetricCardDeltaPeriod.year:
+      case DSMetricCardDeltaPeriod.year:
         return '1y';
     }
   }
 }
 
-class AppMetricCardConstants {
+class DSMetricCardConstants {
   static const double defaultBorderRadius = 12.0;
   static const double defaultElevation = 2.0;
   static const double defaultBorderWidth = 1.0;

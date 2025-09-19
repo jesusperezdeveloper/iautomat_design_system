@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'app_in_page_search.dart';
+import 'ds_in_page_search.dart';
 import 'in_page_search_config.dart';
 
-/// Story examples for AppInPageSearch component
+/// Story examples for DSInPageSearch component
 class InPageSearchStory extends StatefulWidget {
   const InPageSearchStory({super.key});
 
@@ -13,7 +13,7 @@ class InPageSearchStory extends StatefulWidget {
 }
 
 class _InPageSearchStoryState extends State<InPageSearchStory> {
-  final _searchController = AppInPageSearchController();
+  final _searchController = DSInPageSearchController();
   final _textController = TextEditingController();
 
   @override
@@ -27,7 +27,7 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppInPageSearch Stories'),
+        title: const Text('DSInPageSearch Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: ListView(
@@ -63,7 +63,7 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Default Inline Search',
           description: 'Basic inline search with default configuration',
-          child: AppInPageSearch.inline(
+          child: DSInPageSearch.inline(
             onFind: (query, highlights) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Searching for: $query')),
@@ -75,7 +75,7 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'With Custom Controller',
           description: 'Search with custom controller and callbacks',
-          child: AppInPageSearch.inline(
+          child: DSInPageSearch.inline(
             searchController: _searchController,
             onFind: (query, highlights) {
               debugPrint('Found $query with ${highlights.length} highlights');
@@ -90,11 +90,11 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'With Initial Query',
           description: 'Search pre-populated with initial query',
-          child: AppInPageSearch.inline(
+          child: DSInPageSearch.inline(
             initialQuery: 'flutter',
             autoFocus: true,
             highlights: const [
-              AppSearchHighlight(
+              DSSearchHighlight(
                 start: 0,
                 end: 7,
                 text: 'flutter',
@@ -119,16 +119,16 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Default State',
           description: 'Normal interactive state',
-          child: AppInPageSearch.inline(
-            state: AppInPageSearchState.defaultState,
+          child: DSInPageSearch.inline(
+            state: DSInPageSearchState.defaultState,
           ),
         ),
         const SizedBox(height: 16.0),
         _buildStoryCard(
           title: 'Focus State',
           description: 'Focused search input',
-          child: AppInPageSearch.inline(
-            state: AppInPageSearchState.focus,
+          child: DSInPageSearch.inline(
+            state: DSInPageSearchState.focus,
             autoFocus: true,
           ),
         ),
@@ -136,8 +136,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Disabled State',
           description: 'Non-interactive disabled state',
-          child: AppInPageSearch.inline(
-            state: AppInPageSearchState.disabled,
+          child: DSInPageSearch.inline(
+            state: DSInPageSearchState.disabled,
             initialQuery: 'disabled search',
           ),
         ),
@@ -145,8 +145,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Loading State',
           description: 'Search in progress',
-          child: AppInPageSearch.inline(
-            state: AppInPageSearchState.loading,
+          child: DSInPageSearch.inline(
+            state: DSInPageSearchState.loading,
             initialQuery: 'searching...',
           ),
         ),
@@ -154,8 +154,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Skeleton State',
           description: 'Loading skeleton animation',
-          child: AppInPageSearch.inline(
-            state: AppInPageSearchState.skeleton,
+          child: DSInPageSearch.inline(
+            state: DSInPageSearchState.skeleton,
           ),
         ),
       ],
@@ -174,24 +174,24 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Small Size',
           description: 'Compact search bar for tight spaces',
-          child: AppInPageSearch.inline(
-            config: AppInPageSearchConfig.small,
+          child: DSInPageSearch.inline(
+            config: DSInPageSearchConfig.small,
           ),
         ),
         const SizedBox(height: 16.0),
         _buildStoryCard(
           title: 'Medium Size (Default)',
           description: 'Standard size for most use cases',
-          child: AppInPageSearch.inline(
-            config: AppInPageSearchConfig.medium,
+          child: DSInPageSearch.inline(
+            config: DSInPageSearchConfig.medium,
           ),
         ),
         const SizedBox(height: 16.0),
         _buildStoryCard(
           title: 'Large Size',
           description: 'Larger search bar for emphasis',
-          child: AppInPageSearch.inline(
-            config: AppInPageSearchConfig.large,
+          child: DSInPageSearch.inline(
+            config: DSInPageSearchConfig.large,
           ),
         ),
       ],
@@ -210,8 +210,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Custom Colors',
           description: 'Search with custom color scheme',
-          child: AppInPageSearch.inline(
-            config: const AppInPageSearchConfig(
+          child: DSInPageSearch.inline(
+            config: const DSInPageSearchConfig(
               backgroundColor: Color(0xFFF3E5F5),
               borderColor: Color(0xFF9C27B0),
               focusBorderColor: Color(0xFF673AB7),
@@ -224,8 +224,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Rounded Style',
           description: 'Highly rounded borders',
-          child: AppInPageSearch.inline(
-            config: const AppInPageSearchConfig(
+          child: DSInPageSearch.inline(
+            config: const DSInPageSearchConfig(
               borderRadius: 25.0,
               padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
             ),
@@ -235,8 +235,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'No Border, High Elevation',
           description: 'Elevated floating appearance',
-          child: AppInPageSearch.inline(
-            config: const AppInPageSearchConfig(
+          child: DSInPageSearch.inline(
+            config: const DSInPageSearchConfig(
               showBorder: false,
               elevation: 8.0,
               borderRadius: 12.0,
@@ -247,8 +247,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Custom Icons',
           description: 'Different icon set',
-          child: AppInPageSearch.inline(
-            config: const AppInPageSearchConfig(
+          child: DSInPageSearch.inline(
+            config: const DSInPageSearchConfig(
               searchIcon: Icons.manage_search,
               clearIcon: Icons.cancel,
               nextIcon: Icons.arrow_forward_ios,
@@ -277,28 +277,28 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
               description: 'Interactive search with mock results',
               child: Column(
                 children: [
-                  AppInPageSearch.inline(
+                  DSInPageSearch.inline(
                     onFind: (query, highlights) {
                       setState(() {
                         // Mock search results would be updated here
                         debugPrint('Searching for: $query');
                       });
                     },
-                    data: const AppInPageSearchData(
+                    data: const DSInPageSearchData(
                       query: 'test',
                       highlights: [
-                        AppSearchHighlight(
+                        DSSearchHighlight(
                           start: 0,
                           end: 4,
                           text: 'test',
                           isActive: true,
                         ),
-                        AppSearchHighlight(
+                        DSSearchHighlight(
                           start: 10,
                           end: 14,
                           text: 'test',
                         ),
-                        AppSearchHighlight(
+                        DSSearchHighlight(
                           start: 20,
                           end: 24,
                           text: 'test',
@@ -329,23 +329,23 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
             _buildStoryCard(
               title: 'Full Feature Example',
               description: 'Complete search with all features enabled',
-              child: AppInPageSearch.inline(
-                config: const AppInPageSearchConfig(
+              child: DSInPageSearch.inline(
+                config: const DSInPageSearchConfig(
                   showResultCount: true,
                   showNavigationButtons: true,
                   showClearButton: true,
                   showCloseButton: true,
                   placeholder: 'Search through content...',
                 ),
-                data: const AppInPageSearchData(
+                data: const DSInPageSearchData(
                   query: 'flutter',
                   totalResults: 5,
                   currentResultIndex: 2,
                   highlights: [
-                    AppSearchHighlight(start: 0, end: 7, text: 'flutter'),
-                    AppSearchHighlight(
+                    DSSearchHighlight(start: 0, end: 7, text: 'flutter'),
+                    DSSearchHighlight(
                         start: 15, end: 22, text: 'flutter', isActive: true),
-                    AppSearchHighlight(start: 30, end: 37, text: 'flutter'),
+                    DSSearchHighlight(start: 30, end: 37, text: 'flutter'),
                   ],
                 ),
               ),
@@ -368,8 +368,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'iOS Style',
           description: 'iOS-styled search bar',
-          child: AppInPageSearch.inline(
-            config: const AppInPageSearchConfig(
+          child: DSInPageSearch.inline(
+            config: const DSInPageSearchConfig(
               borderRadius: 10.0,
               backgroundColor: Color(0xFFF2F2F7),
               borderColor: Colors.transparent,
@@ -381,8 +381,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Material Design',
           description: 'Material 3 styled search',
-          child: AppInPageSearch.inline(
-            config: const AppInPageSearchConfig(
+          child: DSInPageSearch.inline(
+            config: const DSInPageSearchConfig(
               borderRadius: 28.0,
               showBorder: true,
               elevation: 0.0,
@@ -394,8 +394,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Web Style',
           description: 'Web-optimized search interface',
-          child: AppInPageSearch.inline(
-            config: const AppInPageSearchConfig(
+          child: DSInPageSearch.inline(
+            config: const DSInPageSearchConfig(
               width: 400.0,
               borderRadius: 4.0,
               elevation: 1.0,
@@ -422,8 +422,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
           description: 'Right-to-left text direction',
           child: Directionality(
             textDirection: TextDirection.rtl,
-            child: AppInPageSearch.inline(
-              config: const AppInPageSearchConfig(
+            child: DSInPageSearch.inline(
+              config: const DSInPageSearchConfig(
                 placeholder: 'بحث في المحتوى...',
                 textDirection: TextDirection.rtl,
               ),
@@ -449,8 +449,8 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
               }
               return KeyEventResult.ignored;
             },
-            child: AppInPageSearch.inline(
-              config: const AppInPageSearchConfig(
+            child: DSInPageSearch.inline(
+              config: const DSInPageSearchConfig(
                 placeholder: 'Press Ctrl+F to focus',
               ),
             ),
@@ -460,13 +460,13 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Search Options',
           description: 'Case sensitive and regex search',
-          child: AppInPageSearch.inline(
-            data: const AppInPageSearchData(
+          child: DSInPageSearch.inline(
+            data: const DSInPageSearchData(
               caseSensitive: true,
               wholeWordsOnly: false,
               useRegex: false,
             ),
-            config: const AppInPageSearchConfig(
+            config: const DSInPageSearchConfig(
               placeholder: 'Case-sensitive search',
             ),
           ),
@@ -475,7 +475,7 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
         _buildStoryCard(
           title: 'Custom Result Builder',
           description: 'Custom rendering of search results',
-          child: AppInPageSearch.inline(
+          child: DSInPageSearch.inline(
             resultBuilder: (context, data) {
               return Container(
                 padding: const EdgeInsets.all(8.0),
@@ -492,7 +492,7 @@ class _InPageSearchStoryState extends State<InPageSearchStory> {
                 ),
               );
             },
-            data: const AppInPageSearchData(
+            data: const DSInPageSearchData(
               totalResults: 10,
               currentResultIndex: 3,
             ),

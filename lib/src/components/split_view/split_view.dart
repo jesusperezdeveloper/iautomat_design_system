@@ -1,2 +1,2 @@
-export 'app_split_view.dart';
-export 'app_split_view_config.dart';
+export 'ds_split_view.dart';
+export 'ds_split_view_config.dart';

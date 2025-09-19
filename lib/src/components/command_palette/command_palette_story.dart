@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'app_command_palette.dart';
+import 'ds_command_palette.dart';
 import 'command_palette_config.dart';
 
-/// Story examples for AppCommandPalette component
+/// Story examples for DSCommandPalette component
 class CommandPaletteStoryExample extends StatefulWidget {
   const CommandPaletteStoryExample({super.key});
 
@@ -23,14 +23,14 @@ class _CommandPaletteStoryExampleState
   String _currentQuery = '';
   String _lastInvokedCommand = '';
 
-  final List<AppCommandResult> _recentCommands = [
-    AppCommandResult.action(
+  final List<DSCommandResult> _recentCommands = [
+    DSCommandResult.action(
       id: 'recent1',
       title: 'Open Recent File',
       description: 'document.pdf',
       icon: Icons.description,
     ),
-    AppCommandResult.navigation(
+    DSCommandResult.navigation(
       id: 'recent2',
       title: 'Go to Dashboard',
       description: 'Navigate to main dashboard',
@@ -38,75 +38,75 @@ class _CommandPaletteStoryExampleState
     ),
   ];
 
-  final List<AppCommandResult> _searchResults = [
-    AppCommandResult(
+  final List<DSCommandResult> _searchResults = [
+    DSCommandResult(
       id: 'search1',
       title: 'Create New Project',
       description: 'Start a new project from template',
       icon: Icons.create_new_folder,
-      type: AppCommandResultType.search,
+      type: DSCommandResultType.search,
       shortcut: [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyN],
     ),
-    AppCommandResult(
+    DSCommandResult(
       id: 'search2',
       title: 'Open File',
       description: 'Open an existing file',
       icon: Icons.folder_open,
-      type: AppCommandResultType.search,
+      type: DSCommandResultType.search,
       shortcut: [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyO],
     ),
-    AppCommandResult(
+    DSCommandResult(
       id: 'search3',
       title: 'Save Document',
       description: 'Save current document',
       icon: Icons.save,
-      type: AppCommandResultType.search,
+      type: DSCommandResultType.search,
       shortcut: [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyS],
     ),
-    AppCommandResult(
+    DSCommandResult(
       id: 'search4',
       title: 'Find in Files',
       description: 'Search across all project files',
       icon: Icons.search,
-      type: AppCommandResultType.search,
+      type: DSCommandResultType.search,
       shortcut: [
         LogicalKeyboardKey.meta,
         LogicalKeyboardKey.shift,
         LogicalKeyboardKey.keyF
       ],
     ),
-    AppCommandResult(
+    DSCommandResult(
       id: 'search5',
       title: 'Settings',
       description: 'Open application settings',
       icon: Icons.settings,
-      type: AppCommandResultType.search,
+      type: DSCommandResultType.search,
       shortcut: [LogicalKeyboardKey.meta, LogicalKeyboardKey.comma],
     ),
   ];
 
-  final List<AppCommandResult> _actionResults = [
-    AppCommandResult.action(
+  final List<DSCommandResult> _actionResults = [
+    DSCommandResult.action(
       id: 'action1',
       title: 'Quick Actions',
       description: 'Show available quick actions',
       icon: Icons.flash_on,
     ),
-    AppCommandResult.action(
+    DSCommandResult.action(
       id: 'action2',
       title: 'Toggle Theme',
       description: 'Switch between light and dark theme',
       icon: Icons.brightness_6,
       shortcut: [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyT],
     ),
-    AppCommandResult.action(
+    DSCommandResult.action(
       id: 'action3',
       title: 'Run Command',
       description: 'Execute custom command',
       icon: Icons.play_arrow,
       shortcut: [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyR],
     ),
-    AppCommandResult.action(
+    DSCommandResult.action(
       id: 'action4',
       title: 'Show Shortcuts',
       description: 'Display keyboard shortcuts',
@@ -119,7 +119,7 @@ class _CommandPaletteStoryExampleState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppCommandPalette Stories'),
+        title: const Text('DSCommandPalette Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Stack(
@@ -432,7 +432,7 @@ class _CommandPaletteStoryExampleState
           alignment: Alignment.center,
           child: GestureDetector(
             onTap: () {}, // Prevent tap propagation
-            child: AppCommandPalette.globalSearch(
+            child: DSCommandPalette.globalSearch(
               results: _searchResults,
               recentCommands: _recentCommands,
               onQuery: (query) => setState(() => _currentQuery = query),
@@ -469,7 +469,7 @@ class _CommandPaletteStoryExampleState
           alignment: Alignment.center,
           child: GestureDetector(
             onTap: () {}, // Prevent tap propagation
-            child: AppCommandPalette.actions(
+            child: DSCommandPalette.actions(
               results: _actionResults,
               onQuery: (query) => setState(() => _currentQuery = query),
               onInvoke: (result) {
@@ -479,7 +479,7 @@ class _CommandPaletteStoryExampleState
                 });
               },
               onClose: () => setState(() => _showActions = false),
-              config: const AppCommandPaletteConfig(
+              config: const DSCommandPaletteConfig(
                 placeholder: 'Type an action...',
                 maxResults: 10,
               ),
@@ -503,7 +503,7 @@ class _CommandPaletteStoryExampleState
             padding: const EdgeInsets.only(top: 100),
             child: GestureDetector(
               onTap: () {}, // Prevent tap propagation
-              child: AppCommandPalette(
+              child: DSCommandPalette(
                 results: _searchResults,
                 onQuery: (query) => setState(() => _currentQuery = query),
                 onInvoke: (result) {
@@ -513,9 +513,9 @@ class _CommandPaletteStoryExampleState
                   });
                 },
                 onClose: () => setState(() => _showCustom = false),
-                config: const AppCommandPaletteConfig(
-                  position: AppCommandPalettePosition.top,
-                  size: AppCommandPaletteSize.large,
+                config: const DSCommandPaletteConfig(
+                  position: DSCommandPalettePosition.top,
+                  size: DSCommandPaletteSize.large,
                   backgroundColor: Colors.deepPurple,
                   inputTextColor: Colors.white,
                   resultTextColor: Colors.white,
@@ -547,11 +547,11 @@ class _CommandPaletteStoryExampleState
           alignment: Alignment.center,
           child: GestureDetector(
             onTap: () {}, // Prevent tap propagation
-            child: AppCommandPalette(
+            child: DSCommandPalette(
               results: const [],
-              state: AppCommandPaletteState.loading,
+              state: DSCommandPaletteState.loading,
               onClose: () => setState(() => _showLoading = false),
-              config: const AppCommandPaletteConfig(
+              config: const DSCommandPaletteConfig(
                 placeholder: 'Searching...',
               ),
             ),
@@ -572,11 +572,11 @@ class _CommandPaletteStoryExampleState
           alignment: Alignment.center,
           child: GestureDetector(
             onTap: () {}, // Prevent tap propagation
-            child: AppCommandPalette(
+            child: DSCommandPalette(
               results: const [],
-              state: AppCommandPaletteState.skeleton,
+              state: DSCommandPaletteState.skeleton,
               onClose: () => setState(() => _showSkeleton = false),
-              config: const AppCommandPaletteConfig(
+              config: const DSCommandPaletteConfig(
                 placeholder: 'Loading commands...',
                 skeletonItemCount: 5,
               ),

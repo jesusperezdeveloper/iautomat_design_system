@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_description_list.dart';
+import 'ds_description_list.dart';
 import 'description_list_config.dart';
 
 class DescriptionListStoryExample extends StatefulWidget {
@@ -13,10 +13,10 @@ class DescriptionListStoryExample extends StatefulWidget {
 
 class _DescriptionListStoryExampleState
     extends State<DescriptionListStoryExample> {
-  AppDescriptionListState _selectedState = AppDescriptionListState.defaultState;
-  AppDescriptionListLayout _selectedLayout = AppDescriptionListLayout.adaptive;
-  AppDescriptionListDensity _selectedDensity = AppDescriptionListDensity.normal;
-  AppDescriptionListSpacing _selectedSpacing = AppDescriptionListSpacing.normal;
+  DSDescriptionListState _selectedState = DSDescriptionListState.defaultState;
+  DSDescriptionListLayout _selectedLayout = DSDescriptionListLayout.adaptive;
+  DSDescriptionListDensity _selectedDensity = DSDescriptionListDensity.normal;
+  DSDescriptionListSpacing _selectedSpacing = DSDescriptionListSpacing.normal;
   bool _animationEnabled = true;
   bool _interactionEnabled = true;
 
@@ -26,7 +26,7 @@ class _DescriptionListStoryExampleState
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppDescriptionList Stories'),
+        title: const Text('DSDescriptionList Stories'),
         backgroundColor: theme.colorScheme.surfaceContainer,
       ),
       body: SingleChildScrollView(
@@ -96,10 +96,10 @@ class _DescriptionListStoryExampleState
       children: [
         const Text('Estado:'),
         const SizedBox(height: 8),
-        DropdownButton<AppDescriptionListState>(
+        DropdownButton<DSDescriptionListState>(
           value: _selectedState,
           onChanged: (value) => setState(() => _selectedState = value!),
-          items: AppDescriptionListState.values.map((state) {
+          items: DSDescriptionListState.values.map((state) {
             return DropdownMenuItem(
               value: state,
               child: Text(state.name),
@@ -116,10 +116,10 @@ class _DescriptionListStoryExampleState
       children: [
         const Text('Layout:'),
         const SizedBox(height: 8),
-        DropdownButton<AppDescriptionListLayout>(
+        DropdownButton<DSDescriptionListLayout>(
           value: _selectedLayout,
           onChanged: (value) => setState(() => _selectedLayout = value!),
-          items: AppDescriptionListLayout.values.map((layout) {
+          items: DSDescriptionListLayout.values.map((layout) {
             return DropdownMenuItem(
               value: layout,
               child: Text(layout.name),
@@ -136,10 +136,10 @@ class _DescriptionListStoryExampleState
       children: [
         const Text('Densidad:'),
         const SizedBox(height: 8),
-        DropdownButton<AppDescriptionListDensity>(
+        DropdownButton<DSDescriptionListDensity>(
           value: _selectedDensity,
           onChanged: (value) => setState(() => _selectedDensity = value!),
-          items: AppDescriptionListDensity.values.map((density) {
+          items: DSDescriptionListDensity.values.map((density) {
             return DropdownMenuItem(
               value: density,
               child: Text(density.name),
@@ -156,10 +156,10 @@ class _DescriptionListStoryExampleState
       children: [
         const Text('Espaciado:'),
         const SizedBox(height: 8),
-        DropdownButton<AppDescriptionListSpacing>(
+        DropdownButton<DSDescriptionListSpacing>(
           value: _selectedSpacing,
           onChanged: (value) => setState(() => _selectedSpacing = value!),
-          items: AppDescriptionListSpacing.values.map((spacing) {
+          items: DSDescriptionListSpacing.values.map((spacing) {
             return DropdownMenuItem(
               value: spacing,
               child: Text(spacing.name),
@@ -203,30 +203,30 @@ class _DescriptionListStoryExampleState
     return _buildExampleSection(
       'Ejemplo Básico',
       'Lista de descripción simple con elementos básicos.',
-      AppDescriptionList.responsive(
+      DSDescriptionList.responsive(
         state: _selectedState,
         layout: _selectedLayout,
         density: _selectedDensity,
         spacing: _selectedSpacing,
-        animation: AppDescriptionListAnimation(
+        animation: DSDescriptionListAnimation(
           enabled: _animationEnabled,
-          type: AppDescriptionListAnimationType.fade,
+          type: DSDescriptionListAnimationType.fade,
         ),
         items: [
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Nombre',
             description: 'Juan Pérez',
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Email',
             description: 'juan.perez@example.com',
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Teléfono',
             description: '+1 (555) 123-4567',
             divider: true,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Dirección',
             description: '123 Main St, Ciudad, Estado 12345',
             secondaryDescription: 'Dirección principal de envío',
@@ -240,32 +240,32 @@ class _DescriptionListStoryExampleState
     return _buildExampleSection(
       'Información Personal',
       'Lista con iconos y elementos secundarios.',
-      AppDescriptionList.responsive(
+      DSDescriptionList.responsive(
         state: _selectedState,
         layout: _selectedLayout,
         density: _selectedDensity,
         spacing: _selectedSpacing,
         items: [
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Fecha de Nacimiento',
             description: '15 de Marzo, 1990',
             icon: Icons.cake,
             iconColor: Colors.orange,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Nacionalidad',
             description: 'Mexicana',
             icon: Icons.flag,
             iconColor: Colors.green,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Estado Civil',
             description: 'Soltero/a',
             icon: Icons.favorite,
             iconColor: Colors.red,
             divider: true,
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Idiomas',
             description: 'Español, Inglés',
             secondaryDescription: 'Fluido en ambos idiomas',
@@ -290,23 +290,23 @@ class _DescriptionListStoryExampleState
     return _buildExampleSection(
       'Especificaciones del Producto',
       'Lista técnica con widgets personalizados.',
-      AppDescriptionList.responsive(
+      DSDescriptionList.responsive(
         state: _selectedState,
         layout: _selectedLayout,
         density: _selectedDensity,
         spacing: _selectedSpacing,
         items: [
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Modelo',
             description: 'iPhone 15 Pro',
             highlighted: true,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Procesador',
             description: 'Apple A17 Pro',
             secondaryDescription: '3nm technology',
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Memoria',
             description: '128GB',
             trailing: Container(
@@ -327,12 +327,12 @@ class _DescriptionListStoryExampleState
             ),
             divider: true,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Pantalla',
             description: '6.1" Super Retina XDR',
             secondaryDescription: '2556×1179 pixels, 460 ppi',
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Cámara',
             description: 'Triple sistema de 48MP',
             secondaryDescription: 'Principal, Ultra Angular, Teleobjetivo',
@@ -346,7 +346,7 @@ class _DescriptionListStoryExampleState
     return _buildExampleSection(
       'Información de Contacto',
       'Lista con acciones y elementos interactivos.',
-      AppDescriptionList.responsive(
+      DSDescriptionList.responsive(
         state: _selectedState,
         layout: _selectedLayout,
         density: _selectedDensity,
@@ -359,7 +359,7 @@ class _DescriptionListStoryExampleState
               }
             : null,
         items: [
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Email Principal',
             description: 'contacto@empresa.com',
             icon: Icons.email,
@@ -373,7 +373,7 @@ class _DescriptionListStoryExampleState
             trailing:
                 _interactionEnabled ? const Icon(Icons.open_in_new) : null,
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Teléfono',
             description: '+52 55 1234 5678',
             icon: Icons.phone,
@@ -386,7 +386,7 @@ class _DescriptionListStoryExampleState
                 : null,
             trailing: _interactionEnabled ? const Icon(Icons.call) : null,
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Dirección',
             description: 'Av. Insurgentes Sur 123',
             secondaryDescription: 'Ciudad de México, México',
@@ -401,7 +401,7 @@ class _DescriptionListStoryExampleState
             trailing: _interactionEnabled ? const Icon(Icons.map) : null,
             divider: true,
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Sitio Web',
             description: 'www.empresa.com',
             icon: Icons.web,
@@ -423,13 +423,13 @@ class _DescriptionListStoryExampleState
     return _buildExampleSection(
       'Información del Sistema',
       'Lista con estados y colores personalizados.',
-      AppDescriptionList.responsive(
+      DSDescriptionList.responsive(
         state: _selectedState,
         layout: _selectedLayout,
         density: _selectedDensity,
         spacing: _selectedSpacing,
         items: [
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Estado del Servidor',
             description: 'En línea',
             icon: Icons.circle,
@@ -443,7 +443,7 @@ class _DescriptionListStoryExampleState
               ),
             ),
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'CPU',
             description: '45%',
             secondaryDescription: 'Uso normal',
@@ -456,7 +456,7 @@ class _DescriptionListStoryExampleState
               ),
             ),
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Memoria',
             description: '8.2 GB / 16 GB',
             secondaryDescription: '51% utilizada',
@@ -470,7 +470,7 @@ class _DescriptionListStoryExampleState
             ),
             divider: true,
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Disco',
             description: '120 GB / 500 GB',
             secondaryDescription: '24% utilizado',
@@ -492,13 +492,13 @@ class _DescriptionListStoryExampleState
     return _buildExampleSection(
       'Lista Interactiva',
       'Lista con elementos seleccionables y acciones.',
-      AppDescriptionList.responsive(
+      DSDescriptionList.responsive(
         state: _selectedState,
         layout: _selectedLayout,
         density: _selectedDensity,
         spacing: _selectedSpacing,
         items: [
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Notificaciones',
             description: 'Activadas',
             icon: Icons.notifications,
@@ -512,7 +512,7 @@ class _DescriptionListStoryExampleState
               },
             ),
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Modo Oscuro',
             description: 'Desactivado',
             icon: Icons.dark_mode,
@@ -526,7 +526,7 @@ class _DescriptionListStoryExampleState
               },
             ),
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Ubicación',
             description: 'Permitir acceso',
             icon: Icons.location_on,
@@ -540,7 +540,7 @@ class _DescriptionListStoryExampleState
             ),
             divider: true,
           ),
-          AppDescriptionListItem(
+          DSDescriptionListItem(
             term: 'Idioma',
             description: 'Español',
             icon: Icons.language,
@@ -560,18 +560,18 @@ class _DescriptionListStoryExampleState
     return _buildExampleSection(
       'Estilo Personalizado',
       'Lista con estilos y colores personalizados.',
-      AppDescriptionList.responsive(
+      DSDescriptionList.responsive(
         state: _selectedState,
         layout: _selectedLayout,
         density: _selectedDensity,
         spacing: _selectedSpacing,
-        style: AppDescriptionListStyle(
+        style: DSDescriptionListStyle(
           backgroundColor: Colors.blue.withValues(alpha: 0.05),
           borderColor: Colors.blue,
           borderWidth: 2,
           borderRadius: 16,
           padding: const EdgeInsets.all(20),
-          itemStyle: AppDescriptionListItemStyle(
+          itemStyle: DSDescriptionListItemStyle(
             termTextStyle: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.blue,
@@ -585,29 +585,29 @@ class _DescriptionListStoryExampleState
             ),
             padding: const EdgeInsets.symmetric(vertical: 12),
           ),
-          dividerStyle: AppDescriptionListDividerStyle(
+          dividerStyle: DSDescriptionListDividerStyle(
             color: Colors.blue.withValues(alpha: 0.3),
             thickness: 1,
           ),
         ),
         items: [
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Plan',
             description: 'Premium',
             secondaryDescription: 'Incluye todas las funciones',
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Usuarios',
             description: '10 / 50',
             secondaryDescription: 'Usuarios activos este mes',
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Almacenamiento',
             description: '2.4 TB / 5 TB',
             secondaryDescription: '48% utilizado',
             divider: true,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Próxima facturación',
             description: '15 de Febrero, 2024',
             secondaryDescription: 'Renovación automática',
@@ -621,49 +621,49 @@ class _DescriptionListStoryExampleState
     return _buildExampleSection(
       'Diseño Responsivo',
       'Lista que se adapta automáticamente al tamaño de pantalla.',
-      AppDescriptionList.responsive(
+      DSDescriptionList.responsive(
         state: _selectedState,
-        layout: AppDescriptionListLayout.adaptive,
+        layout: DSDescriptionListLayout.adaptive,
         density: _selectedDensity,
         spacing: _selectedSpacing,
-        responsive: const AppDescriptionListResponsive(
+        responsive: const DSDescriptionListResponsive(
           mobileBreakpoint: 600,
           tabletBreakpoint: 900,
           desktopBreakpoint: 1200,
-          mobileLayout: AppDescriptionListLayout.vertical,
-          tabletLayout: AppDescriptionListLayout.horizontal,
-          desktopLayout: AppDescriptionListLayout.grid,
+          mobileLayout: DSDescriptionListLayout.vertical,
+          tabletLayout: DSDescriptionListLayout.horizontal,
+          desktopLayout: DSDescriptionListLayout.grid,
           mobileColumns: 1,
           tabletColumns: 2,
           desktopColumns: 3,
         ),
         items: [
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Resolución',
             description: '1920×1080',
             icon: Icons.monitor,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Frecuencia',
             description: '60 Hz',
             icon: Icons.refresh,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Colores',
             description: '16.7M',
             icon: Icons.palette,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Tamaño',
             description: '24 pulgadas',
             icon: Icons.straighten,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Conexión',
             description: 'HDMI, USB-C',
             icon: Icons.cable,
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Consumo',
             description: '65W',
             icon: Icons.power,
@@ -677,25 +677,25 @@ class _DescriptionListStoryExampleState
     return _buildExampleSection(
       'Estado de Carga (Skeleton)',
       'Lista mostrando el estado de carga.',
-      AppDescriptionList.responsive(
-        state: AppDescriptionListState.skeleton,
+      DSDescriptionList.responsive(
+        state: DSDescriptionListState.skeleton,
         layout: _selectedLayout,
         density: _selectedDensity,
         spacing: _selectedSpacing,
         items: [
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Cargando...',
             description: 'Cargando...',
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Cargando...',
             description: 'Cargando...',
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Cargando...',
             description: 'Cargando...',
           ),
-          const AppDescriptionListItem(
+          const DSDescriptionListItem(
             term: 'Cargando...',
             description: 'Cargando...',
           ),
@@ -739,17 +739,17 @@ class DescriptionListBasicStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppDescriptionList.responsive(
+    return const DSDescriptionList.responsive(
       items: [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Nombre',
           description: 'Juan Pérez',
         ),
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Email',
           description: 'juan.perez@example.com',
         ),
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Teléfono',
           description: '+1 (555) 123-4567',
         ),
@@ -763,21 +763,21 @@ class DescriptionListIconStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppDescriptionList.responsive(
+    return const DSDescriptionList.responsive(
       items: [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Usuario',
           description: 'Juan Pérez',
           icon: Icons.person,
           iconColor: Colors.blue,
         ),
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Email',
           description: 'juan.perez@example.com',
           icon: Icons.email,
           iconColor: Colors.green,
         ),
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Teléfono',
           description: '+1 (555) 123-4567',
           icon: Icons.phone,
@@ -793,9 +793,9 @@ class DescriptionListInteractiveStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppDescriptionList.responsive(
+    return DSDescriptionList.responsive(
       items: [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Email',
           description: 'juan.perez@example.com',
           icon: Icons.email,
@@ -806,7 +806,7 @@ class DescriptionListInteractiveStory extends StatelessWidget {
           },
           trailing: const Icon(Icons.open_in_new),
         ),
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Teléfono',
           description: '+1 (555) 123-4567',
           icon: Icons.phone,
@@ -827,18 +827,18 @@ class DescriptionListSkeletonStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppDescriptionList.responsive(
-      state: AppDescriptionListState.skeleton,
+    return const DSDescriptionList.responsive(
+      state: DSDescriptionListState.skeleton,
       items: [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Cargando...',
           description: 'Cargando...',
         ),
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Cargando...',
           description: 'Cargando...',
         ),
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Cargando...',
           description: 'Cargando...',
         ),

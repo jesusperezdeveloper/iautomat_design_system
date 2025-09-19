@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 part 'slider_config.freezed.dart';
 
 @freezed
-class AppSliderConfig with _$AppSliderConfig {
-  const factory AppSliderConfig({
+class DSSliderConfig with _$DSSliderConfig {
+  const factory DSSliderConfig({
     @Default(Duration(milliseconds: 150)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
     @Default(20.0) double thumbRadius,
@@ -42,14 +42,14 @@ class AppSliderConfig with _$AppSliderConfig {
     @Default('') String valueSuffix,
     @Default(true) bool allowDecimalInput,
     @Default(true) bool constrainToMarks,
-  }) = _AppSliderConfig;
+  }) = _DSSliderConfig;
 
-  const AppSliderConfig._();
+  const DSSliderConfig._();
 }
 
 @freezed
-class AppSliderColors with _$AppSliderColors {
-  const factory AppSliderColors({
+class DSSliderColors with _$DSSliderColors {
+  const factory DSSliderColors({
     required Color trackColor,
     required Color activeTrackColor,
     required Color inactiveTrackColor,
@@ -80,14 +80,14 @@ class AppSliderColors with _$AppSliderColors {
     required Color loadingIndicatorColor,
     required Color rangeSelectionColor,
     required Color rangeThumbColor,
-  }) = _AppSliderColors;
+  }) = _DSSliderColors;
 
-  const AppSliderColors._();
+  const DSSliderColors._();
 
-  factory AppSliderColors.fromTheme(ThemeData theme) {
+  factory DSSliderColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
 
-    return AppSliderColors(
+    return DSSliderColors(
       trackColor: colorScheme.surfaceContainerHighest,
       activeTrackColor: colorScheme.primary,
       inactiveTrackColor: colorScheme.outline.withValues(alpha: 0.38),
@@ -122,7 +122,7 @@ class AppSliderColors with _$AppSliderColors {
   }
 }
 
-enum AppSliderState {
+enum DSSliderState {
   defaultState,
   hover,
   pressed,
@@ -133,55 +133,55 @@ enum AppSliderState {
   skeleton,
 }
 
-enum AppSliderVariant {
+enum DSSliderVariant {
   continuous,
   discrete,
   range,
 }
 
 @freezed
-class AppSliderMark with _$AppSliderMark {
-  const factory AppSliderMark({
+class DSSliderMark with _$DSSliderMark {
+  const factory DSSliderMark({
     required double value,
     required String label,
     @Default(true) bool enabled,
     Widget? icon,
     Color? color,
     Map<String, dynamic>? metadata,
-  }) = _AppSliderMark;
+  }) = _DSSliderMark;
 
-  const AppSliderMark._();
+  const DSSliderMark._();
 
-  bool isActive(double currentValue, AppSliderVariant variant) {
+  bool isActive(double currentValue, DSSliderVariant variant) {
     switch (variant) {
-      case AppSliderVariant.continuous:
-      case AppSliderVariant.discrete:
+      case DSSliderVariant.continuous:
+      case DSSliderVariant.discrete:
         return currentValue >= value;
-      case AppSliderVariant.range:
+      case DSSliderVariant.range:
         return false; // Range marks are handled differently
     }
   }
 }
 
 @freezed
-class AppSliderRangeValue with _$AppSliderRangeValue {
-  const factory AppSliderRangeValue({
+class DSSliderRangeValue with _$DSSliderRangeValue {
+  const factory DSSliderRangeValue({
     required double start,
     required double end,
-  }) = _AppSliderRangeValue;
+  }) = _DSSliderRangeValue;
 
-  const AppSliderRangeValue._();
+  const DSSliderRangeValue._();
 
   bool get isValid => start <= end;
   double get range => end - start;
   double get center => (start + end) / 2;
 
-  AppSliderRangeValue copyWithStart(double newStart) {
-    return AppSliderRangeValue(start: newStart, end: end);
+  DSSliderRangeValue copyWithStart(double newStart) {
+    return DSSliderRangeValue(start: newStart, end: end);
   }
 
-  AppSliderRangeValue copyWithEnd(double newEnd) {
-    return AppSliderRangeValue(start: start, end: newEnd);
+  DSSliderRangeValue copyWithEnd(double newEnd) {
+    return DSSliderRangeValue(start: start, end: newEnd);
   }
 
   bool contains(double value) {
@@ -189,7 +189,7 @@ class AppSliderRangeValue with _$AppSliderRangeValue {
   }
 }
 
-class AppSliderValidator {
+class DSSliderValidator {
   static String? Function(double?) range(double min, double max) {
     return (double? value) {
       if (value == null) return null;
@@ -230,8 +230,8 @@ class AppSliderValidator {
     };
   }
 
-  static String? Function(AppSliderRangeValue?) rangeMinSpan(double minSpan) {
-    return (AppSliderRangeValue? value) {
+  static String? Function(DSSliderRangeValue?) rangeMinSpan(double minSpan) {
+    return (DSSliderRangeValue? value) {
       if (value == null) return null;
       if (value.range < minSpan) {
         return 'El rango mínimo debe ser $minSpan';
@@ -240,8 +240,8 @@ class AppSliderValidator {
     };
   }
 
-  static String? Function(AppSliderRangeValue?) rangeMaxSpan(double maxSpan) {
-    return (AppSliderRangeValue? value) {
+  static String? Function(DSSliderRangeValue?) rangeMaxSpan(double maxSpan) {
+    return (DSSliderRangeValue? value) {
       if (value == null) return null;
       if (value.range > maxSpan) {
         return 'El rango máximo debe ser $maxSpan';

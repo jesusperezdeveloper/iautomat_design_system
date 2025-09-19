@@ -8,10 +8,10 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'app_outline_tree.dart';
+import 'ds_outline_tree.dart';
 import 'outline_tree_config.dart';
 
-/// Stories collection for AppOutlineTree component
+/// Stories collection for DSOutlineTree component
 class OutlineTreeStories extends StatefulWidget {
   const OutlineTreeStories({super.key});
 
@@ -20,9 +20,9 @@ class OutlineTreeStories extends StatefulWidget {
 }
 
 class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
-  late List<AppTreeNode> basicNodes;
-  late List<AppTreeNode> asyncNodes;
-  late List<AppTreeNode> multiSelectNodes;
+  late List<DSTreeNode> basicNodes;
+  late List<DSTreeNode> asyncNodes;
+  late List<DSTreeNode> multiSelectNodes;
 
   @override
   void initState() {
@@ -33,37 +33,37 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
   void _initializeNodes() {
     // Basic tree structure
     basicNodes = [
-      AppTreeNode(
+      DSTreeNode(
         id: '1',
         label: 'Documents',
         icon: Icons.folder,
         isExpanded: true,
         children: [
-          const AppTreeNode(
+          const DSTreeNode(
             id: '1.1',
             label: 'Project Specs.pdf',
             icon: Icons.picture_as_pdf,
             depth: 1,
           ),
-          const AppTreeNode(
+          const DSTreeNode(
             id: '1.2',
             label: 'Requirements.docx',
             icon: Icons.description,
             depth: 1,
           ),
-          AppTreeNode(
+          DSTreeNode(
             id: '1.3',
             label: 'Images',
             icon: Icons.folder,
             depth: 1,
             children: const [
-              AppTreeNode(
+              DSTreeNode(
                 id: '1.3.1',
                 label: 'logo.png',
                 icon: Icons.image,
                 depth: 2,
               ),
-              AppTreeNode(
+              DSTreeNode(
                 id: '1.3.2',
                 label: 'banner.jpg',
                 icon: Icons.image,
@@ -73,19 +73,19 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
           ),
         ],
       ),
-      AppTreeNode(
+      DSTreeNode(
         id: '2',
         label: 'Source Code',
         icon: Icons.code,
         isExpanded: false,
         children: [
-          const AppTreeNode(
+          const DSTreeNode(
             id: '2.1',
             label: 'main.dart',
             icon: Icons.code,
             depth: 1,
           ),
-          const AppTreeNode(
+          const DSTreeNode(
             id: '2.2',
             label: 'widgets.dart',
             icon: Icons.code,
@@ -93,7 +93,7 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
           ),
         ],
       ),
-      const AppTreeNode(
+      const DSTreeNode(
         id: '3',
         label: 'README.md',
         icon: Icons.description,
@@ -103,19 +103,19 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
 
     // Async tree nodes
     asyncNodes = [
-      const AppTreeNode(
+      const DSTreeNode(
         id: 'async1',
         label: 'Remote Folder 1',
         icon: Icons.cloud_queue,
         hasChildren: true,
       ),
-      const AppTreeNode(
+      const DSTreeNode(
         id: 'async2',
         label: 'Remote Folder 2',
         icon: Icons.cloud_queue,
         hasChildren: true,
       ),
-      const AppTreeNode(
+      const DSTreeNode(
         id: 'async3',
         label: 'Empty Folder',
         icon: Icons.folder_open,
@@ -126,19 +126,19 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
 
     // Multi-select tree nodes
     multiSelectNodes = [
-      AppTreeNode(
+      DSTreeNode(
         id: 'ms1',
         label: 'Category A',
         icon: Icons.category,
         isExpanded: true,
         children: const [
-          AppTreeNode(
+          DSTreeNode(
             id: 'ms1.1',
             label: 'Item A1',
             icon: Icons.label,
             depth: 1,
           ),
-          AppTreeNode(
+          DSTreeNode(
             id: 'ms1.2',
             label: 'Item A2',
             icon: Icons.label,
@@ -147,18 +147,18 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
           ),
         ],
       ),
-      AppTreeNode(
+      DSTreeNode(
         id: 'ms2',
         label: 'Category B',
         icon: Icons.category,
         children: const [
-          AppTreeNode(
+          DSTreeNode(
             id: 'ms2.1',
             label: 'Item B1',
             icon: Icons.label,
             depth: 1,
           ),
-          AppTreeNode(
+          DSTreeNode(
             id: 'ms2.2',
             label: 'Item B2',
             icon: Icons.label,
@@ -169,26 +169,26 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
     ];
   }
 
-  Future<List<AppTreeNode>> _simulateAsyncLoad(AppTreeNode node) async {
+  Future<List<DSTreeNode>> _simulateAsyncLoad(DSTreeNode node) async {
     // Simulate network delay
     await Future.delayed(const Duration(seconds: 2));
 
     switch (node.id) {
       case 'async1':
         return [
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'async1.1',
             label: 'Loaded File 1.txt',
             icon: Icons.description,
             depth: 1,
           ),
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'async1.2',
             label: 'Loaded File 2.pdf',
             icon: Icons.picture_as_pdf,
             depth: 1,
           ),
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'async1.3',
             label: 'Subfolder',
             icon: Icons.folder,
@@ -198,7 +198,7 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
         ];
       case 'async2':
         return [
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'async2.1',
             label: 'Config.json',
             icon: Icons.settings,
@@ -207,7 +207,7 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
         ];
       case 'async1.3':
         return [
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'async1.3.1',
             label: 'Deep File.dat',
             icon: Icons.storage,
@@ -223,7 +223,7 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppOutlineTree Stories'),
+        title: const Text('DSOutlineTree Stories'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
@@ -232,8 +232,8 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
           children: [
             _buildStorySection(
               'Basic Tree - Default',
-              AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: basicNodes,
                 onToggle: (node) {
                   debugPrint('Toggled: ${node.label}');
@@ -247,13 +247,13 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Async Tree with Lazy Loading',
-              AppOutlineTree.async(
+              DSOutlineTree.async(
                 nodes: asyncNodes,
                 onAsyncLoad: _simulateAsyncLoad,
                 onToggle: (node) {
                   debugPrint('Async toggled: ${node.label}');
                 },
-                config: const AppOutlineTreeConfig(
+                config: const DSOutlineTreeConfig(
                   showLoadingIndicator: true,
                 ),
               ),
@@ -261,10 +261,10 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Multi-Select Tree',
-              AppOutlineTree.multiSelect(
+              DSOutlineTree.multiSelect(
                 nodes: multiSelectNodes,
-                config: const AppOutlineTreeConfig(
-                  selectionMode: AppTreeSelectionMode.hierarchical,
+                config: const DSOutlineTreeConfig(
+                  selectionMode: DSTreeSelectionMode.hierarchical,
                   showSelectionCheckboxes: true,
                 ),
                 onSelect: (node, selected) {
@@ -275,31 +275,31 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Compact Configuration',
-              AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: basicNodes,
-                config: AppOutlineTreeConfig.compact,
+                config: DSOutlineTreeConfig.compact,
                 onToggle: (node) {},
               ),
             ),
             const SizedBox(height: 32),
             _buildStorySection(
               'Spacious Configuration',
-              AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: basicNodes,
-                config: AppOutlineTreeConfig.spacious,
+                config: DSOutlineTreeConfig.spacious,
                 onToggle: (node) {},
               ),
             ),
             const SizedBox(height: 32),
             _buildStorySection(
               'Custom Colors',
-              AppOutlineTree(
-                variant: AppOutlineTreeVariant.multiSelect,
+              DSOutlineTree(
+                variant: DSOutlineTreeVariant.multiSelect,
                 nodes: multiSelectNodes,
-                config: const AppOutlineTreeConfig(
-                  selectionMode: AppTreeSelectionMode.multiple,
+                config: const DSOutlineTreeConfig(
+                  selectionMode: DSTreeSelectionMode.multiple,
                   showSelectionCheckboxes: true,
                   selectedBackgroundColor: Colors.green,
                   selectedTextColor: Colors.white,
@@ -312,11 +312,11 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Loading State',
-              AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: const [],
-                state: AppOutlineTreeState.loading,
-                config: const AppOutlineTreeConfig(
+                state: DSOutlineTreeState.loading,
+                config: const DSOutlineTreeConfig(
                   loadingLabel: 'Loading tree data...',
                 ),
                 onToggle: (node) {},
@@ -325,11 +325,11 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Skeleton State',
-              AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: const [],
-                state: AppOutlineTreeState.skeleton,
-                config: const AppOutlineTreeConfig(
+                state: DSOutlineTreeState.skeleton,
+                config: const DSOutlineTreeConfig(
                   skeletonNodeCount: 8,
                   skeletonMaxDepth: 3,
                 ),
@@ -339,23 +339,23 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'Disabled State',
-              AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: basicNodes
                     .map((n) => n.copyWith(isDisabled: true))
                     .toList(),
-                state: AppOutlineTreeState.disabled,
+                state: DSOutlineTreeState.disabled,
                 onToggle: (node) {},
               ),
             ),
             const SizedBox(height: 32),
             _buildStorySection(
               'Custom Animation',
-              AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: basicNodes,
-                config: const AppOutlineTreeConfig(
-                  expansionAnimation: AppTreeExpansionAnimation.scale,
+                config: const DSOutlineTreeConfig(
+                  expansionAnimation: DSTreeExpansionAnimation.scale,
                   animationDuration: Duration(milliseconds: 500),
                   animationCurve: Curves.elasticOut,
                 ),
@@ -365,10 +365,10 @@ class _OutlineTreeStoriesState extends State<OutlineTreeStories> {
             const SizedBox(height: 32),
             _buildStorySection(
               'No Icons, No Connectors',
-              AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: basicNodes,
-                config: const AppOutlineTreeConfig(
+                config: const DSOutlineTreeConfig(
                   showIcons: false,
                   showConnectors: false,
                   showSelectionCheckboxes: false,
@@ -415,7 +415,7 @@ class FileExplorerExample extends StatefulWidget {
 }
 
 class _FileExplorerExampleState extends State<FileExplorerExample> {
-  late List<AppTreeNode> fileSystemNodes;
+  late List<DSTreeNode> fileSystemNodes;
   final Set<String> selectedFiles = {};
 
   @override
@@ -426,25 +426,25 @@ class _FileExplorerExampleState extends State<FileExplorerExample> {
 
   void _initializeFileSystem() {
     fileSystemNodes = [
-      AppTreeNode(
+      DSTreeNode(
         id: 'home',
         label: 'Home',
         icon: Icons.home,
         isExpanded: true,
         children: [
-          AppTreeNode(
+          DSTreeNode(
             id: 'documents',
             label: 'Documents',
             icon: Icons.folder,
             badge: '15',
             children: [
-              const AppTreeNode(
+              const DSTreeNode(
                 id: 'resume.pdf',
                 label: 'Resume.pdf',
                 icon: Icons.picture_as_pdf,
                 depth: 2,
               ),
-              const AppTreeNode(
+              const DSTreeNode(
                 id: 'cover_letter.docx',
                 label: 'Cover Letter.docx',
                 icon: Icons.description,
@@ -452,26 +452,26 @@ class _FileExplorerExampleState extends State<FileExplorerExample> {
               ),
             ],
           ),
-          AppTreeNode(
+          DSTreeNode(
             id: 'downloads',
             label: 'Downloads',
             icon: Icons.download,
             badge: '247',
             hasChildren: true, // Will load async
           ),
-          AppTreeNode(
+          DSTreeNode(
             id: 'pictures',
             label: 'Pictures',
             icon: Icons.photo_library,
             children: [
-              const AppTreeNode(
+              const DSTreeNode(
                 id: 'vacation.jpg',
                 label: 'Vacation.jpg',
                 icon: Icons.image,
                 tooltip: 'Taken in Hawaii, 2024',
                 depth: 2,
               ),
-              const AppTreeNode(
+              const DSTreeNode(
                 id: 'family.png',
                 label: 'Family.png',
                 icon: Icons.image,
@@ -479,7 +479,7 @@ class _FileExplorerExampleState extends State<FileExplorerExample> {
               ),
             ],
           ),
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'music',
             label: 'Music',
             icon: Icons.library_music,
@@ -487,35 +487,35 @@ class _FileExplorerExampleState extends State<FileExplorerExample> {
           ),
         ],
       ),
-      const AppTreeNode(
+      const DSTreeNode(
         id: 'external',
         label: 'External Drive',
         icon: Icons.usb,
         hasChildren: true,
-        state: AppTreeNodeState.loading,
+        state: DSTreeNodeState.loading,
       ),
     ];
   }
 
-  Future<List<AppTreeNode>> _loadFileSystemChildren(AppTreeNode node) async {
+  Future<List<DSTreeNode>> _loadFileSystemChildren(DSTreeNode node) async {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     switch (node.id) {
       case 'downloads':
         return [
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'installer.exe',
             label: 'installer.exe',
             icon: Icons.launch,
             depth: 2,
           ),
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'backup.zip',
             label: 'backup.zip',
             icon: Icons.archive,
             depth: 2,
           ),
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'temp_folder',
             label: 'Temp Files',
             icon: Icons.folder_special,
@@ -525,13 +525,13 @@ class _FileExplorerExampleState extends State<FileExplorerExample> {
         ];
       case 'music':
         return [
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'playlist1.m3u',
             label: 'My Playlist.m3u',
             icon: Icons.playlist_play,
             depth: 2,
           ),
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'song1.mp3',
             label: 'Favorite Song.mp3',
             icon: Icons.music_note,
@@ -540,13 +540,13 @@ class _FileExplorerExampleState extends State<FileExplorerExample> {
         ];
       case 'external':
         return [
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'backup_2024',
             label: 'Backup 2024',
             icon: Icons.backup,
             depth: 1,
           ),
-          const AppTreeNode(
+          const DSTreeNode(
             id: 'projects',
             label: 'Projects',
             icon: Icons.work,
@@ -587,11 +587,11 @@ class _FileExplorerExampleState extends State<FileExplorerExample> {
                   right: BorderSide(color: Colors.grey.shade300),
                 ),
               ),
-              child: AppOutlineTree.async(
+              child: DSOutlineTree.async(
                 nodes: fileSystemNodes,
                 onAsyncLoad: _loadFileSystemChildren,
-                config: const AppOutlineTreeConfig(
-                  selectionMode: AppTreeSelectionMode.multiple,
+                config: const DSOutlineTreeConfig(
+                  selectionMode: DSTreeSelectionMode.multiple,
                   showSelectionCheckboxes: true,
                   itemHeight: 36.0,
                   enableRipple: true,
