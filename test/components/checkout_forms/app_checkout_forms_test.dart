@@ -5,15 +5,15 @@ import 'package:iautomat_design_system/src/components/checkout_forms/app_checkou
 import 'package:iautomat_design_system/src/components/checkout_forms/app_checkout_forms_config.dart';
 
 void main() {
-  group('AppCheckoutForms', () {
-    late AppCheckoutField testField;
+  group('DSCheckoutForms', () {
+    late DSCheckoutField testField;
 
     setUp(() {
 
-      testField = const AppCheckoutField(
+      testField = const DSCheckoutField(
         key: 'testField',
         label: 'Test Field',
-        type: AppCheckoutFieldType.text,
+        type: DSCheckoutFieldType.text,
         placeholder: 'Enter test value',
         required: true,
       );
@@ -23,14 +23,14 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckoutForms(
+            body: DSCheckoutForms(
               fields: [testField],
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppCheckoutForms), findsOneWidget);
+      expect(find.byType(DSCheckoutForms), findsOneWidget);
       expect(find.text('Test Field'), findsOneWidget);
       expect(find.text('Enter test value'), findsOneWidget);
     });
@@ -40,12 +40,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms.address(),
+              body: DSCheckoutForms.address(),
             ),
           ),
         );
 
-        expect(find.byType(AppCheckoutForms), findsOneWidget);
+        expect(find.byType(DSCheckoutForms), findsOneWidget);
         expect(find.text('Dirección'), findsOneWidget);
         expect(find.text('Nombre'), findsOneWidget);
         expect(find.text('Email'), findsOneWidget);
@@ -55,12 +55,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms.payment(),
+              body: DSCheckoutForms.payment(),
             ),
           ),
         );
 
-        expect(find.byType(AppCheckoutForms), findsOneWidget);
+        expect(find.byType(DSCheckoutForms), findsOneWidget);
         expect(find.text('Pago'), findsOneWidget);
         expect(find.text('Nombre del titular'), findsOneWidget);
         expect(find.text('Número de tarjeta'), findsOneWidget);
@@ -72,12 +72,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'name',
                     label: 'Name',
-                    type: AppCheckoutFieldType.text,
+                    type: DSCheckoutFieldType.text,
                     placeholder: 'Enter your name',
                   ),
                 ],
@@ -94,12 +94,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'email',
                     label: 'Email',
-                    type: AppCheckoutFieldType.email,
+                    type: DSCheckoutFieldType.email,
                     placeholder: 'Enter your email',
                   ),
                 ],
@@ -116,12 +116,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'agree',
                     label: 'I agree to terms',
-                    type: AppCheckoutFieldType.checkbox,
+                    type: DSCheckoutFieldType.checkbox,
                   ),
                 ],
               ),
@@ -137,12 +137,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'country',
                     label: 'Country',
-                    type: AppCheckoutFieldType.dropdown,
+                    type: DSCheckoutFieldType.dropdown,
                     options: ['USA', 'Canada', 'Mexico'],
                   ),
                 ],
@@ -161,12 +161,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'required_field',
                     label: 'Required Field',
-                    type: AppCheckoutFieldType.text,
+                    type: DSCheckoutFieldType.text,
                     required: true,
                   ),
                 ],
@@ -187,12 +187,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'email',
                     label: 'Email',
-                    type: AppCheckoutFieldType.email,
+                    type: DSCheckoutFieldType.email,
                     required: true,
                   ),
                 ],
@@ -214,12 +214,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'cardNumber',
                     label: 'Card Number',
-                    type: AppCheckoutFieldType.creditCard,
+                    type: DSCheckoutFieldType.creditCard,
                     required: true,
                   ),
                 ],
@@ -246,7 +246,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
                 onFieldChanged: (field, value) {
                   changedField = field;
@@ -268,16 +268,16 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'cardNumber',
                     label: 'Card Number',
-                    type: AppCheckoutFieldType.creditCard,
+                    type: DSCheckoutFieldType.creditCard,
                   ),
                 ],
-                config: const AppCheckoutFormsConfig(
-                  behavior: AppCheckoutBehavior(enableFormatting: true),
+                config: const DSCheckoutFormsConfig(
+                  behavior: DSCheckoutBehavior(enableFormatting: true),
                 ),
               ),
             ),
@@ -298,12 +298,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'checkbox',
                     label: 'Test Checkbox',
-                    type: AppCheckoutFieldType.checkbox,
+                    type: DSCheckoutFieldType.checkbox,
                   ),
                 ],
                 onFieldChanged: (field, value) {
@@ -325,17 +325,17 @@ void main() {
 
     group('Form Submission', () {
       testWidgets('calls onSubmit when form is valid', (tester) async {
-        AppCheckoutFormData? submittedData;
+        DSCheckoutFormData? submittedData;
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'name',
                     label: 'Name',
-                    type: AppCheckoutFieldType.text,
+                    type: DSCheckoutFieldType.text,
                     required: true,
                   ),
                 ],
@@ -361,17 +361,17 @@ void main() {
       });
 
       testWidgets('prevents submission when form is invalid', (tester) async {
-        AppCheckoutFormData? submittedData;
+        DSCheckoutFormData? submittedData;
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'required_field',
                     label: 'Required Field',
-                    type: AppCheckoutFieldType.text,
+                    type: DSCheckoutFieldType.text,
                     required: true,
                   ),
                 ],
@@ -394,7 +394,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
                 onSubmit: (data) async {
                   // Simulate async operation
@@ -419,15 +419,15 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
-                initialState: AppCheckoutState.skeleton,
+                initialState: DSCheckoutState.skeleton,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCheckoutForms), findsOneWidget);
+        expect(find.byType(DSCheckoutForms), findsOneWidget);
         // Should show skeleton loaders instead of regular fields
       });
 
@@ -435,15 +435,15 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
-                initialState: AppCheckoutState.loading,
+                initialState: DSCheckoutState.loading,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCheckoutForms), findsOneWidget);
+        expect(find.byType(DSCheckoutForms), findsOneWidget);
         expect(find.byType(CircularProgressIndicator), findsOneWidget);
       });
 
@@ -451,16 +451,16 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
-                initialState: AppCheckoutState.disabled,
+                initialState: DSCheckoutState.disabled,
                 readOnly: true,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCheckoutForms), findsOneWidget);
+        expect(find.byType(DSCheckoutForms), findsOneWidget);
         expect(find.byType(TextFormField), findsOneWidget);
       });
     });
@@ -470,7 +470,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
                 initialValues: const {
                   'testField': 'Initial Value',
@@ -490,7 +490,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
                 validators: {
                   'testField': (value) {
@@ -516,7 +516,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
               ),
             ),
@@ -533,7 +533,7 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.rtl,
               child: Scaffold(
-                body: AppCheckoutForms(
+                body: DSCheckoutForms(
                   fields: [testField],
                 ),
               ),
@@ -541,7 +541,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppCheckoutForms), findsOneWidget);
+        expect(find.byType(DSCheckoutForms), findsOneWidget);
         // Should adapt layout for RTL
       });
 
@@ -549,13 +549,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [
                   testField,
-                  const AppCheckoutField(
+                  const DSCheckoutField(
                     key: 'field2',
                     label: 'Field 2',
-                    type: AppCheckoutFieldType.text,
+                    type: DSCheckoutFieldType.text,
                   ),
                 ],
               ),
@@ -577,12 +577,12 @@ void main() {
       });
 
       testWidgets('handles Enter key submission', (tester) async {
-        AppCheckoutFormData? submittedData;
+        DSCheckoutFormData? submittedData;
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
                 onSubmit: (data) {
                   submittedData = data;
@@ -609,28 +609,28 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCheckoutForms), findsOneWidget);
+        expect(find.byType(DSCheckoutForms), findsOneWidget);
         // Should show platform-appropriate form styling
       });
     });
 
     group('Custom Configuration', () {
       testWidgets('applies custom configuration correctly', (tester) async {
-        const config = AppCheckoutFormsConfig(
-          variant: AppCheckoutVariant.address,
-          state: AppCheckoutState.defaultState,
-          colors: AppCheckoutColors(
+        const config = DSCheckoutFormsConfig(
+          variant: DSCheckoutVariant.address,
+          state: DSCheckoutState.defaultState,
+          colors: DSCheckoutColors(
             backgroundColor: Colors.red,
             borderColor: Colors.blue,
           ),
-          spacing: AppCheckoutSpacing(
+          spacing: DSCheckoutSpacing(
             padding: 24.0,
             fieldSpacing: 20.0,
           ),
@@ -639,7 +639,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCheckoutForms(
+              body: DSCheckoutForms(
                 fields: [testField],
                 config: config,
               ),
@@ -647,47 +647,47 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppCheckoutForms), findsOneWidget);
+        expect(find.byType(DSCheckoutForms), findsOneWidget);
       });
     });
   });
 
-  group('AppCheckoutUtils', () {
+  group('DSCheckoutUtils', () {
     test('validates fields correctly', () {
-      const field = AppCheckoutField(
+      const field = DSCheckoutField(
         key: 'email',
         label: 'Email',
-        type: AppCheckoutFieldType.email,
+        type: DSCheckoutFieldType.email,
         required: true,
       );
 
       // Test required validation
-      var validation = AppCheckoutUtils.validateField(field, '');
+      var validation = DSCheckoutUtils.validateField(field, '');
       expect(validation.isValid, isFalse);
       expect(validation.errorMessage, contains('requerido'));
 
       // Test email validation
-      validation = AppCheckoutUtils.validateField(field, 'invalid-email');
+      validation = DSCheckoutUtils.validateField(field, 'invalid-email');
       expect(validation.isValid, isFalse);
       expect(validation.errorMessage, contains('email válido'));
 
       // Test valid email
-      validation = AppCheckoutUtils.validateField(field, 'test@example.com');
+      validation = DSCheckoutUtils.validateField(field, 'test@example.com');
       expect(validation.isValid, isTrue);
     });
 
     test('validates complete form correctly', () {
       final fields = [
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'name',
           label: 'Name',
-          type: AppCheckoutFieldType.text,
+          type: DSCheckoutFieldType.text,
           required: true,
         ),
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'email',
           label: 'Email',
-          type: AppCheckoutFieldType.email,
+          type: DSCheckoutFieldType.email,
           required: true,
         ),
       ];
@@ -697,7 +697,7 @@ void main() {
         'email': 'john@example.com',
       };
 
-      final formData = AppCheckoutUtils.validateForm(fields, values);
+      final formData = DSCheckoutUtils.validateForm(fields, values);
 
       expect(formData.isValid, isTrue);
       expect(formData.values, equals(values));
@@ -705,49 +705,49 @@ void main() {
     });
 
     test('formats credit card correctly', () {
-      final formatted = AppCheckoutUtils.formatFieldValue(
-        AppCheckoutFieldType.creditCard,
+      final formatted = DSCheckoutUtils.formatFieldValue(
+        DSCheckoutFieldType.creditCard,
         '1234567890123456',
       );
       expect(formatted, equals('1234 5678 9012 3456'));
     });
 
     test('formats expiry date correctly', () {
-      final formatted = AppCheckoutUtils.formatFieldValue(
-        AppCheckoutFieldType.expiryDate,
+      final formatted = DSCheckoutUtils.formatFieldValue(
+        DSCheckoutFieldType.expiryDate,
         '1225',
       );
       expect(formatted, equals('12/25'));
     });
 
     test('formats phone number correctly', () {
-      final formatted = AppCheckoutUtils.formatFieldValue(
-        AppCheckoutFieldType.phone,
+      final formatted = DSCheckoutUtils.formatFieldValue(
+        DSCheckoutFieldType.phone,
         '1234567890',
       );
       expect(formatted, equals('(123) 456-7890'));
     });
 
     test('detects card type correctly', () {
-      expect(AppCheckoutUtils.detectCardType('4111111111111111'), equals('Visa'));
-      expect(AppCheckoutUtils.detectCardType('5555555555554444'), equals('Mastercard'));
-      expect(AppCheckoutUtils.detectCardType('378282246310005'), equals('American Express'));
-      expect(AppCheckoutUtils.detectCardType('6011111111111117'), equals('Discover'));
-      expect(AppCheckoutUtils.detectCardType('1234567890123456'), equals('Unknown'));
+      expect(DSCheckoutUtils.detectCardType('4111111111111111'), equals('Visa'));
+      expect(DSCheckoutUtils.detectCardType('5555555555554444'), equals('Mastercard'));
+      expect(DSCheckoutUtils.detectCardType('378282246310005'), equals('American Express'));
+      expect(DSCheckoutUtils.detectCardType('6011111111111117'), equals('Discover'));
+      expect(DSCheckoutUtils.detectCardType('1234567890123456'), equals('Unknown'));
     });
 
     test('masks sensitive data correctly', () {
       final fields = [
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'cardNumber',
           label: 'Card Number',
-          type: AppCheckoutFieldType.creditCard,
+          type: DSCheckoutFieldType.creditCard,
           sensitive: true,
         ),
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'name',
           label: 'Name',
-          type: AppCheckoutFieldType.text,
+          type: DSCheckoutFieldType.text,
         ),
       ];
 
@@ -756,75 +756,75 @@ void main() {
         'name': 'John Doe',
       };
 
-      final masked = AppCheckoutUtils.maskSensitiveData(fields, values);
+      final masked = DSCheckoutUtils.maskSensitiveData(fields, values);
 
       expect(masked['cardNumber'], equals('**** **** **** 3456'));
       expect(masked['name'], equals('John Doe'));
     });
   });
 
-  group('AppCheckoutField Extensions', () {
+  group('DSCheckoutField Extensions', () {
     test('keyboard type is correct for field types', () {
-      expect(AppCheckoutFieldType.email.keyboardType, TextInputType.emailAddress);
-      expect(AppCheckoutFieldType.phone.keyboardType, TextInputType.phone);
-      expect(AppCheckoutFieldType.number.keyboardType, TextInputType.number);
-      expect(AppCheckoutFieldType.text.keyboardType, TextInputType.text);
+      expect(DSCheckoutFieldType.email.keyboardType, TextInputType.emailAddress);
+      expect(DSCheckoutFieldType.phone.keyboardType, TextInputType.phone);
+      expect(DSCheckoutFieldType.number.keyboardType, TextInputType.number);
+      expect(DSCheckoutFieldType.text.keyboardType, TextInputType.text);
     });
 
     test('sensitive fields are identified correctly', () {
-      expect(AppCheckoutFieldType.password.isSensitive, isTrue);
-      expect(AppCheckoutFieldType.creditCard.isSensitive, isTrue);
-      expect(AppCheckoutFieldType.cvv.isSensitive, isTrue);
-      expect(AppCheckoutFieldType.text.isSensitive, isFalse);
+      expect(DSCheckoutFieldType.password.isSensitive, isTrue);
+      expect(DSCheckoutFieldType.creditCard.isSensitive, isTrue);
+      expect(DSCheckoutFieldType.cvv.isSensitive, isTrue);
+      expect(DSCheckoutFieldType.text.isSensitive, isFalse);
     });
 
     test('default patterns are correct', () {
-      expect(AppCheckoutFieldType.email.defaultPattern, isNotNull);
-      expect(AppCheckoutFieldType.creditCard.defaultPattern, isNotNull);
-      expect(AppCheckoutFieldType.phone.defaultPattern, isNotNull);
+      expect(DSCheckoutFieldType.email.defaultPattern, isNotNull);
+      expect(DSCheckoutFieldType.creditCard.defaultPattern, isNotNull);
+      expect(DSCheckoutFieldType.phone.defaultPattern, isNotNull);
     });
   });
 
-  group('AppCheckoutVariant Extensions', () {
+  group('DSCheckoutVariant Extensions', () {
     test('display names are correct', () {
-      expect(AppCheckoutVariant.address.displayName, equals('Dirección'));
-      expect(AppCheckoutVariant.payment.displayName, equals('Pago'));
+      expect(DSCheckoutVariant.address.displayName, equals('Dirección'));
+      expect(DSCheckoutVariant.payment.displayName, equals('Pago'));
     });
 
     test('default fields are provided', () {
-      expect(AppCheckoutVariant.address.defaultFields, isNotEmpty);
-      expect(AppCheckoutVariant.payment.defaultFields, isNotEmpty);
+      expect(DSCheckoutVariant.address.defaultFields, isNotEmpty);
+      expect(DSCheckoutVariant.payment.defaultFields, isNotEmpty);
 
-      final addressFields = AppCheckoutVariant.address.defaultFields;
+      final addressFields = DSCheckoutVariant.address.defaultFields;
       expect(addressFields.any((field) => field.key == 'firstName'), isTrue);
       expect(addressFields.any((field) => field.key == 'email'), isTrue);
 
-      final paymentFields = AppCheckoutVariant.payment.defaultFields;
+      final paymentFields = DSCheckoutVariant.payment.defaultFields;
       expect(paymentFields.any((field) => field.key == 'cardNumber'), isTrue);
       expect(paymentFields.any((field) => field.key == 'cvv'), isTrue);
     });
 
     test('icons are assigned correctly', () {
-      expect(AppCheckoutVariant.address.icon, equals(Icons.location_on));
-      expect(AppCheckoutVariant.payment.icon, equals(Icons.payment));
+      expect(DSCheckoutVariant.address.icon, equals(Icons.location_on));
+      expect(DSCheckoutVariant.payment.icon, equals(Icons.payment));
     });
   });
 
-  group('AppCheckoutState Extensions', () {
+  group('DSCheckoutState Extensions', () {
     test('interactive states are identified correctly', () {
-      expect(AppCheckoutState.defaultState.isInteractive, isTrue);
-      expect(AppCheckoutState.hover.isInteractive, isTrue);
-      expect(AppCheckoutState.focus.isInteractive, isTrue);
-      expect(AppCheckoutState.disabled.isInteractive, isFalse);
-      expect(AppCheckoutState.loading.isInteractive, isFalse);
-      expect(AppCheckoutState.skeleton.isInteractive, isFalse);
+      expect(DSCheckoutState.defaultState.isInteractive, isTrue);
+      expect(DSCheckoutState.hover.isInteractive, isTrue);
+      expect(DSCheckoutState.focus.isInteractive, isTrue);
+      expect(DSCheckoutState.disabled.isInteractive, isFalse);
+      expect(DSCheckoutState.loading.isInteractive, isFalse);
+      expect(DSCheckoutState.skeleton.isInteractive, isFalse);
     });
 
     test('loading and skeleton states are identified correctly', () {
-      expect(AppCheckoutState.loading.isLoading, isTrue);
-      expect(AppCheckoutState.skeleton.isSkeleton, isTrue);
-      expect(AppCheckoutState.defaultState.isLoading, isFalse);
-      expect(AppCheckoutState.defaultState.isSkeleton, isFalse);
+      expect(DSCheckoutState.loading.isLoading, isTrue);
+      expect(DSCheckoutState.skeleton.isSkeleton, isTrue);
+      expect(DSCheckoutState.defaultState.isLoading, isFalse);
+      expect(DSCheckoutState.defaultState.isSkeleton, isFalse);
     });
   });
 }

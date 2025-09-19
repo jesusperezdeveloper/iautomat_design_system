@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppAccordionStory extends StatefulWidget {
-  const AppAccordionStory({super.key});
+class DSAccordionStory extends StatefulWidget {
+  const DSAccordionStory({super.key});
 
   @override
-  State<AppAccordionStory> createState() => _AppAccordionStoryState();
+  State<DSAccordionStory> createState() => _DSAccordionStoryState();
 }
 
-class _AppAccordionStoryState extends State<AppAccordionStory> {
-  AppAccordionVariant _selectedVariant = AppAccordionVariant.single;
-  AppAccordionState _selectedState = AppAccordionState.defaultState;
+class _DSAccordionStoryState extends State<DSAccordionStory> {
+  DSAccordionVariant _selectedVariant = DSAccordionVariant.single;
+  DSAccordionState _selectedState = DSAccordionState.defaultState;
   Set<String> _expandedKeys = {'item1'};
   bool _interactive = true;
   bool _showDebugInfo = false;
@@ -18,8 +18,8 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
   bool _showDividers = true;
   bool _useMaterialIcons = true;
 
-  final List<AppAccordionItem> _sampleItems = [
-    AppAccordionItem(
+  final List<DSAccordionItem> _sampleItems = [
+    DSAccordionItem(
       key: 'item1',
       title: 'Panel de Control',
       subtitle: 'Configuración general del sistema',
@@ -43,7 +43,7 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
         ),
       ),
     ),
-    AppAccordionItem(
+    DSAccordionItem(
       key: 'item2',
       title: 'Configuración de Usuario',
       subtitle: 'Personaliza tu perfil y preferencias',
@@ -70,7 +70,7 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
         ),
       ),
     ),
-    AppAccordionItem(
+    DSAccordionItem(
       key: 'item3',
       title: 'Seguridad y Privacidad',
       subtitle: 'Gestiona la seguridad de tu cuenta',
@@ -105,7 +105,7 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppAccordion Examples'),
+        title: const Text('DSAccordion Examples'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -139,10 +139,10 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
             const SizedBox(height: 16),
 
             // Variant Control
-            DropdownButtonFormField<AppAccordionVariant>(
+            DropdownButtonFormField<DSAccordionVariant>(
               initialValue: _selectedVariant,
               decoration: const InputDecoration(labelText: 'Variante'),
-              items: AppAccordionVariant.values.map((variant) {
+              items: DSAccordionVariant.values.map((variant) {
                 return DropdownMenuItem(
                   value: variant,
                   child: Text(variant.name),
@@ -152,7 +152,7 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
                 if (value != null) {
                   setState(() {
                     _selectedVariant = value;
-                    _allowMultiple = value == AppAccordionVariant.multiple;
+                    _allowMultiple = value == DSAccordionVariant.multiple;
                   });
                 }
               },
@@ -160,10 +160,10 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
             const SizedBox(height: 16),
 
             // State Control
-            DropdownButtonFormField<AppAccordionState>(
+            DropdownButtonFormField<DSAccordionState>(
               initialValue: _selectedState,
               decoration: const InputDecoration(labelText: 'Estado'),
-              items: AppAccordionState.values.map((state) {
+              items: DSAccordionState.values.map((state) {
                 return DropdownMenuItem(
                   value: state,
                   child: Text(state.displayName),
@@ -241,7 +241,7 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
             ),
             const SizedBox(height: 16),
 
-            AppAccordion(
+            DSAccordion(
               items: _sampleItems,
               expandedKeys: _expandedKeys,
               onChanged: (expandedKeys) {
@@ -266,14 +266,14 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
     );
   }
 
-  AppAccordionConfig _buildCurrentConfig() {
-    return AppAccordionConfig(
+  DSAccordionConfig _buildCurrentConfig() {
+    return DSAccordionConfig(
       variant: _selectedVariant,
       state: _selectedState,
       allowMultiple: _allowMultiple,
       showDividers: _showDividers,
       useMaterialIcons: _useMaterialIcons,
-      behavior: AppAccordionBehavior(
+      behavior: DSAccordionBehavior(
         showDebugInfo: _showDebugInfo,
         enableHoverEffects: _interactive,
         showFocusIndicator: _interactive,
@@ -320,11 +320,11 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
             _buildExampleSection(
               'Single Accordion',
               'Solo permite un elemento expandido a la vez',
-              AppAccordion(
+              DSAccordion(
                 items: _sampleItems.take(2).toList(),
                 expandedKeys: const {'item1'},
-                config: const AppAccordionConfig(
-                  variant: AppAccordionVariant.single,
+                config: const DSAccordionConfig(
+                  variant: DSAccordionVariant.single,
                 ),
                 onChanged: (keys) => debugPrint('Single: $keys'),
               ),
@@ -335,11 +335,11 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
             _buildExampleSection(
               'Multiple Accordion',
               'Permite múltiples elementos expandidos simultáneamente',
-              AppAccordion(
+              DSAccordion(
                 items: _sampleItems.take(2).toList(),
                 expandedKeys: const {'item1', 'item2'},
-                config: const AppAccordionConfig(
-                  variant: AppAccordionVariant.multiple,
+                config: const DSAccordionConfig(
+                  variant: DSAccordionVariant.multiple,
                   allowMultiple: true,
                 ),
                 onChanged: (keys) => debugPrint('Multiple: $keys'),
@@ -364,10 +364,10 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
             _buildExampleSection(
               'Estado Loading',
               'Accordion en estado de carga',
-              AppAccordion(
+              DSAccordion(
                 items: _sampleItems.take(1).toList(),
-                config: const AppAccordionConfig(
-                  state: AppAccordionState.loading,
+                config: const DSAccordionConfig(
+                  state: DSAccordionState.loading,
                 ),
               ),
             ),
@@ -377,10 +377,10 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
             _buildExampleSection(
               'Estado Skeleton',
               'Accordion mostrando skeleton loader',
-              AppAccordion(
+              DSAccordion(
                 items: _sampleItems.take(1).toList(),
-                config: const AppAccordionConfig(
-                  state: AppAccordionState.skeleton,
+                config: const DSAccordionConfig(
+                  state: DSAccordionState.skeleton,
                 ),
               ),
             ),
@@ -390,10 +390,10 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
             _buildExampleSection(
               'Estado Disabled',
               'Accordion deshabilitado',
-              AppAccordion(
+              DSAccordion(
                 items: _sampleItems.take(1).toList(),
-                config: const AppAccordionConfig(
-                  state: AppAccordionState.disabled,
+                config: const DSAccordionConfig(
+                  state: DSAccordionState.disabled,
                 ),
                 interactive: false,
               ),
@@ -420,9 +420,9 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
             _buildExampleSection(
               'Accordion con Contenido Personalizado',
               'Ejemplo con diferentes tipos de contenido',
-              AppAccordion(
+              DSAccordion(
                 items: [
-                  AppAccordionItem(
+                  DSAccordionItem(
                     key: 'charts',
                     title: 'Gráficos y Estadísticas',
                     subtitle: 'Visualiza datos importantes',
@@ -442,7 +442,7 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
                       ),
                     ),
                   ),
-                  AppAccordionItem(
+                  DSAccordionItem(
                     key: 'form',
                     title: 'Formulario Interactivo',
                     subtitle: 'Completa la información requerida',
@@ -487,10 +487,10 @@ class _AppAccordionStoryState extends State<AppAccordionStory> {
             _buildExampleSection(
               'Accordion Sin Divisores',
               'Ejemplo sin líneas divisorias',
-              AppAccordion(
+              DSAccordion(
                 items: _sampleItems.take(2).toList(),
                 expandedKeys: const {'item1'},
-                config: const AppAccordionConfig(
+                config: const DSAccordionConfig(
                   showDividers: false,
                 ),
                 onChanged: (keys) => debugPrint('No dividers: $keys'),

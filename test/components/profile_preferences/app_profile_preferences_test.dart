@@ -3,20 +3,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppProfilePreferences', () {
+  group('DSProfilePreferences', () {
     testWidgets('renders correctly with basic configuration', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: AppProfilePreferencesConfigDefaults.basicProfile,
+            body: DSProfilePreferences(
+              config: DSProfilePreferencesConfigDefaults.basicProfile,
               onSave: (data) {},
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppProfilePreferences), findsOneWidget);
+      expect(find.byType(DSProfilePreferences), findsOneWidget);
       expect(find.text('Información Personal'), findsOneWidget);
       expect(find.text('Nombre'), findsOneWidget);
       expect(find.text('Email'), findsOneWidget);
@@ -29,8 +29,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: AppProfilePreferencesConfigDefaults.basicProfile,
+            body: DSProfilePreferences(
+              config: DSProfilePreferencesConfigDefaults.basicProfile,
               onSave: (data) => savePressed = true,
               onCancel: () => cancelPressed = true,
             ),
@@ -51,17 +51,17 @@ void main() {
     });
 
     testWidgets('updates form data when field values change', (tester) async {
-      AppProfileFormData? lastFormData;
+      DSProfileFormData? lastFormData;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'name',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Nombre',
                   ),
                 ],
@@ -84,31 +84,31 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'header',
-                    type: AppProfileFieldType.header,
+                    type: DSProfileFieldType.header,
                     label: 'Sección Header',
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'text_field',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Campo de texto',
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'toggle_field',
-                    type: AppProfileFieldType.toggle,
+                    type: DSProfileFieldType.toggle,
                     label: 'Toggle',
                     value: true,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'select_field',
-                    type: AppProfileFieldType.select,
+                    type: DSProfileFieldType.select,
                     label: 'Selección',
                     options: [
-                      AppProfileFieldOption(
+                      DSProfileFieldOption(
                         value: 'option1',
                         label: 'Opción 1',
                       ),
@@ -134,15 +134,15 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'required_field',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Campo requerido',
                     required: true,
-                    validation: AppProfileFieldValidation(
+                    validation: DSProfileFieldValidation(
                       required: true,
                       errorMessage: 'Este campo es obligatorio',
                     ),
@@ -166,13 +166,13 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
-                state: AppProfileState.disabled,
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
+                state: DSProfileState.disabled,
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'text_field',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Campo de texto',
                   ),
                 ],
@@ -191,13 +191,13 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
-                state: AppProfileState.skeleton,
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
+                state: DSProfileState.skeleton,
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'text_field',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Campo de texto',
                   ),
                 ],
@@ -213,17 +213,17 @@ void main() {
     });
 
     testWidgets('handles toggle field interactions', (tester) async {
-      AppProfileFormData? lastFormData;
+      DSProfileFormData? lastFormData;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'notifications',
-                    type: AppProfileFieldType.toggle,
+                    type: DSProfileFieldType.toggle,
                     label: 'Notificaciones',
                     value: false,
                   ),
@@ -247,24 +247,24 @@ void main() {
     });
 
     testWidgets('handles select field interactions', (tester) async {
-      AppProfileFormData? lastFormData;
+      DSProfileFormData? lastFormData;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'theme',
-                    type: AppProfileFieldType.select,
+                    type: DSProfileFieldType.select,
                     label: 'Tema',
                     options: [
-                      AppProfileFieldOption(
+                      DSProfileFieldOption(
                         value: 'light',
                         label: 'Claro',
                       ),
-                      AppProfileFieldOption(
+                      DSProfileFieldOption(
                         value: 'dark',
                         label: 'Oscuro',
                       ),
@@ -293,16 +293,16 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'name',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Nombre',
                   ),
                 ],
-                colors: AppProfileColors(
+                colors: DSProfileColors(
                   primaryButtonColor: Colors.purple,
                   fieldBackgroundColor: Colors.yellow,
                 ),
@@ -325,19 +325,19 @@ void main() {
     });
 
     testWidgets('triggers validation callbacks', (tester) async {
-      AppProfileFieldValidationResult? lastValidation;
+      DSProfileFieldValidationResult? lastValidation;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'email',
-                    type: AppProfileFieldType.email,
+                    type: DSProfileFieldType.email,
                     label: 'Email',
-                    validation: AppProfileFieldValidation(
+                    validation: DSProfileFieldValidation(
                       required: true,
                     ),
                   ),
@@ -359,45 +359,45 @@ void main() {
     });
   });
 
-  group('AppProfilePreferencesConfig', () {
+  group('DSProfilePreferencesConfig', () {
     test('creates instance with default values', () {
-      const config = AppProfilePreferencesConfig();
+      const config = DSProfilePreferencesConfig();
 
-      expect(config.variant, AppProfileVariant.sections);
-      expect(config.state, AppProfileState.defaultState);
+      expect(config.variant, DSProfileVariant.sections);
+      expect(config.state, DSProfileState.defaultState);
       expect(config.fields, isEmpty);
     });
 
     test('creates instance with custom values', () {
-      const config = AppProfilePreferencesConfig(
-        variant: AppProfileVariant.sections,
-        state: AppProfileState.loading,
+      const config = DSProfilePreferencesConfig(
+        variant: DSProfileVariant.sections,
+        state: DSProfileState.loading,
         fields: [
-          AppProfileField(
+          DSProfileField(
             id: 'test',
-            type: AppProfileFieldType.text,
+            type: DSProfileFieldType.text,
             label: 'Test',
           ),
         ],
       );
 
-      expect(config.variant, AppProfileVariant.sections);
-      expect(config.state, AppProfileState.loading);
+      expect(config.variant, DSProfileVariant.sections);
+      expect(config.state, DSProfileState.loading);
       expect(config.fields.length, 1);
       expect(config.fields.first.id, 'test');
     });
   });
 
-  group('AppProfileField', () {
+  group('DSProfileField', () {
     test('creates instance with required values', () {
-      const field = AppProfileField(
+      const field = DSProfileField(
         id: 'test_field',
-        type: AppProfileFieldType.text,
+        type: DSProfileFieldType.text,
         label: 'Test Field',
       );
 
       expect(field.id, 'test_field');
-      expect(field.type, AppProfileFieldType.text);
+      expect(field.type, DSProfileFieldType.text);
       expect(field.label, 'Test Field');
       expect(field.required, false);
       expect(field.enabled, true);
@@ -405,9 +405,9 @@ void main() {
     });
 
     test('creates instance with all values', () {
-      const field = AppProfileField(
+      const field = DSProfileField(
         id: 'test_field',
-        type: AppProfileFieldType.email,
+        type: DSProfileFieldType.email,
         label: 'Test Field',
         value: 'test@example.com',
         placeholder: 'Enter email',
@@ -415,12 +415,12 @@ void main() {
         required: true,
         enabled: false,
         readonly: true,
-        importance: AppProfileFieldImportance.high,
+        importance: DSProfileFieldImportance.high,
         icon: Icons.email,
       );
 
       expect(field.id, 'test_field');
-      expect(field.type, AppProfileFieldType.email);
+      expect(field.type, DSProfileFieldType.email);
       expect(field.label, 'Test Field');
       expect(field.value, 'test@example.com');
       expect(field.placeholder, 'Enter email');
@@ -428,14 +428,14 @@ void main() {
       expect(field.required, true);
       expect(field.enabled, false);
       expect(field.readonly, true);
-      expect(field.importance, AppProfileFieldImportance.high);
+      expect(field.importance, DSProfileFieldImportance.high);
       expect(field.icon, Icons.email);
     });
   });
 
-  group('AppProfileFormData', () {
+  group('DSProfileFormData', () {
     test('creates instance with default values', () {
-      const formData = AppProfileFormData();
+      const formData = DSProfileFormData();
 
       expect(formData.values, isEmpty);
       expect(formData.validations, isEmpty);
@@ -447,7 +447,7 @@ void main() {
 
     test('creates instance with custom values', () {
       final now = DateTime.now();
-      final formData = AppProfileFormData(
+      final formData = DSProfileFormData(
         values: const {'name': 'John'},
         errors: const {'email': 'Invalid email'},
         isValid: false,
@@ -465,31 +465,31 @@ void main() {
     });
   });
 
-  group('AppProfileValidators', () {
+  group('DSProfileValidators', () {
     test('email validator works correctly', () {
-      expect(AppProfileValidators.email('test@example.com'), isNull);
-      expect(AppProfileValidators.email('invalid-email'), isNotNull);
-      expect(AppProfileValidators.email(''), isNull); // Empty is allowed
-      expect(AppProfileValidators.email(null), isNull); // Null is allowed
+      expect(DSProfileValidators.email('test@example.com'), isNull);
+      expect(DSProfileValidators.email('invalid-email'), isNotNull);
+      expect(DSProfileValidators.email(''), isNull); // Empty is allowed
+      expect(DSProfileValidators.email(null), isNull); // Null is allowed
     });
 
     test('phone validator works correctly', () {
-      expect(AppProfileValidators.phone('+34 600 123 456'), isNull);
-      expect(AppProfileValidators.phone('600123456'), isNull);
-      expect(AppProfileValidators.phone('invalid-phone'), isNotNull);
-      expect(AppProfileValidators.phone(''), isNull); // Empty is allowed
-      expect(AppProfileValidators.phone(null), isNull); // Null is allowed
+      expect(DSProfileValidators.phone('+34 600 123 456'), isNull);
+      expect(DSProfileValidators.phone('600123456'), isNull);
+      expect(DSProfileValidators.phone('invalid-phone'), isNotNull);
+      expect(DSProfileValidators.phone(''), isNull); // Empty is allowed
+      expect(DSProfileValidators.phone(null), isNull); // Null is allowed
     });
 
     test('required validator works correctly', () {
-      expect(AppProfileValidators.required('value'), isNull);
-      expect(AppProfileValidators.required(''), isNotNull);
-      expect(AppProfileValidators.required('   '), isNotNull); // Only whitespace
-      expect(AppProfileValidators.required(null), isNotNull);
+      expect(DSProfileValidators.required('value'), isNull);
+      expect(DSProfileValidators.required(''), isNotNull);
+      expect(DSProfileValidators.required('   '), isNotNull); // Only whitespace
+      expect(DSProfileValidators.required(null), isNotNull);
     });
 
     test('minLength validator works correctly', () {
-      final validator = AppProfileValidators.minLength(5);
+      final validator = DSProfileValidators.minLength(5);
       expect(validator('12345'), isNull);
       expect(validator('123456'), isNull);
       expect(validator('1234'), isNotNull);
@@ -497,7 +497,7 @@ void main() {
     });
 
     test('maxLength validator works correctly', () {
-      final validator = AppProfileValidators.maxLength(5);
+      final validator = DSProfileValidators.maxLength(5);
       expect(validator('12345'), isNull);
       expect(validator('1234'), isNull);
       expect(validator('123456'), isNotNull);
@@ -506,37 +506,37 @@ void main() {
   });
 
   group('Extension methods', () {
-    test('AppProfileStateExtension works correctly', () {
-      expect(AppProfileState.defaultState.displayName, 'Default');
-      expect(AppProfileState.loading.displayName, 'Loading');
-      expect(AppProfileState.disabled.displayName, 'Disabled');
+    test('DSProfileStateExtension works correctly', () {
+      expect(DSProfileState.defaultState.displayName, 'Default');
+      expect(DSProfileState.loading.displayName, 'Loading');
+      expect(DSProfileState.disabled.displayName, 'Disabled');
 
-      expect(AppProfileState.defaultState.isInteractive, true);
-      expect(AppProfileState.disabled.isInteractive, false);
-      expect(AppProfileState.loading.isInteractive, false);
+      expect(DSProfileState.defaultState.isInteractive, true);
+      expect(DSProfileState.disabled.isInteractive, false);
+      expect(DSProfileState.loading.isInteractive, false);
 
-      expect(AppProfileState.loading.isLoading, true);
-      expect(AppProfileState.skeleton.isLoading, true);
-      expect(AppProfileState.defaultState.isLoading, false);
+      expect(DSProfileState.loading.isLoading, true);
+      expect(DSProfileState.skeleton.isLoading, true);
+      expect(DSProfileState.defaultState.isLoading, false);
     });
 
-    test('AppProfileFieldA11yExtensions works correctly', () {
-      const field = AppProfileField(
+    test('DSProfileFieldA11yExtensions works correctly', () {
+      const field = DSProfileField(
         id: 'test',
-        type: AppProfileFieldType.text,
+        type: DSProfileFieldType.text,
         label: 'Test',
-        importance: AppProfileFieldImportance.high,
+        importance: DSProfileFieldImportance.high,
       );
 
       expect(field.accessibilityPriority, 75);
       expect(field.semanticRole, 'text field');
       expect(field.needsSpecialAnnouncements, false);
 
-      const criticalField = AppProfileField(
+      const criticalField = DSProfileField(
         id: 'critical',
-        type: AppProfileFieldType.toggle,
+        type: DSProfileFieldType.toggle,
         label: 'Critical',
-        importance: AppProfileFieldImportance.critical,
+        importance: DSProfileFieldImportance.critical,
       );
 
       expect(criticalField.accessibilityPriority, 100);

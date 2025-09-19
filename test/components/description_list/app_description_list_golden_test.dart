@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/description_list/app_descr
 import 'package:iautomat_design_system/src/components/description_list/description_list_config.dart';
 
 void main() {
-  group('AppDescriptionList Golden Tests', () {
+  group('DSDescriptionList Golden Tests', () {
     testWidgets('lista básica con elementos simples', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -12,17 +12,17 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
+              child: DSDescriptionList.responsive(
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Nombre',
                     description: 'Juan Pérez',
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Email',
                     description: 'juan.perez@example.com',
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Teléfono',
                     description: '+1 (555) 123-4567',
                   ),
@@ -34,7 +34,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_basic.png'),
       );
     });
@@ -46,21 +46,21 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
+              child: DSDescriptionList.responsive(
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Usuario',
                     description: 'Juan Pérez',
                     icon: Icons.person,
                     iconColor: Colors.blue,
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Email',
                     description: 'juan.perez@example.com',
                     icon: Icons.email,
                     iconColor: Colors.green,
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Teléfono',
                     description: '+1 (555) 123-4567',
                     icon: Icons.phone,
@@ -74,7 +74,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_with_icons.png'),
       );
     });
@@ -86,14 +86,14 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
+              child: DSDescriptionList.responsive(
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Dirección',
                     description: '123 Main St, Ciudad, Estado',
                     secondaryDescription: 'Dirección principal de envío',
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Teléfono',
                     description: '+1 (555) 123-4567',
                     secondaryDescription: 'Número principal de contacto',
@@ -106,7 +106,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_with_secondary.png'),
       );
     });
@@ -118,19 +118,19 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
+              child: DSDescriptionList.responsive(
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Nombre',
                     description: 'Juan Pérez',
                     divider: true,
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Email',
                     description: 'juan.perez@example.com',
                     divider: true,
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Teléfono',
                     description: '+1 (555) 123-4567',
                   ),
@@ -142,7 +142,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_with_dividers.png'),
       );
     });
@@ -154,9 +154,9 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
+              child: DSDescriptionList.responsive(
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Email',
                     description: 'juan.perez@example.com',
                     leading: Container(
@@ -170,7 +170,7 @@ void main() {
                     ),
                     trailing: const Icon(Icons.open_in_new),
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Estado',
                     description: 'Activo',
                     leading:
@@ -188,7 +188,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_leading_trailing.png'),
       );
     });
@@ -200,10 +200,10 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                state: AppDescriptionListState.hover,
+              child: DSDescriptionList.responsive(
+                state: DSDescriptionListState.hover,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Elemento Hover',
                     description: 'Este elemento está en hover',
                   ),
@@ -215,7 +215,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_hover.png'),
       );
     });
@@ -227,10 +227,10 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                state: AppDescriptionListState.pressed,
+              child: DSDescriptionList.responsive(
+                state: DSDescriptionListState.pressed,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Elemento Pressed',
                     description: 'Este elemento está presionado',
                   ),
@@ -242,7 +242,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_pressed.png'),
       );
     });
@@ -254,10 +254,10 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                state: AppDescriptionListState.focus,
+              child: DSDescriptionList.responsive(
+                state: DSDescriptionListState.focus,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Elemento Focus',
                     description: 'Este elemento tiene foco',
                   ),
@@ -269,7 +269,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_focus.png'),
       );
     });
@@ -281,10 +281,10 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                state: AppDescriptionListState.selected,
+              child: DSDescriptionList.responsive(
+                state: DSDescriptionListState.selected,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Elemento Selected',
                     description: 'Este elemento está seleccionado',
                   ),
@@ -296,7 +296,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_selected.png'),
       );
     });
@@ -308,10 +308,10 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                state: AppDescriptionListState.disabled,
+              child: DSDescriptionList.responsive(
+                state: DSDescriptionListState.disabled,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Elemento Disabled',
                     description: 'Este elemento está deshabilitado',
                   ),
@@ -323,7 +323,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_disabled.png'),
       );
     });
@@ -335,14 +335,14 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                state: AppDescriptionListState.skeleton,
+              child: DSDescriptionList.responsive(
+                state: DSDescriptionListState.skeleton,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Cargando...',
                     description: 'Cargando...',
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Cargando...',
                     description: 'Cargando...',
                   ),
@@ -354,7 +354,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_skeleton.png'),
       );
     });
@@ -366,15 +366,15 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                layout: AppDescriptionListLayout.vertical,
+              child: DSDescriptionList.responsive(
+                layout: DSDescriptionListLayout.vertical,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Nombre',
                     description: 'Juan Pérez',
                     icon: Icons.person,
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Email',
                     description: 'juan.perez@example.com',
                     icon: Icons.email,
@@ -387,7 +387,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_vertical.png'),
       );
     });
@@ -399,15 +399,15 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                layout: AppDescriptionListLayout.horizontal,
+              child: DSDescriptionList.responsive(
+                layout: DSDescriptionListLayout.horizontal,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Nombre',
                     description: 'Juan Pérez',
                     icon: Icons.person,
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Email',
                     description: 'juan.perez@example.com',
                     icon: Icons.email,
@@ -420,7 +420,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_horizontal.png'),
       );
     });
@@ -432,14 +432,14 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                density: AppDescriptionListDensity.compact,
+              child: DSDescriptionList.responsive(
+                density: DSDescriptionListDensity.compact,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Compact',
                     description: 'Densidad compacta',
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Small',
                     description: 'Espacio reducido',
                   ),
@@ -451,7 +451,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_compact.png'),
       );
     });
@@ -463,14 +463,14 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                density: AppDescriptionListDensity.comfortable,
+              child: DSDescriptionList.responsive(
+                density: DSDescriptionListDensity.comfortable,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Comfortable',
                     description: 'Densidad cómoda',
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Spacious',
                     description: 'Más espacio',
                   ),
@@ -482,7 +482,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_comfortable.png'),
       );
     });
@@ -494,14 +494,14 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                style: AppDescriptionListStyle(
+              child: DSDescriptionList.responsive(
+                style: DSDescriptionListStyle(
                   backgroundColor: Colors.blue.withValues(alpha: 0.05),
                   borderColor: Colors.blue,
                   borderWidth: 2,
                   borderRadius: 16,
                   padding: const EdgeInsets.all(20),
-                  itemStyle: AppDescriptionListItemStyle(
+                  itemStyle: DSDescriptionListItemStyle(
                     termTextStyle: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.blue,
@@ -512,11 +512,11 @@ void main() {
                   ),
                 ),
                 items: const [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Custom',
                     description: 'Estilo personalizado',
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Style',
                     description: 'Con colores azules',
                   ),
@@ -528,7 +528,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_custom_style.png'),
       );
     });
@@ -540,14 +540,14 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
+              child: DSDescriptionList.responsive(
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Dark Theme',
                     description: 'Lista con tema oscuro',
                     icon: Icons.dark_mode,
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Night Mode',
                     description: 'Modo nocturno activo',
                     icon: Icons.nights_stay,
@@ -560,7 +560,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_dark_theme.png'),
       );
     });
@@ -572,18 +572,18 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
+              child: DSDescriptionList.responsive(
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Normal',
                     description: 'Elemento normal',
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Highlighted',
                     description: 'Elemento resaltado',
                     highlighted: true,
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Another Normal',
                     description: 'Otro elemento normal',
                   ),
@@ -595,7 +595,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_highlighted.png'),
       );
     });
@@ -607,14 +607,14 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                spacing: AppDescriptionListSpacing.large,
+              child: DSDescriptionList.responsive(
+                spacing: DSDescriptionListSpacing.large,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Large Spacing',
                     description: 'Espaciado grande',
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'More Space',
                     description: 'Más espacio entre elementos',
                   ),
@@ -626,7 +626,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_large_spacing.png'),
       );
     });
@@ -638,9 +638,9 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
+              child: DSDescriptionList.responsive(
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Original Term',
                     description: 'Original Description',
                     termWidget: Container(
@@ -674,7 +674,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_custom_widgets.png'),
       );
     });
@@ -686,14 +686,14 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
-                alignment: AppDescriptionListAlignment.center,
+              child: DSDescriptionList.responsive(
+                alignment: DSDescriptionListAlignment.center,
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Centered',
                     description: 'Contenido centrado',
                   ),
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Alignment',
                     description: 'Alineación al centro',
                   ),
@@ -705,7 +705,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_center_alignment.png'),
       );
     });
@@ -717,9 +717,9 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppDescriptionList.responsive(
+              child: DSDescriptionList.responsive(
                 items: [
-                  AppDescriptionListItem(
+                  DSDescriptionListItem(
                     term: 'Usuario Premium',
                     description: 'Juan Pérez González',
                     secondaryDescription: 'Miembro desde 2020',
@@ -754,14 +754,14 @@ void main() {
                     highlighted: true,
                     divider: true,
                   ),
-                  const AppDescriptionListItem(
+                  const DSDescriptionListItem(
                     term: 'Email',
                     description: 'juan.perez@premium.com',
                     icon: Icons.email,
                     iconColor: Colors.green,
                     divider: true,
                   ),
-                  const AppDescriptionListItem(
+                  const DSDescriptionListItem(
                     term: 'Plan',
                     description: 'Premium Plus',
                     secondaryDescription: 'Renovación automática: 15 Feb 2024',
@@ -776,7 +776,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDescriptionList),
+        find.byType(DSDescriptionList),
         matchesGoldenFile('description_list_complete.png'),
       );
     });

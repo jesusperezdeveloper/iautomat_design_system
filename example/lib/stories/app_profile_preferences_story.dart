@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-/// Story para demostrar AppProfilePreferences en diferentes configuraciones
-class AppProfilePreferencesStory extends StatefulWidget {
-  const AppProfilePreferencesStory({super.key});
+/// Story para demostrar DSProfilePreferences en diferentes configuraciones
+class DSProfilePreferencesStory extends StatefulWidget {
+  const DSProfilePreferencesStory({super.key});
 
   @override
-  State<AppProfilePreferencesStory> createState() => _AppProfilePreferencesStoryState();
+  State<DSProfilePreferencesStory> createState() => _DSProfilePreferencesStoryState();
 }
 
-class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
+class _DSProfilePreferencesStoryState extends State<DSProfilePreferencesStory>
     with TickerProviderStateMixin {
   late TabController _tabController;
-  AppProfileState _currentState = AppProfileState.defaultState;
+  DSProfileState _currentState = DSProfileState.defaultState;
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppProfilePreferences Story'),
+        title: const Text('DSProfilePreferences Story'),
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
@@ -62,11 +62,11 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
           _buildExampleSection(
             title: 'Perfil Básico',
             description: 'Configuración mínima de preferencias de perfil',
-            child: AppProfilePreferences(
-              config: AppProfilePreferencesConfigDefaults.basicProfile,
+            child: DSProfilePreferences(
+              config: DSProfilePreferencesConfigDefaults.basicProfile,
               onSave: (data) => _showSnackBar('Guardado: ${data.values}'),
               onCancel: () => _showSnackBar('Cancelado'),
-              initialData: const AppProfileFormData(
+              initialData: const DSProfileFormData(
                 values: {
                   'name': 'Juan Pérez',
                   'email': 'juan@example.com',
@@ -78,24 +78,24 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
           _buildExampleSection(
             title: 'Solo campos',
             description: 'Sin botones de acción',
-            child: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            child: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'display_name',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Nombre para mostrar',
                     placeholder: 'Ingresa tu nombre',
                     icon: Icons.person,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'bio',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Biografía',
                     placeholder: 'Cuéntanos sobre ti',
                     description: 'Máximo 160 caracteres',
                     icon: Icons.description,
-                    validation: AppProfileFieldValidation(maxLength: 160),
+                    validation: DSProfileFieldValidation(maxLength: 160),
                   ),
                 ],
               ),
@@ -116,13 +116,13 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
           _buildExampleSection(
             title: 'Perfil Completo',
             description: 'Todas las opciones de configuración disponibles',
-            child: AppProfilePreferences(
-              config: AppProfilePreferencesConfigDefaults.fullProfile,
+            child: DSProfilePreferences(
+              config: DSProfilePreferencesConfigDefaults.fullProfile,
               onSave: (data) => _showSnackBar('Guardado: ${data.values}'),
               onCancel: () => _showSnackBar('Cancelado'),
               onFormChanged: (data) => debugPrint('Form changed: ${data.values}'),
               onFieldValidated: (validation) => debugPrint('Field validated: ${validation.fieldId} -> ${validation.isValid}'),
-              initialData: const AppProfileFormData(
+              initialData: const DSProfileFormData(
                 values: {
                   'name': 'María García',
                   'email': 'maria@example.com',
@@ -137,69 +137,69 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
           _buildExampleSection(
             title: 'Todos los tipos de campo',
             description: 'Demostración de todos los tipos de campo disponibles',
-            child: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            child: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'personal_header',
-                    type: AppProfileFieldType.header,
+                    type: DSProfileFieldType.header,
                     label: 'Información Personal',
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'full_name',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Nombre completo',
                     required: true,
                     icon: Icons.person,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'email_address',
-                    type: AppProfileFieldType.email,
+                    type: DSProfileFieldType.email,
                     label: 'Correo electrónico',
                     required: true,
                     icon: Icons.email,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'phone_number',
-                    type: AppProfileFieldType.phone,
+                    type: DSProfileFieldType.phone,
                     label: 'Teléfono',
                     icon: Icons.phone,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'divider1',
-                    type: AppProfileFieldType.divider,
+                    type: DSProfileFieldType.divider,
                     label: '',
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'preferences_header',
-                    type: AppProfileFieldType.header,
+                    type: DSProfileFieldType.header,
                     label: 'Preferencias',
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'notifications',
-                    type: AppProfileFieldType.toggle,
+                    type: DSProfileFieldType.toggle,
                     label: 'Recibir notificaciones',
                     description: 'Activa para recibir notificaciones push',
                     icon: Icons.notifications,
                     value: true,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'theme',
-                    type: AppProfileFieldType.select,
+                    type: DSProfileFieldType.select,
                     label: 'Tema',
                     icon: Icons.palette,
                     options: [
-                      AppProfileFieldOption(
+                      DSProfileFieldOption(
                         value: 'light',
                         label: 'Claro',
                         icon: Icons.light_mode,
                       ),
-                      AppProfileFieldOption(
+                      DSProfileFieldOption(
                         value: 'dark',
                         label: 'Oscuro',
                         icon: Icons.dark_mode,
                       ),
-                      AppProfileFieldOption(
+                      DSProfileFieldOption(
                         value: 'system',
                         label: 'Sistema',
                         icon: Icons.settings,
@@ -207,9 +207,9 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
                     ],
                     value: 'system',
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'volume',
-                    type: AppProfileFieldType.slider,
+                    type: DSProfileFieldType.slider,
                     label: 'Volumen de notificaciones',
                     icon: Icons.volume_up,
                     value: 75.0,
@@ -219,23 +219,23 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
                       'divisions': 10,
                     },
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'birthday',
-                    type: AppProfileFieldType.date,
+                    type: DSProfileFieldType.date,
                     label: 'Fecha de nacimiento',
                     icon: Icons.cake,
                     description: 'Solo visible para ti',
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'accent_color',
-                    type: AppProfileFieldType.color,
+                    type: DSProfileFieldType.color,
                     label: 'Color de acento',
                     icon: Icons.color_lens,
                     value: Colors.blue,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'profile_picture',
-                    type: AppProfileFieldType.file,
+                    type: DSProfileFieldType.file,
                     label: 'Foto de perfil',
                     icon: Icons.photo_camera,
                     description: 'JPG, PNG o GIF, máximo 5MB',
@@ -262,12 +262,12 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
           _buildExampleSection(
             title: 'Estado: ${_currentState.displayName}',
             description: 'Demostración del estado actual del componente',
-            child: AppProfilePreferences(
-              config: AppProfilePreferencesConfig(
+            child: DSProfilePreferences(
+              config: DSProfilePreferencesConfig(
                 state: _currentState,
-                fields: AppProfilePreferencesConfigDefaults.fullProfile.fields,
+                fields: DSProfilePreferencesConfigDefaults.fullProfile.fields,
               ),
-              enabled: _currentState != AppProfileState.disabled,
+              enabled: _currentState != DSProfileState.disabled,
               onSave: _currentState.isInteractive
                   ? (data) => _showSnackBar('Guardado en estado ${_currentState.displayName}')
                   : null,
@@ -290,10 +290,10 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
           _buildExampleSection(
             title: 'Personalización de colores',
             description: 'Ejemplo con colores personalizados',
-            child: AppProfilePreferences(
-              config: AppProfilePreferencesConfig(
-                fields: AppProfilePreferencesConfigDefaults.basicProfile.fields,
-                colors: const AppProfileColors(
+            child: DSProfilePreferences(
+              config: DSProfilePreferencesConfig(
+                fields: DSProfilePreferencesConfigDefaults.basicProfile.fields,
+                colors: const DSProfileColors(
                   backgroundColor: Color(0xFFF5F5F5),
                   fieldBackgroundColor: Colors.white,
                   primaryButtonColor: Colors.purple,
@@ -309,15 +309,15 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
           _buildExampleSection(
             title: 'Comportamiento personalizado',
             description: 'Auto-guardado y validación en tiempo real',
-            child: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            child: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'username',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Nombre de usuario',
                     required: true,
-                    validation: AppProfileFieldValidation(
+                    validation: DSProfileFieldValidation(
                       required: true,
                       minLength: 3,
                       maxLength: 20,
@@ -325,17 +325,17 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
                       errorMessage: 'Solo letras, números y guiones bajos',
                     ),
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'email',
-                    type: AppProfileFieldType.email,
+                    type: DSProfileFieldType.email,
                     label: 'Email',
                     required: true,
-                    validation: AppProfileFieldValidation(
+                    validation: DSProfileFieldValidation(
                       required: true,
                     ),
                   ),
                 ],
-                behavior: AppProfileBehavior(
+                behavior: DSProfileBehavior(
                   autoSave: true,
                   autoSaveDelay: 2000,
                   realtimeValidation: true,
@@ -349,25 +349,25 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
           _buildExampleSection(
             title: 'Accesibilidad mejorada',
             description: 'Configuración optimizada para screen readers',
-            child: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            child: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'name',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Nombre',
                     required: true,
-                    importance: AppProfileFieldImportance.critical,
+                    importance: DSProfileFieldImportance.critical,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'notifications',
-                    type: AppProfileFieldType.toggle,
+                    type: DSProfileFieldType.toggle,
                     label: 'Notificaciones importantes',
                     description: 'Recibir alertas de seguridad y actualizaciones críticas',
-                    importance: AppProfileFieldImportance.high,
+                    importance: DSProfileFieldImportance.high,
                   ),
                 ],
-                a11yConfig: AppProfileA11yConfig(
+                a11yConfig: DSProfileA11yConfig(
                   enabled: true,
                   announceErrors: true,
                   announceSuccess: true,
@@ -438,7 +438,7 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: AppProfileState.values.map((state) {
+              children: DSProfileState.values.map((state) {
                 final isSelected = state == _currentState;
                 return FilterChip(
                   label: Text(state.displayName),
@@ -471,15 +471,15 @@ class _AppProfilePreferencesStoryState extends State<AppProfilePreferencesStory>
 
 // Callbacks de ejemplo para los stories
 
-void _onFormSubmitted(AppProfileFormData data) {
+void _onFormSubmitted(DSProfileFormData data) {
   debugPrint('Form submitted: ${data.values}');
 }
 
-void _onFormChanged(AppProfileFormData data) {
+void _onFormChanged(DSProfileFormData data) {
   debugPrint('Form changed: ${data.values}');
 }
 
-void _onFieldValidated(AppProfileFieldValidationResult validation) {
+void _onFieldValidated(DSProfileFieldValidationResult validation) {
   debugPrint('Field validated: ${validation.fieldId} -> ${validation.isValid}');
 }
 
@@ -492,15 +492,15 @@ void _onCancelled() {
 }
 
 /// Widget de demostración independiente para usar en otras historias
-class AppProfilePreferencesDemo extends StatelessWidget {
-  final AppProfileVariant variant;
-  final AppProfileState state;
-  final List<AppProfileField>? customFields;
+class DSProfilePreferencesDemo extends StatelessWidget {
+  final DSProfileVariant variant;
+  final DSProfileState state;
+  final List<DSProfileField>? customFields;
 
-  const AppProfilePreferencesDemo({
+  const DSProfilePreferencesDemo({
     super.key,
-    this.variant = AppProfileVariant.sections,
-    this.state = AppProfileState.defaultState,
+    this.variant = DSProfileVariant.sections,
+    this.state = DSProfileState.defaultState,
     this.customFields,
   });
 
@@ -508,8 +508,8 @@ class AppProfilePreferencesDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     final fields = customFields ?? _getDefaultFields();
 
-    return AppProfilePreferences(
-      config: AppProfilePreferencesConfig(
+    return DSProfilePreferences(
+      config: DSProfilePreferencesConfig(
         variant: variant,
         state: state,
         fields: fields,
@@ -522,66 +522,66 @@ class AppProfilePreferencesDemo extends StatelessWidget {
     );
   }
 
-  List<AppProfileField> _getDefaultFields() {
+  List<DSProfileField> _getDefaultFields() {
     return const [
-      AppProfileField(
+      DSProfileField(
         id: 'personal_info',
-        type: AppProfileFieldType.header,
+        type: DSProfileFieldType.header,
         label: 'Información Personal',
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'name',
-        type: AppProfileFieldType.text,
+        type: DSProfileFieldType.text,
         label: 'Nombre completo',
         required: true,
         icon: Icons.person,
         placeholder: 'Ingresa tu nombre',
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'email',
-        type: AppProfileFieldType.email,
+        type: DSProfileFieldType.email,
         label: 'Correo electrónico',
         required: true,
         icon: Icons.email,
         placeholder: 'ejemplo@correo.com',
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'phone',
-        type: AppProfileFieldType.phone,
+        type: DSProfileFieldType.phone,
         label: 'Teléfono',
         icon: Icons.phone,
         placeholder: '+34 600 000 000',
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'preferences',
-        type: AppProfileFieldType.header,
+        type: DSProfileFieldType.header,
         label: 'Preferencias',
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'notifications',
-        type: AppProfileFieldType.toggle,
+        type: DSProfileFieldType.toggle,
         label: 'Recibir notificaciones',
         description: 'Mantente informado de las actualizaciones',
         icon: Icons.notifications,
         value: true,
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'theme',
-        type: AppProfileFieldType.select,
+        type: DSProfileFieldType.select,
         label: 'Tema de la aplicación',
         icon: Icons.palette,
         options: [
-          AppProfileFieldOption(
+          DSProfileFieldOption(
             value: 'light',
             label: 'Claro',
             icon: Icons.light_mode,
           ),
-          AppProfileFieldOption(
+          DSProfileFieldOption(
             value: 'dark',
             label: 'Oscuro',
             icon: Icons.dark_mode,
           ),
-          AppProfileFieldOption(
+          DSProfileFieldOption(
             value: 'system',
             label: 'Automático',
             icon: Icons.brightness_auto,

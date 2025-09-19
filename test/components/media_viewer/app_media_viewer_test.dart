@@ -6,16 +6,16 @@ import 'package:iautomat_design_system/src/components/media_viewer/app_media_vie
 import 'package:iautomat_design_system/src/components/media_viewer/app_media_viewer_config.dart';
 
 void main() {
-  group('AppMediaViewer Widget Tests', () {
+  group('DSMediaViewer Widget Tests', () {
     final testImageItems = [
-      const AppMediaItem(
-        type: AppMediaType.image,
+      const DSMediaItem(
+        type: DSMediaType.image,
         src: 'assets/test_image1.jpg',
         caption: 'Test image 1',
         alt: 'First test image',
       ),
-      const AppMediaItem(
-        type: AppMediaType.image,
+      const DSMediaItem(
+        type: DSMediaType.image,
         src: 'assets/test_image2.jpg',
         caption: 'Test image 2',
         alt: 'Second test image',
@@ -23,8 +23,8 @@ void main() {
     ];
 
     final testVideoItems = [
-      const AppMediaItem(
-        type: AppMediaType.video,
+      const DSMediaItem(
+        type: DSMediaType.video,
         src: 'assets/test_video.mp4',
         thumbnail: 'assets/test_thumbnail.jpg',
         caption: 'Test video',
@@ -33,8 +33,8 @@ void main() {
     ];
 
     final testAudioItems = [
-      const AppMediaItem(
-        type: AppMediaType.audio,
+      const DSMediaItem(
+        type: DSMediaType.audio,
         src: 'assets/test_audio.mp3',
         caption: 'Test audio',
         duration: 180.0,
@@ -45,7 +45,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testImageItems,
               initialIndex: 0,
             ),
@@ -53,7 +53,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppMediaViewer), findsOneWidget);
+      expect(find.byType(DSMediaViewer), findsOneWidget);
       expect(find.byType(PageView), findsOneWidget);
     });
 
@@ -61,18 +61,18 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testVideoItems,
               initialIndex: 0,
-              config: const AppMediaViewerConfig(
-                variant: AppMediaViewerVariant.video,
+              config: const DSMediaViewerConfig(
+                variant: DSMediaViewerVariant.video,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppMediaViewer), findsOneWidget);
+      expect(find.byType(DSMediaViewer), findsOneWidget);
       expect(find.byType(PageView), findsOneWidget);
     });
 
@@ -80,18 +80,18 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testAudioItems,
               initialIndex: 0,
-              config: const AppMediaViewerConfig(
-                variant: AppMediaViewerVariant.audio,
+              config: const DSMediaViewerConfig(
+                variant: DSMediaViewerVariant.audio,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppMediaViewer), findsOneWidget);
+      expect(find.byType(DSMediaViewer), findsOneWidget);
       expect(find.byType(PageView), findsOneWidget);
     });
 
@@ -99,9 +99,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testVideoItems,
-              config: const AppMediaViewerConfig(
+              config: const DSMediaViewerConfig(
                 showControls: true,
               ),
             ),
@@ -119,9 +119,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testImageItems,
-              config: const AppMediaViewerConfig(
+              config: const DSMediaViewerConfig(
                 showControls: false,
               ),
             ),
@@ -131,7 +131,7 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppMediaViewer), findsOneWidget);
+      expect(find.byType(DSMediaViewer), findsOneWidget);
     });
 
     testWidgets('responds to tap gestures', (tester) async {
@@ -140,7 +140,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testImageItems,
               onItemTap: (_) => tapped = true,
             ),
@@ -151,7 +151,7 @@ void main() {
       await tester.pump();
 
       final gestureDetector = find.descendant(
-        of: find.byType(AppMediaViewer),
+        of: find.byType(DSMediaViewer),
         matching: find.byType(GestureDetector),
       );
 
@@ -165,7 +165,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testImageItems,
               onPageChanged: (index) {
                 // Callback para cambios de página
@@ -187,17 +187,17 @@ void main() {
         // The important thing is that the widget renders without errors
       }
 
-      expect(find.byType(AppMediaViewer), findsOneWidget);
+      expect(find.byType(DSMediaViewer), findsOneWidget);
     });
 
     testWidgets('handles keyboard navigation', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testImageItems,
-              config: const AppMediaViewerConfig(
-                a11yConfig: AppMediaViewerA11yConfig(
+              config: const DSMediaViewerConfig(
+                a11yConfig: DSMediaViewerA11yConfig(
                   enableKeyboardNavigation: true,
                 ),
               ),
@@ -218,7 +218,7 @@ void main() {
         await tester.sendKeyEvent(LogicalKeyboardKey.arrowRight);
         await tester.pump();
 
-        expect(find.byType(AppMediaViewer), findsOneWidget);
+        expect(find.byType(DSMediaViewer), findsOneWidget);
       }
     });
 
@@ -229,10 +229,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testImageItems,
-              config: const AppMediaViewerConfig(
-                colors: AppMediaViewerColors(
+              config: const DSMediaViewerConfig(
+                colors: DSMediaViewerColors(
                   backgroundColor: customBackgroundColor,
                   controlsBackgroundColor: customControlsColor,
                 ),
@@ -245,17 +245,17 @@ void main() {
       await tester.pump();
 
       // Verify the widget renders with custom configuration
-      expect(find.byType(AppMediaViewer), findsOneWidget);
+      expect(find.byType(DSMediaViewer), findsOneWidget);
     });
 
     testWidgets('handles different states correctly', (tester) async {
-      for (final state in AppMediaViewerState.values) {
+      for (final state in DSMediaViewerState.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppMediaViewer(
+              body: DSMediaViewer(
                 items: testImageItems,
-                config: AppMediaViewerConfig(
+                config: DSMediaViewerConfig(
                   state: state,
                 ),
               ),
@@ -266,24 +266,24 @@ void main() {
         await tester.pump();
 
         // Verify that the widget renders for each state
-        expect(find.byType(AppMediaViewer), findsOneWidget);
+        expect(find.byType(DSMediaViewer), findsOneWidget);
       }
     });
 
     testWidgets('handles different variants correctly', (tester) async {
       final variantItems = {
-        AppMediaViewerVariant.image: testImageItems,
-        AppMediaViewerVariant.video: testVideoItems,
-        AppMediaViewerVariant.audio: testAudioItems,
+        DSMediaViewerVariant.image: testImageItems,
+        DSMediaViewerVariant.video: testVideoItems,
+        DSMediaViewerVariant.audio: testAudioItems,
       };
 
       for (final entry in variantItems.entries) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppMediaViewer(
+              body: DSMediaViewer(
                 items: entry.value,
-                config: AppMediaViewerConfig(
+                config: DSMediaViewerConfig(
                   variant: entry.key,
                 ),
               ),
@@ -293,7 +293,7 @@ void main() {
 
         await tester.pump();
 
-        expect(find.byType(AppMediaViewer), findsOneWidget);
+        expect(find.byType(DSMediaViewer), findsOneWidget);
       }
     });
 
@@ -301,7 +301,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testImageItems,
               showCaptions: true,
             ),
@@ -319,7 +319,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testImageItems,
               showCaptions: false,
             ),
@@ -335,14 +335,14 @@ void main() {
 
     testWidgets('handles empty items list assertion', (tester) async {
       expect(
-        () => AppMediaViewer(items: const []),
+        () => DSMediaViewer(items: const []),
         throwsAssertionError,
       );
     });
 
     testWidgets('handles negative initial index assertion', (tester) async {
       expect(
-        () => AppMediaViewer(
+        () => DSMediaViewer(
           items: testImageItems,
           initialIndex: -1,
         ),
@@ -354,10 +354,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testImageItems,
-              config: const AppMediaViewerConfig(
-                a11yConfig: AppMediaViewerA11yConfig(
+              config: const DSMediaViewerConfig(
+                a11yConfig: DSMediaViewerA11yConfig(
                   semanticsLabel: 'Test media viewer',
                   semanticsDescription: 'Viewing test images',
                 ),
@@ -376,7 +376,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testVideoItems,
               onFullscreenToggle: () {
                 // Callback para toggle fullscreen
@@ -389,14 +389,14 @@ void main() {
       await tester.pump();
 
       // The callback should be set up correctly
-      expect(find.byType(AppMediaViewer), findsOneWidget);
+      expect(find.byType(DSMediaViewer), findsOneWidget);
     });
 
     testWidgets('handles play pause events', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testVideoItems,
               onPlayPause: (_) {
                 // Callback para play/pause
@@ -408,17 +408,17 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppMediaViewer), findsOneWidget);
+      expect(find.byType(DSMediaViewer), findsOneWidget);
     });
 
     testWidgets('maintains state when configured', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMediaViewer(
+            body: DSMediaViewer(
               items: testImageItems,
-              config: const AppMediaViewerConfig(
-                behavior: AppMediaViewerBehavior(
+              config: const DSMediaViewerConfig(
+                behavior: DSMediaViewerBehavior(
                   maintainState: true,
                 ),
               ),
@@ -429,16 +429,16 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppMediaViewer), findsOneWidget);
+      expect(find.byType(DSMediaViewer), findsOneWidget);
     });
   });
 
-  group('AppMediaViewerConfig Tests', () {
+  group('DSMediaViewerConfig Tests', () {
     test('creates with default values', () {
-      const config = AppMediaViewerConfig();
+      const config = DSMediaViewerConfig();
 
-      expect(config.variant, equals(AppMediaViewerVariant.image));
-      expect(config.state, equals(AppMediaViewerState.defaultState));
+      expect(config.variant, equals(DSMediaViewerVariant.image));
+      expect(config.state, equals(DSMediaViewerState.defaultState));
       expect(config.items, isEmpty);
       expect(config.initialIndex, equals(0));
       expect(config.showCaptions, isTrue);
@@ -447,17 +447,17 @@ void main() {
     });
 
     test('creates with custom values', () {
-      const config = AppMediaViewerConfig(
-        variant: AppMediaViewerVariant.video,
-        state: AppMediaViewerState.loading,
+      const config = DSMediaViewerConfig(
+        variant: DSMediaViewerVariant.video,
+        state: DSMediaViewerState.loading,
         initialIndex: 2,
         showCaptions: false,
         autoPlay: true,
         loop: true,
       );
 
-      expect(config.variant, equals(AppMediaViewerVariant.video));
-      expect(config.state, equals(AppMediaViewerState.loading));
+      expect(config.variant, equals(DSMediaViewerVariant.video));
+      expect(config.state, equals(DSMediaViewerState.loading));
       expect(config.initialIndex, equals(2));
       expect(config.showCaptions, isFalse);
       expect(config.autoPlay, isTrue);
@@ -465,16 +465,16 @@ void main() {
     });
   });
 
-  group('AppMediaItem Tests', () {
+  group('DSMediaItem Tests', () {
     test('creates valid image item', () {
-      const item = AppMediaItem(
-        type: AppMediaType.image,
+      const item = DSMediaItem(
+        type: DSMediaType.image,
         src: 'test.jpg',
         caption: 'Test image',
         alt: 'Alt text',
       );
 
-      expect(item.type, equals(AppMediaType.image));
+      expect(item.type, equals(DSMediaType.image));
       expect(item.src, equals('test.jpg'));
       expect(item.caption, equals('Test image'));
       expect(item.alt, equals('Alt text'));
@@ -485,14 +485,14 @@ void main() {
     });
 
     test('creates valid video item', () {
-      const item = AppMediaItem(
-        type: AppMediaType.video,
+      const item = DSMediaItem(
+        type: DSMediaType.video,
         src: 'test.mp4',
         duration: 120.0,
         thumbnail: 'thumb.jpg',
       );
 
-      expect(item.type, equals(AppMediaType.video));
+      expect(item.type, equals(DSMediaType.video));
       expect(item.src, equals('test.mp4'));
       expect(item.duration, equals(120.0));
       expect(item.thumbnail, equals('thumb.jpg'));
@@ -503,13 +503,13 @@ void main() {
     });
 
     test('creates valid audio item', () {
-      const item = AppMediaItem(
-        type: AppMediaType.audio,
+      const item = DSMediaItem(
+        type: DSMediaType.audio,
         src: 'test.mp3',
         duration: 75.0,
       );
 
-      expect(item.type, equals(AppMediaType.audio));
+      expect(item.type, equals(DSMediaType.audio));
       expect(item.src, equals('test.mp3'));
       expect(item.duration, equals(75.0));
       expect(item.isAudio, isTrue);
@@ -519,8 +519,8 @@ void main() {
     });
 
     test('calculates aspect ratio correctly', () {
-      const item = AppMediaItem(
-        type: AppMediaType.image,
+      const item = DSMediaItem(
+        type: DSMediaType.image,
         src: 'test.jpg',
         dimensions: Size(1920, 1080),
       );
@@ -529,8 +529,8 @@ void main() {
     });
 
     test('extracts file extension correctly', () {
-      const item = AppMediaItem(
-        type: AppMediaType.image,
+      const item = DSMediaItem(
+        type: DSMediaType.image,
         src: 'https://example.com/path/image.jpg',
       );
 
@@ -538,13 +538,13 @@ void main() {
     });
 
     test('validates correctly', () {
-      const validItem = AppMediaItem(
-        type: AppMediaType.image,
+      const validItem = DSMediaItem(
+        type: DSMediaType.image,
         src: 'test.jpg',
       );
 
-      const invalidItem = AppMediaItem(
-        type: AppMediaType.image,
+      const invalidItem = DSMediaItem(
+        type: DSMediaType.image,
         src: '',
       );
 
@@ -553,115 +553,115 @@ void main() {
     });
   });
 
-  group('AppMediaViewerState Extension Tests', () {
+  group('DSMediaViewerState Extension Tests', () {
     test('correctly identifies interactive states', () {
-      expect(AppMediaViewerState.defaultState.isInteractive, isTrue);
-      expect(AppMediaViewerState.hover.isInteractive, isTrue);
-      expect(AppMediaViewerState.pressed.isInteractive, isTrue);
-      expect(AppMediaViewerState.focus.isInteractive, isTrue);
-      expect(AppMediaViewerState.selected.isInteractive, isTrue);
+      expect(DSMediaViewerState.defaultState.isInteractive, isTrue);
+      expect(DSMediaViewerState.hover.isInteractive, isTrue);
+      expect(DSMediaViewerState.pressed.isInteractive, isTrue);
+      expect(DSMediaViewerState.focus.isInteractive, isTrue);
+      expect(DSMediaViewerState.selected.isInteractive, isTrue);
 
-      expect(AppMediaViewerState.disabled.isInteractive, isFalse);
-      expect(AppMediaViewerState.loading.isInteractive, isFalse);
-      expect(AppMediaViewerState.skeleton.isInteractive, isFalse);
+      expect(DSMediaViewerState.disabled.isInteractive, isFalse);
+      expect(DSMediaViewerState.loading.isInteractive, isFalse);
+      expect(DSMediaViewerState.skeleton.isInteractive, isFalse);
     });
 
     test('returns correct opacity values', () {
-      expect(AppMediaViewerState.defaultState.opacity, equals(1.0));
-      expect(AppMediaViewerState.disabled.opacity, equals(0.6));
-      expect(AppMediaViewerState.loading.opacity, equals(0.8));
-      expect(AppMediaViewerState.skeleton.opacity, equals(0.3));
+      expect(DSMediaViewerState.defaultState.opacity, equals(1.0));
+      expect(DSMediaViewerState.disabled.opacity, equals(0.6));
+      expect(DSMediaViewerState.loading.opacity, equals(0.8));
+      expect(DSMediaViewerState.skeleton.opacity, equals(0.3));
     });
 
     test('correctly identifies loader states', () {
-      expect(AppMediaViewerState.loading.showsLoader, isTrue);
-      expect(AppMediaViewerState.skeleton.showsSkeleton, isTrue);
+      expect(DSMediaViewerState.loading.showsLoader, isTrue);
+      expect(DSMediaViewerState.skeleton.showsSkeleton, isTrue);
 
-      expect(AppMediaViewerState.defaultState.showsLoader, isFalse);
-      expect(AppMediaViewerState.defaultState.showsSkeleton, isFalse);
+      expect(DSMediaViewerState.defaultState.showsLoader, isFalse);
+      expect(DSMediaViewerState.defaultState.showsSkeleton, isFalse);
     });
 
     test('correctly identifies interactive capability', () {
-      expect(AppMediaViewerState.defaultState.canInteract, isTrue);
-      expect(AppMediaViewerState.disabled.canInteract, isFalse);
-      expect(AppMediaViewerState.loading.canInteract, isFalse);
+      expect(DSMediaViewerState.defaultState.canInteract, isTrue);
+      expect(DSMediaViewerState.disabled.canInteract, isFalse);
+      expect(DSMediaViewerState.loading.canInteract, isFalse);
     });
 
     test('returns correct elevation multipliers', () {
-      expect(AppMediaViewerState.defaultState.elevationMultiplier, equals(1.0));
-      expect(AppMediaViewerState.hover.elevationMultiplier, equals(1.5));
-      expect(AppMediaViewerState.pressed.elevationMultiplier, equals(0.5));
-      expect(AppMediaViewerState.disabled.elevationMultiplier, equals(0.0));
+      expect(DSMediaViewerState.defaultState.elevationMultiplier, equals(1.0));
+      expect(DSMediaViewerState.hover.elevationMultiplier, equals(1.5));
+      expect(DSMediaViewerState.pressed.elevationMultiplier, equals(0.5));
+      expect(DSMediaViewerState.disabled.elevationMultiplier, equals(0.0));
     });
   });
 
-  group('AppMediaType Extension Tests', () {
+  group('DSMediaType Extension Tests', () {
     test('correctly identifies media types', () {
-      expect(AppMediaType.image.isImage, isTrue);
-      expect(AppMediaType.image.isVideo, isFalse);
-      expect(AppMediaType.image.isAudio, isFalse);
+      expect(DSMediaType.image.isImage, isTrue);
+      expect(DSMediaType.image.isVideo, isFalse);
+      expect(DSMediaType.image.isAudio, isFalse);
 
-      expect(AppMediaType.video.isVideo, isTrue);
-      expect(AppMediaType.video.hasAudio, isTrue);
-      expect(AppMediaType.video.isPlayable, isTrue);
+      expect(DSMediaType.video.isVideo, isTrue);
+      expect(DSMediaType.video.hasAudio, isTrue);
+      expect(DSMediaType.video.isPlayable, isTrue);
 
-      expect(AppMediaType.audio.isAudio, isTrue);
-      expect(AppMediaType.audio.hasAudio, isTrue);
-      expect(AppMediaType.audio.isPlayable, isTrue);
+      expect(DSMediaType.audio.isAudio, isTrue);
+      expect(DSMediaType.audio.hasAudio, isTrue);
+      expect(DSMediaType.audio.isPlayable, isTrue);
     });
 
     test('returns correct display names', () {
-      expect(AppMediaType.image.displayName, equals('Imagen'));
-      expect(AppMediaType.video.displayName, equals('Video'));
-      expect(AppMediaType.audio.displayName, equals('Audio'));
+      expect(DSMediaType.image.displayName, equals('Imagen'));
+      expect(DSMediaType.video.displayName, equals('Video'));
+      expect(DSMediaType.audio.displayName, equals('Audio'));
     });
   });
 
-  group('AppMediaViewerVariant Extension Tests', () {
+  group('DSMediaViewerVariant Extension Tests', () {
     test('correctly identifies variant capabilities', () {
-      expect(AppMediaViewerVariant.image.supportsZoom, isTrue);
-      expect(AppMediaViewerVariant.image.supportsPlayback, isFalse);
+      expect(DSMediaViewerVariant.image.supportsZoom, isTrue);
+      expect(DSMediaViewerVariant.image.supportsPlayback, isFalse);
 
-      expect(AppMediaViewerVariant.video.supportsPlayback, isTrue);
-      expect(AppMediaViewerVariant.video.supportsZoom, isFalse);
+      expect(DSMediaViewerVariant.video.supportsPlayback, isTrue);
+      expect(DSMediaViewerVariant.video.supportsZoom, isFalse);
 
-      expect(AppMediaViewerVariant.audio.supportsPlayback, isTrue);
-      expect(AppMediaViewerVariant.audio.supportsZoom, isFalse);
+      expect(DSMediaViewerVariant.audio.supportsPlayback, isTrue);
+      expect(DSMediaViewerVariant.audio.supportsZoom, isFalse);
     });
 
     test('returns correct primary media types', () {
-      expect(AppMediaViewerVariant.image.primaryMediaType, equals(AppMediaType.image));
-      expect(AppMediaViewerVariant.video.primaryMediaType, equals(AppMediaType.video));
-      expect(AppMediaViewerVariant.audio.primaryMediaType, equals(AppMediaType.audio));
+      expect(DSMediaViewerVariant.image.primaryMediaType, equals(DSMediaType.image));
+      expect(DSMediaViewerVariant.video.primaryMediaType, equals(DSMediaType.video));
+      expect(DSMediaViewerVariant.audio.primaryMediaType, equals(DSMediaType.audio));
     });
   });
 
   group('Animation Type Extension Tests', () {
     test('correctly identifies animation capability', () {
-      expect(AppMediaViewerAnimationType.none.hasAnimation, isFalse);
-      expect(AppMediaViewerAnimationType.slide.hasAnimation, isTrue);
-      expect(AppMediaViewerAnimationType.fade.hasAnimation, isTrue);
-      expect(AppMediaViewerAnimationType.scale.hasAnimation, isTrue);
+      expect(DSMediaViewerAnimationType.none.hasAnimation, isFalse);
+      expect(DSMediaViewerAnimationType.slide.hasAnimation, isTrue);
+      expect(DSMediaViewerAnimationType.fade.hasAnimation, isTrue);
+      expect(DSMediaViewerAnimationType.scale.hasAnimation, isTrue);
     });
 
     test('returns appropriate default curves', () {
-      expect(AppMediaViewerAnimationType.none.defaultCurve, equals(Curves.linear));
-      expect(AppMediaViewerAnimationType.slide.defaultCurve, equals(Curves.easeOutCubic));
-      expect(AppMediaViewerAnimationType.fade.defaultCurve, equals(Curves.easeInOut));
-      expect(AppMediaViewerAnimationType.scale.defaultCurve, equals(Curves.elasticOut));
+      expect(DSMediaViewerAnimationType.none.defaultCurve, equals(Curves.linear));
+      expect(DSMediaViewerAnimationType.slide.defaultCurve, equals(Curves.easeOutCubic));
+      expect(DSMediaViewerAnimationType.fade.defaultCurve, equals(Curves.easeInOut));
+      expect(DSMediaViewerAnimationType.scale.defaultCurve, equals(Curves.elasticOut));
     });
   });
 
   group('Clip Behavior Extension Tests', () {
     test('maps to correct Flutter clip values', () {
-      expect(AppMediaViewerClipBehavior.none.flutterClip, equals(Clip.none));
-      expect(AppMediaViewerClipBehavior.antiAlias.flutterClip, equals(Clip.antiAlias));
-      expect(AppMediaViewerClipBehavior.hardEdge.flutterClip, equals(Clip.hardEdge));
+      expect(DSMediaViewerClipBehavior.none.flutterClip, equals(Clip.none));
+      expect(DSMediaViewerClipBehavior.antiAlias.flutterClip, equals(Clip.antiAlias));
+      expect(DSMediaViewerClipBehavior.hardEdge.flutterClip, equals(Clip.hardEdge));
     });
 
     test('returns correct display names', () {
-      expect(AppMediaViewerClipBehavior.none.displayName, equals('None'));
-      expect(AppMediaViewerClipBehavior.antiAlias.displayName, equals('Anti Alias'));
+      expect(DSMediaViewerClipBehavior.none.displayName, equals('None'));
+      expect(DSMediaViewerClipBehavior.antiAlias.displayName, equals('Anti Alias'));
     });
   });
 }

@@ -4,22 +4,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppSplitView', () {
+  group('DSSplitView', () {
     const startWidget = Text('Start Panel');
     const endWidget = Text('End Panel');
 
     Widget createSplitViewApp({
-      AppSplitViewConfig? config,
+      DSSplitViewConfig? config,
       Widget? start,
       Widget? end,
-      AppSplitViewMinSizes? minSizes,
+      DSSplitViewMinSizes? minSizes,
       double? initialRatio,
       ValueChanged<double>? onRatioChanged,
     }) {
       return MaterialApp(
         home: Scaffold(
-          body: AppSplitView(
-            config: config ?? const AppSplitViewConfig(),
+          body: DSSplitView(
+            config: config ?? const DSSplitViewConfig(),
             start: start ?? startWidget,
             end: end ?? endWidget,
             minSizes: minSizes,
@@ -40,8 +40,8 @@ void main() {
 
     testWidgets('shows loading state correctly', (tester) async {
       await tester.pumpWidget(createSplitViewApp(
-        config: const AppSplitViewConfig(
-          state: AppSplitViewState.loading,
+        config: const DSSplitViewConfig(
+          state: DSSplitViewState.loading,
         ),
       ));
       await tester.pump();
@@ -52,8 +52,8 @@ void main() {
 
     testWidgets('shows skeleton state correctly', (tester) async {
       await tester.pumpWidget(createSplitViewApp(
-        config: const AppSplitViewConfig(
-          state: AppSplitViewState.skeleton,
+        config: const DSSplitViewConfig(
+          state: DSSplitViewState.skeleton,
         ),
       ));
       await tester.pumpAndSettle();
@@ -73,8 +73,8 @@ void main() {
 
     testWidgets('handles ratio changes correctly', (tester) async {
       await tester.pumpWidget(createSplitViewApp(
-        config: const AppSplitViewConfig(
-          variant: AppSplitViewVariant.resizable,
+        config: const DSSplitViewConfig(
+          variant: DSSplitViewVariant.resizable,
         ),
       ));
       await tester.pumpAndSettle();
@@ -93,8 +93,8 @@ void main() {
     group('Resizable variant', () {
       testWidgets('renders resizable divider', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
           ),
         ));
         await tester.pumpAndSettle();
@@ -105,8 +105,8 @@ void main() {
 
       testWidgets('allows drag resizing', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
           ),
         ));
         await tester.pumpAndSettle();
@@ -126,10 +126,10 @@ void main() {
 
       testWidgets('respects minimum sizes', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
           ),
-          minSizes: const AppSplitViewMinSizes(
+          minSizes: const DSSplitViewMinSizes(
             startMin: 150.0,
             endMin: 150.0,
           ),
@@ -142,9 +142,9 @@ void main() {
 
       testWidgets('does not allow resizing when disabled', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
-            state: AppSplitViewState.disabled,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
+            state: DSSplitViewState.disabled,
           ),
         ));
         await tester.pumpAndSettle();
@@ -167,8 +167,8 @@ void main() {
     group('TwoPane variant', () {
       testWidgets('renders two pane layout', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.twoPane,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.twoPane,
           ),
         ));
         await tester.pumpAndSettle();
@@ -180,8 +180,8 @@ void main() {
 
       testWidgets('does not show resizable divider', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.twoPane,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.twoPane,
           ),
         ));
         await tester.pumpAndSettle();
@@ -195,8 +195,8 @@ void main() {
     group('Direction support', () {
       testWidgets('renders horizontal layout by default', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            direction: AppSplitViewDirection.horizontal,
+          config: const DSSplitViewConfig(
+            direction: DSSplitViewDirection.horizontal,
           ),
         ));
         await tester.pumpAndSettle();
@@ -208,8 +208,8 @@ void main() {
 
       testWidgets('renders vertical layout when specified', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            direction: AppSplitViewDirection.vertical,
+          config: const DSSplitViewConfig(
+            direction: DSSplitViewDirection.vertical,
           ),
         ));
         await tester.pumpAndSettle();
@@ -224,8 +224,8 @@ void main() {
       testWidgets('responds to arrow key navigation when focused',
           (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
             enableKeyboardSupport: true,
           ),
         ));
@@ -248,8 +248,8 @@ void main() {
 
       testWidgets('ignores keyboard when support is disabled', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
             enableKeyboardSupport: false,
           ),
         ));
@@ -273,7 +273,7 @@ void main() {
       testWidgets('applies RTL directionality when isRtl is true',
           (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(isRtl: true),
+          config: const DSSplitViewConfig(isRtl: true),
         ));
         await tester.pumpAndSettle();
 
@@ -296,7 +296,7 @@ void main() {
       testWidgets('provides semantic labels when a11y is enabled',
           (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(enableA11y: true),
+          config: const DSSplitViewConfig(enableA11y: true),
         ));
         await tester.pumpAndSettle();
 
@@ -305,7 +305,7 @@ void main() {
 
       testWidgets('is focusable for keyboard navigation', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
+          config: const DSSplitViewConfig(
             enableKeyboardSupport: true,
           ),
         ));
@@ -318,8 +318,8 @@ void main() {
     group('Animation support', () {
       testWidgets('animates ratio changes when enabled', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            animation: AppSplitViewAnimation(
+          config: const DSSplitViewConfig(
+            animation: DSSplitViewAnimation(
               enableResizeAnimation: true,
               duration: 100,
             ),
@@ -333,8 +333,8 @@ void main() {
 
       testWidgets('does not animate when disabled', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            animation: AppSplitViewAnimation(
+          config: const DSSplitViewConfig(
+            animation: DSSplitViewAnimation(
               enableResizeAnimation: false,
             ),
           ),
@@ -349,8 +349,8 @@ void main() {
     group('Behavior configuration', () {
       testWidgets('snaps to edges when enabled', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            behavior: AppSplitViewBehavior(
+          config: const DSSplitViewConfig(
+            behavior: DSSplitViewBehavior(
               snapToEdges: true,
               snapThreshold: 0.1,
             ),
@@ -364,8 +364,8 @@ void main() {
 
       testWidgets('maintains state when configured', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            behavior: AppSplitViewBehavior(
+          config: const DSSplitViewConfig(
+            behavior: DSSplitViewBehavior(
               maintainState: true,
             ),
           ),
@@ -380,8 +380,8 @@ void main() {
     group('Custom styling', () {
       testWidgets('applies custom colors', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            colors: AppSplitViewColors(
+          config: const DSSplitViewConfig(
+            colors: DSSplitViewColors(
               backgroundColor: Colors.red,
               startPaneColor: Colors.blue,
               endPaneColor: Colors.green,
@@ -397,8 +397,8 @@ void main() {
 
       testWidgets('applies custom spacing', (tester) async {
         await tester.pumpWidget(createSplitViewApp(
-          config: const AppSplitViewConfig(
-            spacing: AppSplitViewSpacing(
+          config: const DSSplitViewConfig(
+            spacing: DSSplitViewSpacing(
               dividerWidth: 10.0,
               handleWidth: 20.0,
               padding: 8.0,
@@ -414,9 +414,9 @@ void main() {
 
     group('States', () {
       testWidgets('renders all states correctly', (tester) async {
-        for (final state in AppSplitViewState.values) {
+        for (final state in DSSplitViewState.values) {
           await tester.pumpWidget(createSplitViewApp(
-            config: AppSplitViewConfig(state: state),
+            config: DSSplitViewConfig(state: state),
           ));
           await tester.pump();
 

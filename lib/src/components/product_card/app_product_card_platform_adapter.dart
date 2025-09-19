@@ -4,30 +4,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:iautomat_design_system/src/components/product_card/app_product_card_config.dart';
 
-/// Adaptador de plataforma para AppProductCard
+/// Adaptador de plataforma para DSProductCard
 ///
 /// Maneja las diferencias de renderizado entre Android, iOS y Web
 /// para proporcionar una experiencia nativa en cada plataforma
-class AppProductCardPlatformAdapter {
+class DSProductCardPlatformAdapter {
   /// Construye la tarjeta según la plataforma
   Widget buildCard({
     required BuildContext context,
-    required AppProductCardConfig config,
+    required DSProductCardConfig config,
     required String title,
-    required AppProductPrice price,
-    AppProductImage? image,
-    AppDiscountChip? discountChip,
-    required AppProductCardVariant variant,
-    required AppProductCardState state,
-    required AppProductCardLayout layout,
+    required DSProductPrice price,
+    DSProductImage? image,
+    DSDiscountChip? discountChip,
+    required DSProductCardVariant variant,
+    required DSProductCardState state,
+    required DSProductCardLayout layout,
     required bool selected,
     Widget? additionalInfo,
     Widget? badge,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
     required double elevation,
   }) {
-    if (state == AppProductCardState.skeleton) {
+    if (state == DSProductCardState.skeleton) {
       return _buildSkeletonCard(
         context: context,
         layout: layout,
@@ -36,7 +36,7 @@ class AppProductCardPlatformAdapter {
       );
     }
 
-    if (state == AppProductCardState.loading) {
+    if (state == DSProductCardState.loading) {
       return _buildLoadingCard(
         context: context,
         layout: layout,
@@ -105,19 +105,19 @@ class AppProductCardPlatformAdapter {
   /// Construye la tarjeta para Android (Material Design)
   Widget _buildAndroidCard({
     required BuildContext context,
-    required AppProductCardConfig config,
+    required DSProductCardConfig config,
     required String title,
-    required AppProductPrice price,
-    AppProductImage? image,
-    AppDiscountChip? discountChip,
-    required AppProductCardVariant variant,
-    required AppProductCardState state,
-    required AppProductCardLayout layout,
+    required DSProductPrice price,
+    DSProductImage? image,
+    DSDiscountChip? discountChip,
+    required DSProductCardVariant variant,
+    required DSProductCardState state,
+    required DSProductCardLayout layout,
     required bool selected,
     Widget? additionalInfo,
     Widget? badge,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
     required double elevation,
   }) {
     return Card(
@@ -126,12 +126,12 @@ class AppProductCardPlatformAdapter {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(spacing.borderRadius),
         side: BorderSide(
-          color: state == AppProductCardState.focus
+          color: state == DSProductCardState.focus
               ? colors.focusColor ?? Theme.of(context).colorScheme.primary
               : selected
                   ? colors.selectedColor ?? Theme.of(context).colorScheme.primaryContainer
                   : colors.borderColor ?? Colors.transparent,
-          width: state == AppProductCardState.focus || selected ? 2.0 : spacing.borderWidth,
+          width: state == DSProductCardState.focus || selected ? 2.0 : spacing.borderWidth,
         ),
       ),
       clipBehavior: Clip.antiAlias,
@@ -155,19 +155,19 @@ class AppProductCardPlatformAdapter {
   /// Construye la tarjeta para iOS (Cupertino)
   Widget _buildIOSCard({
     required BuildContext context,
-    required AppProductCardConfig config,
+    required DSProductCardConfig config,
     required String title,
-    required AppProductPrice price,
-    AppProductImage? image,
-    AppDiscountChip? discountChip,
-    required AppProductCardVariant variant,
-    required AppProductCardState state,
-    required AppProductCardLayout layout,
+    required DSProductPrice price,
+    DSProductImage? image,
+    DSDiscountChip? discountChip,
+    required DSProductCardVariant variant,
+    required DSProductCardState state,
+    required DSProductCardLayout layout,
     required bool selected,
     Widget? additionalInfo,
     Widget? badge,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
     required double elevation,
   }) {
     return Container(
@@ -175,12 +175,12 @@ class AppProductCardPlatformAdapter {
         color: selected ? colors.selectedColor : colors.backgroundColor,
         borderRadius: BorderRadius.circular(spacing.borderRadius),
         border: Border.all(
-          color: state == AppProductCardState.focus
+          color: state == DSProductCardState.focus
               ? colors.focusColor ?? CupertinoColors.activeBlue
               : selected
                   ? colors.selectedColor ?? CupertinoColors.systemBlue.withValues(alpha: 0.3)
                   : colors.borderColor ?? CupertinoColors.systemGrey5,
-          width: state == AppProductCardState.focus || selected ? 2.0 : spacing.borderWidth,
+          width: state == DSProductCardState.focus || selected ? 2.0 : spacing.borderWidth,
         ),
         boxShadow: [
           BoxShadow(
@@ -212,19 +212,19 @@ class AppProductCardPlatformAdapter {
   /// Construye la tarjeta para Web
   Widget _buildWebCard({
     required BuildContext context,
-    required AppProductCardConfig config,
+    required DSProductCardConfig config,
     required String title,
-    required AppProductPrice price,
-    AppProductImage? image,
-    AppDiscountChip? discountChip,
-    required AppProductCardVariant variant,
-    required AppProductCardState state,
-    required AppProductCardLayout layout,
+    required DSProductPrice price,
+    DSProductImage? image,
+    DSDiscountChip? discountChip,
+    required DSProductCardVariant variant,
+    required DSProductCardState state,
+    required DSProductCardLayout layout,
     required bool selected,
     Widget? additionalInfo,
     Widget? badge,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
     required double elevation,
   }) {
     return Container(
@@ -232,21 +232,21 @@ class AppProductCardPlatformAdapter {
         color: selected ? colors.selectedColor : colors.backgroundColor,
         borderRadius: BorderRadius.circular(spacing.borderRadius),
         border: Border.all(
-          color: state == AppProductCardState.focus
+          color: state == DSProductCardState.focus
               ? colors.focusColor ?? Theme.of(context).colorScheme.primary
-              : state == AppProductCardState.hover
+              : state == DSProductCardState.hover
                   ? colors.borderColor?.withValues(alpha: 0.5) ?? Theme.of(context).colorScheme.outline
                   : selected
                       ? colors.selectedColor ?? Theme.of(context).colorScheme.primaryContainer
                       : colors.borderColor ?? Colors.transparent,
-          width: state == AppProductCardState.focus || selected ? 2.0 : spacing.borderWidth,
+          width: state == DSProductCardState.focus || selected ? 2.0 : spacing.borderWidth,
         ),
         boxShadow: [
           BoxShadow(
             color: colors.shadowColor?.withValues(alpha: 0.15) ??
                    Colors.black.withValues(alpha: 0.15),
-            blurRadius: state == AppProductCardState.hover ? elevation * 1.5 : elevation,
-            offset: Offset(0, state == AppProductCardState.hover ? elevation : elevation / 2),
+            blurRadius: state == DSProductCardState.hover ? elevation * 1.5 : elevation,
+            offset: Offset(0, state == DSProductCardState.hover ? elevation : elevation / 2),
           ),
         ],
       ),
@@ -272,19 +272,19 @@ class AppProductCardPlatformAdapter {
   Widget _buildCardContent({
     required BuildContext context,
     required String title,
-    required AppProductPrice price,
-    AppProductImage? image,
-    AppDiscountChip? discountChip,
-    required AppProductCardVariant variant,
-    required AppProductCardState state,
-    required AppProductCardLayout layout,
+    required DSProductPrice price,
+    DSProductImage? image,
+    DSDiscountChip? discountChip,
+    required DSProductCardVariant variant,
+    required DSProductCardState state,
+    required DSProductCardLayout layout,
     Widget? additionalInfo,
     Widget? badge,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
   }) {
     switch (layout) {
-      case AppProductCardLayout.vertical:
+      case DSProductCardLayout.vertical:
         return _buildVerticalLayout(
           context: context,
           title: title,
@@ -298,7 +298,7 @@ class AppProductCardPlatformAdapter {
           colors: colors,
           spacing: spacing,
         );
-      case AppProductCardLayout.horizontal:
+      case DSProductCardLayout.horizontal:
         return _buildHorizontalLayout(
           context: context,
           title: title,
@@ -312,7 +312,7 @@ class AppProductCardPlatformAdapter {
           colors: colors,
           spacing: spacing,
         );
-      case AppProductCardLayout.overlay:
+      case DSProductCardLayout.overlay:
         return _buildOverlayLayout(
           context: context,
           title: title,
@@ -326,7 +326,7 @@ class AppProductCardPlatformAdapter {
           colors: colors,
           spacing: spacing,
         );
-      case AppProductCardLayout.compact:
+      case DSProductCardLayout.compact:
         return _buildCompactLayout(
           context: context,
           title: title,
@@ -347,15 +347,15 @@ class AppProductCardPlatformAdapter {
   Widget _buildVerticalLayout({
     required BuildContext context,
     required String title,
-    required AppProductPrice price,
-    AppProductImage? image,
-    AppDiscountChip? discountChip,
-    required AppProductCardVariant variant,
-    required AppProductCardState state,
+    required DSProductPrice price,
+    DSProductImage? image,
+    DSDiscountChip? discountChip,
+    required DSProductCardVariant variant,
+    required DSProductCardState state,
     Widget? additionalInfo,
     Widget? badge,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -374,7 +374,7 @@ class AppProductCardPlatformAdapter {
                     left: 8,
                     child: badge,
                   ),
-                if (discountChip != null && variant == AppProductCardVariant.discount)
+                if (discountChip != null && variant == DSProductCardVariant.discount)
                   Positioned(
                     top: discountChip.position.margin.top,
                     right: discountChip.position.margin.right,
@@ -425,15 +425,15 @@ class AppProductCardPlatformAdapter {
   Widget _buildHorizontalLayout({
     required BuildContext context,
     required String title,
-    required AppProductPrice price,
-    AppProductImage? image,
-    AppDiscountChip? discountChip,
-    required AppProductCardVariant variant,
-    required AppProductCardState state,
+    required DSProductPrice price,
+    DSProductImage? image,
+    DSDiscountChip? discountChip,
+    required DSProductCardVariant variant,
+    required DSProductCardState state,
     Widget? additionalInfo,
     Widget? badge,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
   }) {
     return Row(
       children: [
@@ -451,7 +451,7 @@ class AppProductCardPlatformAdapter {
                     left: 4,
                     child: badge,
                   ),
-                if (discountChip != null && variant == AppProductCardVariant.discount)
+                if (discountChip != null && variant == DSProductCardVariant.discount)
                   Positioned(
                     top: discountChip.position.margin.top,
                     right: discountChip.position.margin.right,
@@ -503,15 +503,15 @@ class AppProductCardPlatformAdapter {
   Widget _buildOverlayLayout({
     required BuildContext context,
     required String title,
-    required AppProductPrice price,
-    AppProductImage? image,
-    AppDiscountChip? discountChip,
-    required AppProductCardVariant variant,
-    required AppProductCardState state,
+    required DSProductPrice price,
+    DSProductImage? image,
+    DSDiscountChip? discountChip,
+    required DSProductCardVariant variant,
+    required DSProductCardState state,
     Widget? additionalInfo,
     Widget? badge,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
   }) {
     return Stack(
       fit: StackFit.expand,
@@ -558,7 +558,7 @@ class AppProductCardPlatformAdapter {
                 context: context,
                 price: price,
                 variant: variant,
-                colors: AppProductCardColors(
+                colors: DSProductCardColors(
                   priceColor: Colors.white,
                   originalPriceColor: Colors.white70,
                 ),
@@ -577,7 +577,7 @@ class AppProductCardPlatformAdapter {
             left: 8,
             child: badge,
           ),
-        if (discountChip != null && variant == AppProductCardVariant.discount)
+        if (discountChip != null && variant == DSProductCardVariant.discount)
           Positioned(
             top: discountChip.position.margin.top,
             right: discountChip.position.margin.right,
@@ -593,15 +593,15 @@ class AppProductCardPlatformAdapter {
   Widget _buildCompactLayout({
     required BuildContext context,
     required String title,
-    required AppProductPrice price,
-    AppProductImage? image,
-    AppDiscountChip? discountChip,
-    required AppProductCardVariant variant,
-    required AppProductCardState state,
+    required DSProductPrice price,
+    DSProductImage? image,
+    DSDiscountChip? discountChip,
+    required DSProductCardVariant variant,
+    required DSProductCardState state,
     Widget? additionalInfo,
     Widget? badge,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
   }) {
     return Padding(
       padding: spacing.padding,
@@ -645,7 +645,7 @@ class AppProductCardPlatformAdapter {
             ),
           ),
           // Chip de descuento al final
-          if (discountChip != null && variant == AppProductCardVariant.discount)
+          if (discountChip != null && variant == DSProductCardVariant.discount)
             _buildDiscountChip(discountChip, colors),
         ],
       ),
@@ -655,9 +655,9 @@ class AppProductCardPlatformAdapter {
   /// Construye la sección de precio
   Widget _buildPriceSection({
     required BuildContext context,
-    required AppProductPrice price,
-    required AppProductCardVariant variant,
-    required AppProductCardColors colors,
+    required DSProductPrice price,
+    required DSProductCardVariant variant,
+    required DSProductCardColors colors,
   }) {
     final theme = Theme.of(context);
 
@@ -674,7 +674,7 @@ class AppProductCardPlatformAdapter {
           ),
         ),
         // Precio original (tachado) si hay descuento
-        if (variant == AppProductCardVariant.discount && price.originalPrice != null) ...[
+        if (variant == DSProductCardVariant.discount && price.originalPrice != null) ...[
           const SizedBox(width: 8),
           Text(
             price.formatOriginalPrice() ?? '',
@@ -691,9 +691,9 @@ class AppProductCardPlatformAdapter {
   /// Construye el precio compacto
   Widget _buildCompactPrice({
     required BuildContext context,
-    required AppProductPrice price,
-    required AppProductCardVariant variant,
-    required AppProductCardColors colors,
+    required DSProductPrice price,
+    required DSProductCardVariant variant,
+    required DSProductCardColors colors,
   }) {
     final theme = Theme.of(context);
 
@@ -708,7 +708,7 @@ class AppProductCardPlatformAdapter {
           ),
         ),
         // Porcentaje de descuento
-        if (variant == AppProductCardVariant.discount && price.discountPercentage != null) ...[
+        if (variant == DSProductCardVariant.discount && price.discountPercentage != null) ...[
           const SizedBox(width: 4),
           Text(
             price.formatDiscount(),
@@ -723,7 +723,7 @@ class AppProductCardPlatformAdapter {
   }
 
   /// Construye la imagen del producto
-  Widget _buildImage(AppProductImage image, AppProductCardColors colors) {
+  Widget _buildImage(DSProductImage image, DSProductCardColors colors) {
     return Container(
       color: colors.backgroundColor?.withValues(alpha: 0.5) ?? Colors.grey[100],
       child: image.url.startsWith('http')
@@ -770,7 +770,7 @@ class AppProductCardPlatformAdapter {
   }
 
   /// Construye el chip de descuento
-  Widget _buildDiscountChip(AppDiscountChip chip, AppProductCardColors colors) {
+  Widget _buildDiscountChip(DSDiscountChip chip, DSProductCardColors colors) {
     if (!chip.visible) return const SizedBox.shrink();
 
     return Container(
@@ -806,14 +806,14 @@ class AppProductCardPlatformAdapter {
   /// Construye la tarjeta skeleton
   Widget _buildSkeletonCard({
     required BuildContext context,
-    required AppProductCardLayout layout,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardLayout layout,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
   }) {
     return Card(
       child: Padding(
         padding: spacing.padding,
-        child: layout == AppProductCardLayout.vertical
+        child: layout == DSProductCardLayout.vertical
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -901,9 +901,9 @@ class AppProductCardPlatformAdapter {
   /// Construye la tarjeta de carga
   Widget _buildLoadingCard({
     required BuildContext context,
-    required AppProductCardLayout layout,
-    required AppProductCardColors colors,
-    required AppProductCardSpacing spacing,
+    required DSProductCardLayout layout,
+    required DSProductCardColors colors,
+    required DSProductCardSpacing spacing,
   }) {
     return Card(
       child: Center(

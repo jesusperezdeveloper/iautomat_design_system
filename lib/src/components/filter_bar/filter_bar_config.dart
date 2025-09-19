@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'filter_bar_config.freezed.dart';
 
 /// Filter bar variant types
-enum AppFilterBarVariant {
+enum DSFilterBarVariant {
   /// Chip-based filters shown inline
   chips,
 
@@ -14,7 +14,7 @@ enum AppFilterBarVariant {
 }
 
 /// Filter bar state types
-enum AppFilterBarState {
+enum DSFilterBarState {
   /// Default state
   defaultState,
 
@@ -119,7 +119,7 @@ enum FilterOperator {
 }
 
 /// Size variants for filter bar
-enum AppFilterBarSize {
+enum DSFilterBarSize {
   /// Small size
   small,
 
@@ -131,7 +131,7 @@ enum AppFilterBarSize {
 }
 
 /// Layout options for filter bar
-enum AppFilterBarLayout {
+enum DSFilterBarLayout {
   /// Horizontal layout (default)
   horizontal,
 
@@ -146,7 +146,7 @@ enum AppFilterBarLayout {
 }
 
 /// Chip style variants
-enum AppFilterChipStyle {
+enum DSFilterChipStyle {
   /// Filled chip style
   filled,
 
@@ -160,18 +160,18 @@ enum AppFilterChipStyle {
   tonal,
 }
 
-/// Configuration model for AppFilterBar
+/// Configuration model for DSFilterBar
 @freezed
-class AppFilterBarConfig with _$AppFilterBarConfig {
-  const factory AppFilterBarConfig({
+class DSFilterBarConfig with _$DSFilterBarConfig {
+  const factory DSFilterBarConfig({
     // Animation configuration
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
 
     // Size and layout
-    @Default(AppFilterBarSize.medium) AppFilterBarSize size,
-    @Default(AppFilterBarLayout.horizontal) AppFilterBarLayout layout,
-    @Default(AppFilterChipStyle.outlined) AppFilterChipStyle chipStyle,
+    @Default(DSFilterBarSize.medium) DSFilterBarSize size,
+    @Default(DSFilterBarLayout.horizontal) DSFilterBarLayout layout,
+    @Default(DSFilterChipStyle.outlined) DSFilterChipStyle chipStyle,
 
     // Dimensions
     @Default(32.0) double chipHeight,
@@ -276,11 +276,11 @@ class AppFilterBarConfig with _$AppFilterBarConfig {
     // Custom constraints
     BoxConstraints? constraints,
     EdgeInsets? margin,
-  }) = _AppFilterBarConfig;
+  }) = _DSFilterBarConfig;
 
   /// Default configuration for small size
-  static const AppFilterBarConfig small = AppFilterBarConfig(
-    size: AppFilterBarSize.small,
+  static const DSFilterBarConfig small = DSFilterBarConfig(
+    size: DSFilterBarSize.small,
     chipHeight: 28.0,
     spacing: 6.0,
     fontSize: 12.0,
@@ -289,8 +289,8 @@ class AppFilterBarConfig with _$AppFilterBarConfig {
   );
 
   /// Default configuration for medium size
-  static const AppFilterBarConfig medium = AppFilterBarConfig(
-    size: AppFilterBarSize.medium,
+  static const DSFilterBarConfig medium = DSFilterBarConfig(
+    size: DSFilterBarSize.medium,
     chipHeight: 32.0,
     spacing: 8.0,
     fontSize: 14.0,
@@ -299,8 +299,8 @@ class AppFilterBarConfig with _$AppFilterBarConfig {
   );
 
   /// Default configuration for large size
-  static const AppFilterBarConfig large = AppFilterBarConfig(
-    size: AppFilterBarSize.large,
+  static const DSFilterBarConfig large = DSFilterBarConfig(
+    size: DSFilterBarSize.large,
     chipHeight: 40.0,
     spacing: 12.0,
     fontSize: 16.0,
@@ -311,10 +311,10 @@ class AppFilterBarConfig with _$AppFilterBarConfig {
 
 /// Individual filter configuration
 @freezed
-class AppFilter with _$AppFilter {
-  const AppFilter._();
+class DSFilter with _$DSFilter {
+  const DSFilter._();
 
-  const factory AppFilter({
+  const factory DSFilter({
     /// Unique identifier for the filter
     required String id,
 
@@ -331,7 +331,7 @@ class AppFilter with _$AppFilter {
     dynamic value,
 
     /// Available options for selection filters
-    @Default([]) List<AppFilterOption> options,
+    @Default([]) List<DSFilterOption> options,
 
     /// Icon for the filter
     IconData? icon,
@@ -401,14 +401,14 @@ class AppFilter with _$AppFilter {
 
     switch (type) {
       case FilterType.single:
-        if (value is AppFilterOption) {
-          return (value as AppFilterOption).label;
+        if (value is DSFilterOption) {
+          return (value as DSFilterOption).label;
         }
         return value?.toString() ?? '';
 
       case FilterType.multiple:
-        if (value is List<AppFilterOption>) {
-          return (value as List<AppFilterOption>)
+        if (value is List<DSFilterOption>) {
+          return (value as List<DSFilterOption>)
               .map((o) => o.label)
               .join(', ');
         }
@@ -459,20 +459,20 @@ class AppFilter with _$AppFilter {
   }
 
   /// Clear the filter value
-  AppFilter clear() {
+  DSFilter clear() {
     return copyWith(value: null, isActive: false);
   }
 
   /// Apply a new value to the filter
-  AppFilter apply(dynamic newValue) {
+  DSFilter apply(dynamic newValue) {
     return copyWith(value: newValue, isActive: newValue != null);
   }
 }
 
 /// Filter option for selection filters
 @freezed
-class AppFilterOption with _$AppFilterOption {
-  const factory AppFilterOption({
+class DSFilterOption with _$DSFilterOption {
+  const factory DSFilterOption({
     /// Unique value for the option
     required dynamic value,
 
@@ -492,14 +492,14 @@ class AppFilterOption with _$AppFilterOption {
     Map<String, dynamic>? metadata,
 
     /// Child options for hierarchical filters
-    @Default([]) List<AppFilterOption> children,
+    @Default([]) List<DSFilterOption> children,
   }) = _AppFilterOption;
 }
 
 /// Filter group for organizing related filters
 @freezed
-class AppFilterGroup with _$AppFilterGroup {
-  const factory AppFilterGroup({
+class DSFilterGroup with _$DSFilterGroup {
+  const factory DSFilterGroup({
     /// Group identifier
     required String id,
 
@@ -507,7 +507,7 @@ class AppFilterGroup with _$AppFilterGroup {
     required String label,
 
     /// Filters in this group
-    @Default([]) List<AppFilter> filters,
+    @Default([]) List<DSFilter> filters,
 
     /// Icon for the group
     IconData? icon,
@@ -523,28 +523,28 @@ class AppFilterGroup with _$AppFilterGroup {
 /// Summary builder function type
 typedef SummaryBuilder = Widget Function(
   BuildContext context,
-  List<AppFilter> activeFilters,
+  List<DSFilter> activeFilters,
   int totalCount,
 );
 
 /// Filter changed callback
-typedef OnFiltersChanged = void Function(List<AppFilter> filters);
+typedef OnFiltersChanged = void Function(List<DSFilter> filters);
 
 /// Filter applied callback
-typedef OnFilterApplied = void Function(AppFilter filter, dynamic value);
+typedef OnFilterApplied = void Function(DSFilter filter, dynamic value);
 
 /// Filter cleared callback
-typedef OnFilterCleared = void Function(AppFilter filter);
+typedef OnFilterCleared = void Function(DSFilter filter);
 
-/// Utility functions for AppFilterBar
-class AppFilterBarUtils {
+/// Utility functions for DSFilterBar
+class DSFilterBarUtils {
   /// Get active filters from a list
-  static List<AppFilter> getActiveFilters(List<AppFilter> filters) {
+  static List<DSFilter> getActiveFilters(List<DSFilter> filters) {
     return filters.where((f) => f.isActive && f.hasValue).toList();
   }
 
   /// Get filter count summary
-  static String getFilterSummary(List<AppFilter> filters) {
+  static String getFilterSummary(List<DSFilter> filters) {
     final activeFilters = getActiveFilters(filters);
     if (activeFilters.isEmpty) return 'No filters';
     if (activeFilters.length == 1) return '1 filter';
@@ -552,13 +552,13 @@ class AppFilterBarUtils {
   }
 
   /// Clear all filters
-  static List<AppFilter> clearAllFilters(List<AppFilter> filters) {
+  static List<DSFilter> clearAllFilters(List<DSFilter> filters) {
     return filters.map((f) => f.clear()).toList();
   }
 
   /// Apply filter value
-  static List<AppFilter> applyFilter(
-    List<AppFilter> filters,
+  static List<DSFilter> applyFilter(
+    List<DSFilter> filters,
     String filterId,
     dynamic value,
   ) {
@@ -571,8 +571,8 @@ class AppFilterBarUtils {
   }
 
   /// Group filters by group ID
-  static Map<String?, List<AppFilter>> groupFilters(List<AppFilter> filters) {
-    final Map<String?, List<AppFilter>> grouped = {};
+  static Map<String?, List<DSFilter>> groupFilters(List<DSFilter> filters) {
+    final Map<String?, List<DSFilter>> grouped = {};
 
     for (final filter in filters) {
       if (!grouped.containsKey(filter.group)) {
@@ -585,7 +585,7 @@ class AppFilterBarUtils {
   }
 
   /// Validate all filters
-  static Map<String, String> validateFilters(List<AppFilter> filters) {
+  static Map<String, String> validateFilters(List<DSFilter> filters) {
     final Map<String, String> errors = {};
 
     for (final filter in filters) {
@@ -617,7 +617,7 @@ class AppFilterBarUtils {
   }
 
   /// Generate semantic label for filter
-  static String getFilterSemanticLabel(AppFilter filter) {
+  static String getFilterSemanticLabel(DSFilter filter) {
     final status = filter.isActive ? 'active' : 'inactive';
     final value = filter.hasValue ? ', value: ${filter.displayValue}' : '';
     final required = filter.isRequired ? ', required' : '';
@@ -628,7 +628,7 @@ class AppFilterBarUtils {
 
   /// Generate summary text for active filters
   static String generateSummaryText(
-    List<AppFilter> filters, {
+    List<DSFilter> filters, {
     String separator = ' • ',
     int maxLength = 50,
   }) {

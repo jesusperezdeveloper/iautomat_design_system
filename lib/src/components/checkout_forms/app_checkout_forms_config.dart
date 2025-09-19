@@ -4,27 +4,27 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_checkout_forms_config.freezed.dart';
 
-/// Configuración completa para el componente AppCheckoutForms
+/// Configuración completa para el componente DSCheckoutForms
 ///
 /// Utiliza Freezed para crear modelos inmutables y type-safe
 /// que definen todos los aspectos del comportamiento de los formularios
 @freezed
-class AppCheckoutFormsConfig with _$AppCheckoutFormsConfig {
-  const factory AppCheckoutFormsConfig({
-    @Default(AppCheckoutVariant.address) AppCheckoutVariant variant,
-    @Default(AppCheckoutState.defaultState) AppCheckoutState state,
-    AppCheckoutColors? colors,
-    AppCheckoutSpacing? spacing,
-    AppCheckoutAnimation? animation,
-    AppCheckoutBehavior? behavior,
-    AppCheckoutA11yConfig? a11yConfig,
-    AppCheckoutValidation? validation,
-  }) = _AppCheckoutFormsConfig;
+class DSCheckoutFormsConfig with _$DSCheckoutFormsConfig {
+  const factory DSCheckoutFormsConfig({
+    @Default(DSCheckoutVariant.address) DSCheckoutVariant variant,
+    @Default(DSCheckoutState.defaultState) DSCheckoutState state,
+    DSCheckoutColors? colors,
+    DSCheckoutSpacing? spacing,
+    DSCheckoutAnimation? animation,
+    DSCheckoutBehavior? behavior,
+    DSCheckoutA11yConfig? a11yConfig,
+    DSCheckoutValidation? validation,
+  }) = _DSCheckoutFormsConfig;
 
 }
 
 /// Variantes del formulario de checkout
-enum AppCheckoutVariant {
+enum DSCheckoutVariant {
   /// Formulario de dirección (shipping/billing)
   address,
 
@@ -33,7 +33,7 @@ enum AppCheckoutVariant {
 }
 
 /// Estados interactivos del formulario
-enum AppCheckoutState {
+enum DSCheckoutState {
   /// Estado por defecto
   defaultState,
 
@@ -61,11 +61,11 @@ enum AppCheckoutState {
 
 /// Configuración de un campo del formulario
 @freezed
-class AppCheckoutField with _$AppCheckoutField {
-  const factory AppCheckoutField({
+class DSCheckoutField with _$DSCheckoutField {
+  const factory DSCheckoutField({
     required String key,
     required String label,
-    required AppCheckoutFieldType type,
+    required DSCheckoutFieldType type,
     String? placeholder,
     String? initialValue,
     @Default(false) bool required,
@@ -89,7 +89,7 @@ class AppCheckoutField with _$AppCheckoutField {
 }
 
 /// Tipos de campos disponibles
-enum AppCheckoutFieldType {
+enum DSCheckoutFieldType {
   text,
   email,
   phone,
@@ -110,8 +110,8 @@ enum AppCheckoutFieldType {
 
 /// Configuración de colores del formulario
 @freezed
-class AppCheckoutColors with _$AppCheckoutColors {
-  const factory AppCheckoutColors({
+class DSCheckoutColors with _$DSCheckoutColors {
+  const factory DSCheckoutColors({
     Color? backgroundColor,
     Color? borderColor,
     Color? focusedBorderColor,
@@ -145,8 +145,8 @@ class AppCheckoutColors with _$AppCheckoutColors {
 
 /// Configuración de espaciado del formulario
 @freezed
-class AppCheckoutSpacing with _$AppCheckoutSpacing {
-  const factory AppCheckoutSpacing({
+class DSCheckoutSpacing with _$DSCheckoutSpacing {
+  const factory DSCheckoutSpacing({
     @Default(16.0) double padding,
     @Default(16.0) double margin,
     @Default(12.0) double fieldSpacing,
@@ -164,8 +164,8 @@ class AppCheckoutSpacing with _$AppCheckoutSpacing {
 
 /// Configuración de animaciones
 @freezed
-class AppCheckoutAnimation with _$AppCheckoutAnimation {
-  const factory AppCheckoutAnimation({
+class DSCheckoutAnimation with _$DSCheckoutAnimation {
+  const factory DSCheckoutAnimation({
     @Default(Duration(milliseconds: 200)) Duration transitionDuration,
     @Default(Duration(milliseconds: 300)) Duration loadingDuration,
     @Default(Duration(milliseconds: 150)) Duration hoverDuration,
@@ -180,8 +180,8 @@ class AppCheckoutAnimation with _$AppCheckoutAnimation {
 
 /// Configuración de comportamiento
 @freezed
-class AppCheckoutBehavior with _$AppCheckoutBehavior {
-  const factory AppCheckoutBehavior({
+class DSCheckoutBehavior with _$DSCheckoutBehavior {
+  const factory DSCheckoutBehavior({
     @Default(true) bool autoValidate,
     @Default(false) bool validateOnChange,
     @Default(true) bool validateOnSubmit,
@@ -191,7 +191,7 @@ class AppCheckoutBehavior with _$AppCheckoutBehavior {
     @Default(true) bool enableFormatting,
     @Default(true) bool enableMasking,
     @Default(false) bool submitOnEnter,
-    @Default(AppCheckoutSubmitMode.manual) AppCheckoutSubmitMode submitMode,
+    @Default(DSCheckoutSubmitMode.manual) DSCheckoutSubmitMode submitMode,
     @Default(false) bool clearOnSubmit,
     @Default(true) bool focusNextFieldOnEnter,
     @Default(true) bool showProgressIndicator,
@@ -200,7 +200,7 @@ class AppCheckoutBehavior with _$AppCheckoutBehavior {
 }
 
 /// Modos de envío del formulario
-enum AppCheckoutSubmitMode {
+enum DSCheckoutSubmitMode {
   manual,
   auto,
   onValidation,
@@ -208,8 +208,8 @@ enum AppCheckoutSubmitMode {
 
 /// Configuración de accesibilidad
 @freezed
-class AppCheckoutA11yConfig with _$AppCheckoutA11yConfig {
-  const factory AppCheckoutA11yConfig({
+class DSCheckoutA11yConfig with _$DSCheckoutA11yConfig {
+  const factory DSCheckoutA11yConfig({
     @Default(true) bool enabled,
     @Default(true) bool announceErrors,
     @Default(true) bool announceSuccess,
@@ -224,14 +224,14 @@ class AppCheckoutA11yConfig with _$AppCheckoutA11yConfig {
     @Default('Campo válido') String validFieldSemanticLabel,
     @Default('Campo con error') String errorFieldSemanticLabel,
     @Default('Enviar formulario') String submitButtonSemanticLabel,
-  }) = _AppCheckoutA11yConfig;
+  }) = _DSCheckoutA11yConfig;
 
 }
 
 /// Configuración de validación
 @freezed
-class AppCheckoutValidation with _$AppCheckoutValidation {
-  const factory AppCheckoutValidation({
+class DSCheckoutValidation with _$DSCheckoutValidation {
+  const factory DSCheckoutValidation({
     @Default(true) bool enabled,
     @Default(true) bool showErrorMessages,
     @Default(true) bool showSuccessIndicators,
@@ -245,19 +245,19 @@ class AppCheckoutValidation with _$AppCheckoutValidation {
 
 /// Resultado de la validación de un campo
 @freezed
-class AppCheckoutFieldValidation with _$AppCheckoutFieldValidation {
-  const factory AppCheckoutFieldValidation({
+class DSCheckoutFieldValidation with _$DSCheckoutFieldValidation {
+  const factory DSCheckoutFieldValidation({
     required String fieldKey,
     required bool isValid,
     String? errorMessage,
     String? successMessage,
-    @Default(AppCheckoutValidationLevel.none) AppCheckoutValidationLevel level,
+    @Default(DSCheckoutValidationLevel.none) DSCheckoutValidationLevel level,
   }) = _AppCheckoutFieldValidation;
 
 }
 
 /// Niveles de validación
-enum AppCheckoutValidationLevel {
+enum DSCheckoutValidationLevel {
   none,
   info,
   warning,
@@ -267,10 +267,10 @@ enum AppCheckoutValidationLevel {
 
 /// Datos del formulario
 @freezed
-class AppCheckoutFormData with _$AppCheckoutFormData {
-  const factory AppCheckoutFormData({
+class DSCheckoutFormData with _$DSCheckoutFormData {
+  const factory DSCheckoutFormData({
     required Map<String, dynamic> values,
-    required Map<String, AppCheckoutFieldValidation> validations,
+    required Map<String, DSCheckoutFieldValidation> validations,
     @Default(false) bool isValid,
     @Default(false) bool isDirty,
     @Default(false) bool isSubmitting,
@@ -281,14 +281,14 @@ class AppCheckoutFormData with _$AppCheckoutFormData {
 
 }
 
-/// Extensiones para AppCheckoutVariant
-extension AppCheckoutVariantExtensions on AppCheckoutVariant {
+/// Extensiones para DSCheckoutVariant
+extension DSCheckoutVariantExtensions on DSCheckoutVariant {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCheckoutVariant.address:
+      case DSCheckoutVariant.address:
         return 'Dirección';
-      case AppCheckoutVariant.payment:
+      case DSCheckoutVariant.payment:
         return 'Pago';
     }
   }
@@ -296,19 +296,19 @@ extension AppCheckoutVariantExtensions on AppCheckoutVariant {
   /// Descripción de la variante
   String get description {
     switch (this) {
-      case AppCheckoutVariant.address:
+      case DSCheckoutVariant.address:
         return 'Formulario para capturar información de dirección';
-      case AppCheckoutVariant.payment:
+      case DSCheckoutVariant.payment:
         return 'Formulario para capturar información de pago';
     }
   }
 
   /// Campos por defecto según la variante
-  List<AppCheckoutField> get defaultFields {
+  List<DSCheckoutField> get defaultFields {
     switch (this) {
-      case AppCheckoutVariant.address:
+      case DSCheckoutVariant.address:
         return _defaultAddressFields;
-      case AppCheckoutVariant.payment:
+      case DSCheckoutVariant.payment:
         return _defaultPaymentFields;
     }
   }
@@ -316,92 +316,92 @@ extension AppCheckoutVariantExtensions on AppCheckoutVariant {
   /// Icono representativo
   IconData get icon {
     switch (this) {
-      case AppCheckoutVariant.address:
+      case DSCheckoutVariant.address:
         return Icons.location_on;
-      case AppCheckoutVariant.payment:
+      case DSCheckoutVariant.payment:
         return Icons.payment;
     }
   }
 }
 
 /// Campos por defecto para formulario de dirección
-const List<AppCheckoutField> _defaultAddressFields = [
-  AppCheckoutField(
+const List<DSCheckoutField> _defaultAddressFields = [
+  DSCheckoutField(
     key: 'firstName',
     label: 'Nombre',
-    type: AppCheckoutFieldType.text,
+    type: DSCheckoutFieldType.text,
     placeholder: 'Ingresa tu nombre',
     required: true,
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'lastName',
     label: 'Apellido',
-    type: AppCheckoutFieldType.text,
+    type: DSCheckoutFieldType.text,
     placeholder: 'Ingresa tu apellido',
     required: true,
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'email',
     label: 'Email',
-    type: AppCheckoutFieldType.email,
+    type: DSCheckoutFieldType.email,
     placeholder: 'ejemplo@correo.com',
     required: true,
     flex: 2,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'phone',
     label: 'Teléfono',
-    type: AppCheckoutFieldType.phone,
+    type: DSCheckoutFieldType.phone,
     placeholder: '+1 (555) 123-4567',
     required: true,
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'address1',
     label: 'Dirección',
-    type: AppCheckoutFieldType.text,
+    type: DSCheckoutFieldType.text,
     placeholder: 'Calle y número',
     required: true,
     flex: 2,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'address2',
     label: 'Dirección 2',
-    type: AppCheckoutFieldType.text,
+    type: DSCheckoutFieldType.text,
     placeholder: 'Apartamento, suite, etc. (opcional)',
     required: false,
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'city',
     label: 'Ciudad',
-    type: AppCheckoutFieldType.city,
+    type: DSCheckoutFieldType.city,
     placeholder: 'Ciudad',
     required: true,
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'state',
     label: 'Estado/Provincia',
-    type: AppCheckoutFieldType.state,
+    type: DSCheckoutFieldType.state,
     placeholder: 'Estado',
     required: true,
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'postalCode',
     label: 'Código Postal',
-    type: AppCheckoutFieldType.postalCode,
+    type: DSCheckoutFieldType.postalCode,
     placeholder: '12345',
     required: true,
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'country',
     label: 'País',
-    type: AppCheckoutFieldType.country,
+    type: DSCheckoutFieldType.country,
     placeholder: 'Selecciona un país',
     required: true,
     flex: 1,
@@ -409,97 +409,97 @@ const List<AppCheckoutField> _defaultAddressFields = [
 ];
 
 /// Campos por defecto para formulario de pago
-const List<AppCheckoutField> _defaultPaymentFields = [
-  AppCheckoutField(
+const List<DSCheckoutField> _defaultPaymentFields = [
+  DSCheckoutField(
     key: 'cardholderName',
     label: 'Nombre del titular',
-    type: AppCheckoutFieldType.text,
+    type: DSCheckoutFieldType.text,
     placeholder: 'Nombre como aparece en la tarjeta',
     required: true,
     flex: 2,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'cardNumber',
     label: 'Número de tarjeta',
-    type: AppCheckoutFieldType.creditCard,
+    type: DSCheckoutFieldType.creditCard,
     placeholder: '1234 5678 9012 3456',
     required: true,
     sensitive: true,
     mask: '#### #### #### ####',
     flex: 2,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'expiryDate',
     label: 'Fecha de vencimiento',
-    type: AppCheckoutFieldType.expiryDate,
+    type: DSCheckoutFieldType.expiryDate,
     placeholder: 'MM/AA',
     required: true,
     mask: '##/##',
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'cvv',
     label: 'CVV',
-    type: AppCheckoutFieldType.cvv,
+    type: DSCheckoutFieldType.cvv,
     placeholder: '123',
     required: true,
     sensitive: true,
     maxLength: 4,
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'billingAddress',
     label: 'Dirección de facturación',
-    type: AppCheckoutFieldType.text,
+    type: DSCheckoutFieldType.text,
     placeholder: 'Dirección completa',
     required: true,
     flex: 2,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'billingCity',
     label: 'Ciudad',
-    type: AppCheckoutFieldType.city,
+    type: DSCheckoutFieldType.city,
     placeholder: 'Ciudad',
     required: true,
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'billingPostalCode',
     label: 'Código Postal',
-    type: AppCheckoutFieldType.postalCode,
+    type: DSCheckoutFieldType.postalCode,
     placeholder: '12345',
     required: true,
     flex: 1,
   ),
-  AppCheckoutField(
+  DSCheckoutField(
     key: 'saveCard',
     label: 'Guardar tarjeta para futuros pagos',
-    type: AppCheckoutFieldType.checkbox,
+    type: DSCheckoutFieldType.checkbox,
     required: false,
     flex: 2,
   ),
 ];
 
-/// Extensiones para AppCheckoutState
-extension AppCheckoutStateExtensions on AppCheckoutState {
+/// Extensiones para DSCheckoutState
+extension DSCheckoutStateExtensions on DSCheckoutState {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCheckoutState.defaultState:
+      case DSCheckoutState.defaultState:
         return 'Default';
-      case AppCheckoutState.hover:
+      case DSCheckoutState.hover:
         return 'Hover';
-      case AppCheckoutState.pressed:
+      case DSCheckoutState.pressed:
         return 'Pressed';
-      case AppCheckoutState.focus:
+      case DSCheckoutState.focus:
         return 'Focus';
-      case AppCheckoutState.selected:
+      case DSCheckoutState.selected:
         return 'Selected';
-      case AppCheckoutState.disabled:
+      case DSCheckoutState.disabled:
         return 'Disabled';
-      case AppCheckoutState.loading:
+      case DSCheckoutState.loading:
         return 'Loading';
-      case AppCheckoutState.skeleton:
+      case DSCheckoutState.skeleton:
         return 'Skeleton';
     }
   }
@@ -507,49 +507,49 @@ extension AppCheckoutStateExtensions on AppCheckoutState {
   /// Si el estado permite interacción
   bool get isInteractive {
     switch (this) {
-      case AppCheckoutState.defaultState:
-      case AppCheckoutState.hover:
-      case AppCheckoutState.pressed:
-      case AppCheckoutState.focus:
-      case AppCheckoutState.selected:
+      case DSCheckoutState.defaultState:
+      case DSCheckoutState.hover:
+      case DSCheckoutState.pressed:
+      case DSCheckoutState.focus:
+      case DSCheckoutState.selected:
         return true;
-      case AppCheckoutState.disabled:
-      case AppCheckoutState.loading:
-      case AppCheckoutState.skeleton:
+      case DSCheckoutState.disabled:
+      case DSCheckoutState.loading:
+      case DSCheckoutState.skeleton:
         return false;
     }
   }
 
   /// Si el estado muestra loading
   bool get isLoading {
-    return this == AppCheckoutState.loading;
+    return this == DSCheckoutState.loading;
   }
 
   /// Si el estado muestra skeleton
   bool get isSkeleton {
-    return this == AppCheckoutState.skeleton;
+    return this == DSCheckoutState.skeleton;
   }
 }
 
-/// Extensiones para AppCheckoutFieldType
-extension AppCheckoutFieldTypeExtensions on AppCheckoutFieldType {
+/// Extensiones para DSCheckoutFieldType
+extension DSCheckoutFieldTypeExtensions on DSCheckoutFieldType {
   /// Tipo de teclado apropiado
   TextInputType get keyboardType {
     switch (this) {
-      case AppCheckoutFieldType.text:
+      case DSCheckoutFieldType.text:
         return TextInputType.text;
-      case AppCheckoutFieldType.email:
+      case DSCheckoutFieldType.email:
         return TextInputType.emailAddress;
-      case AppCheckoutFieldType.phone:
+      case DSCheckoutFieldType.phone:
         return TextInputType.phone;
-      case AppCheckoutFieldType.password:
+      case DSCheckoutFieldType.password:
         return TextInputType.visiblePassword;
-      case AppCheckoutFieldType.number:
-      case AppCheckoutFieldType.creditCard:
-      case AppCheckoutFieldType.cvv:
-      case AppCheckoutFieldType.postalCode:
+      case DSCheckoutFieldType.number:
+      case DSCheckoutFieldType.creditCard:
+      case DSCheckoutFieldType.cvv:
+      case DSCheckoutFieldType.postalCode:
         return TextInputType.number;
-      case AppCheckoutFieldType.expiryDate:
+      case DSCheckoutFieldType.expiryDate:
         return TextInputType.datetime;
       default:
         return TextInputType.text;
@@ -559,9 +559,9 @@ extension AppCheckoutFieldTypeExtensions on AppCheckoutFieldType {
   /// Si el campo es sensible (password, CVV, etc.)
   bool get isSensitive {
     switch (this) {
-      case AppCheckoutFieldType.password:
-      case AppCheckoutFieldType.creditCard:
-      case AppCheckoutFieldType.cvv:
+      case DSCheckoutFieldType.password:
+      case DSCheckoutFieldType.creditCard:
+      case DSCheckoutFieldType.cvv:
         return true;
       default:
         return false;
@@ -571,17 +571,17 @@ extension AppCheckoutFieldTypeExtensions on AppCheckoutFieldType {
   /// Patrón de validación por defecto
   String? get defaultPattern {
     switch (this) {
-      case AppCheckoutFieldType.email:
+      case DSCheckoutFieldType.email:
         return r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
-      case AppCheckoutFieldType.phone:
+      case DSCheckoutFieldType.phone:
         return r'^\+?[\d\s\-\(\)]+$';
-      case AppCheckoutFieldType.creditCard:
+      case DSCheckoutFieldType.creditCard:
         return r'^\d{4}\s?\d{4}\s?\d{4}\s?\d{4}$';
-      case AppCheckoutFieldType.expiryDate:
+      case DSCheckoutFieldType.expiryDate:
         return r'^(0[1-9]|1[0-2])\/\d{2}$';
-      case AppCheckoutFieldType.cvv:
+      case DSCheckoutFieldType.cvv:
         return r'^\d{3,4}$';
-      case AppCheckoutFieldType.postalCode:
+      case DSCheckoutFieldType.postalCode:
         return r'^\d{5}(-\d{4})?$';
       default:
         return null;
@@ -590,21 +590,21 @@ extension AppCheckoutFieldTypeExtensions on AppCheckoutFieldType {
 }
 
 /// Utilidades para formularios de checkout
-class AppCheckoutUtils {
+class DSCheckoutUtils {
   /// Valida un campo específico
-  static AppCheckoutFieldValidation validateField(
-    AppCheckoutField field,
+  static DSCheckoutFieldValidation validateField(
+    DSCheckoutField field,
     String? value, {
     Map<String, String>? customMessages,
     Map<String, RegExp>? customPatterns,
   }) {
     if (field.required && (value == null || value.trim().isEmpty)) {
-      return AppCheckoutFieldValidation(
+      return DSCheckoutFieldValidation(
         fieldKey: field.key,
         isValid: false,
         errorMessage: customMessages?['${field.key}_required'] ??
             'Este campo es requerido',
-        level: AppCheckoutValidationLevel.error,
+        level: DSCheckoutValidationLevel.error,
       );
     }
 
@@ -617,45 +617,45 @@ class AppCheckoutUtils {
               : null);
 
       if (pattern != null && !pattern.hasMatch(value)) {
-        return AppCheckoutFieldValidation(
+        return DSCheckoutFieldValidation(
           fieldKey: field.key,
           isValid: false,
           errorMessage: customMessages?['${field.key}_invalid'] ??
               _getDefaultErrorMessage(field.type),
-          level: AppCheckoutValidationLevel.error,
+          level: DSCheckoutValidationLevel.error,
         );
       }
 
       // Validar longitud máxima
       if (field.maxLength != null && value.length > field.maxLength!) {
-        return AppCheckoutFieldValidation(
+        return DSCheckoutFieldValidation(
           fieldKey: field.key,
           isValid: false,
           errorMessage: customMessages?['${field.key}_too_long'] ??
               'Máximo ${field.maxLength} caracteres',
-          level: AppCheckoutValidationLevel.error,
+          level: DSCheckoutValidationLevel.error,
         );
       }
     }
 
-    return AppCheckoutFieldValidation(
+    return DSCheckoutFieldValidation(
       fieldKey: field.key,
       isValid: true,
       successMessage: field.required ? 'Campo válido' : null,
       level: field.required
-          ? AppCheckoutValidationLevel.success
-          : AppCheckoutValidationLevel.none,
+          ? DSCheckoutValidationLevel.success
+          : DSCheckoutValidationLevel.none,
     );
   }
 
   /// Valida todo el formulario
-  static AppCheckoutFormData validateForm(
-    List<AppCheckoutField> fields,
+  static DSCheckoutFormData validateForm(
+    List<DSCheckoutField> fields,
     Map<String, dynamic> values, {
     Map<String, String>? customMessages,
     Map<String, RegExp>? customPatterns,
   }) {
-    final validations = <String, AppCheckoutFieldValidation>{};
+    final validations = <String, DSCheckoutFieldValidation>{};
     bool isFormValid = true;
 
     for (final field in fields) {
@@ -671,7 +671,7 @@ class AppCheckoutUtils {
       }
     }
 
-    return AppCheckoutFormData(
+    return DSCheckoutFormData(
       values: values,
       validations: validations,
       isValid: isFormValid,
@@ -681,15 +681,15 @@ class AppCheckoutUtils {
   }
 
   /// Aplica formato a un valor según el tipo de campo
-  static String formatFieldValue(AppCheckoutFieldType type, String value) {
+  static String formatFieldValue(DSCheckoutFieldType type, String value) {
     switch (type) {
-      case AppCheckoutFieldType.creditCard:
+      case DSCheckoutFieldType.creditCard:
         return _formatCreditCard(value);
-      case AppCheckoutFieldType.expiryDate:
+      case DSCheckoutFieldType.expiryDate:
         return _formatExpiryDate(value);
-      case AppCheckoutFieldType.phone:
+      case DSCheckoutFieldType.phone:
         return _formatPhone(value);
-      case AppCheckoutFieldType.postalCode:
+      case DSCheckoutFieldType.postalCode:
         return _formatPostalCode(value);
       default:
         return value;
@@ -734,19 +734,19 @@ class AppCheckoutUtils {
   }
 
   /// Obtiene mensaje de error por defecto
-  static String _getDefaultErrorMessage(AppCheckoutFieldType type) {
+  static String _getDefaultErrorMessage(DSCheckoutFieldType type) {
     switch (type) {
-      case AppCheckoutFieldType.email:
+      case DSCheckoutFieldType.email:
         return 'Ingresa un email válido';
-      case AppCheckoutFieldType.phone:
+      case DSCheckoutFieldType.phone:
         return 'Ingresa un teléfono válido';
-      case AppCheckoutFieldType.creditCard:
+      case DSCheckoutFieldType.creditCard:
         return 'Ingresa un número de tarjeta válido';
-      case AppCheckoutFieldType.expiryDate:
+      case DSCheckoutFieldType.expiryDate:
         return 'Ingresa una fecha válida (MM/AA)';
-      case AppCheckoutFieldType.cvv:
+      case DSCheckoutFieldType.cvv:
         return 'Ingresa un CVV válido';
-      case AppCheckoutFieldType.postalCode:
+      case DSCheckoutFieldType.postalCode:
         return 'Ingresa un código postal válido';
       default:
         return 'Valor inválido';
@@ -770,7 +770,7 @@ class AppCheckoutUtils {
 
   /// Enmascara datos sensibles para logging
   static Map<String, dynamic> maskSensitiveData(
-    List<AppCheckoutField> fields,
+    List<DSCheckoutField> fields,
     Map<String, dynamic> values,
   ) {
     final masked = <String, dynamic>{};
@@ -780,7 +780,7 @@ class AppCheckoutUtils {
       if (field.sensitive && value != null) {
         final stringValue = value.toString();
         if (stringValue.isNotEmpty) {
-          if (field.type == AppCheckoutFieldType.creditCard) {
+          if (field.type == DSCheckoutFieldType.creditCard) {
             masked[field.key] = '**** **** **** ${stringValue.replaceAll(RegExp(r'\D'), '').substring(math.max(0, stringValue.replaceAll(RegExp(r'\D'), '').length - 4))}';
           } else {
             masked[field.key] = '*' * stringValue.length;

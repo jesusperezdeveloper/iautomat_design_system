@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppMediaViewerStory extends StatefulWidget {
-  const AppMediaViewerStory({super.key});
+class DSMediaViewerStory extends StatefulWidget {
+  const DSMediaViewerStory({super.key});
 
   @override
-  State<AppMediaViewerStory> createState() => _AppMediaViewerStoryState();
+  State<DSMediaViewerStory> createState() => _DSMediaViewerStoryState();
 }
 
-class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
-  AppMediaViewerVariant _variant = AppMediaViewerVariant.image;
-  AppMediaViewerState _state = AppMediaViewerState.defaultState;
+class _DSMediaViewerStoryState extends State<DSMediaViewerStory> {
+  DSMediaViewerVariant _variant = DSMediaViewerVariant.image;
+  DSMediaViewerState _state = DSMediaViewerState.defaultState;
   int _initialIndex = 0;
   bool _showCaptions = true;
   bool _showControls = true;
@@ -28,23 +28,23 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
   String? _lastInteraction;
 
   // Datos de ejemplo
-  static const List<AppMediaItem> _sampleImageItems = [
-    AppMediaItem(
-      type: AppMediaType.image,
+  static const List<DSMediaItem> _sampleImageItems = [
+    DSMediaItem(
+      type: DSMediaType.image,
       src: 'https://picsum.photos/800/600?random=1',
       caption: 'Imagen de ejemplo 1 - Paisaje natural',
       alt: 'Hermoso paisaje con montañas y lago',
       thumbnail: 'https://picsum.photos/100/100?random=1',
     ),
-    AppMediaItem(
-      type: AppMediaType.image,
+    DSMediaItem(
+      type: DSMediaType.image,
       src: 'https://picsum.photos/800/600?random=2',
       caption: 'Imagen de ejemplo 2 - Arquitectura moderna',
       alt: 'Edificio moderno con líneas geométricas',
       thumbnail: 'https://picsum.photos/100/100?random=2',
     ),
-    AppMediaItem(
-      type: AppMediaType.image,
+    DSMediaItem(
+      type: DSMediaType.image,
       src: 'https://picsum.photos/800/600?random=3',
       caption: 'Imagen de ejemplo 3 - Naturaleza urbana',
       alt: 'Parque urbano con árboles y senderos',
@@ -52,17 +52,17 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
     ),
   ];
 
-  static const List<AppMediaItem> _sampleVideoItems = [
-    AppMediaItem(
-      type: AppMediaType.video,
+  static const List<DSMediaItem> _sampleVideoItems = [
+    DSMediaItem(
+      type: DSMediaType.video,
       src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
       caption: 'Video de ejemplo 1 - Demostración',
       alt: 'Video demostrativo de funcionalidades',
       thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
       duration: 212.0,
     ),
-    AppMediaItem(
-      type: AppMediaType.video,
+    DSMediaItem(
+      type: DSMediaType.video,
       src: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
       caption: 'Video de ejemplo 2 - Contenido educativo',
       alt: 'Video educativo sobre tecnología',
@@ -70,16 +70,16 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
     ),
   ];
 
-  static const List<AppMediaItem> _sampleAudioItems = [
-    AppMediaItem(
-      type: AppMediaType.audio,
+  static const List<DSMediaItem> _sampleAudioItems = [
+    DSMediaItem(
+      type: DSMediaType.audio,
       src: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
       caption: 'Audio de ejemplo 1 - Sonido de campana',
       alt: 'Sonido de campana repicando',
       duration: 5.0,
     ),
-    AppMediaItem(
-      type: AppMediaType.audio,
+    DSMediaItem(
+      type: DSMediaType.audio,
       src: 'https://www.soundjay.com/nature/sounds/wind.wav',
       caption: 'Audio de ejemplo 2 - Sonidos de la naturaleza',
       alt: 'Sonido del viento en el bosque',
@@ -87,24 +87,24 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
     ),
   ];
 
-  static const List<AppMediaItem> _sampleMixedItems = [
-    AppMediaItem(
-      type: AppMediaType.image,
+  static const List<DSMediaItem> _sampleMixedItems = [
+    DSMediaItem(
+      type: DSMediaType.image,
       src: 'https://picsum.photos/800/600?random=4',
       caption: 'Imagen en colección mixta',
       alt: 'Imagen de muestra en colección mixta',
       thumbnail: 'https://picsum.photos/100/100?random=4',
     ),
-    AppMediaItem(
-      type: AppMediaType.video,
+    DSMediaItem(
+      type: DSMediaType.video,
       src: 'https://www.youtube.com/watch?v=9bZkp7q19f0',
       caption: 'Video en colección mixta',
       alt: 'Video de muestra en colección mixta',
       thumbnail: 'https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg',
       duration: 600.0,
     ),
-    AppMediaItem(
-      type: AppMediaType.audio,
+    DSMediaItem(
+      type: DSMediaType.audio,
       src: 'https://www.soundjay.com/misc/sounds/beep-07a.wav',
       caption: 'Audio en colección mixta',
       alt: 'Audio de muestra en colección mixta',
@@ -112,13 +112,13 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
     ),
   ];
 
-  List<AppMediaItem> get _currentItems {
+  List<DSMediaItem> get _currentItems {
     switch (_variant) {
-      case AppMediaViewerVariant.image:
+      case DSMediaViewerVariant.image:
         return _sampleImageItems;
-      case AppMediaViewerVariant.video:
+      case DSMediaViewerVariant.video:
         return _sampleVideoItems;
-      case AppMediaViewerVariant.audio:
+      case DSMediaViewerVariant.audio:
         return _sampleAudioItems;
     }
   }
@@ -147,10 +147,10 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
     });
   }
 
-  Widget _buildSampleViewer({required AppMediaViewerConfig config}) {
+  Widget _buildSampleViewer({required DSMediaViewerConfig config}) {
     return SizedBox(
       height: 400,
-      child: AppMediaViewer(
+      child: DSMediaViewer(
         items: _currentItems,
         initialIndex: _initialIndex,
         showCaptions: _showCaptions,
@@ -167,7 +167,7 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppMediaViewer Stories'),
+        title: const Text('DSMediaViewer Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -193,13 +193,13 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
                       children: [
                         const Text('Variante: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppMediaViewerVariant>(
+                        DropdownButton<DSMediaViewerVariant>(
                           value: _variant,
                           onChanged: (value) => setState(() {
                             _variant = value!;
                             _initialIndex = 0; // Reset index when changing variant
                           }),
-                          items: AppMediaViewerVariant.values.map((variant) {
+                          items: DSMediaViewerVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
                               child: Text(variant.displayName),
@@ -214,10 +214,10 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
                       children: [
                         const Text('Estado: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppMediaViewerState>(
+                        DropdownButton<DSMediaViewerState>(
                           value: _state,
                           onChanged: (value) => setState(() => _state = value!),
-                          items: AppMediaViewerState.values.map((state) {
+                          items: DSMediaViewerState.values.map((state) {
                             return DropdownMenuItem(
                               value: state,
                               child: Text(state.displayName),
@@ -444,28 +444,28 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
             const SizedBox(height: 16),
 
             _buildSampleViewer(
-              config: AppMediaViewerConfig(
+              config: DSMediaViewerConfig(
                 variant: _variant,
                 state: _state,
                 showCaptions: _showCaptions,
                 showControls: _showControls,
                 allowZoom: _enableZoom,
                 allowFullscreen: _enableFullscreen,
-                behavior: AppMediaViewerBehavior(
+                behavior: DSMediaViewerBehavior(
                   autoHideControls: _autoHideControls,
                   autoHideControlsDelay: _autoHideDelay.toInt(),
                   enableDoubleTapZoom: _enableZoom,
                   enablePinchZoom: _enableZoom,
                 ),
-                controls: AppMediaViewerControls(
+                controls: DSMediaViewerControls(
                   showPlayPause: _showControls,
                   showFullscreenButton: _enableFullscreen,
                 ),
-                a11yConfig: AppMediaViewerA11yConfig(
+                a11yConfig: DSMediaViewerA11yConfig(
                   enabled: _enableA11y,
                   enableKeyboardNavigation: _enableKeyboard,
                 ),
-                spacing: AppMediaViewerSpacing(
+                spacing: DSMediaViewerSpacing(
                   borderRadius: _borderRadius,
                 ),
               ),
@@ -485,11 +485,11 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
               'Variantes por Tipo de Media',
               Column(
                 children: [
-                  _buildVariantExample('Galería de Imágenes', AppMediaViewerVariant.image, _sampleImageItems),
+                  _buildVariantExample('Galería de Imágenes', DSMediaViewerVariant.image, _sampleImageItems),
                   const SizedBox(height: 16),
-                  _buildVariantExample('Reproductor de Video', AppMediaViewerVariant.video, _sampleVideoItems),
+                  _buildVariantExample('Reproductor de Video', DSMediaViewerVariant.video, _sampleVideoItems),
                   const SizedBox(height: 16),
-                  _buildVariantExample('Reproductor de Audio', AppMediaViewerVariant.audio, _sampleAudioItems),
+                  _buildVariantExample('Reproductor de Audio', DSMediaViewerVariant.audio, _sampleAudioItems),
                 ],
               ),
             ),
@@ -506,9 +506,9 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
                   mainAxisSpacing: 16,
                   childAspectRatio: 1.5,
                 ),
-                itemCount: AppMediaViewerState.values.length,
+                itemCount: DSMediaViewerState.values.length,
                 itemBuilder: (context, index) {
-                  final state = AppMediaViewerState.values[index];
+                  final state = DSMediaViewerState.values[index];
                   return _buildStateExample(state);
                 },
               ),
@@ -529,11 +529,11 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
                     'Modo Compacto',
                     'Viewer optimizado para espacios pequeños',
                     _sampleImageItems.take(2).toList(),
-                    config: const AppMediaViewerConfig(
-                      controls: AppMediaViewerControls(
+                    config: const DSMediaViewerConfig(
+                      controls: DSMediaViewerControls(
                         showPlayPause: true,
                       ),
-                      spacing: AppMediaViewerSpacing(
+                      spacing: DSMediaViewerSpacing(
                         borderRadius: 8,
                       ),
                     ),
@@ -544,12 +544,12 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
                     'Modo Presentación',
                     'Fullscreen con controles mínimos',
                     _sampleImageItems,
-                    config: const AppMediaViewerConfig(
-                      behavior: AppMediaViewerBehavior(
+                    config: const DSMediaViewerConfig(
+                      behavior: DSMediaViewerBehavior(
                         autoHideControls: true,
                         autoHideControlsDelay: 1,
                       ),
-                      controls: AppMediaViewerControls(
+                      controls: DSMediaViewerControls(
                         showPlayPause: true,
                         showFullscreenButton: true,
                       ),
@@ -578,7 +578,7 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
     );
   }
 
-  Widget _buildVariantExample(String title, AppMediaViewerVariant variant, List<AppMediaItem> items) {
+  Widget _buildVariantExample(String title, DSMediaViewerVariant variant, List<DSMediaItem> items) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -589,10 +589,10 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
             const SizedBox(height: 8),
             SizedBox(
               height: 250,
-              child: AppMediaViewer(
+              child: DSMediaViewer(
                 items: items,
                 initialIndex: 0,
-                config: AppMediaViewerConfig(
+                config: DSMediaViewerConfig(
                   variant: variant,
                 ),
               ),
@@ -603,7 +603,7 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
     );
   }
 
-  Widget _buildStateExample(AppMediaViewerState state) {
+  Widget _buildStateExample(DSMediaViewerState state) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -617,11 +617,11 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
             ),
             const SizedBox(height: 8),
             Expanded(
-              child: AppMediaViewer(
+              child: DSMediaViewer(
                 items: _sampleImageItems.take(1).toList(),
-                config: AppMediaViewerConfig(
+                config: DSMediaViewerConfig(
                   state: state,
-                  controls: const AppMediaViewerControls(
+                  controls: const DSMediaViewerControls(
                     showPlayPause: true,
                   ),
                 ),
@@ -636,8 +636,8 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
   Widget _buildSpecialUseCase(
     String title,
     String description,
-    List<AppMediaItem> items, {
-    AppMediaViewerConfig? config,
+    List<DSMediaItem> items, {
+    DSMediaViewerConfig? config,
     double height = 300,
   }) {
     return Card(
@@ -654,9 +654,9 @@ class _AppMediaViewerStoryState extends State<AppMediaViewerStory> {
             const SizedBox(height: 12),
             SizedBox(
               height: height,
-              child: AppMediaViewer(
+              child: DSMediaViewer(
                 items: items,
-                config: config ?? const AppMediaViewerConfig(),
+                config: config ?? const DSMediaViewerConfig(),
               ),
             ),
           ],

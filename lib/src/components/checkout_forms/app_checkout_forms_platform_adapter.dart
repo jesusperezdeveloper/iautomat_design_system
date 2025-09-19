@@ -5,19 +5,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:iautomat_design_system/src/components/checkout_forms/app_checkout_forms_config.dart';
 
-/// Adaptador de plataforma para AppCheckoutForms
+/// Adaptador de plataforma para DSCheckoutForms
 ///
 /// Maneja las diferencias de renderizado entre Android, iOS y Web
 /// para proporcionar una experiencia nativa en cada plataforma
-class AppCheckoutFormsPlatformAdapter {
+class DSCheckoutFormsPlatformAdapter {
   /// Construye el formulario adaptado a la plataforma
   Widget buildForm({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutVariant variant,
-    required AppCheckoutState state,
-    required List<AppCheckoutField> fields,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutVariant variant,
+    required DSCheckoutState state,
+    required List<DSCheckoutField> fields,
+    required DSCheckoutFormData formData,
     required GlobalKey<FormState> formKey,
     required Map<String, TextEditingController> controllers,
     required Map<String, FocusNode> focusNodes,
@@ -108,11 +108,11 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye el formulario para Web
   Widget _buildWebForm({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutVariant variant,
-    required AppCheckoutState state,
-    required List<AppCheckoutField> fields,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutVariant variant,
+    required DSCheckoutState state,
+    required List<DSCheckoutField> fields,
+    required DSCheckoutFormData formData,
     required GlobalKey<FormState> formKey,
     required Map<String, TextEditingController> controllers,
     required Map<String, FocusNode> focusNodes,
@@ -129,8 +129,8 @@ class AppCheckoutFormsPlatformAdapter {
     AnimationController? submitAnimationController,
   }) {
     final theme = Theme.of(context);
-    final spacing = config.spacing ?? const AppCheckoutSpacing();
-    final colors = config.colors ?? const AppCheckoutColors();
+    final spacing = config.spacing ?? const DSCheckoutSpacing();
+    final colors = config.colors ?? const DSCheckoutColors();
 
     return Container(
       constraints: const BoxConstraints(maxWidth: 600),
@@ -189,11 +189,11 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye el formulario para iOS
   Widget _buildIOSForm({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutVariant variant,
-    required AppCheckoutState state,
-    required List<AppCheckoutField> fields,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutVariant variant,
+    required DSCheckoutState state,
+    required List<DSCheckoutField> fields,
+    required DSCheckoutFormData formData,
     required GlobalKey<FormState> formKey,
     required Map<String, TextEditingController> controllers,
     required Map<String, FocusNode> focusNodes,
@@ -209,7 +209,7 @@ class AppCheckoutFormsPlatformAdapter {
     Function(String, bool)? onFocusChanged,
     AnimationController? submitAnimationController,
   }) {
-    final spacing = config.spacing ?? const AppCheckoutSpacing();
+    final spacing = config.spacing ?? const DSCheckoutSpacing();
 
     return CupertinoFormSection.insetGrouped(
       margin: EdgeInsets.all(spacing.margin),
@@ -243,11 +243,11 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye el formulario para Android
   Widget _buildAndroidForm({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutVariant variant,
-    required AppCheckoutState state,
-    required List<AppCheckoutField> fields,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutVariant variant,
+    required DSCheckoutState state,
+    required List<DSCheckoutField> fields,
+    required DSCheckoutFormData formData,
     required GlobalKey<FormState> formKey,
     required Map<String, TextEditingController> controllers,
     required Map<String, FocusNode> focusNodes,
@@ -263,7 +263,7 @@ class AppCheckoutFormsPlatformAdapter {
     Function(String, bool)? onFocusChanged,
     AnimationController? submitAnimationController,
   }) {
-    final spacing = config.spacing ?? const AppCheckoutSpacing();
+    final spacing = config.spacing ?? const DSCheckoutSpacing();
 
     return Padding(
       padding: EdgeInsets.all(spacing.padding),
@@ -312,11 +312,11 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye el header del formulario
   Widget _buildFormHeader(
     BuildContext context,
-    AppCheckoutFormsConfig config,
-    AppCheckoutVariant variant,
+    DSCheckoutFormsConfig config,
+    DSCheckoutVariant variant,
   ) {
     final theme = Theme.of(context);
-    final colors = config.colors ?? const AppCheckoutColors();
+    final colors = config.colors ?? const DSCheckoutColors();
 
     return Row(
       children: [
@@ -354,10 +354,10 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye la cuadrícula de campos para Web
   Widget _buildWebFieldsGrid({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutState state,
-    required List<AppCheckoutField> fields,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutState state,
+    required List<DSCheckoutField> fields,
+    required DSCheckoutFormData formData,
     required Map<String, TextEditingController> controllers,
     required Map<String, FocusNode> focusNodes,
     required bool readOnly,
@@ -366,11 +366,11 @@ class AppCheckoutFormsPlatformAdapter {
     Function(String, dynamic)? onFieldChanged,
     Function(String, bool)? onFocusChanged,
   }) {
-    final spacing = config.spacing ?? const AppCheckoutSpacing();
+    final spacing = config.spacing ?? const DSCheckoutSpacing();
 
     // Agrupar campos por filas basado en flex
-    final rows = <List<AppCheckoutField>>[];
-    List<AppCheckoutField> currentRow = [];
+    final rows = <List<DSCheckoutField>>[];
+    List<DSCheckoutField> currentRow = [];
     int currentRowFlex = 0;
 
     for (final field in fields) {
@@ -435,9 +435,9 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye un campo para Web
   Widget _buildWebField({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutField field,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutField field,
+    required DSCheckoutFormData formData,
     required TextEditingController controller,
     required FocusNode focusNode,
     required bool readOnly,
@@ -465,9 +465,9 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye un campo para iOS
   Widget _buildIOSField({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutField field,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutField field,
+    required DSCheckoutFormData formData,
     required TextEditingController controller,
     required FocusNode focusNode,
     required bool readOnly,
@@ -476,7 +476,7 @@ class AppCheckoutFormsPlatformAdapter {
     Function(String)? onChanged,
     Function(bool)? onFocusChanged,
   }) {
-    if (field.type == AppCheckoutFieldType.checkbox) {
+    if (field.type == DSCheckoutFieldType.checkbox) {
       return _buildIOSCheckboxField(
         context: context,
         config: config,
@@ -499,7 +499,7 @@ class AppCheckoutFormsPlatformAdapter {
         focusNode: focusNode,
         placeholder: field.placeholder,
         keyboardType: field.type.keyboardType,
-        obscureText: field.type.isSensitive && field.type == AppCheckoutFieldType.password,
+        obscureText: field.type.isSensitive && field.type == DSCheckoutFieldType.password,
         maxLines: field.maxLines,
         maxLength: field.maxLength,
         readOnly: readOnly || !field.enabled,
@@ -513,9 +513,9 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye un campo de checkbox para iOS
   Widget _buildIOSCheckboxField({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutField field,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutField field,
+    required DSCheckoutFormData formData,
     Function(String)? onChanged,
   }) {
     final currentValue = formData.values[field.key] == true;
@@ -532,9 +532,9 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye un campo para Android
   Widget _buildAndroidField({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutField field,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutField field,
+    required DSCheckoutFormData formData,
     required TextEditingController controller,
     required FocusNode focusNode,
     required bool readOnly,
@@ -562,9 +562,9 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye un campo base adaptable
   Widget _buildBaseField({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutField field,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutField field,
+    required DSCheckoutFormData formData,
     required TextEditingController controller,
     required FocusNode focusNode,
     required bool readOnly,
@@ -575,11 +575,11 @@ class AppCheckoutFormsPlatformAdapter {
     Function(bool)? onFocusChanged,
   }) {
     final theme = Theme.of(context);
-    final colors = config.colors ?? const AppCheckoutColors();
-    final spacing = config.spacing ?? const AppCheckoutSpacing();
+    final colors = config.colors ?? const DSCheckoutColors();
+    final spacing = config.spacing ?? const DSCheckoutSpacing();
 
     // Campos especiales
-    if (field.type == AppCheckoutFieldType.checkbox) {
+    if (field.type == DSCheckoutFieldType.checkbox) {
       return _buildCheckboxField(
         context: context,
         config: config,
@@ -589,7 +589,7 @@ class AppCheckoutFormsPlatformAdapter {
       );
     }
 
-    if (field.type == AppCheckoutFieldType.dropdown) {
+    if (field.type == DSCheckoutFieldType.dropdown) {
       return _buildDropdownField(
         context: context,
         config: config,
@@ -622,7 +622,7 @@ class AppCheckoutFormsPlatformAdapter {
             focusNode: focusNode,
             decoration: effectiveDecoration,
             keyboardType: field.type.keyboardType,
-            obscureText: field.type.isSensitive && field.type == AppCheckoutFieldType.password,
+            obscureText: field.type.isSensitive && field.type == DSCheckoutFieldType.password,
             maxLines: field.maxLines,
             maxLength: field.maxLength,
             readOnly: readOnly || !field.enabled,
@@ -649,11 +649,11 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye la etiqueta del campo
   Widget _buildFieldLabel(
     BuildContext context,
-    AppCheckoutFormsConfig config,
-    AppCheckoutField field,
+    DSCheckoutFormsConfig config,
+    DSCheckoutField field,
   ) {
     final theme = Theme.of(context);
-    final colors = config.colors ?? const AppCheckoutColors();
+    final colors = config.colors ?? const DSCheckoutColors();
 
     return Row(
       children: [
@@ -680,13 +680,13 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye un campo checkbox
   Widget _buildCheckboxField({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutField field,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutField field,
+    required DSCheckoutFormData formData,
     Function(String)? onChanged,
   }) {
     final theme = Theme.of(context);
-    final colors = config.colors ?? const AppCheckoutColors();
+    final colors = config.colors ?? const DSCheckoutColors();
     final currentValue = formData.values[field.key] == true;
 
     return CheckboxListTile(
@@ -714,14 +714,14 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye un campo dropdown
   Widget _buildDropdownField({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutField field,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutField field,
+    required DSCheckoutFormData formData,
     Function(String)? onChanged,
   }) {
     final theme = Theme.of(context);
-    final colors = config.colors ?? const AppCheckoutColors();
-    final spacing = config.spacing ?? const AppCheckoutSpacing();
+    final colors = config.colors ?? const DSCheckoutColors();
+    final spacing = config.spacing ?? const DSCheckoutSpacing();
     final currentValue = formData.values[field.key]?.toString();
 
     return Column(
@@ -765,18 +765,18 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye la decoración del input
   InputDecoration _buildInputDecoration({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutField field,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutField field,
+    required DSCheckoutFormData formData,
     required _PlatformStyle platformStyle,
   }) {
     final theme = Theme.of(context);
-    final colors = config.colors ?? const AppCheckoutColors();
-    final spacing = config.spacing ?? const AppCheckoutSpacing();
+    final colors = config.colors ?? const DSCheckoutColors();
+    final spacing = config.spacing ?? const DSCheckoutSpacing();
 
     final validation = formData.validations[field.key];
     final hasError = validation?.isValid == false;
-    final hasSuccess = validation?.isValid == true && validation?.level == AppCheckoutValidationLevel.success;
+    final hasSuccess = validation?.isValid == true && validation?.level == DSCheckoutValidationLevel.success;
 
     Color? borderColor;
     if (hasError) {
@@ -862,17 +862,17 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye el ícono de sufijo
   Widget? _buildSuffixIcon(
     BuildContext context,
-    AppCheckoutFormsConfig config,
-    AppCheckoutField field,
-    AppCheckoutFormData formData,
+    DSCheckoutFormsConfig config,
+    DSCheckoutField field,
+    DSCheckoutFormData formData,
   ) {
     final theme = Theme.of(context);
-    final colors = config.colors ?? const AppCheckoutColors();
+    final colors = config.colors ?? const DSCheckoutColors();
     final validation = formData.validations[field.key];
 
     // Ícono de validación
     if (validation != null) {
-      if (validation.isValid && validation.level == AppCheckoutValidationLevel.success) {
+      if (validation.isValid && validation.level == DSCheckoutValidationLevel.success) {
         return Icon(
           Icons.check_circle,
           color: colors.successColor ?? Colors.green,
@@ -897,13 +897,13 @@ class AppCheckoutFormsPlatformAdapter {
 
     // Ícono específico del tipo de campo
     switch (field.type) {
-      case AppCheckoutFieldType.creditCard:
+      case DSCheckoutFieldType.creditCard:
         return const Icon(Icons.credit_card, size: 20);
-      case AppCheckoutFieldType.email:
+      case DSCheckoutFieldType.email:
         return const Icon(Icons.email, size: 20);
-      case AppCheckoutFieldType.phone:
+      case DSCheckoutFieldType.phone:
         return const Icon(Icons.phone, size: 20);
-      case AppCheckoutFieldType.password:
+      case DSCheckoutFieldType.password:
         return const Icon(Icons.visibility_off, size: 20);
       default:
         return null;
@@ -913,7 +913,7 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye el botón de envío
   Widget _buildSubmitButton({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
+    required DSCheckoutFormsConfig config,
     required VoidCallback onSubmit,
     required bool isSubmitting,
     String? submitButtonText,
@@ -926,7 +926,7 @@ class AppCheckoutFormsPlatformAdapter {
     }
 
     final theme = Theme.of(context);
-    final colors = config.colors ?? const AppCheckoutColors();
+    final colors = config.colors ?? const DSCheckoutColors();
 
     return SizedBox(
       width: double.infinity,
@@ -964,7 +964,7 @@ class AppCheckoutFormsPlatformAdapter {
   /// Construye el botón de envío para iOS
   Widget _buildIOSSubmitButton({
     required BuildContext context,
-    required AppCheckoutFormsConfig config,
+    required DSCheckoutFormsConfig config,
     required VoidCallback onSubmit,
     required bool isSubmitting,
     String? submitButtonText,
@@ -980,16 +980,16 @@ class AppCheckoutFormsPlatformAdapter {
 
   /// Valida un campo
   String? _validateField(
-    AppCheckoutField field,
+    DSCheckoutField field,
     String? value,
-    AppCheckoutFormData formData,
+    DSCheckoutFormData formData,
   ) {
     final validation = formData.validations[field.key];
     return validation?.isValid == false ? validation?.errorMessage : null;
   }
 
   /// Obtiene los formateadores de input
-  List<TextInputFormatter> _getInputFormatters(AppCheckoutField field) {
+  List<TextInputFormatter> _getInputFormatters(DSCheckoutField field) {
     final formatters = <TextInputFormatter>[];
 
     // Longitud máxima
@@ -999,23 +999,23 @@ class AppCheckoutFormsPlatformAdapter {
 
     // Formatters específicos por tipo
     switch (field.type) {
-      case AppCheckoutFieldType.number:
-      case AppCheckoutFieldType.cvv:
-      case AppCheckoutFieldType.postalCode:
+      case DSCheckoutFieldType.number:
+      case DSCheckoutFieldType.cvv:
+      case DSCheckoutFieldType.postalCode:
         formatters.add(FilteringTextInputFormatter.digitsOnly);
         break;
 
-      case AppCheckoutFieldType.creditCard:
+      case DSCheckoutFieldType.creditCard:
         formatters.add(FilteringTextInputFormatter.digitsOnly);
         formatters.add(LengthLimitingTextInputFormatter(16));
         break;
 
-      case AppCheckoutFieldType.expiryDate:
+      case DSCheckoutFieldType.expiryDate:
         formatters.add(FilteringTextInputFormatter.digitsOnly);
         formatters.add(LengthLimitingTextInputFormatter(4));
         break;
 
-      case AppCheckoutFieldType.phone:
+      case DSCheckoutFieldType.phone:
         formatters.add(FilteringTextInputFormatter.allow(RegExp(r'[\d\+\-\(\)\s]')));
         break;
 
@@ -1027,7 +1027,7 @@ class AppCheckoutFormsPlatformAdapter {
   }
 
   /// Obtiene la acción del teclado
-  TextInputAction _getTextInputAction(AppCheckoutField field) {
+  TextInputAction _getTextInputAction(DSCheckoutField field) {
     if (field.maxLines > 1) {
       return TextInputAction.newline;
     }
@@ -1035,13 +1035,13 @@ class AppCheckoutFormsPlatformAdapter {
   }
 
   /// Obtiene las sugerencias de autocompletado
-  Iterable<String>? _getAutofillHints(AppCheckoutField field) {
+  Iterable<String>? _getAutofillHints(DSCheckoutField field) {
     switch (field.type) {
-      case AppCheckoutFieldType.email:
+      case DSCheckoutFieldType.email:
         return [AutofillHints.email];
-      case AppCheckoutFieldType.phone:
+      case DSCheckoutFieldType.phone:
         return [AutofillHints.telephoneNumber];
-      case AppCheckoutFieldType.text:
+      case DSCheckoutFieldType.text:
         if (field.key.toLowerCase().contains('name')) {
           return [AutofillHints.name];
         }
@@ -1049,19 +1049,19 @@ class AppCheckoutFormsPlatformAdapter {
           return [AutofillHints.streetAddressLine1];
         }
         break;
-      case AppCheckoutFieldType.creditCard:
+      case DSCheckoutFieldType.creditCard:
         return [AutofillHints.creditCardNumber];
-      case AppCheckoutFieldType.expiryDate:
+      case DSCheckoutFieldType.expiryDate:
         return [AutofillHints.creditCardExpirationDate];
-      case AppCheckoutFieldType.cvv:
+      case DSCheckoutFieldType.cvv:
         return [AutofillHints.creditCardSecurityCode];
-      case AppCheckoutFieldType.postalCode:
+      case DSCheckoutFieldType.postalCode:
         return [AutofillHints.postalCode];
-      case AppCheckoutFieldType.city:
+      case DSCheckoutFieldType.city:
         return [AutofillHints.addressCity];
-      case AppCheckoutFieldType.state:
+      case DSCheckoutFieldType.state:
         return [AutofillHints.addressState];
-      case AppCheckoutFieldType.country:
+      case DSCheckoutFieldType.country:
         return [AutofillHints.countryName];
       default:
         break;

@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app_breadcrumbs_config.dart';
 
-class AppBreadcrumbs extends StatefulWidget {
-  final AppBreadcrumbsConfig config;
-  final List<AppBreadcrumbItem>? items;
-  final ValueChanged<AppBreadcrumbItem>? onTap;
-  final AppBreadcrumbSeparator? separator;
+class DSBreadcrumbs extends StatefulWidget {
+  final DSBreadcrumbsConfig config;
+  final List<DSBreadcrumbItem>? items;
+  final ValueChanged<DSBreadcrumbItem>? onTap;
+  final DSBreadcrumbSeparator? separator;
   final EdgeInsetsGeometry? padding;
   final double? height;
   final Color? backgroundColor;
   final Color? textColor;
   final TextStyle? textStyle;
 
-  const AppBreadcrumbs({
+  const DSBreadcrumbs({
     super.key,
-    this.config = const AppBreadcrumbsConfig(),
+    this.config = const DSBreadcrumbsConfig(),
     this.items,
     this.onTap,
     this.separator,
@@ -27,10 +27,10 @@ class AppBreadcrumbs extends StatefulWidget {
   });
 
   @override
-  State<AppBreadcrumbs> createState() => _AppBreadcrumbsState();
+  State<DSBreadcrumbs> createState() => _DSBreadcrumbsState();
 }
 
-class _AppBreadcrumbsState extends State<AppBreadcrumbs>
+class _DSBreadcrumbsState extends State<DSBreadcrumbs>
     with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late Animation<double> _scaleAnimation;
@@ -60,7 +60,7 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   }
 
   @override
-  void didUpdateWidget(AppBreadcrumbs oldWidget) {
+  void didUpdateWidget(DSBreadcrumbs oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.config.state != oldWidget.config.state) {
@@ -70,11 +70,11 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
 
   void _updateStateAnimation() {
     switch (widget.config.state) {
-      case AppBreadcrumbsState.loading:
-      case AppBreadcrumbsState.skeleton:
+      case DSBreadcrumbsState.loading:
+      case DSBreadcrumbsState.skeleton:
         _stateAnimationController.repeat(reverse: true);
         break;
-      case AppBreadcrumbsState.disabled:
+      case DSBreadcrumbsState.disabled:
         _stateAnimationController.animateTo(0.6);
         break;
       default:
@@ -205,15 +205,15 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     if (items.isEmpty) return const SizedBox.shrink();
 
     switch (widget.config.variant) {
-      case AppBreadcrumbsVariant.defaultVariant:
+      case DSBreadcrumbsVariant.defaultVariant:
         return _buildDefaultBreadcrumbs(items, theme, isRtl);
-      case AppBreadcrumbsVariant.collapsing:
+      case DSBreadcrumbsVariant.collapsing:
         return _buildCollapsingBreadcrumbs(items, theme, isRtl);
     }
   }
 
   Widget _buildDefaultBreadcrumbs(
-      List<AppBreadcrumbItem> items, ThemeData theme, bool isRtl) {
+      List<DSBreadcrumbItem> items, ThemeData theme, bool isRtl) {
     return Container(
       height: widget.height ?? widget.config.spacing?.minHeight ?? 48.0,
       padding: widget.padding ??
@@ -234,7 +234,7 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   }
 
   Widget _buildCollapsingBreadcrumbs(
-      List<AppBreadcrumbItem> items, ThemeData theme, bool isRtl) {
+      List<DSBreadcrumbItem> items, ThemeData theme, bool isRtl) {
     final maxVisible = widget.config.maxVisibleItems;
     final shouldCollapse = items.length > maxVisible;
 
@@ -293,7 +293,7 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   }
 
   List<Widget> _buildBreadcrumbItems(
-      List<AppBreadcrumbItem> items, ThemeData theme, bool isRtl) {
+      List<DSBreadcrumbItem> items, ThemeData theme, bool isRtl) {
     List<Widget> widgets = [];
 
     for (int i = 0; i < items.length; i++) {
@@ -310,7 +310,7 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     return widgets;
   }
 
-  Widget _buildBreadcrumbItem(AppBreadcrumbItem item, int index,
+  Widget _buildBreadcrumbItem(DSBreadcrumbItem item, int index,
       ThemeData theme, bool isRtl, bool isLast) {
     final isClickable =
         !isLast && widget.config.state.isInteractive && !item.disabled;
@@ -355,23 +355,23 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   }
 
   Widget _buildItemContent(
-      AppBreadcrumbItem item, ThemeData theme, bool isLast) {
+      DSBreadcrumbItem item, ThemeData theme, bool isLast) {
     switch (item.type) {
-      case AppBreadcrumbType.text:
+      case DSBreadcrumbType.text:
         return Text(
           item.title,
           style: _getTextStyle(theme, isLast),
           overflow: widget.config.typography?.overflow ?? TextOverflow.ellipsis,
           maxLines: widget.config.typography?.maxLines ?? 1,
         );
-      case AppBreadcrumbType.icon:
+      case DSBreadcrumbType.icon:
         return item.icon ??
             Icon(
               Icons.folder,
               size: 16,
               color: _getTextColor(theme, isLast),
             );
-      case AppBreadcrumbType.textWithIcon:
+      case DSBreadcrumbType.textWithIcon:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -390,7 +390,7 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
             ),
           ],
         );
-      case AppBreadcrumbType.custom:
+      case DSBreadcrumbType.custom:
         return item.icon ?? Text(item.title);
     }
   }
@@ -398,12 +398,12 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   Widget _buildSeparator(ThemeData theme) {
     final separator = widget.separator ??
         widget.config.separator ??
-        const AppBreadcrumbSeparator();
+        const DSBreadcrumbSeparator();
 
     Widget separatorWidget;
 
     switch (separator.type) {
-      case AppBreadcrumbSeparatorType.custom:
+      case DSBreadcrumbSeparatorType.custom:
         separatorWidget = separator.custom ??
             Text(
               separator.text ?? '>',
@@ -441,12 +441,12 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
   }
 
   Widget _buildCollapseIndicator(
-      List<AppBreadcrumbItem> items, ThemeData theme) {
+      List<DSBreadcrumbItem> items, ThemeData theme) {
     final mode = widget.config.behavior?.collapseMode ??
-        AppBreadcrumbsCollapseMode.ellipsis;
+        DSBreadcrumbsCollapseMode.ellipsis;
 
     switch (mode) {
-      case AppBreadcrumbsCollapseMode.ellipsis:
+      case DSBreadcrumbsCollapseMode.ellipsis:
         return Padding(
           padding: EdgeInsets.all(widget.config.spacing?.itemPadding ?? 8.0),
           child: Text(
@@ -454,8 +454,8 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
             style: _getTextStyle(theme, false),
           ),
         );
-      case AppBreadcrumbsCollapseMode.dropdown:
-        return PopupMenuButton<AppBreadcrumbItem>(
+      case DSBreadcrumbsCollapseMode.dropdown:
+        return PopupMenuButton<DSBreadcrumbItem>(
           icon: Icon(
             Icons.more_horiz,
             color: _getTextColor(theme, false),
@@ -464,7 +464,7 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
           itemBuilder: (context) {
             final hiddenItems = _getHiddenItems(items);
             return hiddenItems
-                .map((item) => PopupMenuItem<AppBreadcrumbItem>(
+                .map((item) => PopupMenuItem<DSBreadcrumbItem>(
                       value: item,
                       child: Text(item.title),
                     ))
@@ -472,19 +472,19 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
           },
           onSelected: _handleItemTap,
         );
-      case AppBreadcrumbsCollapseMode.hidden:
+      case DSBreadcrumbsCollapseMode.hidden:
         return const SizedBox.shrink();
     }
   }
 
-  List<AppBreadcrumbItem> _getHiddenItems(List<AppBreadcrumbItem> items) {
+  List<DSBreadcrumbItem> _getHiddenItems(List<DSBreadcrumbItem> items) {
     final maxVisible = widget.config.maxVisibleItems;
     if (items.length <= maxVisible) return [];
 
     return items.sublist(1, items.length - (maxVisible - 1));
   }
 
-  void _handleItemTap(AppBreadcrumbItem item) {
+  void _handleItemTap(DSBreadcrumbItem item) {
     if (!widget.config.state.isInteractive || item.disabled) return;
 
     if (widget.config.behavior?.enableHapticFeedback ?? true) {
@@ -496,7 +496,7 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     item.onTap?.call();
   }
 
-  String _buildSemanticLabel(AppBreadcrumbItem item, int index, bool isLast) {
+  String _buildSemanticLabel(DSBreadcrumbItem item, int index, bool isLast) {
     if (isLast) {
       return 'Current page: ${item.title}';
     } else {
@@ -504,18 +504,18 @@ class _AppBreadcrumbsState extends State<AppBreadcrumbs>
     }
   }
 
-  List<AppBreadcrumbItem> _getItems() {
+  List<DSBreadcrumbItem> _getItems() {
     final items = widget.items ?? widget.config.items;
 
     if (widget.config.showHome &&
         items.isNotEmpty &&
         items.first.id != 'home') {
       return [
-        const AppBreadcrumbItem(
+        const DSBreadcrumbItem(
           id: 'home',
           title: 'Inicio',
           icon: Icon(Icons.home, size: 16),
-          type: AppBreadcrumbType.icon,
+          type: DSBreadcrumbType.icon,
         ),
         ...items,
       ];

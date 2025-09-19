@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 part 'select_config.freezed.dart';
 
 @freezed
-class AppSelectConfig with _$AppSelectConfig {
-  const factory AppSelectConfig({
+class DSSelectConfig with _$DSSelectConfig {
+  const factory DSSelectConfig({
     @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0))
     EdgeInsets contentPadding,
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
@@ -35,14 +35,14 @@ class AppSelectConfig with _$AppSelectConfig {
     @Default(8.0) double chipSpacing,
     @Default(32.0) double chipHeight,
     @Default(200) int searchDebounceMs,
-  }) = _AppSelectConfig;
+  }) = _DSSelectConfig;
 
-  const AppSelectConfig._();
+  const DSSelectConfig._();
 }
 
 @freezed
-class AppSelectColors with _$AppSelectColors {
-  const factory AppSelectColors({
+class DSSelectColors with _$DSSelectColors {
+  const factory DSSelectColors({
     required Color borderColor,
     required Color focusedBorderColor,
     required Color errorBorderColor,
@@ -82,13 +82,13 @@ class AppSelectColors with _$AppSelectColors {
     required Color chipDeleteIconColor,
   }) = _AppSelectColors;
 
-  const AppSelectColors._();
+  const DSSelectColors._();
 
-  factory AppSelectColors.fromTheme(ThemeData theme) {
+  factory DSSelectColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
 
-    return AppSelectColors(
+    return DSSelectColors(
       borderColor: colorScheme.outline,
       focusedBorderColor: colorScheme.primary,
       errorBorderColor: colorScheme.error,
@@ -133,7 +133,7 @@ class AppSelectColors with _$AppSelectColors {
   }
 }
 
-enum AppSelectState {
+enum DSSelectState {
   defaultState,
   hover,
   pressed,
@@ -145,15 +145,15 @@ enum AppSelectState {
   error,
 }
 
-enum AppSelectVariant {
+enum DSSelectVariant {
   single,
   multi,
   searchable,
 }
 
 @freezed
-class AppSelectItem<T> with _$AppSelectItem<T> {
-  const factory AppSelectItem({
+class DSSelectItem<T> with _$DSSelectItem<T> {
+  const factory DSSelectItem({
     required T value,
     required String label,
     String? subtitle,
@@ -163,10 +163,10 @@ class AppSelectItem<T> with _$AppSelectItem<T> {
     String? searchableText,
   }) = _AppSelectItem<T>;
 
-  const AppSelectItem._();
+  const DSSelectItem._();
 }
 
-class AppSelectValidator {
+class DSSelectValidator {
   static String? required<T>(T? value) {
     if (value == null) {
       return 'Este campo es requerido';

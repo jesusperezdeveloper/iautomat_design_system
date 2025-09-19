@@ -3,39 +3,39 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/menu/app_menu.dart';
 
 void main() {
-  group('AppMenu Golden Tests', () {
+  group('DSMenu Golden Tests', () {
     final testItems = [
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'new',
         label: 'Nuevo',
         icon: Icons.add,
         shortcut: 'Ctrl+N',
       ),
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'open',
         label: 'Abrir',
         icon: Icons.folder_open,
         shortcut: 'Ctrl+O',
       ),
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'save',
         label: 'Guardar',
         icon: Icons.save,
         shortcut: 'Ctrl+S',
         selected: true,
       ),
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'divider',
         label: '',
         showDividerBefore: true,
       ),
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'disabled',
         label: 'Deshabilitado',
         icon: Icons.block,
         enabled: false,
       ),
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'delete',
         label: 'Eliminar',
         icon: Icons.delete,
@@ -44,17 +44,17 @@ void main() {
     ];
 
     final submenuItems = [
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'cut',
         label: 'Cortar',
         icon: Icons.cut,
       ),
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'copy',
         label: 'Copiar',
         icon: Icons.copy,
       ),
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'paste',
         label: 'Pegar',
         icon: Icons.paste,
@@ -62,17 +62,17 @@ void main() {
     ];
 
     final typeaheadItems = [
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'user1',
         label: 'Juan Pérez',
         icon: Icons.person,
       ),
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'user2',
         label: 'María García',
         icon: Icons.person,
       ),
-      const AppMenuItem(
+      const DSMenuItem(
         id: 'team1',
         label: 'Equipo Frontend',
         icon: Icons.group,
@@ -92,7 +92,7 @@ void main() {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[300]!),
                 ),
-                child: AppMenu.context(
+                child: DSMenu.context(
                   items: testItems,
                   onSelected: (item) {},
                 ),
@@ -123,7 +123,7 @@ void main() {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[300]!),
                 ),
-                child: AppMenu.submenu(
+                child: DSMenu.submenu(
                   items: submenuItems,
                   onSelected: (item) {},
                 ),
@@ -154,7 +154,7 @@ void main() {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[300]!),
                 ),
-                child: AppMenu.typeahead(
+                child: DSMenu.typeahead(
                   items: typeaheadItems,
                   onSelected: (item) {},
                   searchPlaceholder: 'Buscar usuarios...',
@@ -194,10 +194,10 @@ void main() {
                               right: 8,
                               bottom: 8,
                               height: 150,
-                              child: AppMenu.context(
+                              child: DSMenu.context(
                                 items: submenuItems,
                                 onSelected: (item) {},
-                                state: AppMenuState.defaultState,
+                                state: DSMenuState.defaultState,
                               ),
                             ),
                           ],
@@ -212,10 +212,10 @@ void main() {
                               right: 8,
                               bottom: 8,
                               height: 150,
-                              child: AppMenu.context(
+                              child: DSMenu.context(
                                 items: submenuItems,
                                 onSelected: (item) {},
-                                state: AppMenuState.loading,
+                                state: DSMenuState.loading,
                               ),
                             ),
                           ],
@@ -237,10 +237,10 @@ void main() {
                               right: 8,
                               bottom: 8,
                               height: 150,
-                              child: AppMenu.context(
+                              child: DSMenu.context(
                                 items: submenuItems,
                                 onSelected: (item) {},
-                                state: AppMenuState.skeleton,
+                                state: DSMenuState.skeleton,
                               ),
                             ),
                           ],
@@ -255,10 +255,10 @@ void main() {
                               right: 8,
                               bottom: 8,
                               height: 150,
-                              child: AppMenu.context(
+                              child: DSMenu.context(
                                 items: submenuItems,
                                 onSelected: (item) {},
-                                state: AppMenuState.disabled,
+                                state: DSMenuState.disabled,
                               ),
                             ),
                           ],
@@ -299,7 +299,7 @@ void main() {
                         right: 8,
                         bottom: 8,
                         height: 200,
-                        child: AppMenu.context(
+                        child: DSMenu.context(
                           items: submenuItems,
                           onSelected: (item) {},
                           backgroundColor: Colors.blue[50],
@@ -322,7 +322,7 @@ void main() {
                         right: 8,
                         bottom: 8,
                         height: 200,
-                        child: AppMenu.context(
+                        child: DSMenu.context(
                           items: submenuItems,
                           onSelected: (item) {},
                           elevation: 16,
@@ -360,7 +360,7 @@ void main() {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[600]!),
                 ),
-                child: AppMenu.context(
+                child: DSMenu.context(
                   items: testItems.take(4).toList(),
                   onSelected: (item) {},
                 ),
@@ -393,7 +393,7 @@ void main() {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey[300]!),
                   ),
-                  child: AppMenu.context(
+                  child: DSMenu.context(
                     items: testItems.take(4).toList(),
                     onSelected: (item) {},
                   ),
@@ -425,7 +425,7 @@ void main() {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[300]!),
                 ),
-                child: AppMenu.typeahead(
+                child: DSMenu.typeahead(
                   items: const [],
                   onSelected: (item) {},
                 ),
@@ -445,9 +445,9 @@ void main() {
 
     testWidgets('alignment variants golden test', (tester) async {
       final simpleItems = [
-        const AppMenuItem(id: '1', label: 'Opción 1'),
-        const AppMenuItem(id: '2', label: 'Opción 2'),
-        const AppMenuItem(id: '3', label: 'Opción 3'),
+        const DSMenuItem(id: '1', label: 'Opción 1'),
+        const DSMenuItem(id: '2', label: 'Opción 2'),
+        const DSMenuItem(id: '3', label: 'Opción 3'),
       ];
 
       await tester.pumpWidget(
@@ -470,7 +470,7 @@ void main() {
                               top: 20,
                               width: 140,
                               height: 120,
-                              child: AppMenu.context(
+                              child: DSMenu.context(
                                 items: simpleItems,
                                 onSelected: (item) {},
                                 alignment: MenuAlignment.topLeft,
@@ -488,7 +488,7 @@ void main() {
                               top: 20,
                               width: 140,
                               height: 120,
-                              child: AppMenu.context(
+                              child: DSMenu.context(
                                 items: simpleItems,
                                 onSelected: (item) {},
                                 alignment: MenuAlignment.topRight,
@@ -513,7 +513,7 @@ void main() {
                               bottom: 20,
                               width: 140,
                               height: 120,
-                              child: AppMenu.context(
+                              child: DSMenu.context(
                                 items: simpleItems,
                                 onSelected: (item) {},
                                 alignment: MenuAlignment.bottomLeft,
@@ -531,7 +531,7 @@ void main() {
                               top: 40,
                               width: 140,
                               height: 120,
-                              child: AppMenu.context(
+                              child: DSMenu.context(
                                 items: simpleItems,
                                 onSelected: (item) {},
                                 alignment: MenuAlignment.center,

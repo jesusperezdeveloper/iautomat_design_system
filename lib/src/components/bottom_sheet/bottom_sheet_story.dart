@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'app_bottom_sheet.dart';
 
-/// Story para demostrar las diferentes variantes y configuraciones del AppBottomSheet
+/// Story para demostrar las diferentes variantes y configuraciones del DSBottomSheet
 class BottomSheetStory extends StatefulWidget {
   const BottomSheetStory({super.key});
 
@@ -11,7 +11,7 @@ class BottomSheetStory extends StatefulWidget {
 
 class _BottomSheetStoryState extends State<BottomSheetStory> {
   BottomSheetVariant _selectedVariant = BottomSheetVariant.half;
-  AppBottomSheetState _selectedState = AppBottomSheetState.defaultState;
+  DSBottomSheetState _selectedState = DSBottomSheetState.defaultState;
   BottomSheetSnap _selectedSnap = BottomSheetSnap.half;
   bool _draggable = true;
   bool _rtlSupport = true;
@@ -21,7 +21,7 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppBottomSheet Story'),
+        title: const Text('DSBottomSheet Story'),
         backgroundColor: Theme.of(context).colorScheme.surface,
       ),
       body: Row(
@@ -72,7 +72,7 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Ejemplos de AppBottomSheet',
+                      'Ejemplos de DSBottomSheet',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 32),
@@ -151,13 +151,13 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
-        DropdownButtonFormField<AppBottomSheetState>(
+        DropdownButtonFormField<DSBottomSheetState>(
           initialValue: _selectedState,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             labelText: 'Estado del bottom sheet',
           ),
-          items: AppBottomSheetState.values.map((state) {
+          items: DSBottomSheetState.values.map((state) {
             return DropdownMenuItem(
               value: state,
               child: Text(_getStateName(state)),
@@ -412,7 +412,7 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
       content: _getContentForVariant(_selectedVariant),
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
@@ -424,20 +424,20 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
       content: _getContentForVariant(variant),
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
   }
 
   void _showLoadingBottomSheet() {
-    final bottomSheet = AppBottomSheet.half(
+    final bottomSheet = DSBottomSheet.half(
       content: _buildBasicContent('Cargando datos...'),
-      state: AppBottomSheetState.loading,
+      state: DSBottomSheetState.loading,
       draggable: false,
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
@@ -451,31 +451,31 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
   }
 
   void _showSkeletonBottomSheet() {
-    final bottomSheet = AppBottomSheet.half(
+    final bottomSheet = DSBottomSheet.half(
       content: _buildBasicContent('Contenido en carga...'),
-      state: AppBottomSheetState.skeleton,
+      state: DSBottomSheetState.skeleton,
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
   }
 
   void _showDisabledBottomSheet() {
-    final bottomSheet = AppBottomSheet.half(
+    final bottomSheet = DSBottomSheet.half(
       content: _buildBasicContent('Bottom sheet deshabilitado'),
-      state: AppBottomSheetState.disabled,
+      state: DSBottomSheetState.disabled,
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
   }
 
   void _showOptionsBottomSheet() {
-    final bottomSheet = AppBottomSheet.modal(
+    final bottomSheet = DSBottomSheet.modal(
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -511,14 +511,14 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
       ),
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
   }
 
   void _showFilterBottomSheet() {
-    final bottomSheet = AppBottomSheet.full(
+    final bottomSheet = DSBottomSheet.full(
       content: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -591,14 +591,14 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
       ),
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
   }
 
   void _showGalleryBottomSheet() {
-    final bottomSheet = AppBottomSheet.full(
+    final bottomSheet = DSBottomSheet.full(
       content: Column(
         children: [
           const Padding(
@@ -636,38 +636,38 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
       ),
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
   }
 
   void _showNonDraggableBottomSheet() {
-    final bottomSheet = AppBottomSheet.half(
+    final bottomSheet = DSBottomSheet.half(
       content: _buildBasicContent('Este bottom sheet no se puede arrastrar'),
       draggable: false,
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
   }
 
   void _showCustomSnapBottomSheet() {
-    final bottomSheet = AppBottomSheet.modal(
+    final bottomSheet = DSBottomSheet.modal(
       content: _buildBasicContent('Bottom sheet con puntos de anclaje personalizados'),
       initialSnap: BottomSheetSnap.min,
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
   }
 
   void _showDynamicContentBottomSheet() {
-    final bottomSheet = AppBottomSheet.half(
+    final bottomSheet = DSBottomSheet.half(
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -686,22 +686,22 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
       ),
     );
 
-    AppBottomSheet.showModal(
+    DSBottomSheet.showModal(
       context: context,
       bottomSheet: bottomSheet,
     );
   }
 
-  AppBottomSheet _createBottomSheet({
+  DSBottomSheet _createBottomSheet({
     required BottomSheetVariant variant,
     required Widget content,
-    AppBottomSheetState state = AppBottomSheetState.defaultState,
+    DSBottomSheetState state = DSBottomSheetState.defaultState,
     BottomSheetSnap initialSnap = BottomSheetSnap.half,
     bool draggable = true,
   }) {
     switch (variant) {
       case BottomSheetVariant.modal:
-        return AppBottomSheet.modal(
+        return DSBottomSheet.modal(
           content: content,
           state: state,
           initialSnap: initialSnap,
@@ -710,7 +710,7 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
           accessibilitySupport: _accessibilitySupport,
         );
       case BottomSheetVariant.half:
-        return AppBottomSheet.half(
+        return DSBottomSheet.half(
           content: content,
           state: state,
           initialSnap: initialSnap,
@@ -719,7 +719,7 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
           accessibilitySupport: _accessibilitySupport,
         );
       case BottomSheetVariant.full:
-        return AppBottomSheet.full(
+        return DSBottomSheet.full(
           content: content,
           state: state,
           initialSnap: initialSnap,
@@ -799,23 +799,23 @@ class _BottomSheetStoryState extends State<BottomSheetStory> {
     }
   }
 
-  String _getStateName(AppBottomSheetState state) {
+  String _getStateName(DSBottomSheetState state) {
     switch (state) {
-      case AppBottomSheetState.defaultState:
+      case DSBottomSheetState.defaultState:
         return 'Default';
-      case AppBottomSheetState.hover:
+      case DSBottomSheetState.hover:
         return 'Hover';
-      case AppBottomSheetState.pressed:
+      case DSBottomSheetState.pressed:
         return 'Pressed';
-      case AppBottomSheetState.focus:
+      case DSBottomSheetState.focus:
         return 'Focus';
-      case AppBottomSheetState.selected:
+      case DSBottomSheetState.selected:
         return 'Selected';
-      case AppBottomSheetState.disabled:
+      case DSBottomSheetState.disabled:
         return 'Disabled';
-      case AppBottomSheetState.loading:
+      case DSBottomSheetState.loading:
         return 'Loading';
-      case AppBottomSheetState.skeleton:
+      case DSBottomSheetState.skeleton:
         return 'Skeleton';
     }
   }

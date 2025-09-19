@@ -3,13 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/toast/app_toast.dart';
 
 void main() {
-  group('AppToast', () {
+  group('DSToast', () {
     testWidgets('renders correctly with basic message',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Test message',
             ),
           ),
@@ -25,7 +25,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Test message',
               action: ToastAction(
                 label: 'Action',
@@ -50,7 +50,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Test message',
               showCloseButton: true,
             ),
@@ -66,7 +66,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Test message',
               showCloseButton: false,
             ),
@@ -83,7 +83,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Success message',
               type: ToastType.success,
             ),
@@ -98,7 +98,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Warning message',
               type: ToastType.warning,
             ),
@@ -113,7 +113,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Error message',
               type: ToastType.error,
             ),
@@ -128,7 +128,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Test message',
               leading: Icon(Icons.star),
             ),
@@ -143,7 +143,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Test message',
               state: ToastState.skeleton,
             ),
@@ -161,7 +161,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Test message',
               accessibilitySupport: true,
               accessibilityLabel: accessibilityLabel,
@@ -170,7 +170,7 @@ void main() {
         ),
       );
 
-      final semantics = tester.getSemantics(find.byType(AppToast));
+      final semantics = tester.getSemantics(find.byType(DSToast));
       expect(semantics.label, accessibilityLabel);
     });
 
@@ -179,7 +179,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Test message',
               accessibilitySupport: true,
               action: ToastAction(
@@ -191,7 +191,7 @@ void main() {
         ),
       );
 
-      final semantics = tester.getSemantics(find.byType(AppToast));
+      final semantics = tester.getSemantics(find.byType(DSToast));
       expect(semantics.label, contains('Toast: Test message'));
       expect(semantics.label, contains('with action Test Action'));
     });
@@ -203,7 +203,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Test message',
               backgroundColor: customBgColor,
               textColor: customTextColor,
@@ -215,7 +215,7 @@ void main() {
       final material = tester.widget<Material>(
         find
             .descendant(
-              of: find.byType(AppToast),
+              of: find.byType(DSToast),
               matching: find.byType(Material),
             )
             .first,
@@ -230,7 +230,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: const Scaffold(
-              body: AppToast(
+              body: DSToast(
                 message: 'Test message',
                 rtlSupport: true,
               ),
@@ -239,7 +239,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppToast), findsOneWidget);
+      expect(find.byType(DSToast), findsOneWidget);
     });
 
     testWidgets('calls onDismiss when close button is tapped',
@@ -249,7 +249,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppToast(
+            body: DSToast(
               message: 'Test message',
               showCloseButton: true,
               onDismiss: () => dismissCalled = true,
@@ -272,7 +272,7 @@ void main() {
               body: Builder(
                 builder: (context) {
                   return ElevatedButton(
-                    onPressed: () => AppToast.info(
+                    onPressed: () => DSToast.info(
                       context,
                       message: 'Info message',
                     ),
@@ -297,7 +297,7 @@ void main() {
               body: Builder(
                 builder: (context) {
                   return ElevatedButton(
-                    onPressed: () => AppToast.success(
+                    onPressed: () => DSToast.success(
                       context,
                       message: 'Success message',
                     ),
@@ -323,7 +323,7 @@ void main() {
               body: Builder(
                 builder: (context) {
                   return ElevatedButton(
-                    onPressed: () => AppToast.warning(
+                    onPressed: () => DSToast.warning(
                       context,
                       message: 'Warning message',
                     ),
@@ -349,7 +349,7 @@ void main() {
               body: Builder(
                 builder: (context) {
                   return ElevatedButton(
-                    onPressed: () => AppToast.error(
+                    onPressed: () => DSToast.error(
                       context,
                       message: 'Error message',
                     ),
@@ -369,7 +369,7 @@ void main() {
       });
     });
 
-    group('AppToastManager', () {
+    group('DSToastManager', () {
       testWidgets('can remove all toasts', (WidgetTester tester) async {
         await tester.pumpWidget(
           MaterialApp(
@@ -380,13 +380,13 @@ void main() {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          AppToast.info(context, message: 'Toast 1');
-                          AppToast.info(context, message: 'Toast 2');
+                          DSToast.info(context, message: 'Toast 1');
+                          DSToast.info(context, message: 'Toast 2');
                         },
                         child: const Text('Show Toasts'),
                       ),
                       ElevatedButton(
-                        onPressed: () => AppToastManager.removeAll(),
+                        onPressed: () => DSToastManager.removeAll(),
                         child: const Text('Remove All'),
                       ),
                     ],
@@ -422,12 +422,12 @@ void main() {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          AppToast.info(
+                          DSToast.info(
                             context,
                             message: 'Top toast',
                             position: ToastPosition.top,
                           );
-                          AppToast.info(
+                          DSToast.info(
                             context,
                             message: 'Bottom toast',
                             position: ToastPosition.bottom,
@@ -436,7 +436,7 @@ void main() {
                         child: const Text('Show Toasts'),
                       ),
                       ElevatedButton(
-                        onPressed: () => AppToastManager.removeAllAtPosition(
+                        onPressed: () => DSToastManager.removeAllAtPosition(
                           ToastPosition.top,
                         ),
                         child: const Text('Remove Top'),
@@ -490,7 +490,7 @@ void main() {
 
     group('copyWith extension', () {
       test('copies toast with new values', () {
-        final original = AppToast(
+        final original = DSToast(
           message: 'Original message',
           type: ToastType.info,
           showCloseButton: true,
@@ -508,7 +508,7 @@ void main() {
       });
 
       test('retains original values when not specified', () {
-        final original = AppToast(
+        final original = DSToast(
           message: 'Original message',
           type: ToastType.warning,
           duration: Duration(seconds: 10),

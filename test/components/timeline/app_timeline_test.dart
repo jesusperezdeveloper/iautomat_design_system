@@ -3,60 +3,60 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppTimeline', () {
+  group('DSTimeline', () {
     group('Constructor', () {
-      test('should create AppTimeline with activity constructor', () {
+      test('should create DSTimeline with activity constructor', () {
         final events = [
-          AppTimelineEvent(
+          DSTimelineEvent(
             id: '1',
             title: 'Test Event',
             timestamp: DateTime.now(),
           ),
         ];
 
-        final timeline = AppTimeline.activity(events: events);
+        final timeline = DSTimeline.activity(events: events);
 
-        expect(timeline.config.variant, equals(AppTimelineVariant.activity));
+        expect(timeline.config.variant, equals(DSTimelineVariant.activity));
         expect(timeline.config.events, equals(events));
         expect(timeline.config.orientation,
-            equals(AppTimelineOrientation.vertical));
-        expect(timeline.config.spacing, equals(AppTimelineSpacing.medium));
+            equals(DSTimelineOrientation.vertical));
+        expect(timeline.config.spacing, equals(DSTimelineSpacing.medium));
       });
 
-      test('should create AppTimeline with custom orientation', () {
-        final timeline = AppTimeline.activity(
+      test('should create DSTimeline with custom orientation', () {
+        final timeline = DSTimeline.activity(
           events: [],
-          orientation: AppTimelineOrientation.horizontal,
+          orientation: DSTimelineOrientation.horizontal,
         );
 
         expect(timeline.config.orientation,
-            equals(AppTimelineOrientation.horizontal));
+            equals(DSTimelineOrientation.horizontal));
       });
 
-      test('should create AppTimeline with custom connector style', () {
-        final timeline = AppTimeline.activity(
+      test('should create DSTimeline with custom connector style', () {
+        final timeline = DSTimeline.activity(
           events: [],
-          connectorStyle: AppTimelineConnectorStyle.dashed,
+          connectorStyle: DSTimelineConnectorStyle.dashed,
         );
 
         expect(timeline.config.connectorStyle,
-            equals(AppTimelineConnectorStyle.dashed));
+            equals(DSTimelineConnectorStyle.dashed));
       });
 
-      test('should create AppTimeline with custom indicator style', () {
-        final timeline = AppTimeline.activity(
+      test('should create DSTimeline with custom indicator style', () {
+        final timeline = DSTimeline.activity(
           events: [],
-          indicatorStyle: AppTimelineIndicatorStyle.icon,
+          indicatorStyle: DSTimelineIndicatorStyle.icon,
         );
 
         expect(timeline.config.indicatorStyle,
-            equals(AppTimelineIndicatorStyle.icon));
+            equals(DSTimelineIndicatorStyle.icon));
       });
     });
 
     group('Configuration Properties', () {
       test('should be interactive when onEventTap is provided', () {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           onEventTap: (index) {},
         );
@@ -65,7 +65,7 @@ void main() {
       });
 
       test('should be hoverable when onEventHover is provided', () {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           onEventHover: (index) {},
         );
@@ -74,7 +74,7 @@ void main() {
       });
 
       test('should be disabled when enabled is false', () {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           enabled: false,
         );
@@ -84,7 +84,7 @@ void main() {
       });
 
       test('should be loading when loading is true', () {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           loading: true,
         );
@@ -94,7 +94,7 @@ void main() {
       });
 
       test('should be skeleton when skeleton is true', () {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           skeleton: true,
         );
@@ -105,18 +105,18 @@ void main() {
 
       test('should have events when events list is not empty', () {
         final events = [
-          AppTimelineEvent(id: '1', title: 'Test'),
+          DSTimelineEvent(id: '1', title: 'Test'),
         ];
 
-        final timeline = AppTimeline.activity(events: events);
+        final timeline = DSTimeline.activity(events: events);
 
         expect(timeline.config.hasEvents, isTrue);
       });
 
       test('should be horizontal when orientation is horizontal', () {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
-          orientation: AppTimelineOrientation.horizontal,
+          orientation: DSTimelineOrientation.horizontal,
         );
 
         expect(timeline.config.isHorizontal, isTrue);
@@ -124,9 +124,9 @@ void main() {
       });
 
       test('should be vertical when orientation is vertical', () {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
-          orientation: AppTimelineOrientation.vertical,
+          orientation: DSTimelineOrientation.vertical,
         );
 
         expect(timeline.config.isVertical, isTrue);
@@ -134,7 +134,7 @@ void main() {
       });
 
       test('should have selection when selectedIndex is provided', () {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           selectedIndex: 0,
         );
@@ -143,7 +143,7 @@ void main() {
       });
 
       test('should be reversed when reversed is true', () {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           reversed: true,
         );
@@ -154,38 +154,38 @@ void main() {
 
     group('Effective Values', () {
       test('should return effective connector width', () {
-        final timeline1 = AppTimeline.activity(events: []);
-        final timeline2 = AppTimeline.activity(
+        final timeline1 = DSTimeline.activity(events: []);
+        final timeline2 = DSTimeline.activity(
           events: [],
           connectorWidth: 4.0,
         );
 
         expect(timeline1.config.getEffectiveConnectorWidth(),
-            equals(AppTimelineConstants.defaultConnectorWidth));
+            equals(DSTimelineConstants.defaultConnectorWidth));
         expect(timeline2.config.getEffectiveConnectorWidth(), equals(4.0));
       });
 
       test('should return effective indicator size', () {
-        final timeline1 = AppTimeline.activity(events: []);
-        final timeline2 = AppTimeline.activity(
+        final timeline1 = DSTimeline.activity(events: []);
+        final timeline2 = DSTimeline.activity(
           events: [],
           indicatorSize: 20.0,
         );
 
         expect(timeline1.config.getEffectiveIndicatorSize(),
-            equals(AppTimelineSpacing.medium.indicatorSize));
+            equals(DSTimelineSpacing.medium.indicatorSize));
         expect(timeline2.config.getEffectiveIndicatorSize(), equals(20.0));
       });
 
       test('should return effective item spacing', () {
-        final timeline1 = AppTimeline.activity(events: []);
-        final timeline2 = AppTimeline.activity(
+        final timeline1 = DSTimeline.activity(events: []);
+        final timeline2 = DSTimeline.activity(
           events: [],
           itemSpacing: 24.0,
         );
 
         expect(timeline1.config.getEffectiveItemSpacing(),
-            equals(AppTimelineSpacing.medium.itemSpacing));
+            equals(DSTimelineSpacing.medium.itemSpacing));
         expect(timeline2.config.getEffectiveItemSpacing(), equals(24.0));
       });
 
@@ -193,8 +193,8 @@ void main() {
         const colorScheme = ColorScheme.light();
         const customColor = Colors.purple;
 
-        final timeline1 = AppTimeline.activity(events: []);
-        final timeline2 = AppTimeline.activity(
+        final timeline1 = DSTimeline.activity(events: []);
+        final timeline2 = DSTimeline.activity(
           events: [],
           connectorColor: customColor,
           indicatorColor: customColor,
@@ -224,28 +224,28 @@ void main() {
 
     group('Widget Rendering', () {
       testWidgets('should render empty timeline', (tester) async {
-        final timeline = AppTimeline.activity(events: []);
+        final timeline = DSTimeline.activity(events: []);
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
 
-        expect(find.byType(AppTimeline), findsOneWidget);
+        expect(find.byType(DSTimeline), findsOneWidget);
       });
 
       testWidgets('should render timeline with events', (tester) async {
         final events = [
-          AppTimelineEvent(
+          DSTimelineEvent(
             id: '1',
             title: 'Event 1',
             subtitle: 'Subtitle 1',
           ),
-          AppTimelineEvent(
+          DSTimelineEvent(
             id: '2',
             title: 'Event 2',
             subtitle: 'Subtitle 2',
           ),
         ];
 
-        final timeline = AppTimeline.activity(events: events);
+        final timeline = DSTimeline.activity(events: events);
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
 
@@ -256,19 +256,19 @@ void main() {
       });
 
       testWidgets('should not render when not visible', (tester) async {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           visible: false,
         );
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
 
-        expect(find.byType(AppTimeline), findsOneWidget);
+        expect(find.byType(DSTimeline), findsOneWidget);
         expect(find.byType(SizedBox), findsOneWidget);
       });
 
       testWidgets('should render skeleton when loading', (tester) async {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           loading: true,
         );
@@ -280,7 +280,7 @@ void main() {
 
       testWidgets('should render skeleton when skeleton is true',
           (tester) async {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           skeleton: true,
         );
@@ -297,10 +297,10 @@ void main() {
         int? tappedIndex;
 
         final events = [
-          AppTimelineEvent(id: '1', title: 'Event 1'),
+          DSTimelineEvent(id: '1', title: 'Event 1'),
         ];
 
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: events,
           onEventTap: (index) => tappedIndex = index,
         );
@@ -318,14 +318,14 @@ void main() {
       testWidgets('should call onTap when timeline is tapped', (tester) async {
         bool tapped = false;
 
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           onTap: () => tapped = true,
         );
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
 
-        await tester.tap(find.byType(AppTimeline));
+        await tester.tap(find.byType(DSTimeline));
         expect(tapped, isTrue);
       });
 
@@ -333,7 +333,7 @@ void main() {
           (tester) async {
         bool tapped = false;
 
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           enabled: false,
           onTap: () => tapped = true,
@@ -341,7 +341,7 @@ void main() {
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
 
-        await tester.tap(find.byType(AppTimeline));
+        await tester.tap(find.byType(DSTimeline));
         expect(tapped, isFalse);
       });
     });
@@ -349,13 +349,13 @@ void main() {
     group('Orientations', () {
       testWidgets('should render vertical timeline correctly', (tester) async {
         final events = [
-          AppTimelineEvent(id: '1', title: 'Event 1'),
-          AppTimelineEvent(id: '2', title: 'Event 2'),
+          DSTimelineEvent(id: '1', title: 'Event 1'),
+          DSTimelineEvent(id: '2', title: 'Event 2'),
         ];
 
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: events,
-          orientation: AppTimelineOrientation.vertical,
+          orientation: DSTimelineOrientation.vertical,
         );
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
@@ -368,13 +368,13 @@ void main() {
       testWidgets('should render horizontal timeline correctly',
           (tester) async {
         final events = [
-          AppTimelineEvent(id: '1', title: 'Event 1'),
-          AppTimelineEvent(id: '2', title: 'Event 2'),
+          DSTimelineEvent(id: '1', title: 'Event 1'),
+          DSTimelineEvent(id: '2', title: 'Event 2'),
         ];
 
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: events,
-          orientation: AppTimelineOrientation.horizontal,
+          orientation: DSTimelineOrientation.horizontal,
         );
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
@@ -388,26 +388,26 @@ void main() {
     group('Event Types and Status', () {
       testWidgets('should render events with different types', (tester) async {
         final events = [
-          AppTimelineEvent(
+          DSTimelineEvent(
             id: '1',
             title: 'Milestone',
-            type: AppTimelineEventType.milestone,
+            type: DSTimelineEventType.milestone,
           ),
-          AppTimelineEvent(
+          DSTimelineEvent(
             id: '2',
             title: 'Task',
-            type: AppTimelineEventType.task,
+            type: DSTimelineEventType.task,
           ),
-          AppTimelineEvent(
+          DSTimelineEvent(
             id: '3',
             title: 'Meeting',
-            type: AppTimelineEventType.meeting,
+            type: DSTimelineEventType.meeting,
           ),
         ];
 
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: events,
-          indicatorStyle: AppTimelineIndicatorStyle.icon,
+          indicatorStyle: DSTimelineIndicatorStyle.icon,
         );
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
@@ -423,24 +423,24 @@ void main() {
       testWidgets('should render events with different statuses',
           (tester) async {
         final events = [
-          AppTimelineEvent(
+          DSTimelineEvent(
             id: '1',
             title: 'Completed',
-            status: AppTimelineEventStatus.completed,
+            status: DSTimelineEventStatus.completed,
           ),
-          AppTimelineEvent(
+          DSTimelineEvent(
             id: '2',
             title: 'In Progress',
-            status: AppTimelineEventStatus.inProgress,
+            status: DSTimelineEventStatus.inProgress,
           ),
-          AppTimelineEvent(
+          DSTimelineEvent(
             id: '3',
             title: 'Pending',
-            status: AppTimelineEventStatus.pending,
+            status: DSTimelineEventStatus.pending,
           ),
         ];
 
-        final timeline = AppTimeline.activity(events: events);
+        final timeline = DSTimeline.activity(events: events);
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
 
@@ -452,7 +452,7 @@ void main() {
 
     group('Accessibility', () {
       testWidgets('should have semantic label', (tester) async {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           semanticLabel: 'Custom timeline label',
         );
@@ -460,35 +460,35 @@ void main() {
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
 
         expect(
-          tester.getSemantics(find.byType(AppTimeline)),
+          tester.getSemantics(find.byType(DSTimeline)),
           matchesSemantics(label: 'Custom timeline label'),
         );
       });
 
       testWidgets('should be focusable when interactive', (tester) async {
-        final timeline = AppTimeline.activity(
+        final timeline = DSTimeline.activity(
           events: [],
           onTap: () {},
         );
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: timeline)));
 
-        expect(find.byType(AppTimeline), findsOneWidget);
+        expect(find.byType(DSTimeline), findsOneWidget);
       });
     });
   });
 
-  group('AppTimelineEvent', () {
+  group('DSTimelineEvent', () {
     group('Properties', () {
       test('should have correct properties', () {
-        final event = AppTimelineEvent(
+        final event = DSTimelineEvent(
           id: '1',
           title: 'Test Event',
           subtitle: 'Test Subtitle',
           description: 'Test Description',
           timestamp: DateTime.now(),
-          type: AppTimelineEventType.task,
-          status: AppTimelineEventStatus.completed,
+          type: DSTimelineEventType.task,
+          status: DSTimelineEventStatus.completed,
           enabled: true,
           visible: true,
           selected: false,
@@ -507,7 +507,7 @@ void main() {
       });
 
       test('should handle empty properties correctly', () {
-        final event = AppTimelineEvent(id: '1');
+        final event = DSTimelineEvent(id: '1');
 
         expect(event.hasTitle, isFalse);
         expect(event.hasSubtitle, isFalse);
@@ -523,8 +523,8 @@ void main() {
       });
 
       test('should be interactive when callbacks are provided', () {
-        final event1 = AppTimelineEvent(id: '1');
-        final event2 = AppTimelineEvent(
+        final event1 = DSTimelineEvent(id: '1');
+        final event2 = DSTimelineEvent(
           id: '2',
           onTap: () {},
         );
@@ -537,13 +537,13 @@ void main() {
         const colorScheme = ColorScheme.light();
         const customColor = Colors.purple;
 
-        final event1 = AppTimelineEvent(id: '1');
-        final event2 = AppTimelineEvent(
+        final event1 = DSTimelineEvent(id: '1');
+        final event2 = DSTimelineEvent(
           id: '2',
           iconColor: customColor,
-          status: AppTimelineEventStatus.completed,
+          status: DSTimelineEventStatus.completed,
         );
-        final event3 = AppTimelineEvent(
+        final event3 = DSTimelineEvent(
           id: '3',
           backgroundColor: customColor,
           selected: true,
@@ -567,132 +567,132 @@ void main() {
     });
   });
 
-  group('AppTimelineSpacing Extensions', () {
+  group('DSTimelineSpacing Extensions', () {
     test('should return correct spacing values', () {
-      expect(AppTimelineSpacing.compact.itemSpacing, equals(12.0));
-      expect(AppTimelineSpacing.medium.itemSpacing, equals(16.0));
-      expect(AppTimelineSpacing.comfortable.itemSpacing, equals(24.0));
+      expect(DSTimelineSpacing.compact.itemSpacing, equals(12.0));
+      expect(DSTimelineSpacing.medium.itemSpacing, equals(16.0));
+      expect(DSTimelineSpacing.comfortable.itemSpacing, equals(24.0));
 
-      expect(AppTimelineSpacing.compact.indicatorSize, equals(12.0));
-      expect(AppTimelineSpacing.medium.indicatorSize, equals(16.0));
-      expect(AppTimelineSpacing.comfortable.indicatorSize, equals(20.0));
+      expect(DSTimelineSpacing.compact.indicatorSize, equals(12.0));
+      expect(DSTimelineSpacing.medium.indicatorSize, equals(16.0));
+      expect(DSTimelineSpacing.comfortable.indicatorSize, equals(20.0));
 
-      expect(AppTimelineSpacing.compact.connectorIndent, equals(24.0));
-      expect(AppTimelineSpacing.medium.connectorIndent, equals(32.0));
-      expect(AppTimelineSpacing.comfortable.connectorIndent, equals(40.0));
+      expect(DSTimelineSpacing.compact.connectorIndent, equals(24.0));
+      expect(DSTimelineSpacing.medium.connectorIndent, equals(32.0));
+      expect(DSTimelineSpacing.comfortable.connectorIndent, equals(40.0));
     });
   });
 
-  group('AppTimelineEventType Extensions', () {
+  group('DSTimelineEventType Extensions', () {
     test('should return correct icons and colors', () {
       const colorScheme = ColorScheme.light();
 
       expect(
-        AppTimelineEventType.milestone.defaultIcon,
+        DSTimelineEventType.milestone.defaultIcon,
         equals(Icons.flag),
       );
 
       expect(
-        AppTimelineEventType.task.defaultIcon,
+        DSTimelineEventType.task.defaultIcon,
         equals(Icons.task_alt),
       );
 
       expect(
-        AppTimelineEventType.meeting.defaultIcon,
+        DSTimelineEventType.meeting.defaultIcon,
         equals(Icons.meeting_room),
       );
 
       expect(
-        AppTimelineEventType.milestone.getColor(colorScheme),
+        DSTimelineEventType.milestone.getColor(colorScheme),
         equals(colorScheme.primary),
       );
 
       expect(
-        AppTimelineEventType.success.getColor(colorScheme),
+        DSTimelineEventType.success.getColor(colorScheme),
         equals(Colors.green),
       );
 
       expect(
-        AppTimelineEventType.error.getColor(colorScheme),
+        DSTimelineEventType.error.getColor(colorScheme),
         equals(colorScheme.error),
       );
     });
 
     test('should return correct labels', () {
-      expect(AppTimelineEventType.milestone.label, equals('Hito'));
-      expect(AppTimelineEventType.task.label, equals('Tarea'));
-      expect(AppTimelineEventType.meeting.label, equals('Reunión'));
-      expect(AppTimelineEventType.success.label, equals('Éxito'));
-      expect(AppTimelineEventType.warning.label, equals('Advertencia'));
-      expect(AppTimelineEventType.error.label, equals('Error'));
-      expect(AppTimelineEventType.info.label, equals('Información'));
+      expect(DSTimelineEventType.milestone.label, equals('Hito'));
+      expect(DSTimelineEventType.task.label, equals('Tarea'));
+      expect(DSTimelineEventType.meeting.label, equals('Reunión'));
+      expect(DSTimelineEventType.success.label, equals('Éxito'));
+      expect(DSTimelineEventType.warning.label, equals('Advertencia'));
+      expect(DSTimelineEventType.error.label, equals('Error'));
+      expect(DSTimelineEventType.info.label, equals('Información'));
     });
   });
 
-  group('AppTimelineEventStatus Extensions', () {
+  group('DSTimelineEventStatus Extensions', () {
     test('should return correct colors and icons', () {
       const colorScheme = ColorScheme.light();
 
       expect(
-        AppTimelineEventStatus.pending.getColor(colorScheme),
+        DSTimelineEventStatus.pending.getColor(colorScheme),
         equals(colorScheme.outline),
       );
 
       expect(
-        AppTimelineEventStatus.inProgress.getColor(colorScheme),
+        DSTimelineEventStatus.inProgress.getColor(colorScheme),
         equals(Colors.blue),
       );
 
       expect(
-        AppTimelineEventStatus.completed.getColor(colorScheme),
+        DSTimelineEventStatus.completed.getColor(colorScheme),
         equals(Colors.green),
       );
 
       expect(
-        AppTimelineEventStatus.pending.icon,
+        DSTimelineEventStatus.pending.icon,
         equals(Icons.pending),
       );
 
       expect(
-        AppTimelineEventStatus.completed.icon,
+        DSTimelineEventStatus.completed.icon,
         equals(Icons.check_circle),
       );
 
       expect(
-        AppTimelineEventStatus.cancelled.icon,
+        DSTimelineEventStatus.cancelled.icon,
         equals(Icons.cancel),
       );
     });
 
     test('should return correct labels', () {
-      expect(AppTimelineEventStatus.pending.label, equals('Pendiente'));
-      expect(AppTimelineEventStatus.inProgress.label, equals('En progreso'));
-      expect(AppTimelineEventStatus.completed.label, equals('Completado'));
-      expect(AppTimelineEventStatus.cancelled.label, equals('Cancelado'));
-      expect(AppTimelineEventStatus.overdue.label, equals('Vencido'));
+      expect(DSTimelineEventStatus.pending.label, equals('Pendiente'));
+      expect(DSTimelineEventStatus.inProgress.label, equals('En progreso'));
+      expect(DSTimelineEventStatus.completed.label, equals('Completado'));
+      expect(DSTimelineEventStatus.cancelled.label, equals('Cancelado'));
+      expect(DSTimelineEventStatus.overdue.label, equals('Vencido'));
     });
   });
 
-  group('AppTimelineState Extensions', () {
+  group('DSTimelineState Extensions', () {
     test('should identify interactive states correctly', () {
-      expect(AppTimelineState.hover.isInteractiveState, isTrue);
-      expect(AppTimelineState.pressed.isInteractiveState, isTrue);
-      expect(AppTimelineState.focus.isInteractiveState, isTrue);
-      expect(AppTimelineState.defaultState.isInteractiveState, isFalse);
-      expect(AppTimelineState.disabled.isInteractiveState, isFalse);
+      expect(DSTimelineState.hover.isInteractiveState, isTrue);
+      expect(DSTimelineState.pressed.isInteractiveState, isTrue);
+      expect(DSTimelineState.focus.isInteractiveState, isTrue);
+      expect(DSTimelineState.defaultState.isInteractiveState, isFalse);
+      expect(DSTimelineState.disabled.isInteractiveState, isFalse);
     });
 
     test('should identify state types correctly', () {
-      expect(AppTimelineState.disabled.isDisabledState, isTrue);
-      expect(AppTimelineState.loading.isLoadingState, isTrue);
-      expect(AppTimelineState.skeleton.isSkeletonState, isTrue);
-      expect(AppTimelineState.selected.isSelectedState, isTrue);
+      expect(DSTimelineState.disabled.isDisabledState, isTrue);
+      expect(DSTimelineState.loading.isLoadingState, isTrue);
+      expect(DSTimelineState.skeleton.isSkeletonState, isTrue);
+      expect(DSTimelineState.selected.isSelectedState, isTrue);
     });
   });
 
-  group('AppTimelineVariant Extensions', () {
+  group('DSTimelineVariant Extensions', () {
     test('should identify activity variant correctly', () {
-      expect(AppTimelineVariant.activity.isActivity, isTrue);
+      expect(DSTimelineVariant.activity.isActivity, isTrue);
     });
   });
 }

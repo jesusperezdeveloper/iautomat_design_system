@@ -5,15 +5,15 @@ import 'package:iautomat_design_system/src/components/description_list/app_descr
 import 'package:iautomat_design_system/src/components/description_list/description_list_config.dart';
 
 void main() {
-  group('AppDescriptionList', () {
+  group('DSDescriptionList', () {
     testWidgets('renderiza correctamente con elementos básicos',
         (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Nombre',
           description: 'Juan Pérez',
         ),
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Email',
           description: 'juan.perez@example.com',
         ),
@@ -22,7 +22,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
             ),
           ),
@@ -37,12 +37,12 @@ void main() {
 
     testWidgets('muestra iconos cuando están especificados', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Usuario',
           description: 'Juan Pérez',
           icon: Icons.person,
         ),
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Email',
           description: 'juan.perez@example.com',
           icon: Icons.email,
@@ -52,7 +52,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
             ),
           ),
@@ -66,7 +66,7 @@ void main() {
     testWidgets('muestra descripción secundaria cuando está presente',
         (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Dirección',
           description: '123 Main St',
           secondaryDescription: 'Dirección principal',
@@ -76,7 +76,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
             ),
           ),
@@ -91,7 +91,7 @@ void main() {
     testWidgets('maneja interacciones de tap correctamente', (tester) async {
       bool tapped = false;
       final items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Email',
           description: 'test@example.com',
           onTap: () {
@@ -103,7 +103,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
             ),
           ),
@@ -119,7 +119,7 @@ void main() {
     testWidgets('respeta el estado disabled', (tester) async {
       bool tapped = false;
       final items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Email',
           description: 'test@example.com',
           onTap: () {
@@ -131,7 +131,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
               enabled: false,
             ),
@@ -148,7 +148,7 @@ void main() {
     testWidgets('muestra skeleton cuando está en estado loading',
         (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Cargando',
           description: 'Cargando...',
         ),
@@ -157,9 +157,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
-              state: AppDescriptionListState.skeleton,
+              state: DSDescriptionListState.skeleton,
             ),
           ),
         ),
@@ -171,13 +171,13 @@ void main() {
 
     testWidgets('aplica estilos personalizados correctamente', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
       ];
 
-      const customStyle = AppDescriptionListStyle(
+      const customStyle = DSDescriptionListStyle(
         backgroundColor: Colors.blue,
         borderRadius: 16,
         padding: EdgeInsets.all(20),
@@ -186,7 +186,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
               style: customStyle,
             ),
@@ -203,7 +203,7 @@ void main() {
 
     testWidgets('cambia layout según el ancho de pantalla', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
@@ -214,9 +214,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
-              layout: AppDescriptionListLayout.adaptive,
+              layout: DSDescriptionListLayout.adaptive,
             ),
           ),
         ),
@@ -240,7 +240,7 @@ void main() {
       const trailingIcon = Icon(Icons.arrow_forward, key: Key('trailing'));
 
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
           leading: leadingIcon,
@@ -251,7 +251,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
             ),
           ),
@@ -264,17 +264,17 @@ void main() {
 
     testWidgets('maneja diferentes densidades correctamente', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
       ];
 
-      for (final density in AppDescriptionListDensity.values) {
+      for (final density in DSDescriptionListDensity.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDescriptionList.responsive(
+              body: DSDescriptionList.responsive(
                 items: items,
                 density: density,
               ),
@@ -288,17 +288,17 @@ void main() {
 
     testWidgets('maneja diferentes espaciados correctamente', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
       ];
 
-      for (final spacing in AppDescriptionListSpacing.values) {
+      for (final spacing in DSDescriptionListSpacing.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDescriptionList.responsive(
+              body: DSDescriptionList.responsive(
                 items: items,
                 spacing: spacing,
               ),
@@ -312,12 +312,12 @@ void main() {
 
     testWidgets('muestra dividers cuando están habilitados', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'First',
           description: 'First Description',
           divider: true,
         ),
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Second',
           description: 'Second Description',
         ),
@@ -326,7 +326,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
             ),
           ),
@@ -343,7 +343,7 @@ void main() {
           Text('Custom Description', key: Key('custom-description'));
 
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Original Term',
           description: 'Original Description',
           termWidget: customTermWidget,
@@ -354,7 +354,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
             ),
           ),
@@ -369,7 +369,7 @@ void main() {
 
     testWidgets('maneja animaciones cuando están habilitadas', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
@@ -378,11 +378,11 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
-              animation: AppDescriptionListAnimation(
+              animation: DSDescriptionListAnimation(
                 enabled: true,
-                type: AppDescriptionListAnimationType.fade,
+                type: DSDescriptionListAnimationType.fade,
               ),
             ),
           ),
@@ -395,23 +395,23 @@ void main() {
     testWidgets('aplica configuración responsive correctamente',
         (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
       ];
 
-      const responsive = AppDescriptionListResponsive(
+      const responsive = DSDescriptionListResponsive(
         mobileBreakpoint: 600,
         tabletBreakpoint: 900,
-        mobileLayout: AppDescriptionListLayout.vertical,
-        tabletLayout: AppDescriptionListLayout.horizontal,
+        mobileLayout: DSDescriptionListLayout.vertical,
+        tabletLayout: DSDescriptionListLayout.horizontal,
       );
 
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
               responsive: responsive,
             ),
@@ -424,7 +424,7 @@ void main() {
 
     testWidgets('maneja tooltip cuando está presente', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
@@ -433,7 +433,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
               tooltip: 'Lista de descripción',
             ),
@@ -446,7 +446,7 @@ void main() {
 
     testWidgets('oculta el widget cuando visible es false', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
@@ -455,7 +455,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
               visible: false,
             ),
@@ -469,7 +469,7 @@ void main() {
 
     testWidgets('mantiene el foco correctamente', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
@@ -478,7 +478,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
               onTap: () {},
             ),
@@ -492,7 +492,7 @@ void main() {
 
     testWidgets('maneja gestos de hover correctamente', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
@@ -503,7 +503,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
               onHover: () {
                 hovered = true;
@@ -526,7 +526,7 @@ void main() {
 
     testWidgets('aplica semántica correctamente', (tester) async {
       const items = [
-        AppDescriptionListItem(
+        DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
         ),
@@ -535,7 +535,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDescriptionList.responsive(
+            body: DSDescriptionList.responsive(
               items: items,
               semanticLabel: 'Lista de información',
               onTap: () {},
@@ -547,9 +547,9 @@ void main() {
       expect(find.byType(Semantics), findsAtLeastNWidgets(1));
     });
 
-    group('AppDescriptionListConfig', () {
+    group('DSDescriptionListConfig', () {
       test('isInteractive devuelve true cuando hay callbacks', () {
-        const config = AppDescriptionListConfig(
+        const config = DSDescriptionListConfig(
           onTap: _mockCallback,
         );
 
@@ -557,7 +557,7 @@ void main() {
       });
 
       test('isDisabled devuelve true cuando enabled es false', () {
-        const config = AppDescriptionListConfig(
+        const config = DSDescriptionListConfig(
           enabled: false,
         );
 
@@ -565,7 +565,7 @@ void main() {
       });
 
       test('isLoading devuelve true cuando loading es true', () {
-        const config = AppDescriptionListConfig(
+        const config = DSDescriptionListConfig(
           loading: true,
         );
 
@@ -573,7 +573,7 @@ void main() {
       });
 
       test('shouldShowSkeleton devuelve true cuando skeleton es true', () {
-        const config = AppDescriptionListConfig(
+        const config = DSDescriptionListConfig(
           skeleton: true,
         );
 
@@ -581,9 +581,9 @@ void main() {
       });
     });
 
-    group('AppDescriptionListItem', () {
+    group('DSDescriptionListItem', () {
       test('hasSecondaryDescription devuelve true cuando está presente', () {
-        const item = AppDescriptionListItem(
+        const item = DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
           secondaryDescription: 'Secondary',
@@ -593,7 +593,7 @@ void main() {
       });
 
       test('hasIcon devuelve true cuando icon está presente', () {
-        const item = AppDescriptionListItem(
+        const item = DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
           icon: Icons.star,
@@ -603,7 +603,7 @@ void main() {
       });
 
       test('isInteractive devuelve true cuando hay callbacks', () {
-        final item = AppDescriptionListItem(
+        final item = DSDescriptionListItem(
           term: 'Test',
           description: 'Test Description',
           onTap: _mockCallback,
@@ -614,82 +614,82 @@ void main() {
     });
 
     group('Extensions', () {
-      test('AppDescriptionListDensity extensions funcionan correctamente', () {
-        expect(AppDescriptionListDensity.compact.verticalSpacing, equals(8.0));
-        expect(AppDescriptionListDensity.normal.verticalSpacing, equals(12.0));
-        expect(AppDescriptionListDensity.comfortable.verticalSpacing,
+      test('DSDescriptionListDensity extensions funcionan correctamente', () {
+        expect(DSDescriptionListDensity.compact.verticalSpacing, equals(8.0));
+        expect(DSDescriptionListDensity.normal.verticalSpacing, equals(12.0));
+        expect(DSDescriptionListDensity.comfortable.verticalSpacing,
             equals(16.0));
 
         expect(
-            AppDescriptionListDensity.compact.horizontalSpacing, equals(12.0));
+            DSDescriptionListDensity.compact.horizontalSpacing, equals(12.0));
         expect(
-            AppDescriptionListDensity.normal.horizontalSpacing, equals(16.0));
-        expect(AppDescriptionListDensity.comfortable.horizontalSpacing,
+            DSDescriptionListDensity.normal.horizontalSpacing, equals(16.0));
+        expect(DSDescriptionListDensity.comfortable.horizontalSpacing,
             equals(24.0));
       });
 
-      test('AppDescriptionListSpacing extension funciona correctamente', () {
-        expect(AppDescriptionListSpacing.none.value, equals(0.0));
-        expect(AppDescriptionListSpacing.small.value, equals(8.0));
-        expect(AppDescriptionListSpacing.normal.value, equals(16.0));
-        expect(AppDescriptionListSpacing.large.value, equals(24.0));
+      test('DSDescriptionListSpacing extension funciona correctamente', () {
+        expect(DSDescriptionListSpacing.none.value, equals(0.0));
+        expect(DSDescriptionListSpacing.small.value, equals(8.0));
+        expect(DSDescriptionListSpacing.normal.value, equals(16.0));
+        expect(DSDescriptionListSpacing.large.value, equals(24.0));
       });
 
-      test('AppDescriptionListLayout extensions funcionan correctamente', () {
-        expect(AppDescriptionListLayout.vertical.isVertical, isTrue);
-        expect(AppDescriptionListLayout.horizontal.isHorizontal, isTrue);
-        expect(AppDescriptionListLayout.grid.isGrid, isTrue);
-        expect(AppDescriptionListLayout.adaptive.isAdaptive, isTrue);
+      test('DSDescriptionListLayout extensions funcionan correctamente', () {
+        expect(DSDescriptionListLayout.vertical.isVertical, isTrue);
+        expect(DSDescriptionListLayout.horizontal.isHorizontal, isTrue);
+        expect(DSDescriptionListLayout.grid.isGrid, isTrue);
+        expect(DSDescriptionListLayout.adaptive.isAdaptive, isTrue);
       });
 
-      test('AppDescriptionListState extensions funcionan correctamente', () {
-        expect(AppDescriptionListState.hover.isInteractiveState, isTrue);
-        expect(AppDescriptionListState.pressed.isInteractiveState, isTrue);
-        expect(AppDescriptionListState.focus.isInteractiveState, isTrue);
-        expect(AppDescriptionListState.disabled.isDisabledState, isTrue);
-        expect(AppDescriptionListState.loading.isLoadingState, isTrue);
-        expect(AppDescriptionListState.skeleton.isSkeletonState, isTrue);
-        expect(AppDescriptionListState.selected.isSelectedState, isTrue);
+      test('DSDescriptionListState extensions funcionan correctamente', () {
+        expect(DSDescriptionListState.hover.isInteractiveState, isTrue);
+        expect(DSDescriptionListState.pressed.isInteractiveState, isTrue);
+        expect(DSDescriptionListState.focus.isInteractiveState, isTrue);
+        expect(DSDescriptionListState.disabled.isDisabledState, isTrue);
+        expect(DSDescriptionListState.loading.isLoadingState, isTrue);
+        expect(DSDescriptionListState.skeleton.isSkeletonState, isTrue);
+        expect(DSDescriptionListState.selected.isSelectedState, isTrue);
       });
     });
 
-    group('AppDescriptionListResponsive', () {
+    group('DSDescriptionListResponsive', () {
       test('getLayoutForWidth devuelve layout correcto', () {
-        const responsive = AppDescriptionListResponsive(
+        const responsive = DSDescriptionListResponsive(
           mobileBreakpoint: 600,
           tabletBreakpoint: 900,
-          mobileLayout: AppDescriptionListLayout.vertical,
-          tabletLayout: AppDescriptionListLayout.horizontal,
-          desktopLayout: AppDescriptionListLayout.grid,
+          mobileLayout: DSDescriptionListLayout.vertical,
+          tabletLayout: DSDescriptionListLayout.horizontal,
+          desktopLayout: DSDescriptionListLayout.grid,
         );
 
         expect(responsive.getLayoutForWidth(400),
-            equals(AppDescriptionListLayout.vertical));
+            equals(DSDescriptionListLayout.vertical));
         expect(responsive.getLayoutForWidth(700),
-            equals(AppDescriptionListLayout.horizontal));
+            equals(DSDescriptionListLayout.horizontal));
         expect(responsive.getLayoutForWidth(1000),
-            equals(AppDescriptionListLayout.grid));
+            equals(DSDescriptionListLayout.grid));
       });
 
       test('getDensityForWidth devuelve densidad correcta', () {
-        const responsive = AppDescriptionListResponsive(
+        const responsive = DSDescriptionListResponsive(
           mobileBreakpoint: 600,
           tabletBreakpoint: 900,
-          mobileDensity: AppDescriptionListDensity.compact,
-          tabletDensity: AppDescriptionListDensity.normal,
-          desktopDensity: AppDescriptionListDensity.comfortable,
+          mobileDensity: DSDescriptionListDensity.compact,
+          tabletDensity: DSDescriptionListDensity.normal,
+          desktopDensity: DSDescriptionListDensity.comfortable,
         );
 
         expect(responsive.getDensityForWidth(400),
-            equals(AppDescriptionListDensity.compact));
+            equals(DSDescriptionListDensity.compact));
         expect(responsive.getDensityForWidth(700),
-            equals(AppDescriptionListDensity.normal));
+            equals(DSDescriptionListDensity.normal));
         expect(responsive.getDensityForWidth(1000),
-            equals(AppDescriptionListDensity.comfortable));
+            equals(DSDescriptionListDensity.comfortable));
       });
 
       test('getColumnsForWidth devuelve número correcto de columnas', () {
-        const responsive = AppDescriptionListResponsive(
+        const responsive = DSDescriptionListResponsive(
           mobileBreakpoint: 600,
           tabletBreakpoint: 900,
           mobileColumns: 1,

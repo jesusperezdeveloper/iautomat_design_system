@@ -3,14 +3,14 @@ import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'app_tour_config.dart';
 
-class AppTour extends StatefulWidget {
-  final AppTourConfig config;
-  final List<AppTourStep> steps;
+class DSTour extends StatefulWidget {
+  final DSTourConfig config;
+  final List<DSTourStep> steps;
   final VoidCallback? onFinish;
   final VoidCallback? onSkip;
   final ValueChanged<int>? onStepChanged;
 
-  const AppTour({
+  const DSTour({
     super.key,
     required this.config,
     required this.steps,
@@ -20,10 +20,10 @@ class AppTour extends StatefulWidget {
   });
 
   @override
-  State<AppTour> createState() => _AppTourState();
+  State<DSTour> createState() => _DSTourState();
 }
 
-class _AppTourState extends State<AppTour>
+class _DSTourState extends State<DSTour>
     with TickerProviderStateMixin {
   late AnimationController _fadeController;
   late AnimationController _scaleController;
@@ -139,7 +139,7 @@ class _AppTourState extends State<AppTour>
     }
   }
 
-  void _calculateTargetPosition(AppTourStep step) {
+  void _calculateTargetPosition(DSTourStep step) {
     final RenderBox? renderBox = step.targetKey.currentContext?.findRenderObject() as RenderBox?;
     if (renderBox != null) {
       final position = renderBox.localToGlobal(Offset.zero);
@@ -272,7 +272,7 @@ class _AppTourState extends State<AppTour>
     return tour;
   }
 
-  Widget _buildTourOverlay(BuildContext context, ThemeData theme, AppTourStep currentStep) {
+  Widget _buildTourOverlay(BuildContext context, ThemeData theme, DSTourStep currentStep) {
     return AnimatedBuilder(
       animation: _fadeAnimation,
       builder: (context, child) {
@@ -310,7 +310,7 @@ class _AppTourState extends State<AppTour>
     );
   }
 
-  Widget _buildTargetHighlight(ThemeData theme, AppTourStep currentStep) {
+  Widget _buildTargetHighlight(ThemeData theme, DSTourStep currentStep) {
     final targetRect = Rect.fromLTWH(
       _targetPosition!.dx - (currentStep.targetPadding?.left ?? widget.config.spacing?.targetPadding ?? 8.0),
       _targetPosition!.dy - (currentStep.targetPadding?.top ?? widget.config.spacing?.targetPadding ?? 8.0),
@@ -350,7 +350,7 @@ class _AppTourState extends State<AppTour>
     );
   }
 
-  Widget _buildTourContent(BuildContext context, ThemeData theme, AppTourStep currentStep) {
+  Widget _buildTourContent(BuildContext context, ThemeData theme, DSTourStep currentStep) {
     final contentPosition = _calculateContentPosition(currentStep);
 
     return Positioned(
@@ -433,7 +433,7 @@ class _AppTourState extends State<AppTour>
     );
   }
 
-  Widget _buildDefaultContent(ThemeData theme, AppTourStep currentStep) {
+  Widget _buildDefaultContent(ThemeData theme, DSTourStep currentStep) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -597,7 +597,7 @@ class _AppTourState extends State<AppTour>
     );
   }
 
-  Offset _calculateContentPosition(AppTourStep currentStep) {
+  Offset _calculateContentPosition(DSTourStep currentStep) {
     if (_targetPosition == null || _targetSize == null) {
       return const Offset(50, 100);
     }
@@ -609,27 +609,27 @@ class _AppTourState extends State<AppTour>
     double x, y;
 
     switch (currentStep.position) {
-      case AppTourPosition.top:
+      case DSTourPosition.top:
         x = _targetPosition!.dx + (_targetSize!.width / 2) - (contentWidth / 2);
         y = _targetPosition!.dy - contentHeight - 16.0;
         break;
-      case AppTourPosition.bottom:
+      case DSTourPosition.bottom:
         x = _targetPosition!.dx + (_targetSize!.width / 2) - (contentWidth / 2);
         y = _targetPosition!.dy + _targetSize!.height + 16.0;
         break;
-      case AppTourPosition.left:
+      case DSTourPosition.left:
         x = _targetPosition!.dx - contentWidth - 16.0;
         y = _targetPosition!.dy + (_targetSize!.height / 2) - (contentHeight / 2);
         break;
-      case AppTourPosition.right:
+      case DSTourPosition.right:
         x = _targetPosition!.dx + _targetSize!.width + 16.0;
         y = _targetPosition!.dy + (_targetSize!.height / 2) - (contentHeight / 2);
         break;
-      case AppTourPosition.center:
+      case DSTourPosition.center:
         x = (screenSize.width / 2) - (contentWidth / 2);
         y = (screenSize.height / 2) - (contentHeight / 2);
         break;
-      case AppTourPosition.auto:
+      case DSTourPosition.auto:
         // Auto positioning logic
         final targetCenterX = _targetPosition!.dx + (_targetSize!.width / 2);
         final targetCenterY = _targetPosition!.dy + (_targetSize!.height / 2);
@@ -653,18 +653,18 @@ class _AppTourState extends State<AppTour>
     return Offset(x, y);
   }
 
-  Alignment _getContentAlignment(AppTourStep currentStep) {
+  Alignment _getContentAlignment(DSTourStep currentStep) {
     switch (currentStep.position) {
-      case AppTourPosition.top:
+      case DSTourPosition.top:
         return Alignment.bottomCenter;
-      case AppTourPosition.bottom:
+      case DSTourPosition.bottom:
         return Alignment.topCenter;
-      case AppTourPosition.left:
+      case DSTourPosition.left:
         return Alignment.centerRight;
-      case AppTourPosition.right:
+      case DSTourPosition.right:
         return Alignment.centerLeft;
-      case AppTourPosition.center:
-      case AppTourPosition.auto:
+      case DSTourPosition.center:
+      case DSTourPosition.auto:
         return Alignment.center;
     }
   }

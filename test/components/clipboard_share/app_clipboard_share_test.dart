@@ -4,12 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppClipboardShare', () {
-    late AppShareData testData;
-    late List<AppShareFile> testFiles;
+  group('DSClipboardShare', () {
+    late DSShareData testData;
+    late List<DSShareFile> testFiles;
 
     setUp(() {
-      testData = const AppShareData(
+      testData = const DSShareData(
         text: 'Este es un texto de prueba para compartir',
         subject: 'Asunto de prueba',
         url: 'https://example.com',
@@ -17,12 +17,12 @@ void main() {
       );
 
       testFiles = [
-        const AppShareFile(
+        const DSShareFile(
           name: 'test.pdf',
           mimeType: 'application/pdf',
           size: 1024,
         ),
-        const AppShareFile(
+        const DSShareFile(
           name: 'image.jpg',
           mimeType: 'image/jpeg',
           size: 2048,
@@ -33,11 +33,11 @@ void main() {
     testWidgets('renders correctly with default configuration', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: AppClipboardShare(data: testData)),
+          home: Scaffold(body: DSClipboardShare(data: testData)),
         ),
       );
 
-      expect(find.byType(AppClipboardShare), findsOneWidget);
+      expect(find.byType(DSClipboardShare), findsOneWidget);
       expect(find.byIcon(Icons.share), findsOneWidget);
     });
 
@@ -45,10 +45,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppClipboardShare(
+            body: DSClipboardShare(
               data: testData,
-              config: const AppClipboardShareConfig(
-                variant: AppClipboardShareVariant.shareSheet,
+              config: const DSClipboardShareConfig(
+                variant: DSClipboardShareVariant.shareSheet,
               ),
             ),
           ),
@@ -65,7 +65,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppClipboardShare(
+            body: DSClipboardShare(
               data: testData,
               interactive: true,
               onSharePressed: () {
@@ -76,7 +76,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppClipboardShare));
+      await tester.tap(find.byType(DSClipboardShare));
       await tester.pump();
 
       expect(sharePressed, isTrue);
@@ -88,7 +88,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppClipboardShare(
+            body: DSClipboardShare(
               data: testData,
               interactive: false,
               onSharePressed: () {
@@ -99,7 +99,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppClipboardShare));
+      await tester.tap(find.byType(DSClipboardShare));
       await tester.pump();
 
       expect(sharePressed, isFalse);
@@ -109,34 +109,34 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppClipboardShare(
+            body: DSClipboardShare(
               data: testData,
-              config: const AppClipboardShareConfig(
-                state: AppClipboardShareState.loading,
+              config: const DSClipboardShareConfig(
+                state: DSClipboardShareState.loading,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppClipboardShare), findsOneWidget);
+      expect(find.byType(DSClipboardShare), findsOneWidget);
     });
 
     testWidgets('displays skeleton state correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppClipboardShare(
+            body: DSClipboardShare(
               data: testData,
-              config: const AppClipboardShareConfig(
-                state: AppClipboardShareState.skeleton,
+              config: const DSClipboardShareConfig(
+                state: DSClipboardShareState.skeleton,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppClipboardShare), findsOneWidget);
+      expect(find.byType(DSClipboardShare), findsOneWidget);
     });
 
     testWidgets('handles long press for copy action', (tester) async {
@@ -145,7 +145,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppClipboardShare(
+            body: DSClipboardShare(
               data: testData,
               interactive: true,
               onCopyPressed: () {
@@ -156,19 +156,19 @@ void main() {
         ),
       );
 
-      await tester.longPress(find.byType(AppClipboardShare));
+      await tester.longPress(find.byType(DSClipboardShare));
       await tester.pump();
 
       expect(copyPressed, isTrue);
     });
 
     testWidgets('calls onStateChanged when state changes', (tester) async {
-      AppClipboardShareState? capturedState;
+      DSClipboardShareState? capturedState;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppClipboardShare(
+            body: DSClipboardShare(
               data: testData,
               onStateChanged: (state) => capturedState = state,
             ),
@@ -181,26 +181,26 @@ void main() {
       await gesture.addPointer(location: Offset.zero);
       addTearDown(gesture.removePointer);
       await tester.pump();
-      await gesture.moveTo(tester.getCenter(find.byType(AppClipboardShare)));
+      await gesture.moveTo(tester.getCenter(find.byType(DSClipboardShare)));
       await tester.pump();
 
-      expect(capturedState, equals(AppClipboardShareState.hover));
+      expect(capturedState, equals(DSClipboardShareState.hover));
     });
 
     testWidgets('shows different variants correctly', (tester) async {
-      for (final variant in AppClipboardShareVariant.values) {
+      for (final variant in DSClipboardShareVariant.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppClipboardShare(
+              body: DSClipboardShare(
                 data: testData,
-                config: AppClipboardShareConfig(variant: variant),
+                config: DSClipboardShareConfig(variant: variant),
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppClipboardShare), findsOneWidget);
+        expect(find.byType(DSClipboardShare), findsOneWidget);
         await tester.pump();
       }
     });
@@ -209,26 +209,26 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppClipboardShare(
+            body: DSClipboardShare(
               data: testData,
               files: testFiles,
-              config: const AppClipboardShareConfig(showPreview: true),
+              config: const DSClipboardShareConfig(showPreview: true),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppClipboardShare), findsOneWidget);
+      expect(find.byType(DSClipboardShare), findsOneWidget);
     });
 
     testWidgets('supports semantic labels correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppClipboardShare(
+            body: DSClipboardShare(
               data: testData,
-              config: const AppClipboardShareConfig(
-                accessibility: AppClipboardShareAccessibility(
+              config: const DSClipboardShareConfig(
+                accessibility: DSClipboardShareAccessibility(
                   enabled: true,
                   shareLabel: 'Compartir contenido',
                 ),
@@ -238,15 +238,15 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppClipboardShare), findsOneWidget);
+      expect(find.byType(DSClipboardShare), findsOneWidget);
     });
 
-    group('AppClipboardShareConfig', () {
+    group('DSClipboardShareConfig', () {
       test('has correct default values', () {
-        const config = AppClipboardShareConfig();
+        const config = DSClipboardShareConfig();
 
-        expect(config.variant, equals(AppClipboardShareVariant.shareSheet));
-        expect(config.state, equals(AppClipboardShareState.defaultState));
+        expect(config.variant, equals(DSClipboardShareVariant.shareSheet));
+        expect(config.state, equals(DSClipboardShareState.defaultState));
         expect(config.showPreview, isTrue);
         expect(config.allowEdit, isFalse);
         expect(config.showConfirmation, isTrue);
@@ -256,41 +256,41 @@ void main() {
       });
 
       test('copyWith works correctly', () {
-        const original = AppClipboardShareConfig(
-          variant: AppClipboardShareVariant.shareSheet,
+        const original = DSClipboardShareConfig(
+          variant: DSClipboardShareVariant.shareSheet,
           showPreview: true,
         );
 
         final updated = original.copyWith(
-          variant: AppClipboardShareVariant.customMenu,
+          variant: DSClipboardShareVariant.customMenu,
           showPreview: false,
         );
 
-        expect(updated.variant, equals(AppClipboardShareVariant.customMenu));
+        expect(updated.variant, equals(DSClipboardShareVariant.customMenu));
         expect(updated.showPreview, isFalse);
         expect(updated.showConfirmation, equals(original.showConfirmation));
       });
 
       test('validation works correctly', () {
-        const validConfig = AppClipboardShareConfig(
+        const validConfig = DSClipboardShareConfig(
           maxFileSize: 1024,
           imageQuality: 85,
           allowedFileTypes: ['image/*', 'text/*'],
         );
 
-        const invalidConfig1 = AppClipboardShareConfig(
+        const invalidConfig1 = DSClipboardShareConfig(
           maxFileSize: -1, // Invalid
           imageQuality: 85,
           allowedFileTypes: ['image/*'],
         );
 
-        const invalidConfig2 = AppClipboardShareConfig(
+        const invalidConfig2 = DSClipboardShareConfig(
           maxFileSize: 1024,
           imageQuality: 150, // Invalid
           allowedFileTypes: ['image/*'],
         );
 
-        const invalidConfig3 = AppClipboardShareConfig(
+        const invalidConfig3 = DSClipboardShareConfig(
           maxFileSize: 1024,
           imageQuality: 85,
           allowedFileTypes: [], // Invalid
@@ -303,21 +303,21 @@ void main() {
       });
     });
 
-    group('AppShareData', () {
+    group('DSShareData', () {
       test('has correct required properties', () {
-        const data = AppShareData(text: 'Test text', subject: 'Test subject');
+        const data = DSShareData(text: 'Test text', subject: 'Test subject');
 
         expect(data.text, equals('Test text'));
         expect(data.subject, equals('Test subject'));
       });
 
       test('hasContent works correctly', () {
-        const dataWithText = AppShareData(text: 'Some text');
-        const dataWithUrl = AppShareData(url: 'https://example.com');
-        const dataWithFiles = AppShareData(
-          files: [AppShareFile(name: 'test.txt', mimeType: 'text/plain')],
+        const dataWithText = DSShareData(text: 'Some text');
+        const dataWithUrl = DSShareData(url: 'https://example.com');
+        const dataWithFiles = DSShareData(
+          files: [DSShareFile(name: 'test.txt', mimeType: 'text/plain')],
         );
-        const dataEmpty = AppShareData();
+        const dataEmpty = DSShareData();
 
         expect(dataWithText.hasContent, isTrue);
         expect(dataWithUrl.hasContent, isTrue);
@@ -326,11 +326,11 @@ void main() {
       });
 
       test('totalFileSize calculates correctly', () {
-        const data = AppShareData(
+        const data = DSShareData(
           files: [
-            AppShareFile(name: 'file1.txt', size: 100),
-            AppShareFile(name: 'file2.txt', size: 200),
-            AppShareFile(name: 'file3.txt'), // No size
+            DSShareFile(name: 'file1.txt', size: 100),
+            DSShareFile(name: 'file2.txt', size: 200),
+            DSShareFile(name: 'file3.txt'), // No size
           ],
         );
 
@@ -338,9 +338,9 @@ void main() {
       });
     });
 
-    group('AppShareFile', () {
+    group('DSShareFile', () {
       test('has correct required properties', () {
-        const file = AppShareFile(
+        const file = DSShareFile(
           name: 'test.pdf',
           mimeType: 'application/pdf',
         );
@@ -350,15 +350,15 @@ void main() {
       });
 
       test('file type detection works correctly', () {
-        const imageFile = AppShareFile(
+        const imageFile = DSShareFile(
           name: 'image.jpg',
           mimeType: 'image/jpeg',
         );
-        const videoFile = AppShareFile(
+        const videoFile = DSShareFile(
           name: 'video.mp4',
           mimeType: 'video/mp4',
         );
-        const documentFile = AppShareFile(
+        const documentFile = DSShareFile(
           name: 'document.pdf',
           mimeType: 'application/pdf',
         );

@@ -10,7 +10,7 @@ import 'package:iautomat_design_system/src/theme/spacing.dart';
 
 /// Widget de imagen profesional para el Design System de IAutomat
 ///
-/// AppImage es un widget de imagen altamente configurable que soporta:
+/// DSImage es un widget de imagen altamente configurable que soporta:
 /// - Carga lazy y responsiva
 /// - Estados interactivos (hover, pressed, focus, disabled, loading, skeleton)
 /// - Soporte completo para RTL y accesibilidad
@@ -24,7 +24,7 @@ import 'package:iautomat_design_system/src/theme/spacing.dart';
 ///
 /// ### Ejemplo básico:
 /// ```dart
-/// AppImage(
+/// DSImage(
 ///   src: 'https://example.com/image.jpg',
 ///   alt: 'Descripción de la imagen',
 ///   width: 200,
@@ -34,26 +34,26 @@ import 'package:iautomat_design_system/src/theme/spacing.dart';
 ///
 /// ### Ejemplo con configuración avanzada:
 /// ```dart
-/// AppImage(
+/// DSImage(
 ///   src: 'assets/images/hero.jpg',
 ///   alt: 'Imagen hero de la aplicación',
-///   variant: AppImageVariant.lazy,
+///   variant: DSImageVariant.lazy,
 ///   fit: BoxFit.cover,
 ///   ratio: 16/9,
-///   config: AppImageConfig(
-///     behavior: AppImageBehavior(
+///   config: DSImageConfig(
+///     behavior: DSImageBehavior(
 ///       enableCache: true,
 ///       enableCompression: true,
 ///     ),
-///     responsiveConfig: AppImageResponsiveConfig(
-///       mobile: AppImageBreakpointConfig(width: 300),
-///       desktop: AppImageBreakpointConfig(width: 600),
+///     responsiveConfig: DSImageResponsiveConfig(
+///       mobile: DSImageBreakpointConfig(width: 300),
+///       desktop: DSImageBreakpointConfig(width: 600),
 ///     ),
 ///   ),
 ///   onTap: () => print('Imagen tapped'),
 /// )
 /// ```
-class AppImage extends StatefulWidget {
+class DSImage extends StatefulWidget {
   /// URL o path de la imagen (requerido)
   final String src;
 
@@ -76,7 +76,7 @@ class AppImage extends StatefulWidget {
   final double? height;
 
   /// Configuración completa del componente
-  final AppImageConfig? config;
+  final DSImageConfig? config;
 
   /// Callback al hacer tap
   final VoidCallback? onTap;
@@ -96,7 +96,7 @@ class AppImage extends StatefulWidget {
   /// Callback cuando ocurre un error
   final VoidCallback? onError;
 
-  const AppImage({
+  const DSImage({
     super.key,
     required this.src,
     this.alt = '',
@@ -115,17 +115,17 @@ class AppImage extends StatefulWidget {
   });
 
   @override
-  State<AppImage> createState() => _AppImageState();
+  State<DSImage> createState() => _DSImageState();
 }
 
-class _AppImageState extends State<AppImage>
+class _DSImageState extends State<DSImage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  late final AppImageConfig _config;
+  late final DSImageConfig _config;
   late final FocusNode _focusNode;
   late final AnimationController _animationController;
   late final AnimationController _loadingController;
 
-  AppImageState _currentState = AppImageState.skeleton;
+  DSImageState _currentState = DSImageState.skeleton;
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
@@ -145,7 +145,7 @@ class _AppImageState extends State<AppImage>
   }
 
   void _initializeConfig() {
-    _config = widget.config ?? const AppImageConfig(src: '');
+    _config = widget.config ?? const DSImageConfig(src: '');
   }
 
   void _initializeFocus() {
@@ -205,7 +205,7 @@ class _AppImageState extends State<AppImage>
     if (_isLoaded || _hasError) return;
 
     setState(() {
-      _currentState = AppImageState.loading;
+      _currentState = DSImageState.loading;
     });
 
     _loadingController.forward();
@@ -229,19 +229,19 @@ class _AppImageState extends State<AppImage>
     }
 
     if (_hasError) {
-      _currentState = AppImageState.defaultState;
+      _currentState = DSImageState.defaultState;
     } else if (!_isLoaded && _config.variant.isLazy && !_isInViewport) {
-      _currentState = AppImageState.skeleton;
+      _currentState = DSImageState.skeleton;
     } else if (!_isLoaded) {
-      _currentState = AppImageState.loading;
+      _currentState = DSImageState.loading;
     } else if (_isPressed) {
-      _currentState = AppImageState.pressed;
+      _currentState = DSImageState.pressed;
     } else if (_isFocused) {
-      _currentState = AppImageState.focus;
+      _currentState = DSImageState.focus;
     } else if (_isHovered) {
-      _currentState = AppImageState.hover;
+      _currentState = DSImageState.hover;
     } else {
-      _currentState = AppImageState.defaultState;
+      _currentState = DSImageState.defaultState;
     }
   }
 
@@ -500,10 +500,10 @@ class _AppImageState extends State<AppImage>
       width: widget.width,
       height: widget.height,
       decoration: BoxDecoration(
-        color: AppColors.gray100,
+        color: DSColors.gray100,
         borderRadius: BorderRadius.circular(_config.spacing?.borderRadius ?? 8.0),
         border: Border.all(
-          color: AppColors.error.withValues(alpha: 0.3),
+          color: DSColors.error.withValues(alpha: 0.3),
           width: 1,
         ),
       ),
@@ -513,14 +513,14 @@ class _AppImageState extends State<AppImage>
           Icon(
             Icons.broken_image_outlined,
             size: 32,
-            color: AppColors.error.withValues(alpha: 0.7),
+            color: DSColors.error.withValues(alpha: 0.7),
           ),
-          const SizedBox(height: AppSpacing.xs),
+          const SizedBox(height: DSSpacing.xs),
           Text(
             'Error al cargar imagen',
             style: TextStyle(
               fontSize: 12,
-              color: AppColors.textSecondary,
+              color: DSColors.textSecondary,
             ),
             textAlign: TextAlign.center,
           ),
@@ -535,17 +535,17 @@ class _AppImageState extends State<AppImage>
 
     switch (colorType) {
       case 'background':
-        return colors?.backgroundColor ?? AppColors.surface;
+        return colors?.backgroundColor ?? DSColors.surface;
       case 'border':
-        return colors?.borderColor ?? AppColors.divider;
+        return colors?.borderColor ?? DSColors.divider;
       case 'placeholder':
-        return colors?.placeholderColor ?? AppColors.gray100;
+        return colors?.placeholderColor ?? DSColors.gray100;
       case 'skeleton':
-        return colors?.skeletonColor ?? AppColors.gray200;
+        return colors?.skeletonColor ?? DSColors.gray200;
       case 'loading':
         return theme.primaryColor;
       case 'shadow':
-        return colors?.shadowColor ?? AppColors.shadow;
+        return colors?.shadowColor ?? DSColors.shadow;
       case 'hover':
         return colors?.hoverOverlayColor ??
                theme.primaryColor.withValues(alpha: 0.1);
@@ -556,7 +556,7 @@ class _AppImageState extends State<AppImage>
         return colors?.focusOverlayColor ??
                theme.primaryColor.withValues(alpha: 0.15);
       default:
-        return AppColors.surface;
+        return DSColors.surface;
     }
   }
 
@@ -565,26 +565,26 @@ class _AppImageState extends State<AppImage>
     final multiplier = _currentState.elevationMultiplier;
 
     switch (_currentState) {
-      case AppImageState.defaultState:
+      case DSImageState.defaultState:
         return (elevation?.defaultElevation ?? 0.0) * multiplier;
-      case AppImageState.hover:
+      case DSImageState.hover:
         return (elevation?.hoveredElevation ?? 2.0) * multiplier;
-      case AppImageState.pressed:
+      case DSImageState.pressed:
         return (elevation?.pressedElevation ?? 1.0) * multiplier;
-      case AppImageState.focus:
+      case DSImageState.focus:
         return (elevation?.focusedElevation ?? 3.0) * multiplier;
-      case AppImageState.selected:
+      case DSImageState.selected:
         return (elevation?.selectedElevation ?? 4.0) * multiplier;
-      case AppImageState.disabled:
+      case DSImageState.disabled:
         return (elevation?.disabledElevation ?? 0.0) * multiplier;
-      case AppImageState.loading:
-      case AppImageState.skeleton:
+      case DSImageState.loading:
+      case DSImageState.skeleton:
         return (elevation?.defaultElevation ?? 0.0) * multiplier;
     }
   }
 
   Widget _buildContainer(Widget child) {
-    final spacing = _config.spacing ?? const AppImageSpacing();
+    final spacing = _config.spacing ?? const DSImageSpacing();
     final borderRadius = spacing.borderRadius;
     final borderWidth = spacing.borderWidth;
 
@@ -700,13 +700,13 @@ class _AppImageState extends State<AppImage>
     Color? overlayColor;
 
     switch (_currentState) {
-      case AppImageState.hover:
+      case DSImageState.hover:
         overlayColor = _resolveColor('hover');
         break;
-      case AppImageState.pressed:
+      case DSImageState.pressed:
         overlayColor = _resolveColor('pressed');
         break;
-      case AppImageState.focus:
+      case DSImageState.focus:
         overlayColor = _resolveColor('focus');
         break;
       default:

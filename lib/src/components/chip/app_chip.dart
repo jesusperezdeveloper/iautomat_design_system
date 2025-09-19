@@ -11,7 +11,7 @@ typedef OnChipDeleted = void Function();
 
 /// A comprehensive chip widget based on Material Design with multiple variants
 ///
-/// The [AppChip] provides a flexible chip interface with:
+/// The [DSChip] provides a flexible chip interface with:
 /// - Multiple variants: input, filter, choice, assist
 /// - Comprehensive state support
 /// - Avatar and icon support
@@ -23,8 +23,8 @@ typedef OnChipDeleted = void Function();
 ///
 /// Example usage:
 /// ```dart
-/// AppChip(
-///   variant: AppChipVariant.filter,
+/// DSChip(
+///   variant: DSChipVariant.filter,
 ///   label: 'Flutter',
 ///   selected: true,
 ///   onSelected: (selected) {
@@ -34,9 +34,9 @@ typedef OnChipDeleted = void Function();
 ///   deletable: true,
 /// )
 /// ```
-class AppChip extends StatefulWidget {
+class DSChip extends StatefulWidget {
   /// The variant of the chip
-  final AppChipVariant variant;
+  final DSChipVariant variant;
 
   /// The label text for the chip
   final String label;
@@ -60,16 +60,16 @@ class AppChip extends StatefulWidget {
   final OnChipDeleted? onDeleted;
 
   /// Current state of the chip
-  final AppChipState state;
+  final DSChipState state;
 
   /// Whether the chip is enabled
   final bool enabled;
 
   /// Configuration for the chip
-  final AppChipConfig? config;
+  final DSChipConfig? config;
 
   /// Chip data model for complex configurations
-  final AppChipData? data;
+  final DSChipData? data;
 
   /// Tooltip text
   final String? tooltip;
@@ -114,14 +114,14 @@ class AppChip extends StatefulWidget {
   final Color? avatarBackgroundColor;
 
   /// Custom size override
-  final AppChipSize? size;
+  final DSChipSize? size;
 
   /// Custom shape override
-  final AppChipShape? shape;
+  final DSChipShape? shape;
 
-  const AppChip({
+  const DSChip({
     super.key,
-    this.variant = AppChipVariant.assist,
+    this.variant = DSChipVariant.assist,
     required this.label,
     this.selected = false,
     this.onSelected,
@@ -129,7 +129,7 @@ class AppChip extends StatefulWidget {
     this.icon,
     this.deletable = false,
     this.onDeleted,
-    this.state = AppChipState.defaultState,
+    this.state = DSChipState.defaultState,
     this.enabled = true,
     this.config,
     this.data,
@@ -152,7 +152,7 @@ class AppChip extends StatefulWidget {
   });
 
   /// Create an input chip
-  const AppChip.input({
+  const DSChip.input({
     super.key,
     required this.label,
     this.selected = false,
@@ -161,7 +161,7 @@ class AppChip extends StatefulWidget {
     this.icon,
     this.deletable = true,
     this.onDeleted,
-    this.state = AppChipState.defaultState,
+    this.state = DSChipState.defaultState,
     this.enabled = true,
     this.config,
     this.data,
@@ -181,10 +181,10 @@ class AppChip extends StatefulWidget {
     this.avatarBackgroundColor,
     this.size,
     this.shape,
-  }) : variant = AppChipVariant.input;
+  }) : variant = DSChipVariant.input;
 
   /// Create a filter chip
-  const AppChip.filter({
+  const DSChip.filter({
     super.key,
     required this.label,
     this.selected = false,
@@ -193,7 +193,7 @@ class AppChip extends StatefulWidget {
     this.icon,
     this.deletable = false,
     this.onDeleted,
-    this.state = AppChipState.defaultState,
+    this.state = DSChipState.defaultState,
     this.enabled = true,
     this.config,
     this.data,
@@ -213,10 +213,10 @@ class AppChip extends StatefulWidget {
     this.avatarBackgroundColor,
     this.size,
     this.shape,
-  }) : variant = AppChipVariant.filter;
+  }) : variant = DSChipVariant.filter;
 
   /// Create a choice chip
-  const AppChip.choice({
+  const DSChip.choice({
     super.key,
     required this.label,
     this.selected = false,
@@ -225,7 +225,7 @@ class AppChip extends StatefulWidget {
     this.icon,
     this.deletable = false,
     this.onDeleted,
-    this.state = AppChipState.defaultState,
+    this.state = DSChipState.defaultState,
     this.enabled = true,
     this.config,
     this.data,
@@ -245,10 +245,10 @@ class AppChip extends StatefulWidget {
     this.avatarBackgroundColor,
     this.size,
     this.shape,
-  }) : variant = AppChipVariant.choice;
+  }) : variant = DSChipVariant.choice;
 
   /// Create an assist chip
-  const AppChip.assist({
+  const DSChip.assist({
     super.key,
     required this.label,
     this.selected = false,
@@ -257,7 +257,7 @@ class AppChip extends StatefulWidget {
     this.icon,
     this.deletable = false,
     this.onDeleted,
-    this.state = AppChipState.defaultState,
+    this.state = DSChipState.defaultState,
     this.enabled = true,
     this.config,
     this.data,
@@ -277,14 +277,14 @@ class AppChip extends StatefulWidget {
     this.avatarBackgroundColor,
     this.size,
     this.shape,
-  }) : variant = AppChipVariant.assist;
+  }) : variant = DSChipVariant.assist;
 
   @override
-  State<AppChip> createState() => _AppChipState();
+  State<DSChip> createState() => _DSChipState();
 }
 
-class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
-  late AppChipConfig _config;
+class _DSChipState extends State<DSChip> with TickerProviderStateMixin {
+  late DSChipConfig _config;
   late AnimationController _animationController;
   late AnimationController _deleteAnimationController;
   late Animation<double> _scaleAnimation;
@@ -311,7 +311,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
   }
 
   void _initializeConfig() {
-    _config = widget.config ?? AppChipConfig.fromTheme(Theme.of(context));
+    _config = widget.config ?? DSChipConfig.fromTheme(Theme.of(context));
   }
 
   void _initializeAnimations() {
@@ -355,7 +355,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(AppChip oldWidget) {
+  void didUpdateWidget(DSChip oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.config != oldWidget.config) {
@@ -373,7 +373,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.state == AppChipState.skeleton) {
+    if (widget.state == DSChipState.skeleton) {
       return _buildSkeleton();
     }
 
@@ -403,7 +403,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
 
   Widget _buildChip() {
     final colors = _getColors();
-    final sizes = _config.sizes ?? const AppChipSizes();
+    final sizes = _config.sizes ?? const DSChipSizes();
     final chipSize = widget.size ?? _config.size;
     final chipShape = widget.shape ?? _config.shape;
 
@@ -430,9 +430,9 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
                   child: AnimatedContainer(
                     duration: _config.animationDuration,
                     curve: _config.animationCurve,
-                    height: AppChipUtils.getHeight(chipSize, sizes),
+                    height: DSChipUtils.getHeight(chipSize, sizes),
                     padding: widget.padding ??
-                        AppChipUtils.getPadding(chipSize, sizes),
+                        DSChipUtils.getPadding(chipSize, sizes),
                     decoration:
                         _getDecoration(colors, chipSize, chipShape, sizes),
                     child: _buildChipContent(colors, chipSize, sizes),
@@ -447,12 +447,12 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
   }
 
   Widget _buildChipContent(
-      AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
+      DSChipColors colors, DSChipSize chipSize, DSChipSizes sizes) {
     final typography =
-        _config.typography ?? AppChipTypography.fromTheme(Theme.of(context));
-    final icons = _config.icons ?? const AppChipIcons();
+        _config.typography ?? DSChipTypography.fromTheme(Theme.of(context));
+    final icons = _config.icons ?? const DSChipIcons();
 
-    if (widget.state == AppChipState.loading) {
+    if (widget.state == DSChipState.loading) {
       return _buildLoadingContent(colors, chipSize);
     }
 
@@ -495,13 +495,13 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
   }
 
   Widget? _buildAvatar(
-      AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
+      DSChipColors colors, DSChipSize chipSize, DSChipSizes sizes) {
     // Check data model first
     if (widget.data?.hasAvatar == true) {
       if (widget.data!.avatarUrl != null) {
         // Network avatar
         return CircleAvatar(
-          radius: AppChipUtils.getAvatarSize(chipSize, sizes).width / 2,
+          radius: DSChipUtils.getAvatarSize(chipSize, sizes).width / 2,
           backgroundImage: NetworkImage(widget.data!.avatarUrl!),
         );
       } else if (widget.data!.avatarText != null) {
@@ -531,11 +531,11 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     return null;
   }
 
-  Widget _buildTextAvatar(String text, AppChipColors colors,
-      AppChipSize chipSize, AppChipSizes sizes) {
+  Widget _buildTextAvatar(String text, DSChipColors colors,
+      DSChipSize chipSize, DSChipSizes sizes) {
     final typography =
-        _config.typography ?? AppChipTypography.fromTheme(Theme.of(context));
-    final avatarSize = AppChipUtils.getAvatarSize(chipSize, sizes);
+        _config.typography ?? DSChipTypography.fromTheme(Theme.of(context));
+    final avatarSize = DSChipUtils.getAvatarSize(chipSize, sizes);
 
     return Container(
       width: avatarSize.width,
@@ -547,7 +547,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
       child: Center(
         child: Text(
           text.isNotEmpty ? text[0].toUpperCase() : '',
-          style: AppChipUtils.getAvatarTextStyle(chipSize, typography).copyWith(
+          style: DSChipUtils.getAvatarTextStyle(chipSize, typography).copyWith(
             color: colors.avatarTextColor,
           ),
         ),
@@ -556,11 +556,11 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
   }
 
   Widget _buildIcon(
-      AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
+      DSChipColors colors, DSChipSize chipSize, DSChipSizes sizes) {
     final iconData = widget.icon ?? widget.data?.icon;
     if (iconData == null) return const SizedBox.shrink();
 
-    final iconSize = AppChipUtils.getIconSize(chipSize, sizes);
+    final iconSize = DSChipUtils.getIconSize(chipSize, sizes);
     final iconColor = _getIconColor(colors);
 
     return Icon(
@@ -571,8 +571,8 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
   }
 
   Widget _buildCheckmark(
-      AppChipColors colors, AppChipSize chipSize, AppChipSizes sizes) {
-    final icons = _config.icons ?? const AppChipIcons();
+      DSChipColors colors, DSChipSize chipSize, DSChipSizes sizes) {
+    final icons = _config.icons ?? const DSChipIcons();
     final checkmarkSize = _getCheckmarkSize(chipSize, sizes);
 
     return AnimatedSwitcher(
@@ -594,8 +594,8 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildDeleteButton(AppChipColors colors, AppChipSize chipSize,
-      AppChipSizes sizes, AppChipIcons icons) {
+  Widget _buildDeleteButton(DSChipColors colors, DSChipSize chipSize,
+      DSChipSizes sizes, DSChipIcons icons) {
     final deleteIconSize = _getDeleteIconSize(chipSize, sizes);
     final deleteIconData = widget.deleteIcon ?? icons.deleteIcon;
 
@@ -614,7 +614,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildLoadingContent(AppChipColors colors, AppChipSize chipSize) {
+  Widget _buildLoadingContent(DSChipColors colors, DSChipSize chipSize) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -637,31 +637,31 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
   }
 
   Widget _buildSkeleton() {
-    final colors = _config.colors ?? AppChipColors.fromTheme(Theme.of(context));
-    final sizes = _config.sizes ?? const AppChipSizes();
+    final colors = _config.colors ?? DSChipColors.fromTheme(Theme.of(context));
+    final sizes = _config.sizes ?? const DSChipSizes();
     final chipSize = widget.size ?? _config.size;
 
     return Container(
-      height: AppChipUtils.getHeight(chipSize, sizes),
+      height: DSChipUtils.getHeight(chipSize, sizes),
       width: 80,
       decoration: BoxDecoration(
         color: colors.skeletonBaseColor,
         borderRadius: widget.borderRadius ??
-            AppChipUtils.getBorderRadius(
+            DSChipUtils.getBorderRadius(
                 chipSize, widget.shape ?? _config.shape, sizes),
       ),
     );
   }
 
   // Styling methods
-  AppChipColors _getColors() {
+  DSChipColors _getColors() {
     final baseColors =
-        _config.colors ?? AppChipColors.fromTheme(Theme.of(context));
-    return AppChipUtils.getVariantColors(widget.variant, baseColors);
+        _config.colors ?? DSChipColors.fromTheme(Theme.of(context));
+    return DSChipUtils.getVariantColors(widget.variant, baseColors);
   }
 
-  BoxDecoration _getDecoration(AppChipColors colors, AppChipSize chipSize,
-      AppChipShape chipShape, AppChipSizes sizes) {
+  BoxDecoration _getDecoration(DSChipColors colors, DSChipSize chipSize,
+      DSChipShape chipShape, DSChipSizes sizes) {
     Color backgroundColor;
     Color borderColor;
     double borderWidth;
@@ -672,7 +672,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
       borderColor = colors.disabledBorderColor;
       borderWidth = _config.borderWidth;
       elevation = _config.disabledElevation;
-    } else if (widget.state == AppChipState.loading) {
+    } else if (widget.state == DSChipState.loading) {
       backgroundColor = colors.loadingBackgroundColor;
       borderColor = colors.loadingBorderColor;
       borderWidth = _config.borderWidth;
@@ -708,7 +708,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     return BoxDecoration(
       color: backgroundColor,
       borderRadius: widget.borderRadius ??
-          AppChipUtils.getBorderRadius(chipSize, chipShape, sizes),
+          DSChipUtils.getBorderRadius(chipSize, chipShape, sizes),
       border: Border.all(
         color: borderColor,
         width: borderWidth,
@@ -725,15 +725,15 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     );
   }
 
-  TextStyle _getTextStyle(AppChipColors colors, AppChipSize chipSize,
-      AppChipTypography typography) {
+  TextStyle _getTextStyle(DSChipColors colors, DSChipSize chipSize,
+      DSChipTypography typography) {
     final baseStyle =
-        widget.textStyle ?? AppChipUtils.getTextStyle(chipSize, typography);
+        widget.textStyle ?? DSChipUtils.getTextStyle(chipSize, typography);
 
     Color textColor;
     if (!widget.enabled) {
       textColor = colors.disabledTextColor;
-    } else if (widget.state == AppChipState.loading) {
+    } else if (widget.state == DSChipState.loading) {
       textColor = colors.loadingTextColor;
     } else if (widget.selected) {
       textColor = colors.selectedTextColor;
@@ -750,16 +750,16 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     return baseStyle.copyWith(color: textColor);
   }
 
-  TextStyle _getLoadingTextStyle(AppChipColors colors) {
+  TextStyle _getLoadingTextStyle(DSChipColors colors) {
     final typography =
-        _config.typography ?? AppChipTypography.fromTheme(Theme.of(context));
+        _config.typography ?? DSChipTypography.fromTheme(Theme.of(context));
     return typography.loadingStyle.copyWith(color: colors.loadingTextColor);
   }
 
-  Color _getIconColor(AppChipColors colors) {
+  Color _getIconColor(DSChipColors colors) {
     if (!widget.enabled) {
       return colors.disabledIconColor;
-    } else if (widget.state == AppChipState.loading) {
+    } else if (widget.state == DSChipState.loading) {
       return colors.loadingIconColor;
     } else if (widget.selected) {
       return colors.selectedIconColor;
@@ -774,7 +774,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     }
   }
 
-  Color _getDeleteIconColor(AppChipColors colors) {
+  Color _getDeleteIconColor(DSChipColors colors) {
     if (!widget.enabled) {
       return colors.deleteIconDisabledColor;
     } else if (_isPressed) {
@@ -786,7 +786,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     }
   }
 
-  Color _getShadowColor(AppChipColors colors) {
+  Color _getShadowColor(DSChipColors colors) {
     if (_isPressed) {
       return colors.pressedShadowColor;
     } else if (_isHovered) {
@@ -796,24 +796,24 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
     }
   }
 
-  Size _getCheckmarkSize(AppChipSize chipSize, AppChipSizes sizes) {
+  Size _getCheckmarkSize(DSChipSize chipSize, DSChipSizes sizes) {
     switch (chipSize) {
-      case AppChipSize.small:
+      case DSChipSize.small:
         return sizes.smallCheckmarkSize;
-      case AppChipSize.medium:
+      case DSChipSize.medium:
         return sizes.mediumCheckmarkSize;
-      case AppChipSize.large:
+      case DSChipSize.large:
         return sizes.largeCheckmarkSize;
     }
   }
 
-  Size _getDeleteIconSize(AppChipSize chipSize, AppChipSizes sizes) {
+  Size _getDeleteIconSize(DSChipSize chipSize, DSChipSizes sizes) {
     switch (chipSize) {
-      case AppChipSize.small:
+      case DSChipSize.small:
         return sizes.smallDeleteIconSize;
-      case AppChipSize.medium:
+      case DSChipSize.medium:
         return sizes.mediumDeleteIconSize;
-      case AppChipSize.large:
+      case DSChipSize.large:
         return sizes.largeDeleteIconSize;
     }
   }
@@ -884,7 +884,7 @@ class _AppChipState extends State<AppChip> with TickerProviderStateMixin {
   bool _shouldShowCheckmark() {
     final showCheckmark = widget.showCheckmark ?? _config.showCheckmark;
     return showCheckmark &&
-        widget.variant == AppChipVariant.filter &&
+        widget.variant == DSChipVariant.filter &&
         widget.selected;
   }
 

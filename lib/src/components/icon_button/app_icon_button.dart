@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app_icon_button_config.dart';
 
-class AppIconButton extends StatefulWidget {
-  final AppIconButtonConfig config;
+class DSIconButton extends StatefulWidget {
+  final DSIconButtonConfig config;
   final Widget icon;
   final String? tooltip;
-  final AppIconButtonSize? size;
+  final DSIconButtonSize? size;
   final bool? isToggled;
 
-  const AppIconButton({
+  const DSIconButton({
     super.key,
-    this.config = const AppIconButtonConfig(),
+    this.config = const DSIconButtonConfig(),
     required this.icon,
     this.tooltip,
     this.size,
@@ -19,10 +19,10 @@ class AppIconButton extends StatefulWidget {
   });
 
   @override
-  State<AppIconButton> createState() => _AppIconButtonState();
+  State<DSIconButton> createState() => _DSIconButtonState();
 }
 
-class _AppIconButtonState extends State<AppIconButton>
+class _DSIconButtonState extends State<DSIconButton>
     with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _hoverAnimationController;
@@ -115,7 +115,7 @@ class _AppIconButtonState extends State<AppIconButton>
   }
 
   @override
-  void didUpdateWidget(AppIconButton oldWidget) {
+  void didUpdateWidget(DSIconButton oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     final newToggleState = widget.isToggled ?? widget.config.isToggled;
@@ -132,13 +132,13 @@ class _AppIconButtonState extends State<AppIconButton>
 
   void _updateStateAnimation() {
     switch (widget.config.state) {
-      case AppIconButtonState.loading:
+      case DSIconButtonState.loading:
         _rotationController.repeat();
         break;
-      case AppIconButtonState.skeleton:
+      case DSIconButtonState.skeleton:
         _stateAnimationController.repeat(reverse: true);
         break;
-      case AppIconButtonState.disabled:
+      case DSIconButtonState.disabled:
         _stateAnimationController.animateTo(0.6);
         break;
       default:
@@ -281,11 +281,11 @@ class _AppIconButtonState extends State<AppIconButton>
     Widget content = _buildIconContent(theme);
 
     switch (widget.config.variant) {
-      case AppIconButtonVariant.standard:
+      case DSIconButtonVariant.standard:
         return _buildStandardIconButton(content, theme);
-      case AppIconButtonVariant.filled:
+      case DSIconButtonVariant.filled:
         return _buildFilledIconButton(content, theme);
-      case AppIconButtonVariant.tonal:
+      case DSIconButtonVariant.tonal:
         return _buildTonalIconButton(content, theme);
     }
   }
@@ -350,7 +350,7 @@ class _AppIconButtonState extends State<AppIconButton>
   Widget _wrapWithEffects(Widget iconButton, ThemeData theme) {
     Widget wrappedButton = iconButton;
 
-    if (widget.config.animation?.type == AppIconButtonAnimationType.scale) {
+    if (widget.config.animation?.type == DSIconButtonAnimationType.scale) {
       wrappedButton = ScaleTransition(
         scale: _scaleAnimation,
         child: wrappedButton,
@@ -371,7 +371,7 @@ class _AppIconButtonState extends State<AppIconButton>
   Widget _buildIconContent(ThemeData theme) {
     Widget iconWidget = widget.icon;
 
-    if (widget.config.state == AppIconButtonState.loading) {
+    if (widget.config.state == DSIconButtonState.loading) {
       return SizedBox(
         width: _getIconSize(),
         height: _getIconSize(),
@@ -384,14 +384,14 @@ class _AppIconButtonState extends State<AppIconButton>
       );
     }
 
-    if (widget.config.animation?.type == AppIconButtonAnimationType.rotation) {
+    if (widget.config.animation?.type == DSIconButtonAnimationType.rotation) {
       iconWidget = Transform.rotate(
         angle: _rotationAnimation.value * 2 * 3.14159,
         child: iconWidget,
       );
     }
 
-    if (widget.config.animation?.type == AppIconButtonAnimationType.fade) {
+    if (widget.config.animation?.type == DSIconButtonAnimationType.fade) {
       iconWidget = AnimatedOpacity(
         opacity: _fadeAnimation.value,
         duration:
@@ -408,7 +408,7 @@ class _AppIconButtonState extends State<AppIconButton>
   }
 
   double _getSize() {
-    final spacing = widget.config.spacing ?? const AppIconButtonSpacing();
+    final spacing = widget.config.spacing ?? const DSIconButtonSpacing();
     final size = widget.size ?? widget.config.size;
     return size.getSize(spacing);
   }
@@ -451,7 +451,7 @@ class _AppIconButtonState extends State<AppIconButton>
   }
 
   Color _getBackgroundColor(ThemeData theme) {
-    if (widget.config.state == AppIconButtonState.disabled) {
+    if (widget.config.state == DSIconButtonState.disabled) {
       return widget.config.colors?.disabledColor ??
           theme.colorScheme.onSurface.withValues(alpha: 0.12);
     }
@@ -468,7 +468,7 @@ class _AppIconButtonState extends State<AppIconButton>
               .getBackgroundColor(theme.colorScheme, _isToggled);
     }
 
-    if (widget.config.state == AppIconButtonState.selected) {
+    if (widget.config.state == DSIconButtonState.selected) {
       return widget.config.colors?.selectedColor ??
           widget.config.variant.getBackgroundColor(theme.colorScheme, true);
     }
@@ -483,7 +483,7 @@ class _AppIconButtonState extends State<AppIconButton>
   }
 
   Color _getForegroundColor(ThemeData theme) {
-    if (widget.config.state == AppIconButtonState.disabled) {
+    if (widget.config.state == DSIconButtonState.disabled) {
       return theme.colorScheme.onSurface.withValues(alpha: 0.38);
     }
 
@@ -507,10 +507,10 @@ class _AppIconButtonState extends State<AppIconButton>
       HapticFeedback.lightImpact();
     }
 
-    if (widget.config.animation?.type == AppIconButtonAnimationType.rotation) {
+    if (widget.config.animation?.type == DSIconButtonAnimationType.rotation) {
       _rotationController.forward(from: 0.0);
     } else if (widget.config.animation?.type ==
-        AppIconButtonAnimationType.scale) {
+        DSIconButtonAnimationType.scale) {
       _pressAnimationController.forward().then((_) {
         _pressAnimationController.reverse();
       });

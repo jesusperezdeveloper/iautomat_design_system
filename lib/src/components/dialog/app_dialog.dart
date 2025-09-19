@@ -23,7 +23,7 @@ enum DialogVariant {
 }
 
 /// Enumeración que define los estados posibles del dialog
-enum AppDialogState {
+enum DSDialogState {
   /// Estado por defecto
   defaultState,
 
@@ -50,12 +50,12 @@ enum AppDialogState {
 }
 
 /// Extension para verificar si un estado puede interactuar
-extension AppDialogStateExtension on AppDialogState {
+extension DSDialogStateExtension on DSDialogState {
   /// Verifica si el estado permite interacciones
   bool get canInteract => !{
-        AppDialogState.disabled,
-        AppDialogState.loading,
-        AppDialogState.skeleton,
+        DSDialogState.disabled,
+        DSDialogState.loading,
+        DSDialogState.skeleton,
       }.contains(this);
 }
 
@@ -94,15 +94,15 @@ class DialogAction {
 ///
 /// Proporciona diferentes variantes (sm, md, lg, destructive, form) con soporte
 /// completo para plataformas, RTL, accesibilidad y Material 3.
-class AppDialog extends StatefulWidget {
+class DSDialog extends StatefulWidget {
   /// Constructor principal del dialog
-  const AppDialog({
+  const DSDialog({
     super.key,
     required this.variant,
     this.title,
     this.content,
     this.actions = const [],
-    this.state = AppDialogState.defaultState,
+    this.state = DSDialogState.defaultState,
     this.barrierDismissible = true,
     this.titleStyle,
     this.contentStyle,
@@ -118,12 +118,12 @@ class AppDialog extends StatefulWidget {
   });
 
   /// Factory constructor para crear un dialog pequeño
-  factory AppDialog.sm({
+  factory DSDialog.sm({
     Key? key,
     String? title,
     Widget? content,
     List<DialogAction> actions = const [],
-    AppDialogState state = AppDialogState.defaultState,
+    DSDialogState state = DSDialogState.defaultState,
     bool barrierDismissible = true,
     TextStyle? titleStyle,
     TextStyle? contentStyle,
@@ -135,9 +135,9 @@ class AppDialog extends StatefulWidget {
     bool accessibilitySupport = true,
     String? accessibilityLabel,
     String? accessibilityHint,
-    ValueChanged<AppDialogState>? onStateChange,
+    ValueChanged<DSDialogState>? onStateChange,
   }) {
-    return AppDialog(
+    return DSDialog(
       key: key,
       variant: DialogVariant.sm,
       title: title,
@@ -160,12 +160,12 @@ class AppDialog extends StatefulWidget {
   }
 
   /// Factory constructor para crear un dialog mediano
-  factory AppDialog.md({
+  factory DSDialog.md({
     Key? key,
     String? title,
     Widget? content,
     List<DialogAction> actions = const [],
-    AppDialogState state = AppDialogState.defaultState,
+    DSDialogState state = DSDialogState.defaultState,
     bool barrierDismissible = true,
     TextStyle? titleStyle,
     TextStyle? contentStyle,
@@ -177,9 +177,9 @@ class AppDialog extends StatefulWidget {
     bool accessibilitySupport = true,
     String? accessibilityLabel,
     String? accessibilityHint,
-    ValueChanged<AppDialogState>? onStateChange,
+    ValueChanged<DSDialogState>? onStateChange,
   }) {
-    return AppDialog(
+    return DSDialog(
       key: key,
       variant: DialogVariant.md,
       title: title,
@@ -202,12 +202,12 @@ class AppDialog extends StatefulWidget {
   }
 
   /// Factory constructor para crear un dialog grande
-  factory AppDialog.lg({
+  factory DSDialog.lg({
     Key? key,
     String? title,
     Widget? content,
     List<DialogAction> actions = const [],
-    AppDialogState state = AppDialogState.defaultState,
+    DSDialogState state = DSDialogState.defaultState,
     bool barrierDismissible = true,
     TextStyle? titleStyle,
     TextStyle? contentStyle,
@@ -219,9 +219,9 @@ class AppDialog extends StatefulWidget {
     bool accessibilitySupport = true,
     String? accessibilityLabel,
     String? accessibilityHint,
-    ValueChanged<AppDialogState>? onStateChange,
+    ValueChanged<DSDialogState>? onStateChange,
   }) {
-    return AppDialog(
+    return DSDialog(
       key: key,
       variant: DialogVariant.lg,
       title: title,
@@ -244,12 +244,12 @@ class AppDialog extends StatefulWidget {
   }
 
   /// Factory constructor para crear un dialog destructivo
-  factory AppDialog.destructive({
+  factory DSDialog.destructive({
     Key? key,
     String? title,
     Widget? content,
     List<DialogAction> actions = const [],
-    AppDialogState state = AppDialogState.defaultState,
+    DSDialogState state = DSDialogState.defaultState,
     bool barrierDismissible = true,
     TextStyle? titleStyle,
     TextStyle? contentStyle,
@@ -261,9 +261,9 @@ class AppDialog extends StatefulWidget {
     bool accessibilitySupport = true,
     String? accessibilityLabel,
     String? accessibilityHint,
-    ValueChanged<AppDialogState>? onStateChange,
+    ValueChanged<DSDialogState>? onStateChange,
   }) {
-    return AppDialog(
+    return DSDialog(
       key: key,
       variant: DialogVariant.destructive,
       title: title,
@@ -286,12 +286,12 @@ class AppDialog extends StatefulWidget {
   }
 
   /// Factory constructor para crear un dialog de formulario
-  factory AppDialog.form({
+  factory DSDialog.form({
     Key? key,
     String? title,
     Widget? content,
     List<DialogAction> actions = const [],
-    AppDialogState state = AppDialogState.defaultState,
+    DSDialogState state = DSDialogState.defaultState,
     bool barrierDismissible = true,
     TextStyle? titleStyle,
     TextStyle? contentStyle,
@@ -303,9 +303,9 @@ class AppDialog extends StatefulWidget {
     bool accessibilitySupport = true,
     String? accessibilityLabel,
     String? accessibilityHint,
-    ValueChanged<AppDialogState>? onStateChange,
+    ValueChanged<DSDialogState>? onStateChange,
   }) {
-    return AppDialog(
+    return DSDialog(
       key: key,
       variant: DialogVariant.form,
       title: title,
@@ -340,7 +340,7 @@ class AppDialog extends StatefulWidget {
   final List<DialogAction> actions;
 
   /// Estado actual del dialog
-  final AppDialogState state;
+  final DSDialogState state;
 
   /// Si el dialog puede ser cerrado tocando fuera de él
   final bool barrierDismissible;
@@ -376,15 +376,15 @@ class AppDialog extends StatefulWidget {
   final String? accessibilityHint;
 
   /// Callback cuando cambia el estado
-  final ValueChanged<AppDialogState>? onStateChange;
+  final ValueChanged<DSDialogState>? onStateChange;
 
   @override
-  State<AppDialog> createState() => _AppDialogState();
+  State<DSDialog> createState() => _DSDialogState();
 
   /// Método estático para mostrar el dialog
   static Future<T?> show<T>({
     required BuildContext context,
-    required AppDialog dialog,
+    required DSDialog dialog,
   }) {
     return showDialog<T>(
       context: context,
@@ -394,13 +394,13 @@ class AppDialog extends StatefulWidget {
   }
 }
 
-class _AppDialogState extends State<AppDialog>
+class _DSDialogState extends State<DSDialog>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
   late Animation<double> _opacityAnimation;
   late FocusNode _focusNode;
-  AppDialogState _currentState = AppDialogState.defaultState;
+  DSDialogState _currentState = DSDialogState.defaultState;
 
   @override
   void initState() {
@@ -442,7 +442,7 @@ class _AppDialogState extends State<AppDialog>
     super.dispose();
   }
 
-  void _updateState(AppDialogState newState) {
+  void _updateState(DSDialogState newState) {
     if (_currentState != newState && mounted) {
       setState(() {
         _currentState = newState;
@@ -644,16 +644,16 @@ class _AppDialogState extends State<AppDialog>
 
   Widget _buildStateWrapper(Widget child) {
     switch (_currentState) {
-      case AppDialogState.disabled:
+      case DSDialogState.disabled:
         return Opacity(
           opacity: 0.5,
           child: AbsorbPointer(child: child),
         );
-      case AppDialogState.loading:
+      case DSDialogState.loading:
         return _buildLoadingChild(child);
-      case AppDialogState.skeleton:
+      case DSDialogState.skeleton:
         return _buildSkeletonChild(child);
-      case AppDialogState.focus:
+      case DSDialogState.focus:
         return Container(
           decoration: BoxDecoration(
             border: Border.all(
@@ -664,10 +664,10 @@ class _AppDialogState extends State<AppDialog>
           ),
           child: child,
         );
-      case AppDialogState.defaultState:
-      case AppDialogState.hover:
-      case AppDialogState.pressed:
-      case AppDialogState.selected:
+      case DSDialogState.defaultState:
+      case DSDialogState.hover:
+      case DSDialogState.pressed:
+      case DSDialogState.selected:
         return child;
     }
   }
@@ -712,20 +712,20 @@ class _AppDialogState extends State<AppDialog>
 
     if (isDesktop) {
       return MouseRegion(
-        onEnter: (_) => _updateState(AppDialogState.hover),
-        onExit: (_) => _updateState(AppDialogState.defaultState),
+        onEnter: (_) => _updateState(DSDialogState.hover),
+        onExit: (_) => _updateState(DSDialogState.defaultState),
         child: GestureDetector(
-          onTapDown: (_) => _updateState(AppDialogState.pressed),
-          onTapUp: (_) => _updateState(AppDialogState.hover),
-          onTapCancel: () => _updateState(AppDialogState.defaultState),
+          onTapDown: (_) => _updateState(DSDialogState.pressed),
+          onTapUp: (_) => _updateState(DSDialogState.hover),
+          onTapCancel: () => _updateState(DSDialogState.defaultState),
           child: child,
         ),
       );
     } else {
       return GestureDetector(
-        onTapDown: (_) => _updateState(AppDialogState.pressed),
-        onTapUp: (_) => _updateState(AppDialogState.defaultState),
-        onTapCancel: () => _updateState(AppDialogState.defaultState),
+        onTapDown: (_) => _updateState(DSDialogState.pressed),
+        onTapUp: (_) => _updateState(DSDialogState.defaultState),
+        onTapCancel: () => _updateState(DSDialogState.defaultState),
         child: child,
       );
     }

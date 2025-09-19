@@ -3,12 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppCurrencyInput', () {
+  group('DSCurrencyInput', () {
     testWidgets('renders correctly with basic configuration', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 100.0,
               currency: 'USD',
               label: 'Test Amount',
@@ -26,7 +26,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 150.50,
               currency: 'USD',
               onChanged: (value) {},
@@ -43,12 +43,12 @@ void main() {
     });
 
     testWidgets('calls onChanged when text is modified', (tester) async {
-      AppCurrencyInputValue? changedValue;
+      DSCurrencyInputValue? changedValue;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 0.0,
               currency: 'USD',
               onChanged: (value) {
@@ -73,7 +73,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 0.0,
               currency: 'USD',
               errorText: errorText,
@@ -90,7 +90,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 100.0,
               currency: 'USD',
               enabled: false,
@@ -110,12 +110,12 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppCurrencyInput(
+                DSCurrencyInput(
                   amount: 100.0,
                   currency: 'USD',
                   onChanged: (value) {},
                 ),
-                AppCurrencyInput(
+                DSCurrencyInput(
                   amount: 100.0,
                   currency: 'EUR',
                   onChanged: (value) {},
@@ -129,14 +129,14 @@ void main() {
       await tester.pump();
 
       // Both currency inputs should be rendered
-      expect(find.byType(AppCurrencyInput), findsNWidgets(2));
+      expect(find.byType(DSCurrencyInput), findsNWidgets(2));
     });
 
     testWidgets('validates input correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 50.0,
               currency: 'USD',
               validator: (value) {
@@ -166,7 +166,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 1234.56,
               currency: 'USD',
               locale: Locale('en', 'US'),
@@ -177,17 +177,17 @@ void main() {
       );
 
       await tester.pump();
-      expect(find.byType(AppCurrencyInput), findsOneWidget);
+      expect(find.byType(DSCurrencyInput), findsOneWidget);
     });
 
     testWidgets('shows loading state correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 100.0,
               currency: 'USD',
-              initialState: AppCurrencyInputState.loading,
+              initialState: DSCurrencyInputState.loading,
               onChanged: (value) {},
             ),
           ),
@@ -204,10 +204,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 100.0,
               currency: 'USD',
-              initialState: AppCurrencyInputState.skeleton,
+              initialState: DSCurrencyInputState.skeleton,
               onChanged: (value) {},
             ),
           ),
@@ -224,7 +224,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 100.0,
               currency: 'USD',
               readOnly: true,
@@ -244,7 +244,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 0.0,
               currency: 'USD',
               helperText: helperText,
@@ -261,7 +261,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 100.0,
               currency: 'USD',
               width: 300,
@@ -282,7 +282,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCurrencyInput(
+            body: DSCurrencyInput(
               amount: 100.0,
               currency: 'USD',
               prefixIcon: Icons.attach_money,
@@ -298,9 +298,9 @@ void main() {
     });
   });
 
-  group('AppCurrencyInputValue', () {
+  group('DSCurrencyInputValue', () {
     test('creates value correctly', () {
-      const value = AppCurrencyInputValue(
+      const value = DSCurrencyInputValue(
         amount: 123.45,
         currencyCode: 'USD',
         formattedValue: '\$123.45',
@@ -314,7 +314,7 @@ void main() {
     });
 
     test('handles zero amount', () {
-      const value = AppCurrencyInputValue(
+      const value = DSCurrencyInputValue(
         amount: 0.0,
         currencyCode: 'USD',
         formattedValue: '\$0.00',
@@ -326,7 +326,7 @@ void main() {
     });
 
     test('handles large amounts', () {
-      const value = AppCurrencyInputValue(
+      const value = DSCurrencyInputValue(
         amount: 999999.99,
         currencyCode: 'USD',
         formattedValue: '\$999,999.99',
@@ -338,22 +338,22 @@ void main() {
     });
   });
 
-  group('AppCurrencyInputState', () {
+  group('DSCurrencyInputState', () {
     test('has all required states', () {
-      expect(AppCurrencyInputState.values, contains(AppCurrencyInputState.defaultState));
-      expect(AppCurrencyInputState.values, contains(AppCurrencyInputState.hover));
-      expect(AppCurrencyInputState.values, contains(AppCurrencyInputState.pressed));
-      expect(AppCurrencyInputState.values, contains(AppCurrencyInputState.focus));
-      expect(AppCurrencyInputState.values, contains(AppCurrencyInputState.selected));
-      expect(AppCurrencyInputState.values, contains(AppCurrencyInputState.disabled));
-      expect(AppCurrencyInputState.values, contains(AppCurrencyInputState.loading));
-      expect(AppCurrencyInputState.values, contains(AppCurrencyInputState.skeleton));
+      expect(DSCurrencyInputState.values, contains(DSCurrencyInputState.defaultState));
+      expect(DSCurrencyInputState.values, contains(DSCurrencyInputState.hover));
+      expect(DSCurrencyInputState.values, contains(DSCurrencyInputState.pressed));
+      expect(DSCurrencyInputState.values, contains(DSCurrencyInputState.focus));
+      expect(DSCurrencyInputState.values, contains(DSCurrencyInputState.selected));
+      expect(DSCurrencyInputState.values, contains(DSCurrencyInputState.disabled));
+      expect(DSCurrencyInputState.values, contains(DSCurrencyInputState.loading));
+      expect(DSCurrencyInputState.values, contains(DSCurrencyInputState.skeleton));
     });
   });
 
-  group('AppCurrencyInputVariant', () {
+  group('DSCurrencyInputVariant', () {
     test('has localized variant', () {
-      expect(AppCurrencyInputVariant.values, contains(AppCurrencyInputVariant.localized));
+      expect(DSCurrencyInputVariant.values, contains(DSCurrencyInputVariant.localized));
     });
   });
 }

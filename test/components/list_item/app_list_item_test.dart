@@ -4,19 +4,19 @@ import 'package:iautomat_design_system/src/components/list_item/app_list_item.da
 import 'package:iautomat_design_system/src/components/list_item/list_item_config.dart';
 
 void main() {
-  group('AppListItem', () {
+  group('DSListItem', () {
     testWidgets('renders one-line variant correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'Test Title',
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppListItem), findsOneWidget);
+      expect(find.byType(DSListItem), findsOneWidget);
       expect(find.text('Test Title'), findsOneWidget);
     });
 
@@ -24,7 +24,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.twoLine(
+            body: DSListItem.twoLine(
               title: 'Test Title',
               subtitle: 'Test Subtitle',
             ),
@@ -32,7 +32,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppListItem), findsOneWidget);
+      expect(find.byType(DSListItem), findsOneWidget);
       expect(find.text('Test Title'), findsOneWidget);
       expect(find.text('Test Subtitle'), findsOneWidget);
     });
@@ -41,7 +41,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.threeLine(
+            body: DSListItem.threeLine(
               title: 'Test Title',
               subtitle:
                   'Test Subtitle with more content that spans multiple lines',
@@ -50,7 +50,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppListItem), findsOneWidget);
+      expect(find.byType(DSListItem), findsOneWidget);
       expect(find.text('Test Title'), findsOneWidget);
       expect(
           find.text(
@@ -64,7 +64,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'Tappable Item',
               onTap: () {
                 tapped = true;
@@ -74,7 +74,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppListItem));
+      await tester.tap(find.byType(DSListItem));
       await tester.pump();
 
       expect(tapped, isTrue);
@@ -86,7 +86,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'Long Press Item',
               onLongPress: () {
                 longPressed = true;
@@ -96,7 +96,7 @@ void main() {
         ),
       );
 
-      await tester.longPress(find.byType(AppListItem));
+      await tester.longPress(find.byType(DSListItem));
       await tester.pump();
 
       expect(longPressed, isTrue);
@@ -106,10 +106,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'With Leading',
-              leading: const AppListItemLeading(
-                type: AppListItemLeadingType.icon,
+              leading: const DSListItemLeading(
+                type: DSListItemLeadingType.icon,
                 icon: Icons.star,
               ),
             ),
@@ -124,10 +124,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'With Avatar',
-              leading: const AppListItemLeading(
-                type: AppListItemLeadingType.avatar,
+              leading: const DSListItemLeading(
+                type: DSListItemLeadingType.avatar,
                 avatarText: 'AB',
               ),
             ),
@@ -143,10 +143,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'With Checkbox',
-              leading: const AppListItemLeading(
-                type: AppListItemLeadingType.checkbox,
+              leading: const DSListItemLeading(
+                type: DSListItemLeadingType.checkbox,
                 checkboxValue: true,
               ),
             ),
@@ -161,10 +161,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'With Trailing',
-              trailing: const AppListItemTrailing(
-                type: AppListItemTrailingType.icon,
+              trailing: const DSListItemTrailing(
+                type: DSListItemTrailingType.icon,
                 icon: Icons.arrow_forward,
               ),
             ),
@@ -179,10 +179,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'With Trailing Text',
-              trailing: const AppListItemTrailing(
-                type: AppListItemTrailingType.text,
+              trailing: const DSListItemTrailing(
+                type: DSListItemTrailingType.text,
                 text: 'Now',
               ),
             ),
@@ -197,10 +197,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'With Switch',
-              trailing: const AppListItemTrailing(
-                type: AppListItemTrailingType.switchWidget,
+              trailing: const DSListItemTrailing(
+                type: DSListItemTrailingType.switchWidget,
                 switchValue: true,
               ),
             ),
@@ -217,9 +217,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'Disabled Item',
-              config: const AppListItemConfig(
+              config: const DSListItemConfig(
                 enabled: false,
               ),
               onTap: () {
@@ -230,7 +230,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppListItem));
+      await tester.tap(find.byType(DSListItem));
       await tester.pump();
 
       expect(tapped, isFalse);
@@ -240,9 +240,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'Loading Item',
-              config: const AppListItemConfig(
+              config: const DSListItemConfig(
                 loading: true,
               ),
             ),
@@ -257,9 +257,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'Skeleton Item',
-              config: const AppListItemConfig(
+              config: const DSListItemConfig(
                 skeleton: true,
               ),
             ),
@@ -275,9 +275,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'Selected Item',
-              config: const AppListItemConfig(
+              config: const DSListItemConfig(
                 selected: true,
               ),
             ),
@@ -285,18 +285,18 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppListItem), findsOneWidget);
+      expect(find.byType(DSListItem), findsOneWidget);
     });
 
     testWidgets('handles swipe actions', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'Swipeable Item',
-              swipeActions: AppListItemSwipeActions(
+              swipeActions: DSListItemSwipeActions(
                 trailing: [
-                  AppListItemSwipeAction(
+                  DSListItemSwipeAction(
                     key: 'delete',
                     label: 'Delete',
                     icon: Icons.delete,
@@ -320,14 +320,14 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppListItem.oneLine(
+              body: DSListItem.oneLine(
                 title: 'RTL Item',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.icon,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.icon,
                   icon: Icons.star,
                 ),
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.icon,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.icon,
                   icon: Icons.arrow_forward,
                 ),
               ),
@@ -336,14 +336,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppListItem), findsOneWidget);
+      expect(find.byType(DSListItem), findsOneWidget);
     });
 
     testWidgets('handles focus correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'Focusable Item',
               onFocusChange: (focus) {
                 // Handle focus change
@@ -354,7 +354,7 @@ void main() {
       );
 
       // Focus the item
-      await tester.tap(find.byType(AppListItem));
+      await tester.tap(find.byType(DSListItem));
       await tester.pump();
 
       // The focus would be handled by the InkWell
@@ -365,9 +365,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppListItem.oneLine(
+            body: DSListItem.oneLine(
               title: 'Item with Divider',
-              config: const AppListItemConfig(
+              config: const DSListItemConfig(
                 showDivider: true,
               ),
             ),
@@ -384,22 +384,22 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppListItem.oneLine(
+                DSListItem.oneLine(
                   title: 'Compact',
-                  config: const AppListItemConfig(
-                    density: AppListItemDensity.compact,
+                  config: const DSListItemConfig(
+                    density: DSListItemDensity.compact,
                   ),
                 ),
-                AppListItem.oneLine(
+                DSListItem.oneLine(
                   title: 'Standard',
-                  config: const AppListItemConfig(
-                    density: AppListItemDensity.standard,
+                  config: const DSListItemConfig(
+                    density: DSListItemDensity.standard,
                   ),
                 ),
-                AppListItem.oneLine(
+                DSListItem.oneLine(
                   title: 'Comfortable',
-                  config: const AppListItemConfig(
-                    density: AppListItemDensity.comfortable,
+                  config: const DSListItemConfig(
+                    density: DSListItemDensity.comfortable,
                   ),
                 ),
               ],
@@ -413,52 +413,52 @@ void main() {
       expect(find.text('Comfortable'), findsOneWidget);
     });
 
-    group('AppListItemConfig', () {
+    group('DSListItemConfig', () {
       test('creates config with default values', () {
-        const config = AppListItemConfig();
+        const config = DSListItemConfig();
 
-        expect(config.variant, AppListItemVariant.oneLine);
-        expect(config.state, AppListItemState.defaultState);
+        expect(config.variant, DSListItemVariant.oneLine);
+        expect(config.state, DSListItemState.defaultState);
         expect(config.enabled, true);
         expect(config.selected, false);
         expect(config.loading, false);
         expect(config.skeleton, false);
         expect(config.showDivider, false);
         expect(config.autofocus, false);
-        expect(config.density, AppListItemDensity.standard);
+        expect(config.density, DSListItemDensity.standard);
         expect(config.keyboardNavigation, true);
         expect(config.platformAdaptive, true);
       });
 
       test('creates config with custom values', () {
-        const config = AppListItemConfig(
-          variant: AppListItemVariant.twoLine,
-          state: AppListItemState.selected,
+        const config = DSListItemConfig(
+          variant: DSListItemVariant.twoLine,
+          state: DSListItemState.selected,
           enabled: false,
           selected: true,
           loading: true,
           skeleton: false,
           showDivider: true,
           autofocus: true,
-          density: AppListItemDensity.compact,
+          density: DSListItemDensity.compact,
         );
 
-        expect(config.variant, AppListItemVariant.twoLine);
-        expect(config.state, AppListItemState.selected);
+        expect(config.variant, DSListItemVariant.twoLine);
+        expect(config.state, DSListItemState.selected);
         expect(config.enabled, false);
         expect(config.selected, true);
         expect(config.loading, true);
         expect(config.skeleton, false);
         expect(config.showDivider, true);
         expect(config.autofocus, true);
-        expect(config.density, AppListItemDensity.compact);
+        expect(config.density, DSListItemDensity.compact);
       });
 
       test('computes interactive state correctly', () {
-        const enabledConfig = AppListItemConfig(enabled: true);
-        const disabledConfig = AppListItemConfig(enabled: false);
-        const loadingConfig = AppListItemConfig(loading: true);
-        const skeletonConfig = AppListItemConfig(skeleton: true);
+        const enabledConfig = DSListItemConfig(enabled: true);
+        const disabledConfig = DSListItemConfig(enabled: false);
+        const loadingConfig = DSListItemConfig(loading: true);
+        const skeletonConfig = DSListItemConfig(skeleton: true);
 
         expect(enabledConfig.isInteractive, true);
         expect(disabledConfig.isInteractive, false);
@@ -467,25 +467,25 @@ void main() {
       });
 
       test('computes effective state correctly', () {
-        const defaultConfig = AppListItemConfig();
-        const selectedConfig = AppListItemConfig(selected: true);
-        const loadingConfig = AppListItemConfig(loading: true);
-        const skeletonConfig = AppListItemConfig(skeleton: true);
-        const disabledConfig = AppListItemConfig(enabled: false);
+        const defaultConfig = DSListItemConfig();
+        const selectedConfig = DSListItemConfig(selected: true);
+        const loadingConfig = DSListItemConfig(loading: true);
+        const skeletonConfig = DSListItemConfig(skeleton: true);
+        const disabledConfig = DSListItemConfig(enabled: false);
 
-        expect(defaultConfig.effectiveState, AppListItemState.defaultState);
-        expect(selectedConfig.effectiveState, AppListItemState.selected);
-        expect(loadingConfig.effectiveState, AppListItemState.loading);
-        expect(skeletonConfig.effectiveState, AppListItemState.skeleton);
-        expect(disabledConfig.effectiveState, AppListItemState.disabled);
+        expect(defaultConfig.effectiveState, DSListItemState.defaultState);
+        expect(selectedConfig.effectiveState, DSListItemState.selected);
+        expect(loadingConfig.effectiveState, DSListItemState.loading);
+        expect(skeletonConfig.effectiveState, DSListItemState.skeleton);
+        expect(disabledConfig.effectiveState, DSListItemState.disabled);
       });
     });
 
-    group('AppListItemLeading', () {
+    group('DSListItemLeading', () {
       test('creates leading with default values', () {
-        const leading = AppListItemLeading();
+        const leading = DSListItemLeading();
 
-        expect(leading.type, AppListItemLeadingType.none);
+        expect(leading.type, DSListItemLeadingType.none);
         expect(leading.iconSize, 24.0);
         expect(leading.avatarRadius, 20.0);
         expect(leading.imageWidth, 40.0);
@@ -496,10 +496,10 @@ void main() {
       });
 
       test('detects interactive leading correctly', () {
-        const nonInteractive = AppListItemLeading();
+        const nonInteractive = DSListItemLeading();
         const checkbox =
-            AppListItemLeading(type: AppListItemLeadingType.checkbox);
-        const radio = AppListItemLeading(type: AppListItemLeadingType.radio);
+            DSListItemLeading(type: DSListItemLeadingType.checkbox);
+        const radio = DSListItemLeading(type: DSListItemLeadingType.radio);
 
         expect(nonInteractive.isInteractive, false);
         expect(checkbox.isInteractive, true);
@@ -507,7 +507,7 @@ void main() {
       });
 
       test('handles RTL margin correctly', () {
-        const leading = AppListItemLeading(
+        const leading = DSListItemLeading(
           margin: EdgeInsets.only(right: 16),
         );
 
@@ -519,24 +519,24 @@ void main() {
       });
     });
 
-    group('AppListItemTrailing', () {
+    group('DSListItemTrailing', () {
       test('creates trailing with default values', () {
-        const trailing = AppListItemTrailing();
+        const trailing = DSListItemTrailing();
 
-        expect(trailing.type, AppListItemTrailingType.none);
+        expect(trailing.type, DSListItemTrailingType.none);
         expect(trailing.iconSize, 24.0);
         expect(trailing.enabled, true);
         expect(trailing.padding, EdgeInsets.zero);
       });
 
       test('detects interactive trailing correctly', () {
-        const nonInteractive = AppListItemTrailing();
+        const nonInteractive = DSListItemTrailing();
         const withSwitch =
-            AppListItemTrailing(type: AppListItemTrailingType.switchWidget);
+            DSListItemTrailing(type: DSListItemTrailingType.switchWidget);
         const withCheckbox =
-            AppListItemTrailing(type: AppListItemTrailingType.checkbox);
+            DSListItemTrailing(type: DSListItemTrailingType.checkbox);
         const withRadio =
-            AppListItemTrailing(type: AppListItemTrailingType.radio);
+            DSListItemTrailing(type: DSListItemTrailingType.radio);
 
         expect(nonInteractive.isInteractive, false);
         expect(withSwitch.isInteractive, true);
@@ -545,31 +545,31 @@ void main() {
       });
     });
 
-    group('AppListItemSwipeActions', () {
+    group('DSListItemSwipeActions', () {
       test('creates swipe actions with defaults', () {
-        const swipeActions = AppListItemSwipeActions();
+        const swipeActions = DSListItemSwipeActions();
 
         expect(swipeActions.leading, isEmpty);
         expect(swipeActions.trailing, isEmpty);
-        expect(swipeActions.direction, AppListItemSwipeDirection.both);
+        expect(swipeActions.direction, DSListItemSwipeDirection.both);
         expect(swipeActions.enabled, true);
         expect(swipeActions.threshold, 0.5);
         expect(swipeActions.dismissible, false);
       });
 
       test('detects actions correctly', () {
-        const noActions = AppListItemSwipeActions();
-        const withLeading = AppListItemSwipeActions(
+        const noActions = DSListItemSwipeActions();
+        const withLeading = DSListItemSwipeActions(
           leading: [
-            AppListItemSwipeAction(
+            DSListItemSwipeAction(
               key: 'test',
               label: 'Test',
             ),
           ],
         );
-        const withTrailing = AppListItemSwipeActions(
+        const withTrailing = DSListItemSwipeActions(
           trailing: [
-            AppListItemSwipeAction(
+            DSListItemSwipeAction(
               key: 'test',
               label: 'Test',
             ),
@@ -591,36 +591,36 @@ void main() {
     });
 
     group('Extensions', () {
-      test('AppListItemVariant extension works correctly', () {
-        expect(AppListItemVariant.oneLine.maxLines, 1);
-        expect(AppListItemVariant.twoLine.maxLines, 2);
-        expect(AppListItemVariant.threeLine.maxLines, 3);
+      test('DSListItemVariant extension works correctly', () {
+        expect(DSListItemVariant.oneLine.maxLines, 1);
+        expect(DSListItemVariant.twoLine.maxLines, 2);
+        expect(DSListItemVariant.threeLine.maxLines, 3);
 
-        expect(AppListItemVariant.oneLine.supportsSubtitle, false);
-        expect(AppListItemVariant.twoLine.supportsSubtitle, true);
-        expect(AppListItemVariant.threeLine.supportsSubtitle, true);
+        expect(DSListItemVariant.oneLine.supportsSubtitle, false);
+        expect(DSListItemVariant.twoLine.supportsSubtitle, true);
+        expect(DSListItemVariant.threeLine.supportsSubtitle, true);
 
-        expect(AppListItemVariant.oneLine.defaultHeight, 48.0);
-        expect(AppListItemVariant.twoLine.defaultHeight, 64.0);
-        expect(AppListItemVariant.threeLine.defaultHeight, 88.0);
+        expect(DSListItemVariant.oneLine.defaultHeight, 48.0);
+        expect(DSListItemVariant.twoLine.defaultHeight, 64.0);
+        expect(DSListItemVariant.threeLine.defaultHeight, 88.0);
       });
 
-      test('AppListItemState extension works correctly', () {
-        expect(AppListItemState.defaultState.isInteractive, true);
-        expect(AppListItemState.disabled.isInteractive, false);
-        expect(AppListItemState.loading.isInteractive, false);
-        expect(AppListItemState.skeleton.isInteractive, false);
+      test('DSListItemState extension works correctly', () {
+        expect(DSListItemState.defaultState.isInteractive, true);
+        expect(DSListItemState.disabled.isInteractive, false);
+        expect(DSListItemState.loading.isInteractive, false);
+        expect(DSListItemState.skeleton.isInteractive, false);
 
-        expect(AppListItemState.hover.hasVisualFeedback, true);
-        expect(AppListItemState.pressed.hasVisualFeedback, true);
-        expect(AppListItemState.focus.hasVisualFeedback, true);
-        expect(AppListItemState.selected.hasVisualFeedback, true);
-        expect(AppListItemState.defaultState.hasVisualFeedback, false);
+        expect(DSListItemState.hover.hasVisualFeedback, true);
+        expect(DSListItemState.pressed.hasVisualFeedback, true);
+        expect(DSListItemState.focus.hasVisualFeedback, true);
+        expect(DSListItemState.selected.hasVisualFeedback, true);
+        expect(DSListItemState.defaultState.hasVisualFeedback, false);
 
-        expect(AppListItemState.hover.isTemporary, true);
-        expect(AppListItemState.pressed.isTemporary, true);
-        expect(AppListItemState.focus.isTemporary, true);
-        expect(AppListItemState.selected.isTemporary, false);
+        expect(DSListItemState.hover.isTemporary, true);
+        expect(DSListItemState.pressed.isTemporary, true);
+        expect(DSListItemState.focus.isTemporary, true);
+        expect(DSListItemState.selected.isTemporary, false);
       });
     });
   });

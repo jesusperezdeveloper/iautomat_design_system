@@ -15,17 +15,17 @@ import 'package:iautomat_design_system/src/components/currency_input/app_currenc
 /// - Formateo específico por plataforma
 /// - Teclados optimizados
 /// - Indicadores de carga nativos
-class AppCurrencyInputPlatformAdapter {
+class DSCurrencyInputPlatformAdapter {
   /// Construye el input de moneda usando el componente apropiado para la plataforma
   Widget buildCurrencyInput({
     required BuildContext context,
-    required AppCurrencyInputConfig config,
+    required DSCurrencyInputConfig config,
     required TextEditingController controller,
     required FocusNode focusNode,
-    required AppCurrencyInputValue? currentValue,
-    required AppCurrencyInputState state,
-    required AppCurrencyInputColors colors,
-    required AppCurrencyInputSpacing spacing,
+    required DSCurrencyInputValue? currentValue,
+    required DSCurrencyInputState state,
+    required DSCurrencyInputColors colors,
+    required DSCurrencyInputSpacing spacing,
     String? label,
     String? hint,
     String? helperText,
@@ -39,14 +39,14 @@ class AppCurrencyInputPlatformAdapter {
     Widget? suffix,
     IconData? prefixIcon,
     IconData? suffixIcon,
-    String? Function(AppCurrencyInputValue?)? validator,
+    String? Function(DSCurrencyInputValue?)? validator,
     ValueChanged<String>? onSubmitted,
     VoidCallback? onEditingComplete,
   }) {
     final variant = _resolveVariant(config.variant);
 
     switch (variant) {
-      case AppCurrencyInputVariant.localized:
+      case DSCurrencyInputVariant.localized:
         return _buildLocalizedInput(
           context: context,
           config: config,
@@ -77,7 +77,7 @@ class AppCurrencyInputPlatformAdapter {
   }
 
   /// Construye un indicador de carga específico de la plataforma
-  Widget buildLoadingIndicator(BuildContext context, AppCurrencyInputColors colors) {
+  Widget buildLoadingIndicator(BuildContext context, DSCurrencyInputColors colors) {
     if (kIsWeb) {
       return _buildWebLoadingIndicator(colors);
     } else if (Platform.isIOS) {
@@ -88,7 +88,7 @@ class AppCurrencyInputPlatformAdapter {
   }
 
   /// Resuelve la variante según la plataforma actual
-  AppCurrencyInputVariant _resolveVariant(AppCurrencyInputVariant variant) {
+  DSCurrencyInputVariant _resolveVariant(DSCurrencyInputVariant variant) {
     // Por ahora solo tenemos una variante, pero esto permite extensibilidad
     return variant;
   }
@@ -96,13 +96,13 @@ class AppCurrencyInputPlatformAdapter {
   /// Construye el input localizado usando Material Design
   Widget _buildLocalizedInput({
     required BuildContext context,
-    required AppCurrencyInputConfig config,
+    required DSCurrencyInputConfig config,
     required TextEditingController controller,
     required FocusNode focusNode,
-    required AppCurrencyInputValue? currentValue,
-    required AppCurrencyInputState state,
-    required AppCurrencyInputColors colors,
-    required AppCurrencyInputSpacing spacing,
+    required DSCurrencyInputValue? currentValue,
+    required DSCurrencyInputState state,
+    required DSCurrencyInputColors colors,
+    required DSCurrencyInputSpacing spacing,
     String? label,
     String? hint,
     String? helperText,
@@ -116,7 +116,7 @@ class AppCurrencyInputPlatformAdapter {
     Widget? suffix,
     IconData? prefixIcon,
     IconData? suffixIcon,
-    String? Function(AppCurrencyInputValue?)? validator,
+    String? Function(DSCurrencyInputValue?)? validator,
     ValueChanged<String>? onSubmitted,
     VoidCallback? onEditingComplete,
   }) {
@@ -132,7 +132,7 @@ class AppCurrencyInputPlatformAdapter {
             style: theme.textTheme.bodySmall?.copyWith(
               color: hasError
                   ? colors.errorColor
-                  : state == AppCurrencyInputState.focus
+                  : state == DSCurrencyInputState.focus
                       ? colors.focusedBorderColor
                       : enabled
                           ? colors.labelColor
@@ -196,7 +196,7 @@ class AppCurrencyInputPlatformAdapter {
   }
 
   /// Construye el icono de prefijo
-  Widget? _buildPrefixIcon(IconData? icon, AppCurrencyInputColors colors, bool enabled) {
+  Widget? _buildPrefixIcon(IconData? icon, DSCurrencyInputColors colors, bool enabled) {
     if (icon == null) return null;
 
     return Icon(
@@ -207,7 +207,7 @@ class AppCurrencyInputPlatformAdapter {
   }
 
   /// Construye el icono de sufijo
-  Widget? _buildSuffixIcon(IconData? icon, AppCurrencyInputColors colors, bool enabled) {
+  Widget? _buildSuffixIcon(IconData? icon, DSCurrencyInputColors colors, bool enabled) {
     if (icon == null) return null;
 
     return Icon(
@@ -218,7 +218,7 @@ class AppCurrencyInputPlatformAdapter {
   }
 
   /// Construye el borde del input
-  OutlineInputBorder _buildBorder(Color color, AppCurrencyInputSpacing spacing, [double? width]) {
+  OutlineInputBorder _buildBorder(Color color, DSCurrencyInputSpacing spacing, [double? width]) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(spacing.borderRadius),
       borderSide: BorderSide(
@@ -239,7 +239,7 @@ class AppCurrencyInputPlatformAdapter {
   }
 
   /// Obtiene los formateadores de entrada para moneda
-  List<TextInputFormatter> _getCurrencyInputFormatters(AppCurrencyInputConfig config) {
+  List<TextInputFormatter> _getCurrencyInputFormatters(DSCurrencyInputConfig config) {
     return [
       FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]')),
       _CurrencyInputFormatter(config),
@@ -247,7 +247,7 @@ class AppCurrencyInputPlatformAdapter {
   }
 
   /// Construye indicador de carga para iOS
-  Widget _buildIOSLoadingIndicator(AppCurrencyInputColors colors) {
+  Widget _buildIOSLoadingIndicator(DSCurrencyInputColors colors) {
     return CupertinoActivityIndicator(
       radius: 8,
       color: colors.textColor,
@@ -255,7 +255,7 @@ class AppCurrencyInputPlatformAdapter {
   }
 
   /// Construye indicador de carga para Android
-  Widget _buildAndroidLoadingIndicator(AppCurrencyInputColors colors) {
+  Widget _buildAndroidLoadingIndicator(DSCurrencyInputColors colors) {
     return SizedBox(
       width: 16,
       height: 16,
@@ -267,7 +267,7 @@ class AppCurrencyInputPlatformAdapter {
   }
 
   /// Construye indicador de carga para Web
-  Widget _buildWebLoadingIndicator(AppCurrencyInputColors colors) {
+  Widget _buildWebLoadingIndicator(DSCurrencyInputColors colors) {
     return SizedBox(
       width: 16,
       height: 16,
@@ -281,7 +281,7 @@ class AppCurrencyInputPlatformAdapter {
 
 /// Formateador personalizado para entrada de moneda
 class _CurrencyInputFormatter extends TextInputFormatter {
-  final AppCurrencyInputConfig config;
+  final DSCurrencyInputConfig config;
 
   _CurrencyInputFormatter(this.config);
 

@@ -11,8 +11,8 @@
 /// import 'package:iautomat_design_system/iautomat_design_system.dart';
 ///
 /// MaterialApp(
-///   theme: AppTheme.lightTheme,
-///   darkTheme: AppTheme.darkTheme,
+///   theme: DSTheme.lightTheme,
+///   darkTheme: DSTheme.darkTheme,
 ///   home: MyApp(),
 /// )
 /// ```

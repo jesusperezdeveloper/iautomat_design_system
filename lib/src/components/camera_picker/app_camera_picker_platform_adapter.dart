@@ -16,49 +16,49 @@ import 'package:iautomat_design_system/src/theme/typography.dart';
 /// - Manejo de permisos específicos
 /// - Optimizaciones por plataforma
 /// - Fallbacks para casos no soportados
-class AppCameraPickerPlatformAdapter {
+class DSCameraPickerPlatformAdapter {
   /// Selecciona archivos usando el método apropiado para la plataforma
-  Future<List<AppCameraPickerFile>> pickFiles(
-    AppCameraPickerConfig config,
+  Future<List<DSCameraPickerFile>> pickFiles(
+    DSCameraPickerConfig config,
   ) async {
     final variant = _resolveVariant(config.variant);
 
     switch (variant) {
-      case AppCameraPickerVariant.ios:
+      case DSCameraPickerVariant.ios:
         return _pickFilesIOS(config);
-      case AppCameraPickerVariant.android:
+      case DSCameraPickerVariant.android:
         return _pickFilesAndroid(config);
-      case AppCameraPickerVariant.web:
+      case DSCameraPickerVariant.web:
         return _pickFilesWeb(config);
-      case AppCameraPickerVariant.platform:
+      case DSCameraPickerVariant.platform:
         // Este caso ya se resuelve en _resolveVariant
         return _pickFilesIOS(config);
     }
   }
 
   /// Resuelve la variante según la plataforma actual
-  AppCameraPickerVariant _resolveVariant(AppCameraPickerVariant variant) {
-    if (variant != AppCameraPickerVariant.platform) {
+  DSCameraPickerVariant _resolveVariant(DSCameraPickerVariant variant) {
+    if (variant != DSCameraPickerVariant.platform) {
       return variant;
     }
 
     if (kIsWeb) {
-      return AppCameraPickerVariant.web;
+      return DSCameraPickerVariant.web;
     } else if (Platform.isIOS) {
-      return AppCameraPickerVariant.ios;
+      return DSCameraPickerVariant.ios;
     } else {
-      return AppCameraPickerVariant.android;
+      return DSCameraPickerVariant.android;
     }
   }
 
   /// Implementación para iOS usando Action Sheet nativo
-  Future<List<AppCameraPickerFile>> _pickFilesIOS(
-    AppCameraPickerConfig config,
+  Future<List<DSCameraPickerFile>> _pickFilesIOS(
+    DSCameraPickerConfig config,
   ) async {
     // En una implementación real, aquí usarías image_picker o similar
     // Por ahora simulamos la funcionalidad
 
-    if (config.source == AppCameraPickerSource.both) {
+    if (config.source == DSCameraPickerSource.both) {
       // Mostrar action sheet con opciones
       final source = await _showIOSActionSheet(config);
       if (source == null) return [];
@@ -70,10 +70,10 @@ class AppCameraPickerPlatformAdapter {
   }
 
   /// Implementación para Android usando Bottom Sheet
-  Future<List<AppCameraPickerFile>> _pickFilesAndroid(
-    AppCameraPickerConfig config,
+  Future<List<DSCameraPickerFile>> _pickFilesAndroid(
+    DSCameraPickerConfig config,
   ) async {
-    if (config.source == AppCameraPickerSource.both) {
+    if (config.source == DSCameraPickerSource.both) {
       // Mostrar bottom sheet con opciones
       final source = await _showAndroidBottomSheet(config);
       if (source == null) return [];
@@ -85,57 +85,57 @@ class AppCameraPickerPlatformAdapter {
   }
 
   /// Implementación para Web usando file picker nativo
-  Future<List<AppCameraPickerFile>> _pickFilesWeb(
-    AppCameraPickerConfig config,
+  Future<List<DSCameraPickerFile>> _pickFilesWeb(
+    DSCameraPickerConfig config,
   ) async {
     // En Web solo podemos acceder a archivos, no a cámara directamente
-    if (config.source == AppCameraPickerSource.camera) {
+    if (config.source == DSCameraPickerSource.camera) {
       throw Exception('La cámara no está disponible en la plataforma web');
     }
 
-    return _simulateFilePicking(config, AppCameraPickerSource.gallery);
+    return _simulateFilePicking(config, DSCameraPickerSource.gallery);
   }
 
   /// Muestra Action Sheet de iOS
-  Future<AppCameraPickerSource?> _showIOSActionSheet(
-    AppCameraPickerConfig config,
+  Future<DSCameraPickerSource?> _showIOSActionSheet(
+    DSCameraPickerConfig config,
   ) async {
     // Esta sería la implementación real con CupertinoActionSheet
     // Por ahora simulamos la selección
     await Future.delayed(const Duration(milliseconds: 300));
 
     // Simular selección de cámara
-    return AppCameraPickerSource.camera;
+    return DSCameraPickerSource.camera;
   }
 
   /// Muestra Bottom Sheet de Android
-  Future<AppCameraPickerSource?> _showAndroidBottomSheet(
-    AppCameraPickerConfig config,
+  Future<DSCameraPickerSource?> _showAndroidBottomSheet(
+    DSCameraPickerConfig config,
   ) async {
     // Esta sería la implementación real con showModalBottomSheet
     // Por ahora simulamos la selección
     await Future.delayed(const Duration(milliseconds: 300));
 
     // Simular selección de galería
-    return AppCameraPickerSource.gallery;
+    return DSCameraPickerSource.gallery;
   }
 
   /// Simula la selección de archivos (en implementación real usaría plugins)
-  Future<List<AppCameraPickerFile>> _simulateFilePicking(
-    AppCameraPickerConfig config,
-    AppCameraPickerSource source,
+  Future<List<DSCameraPickerFile>> _simulateFilePicking(
+    DSCameraPickerConfig config,
+    DSCameraPickerSource source,
   ) async {
     // Simular tiempo de selección
     await Future.delayed(const Duration(seconds: 1));
 
-    final behavior = config.behavior ?? const AppCameraPickerBehavior();
+    final behavior = config.behavior ?? const DSCameraPickerBehavior();
     final maxFiles = behavior.allowMultiple ? behavior.maxFiles : 1;
 
     // Simular archivos seleccionados
-    final files = <AppCameraPickerFile>[];
+    final files = <DSCameraPickerFile>[];
 
     for (int i = 0; i < (behavior.allowMultiple ? 2 : 1) && i < maxFiles; i++) {
-      files.add(AppCameraPickerFile(
+      files.add(DSCameraPickerFile(
         name: 'imagen_${i + 1}.jpg',
         path: '/path/to/imagen_${i + 1}.jpg',
         size: 1024 * 1024, // 1MB
@@ -153,7 +153,7 @@ class AppCameraPickerPlatformAdapter {
   }
 
   /// Verifica permisos específicos de la plataforma
-  Future<bool> checkPermissions(AppCameraPickerSource source) async {
+  Future<bool> checkPermissions(DSCameraPickerSource source) async {
     // En implementación real verificaría permisos usando permission_handler
     // Por ahora simulamos que siempre hay permisos
     await Future.delayed(const Duration(milliseconds: 100));
@@ -161,7 +161,7 @@ class AppCameraPickerPlatformAdapter {
   }
 
   /// Solicita permisos específicos de la plataforma
-  Future<bool> requestPermissions(AppCameraPickerSource source) async {
+  Future<bool> requestPermissions(DSCameraPickerSource source) async {
     // En implementación real solicitaría permisos
     await Future.delayed(const Duration(milliseconds: 500));
     return true;
@@ -170,45 +170,45 @@ class AppCameraPickerPlatformAdapter {
   /// Construye selector específico de iOS
   Widget buildIOSSelector({
     required BuildContext context,
-    required AppCameraPickerConfig config,
+    required DSCameraPickerConfig config,
     required VoidCallback onCamera,
     required VoidCallback onGallery,
     VoidCallback? onCancel,
   }) {
-    final a11yConfig = config.a11yConfig ?? const AppCameraPickerA11yConfig();
+    final a11yConfig = config.a11yConfig ?? const DSCameraPickerA11yConfig();
 
     return CupertinoActionSheet(
       title: Text(
         'Seleccionar Imagen',
-        style: AppTypography.h6,
+        style: DSTypography.h6,
       ),
       message: Text(
         'Elige una opción para agregar una imagen',
-        style: AppTypography.bodyMedium,
+        style: DSTypography.bodyMedium,
       ),
       actions: [
-        if (config.source == AppCameraPickerSource.both ||
-            config.source == AppCameraPickerSource.camera)
+        if (config.source == DSCameraPickerSource.both ||
+            config.source == DSCameraPickerSource.camera)
           CupertinoActionSheetAction(
             onPressed: onCamera,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(Icons.camera_alt),
-                const SizedBox(width: AppSpacing.sm),
+                const SizedBox(width: DSSpacing.sm),
                 Text(a11yConfig.cameraButtonLabel),
               ],
             ),
           ),
-        if (config.source == AppCameraPickerSource.both ||
-            config.source == AppCameraPickerSource.gallery)
+        if (config.source == DSCameraPickerSource.both ||
+            config.source == DSCameraPickerSource.gallery)
           CupertinoActionSheetAction(
             onPressed: onGallery,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(Icons.photo_library),
-                const SizedBox(width: AppSpacing.sm),
+                const SizedBox(width: DSSpacing.sm),
                 Text(a11yConfig.galleryButtonLabel),
               ],
             ),
@@ -225,19 +225,19 @@ class AppCameraPickerPlatformAdapter {
   /// Construye selector específico de Android
   Widget buildAndroidSelector({
     required BuildContext context,
-    required AppCameraPickerConfig config,
+    required DSCameraPickerConfig config,
     required VoidCallback onCamera,
     required VoidCallback onGallery,
     VoidCallback? onCancel,
   }) {
-    final a11yConfig = config.a11yConfig ?? const AppCameraPickerA11yConfig();
+    final a11yConfig = config.a11yConfig ?? const DSCameraPickerA11yConfig();
 
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.md),
+      padding: const EdgeInsets.all(DSSpacing.md),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(AppSpacing.md),
+          top: Radius.circular(DSSpacing.md),
         ),
       ),
       child: Column(
@@ -248,31 +248,31 @@ class AppCameraPickerPlatformAdapter {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: AppColors.gray400,
+              color: DSColors.gray400,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          const SizedBox(height: AppSpacing.md),
+          const SizedBox(height: DSSpacing.md),
 
           // Título
           Text(
             'Seleccionar Imagen',
-            style: AppTypography.h6,
+            style: DSTypography.h6,
           ),
-          const SizedBox(height: AppSpacing.sm),
+          const SizedBox(height: DSSpacing.sm),
 
           Text(
             'Elige una opción para agregar una imagen',
-            style: AppTypography.bodyMedium.copyWith(
-              color: AppColors.gray600,
+            style: DSTypography.bodyMedium.copyWith(
+              color: DSColors.gray600,
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: DSSpacing.lg),
 
           // Opciones
-          if (config.source == AppCameraPickerSource.both ||
-              config.source == AppCameraPickerSource.camera)
+          if (config.source == DSCameraPickerSource.both ||
+              config.source == DSCameraPickerSource.camera)
             _buildAndroidOption(
               context: context,
               icon: Icons.camera_alt,
@@ -280,8 +280,8 @@ class AppCameraPickerPlatformAdapter {
               onTap: onCamera,
             ),
 
-          if (config.source == AppCameraPickerSource.both ||
-              config.source == AppCameraPickerSource.gallery)
+          if (config.source == DSCameraPickerSource.both ||
+              config.source == DSCameraPickerSource.gallery)
             _buildAndroidOption(
               context: context,
               icon: Icons.photo_library,
@@ -289,7 +289,7 @@ class AppCameraPickerPlatformAdapter {
               onTap: onGallery,
             ),
 
-          const SizedBox(height: AppSpacing.md),
+          const SizedBox(height: DSSpacing.md),
 
           // Botón cancelar
           SizedBox(
@@ -315,16 +315,16 @@ class AppCameraPickerPlatformAdapter {
   }) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(bottom: AppSpacing.sm),
+      margin: const EdgeInsets.only(bottom: DSSpacing.sm),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(AppSpacing.sm),
+          borderRadius: BorderRadius.circular(DSSpacing.sm),
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.md,
-              vertical: AppSpacing.sm,
+              horizontal: DSSpacing.md,
+              vertical: DSSpacing.sm,
             ),
             child: Row(
               children: [
@@ -332,11 +332,11 @@ class AppCameraPickerPlatformAdapter {
                   icon,
                   color: Theme.of(context).colorScheme.primary,
                 ),
-                const SizedBox(width: AppSpacing.md),
+                const SizedBox(width: DSSpacing.md),
                 Expanded(
                   child: Text(
                     label,
-                    style: AppTypography.bodyLarge,
+                    style: DSTypography.bodyLarge,
                   ),
                 ),
               ],
@@ -350,14 +350,14 @@ class AppCameraPickerPlatformAdapter {
   /// Construye picker específico de Web
   Widget buildWebPicker({
     required BuildContext context,
-    required AppCameraPickerConfig config,
+    required DSCameraPickerConfig config,
     required VoidCallback onPickFiles,
   }) {
-    final a11yConfig = config.a11yConfig ?? const AppCameraPickerA11yConfig();
+    final a11yConfig = config.a11yConfig ?? const DSCameraPickerA11yConfig();
 
     return Dialog(
       child: Container(
-        padding: const EdgeInsets.all(AppSpacing.lg),
+        padding: const EdgeInsets.all(DSSpacing.lg),
         constraints: const BoxConstraints(maxWidth: 400),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -367,22 +367,22 @@ class AppCameraPickerPlatformAdapter {
               size: 64,
               color: Theme.of(context).colorScheme.primary,
             ),
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: DSSpacing.md),
 
             Text(
               'Seleccionar Archivos',
-              style: AppTypography.h5,
+              style: DSTypography.h5,
             ),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: DSSpacing.sm),
 
             Text(
               'Selecciona archivos desde tu dispositivo',
-              style: AppTypography.bodyMedium.copyWith(
-                color: AppColors.gray600,
+              style: DSTypography.bodyMedium.copyWith(
+                color: DSColors.gray600,
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: AppSpacing.lg),
+            const SizedBox(height: DSSpacing.lg),
 
             SizedBox(
               width: double.infinity,
@@ -392,7 +392,7 @@ class AppCameraPickerPlatformAdapter {
                 label: Text(a11yConfig.filesButtonLabel),
               ),
             ),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: DSSpacing.sm),
 
             SizedBox(
               width: double.infinity,
@@ -414,12 +414,12 @@ class AppCameraPickerPlatformAdapter {
     VoidCallback? onRetry,
   }) {
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.md),
-      margin: const EdgeInsets.all(AppSpacing.md),
+      padding: const EdgeInsets.all(DSSpacing.md),
+      margin: const EdgeInsets.all(DSSpacing.md),
       decoration: BoxDecoration(
-        color: AppColors.error.withValues(alpha: 0.1),
-        border: Border.all(color: AppColors.error),
-        borderRadius: BorderRadius.circular(AppSpacing.sm),
+        color: DSColors.error.withValues(alpha: 0.1),
+        border: Border.all(color: DSColors.error),
+        borderRadius: BorderRadius.circular(DSSpacing.sm),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -428,28 +428,28 @@ class AppCameraPickerPlatformAdapter {
             children: [
               Icon(
                 Icons.error_outline,
-                color: AppColors.error,
+                color: DSColors.error,
               ),
-              const SizedBox(width: AppSpacing.sm),
+              const SizedBox(width: DSSpacing.sm),
               Expanded(
                 child: Text(
                   'Error',
-                  style: AppTypography.labelLarge.copyWith(
-                    color: AppColors.error,
+                  style: DSTypography.labelLarge.copyWith(
+                    color: DSColors.error,
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: AppSpacing.sm),
+          const SizedBox(height: DSSpacing.sm),
 
           Text(
             error,
-            style: AppTypography.bodyMedium,
+            style: DSTypography.bodyMedium,
           ),
 
           if (onRetry != null) ...[
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: DSSpacing.sm),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
@@ -464,11 +464,11 @@ class AppCameraPickerPlatformAdapter {
   }
 
   /// Obtiene información del archivo específica de plataforma
-  Future<AppCameraPickerFile> getFileInfo(String path) async {
+  Future<DSCameraPickerFile> getFileInfo(String path) async {
     // En implementación real obtendría info real del archivo
     await Future.delayed(const Duration(milliseconds: 100));
 
-    return AppCameraPickerFile(
+    return DSCameraPickerFile(
       name: path.split('/').last,
       path: path,
       size: 1024 * 1024, // 1MB simulado
@@ -479,9 +479,9 @@ class AppCameraPickerPlatformAdapter {
   }
 
   /// Comprime imagen según configuración de plataforma
-  Future<AppCameraPickerFile> compressImage(
-    AppCameraPickerFile file,
-    AppCameraPickerQuality quality,
+  Future<DSCameraPickerFile> compressImage(
+    DSCameraPickerFile file,
+    DSCameraPickerQuality quality,
   ) async {
     // En implementación real comprimiría la imagen
     await Future.delayed(const Duration(milliseconds: 500));

@@ -4,16 +4,16 @@ import 'package:flutter/services.dart';
 
 import 'app_skeleton_config.dart';
 
-class AppSkeletonA11yHelper {
-  static AppSkeletonA11yHelper? _instance;
+class DSSkeletonA11yHelper {
+  static DSSkeletonA11yHelper? _instance;
 
-  AppSkeletonA11yHelper._();
+  DSSkeletonA11yHelper._();
 
-  factory AppSkeletonA11yHelper() {
-    return _instance ??= AppSkeletonA11yHelper._();
+  factory DSSkeletonA11yHelper() {
+    return _instance ??= DSSkeletonA11yHelper._();
   }
 
-  String getSkeletonLabel(AppSkeletonConfig config) {
+  String getSkeletonLabel(DSSkeletonConfig config) {
     final accessibility = config.accessibility!;
 
     if (accessibility.customLabel != null) {
@@ -21,17 +21,17 @@ class AppSkeletonA11yHelper {
     }
 
     switch (config.state) {
-      case AppSkeletonState.loading:
-      case AppSkeletonState.skeleton:
+      case DSSkeletonState.loading:
+      case DSSkeletonState.skeleton:
         return accessibility.loadingLabel;
-      case AppSkeletonState.disabled:
+      case DSSkeletonState.disabled:
         return accessibility.disabledLabel;
       default:
         return accessibility.loadingLabel;
     }
   }
 
-  String getSkeletonHint(AppSkeletonConfig config) {
+  String getSkeletonHint(DSSkeletonConfig config) {
     final accessibility = config.accessibility!;
 
     if (accessibility.hint != null) {
@@ -39,33 +39,33 @@ class AppSkeletonA11yHelper {
     }
 
     switch (config.state) {
-      case AppSkeletonState.loading:
-      case AppSkeletonState.skeleton:
+      case DSSkeletonState.loading:
+      case DSSkeletonState.skeleton:
         return 'El contenido se está cargando, por favor espere';
-      case AppSkeletonState.disabled:
+      case DSSkeletonState.disabled:
         return 'El contenido no está disponible en este momento';
       default:
         return 'Elemento de carga';
     }
   }
 
-  String getShapeDescription(AppSkeletonShape shape) {
+  String getShapeDescription(DSSkeletonShape shape) {
     switch (shape) {
-      case AppSkeletonShape.circle:
+      case DSSkeletonShape.circle:
         return 'Elemento circular';
-      case AppSkeletonShape.avatar:
+      case DSSkeletonShape.avatar:
         return 'Avatar o imagen de perfil';
-      case AppSkeletonShape.button:
+      case DSSkeletonShape.button:
         return 'Botón';
-      case AppSkeletonShape.card:
+      case DSSkeletonShape.card:
         return 'Tarjeta de contenido';
-      case AppSkeletonShape.text:
+      case DSSkeletonShape.text:
         return 'Texto';
-      case AppSkeletonShape.line:
+      case DSSkeletonShape.line:
         return 'Línea separadora';
-      case AppSkeletonShape.roundedRectangle:
+      case DSSkeletonShape.roundedRectangle:
         return 'Elemento rectangular con bordes redondeados';
-      case AppSkeletonShape.rectangle:
+      case DSSkeletonShape.rectangle:
         return 'Elemento rectangular';
     }
   }
@@ -92,27 +92,27 @@ class AppSkeletonA11yHelper {
     SemanticsService.announce(message, TextDirection.ltr);
   }
 
-  void announceStateChange(AppSkeletonState state) {
+  void announceStateChange(DSSkeletonState state) {
     String message;
 
     switch (state) {
-      case AppSkeletonState.loading:
-      case AppSkeletonState.skeleton:
+      case DSSkeletonState.loading:
+      case DSSkeletonState.skeleton:
         message = 'Cargando';
         break;
-      case AppSkeletonState.disabled:
+      case DSSkeletonState.disabled:
         message = 'No disponible';
         break;
-      case AppSkeletonState.hover:
+      case DSSkeletonState.hover:
         message = 'Elemento resaltado';
         break;
-      case AppSkeletonState.focus:
+      case DSSkeletonState.focus:
         message = 'Elemento enfocado';
         break;
-      case AppSkeletonState.selected:
+      case DSSkeletonState.selected:
         message = 'Elemento seleccionado';
         break;
-      case AppSkeletonState.pressed:
+      case DSSkeletonState.pressed:
         message = 'Elemento presionado';
         break;
       default:
@@ -135,30 +135,30 @@ class AppSkeletonA11yHelper {
   }
 
   SemanticsProperties getSkeletonSemantics(
-    AppSkeletonConfig config,
-    AppSkeletonShape shape,
+    DSSkeletonConfig config,
+    DSSkeletonShape shape,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
   ) {
     final accessibility = config.accessibility!;
 
     return SemanticsProperties(
-      enabled: config.state != AppSkeletonState.disabled,
+      enabled: config.state != DSSkeletonState.disabled,
       focusable: accessibility.focusable,
       label: '${getShapeDescription(shape)} - ${getSkeletonLabel(config)}',
       hint: getSkeletonHint(config),
       onTap: onTap,
       onLongPress: onLongPress,
       liveRegion:
-          config.state == AppSkeletonState.loading ||
-          config.state == AppSkeletonState.skeleton,
+          config.state == DSSkeletonState.loading ||
+          config.state == DSSkeletonState.skeleton,
     );
   }
 
   Widget wrapWithSemantics(
     Widget child,
-    AppSkeletonConfig config,
-    AppSkeletonShape shape,
+    DSSkeletonConfig config,
+    DSSkeletonShape shape,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
   ) {
@@ -189,7 +189,7 @@ class AppSkeletonA11yHelper {
   }
 
   FocusNode createFocusNode(String label) {
-    return FocusNode(debugLabel: 'AppSkeleton_$label', canRequestFocus: true);
+    return FocusNode(debugLabel: 'DSSkeleton_$label', canRequestFocus: true);
   }
 
   void requestFocus(FocusNode focusNode) {
@@ -259,25 +259,25 @@ class AppSkeletonA11yHelper {
 
   Widget wrapWithLiveRegion(
     Widget child,
-    AppSkeletonConfig config,
+    DSSkeletonConfig config,
     String contentDescription,
   ) {
     if (!config.accessibility!.enabled) {
       return child;
     }
 
-    if (config.state == AppSkeletonState.loading ||
-        config.state == AppSkeletonState.skeleton) {
+    if (config.state == DSSkeletonState.loading ||
+        config.state == DSSkeletonState.skeleton) {
       return Semantics(liveRegion: true, child: child);
     }
 
     return child;
   }
 
-  void announceSkeletonBatch(List<AppSkeletonShape> shapes) {
+  void announceSkeletonBatch(List<DSSkeletonShape> shapes) {
     if (shapes.isEmpty) return;
 
-    final shapeGroups = <AppSkeletonShape, int>{};
+    final shapeGroups = <DSSkeletonShape, int>{};
     for (final shape in shapes) {
       shapeGroups[shape] = (shapeGroups[shape] ?? 0) + 1;
     }
@@ -338,8 +338,8 @@ class AppSkeletonA11yHelper {
     return contrast >= ratio;
   }
 
-  AppSkeletonConfig adjustForAccessibility(
-    AppSkeletonConfig config,
+  DSSkeletonConfig adjustForAccessibility(
+    DSSkeletonConfig config,
     BuildContext context,
   ) {
     final mediaQuery = MediaQuery.of(context);

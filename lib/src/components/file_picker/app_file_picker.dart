@@ -4,17 +4,17 @@ import 'package:flutter/services.dart';
 import 'file_picker_config.dart';
 
 /// Callback function type for file selection
-typedef OnFilesSelected = void Function(List<AppFileData> files);
+typedef OnFilesSelected = void Function(List<DSFileData> files);
 
 /// Callback function type for file validation errors
-typedef OnFileValidationError = void Function(String error, AppFileData? file);
+typedef OnFileValidationError = void Function(String error, DSFileData? file);
 
 /// Callback function type for file upload progress
-typedef OnFileUploadProgress = void Function(double progress, AppFileData file);
+typedef OnFileUploadProgress = void Function(double progress, DSFileData file);
 
 /// A comprehensive file picker widget with drag & drop and multi-selection support
 ///
-/// The [AppFilePicker] provides a flexible file selection interface with:
+/// The [DSFilePicker] provides a flexible file selection interface with:
 /// - Drag and drop support (on supported platforms)
 /// - Multi-file selection
 /// - File preview capabilities
@@ -26,25 +26,25 @@ typedef OnFileUploadProgress = void Function(double progress, AppFileData file);
 ///
 /// Example usage:
 /// ```dart
-/// AppFilePicker(
-///   variant: AppFilePickerVariant.dragAndDrop,
+/// DSFilePicker(
+///   variant: DSFilePickerVariant.dragAndDrop,
 ///   accept: ['jpg', 'png', 'pdf'],
-///   maxSize: AppFileSize(10, AppFileSizeUnit.mb),
+///   maxSize: DSFileSize(10, DSFileSizeUnit.mb),
 ///   onFilesSelected: (files) {
 ///     print('Selected ${files.length} files');
 ///   },
 ///   preview: true,
 /// )
 /// ```
-class AppFilePicker extends StatefulWidget {
+class DSFilePicker extends StatefulWidget {
   /// The variant of the file picker
-  final AppFilePickerVariant variant;
+  final DSFilePickerVariant variant;
 
   /// List of accepted file extensions (e.g., ['jpg', 'png', 'pdf'])
   final List<String> accept;
 
   /// Maximum file size allowed
-  final AppFileSize maxSize;
+  final DSFileSize maxSize;
 
   /// Callback when files are selected
   final OnFilesSelected? onFilesSelected;
@@ -53,7 +53,7 @@ class AppFilePicker extends StatefulWidget {
   final bool preview;
 
   /// Current state of the file picker
-  final AppFilePickerState state;
+  final DSFilePickerState state;
 
   /// Whether the file picker is enabled
   final bool enabled;
@@ -77,10 +77,10 @@ class AppFilePicker extends StatefulWidget {
   final Widget? suffixIcon;
 
   /// Configuration for the file picker
-  final AppFilePickerConfig? config;
+  final DSFilePickerConfig? config;
 
   /// Current selected files
-  final List<AppFileData>? value;
+  final List<DSFileData>? value;
 
   /// Callback for validation errors
   final OnFileValidationError? onValidationError;
@@ -95,10 +95,10 @@ class AppFilePicker extends StatefulWidget {
   final int? maxFiles;
 
   /// Custom validation function
-  final bool Function(AppFileData file)? customValidator;
+  final bool Function(DSFileData file)? customValidator;
 
   /// Custom error message builder
-  final String Function(String error, AppFileData? file)? errorMessageBuilder;
+  final String Function(String error, DSFileData? file)? errorMessageBuilder;
 
   /// Whether to auto-upload files after selection
   final bool autoUpload;
@@ -119,16 +119,16 @@ class AppFilePicker extends StatefulWidget {
   final bool enableSoundEffects;
 
   /// Custom upload function
-  final Future<void> Function(List<AppFileData> files)? customUploader;
+  final Future<void> Function(List<DSFileData> files)? customUploader;
 
-  const AppFilePicker({
+  const DSFilePicker({
     super.key,
-    this.variant = AppFilePickerVariant.dragAndDrop,
+    this.variant = DSFilePickerVariant.dragAndDrop,
     this.accept = const [],
-    this.maxSize = const AppFileSize(10, AppFileSizeUnit.mb),
+    this.maxSize = const DSFileSize(10, DSFileSizeUnit.mb),
     this.onFilesSelected,
     this.preview = true,
-    this.state = AppFilePickerState.defaultState,
+    this.state = DSFilePickerState.defaultState,
     this.enabled = true,
     this.label,
     this.hint,
@@ -154,18 +154,18 @@ class AppFilePicker extends StatefulWidget {
   });
 
   @override
-  State<AppFilePicker> createState() => _AppFilePickerState();
+  State<DSFilePicker> createState() => _DSFilePickerState();
 }
 
-class _AppFilePickerState extends State<AppFilePicker>
+class _DSFilePickerState extends State<DSFilePicker>
     with TickerProviderStateMixin {
-  late AppFilePickerConfig _config;
+  late DSFilePickerConfig _config;
   late AnimationController _animationController;
   late AnimationController _hoverAnimationController;
   late Animation<double> _scaleAnimation;
   late Animation<double> _hoverAnimation;
 
-  List<AppFileData> _selectedFiles = [];
+  List<DSFileData> _selectedFiles = [];
   final bool _isDragOver = false;
   bool _isHovered = false;
   bool _isFocused = false;
@@ -189,7 +189,7 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   void _initializeConfig() {
-    _config = widget.config ?? AppFilePickerConfig.fromTheme(Theme.of(context));
+    _config = widget.config ?? DSFilePickerConfig.fromTheme(Theme.of(context));
   }
 
   void _initializeAnimations() {
@@ -235,7 +235,7 @@ class _AppFilePickerState extends State<AppFilePicker>
   }
 
   @override
-  void didUpdateWidget(AppFilePicker oldWidget) {
+  void didUpdateWidget(DSFilePicker oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.config != oldWidget.config) {
@@ -257,7 +257,7 @@ class _AppFilePickerState extends State<AppFilePicker>
 
   @override
   Widget build(BuildContext context) {
-    if (widget.state == AppFilePickerState.skeleton) {
+    if (widget.state == DSFilePickerState.skeleton) {
       return _buildSkeleton();
     }
 
@@ -279,9 +279,9 @@ class _AppFilePickerState extends State<AppFilePicker>
 
   Widget _buildLabel() {
     final colors =
-        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+        _config.colors ?? DSFilePickerColors.fromTheme(Theme.of(context));
     final typography = _config.typography ??
-        AppFilePickerTypography.fromTheme(Theme.of(context));
+        DSFilePickerTypography.fromTheme(Theme.of(context));
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
@@ -297,7 +297,7 @@ class _AppFilePickerState extends State<AppFilePicker>
   Widget _buildMainContent() {
     return Focus(
       focusNode: _focusNode,
-      child: widget.variant == AppFilePickerVariant.dragAndDrop
+      child: widget.variant == DSFilePickerVariant.dragAndDrop
           ? _buildDragDropArea()
           : _buildMultiSelector(),
     );
@@ -305,7 +305,7 @@ class _AppFilePickerState extends State<AppFilePicker>
 
   Widget _buildDragDropArea() {
     final colors =
-        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+        _config.colors ?? DSFilePickerColors.fromTheme(Theme.of(context));
 
     return AnimatedBuilder(
       animation: Listenable.merge([_scaleAnimation, _hoverAnimation]),
@@ -338,7 +338,7 @@ class _AppFilePickerState extends State<AppFilePicker>
     );
   }
 
-  BoxDecoration _getDragDropDecoration(AppFilePickerColors colors) {
+  BoxDecoration _getDragDropDecoration(DSFilePickerColors colors) {
     Color backgroundColor;
     Color borderColor;
     double borderWidth;
@@ -347,7 +347,7 @@ class _AppFilePickerState extends State<AppFilePicker>
       backgroundColor = colors.disabledBackgroundColor;
       borderColor = colors.disabledBorderColor;
       borderWidth = _config.borderWidth;
-    } else if (widget.state == AppFilePickerState.loading) {
+    } else if (widget.state == DSFilePickerState.loading) {
       backgroundColor = colors.loadingBackgroundColor;
       borderColor = colors.loadingBorderColor;
       borderWidth = _config.borderWidth;
@@ -389,12 +389,12 @@ class _AppFilePickerState extends State<AppFilePicker>
 
   Widget _buildDragDropContent() {
     final colors =
-        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+        _config.colors ?? DSFilePickerColors.fromTheme(Theme.of(context));
     final typography = _config.typography ??
-        AppFilePickerTypography.fromTheme(Theme.of(context));
-    final icons = _config.icons ?? const AppFilePickerIcons();
+        DSFilePickerTypography.fromTheme(Theme.of(context));
+    final icons = _config.icons ?? const DSFilePickerIcons();
 
-    if (widget.state == AppFilePickerState.loading) {
+    if (widget.state == DSFilePickerState.loading) {
       return _buildLoadingContent();
     }
 
@@ -449,7 +449,7 @@ class _AppFilePickerState extends State<AppFilePicker>
 
   Widget _buildMultiSelector() {
     final colors =
-        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+        _config.colors ?? DSFilePickerColors.fromTheme(Theme.of(context));
 
     return AnimatedBuilder(
       animation: _scaleAnimation,
@@ -478,14 +478,14 @@ class _AppFilePickerState extends State<AppFilePicker>
     );
   }
 
-  BoxDecoration _getMultiSelectorDecoration(AppFilePickerColors colors) {
+  BoxDecoration _getMultiSelectorDecoration(DSFilePickerColors colors) {
     Color backgroundColor;
     Color borderColor;
 
     if (!widget.enabled) {
       backgroundColor = colors.buttonDisabledBackgroundColor;
       borderColor = colors.disabledBorderColor;
-    } else if (widget.state == AppFilePickerState.loading) {
+    } else if (widget.state == DSFilePickerState.loading) {
       backgroundColor = colors.loadingBackgroundColor;
       borderColor = colors.loadingBorderColor;
     } else if (_isFocused) {
@@ -511,12 +511,12 @@ class _AppFilePickerState extends State<AppFilePicker>
 
   Widget _buildMultiSelectorContent() {
     final colors =
-        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+        _config.colors ?? DSFilePickerColors.fromTheme(Theme.of(context));
     final typography = _config.typography ??
-        AppFilePickerTypography.fromTheme(Theme.of(context));
-    final icons = _config.icons ?? const AppFilePickerIcons();
+        DSFilePickerTypography.fromTheme(Theme.of(context));
+    final icons = _config.icons ?? const DSFilePickerIcons();
 
-    if (widget.state == AppFilePickerState.loading) {
+    if (widget.state == DSFilePickerState.loading) {
       return _buildLoadingContent();
     }
 
@@ -553,9 +553,9 @@ class _AppFilePickerState extends State<AppFilePicker>
 
   Widget _buildLoadingContent() {
     final colors =
-        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+        _config.colors ?? DSFilePickerColors.fromTheme(Theme.of(context));
     final typography = _config.typography ??
-        AppFilePickerTypography.fromTheme(Theme.of(context));
+        DSFilePickerTypography.fromTheme(Theme.of(context));
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -582,9 +582,9 @@ class _AppFilePickerState extends State<AppFilePicker>
 
   Widget _buildHelperText() {
     final colors =
-        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+        _config.colors ?? DSFilePickerColors.fromTheme(Theme.of(context));
     final typography = _config.typography ??
-        AppFilePickerTypography.fromTheme(Theme.of(context));
+        DSFilePickerTypography.fromTheme(Theme.of(context));
 
     String? text;
     Color textColor;
@@ -627,12 +627,12 @@ class _AppFilePickerState extends State<AppFilePicker>
     );
   }
 
-  Widget _buildFilePreviewItem(AppFileData file) {
+  Widget _buildFilePreviewItem(DSFileData file) {
     final colors =
-        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+        _config.colors ?? DSFilePickerColors.fromTheme(Theme.of(context));
     final typography = _config.typography ??
-        AppFilePickerTypography.fromTheme(Theme.of(context));
-    final icons = _config.icons ?? const AppFilePickerIcons();
+        DSFilePickerTypography.fromTheme(Theme.of(context));
+    final icons = _config.icons ?? const DSFilePickerIcons();
 
     return Container(
       margin: const EdgeInsets.only(bottom: 8.0),
@@ -688,7 +688,7 @@ class _AppFilePickerState extends State<AppFilePicker>
 
   Widget _buildSkeleton() {
     final colors =
-        _config.colors ?? AppFilePickerColors.fromTheme(Theme.of(context));
+        _config.colors ?? DSFilePickerColors.fromTheme(Theme.of(context));
 
     return Container(
       height: _config.minSize.height,
@@ -751,13 +751,13 @@ class _AppFilePickerState extends State<AppFilePicker>
       await Future.delayed(const Duration(milliseconds: 500));
 
       final mockFiles = [
-        AppFileData(
+        DSFileData(
           name: 'document.pdf',
           size: 1024 * 1024, // 1MB
           type: 'application/pdf',
           lastModified: DateTime.now(),
         ),
-        AppFileData(
+        DSFileData(
           name: 'image.jpg',
           size: 512 * 1024, // 512KB
           type: 'image/jpeg',
@@ -776,8 +776,8 @@ class _AppFilePickerState extends State<AppFilePicker>
     }
   }
 
-  void _handleFilesSelected(List<AppFileData> files) {
-    final validFiles = <AppFileData>[];
+  void _handleFilesSelected(List<DSFileData> files) {
+    final validFiles = <DSFileData>[];
 
     for (final file in files) {
       if (_validateFile(file)) {
@@ -806,9 +806,9 @@ class _AppFilePickerState extends State<AppFilePicker>
     }
   }
 
-  bool _validateFile(AppFileData file) {
+  bool _validateFile(DSFileData file) {
     // Size validation
-    if (!AppFileValidators.validateSize(file, widget.maxSize)) {
+    if (!DSFileValidators.validateSize(file, widget.maxSize)) {
       final error =
           'El archivo "${file.name}" excede el tamaño máximo de ${widget.maxSize.formatted}';
       _handleValidationError(error, file);
@@ -816,7 +816,7 @@ class _AppFilePickerState extends State<AppFilePicker>
     }
 
     // Extension validation
-    if (!AppFileValidators.validateExtension(file, widget.accept)) {
+    if (!DSFileValidators.validateExtension(file, widget.accept)) {
       final error =
           'El archivo "${file.name}" no tiene una extensión permitida';
       _handleValidationError(error, file);
@@ -834,21 +834,21 @@ class _AppFilePickerState extends State<AppFilePicker>
     return true;
   }
 
-  void _handleValidationError(String error, AppFileData? file) {
+  void _handleValidationError(String error, DSFileData? file) {
     setState(() {
       _currentError = widget.errorMessageBuilder?.call(error, file) ?? error;
     });
     widget.onValidationError?.call(error, file);
   }
 
-  void _removeFile(AppFileData file) {
+  void _removeFile(DSFileData file) {
     setState(() {
       _selectedFiles.remove(file);
     });
     widget.onFilesSelected?.call(_selectedFiles);
   }
 
-  Future<void> _uploadFiles(List<AppFileData> files) async {
+  Future<void> _uploadFiles(List<DSFileData> files) async {
     if (widget.customUploader != null) {
       await widget.customUploader!(files);
       return;

@@ -4,41 +4,41 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppDataTable', () {
-    late List<AppDataTableColumn> testColumns;
-    late List<AppDataTableRow> testRows;
+  group('DSDataTable', () {
+    late List<DSDataTableColumn> testColumns;
+    late List<DSDataTableRow> testRows;
 
     setUp(() {
       testColumns = [
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'id',
           label: 'ID',
           field: 'id',
           width: 80,
           sortable: true,
-          cellType: AppDataTableCellType.number,
+          cellType: DSDataTableCellType.number,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'name',
           label: 'Name',
           field: 'name',
           width: 200,
           sortable: true,
           editable: true,
-          cellType: AppDataTableCellType.text,
+          cellType: DSDataTableCellType.text,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'active',
           label: 'Active',
           field: 'active',
           width: 100,
           sortable: true,
-          cellType: AppDataTableCellType.boolean,
+          cellType: DSDataTableCellType.boolean,
         ),
       ];
 
       testRows = [
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: '1',
           data: {
             'id': 1,
@@ -46,7 +46,7 @@ void main() {
             'active': true,
           },
         ),
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: '2',
           data: {
             'id': 2,
@@ -62,7 +62,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
               ),
@@ -70,7 +70,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppDataTable), findsOneWidget);
+        expect(find.byType(DSDataTable), findsOneWidget);
         expect(find.text('ID'), findsOneWidget);
         expect(find.text('Name'), findsOneWidget);
         expect(find.text('Active'), findsOneWidget);
@@ -80,7 +80,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.pinned(
+              body: DSDataTable.pinned(
                 columns: testColumns,
                 rows: testRows,
               ),
@@ -88,7 +88,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppDataTable), findsOneWidget);
+        expect(find.byType(DSDataTable), findsOneWidget);
         expect(find.text('John Doe'), findsOneWidget);
         expect(find.text('Jane Smith'), findsOneWidget);
       });
@@ -97,7 +97,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.inlineEdit(
+              body: DSDataTable.inlineEdit(
                 columns: testColumns,
                 rows: testRows,
                 onEdit: (row, columnId, newValue) {},
@@ -106,7 +106,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppDataTable), findsOneWidget);
+        expect(find.byType(DSDataTable), findsOneWidget);
         expect(find.text('John Doe'), findsOneWidget);
         expect(find.text('Jane Smith'), findsOneWidget);
       });
@@ -115,8 +115,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              body: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: testColumns,
                 rows: testRows,
               ),
@@ -124,7 +124,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppDataTable), findsOneWidget);
+        expect(find.byType(DSDataTable), findsOneWidget);
       });
     });
 
@@ -133,10 +133,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppDataTableConfig(showHeaders: true),
+                config: const DSDataTableConfig(showHeaders: true),
               ),
             ),
           ),
@@ -153,7 +153,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
               ),
@@ -171,7 +171,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
               ),
@@ -191,11 +191,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                selection: const AppDataTableSelection(
-                  mode: AppDataTableSelectionMode.multiple,
+                selection: const DSDataTableSelection(
+                  mode: DSDataTableSelectionMode.multiple,
                   showCheckboxes: true,
                 ),
               ),
@@ -215,11 +215,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                selection: AppDataTableSelection(
-                  mode: AppDataTableSelectionMode.multiple,
+                selection: DSDataTableSelection(
+                  mode: DSDataTableSelectionMode.multiple,
                   showCheckboxes: true,
                   onSelectionChanged: (rows) {
                     selectionChanged = true;
@@ -247,11 +247,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                selection: const AppDataTableSelection(
-                  mode: AppDataTableSelectionMode.multiple,
+                selection: const DSDataTableSelection(
+                  mode: DSDataTableSelectionMode.multiple,
                   showCheckboxes: true,
                   allowSelectAll: true,
                 ),
@@ -272,10 +272,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppDataTableConfig(showHeaders: true),
+                config: const DSDataTableConfig(showHeaders: true),
               ),
             ),
           ),
@@ -289,21 +289,21 @@ void main() {
 
       testWidgets('handles column sorting correctly', (tester) async {
         String? sortedColumn;
-        AppDataTableSortDirection? sortDirection;
+        DSDataTableSortDirection? sortDirection;
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                sorting: AppDataTableSort(
+                sorting: DSDataTableSort(
                   onSortChanged: (columnId, direction) {
                     sortedColumn = columnId;
                     sortDirection = direction;
                   },
                 ),
-                config: const AppDataTableConfig(showHeaders: true),
+                config: const DSDataTableConfig(showHeaders: true),
               ),
             ),
           ),
@@ -316,7 +316,7 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(sortedColumn, equals('name'));
-        expect(sortDirection, equals(AppDataTableSortDirection.ascending));
+        expect(sortDirection, equals(DSDataTableSortDirection.ascending));
       });
     });
 
@@ -326,10 +326,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppDataTableConfig(showLoading: true),
+                config: const DSDataTableConfig(showLoading: true),
               ),
             ),
           ),
@@ -345,10 +345,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showSkeleton: true,
                   skeletonRowCount: 3,
                 ),
@@ -371,10 +371,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: const [],
-                emptyState: const AppDataTableEmptyState(
+                emptyState: const DSDataTableEmptyState(
                   message: 'No data available',
                   icon: Icons.table_chart,
                   show: true,
@@ -397,7 +397,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.inlineEdit(
+              body: DSDataTable.inlineEdit(
                 columns: testColumns,
                 rows: testRows,
                 onEdit: (row, columnId, newValue) {},
@@ -427,7 +427,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.inlineEdit(
+              body: DSDataTable.inlineEdit(
                 columns: testColumns,
                 rows: testRows,
                 onEdit: (row, columnId, newValue) {
@@ -464,10 +464,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   enableKeyboardNavigation: true,
                 ),
               ),
@@ -493,11 +493,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.inlineEdit(
+              body: DSDataTable.inlineEdit(
                 columns: testColumns,
                 rows: testRows,
                 onEdit: (row, columnId, newValue) {},
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   enableKeyboardNavigation: true,
                 ),
               ),
@@ -525,10 +525,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showRowNumbers: true,
                   showHeaders: true,
                 ),
@@ -552,10 +552,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDataTable.resizable(
+              body: DSDataTable.resizable(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   horizontalScrollable: true,
                 ),
               ),
@@ -578,7 +578,7 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.rtl,
               child: Scaffold(
-                body: AppDataTable.resizable(
+                body: DSDataTable.resizable(
                   columns: testColumns,
                   rows: testRows,
                 ),
@@ -589,33 +589,33 @@ void main() {
 
         await tester.pumpAndSettle();
 
-        expect(find.byType(AppDataTable), findsOneWidget);
+        expect(find.byType(DSDataTable), findsOneWidget);
         // RTL layout adaptations would need more specific testing
       });
     });
   });
 
-  group('AppDataTableUtils', () {
-    late List<AppDataTableColumn> columns;
-    late List<AppDataTableRow> rows;
+  group('DSDataTableUtils', () {
+    late List<DSDataTableColumn> columns;
+    late List<DSDataTableRow> rows;
 
     setUp(() {
       columns = [
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'id',
           label: 'ID',
           field: 'id',
           width: 100,
           visible: true,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'name',
           label: 'Name',
           field: 'name',
           width: 200,
           visible: true,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'hidden',
           label: 'Hidden',
           field: 'hidden',
@@ -625,17 +625,17 @@ void main() {
       ];
 
       rows = [
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: '1',
           data: {'id': 1, 'name': 'John', 'hidden': 'secret'},
           selected: false,
         ),
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: '2',
           data: {'id': 2, 'name': 'Jane', 'hidden': 'secret2'},
           selected: true,
         ),
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: '3',
           data: {'id': 3, 'name': 'Bob', 'hidden': 'secret3'},
           selected: false,
@@ -644,24 +644,24 @@ void main() {
     });
 
     test('calculateTotalWidth returns correct total width', () {
-      final totalWidth = AppDataTableUtils.calculateTotalWidth(columns);
+      final totalWidth = DSDataTableUtils.calculateTotalWidth(columns);
       expect(totalWidth, equals(300.0)); // 100 + 200, hidden column not counted
     });
 
     test('filterRows filters correctly', () {
-      final filtered = AppDataTableUtils.filterRows(rows, 'Jane');
+      final filtered = DSDataTableUtils.filterRows(rows, 'Jane');
       expect(filtered.length, equals(1));
       expect(filtered.first.id, equals('2'));
     });
 
     test('filterRows is case insensitive by default', () {
-      final filtered = AppDataTableUtils.filterRows(rows, 'jane');
+      final filtered = DSDataTableUtils.filterRows(rows, 'jane');
       expect(filtered.length, equals(1));
       expect(filtered.first.id, equals('2'));
     });
 
     test('filterRows respects case sensitivity when specified', () {
-      final filtered = AppDataTableUtils.filterRows(
+      final filtered = DSDataTableUtils.filterRows(
         rows,
         'jane',
         caseSensitive: true,
@@ -670,37 +670,37 @@ void main() {
     });
 
     test('sortRows sorts correctly in ascending order', () {
-      final sorted = AppDataTableUtils.sortRows(
+      final sorted = DSDataTableUtils.sortRows(
         rows,
         'name',
-        AppDataTableSortDirection.ascending,
+        DSDataTableSortDirection.ascending,
       );
       expect(sorted.first.getValue('name'), equals('Bob'));
       expect(sorted.last.getValue('name'), equals('John'));
     });
 
     test('sortRows sorts correctly in descending order', () {
-      final sorted = AppDataTableUtils.sortRows(
+      final sorted = DSDataTableUtils.sortRows(
         rows,
         'name',
-        AppDataTableSortDirection.descending,
+        DSDataTableSortDirection.descending,
       );
       expect(sorted.first.getValue('name'), equals('John'));
       expect(sorted.last.getValue('name'), equals('Bob'));
     });
 
     test('getSelectedRows returns only selected rows', () {
-      final selected = AppDataTableUtils.getSelectedRows(rows);
+      final selected = DSDataTableUtils.getSelectedRows(rows);
       expect(selected.length, equals(1));
       expect(selected.first.id, equals('2'));
     });
 
     test('updateRowSelection updates selection correctly for single mode', () {
-      final updated = AppDataTableUtils.updateRowSelection(
+      final updated = DSDataTableUtils.updateRowSelection(
         rows,
         '1',
         true,
-        AppDataTableSelectionMode.single,
+        DSDataTableSelectionMode.single,
       );
 
       final selectedRows = updated.where((row) => row.selected).toList();
@@ -710,11 +710,11 @@ void main() {
 
     test('updateRowSelection updates selection correctly for multiple mode',
         () {
-      final updated = AppDataTableUtils.updateRowSelection(
+      final updated = DSDataTableUtils.updateRowSelection(
         rows,
         '1',
         true,
-        AppDataTableSelectionMode.multiple,
+        DSDataTableSelectionMode.multiple,
       );
 
       final selectedRows = updated.where((row) => row.selected).toList();
@@ -722,7 +722,7 @@ void main() {
     });
 
     test('generateTableSemanticLabel generates correct label', () {
-      final label = AppDataTableUtils.generateTableSemanticLabel(10, 5, 3);
+      final label = DSDataTableUtils.generateTableSemanticLabel(10, 5, 3);
       expect(label, contains('10 rows'));
       expect(label, contains('5 columns'));
       expect(label, contains('3 rows selected'));
@@ -730,65 +730,65 @@ void main() {
 
     test('validateColumns catches duplicate IDs', () {
       final invalidColumns = [
-        const AppDataTableColumn(id: 'test', label: 'Test', field: 'test'),
-        const AppDataTableColumn(id: 'test', label: 'Test2', field: 'test2'),
+        const DSDataTableColumn(id: 'test', label: 'Test', field: 'test'),
+        const DSDataTableColumn(id: 'test', label: 'Test2', field: 'test2'),
       ];
 
-      final errors = AppDataTableUtils.validateColumns(invalidColumns);
+      final errors = DSDataTableUtils.validateColumns(invalidColumns);
       expect(
           errors.any((error) => error.contains('Duplicate column ID')), isTrue);
     });
 
     test('validateColumns catches empty labels', () {
       final invalidColumns = [
-        const AppDataTableColumn(id: 'test', label: '', field: 'test'),
+        const DSDataTableColumn(id: 'test', label: '', field: 'test'),
       ];
 
-      final errors = AppDataTableUtils.validateColumns(invalidColumns);
+      final errors = DSDataTableUtils.validateColumns(invalidColumns);
       expect(
           errors.any((error) => error.contains('Column label cannot be empty')),
           isTrue);
     });
 
     test('validateRowData catches missing fields', () {
-      final invalidRow = const AppDataTableRow(
+      final invalidRow = const DSDataTableRow(
         id: 'test',
         data: {'id': 1}, // Missing 'name' field
       );
 
-      final errors = AppDataTableUtils.validateRowData(invalidRow, columns);
+      final errors = DSDataTableUtils.validateRowData(invalidRow, columns);
       expect(errors.any((error) => error.contains('Missing data for field')),
           isTrue);
     });
   });
 
-  group('AppDataTableColumn', () {
+  group('DSDataTableColumn', () {
     test('getEffectiveAlignment returns correct alignment for LTR', () {
-      const column = AppDataTableColumn(
+      const column = DSDataTableColumn(
         id: 'test',
         label: 'Test',
         field: 'test',
-        alignment: AppDataTableColumnAlignment.left,
+        alignment: DSDataTableColumnAlignment.left,
       );
 
       final alignment = column.getEffectiveAlignment(TextDirection.ltr);
-      expect(alignment, equals(AppDataTableColumnAlignment.left));
+      expect(alignment, equals(DSDataTableColumnAlignment.left));
     });
 
     test('getEffectiveAlignment flips alignment for RTL', () {
-      const column = AppDataTableColumn(
+      const column = DSDataTableColumn(
         id: 'test',
         label: 'Test',
         field: 'test',
-        alignment: AppDataTableColumnAlignment.left,
+        alignment: DSDataTableColumnAlignment.left,
       );
 
       final alignment = column.getEffectiveAlignment(TextDirection.rtl);
-      expect(alignment, equals(AppDataTableColumnAlignment.right));
+      expect(alignment, equals(DSDataTableColumnAlignment.right));
     });
 
     test('hasCustomCellBuilder returns correct value', () {
-      const columnWithoutBuilder = AppDataTableColumn(
+      const columnWithoutBuilder = DSDataTableColumn(
         id: 'test',
         label: 'Test',
         field: 'test',
@@ -799,19 +799,19 @@ void main() {
     });
 
     test('supportsEditing returns correct value', () {
-      const nonEditableColumn = AppDataTableColumn(
+      const nonEditableColumn = DSDataTableColumn(
         id: 'test',
         label: 'Test',
         field: 'test',
         editable: false,
       );
 
-      const editableColumn = AppDataTableColumn(
+      const editableColumn = DSDataTableColumn(
         id: 'test',
         label: 'Test',
         field: 'test',
         editable: true,
-        cellType: AppDataTableCellType.text,
+        cellType: DSDataTableCellType.text,
       );
 
       expect(nonEditableColumn.supportsEditing, isFalse);
@@ -819,8 +819,8 @@ void main() {
     });
   });
 
-  group('AppDataTableRow', () {
-    const testRow = AppDataTableRow(
+  group('DSDataTableRow', () {
+    const testRow = DSDataTableRow(
       id: 'test',
       data: {
         'name': 'Test Name',
@@ -850,7 +850,7 @@ void main() {
     });
 
     test('isCellEditing returns correct value', () {
-      const editingRow = AppDataTableRow(
+      const editingRow = DSDataTableRow(
         id: 'test',
         data: {'name': 'Test'},
         editingCells: ['name'],

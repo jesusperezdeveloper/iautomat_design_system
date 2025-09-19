@@ -19,55 +19,55 @@ import 'package:iautomat_design_system/src/theme/typography.dart';
 ///
 /// Ejemplo de uso:
 /// ```dart
-/// AppMap(
-///   center: AppLatLng(latitude: 37.7749, longitude: -122.4194),
+/// DSMap(
+///   center: DSLatLng(latitude: 37.7749, longitude: -122.4194),
 ///   zoom: 12.0,
 ///   markers: [
-///     AppMapMarker(
+///     DSMapMarker(
 ///       id: 'marker1',
-///       position: AppLatLng(latitude: 37.7749, longitude: -122.4194),
+///       position: DSLatLng(latitude: 37.7749, longitude: -122.4194),
 ///       title: 'San Francisco',
 ///     ),
 ///   ],
 ///   onTap: (position) => print('Tapped at: $position'),
 /// )
 /// ```
-class AppMap extends StatefulWidget {
+class DSMap extends StatefulWidget {
   /// Configuración del mapa
-  final AppMapConfig? config;
+  final DSMapConfig? config;
 
   /// Centro inicial del mapa
-  final AppLatLng center;
+  final DSLatLng center;
 
   /// Nivel de zoom inicial
   final double zoom;
 
   /// Lista de marcadores a mostrar
-  final List<AppMapMarker> markers;
+  final List<DSMapMarker> markers;
 
   /// Lista de formas geométricas a mostrar
-  final List<AppMapShape> shapes;
+  final List<DSMapShape> shapes;
 
   /// Tema visual del mapa
-  final AppMapTheme? theme;
+  final DSMapTheme? theme;
 
   /// Callback cuando se toca el mapa
-  final ValueChanged<AppLatLng>? onTap;
+  final ValueChanged<DSLatLng>? onTap;
 
   /// Callback cuando se hace long press en el mapa
-  final ValueChanged<AppLatLng>? onLongPress;
+  final ValueChanged<DSLatLng>? onLongPress;
 
   /// Callback cuando cambia la cámara del mapa
-  final ValueChanged<AppMapCameraPosition>? onCameraMove;
+  final ValueChanged<DSMapCameraPosition>? onCameraMove;
 
   /// Callback cuando se toca un marcador
-  final ValueChanged<AppMapMarker>? onMarkerTap;
+  final ValueChanged<DSMapMarker>? onMarkerTap;
 
   /// Callback cuando se toca una forma
-  final ValueChanged<AppMapShape>? onShapeTap;
+  final ValueChanged<DSMapShape>? onShapeTap;
 
   /// Callback cuando se arrastra un marcador
-  final ValueChanged<AppMapMarker>? onMarkerDrag;
+  final ValueChanged<DSMapMarker>? onMarkerDrag;
 
   /// Callback para errores
   final ValueChanged<String>? onError;
@@ -75,7 +75,7 @@ class AppMap extends StatefulWidget {
   /// Si el mapa está habilitado para interacción
   final bool enabled;
 
-  const AppMap({
+  const DSMap({
     super.key,
     this.config,
     required this.center,
@@ -94,17 +94,17 @@ class AppMap extends StatefulWidget {
   });
 
   @override
-  State<AppMap> createState() => _AppMapState();
+  State<DSMap> createState() => _DSMapState();
 }
 
 /// Posición de la cámara del mapa
-class AppMapCameraPosition {
-  final AppLatLng center;
+class DSMapCameraPosition {
+  final DSLatLng center;
   final double zoom;
   final double bearing;
   final double tilt;
 
-  const AppMapCameraPosition({
+  const DSMapCameraPosition({
     required this.center,
     required this.zoom,
     this.bearing = 0.0,
@@ -117,10 +117,10 @@ class AppMapCameraPosition {
   }
 }
 
-class _AppMapState extends State<AppMap>
+class _DSMapState extends State<DSMap>
     with TickerProviderStateMixin, WidgetsBindingObserver {
   // Configuración efectiva
-  late AppMapConfig _config;
+  late DSMapConfig _config;
 
   // Controladores de animación
   late AnimationController _stateAnimationController;
@@ -130,23 +130,23 @@ class _AppMapState extends State<AppMap>
   late Animation<double> _scaleAnimation;
 
   // Estado actual
-  AppMapState _currentState = AppMapState.defaultState;
+  DSMapState _currentState = DSMapState.defaultState;
   bool _isFocused = false;
 
   // Adaptador de plataforma
-  late AppMapPlatformAdapter _platformAdapter;
+  late DSMapPlatformAdapter _platformAdapter;
 
   // Helper de accesibilidad
-  late AppMapA11yHelper _a11yHelper;
+  late DSMapA11yHelper _a11yHelper;
 
   // Nodo de foco
   late FocusNode _focusNode;
 
   // Posición actual de la cámara
-  late AppMapCameraPosition _currentCameraPosition;
+  late DSMapCameraPosition _currentCameraPosition;
 
   // Marcadores procesados (con clustering si está habilitado)
-  late List<AppMapMarker> _processedMarkers;
+  late List<DSMapMarker> _processedMarkers;
 
   @override
   void initState() {
@@ -162,7 +162,7 @@ class _AppMapState extends State<AppMap>
   }
 
   @override
-  void didUpdateWidget(AppMap oldWidget) {
+  void didUpdateWidget(DSMap oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.config != oldWidget.config) {
@@ -179,9 +179,9 @@ class _AppMapState extends State<AppMap>
     }
 
     if (!widget.enabled && oldWidget.enabled) {
-      _updateState(AppMapState.disabled);
+      _updateState(DSMapState.disabled);
     } else if (widget.enabled && !oldWidget.enabled) {
-      _updateState(AppMapState.defaultState);
+      _updateState(DSMapState.defaultState);
     }
   }
 
@@ -195,11 +195,11 @@ class _AppMapState extends State<AppMap>
   }
 
   void _initializeConfig() {
-    _config = widget.config ?? const AppMapConfig();
+    _config = widget.config ?? const DSMapConfig();
   }
 
   void _initializeAnimations() {
-    final animConfig = _config.animation ?? const AppMapAnimation();
+    final animConfig = _config.animation ?? const DSMapAnimation();
 
     _stateAnimationController = AnimationController(
       duration: animConfig.duration,
@@ -228,11 +228,11 @@ class _AppMapState extends State<AppMap>
   }
 
   void _initializePlatformAdapter() {
-    _platformAdapter = AppMapPlatformAdapter();
+    _platformAdapter = DSMapPlatformAdapter();
   }
 
   void _initializeA11yHelper() {
-    _a11yHelper = AppMapA11yHelper(_config.a11yConfig);
+    _a11yHelper = DSMapA11yHelper(_config.a11yConfig);
   }
 
   void _initializeFocus() {
@@ -241,14 +241,14 @@ class _AppMapState extends State<AppMap>
   }
 
   void _initializeCameraPosition() {
-    _currentCameraPosition = AppMapCameraPosition(
+    _currentCameraPosition = DSMapCameraPosition(
       center: widget.center,
       zoom: widget.zoom,
     );
   }
 
   void _processMarkers() {
-    final behavior = _config.behavior ?? const AppMapBehavior();
+    final behavior = _config.behavior ?? const DSMapBehavior();
 
     if (_config.variant.enablesClustering && behavior.enableClustering) {
       _processedMarkers = _clusterMarkers(widget.markers);
@@ -257,10 +257,10 @@ class _AppMapState extends State<AppMap>
     }
   }
 
-  List<AppMapMarker> _clusterMarkers(List<AppMapMarker> markers) {
+  List<DSMapMarker> _clusterMarkers(List<DSMapMarker> markers) {
     // Implementación básica de clustering
     // En una implementación real, usarías algoritmos más sofisticados
-    final clusters = <AppMapMarker>[];
+    final clusters = <DSMapMarker>[];
     final processed = <bool>[];
 
     for (int i = 0; i < markers.length; i++) {
@@ -271,7 +271,7 @@ class _AppMapState extends State<AppMap>
       if (processed[i]) continue;
 
       final marker = markers[i];
-      final nearbyMarkers = <AppMapMarker>[marker];
+      final nearbyMarkers = <DSMapMarker>[marker];
       processed[i] = true;
 
       // Buscar marcadores cercanos
@@ -279,7 +279,7 @@ class _AppMapState extends State<AppMap>
         if (processed[j]) continue;
 
         final distance = marker.position.distanceTo(markers[j].position);
-        final behavior = _config.behavior ?? const AppMapBehavior();
+        final behavior = _config.behavior ?? const DSMapBehavior();
 
         if (distance * 1000 < behavior.clusterRadius) {
           nearbyMarkers.add(markers[j]);
@@ -290,11 +290,11 @@ class _AppMapState extends State<AppMap>
       if (nearbyMarkers.length > 1) {
         // Crear cluster
         final center = _calculateClusterCenter(nearbyMarkers);
-        clusters.add(AppMapMarker(
+        clusters.add(DSMapMarker(
           id: 'cluster_${clusters.length}',
           position: center,
           title: '${nearbyMarkers.length} marcadores',
-          type: AppMapMarkerType.cluster,
+          type: DSMapMarkerType.cluster,
           metadata: {
             'markers': nearbyMarkers,
             'count': nearbyMarkers.length,
@@ -308,7 +308,7 @@ class _AppMapState extends State<AppMap>
     return clusters;
   }
 
-  AppLatLng _calculateClusterCenter(List<AppMapMarker> markers) {
+  DSLatLng _calculateClusterCenter(List<DSMapMarker> markers) {
     double totalLat = 0;
     double totalLng = 0;
 
@@ -317,7 +317,7 @@ class _AppMapState extends State<AppMap>
       totalLng += marker.position.longitude;
     }
 
-    return AppLatLng(
+    return DSLatLng(
       latitude: totalLat / markers.length,
       longitude: totalLng / markers.length,
     );
@@ -325,14 +325,14 @@ class _AppMapState extends State<AppMap>
 
   void _updateCameraPosition() {
     setState(() {
-      _currentCameraPosition = AppMapCameraPosition(
+      _currentCameraPosition = DSMapCameraPosition(
         center: widget.center,
         zoom: widget.zoom,
       );
     });
   }
 
-  void _updateState(AppMapState newState) {
+  void _updateState(DSMapState newState) {
     if (_currentState == newState) return;
 
     setState(() {
@@ -341,7 +341,7 @@ class _AppMapState extends State<AppMap>
 
     _a11yHelper.announceStateChange(newState);
 
-    final animConfig = _config.animation ?? const AppMapAnimation();
+    final animConfig = _config.animation ?? const DSMapAnimation();
     if (animConfig.enabled) {
       if (newState.isInteractive) {
         _stateAnimationController.forward();
@@ -357,28 +357,28 @@ class _AppMapState extends State<AppMap>
     });
 
     if (_isFocused) {
-      _updateState(AppMapState.focus);
-    } else if (_currentState == AppMapState.focus) {
-      _updateState(AppMapState.defaultState);
+      _updateState(DSMapState.focus);
+    } else if (_currentState == DSMapState.focus) {
+      _updateState(DSMapState.defaultState);
     }
   }
 
-  void _handleTap(AppLatLng position) {
+  void _handleTap(DSLatLng position) {
     if (!_currentState.canInteract) return;
 
-    _updateState(AppMapState.pressed);
+    _updateState(DSMapState.pressed);
 
     // Resetear estado después de un delay
     Future.delayed(const Duration(milliseconds: 150), () {
       if (mounted) {
-        _updateState(_isFocused ? AppMapState.focus : AppMapState.defaultState);
+        _updateState(_isFocused ? DSMapState.focus : DSMapState.defaultState);
       }
     });
 
     widget.onTap?.call(position);
   }
 
-  void _handleMarkerTap(AppMapMarker marker) {
+  void _handleMarkerTap(DSMapMarker marker) {
     if (!_currentState.canInteract) return;
 
     _a11yHelper.announceMarkerTap(marker);
@@ -386,7 +386,7 @@ class _AppMapState extends State<AppMap>
     marker.onTap?.call();
   }
 
-  void _handleShapeTap(AppMapShape shape) {
+  void _handleShapeTap(DSMapShape shape) {
     if (!_currentState.canInteract) return;
 
     _a11yHelper.announceShapeTap(shape);
@@ -409,7 +409,7 @@ class _AppMapState extends State<AppMap>
   }
 
   void _handleZoom(bool zoomIn) {
-    final behavior = _config.behavior ?? const AppMapBehavior();
+    final behavior = _config.behavior ?? const DSMapBehavior();
     if (!behavior.enableZoom) return;
 
     final currentZoom = _currentCameraPosition.zoom;
@@ -418,41 +418,41 @@ class _AppMapState extends State<AppMap>
         : (currentZoom - 1).clamp(behavior.minZoom, behavior.maxZoom);
 
     _updateCameraPosition();
-    widget.onCameraMove?.call(AppMapCameraPosition(
+    widget.onCameraMove?.call(DSMapCameraPosition(
       center: _currentCameraPosition.center,
       zoom: newZoom,
     ));
   }
 
   void _handleKeyboardMove(String direction) {
-    final behavior = _config.behavior ?? const AppMapBehavior();
+    final behavior = _config.behavior ?? const DSMapBehavior();
     if (!behavior.enablePan) return;
 
     const moveDistance = 0.001; // Aproximadamente 100 metros
     final currentCenter = _currentCameraPosition.center;
 
-    AppLatLng newCenter;
+    DSLatLng newCenter;
     switch (direction) {
       case 'up':
-        newCenter = AppLatLng(
+        newCenter = DSLatLng(
           latitude: currentCenter.latitude + moveDistance,
           longitude: currentCenter.longitude,
         );
         break;
       case 'down':
-        newCenter = AppLatLng(
+        newCenter = DSLatLng(
           latitude: currentCenter.latitude - moveDistance,
           longitude: currentCenter.longitude,
         );
         break;
       case 'left':
-        newCenter = AppLatLng(
+        newCenter = DSLatLng(
           latitude: currentCenter.latitude,
           longitude: currentCenter.longitude - moveDistance,
         );
         break;
       case 'right':
-        newCenter = AppLatLng(
+        newCenter = DSLatLng(
           latitude: currentCenter.latitude,
           longitude: currentCenter.longitude + moveDistance,
         );
@@ -461,7 +461,7 @@ class _AppMapState extends State<AppMap>
         return;
     }
 
-    widget.onCameraMove?.call(AppMapCameraPosition(
+    widget.onCameraMove?.call(DSMapCameraPosition(
       center: newCenter,
       zoom: _currentCameraPosition.zoom,
     ));
@@ -536,9 +536,9 @@ class _AppMapState extends State<AppMap>
 
   Widget _buildMapContent(BuildContext context) {
     switch (_currentState) {
-      case AppMapState.loading:
+      case DSMapState.loading:
         return _buildLoadingState(context);
-      case AppMapState.skeleton:
+      case DSMapState.skeleton:
         return _buildSkeletonState(context);
       default:
         return _buildMapView(context);
@@ -585,7 +585,7 @@ class _AppMapState extends State<AppMap>
             const SizedBox(height: 16),
             Text(
               'Cargando mapa...',
-              style: AppTypography.bodyMedium.copyWith(
+              style: DSTypography.bodyMedium.copyWith(
                 color: colors.loadingColor,
               ),
             ),
@@ -643,23 +643,23 @@ class _AppMapState extends State<AppMap>
       // Estado hover manejado por _currentState
     });
 
-    if (isHovering && _currentState == AppMapState.defaultState) {
-      _updateState(AppMapState.hover);
-    } else if (!isHovering && _currentState == AppMapState.hover) {
-      _updateState(AppMapState.defaultState);
+    if (isHovering && _currentState == DSMapState.defaultState) {
+      _updateState(DSMapState.hover);
+    } else if (!isHovering && _currentState == DSMapState.hover) {
+      _updateState(DSMapState.defaultState);
     }
   }
 
-  AppMapSpacing _resolveSpacing() {
-    final baseSpacing = _config.spacing ?? const AppMapSpacing();
+  DSMapSpacing _resolveSpacing() {
+    final baseSpacing = _config.spacing ?? const DSMapSpacing();
     return baseSpacing;
   }
 
-  AppMapColors _resolveColors(BuildContext context) {
-    final baseColors = _config.colors ?? const AppMapColors();
+  DSMapColors _resolveColors(BuildContext context) {
+    final baseColors = _config.colors ?? const DSMapColors();
     final theme = Theme.of(context);
 
-    return AppMapColors(
+    return DSMapColors(
       backgroundColor: baseColors.backgroundColor ?? theme.colorScheme.surface,
       borderColor: _getStateBorderColor(baseColors, theme),
       shadowColor: baseColors.shadowColor ?? theme.colorScheme.shadow,
@@ -671,23 +671,23 @@ class _AppMapState extends State<AppMap>
       shapeStrokeColor: baseColors.shapeStrokeColor ?? theme.colorScheme.outline,
       shapeFillColor: baseColors.shapeFillColor ?? theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
       loadingColor: baseColors.loadingColor ?? theme.colorScheme.primary,
-      skeletonColor: baseColors.skeletonColor ?? AppColors.gray300,
+      skeletonColor: baseColors.skeletonColor ?? DSColors.gray300,
     );
   }
 
-  Color _getStateBorderColor(AppMapColors baseColors, ThemeData theme) {
+  Color _getStateBorderColor(DSMapColors baseColors, ThemeData theme) {
     if (baseColors.borderColor != null) return baseColors.borderColor!;
 
     switch (_currentState) {
-      case AppMapState.focus:
+      case DSMapState.focus:
         return theme.colorScheme.primary;
-      case AppMapState.hover:
+      case DSMapState.hover:
         return theme.colorScheme.outline;
-      case AppMapState.pressed:
+      case DSMapState.pressed:
         return theme.colorScheme.primary;
-      case AppMapState.selected:
+      case DSMapState.selected:
         return theme.colorScheme.primary;
-      case AppMapState.disabled:
+      case DSMapState.disabled:
         return theme.colorScheme.outline.withValues(alpha: 0.38);
       default:
         return theme.colorScheme.outline;

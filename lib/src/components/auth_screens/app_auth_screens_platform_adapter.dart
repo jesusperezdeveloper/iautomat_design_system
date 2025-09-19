@@ -5,33 +5,33 @@ import 'package:flutter/services.dart';
 
 import 'app_auth_screens_config.dart';
 
-/// Adaptador para comportamiento específico de plataforma en AppAuthScreens
+/// Adaptador para comportamiento específico de plataforma en DSAuthScreens
 ///
 /// Maneja diferencias entre Android, iOS y Web para optimizar UX
-class AppAuthScreensPlatformAdapter {
-  final AppAuthScreensConfig config;
+class DSAuthScreensPlatformAdapter {
+  final DSAuthScreensConfig config;
   final BuildContext context;
 
-  AppAuthScreensPlatformAdapter({
+  DSAuthScreensPlatformAdapter({
     required this.config,
     required this.context,
   });
 
   /// Configura el manejo del teclado según la plataforma
   void setupKeyboardHandling() {
-    final behavior = config.behavior ?? const AppAuthBehavior();
+    final behavior = config.behavior ?? const DSAuthBehavior();
 
     switch (behavior.keyboardBehavior) {
-      case AppAuthKeyboardBehavior.adaptive:
+      case DSAuthKeyboardBehavior.adaptive:
         _setupAdaptiveKeyboard();
         break;
-      case AppAuthKeyboardBehavior.alwaysVisible:
+      case DSAuthKeyboardBehavior.alwaysVisible:
         _setupAlwaysVisibleKeyboard();
         break;
-      case AppAuthKeyboardBehavior.dismissOnScroll:
+      case DSAuthKeyboardBehavior.dismissOnScroll:
         _setupDismissOnScrollKeyboard();
         break;
-      case AppAuthKeyboardBehavior.dismissOnTap:
+      case DSAuthKeyboardBehavior.dismissOnTap:
         _setupDismissOnTapKeyboard();
         break;
     }
@@ -110,7 +110,7 @@ class AppAuthScreensPlatformAdapter {
   /// Obtiene el padding seguro según la plataforma
   EdgeInsets getSafePadding() {
     final mediaQuery = MediaQuery.of(context);
-    final spacing = config.spacing ?? const AppAuthSpacing();
+    final spacing = config.spacing ?? const DSAuthSpacing();
 
     EdgeInsets basePadding = spacing.screenPadding;
 
@@ -134,8 +134,8 @@ class AppAuthScreensPlatformAdapter {
 
   /// Obtiene el tipo de input decoration según la plataforma
   InputDecorationTheme getInputDecorationTheme() {
-    final colors = config.colors ?? const AppAuthColors();
-    final spacing = config.spacing ?? const AppAuthSpacing();
+    final colors = config.colors ?? const DSAuthColors();
+    final spacing = config.spacing ?? const DSAuthSpacing();
 
     if (isIOS) {
       return InputDecorationTheme(
@@ -205,8 +205,8 @@ class AppAuthScreensPlatformAdapter {
 
   /// Obtiene el estilo de botón según la plataforma
   ButtonStyle getPrimaryButtonStyle() {
-    final colors = config.colors ?? const AppAuthColors();
-    final spacing = config.spacing ?? const AppAuthSpacing();
+    final colors = config.colors ?? const DSAuthColors();
+    final spacing = config.spacing ?? const DSAuthSpacing();
 
     if (isIOS) {
       return ElevatedButton.styleFrom(
@@ -297,7 +297,7 @@ class AppAuthScreensPlatformAdapter {
 
   /// Obtiene la duración de animación optimizada para la plataforma
   Duration getOptimizedAnimationDuration() {
-    final animation = config.animation ?? const AppAuthAnimation();
+    final animation = config.animation ?? const DSAuthAnimation();
 
     if (isIOS) {
       // iOS prefiere animaciones más fluidas y lentas
@@ -319,7 +319,7 @@ class AppAuthScreensPlatformAdapter {
 
   /// Obtiene la curva de animación optimizada para la plataforma
   Curve getOptimizedAnimationCurve() {
-    final animation = config.animation ?? const AppAuthAnimation();
+    final animation = config.animation ?? const DSAuthAnimation();
 
     if (isIOS) {
       // iOS usa curvas más suaves
@@ -337,7 +337,7 @@ class AppAuthScreensPlatformAdapter {
 
   /// Configurar autofill según la plataforma
   void configureAutofill() {
-    final behavior = config.behavior ?? const AppAuthBehavior();
+    final behavior = config.behavior ?? const DSAuthBehavior();
     if (!behavior.enableAutofill) return;
 
     if (isAndroid || isIOS) {

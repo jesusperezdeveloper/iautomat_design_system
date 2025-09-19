@@ -5,24 +5,24 @@ import 'package:iautomat_design_system/src/components/image/app_image_config.dar
 import 'package:iautomat_design_system/src/theme/colors.dart';
 import 'package:iautomat_design_system/src/theme/spacing.dart';
 
-/// Stories y ejemplos para el componente AppImage
+/// Stories y ejemplos para el componente DSImage
 ///
-/// Esta clase proporciona ejemplos de uso del AppImage para:
+/// Esta clase proporciona ejemplos de uso del DSImage para:
 /// - Diferentes variantes (responsive, lazy)
 /// - Todos los estados (default, hover, pressed, focus, selected, disabled, loading, skeleton)
 /// - Diferentes tamaños y configuraciones
 /// - Ejemplos de accesibilidad y RTL
 /// - Casos de uso comunes en aplicaciones
-class AppImageStory extends StatefulWidget {
-  const AppImageStory({super.key});
+class DSImageStory extends StatefulWidget {
+  const DSImageStory({super.key});
 
   @override
-  State<AppImageStory> createState() => _AppImageStoryState();
+  State<DSImageStory> createState() => _DSImageStoryState();
 }
 
-class _AppImageStoryState extends State<AppImageStory> {
-  AppImageState _selectedState = AppImageState.defaultState;
-  AppImageVariant _selectedVariant = AppImageVariant.responsive;
+class _DSImageStoryState extends State<DSImageStory> {
+  DSImageState _selectedState = DSImageState.defaultState;
+  DSImageVariant _selectedVariant = DSImageVariant.responsive;
   BoxFit _selectedFit = BoxFit.cover;
   double _selectedRatio = 16.0 / 9.0;
   bool _showElevation = false;
@@ -32,11 +32,11 @@ class _AppImageStoryState extends State<AppImageStory> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AppImage Stories',
+      title: 'DSImage Stories',
       theme: _isDarkMode ? ThemeData.dark() : ThemeData.light(),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('AppImage Examples'),
+          title: const Text('DSImage Examples'),
           actions: [
             IconButton(
               icon: Icon(_isDarkMode ? Icons.light_mode : Icons.dark_mode),
@@ -45,24 +45,24 @@ class _AppImageStoryState extends State<AppImageStory> {
           ],
         ),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(AppSpacing.md),
+          padding: const EdgeInsets.all(DSSpacing.md),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildControlPanel(),
-              const SizedBox(height: AppSpacing.lg),
+              const SizedBox(height: DSSpacing.lg),
               _buildExampleSection(),
-              const SizedBox(height: AppSpacing.xl),
+              const SizedBox(height: DSSpacing.xl),
               _buildAllStatesSection(),
-              const SizedBox(height: AppSpacing.xl),
+              const SizedBox(height: DSSpacing.xl),
               _buildAllVariantsSection(),
-              const SizedBox(height: AppSpacing.xl),
+              const SizedBox(height: DSSpacing.xl),
               _buildDifferentSizesSection(),
-              const SizedBox(height: AppSpacing.xl),
+              const SizedBox(height: DSSpacing.xl),
               _buildInteractiveExamplesSection(),
-              const SizedBox(height: AppSpacing.xl),
+              const SizedBox(height: DSSpacing.xl),
               _buildResponsiveExamplesSection(),
-              const SizedBox(height: AppSpacing.xl),
+              const SizedBox(height: DSSpacing.xl),
               _buildAccessibilityExamplesSection(),
             ],
           ),
@@ -74,7 +74,7 @@ class _AppImageStoryState extends State<AppImageStory> {
   Widget _buildControlPanel() {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
+        padding: const EdgeInsets.all(DSSpacing.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -82,10 +82,10 @@ class _AppImageStoryState extends State<AppImageStory> {
               'Control Panel',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: DSSpacing.sm),
             Wrap(
-              spacing: AppSpacing.md,
-              runSpacing: AppSpacing.sm,
+              spacing: DSSpacing.md,
+              runSpacing: DSSpacing.sm,
               children: [
                 _buildStateSelector(),
                 _buildVariantSelector(),
@@ -105,10 +105,10 @@ class _AppImageStoryState extends State<AppImageStory> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Estado:', style: TextStyle(fontWeight: FontWeight.w500)),
-        DropdownButton<AppImageState>(
+        DropdownButton<DSImageState>(
           value: _selectedState,
           onChanged: (value) => setState(() => _selectedState = value!),
-          items: AppImageState.values.map((state) {
+          items: DSImageState.values.map((state) {
             return DropdownMenuItem(
               value: state,
               child: Text(state.displayName),
@@ -124,10 +124,10 @@ class _AppImageStoryState extends State<AppImageStory> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Variante:', style: TextStyle(fontWeight: FontWeight.w500)),
-        DropdownButton<AppImageVariant>(
+        DropdownButton<DSImageVariant>(
           value: _selectedVariant,
           onChanged: (value) => setState(() => _selectedVariant = value!),
-          items: AppImageVariant.values.map((variant) {
+          items: DSImageVariant.values.map((variant) {
             return DropdownMenuItem(
               value: variant,
               child: Text(variant.displayName),
@@ -204,29 +204,29 @@ class _AppImageStoryState extends State<AppImageStory> {
           'Ejemplo Principal',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: DSSpacing.md),
         Center(
-          child: AppImage(
+          child: DSImage(
             src: 'https://picsum.photos/400/300',
             alt: 'Imagen de ejemplo principal',
             width: 300,
             ratio: _selectedRatio,
             fit: _selectedFit,
-            config: AppImageConfig(
+            config: DSImageConfig(
               src: 'https://picsum.photos/400/300',
               variant: _selectedVariant,
               state: _selectedState,
               elevation: _showElevation
-                  ? const AppImageElevation(defaultElevation: 8.0)
+                  ? const DSImageElevation(defaultElevation: 8.0)
                   : null,
               spacing: _showBorder
-                  ? const AppImageSpacing(
+                  ? const DSImageSpacing(
                       borderWidth: 2.0,
                       borderRadius: 12.0,
                     )
                   : null,
               colors: _showBorder
-                  ? const AppImageColors(borderColor: AppColors.primary)
+                  ? const DSImageColors(borderColor: DSColors.primary)
                   : null,
             ),
             placeholder: _buildPlaceholder('Principal', 300, 300 / _selectedRatio),
@@ -245,25 +245,25 @@ class _AppImageStoryState extends State<AppImageStory> {
           'Todos los Estados',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: DSSpacing.md),
         Wrap(
-          spacing: AppSpacing.md,
-          runSpacing: AppSpacing.md,
-          children: AppImageState.values.map((state) {
+          spacing: DSSpacing.md,
+          runSpacing: DSSpacing.md,
+          children: DSImageState.values.map((state) {
             return Column(
               children: [
-                AppImage(
+                DSImage(
                   src: 'https://picsum.photos/200/150?random=${state.index}',
                   alt: 'Imagen en estado ${state.displayName}',
                   width: 120,
                   height: 90,
-                  config: AppImageConfig(
+                  config: DSImageConfig(
                     src: 'https://picsum.photos/200/150?random=${state.index}',
                     state: state,
                   ),
                   placeholder: _buildPlaceholder(state.displayName, 120, 90),
                 ),
-                const SizedBox(height: AppSpacing.xs),
+                const SizedBox(height: DSSpacing.xs),
                 Text(
                   state.displayName,
                   style: const TextStyle(fontSize: 12),
@@ -284,26 +284,26 @@ class _AppImageStoryState extends State<AppImageStory> {
           'Todas las Variantes',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: DSSpacing.md),
         Row(
-          children: AppImageVariant.values.map((variant) {
+          children: DSImageVariant.values.map((variant) {
             return Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+                padding: const EdgeInsets.symmetric(horizontal: DSSpacing.sm),
                 child: Column(
                   children: [
-                    AppImage(
+                    DSImage(
                       src: 'https://picsum.photos/300/200?random=${variant.index + 10}',
                       alt: 'Imagen ${variant.displayName}',
                       width: 150,
                       height: 100,
-                      config: AppImageConfig(
+                      config: DSImageConfig(
                         src: 'https://picsum.photos/300/200?random=${variant.index + 10}',
                         variant: variant,
                       ),
                       placeholder: _buildPlaceholder(variant.displayName, 150, 100),
                     ),
-                    const SizedBox(height: AppSpacing.xs),
+                    const SizedBox(height: DSSpacing.xs),
                     Text(
                       variant.displayName,
                       style: const TextStyle(fontWeight: FontWeight.w500),
@@ -331,7 +331,7 @@ class _AppImageStoryState extends State<AppImageStory> {
           'Diferentes Tamaños',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: DSSpacing.md),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -347,18 +347,18 @@ class _AppImageStoryState extends State<AppImageStory> {
   Widget _buildSizeExample(String label, double width, double height) {
     return Column(
       children: [
-        AppImage(
+        DSImage(
           src: 'https://picsum.photos/${width.toInt()}/${height.toInt()}?random=${label.hashCode}',
           alt: 'Imagen $label',
           width: width,
           height: height,
-          config: const AppImageConfig(
+          config: const DSImageConfig(
             src: '',
-            spacing: AppImageSpacing(borderRadius: 12.0),
+            spacing: DSImageSpacing(borderRadius: 12.0),
           ),
           placeholder: _buildPlaceholder(label, width, height),
         ),
-        const SizedBox(height: AppSpacing.xs),
+        const SizedBox(height: DSSpacing.xs),
         Text(label, style: const TextStyle(fontSize: 12)),
         Text('${width.toInt()}x${height.toInt()}', style: const TextStyle(fontSize: 10)),
       ],
@@ -373,10 +373,10 @@ class _AppImageStoryState extends State<AppImageStory> {
           'Ejemplos Interactivos',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: DSSpacing.md),
         Wrap(
-          spacing: AppSpacing.md,
-          runSpacing: AppSpacing.md,
+          spacing: DSSpacing.md,
+          runSpacing: DSSpacing.md,
           children: [
             _buildInteractiveExample(
               'Tap',
@@ -409,7 +409,7 @@ class _AppImageStoryState extends State<AppImageStory> {
   }) {
     return Column(
       children: [
-        AppImage(
+        DSImage(
           src: src,
           alt: 'Imagen $label',
           width: 120,
@@ -417,17 +417,17 @@ class _AppImageStoryState extends State<AppImageStory> {
           onTap: onTap,
           onLongPress: onLongPress,
           onHover: onHover,
-          config: const AppImageConfig(
+          config: const DSImageConfig(
             src: '',
-            spacing: AppImageSpacing(borderRadius: 8.0),
-            elevation: AppImageElevation(
+            spacing: DSImageSpacing(borderRadius: 8.0),
+            elevation: DSImageElevation(
               defaultElevation: 2.0,
               hoveredElevation: 8.0,
             ),
           ),
           placeholder: _buildPlaceholder(label, 120, 120),
         ),
-        const SizedBox(height: AppSpacing.xs),
+        const SizedBox(height: DSSpacing.xs),
         Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
       ],
     );
@@ -441,29 +441,29 @@ class _AppImageStoryState extends State<AppImageStory> {
           'Ejemplos Responsivos',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: AppSpacing.md),
-        AppImage(
+        const SizedBox(height: DSSpacing.md),
+        DSImage(
           src: 'https://picsum.photos/800/400?random=40',
           alt: 'Imagen responsiva',
           ratio: 2.0,
-          config: const AppImageConfig(
+          config: const DSImageConfig(
             src: 'https://picsum.photos/800/400?random=40',
-            variant: AppImageVariant.responsive,
-            responsiveConfig: AppImageResponsiveConfig(
-              mobile: AppImageBreakpointConfig(quality: 60),
-              tablet: AppImageBreakpointConfig(quality: 80),
-              desktop: AppImageBreakpointConfig(quality: 90),
+            variant: DSImageVariant.responsive,
+            responsiveConfig: DSImageResponsiveConfig(
+              mobile: DSImageBreakpointConfig(quality: 60),
+              tablet: DSImageBreakpointConfig(quality: 80),
+              desktop: DSImageBreakpointConfig(quality: 90),
             ),
           ),
           placeholder: Container(
-            color: AppColors.gray100,
+            color: DSColors.gray100,
             child: const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.image, size: 48, color: AppColors.gray400),
-                  SizedBox(height: AppSpacing.xs),
-                  Text('Imagen Responsiva', style: TextStyle(color: AppColors.gray600)),
+                  Icon(Icons.image, size: 48, color: DSColors.gray400),
+                  SizedBox(height: DSSpacing.xs),
+                  Text('Imagen Responsiva', style: TextStyle(color: DSColors.gray600)),
                 ],
               ),
             ),
@@ -481,20 +481,20 @@ class _AppImageStoryState extends State<AppImageStory> {
           'Ejemplos de Accesibilidad',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: DSSpacing.md),
         Row(
           children: [
             Expanded(
               child: Column(
                 children: [
-                  AppImage(
+                  DSImage(
                     src: 'https://picsum.photos/200/150?random=50',
                     alt: 'Imagen con descripción completa para lectores de pantalla',
                     width: 150,
                     height: 112,
-                    config: const AppImageConfig(
+                    config: const DSImageConfig(
                       src: 'https://picsum.photos/200/150?random=50',
-                      a11yConfig: AppImageA11yConfig(
+                      a11yConfig: DSImageA11yConfig(
                         semanticsLabel: 'Imagen de paisaje',
                         semanticsDescription: 'Una hermosa vista de montañas al atardecer',
                         semanticsHint: 'Toca dos veces para ver en pantalla completa',
@@ -503,29 +503,29 @@ class _AppImageStoryState extends State<AppImageStory> {
                     placeholder: _buildPlaceholder('A11y', 150, 112),
                     onTap: () => _showSnackBar('Imagen accesible tocada'),
                   ),
-                  const SizedBox(height: AppSpacing.xs),
+                  const SizedBox(height: DSSpacing.xs),
                   const Text('Con A11y', style: TextStyle(fontSize: 12)),
                 ],
               ),
             ),
-            const SizedBox(width: AppSpacing.md),
+            const SizedBox(width: DSSpacing.md),
             Expanded(
               child: Column(
                 children: [
-                  AppImage(
+                  DSImage(
                     src: 'https://picsum.photos/200/150?random=51',
                     alt: '',
                     width: 150,
                     height: 112,
-                    config: const AppImageConfig(
+                    config: const DSImageConfig(
                       src: 'https://picsum.photos/200/150?random=51',
-                      a11yConfig: AppImageA11yConfig(
+                      a11yConfig: DSImageA11yConfig(
                         isDecorative: true,
                       ),
                     ),
                     placeholder: _buildPlaceholder('Decorativa', 150, 112),
                   ),
-                  const SizedBox(height: AppSpacing.xs),
+                  const SizedBox(height: DSSpacing.xs),
                   const Text('Decorativa', style: TextStyle(fontSize: 12)),
                 ],
               ),
@@ -540,7 +540,7 @@ class _AppImageStoryState extends State<AppImageStory> {
     return Container(
       width: width,
       height: height,
-      color: _isDarkMode ? AppColors.gray800 : AppColors.gray100,
+      color: _isDarkMode ? DSColors.gray800 : DSColors.gray100,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -548,15 +548,15 @@ class _AppImageStoryState extends State<AppImageStory> {
             Icon(
               Icons.image,
               size: width < 100 ? 24 : 48,
-              color: _isDarkMode ? AppColors.gray300 : AppColors.gray400,
+              color: _isDarkMode ? DSColors.gray300 : DSColors.gray400,
             ),
             if (width >= 100) ...[
-              const SizedBox(height: AppSpacing.xs),
+              const SizedBox(height: DSSpacing.xs),
               Text(
                 label,
                 style: TextStyle(
                   fontSize: 10,
-                  color: _isDarkMode ? AppColors.gray300 : AppColors.gray600,
+                  color: _isDarkMode ? DSColors.gray300 : DSColors.gray600,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -579,36 +579,36 @@ class _AppImageStoryState extends State<AppImageStory> {
 }
 
 /// Widget de ejemplo para mostrar una galería de imágenes
-class AppImageGalleryExample extends StatelessWidget {
-  const AppImageGalleryExample({super.key});
+class DSImageGalleryExample extends StatelessWidget {
+  const DSImageGalleryExample({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Galería de Imágenes')),
       body: GridView.builder(
-        padding: const EdgeInsets.all(AppSpacing.md),
+        padding: const EdgeInsets.all(DSSpacing.md),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: AppSpacing.md,
-          mainAxisSpacing: AppSpacing.md,
+          crossAxisSpacing: DSSpacing.md,
+          mainAxisSpacing: DSSpacing.md,
           childAspectRatio: 1.0,
         ),
         itemCount: 20,
         itemBuilder: (context, index) {
-          return AppImage(
+          return DSImage(
             src: 'https://picsum.photos/300/300?random=$index',
             alt: 'Imagen de galería $index',
-            config: const AppImageConfig(
+            config: const DSImageConfig(
               src: '',
-              variant: AppImageVariant.lazy,
-              spacing: AppImageSpacing(borderRadius: 12.0),
-              elevation: AppImageElevation(
+              variant: DSImageVariant.lazy,
+              spacing: DSImageSpacing(borderRadius: 12.0),
+              elevation: DSImageElevation(
                 defaultElevation: 2.0,
                 hoveredElevation: 8.0,
               ),
-              animation: AppImageAnimation(
-                type: AppImageAnimationType.fade,
+              animation: DSImageAnimation(
+                type: DSImageAnimationType.fade,
                 enableFadeIn: true,
               ),
             ),
@@ -623,12 +623,12 @@ class AppImageGalleryExample extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => Dialog(
-        child: AppImage(
+        child: DSImage(
           src: 'https://picsum.photos/600/600?random=$index',
           alt: 'Imagen ampliada $index',
-          config: const AppImageConfig(
+          config: const DSImageConfig(
             src: '',
-            spacing: AppImageSpacing(borderRadius: 12.0),
+            spacing: DSImageSpacing(borderRadius: 12.0),
           ),
         ),
       ),
@@ -636,30 +636,30 @@ class AppImageGalleryExample extends StatelessWidget {
   }
 }
 
-/// Widget de ejemplo para mostrar el uso del AppImage en una lista
-class AppImageListExample extends StatelessWidget {
-  const AppImageListExample({super.key});
+/// Widget de ejemplo para mostrar el uso del DSImage en una lista
+class DSImageListExample extends StatelessWidget {
+  const DSImageListExample({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Lista con Imágenes')),
       body: ListView.builder(
-        padding: const EdgeInsets.all(AppSpacing.sm),
+        padding: const EdgeInsets.all(DSSpacing.sm),
         itemCount: 50,
         itemBuilder: (context, index) {
           return Card(
-            margin: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
+            margin: const EdgeInsets.symmetric(vertical: DSSpacing.xs),
             child: ListTile(
-              leading: AppImage(
+              leading: DSImage(
                 src: 'https://picsum.photos/100/100?random=${index + 100}',
                 alt: 'Avatar $index',
                 width: 48,
                 height: 48,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: '',
-                  variant: AppImageVariant.lazy,
-                  spacing: AppImageSpacing(borderRadius: 24.0),
+                  variant: DSImageVariant.lazy,
+                  spacing: DSImageSpacing(borderRadius: 24.0),
                 ),
               ),
               title: Text('Elemento $index'),

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'package:iautomat_design_system/src/components/media_viewer/app_media_viewer_config.dart';
 
-/// Helper para manejar accesibilidad y soporte RTL del AppMediaViewer
+/// Helper para manejar accesibilidad y soporte RTL del DSMediaViewer
 ///
 /// Proporciona utilidades para:
 /// - Gestión completa de accesibilidad y semántica
@@ -13,14 +13,14 @@ import 'package:iautomat_design_system/src/components/media_viewer/app_media_vie
 /// - Descripción de estados para lectores de pantalla
 /// - Anuncios dinámicos de cambios
 /// - Integración con services de accesibilidad del sistema
-class AppMediaViewerA11yHelper {
+class DSMediaViewerA11yHelper {
   /// Construye el widget de semántica apropiado para el media viewer
   static Widget buildSemanticsWrapper({
     required Widget child,
-    required List<AppMediaItem> items,
+    required List<DSMediaItem> items,
     required int currentIndex,
-    required AppMediaViewerState state,
-    required AppMediaViewerA11yConfig? a11yConfig,
+    required DSMediaViewerState state,
+    required DSMediaViewerA11yConfig? a11yConfig,
     VoidCallback? onTap,
     bool isPlaying = false,
     double currentPosition = 0.0,
@@ -45,7 +45,7 @@ class AppMediaViewerA11yHelper {
       focusable: a11yConfig?.enableKeyboardNavigation ?? true,
       enabled: state.canInteract,
       readOnly: !currentItem.isPlayable,
-      liveRegion: state == AppMediaViewerState.loading || isPlaying,
+      liveRegion: state == DSMediaViewerState.loading || isPlaying,
       slider: currentItem.isPlayable,
       increasedValue: currentItem.isPlayable ? _formatTime(currentPosition) : null,
       decreasedValue: currentItem.isPlayable ? _formatTime(duration) : null,
@@ -55,10 +55,10 @@ class AppMediaViewerA11yHelper {
 
   /// Construye la etiqueta semántica completa
   static String _buildSemanticLabel(
-    List<AppMediaItem> items,
+    List<DSMediaItem> items,
     int currentIndex,
-    AppMediaViewerState state,
-    AppMediaViewerA11yConfig? a11yConfig,
+    DSMediaViewerState state,
+    DSMediaViewerA11yConfig? a11yConfig,
     bool isPlaying,
     double currentPosition,
     double duration,
@@ -107,8 +107,8 @@ class AppMediaViewerA11yHelper {
 
   /// Construye la pista semántica para interacciones
   static String? _buildSemanticHint(
-    AppMediaItem item,
-    AppMediaViewerA11yConfig? a11yConfig,
+    DSMediaItem item,
+    DSMediaViewerA11yConfig? a11yConfig,
     VoidCallback? onTap,
   ) {
     final customHint = a11yConfig?.semanticsHint;
@@ -138,8 +138,8 @@ class AppMediaViewerA11yHelper {
 
   /// Construye la descripción semántica detallada
   static String? _buildSemanticDescription(
-    AppMediaItem item,
-    AppMediaViewerA11yConfig? a11yConfig,
+    DSMediaItem item,
+    DSMediaViewerA11yConfig? a11yConfig,
   ) {
     final customDescription = a11yConfig?.semanticsDescription;
     if (customDescription != null && customDescription.isNotEmpty) {
@@ -167,21 +167,21 @@ class AppMediaViewerA11yHelper {
   }
 
   /// Obtiene la descripción del estado actual
-  static String _getStateDescription(AppMediaViewerState state) {
+  static String _getStateDescription(DSMediaViewerState state) {
     switch (state) {
-      case AppMediaViewerState.loading:
+      case DSMediaViewerState.loading:
         return 'cargando';
-      case AppMediaViewerState.skeleton:
+      case DSMediaViewerState.skeleton:
         return 'preparando contenido';
-      case AppMediaViewerState.disabled:
+      case DSMediaViewerState.disabled:
         return 'no disponible';
-      case AppMediaViewerState.selected:
+      case DSMediaViewerState.selected:
         return 'seleccionado';
-      case AppMediaViewerState.focus:
+      case DSMediaViewerState.focus:
         return 'enfocado';
-      case AppMediaViewerState.hover:
-      case AppMediaViewerState.pressed:
-      case AppMediaViewerState.defaultState:
+      case DSMediaViewerState.hover:
+      case DSMediaViewerState.pressed:
+      case DSMediaViewerState.defaultState:
         return '';
     }
   }
@@ -204,9 +204,9 @@ class AppMediaViewerA11yHelper {
   /// Maneja la navegación por teclado
   static KeyEventResult handleKeyEvent(
     KeyEvent event,
-    List<AppMediaItem> items,
+    List<DSMediaItem> items,
     int currentIndex,
-    AppMediaViewerA11yConfig? a11yConfig, {
+    DSMediaViewerA11yConfig? a11yConfig, {
     required VoidCallback? onPrevious,
     required VoidCallback? onNext,
     required VoidCallback? onPlayPause,
@@ -325,9 +325,9 @@ class AppMediaViewerA11yHelper {
   static Widget buildKeyboardNavigationWrapper({
     required Widget child,
     required FocusNode focusNode,
-    required List<AppMediaItem> items,
+    required List<DSMediaItem> items,
     required int currentIndex,
-    required AppMediaViewerA11yConfig? a11yConfig,
+    required DSMediaViewerA11yConfig? a11yConfig,
     VoidCallback? onPrevious,
     VoidCallback? onNext,
     VoidCallback? onPlayPause,
@@ -464,10 +464,10 @@ class AppMediaViewerA11yHelper {
   /// Anuncios para lectores de pantalla según cambios de estado
   static void announceStateChange(
     BuildContext context,
-    AppMediaViewerState oldState,
-    AppMediaViewerState newState,
-    AppMediaItem currentItem,
-    AppMediaViewerA11yConfig? a11yConfig,
+    DSMediaViewerState oldState,
+    DSMediaViewerState newState,
+    DSMediaItem currentItem,
+    DSMediaViewerA11yConfig? a11yConfig,
   ) {
     if (!(a11yConfig?.enableStateAnnouncements ?? true)) return;
     if (oldState == newState) return;
@@ -475,18 +475,18 @@ class AppMediaViewerA11yHelper {
     String? announcement;
 
     switch (newState) {
-      case AppMediaViewerState.loading:
+      case DSMediaViewerState.loading:
         announcement = 'Cargando ${currentItem.type.displayName.toLowerCase()}';
         break;
-      case AppMediaViewerState.defaultState:
-        if (oldState == AppMediaViewerState.loading) {
+      case DSMediaViewerState.defaultState:
+        if (oldState == DSMediaViewerState.loading) {
           announcement = '${currentItem.type.displayName} cargado';
         }
         break;
-      case AppMediaViewerState.disabled:
+      case DSMediaViewerState.disabled:
         announcement = '${currentItem.type.displayName} no disponible';
         break;
-      case AppMediaViewerState.selected:
+      case DSMediaViewerState.selected:
         announcement = '${currentItem.type.displayName} seleccionado';
         break;
       default:
@@ -502,8 +502,8 @@ class AppMediaViewerA11yHelper {
   static void announcePlaybackChange(
     BuildContext context,
     bool isPlaying,
-    AppMediaItem currentItem,
-    AppMediaViewerA11yConfig? a11yConfig,
+    DSMediaItem currentItem,
+    DSMediaViewerA11yConfig? a11yConfig,
   ) {
     if (!(a11yConfig?.enableStateAnnouncements ?? true)) return;
     if (!currentItem.isPlayable) return;
@@ -519,8 +519,8 @@ class AppMediaViewerA11yHelper {
   static void announcePageChange(
     BuildContext context,
     int newIndex,
-    List<AppMediaItem> items,
-    AppMediaViewerA11yConfig? a11yConfig,
+    List<DSMediaItem> items,
+    DSMediaViewerA11yConfig? a11yConfig,
   ) {
     if (!(a11yConfig?.enableStateAnnouncements ?? true)) return;
     if (items.isEmpty) return;
@@ -547,16 +547,16 @@ class AppMediaViewerA11yHelper {
   }
 
   /// Ajusta la configuración según las preferencias de accesibilidad
-  static AppMediaViewerAnimation adjustAnimationForA11y(
+  static DSMediaViewerAnimation adjustAnimationForA11y(
     BuildContext context,
-    AppMediaViewerAnimation? animation,
+    DSMediaViewerAnimation? animation,
   ) {
     final mediaQuery = MediaQuery.of(context);
 
     // Reducir animaciones si el usuario prefiere menos movimiento
     if (mediaQuery.disableAnimations) {
-      return AppMediaViewerAnimation(
-        type: AppMediaViewerAnimationType.none,
+      return DSMediaViewerAnimation(
+        type: DSMediaViewerAnimationType.none,
         duration: 0,
         enableStateTransitions: false,
         enableHoverAnimation: false,
@@ -568,7 +568,7 @@ class AppMediaViewerA11yHelper {
 
     // Animaciones más lentas para mejor accesibilidad
     if (isAccessibilityEnabled(context)) {
-      return (animation ?? const AppMediaViewerAnimation()).copyWith(
+      return (animation ?? const DSMediaViewerAnimation()).copyWith(
         duration: (animation?.duration ?? 300) * 2,
         enableHoverAnimation: false, // Menos distracciones
         controlsFadeInDuration: (animation?.controlsFadeInDuration ?? 200) * 2,
@@ -576,11 +576,11 @@ class AppMediaViewerA11yHelper {
       );
     }
 
-    return animation ?? const AppMediaViewerAnimation();
+    return animation ?? const DSMediaViewerAnimation();
   }
 
   /// Construye hints contextuales para el teclado
-  static String buildKeyboardHints(AppMediaItem currentItem) {
+  static String buildKeyboardHints(DSMediaItem currentItem) {
     final hints = <String>[];
 
     hints.add('Flechas: navegar');
@@ -604,12 +604,12 @@ class AppMediaViewerA11yHelper {
 }
 
 /// Widget helper para anuncios de accesibilidad
-class AppMediaViewerAccessibilityAnnouncer extends StatefulWidget {
+class DSMediaViewerAccessibilityAnnouncer extends StatefulWidget {
   final Widget child;
   final String? announcement;
   final TextDirection textDirection;
 
-  const AppMediaViewerAccessibilityAnnouncer({
+  const DSMediaViewerAccessibilityAnnouncer({
     super.key,
     required this.child,
     this.announcement,
@@ -617,16 +617,16 @@ class AppMediaViewerAccessibilityAnnouncer extends StatefulWidget {
   });
 
   @override
-  State<AppMediaViewerAccessibilityAnnouncer> createState() =>
-      _AppMediaViewerAccessibilityAnnouncerState();
+  State<DSMediaViewerAccessibilityAnnouncer> createState() =>
+      _DSMediaViewerAccessibilityAnnouncerState();
 }
 
-class _AppMediaViewerAccessibilityAnnouncerState
-    extends State<AppMediaViewerAccessibilityAnnouncer> {
+class _DSMediaViewerAccessibilityAnnouncerState
+    extends State<DSMediaViewerAccessibilityAnnouncer> {
   String? _lastAnnouncement;
 
   @override
-  void didUpdateWidget(AppMediaViewerAccessibilityAnnouncer oldWidget) {
+  void didUpdateWidget(DSMediaViewerAccessibilityAnnouncer oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.announcement != null &&

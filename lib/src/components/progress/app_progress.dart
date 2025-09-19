@@ -13,7 +13,7 @@ enum ProgressVariant {
 }
 
 /// Enumeración que define los estados posibles del progress indicator
-enum AppProgressState {
+enum DSProgressState {
   /// Estado por defecto
   defaultState,
 
@@ -40,15 +40,15 @@ enum AppProgressState {
 }
 
 /// Extension para verificar si un estado puede interactuar
-extension AppProgressStateExtension on AppProgressState {
+extension DSProgressStateExtension on DSProgressState {
   /// Verifica si el estado permite interacciones
   bool get canInteract =>
-      this != AppProgressState.disabled && this != AppProgressState.loading;
+      this != DSProgressState.disabled && this != DSProgressState.loading;
 }
 
 /// Widget de progress indicator adaptable a diferentes plataformas
 /// con soporte para Material 3, accesibilidad y RTL
-class AppProgress extends StatefulWidget {
+class DSProgress extends StatefulWidget {
   /// Variante del progress indicator
   final ProgressVariant variant;
 
@@ -59,7 +59,7 @@ class AppProgress extends StatefulWidget {
   final String? label;
 
   /// Estado actual del componente
-  final AppProgressState state;
+  final DSProgressState state;
 
   /// Color de fondo del progress indicator
   final Color? backgroundColor;
@@ -100,13 +100,13 @@ class AppProgress extends StatefulWidget {
   /// Duración de la animación
   final Duration animationDuration;
 
-  /// Crea un AppProgress con configuración personalizable
-  const AppProgress({
+  /// Crea un DSProgress con configuración personalizable
+  const DSProgress({
     super.key,
     this.variant = ProgressVariant.linear,
     this.value,
     this.label,
-    this.state = AppProgressState.defaultState,
+    this.state = DSProgressState.defaultState,
     this.backgroundColor,
     this.valueColor,
     this.labelColor,
@@ -123,11 +123,11 @@ class AppProgress extends StatefulWidget {
   });
 
   /// Factory constructor para crear un progress linear
-  factory AppProgress.linear({
+  factory DSProgress.linear({
     Key? key,
     double? value,
     String? label,
-    AppProgressState state = AppProgressState.defaultState,
+    DSProgressState state = DSProgressState.defaultState,
     Color? backgroundColor,
     Color? valueColor,
     Color? labelColor,
@@ -141,7 +141,7 @@ class AppProgress extends StatefulWidget {
     VoidCallback? onTap,
     Duration animationDuration = const Duration(milliseconds: 200),
   }) {
-    return AppProgress(
+    return DSProgress(
       key: key,
       variant: ProgressVariant.linear,
       value: value,
@@ -163,11 +163,11 @@ class AppProgress extends StatefulWidget {
   }
 
   /// Factory constructor para crear un progress circular
-  factory AppProgress.circular({
+  factory DSProgress.circular({
     Key? key,
     double? value,
     String? label,
-    AppProgressState state = AppProgressState.defaultState,
+    DSProgressState state = DSProgressState.defaultState,
     Color? backgroundColor,
     Color? valueColor,
     Color? labelColor,
@@ -182,7 +182,7 @@ class AppProgress extends StatefulWidget {
     VoidCallback? onTap,
     Duration animationDuration = const Duration(milliseconds: 200),
   }) {
-    return AppProgress(
+    return DSProgress(
       key: key,
       variant: ProgressVariant.circular,
       value: value,
@@ -205,11 +205,11 @@ class AppProgress extends StatefulWidget {
   }
 
   /// Crea una copia del widget con los valores especificados sobrescritos
-  AppProgress copyWith({
+  DSProgress copyWith({
     ProgressVariant? variant,
     double? value,
     String? label,
-    AppProgressState? state,
+    DSProgressState? state,
     Color? backgroundColor,
     Color? valueColor,
     Color? labelColor,
@@ -224,7 +224,7 @@ class AppProgress extends StatefulWidget {
     VoidCallback? onTap,
     Duration? animationDuration,
   }) {
-    return AppProgress(
+    return DSProgress(
       key: key,
       variant: variant ?? this.variant,
       value: value ?? this.value,
@@ -247,10 +247,10 @@ class AppProgress extends StatefulWidget {
   }
 
   @override
-  State<AppProgress> createState() => _AppProgressState();
+  State<DSProgress> createState() => _DSProgressState();
 }
 
-class _AppProgressState extends State<AppProgress>
+class _DSProgressState extends State<DSProgress>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -283,12 +283,12 @@ class _AppProgressState extends State<AppProgress>
 
   bool get _isIndeterminate => widget.value == null;
 
-  AppProgressState get _currentState {
-    if (widget.state != AppProgressState.defaultState) return widget.state;
-    if (_isPressed) return AppProgressState.pressed;
-    if (_isFocused) return AppProgressState.focus;
-    if (_isHovering) return AppProgressState.hover;
-    return AppProgressState.defaultState;
+  DSProgressState get _currentState {
+    if (widget.state != DSProgressState.defaultState) return widget.state;
+    if (_isPressed) return DSProgressState.pressed;
+    if (_isFocused) return DSProgressState.focus;
+    if (_isHovering) return DSProgressState.hover;
+    return DSProgressState.defaultState;
   }
 
   @override
@@ -437,17 +437,17 @@ class _AppProgressState extends State<AppProgress>
 
   Widget _applyStateEffects(Widget child, ThemeData theme) {
     switch (_currentState) {
-      case AppProgressState.hover:
+      case DSProgressState.hover:
         return Transform.scale(
           scale: 1.02,
           child: child,
         );
-      case AppProgressState.pressed:
+      case DSProgressState.pressed:
         return Transform.scale(
           scale: 0.98,
           child: child,
         );
-      case AppProgressState.focus:
+      case DSProgressState.focus:
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
@@ -458,12 +458,12 @@ class _AppProgressState extends State<AppProgress>
           ),
           child: child,
         );
-      case AppProgressState.disabled:
+      case DSProgressState.disabled:
         return Opacity(
           opacity: 0.5,
           child: child,
         );
-      case AppProgressState.selected:
+      case DSProgressState.selected:
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
@@ -471,11 +471,11 @@ class _AppProgressState extends State<AppProgress>
           ),
           child: child,
         );
-      case AppProgressState.loading:
+      case DSProgressState.loading:
         return _buildLoadingChild(child);
-      case AppProgressState.skeleton:
+      case DSProgressState.skeleton:
         return _buildSkeletonChild(child);
-      case AppProgressState.defaultState:
+      case DSProgressState.defaultState:
         return child;
     }
   }

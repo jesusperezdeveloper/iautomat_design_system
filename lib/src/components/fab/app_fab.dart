@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app_fab_config.dart';
 
-class AppFab extends StatefulWidget {
-  final AppFabConfig config;
+class DSFab extends StatefulWidget {
+  final DSFabConfig config;
   final Widget? icon;
   final String? label;
-  final AppFabLocation? location;
+  final DSFabLocation? location;
   final String? heroTag;
   final String? tooltip;
 
-  const AppFab({
+  const DSFab({
     super.key,
-    this.config = const AppFabConfig(),
+    this.config = const DSFabConfig(),
     this.icon,
     this.label,
     this.location,
@@ -21,10 +21,10 @@ class AppFab extends StatefulWidget {
   });
 
   @override
-  State<AppFab> createState() => _AppFabState();
+  State<DSFab> createState() => _DSFabState();
 }
 
-class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
+class _DSFabState extends State<DSFab> with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _hoverAnimationController;
   late AnimationController _pressAnimationController;
@@ -111,7 +111,7 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(AppFab oldWidget) {
+  void didUpdateWidget(DSFab oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.config.state != oldWidget.config.state) {
@@ -121,13 +121,13 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
 
   void _updateStateAnimation() {
     switch (widget.config.state) {
-      case AppFabState.loading:
+      case DSFabState.loading:
         _rotationController.repeat();
         break;
-      case AppFabState.skeleton:
+      case DSFabState.skeleton:
         _stateAnimationController.repeat(reverse: true);
         break;
-      case AppFabState.disabled:
+      case DSFabState.disabled:
         _stateAnimationController.animateTo(0.6);
         break;
       default:
@@ -187,7 +187,7 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
 
   Widget _buildLoadingState(ThemeData theme) {
     final size = widget.config.variant
-        .getSize(widget.config.spacing ?? const AppFabSpacing());
+        .getSize(widget.config.spacing ?? const DSFabSpacing());
     return Container(
       width: size,
       height: size,
@@ -229,7 +229,7 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
 
   Widget _buildSkeletonState(ThemeData theme) {
     final size = widget.config.variant
-        .getSize(widget.config.spacing ?? const AppFabSpacing());
+        .getSize(widget.config.spacing ?? const DSFabSpacing());
     return AnimatedBuilder(
       animation: _stateAnimationController,
       builder: (context, child) {
@@ -307,13 +307,13 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
     Widget content = _buildFabContent(theme, isRtl);
 
     switch (widget.config.variant) {
-      case AppFabVariant.regular:
+      case DSFabVariant.regular:
         return _buildRegularFab(content, theme);
-      case AppFabVariant.small:
+      case DSFabVariant.small:
         return _buildSmallFab(content, theme);
-      case AppFabVariant.large:
+      case DSFabVariant.large:
         return _buildLargeFab(content, theme);
-      case AppFabVariant.extended:
+      case DSFabVariant.extended:
         return _buildExtendedFab(content, theme, isRtl);
     }
   }
@@ -440,7 +440,7 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
           size: widget.config.variant.iconSize,
         );
 
-    if (widget.config.state == AppFabState.loading) {
+    if (widget.config.state == DSFabState.loading) {
       return SizedBox(
         width: widget.config.variant.iconSize,
         height: widget.config.variant.iconSize,
@@ -461,7 +461,7 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
   }
 
   Color _getBackgroundColor(ThemeData theme) {
-    if (widget.config.state == AppFabState.disabled) {
+    if (widget.config.state == DSFabState.disabled) {
       return widget.config.colors?.disabledColor ??
           theme.colorScheme.onSurface.withValues(alpha: 0.12);
     }
@@ -476,7 +476,7 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
           theme.colorScheme.primaryContainer;
     }
 
-    if (widget.config.state == AppFabState.selected) {
+    if (widget.config.state == DSFabState.selected) {
       return widget.config.colors?.selectedColor ??
           theme.colorScheme.secondaryContainer;
     }
@@ -486,7 +486,7 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
   }
 
   Color _getForegroundColor(ThemeData theme) {
-    if (widget.config.state == AppFabState.disabled) {
+    if (widget.config.state == DSFabState.disabled) {
       return theme.colorScheme.onSurface.withValues(alpha: 0.38);
     }
 
@@ -505,9 +505,9 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
       HapticFeedback.lightImpact();
     }
 
-    if (widget.config.animation?.type == AppFabAnimationType.rotation) {
+    if (widget.config.animation?.type == DSFabAnimationType.rotation) {
       _rotationController.forward(from: 0.0);
-    } else if (widget.config.animation?.type == AppFabAnimationType.scale) {
+    } else if (widget.config.animation?.type == DSFabAnimationType.scale) {
       _pressAnimationController.forward().then((_) {
         _pressAnimationController.reverse();
       });
@@ -549,9 +549,9 @@ class _AppFabState extends State<AppFab> with TickerProviderStateMixin {
   }
 }
 
-// Widget de conveniencia para usar AppFab en un Scaffold
-class AppFabScaffold extends StatelessWidget {
-  final AppFab fab;
+// Widget de conveniencia para usar DSFab en un Scaffold
+class DSFabScaffold extends StatelessWidget {
+  final DSFab fab;
   final PreferredSizeWidget? appBar;
   final Widget body;
   final Widget? bottomNavigationBar;
@@ -560,7 +560,7 @@ class AppFabScaffold extends StatelessWidget {
   final Widget? endDrawer;
   final Color? backgroundColor;
 
-  const AppFabScaffold({
+  const DSFabScaffold({
     super.key,
     required this.fab,
     required this.body,

@@ -14,7 +14,7 @@ enum EmptyStateVariant {
 }
 
 /// Enumeración que define los estados posibles del empty state
-enum AppEmptyStateState {
+enum DSEmptyStateState {
   /// Estado por defecto
   defaultState,
 
@@ -41,10 +41,10 @@ enum AppEmptyStateState {
 }
 
 /// Extension para verificar si un estado puede interactuar
-extension AppEmptyStateStateExtension on AppEmptyStateState {
+extension DSEmptyStateStateExtension on DSEmptyStateState {
   /// Verifica si el estado permite interacciones
   bool get canInteract =>
-      this != AppEmptyStateState.disabled && this != AppEmptyStateState.loading;
+      this != DSEmptyStateState.disabled && this != DSEmptyStateState.loading;
 }
 
 /// Representa una acción del empty state
@@ -75,7 +75,7 @@ class EmptyStateAction {
 
 /// Widget de empty state adaptable a diferentes plataformas
 /// con soporte para Material 3, accesibilidad y RTL
-class AppEmptyState extends StatefulWidget {
+class DSEmptyState extends StatefulWidget {
   /// Variante del empty state
   final EmptyStateVariant variant;
 
@@ -89,7 +89,7 @@ class AppEmptyState extends StatefulWidget {
   final List<EmptyStateAction> actions;
 
   /// Estado actual del componente
-  final AppEmptyStateState state;
+  final DSEmptyStateState state;
 
   /// Widget de ilustración personalizada
   final Widget? illustration;
@@ -139,14 +139,14 @@ class AppEmptyState extends StatefulWidget {
   /// Alineación del contenido
   final CrossAxisAlignment alignment;
 
-  /// Crea un AppEmptyState con configuración personalizable
-  const AppEmptyState({
+  /// Crea un DSEmptyState con configuración personalizable
+  const DSEmptyState({
     super.key,
     this.variant = EmptyStateVariant.illustration,
     required this.title,
     this.description,
     this.actions = const [],
-    this.state = AppEmptyStateState.defaultState,
+    this.state = DSEmptyStateState.defaultState,
     this.illustration,
     this.defaultIcon,
     this.titleColor,
@@ -166,12 +166,12 @@ class AppEmptyState extends StatefulWidget {
   });
 
   /// Factory constructor para crear un empty state con ilustración
-  factory AppEmptyState.illustration({
+  factory DSEmptyState.illustration({
     Key? key,
     required String title,
     String? description,
     List<EmptyStateAction> actions = const [],
-    AppEmptyStateState state = AppEmptyStateState.defaultState,
+    DSEmptyStateState state = DSEmptyStateState.defaultState,
     Widget? illustration,
     IconData? defaultIcon,
     Color? titleColor,
@@ -189,7 +189,7 @@ class AppEmptyState extends StatefulWidget {
     double maxWidth = 400.0,
     CrossAxisAlignment alignment = CrossAxisAlignment.center,
   }) {
-    return AppEmptyState(
+    return DSEmptyState(
       key: key,
       variant: EmptyStateVariant.illustration,
       title: title,
@@ -216,12 +216,12 @@ class AppEmptyState extends StatefulWidget {
   }
 
   /// Factory constructor para crear un empty state enfocado en CTA
-  factory AppEmptyState.cta({
+  factory DSEmptyState.cta({
     Key? key,
     required String title,
     String? description,
     List<EmptyStateAction> actions = const [],
-    AppEmptyStateState state = AppEmptyStateState.defaultState,
+    DSEmptyStateState state = DSEmptyStateState.defaultState,
     Widget? illustration,
     IconData? defaultIcon,
     Color? titleColor,
@@ -239,7 +239,7 @@ class AppEmptyState extends StatefulWidget {
     double maxWidth = 350.0,
     CrossAxisAlignment alignment = CrossAxisAlignment.center,
   }) {
-    return AppEmptyState(
+    return DSEmptyState(
       key: key,
       variant: EmptyStateVariant.cta,
       title: title,
@@ -266,12 +266,12 @@ class AppEmptyState extends StatefulWidget {
   }
 
   /// Crea una copia del widget con los valores especificados sobrescritos
-  AppEmptyState copyWith({
+  DSEmptyState copyWith({
     EmptyStateVariant? variant,
     String? title,
     String? description,
     List<EmptyStateAction>? actions,
-    AppEmptyStateState? state,
+    DSEmptyStateState? state,
     Widget? illustration,
     IconData? defaultIcon,
     Color? titleColor,
@@ -289,7 +289,7 @@ class AppEmptyState extends StatefulWidget {
     double? maxWidth,
     CrossAxisAlignment? alignment,
   }) {
-    return AppEmptyState(
+    return DSEmptyState(
       key: key,
       variant: variant ?? this.variant,
       title: title ?? this.title,
@@ -316,10 +316,10 @@ class AppEmptyState extends StatefulWidget {
   }
 
   @override
-  State<AppEmptyState> createState() => _AppEmptyStateState();
+  State<DSEmptyState> createState() => _DSEmptyStateState();
 }
 
-class _AppEmptyStateState extends State<AppEmptyState>
+class _DSEmptyStateState extends State<DSEmptyState>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -357,12 +357,12 @@ class _AppEmptyStateState extends State<AppEmptyState>
           widget.onHover != null ||
           widget.actions.isNotEmpty);
 
-  AppEmptyStateState get _currentState {
-    if (widget.state != AppEmptyStateState.defaultState) return widget.state;
-    if (_isPressed) return AppEmptyStateState.pressed;
-    if (_isFocused) return AppEmptyStateState.focus;
-    if (_isHovering) return AppEmptyStateState.hover;
-    return AppEmptyStateState.defaultState;
+  DSEmptyStateState get _currentState {
+    if (widget.state != DSEmptyStateState.defaultState) return widget.state;
+    if (_isPressed) return DSEmptyStateState.pressed;
+    if (_isFocused) return DSEmptyStateState.focus;
+    if (_isHovering) return DSEmptyStateState.hover;
+    return DSEmptyStateState.defaultState;
   }
 
   @override
@@ -555,17 +555,17 @@ class _AppEmptyStateState extends State<AppEmptyState>
 
   Widget _applyStateEffects(Widget child, ThemeData theme) {
     switch (_currentState) {
-      case AppEmptyStateState.hover:
+      case DSEmptyStateState.hover:
         return Transform.scale(
           scale: 1.02,
           child: child,
         );
-      case AppEmptyStateState.pressed:
+      case DSEmptyStateState.pressed:
         return Transform.scale(
           scale: 0.98,
           child: child,
         );
-      case AppEmptyStateState.focus:
+      case DSEmptyStateState.focus:
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
@@ -576,12 +576,12 @@ class _AppEmptyStateState extends State<AppEmptyState>
           ),
           child: child,
         );
-      case AppEmptyStateState.disabled:
+      case DSEmptyStateState.disabled:
         return Opacity(
           opacity: 0.5,
           child: child,
         );
-      case AppEmptyStateState.selected:
+      case DSEmptyStateState.selected:
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
@@ -589,11 +589,11 @@ class _AppEmptyStateState extends State<AppEmptyState>
           ),
           child: child,
         );
-      case AppEmptyStateState.loading:
+      case DSEmptyStateState.loading:
         return _buildLoadingChild(child);
-      case AppEmptyStateState.skeleton:
+      case DSEmptyStateState.skeleton:
         return _buildSkeletonChild(child);
-      case AppEmptyStateState.defaultState:
+      case DSEmptyStateState.defaultState:
         return child;
     }
   }

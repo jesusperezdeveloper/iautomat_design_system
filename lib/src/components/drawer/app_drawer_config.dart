@@ -3,9 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_drawer_config.freezed.dart';
 
-enum AppDrawerVariant { modal, permanent }
-enum AppDrawerSide { left, right }
-enum AppDrawerState {
+enum DSDrawerVariant { modal, permanent }
+enum DSDrawerSide { left, right }
+enum DSDrawerState {
   defaultState,
   hover,
   pressed,
@@ -17,11 +17,11 @@ enum AppDrawerState {
 }
 
 @freezed
-class AppDrawerConfig with _$AppDrawerConfig {
-  const factory AppDrawerConfig({
-    @Default(AppDrawerVariant.modal) AppDrawerVariant variant,
-    @Default(AppDrawerSide.left) AppDrawerSide side,
-    @Default(AppDrawerState.defaultState) AppDrawerState state,
+class DSDrawerConfig with _$DSDrawerConfig {
+  const factory DSDrawerConfig({
+    @Default(DSDrawerVariant.modal) DSDrawerVariant variant,
+    @Default(DSDrawerSide.left) DSDrawerSide side,
+    @Default(DSDrawerState.defaultState) DSDrawerState state,
     @Default(280.0) double width,
     @Default(true) bool enableSwipeGesture,
     @Default(true) bool enableOverlay,
@@ -33,18 +33,18 @@ class AppDrawerConfig with _$AppDrawerConfig {
     @Default(true) bool enableKeyboardSupport,
     @Default(true) bool autoFocus,
     @Default(4.0) double elevation,
-    AppDrawerColors? colors,
-    AppDrawerSpacing? spacing,
-    AppDrawerHeader? header,
-    AppDrawerFooter? footer,
-    AppDrawerAccessibility? accessibility,
-    AppDrawerBreakpoints? breakpoints,
-  }) = _AppDrawerConfig;
+    DSDrawerColors? colors,
+    DSDrawerSpacing? spacing,
+    DSDrawerHeader? header,
+    DSDrawerFooter? footer,
+    DSDrawerAccessibility? accessibility,
+    DSDrawerBreakpoints? breakpoints,
+  }) = _DSDrawerConfig;
 }
 
 @freezed
-class AppDrawerColors with _$AppDrawerColors {
-  const factory AppDrawerColors({
+class DSDrawerColors with _$DSDrawerColors {
+  const factory DSDrawerColors({
     Color? backgroundColor,
     Color? surfaceColor,
     Color? overlayColor,
@@ -61,8 +61,8 @@ class AppDrawerColors with _$AppDrawerColors {
 }
 
 @freezed
-class AppDrawerSpacing with _$AppDrawerSpacing {
-  const factory AppDrawerSpacing({
+class DSDrawerSpacing with _$DSDrawerSpacing {
+  const factory DSDrawerSpacing({
     @Default(EdgeInsets.all(16.0)) EdgeInsets padding,
     @Default(EdgeInsets.symmetric(vertical: 8.0)) EdgeInsets itemPadding,
     @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0)) EdgeInsets itemContentPadding,
@@ -76,8 +76,8 @@ class AppDrawerSpacing with _$AppDrawerSpacing {
 }
 
 @freezed
-class AppDrawerHeader with _$AppDrawerHeader {
-  const factory AppDrawerHeader({
+class DSDrawerHeader with _$DSDrawerHeader {
+  const factory DSDrawerHeader({
     Widget? content,
     Color? backgroundColor,
     EdgeInsets? padding,
@@ -87,8 +87,8 @@ class AppDrawerHeader with _$AppDrawerHeader {
 }
 
 @freezed
-class AppDrawerFooter with _$AppDrawerFooter {
-  const factory AppDrawerFooter({
+class DSDrawerFooter with _$DSDrawerFooter {
+  const factory DSDrawerFooter({
     Widget? content,
     Color? backgroundColor,
     EdgeInsets? padding,
@@ -98,8 +98,8 @@ class AppDrawerFooter with _$AppDrawerFooter {
 }
 
 @freezed
-class AppDrawerAccessibility with _$AppDrawerAccessibility {
-  const factory AppDrawerAccessibility({
+class DSDrawerAccessibility with _$DSDrawerAccessibility {
+  const factory DSDrawerAccessibility({
     @Default('Navigation drawer') String semanticLabel,
     @Default('Close drawer') String closeButtonLabel,
     @Default('Open drawer') String openButtonLabel,
@@ -112,21 +112,21 @@ class AppDrawerAccessibility with _$AppDrawerAccessibility {
 }
 
 @freezed
-class AppDrawerBreakpoints with _$AppDrawerBreakpoints {
-  const factory AppDrawerBreakpoints({
+class DSDrawerBreakpoints with _$DSDrawerBreakpoints {
+  const factory DSDrawerBreakpoints({
     @Default(600.0) double mobileBreakpoint,
     @Default(840.0) double tabletBreakpoint,
     @Default(1200.0) double desktopBreakpoint,
     @Default(true) bool autoSwitchVariant,
-    @Default(AppDrawerVariant.modal) AppDrawerVariant mobileVariant,
-    @Default(AppDrawerVariant.modal) AppDrawerVariant tabletVariant,
-    @Default(AppDrawerVariant.permanent) AppDrawerVariant desktopVariant,
+    @Default(DSDrawerVariant.modal) DSDrawerVariant mobileVariant,
+    @Default(DSDrawerVariant.modal) DSDrawerVariant tabletVariant,
+    @Default(DSDrawerVariant.permanent) DSDrawerVariant desktopVariant,
   }) = _AppDrawerBreakpoints;
 }
 
 @freezed
-class AppDrawerItem with _$AppDrawerItem {
-  const factory AppDrawerItem({
+class DSDrawerItem with _$DSDrawerItem {
+  const factory DSDrawerItem({
     required String id,
     required String label,
     IconData? icon,
@@ -136,16 +136,16 @@ class AppDrawerItem with _$AppDrawerItem {
     @Default(false) bool selected,
     @Default(false) bool disabled,
     @Default(false) bool showDivider,
-    List<AppDrawerItem>? children,
+    List<DSDrawerItem>? children,
     @Default(0) int level,
   }) = _AppDrawerItem;
 }
 
 @freezed
-class AppDrawerSection with _$AppDrawerSection {
-  const factory AppDrawerSection({
+class DSDrawerSection with _$DSDrawerSection {
+  const factory DSDrawerSection({
     String? title,
-    required List<AppDrawerItem> items,
+    required List<DSDrawerItem> items,
     @Default(true) bool showDivider,
     Widget? customWidget,
   }) = _AppDrawerSection;

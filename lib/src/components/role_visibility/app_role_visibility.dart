@@ -4,20 +4,20 @@ import 'app_role_visibility_config.dart';
 import 'app_role_visibility_platform_adapter.dart';
 import 'app_role_visibility_a11y_helper.dart';
 
-class AppRoleVisibility extends StatefulWidget {
-  final AppRoleVisibilityConfig config;
+class DSRoleVisibility extends StatefulWidget {
+  final DSRoleVisibilityConfig config;
   final Widget child;
-  final List<AppRole> userRoles;
-  final AppRoleContext? roleContext;
-  final AppRoleVisibilityCallback? onVisibilityChanged;
-  final AppRoleValidationCallback? onValidationFailed;
-  final AppRoleVisibilityErrorBuilder? errorBuilder;
-  final AppRoleVisibilityLoadingBuilder? loadingBuilder;
+  final List<DSRole> userRoles;
+  final DSRoleContext? roleContext;
+  final DSRoleVisibilityCallback? onVisibilityChanged;
+  final DSRoleValidationCallback? onValidationFailed;
+  final DSRoleVisibilityErrorBuilder? errorBuilder;
+  final DSRoleVisibilityLoadingBuilder? loadingBuilder;
   final bool enabled;
-  final AppRoleVisibilityColors? colors;
-  final AppRoleVisibilityAnimations? animations;
+  final DSRoleVisibilityColors? colors;
+  final DSRoleVisibilityAnimations? animations;
 
-  const AppRoleVisibility({
+  const DSRoleVisibility({
     super.key,
     required this.config,
     required this.child,
@@ -33,19 +33,19 @@ class AppRoleVisibility extends StatefulWidget {
   });
 
   @override
-  State<AppRoleVisibility> createState() => _AppRoleVisibilityState();
+  State<DSRoleVisibility> createState() => _DSRoleVisibilityState();
 }
 
-class _AppRoleVisibilityState extends State<AppRoleVisibility>
+class _DSRoleVisibilityState extends State<DSRoleVisibility>
     with TickerProviderStateMixin {
-  late AppRoleVisibilityPlatformAdapter _platformAdapter;
-  late AppRoleVisibilityA11yHelper _a11yHelper;
+  late DSRoleVisibilityPlatformAdapter _platformAdapter;
+  late DSRoleVisibilityA11yHelper _a11yHelper;
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
 
   bool _isVisible = false;
   bool _isEvaluating = false;
-  AppRoleValidationError? _validationError;
+  DSRoleValidationError? _validationError;
 
   @override
   void initState() {
@@ -57,7 +57,7 @@ class _AppRoleVisibilityState extends State<AppRoleVisibility>
   }
 
   @override
-  void didUpdateWidget(AppRoleVisibility oldWidget) {
+  void didUpdateWidget(DSRoleVisibility oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.config != widget.config ||
@@ -78,11 +78,11 @@ class _AppRoleVisibilityState extends State<AppRoleVisibility>
   }
 
   void _initializePlatformAdapter() {
-    _platformAdapter = AppRoleVisibilityPlatformAdapter();
+    _platformAdapter = DSRoleVisibilityPlatformAdapter();
   }
 
   void _initializeA11y() {
-    _a11yHelper = AppRoleVisibilityA11yHelper(
+    _a11yHelper = DSRoleVisibilityA11yHelper(
       config: widget.config,
       onAnnouncementRequested: _announceToScreenReader,
     );
@@ -117,7 +117,7 @@ class _AppRoleVisibilityState extends State<AppRoleVisibility>
     });
 
     try {
-      final evaluator = AppRoleEvaluator(
+      final evaluator = DSRoleEvaluator(
         config: widget.config,
         userRoles: widget.userRoles,
         context: widget.roleContext,
@@ -141,8 +141,8 @@ class _AppRoleVisibilityState extends State<AppRoleVisibility>
 
       setState(() {
         _isVisible = false;
-        _validationError = AppRoleValidationError(
-          type: AppRoleErrorType.evaluationError,
+        _validationError = DSRoleValidationError(
+          type: DSRoleErrorType.evaluationError,
           message: 'Error evaluating role visibility: $error',
         );
         _isEvaluating = false;
@@ -158,7 +158,7 @@ class _AppRoleVisibilityState extends State<AppRoleVisibility>
     }
   }
 
-  void _handleVisibilityChange(AppRoleEvaluationResult result) {
+  void _handleVisibilityChange(DSRoleEvaluationResult result) {
     widget.onVisibilityChanged?.call(result);
 
     final hasAccess = result.isVisible ?? result.hasAccess;
@@ -188,7 +188,7 @@ class _AppRoleVisibilityState extends State<AppRoleVisibility>
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.enabled || widget.config.state == AppRoleState.disabled) {
+    if (!widget.enabled || widget.config.state == DSRoleState.disabled) {
       return const SizedBox.shrink();
     }
 
@@ -196,7 +196,7 @@ class _AppRoleVisibilityState extends State<AppRoleVisibility>
   }
 
   Widget _buildVisibilityContainer() {
-    if (_isEvaluating && widget.config.state == AppRoleState.loading) {
+    if (_isEvaluating && widget.config.state == DSRoleState.loading) {
       return _buildLoadingState();
     }
 
@@ -303,42 +303,42 @@ class _AppRoleVisibilityState extends State<AppRoleVisibility>
   }
 }
 
-class AppRoleEvaluator {
-  final AppRoleVisibilityConfig config;
-  final List<AppRole> userRoles;
-  final AppRoleContext? context;
+class DSRoleEvaluator {
+  final DSRoleVisibilityConfig config;
+  final List<DSRole> userRoles;
+  final DSRoleContext? context;
 
-  const AppRoleEvaluator({
+  const DSRoleEvaluator({
     required this.config,
     required this.userRoles,
     this.context,
   });
 
-  Future<AppRoleEvaluationResult> evaluate() async {
+  Future<DSRoleEvaluationResult> evaluate() async {
     try {
       final requiredRoles = config.roles;
 
       if (requiredRoles.isEmpty) {
-        return const AppRoleEvaluationResult(
+        return const DSRoleEvaluationResult(
           hasAccess: true,
           matchedRoles: [],
         );
       }
 
-      final matchedRoles = <AppRole>[];
+      final matchedRoles = <DSRole>[];
       bool hasAccess = false;
 
       switch (config.evaluationMode) {
-        case AppRoleEvaluationMode.all:
+        case DSRoleEvaluationMode.all:
           hasAccess = _evaluateRequireAll(requiredRoles, matchedRoles);
           break;
-        case AppRoleEvaluationMode.any:
+        case DSRoleEvaluationMode.any:
           hasAccess = _evaluateRequireAny(requiredRoles, matchedRoles);
           break;
-        case AppRoleEvaluationMode.groups:
+        case DSRoleEvaluationMode.groups:
           hasAccess = _evaluateRequireNone(requiredRoles, matchedRoles);
           break;
-        case AppRoleEvaluationMode.custom:
+        case DSRoleEvaluationMode.custom:
           hasAccess = await _evaluateCustom(requiredRoles, matchedRoles);
           break;
       }
@@ -351,7 +351,7 @@ class AppRoleEvaluator {
         hasAccess = hasAccess && _evaluateHierarchy();
       }
 
-      return AppRoleEvaluationResult(
+      return DSRoleEvaluationResult(
         hasAccess: hasAccess,
         isVisible: hasAccess,
         matchedRoles: matchedRoles,
@@ -359,19 +359,19 @@ class AppRoleEvaluator {
       );
 
     } catch (error) {
-      return AppRoleEvaluationResult(
+      return DSRoleEvaluationResult(
         hasAccess: false,
         isVisible: false,
         matchedRoles: [],
-        error: AppRoleValidationError(
-          type: AppRoleErrorType.evaluationError,
+        error: DSRoleValidationError(
+          type: DSRoleErrorType.evaluationError,
           message: 'Evaluation failed: $error',
         ),
       );
     }
   }
 
-  bool _evaluateRequireAll(List<AppRole> requiredRoles, List<AppRole> matchedRoles) {
+  bool _evaluateRequireAll(List<DSRole> requiredRoles, List<DSRole> matchedRoles) {
     for (final requiredRole in requiredRoles) {
       bool found = false;
       for (final userRole in userRoles) {
@@ -386,7 +386,7 @@ class AppRoleEvaluator {
     return true;
   }
 
-  bool _evaluateRequireAny(List<AppRole> requiredRoles, List<AppRole> matchedRoles) {
+  bool _evaluateRequireAny(List<DSRole> requiredRoles, List<DSRole> matchedRoles) {
     for (final requiredRole in requiredRoles) {
       for (final userRole in userRoles) {
         if (_rolesMatch(userRole, requiredRole)) {
@@ -398,7 +398,7 @@ class AppRoleEvaluator {
     return false;
   }
 
-  bool _evaluateRequireNone(List<AppRole> requiredRoles, List<AppRole> matchedRoles) {
+  bool _evaluateRequireNone(List<DSRole> requiredRoles, List<DSRole> matchedRoles) {
     for (final requiredRole in requiredRoles) {
       for (final userRole in userRoles) {
         if (_rolesMatch(userRole, requiredRole)) {
@@ -409,7 +409,7 @@ class AppRoleEvaluator {
     return true;
   }
 
-  Future<bool> _evaluateCustom(List<AppRole> requiredRoles, List<AppRole> matchedRoles) async {
+  Future<bool> _evaluateCustom(List<DSRole> requiredRoles, List<DSRole> matchedRoles) async {
     final customEvaluator = config.customEvaluator;
     if (customEvaluator == null) {
       return _evaluateRequireAny(requiredRoles, matchedRoles);
@@ -418,7 +418,7 @@ class AppRoleEvaluator {
     return await customEvaluator(userRoles, requiredRoles, context);
   }
 
-  bool _rolesMatch(AppRole userRole, AppRole requiredRole) {
+  bool _rolesMatch(DSRole userRole, DSRole requiredRole) {
     if (userRole.name != requiredRole.name) return false;
     if (userRole.type != requiredRole.type) return false;
 
@@ -455,9 +455,9 @@ class AppRoleEvaluator {
     return userMaxLevel >= hierarchyConfig.minimumLevel;
   }
 
-  AppRoleValidationError _createAccessDeniedError() {
-    return AppRoleValidationError(
-      type: AppRoleErrorType.accessDenied,
+  DSRoleValidationError _createAccessDeniedError() {
+    return DSRoleValidationError(
+      type: DSRoleErrorType.accessDenied,
       message: config.accessDeniedMessage ?? 'Access denied: insufficient permissions',
       requiredRoles: config.roles,
       userRoles: userRoles,

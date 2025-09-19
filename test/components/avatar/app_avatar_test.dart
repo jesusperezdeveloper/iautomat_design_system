@@ -3,33 +3,33 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppAvatar', () {
+  group('DSAvatar', () {
     testWidgets('should render image avatar', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.image(
+            body: DSAvatar.image(
               imageUrl: 'https://example.com/image.jpg',
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
 
     testWidgets('should render initials avatar', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'JD',
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
       expect(find.text('JD'), findsOneWidget);
     });
 
@@ -37,14 +37,14 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.group(
+            body: DSAvatar.group(
               groupImageUrls: ['url1', 'url2', 'url3'],
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
 
     testWidgets('should handle tap interactions', (tester) async {
@@ -53,7 +53,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'AB',
               onTap: () => tapped = true,
             ),
@@ -61,7 +61,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppAvatar));
+      await tester.tap(find.byType(DSAvatar));
       expect(tapped, isTrue);
     });
 
@@ -71,7 +71,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'CD',
               onLongPress: () => longPressed = true,
             ),
@@ -79,7 +79,7 @@ void main() {
         ),
       );
 
-      await tester.longPress(find.byType(AppAvatar));
+      await tester.longPress(find.byType(DSAvatar));
       expect(longPressed, isTrue);
     });
 
@@ -87,7 +87,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'EF',
               visible: false,
             ),
@@ -104,17 +104,17 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppAvatar.initials(
+                DSAvatar.initials(
                   initials: 'S',
-                  size: AppAvatarSize.small,
+                  size: DSAvatarSize.small,
                 ),
-                AppAvatar.initials(
+                DSAvatar.initials(
                   initials: 'M',
-                  size: AppAvatarSize.medium,
+                  size: DSAvatarSize.medium,
                 ),
-                AppAvatar.initials(
+                DSAvatar.initials(
                   initials: 'L',
-                  size: AppAvatarSize.large,
+                  size: DSAvatarSize.large,
                 ),
               ],
             ),
@@ -133,17 +133,17 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppAvatar.initials(
+                DSAvatar.initials(
                   initials: 'C',
-                  shape: AppAvatarShape.circle,
+                  shape: DSAvatarShape.circle,
                 ),
-                AppAvatar.initials(
+                DSAvatar.initials(
                   initials: 'S',
-                  shape: AppAvatarShape.square,
+                  shape: DSAvatarShape.square,
                 ),
-                AppAvatar.initials(
+                DSAvatar.initials(
                   initials: 'R',
-                  shape: AppAvatarShape.rounded,
+                  shape: DSAvatarShape.rounded,
                 ),
               ],
             ),
@@ -160,16 +160,16 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'AB',
-              presence: AppAvatarPresence.online,
+              presence: DSAvatarPresence.online,
               showPresence: true,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
 
     testWidgets('should not interact when disabled', (tester) async {
@@ -178,7 +178,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'AB',
               enabled: false,
               onTap: () => tapped = true,
@@ -187,7 +187,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppAvatar));
+      await tester.tap(find.byType(DSAvatar));
       expect(tapped, isFalse);
     });
 
@@ -195,7 +195,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'AB',
               loading: true,
             ),
@@ -203,14 +203,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
 
     testWidgets('should show skeleton state', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'AB',
               skeleton: true,
             ),
@@ -218,14 +218,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
 
     testWidgets('should handle tooltip', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'AB',
               tooltip: 'Avatar tooltip',
             ),
@@ -233,7 +233,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
 
     testWidgets('should format initials correctly', (tester) async {
@@ -242,9 +242,9 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppAvatar.initials(initials: 'John Doe'),
-                AppAvatar.initials(initials: 'Jane'),
-                AppAvatar.initials(initials: 'A B C'),
+                DSAvatar.initials(initials: 'John Doe'),
+                DSAvatar.initials(initials: 'Jane'),
+                DSAvatar.initials(initials: 'A B C'),
               ],
             ),
           ),
@@ -260,7 +260,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'AB',
               backgroundColor: Colors.purple,
               foregroundColor: Colors.white,
@@ -270,14 +270,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
 
     testWidgets('should handle border settings', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'AB',
               showBorder: true,
               borderWidth: 3.0,
@@ -286,14 +286,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
 
     testWidgets('should handle group with initials', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.group(
+            body: DSAvatar.group(
               groupInitials: ['AB', 'CD', 'EF'],
               maxGroupCount: 2,
             ),
@@ -301,14 +301,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
 
     testWidgets('should show remaining count in group', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.group(
+            body: DSAvatar.group(
               groupInitials: ['AB', 'CD', 'EF', 'GH', 'IJ'],
               maxGroupCount: 3,
             ),
@@ -316,18 +316,18 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
 
     testWidgets('should handle animation configuration', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAvatar.initials(
+            body: DSAvatar.initials(
               initials: 'AB',
-              animation: AppAvatarAnimation(
+              animation: DSAvatarAnimation(
                 enabled: true,
-                type: AppAvatarAnimationType.pulse,
+                type: DSAvatarAnimationType.pulse,
                 pulse: true,
               ),
             ),
@@ -335,18 +335,18 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppAvatar), findsOneWidget);
+      expect(find.byType(DSAvatar), findsOneWidget);
     });
   });
 
-  group('AppAvatarConfig', () {
+  group('DSAvatarConfig', () {
     test('should have correct default values', () {
-      const config = AppAvatarConfig();
+      const config = DSAvatarConfig();
 
-      expect(config.variant, AppAvatarVariant.image);
-      expect(config.state, AppAvatarState.defaultState);
-      expect(config.size, AppAvatarSize.medium);
-      expect(config.shape, AppAvatarShape.circle);
+      expect(config.variant, DSAvatarVariant.image);
+      expect(config.state, DSAvatarState.defaultState);
+      expect(config.size, DSAvatarSize.medium);
+      expect(config.shape, DSAvatarShape.circle);
       expect(config.enabled, isTrue);
       expect(config.loading, isFalse);
       expect(config.skeleton, isFalse);
@@ -357,45 +357,45 @@ void main() {
     });
 
     test('should detect interactive state correctly', () {
-      const interactiveConfig = AppAvatarConfig(onTap: _mockCallback);
-      const nonInteractiveConfig = AppAvatarConfig();
+      const interactiveConfig = DSAvatarConfig(onTap: _mockCallback);
+      const nonInteractiveConfig = DSAvatarConfig();
 
       expect(interactiveConfig.isInteractive, isTrue);
       expect(nonInteractiveConfig.isInteractive, isFalse);
     });
 
     test('should detect disabled state correctly', () {
-      const disabledConfig = AppAvatarConfig(enabled: false);
-      const enabledConfig = AppAvatarConfig(enabled: true);
+      const disabledConfig = DSAvatarConfig(enabled: false);
+      const enabledConfig = DSAvatarConfig(enabled: true);
 
       expect(disabledConfig.isDisabled, isTrue);
       expect(enabledConfig.isDisabled, isFalse);
     });
 
     test('should detect loading state correctly', () {
-      const loadingConfig = AppAvatarConfig(loading: true);
-      const normalConfig = AppAvatarConfig(loading: false);
+      const loadingConfig = DSAvatarConfig(loading: true);
+      const normalConfig = DSAvatarConfig(loading: false);
 
       expect(loadingConfig.isLoading, isTrue);
       expect(normalConfig.isLoading, isFalse);
     });
 
     test('should detect skeleton state correctly', () {
-      const skeletonConfig = AppAvatarConfig(skeleton: true);
-      const normalConfig = AppAvatarConfig(skeleton: false);
+      const skeletonConfig = DSAvatarConfig(skeleton: true);
+      const normalConfig = DSAvatarConfig(skeleton: false);
 
       expect(skeletonConfig.isSkeleton, isTrue);
       expect(normalConfig.isSkeleton, isFalse);
     });
 
     test('should determine if can interact correctly', () {
-      const canInteractConfig = AppAvatarConfig(
+      const canInteractConfig = DSAvatarConfig(
         onTap: _mockCallback,
         enabled: true,
         loading: false,
         skeleton: false,
       );
-      const cannotInteractConfig = AppAvatarConfig(
+      const cannotInteractConfig = DSAvatarConfig(
         onTap: _mockCallback,
         enabled: false,
       );
@@ -406,15 +406,15 @@ void main() {
 
     test('should detect content properties correctly', () {
       const configWithImageUrl =
-          AppAvatarConfig(imageUrl: 'http://example.com');
-      const configWithInitials = AppAvatarConfig(initials: 'AB');
-      const configWithGroupImages = AppAvatarConfig(groupImageUrls: ['url1']);
-      const configWithGroupInitials = AppAvatarConfig(groupInitials: ['AB']);
-      const configWithPresence = AppAvatarConfig(
-        presence: AppAvatarPresence.online,
+          DSAvatarConfig(imageUrl: 'http://example.com');
+      const configWithInitials = DSAvatarConfig(initials: 'AB');
+      const configWithGroupImages = DSAvatarConfig(groupImageUrls: ['url1']);
+      const configWithGroupInitials = DSAvatarConfig(groupInitials: ['AB']);
+      const configWithPresence = DSAvatarConfig(
+        presence: DSAvatarPresence.online,
         showPresence: true,
       );
-      const emptyConfig = AppAvatarConfig();
+      const emptyConfig = DSAvatarConfig();
 
       expect(configWithImageUrl.hasImageUrl, isTrue);
       expect(configWithInitials.hasInitials, isTrue);
@@ -429,11 +429,11 @@ void main() {
     });
 
     test('should format display initials correctly', () {
-      const singleName = AppAvatarConfig(initials: 'John');
-      const fullName = AppAvatarConfig(initials: 'John Doe');
-      const threeName = AppAvatarConfig(initials: 'John Michael Doe');
-      const singleLetter = AppAvatarConfig(initials: 'A');
-      const emptyInitials = AppAvatarConfig(initials: '');
+      const singleName = DSAvatarConfig(initials: 'John');
+      const fullName = DSAvatarConfig(initials: 'John Doe');
+      const threeName = DSAvatarConfig(initials: 'John Michael Doe');
+      const singleLetter = DSAvatarConfig(initials: 'A');
+      const emptyInitials = DSAvatarConfig(initials: '');
 
       expect(singleName.displayInitials, 'JO');
       expect(fullName.displayInitials, 'JD');
@@ -443,18 +443,18 @@ void main() {
     });
 
     test('should calculate remaining group count correctly', () {
-      const normalGroup = AppAvatarConfig(
-        variant: AppAvatarVariant.group,
+      const normalGroup = DSAvatarConfig(
+        variant: DSAvatarVariant.group,
         groupInitials: ['A', 'B', 'C'],
         maxGroupCount: 2,
       );
-      const smallGroup = AppAvatarConfig(
-        variant: AppAvatarVariant.group,
+      const smallGroup = DSAvatarConfig(
+        variant: DSAvatarVariant.group,
         groupInitials: ['A', 'B'],
         maxGroupCount: 3,
       );
-      const nonGroup = AppAvatarConfig(
-        variant: AppAvatarVariant.initials,
+      const nonGroup = DSAvatarConfig(
+        variant: DSAvatarVariant.initials,
         groupInitials: ['A', 'B', 'C'],
         maxGroupCount: 2,
       );
@@ -465,132 +465,132 @@ void main() {
     });
 
     test('should return correct border width', () {
-      const withBorder = AppAvatarConfig(showBorder: true);
-      const withCustomBorderWidth = AppAvatarConfig(borderWidth: 5.0);
-      const noBorder = AppAvatarConfig(showBorder: false);
+      const withBorder = DSAvatarConfig(showBorder: true);
+      const withCustomBorderWidth = DSAvatarConfig(borderWidth: 5.0);
+      const noBorder = DSAvatarConfig(showBorder: false);
 
       expect(withBorder.getEffectiveBorderWidth(),
-          AppAvatarConstants.defaultBorderWidth);
+          DSAvatarConstants.defaultBorderWidth);
       expect(withCustomBorderWidth.getEffectiveBorderWidth(), 5.0);
       expect(noBorder.getEffectiveBorderWidth(), 0.0);
     });
   });
 
-  group('AppAvatarVariant', () {
+  group('DSAvatarVariant', () {
     test('should have correct extension properties', () {
-      expect(AppAvatarVariant.image.isImage, isTrue);
-      expect(AppAvatarVariant.image.isInitials, isFalse);
-      expect(AppAvatarVariant.image.isGroup, isFalse);
+      expect(DSAvatarVariant.image.isImage, isTrue);
+      expect(DSAvatarVariant.image.isInitials, isFalse);
+      expect(DSAvatarVariant.image.isGroup, isFalse);
 
-      expect(AppAvatarVariant.initials.isImage, isFalse);
-      expect(AppAvatarVariant.initials.isInitials, isTrue);
-      expect(AppAvatarVariant.initials.isGroup, isFalse);
+      expect(DSAvatarVariant.initials.isImage, isFalse);
+      expect(DSAvatarVariant.initials.isInitials, isTrue);
+      expect(DSAvatarVariant.initials.isGroup, isFalse);
 
-      expect(AppAvatarVariant.group.isImage, isFalse);
-      expect(AppAvatarVariant.group.isInitials, isFalse);
-      expect(AppAvatarVariant.group.isGroup, isTrue);
+      expect(DSAvatarVariant.group.isImage, isFalse);
+      expect(DSAvatarVariant.group.isInitials, isFalse);
+      expect(DSAvatarVariant.group.isGroup, isTrue);
     });
   });
 
-  group('AppAvatarPresence', () {
+  group('DSAvatarPresence', () {
     test('should have correct labels', () {
-      expect(AppAvatarPresence.online.label, 'En línea');
-      expect(AppAvatarPresence.offline.label, 'Desconectado');
-      expect(AppAvatarPresence.away.label, 'Ausente');
-      expect(AppAvatarPresence.busy.label, 'Ocupado');
-      expect(AppAvatarPresence.doNotDisturb.label, 'No molestar');
+      expect(DSAvatarPresence.online.label, 'En línea');
+      expect(DSAvatarPresence.offline.label, 'Desconectado');
+      expect(DSAvatarPresence.away.label, 'Ausente');
+      expect(DSAvatarPresence.busy.label, 'Ocupado');
+      expect(DSAvatarPresence.doNotDisturb.label, 'No molestar');
     });
 
     test('should have correct icons', () {
-      expect(AppAvatarPresence.online.icon, Icons.circle);
-      expect(AppAvatarPresence.offline.icon, Icons.circle_outlined);
-      expect(AppAvatarPresence.away.icon, Icons.schedule);
-      expect(AppAvatarPresence.busy.icon, Icons.circle);
-      expect(AppAvatarPresence.doNotDisturb.icon, Icons.do_not_disturb_on);
+      expect(DSAvatarPresence.online.icon, Icons.circle);
+      expect(DSAvatarPresence.offline.icon, Icons.circle_outlined);
+      expect(DSAvatarPresence.away.icon, Icons.schedule);
+      expect(DSAvatarPresence.busy.icon, Icons.circle);
+      expect(DSAvatarPresence.doNotDisturb.icon, Icons.do_not_disturb_on);
     });
   });
 
-  group('AppAvatarSize', () {
+  group('DSAvatarSize', () {
     test('should have correct sizes', () {
-      expect(AppAvatarSize.xxsmall.size, 20.0);
-      expect(AppAvatarSize.xsmall.size, 24.0);
-      expect(AppAvatarSize.small.size, 32.0);
-      expect(AppAvatarSize.medium.size, 40.0);
-      expect(AppAvatarSize.large.size, 48.0);
-      expect(AppAvatarSize.xlarge.size, 56.0);
-      expect(AppAvatarSize.xxlarge.size, 64.0);
+      expect(DSAvatarSize.xxsmall.size, 20.0);
+      expect(DSAvatarSize.xsmall.size, 24.0);
+      expect(DSAvatarSize.small.size, 32.0);
+      expect(DSAvatarSize.medium.size, 40.0);
+      expect(DSAvatarSize.large.size, 48.0);
+      expect(DSAvatarSize.xlarge.size, 56.0);
+      expect(DSAvatarSize.xxlarge.size, 64.0);
     });
 
     test('should have correct font sizes', () {
-      expect(AppAvatarSize.xxsmall.fontSize, 8.0);
-      expect(AppAvatarSize.xsmall.fontSize, 10.0);
-      expect(AppAvatarSize.small.fontSize, 12.0);
-      expect(AppAvatarSize.medium.fontSize, 16.0);
-      expect(AppAvatarSize.large.fontSize, 18.0);
-      expect(AppAvatarSize.xlarge.fontSize, 20.0);
-      expect(AppAvatarSize.xxlarge.fontSize, 24.0);
+      expect(DSAvatarSize.xxsmall.fontSize, 8.0);
+      expect(DSAvatarSize.xsmall.fontSize, 10.0);
+      expect(DSAvatarSize.small.fontSize, 12.0);
+      expect(DSAvatarSize.medium.fontSize, 16.0);
+      expect(DSAvatarSize.large.fontSize, 18.0);
+      expect(DSAvatarSize.xlarge.fontSize, 20.0);
+      expect(DSAvatarSize.xxlarge.fontSize, 24.0);
     });
 
     test('should have correct icon sizes', () {
-      expect(AppAvatarSize.xxsmall.iconSize, 10.0);
-      expect(AppAvatarSize.xsmall.iconSize, 12.0);
-      expect(AppAvatarSize.small.iconSize, 16.0);
-      expect(AppAvatarSize.medium.iconSize, 20.0);
-      expect(AppAvatarSize.large.iconSize, 24.0);
-      expect(AppAvatarSize.xlarge.iconSize, 28.0);
-      expect(AppAvatarSize.xxlarge.iconSize, 32.0);
+      expect(DSAvatarSize.xxsmall.iconSize, 10.0);
+      expect(DSAvatarSize.xsmall.iconSize, 12.0);
+      expect(DSAvatarSize.small.iconSize, 16.0);
+      expect(DSAvatarSize.medium.iconSize, 20.0);
+      expect(DSAvatarSize.large.iconSize, 24.0);
+      expect(DSAvatarSize.xlarge.iconSize, 28.0);
+      expect(DSAvatarSize.xxlarge.iconSize, 32.0);
     });
 
     test('should have correct presence sizes', () {
-      expect(AppAvatarSize.xxsmall.presenceSize, 6.0);
-      expect(AppAvatarSize.xsmall.presenceSize, 8.0);
-      expect(AppAvatarSize.small.presenceSize, 10.0);
-      expect(AppAvatarSize.medium.presenceSize, 12.0);
-      expect(AppAvatarSize.large.presenceSize, 14.0);
-      expect(AppAvatarSize.xlarge.presenceSize, 16.0);
-      expect(AppAvatarSize.xxlarge.presenceSize, 18.0);
+      expect(DSAvatarSize.xxsmall.presenceSize, 6.0);
+      expect(DSAvatarSize.xsmall.presenceSize, 8.0);
+      expect(DSAvatarSize.small.presenceSize, 10.0);
+      expect(DSAvatarSize.medium.presenceSize, 12.0);
+      expect(DSAvatarSize.large.presenceSize, 14.0);
+      expect(DSAvatarSize.xlarge.presenceSize, 16.0);
+      expect(DSAvatarSize.xxlarge.presenceSize, 18.0);
     });
 
     test('should calculate group overlap correctly', () {
-      expect(AppAvatarSize.medium.groupOverlap, 10.0); // 40 * 0.25
-      expect(AppAvatarSize.large.groupOverlap, 12.0); // 48 * 0.25
+      expect(DSAvatarSize.medium.groupOverlap, 10.0); // 40 * 0.25
+      expect(DSAvatarSize.large.groupOverlap, 12.0); // 48 * 0.25
     });
   });
 
-  group('AppAvatarShape', () {
+  group('DSAvatarShape', () {
     test('should generate correct border radius', () {
-      final circleRadius = AppAvatarShape.circle.getBorderRadius(40.0);
+      final circleRadius = DSAvatarShape.circle.getBorderRadius(40.0);
       expect(circleRadius, BorderRadius.circular(20.0));
 
-      final squareRadius = AppAvatarShape.square.getBorderRadius(40.0);
+      final squareRadius = DSAvatarShape.square.getBorderRadius(40.0);
       expect(squareRadius, BorderRadius.zero);
 
-      final roundedRadius = AppAvatarShape.rounded.getBorderRadius(40.0);
+      final roundedRadius = DSAvatarShape.rounded.getBorderRadius(40.0);
       expect(roundedRadius, BorderRadius.circular(5.0)); // 40 * 0.125
     });
 
     test('should have correct box shapes', () {
-      expect(AppAvatarShape.circle.boxShape, BoxShape.circle);
-      expect(AppAvatarShape.square.boxShape, BoxShape.rectangle);
-      expect(AppAvatarShape.rounded.boxShape, BoxShape.rectangle);
+      expect(DSAvatarShape.circle.boxShape, BoxShape.circle);
+      expect(DSAvatarShape.square.boxShape, BoxShape.rectangle);
+      expect(DSAvatarShape.rounded.boxShape, BoxShape.rectangle);
     });
   });
 
-  group('AppAvatarState', () {
+  group('DSAvatarState', () {
     test('should detect interactive states correctly', () {
-      expect(AppAvatarState.hover.isInteractiveState, isTrue);
-      expect(AppAvatarState.pressed.isInteractiveState, isTrue);
-      expect(AppAvatarState.focus.isInteractiveState, isTrue);
-      expect(AppAvatarState.defaultState.isInteractiveState, isFalse);
-      expect(AppAvatarState.disabled.isInteractiveState, isFalse);
+      expect(DSAvatarState.hover.isInteractiveState, isTrue);
+      expect(DSAvatarState.pressed.isInteractiveState, isTrue);
+      expect(DSAvatarState.focus.isInteractiveState, isTrue);
+      expect(DSAvatarState.defaultState.isInteractiveState, isFalse);
+      expect(DSAvatarState.disabled.isInteractiveState, isFalse);
     });
 
     test('should detect special states correctly', () {
-      expect(AppAvatarState.disabled.isDisabledState, isTrue);
-      expect(AppAvatarState.loading.isLoadingState, isTrue);
-      expect(AppAvatarState.skeleton.isSkeletonState, isTrue);
-      expect(AppAvatarState.selected.isSelectedState, isTrue);
-      expect(AppAvatarState.defaultState.isDisabledState, isFalse);
+      expect(DSAvatarState.disabled.isDisabledState, isTrue);
+      expect(DSAvatarState.loading.isLoadingState, isTrue);
+      expect(DSAvatarState.skeleton.isSkeletonState, isTrue);
+      expect(DSAvatarState.selected.isSelectedState, isTrue);
+      expect(DSAvatarState.defaultState.isDisabledState, isFalse);
     });
   });
 }

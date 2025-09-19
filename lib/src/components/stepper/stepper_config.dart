@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 part 'stepper_config.freezed.dart';
 
 @freezed
-class AppStepperConfig with _$AppStepperConfig {
-  const factory AppStepperConfig({
+class DSStepperConfig with _$DSStepperConfig {
+  const factory DSStepperConfig({
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
     @Default(24.0) double stepRadius,
@@ -44,14 +44,14 @@ class AppStepperConfig with _$AppStepperConfig {
     @Default(true) bool autoScrollToActiveStep,
     @Default(Duration(milliseconds: 300)) Duration scrollAnimationDuration,
     @Default(Curves.easeOutCubic) Curve scrollAnimationCurve,
-  }) = _AppStepperConfig;
+  }) = _DSStepperConfig;
 
-  const AppStepperConfig._();
+  const DSStepperConfig._();
 }
 
 @freezed
-class AppStepperColors with _$AppStepperColors {
-  const factory AppStepperColors({
+class DSStepperColors with _$DSStepperColors {
+  const factory DSStepperColors({
     required Color activeStepColor,
     required Color completedStepColor,
     required Color inactiveStepColor,
@@ -98,12 +98,12 @@ class AppStepperColors with _$AppStepperColors {
     required Color controlButtonDisabledTextColor,
   }) = _AppStepperColors;
 
-  const AppStepperColors._();
+  const DSStepperColors._();
 
-  factory AppStepperColors.fromTheme(ThemeData theme) {
+  factory DSStepperColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
 
-    return AppStepperColors(
+    return DSStepperColors(
       activeStepColor: colorScheme.primary,
       completedStepColor: colorScheme.primary,
       inactiveStepColor: colorScheme.outline,
@@ -153,7 +153,7 @@ class AppStepperColors with _$AppStepperColors {
   }
 }
 
-enum AppStepperState {
+enum DSStepperState {
   defaultState,
   hover,
   pressed,
@@ -164,12 +164,12 @@ enum AppStepperState {
   skeleton,
 }
 
-enum AppStepperVariant {
+enum DSStepperVariant {
   horizontal,
   vertical,
 }
 
-enum AppStepState {
+enum DSStepState {
   inactive,
   active,
   completed,
@@ -178,13 +178,13 @@ enum AppStepState {
 }
 
 @freezed
-class AppStep with _$AppStep {
-  const factory AppStep({
+class DSStep with _$DSStep {
+  const factory DSStep({
     required String title,
     String? subtitle,
     Widget? content,
     Widget? icon,
-    @Default(AppStepState.inactive) AppStepState state,
+    @Default(DSStepState.inactive) DSStepState state,
     @Default(false) bool isOptional,
     @Default(true) bool isInteractive,
     String? errorText,
@@ -193,18 +193,18 @@ class AppStep with _$AppStep {
     String? semanticLabel,
   }) = _AppStep;
 
-  const AppStep._();
+  const DSStep._();
 
-  bool get isActive => state == AppStepState.active;
-  bool get isCompleted => state == AppStepState.completed;
-  bool get isDisabled => state == AppStepState.disabled;
-  bool get hasError => state == AppStepState.error;
+  bool get isActive => state == DSStepState.active;
+  bool get isCompleted => state == DSStepState.completed;
+  bool get isDisabled => state == DSStepState.disabled;
+  bool get hasError => state == DSStepState.error;
   bool get canInteract => isInteractive && !isDisabled;
 }
 
 @freezed
-class AppStepperControlsBuilder with _$AppStepperControlsBuilder {
-  const factory AppStepperControlsBuilder({
+class DSStepperControlsBuilder with _$DSStepperControlsBuilder {
+  const factory DSStepperControlsBuilder({
     Widget? continueButton,
     Widget? cancelButton,
     String? continueLabel,
@@ -215,10 +215,10 @@ class AppStepperControlsBuilder with _$AppStepperControlsBuilder {
     bool? enableCancel,
   }) = _AppStepperControlsBuilder;
 
-  const AppStepperControlsBuilder._();
+  const DSStepperControlsBuilder._();
 }
 
-class AppStepperValidator {
+class DSStepperValidator {
   static String? required(String? value) {
     if (value == null || value.isEmpty) {
       return 'Este paso es requerido';
@@ -236,9 +236,9 @@ class AppStepperValidator {
     };
   }
 
-  static String? Function(AppStep) stepValidator(
-      bool Function(AppStep) validator, String message) {
-    return (AppStep step) {
+  static String? Function(DSStep) stepValidator(
+      bool Function(DSStep) validator, String message) {
+    return (DSStep step) {
       if (!validator(step)) {
         return message;
       }
@@ -246,11 +246,11 @@ class AppStepperValidator {
     };
   }
 
-  static String? Function(List<AppStep>) allStepsValidator(
-    bool Function(List<AppStep>) validator,
+  static String? Function(List<DSStep>) allStepsValidator(
+    bool Function(List<DSStep>) validator,
     String message,
   ) {
-    return (List<AppStep> steps) {
+    return (List<DSStep> steps) {
       if (!validator(steps)) {
         return message;
       }
@@ -258,11 +258,11 @@ class AppStepperValidator {
     };
   }
 
-  static String? Function(int, List<AppStep>) currentStepValidator(
-    bool Function(int, List<AppStep>) validator,
+  static String? Function(int, List<DSStep>) currentStepValidator(
+    bool Function(int, List<DSStep>) validator,
     String message,
   ) {
-    return (int currentStep, List<AppStep> steps) {
+    return (int currentStep, List<DSStep> steps) {
       if (!validator(currentStep, steps)) {
         return message;
       }
@@ -271,7 +271,7 @@ class AppStepperValidator {
   }
 }
 
-extension AppStepperExtensions on List<AppStep> {
+extension DSStepperExtensions on List<DSStep> {
   int get activeStepIndex {
     for (int i = 0; i < length; i++) {
       if (this[i].isActive) return i;
@@ -298,38 +298,38 @@ extension AppStepperExtensions on List<AppStep> {
     return any((step) => step.hasError);
   }
 
-  List<AppStep> get errorSteps {
+  List<DSStep> get errorSteps {
     return where((step) => step.hasError).toList();
   }
 
-  AppStep? get currentStep {
+  DSStep? get currentStep {
     final index = activeStepIndex;
     return index != -1 ? this[index] : null;
   }
 
-  AppStep? stepAt(int index) {
+  DSStep? stepAt(int index) {
     return index >= 0 && index < length ? this[index] : null;
   }
 
-  List<AppStep> updateStepAt(int index, AppStep newStep) {
+  List<DSStep> updateStepAt(int index, DSStep newStep) {
     if (index < 0 || index >= length) return this;
-    final newList = List<AppStep>.from(this);
+    final newList = List<DSStep>.from(this);
     newList[index] = newStep;
     return newList;
   }
 
-  List<AppStep> markStepCompleted(int index) {
+  List<DSStep> markStepCompleted(int index) {
     return updateStepAt(
-        index, stepAt(index)!.copyWith(state: AppStepState.completed));
+        index, stepAt(index)!.copyWith(state: DSStepState.completed));
   }
 
-  List<AppStep> markStepActive(int index) {
-    final newList = <AppStep>[];
+  List<DSStep> markStepActive(int index) {
+    final newList = <DSStep>[];
     for (int i = 0; i < length; i++) {
       if (i == index) {
-        newList.add(this[i].copyWith(state: AppStepState.active));
+        newList.add(this[i].copyWith(state: DSStepState.active));
       } else if (this[i].isActive) {
-        newList.add(this[i].copyWith(state: AppStepState.inactive));
+        newList.add(this[i].copyWith(state: DSStepState.inactive));
       } else {
         newList.add(this[i]);
       }
@@ -337,10 +337,10 @@ extension AppStepperExtensions on List<AppStep> {
     return newList;
   }
 
-  List<AppStep> markStepError(int index, String? errorText) {
+  List<DSStep> markStepError(int index, String? errorText) {
     return updateStepAt(
       index,
-      stepAt(index)!.copyWith(state: AppStepState.error, errorText: errorText),
+      stepAt(index)!.copyWith(state: DSStepState.error, errorText: errorText),
     );
   }
 }

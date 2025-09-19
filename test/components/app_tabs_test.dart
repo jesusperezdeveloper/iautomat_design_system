@@ -4,27 +4,27 @@ import 'package:iautomat_design_system/src/components/tabs/app_tabs.dart';
 import 'package:iautomat_design_system/src/components/tabs/app_tabs_config.dart';
 
 void main() {
-  group('AppTabs', () {
+  group('DSTabs', () {
     group('Basic Rendering', () {
       testWidgets('renders with default configuration', (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(),
+              body: DSTabs(),
             ),
           ),
         );
 
-        expect(find.byType(AppTabs), findsOneWidget);
+        expect(find.byType(DSTabs), findsOneWidget);
       });
 
       testWidgets('renders with provided tabs', (tester) async {
         const tabs = [
-          AppTabItem(
+          DSTabItem(
             id: 'tab1',
             text: 'Tab 1',
           ),
-          AppTabItem(
+          DSTabItem(
             id: 'tab2',
             text: 'Tab 2',
           ),
@@ -33,7 +33,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(
+              body: DSTabs(
                 tabs: tabs,
               ),
             ),
@@ -46,9 +46,9 @@ void main() {
       });
 
       testWidgets('renders with config tabs', (tester) async {
-        const config = AppTabsConfig(
+        const config = DSTabsConfig(
           tabs: [
-            AppTabItem(
+            DSTabItem(
               id: 'config_tab',
               text: 'Config Tab',
             ),
@@ -58,7 +58,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -69,8 +69,8 @@ void main() {
 
       testWidgets('renders with children', (tester) async {
         const tabs = [
-          AppTabItem(id: 'tab1', text: 'Tab 1'),
-          AppTabItem(id: 'tab2', text: 'Tab 2'),
+          DSTabItem(id: 'tab1', text: 'Tab 1'),
+          DSTabItem(id: 'tab2', text: 'Tab 2'),
         ];
 
         const children = [
@@ -81,7 +81,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(
+              body: DSTabs(
                 tabs: tabs,
                 children: children,
               ),
@@ -96,18 +96,18 @@ void main() {
 
     group('Variants', () {
       testWidgets('renders fixed variant', (tester) async {
-        const config = AppTabsConfig(
-          variant: AppTabsVariant.fixed,
+        const config = DSTabsConfig(
+          variant: DSTabsVariant.fixed,
           tabs: [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
-            AppTabItem(id: 'tab2', text: 'Tab 2'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab2', text: 'Tab 2'),
           ],
         );
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -117,19 +117,19 @@ void main() {
       });
 
       testWidgets('renders scrollable variant', (tester) async {
-        const config = AppTabsConfig(
-          variant: AppTabsVariant.scrollable,
+        const config = DSTabsConfig(
+          variant: DSTabsVariant.scrollable,
           tabs: [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
-            AppTabItem(id: 'tab2', text: 'Tab 2'),
-            AppTabItem(id: 'tab3', text: 'Tab 3'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab2', text: 'Tab 2'),
+            DSTabItem(id: 'tab3', text: 'Tab 3'),
           ],
         );
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -139,17 +139,17 @@ void main() {
       });
 
       testWidgets('renders withBadges variant', (tester) async {
-        const config = AppTabsConfig(
-          variant: AppTabsVariant.withBadges,
+        const config = DSTabsConfig(
+          variant: DSTabsVariant.withBadges,
           tabs: [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
-            AppTabItem(id: 'tab2', text: 'Tab 2'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab2', text: 'Tab 2'),
           ],
           badges: [
-            AppTabBadge(
+            DSTabBadge(
               tabId: 'tab1',
               count: 5,
-              type: AppTabBadgeType.count,
+              type: DSTabBadgeType.count,
             ),
           ],
         );
@@ -157,7 +157,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -171,17 +171,17 @@ void main() {
     group('Tab Types', () {
       testWidgets('renders text only tabs', (tester) async {
         const tabs = [
-          AppTabItem(
+          DSTabItem(
             id: 'text_tab',
             text: 'Text Tab',
-            type: AppTabType.text,
+            type: DSTabType.text,
           ),
         ];
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(tabs: tabs),
+              body: DSTabs(tabs: tabs),
             ),
           ),
         );
@@ -191,10 +191,10 @@ void main() {
 
       testWidgets('renders icon only tabs', (tester) async {
         const tabs = [
-          AppTabItem(
+          DSTabItem(
             id: 'icon_tab',
             text: 'Icon Tab',
-            type: AppTabType.icon,
+            type: DSTabType.icon,
             icon: Icon(Icons.home),
           ),
         ];
@@ -202,7 +202,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(tabs: tabs),
+              body: DSTabs(tabs: tabs),
             ),
           ),
         );
@@ -212,10 +212,10 @@ void main() {
 
       testWidgets('renders text with icon tabs', (tester) async {
         const tabs = [
-          AppTabItem(
+          DSTabItem(
             id: 'text_icon_tab',
             text: 'Text Icon',
-            type: AppTabType.textWithIcon,
+            type: DSTabType.textWithIcon,
             icon: Icon(Icons.star),
           ),
         ];
@@ -223,7 +223,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(tabs: tabs),
+              body: DSTabs(tabs: tabs),
             ),
           ),
         );
@@ -234,10 +234,10 @@ void main() {
 
       testWidgets('renders custom tabs', (tester) async {
         final tabs = [
-          const AppTabItem(
+          const DSTabItem(
             id: 'custom_tab',
             text: 'Custom Tab',
-            type: AppTabType.custom,
+            type: DSTabType.custom,
             child: Row(
               children: [
                 Icon(Icons.category),
@@ -250,7 +250,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppTabs(tabs: tabs),
+              body: DSTabs(tabs: tabs),
             ),
           ),
         );
@@ -262,17 +262,17 @@ void main() {
 
     group('States', () {
       testWidgets('shows loading state', (tester) async {
-        const config = AppTabsConfig(
-          state: AppTabsState.loading,
+        const config = DSTabsConfig(
+          state: DSTabsState.loading,
           tabs: [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
           ],
         );
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -281,17 +281,17 @@ void main() {
       });
 
       testWidgets('shows skeleton state', (tester) async {
-        const config = AppTabsConfig(
-          state: AppTabsState.skeleton,
+        const config = DSTabsConfig(
+          state: DSTabsState.skeleton,
           tabs: [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
           ],
         );
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -300,18 +300,18 @@ void main() {
       });
 
       testWidgets('disables interaction in disabled state', (tester) async {
-        const config = AppTabsConfig(
-          state: AppTabsState.disabled,
+        const config = DSTabsConfig(
+          state: DSTabsState.disabled,
           tabs: [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
-            AppTabItem(id: 'tab2', text: 'Tab 2'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab2', text: 'Tab 2'),
           ],
         );
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -324,23 +324,23 @@ void main() {
     group('Badges', () {
       testWidgets('displays count badges', (tester) async {
         const badges = [
-          AppTabBadge(
+          DSTabBadge(
             tabId: 'tab1',
             count: 3,
-            type: AppTabBadgeType.count,
+            type: DSTabBadgeType.count,
           ),
         ];
 
         const tabs = [
-          AppTabItem(id: 'tab1', text: 'Tab 1'),
-          AppTabItem(id: 'tab2', text: 'Tab 2'),
+          DSTabItem(id: 'tab1', text: 'Tab 1'),
+          DSTabItem(id: 'tab2', text: 'Tab 2'),
         ];
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(
-                config: AppTabsConfig(variant: AppTabsVariant.withBadges),
+              body: DSTabs(
+                config: DSTabsConfig(variant: DSTabsVariant.withBadges),
                 tabs: tabs,
                 badges: badges,
               ),
@@ -353,22 +353,22 @@ void main() {
 
       testWidgets('displays dot badges', (tester) async {
         const badges = [
-          AppTabBadge(
+          DSTabBadge(
             tabId: 'tab1',
-            type: AppTabBadgeType.dot,
+            type: DSTabBadgeType.dot,
           ),
         ];
 
         const tabs = [
-          AppTabItem(id: 'tab1', text: 'Tab 1'),
-          AppTabItem(id: 'tab2', text: 'Tab 2'),
+          DSTabItem(id: 'tab1', text: 'Tab 1'),
+          DSTabItem(id: 'tab2', text: 'Tab 2'),
         ];
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(
-                config: AppTabsConfig(variant: AppTabsVariant.withBadges),
+              body: DSTabs(
+                config: DSTabsConfig(variant: DSTabsVariant.withBadges),
                 tabs: tabs,
                 badges: badges,
               ),
@@ -382,23 +382,23 @@ void main() {
 
       testWidgets('displays text badges', (tester) async {
         const badges = [
-          AppTabBadge(
+          DSTabBadge(
             tabId: 'tab1',
             text: 'NEW',
-            type: AppTabBadgeType.text,
+            type: DSTabBadgeType.text,
           ),
         ];
 
         const tabs = [
-          AppTabItem(id: 'tab1', text: 'Tab 1'),
-          AppTabItem(id: 'tab2', text: 'Tab 2'),
+          DSTabItem(id: 'tab1', text: 'Tab 1'),
+          DSTabItem(id: 'tab2', text: 'Tab 2'),
         ];
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(
-                config: AppTabsConfig(variant: AppTabsVariant.withBadges),
+              body: DSTabs(
+                config: DSTabsConfig(variant: DSTabsVariant.withBadges),
                 tabs: tabs,
                 badges: badges,
               ),
@@ -411,23 +411,23 @@ void main() {
 
       testWidgets('respects badge visibility', (tester) async {
         const badges = [
-          AppTabBadge(
+          DSTabBadge(
             tabId: 'tab1',
             count: 5,
-            type: AppTabBadgeType.count,
+            type: DSTabBadgeType.count,
             isVisible: false,
           ),
         ];
 
         const tabs = [
-          AppTabItem(id: 'tab1', text: 'Tab 1'),
+          DSTabItem(id: 'tab1', text: 'Tab 1'),
         ];
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(
-                config: AppTabsConfig(variant: AppTabsVariant.withBadges),
+              body: DSTabs(
+                config: DSTabsConfig(variant: DSTabsVariant.withBadges),
                 tabs: tabs,
                 badges: badges,
               ),
@@ -440,23 +440,23 @@ void main() {
 
       testWidgets('shows max count for large numbers', (tester) async {
         const badges = [
-          AppTabBadge(
+          DSTabBadge(
             tabId: 'tab1',
             count: 150,
-            type: AppTabBadgeType.count,
+            type: DSTabBadgeType.count,
             maxCount: 99,
           ),
         ];
 
         const tabs = [
-          AppTabItem(id: 'tab1', text: 'Tab 1'),
+          DSTabItem(id: 'tab1', text: 'Tab 1'),
         ];
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(
-                config: AppTabsConfig(variant: AppTabsVariant.withBadges),
+              body: DSTabs(
+                config: DSTabsConfig(variant: DSTabsVariant.withBadges),
                 tabs: tabs,
                 badges: badges,
               ),
@@ -473,14 +473,14 @@ void main() {
         int? selectedIndex;
 
         const tabs = [
-          AppTabItem(id: 'tab1', text: 'Tab 1'),
-          AppTabItem(id: 'tab2', text: 'Tab 2'),
+          DSTabItem(id: 'tab1', text: 'Tab 1'),
+          DSTabItem(id: 'tab2', text: 'Tab 2'),
         ];
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppTabs(
+              body: DSTabs(
                 tabs: tabs,
                 onChanged: (index) => selectedIndex = index,
               ),
@@ -497,10 +497,10 @@ void main() {
       testWidgets('handles config onChanged callback', (tester) async {
         int? selectedIndex;
 
-        final config = AppTabsConfig(
+        final config = DSTabsConfig(
           tabs: const [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
-            AppTabItem(id: 'tab2', text: 'Tab 2'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab2', text: 'Tab 2'),
           ],
           onChanged: (index) => selectedIndex = index,
         );
@@ -508,7 +508,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -524,10 +524,10 @@ void main() {
         int? widgetSelectedIndex;
         int? configSelectedIndex;
 
-        final config = AppTabsConfig(
+        final config = DSTabsConfig(
           tabs: const [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
-            AppTabItem(id: 'tab2', text: 'Tab 2'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab2', text: 'Tab 2'),
           ],
           onChanged: (index) => configSelectedIndex = index,
         );
@@ -535,7 +535,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppTabs(
+              body: DSTabs(
                 config: config,
                 onChanged: (index) => widgetSelectedIndex = index,
               ),
@@ -555,12 +555,12 @@ void main() {
         bool tab2Tapped = false;
 
         final tabs = [
-          AppTabItem(
+          DSTabItem(
             id: 'tab1',
             text: 'Tab 1',
             onTap: () => tab1Tapped = true,
           ),
-          AppTabItem(
+          DSTabItem(
             id: 'tab2',
             text: 'Tab 2',
             onTap: () => tab2Tapped = true,
@@ -570,7 +570,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppTabs(tabs: tabs),
+              body: DSTabs(tabs: tabs),
             ),
           ),
         );
@@ -585,18 +585,18 @@ void main() {
 
     group('RTL Support', () {
       testWidgets('respects RTL direction', (tester) async {
-        const config = AppTabsConfig(
+        const config = DSTabsConfig(
           isRtl: true,
           tabs: [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
-            AppTabItem(id: 'tab2', text: 'Tab 2'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab2', text: 'Tab 2'),
           ],
         );
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -608,17 +608,17 @@ void main() {
       });
 
       testWidgets('uses LTR direction by default', (tester) async {
-        const config = AppTabsConfig(
+        const config = DSTabsConfig(
           tabs: [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
-            AppTabItem(id: 'tab2', text: 'Tab 2'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab2', text: 'Tab 2'),
           ],
         );
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -632,10 +632,10 @@ void main() {
 
     group('Accessibility', () {
       testWidgets('includes semantic labels', (tester) async {
-        const config = AppTabsConfig(
+        const config = DSTabsConfig(
           enableA11y: true,
           tabs: [
-            AppTabItem(
+            DSTabItem(
               id: 'tab1',
               text: 'Tab 1',
               semanticLabel: 'First tab',
@@ -647,7 +647,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -657,17 +657,17 @@ void main() {
       });
 
       testWidgets('disables accessibility when configured', (tester) async {
-        const config = AppTabsConfig(
+        const config = DSTabsConfig(
           enableA11y: false,
           tabs: [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
           ],
         );
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -682,17 +682,17 @@ void main() {
 
     group('Animation', () {
       testWidgets('animates state changes', (tester) async {
-        const config = AppTabsConfig(
-          state: AppTabsState.defaultState,
+        const config = DSTabsConfig(
+          state: DSTabsState.defaultState,
           tabs: [
-            AppTabItem(id: 'tab1', text: 'Tab 1'),
+            DSTabItem(id: 'tab1', text: 'Tab 1'),
           ],
         );
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(config: config),
+              body: DSTabs(config: config),
             ),
           ),
         );
@@ -703,14 +703,14 @@ void main() {
 
       testWidgets('animates tab selection', (tester) async {
         const tabs = [
-          AppTabItem(id: 'tab1', text: 'Tab 1'),
-          AppTabItem(id: 'tab2', text: 'Tab 2'),
+          DSTabItem(id: 'tab1', text: 'Tab 1'),
+          DSTabItem(id: 'tab2', text: 'Tab 2'),
         ];
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(tabs: tabs),
+              body: DSTabs(tabs: tabs),
             ),
           ),
         );
@@ -731,11 +731,11 @@ void main() {
                 controller =
                     TabController(length: 2, vsync: Scaffold.of(context));
                 return Scaffold(
-                  body: AppTabs(
+                  body: DSTabs(
                     controller: controller,
                     tabs: const [
-                      AppTabItem(id: 'tab1', text: 'Tab 1'),
-                      AppTabItem(id: 'tab2', text: 'Tab 2'),
+                      DSTabItem(id: 'tab1', text: 'Tab 1'),
+                      DSTabItem(id: 'tab2', text: 'Tab 2'),
                     ],
                   ),
                 );
@@ -755,14 +755,14 @@ void main() {
       testWidgets('creates internal controller when none provided',
           (tester) async {
         const tabs = [
-          AppTabItem(id: 'tab1', text: 'Tab 1'),
-          AppTabItem(id: 'tab2', text: 'Tab 2'),
+          DSTabItem(id: 'tab1', text: 'Tab 1'),
+          DSTabItem(id: 'tab2', text: 'Tab 2'),
         ];
 
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppTabs(tabs: tabs),
+              body: DSTabs(tabs: tabs),
             ),
           ),
         );
@@ -773,9 +773,9 @@ void main() {
     });
   });
 
-  group('AppTabItem', () {
+  group('DSTabItem', () {
     test('creates with required parameters', () {
-      const tab = AppTabItem(
+      const tab = DSTabItem(
         id: 'test',
         text: 'Test Tab',
       );
@@ -783,231 +783,231 @@ void main() {
       expect(tab.id, equals('test'));
       expect(tab.text, equals('Test Tab'));
       expect(tab.disabled, isFalse);
-      expect(tab.type, equals(AppTabType.text));
+      expect(tab.type, equals(DSTabType.text));
     });
 
     test('creates with optional parameters', () {
-      const tab = AppTabItem(
+      const tab = DSTabItem(
         id: 'test',
         text: 'Test Tab',
         icon: Icon(Icons.star),
         tooltip: 'Test tooltip',
         disabled: true,
-        type: AppTabType.textWithIcon,
+        type: DSTabType.textWithIcon,
         semanticLabel: 'Test semantic label',
       );
 
       expect(tab.icon, isNotNull);
       expect(tab.tooltip, equals('Test tooltip'));
       expect(tab.disabled, isTrue);
-      expect(tab.type, equals(AppTabType.textWithIcon));
+      expect(tab.type, equals(DSTabType.textWithIcon));
       expect(tab.semanticLabel, equals('Test semantic label'));
     });
   });
 
-  group('AppTabBadge', () {
+  group('DSTabBadge', () {
     test('creates count badge', () {
-      const badge = AppTabBadge(
+      const badge = DSTabBadge(
         tabId: 'test',
         count: 5,
-        type: AppTabBadgeType.count,
+        type: DSTabBadgeType.count,
       );
 
       expect(badge.tabId, equals('test'));
       expect(badge.count, equals(5));
-      expect(badge.type, equals(AppTabBadgeType.count));
+      expect(badge.type, equals(DSTabBadgeType.count));
       expect(badge.isVisible, isTrue);
       expect(badge.maxCount, equals(99));
     });
 
     test('creates text badge', () {
-      const badge = AppTabBadge(
+      const badge = DSTabBadge(
         tabId: 'test',
         text: 'NEW',
-        type: AppTabBadgeType.text,
+        type: DSTabBadgeType.text,
       );
 
       expect(badge.text, equals('NEW'));
-      expect(badge.type, equals(AppTabBadgeType.text));
+      expect(badge.type, equals(DSTabBadgeType.text));
     });
 
     test('creates dot badge', () {
-      const badge = AppTabBadge(
+      const badge = DSTabBadge(
         tabId: 'test',
-        type: AppTabBadgeType.dot,
+        type: DSTabBadgeType.dot,
       );
 
-      expect(badge.type, equals(AppTabBadgeType.dot));
+      expect(badge.type, equals(DSTabBadgeType.dot));
     });
   });
 
   group('Extensions', () {
-    group('AppTabsVariantExtension', () {
+    group('DSTabsVariantExtension', () {
       test('provides correct display names', () {
-        expect(AppTabsVariant.fixed.displayName, equals('Fixed'));
-        expect(AppTabsVariant.scrollable.displayName, equals('Scrollable'));
-        expect(AppTabsVariant.withBadges.displayName, equals('With Badges'));
+        expect(DSTabsVariant.fixed.displayName, equals('Fixed'));
+        expect(DSTabsVariant.scrollable.displayName, equals('Scrollable'));
+        expect(DSTabsVariant.withBadges.displayName, equals('With Badges'));
       });
 
       test('provides correct descriptions', () {
-        expect(AppTabsVariant.fixed.description,
+        expect(DSTabsVariant.fixed.description,
             equals('Pestañas de ancho fijo distribuidas uniformemente'));
-        expect(AppTabsVariant.scrollable.description,
+        expect(DSTabsVariant.scrollable.description,
             equals('Pestañas desplazables horizontalmente'));
-        expect(AppTabsVariant.withBadges.description,
+        expect(DSTabsVariant.withBadges.description,
             equals('Pestañas con notificaciones y badges'));
       });
 
       test('identifies scrollable variants correctly', () {
-        expect(AppTabsVariant.fixed.isScrollable, isFalse);
-        expect(AppTabsVariant.scrollable.isScrollable, isTrue);
-        expect(AppTabsVariant.withBadges.isScrollable, isTrue);
+        expect(DSTabsVariant.fixed.isScrollable, isFalse);
+        expect(DSTabsVariant.scrollable.isScrollable, isTrue);
+        expect(DSTabsVariant.withBadges.isScrollable, isTrue);
       });
 
       test('identifies badge support correctly', () {
-        expect(AppTabsVariant.fixed.supportsBadges, isFalse);
-        expect(AppTabsVariant.scrollable.supportsBadges, isFalse);
-        expect(AppTabsVariant.withBadges.supportsBadges, isTrue);
+        expect(DSTabsVariant.fixed.supportsBadges, isFalse);
+        expect(DSTabsVariant.scrollable.supportsBadges, isFalse);
+        expect(DSTabsVariant.withBadges.supportsBadges, isTrue);
       });
 
       test('provides correct default alignment', () {
         expect(
-            AppTabsVariant.fixed.defaultAlignment, equals(TabAlignment.fill));
-        expect(AppTabsVariant.scrollable.defaultAlignment,
+            DSTabsVariant.fixed.defaultAlignment, equals(TabAlignment.fill));
+        expect(DSTabsVariant.scrollable.defaultAlignment,
             equals(TabAlignment.start));
-        expect(AppTabsVariant.withBadges.defaultAlignment,
+        expect(DSTabsVariant.withBadges.defaultAlignment,
             equals(TabAlignment.start));
       });
     });
 
-    group('AppTabsStateExtension', () {
+    group('DSTabsStateExtension', () {
       test('provides correct display names', () {
-        expect(AppTabsState.defaultState.displayName, equals('Default'));
-        expect(AppTabsState.hover.displayName, equals('Hover'));
-        expect(AppTabsState.pressed.displayName, equals('Pressed'));
-        expect(AppTabsState.focus.displayName, equals('Focus'));
-        expect(AppTabsState.selected.displayName, equals('Selected'));
-        expect(AppTabsState.disabled.displayName, equals('Disabled'));
-        expect(AppTabsState.loading.displayName, equals('Loading'));
-        expect(AppTabsState.skeleton.displayName, equals('Skeleton'));
+        expect(DSTabsState.defaultState.displayName, equals('Default'));
+        expect(DSTabsState.hover.displayName, equals('Hover'));
+        expect(DSTabsState.pressed.displayName, equals('Pressed'));
+        expect(DSTabsState.focus.displayName, equals('Focus'));
+        expect(DSTabsState.selected.displayName, equals('Selected'));
+        expect(DSTabsState.disabled.displayName, equals('Disabled'));
+        expect(DSTabsState.loading.displayName, equals('Loading'));
+        expect(DSTabsState.skeleton.displayName, equals('Skeleton'));
       });
 
       test('identifies interactive states correctly', () {
-        expect(AppTabsState.defaultState.isInteractive, isTrue);
-        expect(AppTabsState.hover.isInteractive, isTrue);
-        expect(AppTabsState.pressed.isInteractive, isTrue);
-        expect(AppTabsState.focus.isInteractive, isTrue);
-        expect(AppTabsState.selected.isInteractive, isTrue);
-        expect(AppTabsState.disabled.isInteractive, isFalse);
-        expect(AppTabsState.loading.isInteractive, isFalse);
-        expect(AppTabsState.skeleton.isInteractive, isFalse);
+        expect(DSTabsState.defaultState.isInteractive, isTrue);
+        expect(DSTabsState.hover.isInteractive, isTrue);
+        expect(DSTabsState.pressed.isInteractive, isTrue);
+        expect(DSTabsState.focus.isInteractive, isTrue);
+        expect(DSTabsState.selected.isInteractive, isTrue);
+        expect(DSTabsState.disabled.isInteractive, isFalse);
+        expect(DSTabsState.loading.isInteractive, isFalse);
+        expect(DSTabsState.skeleton.isInteractive, isFalse);
       });
 
       test('provides correct opacity values', () {
-        expect(AppTabsState.defaultState.opacity, equals(1.0));
-        expect(AppTabsState.hover.opacity, equals(1.0));
-        expect(AppTabsState.pressed.opacity, equals(1.0));
-        expect(AppTabsState.focus.opacity, equals(1.0));
-        expect(AppTabsState.selected.opacity, equals(1.0));
-        expect(AppTabsState.disabled.opacity, equals(0.6));
-        expect(AppTabsState.loading.opacity, equals(0.8));
-        expect(AppTabsState.skeleton.opacity, equals(0.3));
+        expect(DSTabsState.defaultState.opacity, equals(1.0));
+        expect(DSTabsState.hover.opacity, equals(1.0));
+        expect(DSTabsState.pressed.opacity, equals(1.0));
+        expect(DSTabsState.focus.opacity, equals(1.0));
+        expect(DSTabsState.selected.opacity, equals(1.0));
+        expect(DSTabsState.disabled.opacity, equals(0.6));
+        expect(DSTabsState.loading.opacity, equals(0.8));
+        expect(DSTabsState.skeleton.opacity, equals(0.3));
       });
 
       test('identifies loader and skeleton states correctly', () {
-        expect(AppTabsState.loading.showsLoader, isTrue);
-        expect(AppTabsState.skeleton.showsSkeleton, isTrue);
+        expect(DSTabsState.loading.showsLoader, isTrue);
+        expect(DSTabsState.skeleton.showsSkeleton, isTrue);
 
-        for (final state in AppTabsState.values) {
-          if (state != AppTabsState.loading) {
+        for (final state in DSTabsState.values) {
+          if (state != DSTabsState.loading) {
             expect(state.showsLoader, isFalse);
           }
-          if (state != AppTabsState.skeleton) {
+          if (state != DSTabsState.skeleton) {
             expect(state.showsSkeleton, isFalse);
           }
         }
       });
     });
 
-    group('AppTabTypeExtension', () {
+    group('DSTabTypeExtension', () {
       test('provides correct display names', () {
-        expect(AppTabType.text.displayName, equals('Text Only'));
-        expect(AppTabType.icon.displayName, equals('Icon Only'));
-        expect(AppTabType.textWithIcon.displayName, equals('Text with Icon'));
-        expect(AppTabType.custom.displayName, equals('Custom'));
+        expect(DSTabType.text.displayName, equals('Text Only'));
+        expect(DSTabType.icon.displayName, equals('Icon Only'));
+        expect(DSTabType.textWithIcon.displayName, equals('Text with Icon'));
+        expect(DSTabType.custom.displayName, equals('Custom'));
       });
 
       test('identifies text types correctly', () {
-        expect(AppTabType.text.hasText, isTrue);
-        expect(AppTabType.textWithIcon.hasText, isTrue);
-        expect(AppTabType.icon.hasText, isFalse);
-        expect(AppTabType.custom.hasText, isFalse);
+        expect(DSTabType.text.hasText, isTrue);
+        expect(DSTabType.textWithIcon.hasText, isTrue);
+        expect(DSTabType.icon.hasText, isFalse);
+        expect(DSTabType.custom.hasText, isFalse);
       });
 
       test('identifies icon types correctly', () {
-        expect(AppTabType.icon.hasIcon, isTrue);
-        expect(AppTabType.textWithIcon.hasIcon, isTrue);
-        expect(AppTabType.text.hasIcon, isFalse);
-        expect(AppTabType.custom.hasIcon, isFalse);
+        expect(DSTabType.icon.hasIcon, isTrue);
+        expect(DSTabType.textWithIcon.hasIcon, isTrue);
+        expect(DSTabType.text.hasIcon, isFalse);
+        expect(DSTabType.custom.hasIcon, isFalse);
       });
 
       test('identifies custom types correctly', () {
-        expect(AppTabType.custom.isCustom, isTrue);
-        expect(AppTabType.text.isCustom, isFalse);
-        expect(AppTabType.icon.isCustom, isFalse);
-        expect(AppTabType.textWithIcon.isCustom, isFalse);
+        expect(DSTabType.custom.isCustom, isTrue);
+        expect(DSTabType.text.isCustom, isFalse);
+        expect(DSTabType.icon.isCustom, isFalse);
+        expect(DSTabType.textWithIcon.isCustom, isFalse);
       });
     });
 
-    group('AppTabBadgeTypeExtension', () {
+    group('DSTabBadgeTypeExtension', () {
       test('provides correct display names', () {
-        expect(AppTabBadgeType.dot.displayName, equals('Dot'));
-        expect(AppTabBadgeType.count.displayName, equals('Count'));
-        expect(AppTabBadgeType.text.displayName, equals('Text'));
+        expect(DSTabBadgeType.dot.displayName, equals('Dot'));
+        expect(DSTabBadgeType.count.displayName, equals('Count'));
+        expect(DSTabBadgeType.text.displayName, equals('Text'));
       });
 
       test('identifies text showing types correctly', () {
-        expect(AppTabBadgeType.dot.showsText, isFalse);
-        expect(AppTabBadgeType.count.showsText, isTrue);
-        expect(AppTabBadgeType.text.showsText, isTrue);
+        expect(DSTabBadgeType.dot.showsText, isFalse);
+        expect(DSTabBadgeType.count.showsText, isTrue);
+        expect(DSTabBadgeType.text.showsText, isTrue);
       });
 
       test('identifies numeric types correctly', () {
-        expect(AppTabBadgeType.dot.isNumeric, isFalse);
-        expect(AppTabBadgeType.count.isNumeric, isTrue);
-        expect(AppTabBadgeType.text.isNumeric, isFalse);
+        expect(DSTabBadgeType.dot.isNumeric, isFalse);
+        expect(DSTabBadgeType.count.isNumeric, isTrue);
+        expect(DSTabBadgeType.text.isNumeric, isFalse);
       });
     });
 
-    group('AppTabBadgePositionExtension', () {
+    group('DSTabBadgePositionExtension', () {
       test('provides correct display names', () {
-        expect(AppTabBadgePosition.topRight.displayName, equals('Top Right'));
-        expect(AppTabBadgePosition.topLeft.displayName, equals('Top Left'));
-        expect(AppTabBadgePosition.bottomRight.displayName,
+        expect(DSTabBadgePosition.topRight.displayName, equals('Top Right'));
+        expect(DSTabBadgePosition.topLeft.displayName, equals('Top Left'));
+        expect(DSTabBadgePosition.bottomRight.displayName,
             equals('Bottom Right'));
         expect(
-            AppTabBadgePosition.bottomLeft.displayName, equals('Bottom Left'));
+            DSTabBadgePosition.bottomLeft.displayName, equals('Bottom Left'));
       });
 
       test('provides correct alignments', () {
         expect(
-            AppTabBadgePosition.topRight.alignment, equals(Alignment.topRight));
+            DSTabBadgePosition.topRight.alignment, equals(Alignment.topRight));
         expect(
-            AppTabBadgePosition.topLeft.alignment, equals(Alignment.topLeft));
-        expect(AppTabBadgePosition.bottomRight.alignment,
+            DSTabBadgePosition.topLeft.alignment, equals(Alignment.topLeft));
+        expect(DSTabBadgePosition.bottomRight.alignment,
             equals(Alignment.bottomRight));
-        expect(AppTabBadgePosition.bottomLeft.alignment,
+        expect(DSTabBadgePosition.bottomLeft.alignment,
             equals(Alignment.bottomLeft));
       });
 
       test('provides correct padding', () {
-        expect(AppTabBadgePosition.topRight.padding,
+        expect(DSTabBadgePosition.topRight.padding,
             equals(const EdgeInsets.only(top: 2, right: 2)));
-        expect(AppTabBadgePosition.topLeft.padding,
+        expect(DSTabBadgePosition.topLeft.padding,
             equals(const EdgeInsets.only(top: 2, left: 2)));
-        expect(AppTabBadgePosition.bottomRight.padding,
+        expect(DSTabBadgePosition.bottomRight.padding,
             equals(const EdgeInsets.only(bottom: 2, right: 2)));
-        expect(AppTabBadgePosition.bottomLeft.padding,
+        expect(DSTabBadgePosition.bottomLeft.padding,
             equals(const EdgeInsets.only(bottom: 2, left: 2)));
       });
     });

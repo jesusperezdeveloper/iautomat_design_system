@@ -4,57 +4,57 @@ import 'package:flutter/services.dart';
 
 import 'app_clipboard_share_config.dart';
 
-class AppClipboardShareA11yHelper {
-  static AppClipboardShareA11yHelper? _instance;
+class DSClipboardShareA11yHelper {
+  static DSClipboardShareA11yHelper? _instance;
 
-  AppClipboardShareA11yHelper._();
+  DSClipboardShareA11yHelper._();
 
-  factory AppClipboardShareA11yHelper() {
-    return _instance ??= AppClipboardShareA11yHelper._();
+  factory DSClipboardShareA11yHelper() {
+    return _instance ??= DSClipboardShareA11yHelper._();
   }
 
-  String getShareButtonLabel(AppClipboardShareConfig config) {
+  String getShareButtonLabel(DSClipboardShareConfig config) {
     final accessibility = config.accessibility!;
 
-    if (config.state == AppClipboardShareState.disabled) {
+    if (config.state == DSClipboardShareState.disabled) {
       return accessibility.disabledLabel;
     }
 
-    if (config.state == AppClipboardShareState.loading) {
+    if (config.state == DSClipboardShareState.loading) {
       return accessibility.loadingLabel;
     }
 
     return accessibility.shareLabel;
   }
 
-  String getShareButtonHint(AppClipboardShareConfig config) {
+  String getShareButtonHint(DSClipboardShareConfig config) {
     final accessibility = config.accessibility!;
 
-    if (config.state == AppClipboardShareState.disabled) {
+    if (config.state == DSClipboardShareState.disabled) {
       return accessibility.disabledLabel;
     }
 
     return accessibility.shareHint;
   }
 
-  String getCopyButtonLabel(AppClipboardShareConfig config) {
+  String getCopyButtonLabel(DSClipboardShareConfig config) {
     final accessibility = config.accessibility!;
 
-    if (config.state == AppClipboardShareState.disabled) {
+    if (config.state == DSClipboardShareState.disabled) {
       return accessibility.disabledLabel;
     }
 
-    if (config.state == AppClipboardShareState.loading) {
+    if (config.state == DSClipboardShareState.loading) {
       return accessibility.loadingLabel;
     }
 
     return accessibility.copyLabel;
   }
 
-  String getCopyButtonHint(AppClipboardShareConfig config) {
+  String getCopyButtonHint(DSClipboardShareConfig config) {
     final accessibility = config.accessibility!;
 
-    if (config.state == AppClipboardShareState.disabled) {
+    if (config.state == DSClipboardShareState.disabled) {
       return accessibility.disabledLabel;
     }
 
@@ -83,20 +83,20 @@ class AppClipboardShareA11yHelper {
     SemanticsService.announce('Error al copiar: $error', TextDirection.ltr);
   }
 
-  void announceStateChange(AppClipboardShareState state) {
+  void announceStateChange(DSClipboardShareState state) {
     String message;
 
     switch (state) {
-      case AppClipboardShareState.loading:
+      case DSClipboardShareState.loading:
         message = 'Procesando';
         break;
-      case AppClipboardShareState.disabled:
+      case DSClipboardShareState.disabled:
         message = 'No disponible';
         break;
-      case AppClipboardShareState.selected:
+      case DSClipboardShareState.selected:
         message = 'Seleccionado';
         break;
-      case AppClipboardShareState.focus:
+      case DSClipboardShareState.focus:
         message = 'Enfocado';
         break;
       default:
@@ -106,7 +106,7 @@ class AppClipboardShareA11yHelper {
     SemanticsService.announce(message, TextDirection.ltr);
   }
 
-  void announceFileSelection(List<AppShareFile> files) {
+  void announceFileSelection(List<DSShareFile> files) {
     final count = files.length;
     final message = count == 1
         ? 'Un archivo seleccionado'
@@ -129,7 +129,7 @@ class AppClipboardShareA11yHelper {
   }
 
   SemanticsProperties getShareButtonSemantics(
-    AppClipboardShareConfig config,
+    DSClipboardShareConfig config,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
   ) {
@@ -137,7 +137,7 @@ class AppClipboardShareA11yHelper {
 
     return SemanticsProperties(
       button: accessibility.focusable,
-      enabled: config.state != AppClipboardShareState.disabled,
+      enabled: config.state != DSClipboardShareState.disabled,
       label: getShareButtonLabel(config),
       hint: getShareButtonHint(config),
       onTap: onTap,
@@ -146,14 +146,14 @@ class AppClipboardShareA11yHelper {
   }
 
   SemanticsProperties getCopyButtonSemantics(
-    AppClipboardShareConfig config,
+    DSClipboardShareConfig config,
     VoidCallback? onTap,
   ) {
     final accessibility = config.accessibility!;
 
     return SemanticsProperties(
       button: accessibility.focusable,
-      enabled: config.state != AppClipboardShareState.disabled,
+      enabled: config.state != DSClipboardShareState.disabled,
       label: getCopyButtonLabel(config),
       hint: getCopyButtonHint(config),
       onTap: onTap,
@@ -162,7 +162,7 @@ class AppClipboardShareA11yHelper {
 
   Widget wrapWithSemantics(
     Widget child,
-    AppClipboardShareConfig config,
+    DSClipboardShareConfig config,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
   ) {
@@ -202,7 +202,7 @@ class AppClipboardShareA11yHelper {
 
   FocusNode createFocusNode(String label) {
     return FocusNode(
-      debugLabel: 'AppClipboardShare_$label',
+      debugLabel: 'DSClipboardShare_$label',
       canRequestFocus: true,
     );
   }

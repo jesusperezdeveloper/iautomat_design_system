@@ -1,4 +1,4 @@
-// Exporta todos los archivos relacionados con AppAccordion
+// Exporta todos los archivos relacionados con DSAccordion
 
 export 'app_accordion.dart';
 export 'app_accordion_config.dart';

@@ -4,16 +4,16 @@ import 'package:flutter/services.dart';
 
 import 'app_back_to_top_config.dart';
 
-class AppBackToTopA11yHelper {
-  static AppBackToTopA11yHelper? _instance;
+class DSBackToTopA11yHelper {
+  static DSBackToTopA11yHelper? _instance;
 
-  AppBackToTopA11yHelper._();
+  DSBackToTopA11yHelper._();
 
-  factory AppBackToTopA11yHelper() {
-    return _instance ??= AppBackToTopA11yHelper._();
+  factory DSBackToTopA11yHelper() {
+    return _instance ??= DSBackToTopA11yHelper._();
   }
 
-  String getButtonLabel(AppBackToTopConfig config) {
+  String getButtonLabel(DSBackToTopConfig config) {
     final accessibility = config.accessibility!;
 
     if (accessibility.customLabel != null) {
@@ -21,16 +21,16 @@ class AppBackToTopA11yHelper {
     }
 
     switch (config.state) {
-      case AppBackToTopState.loading:
+      case DSBackToTopState.loading:
         return accessibility.loadingLabel;
-      case AppBackToTopState.disabled:
+      case DSBackToTopState.disabled:
         return accessibility.disabledLabel;
       default:
         return accessibility.label;
     }
   }
 
-  String getButtonHint(AppBackToTopConfig config) {
+  String getButtonHint(DSBackToTopConfig config) {
     final accessibility = config.accessibility!;
 
     if (accessibility.customHint != null) {
@@ -38,9 +38,9 @@ class AppBackToTopA11yHelper {
     }
 
     switch (config.state) {
-      case AppBackToTopState.loading:
+      case DSBackToTopState.loading:
         return 'Desplazándose al inicio de la página';
-      case AppBackToTopState.disabled:
+      case DSBackToTopState.disabled:
         return 'El botón no está disponible en este momento';
       default:
         return accessibility.hint;
@@ -82,26 +82,26 @@ class AppBackToTopA11yHelper {
     );
   }
 
-  void announceStateChange(AppBackToTopState state) {
+  void announceStateChange(DSBackToTopState state) {
     String message;
 
     switch (state) {
-      case AppBackToTopState.loading:
+      case DSBackToTopState.loading:
         message = 'Desplazándose';
         break;
-      case AppBackToTopState.disabled:
+      case DSBackToTopState.disabled:
         message = 'Botón no disponible';
         break;
-      case AppBackToTopState.hover:
+      case DSBackToTopState.hover:
         message = 'Botón resaltado';
         break;
-      case AppBackToTopState.focus:
+      case DSBackToTopState.focus:
         message = 'Botón enfocado';
         break;
-      case AppBackToTopState.selected:
+      case DSBackToTopState.selected:
         message = 'Botón seleccionado';
         break;
-      case AppBackToTopState.pressed:
+      case DSBackToTopState.pressed:
         message = 'Botón presionado';
         break;
       default:
@@ -111,32 +111,32 @@ class AppBackToTopA11yHelper {
     SemanticsService.announce(message, TextDirection.ltr);
   }
 
-  void announcePositionChange(AppBackToTopPosition position) {
+  void announcePositionChange(DSBackToTopPosition position) {
     String positionName;
 
     switch (position) {
-      case AppBackToTopPosition.bottomRight:
+      case DSBackToTopPosition.bottomRight:
         positionName = 'inferior derecha';
         break;
-      case AppBackToTopPosition.bottomLeft:
+      case DSBackToTopPosition.bottomLeft:
         positionName = 'inferior izquierda';
         break;
-      case AppBackToTopPosition.bottomCenter:
+      case DSBackToTopPosition.bottomCenter:
         positionName = 'inferior centro';
         break;
-      case AppBackToTopPosition.topRight:
+      case DSBackToTopPosition.topRight:
         positionName = 'superior derecha';
         break;
-      case AppBackToTopPosition.topLeft:
+      case DSBackToTopPosition.topLeft:
         positionName = 'superior izquierda';
         break;
-      case AppBackToTopPosition.topCenter:
+      case DSBackToTopPosition.topCenter:
         positionName = 'superior centro';
         break;
-      case AppBackToTopPosition.centerRight:
+      case DSBackToTopPosition.centerRight:
         positionName = 'centro derecha';
         break;
-      case AppBackToTopPosition.centerLeft:
+      case DSBackToTopPosition.centerLeft:
         positionName = 'centro izquierda';
         break;
     }
@@ -168,14 +168,14 @@ class AppBackToTopA11yHelper {
   }
 
   SemanticsProperties getButtonSemantics(
-    AppBackToTopConfig config,
+    DSBackToTopConfig config,
     VoidCallback? onPressed,
   ) {
     final accessibility = config.accessibility!;
 
     return SemanticsProperties(
       button: true,
-      enabled: config.state != AppBackToTopState.disabled,
+      enabled: config.state != DSBackToTopState.disabled,
       focusable: accessibility.focusable,
       label: getButtonLabel(config),
       hint: getButtonHint(config),
@@ -185,7 +185,7 @@ class AppBackToTopA11yHelper {
 
   Widget wrapWithSemantics(
     Widget child,
-    AppBackToTopConfig config,
+    DSBackToTopConfig config,
     VoidCallback? onPressed,
   ) {
     if (!config.accessibility!.enabled) {
@@ -224,7 +224,7 @@ class AppBackToTopA11yHelper {
 
   FocusNode createFocusNode(String label) {
     return FocusNode(
-      debugLabel: 'AppBackToTop_$label',
+      debugLabel: 'DSBackToTop_$label',
       canRequestFocus: true,
     );
   }
@@ -294,23 +294,23 @@ class AppBackToTopA11yHelper {
     );
   }
 
-  void announceScrollBehaviorChange(AppBackToTopScrollBehavior behavior) {
+  void announceScrollBehaviorChange(DSBackToTopScrollBehavior behavior) {
     String behaviorName;
 
     switch (behavior) {
-      case AppBackToTopScrollBehavior.smooth:
+      case DSBackToTopScrollBehavior.smooth:
         behaviorName = 'suave';
         break;
-      case AppBackToTopScrollBehavior.instant:
+      case DSBackToTopScrollBehavior.instant:
         behaviorName = 'instantáneo';
         break;
-      case AppBackToTopScrollBehavior.easeIn:
+      case DSBackToTopScrollBehavior.easeIn:
         behaviorName = 'aceleración gradual';
         break;
-      case AppBackToTopScrollBehavior.easeOut:
+      case DSBackToTopScrollBehavior.easeOut:
         behaviorName = 'desaceleración gradual';
         break;
-      case AppBackToTopScrollBehavior.easeInOut:
+      case DSBackToTopScrollBehavior.easeInOut:
         behaviorName = 'aceleración y desaceleración';
         break;
     }
@@ -366,8 +366,8 @@ class AppBackToTopA11yHelper {
     return contrast >= ratio;
   }
 
-  AppBackToTopConfig adjustForAccessibility(
-    AppBackToTopConfig config,
+  DSBackToTopConfig adjustForAccessibility(
+    DSBackToTopConfig config,
     BuildContext context,
   ) {
     final mediaQuery = MediaQuery.of(context);

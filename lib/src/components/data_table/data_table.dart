@@ -1,7 +1,7 @@
 /// Data table components barrel file
 ///
 /// Provides exports for:
-/// - AppDataTable widget with resizable, pinned, and inline-edit variants
+/// - DSDataTable widget with resizable, pinned, and inline-edit variants
 /// - Table configuration models
 /// - Table data structures
 /// - Table stories and examples

@@ -12,8 +12,8 @@ import 'package:flutter/material.dart';
 /// - Warning: Amarillo (#F59E0B) - para advertencias
 /// - Error: Rojo (#EF4444) - para errores
 /// - Info: Azul claro (#3B82F6) - para informaci�n
-class AppColors {
-  AppColors._();
+class DSColors {
+  DSColors._();
 
   // ==========================================================================
   // COLORES PRIMARIOS - Azul profesional de IAutomat

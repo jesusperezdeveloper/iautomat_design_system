@@ -3,17 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter/semantics.dart';
 import 'package:iautomat_design_system/src/components/product_card/app_product_card_config.dart';
 
-/// Helper de accesibilidad para AppProductCard
+/// Helper de accesibilidad para DSProductCard
 ///
 /// Maneja todos los aspectos de accesibilidad incluyendo:
 /// - Etiquetas semánticas para lectores de pantalla
 /// - Navegación por teclado
 /// - Soporte RTL
 /// - Anuncios de cambios de estado
-class AppProductCardA11yHelper {
-  final AppProductCardA11yConfig config;
+class DSProductCardA11yHelper {
+  final DSProductCardA11yConfig config;
 
-  AppProductCardA11yHelper({
+  DSProductCardA11yHelper({
     required this.config,
   });
 
@@ -21,9 +21,9 @@ class AppProductCardA11yHelper {
   Widget buildSemanticWrapper({
     required BuildContext context,
     required String title,
-    required AppProductPrice price,
-    AppDiscountChip? discountChip,
-    required AppProductCardState state,
+    required DSProductPrice price,
+    DSDiscountChip? discountChip,
+    required DSProductCardState state,
     required bool isRtl,
     required Widget child,
   }) {
@@ -41,12 +41,12 @@ class AppProductCardA11yHelper {
       label: semanticLabel,
       hint: semanticHint,
       button: state.isInteractive,
-      selected: state == AppProductCardState.selected,
-      enabled: state != AppProductCardState.disabled,
+      selected: state == DSProductCardState.selected,
+      enabled: state != DSProductCardState.disabled,
       focusable: state.isInteractive,
-      focused: state == AppProductCardState.focus,
+      focused: state == DSProductCardState.focus,
       child: ExcludeSemantics(
-        excluding: state == AppProductCardState.skeleton,
+        excluding: state == DSProductCardState.skeleton,
         child: child,
       ),
     );
@@ -55,9 +55,9 @@ class AppProductCardA11yHelper {
   /// Construye la etiqueta semántica
   String _buildSemanticLabel({
     required String title,
-    required AppProductPrice price,
-    AppDiscountChip? discountChip,
-    required AppProductCardState state,
+    required DSProductPrice price,
+    DSDiscountChip? discountChip,
+    required DSProductCardState state,
     required bool isRtl,
   }) {
     final buffer = StringBuffer();
@@ -91,7 +91,7 @@ class AppProductCardA11yHelper {
     }
 
     // Estado
-    if (state != AppProductCardState.defaultState) {
+    if (state != DSProductCardState.defaultState) {
       buffer.write('. ');
       buffer.write(_getStateDescription(state, isRtl));
     }
@@ -100,12 +100,12 @@ class AppProductCardA11yHelper {
   }
 
   /// Construye el hint semántico
-  String _buildSemanticHint(AppProductCardState state, bool isRtl) {
+  String _buildSemanticHint(DSProductCardState state, bool isRtl) {
     if (!state.isInteractive) {
       return isRtl ? 'غير متاح' : 'Not available';
     }
 
-    if (state == AppProductCardState.selected) {
+    if (state == DSProductCardState.selected) {
       return isRtl
           ? 'اضغط مرتين لإلغاء التحديد'
           : 'Double tap to deselect';
@@ -117,43 +117,43 @@ class AppProductCardA11yHelper {
   }
 
   /// Obtiene la descripción del estado para accesibilidad
-  String _getStateDescription(AppProductCardState state, bool isRtl) {
+  String _getStateDescription(DSProductCardState state, bool isRtl) {
     if (isRtl) {
       switch (state) {
-        case AppProductCardState.hover:
+        case DSProductCardState.hover:
           return 'مؤشر فوق البطاقة';
-        case AppProductCardState.pressed:
+        case DSProductCardState.pressed:
           return 'مضغوط';
-        case AppProductCardState.focus:
+        case DSProductCardState.focus:
           return 'مركز عليه';
-        case AppProductCardState.selected:
+        case DSProductCardState.selected:
           return 'محدد';
-        case AppProductCardState.disabled:
+        case DSProductCardState.disabled:
           return 'معطل';
-        case AppProductCardState.loading:
+        case DSProductCardState.loading:
           return 'جاري التحميل';
-        case AppProductCardState.skeleton:
+        case DSProductCardState.skeleton:
           return 'محتوى غير محمل';
-        case AppProductCardState.defaultState:
+        case DSProductCardState.defaultState:
           return '';
       }
     } else {
       switch (state) {
-        case AppProductCardState.hover:
+        case DSProductCardState.hover:
           return 'Hovered';
-        case AppProductCardState.pressed:
+        case DSProductCardState.pressed:
           return 'Pressed';
-        case AppProductCardState.focus:
+        case DSProductCardState.focus:
           return 'Focused';
-        case AppProductCardState.selected:
+        case DSProductCardState.selected:
           return 'Selected';
-        case AppProductCardState.disabled:
+        case DSProductCardState.disabled:
           return 'Disabled';
-        case AppProductCardState.loading:
+        case DSProductCardState.loading:
           return 'Loading';
-        case AppProductCardState.skeleton:
+        case DSProductCardState.skeleton:
           return 'Content not loaded';
-        case AppProductCardState.defaultState:
+        case DSProductCardState.defaultState:
           return '';
       }
     }
@@ -189,8 +189,8 @@ class AppProductCardA11yHelper {
   }
 
   /// Anuncia cambios de estado
-  void announceStateChange(AppProductCardState state) {
-    if (!config.announceSelection && state == AppProductCardState.selected) {
+  void announceStateChange(DSProductCardState state) {
+    if (!config.announceSelection && state == DSProductCardState.selected) {
       return;
     }
 
@@ -204,15 +204,15 @@ class AppProductCardA11yHelper {
   }
 
   /// Obtiene el mensaje de anuncio para un estado
-  String _getStateAnnouncementMessage(AppProductCardState state) {
+  String _getStateAnnouncementMessage(DSProductCardState state) {
     switch (state) {
-      case AppProductCardState.selected:
+      case DSProductCardState.selected:
         return 'Producto seleccionado';
-      case AppProductCardState.focus:
+      case DSProductCardState.focus:
         return 'Producto enfocado. Presione Enter para seleccionar';
-      case AppProductCardState.disabled:
+      case DSProductCardState.disabled:
         return 'Producto no disponible';
-      case AppProductCardState.loading:
+      case DSProductCardState.loading:
         return 'Cargando información del producto';
       default:
         return '';
@@ -220,7 +220,7 @@ class AppProductCardA11yHelper {
   }
 
   /// Anuncia cambios de precio
-  void announcePriceChange(AppProductPrice newPrice) {
+  void announcePriceChange(DSProductPrice newPrice) {
     if (!config.announcePrice) return;
 
     final message = 'Precio actualizado: ${newPrice.formatPrice()}';
@@ -232,7 +232,7 @@ class AppProductCardA11yHelper {
   }
 
   /// Anuncia cambios de descuento
-  void announceDiscountChange(AppDiscountChip? discountChip) {
+  void announceDiscountChange(DSDiscountChip? discountChip) {
     if (!config.announceDiscount || discountChip == null) return;
 
     final message = 'Descuento aplicado: ${discountChip.text}';
@@ -309,7 +309,7 @@ class AppProductCardA11yHelper {
 
   /// Genera descripción de precio para lectores de pantalla
   String generatePriceDescription(
-    AppProductPrice price, {
+    DSProductPrice price, {
     required bool includeDiscount,
     bool isRtl = false,
   }) {
@@ -378,10 +378,10 @@ class AppProductCardA11yHelper {
   /// Genera descripción completa del producto para accesibilidad
   String generateFullProductDescription({
     required String title,
-    required AppProductPrice price,
-    AppDiscountChip? discountChip,
+    required DSProductPrice price,
+    DSDiscountChip? discountChip,
     String? additionalInfo,
-    required AppProductCardState state,
+    required DSProductCardState state,
     bool isRtl = false,
   }) {
     final buffer = StringBuffer();

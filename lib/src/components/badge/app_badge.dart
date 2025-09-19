@@ -3,24 +3,24 @@ import 'package:flutter/services.dart';
 
 import 'badge_config.dart';
 
-class AppBadge extends StatefulWidget {
-  final AppBadgeVariant variant;
-  final AppBadgeState state;
-  final AppBadgeSize size;
-  final AppBadgePosition position;
-  final AppBadgeShape shape;
+class DSBadge extends StatefulWidget {
+  final DSBadgeVariant variant;
+  final DSBadgeState state;
+  final DSBadgeSize size;
+  final DSBadgePosition position;
+  final DSBadgeShape shape;
   final String? label;
   final int? value;
-  final AppBadgeStatus? status;
+  final DSBadgeStatus? status;
   final Color? color;
   final Color? backgroundColor;
   final Color? textColor;
   final Widget? child;
   final IconData? icon;
-  final AppBadgeStyle? style;
-  final AppBadgeInteraction? interaction;
-  final AppBadgeAccessibility? accessibility;
-  final AppBadgeAnimation? animation;
+  final DSBadgeStyle? style;
+  final DSBadgeInteraction? interaction;
+  final DSBadgeAccessibility? accessibility;
+  final DSBadgeAnimation? animation;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
   final VoidCallback? onHover;
@@ -33,13 +33,13 @@ class AppBadge extends StatefulWidget {
   final bool showZero;
   final int maxValue;
 
-  const AppBadge({
+  const DSBadge({
     super.key,
-    this.variant = AppBadgeVariant.dot,
-    this.state = AppBadgeState.defaultState,
-    this.size = AppBadgeSize.medium,
-    this.position = AppBadgePosition.topRight,
-    this.shape = AppBadgeShape.circle,
+    this.variant = DSBadgeVariant.dot,
+    this.state = DSBadgeState.defaultState,
+    this.size = DSBadgeSize.medium,
+    this.position = DSBadgePosition.topRight,
+    this.shape = DSBadgeShape.circle,
     this.label,
     this.value,
     this.status,
@@ -65,12 +65,12 @@ class AppBadge extends StatefulWidget {
     this.maxValue = 99,
   });
 
-  const AppBadge.dot({
+  const DSBadge.dot({
     super.key,
-    this.state = AppBadgeState.defaultState,
-    this.size = AppBadgeSize.medium,
-    this.position = AppBadgePosition.topRight,
-    this.shape = AppBadgeShape.circle,
+    this.state = DSBadgeState.defaultState,
+    this.size = DSBadgeSize.medium,
+    this.position = DSBadgePosition.topRight,
+    this.shape = DSBadgeShape.circle,
     this.color,
     this.backgroundColor,
     this.child,
@@ -87,7 +87,7 @@ class AppBadge extends StatefulWidget {
     this.loading = false,
     this.skeleton = false,
     this.visible = true,
-  })  : variant = AppBadgeVariant.dot,
+  })  : variant = DSBadgeVariant.dot,
         label = null,
         value = null,
         status = null,
@@ -96,12 +96,12 @@ class AppBadge extends StatefulWidget {
         showZero = false,
         maxValue = 99;
 
-  const AppBadge.counter({
+  const DSBadge.counter({
     super.key,
-    this.state = AppBadgeState.defaultState,
-    this.size = AppBadgeSize.medium,
-    this.position = AppBadgePosition.topRight,
-    this.shape = AppBadgeShape.circle,
+    this.state = DSBadgeState.defaultState,
+    this.size = DSBadgeSize.medium,
+    this.position = DSBadgePosition.topRight,
+    this.shape = DSBadgeShape.circle,
     this.value,
     this.color,
     this.backgroundColor,
@@ -122,17 +122,17 @@ class AppBadge extends StatefulWidget {
     this.visible = true,
     this.showZero = false,
     this.maxValue = 99,
-  })  : variant = AppBadgeVariant.counter,
+  })  : variant = DSBadgeVariant.counter,
         label = null,
         status = null,
         icon = null;
 
-  const AppBadge.status({
+  const DSBadge.status({
     super.key,
-    this.state = AppBadgeState.defaultState,
-    this.size = AppBadgeSize.medium,
-    this.position = AppBadgePosition.topRight,
-    this.shape = AppBadgeShape.circle,
+    this.state = DSBadgeState.defaultState,
+    this.size = DSBadgeSize.medium,
+    this.position = DSBadgePosition.topRight,
+    this.shape = DSBadgeShape.circle,
     this.label,
     this.status,
     this.color,
@@ -153,16 +153,16 @@ class AppBadge extends StatefulWidget {
     this.loading = false,
     this.skeleton = false,
     this.visible = true,
-  })  : variant = AppBadgeVariant.status,
+  })  : variant = DSBadgeVariant.status,
         value = null,
         showZero = false,
         maxValue = 99;
 
   @override
-  State<AppBadge> createState() => _AppBadgeState();
+  State<DSBadge> createState() => _DSBadgeState();
 }
 
-class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
+class _DSBadgeState extends State<DSBadge> with TickerProviderStateMixin {
   late final AnimationController _animationController;
   late final AnimationController _pulseController;
   late final Animation<double> _fadeAnimation;
@@ -171,7 +171,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
   late final Animation<double> _bounceAnimation;
   late final Animation<double> _pulseAnimation;
 
-  AppBadgeState _currentState = AppBadgeState.defaultState;
+  DSBadgeState _currentState = DSBadgeState.defaultState;
   final FocusNode _focusNode = FocusNode();
   bool _isHovered = false;
   bool _isPressed = false;
@@ -186,7 +186,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
   }
 
   void _setupAnimations() {
-    final animation = widget.animation ?? const AppBadgeAnimation();
+    final animation = widget.animation ?? const DSBadgeAnimation();
 
     _animationController = AnimationController(
       duration: animation.duration,
@@ -260,22 +260,22 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
   }
 
   void _updateState() {
-    AppBadgeState newState = widget.state;
+    DSBadgeState newState = widget.state;
 
-    if (!widget.enabled || widget.state == AppBadgeState.disabled) {
-      newState = AppBadgeState.disabled;
-    } else if (widget.loading || widget.state == AppBadgeState.loading) {
-      newState = AppBadgeState.loading;
-    } else if (widget.skeleton || widget.state == AppBadgeState.skeleton) {
-      newState = AppBadgeState.skeleton;
+    if (!widget.enabled || widget.state == DSBadgeState.disabled) {
+      newState = DSBadgeState.disabled;
+    } else if (widget.loading || widget.state == DSBadgeState.loading) {
+      newState = DSBadgeState.loading;
+    } else if (widget.skeleton || widget.state == DSBadgeState.skeleton) {
+      newState = DSBadgeState.skeleton;
     } else if (_isPressed) {
-      newState = AppBadgeState.pressed;
+      newState = DSBadgeState.pressed;
     } else if (_isFocused) {
-      newState = AppBadgeState.focus;
+      newState = DSBadgeState.focus;
     } else if (_isHovered) {
-      newState = AppBadgeState.hover;
-    } else if (widget.state == AppBadgeState.selected) {
-      newState = AppBadgeState.selected;
+      newState = DSBadgeState.hover;
+    } else if (widget.state == DSBadgeState.selected) {
+      newState = DSBadgeState.selected;
     }
 
     if (_currentState != newState) {
@@ -356,7 +356,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
   bool get _isInteractive => _canInteract;
 
   @override
-  void didUpdateWidget(covariant AppBadge oldWidget) {
+  void didUpdateWidget(covariant DSBadge oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.state != widget.state ||
@@ -366,8 +366,8 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
       _updateState();
     }
 
-    final newAnimation = widget.animation ?? const AppBadgeAnimation();
-    final oldAnimation = oldWidget.animation ?? const AppBadgeAnimation();
+    final newAnimation = widget.animation ?? const DSBadgeAnimation();
+    final oldAnimation = oldWidget.animation ?? const DSBadgeAnimation();
 
     if (newAnimation.duration != oldAnimation.duration) {
       _animationController.duration = newAnimation.duration;
@@ -407,7 +407,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
       return widget.child ?? const SizedBox.shrink();
     }
 
-    final config = AppBadgeConfig(
+    final config = DSBadgeConfig(
       variant: widget.variant,
       state: _currentState,
       size: widget.size,
@@ -445,7 +445,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
     return _buildBadgeWithChild(context, config);
   }
 
-  Widget _buildStandaloneBadge(BuildContext context, AppBadgeConfig config) {
+  Widget _buildStandaloneBadge(BuildContext context, DSBadgeConfig config) {
     Widget badgeWidget = _buildBadgeContent(context, config);
 
     if (widget.animation?.enabled == true) {
@@ -479,7 +479,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
     return badgeWidget;
   }
 
-  Widget _buildBadgeWithChild(BuildContext context, AppBadgeConfig config) {
+  Widget _buildBadgeWithChild(BuildContext context, DSBadgeConfig config) {
     Widget badgeWidget = _buildBadgeContent(context, config);
 
     if (widget.animation?.enabled == true) {
@@ -491,20 +491,20 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
       children: [
         widget.child!,
         Positioned(
-          top: config.position == AppBadgePosition.topLeft ||
-                  config.position == AppBadgePosition.topRight
+          top: config.position == DSBadgePosition.topLeft ||
+                  config.position == DSBadgePosition.topRight
               ? 0
               : null,
-          bottom: config.position == AppBadgePosition.bottomLeft ||
-                  config.position == AppBadgePosition.bottomRight
+          bottom: config.position == DSBadgePosition.bottomLeft ||
+                  config.position == DSBadgePosition.bottomRight
               ? 0
               : null,
-          left: config.position == AppBadgePosition.topLeft ||
-                  config.position == AppBadgePosition.bottomLeft
+          left: config.position == DSBadgePosition.topLeft ||
+                  config.position == DSBadgePosition.bottomLeft
               ? 0
               : null,
-          right: config.position == AppBadgePosition.topRight ||
-                  config.position == AppBadgePosition.bottomRight
+          right: config.position == DSBadgePosition.topRight ||
+                  config.position == DSBadgePosition.bottomRight
               ? 0
               : null,
           child: Transform.translate(
@@ -542,7 +542,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
     return result;
   }
 
-  Widget _buildBadgeContent(BuildContext context, AppBadgeConfig config) {
+  Widget _buildBadgeContent(BuildContext context, DSBadgeConfig config) {
     final theme = Theme.of(context);
     final effectiveStyle = _getEffectiveStyle(theme, config, _currentState);
 
@@ -553,13 +553,13 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
     Widget content;
 
     switch (config.variant) {
-      case AppBadgeVariant.dot:
+      case DSBadgeVariant.dot:
         content = _buildDotBadge(context, config, effectiveStyle);
         break;
-      case AppBadgeVariant.counter:
+      case DSBadgeVariant.counter:
         content = _buildCounterBadge(context, config, effectiveStyle);
         break;
-      case AppBadgeVariant.status:
+      case DSBadgeVariant.status:
         content = _buildStatusBadge(context, config, effectiveStyle);
         break;
     }
@@ -568,7 +568,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
   }
 
   Widget _buildDotBadge(
-      BuildContext context, AppBadgeConfig config, AppBadgeStyle style) {
+      BuildContext context, DSBadgeConfig config, DSBadgeStyle style) {
     final size = config.size.dotSize;
 
     return Container(
@@ -598,7 +598,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
   }
 
   Widget _buildCounterBadge(
-      BuildContext context, AppBadgeConfig config, AppBadgeStyle style) {
+      BuildContext context, DSBadgeConfig config, DSBadgeStyle style) {
     if (!config.shouldShowValue) {
       return const SizedBox.shrink();
     }
@@ -642,7 +642,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
   }
 
   Widget _buildStatusBadge(
-      BuildContext context, AppBadgeConfig config, AppBadgeStyle style) {
+      BuildContext context, DSBadgeConfig config, DSBadgeStyle style) {
     final minSize = config.size.statusSize;
     final hasLabel = config.hasLabel;
     final hasStatus = config.hasStatus;
@@ -726,7 +726,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
   }
 
   Widget _buildSkeletonBadge(
-      BuildContext context, AppBadgeStyle style, AppBadgeConfig config) {
+      BuildContext context, DSBadgeStyle style, DSBadgeConfig config) {
     final theme = Theme.of(context);
     final shimmerColor = theme.colorScheme.surfaceContainerHighest;
     final size = config.variant.isDot
@@ -745,23 +745,23 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
     );
   }
 
-  AppBadgeStyle _getEffectiveStyle(
-      ThemeData theme, AppBadgeConfig config, AppBadgeState state) {
+  DSBadgeStyle _getEffectiveStyle(
+      ThemeData theme, DSBadgeConfig config, DSBadgeState state) {
     final colorScheme = theme.colorScheme;
     final effectiveBackgroundColor =
         config.getEffectiveBackgroundColor(colorScheme);
     final effectiveTextColor = config.getEffectiveTextColor(colorScheme);
 
-    final baseStyle = AppBadgeStyle(
+    final baseStyle = DSBadgeStyle(
       backgroundColor: effectiveBackgroundColor,
       foregroundColor: effectiveTextColor,
       borderColor: colorScheme.outline,
       shadowColor: colorScheme.shadow,
       overlayColor: colorScheme.onSurface,
-      borderWidth: AppBadgeConstants.defaultBorderWidth,
-      elevation: AppBadgeConstants.defaultElevation,
+      borderWidth: DSBadgeConstants.defaultBorderWidth,
+      elevation: DSBadgeConstants.defaultElevation,
       padding: config.size.padding,
-      margin: AppBadgeConstants.defaultMargin,
+      margin: DSBadgeConstants.defaultMargin,
       constraints: _getConstraintsForVariant(config.variant),
       textStyle: theme.textTheme.labelSmall?.copyWith(
         fontSize: config.size.fontSize,
@@ -782,7 +782,7 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
               : config.size.statusSize,
     );
 
-    final customStyle = config.style ?? const AppBadgeStyle();
+    final customStyle = config.style ?? const DSBadgeStyle();
     final mergedStyle = baseStyle.copyWith(
       backgroundColor: customStyle.backgroundColor,
       foregroundColor: customStyle.foregroundColor,
@@ -807,19 +807,19 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
     return mergedStyle.copyWithState(state);
   }
 
-  BoxConstraints _getConstraintsForVariant(AppBadgeVariant variant) {
+  BoxConstraints _getConstraintsForVariant(DSBadgeVariant variant) {
     switch (variant) {
-      case AppBadgeVariant.dot:
-        return AppBadgeConstants.dotConstraints;
-      case AppBadgeVariant.counter:
-        return AppBadgeConstants.counterConstraints;
-      case AppBadgeVariant.status:
-        return AppBadgeConstants.statusConstraints;
+      case DSBadgeVariant.dot:
+        return DSBadgeConstants.dotConstraints;
+      case DSBadgeVariant.counter:
+        return DSBadgeConstants.counterConstraints;
+      case DSBadgeVariant.status:
+        return DSBadgeConstants.statusConstraints;
     }
   }
 
   Widget _wrapWithAnimation(Widget child) {
-    final animationType = widget.animation?.type ?? AppBadgeAnimationType.fade;
+    final animationType = widget.animation?.type ?? DSBadgeAnimationType.fade;
     final isPulse = widget.animation?.pulse ?? false;
 
     Widget animatedChild = child;
@@ -832,38 +832,38 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
     }
 
     switch (animationType) {
-      case AppBadgeAnimationType.fade:
+      case DSBadgeAnimationType.fade:
         return FadeTransition(
           opacity: _fadeAnimation,
           child: animatedChild,
         );
-      case AppBadgeAnimationType.slide:
+      case DSBadgeAnimationType.slide:
         return SlideTransition(
           position: _slideAnimation,
           child: animatedChild,
         );
-      case AppBadgeAnimationType.scale:
+      case DSBadgeAnimationType.scale:
         return ScaleTransition(
           scale: _scaleAnimation,
           child: animatedChild,
         );
-      case AppBadgeAnimationType.bounce:
+      case DSBadgeAnimationType.bounce:
         return ScaleTransition(
           scale: _bounceAnimation,
           child: animatedChild,
         );
-      case AppBadgeAnimationType.pulse:
+      case DSBadgeAnimationType.pulse:
         return ScaleTransition(
           scale: _pulseAnimation,
           child: child,
         );
-      case AppBadgeAnimationType.none:
+      case DSBadgeAnimationType.none:
         return animatedChild;
     }
   }
 
   Widget _wrapWithInteraction(
-      Widget child, AppBadgeConfig config, AppBadgeStyle style) {
+      Widget child, DSBadgeConfig config, DSBadgeStyle style) {
     if (!_isInteractive) {
       return child;
     }
@@ -905,16 +905,16 @@ class _AppBadgeState extends State<AppBadge> with TickerProviderStateMixin {
     );
   }
 
-  String _getSemanticLabel(AppBadgeConfig config) {
+  String _getSemanticLabel(DSBadgeConfig config) {
     switch (config.variant) {
-      case AppBadgeVariant.dot:
+      case DSBadgeVariant.dot:
         return 'Indicador';
-      case AppBadgeVariant.counter:
+      case DSBadgeVariant.counter:
         if (config.hasValue && config.shouldShowValue) {
           return 'Contador: ${config.displayValue}';
         }
         return 'Contador';
-      case AppBadgeVariant.status:
+      case DSBadgeVariant.status:
         if (config.hasLabel) {
           return config.label!;
         }

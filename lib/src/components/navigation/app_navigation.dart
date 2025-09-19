@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import '../../utils/responsive.dart';
 import 'app_navigation_config.dart';
 
-class AppNavigation extends StatefulWidget {
-  final AppNavigationComponentConfig config;
-  final List<AppNavigationDestination>? destinations;
+class DSNavigation extends StatefulWidget {
+  final DSNavigationComponentConfig config;
+  final List<DSNavigationDestination>? destinations;
   final int? currentIndex;
   final ValueChanged<int>? onDestinationSelected;
-  final List<AppNavigationBadge>? badges;
+  final List<DSNavigationBadge>? badges;
   final Widget? header;
   final Widget? footer;
   final EdgeInsetsGeometry? contentPadding;
@@ -19,9 +19,9 @@ class AppNavigation extends StatefulWidget {
   final Color? shadowColor;
   final double? elevation;
 
-  const AppNavigation({
+  const DSNavigation({
     super.key,
-    this.config = const AppNavigationComponentConfig(),
+    this.config = const DSNavigationComponentConfig(),
     this.destinations,
     this.currentIndex,
     this.onDestinationSelected,
@@ -38,10 +38,10 @@ class AppNavigation extends StatefulWidget {
   });
 
   @override
-  State<AppNavigation> createState() => _AppNavigationState();
+  State<DSNavigation> createState() => _DSNavigationState();
 }
 
-class _AppNavigationState extends State<AppNavigation>
+class _DSNavigationState extends State<DSNavigation>
     with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _selectionAnimationController;
@@ -62,7 +62,7 @@ class _AppNavigationState extends State<AppNavigation>
   }
 
   @override
-  void didUpdateWidget(AppNavigation oldWidget) {
+  void didUpdateWidget(DSNavigation oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.config.state != widget.config.state) {
@@ -123,10 +123,10 @@ class _AppNavigationState extends State<AppNavigation>
 
   void _handleInitialState() {
     switch (widget.config.state) {
-      case AppNavigationState.loading:
+      case DSNavigationState.loading:
         _setLoadingState();
         break;
-      case AppNavigationState.skeleton:
+      case DSNavigationState.skeleton:
         _stateAnimationController.forward();
         break;
       default:
@@ -137,16 +137,16 @@ class _AppNavigationState extends State<AppNavigation>
 
   void _handleStateChange() {
     switch (widget.config.state) {
-      case AppNavigationState.loading:
+      case DSNavigationState.loading:
         _setLoadingState();
         break;
-      case AppNavigationState.skeleton:
+      case DSNavigationState.skeleton:
         setState(() {
           _isLoading = false;
         });
         _stateAnimationController.forward();
         break;
-      case AppNavigationState.disabled:
+      case DSNavigationState.disabled:
         setState(() {
           _isLoading = false;
         });
@@ -210,18 +210,18 @@ class _AppNavigationState extends State<AppNavigation>
       return _buildLoadingNavigation(context, theme);
     }
 
-    if (widget.config.state == AppNavigationState.skeleton) {
+    if (widget.config.state == DSNavigationState.skeleton) {
       return _buildSkeletonNavigation(context, theme);
     }
 
     switch (widget.config.variant) {
-      case AppNavigationVariant.bottomBar:
+      case DSNavigationVariant.bottomBar:
         return _buildBottomNavigation(context, theme, isRtl);
-      case AppNavigationVariant.rail:
+      case DSNavigationVariant.rail:
         return _buildNavigationRail(context, theme, isRtl);
-      case AppNavigationVariant.drawer:
+      case DSNavigationVariant.drawer:
         return _buildNavigationDrawer(context, theme, isRtl);
-      case AppNavigationVariant.permanentDrawer:
+      case DSNavigationVariant.permanentDrawer:
         return _buildPermanentDrawer(context, theme, isRtl);
     }
   }
@@ -366,7 +366,7 @@ class _AppNavigationState extends State<AppNavigation>
   Widget _buildDrawerItem(
     BuildContext context,
     ThemeData theme,
-    AppNavigationDestination destination,
+    DSNavigationDestination destination,
     int index,
   ) {
     final isSelected = index == _currentIndex;
@@ -408,7 +408,7 @@ class _AppNavigationState extends State<AppNavigation>
 
   Widget _buildLoadingNavigation(BuildContext context, ThemeData theme) {
     switch (widget.config.variant) {
-      case AppNavigationVariant.bottomBar:
+      case DSNavigationVariant.bottomBar:
         return Container(
           height:
               widget.height ?? widget.config.spacing?.bottomBarHeight ?? 80.0,
@@ -419,7 +419,7 @@ class _AppNavigationState extends State<AppNavigation>
             ),
           ),
         );
-      case AppNavigationVariant.rail:
+      case DSNavigationVariant.rail:
         return Container(
           width: widget.width ?? widget.config.spacing?.railWidth ?? 72.0,
           color: _getBackgroundColor(theme),
@@ -429,8 +429,8 @@ class _AppNavigationState extends State<AppNavigation>
             ),
           ),
         );
-      case AppNavigationVariant.drawer:
-      case AppNavigationVariant.permanentDrawer:
+      case DSNavigationVariant.drawer:
+      case DSNavigationVariant.permanentDrawer:
         return Container(
           width: widget.width ?? widget.config.spacing?.drawerWidth ?? 256.0,
           color: _getBackgroundColor(theme),
@@ -459,7 +459,7 @@ class _AppNavigationState extends State<AppNavigation>
         : 4;
 
     switch (widget.config.variant) {
-      case AppNavigationVariant.bottomBar:
+      case DSNavigationVariant.bottomBar:
         return Container(
           height:
               widget.height ?? widget.config.spacing?.bottomBarHeight ?? 80.0,
@@ -492,7 +492,7 @@ class _AppNavigationState extends State<AppNavigation>
             }),
           ),
         );
-      case AppNavigationVariant.rail:
+      case DSNavigationVariant.rail:
         return Container(
           width: widget.width ?? widget.config.spacing?.railWidth ?? 72.0,
           color: _getBackgroundColor(theme),
@@ -512,8 +512,8 @@ class _AppNavigationState extends State<AppNavigation>
             }),
           ),
         );
-      case AppNavigationVariant.drawer:
-      case AppNavigationVariant.permanentDrawer:
+      case DSNavigationVariant.drawer:
+      case DSNavigationVariant.permanentDrawer:
         return Container(
           width: widget.width ?? widget.config.spacing?.drawerWidth ?? 256.0,
           color: _getBackgroundColor(theme),
@@ -554,7 +554,7 @@ class _AppNavigationState extends State<AppNavigation>
   }
 
   Widget _buildIconWithBadge(
-    AppNavigationDestination destination,
+    DSNavigationDestination destination,
     int index,
     bool isSelected,
   ) {
@@ -576,16 +576,16 @@ class _AppNavigationState extends State<AppNavigation>
     );
   }
 
-  Widget? _buildBadgeContent(AppNavigationBadge badge) {
+  Widget? _buildBadgeContent(DSNavigationBadge badge) {
     switch (badge.type) {
-      case AppNavigationBadgeType.dot:
+      case DSNavigationBadgeType.dot:
         return null; // Badge sin contenido muestra un punto
-      case AppNavigationBadgeType.count:
+      case DSNavigationBadgeType.count:
         final count = badge.count;
         final maxCount = badge.maxCount;
         final displayText = count > maxCount ? '$maxCount+' : count.toString();
         return Text(displayText);
-      case AppNavigationBadgeType.text:
+      case DSNavigationBadgeType.text:
         return Text(badge.text ?? '');
     }
   }
@@ -622,13 +622,13 @@ class _AppNavigationState extends State<AppNavigation>
     }
   }
 
-  List<AppNavigationDestination> _getDestinations() {
+  List<DSNavigationDestination> _getDestinations() {
     return widget.destinations ?? widget.config.destinations;
   }
 
-  AppNavigationBadge? _getBadgeForDestination(String destinationId) {
+  DSNavigationBadge? _getBadgeForDestination(String destinationId) {
     final badges = widget.badges ?? widget.config.badges;
-    return badges.cast<AppNavigationBadge?>().firstWhere(
+    return badges.cast<DSNavigationBadge?>().firstWhere(
           (badge) => badge?.destinationId == destinationId,
           orElse: () => null,
         );
@@ -636,16 +636,16 @@ class _AppNavigationState extends State<AppNavigation>
 
   NavigationRailLabelType _getRailLabelType() {
     final behavior = widget.config.behavior?.labelBehavior ??
-        AppNavigationLabelBehavior.alwaysShow;
+        DSNavigationLabelBehavior.alwaysShow;
 
     switch (behavior) {
-      case AppNavigationLabelBehavior.alwaysShow:
+      case DSNavigationLabelBehavior.alwaysShow:
         return NavigationRailLabelType.all;
-      case AppNavigationLabelBehavior.alwaysHide:
+      case DSNavigationLabelBehavior.alwaysHide:
         return NavigationRailLabelType.none;
-      case AppNavigationLabelBehavior.showSelected:
+      case DSNavigationLabelBehavior.showSelected:
         return NavigationRailLabelType.selected;
-      case AppNavigationLabelBehavior.auto:
+      case DSNavigationLabelBehavior.auto:
         return Responsive.isDesktop(context)
             ? NavigationRailLabelType.all
             : NavigationRailLabelType.selected;
@@ -709,13 +709,13 @@ class _AppNavigationState extends State<AppNavigation>
   NavigationDestinationLabelBehavior _getLabelBehavior() {
     final behavior = widget.config.behavior?.labelBehavior;
     switch (behavior) {
-      case AppNavigationLabelBehavior.alwaysShow:
+      case DSNavigationLabelBehavior.alwaysShow:
         return NavigationDestinationLabelBehavior.alwaysShow;
-      case AppNavigationLabelBehavior.alwaysHide:
+      case DSNavigationLabelBehavior.alwaysHide:
         return NavigationDestinationLabelBehavior.alwaysHide;
-      case AppNavigationLabelBehavior.showSelected:
+      case DSNavigationLabelBehavior.showSelected:
         return NavigationDestinationLabelBehavior.onlyShowSelected;
-      case AppNavigationLabelBehavior.auto:
+      case DSNavigationLabelBehavior.auto:
       case null:
         return NavigationDestinationLabelBehavior.alwaysShow;
     }

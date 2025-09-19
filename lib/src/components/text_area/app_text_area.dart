@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'text_area_config.dart';
 
-class AppTextArea extends StatefulWidget {
+class DSTextArea extends StatefulWidget {
   final TextEditingController? controller;
   final String? hint;
   final String? label;
@@ -15,14 +15,14 @@ class AppTextArea extends StatefulWidget {
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final String? Function(String?)? validator;
-  final AppTextAreaVariant variant;
-  final AppTextAreaConfig? config;
-  final AppTextAreaColors? colors;
+  final DSTextAreaVariant variant;
+  final DSTextAreaConfig? config;
+  final DSTextAreaColors? colors;
   final bool enabled;
   final bool autoFocus;
   final FocusNode? focusNode;
   final String? semanticLabel;
-  final AppTextAreaState? overrideState;
+  final DSTextAreaState? overrideState;
   final TextDirection? textDirection;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
@@ -43,7 +43,7 @@ class AppTextArea extends StatefulWidget {
   final TextAlignVertical? textAlignVertical;
   final TextCapitalization textCapitalization;
 
-  const AppTextArea({
+  const DSTextArea({
     super.key,
     this.controller,
     this.hint,
@@ -53,7 +53,7 @@ class AppTextArea extends StatefulWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.validator,
-    this.variant = AppTextAreaVariant.autoResize,
+    this.variant = DSTextAreaVariant.autoResize,
     this.config,
     this.colors,
     this.enabled = true,
@@ -83,10 +83,10 @@ class AppTextArea extends StatefulWidget {
   });
 
   @override
-  State<AppTextArea> createState() => _AppTextAreaState();
+  State<DSTextArea> createState() => _DSTextAreaState();
 }
 
-class _AppTextAreaState extends State<AppTextArea>
+class _DSTextAreaState extends State<DSTextArea>
     with TickerProviderStateMixin {
   late TextEditingController _controller;
   late FocusNode _focusNode;
@@ -99,10 +99,10 @@ class _AppTextAreaState extends State<AppTextArea>
   bool _isFocused = false;
   String? _errorText;
 
-  AppTextAreaConfig get _config => widget.config ?? const AppTextAreaConfig();
+  DSTextAreaConfig get _config => widget.config ?? const DSTextAreaConfig();
 
-  AppTextAreaColors get _colors =>
-      widget.colors ?? AppTextAreaColors.fromTheme(Theme.of(context));
+  DSTextAreaColors get _colors =>
+      widget.colors ?? DSTextAreaColors.fromTheme(Theme.of(context));
 
   bool get _isEnabled => widget.enabled && !widget.readOnly;
 
@@ -110,36 +110,36 @@ class _AppTextAreaState extends State<AppTextArea>
 
   String? get _effectiveErrorText => widget.errorText ?? _errorText;
 
-  AppTextAreaState get _currentState {
+  DSTextAreaState get _currentState {
     if (widget.overrideState != null) {
       return widget.overrideState!;
     }
 
     if (!_isEnabled) {
-      return AppTextAreaState.disabled;
+      return DSTextAreaState.disabled;
     }
 
     if (_hasError) {
-      return AppTextAreaState.error;
+      return DSTextAreaState.error;
     }
 
     if (_isPressed) {
-      return AppTextAreaState.pressed;
+      return DSTextAreaState.pressed;
     }
 
     if (_isFocused) {
-      return AppTextAreaState.focus;
+      return DSTextAreaState.focus;
     }
 
     if (_isHovered) {
-      return AppTextAreaState.hover;
+      return DSTextAreaState.hover;
     }
 
     if (_controller.text.isNotEmpty) {
-      return AppTextAreaState.selected;
+      return DSTextAreaState.selected;
     }
 
-    return AppTextAreaState.defaultState;
+    return DSTextAreaState.defaultState;
   }
 
   int get _effectiveMinLines {
@@ -149,7 +149,7 @@ class _AppTextAreaState extends State<AppTextArea>
 
   int? get _effectiveMaxLines {
     if (widget.maxLines != null) return widget.maxLines;
-    if (widget.variant == AppTextAreaVariant.autoResize &&
+    if (widget.variant == DSTextAreaVariant.autoResize &&
         _config.enableAutoResize) {
       return _config.defaultMaxLines;
     }
@@ -188,7 +188,7 @@ class _AppTextAreaState extends State<AppTextArea>
       curve: Curves.easeInOut,
     ));
 
-    if (_currentState == AppTextAreaState.skeleton) {
+    if (_currentState == DSTextAreaState.skeleton) {
       _skeletonAnimationController.repeat(reverse: true);
     }
   }
@@ -238,11 +238,11 @@ class _AppTextAreaState extends State<AppTextArea>
 
   @override
   Widget build(BuildContext context) {
-    if (_currentState == AppTextAreaState.skeleton) {
+    if (_currentState == DSTextAreaState.skeleton) {
       return _buildSkeleton();
     }
 
-    if (_currentState == AppTextAreaState.loading) {
+    if (_currentState == DSTextAreaState.loading) {
       return _buildLoadingField();
     }
 

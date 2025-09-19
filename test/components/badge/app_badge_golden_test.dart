@@ -3,20 +3,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppBadge Golden Tests', () {
+  group('DSBadge Golden Tests', () {
     testWidgets('dot badge standalone', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.dot(),
+              child: DSBadge.dot(),
             ),
           ),
         ),
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/dot_standalone.png'),
       );
     });
@@ -26,7 +26,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.dot(
+              child: DSBadge.dot(
                 child: Icon(Icons.notifications, size: 32),
               ),
             ),
@@ -45,14 +45,14 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.counter(value: 5),
+              child: DSBadge.counter(value: 5),
             ),
           ),
         ),
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/counter_small_value.png'),
       );
     });
@@ -62,14 +62,14 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.counter(value: 150, maxValue: 99),
+              child: DSBadge.counter(value: 150, maxValue: 99),
             ),
           ),
         ),
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/counter_large_value.png'),
       );
     });
@@ -79,7 +79,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.counter(
+              child: DSBadge.counter(
                 value: 42,
                 child: Icon(Icons.mail, size: 32),
               ),
@@ -99,8 +99,8 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.status(
-                status: AppBadgeStatus.success,
+              child: DSBadge.status(
+                status: DSBadgeStatus.success,
                 label: 'Activo',
               ),
             ),
@@ -109,7 +109,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/status_success.png'),
       );
     });
@@ -119,8 +119,8 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.status(
-                status: AppBadgeStatus.warning,
+              child: DSBadge.status(
+                status: DSBadgeStatus.warning,
                 label: 'Advertencia',
               ),
             ),
@@ -129,7 +129,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/status_warning.png'),
       );
     });
@@ -139,8 +139,8 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.status(
-                status: AppBadgeStatus.error,
+              child: DSBadge.status(
+                status: DSBadgeStatus.error,
                 label: 'Error',
               ),
             ),
@@ -149,7 +149,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/status_error.png'),
       );
     });
@@ -159,8 +159,8 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.status(
-                status: AppBadgeStatus.info,
+              child: DSBadge.status(
+                status: DSBadgeStatus.info,
                 label: 'Información',
               ),
             ),
@@ -169,7 +169,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/status_info.png'),
       );
     });
@@ -179,8 +179,8 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.status(
-                status: AppBadgeStatus.neutral,
+              child: DSBadge.status(
+                status: DSBadgeStatus.neutral,
                 label: 'Neutral',
               ),
             ),
@@ -189,7 +189,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/status_neutral.png'),
       );
     });
@@ -202,17 +202,17 @@ void main() {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 1,
-                    size: AppBadgeSize.small,
+                    size: DSBadgeSize.small,
                   ),
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 2,
-                    size: AppBadgeSize.medium,
+                    size: DSBadgeSize.medium,
                   ),
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 3,
-                    size: AppBadgeSize.large,
+                    size: DSBadgeSize.large,
                   ),
                 ],
               ),
@@ -236,9 +236,9 @@ void main() {
                 spacing: 32.0,
                 runSpacing: 32.0,
                 children: [
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 1,
-                    position: AppBadgePosition.topLeft,
+                    position: DSBadgePosition.topLeft,
                     child: Container(
                       width: 48,
                       height: 48,
@@ -249,9 +249,9 @@ void main() {
                       child: const Icon(Icons.notifications),
                     ),
                   ),
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 2,
-                    position: AppBadgePosition.topRight,
+                    position: DSBadgePosition.topRight,
                     child: Container(
                       width: 48,
                       height: 48,
@@ -262,9 +262,9 @@ void main() {
                       child: const Icon(Icons.notifications),
                     ),
                   ),
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 3,
-                    position: AppBadgePosition.bottomLeft,
+                    position: DSBadgePosition.bottomLeft,
                     child: Container(
                       width: 48,
                       height: 48,
@@ -275,9 +275,9 @@ void main() {
                       child: const Icon(Icons.notifications),
                     ),
                   ),
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 4,
-                    position: AppBadgePosition.bottomRight,
+                    position: DSBadgePosition.bottomRight,
                     child: Container(
                       width: 48,
                       height: 48,
@@ -309,17 +309,17 @@ void main() {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 1,
-                    shape: AppBadgeShape.circle,
+                    shape: DSBadgeShape.circle,
                   ),
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 22,
-                    shape: AppBadgeShape.square,
+                    shape: DSBadgeShape.square,
                   ),
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 333,
-                    shape: AppBadgeShape.rounded,
+                    shape: DSBadgeShape.rounded,
                   ),
                 ],
               ),
@@ -339,7 +339,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.counter(
+              child: DSBadge.counter(
                 value: 5,
                 enabled: false,
               ),
@@ -349,7 +349,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/disabled_state.png'),
       );
     });
@@ -359,7 +359,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.counter(
+              child: DSBadge.counter(
                 value: 5,
                 loading: true,
               ),
@@ -369,7 +369,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/loading_state.png'),
       );
     });
@@ -379,7 +379,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.counter(
+              child: DSBadge.counter(
                 value: 5,
                 skeleton: true,
               ),
@@ -389,7 +389,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppBadge),
+        find.byType(DSBadge),
         matchesGoldenFile('badge/skeleton_state.png'),
       );
     });
@@ -402,17 +402,17 @@ void main() {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 1,
                     color: Colors.purple,
                   ),
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 2,
                     backgroundColor: Colors.green,
                     textColor: Colors.white,
                   ),
-                  AppBadge.status(
-                    status: AppBadgeStatus.success,
+                  DSBadge.status(
+                    status: DSBadgeStatus.success,
                     label: 'Custom',
                     color: Colors.orange,
                   ),
@@ -437,11 +437,11 @@ void main() {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 0,
                     showZero: false,
                   ),
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 0,
                     showZero: true,
                   ),
@@ -463,8 +463,8 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppBadge.status(
-                status: AppBadgeStatus.warning,
+              child: DSBadge.status(
+                status: DSBadgeStatus.warning,
                 label: 'Pendiente',
                 child: Icon(Icons.task, size: 32),
               ),
@@ -487,11 +487,11 @@ void main() {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppBadge.status(status: AppBadgeStatus.success),
-                  AppBadge.status(status: AppBadgeStatus.warning),
-                  AppBadge.status(status: AppBadgeStatus.error),
-                  AppBadge.status(status: AppBadgeStatus.info),
-                  AppBadge.status(status: AppBadgeStatus.neutral),
+                  DSBadge.status(status: DSBadgeStatus.success),
+                  DSBadge.status(status: DSBadgeStatus.warning),
+                  DSBadge.status(status: DSBadgeStatus.error),
+                  DSBadge.status(status: DSBadgeStatus.info),
+                  DSBadge.status(status: DSBadgeStatus.neutral),
                 ],
               ),
             ),
@@ -514,15 +514,15 @@ void main() {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppBadge.dot(
+                  DSBadge.dot(
                     child: Icon(Icons.notifications, size: 32),
                   ),
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 42,
                     child: Icon(Icons.mail, size: 32),
                   ),
-                  AppBadge.status(
-                    status: AppBadgeStatus.success,
+                  DSBadge.status(
+                    status: DSBadgeStatus.success,
                     label: 'Activo',
                     child: Icon(Icons.person, size: 32),
                   ),
@@ -546,7 +546,7 @@ void main() {
             appBar: AppBar(
               title: const Text('Badge Examples'),
               actions: [
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 3,
                   child: IconButton(
                     icon: const Icon(Icons.notifications),
@@ -562,7 +562,7 @@ void main() {
                 children: [
                   Card(
                     child: ListTile(
-                      leading: AppBadge.dot(
+                      leading: DSBadge.dot(
                         child: const CircleAvatar(
                           child: Icon(Icons.person),
                         ),
@@ -574,8 +574,8 @@ void main() {
                   const SizedBox(height: 16),
                   Card(
                     child: ListTile(
-                      leading: AppBadge.status(
-                        status: AppBadgeStatus.warning,
+                      leading: DSBadge.status(
+                        status: DSBadgeStatus.warning,
                         label: 'Pendiente',
                         child: const Icon(Icons.task),
                       ),
@@ -586,7 +586,7 @@ void main() {
                 ],
               ),
             ),
-            floatingActionButton: AppBadge.counter(
+            floatingActionButton: DSBadge.counter(
               value: 5,
               child: FloatingActionButton(
                 onPressed: () {},
@@ -616,21 +616,21 @@ void main() {
                     children: [
                       Column(
                         children: [
-                          AppBadge.dot(size: AppBadgeSize.small),
+                          DSBadge.dot(size: DSBadgeSize.small),
                           SizedBox(height: 8),
                           Text('Small Dot'),
                         ],
                       ),
                       Column(
                         children: [
-                          AppBadge.dot(size: AppBadgeSize.medium),
+                          DSBadge.dot(size: DSBadgeSize.medium),
                           SizedBox(height: 8),
                           Text('Medium Dot'),
                         ],
                       ),
                       Column(
                         children: [
-                          AppBadge.dot(size: AppBadgeSize.large),
+                          DSBadge.dot(size: DSBadgeSize.large),
                           SizedBox(height: 8),
                           Text('Large Dot'),
                         ],
@@ -642,23 +642,23 @@ void main() {
                     children: [
                       Column(
                         children: [
-                          AppBadge.counter(value: 9, size: AppBadgeSize.small),
+                          DSBadge.counter(value: 9, size: DSBadgeSize.small),
                           SizedBox(height: 8),
                           Text('Small Counter'),
                         ],
                       ),
                       Column(
                         children: [
-                          AppBadge.counter(
-                              value: 99, size: AppBadgeSize.medium),
+                          DSBadge.counter(
+                              value: 99, size: DSBadgeSize.medium),
                           SizedBox(height: 8),
                           Text('Medium Counter'),
                         ],
                       ),
                       Column(
                         children: [
-                          AppBadge.counter(
-                              value: 999, size: AppBadgeSize.large),
+                          DSBadge.counter(
+                              value: 999, size: DSBadgeSize.large),
                           SizedBox(height: 8),
                           Text('Large Counter'),
                         ],

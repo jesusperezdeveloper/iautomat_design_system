@@ -4,18 +4,18 @@ import 'package:iautomat_design_system/src/components/combobox/app_combobox.dart
 import 'package:iautomat_design_system/src/components/combobox/combobox_config.dart';
 
 void main() {
-  group('AppComboBox Golden Tests', () {
+  group('DSComboBox Golden Tests', () {
     final testSuggestions = [
-      const AppComboBoxSuggestion<String>(
+      const DSComboBoxSuggestion<String>(
         value: 'option1',
         label: 'Option 1',
       ),
-      const AppComboBoxSuggestion<String>(
+      const DSComboBoxSuggestion<String>(
         value: 'option2',
         label: 'Option 2',
         subtitle: 'With subtitle',
       ),
-      const AppComboBoxSuggestion<String>(
+      const DSComboBoxSuggestion<String>(
         value: 'option3',
         label: 'Option 3',
         leading: Icon(Icons.star),
@@ -23,11 +23,11 @@ void main() {
     ];
 
     Widget buildComboBox({
-      AppComboBoxState? overrideState,
+      DSComboBoxState? overrideState,
       String? query,
       bool enabled = true,
       String? errorText,
-      AppComboBoxConfig? config,
+      DSComboBoxConfig? config,
       Widget? loadingWidget,
     }) {
       return MaterialApp(
@@ -36,7 +36,7 @@ void main() {
           body: Center(
             child: SizedBox(
               width: 300,
-              child: AppComboBox<String>(
+              child: DSComboBox<String>(
                 query: query ?? '',
                 onQueryChanged: (_) {},
                 suggestions: testSuggestions,
@@ -46,7 +46,7 @@ void main() {
                 helperText: 'Choose from available options',
                 errorText: errorText,
                 enabled: enabled,
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
                 config: config,
                 overrideState: overrideState,
                 loadingWidget: loadingWidget,
@@ -60,7 +60,7 @@ void main() {
     testWidgets('default state', (tester) async {
       await tester.pumpWidget(buildComboBox());
       await expectLater(
-        find.byType(AppComboBox<String>),
+        find.byType(DSComboBox<String>),
         matchesGoldenFile('combobox_default.png'),
       );
     });
@@ -68,7 +68,7 @@ void main() {
     testWidgets('with query text', (tester) async {
       await tester.pumpWidget(buildComboBox(query: 'Option'));
       await expectLater(
-        find.byType(AppComboBox<String>),
+        find.byType(DSComboBox<String>),
         matchesGoldenFile('combobox_with_query.png'),
       );
     });
@@ -76,17 +76,17 @@ void main() {
     testWidgets('disabled state', (tester) async {
       await tester.pumpWidget(buildComboBox(enabled: false));
       await expectLater(
-        find.byType(AppComboBox<String>),
+        find.byType(DSComboBox<String>),
         matchesGoldenFile('combobox_disabled.png'),
       );
     });
 
     testWidgets('skeleton state', (tester) async {
       await tester.pumpWidget(buildComboBox(
-        overrideState: AppComboBoxState.skeleton,
+        overrideState: DSComboBoxState.skeleton,
       ));
       await expectLater(
-        find.byType(AppComboBox<String>),
+        find.byType(DSComboBox<String>),
         matchesGoldenFile('combobox_skeleton.png'),
       );
     });
@@ -96,17 +96,17 @@ void main() {
         errorText: 'This field is required',
       ));
       await expectLater(
-        find.byType(AppComboBox<String>),
+        find.byType(DSComboBox<String>),
         matchesGoldenFile('combobox_error.png'),
       );
     });
 
     testWidgets('loading state', (tester) async {
       await tester.pumpWidget(buildComboBox(
-        overrideState: AppComboBoxState.loading,
+        overrideState: DSComboBoxState.loading,
       ));
       await expectLater(
-        find.byType(AppComboBox<String>),
+        find.byType(DSComboBox<String>),
         matchesGoldenFile('combobox_loading.png'),
       );
     });
@@ -119,7 +119,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppComboBox<String>),
+        find.byType(DSComboBox<String>),
         matchesGoldenFile('combobox_focused.png'),
       );
     });
@@ -139,7 +139,7 @@ void main() {
     });
 
     testWidgets('custom configuration', (tester) async {
-      const customConfig = AppComboBoxConfig(
+      const customConfig = DSComboBoxConfig(
         borderRadius: 16.0,
         borderWidth: 3.0,
         contentPadding: EdgeInsets.all(20.0),
@@ -148,7 +148,7 @@ void main() {
 
       await tester.pumpWidget(buildComboBox(config: customConfig));
       await expectLater(
-        find.byType(AppComboBox<String>),
+        find.byType(DSComboBox<String>),
         matchesGoldenFile('combobox_custom_config.png'),
       );
     });
@@ -161,7 +161,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppComboBox<String>(
+                child: DSComboBox<String>(
                   query: '',
                   onQueryChanged: (_) {},
                   suggestions: testSuggestions,
@@ -169,7 +169,7 @@ void main() {
                   placeholder: 'Select an option',
                   label: 'Test ComboBox',
                   helperText: 'Choose from available options',
-                  variant: AppComboBoxVariant.typeahead,
+                  variant: DSComboBoxVariant.typeahead,
                 ),
               ),
             ),
@@ -178,7 +178,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppComboBox<String>),
+        find.byType(DSComboBox<String>),
         matchesGoldenFile('combobox_dark_theme.png'),
       );
     });
@@ -193,15 +193,15 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 300,
-                  child: AppComboBox<String>(
+                  child: DSComboBox<String>(
                     query: 'اختيار',
                     onQueryChanged: (_) {},
                     suggestions: const [
-                      AppComboBoxSuggestion<String>(
+                      DSComboBoxSuggestion<String>(
                         value: 'option1',
                         label: 'الخيار الأول',
                       ),
-                      AppComboBoxSuggestion<String>(
+                      DSComboBoxSuggestion<String>(
                         value: 'option2',
                         label: 'الخيار الثاني',
                       ),
@@ -210,7 +210,7 @@ void main() {
                     placeholder: 'اختر خيارًا',
                     label: 'صندوق الاختيار',
                     helperText: 'اختر من الخيارات المتاحة',
-                    variant: AppComboBoxVariant.typeahead,
+                    variant: DSComboBoxVariant.typeahead,
                   ),
                 ),
               ),
@@ -220,7 +220,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppComboBox<String>),
+        find.byType(DSComboBox<String>),
         matchesGoldenFile('combobox_rtl.png'),
       );
     });

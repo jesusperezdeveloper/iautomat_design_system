@@ -5,9 +5,9 @@ import '../../theme/theme.dart';
 import 'kanban_config.dart';
 
 /// Widget principal para crear tableros Kanban con funcionalidad drag & drop
-class AppKanban extends StatefulWidget {
+class DSKanban extends StatefulWidget {
   /// Configuración del kanban
-  final AppKanbanConfig config;
+  final DSKanbanConfig config;
 
   /// Callback cuando cambia el estado del kanban
   final VoidCallback? onChanged;
@@ -15,7 +15,7 @@ class AppKanban extends StatefulWidget {
   /// Callback cuando ocurre un error
   final void Function(String error)? onError;
 
-  const AppKanban({
+  const DSKanban({
     super.key,
     required this.config,
     this.onChanged,
@@ -23,12 +23,12 @@ class AppKanban extends StatefulWidget {
   });
 
   @override
-  State<AppKanban> createState() => _AppKanbanState();
+  State<DSKanban> createState() => _DSKanbanState();
 }
 
-class _AppKanbanState extends State<AppKanban> {
-  late List<AppKanbanColumn> _columns;
-  late List<AppKanbanCard> _cards;
+class _DSKanbanState extends State<DSKanban> {
+  late List<DSKanbanColumn> _columns;
+  late List<DSKanbanCard> _cards;
   String? _dragTargetColumnId;
   int? _dragTargetIndex;
 
@@ -40,7 +40,7 @@ class _AppKanbanState extends State<AppKanban> {
   }
 
   @override
-  void didUpdateWidget(AppKanban oldWidget) {
+  void didUpdateWidget(DSKanban oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.config != oldWidget.config) {
       _columns = List.from(widget.config.columns);
@@ -54,11 +54,11 @@ class _AppKanbanState extends State<AppKanban> {
     final colorScheme = theme.colorScheme;
 
     return Container(
-      padding: widget.config.padding ?? AppSpacing.cardPadding,
+      padding: widget.config.padding ?? DSSpacing.cardPadding,
       margin: widget.config.margin,
       decoration: BoxDecoration(
         color: widget.config.backgroundColor ?? colorScheme.surface,
-        borderRadius: AppBorders.medium,
+        borderRadius: DSBorders.medium,
       ),
       child: _buildKanbanContent(context),
     );
@@ -66,7 +66,7 @@ class _AppKanbanState extends State<AppKanban> {
 
   Widget _buildKanbanContent(BuildContext context) {
     switch (widget.config.variant) {
-      case AppKanbanVariant.dragDrop:
+      case DSKanbanVariant.dragDrop:
         return _buildDragDropKanban(context);
     }
   }
@@ -83,7 +83,7 @@ class _AppKanbanState extends State<AppKanban> {
     );
   }
 
-  Widget _buildDragDropColumn(BuildContext context, AppKanbanColumn column) {
+  Widget _buildDragDropColumn(BuildContext context, DSKanbanColumn column) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -91,7 +91,7 @@ class _AppKanbanState extends State<AppKanban> {
     final isDragTarget = _dragTargetColumnId == column.id;
 
     return Container(
-      margin: AppSpacing.columnSpacing,
+      margin: DSSpacing.columnSpacing,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -130,7 +130,7 @@ class _AppKanbanState extends State<AppKanban> {
                 return Container(
                   decoration: BoxDecoration(
                     color: column.backgroundColor ?? colorScheme.surface,
-                    borderRadius: AppBorders.medium,
+                    borderRadius: DSBorders.medium,
                     border: isDragTarget
                         ? Border.all(
                             color: colorScheme.primary,
@@ -148,13 +148,13 @@ class _AppKanbanState extends State<AppKanban> {
     );
   }
 
-  Widget _buildColumnHeader(BuildContext context, AppKanbanColumn column) {
+  Widget _buildColumnHeader(BuildContext context, DSKanbanColumn column) {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
 
     return Container(
-      padding: AppSpacing.cardPadding,
+      padding: DSSpacing.cardPadding,
       child: Row(
         children: [
           // Icono de la columna
@@ -164,7 +164,7 @@ class _AppKanbanState extends State<AppKanban> {
               color: colorScheme.onSurface,
               size: 20,
             ),
-            const SizedBox(width: AppSpacing.xs),
+            const SizedBox(width: DSSpacing.xs),
           ],
 
           // Título de la columna
@@ -182,7 +182,7 @@ class _AppKanbanState extends State<AppKanban> {
           // Contador de tarjetas
           Container(
             padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.xs,
+              horizontal: DSSpacing.xs,
               vertical: 2,
             ),
             decoration: BoxDecoration(
@@ -204,15 +204,15 @@ class _AppKanbanState extends State<AppKanban> {
 
   Widget _buildColumnContent(
     BuildContext context,
-    AppKanbanColumn column,
-    List<AppKanbanCard> cards,
+    DSKanbanColumn column,
+    List<DSKanbanCard> cards,
   ) {
     if (cards.isEmpty) {
       return _buildEmptyColumn(context, column);
     }
 
     return ListView.builder(
-      padding: AppSpacing.cardPadding,
+      padding: DSSpacing.cardPadding,
       itemCount: cards.length,
       itemBuilder: (context, index) {
         final card = cards[index];
@@ -223,21 +223,21 @@ class _AppKanbanState extends State<AppKanban> {
           children: [
             if (isDragTarget) _buildDropIndicator(context),
             _buildKanbanCard(context, card),
-            if (index < cards.length - 1) const SizedBox(height: AppSpacing.sm),
+            if (index < cards.length - 1) const SizedBox(height: DSSpacing.sm),
           ],
         );
       },
     );
   }
 
-  Widget _buildEmptyColumn(BuildContext context, AppKanbanColumn column) {
+  Widget _buildEmptyColumn(BuildContext context, DSKanbanColumn column) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
 
     return Center(
       child: Padding(
-        padding: AppSpacing.cardPadding,
+        padding: DSSpacing.cardPadding,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -246,7 +246,7 @@ class _AppKanbanState extends State<AppKanban> {
               size: 48,
               color: colorScheme.onSurface.withValues(alpha: 0.4),
             ),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: DSSpacing.sm),
             Text(
               'No hay tarjetas',
               style: textTheme.bodyMedium?.copyWith(
@@ -271,19 +271,19 @@ class _AppKanbanState extends State<AppKanban> {
     );
   }
 
-  Widget _buildKanbanCard(BuildContext context, AppKanbanCard card) {
-    if (widget.config.variant == AppKanbanVariant.dragDrop) {
+  Widget _buildKanbanCard(BuildContext context, DSKanbanCard card) {
+    if (widget.config.variant == DSKanbanVariant.dragDrop) {
       return _buildDraggableCard(context, card);
     }
     return _buildStaticCard(context, card);
   }
 
-  Widget _buildDraggableCard(BuildContext context, AppKanbanCard card) {
+  Widget _buildDraggableCard(BuildContext context, DSKanbanCard card) {
     return Draggable<String>(
       data: card.id,
       feedback: Material(
         elevation: 8,
-        borderRadius: AppBorders.medium,
+        borderRadius: DSBorders.medium,
         child: SizedBox(
           width: 280,
           child: _buildCardContent(context, card, isDragging: true),
@@ -306,23 +306,23 @@ class _AppKanbanState extends State<AppKanban> {
     );
   }
 
-  Widget _buildStaticCard(BuildContext context, AppKanbanCard card) {
+  Widget _buildStaticCard(BuildContext context, DSKanbanCard card) {
     return _buildCardContent(context, card);
   }
 
   Widget _buildCardContent(
     BuildContext context,
-    AppKanbanCard card, {
+    DSKanbanCard card, {
     bool isDragging = false,
   }) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
     return Container(
-      padding: AppSpacing.cardPadding,
+      padding: DSSpacing.cardPadding,
       decoration: BoxDecoration(
         color: card.backgroundColor ?? colorScheme.surfaceContainerHighest,
-        borderRadius: AppBorders.medium,
+        borderRadius: DSBorders.medium,
         boxShadow: isDragging
             ? [
                 BoxShadow(
@@ -339,19 +339,19 @@ class _AppKanbanState extends State<AppKanban> {
           // Título
           _buildCardTitle(context, card),
           if (card.description?.isNotEmpty == true) ...[
-            const SizedBox(height: AppSpacing.xs),
+            const SizedBox(height: DSSpacing.xs),
             _buildCardDescription(context, card),
           ],
 
           // Tags
           if (card.tags?.isNotEmpty == true) ...[
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: DSSpacing.sm),
             _buildCardTags(context, card),
           ],
 
           // Footer básico
           if (card.dueDate != null) ...[
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: DSSpacing.sm),
             _buildCardFooter(context, card),
           ],
         ],
@@ -359,7 +359,7 @@ class _AppKanbanState extends State<AppKanban> {
     );
   }
 
-  Widget _buildCardTitle(BuildContext context, AppKanbanCard card) {
+  Widget _buildCardTitle(BuildContext context, DSKanbanCard card) {
     return Text(
       card.title ?? '',
       style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -370,7 +370,7 @@ class _AppKanbanState extends State<AppKanban> {
     );
   }
 
-  Widget _buildCardDescription(BuildContext context, AppKanbanCard card) {
+  Widget _buildCardDescription(BuildContext context, DSKanbanCard card) {
     return Text(
       card.description ?? '',
       style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -382,10 +382,10 @@ class _AppKanbanState extends State<AppKanban> {
     );
   }
 
-  Widget _buildCardTags(BuildContext context, AppKanbanCard card) {
+  Widget _buildCardTags(BuildContext context, DSKanbanCard card) {
     return Wrap(
-      spacing: AppSpacing.xs,
-      runSpacing: AppSpacing.xs,
+      spacing: DSSpacing.xs,
+      runSpacing: DSSpacing.xs,
       children: card.tags?.map((tag) => _buildTag(context, tag)).toList() ?? [],
     );
   }
@@ -396,7 +396,7 @@ class _AppKanbanState extends State<AppKanban> {
 
     return Container(
       padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.xs,
+        horizontal: DSSpacing.xs,
         vertical: 2,
       ),
       decoration: BoxDecoration(
@@ -413,7 +413,7 @@ class _AppKanbanState extends State<AppKanban> {
     );
   }
 
-  Widget _buildCardFooter(BuildContext context, AppKanbanCard card) {
+  Widget _buildCardFooter(BuildContext context, DSKanbanCard card) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -439,11 +439,11 @@ class _AppKanbanState extends State<AppKanban> {
   }
 
   // Métodos auxiliares
-  List<AppKanbanCard> _getCardsForColumn(String columnId) {
+  List<DSKanbanCard> _getCardsForColumn(String columnId) {
     return _cards.where((card) => card.columnId == columnId).toList();
   }
 
-  AppKanbanCard? _getCardById(String cardId) {
+  DSKanbanCard? _getCardById(String cardId) {
     try {
       return _cards.firstWhere((card) => card.id == cardId);
     } catch (e) {
@@ -451,7 +451,7 @@ class _AppKanbanState extends State<AppKanban> {
     }
   }
 
-  bool _canDropCardInColumn(AppKanbanCard card, AppKanbanColumn column) {
+  bool _canDropCardInColumn(DSKanbanCard card, DSKanbanColumn column) {
     return true; // Simplificado por ahora
   }
 
@@ -473,7 +473,7 @@ class _AppKanbanState extends State<AppKanban> {
     setState(() {});
   }
 
-  int _calculateDropIndex(Offset offset, List<AppKanbanCard> cards) {
+  int _calculateDropIndex(Offset offset, List<DSKanbanCard> cards) {
     // Simplificado: retorna la posición al final
     return cards.length;
   }

@@ -8,7 +8,7 @@ enum MenuVariant {
   typeahead,
 }
 
-enum AppMenuState {
+enum DSMenuState {
   defaultState,
   hover,
   pressed,
@@ -28,8 +28,8 @@ enum MenuAlignment {
 }
 
 /// Item de menú simplificado para evitar dependencias de freezed
-class AppMenuItem {
-  const AppMenuItem({
+class DSMenuItem {
+  const DSMenuItem({
     required this.id,
     required this.label,
     this.icon,
@@ -52,7 +52,7 @@ class AppMenuItem {
   final bool enabled;
   final bool selected;
   final bool showDividerBefore;
-  final List<AppMenuItem> children;
+  final List<DSMenuItem> children;
   final Object? data;
   final String? tooltip;
   final String? shortcut;
@@ -63,15 +63,15 @@ class AppMenuItem {
 }
 
 /// Widget principal del menú
-class AppMenu extends StatefulWidget {
+class DSMenu extends StatefulWidget {
   /// Constructor para variante context
-  const AppMenu.context({
+  const DSMenu.context({
     super.key,
     required this.items,
     required this.onSelected,
     this.anchor,
     this.alignment = MenuAlignment.bottomLeft,
-    this.state = AppMenuState.defaultState,
+    this.state = DSMenuState.defaultState,
     this.backgroundColor,
     this.textColor,
     this.iconColor,
@@ -99,13 +99,13 @@ class AppMenu extends StatefulWidget {
         searchDelay = Duration.zero;
 
   /// Constructor para variante submenu
-  const AppMenu.submenu({
+  const DSMenu.submenu({
     super.key,
     required this.items,
     required this.onSelected,
     this.anchor,
     this.alignment = MenuAlignment.topRight,
-    this.state = AppMenuState.defaultState,
+    this.state = DSMenuState.defaultState,
     this.backgroundColor,
     this.textColor,
     this.iconColor,
@@ -133,13 +133,13 @@ class AppMenu extends StatefulWidget {
         searchDelay = Duration.zero;
 
   /// Constructor para variante typeahead
-  const AppMenu.typeahead({
+  const DSMenu.typeahead({
     super.key,
     required this.items,
     required this.onSelected,
     this.anchor,
     this.alignment = MenuAlignment.bottomLeft,
-    this.state = AppMenuState.defaultState,
+    this.state = DSMenuState.defaultState,
     this.backgroundColor,
     this.textColor,
     this.iconColor,
@@ -167,11 +167,11 @@ class AppMenu extends StatefulWidget {
   }) : variant = MenuVariant.typeahead;
 
   final MenuVariant variant;
-  final List<AppMenuItem> items;
-  final void Function(AppMenuItem item) onSelected;
+  final List<DSMenuItem> items;
+  final void Function(DSMenuItem item) onSelected;
   final Widget? anchor;
   final MenuAlignment alignment;
-  final AppMenuState state;
+  final DSMenuState state;
 
   // Design tokens - Colors
   final Color? backgroundColor;
@@ -198,7 +198,7 @@ class AppMenu extends StatefulWidget {
   final Duration searchDelay;
 
   // Callbacks
-  final void Function(AppMenuState state)? onStateChanged;
+  final void Function(DSMenuState state)? onStateChanged;
   final void Function(bool visible)? onVisibilityChanged;
 
   // Comportamiento
@@ -210,12 +210,12 @@ class AppMenu extends StatefulWidget {
   final String? semanticsLabel;
 
   @override
-  State<AppMenu> createState() => _AppMenuState();
+  State<DSMenu> createState() => _DSMenuState();
 
   /// Muestra el menú como overlay
   static OverlayEntry showMenu({
     required BuildContext context,
-    required AppMenu menu,
+    required DSMenu menu,
     Offset? position,
     Rect? anchorRect,
   }) {
@@ -236,14 +236,14 @@ class AppMenu extends StatefulWidget {
   }
 }
 
-class _AppMenuState extends State<AppMenu>
+class _DSMenuState extends State<DSMenu>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
 
   String _searchQuery = '';
-  List<AppMenuItem> _filteredItems = [];
+  List<DSMenuItem> _filteredItems = [];
   int _focusedIndex = -1;
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
@@ -308,7 +308,7 @@ class _AppMenuState extends State<AppMenu>
     widget.onSearchChanged?.call(query);
   }
 
-  List<AppMenuItem> _filterItems(List<AppMenuItem> items, String query) {
+  List<DSMenuItem> _filterItems(List<DSMenuItem> items, String query) {
     if (query.isEmpty) return items;
 
     return items.where((item) {
@@ -319,7 +319,7 @@ class _AppMenuState extends State<AppMenu>
     }).toList();
   }
 
-  void _handleItemSelection(AppMenuItem item) {
+  void _handleItemSelection(DSMenuItem item) {
     if (!item.enabled) return;
 
     if (widget.dismissOnSelect) {
@@ -464,11 +464,11 @@ class _AppMenuState extends State<AppMenu>
   }
 
   Widget _buildMenuItems(ThemeData theme) {
-    if (widget.state == AppMenuState.loading) {
+    if (widget.state == DSMenuState.loading) {
       return _buildLoadingState();
     }
 
-    if (widget.state == AppMenuState.skeleton) {
+    if (widget.state == DSMenuState.skeleton) {
       return _buildSkeletonState();
     }
 
@@ -491,10 +491,10 @@ class _AppMenuState extends State<AppMenu>
     );
   }
 
-  Widget _buildMenuItem(ThemeData theme, AppMenuItem item, int index) {
+  Widget _buildMenuItem(ThemeData theme, DSMenuItem item, int index) {
     final isFocused = index == _focusedIndex;
     final isSelected = item.selected;
-    final isDisabled = !item.enabled || widget.state == AppMenuState.disabled;
+    final isDisabled = !item.enabled || widget.state == DSMenuState.disabled;
 
     return Column(
       children: [
@@ -512,13 +512,13 @@ class _AppMenuState extends State<AppMenu>
             onHover: (hovering) {
               if (hovering && !isDisabled) {
                 setState(() => _focusedIndex = index);
-                widget.onStateChanged?.call(AppMenuState.hover);
+                widget.onStateChanged?.call(DSMenuState.hover);
               }
             },
             onFocusChange: (focused) {
               if (focused && !isDisabled) {
                 setState(() => _focusedIndex = index);
-                widget.onStateChanged?.call(AppMenuState.focus);
+                widget.onStateChanged?.call(DSMenuState.focus);
               }
             },
             borderRadius: BorderRadius.circular(4),
@@ -645,14 +645,14 @@ class _AppMenuState extends State<AppMenu>
     return null;
   }
 
-  Color _getItemTextColor(ColorScheme colorScheme, AppMenuItem item, bool isDisabled) {
+  Color _getItemTextColor(ColorScheme colorScheme, DSMenuItem item, bool isDisabled) {
     if (isDisabled) return widget.disabledColor ?? colorScheme.onSurface.withValues(alpha: 0.38);
     if (item.destructive) return colorScheme.error;
     if (item.color != null) return item.color!;
     return widget.textColor ?? colorScheme.onSurface;
   }
 
-  Color _getItemIconColor(ColorScheme colorScheme, AppMenuItem item, bool isDisabled) {
+  Color _getItemIconColor(ColorScheme colorScheme, DSMenuItem item, bool isDisabled) {
     if (isDisabled) return widget.disabledColor ?? colorScheme.onSurface.withValues(alpha: 0.38);
     if (item.destructive) return colorScheme.error;
     if (item.color != null) return item.color!;
@@ -669,7 +669,7 @@ class _MenuOverlay extends StatelessWidget {
     this.onDismiss,
   });
 
-  final AppMenu menu;
+  final DSMenu menu;
   final Offset? position;
   final Rect? anchorRect;
   final VoidCallback? onDismiss;

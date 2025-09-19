@@ -18,8 +18,8 @@ import 'colors.dart';
 /// - Accesibilidad (contraste, tama�os m�nimos)
 /// - Consistencia visual
 /// - Performance (cached TextStyles)
-class AppTypography {
-  AppTypography._();
+class DSTypography {
+  DSTypography._();
 
   // ==========================================================================
   // CONFIGURACI�N BASE
@@ -96,7 +96,7 @@ class AppTypography {
         fontWeight: FontWeight.w700,
         height: 1.1,
         letterSpacing: -0.02,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Header 2 - T�tulo secundario
@@ -108,7 +108,7 @@ class AppTypography {
         fontWeight: FontWeight.w700,
         height: 1.15,
         letterSpacing: -0.02,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Header 3 - T�tulo de secci�n
@@ -120,7 +120,7 @@ class AppTypography {
         fontWeight: FontWeight.w600,
         height: 1.2,
         letterSpacing: -0.01,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Header 4 - Subt�tulo de secci�n
@@ -132,7 +132,7 @@ class AppTypography {
         fontWeight: FontWeight.w600,
         height: 1.25,
         letterSpacing: -0.01,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Header 5 - T�tulo menor
@@ -144,7 +144,7 @@ class AppTypography {
         fontWeight: FontWeight.w600,
         height: 1.3,
         letterSpacing: 0,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Header 6 - T�tulo m�nimo
@@ -156,7 +156,7 @@ class AppTypography {
         fontWeight: FontWeight.w600,
         height: 1.35,
         letterSpacing: 0,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   // ==========================================================================
@@ -172,7 +172,7 @@ class AppTypography {
         fontWeight: FontWeight.w400,
         height: 1.55,
         letterSpacing: 0,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Body Medium - Texto principal est�ndar
@@ -184,7 +184,7 @@ class AppTypography {
         fontWeight: FontWeight.w400,
         height: 1.5,
         letterSpacing: 0,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Body Small - Texto secundario
@@ -196,7 +196,7 @@ class AppTypography {
         fontWeight: FontWeight.w400,
         height: 1.45,
         letterSpacing: 0,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   // ==========================================================================
@@ -212,7 +212,7 @@ class AppTypography {
         fontWeight: FontWeight.w500,
         height: 1.4,
         letterSpacing: 0.01,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Label Medium - Etiquetas est�ndar
@@ -224,7 +224,7 @@ class AppTypography {
         fontWeight: FontWeight.w500,
         height: 1.4,
         letterSpacing: 0.01,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Label Small - Etiquetas menores
@@ -236,7 +236,7 @@ class AppTypography {
         fontWeight: FontWeight.w500,
         height: 1.35,
         letterSpacing: 0.02,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   // ==========================================================================
@@ -253,7 +253,7 @@ class AppTypography {
         fontWeight: FontWeight.w600,
         height: 1.25,
         letterSpacing: 0.02,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Caption - Texto de apoyo
@@ -265,7 +265,7 @@ class AppTypography {
         fontWeight: FontWeight.w400,
         height: 1.4,
         letterSpacing: 0.01,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   /// Overline - Texto superior
@@ -278,7 +278,7 @@ class AppTypography {
         fontWeight: FontWeight.w600,
         height: 1.35,
         letterSpacing: 0.08,
-        color: AppColors.textPrimary,
+        color: DSColors.textPrimary,
       );
 
   // ==========================================================================
@@ -315,7 +315,7 @@ class AppTypography {
   /// ```dart
   /// Text(
   ///   'Texto con color',
-  ///   style: AppTypography.withColor(AppTypography.h1, Colors.red),
+  ///   style: DSTypography.withColor(DSTypography.h1, Colors.red),
   /// )
   /// ```
   /// Combina dos TextStyles, donde el segundo tiene precedencia
@@ -432,24 +432,24 @@ class AppTypography {
 
   /// Body Small con color secundario
   static TextStyle get bodySmallSecondary => bodySmall.copyWith(
-        color: AppColors.textSecondary,
+        color: DSColors.textSecondary,
       );
 
   /// Caption con color secundario
   static TextStyle get captionSecondary => caption.copyWith(
-        color: AppColors.textSecondary,
+        color: DSColors.textSecondary,
       );
 
   /// Body Medium con color deshabilitado
   static TextStyle get bodyMediumDisabled => bodyMedium.copyWith(
-        color: AppColors.textDisabled,
+        color: DSColors.textDisabled,
       );
 
   // ==========================================================================
   // MAPEO PARA MATERIAL THEME
   // ==========================================================================
 
-  /// Mapea los estilos de AppTypography a Material Design TextTheme
+  /// Mapea los estilos de DSTypography a Material Design TextTheme
   ///
   /// Esto permite usar los estilos personalizados dentro del ThemeData
   /// de Flutter manteniendo compatibilidad con widgets del framework.

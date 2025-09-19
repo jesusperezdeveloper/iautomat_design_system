@@ -9,8 +9,8 @@ import 'spacing.dart';
 ///
 /// Implementa Material Design 3 con tokens personalizados del sistema.
 /// Incluye configuraci�n completa para light y dark themes con:
-/// - ColorScheme personalizado integrado con AppColors
-/// - TextTheme basado en AppTypography
+/// - ColorScheme personalizado integrado con DSColors
+/// - TextTheme basado en DSTypography
 /// - Component themes para todos los widgets de Material
 /// - Sistema de elevaci�n y sombras consistente
 /// - Border radius system unificado
@@ -19,12 +19,12 @@ import 'spacing.dart';
 /// Uso:
 /// ```dart
 /// MaterialApp(
-///   theme: AppTheme.lightTheme,
-///   darkTheme: AppTheme.darkTheme,
+///   theme: DSTheme.lightTheme,
+///   darkTheme: DSTheme.darkTheme,
 /// )
 /// ```
-class AppTheme {
-  AppTheme._();
+class DSTheme {
+  DSTheme._();
 
   // ==========================================================================
   // BORDER RADIUS SYSTEM
@@ -174,89 +174,89 @@ class AppTheme {
   /// ColorScheme para light theme
   static ColorScheme get _lightColorScheme => ColorScheme.light(
         // Colores principales
-        primary: AppColors.primary,
-        onPrimary: AppColors.textOnColor,
-        primaryContainer: AppColors.primaryLight,
-        onPrimaryContainer: AppColors.primaryDarker,
+        primary: DSColors.primary,
+        onPrimary: DSColors.textOnColor,
+        primaryContainer: DSColors.primaryLight,
+        onPrimaryContainer: DSColors.primaryDarker,
 
         // Colores secundarios
-        secondary: AppColors.secondary,
-        onSecondary: AppColors.textOnColor,
-        secondaryContainer: AppColors.secondaryLight,
-        onSecondaryContainer: AppColors.secondaryDarker,
+        secondary: DSColors.secondary,
+        onSecondary: DSColors.textOnColor,
+        secondaryContainer: DSColors.secondaryLight,
+        onSecondaryContainer: DSColors.secondaryDarker,
 
         // Colores terciarios (usando info como terciario)
-        tertiary: AppColors.info,
-        onTertiary: AppColors.textOnColor,
-        tertiaryContainer: AppColors.infoLight,
-        onTertiaryContainer: AppColors.infoDark,
+        tertiary: DSColors.info,
+        onTertiary: DSColors.textOnColor,
+        tertiaryContainer: DSColors.infoLight,
+        onTertiaryContainer: DSColors.infoDark,
 
         // Colores de error
-        error: AppColors.error,
-        onError: AppColors.textOnColor,
-        errorContainer: AppColors.errorLight,
-        onErrorContainer: AppColors.errorDark,
+        error: DSColors.error,
+        onError: DSColors.textOnColor,
+        errorContainer: DSColors.errorLight,
+        onErrorContainer: DSColors.errorDark,
 
         // Colores de superficie
-        surface: AppColors.surface,
-        onSurface: AppColors.textPrimary,
-        surfaceContainerHighest: AppColors.surfaceVariant,
-        onSurfaceVariant: AppColors.textSecondary,
+        surface: DSColors.surface,
+        onSurface: DSColors.textPrimary,
+        surfaceContainerHighest: DSColors.surfaceVariant,
+        onSurfaceVariant: DSColors.textSecondary,
 
         // Colores de outline
-        outline: AppColors.gray300,
-        outlineVariant: AppColors.gray200,
+        outline: DSColors.gray300,
+        outlineVariant: DSColors.gray200,
 
         // Colores de superficie inversa
-        inverseSurface: AppColors.gray800,
-        onInverseSurface: AppColors.textOnColor,
-        inversePrimary: AppColors.primaryLight,
+        inverseSurface: DSColors.gray800,
+        onInverseSurface: DSColors.textOnColor,
+        inversePrimary: DSColors.primaryLight,
 
         // Shadow y scrim
-        shadow: AppColors.shadow,
-        scrim: AppColors.overlay,
+        shadow: DSColors.shadow,
+        scrim: DSColors.overlay,
       );
 
   /// ColorScheme para dark theme
   static ColorScheme get _darkColorScheme => ColorScheme.dark(
         // Colores principales
-        primary: AppColors.primaryDarkMode,
-        onPrimary: AppColors.backgroundDarkMode,
-        primaryContainer: AppColors.primaryDark,
-        onPrimaryContainer: AppColors.primaryLighter,
+        primary: DSColors.primaryDarkMode,
+        onPrimary: DSColors.backgroundDarkMode,
+        primaryContainer: DSColors.primaryDark,
+        onPrimaryContainer: DSColors.primaryLighter,
 
         // Colores secundarios
-        secondary: AppColors.secondaryDarkMode,
-        onSecondary: AppColors.backgroundDarkMode,
-        secondaryContainer: AppColors.secondaryDark,
-        onSecondaryContainer: AppColors.secondaryLighter,
+        secondary: DSColors.secondaryDarkMode,
+        onSecondary: DSColors.backgroundDarkMode,
+        secondaryContainer: DSColors.secondaryDark,
+        onSecondaryContainer: DSColors.secondaryLighter,
 
         // Colores terciarios
-        tertiary: AppColors.infoDarkMode,
-        onTertiary: AppColors.backgroundDarkMode,
-        tertiaryContainer: AppColors.infoDark,
-        onTertiaryContainer: AppColors.infoLight,
+        tertiary: DSColors.infoDarkMode,
+        onTertiary: DSColors.backgroundDarkMode,
+        tertiaryContainer: DSColors.infoDark,
+        onTertiaryContainer: DSColors.infoLight,
 
         // Colores de error
-        error: AppColors.errorDarkMode,
-        onError: AppColors.backgroundDarkMode,
-        errorContainer: AppColors.errorDark,
-        onErrorContainer: AppColors.errorLight,
+        error: DSColors.errorDarkMode,
+        onError: DSColors.backgroundDarkMode,
+        errorContainer: DSColors.errorDark,
+        onErrorContainer: DSColors.errorLight,
 
         // Colores de superficie
-        surface: AppColors.backgroundSecondaryDarkMode,
-        onSurface: AppColors.textPrimaryDarkMode,
-        surfaceContainerHighest: AppColors.backgroundTertiaryDarkMode,
-        onSurfaceVariant: AppColors.textSecondaryDarkMode,
+        surface: DSColors.backgroundSecondaryDarkMode,
+        onSurface: DSColors.textPrimaryDarkMode,
+        surfaceContainerHighest: DSColors.backgroundTertiaryDarkMode,
+        onSurfaceVariant: DSColors.textSecondaryDarkMode,
 
         // Colores de outline
-        outline: AppColors.gray600,
-        outlineVariant: AppColors.gray700,
+        outline: DSColors.gray600,
+        outlineVariant: DSColors.gray700,
 
         // Colores de superficie inversa
-        inverseSurface: AppColors.gray100,
-        onInverseSurface: AppColors.textPrimary,
-        inversePrimary: AppColors.primary,
+        inverseSurface: DSColors.gray100,
+        onInverseSurface: DSColors.textPrimary,
+        inversePrimary: DSColors.primary,
 
         // Shadow y scrim
         shadow: Color(0xFF000000),
@@ -278,27 +278,27 @@ class AppTheme {
       colorScheme: colorScheme,
 
       // Typography
-      textTheme: AppTypography.textTheme.apply(
-        bodyColor: AppColors.textPrimary,
-        displayColor: AppColors.textPrimary,
+      textTheme: DSTypography.textTheme.apply(
+        bodyColor: DSColors.textPrimary,
+        displayColor: DSColors.textPrimary,
       ),
 
       // Primary swatch (para compatibilidad)
-      primarySwatch: AppColors.primaryMaterial,
+      primarySwatch: DSColors.primaryMaterial,
 
       // Scaffold
-      scaffoldBackgroundColor: AppColors.background,
+      scaffoldBackgroundColor: DSColors.background,
 
       // App Bar Theme
       appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.surface,
-        foregroundColor: AppColors.textPrimary,
+        backgroundColor: DSColors.surface,
+        foregroundColor: DSColors.textPrimary,
         elevation: 0,
         centerTitle: false,
         titleTextStyle:
-            AppTypography.withColor(AppTypography.h6, AppColors.textPrimary),
-        toolbarTextStyle: AppTypography.withColor(
-            AppTypography.bodyMedium, AppColors.textSecondary),
+            DSTypography.withColor(DSTypography.h6, DSColors.textPrimary),
+        toolbarTextStyle: DSTypography.withColor(
+            DSTypography.bodyMedium, DSColors.textSecondary),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -307,26 +307,26 @@ class AppTheme {
 
       // Card Theme
       cardTheme: CardThemeData(
-        color: AppColors.surface,
-        shadowColor: AppColors.shadow,
+        color: DSColors.surface,
+        shadowColor: DSColors.shadow,
         elevation: 2,
         shape: const RoundedRectangleBorder(borderRadius: radiusLg),
-        margin: AppSpacing.cardPadding,
+        margin: DSSpacing.cardPadding,
         clipBehavior: Clip.antiAlias,
       ),
 
       // Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.textOnColor,
-          disabledBackgroundColor: AppColors.gray300,
-          disabledForegroundColor: AppColors.textDisabled,
+          backgroundColor: DSColors.primary,
+          foregroundColor: DSColors.textOnColor,
+          disabledBackgroundColor: DSColors.gray300,
+          disabledForegroundColor: DSColors.textDisabled,
           elevation: 2,
-          shadowColor: AppColors.shadow,
+          shadowColor: DSColors.shadow,
           shape: const RoundedRectangleBorder(borderRadius: radiusMd),
-          padding: AppSpacing.buttonPadding,
-          textStyle: AppTypography.button,
+          padding: DSSpacing.buttonPadding,
+          textStyle: DSTypography.button,
           minimumSize: const Size(64, 40),
         ),
       ),
@@ -334,12 +334,12 @@ class AppTheme {
       // Outlined Button Theme
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.primary,
-          disabledForegroundColor: AppColors.textDisabled,
-          side: const BorderSide(color: AppColors.primary, width: 1),
+          foregroundColor: DSColors.primary,
+          disabledForegroundColor: DSColors.textDisabled,
+          side: const BorderSide(color: DSColors.primary, width: 1),
           shape: const RoundedRectangleBorder(borderRadius: radiusMd),
-          padding: AppSpacing.buttonPadding,
-          textStyle: AppTypography.button,
+          padding: DSSpacing.buttonPadding,
+          textStyle: DSTypography.button,
           minimumSize: const Size(64, 40),
         ),
       ),
@@ -347,19 +347,19 @@ class AppTheme {
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: AppColors.primary,
-          disabledForegroundColor: AppColors.textDisabled,
+          foregroundColor: DSColors.primary,
+          disabledForegroundColor: DSColors.textDisabled,
           shape: const RoundedRectangleBorder(borderRadius: radiusMd),
-          padding: AppSpacing.buttonPadding,
-          textStyle: AppTypography.button,
+          padding: DSSpacing.buttonPadding,
+          textStyle: DSTypography.button,
           minimumSize: const Size(64, 40),
         ),
       ),
 
       // Floating Action Button Theme
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: AppColors.primary,
-        foregroundColor: AppColors.textOnColor,
+        backgroundColor: DSColors.primary,
+        foregroundColor: DSColors.textOnColor,
         elevation: 6,
         focusElevation: 8,
         hoverElevation: 8,
@@ -370,83 +370,83 @@ class AppTheme {
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.surfaceVariant,
+        fillColor: DSColors.surfaceVariant,
         border: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: const BorderSide(color: AppColors.gray300),
+          borderSide: const BorderSide(color: DSColors.gray300),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: const BorderSide(color: AppColors.gray300),
+          borderSide: const BorderSide(color: DSColors.gray300),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: const BorderSide(color: AppColors.primary, width: 2),
+          borderSide: const BorderSide(color: DSColors.primary, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: const BorderSide(color: AppColors.error),
+          borderSide: const BorderSide(color: DSColors.error),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: const BorderSide(color: AppColors.error, width: 2),
+          borderSide: const BorderSide(color: DSColors.error, width: 2),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: const BorderSide(color: AppColors.gray200),
+          borderSide: const BorderSide(color: DSColors.gray200),
         ),
-        contentPadding: AppSpacing.inputPadding,
-        labelStyle: AppTypography.labelMedium,
-        hintStyle: AppTypography.withColor(
-            AppTypography.bodyMedium, AppColors.textTertiary),
-        errorStyle: AppTypography.error(AppColors.error),
-        helperStyle: AppTypography.withColor(
-            AppTypography.caption, AppColors.textTertiary),
+        contentPadding: DSSpacing.inputPadding,
+        labelStyle: DSTypography.labelMedium,
+        hintStyle: DSTypography.withColor(
+            DSTypography.bodyMedium, DSColors.textTertiary),
+        errorStyle: DSTypography.error(DSColors.error),
+        helperStyle: DSTypography.withColor(
+            DSTypography.caption, DSColors.textTertiary),
       ),
 
       // Chip Theme
       chipTheme: ChipThemeData(
-        backgroundColor: AppColors.surfaceVariant,
-        disabledColor: AppColors.gray200,
-        selectedColor: AppColors.primaryLight,
-        secondarySelectedColor: AppColors.secondaryLight,
-        shadowColor: AppColors.shadow,
-        selectedShadowColor: AppColors.shadow,
-        labelStyle: AppTypography.labelSmall,
-        secondaryLabelStyle: AppTypography.labelSmall,
+        backgroundColor: DSColors.surfaceVariant,
+        disabledColor: DSColors.gray200,
+        selectedColor: DSColors.primaryLight,
+        secondarySelectedColor: DSColors.secondaryLight,
+        shadowColor: DSColors.shadow,
+        selectedShadowColor: DSColors.shadow,
+        labelStyle: DSTypography.labelSmall,
+        secondaryLabelStyle: DSTypography.labelSmall,
         brightness: Brightness.light,
         elevation: 1,
         pressElevation: 4,
-        padding: AppSpacing.chipPadding,
+        padding: DSSpacing.chipPadding,
         shape: const RoundedRectangleBorder(borderRadius: radiusSm),
       ),
 
       // List Tile Theme
       listTileTheme: ListTileThemeData(
-        contentPadding: AppSpacing.listItemPadding,
+        contentPadding: DSSpacing.listItemPadding,
         minLeadingWidth: 40,
         shape: const RoundedRectangleBorder(borderRadius: radiusMd),
-        titleTextStyle: AppTypography.bodyMedium,
-        subtitleTextStyle: AppTypography.withColor(
-            AppTypography.bodySmall, AppColors.textSecondary),
-        leadingAndTrailingTextStyle: AppTypography.labelMedium,
+        titleTextStyle: DSTypography.bodyMedium,
+        subtitleTextStyle: DSTypography.withColor(
+            DSTypography.bodySmall, DSColors.textSecondary),
+        leadingAndTrailingTextStyle: DSTypography.labelMedium,
       ),
 
       // Dialog Theme
       dialogTheme: DialogThemeData(
-        backgroundColor: AppColors.surface,
+        backgroundColor: DSColors.surface,
         elevation: 24,
-        shadowColor: AppColors.shadow,
+        shadowColor: DSColors.shadow,
         shape: const RoundedRectangleBorder(borderRadius: radiusXl),
-        titleTextStyle: AppTypography.h5,
-        contentTextStyle: AppTypography.bodyMedium,
-        actionsPadding: AppSpacing.dialogContentPadding,
-        insetPadding: const EdgeInsets.all(AppSpacing.md),
+        titleTextStyle: DSTypography.h5,
+        contentTextStyle: DSTypography.bodyMedium,
+        actionsPadding: DSSpacing.dialogContentPadding,
+        insetPadding: const EdgeInsets.all(DSSpacing.md),
       ),
 
       // Bottom Sheet Theme
       bottomSheetTheme: const BottomSheetThemeData(
-        backgroundColor: AppColors.surface,
+        backgroundColor: DSColors.surface,
         elevation: 16,
         modalElevation: 16,
         shape: RoundedRectangleBorder(
@@ -457,113 +457,113 @@ class AppTheme {
 
       // Tab Bar Theme
       tabBarTheme: TabBarThemeData(
-        labelColor: AppColors.primary,
-        unselectedLabelColor: AppColors.textSecondary,
-        labelStyle: AppTypography.labelLarge,
-        unselectedLabelStyle: AppTypography.labelMedium,
+        labelColor: DSColors.primary,
+        unselectedLabelColor: DSColors.textSecondary,
+        labelStyle: DSTypography.labelLarge,
+        unselectedLabelStyle: DSTypography.labelMedium,
         indicator: UnderlineTabIndicator(
-          borderSide: BorderSide(color: AppColors.primary, width: 2),
+          borderSide: BorderSide(color: DSColors.primary, width: 2),
         ),
         indicatorSize: TabBarIndicatorSize.tab,
-        dividerColor: AppColors.divider,
+        dividerColor: DSColors.divider,
       ),
 
       // Checkbox Theme
       checkboxTheme: CheckboxThemeData(
         fillColor: WidgetStateProperty.resolveWith<Color>((states) {
-          if (states.contains(WidgetState.selected)) return AppColors.primary;
-          return AppColors.surface;
+          if (states.contains(WidgetState.selected)) return DSColors.primary;
+          return DSColors.surface;
         }),
-        checkColor: WidgetStateProperty.all(AppColors.textOnColor),
+        checkColor: WidgetStateProperty.all(DSColors.textOnColor),
         overlayColor:
-            WidgetStateProperty.all(AppColors.primary.withValues(alpha: 0.1)),
+            WidgetStateProperty.all(DSColors.primary.withValues(alpha: 0.1)),
         shape: const RoundedRectangleBorder(borderRadius: radiusXs),
       ),
 
       // Radio Theme
       radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.resolveWith<Color>((states) {
-          if (states.contains(WidgetState.selected)) return AppColors.primary;
-          return AppColors.gray400;
+          if (states.contains(WidgetState.selected)) return DSColors.primary;
+          return DSColors.gray400;
         }),
         overlayColor:
-            WidgetStateProperty.all(AppColors.primary.withValues(alpha: 0.1)),
+            WidgetStateProperty.all(DSColors.primary.withValues(alpha: 0.1)),
       ),
 
       // Switch Theme
       switchTheme: SwitchThemeData(
         thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
-          if (states.contains(WidgetState.selected)) return AppColors.primary;
-          return AppColors.gray400;
+          if (states.contains(WidgetState.selected)) return DSColors.primary;
+          return DSColors.gray400;
         }),
         trackColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.primary.withValues(alpha: 0.3);
+            return DSColors.primary.withValues(alpha: 0.3);
           }
-          return AppColors.gray300;
+          return DSColors.gray300;
         }),
         overlayColor:
-            WidgetStateProperty.all(AppColors.primary.withValues(alpha: 0.1)),
+            WidgetStateProperty.all(DSColors.primary.withValues(alpha: 0.1)),
       ),
 
       // Slider Theme
       sliderTheme: SliderThemeData(
-        activeTrackColor: AppColors.primary,
-        inactiveTrackColor: AppColors.primary.withValues(alpha: 0.3),
-        thumbColor: AppColors.primary,
-        overlayColor: AppColors.primary.withValues(alpha: 0.1),
-        valueIndicatorColor: AppColors.primary,
-        valueIndicatorTextStyle: AppTypography.withColor(
-            AppTypography.labelSmall, AppColors.textOnColor),
+        activeTrackColor: DSColors.primary,
+        inactiveTrackColor: DSColors.primary.withValues(alpha: 0.3),
+        thumbColor: DSColors.primary,
+        overlayColor: DSColors.primary.withValues(alpha: 0.1),
+        valueIndicatorColor: DSColors.primary,
+        valueIndicatorTextStyle: DSTypography.withColor(
+            DSTypography.labelSmall, DSColors.textOnColor),
       ),
 
       // Progress Indicator Theme
       progressIndicatorTheme: const ProgressIndicatorThemeData(
-        color: AppColors.primary,
-        linearTrackColor: AppColors.gray200,
-        circularTrackColor: AppColors.gray200,
+        color: DSColors.primary,
+        linearTrackColor: DSColors.gray200,
+        circularTrackColor: DSColors.gray200,
       ),
 
       // Tooltip Theme
       tooltipTheme: TooltipThemeData(
         decoration: BoxDecoration(
-          color: AppColors.gray800,
+          color: DSColors.gray800,
           borderRadius: radiusSm,
         ),
-        textStyle: AppTypography.withColor(
-            AppTypography.caption, AppColors.textOnColor),
+        textStyle: DSTypography.withColor(
+            DSTypography.caption, DSColors.textOnColor),
         padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.xs, vertical: AppSpacing.xxs),
+            horizontal: DSSpacing.xs, vertical: DSSpacing.xxs),
       ),
 
       // Navigation Bar Theme
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: AppColors.surface,
+        backgroundColor: DSColors.surface,
         elevation: 3,
-        indicatorColor: AppColors.primary.withValues(alpha: 0.1),
-        labelTextStyle: WidgetStateProperty.all(AppTypography.labelSmall),
+        indicatorColor: DSColors.primary.withValues(alpha: 0.1),
+        labelTextStyle: WidgetStateProperty.all(DSTypography.labelSmall),
         iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
           if (states.contains(WidgetState.selected)) {
-            return const IconThemeData(color: AppColors.primary);
+            return const IconThemeData(color: DSColors.primary);
           }
-          return const IconThemeData(color: AppColors.textSecondary);
+          return const IconThemeData(color: DSColors.textSecondary);
         }),
       ),
 
       // Divider Theme
       dividerTheme: const DividerThemeData(
-        color: AppColors.divider,
+        color: DSColors.divider,
         thickness: 1,
         space: 1,
       ),
 
       // Icon Theme
       iconTheme: const IconThemeData(
-        color: AppColors.textSecondary,
+        color: DSColors.textSecondary,
         size: 24,
       ),
       primaryIconTheme: const IconThemeData(
-        color: AppColors.textOnColor,
+        color: DSColors.textOnColor,
         size: 24,
       ),
     );
@@ -584,27 +584,27 @@ class AppTheme {
       colorScheme: colorScheme,
 
       // Typography
-      textTheme: AppTypography.textTheme.apply(
-        bodyColor: AppColors.textPrimaryDarkMode,
-        displayColor: AppColors.textPrimaryDarkMode,
+      textTheme: DSTypography.textTheme.apply(
+        bodyColor: DSColors.textPrimaryDarkMode,
+        displayColor: DSColors.textPrimaryDarkMode,
       ),
 
       // Primary swatch (para compatibilidad)
-      primarySwatch: AppColors.createMaterialColor(AppColors.primaryDarkMode),
+      primarySwatch: DSColors.createMaterialColor(DSColors.primaryDarkMode),
 
       // Scaffold
-      scaffoldBackgroundColor: AppColors.backgroundDarkMode,
+      scaffoldBackgroundColor: DSColors.backgroundDarkMode,
 
       // App Bar Theme
       appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.backgroundSecondaryDarkMode,
-        foregroundColor: AppColors.textPrimaryDarkMode,
+        backgroundColor: DSColors.backgroundSecondaryDarkMode,
+        foregroundColor: DSColors.textPrimaryDarkMode,
         elevation: 0,
         centerTitle: false,
-        titleTextStyle: AppTypography.withColor(
-            AppTypography.h6, AppColors.textPrimaryDarkMode),
-        toolbarTextStyle: AppTypography.withColor(
-            AppTypography.bodyMedium, AppColors.textSecondaryDarkMode),
+        titleTextStyle: DSTypography.withColor(
+            DSTypography.h6, DSColors.textPrimaryDarkMode),
+        toolbarTextStyle: DSTypography.withColor(
+            DSTypography.bodyMedium, DSColors.textSecondaryDarkMode),
         systemOverlayStyle: SystemUiOverlayStyle.light,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
@@ -613,26 +613,26 @@ class AppTheme {
 
       // Card Theme
       cardTheme: CardThemeData(
-        color: AppColors.backgroundSecondaryDarkMode,
+        color: DSColors.backgroundSecondaryDarkMode,
         shadowColor: Colors.black,
         elevation: 2,
         shape: const RoundedRectangleBorder(borderRadius: radiusLg),
-        margin: AppSpacing.cardPadding,
+        margin: DSSpacing.cardPadding,
         clipBehavior: Clip.antiAlias,
       ),
 
       // Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryDarkMode,
-          foregroundColor: AppColors.backgroundDarkMode,
-          disabledBackgroundColor: AppColors.gray600,
-          disabledForegroundColor: AppColors.gray400,
+          backgroundColor: DSColors.primaryDarkMode,
+          foregroundColor: DSColors.backgroundDarkMode,
+          disabledBackgroundColor: DSColors.gray600,
+          disabledForegroundColor: DSColors.gray400,
           elevation: 2,
           shadowColor: Colors.black,
           shape: const RoundedRectangleBorder(borderRadius: radiusMd),
-          padding: AppSpacing.buttonPadding,
-          textStyle: AppTypography.button,
+          padding: DSSpacing.buttonPadding,
+          textStyle: DSTypography.button,
           minimumSize: const Size(64, 40),
         ),
       ),
@@ -640,12 +640,12 @@ class AppTheme {
       // Outlined Button Theme
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.primaryDarkMode,
-          disabledForegroundColor: AppColors.gray400,
-          side: BorderSide(color: AppColors.primaryDarkMode, width: 1),
+          foregroundColor: DSColors.primaryDarkMode,
+          disabledForegroundColor: DSColors.gray400,
+          side: BorderSide(color: DSColors.primaryDarkMode, width: 1),
           shape: const RoundedRectangleBorder(borderRadius: radiusMd),
-          padding: AppSpacing.buttonPadding,
-          textStyle: AppTypography.button,
+          padding: DSSpacing.buttonPadding,
+          textStyle: DSTypography.button,
           minimumSize: const Size(64, 40),
         ),
       ),
@@ -653,19 +653,19 @@ class AppTheme {
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: AppColors.primaryDarkMode,
-          disabledForegroundColor: AppColors.gray400,
+          foregroundColor: DSColors.primaryDarkMode,
+          disabledForegroundColor: DSColors.gray400,
           shape: const RoundedRectangleBorder(borderRadius: radiusMd),
-          padding: AppSpacing.buttonPadding,
-          textStyle: AppTypography.button,
+          padding: DSSpacing.buttonPadding,
+          textStyle: DSTypography.button,
           minimumSize: const Size(64, 40),
         ),
       ),
 
       // Floating Action Button Theme
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: AppColors.primaryDarkMode,
-        foregroundColor: AppColors.backgroundDarkMode,
+        backgroundColor: DSColors.primaryDarkMode,
+        foregroundColor: DSColors.backgroundDarkMode,
         elevation: 6,
         focusElevation: 8,
         hoverElevation: 8,
@@ -676,92 +676,92 @@ class AppTheme {
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.backgroundTertiaryDarkMode,
+        fillColor: DSColors.backgroundTertiaryDarkMode,
         border: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: BorderSide(color: AppColors.gray600),
+          borderSide: BorderSide(color: DSColors.gray600),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: BorderSide(color: AppColors.gray600),
+          borderSide: BorderSide(color: DSColors.gray600),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: BorderSide(color: AppColors.primaryDarkMode, width: 2),
+          borderSide: BorderSide(color: DSColors.primaryDarkMode, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: BorderSide(color: AppColors.errorDarkMode),
+          borderSide: BorderSide(color: DSColors.errorDarkMode),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: BorderSide(color: AppColors.errorDarkMode, width: 2),
+          borderSide: BorderSide(color: DSColors.errorDarkMode, width: 2),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: radiusMd,
-          borderSide: BorderSide(color: AppColors.gray700),
+          borderSide: BorderSide(color: DSColors.gray700),
         ),
-        contentPadding: AppSpacing.inputPadding,
-        labelStyle: AppTypography.withColor(
-            AppTypography.labelMedium, AppColors.textSecondaryDarkMode),
-        hintStyle: AppTypography.withColor(
-            AppTypography.bodyMedium, AppColors.textTertiaryDarkMode),
-        errorStyle: AppTypography.withColor(
-            AppTypography.bodySmall, AppColors.errorDarkMode),
-        helperStyle: AppTypography.withColor(
-            AppTypography.caption, AppColors.textTertiaryDarkMode),
+        contentPadding: DSSpacing.inputPadding,
+        labelStyle: DSTypography.withColor(
+            DSTypography.labelMedium, DSColors.textSecondaryDarkMode),
+        hintStyle: DSTypography.withColor(
+            DSTypography.bodyMedium, DSColors.textTertiaryDarkMode),
+        errorStyle: DSTypography.withColor(
+            DSTypography.bodySmall, DSColors.errorDarkMode),
+        helperStyle: DSTypography.withColor(
+            DSTypography.caption, DSColors.textTertiaryDarkMode),
       ),
 
       // Chip Theme
       chipTheme: ChipThemeData(
-        backgroundColor: AppColors.backgroundTertiaryDarkMode,
-        disabledColor: AppColors.gray700,
-        selectedColor: AppColors.primaryDarkMode.withValues(alpha: 0.2),
+        backgroundColor: DSColors.backgroundTertiaryDarkMode,
+        disabledColor: DSColors.gray700,
+        selectedColor: DSColors.primaryDarkMode.withValues(alpha: 0.2),
         secondarySelectedColor:
-            AppColors.secondaryDarkMode.withValues(alpha: 0.2),
+            DSColors.secondaryDarkMode.withValues(alpha: 0.2),
         shadowColor: Colors.black,
         selectedShadowColor: Colors.black,
-        labelStyle: AppTypography.withColor(
-            AppTypography.labelSmall, AppColors.textPrimaryDarkMode),
-        secondaryLabelStyle: AppTypography.withColor(
-            AppTypography.labelSmall, AppColors.textPrimaryDarkMode),
+        labelStyle: DSTypography.withColor(
+            DSTypography.labelSmall, DSColors.textPrimaryDarkMode),
+        secondaryLabelStyle: DSTypography.withColor(
+            DSTypography.labelSmall, DSColors.textPrimaryDarkMode),
         brightness: Brightness.dark,
         elevation: 1,
         pressElevation: 4,
-        padding: AppSpacing.chipPadding,
+        padding: DSSpacing.chipPadding,
         shape: const RoundedRectangleBorder(borderRadius: radiusSm),
       ),
 
       // List Tile Theme
       listTileTheme: ListTileThemeData(
-        contentPadding: AppSpacing.listItemPadding,
+        contentPadding: DSSpacing.listItemPadding,
         minLeadingWidth: 40,
         shape: const RoundedRectangleBorder(borderRadius: radiusMd),
-        titleTextStyle: AppTypography.withColor(
-            AppTypography.bodyMedium, AppColors.textPrimaryDarkMode),
-        subtitleTextStyle: AppTypography.withColor(
-            AppTypography.bodySmall, AppColors.textSecondaryDarkMode),
-        leadingAndTrailingTextStyle: AppTypography.withColor(
-            AppTypography.labelMedium, AppColors.textSecondaryDarkMode),
+        titleTextStyle: DSTypography.withColor(
+            DSTypography.bodyMedium, DSColors.textPrimaryDarkMode),
+        subtitleTextStyle: DSTypography.withColor(
+            DSTypography.bodySmall, DSColors.textSecondaryDarkMode),
+        leadingAndTrailingTextStyle: DSTypography.withColor(
+            DSTypography.labelMedium, DSColors.textSecondaryDarkMode),
       ),
 
       // Dialog Theme
       dialogTheme: DialogThemeData(
-        backgroundColor: AppColors.backgroundSecondaryDarkMode,
+        backgroundColor: DSColors.backgroundSecondaryDarkMode,
         elevation: 24,
         shadowColor: Colors.black,
         shape: const RoundedRectangleBorder(borderRadius: radiusXl),
-        titleTextStyle: AppTypography.withColor(
-            AppTypography.h5, AppColors.textPrimaryDarkMode),
-        contentTextStyle: AppTypography.withColor(
-            AppTypography.bodyMedium, AppColors.textPrimaryDarkMode),
-        actionsPadding: AppSpacing.dialogContentPadding,
-        insetPadding: const EdgeInsets.all(AppSpacing.md),
+        titleTextStyle: DSTypography.withColor(
+            DSTypography.h5, DSColors.textPrimaryDarkMode),
+        contentTextStyle: DSTypography.withColor(
+            DSTypography.bodyMedium, DSColors.textPrimaryDarkMode),
+        actionsPadding: DSSpacing.dialogContentPadding,
+        insetPadding: const EdgeInsets.all(DSSpacing.md),
       ),
 
       // Bottom Sheet Theme
       bottomSheetTheme: BottomSheetThemeData(
-        backgroundColor: AppColors.backgroundSecondaryDarkMode,
+        backgroundColor: DSColors.backgroundSecondaryDarkMode,
         elevation: 16,
         modalElevation: 16,
         shape: const RoundedRectangleBorder(
@@ -772,30 +772,30 @@ class AppTheme {
 
       // Tab Bar Theme
       tabBarTheme: TabBarThemeData(
-        labelColor: AppColors.primaryDarkMode,
-        unselectedLabelColor: AppColors.textSecondaryDarkMode,
-        labelStyle: AppTypography.withColor(
-            AppTypography.labelLarge, AppColors.primaryDarkMode),
-        unselectedLabelStyle: AppTypography.withColor(
-            AppTypography.labelMedium, AppColors.textSecondaryDarkMode),
+        labelColor: DSColors.primaryDarkMode,
+        unselectedLabelColor: DSColors.textSecondaryDarkMode,
+        labelStyle: DSTypography.withColor(
+            DSTypography.labelLarge, DSColors.primaryDarkMode),
+        unselectedLabelStyle: DSTypography.withColor(
+            DSTypography.labelMedium, DSColors.textSecondaryDarkMode),
         indicator: UnderlineTabIndicator(
-          borderSide: BorderSide(color: AppColors.primaryDarkMode, width: 2),
+          borderSide: BorderSide(color: DSColors.primaryDarkMode, width: 2),
         ),
         indicatorSize: TabBarIndicatorSize.tab,
-        dividerColor: AppColors.gray600,
+        dividerColor: DSColors.gray600,
       ),
 
       // Checkbox Theme
       checkboxTheme: CheckboxThemeData(
         fillColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.primaryDarkMode;
+            return DSColors.primaryDarkMode;
           }
-          return AppColors.backgroundTertiaryDarkMode;
+          return DSColors.backgroundTertiaryDarkMode;
         }),
-        checkColor: WidgetStateProperty.all(AppColors.backgroundDarkMode),
+        checkColor: WidgetStateProperty.all(DSColors.backgroundDarkMode),
         overlayColor: WidgetStateProperty.all(
-            AppColors.primaryDarkMode.withValues(alpha: 0.1)),
+            DSColors.primaryDarkMode.withValues(alpha: 0.1)),
         shape: const RoundedRectangleBorder(borderRadius: radiusXs),
       ),
 
@@ -803,91 +803,91 @@ class AppTheme {
       radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.primaryDarkMode;
+            return DSColors.primaryDarkMode;
           }
-          return AppColors.gray500;
+          return DSColors.gray500;
         }),
         overlayColor: WidgetStateProperty.all(
-            AppColors.primaryDarkMode.withValues(alpha: 0.1)),
+            DSColors.primaryDarkMode.withValues(alpha: 0.1)),
       ),
 
       // Switch Theme
       switchTheme: SwitchThemeData(
         thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.primaryDarkMode;
+            return DSColors.primaryDarkMode;
           }
-          return AppColors.gray500;
+          return DSColors.gray500;
         }),
         trackColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
-            return AppColors.primaryDarkMode.withValues(alpha: 0.3);
+            return DSColors.primaryDarkMode.withValues(alpha: 0.3);
           }
-          return AppColors.gray600;
+          return DSColors.gray600;
         }),
         overlayColor: WidgetStateProperty.all(
-            AppColors.primaryDarkMode.withValues(alpha: 0.1)),
+            DSColors.primaryDarkMode.withValues(alpha: 0.1)),
       ),
 
       // Slider Theme
       sliderTheme: SliderThemeData(
-        activeTrackColor: AppColors.primaryDarkMode,
-        inactiveTrackColor: AppColors.primaryDarkMode.withValues(alpha: 0.3),
-        thumbColor: AppColors.primaryDarkMode,
-        overlayColor: AppColors.primaryDarkMode.withValues(alpha: 0.1),
-        valueIndicatorColor: AppColors.primaryDarkMode,
-        valueIndicatorTextStyle: AppTypography.withColor(
-            AppTypography.labelSmall, AppColors.backgroundDarkMode),
+        activeTrackColor: DSColors.primaryDarkMode,
+        inactiveTrackColor: DSColors.primaryDarkMode.withValues(alpha: 0.3),
+        thumbColor: DSColors.primaryDarkMode,
+        overlayColor: DSColors.primaryDarkMode.withValues(alpha: 0.1),
+        valueIndicatorColor: DSColors.primaryDarkMode,
+        valueIndicatorTextStyle: DSTypography.withColor(
+            DSTypography.labelSmall, DSColors.backgroundDarkMode),
       ),
 
       // Progress Indicator Theme
       progressIndicatorTheme: ProgressIndicatorThemeData(
-        color: AppColors.primaryDarkMode,
-        linearTrackColor: AppColors.gray600,
-        circularTrackColor: AppColors.gray600,
+        color: DSColors.primaryDarkMode,
+        linearTrackColor: DSColors.gray600,
+        circularTrackColor: DSColors.gray600,
       ),
 
       // Tooltip Theme
       tooltipTheme: TooltipThemeData(
         decoration: BoxDecoration(
-          color: AppColors.gray200,
+          color: DSColors.gray200,
           borderRadius: radiusSm,
         ),
-        textStyle: AppTypography.withColor(
-            AppTypography.caption, AppColors.textPrimary),
+        textStyle: DSTypography.withColor(
+            DSTypography.caption, DSColors.textPrimary),
         padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.xs, vertical: AppSpacing.xxs),
+            horizontal: DSSpacing.xs, vertical: DSSpacing.xxs),
       ),
 
       // Navigation Bar Theme
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: AppColors.backgroundSecondaryDarkMode,
+        backgroundColor: DSColors.backgroundSecondaryDarkMode,
         elevation: 3,
-        indicatorColor: AppColors.primaryDarkMode.withValues(alpha: 0.1),
-        labelTextStyle: WidgetStateProperty.all(AppTypography.withColor(
-            AppTypography.labelSmall, AppColors.textSecondaryDarkMode)),
+        indicatorColor: DSColors.primaryDarkMode.withValues(alpha: 0.1),
+        labelTextStyle: WidgetStateProperty.all(DSTypography.withColor(
+            DSTypography.labelSmall, DSColors.textSecondaryDarkMode)),
         iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
           if (states.contains(WidgetState.selected)) {
-            return IconThemeData(color: AppColors.primaryDarkMode);
+            return IconThemeData(color: DSColors.primaryDarkMode);
           }
-          return IconThemeData(color: AppColors.textSecondaryDarkMode);
+          return IconThemeData(color: DSColors.textSecondaryDarkMode);
         }),
       ),
 
       // Divider Theme
       dividerTheme: DividerThemeData(
-        color: AppColors.gray600,
+        color: DSColors.gray600,
         thickness: 1,
         space: 1,
       ),
 
       // Icon Theme
       iconTheme: IconThemeData(
-        color: AppColors.textSecondaryDarkMode,
+        color: DSColors.textSecondaryDarkMode,
         size: 24,
       ),
       primaryIconTheme: IconThemeData(
-        color: AppColors.backgroundDarkMode,
+        color: DSColors.backgroundDarkMode,
         size: 24,
       ),
     );
@@ -948,7 +948,7 @@ class AppTheme {
     }
 
     return BoxDecoration(
-      color: color ?? AppColors.surface,
+      color: color ?? DSColors.surface,
       borderRadius: borderRadius ?? radiusMd,
       boxShadow: shadows,
     );

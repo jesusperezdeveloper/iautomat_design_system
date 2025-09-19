@@ -5,24 +5,24 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/status_dot/app_status_dot.dart';
 
 void main() {
-  group('AppStatusDot', () {
+  group('DSStatusDot', () {
     testWidgets('renders success variant correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.success(
+            body: DSStatusDot.success(
               label: 'Success status',
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
       expect(find.text('Success status'), findsOneWidget);
 
       final container = tester.widget<Container>(
         find.descendant(
-          of: find.byType(AppStatusDot),
+          of: find.byType(DSStatusDot),
           matching: find.byType(Container),
         ).first,
       );
@@ -36,26 +36,26 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.info(
+            body: DSStatusDot.info(
               label: 'Info status',
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
       expect(find.text('Info status'), findsOneWidget);
 
       final container = tester.widget<Container>(
         find.descendant(
-          of: find.byType(AppStatusDot),
+          of: find.byType(DSStatusDot),
           matching: find.byType(Container),
         ).first,
       );
 
       expect(container.decoration, isA<BoxDecoration>());
       final decoration = container.decoration as BoxDecoration;
-      final theme = Theme.of(tester.element(find.byType(AppStatusDot)));
+      final theme = Theme.of(tester.element(find.byType(DSStatusDot)));
       expect(decoration.color, equals(theme.colorScheme.primary));
     });
 
@@ -63,19 +63,19 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.warn(
+            body: DSStatusDot.warn(
               label: 'Warning status',
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
       expect(find.text('Warning status'), findsOneWidget);
 
       final container = tester.widget<Container>(
         find.descendant(
-          of: find.byType(AppStatusDot),
+          of: find.byType(DSStatusDot),
           matching: find.byType(Container),
         ).first,
       );
@@ -89,26 +89,26 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.error(
+            body: DSStatusDot.error(
               label: 'Error status',
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
       expect(find.text('Error status'), findsOneWidget);
 
       final container = tester.widget<Container>(
         find.descendant(
-          of: find.byType(AppStatusDot),
+          of: find.byType(DSStatusDot),
           matching: find.byType(Container),
         ).first,
       );
 
       expect(container.decoration, isA<BoxDecoration>());
       final decoration = container.decoration as BoxDecoration;
-      final theme = Theme.of(tester.element(find.byType(AppStatusDot)));
+      final theme = Theme.of(tester.element(find.byType(DSStatusDot)));
       expect(decoration.color, equals(theme.colorScheme.error));
     });
 
@@ -116,12 +116,12 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.success(),
+            body: DSStatusDot.success(),
           ),
         ),
       );
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
       expect(find.byType(Text), findsNothing);
     });
 
@@ -129,19 +129,19 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.success(
+            body: DSStatusDot.success(
               label: 'Disabled status',
-              state: AppStatusDotState.disabled,
+              state: DSStatusDotState.disabled,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
 
       final opacity = tester.widget<Opacity>(
         find.descendant(
-          of: find.byType(AppStatusDot),
+          of: find.byType(DSStatusDot),
           matching: find.byType(Opacity),
         ),
       );
@@ -153,15 +153,15 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.info(
+            body: DSStatusDot.info(
               label: 'Loading status',
-              state: AppStatusDotState.loading,
+              state: DSStatusDotState.loading,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
@@ -169,19 +169,19 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.warn(
+            body: DSStatusDot.warn(
               label: 'Skeleton status',
-              state: AppStatusDotState.skeleton,
+              state: DSStatusDotState.skeleton,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
 
       final containers = tester.widgetList<Container>(
         find.descendant(
-          of: find.byType(AppStatusDot),
+          of: find.byType(DSStatusDot),
           matching: find.byType(Container),
         ),
       );
@@ -193,7 +193,7 @@ void main() {
       for (final container in containers) {
         if (container.decoration is BoxDecoration) {
           final decoration = container.decoration as BoxDecoration;
-          final theme = Theme.of(tester.element(find.byType(AppStatusDot)));
+          final theme = Theme.of(tester.element(find.byType(DSStatusDot)));
           if (decoration.color == theme.colorScheme.surface.withValues(alpha: 0.3)) {
             foundSkeletonContainer = true;
             break;
@@ -209,7 +209,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.success(
+            body: DSStatusDot.success(
               label: 'Tappable status',
               onTap: () => tapped = true,
             ),
@@ -217,7 +217,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppStatusDot));
+      await tester.tap(find.byType(DSStatusDot));
       await tester.pump();
 
       expect(tapped, isTrue);
@@ -229,16 +229,16 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.success(
+            body: DSStatusDot.success(
               label: 'Disabled status',
-              state: AppStatusDotState.disabled,
+              state: DSStatusDotState.disabled,
               onTap: () => tapped = true,
             ),
           ),
         ),
       );
 
-      await tester.tap(find.byType(AppStatusDot));
+      await tester.tap(find.byType(DSStatusDot));
       await tester.pump();
 
       expect(tapped, isFalse);
@@ -248,7 +248,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.info(
+            body: DSStatusDot.info(
               label: 'Hoverable status',
             ),
           ),
@@ -259,17 +259,17 @@ void main() {
       await gesture.addPointer(location: Offset.zero);
       addTearDown(gesture.removePointer);
 
-      await gesture.moveTo(tester.getCenter(find.byType(AppStatusDot)));
+      await gesture.moveTo(tester.getCenter(find.byType(DSStatusDot)));
       await tester.pump();
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
     });
 
     testWidgets('handles focus state correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.error(
+            body: DSStatusDot.error(
               label: 'Focusable status',
             ),
           ),
@@ -279,21 +279,21 @@ void main() {
       await tester.sendKeyEvent(LogicalKeyboardKey.tab);
       await tester.pump();
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
     });
 
     testWidgets('displays correct semantics for accessibility', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppStatusDot.success(
+            body: DSStatusDot.success(
               label: 'Accessible status',
             ),
           ),
         ),
       );
 
-      final semantics = tester.getSemantics(find.byType(AppStatusDot));
+      final semantics = tester.getSemantics(find.byType(DSStatusDot));
       expect(semantics.label, contains('Success'));
       expect(semantics.label, contains('Accessible status'));
     });
@@ -304,7 +304,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppStatusDot.info(
+              body: DSStatusDot.info(
                 label: 'RTL status',
               ),
             ),
@@ -312,16 +312,16 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppStatusDot), findsOneWidget);
+      expect(find.byType(DSStatusDot), findsOneWidget);
       expect(find.text('RTL status'), findsOneWidget);
     });
 
     testWidgets('supports all state variants', (tester) async {
-      for (final state in AppStatusDotState.values) {
+      for (final state in DSStatusDotState.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStatusDot.success(
+              body: DSStatusDot.success(
                 label: 'Test status',
                 state: state,
               ),
@@ -329,7 +329,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppStatusDot), findsOneWidget);
+        expect(find.byType(DSStatusDot), findsOneWidget);
         await tester.pump();
       }
     });
@@ -339,16 +339,16 @@ void main() {
         Widget widget;
         switch (variant) {
           case StatusDotVariant.success:
-            widget = AppStatusDot.success(label: 'Test');
+            widget = DSStatusDot.success(label: 'Test');
             break;
           case StatusDotVariant.info:
-            widget = AppStatusDot.info(label: 'Test');
+            widget = DSStatusDot.info(label: 'Test');
             break;
           case StatusDotVariant.warn:
-            widget = AppStatusDot.warn(label: 'Test');
+            widget = DSStatusDot.warn(label: 'Test');
             break;
           case StatusDotVariant.error:
-            widget = AppStatusDot.error(label: 'Test');
+            widget = DSStatusDot.error(label: 'Test');
             break;
         }
 
@@ -358,7 +358,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppStatusDot), findsOneWidget);
+        expect(find.byType(DSStatusDot), findsOneWidget);
         await tester.pump();
       }
     });

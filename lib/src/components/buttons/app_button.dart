@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app_button_config.dart';
 
-class AppButton extends StatefulWidget {
-  final AppButtonConfig config;
+class DSButton extends StatefulWidget {
+  final DSButtonConfig config;
   final String? label;
   final Widget? leading;
   final Widget? trailing;
-  final AppButtonSize? size;
+  final DSButtonSize? size;
   final bool? isDanger;
   final double? width;
   final double? height;
 
-  const AppButton({
+  const DSButton({
     super.key,
-    this.config = const AppButtonConfig(),
+    this.config = const DSButtonConfig(),
     this.label,
     this.leading,
     this.trailing,
@@ -25,10 +25,10 @@ class AppButton extends StatefulWidget {
   });
 
   @override
-  State<AppButton> createState() => _AppButtonState();
+  State<DSButton> createState() => _DSButtonState();
 }
 
-class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
+class _DSButtonState extends State<DSButton> with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _hoverAnimationController;
   late AnimationController _pressAnimationController;
@@ -94,7 +94,7 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(AppButton oldWidget) {
+  void didUpdateWidget(DSButton oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.config.state != oldWidget.config.state) {
@@ -104,11 +104,11 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
 
   void _updateStateAnimation() {
     switch (widget.config.state) {
-      case AppButtonState.loading:
-      case AppButtonState.skeleton:
+      case DSButtonState.loading:
+      case DSButtonState.skeleton:
         _stateAnimationController.repeat(reverse: true);
         break;
-      case AppButtonState.disabled:
+      case DSButtonState.disabled:
         _stateAnimationController.animateTo(0.6);
         break;
       default:
@@ -254,7 +254,7 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
     return baseElevation * stateMultiplier * (1.0 + animationMultiplier);
   }
 
-  AppButtonSize _getSize() {
+  DSButtonSize _getSize() {
     return widget.size ?? widget.config.size;
   }
 
@@ -270,17 +270,17 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
     Widget buttonContent = _buildInteractiveButton(theme, isRtl);
 
     switch (widget.config.variant) {
-      case AppButtonVariant.filled:
+      case DSButtonVariant.filled:
         return _buildFilledButton(buttonContent, theme);
-      case AppButtonVariant.tonal:
+      case DSButtonVariant.tonal:
         return _buildTonalButton(buttonContent, theme);
-      case AppButtonVariant.outline:
+      case DSButtonVariant.outline:
         return _buildOutlineButton(buttonContent, theme);
-      case AppButtonVariant.text:
+      case DSButtonVariant.text:
         return _buildTextButton(buttonContent, theme);
-      case AppButtonVariant.icon:
+      case DSButtonVariant.icon:
         return _buildIconButton(buttonContent, theme);
-      case AppButtonVariant.segmented:
+      case DSButtonVariant.segmented:
         return _buildSegmentedButton(buttonContent, theme);
     }
   }
@@ -355,7 +355,7 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
   Widget _buildSegmentedButton(Widget content, ThemeData theme) {
     return Container(
       decoration: BoxDecoration(
-        color: widget.config.state == AppButtonState.selected
+        color: widget.config.state == DSButtonState.selected
             ? _getSelectedBackgroundColor(theme)
             : _getBackgroundColor(theme),
         border: _getBorder(theme),
@@ -422,7 +422,7 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
   }
 
   Widget _buildButtonContent(
-      ThemeData theme, AppButtonSize size, bool isDanger, bool isRtl) {
+      ThemeData theme, DSButtonSize size, bool isDanger, bool isRtl) {
     if (widget.config.variant.isIconOnly) {
       return widget.leading ??
           Icon(
@@ -481,25 +481,25 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
       return widget.config.colors?.dangerColor ?? theme.colorScheme.error;
     }
 
-    if (widget.config.state == AppButtonState.disabled) {
+    if (widget.config.state == DSButtonState.disabled) {
       return widget.config.colors?.disabledColor ??
           theme.colorScheme.onSurface.withValues(alpha: 0.12);
     }
 
     switch (widget.config.variant) {
-      case AppButtonVariant.filled:
+      case DSButtonVariant.filled:
         return widget.config.colors?.backgroundColor ??
             theme.colorScheme.primary;
-      case AppButtonVariant.tonal:
+      case DSButtonVariant.tonal:
         return widget.config.colors?.backgroundColor ??
             theme.colorScheme.secondaryContainer;
-      case AppButtonVariant.outline:
-      case AppButtonVariant.text:
+      case DSButtonVariant.outline:
+      case DSButtonVariant.text:
         return Colors.transparent;
-      case AppButtonVariant.icon:
+      case DSButtonVariant.icon:
         return widget.config.colors?.backgroundColor ??
             theme.colorScheme.surfaceContainerHighest;
-      case AppButtonVariant.segmented:
+      case DSButtonVariant.segmented:
         return widget.config.colors?.backgroundColor ??
             theme.colorScheme.surface;
     }
@@ -544,28 +544,28 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
   Color? _getForegroundColor(ThemeData theme, bool isDanger) {
     if (isDanger) {
       return widget.config.colors?.dangerForegroundColor ??
-          (widget.config.variant == AppButtonVariant.filled
+          (widget.config.variant == DSButtonVariant.filled
               ? theme.colorScheme.onError
               : theme.colorScheme.error);
     }
 
-    if (widget.config.state == AppButtonState.disabled) {
+    if (widget.config.state == DSButtonState.disabled) {
       return theme.colorScheme.onSurface.withValues(alpha: 0.38);
     }
 
     switch (widget.config.variant) {
-      case AppButtonVariant.filled:
+      case DSButtonVariant.filled:
         return widget.config.colors?.foregroundColor ??
             theme.colorScheme.onPrimary;
-      case AppButtonVariant.tonal:
+      case DSButtonVariant.tonal:
         return widget.config.colors?.foregroundColor ??
             theme.colorScheme.onSecondaryContainer;
-      case AppButtonVariant.outline:
-      case AppButtonVariant.text:
-      case AppButtonVariant.segmented:
+      case DSButtonVariant.outline:
+      case DSButtonVariant.text:
+      case DSButtonVariant.segmented:
         return widget.config.colors?.foregroundColor ??
             theme.colorScheme.primary;
-      case AppButtonVariant.icon:
+      case DSButtonVariant.icon:
         return widget.config.colors?.foregroundColor ??
             theme.colorScheme.onSurfaceVariant;
     }

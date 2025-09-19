@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/dialog/app_dialog.dart';
 
 void main() {
-  group('AppDialog', () {
+  group('DSDialog', () {
     testWidgets('renders sm variant correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -12,9 +12,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.sm(
+                    dialog: DSDialog.sm(
                       title: 'Small Dialog',
                       content: const Text('Small content'),
                     ),
@@ -30,7 +30,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.text('Small Dialog'), findsOneWidget);
       expect(find.text('Small content'), findsOneWidget);
     });
@@ -42,9 +42,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Medium Dialog',
                       content: const Text('Medium content'),
                     ),
@@ -60,7 +60,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.text('Medium Dialog'), findsOneWidget);
       expect(find.text('Medium content'), findsOneWidget);
     });
@@ -72,9 +72,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.lg(
+                    dialog: DSDialog.lg(
                       title: 'Large Dialog',
                       content: const Text('Large content'),
                     ),
@@ -90,7 +90,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.text('Large Dialog'), findsOneWidget);
       expect(find.text('Large content'), findsOneWidget);
     });
@@ -102,9 +102,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.destructive(
+                    dialog: DSDialog.destructive(
                       title: 'Destructive Dialog',
                       content: const Text('Destructive content'),
                     ),
@@ -120,7 +120,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.text('Destructive Dialog'), findsOneWidget);
       expect(find.text('Destructive content'), findsOneWidget);
     });
@@ -132,9 +132,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.form(
+                    dialog: DSDialog.form(
                       title: 'Form Dialog',
                       content: const Text('Form content'),
                     ),
@@ -150,7 +150,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.text('Form Dialog'), findsOneWidget);
       expect(find.text('Form content'), findsOneWidget);
     });
@@ -162,9 +162,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       content: const Text('Content only'),
                     ),
                   );
@@ -179,7 +179,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.text('Content only'), findsOneWidget);
     });
 
@@ -190,9 +190,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Title only',
                     ),
                   );
@@ -207,7 +207,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.text('Title only'), findsOneWidget);
     });
 
@@ -218,9 +218,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Dialog with actions',
                       content: const Text('Content'),
                       actions: [
@@ -247,7 +247,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.text('Cancel'), findsOneWidget);
       expect(find.text('Confirm'), findsOneWidget);
     });
@@ -259,12 +259,12 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Disabled Dialog',
                       content: const Text('Disabled content'),
-                      state: AppDialogState.disabled,
+                      state: DSDialogState.disabled,
                     ),
                   );
                 },
@@ -278,11 +278,11 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
 
       final opacities = tester.widgetList<Opacity>(
         find.descendant(
-          of: find.byType(AppDialog),
+          of: find.byType(DSDialog),
           matching: find.byType(Opacity),
         ),
       );
@@ -302,12 +302,12 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Loading Dialog',
                       content: const Text('Loading content'),
-                      state: AppDialogState.loading,
+                      state: DSDialogState.loading,
                     ),
                   );
                 },
@@ -321,7 +321,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pump();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
@@ -332,12 +332,12 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Skeleton Dialog',
                       content: const Text('Skeleton content'),
-                      state: AppDialogState.skeleton,
+                      state: DSDialogState.skeleton,
                     ),
                   );
                 },
@@ -351,11 +351,11 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
 
       final containers = tester.widgetList<Container>(
         find.descendant(
-          of: find.byType(AppDialog),
+          of: find.byType(DSDialog),
           matching: find.byType(Container),
         ),
       );
@@ -367,7 +367,7 @@ void main() {
       for (final container in containers) {
         if (container.decoration is BoxDecoration) {
           final decoration = container.decoration as BoxDecoration;
-          final theme = Theme.of(tester.element(find.byType(AppDialog)));
+          final theme = Theme.of(tester.element(find.byType(DSDialog)));
           if (decoration.color == theme.colorScheme.surface.withValues(alpha: 0.3)) {
             foundSkeletonContainer = true;
             break;
@@ -386,9 +386,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Action Dialog',
                       content: const Text('Content'),
                       actions: [
@@ -423,9 +423,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Dismissible Dialog',
                       content: const Text('Content'),
                       barrierDismissible: true,
@@ -442,13 +442,13 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
 
       // Tap outside the dialog to dismiss it
       await tester.tapAt(const Offset(50, 50));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsNothing);
+      expect(find.byType(DSDialog), findsNothing);
     });
 
     testWidgets('handles non-barrier dismissible correctly', (tester) async {
@@ -458,9 +458,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Non-Dismissible Dialog',
                       content: const Text('Content'),
                       barrierDismissible: false,
@@ -477,13 +477,13 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
 
       // Tap outside the dialog - should not dismiss
       await tester.tapAt(const Offset(50, 50));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
     });
 
     testWidgets('handles escape key when barrier dismissible', (tester) async {
@@ -493,9 +493,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Escape Dialog',
                       content: const Text('Content'),
                       barrierDismissible: true,
@@ -512,12 +512,12 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
 
       await tester.sendKeyEvent(LogicalKeyboardKey.escape);
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsNothing);
+      expect(find.byType(DSDialog), findsNothing);
     });
 
     testWidgets('handles focus state correctly', (tester) async {
@@ -527,12 +527,12 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Focus Dialog',
                       content: const Text('Content'),
-                      state: AppDialogState.focus,
+                      state: DSDialogState.focus,
                     ),
                   );
                 },
@@ -546,11 +546,11 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
 
       final containers = tester.widgetList<Container>(
         find.descendant(
-          of: find.byType(AppDialog),
+          of: find.byType(DSDialog),
           matching: find.byType(Container),
         ),
       );
@@ -576,9 +576,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Accessible Dialog',
                       content: const Text('Accessible content'),
                       accessibilityLabel: 'Custom accessibility label',
@@ -596,7 +596,7 @@ void main() {
       await tester.pumpAndSettle();
 
       final semanticsFinders = find.descendant(
-        of: find.byType(AppDialog),
+        of: find.byType(DSDialog),
         matching: find.byType(Semantics),
       );
 
@@ -626,9 +626,9 @@ void main() {
               body: Builder(
                 builder: (context) => ElevatedButton(
                   onPressed: () {
-                    AppDialog.show(
+                    DSDialog.show(
                       context: context,
-                      dialog: AppDialog.md(
+                      dialog: DSDialog.md(
                         title: 'RTL Dialog',
                         content: const Text('RTL content'),
                       ),
@@ -645,7 +645,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.text('RTL Dialog'), findsOneWidget);
       expect(find.text('RTL content'), findsOneWidget);
     });
@@ -661,23 +661,23 @@ void main() {
                     Widget dialog;
                     switch (variant) {
                       case DialogVariant.sm:
-                        dialog = AppDialog.sm(title: 'Test');
+                        dialog = DSDialog.sm(title: 'Test');
                         break;
                       case DialogVariant.md:
-                        dialog = AppDialog.md(title: 'Test');
+                        dialog = DSDialog.md(title: 'Test');
                         break;
                       case DialogVariant.lg:
-                        dialog = AppDialog.lg(title: 'Test');
+                        dialog = DSDialog.lg(title: 'Test');
                         break;
                       case DialogVariant.destructive:
-                        dialog = AppDialog.destructive(title: 'Test');
+                        dialog = DSDialog.destructive(title: 'Test');
                         break;
                       case DialogVariant.form:
-                        dialog = AppDialog.form(title: 'Test');
+                        dialog = DSDialog.form(title: 'Test');
                         break;
                     }
 
-                    AppDialog.show(context: context, dialog: dialog as AppDialog);
+                    DSDialog.show(context: context, dialog: dialog as DSDialog);
                   },
                   child: const Text('Show Dialog'),
                 ),
@@ -689,7 +689,7 @@ void main() {
         await tester.tap(find.text('Show Dialog'));
         await tester.pumpAndSettle();
 
-        expect(find.byType(AppDialog), findsOneWidget);
+        expect(find.byType(DSDialog), findsOneWidget);
 
         // Close dialog
         await tester.sendKeyEvent(LogicalKeyboardKey.escape);
@@ -698,16 +698,16 @@ void main() {
     });
 
     testWidgets('supports all dialog states', (tester) async {
-      for (final state in AppDialogState.values) {
+      for (final state in DSDialogState.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
               body: Builder(
                 builder: (context) => ElevatedButton(
                   onPressed: () {
-                    AppDialog.show(
+                    DSDialog.show(
                       context: context,
-                      dialog: AppDialog.md(
+                      dialog: DSDialog.md(
                         title: 'Test Dialog',
                         content: const Text('Test content'),
                         state: state,
@@ -724,7 +724,7 @@ void main() {
         await tester.tap(find.text('Show Dialog'));
         await tester.pump(); // Use pump instead of pumpAndSettle for loading/skeleton states
 
-        expect(find.byType(AppDialog), findsOneWidget);
+        expect(find.byType(DSDialog), findsOneWidget);
 
         // Close dialog
         await tester.sendKeyEvent(LogicalKeyboardKey.escape);
@@ -742,9 +742,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Destructive Action Dialog',
                       content: const Text('Content'),
                       actions: [
@@ -769,7 +769,7 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
       expect(find.text('Delete'), findsOneWidget);
       expect(find.byIcon(Icons.delete), findsOneWidget);
     });
@@ -781,9 +781,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppDialog.show(
+                  DSDialog.show(
                     context: context,
-                    dialog: AppDialog.md(
+                    dialog: DSDialog.md(
                       title: 'Disabled Action Dialog',
                       content: const Text('Content'),
                       actions: [
@@ -806,11 +806,11 @@ void main() {
       await tester.tap(find.text('Show Dialog'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppDialog), findsOneWidget);
+      expect(find.byType(DSDialog), findsOneWidget);
 
       final button = tester.widget<TextButton>(
         find.descendant(
-          of: find.byType(AppDialog),
+          of: find.byType(DSDialog),
           matching: find.byType(TextButton),
         ),
       );

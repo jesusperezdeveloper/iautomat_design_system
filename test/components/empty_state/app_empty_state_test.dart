@@ -5,12 +5,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/empty_state/app_empty_state.dart';
 
 void main() {
-  group('AppEmptyState', () {
+  group('DSEmptyState', () {
     testWidgets('renders basic empty state with title', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Test Empty State',
             ),
           ),
@@ -25,7 +25,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'No Items',
               description: 'There are no items to display.',
             ),
@@ -44,7 +44,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Empty State',
               actions: [
                 EmptyStateAction(
@@ -80,7 +80,7 @@ void main() {
 
     testWidgets('creates correct factory constructors', (tester) async {
       // Test illustration factory
-      final illustrationEmpty = AppEmptyState.illustration(
+      final illustrationEmpty = DSEmptyState.illustration(
         title: 'Illustration Test',
         description: 'Test description',
       );
@@ -89,7 +89,7 @@ void main() {
       expect(illustrationEmpty.defaultIcon, Icons.inbox_outlined);
 
       // Test CTA factory
-      final ctaEmpty = AppEmptyState.cta(
+      final ctaEmpty = DSEmptyState.cta(
         title: 'CTA Test',
         actions: const [
           EmptyStateAction(text: 'Action', isPrimary: true),
@@ -101,11 +101,11 @@ void main() {
     });
 
     testWidgets('applies different states correctly', (tester) async {
-      for (final state in AppEmptyStateState.values) {
+      for (final state in DSEmptyStateState.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppEmptyState(
+              body: DSEmptyState(
                 title: 'State Test',
                 state: state,
               ),
@@ -114,7 +114,7 @@ void main() {
         );
 
         // Verificar que el widget se renderiza sin errores
-        expect(find.byType(AppEmptyState), findsOneWidget);
+        expect(find.byType(DSEmptyState), findsOneWidget);
         expect(find.text('State Test'), findsOneWidget);
         await tester.pump();
       }
@@ -129,7 +129,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Custom Styled',
               description: 'Custom description',
               titleColor: customTitleColor,
@@ -142,7 +142,7 @@ void main() {
       );
 
       final emptyState =
-          tester.widget<AppEmptyState>(find.byType(AppEmptyState));
+          tester.widget<DSEmptyState>(find.byType(DSEmptyState));
       expect(emptyState.titleColor, customTitleColor);
       expect(emptyState.descriptionColor, customDescColor);
       expect(emptyState.backgroundColor, customBgColor);
@@ -150,7 +150,7 @@ void main() {
     });
 
     testWidgets('copyWith creates correct copy', (tester) async {
-      const original = AppEmptyState(
+      const original = DSEmptyState(
         title: 'Original Title',
         description: 'Original description',
         variant: EmptyStateVariant.illustration,
@@ -172,7 +172,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppEmptyState(
+              body: DSEmptyState(
                 title: 'RTL Empty State',
                 description: 'RTL description',
                 rtlSupport: true,
@@ -186,7 +186,7 @@ void main() {
       expect(find.text('RTL description'), findsOneWidget);
 
       final emptyState =
-          tester.widget<AppEmptyState>(find.byType(AppEmptyState));
+          tester.widget<DSEmptyState>(find.byType(DSEmptyState));
       expect(emptyState.rtlSupport, isTrue);
     });
 
@@ -194,7 +194,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Accessible Empty State',
               description: 'Accessible description',
               accessibilityLabel: 'Custom accessibility label',
@@ -208,7 +208,7 @@ void main() {
       expect(find.text('Accessible Empty State'), findsOneWidget);
 
       final emptyState =
-          tester.widget<AppEmptyState>(find.byType(AppEmptyState));
+          tester.widget<DSEmptyState>(find.byType(DSEmptyState));
       expect(emptyState.accessibilitySupport, isTrue);
       expect(emptyState.accessibilityLabel, 'Custom accessibility label');
       expect(emptyState.accessibilityHint, 'Custom hint');
@@ -220,7 +220,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Tappable Empty State',
               onTap: () => tapped = true,
             ),
@@ -228,7 +228,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppEmptyState));
+      await tester.tap(find.byType(DSEmptyState));
       await tester.pumpAndSettle();
 
       expect(tapped, isTrue);
@@ -240,7 +240,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Hoverable Empty State',
               onHover: () => hovered = true,
             ),
@@ -251,7 +251,7 @@ void main() {
       final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
       await gesture.addPointer(location: Offset.zero);
       addTearDown(gesture.removePointer);
-      await gesture.moveTo(tester.getCenter(find.byType(AppEmptyState)));
+      await gesture.moveTo(tester.getCenter(find.byType(DSEmptyState)));
       await tester.pump();
 
       expect(hovered, isTrue);
@@ -263,7 +263,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Keyboard Navigation',
               onTap: () => tapped = true,
             ),
@@ -272,7 +272,7 @@ void main() {
       );
 
       // Focus the widget
-      await tester.tap(find.byType(AppEmptyState));
+      await tester.tap(find.byType(DSEmptyState));
       await tester.pump();
 
       // Press Enter key
@@ -286,7 +286,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Custom Icon',
               defaultIcon: Icons.star,
             ),
@@ -302,7 +302,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Custom Illustration',
               illustration: Icon(Icons.palette, size: 100),
             ),
@@ -318,9 +318,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Loading State',
-              state: AppEmptyStateState.loading,
+              state: DSEmptyStateState.loading,
             ),
           ),
         ),
@@ -334,9 +334,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Skeleton State',
-              state: AppEmptyStateState.skeleton,
+              state: DSEmptyStateState.skeleton,
             ),
           ),
         ),
@@ -350,9 +350,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Disabled State',
-              state: AppEmptyStateState.disabled,
+              state: DSEmptyStateState.disabled,
             ),
           ),
         ),
@@ -366,9 +366,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Focus State',
-              state: AppEmptyStateState.focus,
+              state: DSEmptyStateState.focus,
               onTap: () {},
             ),
           ),
@@ -383,9 +383,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Pressed State',
-              state: AppEmptyStateState.pressed,
+              state: DSEmptyStateState.pressed,
             ),
           ),
         ),
@@ -399,9 +399,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Hover State',
-              state: AppEmptyStateState.hover,
+              state: DSEmptyStateState.hover,
             ),
           ),
         ),
@@ -415,9 +415,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Selected State',
-              state: AppEmptyStateState.selected,
+              state: DSEmptyStateState.selected,
             ),
           ),
         ),
@@ -436,7 +436,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppEmptyState(
+              body: DSEmptyState(
                 title: 'Alignment Test',
                 alignment: alignment,
               ),
@@ -445,7 +445,7 @@ void main() {
         );
 
         final emptyState =
-            tester.widget<AppEmptyState>(find.byType(AppEmptyState));
+            tester.widget<DSEmptyState>(find.byType(DSEmptyState));
         expect(emptyState.alignment, alignment);
         await tester.pump();
       }
@@ -457,7 +457,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Max Width Test',
               maxWidth: customMaxWidth,
             ),
@@ -466,7 +466,7 @@ void main() {
       );
 
       final emptyState =
-          tester.widget<AppEmptyState>(find.byType(AppEmptyState));
+          tester.widget<DSEmptyState>(find.byType(DSEmptyState));
       expect(emptyState.maxWidth, customMaxWidth);
     });
 
@@ -476,7 +476,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Animation Test',
               animationDuration: customDuration,
             ),
@@ -485,7 +485,7 @@ void main() {
       );
 
       final emptyState =
-          tester.widget<AppEmptyState>(find.byType(AppEmptyState));
+          tester.widget<DSEmptyState>(find.byType(DSEmptyState));
       expect(emptyState.animationDuration, customDuration);
     });
 
@@ -495,7 +495,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Padding Test',
               padding: customPadding,
             ),
@@ -504,7 +504,7 @@ void main() {
       );
 
       final emptyState =
-          tester.widget<AppEmptyState>(find.byType(AppEmptyState));
+          tester.widget<DSEmptyState>(find.byType(DSEmptyState));
       expect(emptyState.padding, customPadding);
       expect(find.byType(Padding), findsWidgets);
     });
@@ -513,7 +513,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Actions with Icons',
               actions: const [
                 EmptyStateAction(
@@ -541,7 +541,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppEmptyState(
+            body: DSEmptyState(
               title: 'Disabled Actions',
               actions: const [
                 EmptyStateAction(
@@ -569,29 +569,29 @@ void main() {
     });
   });
 
-  group('AppEmptyStateState', () {
+  group('DSEmptyStateState', () {
     test('has correct values', () {
-      expect(AppEmptyStateState.values.length, 8);
+      expect(DSEmptyStateState.values.length, 8);
       expect(
-          AppEmptyStateState.values, contains(AppEmptyStateState.defaultState));
-      expect(AppEmptyStateState.values, contains(AppEmptyStateState.hover));
-      expect(AppEmptyStateState.values, contains(AppEmptyStateState.pressed));
-      expect(AppEmptyStateState.values, contains(AppEmptyStateState.focus));
-      expect(AppEmptyStateState.values, contains(AppEmptyStateState.selected));
-      expect(AppEmptyStateState.values, contains(AppEmptyStateState.disabled));
-      expect(AppEmptyStateState.values, contains(AppEmptyStateState.loading));
-      expect(AppEmptyStateState.values, contains(AppEmptyStateState.skeleton));
+          DSEmptyStateState.values, contains(DSEmptyStateState.defaultState));
+      expect(DSEmptyStateState.values, contains(DSEmptyStateState.hover));
+      expect(DSEmptyStateState.values, contains(DSEmptyStateState.pressed));
+      expect(DSEmptyStateState.values, contains(DSEmptyStateState.focus));
+      expect(DSEmptyStateState.values, contains(DSEmptyStateState.selected));
+      expect(DSEmptyStateState.values, contains(DSEmptyStateState.disabled));
+      expect(DSEmptyStateState.values, contains(DSEmptyStateState.loading));
+      expect(DSEmptyStateState.values, contains(DSEmptyStateState.skeleton));
     });
 
     test('canInteract extension works correctly', () {
-      expect(AppEmptyStateState.defaultState.canInteract, isTrue);
-      expect(AppEmptyStateState.hover.canInteract, isTrue);
-      expect(AppEmptyStateState.pressed.canInteract, isTrue);
-      expect(AppEmptyStateState.focus.canInteract, isTrue);
-      expect(AppEmptyStateState.selected.canInteract, isTrue);
-      expect(AppEmptyStateState.disabled.canInteract, isFalse);
-      expect(AppEmptyStateState.loading.canInteract, isFalse);
-      expect(AppEmptyStateState.skeleton.canInteract, isTrue);
+      expect(DSEmptyStateState.defaultState.canInteract, isTrue);
+      expect(DSEmptyStateState.hover.canInteract, isTrue);
+      expect(DSEmptyStateState.pressed.canInteract, isTrue);
+      expect(DSEmptyStateState.focus.canInteract, isTrue);
+      expect(DSEmptyStateState.selected.canInteract, isTrue);
+      expect(DSEmptyStateState.disabled.canInteract, isFalse);
+      expect(DSEmptyStateState.loading.canInteract, isFalse);
+      expect(DSEmptyStateState.skeleton.canInteract, isTrue);
     });
   });
 

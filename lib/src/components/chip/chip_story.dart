@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/src/components/chip/app_chip.dart';
 import 'package:iautomat_design_system/src/components/chip/chip_config.dart';
 
-/// Storybook examples for AppChip component
+/// Storybook examples for DSChip component
 ///
 /// This file contains various configurations and usage examples
-/// of the AppChip component for demonstration and testing purposes.
-class AppChipStory {
+/// of the DSChip component for demonstration and testing purposes.
+class DSChipStory {
   static Widget get title => const Text(
-        'AppChip',
+        'DSChip',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       );
 
@@ -304,18 +304,18 @@ class _InputChipExampleState extends State<_InputChipExample> {
       child: Wrap(
         spacing: 8.0,
         children: [
-          AppChip.input(
+          DSChip.input(
             label: 'Flutter',
             onDeleted: () {},
           ),
-          AppChip.input(
+          DSChip.input(
             label: 'Dart',
             avatar: const CircleAvatar(
               child: Text('D'),
             ),
             onDeleted: () {},
           ),
-          AppChip.input(
+          DSChip.input(
             label: 'Material Design',
             selected: true,
             onDeleted: () {},
@@ -341,7 +341,7 @@ class _FilterChipExampleState extends State<_FilterChipExample> {
       child: Wrap(
         spacing: 8.0,
         children: [
-          AppChip.filter(
+          DSChip.filter(
             label: 'Programming',
             selected: isSelected,
             onSelected: (selected) {
@@ -350,13 +350,13 @@ class _FilterChipExampleState extends State<_FilterChipExample> {
               });
             },
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Mobile Development',
             selected: true,
             icon: Icons.phone_android,
             onSelected: (selected) {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Web Development',
             selected: false,
             icon: Icons.web,
@@ -383,7 +383,7 @@ class _ChoiceChipExampleState extends State<_ChoiceChipExample> {
       child: Wrap(
         spacing: 8.0,
         children: [
-          AppChip.choice(
+          DSChip.choice(
             label: 'Option 1',
             selected: selectedChoice == 'Option 1',
             onSelected: (selected) {
@@ -392,7 +392,7 @@ class _ChoiceChipExampleState extends State<_ChoiceChipExample> {
               });
             },
           ),
-          AppChip.choice(
+          DSChip.choice(
             label: 'Option 2',
             selected: selectedChoice == 'Option 2',
             onSelected: (selected) {
@@ -401,7 +401,7 @@ class _ChoiceChipExampleState extends State<_ChoiceChipExample> {
               });
             },
           ),
-          AppChip.choice(
+          DSChip.choice(
             label: 'Option 3',
             selected: selectedChoice == 'Option 3',
             onSelected: (selected) {
@@ -424,7 +424,7 @@ class _AssistChipExample extends StatelessWidget {
       child: Wrap(
         spacing: 8.0,
         children: [
-          AppChip.assist(
+          DSChip.assist(
             label: 'Share',
             icon: Icons.share,
             onSelected: (selected) {
@@ -433,7 +433,7 @@ class _AssistChipExample extends StatelessWidget {
               );
             },
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Copy',
             icon: Icons.copy,
             onSelected: (selected) {
@@ -442,7 +442,7 @@ class _AssistChipExample extends StatelessWidget {
               );
             },
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Download',
             icon: Icons.download,
             onSelected: (selected) {
@@ -471,8 +471,8 @@ class _AllVariantsExample extends StatelessWidget {
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip.input(label: 'Tag 1', onDeleted: () {}),
-              AppChip.input(label: 'Tag 2', selected: true, onDeleted: () {}),
+              DSChip.input(label: 'Tag 1', onDeleted: () {}),
+              DSChip.input(label: 'Tag 2', selected: true, onDeleted: () {}),
             ],
           ),
           const SizedBox(height: 16),
@@ -482,9 +482,9 @@ class _AllVariantsExample extends StatelessWidget {
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip.filter(
+              DSChip.filter(
                   label: 'Active', selected: true, onSelected: (s) {}),
-              AppChip.filter(
+              DSChip.filter(
                   label: 'Inactive', selected: false, onSelected: (s) {}),
             ],
           ),
@@ -495,10 +495,10 @@ class _AllVariantsExample extends StatelessWidget {
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip.choice(
+              DSChip.choice(
                   label: 'Small', selected: true, onSelected: (s) {}),
-              AppChip.choice(label: 'Medium', onSelected: (s) {}),
-              AppChip.choice(label: 'Large', onSelected: (s) {}),
+              DSChip.choice(label: 'Medium', onSelected: (s) {}),
+              DSChip.choice(label: 'Large', onSelected: (s) {}),
             ],
           ),
           const SizedBox(height: 16),
@@ -508,9 +508,9 @@ class _AllVariantsExample extends StatelessWidget {
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip.assist(
+              DSChip.assist(
                   label: 'Edit', icon: Icons.edit, onSelected: (s) {}),
-              AppChip.assist(
+              DSChip.assist(
                   label: 'Delete', icon: Icons.delete, onSelected: (s) {}),
             ],
           ),
@@ -549,7 +549,7 @@ class _InputChipsCollectionExampleState
             spacing: 8.0,
             runSpacing: 8.0,
             children: tags
-                .map((tag) => AppChip.input(
+                .map((tag) => DSChip.input(
                       label: tag,
                       onDeleted: () {
                         setState(() {
@@ -595,7 +595,7 @@ class _FilterChipsCollectionExampleState
             spacing: 8.0,
             runSpacing: 8.0,
             children: filters
-                .map((filter) => AppChip.filter(
+                .map((filter) => DSChip.filter(
                       label: filter,
                       selected: selectedFilters.contains(filter),
                       onSelected: (selected) {
@@ -643,7 +643,7 @@ class _ChoiceChipsCollectionExampleState
             spacing: 8.0,
             runSpacing: 8.0,
             children: sizes
-                .map((size) => AppChip.choice(
+                .map((size) => DSChip.choice(
                       label: size,
                       selected: selectedSize == size,
                       onSelected: (selected) {
@@ -669,22 +669,22 @@ class _StateExamplesWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          _buildStateExample('Default', AppChipState.defaultState),
+          _buildStateExample('Default', DSChipState.defaultState),
           const SizedBox(height: 8),
-          _buildStateExample('Selected', AppChipState.selected, selected: true),
+          _buildStateExample('Selected', DSChipState.selected, selected: true),
           const SizedBox(height: 8),
-          _buildStateExample('Disabled', AppChipState.defaultState,
+          _buildStateExample('Disabled', DSChipState.defaultState,
               enabled: false),
           const SizedBox(height: 8),
-          _buildStateExample('Loading', AppChipState.loading),
+          _buildStateExample('Loading', DSChipState.loading),
           const SizedBox(height: 8),
-          _buildStateExample('Skeleton', AppChipState.skeleton),
+          _buildStateExample('Skeleton', DSChipState.skeleton),
         ],
       ),
     );
   }
 
-  Widget _buildStateExample(String label, AppChipState state,
+  Widget _buildStateExample(String label, DSChipState state,
       {bool enabled = true, bool selected = false}) {
     return Row(
       children: [
@@ -695,7 +695,7 @@ class _StateExamplesWidget extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        AppChip(
+        DSChip(
           label: 'State: $label',
           state: state,
           enabled: enabled,
@@ -727,7 +727,7 @@ class _SelectionStatesExampleState extends State<_SelectionStatesExample> {
               Column(
                 children: [
                   const Text('Unselected'),
-                  AppChip.filter(
+                  DSChip.filter(
                     label: 'Filter',
                     selected: false,
                     onSelected: (s) {},
@@ -737,7 +737,7 @@ class _SelectionStatesExampleState extends State<_SelectionStatesExample> {
               Column(
                 children: [
                   const Text('Selected'),
-                  AppChip.filter(
+                  DSChip.filter(
                     label: 'Filter',
                     selected: true,
                     onSelected: (s) {},
@@ -747,7 +747,7 @@ class _SelectionStatesExampleState extends State<_SelectionStatesExample> {
             ],
           ),
           const SizedBox(height: 16),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Toggle Me',
             selected: isSelected,
             onSelected: (selected) {
@@ -770,22 +770,22 @@ class _DisabledExample extends StatelessWidget {
       child: Wrap(
         spacing: 8.0,
         children: [
-          AppChip.input(
+          DSChip.input(
             label: 'Disabled Input',
             enabled: false,
             onDeleted: () {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Disabled Filter',
             enabled: false,
             onSelected: (s) {},
           ),
-          AppChip.choice(
+          DSChip.choice(
             label: 'Disabled Choice',
             enabled: false,
             onSelected: (s) {},
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Disabled Assist',
             enabled: false,
             icon: Icons.help,
@@ -805,19 +805,19 @@ class _LoadingExample extends StatelessWidget {
       child: Wrap(
         spacing: 8.0,
         children: [
-          AppChip(
+          DSChip(
             label: 'Loading...',
-            state: AppChipState.loading,
+            state: DSChipState.loading,
             onSelected: (s) {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Processing...',
-            state: AppChipState.loading,
+            state: DSChipState.loading,
             onSelected: (s) {},
           ),
-          AppChip.input(
+          DSChip.input(
             label: 'Uploading...',
-            state: AppChipState.loading,
+            state: DSChipState.loading,
             onDeleted: () {},
           ),
         ],
@@ -834,21 +834,21 @@ class _SkeletonExample extends StatelessWidget {
       child: Wrap(
         spacing: 8.0,
         children: [
-          AppChip(
+          DSChip(
             label: 'Skeleton',
-            state: AppChipState.skeleton,
+            state: DSChipState.skeleton,
             onSelected: (s) {},
           ),
-          AppChip(
+          DSChip(
             label: 'Loading',
-            state: AppChipState.skeleton,
-            size: AppChipSize.small,
+            state: DSChipState.skeleton,
+            size: DSChipSize.small,
             onSelected: (s) {},
           ),
-          AppChip(
+          DSChip(
             label: 'Content',
-            state: AppChipState.skeleton,
-            size: AppChipSize.large,
+            state: DSChipState.skeleton,
+            size: DSChipSize.large,
             onSelected: (s) {},
           ),
         ],
@@ -866,12 +866,12 @@ class _AvatarChipsExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip.input(
+          DSChip.input(
             label: 'John Doe',
             avatarText: 'JD',
             onDeleted: () {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Flutter Team',
             avatar: const CircleAvatar(
               backgroundColor: Colors.blue,
@@ -879,13 +879,13 @@ class _AvatarChipsExample extends StatelessWidget {
             ),
             onSelected: (s) {},
           ),
-          AppChip.choice(
+          DSChip.choice(
             label: 'Design System',
             avatarText: 'DS',
             avatarBackgroundColor: Colors.purple,
             onSelected: (s) {},
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Support',
             avatarText: 'S',
             avatarBackgroundColor: Colors.green,
@@ -906,27 +906,27 @@ class _IconChipsExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip.assist(
+          DSChip.assist(
             label: 'Home',
             icon: Icons.home,
             onSelected: (s) {},
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Settings',
             icon: Icons.settings,
             onSelected: (s) {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Favorites',
             icon: Icons.favorite,
             onSelected: (s) {},
           ),
-          AppChip.input(
+          DSChip.input(
             label: 'Location',
             icon: Icons.location_on,
             onDeleted: () {},
           ),
-          AppChip.choice(
+          DSChip.choice(
             label: 'Camera',
             icon: Icons.camera_alt,
             onSelected: (s) {},
@@ -946,22 +946,22 @@ class _MixedAvatarIconExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip.input(
+          DSChip.input(
             label: 'Person',
             avatarText: 'P',
             onDeleted: () {},
           ),
-          AppChip.input(
+          DSChip.input(
             label: 'Location',
             icon: Icons.location_on,
             onDeleted: () {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Team',
             avatar: const CircleAvatar(child: Text('T')),
             onSelected: (s) {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Projects',
             icon: Icons.folder,
             onSelected: (s) {},
@@ -981,25 +981,25 @@ class _CustomAvatarColorsExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip.input(
+          DSChip.input(
             label: 'Red Team',
             avatarText: 'R',
             avatarBackgroundColor: Colors.red,
             onDeleted: () {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Blue Team',
             avatarText: 'B',
             avatarBackgroundColor: Colors.blue,
             onSelected: (s) {},
           ),
-          AppChip.choice(
+          DSChip.choice(
             label: 'Green Team',
             avatarText: 'G',
             avatarBackgroundColor: Colors.green,
             onSelected: (s) {},
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Purple Team',
             avatarText: 'P',
             avatarBackgroundColor: Colors.purple,
@@ -1025,11 +1025,11 @@ class _SizeExamplesWidget extends StatelessWidget {
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip(
-                  label: 'Small', size: AppChipSize.small, onSelected: (s) {}),
-              AppChip.filter(
+              DSChip(
+                  label: 'Small', size: DSChipSize.small, onSelected: (s) {}),
+              DSChip.filter(
                   label: 'Small Filter',
-                  size: AppChipSize.small,
+                  size: DSChipSize.small,
                   onSelected: (s) {}),
             ],
           ),
@@ -1040,13 +1040,13 @@ class _SizeExamplesWidget extends StatelessWidget {
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip(
+              DSChip(
                   label: 'Medium',
-                  size: AppChipSize.medium,
+                  size: DSChipSize.medium,
                   onSelected: (s) {}),
-              AppChip.filter(
+              DSChip.filter(
                   label: 'Medium Filter',
-                  size: AppChipSize.medium,
+                  size: DSChipSize.medium,
                   onSelected: (s) {}),
             ],
           ),
@@ -1057,11 +1057,11 @@ class _SizeExamplesWidget extends StatelessWidget {
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip(
-                  label: 'Large', size: AppChipSize.large, onSelected: (s) {}),
-              AppChip.filter(
+              DSChip(
+                  label: 'Large', size: DSChipSize.large, onSelected: (s) {}),
+              DSChip.filter(
                   label: 'Large Filter',
-                  size: AppChipSize.large,
+                  size: DSChipSize.large,
                   onSelected: (s) {}),
             ],
           ),
@@ -1080,22 +1080,22 @@ class _SmallChipsExample extends StatelessWidget {
         spacing: 6.0,
         runSpacing: 6.0,
         children: [
-          AppChip.input(
-              label: 'Tag 1', size: AppChipSize.small, onDeleted: () {}),
-          AppChip.input(
-              label: 'Tag 2', size: AppChipSize.small, onDeleted: () {}),
-          AppChip.filter(
-              label: 'Filter 1', size: AppChipSize.small, onSelected: (s) {}),
-          AppChip.filter(
+          DSChip.input(
+              label: 'Tag 1', size: DSChipSize.small, onDeleted: () {}),
+          DSChip.input(
+              label: 'Tag 2', size: DSChipSize.small, onDeleted: () {}),
+          DSChip.filter(
+              label: 'Filter 1', size: DSChipSize.small, onSelected: (s) {}),
+          DSChip.filter(
               label: 'Filter 2',
-              size: AppChipSize.small,
+              size: DSChipSize.small,
               selected: true,
               onSelected: (s) {}),
-          AppChip.choice(
-              label: 'Choice 1', size: AppChipSize.small, onSelected: (s) {}),
-          AppChip.assist(
+          DSChip.choice(
+              label: 'Choice 1', size: DSChipSize.small, onSelected: (s) {}),
+          DSChip.assist(
               label: 'Action',
-              size: AppChipSize.small,
+              size: DSChipSize.small,
               icon: Icons.add,
               onSelected: (s) {}),
         ],
@@ -1113,27 +1113,27 @@ class _LargeChipsExample extends StatelessWidget {
         spacing: 12.0,
         runSpacing: 12.0,
         children: [
-          AppChip.input(
+          DSChip.input(
             label: 'Large Input Tag',
-            size: AppChipSize.large,
+            size: DSChipSize.large,
             avatarText: 'L',
             onDeleted: () {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Large Filter',
-            size: AppChipSize.large,
+            size: DSChipSize.large,
             icon: Icons.filter_list,
             onSelected: (s) {},
           ),
-          AppChip.choice(
+          DSChip.choice(
             label: 'Large Choice',
-            size: AppChipSize.large,
+            size: DSChipSize.large,
             selected: true,
             onSelected: (s) {},
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Large Action',
-            size: AppChipSize.large,
+            size: DSChipSize.large,
             icon: Icons.play_arrow,
             onSelected: (s) {},
           ),
@@ -1157,13 +1157,13 @@ class _ShapeExamplesWidget extends StatelessWidget {
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip(
+              DSChip(
                   label: 'Rounded',
-                  shape: AppChipShape.rounded,
+                  shape: DSChipShape.rounded,
                   onSelected: (s) {}),
-              AppChip.filter(
+              DSChip.filter(
                   label: 'Filter',
-                  shape: AppChipShape.rounded,
+                  shape: DSChipShape.rounded,
                   onSelected: (s) {}),
             ],
           ),
@@ -1174,13 +1174,13 @@ class _ShapeExamplesWidget extends StatelessWidget {
           Wrap(
             spacing: 8.0,
             children: [
-              AppChip(
+              DSChip(
                   label: 'Stadium',
-                  shape: AppChipShape.stadium,
+                  shape: DSChipShape.stadium,
                   onSelected: (s) {}),
-              AppChip.filter(
+              DSChip.filter(
                   label: 'Filter',
-                  shape: AppChipShape.stadium,
+                  shape: DSChipShape.stadium,
                   onSelected: (s) {}),
             ],
           ),
@@ -1199,25 +1199,25 @@ class _StadiumShapeExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip.input(
+          DSChip.input(
             label: 'Stadium Input',
-            shape: AppChipShape.stadium,
+            shape: DSChipShape.stadium,
             onDeleted: () {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Stadium Filter',
-            shape: AppChipShape.stadium,
+            shape: DSChipShape.stadium,
             selected: true,
             onSelected: (s) {},
           ),
-          AppChip.choice(
+          DSChip.choice(
             label: 'Stadium Choice',
-            shape: AppChipShape.stadium,
+            shape: DSChipShape.stadium,
             onSelected: (s) {},
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Stadium Assist',
-            shape: AppChipShape.stadium,
+            shape: DSChipShape.stadium,
             icon: Icons.help,
             onSelected: (s) {},
           ),
@@ -1236,17 +1236,17 @@ class _CustomBorderRadiusExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip(
+          DSChip(
             label: 'Sharp',
             borderRadius: BorderRadius.circular(2),
             onSelected: (s) {},
           ),
-          AppChip(
+          DSChip(
             label: 'Rounded',
             borderRadius: BorderRadius.circular(16),
             onSelected: (s) {},
           ),
-          AppChip(
+          DSChip(
             label: 'Mixed',
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
@@ -1269,26 +1269,26 @@ class _CustomColorsExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip(
+          DSChip(
             label: 'Red Theme',
             backgroundColor: Colors.red.shade100,
             color: Colors.red.shade800,
             onSelected: (s) {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Green Theme',
             backgroundColor: Colors.green.shade100,
             color: Colors.green.shade800,
             selected: true,
             onSelected: (s) {},
           ),
-          AppChip.choice(
+          DSChip.choice(
             label: 'Blue Theme',
             backgroundColor: Colors.blue.shade100,
             color: Colors.blue.shade800,
             onSelected: (s) {},
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Purple Theme',
             backgroundColor: Colors.purple.shade100,
             color: Colors.purple.shade800,
@@ -1304,7 +1304,7 @@ class _CustomColorsExample extends StatelessWidget {
 class _CustomConfigExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final customConfig = AppChipConfig(
+    final customConfig = DSChipConfig(
       borderRadius: const BorderRadius.all(Radius.circular(20)),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       elevation: 4,
@@ -1318,18 +1318,18 @@ class _CustomConfigExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip(
+          DSChip(
             label: 'Custom Config',
             config: customConfig,
             onSelected: (s) {},
           ),
-          AppChip.filter(
+          DSChip.filter(
             label: 'Elevated',
             config: customConfig,
             selected: true,
             onSelected: (s) {},
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Rounded',
             config: customConfig,
             icon: Icons.star,
@@ -1350,22 +1350,22 @@ class _CustomTypographyExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip(
+          DSChip(
             label: 'Bold Text',
             textStyle: const TextStyle(fontWeight: FontWeight.bold),
             onSelected: (s) {},
           ),
-          AppChip(
+          DSChip(
             label: 'Italic Text',
             textStyle: const TextStyle(fontStyle: FontStyle.italic),
             onSelected: (s) {},
           ),
-          AppChip(
+          DSChip(
             label: 'Large Text',
             textStyle: const TextStyle(fontSize: 18),
             onSelected: (s) {},
           ),
-          AppChip(
+          DSChip(
             label: 'Small Text',
             textStyle: const TextStyle(fontSize: 12),
             onSelected: (s) {},
@@ -1385,17 +1385,17 @@ class _CustomSpacingExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip(
+          DSChip(
             label: 'Compact',
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             onSelected: (s) {},
           ),
-          AppChip(
+          DSChip(
             label: 'Normal',
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             onSelected: (s) {},
           ),
-          AppChip(
+          DSChip(
             label: 'Spacious',
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             onSelected: (s) {},
@@ -1428,7 +1428,7 @@ class _DeletableChipsExampleState extends State<_DeletableChipsExample> {
             spacing: 8.0,
             runSpacing: 8.0,
             children: items
-                .map((item) => AppChip.input(
+                .map((item) => DSChip.input(
                       label: item,
                       onDeleted: () {
                         setState(() {
@@ -1475,7 +1475,7 @@ class _SelectableChipsExampleState extends State<_SelectableChipsExample> {
             spacing: 8.0,
             runSpacing: 8.0,
             children: items
-                .map((item) => AppChip.filter(
+                .map((item) => DSChip.filter(
                       label: item,
                       selected: selectedItems.contains(item),
                       onSelected: (selected) {
@@ -1508,7 +1508,7 @@ class _ActionChipsExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip.assist(
+          DSChip.assist(
             label: 'Send Email',
             icon: Icons.email,
             onSelected: (s) {
@@ -1517,7 +1517,7 @@ class _ActionChipsExample extends StatelessWidget {
               );
             },
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Call',
             icon: Icons.phone,
             onSelected: (s) {
@@ -1526,7 +1526,7 @@ class _ActionChipsExample extends StatelessWidget {
               );
             },
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Navigate',
             icon: Icons.navigation,
             onSelected: (s) {
@@ -1535,7 +1535,7 @@ class _ActionChipsExample extends StatelessWidget {
               );
             },
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Calendar',
             icon: Icons.calendar_today,
             onSelected: (s) {
@@ -1573,7 +1573,7 @@ class _ChipGroupsExampleState extends State<_ChipGroupsExample> {
           Wrap(
             spacing: 8.0,
             children: ['Low', 'Medium', 'High']
-                .map((priority) => AppChip.choice(
+                .map((priority) => DSChip.choice(
                       label: priority,
                       selected: selectedPriority == priority,
                       onSelected: (selected) {
@@ -1591,7 +1591,7 @@ class _ChipGroupsExampleState extends State<_ChipGroupsExample> {
           Wrap(
             spacing: 8.0,
             children: ['Work', 'Personal', 'Study']
-                .map((category) => AppChip.filter(
+                .map((category) => DSChip.filter(
                       label: category,
                       selected: selectedCategories.contains(category),
                       onSelected: (selected) {
@@ -1613,7 +1613,7 @@ class _ChipGroupsExampleState extends State<_ChipGroupsExample> {
           Wrap(
             spacing: 8.0,
             children: tags
-                .map((tag) => AppChip.input(
+                .map((tag) => DSChip.input(
                       label: tag,
                       onDeleted: () {
                         setState(() {
@@ -1638,19 +1638,19 @@ class _AccessibilityExample extends StatelessWidget {
         spacing: 8.0,
         runSpacing: 8.0,
         children: [
-          AppChip.filter(
+          DSChip.filter(
             label: 'Accessible Filter',
             semanticLabel: 'Filter option for accessibility testing',
             tooltip: 'This is a filter chip with accessibility support',
             onSelected: (s) {},
           ),
-          AppChip.input(
+          DSChip.input(
             label: 'Screen Reader Friendly',
             semanticLabel: 'Deletable tag for screen reader users',
             tooltip: 'Press delete to remove this tag',
             onDeleted: () {},
           ),
-          AppChip.assist(
+          DSChip.assist(
             label: 'Voice Control',
             icon: Icons.mic,
             semanticLabel: 'Activate voice control feature',
@@ -1684,19 +1684,19 @@ class _KeyboardNavigationExample extends StatelessWidget {
             spacing: 8.0,
             runSpacing: 8.0,
             children: [
-              AppChip.filter(
+              DSChip.filter(
                 label: 'Keyboard 1',
                 onSelected: (s) {},
               ),
-              AppChip.filter(
+              DSChip.filter(
                 label: 'Keyboard 2',
                 onSelected: (s) {},
               ),
-              AppChip.input(
+              DSChip.input(
                 label: 'Deletable',
                 onDeleted: () {},
               ),
-              AppChip.assist(
+              DSChip.assist(
                 label: 'Action',
                 icon: Icons.keyboard,
                 onSelected: (s) {},
@@ -1712,8 +1712,8 @@ class _KeyboardNavigationExample extends StatelessWidget {
 class _HighContrastExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final highContrastConfig = AppChipConfig(
-      colors: AppChipColors(
+    final highContrastConfig = DSChipConfig(
+      colors: DSChipColors(
         backgroundColor: Colors.black,
         borderColor: Colors.white,
         textColor: Colors.white,
@@ -1734,18 +1734,18 @@ class _HighContrastExample extends StatelessWidget {
           spacing: 8.0,
           runSpacing: 8.0,
           children: [
-            AppChip.filter(
+            DSChip.filter(
               label: 'High Contrast',
               config: highContrastConfig,
               onSelected: (s) {},
             ),
-            AppChip.filter(
+            DSChip.filter(
               label: 'Selected',
               config: highContrastConfig,
               selected: true,
               onSelected: (s) {},
             ),
-            AppChip.input(
+            DSChip.input(
               label: 'Accessible',
               config: highContrastConfig,
               onDeleted: () {},
@@ -1768,20 +1768,20 @@ class _RTLExample extends StatelessWidget {
           spacing: 8.0,
           runSpacing: 8.0,
           children: [
-            AppChip.filter(
+            DSChip.filter(
               label: 'مرشح النص',
               onSelected: (s) {},
             ),
-            AppChip.input(
+            DSChip.input(
               label: 'علامة قابلة للحذف',
               onDeleted: () {},
             ),
-            AppChip.choice(
+            DSChip.choice(
               label: 'خيار واحد',
               selected: true,
               onSelected: (s) {},
             ),
-            AppChip.assist(
+            DSChip.assist(
               label: 'مساعدة',
               icon: Icons.help,
               onSelected: (s) {},
@@ -1804,18 +1804,18 @@ class _RTLWithAvatarsExample extends StatelessWidget {
           spacing: 8.0,
           runSpacing: 8.0,
           children: [
-            AppChip.input(
+            DSChip.input(
               label: 'أحمد محمد',
               avatarText: 'أ',
               onDeleted: () {},
             ),
-            AppChip.filter(
+            DSChip.filter(
               label: 'فريق التطوير',
               avatarText: 'ف',
               avatarBackgroundColor: Colors.blue,
               onSelected: (s) {},
             ),
-            AppChip.choice(
+            DSChip.choice(
               label: 'مجموعة التصميم',
               avatarText: 'م',
               avatarBackgroundColor: Colors.purple,
@@ -1852,7 +1852,7 @@ class _RTLWithDeleteExampleState extends State<_RTLWithDeleteExample> {
               spacing: 8.0,
               runSpacing: 8.0,
               children: items
-                  .map((item) => AppChip.input(
+                  .map((item) => DSChip.input(
                         label: item,
                         onDeleted: () {
                           setState(() {
@@ -1872,7 +1872,7 @@ class _RTLWithDeleteExampleState extends State<_RTLWithDeleteExample> {
 class _PlatformAdaptiveExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final adaptiveConfig = AppChipConfig(
+    final adaptiveConfig = DSChipConfig(
       adaptToPlatform: true,
       enableHapticFeedback: true,
       enableSoundEffects: true,
@@ -1895,17 +1895,17 @@ class _PlatformAdaptiveExample extends StatelessWidget {
             spacing: 8.0,
             runSpacing: 8.0,
             children: [
-              AppChip.filter(
+              DSChip.filter(
                 label: 'Adaptive',
                 config: adaptiveConfig,
                 onSelected: (s) {},
               ),
-              AppChip.input(
+              DSChip.input(
                 label: 'Platform',
                 config: adaptiveConfig,
                 onDeleted: () {},
               ),
-              AppChip.assist(
+              DSChip.assist(
                 label: 'Responsive',
                 config: adaptiveConfig,
                 icon: Icons.devices,
@@ -1938,20 +1938,20 @@ class _MaterialDesignExample extends StatelessWidget {
             spacing: 8.0,
             runSpacing: 8.0,
             children: [
-              AppChip.filter(
+              DSChip.filter(
                 label: 'Material',
                 onSelected: (s) {},
               ),
-              AppChip.filter(
+              DSChip.filter(
                 label: 'Design',
                 selected: true,
                 onSelected: (s) {},
               ),
-              AppChip.input(
+              DSChip.input(
                 label: 'Specification',
                 onDeleted: () {},
               ),
-              AppChip.assist(
+              DSChip.assist(
                 label: 'Guidelines',
                 icon: Icons.design_services,
                 onSelected: (s) {},
@@ -1983,23 +1983,23 @@ class _CrossPlatformExample extends StatelessWidget {
             spacing: 8.0,
             runSpacing: 8.0,
             children: [
-              AppChip.filter(
+              DSChip.filter(
                 label: 'iOS',
                 icon: Icons.phone_iphone,
                 onSelected: (s) {},
               ),
-              AppChip.filter(
+              DSChip.filter(
                 label: 'Android',
                 icon: Icons.android,
                 selected: true,
                 onSelected: (s) {},
               ),
-              AppChip.filter(
+              DSChip.filter(
                 label: 'Web',
                 icon: Icons.web,
                 onSelected: (s) {},
               ),
-              AppChip.assist(
+              DSChip.assist(
                 label: 'Desktop',
                 icon: Icons.desktop_windows,
                 onSelected: (s) {},

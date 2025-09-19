@@ -4,13 +4,13 @@ import 'package:flutter/services.dart';
 
 import 'app_divider_config.dart';
 
-class AppDividerPlatformAdapter {
-  static AppDividerPlatformAdapter? _instance;
+class DSDividerPlatformAdapter {
+  static DSDividerPlatformAdapter? _instance;
 
-  AppDividerPlatformAdapter._();
+  DSDividerPlatformAdapter._();
 
-  factory AppDividerPlatformAdapter() {
-    return _instance ??= AppDividerPlatformAdapter._();
+  factory DSDividerPlatformAdapter() {
+    return _instance ??= DSDividerPlatformAdapter._();
   }
 
   bool get isIOS => defaultTargetPlatform == TargetPlatform.iOS;
@@ -24,11 +24,11 @@ class AppDividerPlatformAdapter {
   bool get supportsHighContrast => !isWeb;
   bool get supportsReducedMotion => true;
 
-  AppDividerColors getDefaultColors(BuildContext context) {
+  DSDividerColors getDefaultColors(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return AppDividerColors(
+    return DSDividerColors(
       defaultColor: theme.dividerColor,
       hoverColor: colorScheme.primary.withValues(alpha: 0.1),
       pressedColor: colorScheme.primary.withValues(alpha: 0.2),
@@ -41,8 +41,8 @@ class AppDividerPlatformAdapter {
     );
   }
 
-  AppDividerSpacing getDefaultSpacing() {
-    return AppDividerSpacing(
+  DSDividerSpacing getDefaultSpacing() {
+    return DSDividerSpacing(
       defaultIndent: isWeb ? 24.0 : 16.0,
       defaultEndIndent: isWeb ? 24.0 : 16.0,
       defaultThickness: isWeb ? 1.5 : 1.0,
@@ -53,8 +53,8 @@ class AppDividerPlatformAdapter {
     );
   }
 
-  AppDividerAnimations getDefaultAnimations() {
-    return AppDividerAnimations(
+  DSDividerAnimations getDefaultAnimations() {
+    return DSDividerAnimations(
       stateDuration: Duration(
         milliseconds: isWeb
             ? 150
@@ -70,8 +70,8 @@ class AppDividerPlatformAdapter {
     );
   }
 
-  AppDividerBehavior getDefaultBehavior() {
-    return AppDividerBehavior(
+  DSDividerBehavior getDefaultBehavior() {
+    return DSDividerBehavior(
       showDebugInfo: kDebugMode,
       enableHoverEffects: !isMobile,
       showFocusIndicator: !isMobile,
@@ -81,8 +81,8 @@ class AppDividerPlatformAdapter {
     );
   }
 
-  AppDividerAccessibilityConfig getDefaultAccessibility() {
-    return const AppDividerAccessibilityConfig(
+  DSDividerAccessibilityConfig getDefaultAccessibility() {
+    return const DSDividerAccessibilityConfig(
       enabled: true,
       semanticRole: 'separator',
       focusable: false,
@@ -133,7 +133,7 @@ class AppDividerPlatformAdapter {
     }
   }
 
-  Duration getAnimationDuration(AppDividerAnimations animations) {
+  Duration getAnimationDuration(DSDividerAnimations animations) {
     if (!animations.enabled) return Duration.zero;
 
     if (animations.respectReducedMotion) {
@@ -147,7 +147,7 @@ class AppDividerPlatformAdapter {
     return animations.stateDuration;
   }
 
-  Curve getAnimationCurve(AppDividerAnimations animations) {
+  Curve getAnimationCurve(DSDividerAnimations animations) {
     if (!animations.enabled) return Curves.linear;
     return animations.stateCurve;
   }
@@ -174,12 +174,12 @@ class AppDividerPlatformAdapter {
           : isWeb
           ? 'Web'
           : 'Desktop';
-      debugPrint('[AppDivider-$platform] $message');
+      debugPrint('[DSDivider-$platform] $message');
     }
   }
 
-  AppDividerConfig adaptConfigForPlatform(
-    AppDividerConfig config,
+  DSDividerConfig adaptConfigForPlatform(
+    DSDividerConfig config,
     BuildContext context,
   ) {
     return config.copyWith(

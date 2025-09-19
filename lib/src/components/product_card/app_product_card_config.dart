@@ -3,26 +3,26 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_product_card_config.freezed.dart';
 
-/// Configuración completa para el componente AppProductCard
+/// Configuración completa para el componente DSProductCard
 ///
 /// Utiliza Freezed para crear modelos inmutables y type-safe
 /// que definen todos los aspectos del comportamiento de la tarjeta de producto
 @freezed
-class AppProductCardConfig with _$AppProductCardConfig {
-  const factory AppProductCardConfig({
-    @Default(AppProductCardVariant.price) AppProductCardVariant variant,
-    @Default(AppProductCardState.defaultState) AppProductCardState state,
-    AppProductCardColors? colors,
-    AppProductCardSpacing? spacing,
-    AppProductCardAnimation? animation,
-    AppProductCardBehavior? behavior,
-    AppProductCardA11yConfig? a11yConfig,
-  }) = _AppProductCardConfig;
+class DSProductCardConfig with _$DSProductCardConfig {
+  const factory DSProductCardConfig({
+    @Default(DSProductCardVariant.price) DSProductCardVariant variant,
+    @Default(DSProductCardState.defaultState) DSProductCardState state,
+    DSProductCardColors? colors,
+    DSProductCardSpacing? spacing,
+    DSProductCardAnimation? animation,
+    DSProductCardBehavior? behavior,
+    DSProductCardA11yConfig? a11yConfig,
+  }) = _DSProductCardConfig;
 
 }
 
 /// Variantes de la tarjeta de producto
-enum AppProductCardVariant {
+enum DSProductCardVariant {
   /// Solo muestra el precio sin descuento
   price,
 
@@ -31,7 +31,7 @@ enum AppProductCardVariant {
 }
 
 /// Estados interactivos de la tarjeta
-enum AppProductCardState {
+enum DSProductCardState {
   /// Estado por defecto
   defaultState,
 
@@ -59,20 +59,20 @@ enum AppProductCardState {
 
 /// Configuración de chip de descuento
 @freezed
-class AppDiscountChip with _$AppDiscountChip {
-  const factory AppDiscountChip({
+class DSDiscountChip with _$DSDiscountChip {
+  const factory DSDiscountChip({
     required String text,
     Color? backgroundColor,
     Color? textColor,
     IconData? icon,
     @Default(true) bool visible,
-    @Default(AppDiscountChipPosition.topRight) AppDiscountChipPosition position,
+    @Default(DSDiscountChipPosition.topRight) DSDiscountChipPosition position,
   }) = _AppDiscountChip;
 
 }
 
 /// Posición del chip de descuento
-enum AppDiscountChipPosition {
+enum DSDiscountChipPosition {
   topLeft,
   topRight,
   bottomLeft,
@@ -81,8 +81,8 @@ enum AppDiscountChipPosition {
 
 /// Configuración de imagen del producto
 @freezed
-class AppProductImage with _$AppProductImage {
-  const factory AppProductImage({
+class DSProductImage with _$DSProductImage {
+  const factory DSProductImage({
     required String url,
     String? placeholder,
     @Default(BoxFit.cover) BoxFit fit,
@@ -94,11 +94,11 @@ class AppProductImage with _$AppProductImage {
 
 /// Configuración de precio
 @freezed
-class AppProductPrice with _$AppProductPrice {
-  const factory AppProductPrice({
+class DSProductPrice with _$DSProductPrice {
+  const factory DSProductPrice({
     required double amount,
     String? currency,
-    @Default(AppPriceFormat.standard) AppPriceFormat format,
+    @Default(DSPriceFormat.standard) DSPriceFormat format,
     double? originalPrice,
     @Default(true) bool showCurrency,
     @Default(2) int decimalPlaces,
@@ -107,7 +107,7 @@ class AppProductPrice with _$AppProductPrice {
 }
 
 /// Formato de precio
-enum AppPriceFormat {
+enum DSPriceFormat {
   /// Formato estándar (ej: $99.99)
   standard,
 
@@ -123,8 +123,8 @@ enum AppPriceFormat {
 
 /// Configuración de colores
 @freezed
-class AppProductCardColors with _$AppProductCardColors {
-  const factory AppProductCardColors({
+class DSProductCardColors with _$DSProductCardColors {
+  const factory DSProductCardColors({
     Color? backgroundColor,
     Color? borderColor,
     Color? shadowColor,
@@ -143,8 +143,8 @@ class AppProductCardColors with _$AppProductCardColors {
 
 /// Configuración de espaciado
 @freezed
-class AppProductCardSpacing with _$AppProductCardSpacing {
-  const factory AppProductCardSpacing({
+class DSProductCardSpacing with _$DSProductCardSpacing {
+  const factory DSProductCardSpacing({
     @Default(EdgeInsets.all(12)) EdgeInsets padding,
     @Default(EdgeInsets.zero) EdgeInsets margin,
     @Default(12.0) double borderRadius,
@@ -160,8 +160,8 @@ class AppProductCardSpacing with _$AppProductCardSpacing {
 
 /// Configuración de animaciones
 @freezed
-class AppProductCardAnimation with _$AppProductCardAnimation {
-  const factory AppProductCardAnimation({
+class DSProductCardAnimation with _$DSProductCardAnimation {
+  const factory DSProductCardAnimation({
     @Default(true) bool enabled,
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
@@ -176,21 +176,21 @@ class AppProductCardAnimation with _$AppProductCardAnimation {
 
 /// Configuración de comportamiento
 @freezed
-class AppProductCardBehavior with _$AppProductCardBehavior {
-  const factory AppProductCardBehavior({
+class DSProductCardBehavior with _$DSProductCardBehavior {
+  const factory DSProductCardBehavior({
     @Default(true) bool clickable,
     @Default(true) bool selectable,
     @Default(false) bool multiSelect,
     @Default(true) bool showTooltip,
     @Default(true) bool lazyLoadImage,
     @Default(true) bool cacheImage,
-    @Default(AppProductCardLayout.vertical) AppProductCardLayout layout,
+    @Default(DSProductCardLayout.vertical) DSProductCardLayout layout,
   }) = _AppProductCardBehavior;
 
 }
 
 /// Layout de la tarjeta
-enum AppProductCardLayout {
+enum DSProductCardLayout {
   /// Imagen arriba, contenido abajo
   vertical,
 
@@ -206,8 +206,8 @@ enum AppProductCardLayout {
 
 /// Configuración de accesibilidad
 @freezed
-class AppProductCardA11yConfig with _$AppProductCardA11yConfig {
-  const factory AppProductCardA11yConfig({
+class DSProductCardA11yConfig with _$DSProductCardA11yConfig {
+  const factory DSProductCardA11yConfig({
     String? productLabel,
     String? priceLabel,
     String? discountLabel,
@@ -216,18 +216,18 @@ class AppProductCardA11yConfig with _$AppProductCardA11yConfig {
     @Default(true) bool announcePrice,
     @Default(true) bool announceDiscount,
     @Default(true) bool enableKeyboardNavigation,
-  }) = _AppProductCardA11yConfig;
+  }) = _DSProductCardA11yConfig;
 
 }
 
-/// Extensiones para AppProductCardVariant
-extension AppProductCardVariantExtensions on AppProductCardVariant {
+/// Extensiones para DSProductCardVariant
+extension DSProductCardVariantExtensions on DSProductCardVariant {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppProductCardVariant.price:
+      case DSProductCardVariant.price:
         return 'Precio';
-      case AppProductCardVariant.discount:
+      case DSProductCardVariant.discount:
         return 'Descuento';
     }
   }
@@ -235,61 +235,61 @@ extension AppProductCardVariantExtensions on AppProductCardVariant {
   /// Icono representativo
   IconData get icon {
     switch (this) {
-      case AppProductCardVariant.price:
+      case DSProductCardVariant.price:
         return Icons.attach_money;
-      case AppProductCardVariant.discount:
+      case DSProductCardVariant.discount:
         return Icons.local_offer;
     }
   }
 
   /// Si muestra el precio original tachado
   bool get showOriginalPrice {
-    return this == AppProductCardVariant.discount;
+    return this == DSProductCardVariant.discount;
   }
 
   /// Si muestra chip de descuento
   bool get showDiscountChip {
-    return this == AppProductCardVariant.discount;
+    return this == DSProductCardVariant.discount;
   }
 }
 
-/// Extensiones para AppProductCardState
-extension AppProductCardStateExtensions on AppProductCardState {
+/// Extensiones para DSProductCardState
+extension DSProductCardStateExtensions on DSProductCardState {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppProductCardState.defaultState:
+      case DSProductCardState.defaultState:
         return 'Normal';
-      case AppProductCardState.hover:
+      case DSProductCardState.hover:
         return 'Hover';
-      case AppProductCardState.pressed:
+      case DSProductCardState.pressed:
         return 'Presionado';
-      case AppProductCardState.focus:
+      case DSProductCardState.focus:
         return 'Enfocado';
-      case AppProductCardState.selected:
+      case DSProductCardState.selected:
         return 'Seleccionado';
-      case AppProductCardState.disabled:
+      case DSProductCardState.disabled:
         return 'Deshabilitado';
-      case AppProductCardState.loading:
+      case DSProductCardState.loading:
         return 'Cargando';
-      case AppProductCardState.skeleton:
+      case DSProductCardState.skeleton:
         return 'Skeleton';
     }
   }
 
   /// Si el estado es interactivo
   bool get isInteractive {
-    return this != AppProductCardState.disabled &&
-           this != AppProductCardState.loading &&
-           this != AppProductCardState.skeleton;
+    return this != DSProductCardState.disabled &&
+           this != DSProductCardState.loading &&
+           this != DSProductCardState.skeleton;
   }
 
   /// Opacidad del estado
   double get opacity {
     switch (this) {
-      case AppProductCardState.disabled:
+      case DSProductCardState.disabled:
         return 0.5;
-      case AppProductCardState.loading:
+      case DSProductCardState.loading:
         return 0.7;
       default:
         return 1.0;
@@ -299,11 +299,11 @@ extension AppProductCardStateExtensions on AppProductCardState {
   /// Elevación del estado
   double get elevation {
     switch (this) {
-      case AppProductCardState.hover:
+      case DSProductCardState.hover:
         return 8.0;
-      case AppProductCardState.pressed:
+      case DSProductCardState.pressed:
         return 2.0;
-      case AppProductCardState.selected:
+      case DSProductCardState.selected:
         return 6.0;
       default:
         return 4.0;
@@ -311,8 +311,8 @@ extension AppProductCardStateExtensions on AppProductCardState {
   }
 }
 
-/// Extensiones para AppProductPrice
-extension AppProductPriceExtensions on AppProductPrice {
+/// Extensiones para DSProductPrice
+extension DSProductPriceExtensions on DSProductPrice {
   /// Calcula el porcentaje de descuento
   double? get discountPercentage {
     if (originalPrice == null || originalPrice! <= 0) return null;
@@ -326,17 +326,17 @@ extension AppProductPriceExtensions on AppProductPrice {
     String formattedAmount;
 
     switch (format) {
-      case AppPriceFormat.compact:
+      case DSPriceFormat.compact:
         formattedAmount = amount.toStringAsFixed(0);
         break;
-      case AppPriceFormat.withThousands:
+      case DSPriceFormat.withThousands:
         formattedAmount = _formatWithThousands(amount, decimalPlaces);
         break;
-      case AppPriceFormat.localized:
+      case DSPriceFormat.localized:
         // Aquí iría la lógica de localización real
         formattedAmount = _formatWithThousands(amount, decimalPlaces);
         break;
-      case AppPriceFormat.standard:
+      case DSPriceFormat.standard:
         formattedAmount = amount.toStringAsFixed(decimalPlaces);
     }
 
@@ -374,18 +374,18 @@ extension AppProductPriceExtensions on AppProductPrice {
   }
 }
 
-/// Extensiones para AppDiscountChipPosition
-extension AppDiscountChipPositionExtensions on AppDiscountChipPosition {
+/// Extensiones para DSDiscountChipPosition
+extension DSDiscountChipPositionExtensions on DSDiscountChipPosition {
   /// Alineación en el Stack
   Alignment get alignment {
     switch (this) {
-      case AppDiscountChipPosition.topLeft:
+      case DSDiscountChipPosition.topLeft:
         return Alignment.topLeft;
-      case AppDiscountChipPosition.topRight:
+      case DSDiscountChipPosition.topRight:
         return Alignment.topRight;
-      case AppDiscountChipPosition.bottomLeft:
+      case DSDiscountChipPosition.bottomLeft:
         return Alignment.bottomLeft;
-      case AppDiscountChipPosition.bottomRight:
+      case DSDiscountChipPosition.bottomRight:
         return Alignment.bottomRight;
     }
   }
@@ -394,42 +394,42 @@ extension AppDiscountChipPositionExtensions on AppDiscountChipPosition {
   EdgeInsets get margin {
     const spacing = 8.0;
     switch (this) {
-      case AppDiscountChipPosition.topLeft:
+      case DSDiscountChipPosition.topLeft:
         return const EdgeInsets.only(top: spacing, left: spacing);
-      case AppDiscountChipPosition.topRight:
+      case DSDiscountChipPosition.topRight:
         return const EdgeInsets.only(top: spacing, right: spacing);
-      case AppDiscountChipPosition.bottomLeft:
+      case DSDiscountChipPosition.bottomLeft:
         return const EdgeInsets.only(bottom: spacing, left: spacing);
-      case AppDiscountChipPosition.bottomRight:
+      case DSDiscountChipPosition.bottomRight:
         return const EdgeInsets.only(bottom: spacing, right: spacing);
     }
   }
 }
 
-/// Extensiones para AppProductCardLayout
-extension AppProductCardLayoutExtensions on AppProductCardLayout {
+/// Extensiones para DSProductCardLayout
+extension DSProductCardLayoutExtensions on DSProductCardLayout {
   /// Si el layout es vertical
-  bool get isVertical => this == AppProductCardLayout.vertical;
+  bool get isVertical => this == DSProductCardLayout.vertical;
 
   /// Si el layout es horizontal
-  bool get isHorizontal => this == AppProductCardLayout.horizontal;
+  bool get isHorizontal => this == DSProductCardLayout.horizontal;
 
   /// Si el layout tiene overlay
-  bool get hasOverlay => this == AppProductCardLayout.overlay;
+  bool get hasOverlay => this == DSProductCardLayout.overlay;
 
   /// Si el layout es compacto
-  bool get isCompact => this == AppProductCardLayout.compact;
+  bool get isCompact => this == DSProductCardLayout.compact;
 
   /// Aspect ratio recomendado de la imagen
   double get recommendedImageRatio {
     switch (this) {
-      case AppProductCardLayout.vertical:
+      case DSProductCardLayout.vertical:
         return 1.0;
-      case AppProductCardLayout.horizontal:
+      case DSProductCardLayout.horizontal:
         return 0.75;
-      case AppProductCardLayout.overlay:
+      case DSProductCardLayout.overlay:
         return 1.5;
-      case AppProductCardLayout.compact:
+      case DSProductCardLayout.compact:
         return 0.5;
     }
   }

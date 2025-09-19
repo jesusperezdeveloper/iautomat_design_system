@@ -3,11 +3,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_back_to_top_config.freezed.dart';
 
-enum AppBackToTopVariant {
+enum DSBackToTopVariant {
   webOnly,
 }
 
-enum AppBackToTopState {
+enum DSBackToTopState {
   defaultState,
   hover,
   pressed,
@@ -18,7 +18,7 @@ enum AppBackToTopState {
   skeleton,
 }
 
-enum AppBackToTopPosition {
+enum DSBackToTopPosition {
   bottomRight,
   bottomLeft,
   bottomCenter,
@@ -29,7 +29,7 @@ enum AppBackToTopPosition {
   centerLeft,
 }
 
-enum AppBackToTopScrollBehavior {
+enum DSBackToTopScrollBehavior {
   smooth,
   instant,
   easeIn,
@@ -38,19 +38,19 @@ enum AppBackToTopScrollBehavior {
 }
 
 @freezed
-class AppBackToTopConfig with _$AppBackToTopConfig {
-  const factory AppBackToTopConfig({
-    @Default(AppBackToTopVariant.webOnly) AppBackToTopVariant variant,
-    @Default(AppBackToTopState.defaultState) AppBackToTopState state,
-    AppBackToTopColors? colors,
-    AppBackToTopSpacing? spacing,
-    AppBackToTopTypography? typography,
-    AppBackToTopAnimations? animations,
-    AppBackToTopAccessibility? accessibility,
-    AppBackToTopBehavior? behavior,
-  }) = _AppBackToTopConfig;
+class DSBackToTopConfig with _$DSBackToTopConfig {
+  const factory DSBackToTopConfig({
+    @Default(DSBackToTopVariant.webOnly) DSBackToTopVariant variant,
+    @Default(DSBackToTopState.defaultState) DSBackToTopState state,
+    DSBackToTopColors? colors,
+    DSBackToTopSpacing? spacing,
+    DSBackToTopTypography? typography,
+    DSBackToTopAnimations? animations,
+    DSBackToTopAccessibility? accessibility,
+    DSBackToTopBehavior? behavior,
+  }) = _DSBackToTopConfig;
 
-  const AppBackToTopConfig._();
+  const DSBackToTopConfig._();
 
   bool get isValid {
     if (spacing != null) {
@@ -75,8 +75,8 @@ class AppBackToTopConfig with _$AppBackToTopConfig {
 }
 
 @freezed
-class AppBackToTopColors with _$AppBackToTopColors {
-  const factory AppBackToTopColors({
+class DSBackToTopColors with _$DSBackToTopColors {
+  const factory DSBackToTopColors({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
@@ -91,7 +91,7 @@ class AppBackToTopColors with _$AppBackToTopColors {
     @Default(0.38) double disabledOpacity,
   }) = _AppBackToTopColors;
 
-  const AppBackToTopColors._();
+  const DSBackToTopColors._();
 
   bool get isValid {
     return opacity >= 0.0 &&
@@ -106,18 +106,18 @@ class AppBackToTopColors with _$AppBackToTopColors {
 }
 
 @freezed
-class AppBackToTopSpacing with _$AppBackToTopSpacing {
-  const factory AppBackToTopSpacing({
+class DSBackToTopSpacing with _$DSBackToTopSpacing {
+  const factory DSBackToTopSpacing({
     @Default(56.0) double size,
     @Default(24.0) double iconSize,
     @Default(28.0) double borderRadius,
     @Default(EdgeInsets.all(16.0)) EdgeInsets margin,
     @Default(EdgeInsets.zero) EdgeInsets padding,
     @Default(8.0) double elevation,
-    @Default(AppBackToTopPosition.bottomRight) AppBackToTopPosition position,
+    @Default(DSBackToTopPosition.bottomRight) DSBackToTopPosition position,
   }) = _AppBackToTopSpacing;
 
-  const AppBackToTopSpacing._();
+  const DSBackToTopSpacing._();
 
   bool get isValid {
     return size > 0 &&
@@ -128,15 +128,15 @@ class AppBackToTopSpacing with _$AppBackToTopSpacing {
 }
 
 @freezed
-class AppBackToTopTypography with _$AppBackToTopTypography {
-  const factory AppBackToTopTypography({
+class DSBackToTopTypography with _$DSBackToTopTypography {
+  const factory DSBackToTopTypography({
     TextStyle? textStyle,
     @Default(14.0) double fontSize,
     @Default(FontWeight.w500) FontWeight fontWeight,
     String? tooltip,
   }) = _AppBackToTopTypography;
 
-  const AppBackToTopTypography._();
+  const DSBackToTopTypography._();
 
   bool get isValid {
     return fontSize > 0;
@@ -144,8 +144,8 @@ class AppBackToTopTypography with _$AppBackToTopTypography {
 }
 
 @freezed
-class AppBackToTopAnimations with _$AppBackToTopAnimations {
-  const factory AppBackToTopAnimations({
+class DSBackToTopAnimations with _$DSBackToTopAnimations {
+  const factory DSBackToTopAnimations({
     @Default(Duration(milliseconds: 300)) Duration duration,
     @Default(Duration(milliseconds: 800)) Duration scrollDuration,
     @Default(Duration(milliseconds: 150)) Duration fadeInDuration,
@@ -155,10 +155,10 @@ class AppBackToTopAnimations with _$AppBackToTopAnimations {
     @Default(true) bool enabled,
     @Default(true) bool fadeEnabled,
     @Default(true) bool scaleEnabled,
-    @Default(AppBackToTopScrollBehavior.smooth) AppBackToTopScrollBehavior scrollBehavior,
+    @Default(DSBackToTopScrollBehavior.smooth) DSBackToTopScrollBehavior scrollBehavior,
   }) = _AppBackToTopAnimations;
 
-  const AppBackToTopAnimations._();
+  const DSBackToTopAnimations._();
 
   bool get isValid {
     return duration.inMilliseconds > 0 &&
@@ -169,8 +169,8 @@ class AppBackToTopAnimations with _$AppBackToTopAnimations {
 }
 
 @freezed
-class AppBackToTopAccessibility with _$AppBackToTopAccessibility {
-  const factory AppBackToTopAccessibility({
+class DSBackToTopAccessibility with _$DSBackToTopAccessibility {
+  const factory DSBackToTopAccessibility({
     @Default(true) bool enabled,
     @Default(true) bool focusable,
     @Default('Volver al inicio') String label,
@@ -183,8 +183,8 @@ class AppBackToTopAccessibility with _$AppBackToTopAccessibility {
 }
 
 @freezed
-class AppBackToTopBehavior with _$AppBackToTopBehavior {
-  const factory AppBackToTopBehavior({
+class DSBackToTopBehavior with _$DSBackToTopBehavior {
+  const factory DSBackToTopBehavior({
     @Default(200.0) double showAfterPixels,
     @Default(0.0) double hideAfterPixels,
     @Default(true) bool autoHide,
@@ -196,7 +196,7 @@ class AppBackToTopBehavior with _$AppBackToTopBehavior {
     @Default(Duration(seconds: 30)) Duration autoHideDelay,
   }) = _AppBackToTopBehavior;
 
-  const AppBackToTopBehavior._();
+  const DSBackToTopBehavior._();
 
   bool get isValid {
     return showAfterPixels >= 0 &&
@@ -205,30 +205,30 @@ class AppBackToTopBehavior with _$AppBackToTopBehavior {
   }
 }
 
-class AppBackToTopDefaults {
-  static const AppBackToTopColors colors = AppBackToTopColors();
-  static const AppBackToTopSpacing spacing = AppBackToTopSpacing();
-  static const AppBackToTopTypography typography = AppBackToTopTypography();
-  static const AppBackToTopAnimations animations = AppBackToTopAnimations();
-  static const AppBackToTopAccessibility accessibility = AppBackToTopAccessibility();
-  static const AppBackToTopBehavior behavior = AppBackToTopBehavior();
+class DSBackToTopDefaults {
+  static const DSBackToTopColors colors = DSBackToTopColors();
+  static const DSBackToTopSpacing spacing = DSBackToTopSpacing();
+  static const DSBackToTopTypography typography = DSBackToTopTypography();
+  static const DSBackToTopAnimations animations = DSBackToTopAnimations();
+  static const DSBackToTopAccessibility accessibility = DSBackToTopAccessibility();
+  static const DSBackToTopBehavior behavior = DSBackToTopBehavior();
 
-  static AppBackToTopConfig get defaultConfig => const AppBackToTopConfig();
+  static DSBackToTopConfig get defaultConfig => const DSBackToTopConfig();
 
-  static AppBackToTopConfig get webOptimized => const AppBackToTopConfig(
-    variant: AppBackToTopVariant.webOnly,
-    spacing: AppBackToTopSpacing(
+  static DSBackToTopConfig get webOptimized => const DSBackToTopConfig(
+    variant: DSBackToTopVariant.webOnly,
+    spacing: DSBackToTopSpacing(
       size: 48,
       iconSize: 20,
-      position: AppBackToTopPosition.bottomRight,
+      position: DSBackToTopPosition.bottomRight,
       margin: EdgeInsets.all(24),
     ),
-    animations: AppBackToTopAnimations(
+    animations: DSBackToTopAnimations(
       duration: Duration(milliseconds: 250),
       scrollDuration: Duration(milliseconds: 600),
-      scrollBehavior: AppBackToTopScrollBehavior.smooth,
+      scrollBehavior: DSBackToTopScrollBehavior.smooth,
     ),
-    behavior: AppBackToTopBehavior(
+    behavior: DSBackToTopBehavior(
       showAfterPixels: 300,
       autoHide: true,
       showOnScrollUp: true,
@@ -236,20 +236,20 @@ class AppBackToTopDefaults {
     ),
   );
 
-  static AppBackToTopConfig get mobileOptimized => const AppBackToTopConfig(
-    variant: AppBackToTopVariant.webOnly,
-    spacing: AppBackToTopSpacing(
+  static DSBackToTopConfig get mobileOptimized => const DSBackToTopConfig(
+    variant: DSBackToTopVariant.webOnly,
+    spacing: DSBackToTopSpacing(
       size: 56,
       iconSize: 24,
-      position: AppBackToTopPosition.bottomRight,
+      position: DSBackToTopPosition.bottomRight,
       margin: EdgeInsets.all(16),
     ),
-    animations: AppBackToTopAnimations(
+    animations: DSBackToTopAnimations(
       duration: Duration(milliseconds: 300),
       scrollDuration: Duration(milliseconds: 500),
-      scrollBehavior: AppBackToTopScrollBehavior.easeOut,
+      scrollBehavior: DSBackToTopScrollBehavior.easeOut,
     ),
-    behavior: AppBackToTopBehavior(
+    behavior: DSBackToTopBehavior(
       showAfterPixels: 200,
       autoHide: false,
       showOnScrollUp: false,
@@ -258,97 +258,97 @@ class AppBackToTopDefaults {
     ),
   );
 
-  static AppBackToTopConfig configForPosition(AppBackToTopPosition position) {
+  static DSBackToTopConfig configForPosition(DSBackToTopPosition position) {
     EdgeInsets margin;
 
     switch (position) {
-      case AppBackToTopPosition.bottomRight:
+      case DSBackToTopPosition.bottomRight:
         margin = const EdgeInsets.only(right: 16, bottom: 16);
         break;
-      case AppBackToTopPosition.bottomLeft:
+      case DSBackToTopPosition.bottomLeft:
         margin = const EdgeInsets.only(left: 16, bottom: 16);
         break;
-      case AppBackToTopPosition.bottomCenter:
+      case DSBackToTopPosition.bottomCenter:
         margin = const EdgeInsets.only(bottom: 16);
         break;
-      case AppBackToTopPosition.topRight:
+      case DSBackToTopPosition.topRight:
         margin = const EdgeInsets.only(right: 16, top: 16);
         break;
-      case AppBackToTopPosition.topLeft:
+      case DSBackToTopPosition.topLeft:
         margin = const EdgeInsets.only(left: 16, top: 16);
         break;
-      case AppBackToTopPosition.topCenter:
+      case DSBackToTopPosition.topCenter:
         margin = const EdgeInsets.only(top: 16);
         break;
-      case AppBackToTopPosition.centerRight:
+      case DSBackToTopPosition.centerRight:
         margin = const EdgeInsets.only(right: 16);
         break;
-      case AppBackToTopPosition.centerLeft:
+      case DSBackToTopPosition.centerLeft:
         margin = const EdgeInsets.only(left: 16);
         break;
     }
 
-    return AppBackToTopConfig(
-      spacing: AppBackToTopSpacing(
+    return DSBackToTopConfig(
+      spacing: DSBackToTopSpacing(
         position: position,
         margin: margin,
       ),
     );
   }
 
-  static Alignment getAlignmentForPosition(AppBackToTopPosition position) {
+  static Alignment getAlignmentForPosition(DSBackToTopPosition position) {
     switch (position) {
-      case AppBackToTopPosition.bottomRight:
+      case DSBackToTopPosition.bottomRight:
         return Alignment.bottomRight;
-      case AppBackToTopPosition.bottomLeft:
+      case DSBackToTopPosition.bottomLeft:
         return Alignment.bottomLeft;
-      case AppBackToTopPosition.bottomCenter:
+      case DSBackToTopPosition.bottomCenter:
         return Alignment.bottomCenter;
-      case AppBackToTopPosition.topRight:
+      case DSBackToTopPosition.topRight:
         return Alignment.topRight;
-      case AppBackToTopPosition.topLeft:
+      case DSBackToTopPosition.topLeft:
         return Alignment.topLeft;
-      case AppBackToTopPosition.topCenter:
+      case DSBackToTopPosition.topCenter:
         return Alignment.topCenter;
-      case AppBackToTopPosition.centerRight:
+      case DSBackToTopPosition.centerRight:
         return Alignment.centerRight;
-      case AppBackToTopPosition.centerLeft:
+      case DSBackToTopPosition.centerLeft:
         return Alignment.centerLeft;
     }
   }
 
   static IconData getDefaultIcon() => Icons.keyboard_arrow_up;
 
-  static AppBackToTopConfig get minimalConfig => const AppBackToTopConfig(
-    spacing: AppBackToTopSpacing(
+  static DSBackToTopConfig get minimalConfig => const DSBackToTopConfig(
+    spacing: DSBackToTopSpacing(
       size: 40,
       iconSize: 18,
       elevation: 2,
     ),
-    animations: AppBackToTopAnimations(
+    animations: DSBackToTopAnimations(
       duration: Duration(milliseconds: 200),
       scrollDuration: Duration(milliseconds: 400),
     ),
-    behavior: AppBackToTopBehavior(
+    behavior: DSBackToTopBehavior(
       showAfterPixels: 100,
       autoHide: true,
       showTooltip: false,
     ),
   );
 
-  static AppBackToTopConfig get prominentConfig => const AppBackToTopConfig(
-    spacing: AppBackToTopSpacing(
+  static DSBackToTopConfig get prominentConfig => const DSBackToTopConfig(
+    spacing: DSBackToTopSpacing(
       size: 64,
       iconSize: 28,
       elevation: 12,
       borderRadius: 32,
     ),
-    animations: AppBackToTopAnimations(
+    animations: DSBackToTopAnimations(
       duration: Duration(milliseconds: 400),
       scrollDuration: Duration(milliseconds: 1000),
       scaleEnabled: true,
     ),
-    behavior: AppBackToTopBehavior(
+    behavior: DSBackToTopBehavior(
       showAfterPixels: 400,
       showTooltip: true,
     ),

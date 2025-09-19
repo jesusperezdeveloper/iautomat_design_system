@@ -4,8 +4,8 @@ import 'package:iautomat_design_system/src/components/color_picker/color_picker_
 /// A comprehensive color picker component with HSV and palette variants.
 ///
 /// Supports two variants:
-/// - [AppColorPickerVariant.hsv]: HSV color wheel with sliders
-/// - [AppColorPickerVariant.palette]: Predefined color palette selection
+/// - [DSColorPickerVariant.hsv]: HSV color wheel with sliders
+/// - [DSColorPickerVariant.palette]: Predefined color palette selection
 ///
 /// Features:
 /// - Platform-adaptive UI (Material/Cupertino)
@@ -15,34 +15,34 @@ import 'package:iautomat_design_system/src/components/color_picker/color_picker_
 /// - Keyboard navigation
 /// - Alpha channel support
 /// - Recent colors tracking
-/// - Extensive customization through [AppColorPickerConfig]
+/// - Extensive customization through [DSColorPickerConfig]
 ///
 /// Example:
 /// ```dart
-/// AppColorPicker(
-///   variant: AppColorPickerVariant.hsv,
-///   value: AppColorValue.fromColor(Colors.blue),
+/// DSColorPicker(
+///   variant: DSColorPickerVariant.hsv,
+///   value: DSColorValue.fromColor(Colors.blue),
 ///   onChanged: (value) => print('Selected: ${value.hexString}'),
 /// )
 /// ```
-class AppColorPicker extends StatefulWidget {
+class DSColorPicker extends StatefulWidget {
   /// The variant of the color picker
-  final AppColorPickerVariant variant;
+  final DSColorPickerVariant variant;
 
   /// Current selected color value
-  final AppColorValue? value;
+  final DSColorValue? value;
 
   /// Callback when the color changes
-  final ValueChanged<AppColorValue>? onChanged;
+  final ValueChanged<DSColorValue>? onChanged;
 
   /// Whether the picker is enabled
   final bool enabled;
 
   /// Current state of the picker
-  final AppColorPickerState state;
+  final DSColorPickerState state;
 
   /// Configuration for customization
-  final AppColorPickerConfig? config;
+  final DSColorPickerConfig? config;
 
   /// Hint text to display when no value is selected
   final String? hintText;
@@ -66,7 +66,7 @@ class AppColorPicker extends StatefulWidget {
   final String? semanticLabel;
 
   /// Validation function
-  final FormFieldValidator<AppColorValue>? validator;
+  final FormFieldValidator<DSColorValue>? validator;
 
   /// Whether to auto-validate
   final AutovalidateMode? autovalidateMode;
@@ -101,13 +101,13 @@ class AppColorPicker extends StatefulWidget {
   /// Recent colors list
   final List<Color>? recentColors;
 
-  const AppColorPicker({
+  const DSColorPicker({
     super.key,
     required this.variant,
     this.value,
     this.onChanged,
     this.enabled = true,
-    this.state = AppColorPickerState.defaultState,
+    this.state = DSColorPickerState.defaultState,
     this.config,
     this.hintText,
     this.errorText,
@@ -131,10 +131,10 @@ class AppColorPicker extends StatefulWidget {
   });
 
   @override
-  State<AppColorPicker> createState() => _AppColorPickerState();
+  State<DSColorPicker> createState() => _DSColorPickerState();
 }
 
-class _AppColorPickerState extends State<AppColorPicker>
+class _DSColorPickerState extends State<DSColorPicker>
     with TickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<double> _scaleAnimation;
@@ -144,11 +144,11 @@ class _AppColorPickerState extends State<AppColorPicker>
   bool _isPressed = false;
   bool _isFocused = false;
 
-  AppColorPickerConfig get _config =>
-      widget.config ?? const AppColorPickerConfig();
+  DSColorPickerConfig get _config =>
+      widget.config ?? const DSColorPickerConfig();
 
-  AppColorPickerColors get _colors =>
-      _config.colors ?? AppColorPickerColors.fromTheme(Theme.of(context));
+  DSColorPickerColors get _colors =>
+      _config.colors ?? DSColorPickerColors.fromTheme(Theme.of(context));
 
   @override
   void initState() {
@@ -186,71 +186,71 @@ class _AppColorPickerState extends State<AppColorPicker>
     widget.onFocusChanged?.call();
   }
 
-  Color _getBackgroundColor(AppColorPickerState state) {
+  Color _getBackgroundColor(DSColorPickerState state) {
     switch (state) {
-      case AppColorPickerState.defaultState:
+      case DSColorPickerState.defaultState:
         return _colors.inputFillColor;
-      case AppColorPickerState.hover:
+      case DSColorPickerState.hover:
         return _colors.hoverOverlayColor;
-      case AppColorPickerState.pressed:
+      case DSColorPickerState.pressed:
         return _colors.pressedOverlayColor;
-      case AppColorPickerState.focus:
+      case DSColorPickerState.focus:
         return _colors.focusOverlayColor;
-      case AppColorPickerState.selected:
+      case DSColorPickerState.selected:
         return _colors.selectionColor;
-      case AppColorPickerState.disabled:
+      case DSColorPickerState.disabled:
         return _colors.inputFillColor;
-      case AppColorPickerState.loading:
+      case DSColorPickerState.loading:
         return _colors.inputFillColor;
-      case AppColorPickerState.skeleton:
+      case DSColorPickerState.skeleton:
         return _colors.skeletonBaseColor;
     }
   }
 
-  Color _getBorderColor(AppColorPickerState state) {
+  Color _getBorderColor(DSColorPickerState state) {
     switch (state) {
-      case AppColorPickerState.defaultState:
+      case DSColorPickerState.defaultState:
         return _colors.inputBorderColor;
-      case AppColorPickerState.hover:
+      case DSColorPickerState.hover:
         return _colors.inputBorderColor;
-      case AppColorPickerState.pressed:
+      case DSColorPickerState.pressed:
         return _colors.inputFocusedBorderColor;
-      case AppColorPickerState.focus:
+      case DSColorPickerState.focus:
         return _colors.inputFocusedBorderColor;
-      case AppColorPickerState.selected:
+      case DSColorPickerState.selected:
         return _colors.inputFocusedBorderColor;
-      case AppColorPickerState.disabled:
+      case DSColorPickerState.disabled:
         return _colors.inputDisabledBorderColor;
-      case AppColorPickerState.loading:
+      case DSColorPickerState.loading:
         return _colors.inputBorderColor;
-      case AppColorPickerState.skeleton:
+      case DSColorPickerState.skeleton:
         return _colors.skeletonBaseColor;
     }
   }
 
-  AppColorPickerState get _currentState {
-    if (!widget.enabled || widget.state == AppColorPickerState.disabled) {
-      return AppColorPickerState.disabled;
+  DSColorPickerState get _currentState {
+    if (!widget.enabled || widget.state == DSColorPickerState.disabled) {
+      return DSColorPickerState.disabled;
     }
-    if (widget.state == AppColorPickerState.loading) {
-      return AppColorPickerState.loading;
+    if (widget.state == DSColorPickerState.loading) {
+      return DSColorPickerState.loading;
     }
-    if (widget.state == AppColorPickerState.skeleton) {
-      return AppColorPickerState.skeleton;
+    if (widget.state == DSColorPickerState.skeleton) {
+      return DSColorPickerState.skeleton;
     }
     if (_isPressed) {
-      return AppColorPickerState.pressed;
+      return DSColorPickerState.pressed;
     }
     if (_isFocused) {
-      return AppColorPickerState.focus;
+      return DSColorPickerState.focus;
     }
     if (_isHovered) {
-      return AppColorPickerState.hover;
+      return DSColorPickerState.hover;
     }
     if (widget.value != null) {
-      return AppColorPickerState.selected;
+      return DSColorPickerState.selected;
     }
-    return AppColorPickerState.defaultState;
+    return DSColorPickerState.defaultState;
   }
 
   String get _displayText {
@@ -263,16 +263,16 @@ class _AppColorPickerState extends State<AppColorPicker>
 
   String _getDefaultHintText() {
     switch (widget.variant) {
-      case AppColorPickerVariant.hsv:
+      case DSColorPickerVariant.hsv:
         return 'Seleccionar color';
-      case AppColorPickerVariant.palette:
+      case DSColorPickerVariant.palette:
         return 'Elegir de paleta';
     }
   }
 
   Future<void> _showColorPicker() async {
     if (!widget.enabled ||
-        widget.state == AppColorPickerState.disabled ||
+        widget.state == DSColorPickerState.disabled ||
         widget.onChanged == null) {
       return;
     }
@@ -280,13 +280,13 @@ class _AppColorPickerState extends State<AppColorPicker>
     widget.onTap?.call();
 
     try {
-      AppColorValue? result;
+      DSColorValue? result;
 
       switch (widget.variant) {
-        case AppColorPickerVariant.hsv:
+        case DSColorPickerVariant.hsv:
           result = await _showHSVPicker();
           break;
-        case AppColorPickerVariant.palette:
+        case DSColorPickerVariant.palette:
           result = await _showPalettePicker();
           break;
       }
@@ -299,14 +299,14 @@ class _AppColorPickerState extends State<AppColorPicker>
     }
   }
 
-  Future<AppColorValue?> _showHSVPicker() async {
-    return await showDialog<AppColorValue>(
+  Future<DSColorValue?> _showHSVPicker() async {
+    return await showDialog<DSColorValue>(
       context: context,
       barrierDismissible: true,
       barrierColor: _colors.dialogBarrierColor,
       builder: (BuildContext context) {
         return _HSVColorPickerDialog(
-          initialValue: widget.value ?? AppColorValue.fromColor(Colors.blue),
+          initialValue: widget.value ?? DSColorValue.fromColor(Colors.blue),
           config: _config,
           colors: _colors,
           adaptivePlatform: widget.adaptivePlatform,
@@ -316,8 +316,8 @@ class _AppColorPickerState extends State<AppColorPicker>
     );
   }
 
-  Future<AppColorValue?> _showPalettePicker() async {
-    return await showDialog<AppColorValue>(
+  Future<DSColorValue?> _showPalettePicker() async {
+    return await showDialog<DSColorValue>(
       context: context,
       barrierDismissible: true,
       barrierColor: _colors.dialogBarrierColor,
@@ -376,11 +376,11 @@ class _AppColorPickerState extends State<AppColorPicker>
   Widget _buildContent() {
     final currentState = _currentState;
 
-    if (currentState == AppColorPickerState.loading) {
+    if (currentState == DSColorPickerState.loading) {
       return _buildLoadingState();
     }
 
-    if (currentState == AppColorPickerState.skeleton) {
+    if (currentState == DSColorPickerState.skeleton) {
       return _buildSkeletonState();
     }
 
@@ -424,9 +424,9 @@ class _AppColorPickerState extends State<AppColorPicker>
 
   IconData _getDefaultIcon() {
     switch (widget.variant) {
-      case AppColorPickerVariant.hsv:
+      case DSColorPickerVariant.hsv:
         return Icons.colorize;
-      case AppColorPickerVariant.palette:
+      case DSColorPickerVariant.palette:
         return Icons.palette;
     }
   }
@@ -492,7 +492,7 @@ class _AppColorPickerState extends State<AppColorPicker>
                         borderRadius:
                             BorderRadius.circular(_config.borderRadius),
                         boxShadow: _config.enableShadow &&
-                                currentState != AppColorPickerState.disabled
+                                currentState != DSColorPickerState.disabled
                             ? [
                                 BoxShadow(
                                   color: _colors.dialogShadowColor,
@@ -518,9 +518,9 @@ class _AppColorPickerState extends State<AppColorPicker>
 
 /// HSV Color Picker Dialog
 class _HSVColorPickerDialog extends StatefulWidget {
-  final AppColorValue initialValue;
-  final AppColorPickerConfig config;
-  final AppColorPickerColors colors;
+  final DSColorValue initialValue;
+  final DSColorPickerConfig config;
+  final DSColorPickerColors colors;
   final bool adaptivePlatform;
   final TextDirection? textDirection;
 
@@ -537,7 +537,7 @@ class _HSVColorPickerDialog extends StatefulWidget {
 }
 
 class _HSVColorPickerDialogState extends State<_HSVColorPickerDialog> {
-  late AppColorValue _currentValue;
+  late DSColorValue _currentValue;
   late HSVColor _hsvColor;
 
   @override
@@ -550,7 +550,7 @@ class _HSVColorPickerDialogState extends State<_HSVColorPickerDialog> {
   void _updateColor(HSVColor newHsv) {
     setState(() {
       _hsvColor = newHsv;
-      _currentValue = AppColorValue.fromColor(
+      _currentValue = DSColorValue.fromColor(
         newHsv.toColor(),
         format: _currentValue.format,
       );
@@ -786,9 +786,9 @@ class _HSVColorPickerDialogState extends State<_HSVColorPickerDialog> {
 
 /// Palette Color Picker Dialog
 class _PaletteColorPickerDialog extends StatefulWidget {
-  final AppColorValue? initialValue;
-  final AppColorPickerConfig config;
-  final AppColorPickerColors colors;
+  final DSColorValue? initialValue;
+  final DSColorPickerConfig config;
+  final DSColorPickerColors colors;
   final List<Color>? customPalette;
   final String? paletteName;
   final bool adaptivePlatform;
@@ -810,7 +810,7 @@ class _PaletteColorPickerDialog extends StatefulWidget {
 }
 
 class _PaletteColorPickerDialogState extends State<_PaletteColorPickerDialog> {
-  AppColorValue? _selectedValue;
+  DSColorValue? _selectedValue;
   late List<Color> _palette;
   late String _paletteName;
 
@@ -818,13 +818,13 @@ class _PaletteColorPickerDialogState extends State<_PaletteColorPickerDialog> {
   void initState() {
     super.initState();
     _selectedValue = widget.initialValue;
-    _palette = widget.customPalette ?? AppColorPalettes.material;
+    _palette = widget.customPalette ?? DSColorPalettes.material;
     _paletteName = widget.paletteName ?? 'Material';
   }
 
   void _selectColor(Color color) {
     setState(() {
-      _selectedValue = AppColorValue.fromColor(color);
+      _selectedValue = DSColorValue.fromColor(color);
     });
   }
 

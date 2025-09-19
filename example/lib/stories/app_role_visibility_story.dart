@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppRoleVisibilityStory extends StatefulWidget {
-  const AppRoleVisibilityStory({super.key});
+class DSRoleVisibilityStory extends StatefulWidget {
+  const DSRoleVisibilityStory({super.key});
 
   @override
-  State<AppRoleVisibilityStory> createState() => _AppRoleVisibilityStoryState();
+  State<DSRoleVisibilityStory> createState() => _DSRoleVisibilityStoryState();
 }
 
-class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
-  final List<AppRole> _currentUserRoles = [AppRolePredefined.user];
+class _DSRoleVisibilityStoryState extends State<DSRoleVisibilityStory> {
+  final List<DSRole> _currentUserRoles = [DSRolePredefined.user];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppRoleVisibility Examples'),
+        title: const Text('DSRoleVisibility Examples'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -47,7 +47,7 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: AppRolePredefined.all.map((role) {
+              children: DSRolePredefined.all.map((role) {
                 final isSelected = _currentUserRoles.any((r) => r.id == role.id);
                 return FilterChip(
                   label: Text(role.name),
@@ -91,9 +91,9 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
         _buildExample(
           'Solo Administradores',
           'Solo los usuarios con rol de administrador pueden ver este contenido.',
-          const AppRoleVisibilityConfig(
-            roles: [AppRolePredefined.admin],
-            evaluationMode: AppRoleEvaluationMode.any,
+          const DSRoleVisibilityConfig(
+            roles: [DSRolePredefined.admin],
+            evaluationMode: DSRoleEvaluationMode.any,
           ),
           Container(
             width: double.infinity,
@@ -121,9 +121,9 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
         _buildExample(
           'Editores y Administradores',
           'Visible para usuarios con rol de editor o administrador.',
-          const AppRoleVisibilityConfig(
-            roles: [AppRolePredefined.editor, AppRolePredefined.admin],
-            evaluationMode: AppRoleEvaluationMode.any,
+          const DSRoleVisibilityConfig(
+            roles: [DSRolePredefined.editor, DSRolePredefined.admin],
+            evaluationMode: DSRoleEvaluationMode.any,
           ),
           Container(
             width: double.infinity,
@@ -151,11 +151,11 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
         _buildExample(
           'Con Placeholder',
           'Muestra un placeholder cuando el usuario no tiene permisos.',
-          const AppRoleVisibilityConfig(
-            roles: [AppRolePredefined.admin],
-            evaluationMode: AppRoleEvaluationMode.any,
+          const DSRoleVisibilityConfig(
+            roles: [DSRolePredefined.admin],
+            evaluationMode: DSRoleEvaluationMode.any,
             showPlaceholder: true,
-            behavior: AppRoleVisibilityBehavior(
+            behavior: DSRoleVisibilityBehavior(
               preserveSpaceWhenHidden: true,
               showErrorMessages: true,
             ),
@@ -186,9 +186,9 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
         _buildExample(
           'Múltiples Roles Requeridos',
           'Requiere TODOS los roles especificados (admin Y editor).',
-          const AppRoleVisibilityConfig(
-            roles: [AppRolePredefined.admin, AppRolePredefined.editor],
-            evaluationMode: AppRoleEvaluationMode.all,
+          const DSRoleVisibilityConfig(
+            roles: [DSRolePredefined.admin, DSRolePredefined.editor],
+            evaluationMode: DSRoleEvaluationMode.all,
           ),
           Container(
             width: double.infinity,
@@ -216,11 +216,11 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
         _buildExample(
           'Con Debug Helpers',
           'Muestra información de debugging durante el desarrollo.',
-          const AppRoleVisibilityConfig(
-            roles: [AppRolePredefined.user],
-            evaluationMode: AppRoleEvaluationMode.any,
+          const DSRoleVisibilityConfig(
+            roles: [DSRolePredefined.user],
+            evaluationMode: DSRoleEvaluationMode.any,
             showDebugHelpers: true,
-            behavior: AppRoleVisibilityBehavior(
+            behavior: DSRoleVisibilityBehavior(
               enableDebugMode: true,
               enableLogging: true,
             ),
@@ -251,9 +251,9 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
         _buildExample(
           'Visible para Todos',
           'No requiere roles específicos, visible para cualquier usuario.',
-          const AppRoleVisibilityConfig(
+          const DSRoleVisibilityConfig(
             roles: [],
-            evaluationMode: AppRoleEvaluationMode.any,
+            evaluationMode: DSRoleEvaluationMode.any,
           ),
           Container(
             width: double.infinity,
@@ -281,10 +281,10 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
         _buildExample(
           'Estado de Carga',
           'Simula la evaluación asíncrona de permisos.',
-          const AppRoleVisibilityConfig(
-            roles: [AppRolePredefined.admin],
-            state: AppRoleState.loading,
-            behavior: AppRoleVisibilityBehavior(
+          const DSRoleVisibilityConfig(
+            roles: [DSRolePredefined.admin],
+            state: DSRoleState.loading,
+            behavior: DSRoleVisibilityBehavior(
               enableLogging: true,
             ),
           ),
@@ -316,7 +316,7 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
   Widget _buildExample(
     String title,
     String description,
-    AppRoleVisibilityConfig config,
+    DSRoleVisibilityConfig config,
     Widget content,
   ) {
     return Card(
@@ -340,7 +340,7 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
               ),
             ),
             const SizedBox(height: 12),
-            AppRoleVisibility(
+            DSRoleVisibility(
               config: config,
               userRoles: _currentUserRoles,
               onVisibilityChanged: (result) {
@@ -420,55 +420,55 @@ class _AppRoleVisibilityStoryState extends State<AppRoleVisibilityStory> {
 }
 
 // Ejemplos adicionales para testing y desarrollo
-class AppRoleVisibilityExamples {
-  static const List<AppRoleVisibilityConfig> configs = [
+class DSRoleVisibilityExamples {
+  static const List<DSRoleVisibilityConfig> configs = [
     // Configuración básica
-    AppRoleVisibilityConfig(),
+    DSRoleVisibilityConfig(),
 
     // Solo administradores
-    AppRoleVisibilityConfig(
-      roles: [AppRolePredefined.admin],
+    DSRoleVisibilityConfig(
+      roles: [DSRolePredefined.admin],
     ),
 
     // Editores y administradores
-    AppRoleVisibilityConfig(
-      roles: [AppRolePredefined.editor, AppRolePredefined.admin],
-      evaluationMode: AppRoleEvaluationMode.any,
+    DSRoleVisibilityConfig(
+      roles: [DSRolePredefined.editor, DSRolePredefined.admin],
+      evaluationMode: DSRoleEvaluationMode.any,
     ),
 
     // Requiere múltiples roles
-    AppRoleVisibilityConfig(
-      roles: [AppRolePredefined.admin, AppRolePredefined.moderator],
-      evaluationMode: AppRoleEvaluationMode.all,
+    DSRoleVisibilityConfig(
+      roles: [DSRolePredefined.admin, DSRolePredefined.moderator],
+      evaluationMode: DSRoleEvaluationMode.all,
     ),
 
     // Con debug habilitado
-    AppRoleVisibilityConfig(
-      roles: [AppRolePredefined.user],
+    DSRoleVisibilityConfig(
+      roles: [DSRolePredefined.user],
       showDebugHelpers: true,
-      behavior: AppRoleVisibilityBehavior(
+      behavior: DSRoleVisibilityBehavior(
         enableDebugMode: true,
         enableLogging: true,
       ),
     ),
 
     // Estado de carga
-    AppRoleVisibilityConfig(
-      roles: [AppRolePredefined.admin],
-      state: AppRoleState.loading,
+    DSRoleVisibilityConfig(
+      roles: [DSRolePredefined.admin],
+      state: DSRoleState.loading,
     ),
 
     // Estado deshabilitado
-    AppRoleVisibilityConfig(
-      roles: [AppRolePredefined.user],
-      state: AppRoleState.disabled,
+    DSRoleVisibilityConfig(
+      roles: [DSRolePredefined.user],
+      state: DSRoleState.disabled,
     ),
   ];
 
-  static List<AppRole> getSampleUserRoles() {
+  static List<DSRole> getSampleUserRoles() {
     return [
-      AppRolePredefined.user,
-      AppRolePredefined.editor,
+      DSRolePredefined.user,
+      DSRolePredefined.editor,
     ];
   }
 

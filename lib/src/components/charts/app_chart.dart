@@ -159,7 +159,7 @@ class ChartInteractionConfig {
   });
 }
 
-class AppChart extends StatefulWidget {
+class DSChart extends StatefulWidget {
   final ChartVariant variant;
   final List<ChartSeries> series;
   final ChartAxesConfig? axes;
@@ -178,7 +178,7 @@ class AppChart extends StatefulWidget {
   final double? width;
   final double? height;
 
-  const AppChart({
+  const DSChart({
     super.key,
     required this.variant,
     required this.series,
@@ -200,10 +200,10 @@ class AppChart extends StatefulWidget {
   });
 
   @override
-  State<AppChart> createState() => _AppChartState();
+  State<DSChart> createState() => _DSChartState();
 }
 
-class _AppChartState extends State<AppChart>
+class _DSChartState extends State<DSChart>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
@@ -231,7 +231,7 @@ class _AppChartState extends State<AppChart>
   }
 
   @override
-  void didUpdateWidget(AppChart oldWidget) {
+  void didUpdateWidget(DSChart oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.series != oldWidget.series && widget.animate) {
       _animationController.forward(from: 0);

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppCurrencyInput Golden Tests', () {
+  group('DSCurrencyInput Golden Tests', () {
     testWidgets('renders basic currency input correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -11,7 +11,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppCurrencyInput(
+              child: DSCurrencyInput(
                 amount: 1234.56,
                 currency: 'USD',
                 label: 'Amount',
@@ -27,7 +27,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCurrencyInput),
+        find.byType(DSCurrencyInput),
         matchesGoldenFile('currency_input_basic.png'),
       );
     });
@@ -39,7 +39,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppCurrencyInput(
+              child: DSCurrencyInput(
                 amount: 500.0,
                 currency: 'USD',
                 label: 'Disabled Amount',
@@ -55,7 +55,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCurrencyInput),
+        find.byType(DSCurrencyInput),
         matchesGoldenFile('currency_input_disabled.png'),
       );
     });
@@ -67,7 +67,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppCurrencyInput(
+              child: DSCurrencyInput(
                 amount: 50.0,
                 currency: 'USD',
                 label: 'Amount with Error',
@@ -83,7 +83,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCurrencyInput),
+        find.byType(DSCurrencyInput),
         matchesGoldenFile('currency_input_error.png'),
       );
     });
@@ -97,7 +97,7 @@ void main() {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  AppCurrencyInput(
+                  DSCurrencyInput(
                     amount: 1000.0,
                     currency: 'USD',
                     label: 'USD Amount',
@@ -105,7 +105,7 @@ void main() {
                     onChanged: (value) {},
                   ),
                   const SizedBox(height: 16),
-                  AppCurrencyInput(
+                  DSCurrencyInput(
                     amount: 850.0,
                     currency: 'EUR',
                     label: 'EUR Amount',
@@ -113,7 +113,7 @@ void main() {
                     onChanged: (value) {},
                   ),
                   const SizedBox(height: 16),
-                  AppCurrencyInput(
+                  DSCurrencyInput(
                     amount: 45000.0,
                     currency: 'COP',
                     label: 'COP Amount',
@@ -142,12 +142,12 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppCurrencyInput(
+              child: DSCurrencyInput(
                 amount: 750.0,
                 currency: 'USD',
                 label: 'Loading Amount',
                 hint: 'Processing...',
-                initialState: AppCurrencyInputState.loading,
+                initialState: DSCurrencyInputState.loading,
                 onChanged: (value) {},
               ),
             ),
@@ -158,7 +158,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCurrencyInput),
+        find.byType(DSCurrencyInput),
         matchesGoldenFile('currency_input_loading.png'),
       );
     });
@@ -170,12 +170,12 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppCurrencyInput(
+              child: DSCurrencyInput(
                 amount: 0.0,
                 currency: 'USD',
                 label: 'Skeleton Amount',
                 hint: 'Loading content...',
-                initialState: AppCurrencyInputState.skeleton,
+                initialState: DSCurrencyInputState.skeleton,
                 onChanged: (value) {},
               ),
             ),
@@ -186,7 +186,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCurrencyInput),
+        find.byType(DSCurrencyInput),
         matchesGoldenFile('currency_input_skeleton.png'),
       );
     });
@@ -198,7 +198,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppCurrencyInput(
+              child: DSCurrencyInput(
                 amount: 2500.0,
                 currency: 'USD',
                 label: 'Amount with Icons',
@@ -215,7 +215,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCurrencyInput),
+        find.byType(DSCurrencyInput),
         matchesGoldenFile('currency_input_with_icons.png'),
       );
     });
@@ -227,20 +227,20 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppCurrencyInput(
+              child: DSCurrencyInput(
                 amount: 1800.0,
                 currency: 'USD',
                 label: 'Custom Configuration',
                 hint: 'Custom styled input',
-                config: AppCurrencyInputConfig(
-                  variant: AppCurrencyInputVariant.localized,
-                  colors: const AppCurrencyInputColors(
+                config: DSCurrencyInputConfig(
+                  variant: DSCurrencyInputVariant.localized,
+                  colors: const DSCurrencyInputColors(
                     backgroundColor: Color(0xFFF3E5F5),
                     borderColor: Color(0xFF9C27B0),
                     focusedBorderColor: Color(0xFF7B1FA2),
                     textColor: Color(0xFF4A148C),
                   ),
-                  spacing: const AppCurrencyInputSpacing(
+                  spacing: const DSCurrencyInputSpacing(
                     borderRadius: 12,
                     borderWidth: 2,
                   ),
@@ -255,7 +255,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCurrencyInput),
+        find.byType(DSCurrencyInput),
         matchesGoldenFile('currency_input_custom.png'),
       );
     });
@@ -267,7 +267,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppCurrencyInput(
+              child: DSCurrencyInput(
                 amount: 3200.0,
                 currency: 'USD',
                 label: 'Dark Theme Amount',
@@ -283,7 +283,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCurrencyInput),
+        find.byType(DSCurrencyInput),
         matchesGoldenFile('currency_input_dark_theme.png'),
       );
     });

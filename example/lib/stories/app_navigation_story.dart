@@ -1,52 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-/// Página de ejemplos para el componente AppNavigation
-class AppNavigationStory extends StatefulWidget {
-  const AppNavigationStory({super.key});
+/// Página de ejemplos para el componente DSNavigation
+class DSNavigationStory extends StatefulWidget {
+  const DSNavigationStory({super.key});
 
   @override
-  State<AppNavigationStory> createState() => _AppNavigationStoryState();
+  State<DSNavigationStory> createState() => _DSNavigationStoryState();
 }
 
-class _AppNavigationStoryState extends State<AppNavigationStory> {
+class _DSNavigationStoryState extends State<DSNavigationStory> {
   int _currentIndex = 0;
-  AppNavigationVariant _selectedVariant = AppNavigationVariant.bottomBar;
-  AppNavigationState _selectedState = AppNavigationState.defaultState;
+  DSNavigationVariant _selectedVariant = DSNavigationVariant.bottomBar;
+  DSNavigationState _selectedState = DSNavigationState.defaultState;
   bool _isRtl = false;
   bool _enableA11y = true;
   bool _showBadges = false;
 
-  final List<AppNavigationDestination> _destinations = [
-    const AppNavigationDestination(
+  final List<DSNavigationDestination> _destinations = [
+    const DSNavigationDestination(
       id: 'home',
       label: 'Inicio',
       icon: Icon(Icons.home_outlined),
       selectedIcon: Icon(Icons.home),
       tooltip: 'Página principal',
     ),
-    const AppNavigationDestination(
+    const DSNavigationDestination(
       id: 'search',
       label: 'Buscar',
       icon: Icon(Icons.search_outlined),
       selectedIcon: Icon(Icons.search),
       tooltip: 'Buscar contenido',
     ),
-    const AppNavigationDestination(
+    const DSNavigationDestination(
       id: 'favorites',
       label: 'Favoritos',
       icon: Icon(Icons.favorite_outline),
       selectedIcon: Icon(Icons.favorite),
       tooltip: 'Elementos favoritos',
     ),
-    const AppNavigationDestination(
+    const DSNavigationDestination(
       id: 'profile',
       label: 'Perfil',
       icon: Icon(Icons.person_outline),
       selectedIcon: Icon(Icons.person),
       tooltip: 'Perfil de usuario',
     ),
-    const AppNavigationDestination(
+    const DSNavigationDestination(
       id: 'settings',
       label: 'Configuración',
       icon: Icon(Icons.settings_outlined),
@@ -55,22 +55,22 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
     ),
   ];
 
-  List<AppNavigationBadge> get _badges {
+  List<DSNavigationBadge> get _badges {
     if (!_showBadges) return [];
     return [
-      const AppNavigationBadge(
+      const DSNavigationBadge(
         destinationId: 'search',
         count: 3,
-        type: AppNavigationBadgeType.count,
+        type: DSNavigationBadgeType.count,
       ),
-      const AppNavigationBadge(
+      const DSNavigationBadge(
         destinationId: 'favorites',
-        type: AppNavigationBadgeType.dot,
+        type: DSNavigationBadgeType.dot,
       ),
-      const AppNavigationBadge(
+      const DSNavigationBadge(
         destinationId: 'profile',
         text: 'NEW',
-        type: AppNavigationBadgeType.text,
+        type: DSNavigationBadgeType.text,
       ),
     ];
   }
@@ -79,14 +79,14 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppNavigation Stories'),
+        title: const Text('DSNavigation Stories'),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () => setState(() {
               _currentIndex = 0;
-              _selectedVariant = AppNavigationVariant.bottomBar;
-              _selectedState = AppNavigationState.defaultState;
+              _selectedVariant = DSNavigationVariant.bottomBar;
+              _selectedState = DSNavigationState.defaultState;
               _isRtl = false;
               _enableA11y = true;
               _showBadges = false;
@@ -126,13 +126,13 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
         // Variante
         Text('Variante', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
-        DropdownButtonFormField<AppNavigationVariant>(
+        DropdownButtonFormField<DSNavigationVariant>(
           initialValue: _selectedVariant,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           ),
-          items: AppNavigationVariant.values
+          items: DSNavigationVariant.values
               .map(
                 (variant) => DropdownMenuItem(
                   value: variant,
@@ -160,13 +160,13 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
         // Estado
         Text('Estado', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
-        DropdownButtonFormField<AppNavigationState>(
+        DropdownButtonFormField<DSNavigationState>(
           initialValue: _selectedState,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           ),
-          items: AppNavigationState.values
+          items: DSNavigationState.values
               .map(
                 (state) => DropdownMenuItem(
                   value: state,
@@ -297,7 +297,7 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
   }
 
   Widget _buildNavigationExample() {
-    final config = AppNavigationComponentConfig(
+    final config = DSNavigationComponentConfig(
       variant: _selectedVariant,
       state: _selectedState,
       isRtl: _isRtl,
@@ -308,18 +308,18 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
       onTap: (index) => setState(() {
         _currentIndex = index;
       }),
-      behavior: const AppNavigationBehavior(
-        labelBehavior: AppNavigationLabelBehavior.alwaysShow,
+      behavior: const DSNavigationBehavior(
+        labelBehavior: DSNavigationLabelBehavior.alwaysShow,
         showTooltips: true,
         enableHapticFeedback: true,
       ),
-      colors: AppNavigationColors(
+      colors: DSNavigationColors(
         backgroundColor: Theme.of(context).colorScheme.surface,
         selectedItemColor: Theme.of(context).colorScheme.primary,
         unselectedItemColor: Theme.of(context).colorScheme.onSurfaceVariant,
         indicatorColor: Theme.of(context).colorScheme.secondaryContainer,
       ),
-      spacing: const AppNavigationSpacing(
+      spacing: const DSNavigationSpacing(
         iconSize: 24.0,
         labelSpacing: 4.0,
         itemPadding: 12.0,
@@ -329,26 +329,26 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
 
     // Layout diferente según la variante
     switch (_selectedVariant) {
-      case AppNavigationVariant.bottomBar:
+      case DSNavigationVariant.bottomBar:
         return Column(
           children: [
             Expanded(child: _buildPageContent()),
-            AppNavigation(config: config),
+            DSNavigation(config: config),
           ],
         );
 
-      case AppNavigationVariant.rail:
+      case DSNavigationVariant.rail:
         return Row(
           children: [
-            AppNavigation(config: config),
+            DSNavigation(config: config),
             const VerticalDivider(width: 1),
             Expanded(child: _buildPageContent()),
           ],
         );
 
-      case AppNavigationVariant.drawer:
+      case DSNavigationVariant.drawer:
         return Scaffold(
-          drawer: SizedBox(width: 280, child: AppNavigation(config: config)),
+          drawer: SizedBox(width: 280, child: DSNavigation(config: config)),
           body: _buildPageContent(),
           appBar: AppBar(
             title: const Text('Drawer Navigation'),
@@ -361,10 +361,10 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
           ),
         );
 
-      case AppNavigationVariant.permanentDrawer:
+      case DSNavigationVariant.permanentDrawer:
         return Row(
           children: [
-            SizedBox(width: 280, child: AppNavigation(config: config)),
+            SizedBox(width: 280, child: DSNavigation(config: config)),
             const VerticalDivider(width: 1),
             Expanded(child: _buildPageContent()),
           ],
@@ -402,7 +402,7 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
           const SizedBox(height: 24),
 
           // Información adicional según el estado
-          if (_selectedState == AppNavigationState.loading)
+          if (_selectedState == DSNavigationState.loading)
             const Column(
               children: [
                 CircularProgressIndicator(),
@@ -410,7 +410,7 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
                 Text('Cargando contenido...'),
               ],
             )
-          else if (_selectedState == AppNavigationState.disabled)
+          else if (_selectedState == DSNavigationState.disabled)
             const Column(
               children: [
                 Icon(Icons.block, size: 48, color: Colors.grey),
@@ -421,7 +421,7 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
                 ),
               ],
             )
-          else if (_selectedState == AppNavigationState.skeleton)
+          else if (_selectedState == DSNavigationState.skeleton)
             Column(
               children: [
                 Container(
@@ -501,13 +501,13 @@ class _AppNavigationStoryState extends State<AppNavigationStory> {
 }
 
 /// Ejemplo de navegación con diferentes configuraciones
-class AppNavigationExamples extends StatelessWidget {
-  const AppNavigationExamples({super.key});
+class DSNavigationExamples extends StatelessWidget {
+  const DSNavigationExamples({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('AppNavigation - Ejemplos Rápidos')),
+      appBar: AppBar(title: const Text('DSNavigation - Ejemplos Rápidos')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -616,21 +616,21 @@ class __BasicBottomNavExampleState extends State<_BasicBottomNavExample> {
               ),
             ),
           ),
-          AppNavigation(
-            config: AppNavigationComponentConfig(
-              variant: AppNavigationVariant.bottomBar,
+          DSNavigation(
+            config: DSNavigationComponentConfig(
+              variant: DSNavigationVariant.bottomBar,
               destinations: const [
-                AppNavigationDestination(
+                DSNavigationDestination(
                   id: 'home',
                   label: 'Inicio',
                   icon: Icon(Icons.home),
                 ),
-                AppNavigationDestination(
+                DSNavigationDestination(
                   id: 'search',
                   label: 'Buscar',
                   icon: Icon(Icons.search),
                 ),
-                AppNavigationDestination(
+                DSNavigationDestination(
                   id: 'profile',
                   label: 'Perfil',
                   icon: Icon(Icons.person),
@@ -660,35 +660,35 @@ class __RailWithBadgesExampleState extends State<_RailWithBadgesExample> {
       appBar: AppBar(title: const Text('Navigation Rail con Badges')),
       body: Row(
         children: [
-          AppNavigation(
-            config: AppNavigationComponentConfig(
-              variant: AppNavigationVariant.rail,
+          DSNavigation(
+            config: DSNavigationComponentConfig(
+              variant: DSNavigationVariant.rail,
               destinations: const [
-                AppNavigationDestination(
+                DSNavigationDestination(
                   id: 'inbox',
                   label: 'Bandeja',
                   icon: Icon(Icons.inbox),
                 ),
-                AppNavigationDestination(
+                DSNavigationDestination(
                   id: 'notifications',
                   label: 'Notificaciones',
                   icon: Icon(Icons.notifications),
                 ),
-                AppNavigationDestination(
+                DSNavigationDestination(
                   id: 'messages',
                   label: 'Mensajes',
                   icon: Icon(Icons.message),
                 ),
               ],
               badges: const [
-                AppNavigationBadge(
+                DSNavigationBadge(
                   destinationId: 'notifications',
                   count: 5,
-                  type: AppNavigationBadgeType.count,
+                  type: DSNavigationBadgeType.count,
                 ),
-                AppNavigationBadge(
+                DSNavigationBadge(
                   destinationId: 'messages',
-                  type: AppNavigationBadgeType.dot,
+                  type: DSNavigationBadgeType.dot,
                 ),
               ],
               currentIndex: _currentIndex,
@@ -732,21 +732,21 @@ class __DrawerExampleState extends State<_DrawerExample> {
       ),
       drawer: SizedBox(
         width: 280,
-        child: AppNavigation(
-          config: AppNavigationComponentConfig(
-            variant: AppNavigationVariant.drawer,
+        child: DSNavigation(
+          config: DSNavigationComponentConfig(
+            variant: DSNavigationVariant.drawer,
             destinations: const [
-              AppNavigationDestination(
+              DSNavigationDestination(
                 id: 'dashboard',
                 label: 'Dashboard',
                 icon: Icon(Icons.dashboard),
               ),
-              AppNavigationDestination(
+              DSNavigationDestination(
                 id: 'analytics',
                 label: 'Analíticas',
                 icon: Icon(Icons.analytics),
               ),
-              AppNavigationDestination(
+              DSNavigationDestination(
                 id: 'settings',
                 label: 'Configuración',
                 icon: Icon(Icons.settings),
@@ -776,7 +776,7 @@ class _SpecialStatesExample extends StatefulWidget {
 }
 
 class __SpecialStatesExampleState extends State<_SpecialStatesExample> {
-  AppNavigationState _currentState = AppNavigationState.defaultState;
+  DSNavigationState _currentState = DSNavigationState.defaultState;
 
   @override
   Widget build(BuildContext context) {
@@ -784,9 +784,9 @@ class __SpecialStatesExampleState extends State<_SpecialStatesExample> {
       appBar: AppBar(
         title: const Text('Estados Especiales'),
         actions: [
-          DropdownButton<AppNavigationState>(
+          DropdownButton<DSNavigationState>(
             value: _currentState,
-            items: AppNavigationState.values
+            items: DSNavigationState.values
                 .map(
                   (state) => DropdownMenuItem(
                     value: state,
@@ -808,17 +808,17 @@ class __SpecialStatesExampleState extends State<_SpecialStatesExample> {
               ),
             ),
           ),
-          AppNavigation(
-            config: AppNavigationComponentConfig(
-              variant: AppNavigationVariant.bottomBar,
+          DSNavigation(
+            config: DSNavigationComponentConfig(
+              variant: DSNavigationVariant.bottomBar,
               state: _currentState,
               destinations: const [
-                AppNavigationDestination(
+                DSNavigationDestination(
                   id: 'home',
                   label: 'Inicio',
                   icon: Icon(Icons.home),
                 ),
-                AppNavigationDestination(
+                DSNavigationDestination(
                   id: 'work',
                   label: 'Trabajo',
                   icon: Icon(Icons.work),
@@ -856,17 +856,17 @@ class _RtlExample extends StatelessWidget {
                 ),
               ),
             ),
-            AppNavigation(
-              config: const AppNavigationComponentConfig(
-                variant: AppNavigationVariant.bottomBar,
+            DSNavigation(
+              config: const DSNavigationComponentConfig(
+                variant: DSNavigationVariant.bottomBar,
                 isRtl: true,
                 destinations: [
-                  AppNavigationDestination(
+                  DSNavigationDestination(
                     id: 'home',
                     label: 'الرئيسية',
                     icon: Icon(Icons.home),
                   ),
-                  AppNavigationDestination(
+                  DSNavigationDestination(
                     id: 'search',
                     label: 'البحث',
                     icon: Icon(Icons.search),

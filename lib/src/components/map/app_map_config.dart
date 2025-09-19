@@ -4,27 +4,27 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_map_config.freezed.dart';
 
-/// Configuración completa para el componente AppMap
+/// Configuración completa para el componente DSMap
 ///
 /// Utiliza Freezed para crear modelos inmutables y type-safe
 /// que definen todos los aspectos del comportamiento del mapa
 @freezed
-class AppMapConfig with _$AppMapConfig {
-  const factory AppMapConfig({
-    @Default(AppMapVariant.markers) AppMapVariant variant,
-    @Default(AppMapState.defaultState) AppMapState state,
-    @Default(AppMapTheme.light) AppMapTheme theme,
-    AppMapColors? colors,
-    AppMapSpacing? spacing,
-    AppMapAnimation? animation,
-    AppMapBehavior? behavior,
-    AppMapA11yConfig? a11yConfig,
-  }) = _AppMapConfig;
+class DSMapConfig with _$DSMapConfig {
+  const factory DSMapConfig({
+    @Default(DSMapVariant.markers) DSMapVariant variant,
+    @Default(DSMapState.defaultState) DSMapState state,
+    @Default(DSMapTheme.light) DSMapTheme theme,
+    DSMapColors? colors,
+    DSMapSpacing? spacing,
+    DSMapAnimation? animation,
+    DSMapBehavior? behavior,
+    DSMapA11yConfig? a11yConfig,
+  }) = _DSMapConfig;
 
 }
 
 /// Variantes del mapa
-enum AppMapVariant {
+enum DSMapVariant {
   /// Marcadores individuales visibles
   markers,
 
@@ -33,7 +33,7 @@ enum AppMapVariant {
 }
 
 /// Estados interactivos del mapa
-enum AppMapState {
+enum DSMapState {
   /// Estado por defecto
   defaultState,
 
@@ -60,7 +60,7 @@ enum AppMapState {
 }
 
 /// Temas visuales del mapa
-enum AppMapTheme {
+enum DSMapTheme {
   /// Tema claro
   light,
 
@@ -78,7 +78,7 @@ enum AppMapTheme {
 }
 
 /// Tipos de marcadores
-enum AppMapMarkerType {
+enum DSMapMarkerType {
   /// Marcador estándar
   standard,
 
@@ -90,7 +90,7 @@ enum AppMapMarkerType {
 }
 
 /// Tipos de formas geométricas
-enum AppMapShapeType {
+enum DSMapShapeType {
   /// Línea/polilínea
   polyline,
 
@@ -106,8 +106,8 @@ enum AppMapShapeType {
 
 /// Configuración de colores del mapa
 @freezed
-class AppMapColors with _$AppMapColors {
-  const factory AppMapColors({
+class DSMapColors with _$DSMapColors {
+  const factory DSMapColors({
     Color? backgroundColor,
     Color? borderColor,
     Color? shadowColor,
@@ -126,8 +126,8 @@ class AppMapColors with _$AppMapColors {
 
 /// Configuración de espaciado del mapa
 @freezed
-class AppMapSpacing with _$AppMapSpacing {
-  const factory AppMapSpacing({
+class DSMapSpacing with _$DSMapSpacing {
+  const factory DSMapSpacing({
     @Default(EdgeInsets.zero) EdgeInsets padding,
     @Default(EdgeInsets.zero) EdgeInsets margin,
     @Default(8.0) double borderRadius,
@@ -143,8 +143,8 @@ class AppMapSpacing with _$AppMapSpacing {
 
 /// Configuración de animaciones del mapa
 @freezed
-class AppMapAnimation with _$AppMapAnimation {
-  const factory AppMapAnimation({
+class DSMapAnimation with _$DSMapAnimation {
+  const factory DSMapAnimation({
     @Default(true) bool enabled,
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
@@ -158,8 +158,8 @@ class AppMapAnimation with _$AppMapAnimation {
 
 /// Configuración de comportamiento del mapa
 @freezed
-class AppMapBehavior with _$AppMapBehavior {
-  const factory AppMapBehavior({
+class DSMapBehavior with _$DSMapBehavior {
+  const factory DSMapBehavior({
     @Default(true) bool enableInteraction,
     @Default(true) bool enableZoom,
     @Default(true) bool enablePan,
@@ -178,8 +178,8 @@ class AppMapBehavior with _$AppMapBehavior {
 
 /// Configuración de accesibilidad
 @freezed
-class AppMapA11yConfig with _$AppMapA11yConfig {
-  const factory AppMapA11yConfig({
+class DSMapA11yConfig with _$DSMapA11yConfig {
+  const factory DSMapA11yConfig({
     @Default(true) bool enabled,
     String? semanticsLabel,
     String? semanticsDescription,
@@ -190,14 +190,14 @@ class AppMapA11yConfig with _$AppMapA11yConfig {
     @Default('Marcador en el mapa') String markerLabel,
     @Default('Grupo de marcadores') String clusterLabel,
     @Default('Forma en el mapa') String shapeLabel,
-  }) = _AppMapA11yConfig;
+  }) = _DSMapA11yConfig;
 
 }
 
 /// Coordenadas geográficas
 @freezed
-class AppLatLng with _$AppLatLng {
-  const factory AppLatLng({
+class DSLatLng with _$DSLatLng {
+  const factory DSLatLng({
     required double latitude,
     required double longitude,
   }) = _AppLatLng;
@@ -206,16 +206,16 @@ class AppLatLng with _$AppLatLng {
 
 /// Marcador en el mapa
 @freezed
-class AppMapMarker with _$AppMapMarker {
-  const factory AppMapMarker({
+class DSMapMarker with _$DSMapMarker {
+  const factory DSMapMarker({
     required String id,
-    required AppLatLng position,
+    required DSLatLng position,
     String? title,
     String? description,
     Widget? icon,
     IconData? iconData,
     Color? color,
-    @Default(AppMapMarkerType.standard) AppMapMarkerType type,
+    @Default(DSMapMarkerType.standard) DSMapMarkerType type,
     @Default(true) bool draggable,
     @Default(true) bool visible,
     Map<String, dynamic>? metadata,
@@ -226,11 +226,11 @@ class AppMapMarker with _$AppMapMarker {
 
 /// Forma geométrica en el mapa
 @freezed
-class AppMapShape with _$AppMapShape {
-  const factory AppMapShape({
+class DSMapShape with _$DSMapShape {
+  const factory DSMapShape({
     required String id,
-    required AppMapShapeType type,
-    required List<AppLatLng> points,
+    required DSMapShapeType type,
+    required List<DSLatLng> points,
     String? title,
     String? description,
     Color? strokeColor,
@@ -243,14 +243,14 @@ class AppMapShape with _$AppMapShape {
 
 }
 
-/// Extensiones para AppMapVariant
-extension AppMapVariantExtensions on AppMapVariant {
+/// Extensiones para DSMapVariant
+extension DSMapVariantExtensions on DSMapVariant {
   /// Nombre legible de la variante
   String get displayName {
     switch (this) {
-      case AppMapVariant.markers:
+      case DSMapVariant.markers:
         return 'Marcadores';
-      case AppMapVariant.clusters:
+      case DSMapVariant.clusters:
         return 'Clusters';
     }
   }
@@ -258,9 +258,9 @@ extension AppMapVariantExtensions on AppMapVariant {
   /// Descripción de la variante
   String get description {
     switch (this) {
-      case AppMapVariant.markers:
+      case DSMapVariant.markers:
         return 'Muestra marcadores individuales en el mapa';
-      case AppMapVariant.clusters:
+      case DSMapVariant.clusters:
         return 'Agrupa marcadores cercanos en clusters';
     }
   }
@@ -268,28 +268,28 @@ extension AppMapVariantExtensions on AppMapVariant {
   /// Indica si debe habilitar clustering
   bool get enablesClustering {
     switch (this) {
-      case AppMapVariant.markers:
+      case DSMapVariant.markers:
         return false;
-      case AppMapVariant.clusters:
+      case DSMapVariant.clusters:
         return true;
     }
   }
 }
 
-/// Extensiones para AppMapState
-extension AppMapStateExtensions on AppMapState {
+/// Extensiones para DSMapState
+extension DSMapStateExtensions on DSMapState {
   /// Indica si el estado permite interacción
   bool get canInteract {
     switch (this) {
-      case AppMapState.defaultState:
-      case AppMapState.hover:
-      case AppMapState.pressed:
-      case AppMapState.focus:
-      case AppMapState.selected:
+      case DSMapState.defaultState:
+      case DSMapState.hover:
+      case DSMapState.pressed:
+      case DSMapState.focus:
+      case DSMapState.selected:
         return true;
-      case AppMapState.disabled:
-      case AppMapState.loading:
-      case AppMapState.skeleton:
+      case DSMapState.disabled:
+      case DSMapState.loading:
+      case DSMapState.skeleton:
         return false;
     }
   }
@@ -297,15 +297,15 @@ extension AppMapStateExtensions on AppMapState {
   /// Indica si el estado está activo/interactivo
   bool get isInteractive {
     switch (this) {
-      case AppMapState.hover:
-      case AppMapState.pressed:
-      case AppMapState.focus:
-      case AppMapState.selected:
+      case DSMapState.hover:
+      case DSMapState.pressed:
+      case DSMapState.focus:
+      case DSMapState.selected:
         return true;
-      case AppMapState.defaultState:
-      case AppMapState.disabled:
-      case AppMapState.loading:
-      case AppMapState.skeleton:
+      case DSMapState.defaultState:
+      case DSMapState.disabled:
+      case DSMapState.loading:
+      case DSMapState.skeleton:
         return false;
     }
   }
@@ -313,36 +313,36 @@ extension AppMapStateExtensions on AppMapState {
   /// Opacidad sugerida para el estado
   double get opacity {
     switch (this) {
-      case AppMapState.defaultState:
-      case AppMapState.hover:
-      case AppMapState.pressed:
-      case AppMapState.focus:
-      case AppMapState.selected:
+      case DSMapState.defaultState:
+      case DSMapState.hover:
+      case DSMapState.pressed:
+      case DSMapState.focus:
+      case DSMapState.selected:
         return 1.0;
-      case AppMapState.disabled:
+      case DSMapState.disabled:
         return 0.38;
-      case AppMapState.loading:
+      case DSMapState.loading:
         return 0.7;
-      case AppMapState.skeleton:
+      case DSMapState.skeleton:
         return 0.5;
     }
   }
 }
 
-/// Extensiones para AppMapTheme
-extension AppMapThemeExtensions on AppMapTheme {
+/// Extensiones para DSMapTheme
+extension DSMapThemeExtensions on DSMapTheme {
   /// Nombre legible del tema
   String get displayName {
     switch (this) {
-      case AppMapTheme.light:
+      case DSMapTheme.light:
         return 'Claro';
-      case AppMapTheme.dark:
+      case DSMapTheme.dark:
         return 'Oscuro';
-      case AppMapTheme.satellite:
+      case DSMapTheme.satellite:
         return 'Satelital';
-      case AppMapTheme.hybrid:
+      case DSMapTheme.hybrid:
         return 'Híbrido';
-      case AppMapTheme.terrain:
+      case DSMapTheme.terrain:
         return 'Terreno';
     }
   }
@@ -350,15 +350,15 @@ extension AppMapThemeExtensions on AppMapTheme {
   /// Descripción del tema
   String get description {
     switch (this) {
-      case AppMapTheme.light:
+      case DSMapTheme.light:
         return 'Tema claro estándar para uso general';
-      case AppMapTheme.dark:
+      case DSMapTheme.dark:
         return 'Tema oscuro para ambientes con poca luz';
-      case AppMapTheme.satellite:
+      case DSMapTheme.satellite:
         return 'Vista satelital de alta resolución';
-      case AppMapTheme.hybrid:
+      case DSMapTheme.hybrid:
         return 'Combina vista satelital con etiquetas';
-      case AppMapTheme.terrain:
+      case DSMapTheme.terrain:
         return 'Muestra características topográficas';
     }
   }
@@ -366,27 +366,27 @@ extension AppMapThemeExtensions on AppMapTheme {
   /// Indica si el tema es oscuro
   bool get isDark {
     switch (this) {
-      case AppMapTheme.dark:
-      case AppMapTheme.satellite:
+      case DSMapTheme.dark:
+      case DSMapTheme.satellite:
         return true;
-      case AppMapTheme.light:
-      case AppMapTheme.hybrid:
-      case AppMapTheme.terrain:
+      case DSMapTheme.light:
+      case DSMapTheme.hybrid:
+      case DSMapTheme.terrain:
         return false;
     }
   }
 }
 
-/// Extensiones para AppMapMarkerType
-extension AppMapMarkerTypeExtensions on AppMapMarkerType {
+/// Extensiones para DSMapMarkerType
+extension DSMapMarkerTypeExtensions on DSMapMarkerType {
   /// Icono por defecto para el tipo de marcador
   IconData get defaultIcon {
     switch (this) {
-      case AppMapMarkerType.standard:
+      case DSMapMarkerType.standard:
         return Icons.location_on;
-      case AppMapMarkerType.custom:
+      case DSMapMarkerType.custom:
         return Icons.place;
-      case AppMapMarkerType.cluster:
+      case DSMapMarkerType.cluster:
         return Icons.group_work;
     }
   }
@@ -394,28 +394,28 @@ extension AppMapMarkerTypeExtensions on AppMapMarkerType {
   /// Nombre legible del tipo
   String get displayName {
     switch (this) {
-      case AppMapMarkerType.standard:
+      case DSMapMarkerType.standard:
         return 'Estándar';
-      case AppMapMarkerType.custom:
+      case DSMapMarkerType.custom:
         return 'Personalizado';
-      case AppMapMarkerType.cluster:
+      case DSMapMarkerType.cluster:
         return 'Cluster';
     }
   }
 }
 
-/// Extensiones para AppMapShapeType
-extension AppMapShapeTypeExtensions on AppMapShapeType {
+/// Extensiones para DSMapShapeType
+extension DSMapShapeTypeExtensions on DSMapShapeType {
   /// Nombre legible del tipo de forma
   String get displayName {
     switch (this) {
-      case AppMapShapeType.polyline:
+      case DSMapShapeType.polyline:
         return 'Línea';
-      case AppMapShapeType.polygon:
+      case DSMapShapeType.polygon:
         return 'Polígono';
-      case AppMapShapeType.circle:
+      case DSMapShapeType.circle:
         return 'Círculo';
-      case AppMapShapeType.rectangle:
+      case DSMapShapeType.rectangle:
         return 'Rectángulo';
     }
   }
@@ -423,11 +423,11 @@ extension AppMapShapeTypeExtensions on AppMapShapeType {
   /// Indica si la forma requiere múltiples puntos
   bool get requiresMultiplePoints {
     switch (this) {
-      case AppMapShapeType.polyline:
-      case AppMapShapeType.polygon:
+      case DSMapShapeType.polyline:
+      case DSMapShapeType.polygon:
         return true;
-      case AppMapShapeType.circle:
-      case AppMapShapeType.rectangle:
+      case DSMapShapeType.circle:
+      case DSMapShapeType.rectangle:
         return false;
     }
   }
@@ -435,27 +435,27 @@ extension AppMapShapeTypeExtensions on AppMapShapeType {
   /// Número mínimo de puntos requeridos
   int get minimumPoints {
     switch (this) {
-      case AppMapShapeType.polyline:
+      case DSMapShapeType.polyline:
         return 2;
-      case AppMapShapeType.polygon:
+      case DSMapShapeType.polygon:
         return 3;
-      case AppMapShapeType.circle:
+      case DSMapShapeType.circle:
         return 1;
-      case AppMapShapeType.rectangle:
+      case DSMapShapeType.rectangle:
         return 2;
     }
   }
 }
 
-/// Extensiones para AppLatLng
-extension AppLatLngExtensions on AppLatLng {
+/// Extensiones para DSLatLng
+extension DSLatLngExtensions on DSLatLng {
   /// Convierte a string legible
   String get displayString {
     return '${latitude.toStringAsFixed(6)}, ${longitude.toStringAsFixed(6)}';
   }
 
   /// Calcula distancia a otra coordenada (en kilómetros)
-  double distanceTo(AppLatLng other) {
+  double distanceTo(DSLatLng other) {
     const double earthRadius = 6371.0; // Radio de la Tierra en km
 
     final double dLat = _toRadians(other.latitude - latitude);
@@ -485,24 +485,24 @@ extension AppLatLngExtensions on AppLatLng {
 }
 
 
-/// Extensiones para AppMapMarker
-extension AppMapMarkerExtensions on AppMapMarker {
+/// Extensiones para DSMapMarker
+extension DSMapMarkerExtensions on DSMapMarker {
   /// Crea una copia del marcador con nuevas propiedades
-  AppMapMarker copyWith({
+  DSMapMarker copyWith({
     String? id,
-    AppLatLng? position,
+    DSLatLng? position,
     String? title,
     String? description,
     Widget? icon,
     IconData? iconData,
     Color? color,
-    AppMapMarkerType? type,
+    DSMapMarkerType? type,
     bool? draggable,
     bool? visible,
     Map<String, dynamic>? metadata,
     VoidCallback? onTap,
   }) {
-    return AppMapMarker(
+    return DSMapMarker(
       id: id ?? this.id,
       position: position ?? this.position,
       title: title ?? this.title,
@@ -524,13 +524,13 @@ extension AppMapMarkerExtensions on AppMapMarker {
   }
 }
 
-/// Extensiones para AppMapShape
-extension AppMapShapeExtensions on AppMapShape {
+/// Extensiones para DSMapShape
+extension DSMapShapeExtensions on DSMapShape {
   /// Crea una copia de la forma con nuevas propiedades
-  AppMapShape copyWith({
+  DSMapShape copyWith({
     String? id,
-    AppMapShapeType? type,
-    List<AppLatLng>? points,
+    DSMapShapeType? type,
+    List<DSLatLng>? points,
     String? title,
     String? description,
     Color? strokeColor,
@@ -540,7 +540,7 @@ extension AppMapShapeExtensions on AppMapShape {
     Map<String, dynamic>? metadata,
     VoidCallback? onTap,
   }) {
-    return AppMapShape(
+    return DSMapShape(
       id: id ?? this.id,
       type: type ?? this.type,
       points: points ?? this.points,
@@ -563,8 +563,8 @@ extension AppMapShapeExtensions on AppMapShape {
   }
 
   /// Calcula el centro de la forma
-  AppLatLng get center {
-    if (points.isEmpty) return const AppLatLng(latitude: 0, longitude: 0);
+  DSLatLng get center {
+    if (points.isEmpty) return const DSLatLng(latitude: 0, longitude: 0);
 
     double totalLat = 0;
     double totalLng = 0;
@@ -574,7 +574,7 @@ extension AppMapShapeExtensions on AppMapShape {
       totalLng += point.longitude;
     }
 
-    return AppLatLng(
+    return DSLatLng(
       latitude: totalLat / points.length,
       longitude: totalLng / points.length,
     );

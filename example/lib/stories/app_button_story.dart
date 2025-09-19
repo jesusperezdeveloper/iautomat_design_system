@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppButtonStory extends StatefulWidget {
-  const AppButtonStory({super.key});
+class DSButtonStory extends StatefulWidget {
+  const DSButtonStory({super.key});
 
   @override
-  State<AppButtonStory> createState() => _AppButtonStoryState();
+  State<DSButtonStory> createState() => _DSButtonStoryState();
 }
 
-class _AppButtonStoryState extends State<AppButtonStory> {
-  AppButtonVariant _variant = AppButtonVariant.filled;
-  AppButtonState _state = AppButtonState.defaultState;
-  AppButtonSize _size = AppButtonSize.medium;
+class _DSButtonStoryState extends State<DSButtonStory> {
+  DSButtonVariant _variant = DSButtonVariant.filled;
+  DSButtonState _state = DSButtonState.defaultState;
+  DSButtonSize _size = DSButtonSize.medium;
   bool _isDanger = false;
   bool _isRtl = false;
   bool _enableA11y = true;
@@ -49,8 +49,8 @@ class _AppButtonStoryState extends State<AppButtonStory> {
     });
   }
 
-  Widget _buildSampleButton({required AppButtonConfig config}) {
-    return AppButton(
+  Widget _buildSampleButton({required DSButtonConfig config}) {
+    return DSButton(
       config: config,
       label: 'Sample Button',
       leading: _hasLeading ? const Icon(Icons.star) : null,
@@ -62,7 +62,7 @@ class _AppButtonStoryState extends State<AppButtonStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppButton Stories'),
+        title: const Text('DSButton Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -88,11 +88,11 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                       children: [
                         const Text('Variante: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppButtonVariant>(
+                        DropdownButton<DSButtonVariant>(
                           value: _variant,
                           onChanged: (value) =>
                               setState(() => _variant = value!),
-                          items: AppButtonVariant.values.map((variant) {
+                          items: DSButtonVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
                               child: Text(variant.displayName),
@@ -107,10 +107,10 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                       children: [
                         const Text('Estado: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppButtonState>(
+                        DropdownButton<DSButtonState>(
                           value: _state,
                           onChanged: (value) => setState(() => _state = value!),
-                          items: AppButtonState.values.map((state) {
+                          items: DSButtonState.values.map((state) {
                             return DropdownMenuItem(
                               value: state,
                               child: Text(state.displayName),
@@ -125,10 +125,10 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                       children: [
                         const Text('Tamaño: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppButtonSize>(
+                        DropdownButton<DSButtonSize>(
                           value: _size,
                           onChanged: (value) => setState(() => _size = value!),
-                          items: AppButtonSize.values.map((size) {
+                          items: DSButtonSize.values.map((size) {
                             return DropdownMenuItem(
                               value: size,
                               child: Text(size.displayName),
@@ -312,7 +312,7 @@ class _AppButtonStoryState extends State<AppButtonStory> {
 
             Center(
               child: _buildSampleButton(
-                config: AppButtonConfig(
+                config: DSButtonConfig(
                   variant: _variant,
                   state: _state,
                   size: _size,
@@ -321,11 +321,11 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                   enableA11y: _enableA11y,
                   enableKeyboardSupport: _enableKeyboard,
                   isInteractive: _isInteractive,
-                  spacing: AppButtonSpacing(
+                  spacing: DSButtonSpacing(
                     horizontalPadding: _horizontalPadding,
                     borderRadius: _borderRadius,
                   ),
-                  elevation: AppButtonElevation(defaultElevation: _elevation),
+                  elevation: DSButtonElevation(defaultElevation: _elevation),
                   onPressed: _isInteractive ? _handlePressed : null,
                   onLongPress: _isInteractive ? _handleLongPress : null,
                   onHover: _isInteractive ? _handleHover : null,
@@ -355,9 +355,9 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                   mainAxisSpacing: 16,
                   childAspectRatio: 2.0,
                 ),
-                itemCount: AppButtonVariant.values.length,
+                itemCount: DSButtonVariant.values.length,
                 itemBuilder: (context, index) {
-                  final variant = AppButtonVariant.values[index];
+                  final variant = DSButtonVariant.values[index];
                   return _buildVariantButton(variant);
                 },
               ),
@@ -368,7 +368,7 @@ class _AppButtonStoryState extends State<AppButtonStory> {
               'Tamaños',
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: AppButtonSize.values.map((size) {
+                children: DSButtonSize.values.map((size) {
                   return _buildSizeButton(size);
                 }).toList(),
               ),
@@ -386,9 +386,9 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                   mainAxisSpacing: 16,
                   childAspectRatio: 1.5,
                 ),
-                itemCount: AppButtonState.values.length,
+                itemCount: DSButtonState.values.length,
                 itemBuilder: (context, index) {
-                  final state = AppButtonState.values[index];
+                  final state = DSButtonState.values[index];
                   return _buildStateButton(state);
                 },
               ),
@@ -402,22 +402,22 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppButton(
-                        config: const AppButtonConfig(
-                          variant: AppButtonVariant.filled,
+                      DSButton(
+                        config: const DSButtonConfig(
+                          variant: DSButtonVariant.filled,
                         ),
                         label: 'Guardar',
                         leading: const Icon(Icons.save),
                       ),
-                      AppButton(
-                        config: const AppButtonConfig(
-                          variant: AppButtonVariant.outline,
+                      DSButton(
+                        config: const DSButtonConfig(
+                          variant: DSButtonVariant.outline,
                         ),
                         label: 'Cancelar',
                       ),
-                      AppButton(
-                        config: const AppButtonConfig(
-                          variant: AppButtonVariant.text,
+                      DSButton(
+                        config: const DSButtonConfig(
+                          variant: DSButtonVariant.text,
                           isDanger: true,
                         ),
                         label: 'Eliminar',
@@ -429,24 +429,24 @@ class _AppButtonStoryState extends State<AppButtonStory> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppButton(
-                        config: const AppButtonConfig(
-                          variant: AppButtonVariant.icon,
-                          size: AppButtonSize.small,
+                      DSButton(
+                        config: const DSButtonConfig(
+                          variant: DSButtonVariant.icon,
+                          size: DSButtonSize.small,
                         ),
                         leading: const Icon(Icons.favorite),
                       ),
-                      AppButton(
-                        config: const AppButtonConfig(
-                          variant: AppButtonVariant.tonal,
+                      DSButton(
+                        config: const DSButtonConfig(
+                          variant: DSButtonVariant.tonal,
                         ),
                         label: 'Compartir',
                         trailing: const Icon(Icons.share),
                       ),
-                      AppButton(
-                        config: const AppButtonConfig(
-                          variant: AppButtonVariant.segmented,
-                          state: AppButtonState.selected,
+                      DSButton(
+                        config: const DSButtonConfig(
+                          variant: DSButtonVariant.segmented,
+                          state: DSButtonState.selected,
                         ),
                         label: 'Activo',
                       ),
@@ -475,24 +475,24 @@ class _AppButtonStoryState extends State<AppButtonStory> {
     );
   }
 
-  Widget _buildVariantButton(AppButtonVariant variant) {
-    return AppButton(
-      config: AppButtonConfig(variant: variant),
+  Widget _buildVariantButton(DSButtonVariant variant) {
+    return DSButton(
+      config: DSButtonConfig(variant: variant),
       label: variant.displayName,
-      leading: variant == AppButtonVariant.icon ? const Icon(Icons.star) : null,
+      leading: variant == DSButtonVariant.icon ? const Icon(Icons.star) : null,
     );
   }
 
-  Widget _buildSizeButton(AppButtonSize size) {
-    return AppButton(
-      config: AppButtonConfig(size: size),
+  Widget _buildSizeButton(DSButtonSize size) {
+    return DSButton(
+      config: DSButtonConfig(size: size),
       label: size.displayName,
     );
   }
 
-  Widget _buildStateButton(AppButtonState state) {
-    return AppButton(
-      config: AppButtonConfig(state: state),
+  Widget _buildStateButton(DSButtonState state) {
+    return DSButton(
+      config: DSButtonConfig(state: state),
       label: state.displayName,
     );
   }

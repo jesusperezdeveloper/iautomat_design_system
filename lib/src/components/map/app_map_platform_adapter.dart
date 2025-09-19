@@ -17,20 +17,20 @@ import 'package:iautomat_design_system/src/theme/typography.dart';
 /// - Manejo de gestos específicos por plataforma
 /// - Optimizaciones de rendimiento
 /// - Fallbacks para casos no soportados
-class AppMapPlatformAdapter {
+class DSMapPlatformAdapter {
   /// Construye la vista del mapa apropiada para la plataforma actual
   Widget buildMapView({
     required BuildContext context,
-    required AppMapConfig config,
-    required AppLatLng center,
+    required DSMapConfig config,
+    required DSLatLng center,
     required double zoom,
-    required List<AppMapMarker> markers,
-    required List<AppMapShape> shapes,
-    required AppMapTheme theme,
-    ValueChanged<AppLatLng>? onTap,
-    ValueChanged<AppMapMarker>? onMarkerTap,
-    ValueChanged<AppMapShape>? onShapeTap,
-    ValueChanged<AppMapCameraPosition>? onCameraMove,
+    required List<DSMapMarker> markers,
+    required List<DSMapShape> shapes,
+    required DSMapTheme theme,
+    ValueChanged<DSLatLng>? onTap,
+    ValueChanged<DSMapMarker>? onMarkerTap,
+    ValueChanged<DSMapShape>? onShapeTap,
+    ValueChanged<DSMapCameraPosition>? onCameraMove,
   }) {
     if (kIsWeb) {
       return _buildWebMapView(
@@ -80,16 +80,16 @@ class AppMapPlatformAdapter {
   /// Implementación para iOS usando MapKit
   Widget _buildIOSMapView({
     required BuildContext context,
-    required AppMapConfig config,
-    required AppLatLng center,
+    required DSMapConfig config,
+    required DSLatLng center,
     required double zoom,
-    required List<AppMapMarker> markers,
-    required List<AppMapShape> shapes,
-    required AppMapTheme theme,
-    ValueChanged<AppLatLng>? onTap,
-    ValueChanged<AppMapMarker>? onMarkerTap,
-    ValueChanged<AppMapShape>? onShapeTap,
-    ValueChanged<AppMapCameraPosition>? onCameraMove,
+    required List<DSMapMarker> markers,
+    required List<DSMapShape> shapes,
+    required DSMapTheme theme,
+    ValueChanged<DSLatLng>? onTap,
+    ValueChanged<DSMapMarker>? onMarkerTap,
+    ValueChanged<DSMapShape>? onShapeTap,
+    ValueChanged<DSMapCameraPosition>? onCameraMove,
   }) {
     // En una implementación real, aquí usarías apple_maps o similar
     // Por ahora simulamos con un widget personalizado
@@ -112,16 +112,16 @@ class AppMapPlatformAdapter {
   /// Implementación para Android usando Google Maps
   Widget _buildAndroidMapView({
     required BuildContext context,
-    required AppMapConfig config,
-    required AppLatLng center,
+    required DSMapConfig config,
+    required DSLatLng center,
     required double zoom,
-    required List<AppMapMarker> markers,
-    required List<AppMapShape> shapes,
-    required AppMapTheme theme,
-    ValueChanged<AppLatLng>? onTap,
-    ValueChanged<AppMapMarker>? onMarkerTap,
-    ValueChanged<AppMapShape>? onShapeTap,
-    ValueChanged<AppMapCameraPosition>? onCameraMove,
+    required List<DSMapMarker> markers,
+    required List<DSMapShape> shapes,
+    required DSMapTheme theme,
+    ValueChanged<DSLatLng>? onTap,
+    ValueChanged<DSMapMarker>? onMarkerTap,
+    ValueChanged<DSMapShape>? onShapeTap,
+    ValueChanged<DSMapCameraPosition>? onCameraMove,
   }) {
     // En una implementación real, aquí usarías google_maps_flutter
     return _SimulatedMapView(
@@ -143,16 +143,16 @@ class AppMapPlatformAdapter {
   /// Implementación para Web usando JavaScript Maps API
   Widget _buildWebMapView({
     required BuildContext context,
-    required AppMapConfig config,
-    required AppLatLng center,
+    required DSMapConfig config,
+    required DSLatLng center,
     required double zoom,
-    required List<AppMapMarker> markers,
-    required List<AppMapShape> shapes,
-    required AppMapTheme theme,
-    ValueChanged<AppLatLng>? onTap,
-    ValueChanged<AppMapMarker>? onMarkerTap,
-    ValueChanged<AppMapShape>? onShapeTap,
-    ValueChanged<AppMapCameraPosition>? onCameraMove,
+    required List<DSMapMarker> markers,
+    required List<DSMapShape> shapes,
+    required DSMapTheme theme,
+    ValueChanged<DSLatLng>? onTap,
+    ValueChanged<DSMapMarker>? onMarkerTap,
+    ValueChanged<DSMapShape>? onShapeTap,
+    ValueChanged<DSMapCameraPosition>? onCameraMove,
   }) {
     // En una implementación real, aquí usarías google_maps o mapbox_gl
     return _SimulatedMapView(
@@ -172,49 +172,49 @@ class AppMapPlatformAdapter {
   }
 
   /// Obtiene el estilo de mapa para iOS
-  Map<String, dynamic> _getIOSMapStyle(AppMapTheme theme) {
+  Map<String, dynamic> _getIOSMapStyle(DSMapTheme theme) {
     switch (theme) {
-      case AppMapTheme.light:
+      case DSMapTheme.light:
         return {'style': 'light', 'overlay': 'standard'};
-      case AppMapTheme.dark:
+      case DSMapTheme.dark:
         return {'style': 'dark', 'overlay': 'standard'};
-      case AppMapTheme.satellite:
+      case DSMapTheme.satellite:
         return {'style': 'satellite', 'overlay': 'none'};
-      case AppMapTheme.hybrid:
+      case DSMapTheme.hybrid:
         return {'style': 'satellite', 'overlay': 'labels'};
-      case AppMapTheme.terrain:
+      case DSMapTheme.terrain:
         return {'style': 'terrain', 'overlay': 'standard'};
     }
   }
 
   /// Obtiene el estilo de mapa para Android
-  Map<String, dynamic> _getAndroidMapStyle(AppMapTheme theme) {
+  Map<String, dynamic> _getAndroidMapStyle(DSMapTheme theme) {
     switch (theme) {
-      case AppMapTheme.light:
+      case DSMapTheme.light:
         return {'mapType': 'normal', 'darkMode': false};
-      case AppMapTheme.dark:
+      case DSMapTheme.dark:
         return {'mapType': 'normal', 'darkMode': true};
-      case AppMapTheme.satellite:
+      case DSMapTheme.satellite:
         return {'mapType': 'satellite', 'darkMode': false};
-      case AppMapTheme.hybrid:
+      case DSMapTheme.hybrid:
         return {'mapType': 'hybrid', 'darkMode': false};
-      case AppMapTheme.terrain:
+      case DSMapTheme.terrain:
         return {'mapType': 'terrain', 'darkMode': false};
     }
   }
 
   /// Obtiene el estilo de mapa para Web
-  Map<String, dynamic> _getWebMapStyle(AppMapTheme theme) {
+  Map<String, dynamic> _getWebMapStyle(DSMapTheme theme) {
     switch (theme) {
-      case AppMapTheme.light:
+      case DSMapTheme.light:
         return {'styles': [], 'mapTypeId': 'roadmap'};
-      case AppMapTheme.dark:
+      case DSMapTheme.dark:
         return {'styles': _getDarkModeStyles(), 'mapTypeId': 'roadmap'};
-      case AppMapTheme.satellite:
+      case DSMapTheme.satellite:
         return {'styles': [], 'mapTypeId': 'satellite'};
-      case AppMapTheme.hybrid:
+      case DSMapTheme.hybrid:
         return {'styles': [], 'mapTypeId': 'hybrid'};
-      case AppMapTheme.terrain:
+      case DSMapTheme.terrain:
         return {'styles': [], 'mapTypeId': 'terrain'};
     }
   }
@@ -301,16 +301,16 @@ class AppMapPlatformAdapter {
 /// específicos de cada plataforma (GoogleMap, AppleMap, etc.)
 class _SimulatedMapView extends StatefulWidget {
   final String platform;
-  final AppMapConfig config;
-  final AppLatLng center;
+  final DSMapConfig config;
+  final DSLatLng center;
   final double zoom;
-  final List<AppMapMarker> markers;
-  final List<AppMapShape> shapes;
-  final AppMapTheme theme;
-  final ValueChanged<AppLatLng>? onTap;
-  final ValueChanged<AppMapMarker>? onMarkerTap;
-  final ValueChanged<AppMapShape>? onShapeTap;
-  final ValueChanged<AppMapCameraPosition>? onCameraMove;
+  final List<DSMapMarker> markers;
+  final List<DSMapShape> shapes;
+  final DSMapTheme theme;
+  final ValueChanged<DSLatLng>? onTap;
+  final ValueChanged<DSMapMarker>? onMarkerTap;
+  final ValueChanged<DSMapShape>? onShapeTap;
+  final ValueChanged<DSMapCameraPosition>? onCameraMove;
   final Map<String, dynamic> mapStyle;
 
   const _SimulatedMapView({
@@ -333,7 +333,7 @@ class _SimulatedMapView extends StatefulWidget {
 }
 
 class _SimulatedMapViewState extends State<_SimulatedMapView> {
-  late AppLatLng _currentCenter;
+  late DSLatLng _currentCenter;
   late double _currentZoom;
   Offset? _lastPanPoint;
 
@@ -401,7 +401,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
     );
   }
 
-  Widget _buildMarker(AppMapMarker marker) {
+  Widget _buildMarker(DSMapMarker marker) {
     final position = _latLngToScreenPosition(marker.position);
 
     return Positioned(
@@ -417,7 +417,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
     );
   }
 
-  Widget _buildShape(AppMapShape shape) {
+  Widget _buildShape(DSMapShape shape) {
     return CustomPaint(
       painter: _ShapePainter(
         shape: shape,
@@ -430,7 +430,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
   }
 
   Widget _buildMapControls() {
-    final behavior = widget.config.behavior ?? const AppMapBehavior();
+    final behavior = widget.config.behavior ?? const DSMapBehavior();
 
     return Positioned(
       top: 10,
@@ -482,7 +482,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
         ),
         child: Text(
           '${widget.platform} • ${widget.theme.displayName} • Z${_currentZoom.toStringAsFixed(1)}',
-          style: AppTypography.caption.copyWith(
+          style: DSTypography.caption.copyWith(
             color: Colors.white,
             fontSize: 10,
           ),
@@ -493,7 +493,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
 
   LinearGradient _getMapGradient() {
     switch (widget.theme) {
-      case AppMapTheme.light:
+      case DSMapTheme.light:
         return const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -502,7 +502,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
             Color(0xFFF0F9FF),
           ],
         );
-      case AppMapTheme.dark:
+      case DSMapTheme.dark:
         return const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -511,7 +511,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
             Color(0xFF111827),
           ],
         );
-      case AppMapTheme.satellite:
+      case DSMapTheme.satellite:
         return const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -520,7 +520,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
             Color(0xFF1A3D0A),
           ],
         );
-      case AppMapTheme.hybrid:
+      case DSMapTheme.hybrid:
         return const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -529,7 +529,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
             Color(0xFFE8F4FD),
           ],
         );
-      case AppMapTheme.terrain:
+      case DSMapTheme.terrain:
         return const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -541,7 +541,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
     }
   }
 
-  Offset _latLngToScreenPosition(AppLatLng latLng) {
+  Offset _latLngToScreenPosition(DSLatLng latLng) {
     // Proyección Mercator simplificada para simulación
     final size = MediaQuery.of(context).size;
 
@@ -573,7 +573,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
     widget.onTap?.call(position);
   }
 
-  AppLatLng _screenPositionToLatLng(Offset screenPosition) {
+  DSLatLng _screenPositionToLatLng(Offset screenPosition) {
     // Conversión inversa de coordenadas de pantalla a lat/lng
     final size = MediaQuery.of(context).size;
 
@@ -597,7 +597,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
     final sinhValue = (math.exp(math.pi * (1 - 2 * worldY)) - math.exp(-math.pi * (1 - 2 * worldY))) / 2;
     final latitude = math.atan(sinhValue) * 180 / math.pi;
 
-    return AppLatLng(latitude: latitude, longitude: longitude);
+    return DSLatLng(latitude: latitude, longitude: longitude);
   }
 
   void _handlePanStart(DragStartDetails details) {
@@ -607,7 +607,7 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
   void _handlePanUpdate(DragUpdateDetails details) {
     if (_lastPanPoint == null) return;
 
-    final behavior = widget.config.behavior ?? const AppMapBehavior();
+    final behavior = widget.config.behavior ?? const DSMapBehavior();
     if (!behavior.enablePan) return;
 
     final delta = details.localPosition - _lastPanPoint!;
@@ -619,13 +619,13 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
     final deltaLat = delta.dy / (scale * 256) * 360;
 
     setState(() {
-      _currentCenter = AppLatLng(
+      _currentCenter = DSLatLng(
         latitude: (_currentCenter.latitude + deltaLat).clamp(-85.0, 85.0),
         longitude: (_currentCenter.longitude + deltaLng).clamp(-180.0, 180.0),
       );
     });
 
-    widget.onCameraMove?.call(AppMapCameraPosition(
+    widget.onCameraMove?.call(DSMapCameraPosition(
       center: _currentCenter,
       zoom: _currentZoom,
       bearing: 0.0,
@@ -638,14 +638,14 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
   }
 
   void _handleZoom(bool zoomIn) {
-    final behavior = widget.config.behavior ?? const AppMapBehavior();
+    final behavior = widget.config.behavior ?? const DSMapBehavior();
 
     setState(() {
       _currentZoom = (zoomIn ? _currentZoom + 1 : _currentZoom - 1)
           .clamp(behavior.minZoom, behavior.maxZoom);
     });
 
-    widget.onCameraMove?.call(AppMapCameraPosition(
+    widget.onCameraMove?.call(DSMapCameraPosition(
       center: _currentCenter,
       zoom: _currentZoom,
       bearing: 0.0,
@@ -656,8 +656,8 @@ class _SimulatedMapViewState extends State<_SimulatedMapView> {
 
 /// Widget para renderizar un marcador individual
 class _MarkerWidget extends StatelessWidget {
-  final AppMapMarker marker;
-  final AppMapConfig config;
+  final DSMapMarker marker;
+  final DSMapConfig config;
 
   const _MarkerWidget({
     required this.marker,
@@ -670,18 +670,18 @@ class _MarkerWidget extends StatelessWidget {
       return marker.icon!;
     }
 
-    final colors = config.colors ?? const AppMapColors();
-    final spacing = config.spacing ?? const AppMapSpacing();
+    final colors = config.colors ?? const DSMapColors();
+    final spacing = config.spacing ?? const DSMapSpacing();
 
-    if (marker.type == AppMapMarkerType.cluster) {
+    if (marker.type == DSMapMarkerType.cluster) {
       return _buildClusterMarker(colors, spacing);
     }
 
     return _buildStandardMarker(colors, spacing);
   }
 
-  Widget _buildStandardMarker(AppMapColors colors, AppMapSpacing spacing) {
-    final theme = colors.markerColor ?? AppColors.primary;
+  Widget _buildStandardMarker(DSMapColors colors, DSMapSpacing spacing) {
+    final theme = colors.markerColor ?? DSColors.primary;
 
     return SizedBox(
       width: spacing.markerSize,
@@ -712,7 +712,7 @@ class _MarkerWidget extends StatelessWidget {
                 ),
                 child: Text(
                   marker.title!,
-                  style: AppTypography.caption.copyWith(fontSize: 8),
+                  style: DSTypography.caption.copyWith(fontSize: 8),
                 ),
               ),
             ),
@@ -721,10 +721,10 @@ class _MarkerWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildClusterMarker(AppMapColors colors, AppMapSpacing spacing) {
+  Widget _buildClusterMarker(DSMapColors colors, DSMapSpacing spacing) {
     final count = marker.metadata?['count'] as int? ?? 0;
-    final clusterColor = colors.clusterColor ?? AppColors.secondary;
-    final textColor = colors.clusterTextColor ?? AppColors.textOnColor;
+    final clusterColor = colors.clusterColor ?? DSColors.secondary;
+    final textColor = colors.clusterTextColor ?? DSColors.textOnColor;
 
     return Container(
       width: spacing.markerSize * 1.5,
@@ -744,7 +744,7 @@ class _MarkerWidget extends StatelessWidget {
       child: Center(
         child: Text(
           count.toString(),
-          style: AppTypography.labelSmall.copyWith(
+          style: DSTypography.labelSmall.copyWith(
             color: textColor,
             fontWeight: FontWeight.bold,
           ),
@@ -756,8 +756,8 @@ class _MarkerWidget extends StatelessWidget {
 
 /// Painter para renderizar formas geométricas
 class _ShapePainter extends CustomPainter {
-  final AppMapShape shape;
-  final AppLatLng center;
+  final DSMapShape shape;
+  final DSLatLng center;
   final double zoom;
   final VoidCallback? onTap;
 
@@ -773,25 +773,25 @@ class _ShapePainter extends CustomPainter {
     if (!shape.visible || shape.points.isEmpty) return;
 
     final paint = Paint()
-      ..color = shape.strokeColor ?? AppColors.primary
+      ..color = shape.strokeColor ?? DSColors.primary
       ..style = PaintingStyle.stroke
       ..strokeWidth = shape.strokeWidth;
 
     final fillPaint = Paint()
-      ..color = (shape.fillColor ?? AppColors.primary).withValues(alpha: 0.3)
+      ..color = (shape.fillColor ?? DSColors.primary).withValues(alpha: 0.3)
       ..style = PaintingStyle.fill;
 
     switch (shape.type) {
-      case AppMapShapeType.polyline:
+      case DSMapShapeType.polyline:
         _drawPolyline(canvas, size, paint);
         break;
-      case AppMapShapeType.polygon:
+      case DSMapShapeType.polygon:
         _drawPolygon(canvas, size, paint, fillPaint);
         break;
-      case AppMapShapeType.circle:
+      case DSMapShapeType.circle:
         _drawCircle(canvas, size, paint, fillPaint);
         break;
-      case AppMapShapeType.rectangle:
+      case DSMapShapeType.rectangle:
         _drawRectangle(canvas, size, paint, fillPaint);
         break;
     }
@@ -853,7 +853,7 @@ class _ShapePainter extends CustomPainter {
     canvas.drawRect(rect, paint);
   }
 
-  Offset _latLngToScreenPosition(AppLatLng latLng, Size size) {
+  Offset _latLngToScreenPosition(DSLatLng latLng, Size size) {
     // Proyección simplificada (igual que en _SimulatedMapView)
     final scale = math.pow(2, zoom);
 
@@ -884,8 +884,8 @@ class _ShapePainter extends CustomPainter {
 
 /// Painter para el fondo del mapa
 class _MapBackgroundPainter extends CustomPainter {
-  final AppMapTheme theme;
-  final AppLatLng center;
+  final DSMapTheme theme;
+  final DSLatLng center;
   final double zoom;
 
   _MapBackgroundPainter({
@@ -924,15 +924,15 @@ class _MapBackgroundPainter extends CustomPainter {
 
   Color _getGridColor() {
     switch (theme) {
-      case AppMapTheme.light:
+      case DSMapTheme.light:
         return Colors.grey.withValues(alpha: 0.3);
-      case AppMapTheme.dark:
+      case DSMapTheme.dark:
         return Colors.white.withValues(alpha: 0.2);
-      case AppMapTheme.satellite:
+      case DSMapTheme.satellite:
         return Colors.green.withValues(alpha: 0.2);
-      case AppMapTheme.hybrid:
+      case DSMapTheme.hybrid:
         return Colors.yellow.withValues(alpha: 0.2);
-      case AppMapTheme.terrain:
+      case DSMapTheme.terrain:
         return Colors.brown.withValues(alpha: 0.2);
     }
   }

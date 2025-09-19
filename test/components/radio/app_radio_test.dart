@@ -4,12 +4,12 @@ import 'package:iautomat_design_system/src/components/radio/app_radio.dart';
 import 'package:iautomat_design_system/src/components/radio/radio_config.dart';
 
 void main() {
-  group('AppRadio', () {
+  group('DSRadio', () {
     testWidgets('renders correctly in unselected state', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: (_) {},
@@ -18,14 +18,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppRadio<String>), findsOneWidget);
+      expect(find.byType(DSRadio<String>), findsOneWidget);
     });
 
     testWidgets('renders correctly in selected state', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: 'option1',
               onChanged: (_) {},
@@ -36,7 +36,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppRadio<String>), findsOneWidget);
+      expect(find.byType(DSRadio<String>), findsOneWidget);
     });
 
     testWidgets('toggles selection when tapped', (tester) async {
@@ -47,7 +47,7 @@ void main() {
           home: Scaffold(
             body: StatefulBuilder(
               builder: (context, setState) {
-                return AppRadio<String>(
+                return DSRadio<String>(
                   value: 'option1',
                   groupValue: currentValue,
                   onChanged: (value) {
@@ -64,7 +64,7 @@ void main() {
 
       expect(currentValue, null);
 
-      await tester.tap(find.byType(AppRadio<String>));
+      await tester.tap(find.byType(DSRadio<String>));
       await tester.pumpAndSettle();
 
       expect(currentValue, 'option1');
@@ -76,7 +76,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: (_) {},
@@ -95,7 +95,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: (_) {},
@@ -112,7 +112,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: null,
@@ -121,10 +121,10 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppRadio<String>));
+      await tester.tap(find.byType(DSRadio<String>));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppRadio<String>), findsOneWidget);
+      expect(find.byType(DSRadio<String>), findsOneWidget);
     });
 
     testWidgets('is disabled when enabled is false', (tester) async {
@@ -133,7 +133,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: (_) {
@@ -145,7 +145,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppRadio<String>));
+      await tester.tap(find.byType(DSRadio<String>));
       await tester.pumpAndSettle();
 
       expect(wasCalled, false);
@@ -155,11 +155,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: null,
-              overrideState: AppRadioState.loading,
+              overrideState: DSRadioState.loading,
             ),
           ),
         ),
@@ -177,11 +177,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: null,
-              overrideState: AppRadioState.skeleton,
+              overrideState: DSRadioState.skeleton,
             ),
           ),
         ),
@@ -196,7 +196,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: (_) {},
@@ -222,7 +222,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: (_) {},
@@ -236,7 +236,7 @@ void main() {
 
       final Focus focus = tester.widget<Focus>(
         find.descendant(
-          of: find.byType(AppRadio<String>),
+          of: find.byType(DSRadio<String>),
           matching: find.byType(Focus),
         ),
       );
@@ -248,7 +248,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: (_) {},
@@ -261,7 +261,7 @@ void main() {
 
       final Row row = tester.widget<Row>(
         find.descendant(
-          of: find.byType(AppRadio<String>),
+          of: find.byType(DSRadio<String>),
           matching: find.byType(Row),
         ),
       );
@@ -276,11 +276,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: (_) {},
-              config: const AppRadioConfig(
+              config: const DSRadioConfig(
                 size: customSize,
                 borderWidth: customBorderWidth,
               ),
@@ -293,13 +293,13 @@ void main() {
 
       // Verify configuration is applied
       final radio =
-          tester.widget<AppRadio<String>>(find.byType(AppRadio<String>));
+          tester.widget<DSRadio<String>>(find.byType(DSRadio<String>));
       expect(radio.config?.size, customSize);
       expect(radio.config?.borderWidth, customBorderWidth);
     });
 
     testWidgets('applies custom colors', (tester) async {
-      final customColors = AppRadioColors(
+      final customColors = DSRadioColors(
         borderColor: Colors.red,
         fillColor: Colors.blue,
         dotColor: Colors.green,
@@ -322,7 +322,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: 'option1',
               onChanged: (_) {},
@@ -334,7 +334,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppRadio<String>), findsOneWidget);
+      expect(find.byType(DSRadio<String>), findsOneWidget);
     });
 
     testWidgets('has correct semantics', (tester) async {
@@ -343,7 +343,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: 'option1',
               onChanged: (_) {},
@@ -355,7 +355,7 @@ void main() {
 
       // Verify the semantic label is properly set
       final semanticsWidget = find.descendant(
-        of: find.byType(AppRadio<String>),
+        of: find.byType(DSRadio<String>),
         matching: find.byType(Semantics),
       );
       expect(semanticsWidget, findsWidgets);
@@ -369,7 +369,7 @@ void main() {
           home: Scaffold(
             body: StatefulBuilder(
               builder: (context, setState) {
-                return AppRadio<String>(
+                return DSRadio<String>(
                   value: 'option1',
                   groupValue: currentValue,
                   onChanged: (value) {
@@ -401,7 +401,7 @@ void main() {
               builder: (context, setState) {
                 return Column(
                   children: [
-                    AppRadio<String>(
+                    DSRadio<String>(
                       value: 'option1',
                       groupValue: value,
                       onChanged: (newValue) {
@@ -436,11 +436,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRadio<String>(
+            body: DSRadio<String>(
               value: 'option1',
               groupValue: null,
               onChanged: (_) {},
-              config: const AppRadioConfig(
+              config: const DSRadioConfig(
                 size: 16,
                 minimumTouchTargetSize: 48,
               ),
@@ -452,7 +452,7 @@ void main() {
       final gestureDetector = tester.widget<GestureDetector>(
         find
             .descendant(
-              of: find.byType(AppRadio<String>),
+              of: find.byType(DSRadio<String>),
               matching: find.byType(GestureDetector),
             )
             .first,
@@ -480,7 +480,7 @@ void main() {
             home: Scaffold(
               body: StatefulBuilder(
                 builder: (context, setState) {
-                  return AppRadio<String>(
+                  return DSRadio<String>(
                     value: selectedValue,
                     groupValue: selectedValue,
                     onChanged: (value) {
@@ -488,11 +488,11 @@ void main() {
                         selectedValue = value;
                       });
                     },
-                    variant: AppRadioVariant.segmented,
+                    variant: DSRadioVariant.segmented,
                     options: const [
-                      AppRadioValue(value: 'option1', label: 'Option 1'),
-                      AppRadioValue(value: 'option2', label: 'Option 2'),
-                      AppRadioValue(value: 'option3', label: 'Option 3'),
+                      DSRadioValue(value: 'option1', label: 'Option 1'),
+                      DSRadioValue(value: 'option2', label: 'Option 2'),
+                      DSRadioValue(value: 'option3', label: 'Option 3'),
                     ],
                   );
                 },
@@ -514,7 +514,7 @@ void main() {
             home: Scaffold(
               body: StatefulBuilder(
                 builder: (context, setState) {
-                  return AppRadio<String>(
+                  return DSRadio<String>(
                     value: selectedValue,
                     groupValue: selectedValue,
                     onChanged: (value) {
@@ -522,11 +522,11 @@ void main() {
                         selectedValue = value;
                       });
                     },
-                    variant: AppRadioVariant.segmented,
+                    variant: DSRadioVariant.segmented,
                     options: const [
-                      AppRadioValue(value: 'option1', label: 'Option 1'),
-                      AppRadioValue(value: 'option2', label: 'Option 2'),
-                      AppRadioValue(value: 'option3', label: 'Option 3'),
+                      DSRadioValue(value: 'option1', label: 'Option 1'),
+                      DSRadioValue(value: 'option2', label: 'Option 2'),
+                      DSRadioValue(value: 'option3', label: 'Option 3'),
                     ],
                   );
                 },
@@ -548,21 +548,21 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppRadio<String>(
+              body: DSRadio<String>(
                 value: 'left',
                 groupValue: 'left',
                 onChanged: (_) {},
-                variant: AppRadioVariant.segmented,
+                variant: DSRadioVariant.segmented,
                 options: const [
-                  AppRadioValue(
+                  DSRadioValue(
                       value: 'left',
                       label: 'Left',
                       icon: Icons.format_align_left),
-                  AppRadioValue(
+                  DSRadioValue(
                       value: 'center',
                       label: 'Center',
                       icon: Icons.format_align_center),
-                  AppRadioValue(
+                  DSRadioValue(
                       value: 'right',
                       label: 'Right',
                       icon: Icons.format_align_right),
@@ -587,18 +587,18 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppRadio<String>(
+              body: DSRadio<String>(
                 value: 'option1',
                 groupValue: 'option1',
                 onChanged: (value) {
                   wasCalled = true;
                 },
-                variant: AppRadioVariant.segmented,
+                variant: DSRadioVariant.segmented,
                 options: const [
-                  AppRadioValue(value: 'option1', label: 'Option 1'),
-                  AppRadioValue(
+                  DSRadioValue(value: 'option1', label: 'Option 1'),
+                  DSRadioValue(
                       value: 'option2', label: 'Option 2', enabled: false),
-                  AppRadioValue(value: 'option3', label: 'Option 3'),
+                  DSRadioValue(value: 'option3', label: 'Option 3'),
                 ],
               ),
             ),

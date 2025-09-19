@@ -3,9 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_lightbox_config.freezed.dart';
 
-enum AppLightboxVariant { zoom, gallery }
+enum DSLightboxVariant { zoom, gallery }
 
-enum AppLightboxState {
+enum DSLightboxState {
   defaultState,
   hover,
   pressed,
@@ -16,7 +16,7 @@ enum AppLightboxState {
   skeleton
 }
 
-enum AppLightboxGesture {
+enum DSLightboxGesture {
   tap,
   doubleTap,
   pinchZoom,
@@ -26,19 +26,19 @@ enum AppLightboxGesture {
 }
 
 @freezed
-class AppLightboxConfig with _$AppLightboxConfig {
-  const factory AppLightboxConfig({
-    @Default(AppLightboxVariant.zoom) AppLightboxVariant variant,
-    @Default(AppLightboxState.defaultState) AppLightboxState state,
+class DSLightboxConfig with _$DSLightboxConfig {
+  const factory DSLightboxConfig({
+    @Default(DSLightboxVariant.zoom) DSLightboxVariant variant,
+    @Default(DSLightboxState.defaultState) DSLightboxState state,
     @Default(0) int initialIndex,
     @Default({
-      AppLightboxGesture.tap,
-      AppLightboxGesture.doubleTap,
-      AppLightboxGesture.pinchZoom,
-      AppLightboxGesture.pan,
-      AppLightboxGesture.swipe,
-      AppLightboxGesture.keyboard,
-    }) Set<AppLightboxGesture> enabledGestures,
+      DSLightboxGesture.tap,
+      DSLightboxGesture.doubleTap,
+      DSLightboxGesture.pinchZoom,
+      DSLightboxGesture.pan,
+      DSLightboxGesture.swipe,
+      DSLightboxGesture.keyboard,
+    }) Set<DSLightboxGesture> enabledGestures,
     @Default(true) bool enableCloseButton,
     @Default(true) bool enableCounter,
     @Default(true) bool enableThumbnails,
@@ -51,17 +51,17 @@ class AppLightboxConfig with _$AppLightboxConfig {
     @Default(true) bool enableKeyboardSupport,
     @Default(true) bool isRtl,
     @Default(true) bool enableHapticFeedback,
-    AppLightboxColors? colors,
-    AppLightboxSpacing? spacing,
-    AppLightboxControls? controls,
-    AppLightboxAccessibility? accessibility,
-    AppLightboxAnimation? animation,
-  }) = _AppLightboxConfig;
+    DSLightboxColors? colors,
+    DSLightboxSpacing? spacing,
+    DSLightboxControls? controls,
+    DSLightboxAccessibility? accessibility,
+    DSLightboxAnimation? animation,
+  }) = _DSLightboxConfig;
 }
 
 @freezed
-class AppLightboxColors with _$AppLightboxColors {
-  const factory AppLightboxColors({
+class DSLightboxColors with _$DSLightboxColors {
+  const factory DSLightboxColors({
     Color? backgroundColor,
     Color? overlayColor,
     Color? controlsColor,
@@ -78,8 +78,8 @@ class AppLightboxColors with _$AppLightboxColors {
 }
 
 @freezed
-class AppLightboxSpacing with _$AppLightboxSpacing {
-  const factory AppLightboxSpacing({
+class DSLightboxSpacing with _$DSLightboxSpacing {
+  const factory DSLightboxSpacing({
     @Default(EdgeInsets.all(16.0)) EdgeInsets padding,
     @Default(EdgeInsets.all(8.0)) EdgeInsets controlsPadding,
     @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)) EdgeInsets counterPadding,
@@ -94,8 +94,8 @@ class AppLightboxSpacing with _$AppLightboxSpacing {
 }
 
 @freezed
-class AppLightboxControls with _$AppLightboxControls {
-  const factory AppLightboxControls({
+class DSLightboxControls with _$DSLightboxControls {
+  const factory DSLightboxControls({
     @Default(true) bool showCloseButton,
     @Default(true) bool showCounter,
     @Default(true) bool showThumbnails,
@@ -112,8 +112,8 @@ class AppLightboxControls with _$AppLightboxControls {
 }
 
 @freezed
-class AppLightboxAccessibility with _$AppLightboxAccessibility {
-  const factory AppLightboxAccessibility({
+class DSLightboxAccessibility with _$DSLightboxAccessibility {
+  const factory DSLightboxAccessibility({
     @Default('Lightbox') String semanticLabel,
     @Default('Close lightbox') String closeButtonLabel,
     @Default('Previous image') String previousButtonLabel,
@@ -130,8 +130,8 @@ class AppLightboxAccessibility with _$AppLightboxAccessibility {
 }
 
 @freezed
-class AppLightboxAnimation with _$AppLightboxAnimation {
-  const factory AppLightboxAnimation({
+class DSLightboxAnimation with _$DSLightboxAnimation {
+  const factory DSLightboxAnimation({
     @Default(Duration(milliseconds: 300)) Duration fadeInDuration,
     @Default(Duration(milliseconds: 200)) Duration fadeOutDuration,
     @Default(Duration(milliseconds: 250)) Duration slideTransitionDuration,
@@ -147,8 +147,8 @@ class AppLightboxAnimation with _$AppLightboxAnimation {
 }
 
 @freezed
-class AppLightboxImage with _$AppLightboxImage {
-  const factory AppLightboxImage({
+class DSLightboxImage with _$DSLightboxImage {
+  const factory DSLightboxImage({
     required String id,
     required ImageProvider imageProvider,
     String? title,
@@ -164,8 +164,8 @@ class AppLightboxImage with _$AppLightboxImage {
 }
 
 @freezed
-class AppLightboxGalleryConfig with _$AppLightboxGalleryConfig {
-  const factory AppLightboxGalleryConfig({
+class DSLightboxGalleryConfig with _$DSLightboxGalleryConfig {
+  const factory DSLightboxGalleryConfig({
     @Default(true) bool enableInfiniteScroll,
     @Default(true) bool enablePreloading,
     @Default(3) int preloadDistance,
@@ -174,5 +174,5 @@ class AppLightboxGalleryConfig with _$AppLightboxGalleryConfig {
     @Default(true) bool enablePageSnapping,
     @Default(0.8) double viewportFraction,
     @Default(true) bool centerCurrentImage,
-  }) = _AppLightboxGalleryConfig;
+  }) = _DSLightboxGalleryConfig;
 }

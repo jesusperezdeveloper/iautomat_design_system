@@ -16,7 +16,7 @@ enum BottomSheetVariant {
 }
 
 /// Enumeración que define los estados posibles del bottom sheet
-enum AppBottomSheetState {
+enum DSBottomSheetState {
   /// Estado por defecto
   defaultState,
 
@@ -43,12 +43,12 @@ enum AppBottomSheetState {
 }
 
 /// Extension para verificar si un estado puede interactuar
-extension AppBottomSheetStateExtension on AppBottomSheetState {
+extension DSBottomSheetStateExtension on DSBottomSheetState {
   /// Verifica si el estado permite interacciones
   bool get canInteract => !{
-        AppBottomSheetState.disabled,
-        AppBottomSheetState.loading,
-        AppBottomSheetState.skeleton,
+        DSBottomSheetState.disabled,
+        DSBottomSheetState.loading,
+        DSBottomSheetState.skeleton,
       }.contains(this);
 }
 
@@ -68,15 +68,15 @@ enum BottomSheetSnap {
 ///
 /// Proporciona diferentes variantes (modal, half, full) con soporte
 /// completo para plataformas, RTL, accesibilidad y Material 3.
-class AppBottomSheet extends StatefulWidget {
+class DSBottomSheet extends StatefulWidget {
   /// Constructor principal del bottom sheet
-  const AppBottomSheet({
+  const DSBottomSheet({
     super.key,
     required this.variant,
     required this.content,
     this.initialSnap = BottomSheetSnap.half,
     this.draggable = true,
-    this.state = AppBottomSheetState.defaultState,
+    this.state = DSBottomSheetState.defaultState,
     this.backgroundColor,
     this.handleColor,
     this.elevation,
@@ -95,12 +95,12 @@ class AppBottomSheet extends StatefulWidget {
   });
 
   /// Factory constructor para crear un bottom sheet modal
-  factory AppBottomSheet.modal({
+  factory DSBottomSheet.modal({
     Key? key,
     required Widget content,
     BottomSheetSnap initialSnap = BottomSheetSnap.half,
     bool draggable = true,
-    AppBottomSheetState state = AppBottomSheetState.defaultState,
+    DSBottomSheetState state = DSBottomSheetState.defaultState,
     Color? backgroundColor,
     Color? handleColor,
     double? elevation,
@@ -112,12 +112,12 @@ class AppBottomSheet extends StatefulWidget {
     bool accessibilitySupport = true,
     String? accessibilityLabel,
     String? accessibilityHint,
-    ValueChanged<AppBottomSheetState>? onStateChange,
+    ValueChanged<DSBottomSheetState>? onStateChange,
     ValueChanged<BottomSheetSnap>? onSnapChange,
     VoidCallback? onDragStart,
     VoidCallback? onDragEnd,
   }) {
-    return AppBottomSheet(
+    return DSBottomSheet(
       key: key,
       variant: BottomSheetVariant.modal,
       content: content,
@@ -143,12 +143,12 @@ class AppBottomSheet extends StatefulWidget {
   }
 
   /// Factory constructor para crear un bottom sheet de media altura
-  factory AppBottomSheet.half({
+  factory DSBottomSheet.half({
     Key? key,
     required Widget content,
     BottomSheetSnap initialSnap = BottomSheetSnap.half,
     bool draggable = true,
-    AppBottomSheetState state = AppBottomSheetState.defaultState,
+    DSBottomSheetState state = DSBottomSheetState.defaultState,
     Color? backgroundColor,
     Color? handleColor,
     double? elevation,
@@ -160,12 +160,12 @@ class AppBottomSheet extends StatefulWidget {
     bool accessibilitySupport = true,
     String? accessibilityLabel,
     String? accessibilityHint,
-    ValueChanged<AppBottomSheetState>? onStateChange,
+    ValueChanged<DSBottomSheetState>? onStateChange,
     ValueChanged<BottomSheetSnap>? onSnapChange,
     VoidCallback? onDragStart,
     VoidCallback? onDragEnd,
   }) {
-    return AppBottomSheet(
+    return DSBottomSheet(
       key: key,
       variant: BottomSheetVariant.half,
       content: content,
@@ -191,12 +191,12 @@ class AppBottomSheet extends StatefulWidget {
   }
 
   /// Factory constructor para crear un bottom sheet de altura completa
-  factory AppBottomSheet.full({
+  factory DSBottomSheet.full({
     Key? key,
     required Widget content,
     BottomSheetSnap initialSnap = BottomSheetSnap.max,
     bool draggable = true,
-    AppBottomSheetState state = AppBottomSheetState.defaultState,
+    DSBottomSheetState state = DSBottomSheetState.defaultState,
     Color? backgroundColor,
     Color? handleColor,
     double? elevation,
@@ -208,12 +208,12 @@ class AppBottomSheet extends StatefulWidget {
     bool accessibilitySupport = true,
     String? accessibilityLabel,
     String? accessibilityHint,
-    ValueChanged<AppBottomSheetState>? onStateChange,
+    ValueChanged<DSBottomSheetState>? onStateChange,
     ValueChanged<BottomSheetSnap>? onSnapChange,
     VoidCallback? onDragStart,
     VoidCallback? onDragEnd,
   }) {
-    return AppBottomSheet(
+    return DSBottomSheet(
       key: key,
       variant: BottomSheetVariant.full,
       content: content,
@@ -251,7 +251,7 @@ class AppBottomSheet extends StatefulWidget {
   final bool draggable;
 
   /// Estado actual del bottom sheet
-  final AppBottomSheetState state;
+  final DSBottomSheetState state;
 
   /// Color de fondo del bottom sheet
   final Color? backgroundColor;
@@ -287,7 +287,7 @@ class AppBottomSheet extends StatefulWidget {
   final String? accessibilityHint;
 
   /// Callback cuando cambia el estado
-  final ValueChanged<AppBottomSheetState>? onStateChange;
+  final ValueChanged<DSBottomSheetState>? onStateChange;
 
   /// Callback cuando cambia el punto de anclaje
   final ValueChanged<BottomSheetSnap>? onSnapChange;
@@ -299,12 +299,12 @@ class AppBottomSheet extends StatefulWidget {
   final VoidCallback? onDragEnd;
 
   @override
-  State<AppBottomSheet> createState() => _AppBottomSheetState();
+  State<DSBottomSheet> createState() => _DSBottomSheetState();
 
   /// Método estático para mostrar el bottom sheet como modal
   static Future<T?> showModal<T>({
     required BuildContext context,
-    required AppBottomSheet bottomSheet,
+    required DSBottomSheet bottomSheet,
     bool isDismissible = true,
     bool enableDrag = true,
     Color? backgroundColor,
@@ -326,7 +326,7 @@ class AppBottomSheet extends StatefulWidget {
   }
 }
 
-class _AppBottomSheetState extends State<AppBottomSheet>
+class _DSBottomSheetState extends State<DSBottomSheet>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late AnimationController _scaleController;
@@ -334,7 +334,7 @@ class _AppBottomSheetState extends State<AppBottomSheet>
   late Animation<double> _scaleAnimation;
   late DraggableScrollableController _scrollController;
 
-  AppBottomSheetState _currentState = AppBottomSheetState.defaultState;
+  DSBottomSheetState _currentState = DSBottomSheetState.defaultState;
   BottomSheetSnap _currentSnap = BottomSheetSnap.half;
 
   @override
@@ -388,7 +388,7 @@ class _AppBottomSheetState extends State<AppBottomSheet>
     super.dispose();
   }
 
-  void _updateState(AppBottomSheetState newState) {
+  void _updateState(DSBottomSheetState newState) {
     if (_currentState != newState && mounted) {
       setState(() {
         _currentState = newState;
@@ -544,16 +544,16 @@ class _AppBottomSheetState extends State<AppBottomSheet>
 
   Widget _buildStateWrapper(Widget child) {
     switch (_currentState) {
-      case AppBottomSheetState.disabled:
+      case DSBottomSheetState.disabled:
         return Opacity(
           opacity: 0.5,
           child: AbsorbPointer(child: child),
         );
-      case AppBottomSheetState.loading:
+      case DSBottomSheetState.loading:
         return _buildLoadingChild(child);
-      case AppBottomSheetState.skeleton:
+      case DSBottomSheetState.skeleton:
         return _buildSkeletonChild(child);
-      case AppBottomSheetState.focus:
+      case DSBottomSheetState.focus:
         return Container(
           decoration: BoxDecoration(
             border: Border.all(
@@ -566,7 +566,7 @@ class _AppBottomSheetState extends State<AppBottomSheet>
           ),
           child: child,
         );
-      case AppBottomSheetState.pressed:
+      case DSBottomSheetState.pressed:
         return AnimatedBuilder(
           animation: _scaleAnimation,
           builder: (context, child) {
@@ -577,9 +577,9 @@ class _AppBottomSheetState extends State<AppBottomSheet>
           },
           child: child,
         );
-      case AppBottomSheetState.defaultState:
-      case AppBottomSheetState.hover:
-      case AppBottomSheetState.selected:
+      case DSBottomSheetState.defaultState:
+      case DSBottomSheetState.hover:
+      case DSBottomSheetState.selected:
         return child;
     }
   }
@@ -626,8 +626,8 @@ class _AppBottomSheetState extends State<AppBottomSheet>
 
     if (isDesktop) {
       return MouseRegion(
-        onEnter: (_) => _updateState(AppBottomSheetState.hover),
-        onExit: (_) => _updateState(AppBottomSheetState.defaultState),
+        onEnter: (_) => _updateState(DSBottomSheetState.hover),
+        onExit: (_) => _updateState(DSBottomSheetState.defaultState),
         child: child,
       );
     } else {

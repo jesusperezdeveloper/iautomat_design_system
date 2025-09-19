@@ -3,13 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppAvatar Golden Tests', () {
+  group('DSAvatar Golden Tests', () {
     testWidgets('image avatar with placeholder icon', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.image(
+              child: DSAvatar.image(
                 imageUrl: 'https://invalid-url.com/image.jpg',
               ),
             ),
@@ -21,7 +21,7 @@ void main() {
       await tester.pump(const Duration(seconds: 1));
 
       await expectLater(
-        find.byType(AppAvatar),
+        find.byType(DSAvatar),
         matchesGoldenFile('avatar/image_placeholder.png'),
       );
     });
@@ -31,9 +31,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.initials(
+              child: DSAvatar.initials(
                 initials: 'JD',
-                size: AppAvatarSize.small,
+                size: DSAvatarSize.small,
               ),
             ),
           ),
@@ -41,7 +41,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAvatar),
+        find.byType(DSAvatar),
         matchesGoldenFile('avatar/initials_small.png'),
       );
     });
@@ -51,9 +51,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.initials(
+              child: DSAvatar.initials(
                 initials: 'AB',
-                size: AppAvatarSize.medium,
+                size: DSAvatarSize.medium,
               ),
             ),
           ),
@@ -61,7 +61,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAvatar),
+        find.byType(DSAvatar),
         matchesGoldenFile('avatar/initials_medium.png'),
       );
     });
@@ -71,9 +71,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.initials(
+              child: DSAvatar.initials(
                 initials: 'LG',
-                size: AppAvatarSize.large,
+                size: DSAvatarSize.large,
               ),
             ),
           ),
@@ -81,7 +81,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAvatar),
+        find.byType(DSAvatar),
         matchesGoldenFile('avatar/initials_large.png'),
       );
     });
@@ -91,9 +91,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.initials(
+              child: DSAvatar.initials(
                 initials: 'ON',
-                presence: AppAvatarPresence.online,
+                presence: DSAvatarPresence.online,
                 showPresence: true,
               ),
             ),
@@ -112,9 +112,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.initials(
+              child: DSAvatar.initials(
                 initials: 'AW',
-                presence: AppAvatarPresence.away,
+                presence: DSAvatarPresence.away,
                 showPresence: true,
               ),
             ),
@@ -133,9 +133,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.initials(
+              child: DSAvatar.initials(
                 initials: 'BS',
-                presence: AppAvatarPresence.busy,
+                presence: DSAvatarPresence.busy,
                 showPresence: true,
               ),
             ),
@@ -154,9 +154,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.initials(
+              child: DSAvatar.initials(
                 initials: 'DN',
-                presence: AppAvatarPresence.doNotDisturb,
+                presence: DSAvatarPresence.doNotDisturb,
                 showPresence: true,
               ),
             ),
@@ -178,25 +178,25 @@ void main() {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'XS',
-                    size: AppAvatarSize.xsmall,
+                    size: DSAvatarSize.xsmall,
                   ),
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'SM',
-                    size: AppAvatarSize.small,
+                    size: DSAvatarSize.small,
                   ),
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'MD',
-                    size: AppAvatarSize.medium,
+                    size: DSAvatarSize.medium,
                   ),
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'LG',
-                    size: AppAvatarSize.large,
+                    size: DSAvatarSize.large,
                   ),
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'XL',
-                    size: AppAvatarSize.xlarge,
+                    size: DSAvatarSize.xlarge,
                   ),
                 ],
               ),
@@ -219,20 +219,20 @@ void main() {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'CI',
-                    shape: AppAvatarShape.circle,
-                    size: AppAvatarSize.large,
+                    shape: DSAvatarShape.circle,
+                    size: DSAvatarSize.large,
                   ),
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'SQ',
-                    shape: AppAvatarShape.square,
-                    size: AppAvatarSize.large,
+                    shape: DSAvatarShape.square,
+                    size: DSAvatarSize.large,
                   ),
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'RD',
-                    shape: AppAvatarShape.rounded,
-                    size: AppAvatarSize.large,
+                    shape: DSAvatarShape.rounded,
+                    size: DSAvatarSize.large,
                   ),
                 ],
               ),
@@ -252,7 +252,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.initials(
+              child: DSAvatar.initials(
                 initials: 'DS',
                 enabled: false,
               ),
@@ -262,7 +262,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAvatar),
+        find.byType(DSAvatar),
         matchesGoldenFile('avatar/disabled_state.png'),
       );
     });
@@ -272,7 +272,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.initials(
+              child: DSAvatar.initials(
                 initials: 'SK',
                 skeleton: true,
               ),
@@ -282,7 +282,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAvatar),
+        find.byType(DSAvatar),
         matchesGoldenFile('avatar/skeleton_state.png'),
       );
     });
@@ -292,7 +292,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.initials(
+              child: DSAvatar.initials(
                 initials: 'BR',
                 showBorder: true,
                 borderWidth: 3.0,
@@ -303,7 +303,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAvatar),
+        find.byType(DSAvatar),
         matchesGoldenFile('avatar/with_border.png'),
       );
     });
@@ -316,17 +316,17 @@ void main() {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'PR',
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
                   ),
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'GR',
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
                   ),
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'OR',
                     backgroundColor: Colors.orange,
                     foregroundColor: Colors.white,
@@ -349,7 +349,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.group(
+              child: DSAvatar.group(
                 groupInitials: ['AB', 'CD'],
                 maxGroupCount: 2,
               ),
@@ -369,7 +369,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.group(
+              child: DSAvatar.group(
                 groupInitials: ['AB', 'CD', 'EF'],
                 maxGroupCount: 3,
               ),
@@ -389,7 +389,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppAvatar.group(
+              child: DSAvatar.group(
                 groupInitials: ['AB', 'CD', 'EF', 'GH', 'IJ'],
                 maxGroupCount: 3,
               ),
@@ -415,17 +415,17 @@ void main() {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppAvatar.initials(initials: 'John Doe'),
-                      AppAvatar.initials(initials: 'Jane'),
-                      AppAvatar.initials(initials: 'A B C'),
+                      DSAvatar.initials(initials: 'John Doe'),
+                      DSAvatar.initials(initials: 'Jane'),
+                      DSAvatar.initials(initials: 'A B C'),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppAvatar.initials(initials: 'X'),
-                      AppAvatar.initials(initials: 'Maria Elena Rodriguez'),
-                      AppAvatar.initials(initials: 'AB'),
+                      DSAvatar.initials(initials: 'X'),
+                      DSAvatar.initials(initials: 'Maria Elena Rodriguez'),
+                      DSAvatar.initials(initials: 'AB'),
                     ],
                   ),
                 ],
@@ -450,17 +450,17 @@ void main() {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'DK',
-                    size: AppAvatarSize.large,
+                    size: DSAvatarSize.large,
                   ),
-                  AppAvatar.initials(
+                  DSAvatar.initials(
                     initials: 'PR',
-                    presence: AppAvatarPresence.online,
+                    presence: DSAvatarPresence.online,
                     showPresence: true,
-                    size: AppAvatarSize.large,
+                    size: DSAvatarSize.large,
                   ),
-                  AppAvatar.group(
+                  DSAvatar.group(
                     groupInitials: ['A', 'B', 'C'],
                     maxGroupCount: 3,
                   ),
@@ -484,10 +484,10 @@ void main() {
             appBar: AppBar(
               title: const Text('Avatar Examples'),
               actions: [
-                AppAvatar.initials(
+                DSAvatar.initials(
                   initials: 'JP',
-                  size: AppAvatarSize.small,
-                  presence: AppAvatarPresence.online,
+                  size: DSAvatarSize.small,
+                  presence: DSAvatarPresence.online,
                   showPresence: true,
                 ),
                 const SizedBox(width: 16),
@@ -499,9 +499,9 @@ void main() {
                 children: [
                   Card(
                     child: ListTile(
-                      leading: AppAvatar.initials(
+                      leading: DSAvatar.initials(
                         initials: 'SC',
-                        presence: AppAvatarPresence.online,
+                        presence: DSAvatarPresence.online,
                         showPresence: true,
                       ),
                       title: const Text('Sarah Connor'),
@@ -519,10 +519,10 @@ void main() {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const Spacer(),
-                          AppAvatar.group(
+                          DSAvatar.group(
                             groupInitials: ['A', 'B', 'C', 'D', 'E'],
                             maxGroupCount: 3,
-                            size: AppAvatarSize.small,
+                            size: DSAvatarSize.small,
                           ),
                         ],
                       ),
@@ -549,15 +549,15 @@ void main() {
               child: Wrap(
                 spacing: 24.0,
                 runSpacing: 24.0,
-                children: AppAvatarPresence.values.map((presence) {
+                children: DSAvatarPresence.values.map((presence) {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      AppAvatar.initials(
+                      DSAvatar.initials(
                         initials: presence.name.substring(0, 2).toUpperCase(),
                         presence: presence,
                         showPresence: true,
-                        size: AppAvatarSize.large,
+                        size: DSAvatarSize.large,
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -598,12 +598,12 @@ void main() {
                   ),
                   const SizedBox(height: 16),
                   Row(
-                    children: AppAvatarSize.values.map((size) {
+                    children: DSAvatarSize.values.map((size) {
                       return Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Column(
                           children: [
-                            AppAvatar.initials(
+                            DSAvatar.initials(
                               initials: 'AB',
                               size: size,
                             ),
@@ -627,15 +627,15 @@ void main() {
                   ),
                   const SizedBox(height: 16),
                   Row(
-                    children: AppAvatarShape.values.map((shape) {
+                    children: DSAvatarShape.values.map((shape) {
                       return Padding(
                         padding: const EdgeInsets.only(right: 16.0),
                         child: Column(
                           children: [
-                            AppAvatar.initials(
+                            DSAvatar.initials(
                               initials: 'AB',
                               shape: shape,
-                              size: AppAvatarSize.large,
+                              size: DSAvatarSize.large,
                             ),
                             const SizedBox(height: 8),
                             Text(shape.name),

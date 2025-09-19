@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/charts/app_chart.dart';
 
 void main() {
-  group('AppChart Golden Tests', () {
+  group('DSChart Golden Tests', () {
     final testSeries = [
       ChartSeries(
         id: 'sales',
@@ -56,7 +56,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppChart(
+                child: DSChart(
                   variant: ChartVariant.line,
                   series: testSeries,
                   animate: false,
@@ -73,7 +73,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppChart),
+        find.byType(DSChart),
         matchesGoldenFile('goldens/app_chart_line_default.png'),
       );
     });
@@ -87,7 +87,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppChart(
+                child: DSChart(
                   variant: ChartVariant.area,
                   series: testSeries.map((s) {
                     return ChartSeries(
@@ -109,7 +109,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppChart),
+        find.byType(DSChart),
         matchesGoldenFile('goldens/app_chart_area_default.png'),
       );
     });
@@ -123,7 +123,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppChart(
+                child: DSChart(
                   variant: ChartVariant.bar,
                   series: testSeries,
                   animate: false,
@@ -140,7 +140,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppChart),
+        find.byType(DSChart),
         matchesGoldenFile('goldens/app_chart_bar_default.png'),
       );
     });
@@ -154,7 +154,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 400,
-                child: AppChart(
+                child: DSChart(
                   variant: ChartVariant.pie,
                   series: pieData,
                   animate: false,
@@ -170,7 +170,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppChart),
+        find.byType(DSChart),
         matchesGoldenFile('goldens/app_chart_pie_default.png'),
       );
     });
@@ -199,7 +199,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppChart(
+                child: DSChart(
                   variant: ChartVariant.heatmap,
                   series: heatmapData,
                   animate: false,
@@ -211,7 +211,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppChart),
+        find.byType(DSChart),
         matchesGoldenFile('goldens/app_chart_heatmap_default.png'),
       );
     });
@@ -225,7 +225,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppChart(
+                child: DSChart(
                   variant: ChartVariant.line,
                   series: testSeries,
                   state: ChartState.loading,
@@ -237,7 +237,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppChart),
+        find.byType(DSChart),
         matchesGoldenFile('goldens/app_chart_loading.png'),
       );
     });
@@ -251,7 +251,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppChart(
+                child: DSChart(
                   variant: ChartVariant.line,
                   series: testSeries,
                   state: ChartState.skeleton,
@@ -263,7 +263,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppChart),
+        find.byType(DSChart),
         matchesGoldenFile('goldens/app_chart_skeleton.png'),
       );
     });
@@ -277,7 +277,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppChart(
+                child: DSChart(
                   variant: ChartVariant.bar,
                   series: testSeries,
                   state: ChartState.disabled,
@@ -290,7 +290,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppChart),
+        find.byType(DSChart),
         matchesGoldenFile('goldens/app_chart_disabled.png'),
       );
     });
@@ -304,7 +304,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppChart(
+                child: DSChart(
                   variant: ChartVariant.line,
                   series: testSeries,
                   animate: false,
@@ -317,7 +317,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppChart),
+        find.byType(DSChart),
         matchesGoldenFile('goldens/app_chart_dark_theme.png'),
       );
     });
@@ -333,7 +333,7 @@ void main() {
                 child: SizedBox(
                   width: 400,
                   height: 300,
-                  child: AppChart(
+                  child: DSChart(
                     variant: ChartVariant.bar,
                     series: testSeries,
                     animate: false,
@@ -351,7 +351,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppChart),
+        find.byType(DSChart),
         matchesGoldenFile('goldens/app_chart_rtl.png'),
       );
     });

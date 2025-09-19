@@ -4,15 +4,15 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'tag_config.freezed.dart';
 
 @freezed
-class AppTagConfig with _$AppTagConfig {
-  const AppTagConfig._();
+class DSTagConfig with _$DSTagConfig {
+  const DSTagConfig._();
 
-  const factory AppTagConfig({
-    @Default(AppTagVariant.semantic) AppTagVariant variant,
-    @Default(AppTagState.defaultState) AppTagState state,
-    @Default(AppTagSize.medium) AppTagSize size,
-    @Default(AppTagShape.rounded) AppTagShape shape,
-    @Default(AppTagSemanticColor.primary) AppTagSemanticColor semanticColor,
+  const factory DSTagConfig({
+    @Default(DSTagVariant.semantic) DSTagVariant variant,
+    @Default(DSTagState.defaultState) DSTagState state,
+    @Default(DSTagSize.medium) DSTagSize size,
+    @Default(DSTagShape.rounded) DSTagShape shape,
+    @Default(DSTagSemanticColor.primary) DSTagSemanticColor semanticColor,
     required String label,
     Color? color,
     Color? backgroundColor,
@@ -22,10 +22,10 @@ class AppTagConfig with _$AppTagConfig {
     IconData? trailingIcon,
     Widget? leadingWidget,
     Widget? trailingWidget,
-    AppTagStyle? style,
-    AppTagInteraction? interaction,
-    AppTagAccessibility? accessibility,
-    AppTagAnimation? animation,
+    DSTagStyle? style,
+    DSTagInteraction? interaction,
+    DSTagAccessibility? accessibility,
+    DSTagAnimation? animation,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
     VoidCallback? onHover,
@@ -41,13 +41,13 @@ class AppTagConfig with _$AppTagConfig {
     @Default(false) bool outlined,
     double? borderWidth,
     double? elevation,
-  }) = _AppTagConfig;
+  }) = _DSTagConfig;
 
   bool get isInteractive => onTap != null || onLongPress != null || removable;
   bool get isHoverable => onHover != null;
-  bool get isDisabled => !enabled || state == AppTagState.disabled;
-  bool get isLoading => loading || state == AppTagState.loading;
-  bool get isSkeleton => skeleton || state == AppTagState.skeleton;
+  bool get isDisabled => !enabled || state == DSTagState.disabled;
+  bool get isLoading => loading || state == DSTagState.loading;
+  bool get isSkeleton => skeleton || state == DSTagState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
   bool get canInteract =>
       isInteractive && !isDisabled && !isLoading && !isSkeleton;
@@ -58,7 +58,7 @@ class AppTagConfig with _$AppTagConfig {
   bool get hasTrailingWidget => trailingWidget != null;
   bool get hasLeading => hasLeadingIcon || hasLeadingWidget;
   bool get hasTrailing => hasTrailingIcon || hasTrailingWidget || removable;
-  bool get isSelected => selected || state == AppTagState.selected;
+  bool get isSelected => selected || state == DSTagState.selected;
   bool get hasBorder => outlined || borderWidth != null;
 
   Color getEffectiveColor(ColorScheme colorScheme) {
@@ -110,14 +110,14 @@ class AppTagConfig with _$AppTagConfig {
 
   double getEffectiveBorderWidth() {
     if (borderWidth != null) return borderWidth!;
-    return outlined ? AppTagConstants.defaultBorderWidth : 0.0;
+    return outlined ? DSTagConstants.defaultBorderWidth : 0.0;
   }
 
   double getEffectiveElevation() {
     if (elevation != null) return elevation!;
     return isSelected
-        ? AppTagConstants.selectedElevation
-        : AppTagConstants.defaultElevation;
+        ? DSTagConstants.selectedElevation
+        : DSTagConstants.defaultElevation;
   }
 
   Color _getContrastColor(Color backgroundColor, ColorScheme colorScheme) {
@@ -126,11 +126,11 @@ class AppTagConfig with _$AppTagConfig {
   }
 }
 
-enum AppTagVariant {
+enum DSTagVariant {
   semantic,
 }
 
-enum AppTagState {
+enum DSTagState {
   defaultState,
   hover,
   pressed,
@@ -141,19 +141,19 @@ enum AppTagState {
   skeleton,
 }
 
-enum AppTagSize {
+enum DSTagSize {
   small,
   medium,
   large,
 }
 
-enum AppTagShape {
+enum DSTagShape {
   rounded,
   pill,
   square,
 }
 
-enum AppTagSemanticColor {
+enum DSTagSemanticColor {
   primary,
   secondary,
   success,
@@ -163,70 +163,70 @@ enum AppTagSemanticColor {
   neutral,
 }
 
-extension AppTagSemanticColorExtension on AppTagSemanticColor {
+extension DSTagSemanticColorExtension on DSTagSemanticColor {
   Color getColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppTagSemanticColor.primary:
+      case DSTagSemanticColor.primary:
         return colorScheme.primary;
-      case AppTagSemanticColor.secondary:
+      case DSTagSemanticColor.secondary:
         return colorScheme.secondary;
-      case AppTagSemanticColor.success:
+      case DSTagSemanticColor.success:
         return Colors.green;
-      case AppTagSemanticColor.warning:
+      case DSTagSemanticColor.warning:
         return Colors.orange;
-      case AppTagSemanticColor.error:
+      case DSTagSemanticColor.error:
         return colorScheme.error;
-      case AppTagSemanticColor.info:
+      case DSTagSemanticColor.info:
         return Colors.blue;
-      case AppTagSemanticColor.neutral:
+      case DSTagSemanticColor.neutral:
         return colorScheme.outline;
     }
   }
 
   String get label {
     switch (this) {
-      case AppTagSemanticColor.primary:
+      case DSTagSemanticColor.primary:
         return 'Primario';
-      case AppTagSemanticColor.secondary:
+      case DSTagSemanticColor.secondary:
         return 'Secundario';
-      case AppTagSemanticColor.success:
+      case DSTagSemanticColor.success:
         return 'Éxito';
-      case AppTagSemanticColor.warning:
+      case DSTagSemanticColor.warning:
         return 'Advertencia';
-      case AppTagSemanticColor.error:
+      case DSTagSemanticColor.error:
         return 'Error';
-      case AppTagSemanticColor.info:
+      case DSTagSemanticColor.info:
         return 'Información';
-      case AppTagSemanticColor.neutral:
+      case DSTagSemanticColor.neutral:
         return 'Neutral';
     }
   }
 
   IconData get icon {
     switch (this) {
-      case AppTagSemanticColor.primary:
+      case DSTagSemanticColor.primary:
         return Icons.star;
-      case AppTagSemanticColor.secondary:
+      case DSTagSemanticColor.secondary:
         return Icons.label;
-      case AppTagSemanticColor.success:
+      case DSTagSemanticColor.success:
         return Icons.check_circle;
-      case AppTagSemanticColor.warning:
+      case DSTagSemanticColor.warning:
         return Icons.warning;
-      case AppTagSemanticColor.error:
+      case DSTagSemanticColor.error:
         return Icons.error;
-      case AppTagSemanticColor.info:
+      case DSTagSemanticColor.info:
         return Icons.info;
-      case AppTagSemanticColor.neutral:
+      case DSTagSemanticColor.neutral:
         return Icons.circle;
     }
   }
 }
 
 @freezed
-class AppTagStyle with _$AppTagStyle {
-  const AppTagStyle._();
+class DSTagStyle with _$DSTagStyle {
+  const DSTagStyle._();
 
-  const factory AppTagStyle({
+  const factory DSTagStyle({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
@@ -245,34 +245,34 @@ class AppTagStyle with _$AppTagStyle {
     Offset? offset,
   }) = _AppTagStyle;
 
-  AppTagStyle copyWithState(AppTagState state) {
+  DSTagStyle copyWithState(DSTagState state) {
     switch (state) {
-      case AppTagState.hover:
+      case DSTagState.hover:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.08),
           elevation: (elevation ?? 0) + 1,
         );
-      case AppTagState.pressed:
+      case DSTagState.pressed:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
           elevation: (elevation ?? 0) + 0.5,
         );
-      case AppTagState.focus:
+      case DSTagState.focus:
         return copyWith(
           borderColor: borderColor,
           borderWidth: 2.0,
         );
-      case AppTagState.selected:
+      case DSTagState.selected:
         return copyWith(
           elevation: (elevation ?? 0) + 2,
         );
-      case AppTagState.disabled:
+      case DSTagState.disabled:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.38),
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
         );
-      case AppTagState.loading:
-      case AppTagState.skeleton:
+      case DSTagState.loading:
+      case DSTagState.skeleton:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.6),
         );
@@ -283,8 +283,8 @@ class AppTagStyle with _$AppTagStyle {
 }
 
 @freezed
-class AppTagInteraction with _$AppTagInteraction {
-  const factory AppTagInteraction({
+class DSTagInteraction with _$DSTagInteraction {
+  const factory DSTagInteraction({
     @Default(true) bool enabled,
     @Default(true) bool focusable,
     @Default(true) bool hoverable,
@@ -302,8 +302,8 @@ class AppTagInteraction with _$AppTagInteraction {
 }
 
 @freezed
-class AppTagAccessibility with _$AppTagAccessibility {
-  const factory AppTagAccessibility({
+class DSTagAccessibility with _$DSTagAccessibility {
+  const factory DSTagAccessibility({
     String? semanticLabel,
     String? tooltip,
     bool? excludeSemantics,
@@ -322,12 +322,12 @@ class AppTagAccessibility with _$AppTagAccessibility {
 }
 
 @freezed
-class AppTagAnimation with _$AppTagAnimation {
-  const factory AppTagAnimation({
+class DSTagAnimation with _$DSTagAnimation {
+  const factory DSTagAnimation({
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(false) bool enabled,
-    @Default(AppTagAnimationType.fade) AppTagAnimationType type,
+    @Default(DSTagAnimationType.fade) DSTagAnimationType type,
     Duration? delay,
     VoidCallback? onAnimationComplete,
     @Default(false) bool pulse,
@@ -335,7 +335,7 @@ class AppTagAnimation with _$AppTagAnimation {
   }) = _AppTagAnimation;
 }
 
-enum AppTagAnimationType {
+enum DSTagAnimationType {
   none,
   fade,
   slide,
@@ -344,104 +344,104 @@ enum AppTagAnimationType {
   pulse,
 }
 
-extension AppTagVariantExtension on AppTagVariant {
-  bool get isSemantic => this == AppTagVariant.semantic;
+extension DSTagVariantExtension on DSTagVariant {
+  bool get isSemantic => this == DSTagVariant.semantic;
 }
 
-extension AppTagStateExtension on AppTagState {
+extension DSTagStateExtension on DSTagState {
   bool get isInteractiveState =>
-      this == AppTagState.hover ||
-      this == AppTagState.pressed ||
-      this == AppTagState.focus;
+      this == DSTagState.hover ||
+      this == DSTagState.pressed ||
+      this == DSTagState.focus;
 
-  bool get isDisabledState => this == AppTagState.disabled;
-  bool get isLoadingState => this == AppTagState.loading;
-  bool get isSkeletonState => this == AppTagState.skeleton;
-  bool get isSelectedState => this == AppTagState.selected;
+  bool get isDisabledState => this == DSTagState.disabled;
+  bool get isLoadingState => this == DSTagState.loading;
+  bool get isSkeletonState => this == DSTagState.skeleton;
+  bool get isSelectedState => this == DSTagState.selected;
 }
 
-extension AppTagSizeExtension on AppTagSize {
+extension DSTagSizeExtension on DSTagSize {
   double get height {
     switch (this) {
-      case AppTagSize.small:
+      case DSTagSize.small:
         return 24.0;
-      case AppTagSize.medium:
+      case DSTagSize.medium:
         return 32.0;
-      case AppTagSize.large:
+      case DSTagSize.large:
         return 40.0;
     }
   }
 
   double get fontSize {
     switch (this) {
-      case AppTagSize.small:
+      case DSTagSize.small:
         return 12.0;
-      case AppTagSize.medium:
+      case DSTagSize.medium:
         return 14.0;
-      case AppTagSize.large:
+      case DSTagSize.large:
         return 16.0;
     }
   }
 
   double get iconSize {
     switch (this) {
-      case AppTagSize.small:
+      case DSTagSize.small:
         return 14.0;
-      case AppTagSize.medium:
+      case DSTagSize.medium:
         return 16.0;
-      case AppTagSize.large:
+      case DSTagSize.large:
         return 18.0;
     }
   }
 
   EdgeInsetsGeometry get padding {
     switch (this) {
-      case AppTagSize.small:
+      case DSTagSize.small:
         return const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0);
-      case AppTagSize.medium:
+      case DSTagSize.medium:
         return const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0);
-      case AppTagSize.large:
+      case DSTagSize.large:
         return const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0);
     }
   }
 
   double get spacing {
     switch (this) {
-      case AppTagSize.small:
+      case DSTagSize.small:
         return 4.0;
-      case AppTagSize.medium:
+      case DSTagSize.medium:
         return 6.0;
-      case AppTagSize.large:
+      case DSTagSize.large:
         return 8.0;
     }
   }
 
   double get borderRadius {
     switch (this) {
-      case AppTagSize.small:
+      case DSTagSize.small:
         return 12.0;
-      case AppTagSize.medium:
+      case DSTagSize.medium:
         return 16.0;
-      case AppTagSize.large:
+      case DSTagSize.large:
         return 20.0;
     }
   }
 }
 
-extension AppTagShapeExtension on AppTagShape {
-  BorderRadius getBorderRadius(AppTagSize size) {
+extension DSTagShapeExtension on DSTagShape {
+  BorderRadius getBorderRadius(DSTagSize size) {
     switch (this) {
-      case AppTagShape.rounded:
+      case DSTagShape.rounded:
         return BorderRadius.circular(size.borderRadius);
-      case AppTagShape.pill:
+      case DSTagShape.pill:
         return BorderRadius.circular(size.height / 2);
-      case AppTagShape.square:
+      case DSTagShape.square:
         return BorderRadius.circular(4.0);
     }
   }
 }
 
-class AppTagConstants {
+class DSTagConstants {
   static const double defaultBorderWidth = 1.0;
   static const double defaultElevation = 0.0;
   static const double selectedElevation = 2.0;

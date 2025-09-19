@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'app_data_table.dart';
 import 'data_table_config.dart';
 
-/// Stories for AppDataTable component demonstrating different variants and configurations
+/// Stories for DSDataTable component demonstrating different variants and configurations
 class DataTableStories extends StatefulWidget {
   const DataTableStories({super.key});
 
@@ -11,17 +11,17 @@ class DataTableStories extends StatefulWidget {
 }
 
 class _DataTableStoriesState extends State<DataTableStories> {
-  late List<AppDataTableColumn> columns;
-  late List<AppDataTableRow> rows;
-  late List<AppDataTableRow> employeeRows;
-  late List<AppDataTableColumn> employeeColumns;
+  late List<DSDataTableColumn> columns;
+  late List<DSDataTableRow> rows;
+  late List<DSDataTableRow> employeeRows;
+  late List<DSDataTableColumn> employeeColumns;
 
-  AppDataTableSelection selection = const AppDataTableSelection(
-    mode: AppDataTableSelectionMode.multiple,
+  DSDataTableSelection selection = const DSDataTableSelection(
+    mode: DSDataTableSelectionMode.multiple,
     selectedRows: [],
   );
 
-  AppDataTableSort sorting = const AppDataTableSort();
+  DSDataTableSort sorting = const DSDataTableSort();
 
   @override
   void initState() {
@@ -32,55 +32,55 @@ class _DataTableStoriesState extends State<DataTableStories> {
   void _initializeData() {
     // Basic table data
     columns = [
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'id',
         label: 'ID',
         field: 'id',
         width: 80,
         sortable: true,
-        cellType: AppDataTableCellType.number,
-        alignment: AppDataTableColumnAlignment.center,
+        cellType: DSDataTableCellType.number,
+        alignment: DSDataTableColumnAlignment.center,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'name',
         label: 'Name',
         field: 'name',
         width: 200,
         sortable: true,
         editable: true,
-        cellType: AppDataTableCellType.text,
+        cellType: DSDataTableCellType.text,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'email',
         label: 'Email',
         field: 'email',
         width: 250,
         sortable: true,
         editable: true,
-        cellType: AppDataTableCellType.text,
+        cellType: DSDataTableCellType.text,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'status',
         label: 'Status',
         field: 'status',
         width: 120,
         sortable: true,
-        cellType: AppDataTableCellType.text,
-        alignment: AppDataTableColumnAlignment.center,
+        cellType: DSDataTableCellType.text,
+        alignment: DSDataTableColumnAlignment.center,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'active',
         label: 'Active',
         field: 'active',
         width: 100,
         sortable: true,
-        cellType: AppDataTableCellType.boolean,
-        alignment: AppDataTableColumnAlignment.center,
+        cellType: DSDataTableCellType.boolean,
+        alignment: DSDataTableColumnAlignment.center,
       ),
     ];
 
     rows = [
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: '1',
         data: {
           'id': 1,
@@ -90,7 +90,7 @@ class _DataTableStoriesState extends State<DataTableStories> {
           'active': true,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: '2',
         data: {
           'id': 2,
@@ -100,7 +100,7 @@ class _DataTableStoriesState extends State<DataTableStories> {
           'active': false,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: '3',
         data: {
           'id': 3,
@@ -110,7 +110,7 @@ class _DataTableStoriesState extends State<DataTableStories> {
           'active': true,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: '4',
         data: {
           'id': 4,
@@ -120,7 +120,7 @@ class _DataTableStoriesState extends State<DataTableStories> {
           'active': true,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: '5',
         data: {
           'id': 5,
@@ -134,83 +134,83 @@ class _DataTableStoriesState extends State<DataTableStories> {
 
     // Employee table data for more complex example
     employeeColumns = [
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'avatar',
         label: 'Avatar',
         field: 'avatar',
         width: 80,
-        cellType: AppDataTableCellType.image,
-        alignment: AppDataTableColumnAlignment.center,
+        cellType: DSDataTableCellType.image,
+        alignment: DSDataTableColumnAlignment.center,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'employee_id',
         label: 'ID',
         field: 'employee_id',
         width: 80,
         sortable: true,
-        cellType: AppDataTableCellType.text,
-        alignment: AppDataTableColumnAlignment.center,
+        cellType: DSDataTableCellType.text,
+        alignment: DSDataTableColumnAlignment.center,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'full_name',
         label: 'Full Name',
         field: 'full_name',
         width: 200,
         sortable: true,
         editable: true,
-        cellType: AppDataTableCellType.text,
+        cellType: DSDataTableCellType.text,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'department',
         label: 'Department',
         field: 'department',
         width: 150,
         sortable: true,
         editable: true,
-        cellType: AppDataTableCellType.text,
+        cellType: DSDataTableCellType.text,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'position',
         label: 'Position',
         field: 'position',
         width: 180,
         sortable: true,
         editable: true,
-        cellType: AppDataTableCellType.text,
+        cellType: DSDataTableCellType.text,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'salary',
         label: 'Salary',
         field: 'salary',
         width: 120,
         sortable: true,
         editable: true,
-        cellType: AppDataTableCellType.number,
-        alignment: AppDataTableColumnAlignment.right,
+        cellType: DSDataTableCellType.number,
+        alignment: DSDataTableColumnAlignment.right,
         formatter: null,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'hire_date',
         label: 'Hire Date',
         field: 'hire_date',
         width: 120,
         sortable: true,
-        cellType: AppDataTableCellType.date,
-        alignment: AppDataTableColumnAlignment.center,
+        cellType: DSDataTableCellType.date,
+        alignment: DSDataTableColumnAlignment.center,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'is_manager',
         label: 'Manager',
         field: 'is_manager',
         width: 100,
         sortable: true,
-        cellType: AppDataTableCellType.boolean,
-        alignment: AppDataTableColumnAlignment.center,
+        cellType: DSDataTableCellType.boolean,
+        alignment: DSDataTableColumnAlignment.center,
       ),
     ];
 
     employeeRows = [
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: 'emp_1',
         data: {
           'avatar':
@@ -224,7 +224,7 @@ class _DataTableStoriesState extends State<DataTableStories> {
           'is_manager': false,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: 'emp_2',
         data: {
           'avatar':
@@ -238,7 +238,7 @@ class _DataTableStoriesState extends State<DataTableStories> {
           'is_manager': true,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: 'emp_3',
         data: {
           'avatar':
@@ -252,7 +252,7 @@ class _DataTableStoriesState extends State<DataTableStories> {
           'is_manager': false,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: 'emp_4',
         data: {
           'avatar':
@@ -266,7 +266,7 @@ class _DataTableStoriesState extends State<DataTableStories> {
           'is_manager': false,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: 'emp_5',
         data: {
           'avatar':
@@ -280,7 +280,7 @@ class _DataTableStoriesState extends State<DataTableStories> {
           'is_manager': true,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: 'emp_6',
         data: {
           'avatar':
@@ -407,11 +407,11 @@ class _DataTableStoriesState extends State<DataTableStories> {
   }
 
   Widget _buildBasicTable() {
-    return AppDataTable(
-      variant: AppDataTableVariant.resizable,
+    return DSDataTable(
+      variant: DSDataTableVariant.resizable,
       columns: columns,
       rows: rows,
-      config: const AppDataTableConfig(
+      config: const DSDataTableConfig(
         showHeaders: true,
         showRowDividers: true,
         alternateRowColors: true,
@@ -421,14 +421,14 @@ class _DataTableStoriesState extends State<DataTableStories> {
   }
 
   Widget _buildResizableTable() {
-    return AppDataTable.resizable(
+    return DSDataTable.resizable(
       columns: columns,
       rows: rows,
-      config: const AppDataTableConfig(
+      config: const DSDataTableConfig(
         showHeaders: true,
         showRowDividers: true,
         maxHeight: 400,
-        resizeConfig: AppDataTableResizeConfig(
+        resizeConfig: DSDataTableResizeConfig(
           enabled: true,
           minColumnWidth: 80,
           maxColumnWidth: 400,
@@ -442,14 +442,14 @@ class _DataTableStoriesState extends State<DataTableStories> {
   }
 
   Widget _buildPinnedTable() {
-    return AppDataTable.pinned(
+    return DSDataTable.pinned(
       columns: columns,
       rows: rows,
-      config: const AppDataTableConfig(
+      config: const DSDataTableConfig(
         showHeaders: true,
         showRowDividers: true,
         maxHeight: 400,
-        freezeConfig: AppDataTableFreezeConfig(
+        freezeConfig: DSDataTableFreezeConfig(
           leftColumns: 2, // Pin ID and Name columns
           rightColumns: 1, // Pin Active column
           showDividers: true,
@@ -459,14 +459,14 @@ class _DataTableStoriesState extends State<DataTableStories> {
   }
 
   Widget _buildInlineEditTable() {
-    return AppDataTable.inlineEdit(
+    return DSDataTable.inlineEdit(
       columns: columns,
       rows: rows,
-      config: const AppDataTableConfig(
+      config: const DSDataTableConfig(
         showHeaders: true,
         showRowDividers: true,
         maxHeight: 400,
-        editMode: AppDataTableEditMode.cell,
+        editMode: DSDataTableEditMode.cell,
       ),
       onEdit: (row, columnId, newValue) {
         debugPrint(
@@ -477,20 +477,20 @@ class _DataTableStoriesState extends State<DataTableStories> {
   }
 
   Widget _buildEmployeeTable() {
-    return AppDataTable(
-      variant: AppDataTableVariant.resizable,
+    return DSDataTable(
+      variant: DSDataTableVariant.resizable,
       columns: employeeColumns,
       rows: employeeRows,
       selection: selection,
       sorting: sorting,
-      config: const AppDataTableConfig(
+      config: const DSDataTableConfig(
         showHeaders: true,
         showRowDividers: true,
         showColumnDividers: true,
         alternateRowColors: true,
         showHoverEffects: true,
         maxHeight: 500,
-        density: AppDataTableDensity.comfortable,
+        density: DSDataTableDensity.comfortable,
       ),
       onRowSelect: (row, selected) {
         debugPrint('Row ${row.id} ${selected ? 'selected' : 'deselected'}');
@@ -499,11 +499,11 @@ class _DataTableStoriesState extends State<DataTableStories> {
   }
 
   Widget _buildLoadingTable() {
-    return AppDataTable(
-      variant: AppDataTableVariant.resizable,
+    return DSDataTable(
+      variant: DSDataTableVariant.resizable,
       columns: columns,
       rows: const [],
-      config: const AppDataTableConfig(
+      config: const DSDataTableConfig(
         showLoading: true,
         maxHeight: 300,
       ),
@@ -511,11 +511,11 @@ class _DataTableStoriesState extends State<DataTableStories> {
   }
 
   Widget _buildSkeletonTable() {
-    return AppDataTable(
-      variant: AppDataTableVariant.resizable,
+    return DSDataTable(
+      variant: DSDataTableVariant.resizable,
       columns: columns,
       rows: const [],
-      config: const AppDataTableConfig(
+      config: const DSDataTableConfig(
         showSkeleton: true,
         skeletonRowCount: 8,
         maxHeight: 400,
@@ -524,31 +524,31 @@ class _DataTableStoriesState extends State<DataTableStories> {
   }
 
   Widget _buildEmptyTable() {
-    return AppDataTable(
-      variant: AppDataTableVariant.resizable,
+    return DSDataTable(
+      variant: DSDataTableVariant.resizable,
       columns: columns,
       rows: const [],
-      emptyState: const AppDataTableEmptyState(
+      emptyState: const DSDataTableEmptyState(
         message: 'No data available',
         icon: Icons.table_chart_outlined,
         show: true,
       ),
-      config: const AppDataTableConfig(
+      config: const DSDataTableConfig(
         maxHeight: 300,
       ),
     );
   }
 
   Widget _buildDenseTable() {
-    return AppDataTable(
-      variant: AppDataTableVariant.resizable,
+    return DSDataTable(
+      variant: DSDataTableVariant.resizable,
       columns: columns,
       rows: rows,
-      config: const AppDataTableConfig(
+      config: const DSDataTableConfig(
         showHeaders: true,
         showRowDividers: true,
         alternateRowColors: true,
-        density: AppDataTableDensity.compact,
+        density: DSDataTableDensity.compact,
         maxHeight: 300,
       ),
     );
@@ -564,8 +564,8 @@ class ProductTableExample extends StatefulWidget {
 }
 
 class _ProductTableExampleState extends State<ProductTableExample> {
-  late List<AppDataTableColumn> columns;
-  late List<AppDataTableRow> rows;
+  late List<DSDataTableColumn> columns;
+  late List<DSDataTableRow> rows;
 
   @override
   void initState() {
@@ -575,66 +575,66 @@ class _ProductTableExampleState extends State<ProductTableExample> {
 
   void _initializeProductData() {
     columns = [
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'sku',
         label: 'SKU',
         field: 'sku',
         width: 120,
         sortable: true,
-        cellType: AppDataTableCellType.text,
+        cellType: DSDataTableCellType.text,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'name',
         label: 'Product Name',
         field: 'name',
         width: 250,
         sortable: true,
         editable: true,
-        cellType: AppDataTableCellType.text,
+        cellType: DSDataTableCellType.text,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'category',
         label: 'Category',
         field: 'category',
         width: 150,
         sortable: true,
         editable: true,
-        cellType: AppDataTableCellType.text,
+        cellType: DSDataTableCellType.text,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'price',
         label: 'Price',
         field: 'price',
         width: 100,
         sortable: true,
         editable: true,
-        cellType: AppDataTableCellType.number,
-        alignment: AppDataTableColumnAlignment.right,
+        cellType: DSDataTableCellType.number,
+        alignment: DSDataTableColumnAlignment.right,
         formatter: null,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'stock',
         label: 'Stock',
         field: 'stock',
         width: 80,
         sortable: true,
         editable: true,
-        cellType: AppDataTableCellType.number,
-        alignment: AppDataTableColumnAlignment.center,
+        cellType: DSDataTableCellType.number,
+        alignment: DSDataTableColumnAlignment.center,
       ),
-      const AppDataTableColumn(
+      const DSDataTableColumn(
         id: 'available',
         label: 'Available',
         field: 'available',
         width: 100,
         sortable: true,
-        cellType: AppDataTableCellType.boolean,
-        alignment: AppDataTableColumnAlignment.center,
+        cellType: DSDataTableCellType.boolean,
+        alignment: DSDataTableColumnAlignment.center,
       ),
     ];
 
     rows = [
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: '1',
         data: {
           'sku': 'LAPTOP001',
@@ -645,7 +645,7 @@ class _ProductTableExampleState extends State<ProductTableExample> {
           'available': true,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: '2',
         data: {
           'sku': 'PHONE001',
@@ -656,7 +656,7 @@ class _ProductTableExampleState extends State<ProductTableExample> {
           'available': true,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: '3',
         data: {
           'sku': 'TABLET001',
@@ -667,7 +667,7 @@ class _ProductTableExampleState extends State<ProductTableExample> {
           'available': false,
         },
       ),
-      const AppDataTableRow(
+      const DSDataTableRow(
         id: '4',
         data: {
           'sku': 'WATCH001',
@@ -703,21 +703,21 @@ class _ProductTableExampleState extends State<ProductTableExample> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: AppDataTable.inlineEdit(
+        child: DSDataTable.inlineEdit(
           columns: columns,
           rows: rows,
-          selection: const AppDataTableSelection(
-            mode: AppDataTableSelectionMode.multiple,
+          selection: const DSDataTableSelection(
+            mode: DSDataTableSelectionMode.multiple,
             showCheckboxes: true,
             allowSelectAll: true,
           ),
-          config: const AppDataTableConfig(
+          config: const DSDataTableConfig(
             showHeaders: true,
             showRowDividers: true,
             showColumnDividers: true,
             alternateRowColors: true,
             showHoverEffects: true,
-            editMode: AppDataTableEditMode.cell,
+            editMode: DSDataTableEditMode.cell,
             enableKeyboardNavigation: true,
             enableAccessibility: true,
           ),

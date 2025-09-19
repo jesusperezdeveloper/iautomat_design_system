@@ -22,17 +22,17 @@ import 'package:iautomat_design_system/src/components/currency_input/app_currenc
 ///
 /// Ejemplo:
 /// ```dart
-/// AppCurrencyInput(
+/// DSCurrencyInput(
 ///   amount: 1250.50,
 ///   currency: 'USD',
 ///   onChanged: (value) => print('Nueva cantidad: \${value.amount}'),
 ///   locale: Locale('es', 'ES'),
-///   variant: AppCurrencyInputVariant.localized,
+///   variant: DSCurrencyInputVariant.localized,
 /// )
 /// ```
-class AppCurrencyInput extends StatefulWidget {
+class DSCurrencyInput extends StatefulWidget {
   /// Configuración completa del input
-  final AppCurrencyInputConfig? config;
+  final DSCurrencyInputConfig? config;
 
   /// Cantidad inicial
   final double? amount;
@@ -41,10 +41,10 @@ class AppCurrencyInput extends StatefulWidget {
   final String currency;
 
   /// Callback cuando cambia el valor
-  final ValueChanged<AppCurrencyInputValue>? onChanged;
+  final ValueChanged<DSCurrencyInputValue>? onChanged;
 
   /// Callback cuando se envía el formulario
-  final ValueChanged<AppCurrencyInputValue>? onSubmitted;
+  final ValueChanged<DSCurrencyInputValue>? onSubmitted;
 
   /// Callback cuando termina la edición
   final VoidCallback? onEditingComplete;
@@ -53,10 +53,10 @@ class AppCurrencyInput extends StatefulWidget {
   final Locale? locale;
 
   /// Variante del input
-  final AppCurrencyInputVariant? variant;
+  final DSCurrencyInputVariant? variant;
 
   /// Estado inicial del input
-  final AppCurrencyInputState? initialState;
+  final DSCurrencyInputState? initialState;
 
   /// Etiqueta del campo
   final String? label;
@@ -83,7 +83,7 @@ class AppCurrencyInput extends StatefulWidget {
   final TextEditingController? controller;
 
   /// Funciones de validación personalizadas
-  final String? Function(AppCurrencyInputValue?)? validator;
+  final String? Function(DSCurrencyInputValue?)? validator;
 
   /// Etiqueta semántica para accesibilidad
   final String? semanticLabel;
@@ -95,7 +95,7 @@ class AppCurrencyInput extends StatefulWidget {
   final TextInputAction? textInputAction;
 
   /// Configuración de validación personalizada
-  final AppCurrencyInputValidation? validation;
+  final DSCurrencyInputValidation? validation;
 
   /// Si es de solo lectura
   final bool readOnly;
@@ -121,7 +121,7 @@ class AppCurrencyInput extends StatefulWidget {
   /// Icono de sufijo
   final IconData? suffixIcon;
 
-  const AppCurrencyInput({
+  const DSCurrencyInput({
     super.key,
     this.config,
     this.amount,
@@ -156,15 +156,15 @@ class AppCurrencyInput extends StatefulWidget {
   });
 
   @override
-  State<AppCurrencyInput> createState() => _AppCurrencyInputState();
+  State<DSCurrencyInput> createState() => _DSCurrencyInputState();
 }
 
-class _AppCurrencyInputState extends State<AppCurrencyInput>
+class _DSCurrencyInputState extends State<DSCurrencyInput>
     with TickerProviderStateMixin {
-  late AppCurrencyInputConfig _config;
-  late AppCurrencyInputState _currentState;
-  late AppCurrencyInputPlatformAdapter _platformAdapter;
-  late AppCurrencyInputA11yHelper _a11yHelper;
+  late DSCurrencyInputConfig _config;
+  late DSCurrencyInputState _currentState;
+  late DSCurrencyInputPlatformAdapter _platformAdapter;
+  late DSCurrencyInputA11yHelper _a11yHelper;
 
   // Controladores
   late TextEditingController _controller;
@@ -184,7 +184,7 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
 
   // Formateo y validación
   late NumberFormat _numberFormat;
-  AppCurrencyInputValue? _currentValue;
+  DSCurrencyInputValue? _currentValue;
   String? _errorText;
 
   @override
@@ -201,10 +201,10 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
 
   void _initializeConfig() {
     _config = widget.config ??
-        AppCurrencyInputConfig(
-          variant: widget.variant ?? AppCurrencyInputVariant.localized,
+        DSCurrencyInputConfig(
+          variant: widget.variant ?? DSCurrencyInputVariant.localized,
           state: widget.initialState ??
-                 (widget.enabled ? AppCurrencyInputState.defaultState : AppCurrencyInputState.disabled),
+                 (widget.enabled ? DSCurrencyInputState.defaultState : DSCurrencyInputState.disabled),
         );
 
     _currentState = _config.state;
@@ -256,15 +256,15 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
     ));
 
     // Iniciar animación skeleton si es necesario
-    if (_currentState == AppCurrencyInputState.skeleton) {
+    if (_currentState == DSCurrencyInputState.skeleton) {
       _skeletonAnimationController.repeat(reverse: true);
     }
   }
 
   void _initializeHelpers() {
-    _platformAdapter = AppCurrencyInputPlatformAdapter();
-    _a11yHelper = AppCurrencyInputA11yHelper(
-      config: _config.a11yConfig ?? const AppCurrencyInputA11yConfig(),
+    _platformAdapter = DSCurrencyInputPlatformAdapter();
+    _a11yHelper = DSCurrencyInputA11yHelper(
+      config: _config.a11yConfig ?? const DSCurrencyInputA11yConfig(),
     );
   }
 
@@ -287,7 +287,7 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
   }
 
   void _setupInitialValue() {
-    _currentValue = AppCurrencyInputValue(
+    _currentValue = DSCurrencyInputValue(
       amount: widget.amount ?? 0.0,
       currencyCode: widget.currency,
       formattedValue: _formatAmount(widget.amount ?? 0.0),
@@ -304,11 +304,11 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
       setState(() {
         _isFocused = _focusNode.hasFocus;
         if (_isFocused) {
-          _updateState(AppCurrencyInputState.focus);
-        } else if (_currentState == AppCurrencyInputState.focus) {
+          _updateState(DSCurrencyInputState.focus);
+        } else if (_currentState == DSCurrencyInputState.focus) {
           _updateState(_hasValue()
-              ? AppCurrencyInputState.selected
-              : AppCurrencyInputState.defaultState);
+              ? DSCurrencyInputState.selected
+              : DSCurrencyInputState.defaultState);
         }
       });
     });
@@ -321,11 +321,11 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
     if (_config.animation?.enableScaleAnimation != true) return 1.0;
 
     switch (_currentState) {
-      case AppCurrencyInputState.hover:
+      case DSCurrencyInputState.hover:
         return _config.animation?.hoverScale ?? 1.01;
-      case AppCurrencyInputState.pressed:
+      case DSCurrencyInputState.pressed:
         return _config.animation?.pressScale ?? 0.99;
-      case AppCurrencyInputState.selected:
+      case DSCurrencyInputState.selected:
         return 1.0;
       default:
         return 1.0;
@@ -361,7 +361,7 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
     return _currentValue != null && _currentValue!.amount > 0;
   }
 
-  void _updateState(AppCurrencyInputState newState) {
+  void _updateState(DSCurrencyInputState newState) {
     if (_currentState == newState || !widget.enabled) return;
 
     setState(() {
@@ -379,7 +379,7 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
     final amount = _parseAmount(text);
 
     if (amount != null) {
-      final newValue = AppCurrencyInputValue(
+      final newValue = DSCurrencyInputValue(
         amount: amount,
         currencyCode: widget.currency,
         formattedValue: text,
@@ -420,23 +420,23 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
     }
   }
 
-  String? _validateValue(AppCurrencyInputValue value) {
+  String? _validateValue(DSCurrencyInputValue value) {
     final validation = widget.validation ?? _config.validation;
     if (validation == null) return null;
 
-    return AppCurrencyInputValidationHelper.validate(value, validation);
+    return DSCurrencyInputValidationHelper.validate(value, validation);
   }
 
   void _handleTap() {
     if (!widget.enabled) return;
 
-    _updateState(AppCurrencyInputState.pressed);
+    _updateState(DSCurrencyInputState.pressed);
 
     Future.delayed(const Duration(milliseconds: 100), () {
       if (mounted) {
         _updateState(_hasValue()
-            ? AppCurrencyInputState.selected
-            : AppCurrencyInputState.defaultState);
+            ? DSCurrencyInputState.selected
+            : DSCurrencyInputState.defaultState);
       }
     });
 
@@ -452,11 +452,11 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
     // });
 
     if (isHovered) {
-      _updateState(AppCurrencyInputState.hover);
+      _updateState(DSCurrencyInputState.hover);
     } else {
       _updateState(_hasValue()
-          ? AppCurrencyInputState.selected
-          : AppCurrencyInputState.defaultState);
+          ? DSCurrencyInputState.selected
+          : DSCurrencyInputState.defaultState);
     }
   }
 
@@ -467,13 +467,13 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
   }
 
   @override
-  void didUpdateWidget(AppCurrencyInput oldWidget) {
+  void didUpdateWidget(DSCurrencyInput oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.enabled != oldWidget.enabled) {
       _updateState(widget.enabled
-          ? AppCurrencyInputState.defaultState
-          : AppCurrencyInputState.disabled);
+          ? DSCurrencyInputState.defaultState
+          : DSCurrencyInputState.disabled);
     }
 
     if (widget.amount != oldWidget.amount && widget.amount != null) {
@@ -517,11 +517,11 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
   }
 
   Widget _buildInput(BuildContext context) {
-    if (_currentState == AppCurrencyInputState.skeleton) {
+    if (_currentState == DSCurrencyInputState.skeleton) {
       return _buildSkeleton();
     }
 
-    if (_currentState == AppCurrencyInputState.loading) {
+    if (_currentState == DSCurrencyInputState.loading) {
       return _buildLoadingInput();
     }
 
@@ -694,11 +694,11 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
     );
   }
 
-  AppCurrencyInputColors _resolveColors(BuildContext context) {
+  DSCurrencyInputColors _resolveColors(BuildContext context) {
     final theme = Theme.of(context);
-    final baseColors = _config.colors ?? const AppCurrencyInputColors();
+    final baseColors = _config.colors ?? const DSCurrencyInputColors();
 
-    return AppCurrencyInputColors(
+    return DSCurrencyInputColors(
       backgroundColor: baseColors.backgroundColor ?? theme.colorScheme.surface,
       borderColor: baseColors.borderColor ?? theme.colorScheme.outline.withValues(alpha: 0.2),
       focusedBorderColor: baseColors.focusedBorderColor ?? theme.colorScheme.primary,
@@ -717,7 +717,7 @@ class _AppCurrencyInputState extends State<AppCurrencyInput>
     );
   }
 
-  AppCurrencyInputSpacing _resolveSpacing() {
-    return _config.spacing ?? const AppCurrencyInputSpacing();
+  DSCurrencyInputSpacing _resolveSpacing() {
+    return _config.spacing ?? const DSCurrencyInputSpacing();
   }
 }

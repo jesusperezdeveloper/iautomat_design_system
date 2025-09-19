@@ -11,30 +11,30 @@ import 'app_auth_screens_a11y_helper.dart';
 ///
 /// Componente completo que incluye sign-in, sign-up, OTP y SSO
 /// con soporte multiplataforma, RTL, teclado y accesibilidad
-class AppAuthScreens extends StatefulWidget {
+class DSAuthScreens extends StatefulWidget {
   /// Configuración del componente
-  final AppAuthScreensConfig config;
+  final DSAuthScreensConfig config;
 
   /// Lista de campos del formulario
-  final List<AppAuthField> fields;
+  final List<DSAuthField> fields;
 
   /// Lista de proveedores SSO disponibles
-  final List<AppAuthProvider> providers;
+  final List<DSAuthProvider> providers;
 
   /// Callback cuando se envía el formulario
-  final Future<AppAuthResult> Function(AppAuthFormData data) onSubmit;
+  final Future<DSAuthResult> Function(DSAuthFormData data) onSubmit;
 
   /// Callback cuando se selecciona un proveedor SSO
-  final Future<AppAuthResult> Function(AppAuthProvider provider)? onProviderAuth;
+  final Future<DSAuthResult> Function(DSAuthProvider provider)? onProviderAuth;
 
   /// Callback cuando cambia el estado del formulario
-  final void Function(AppAuthFormData data)? onFormChanged;
+  final void Function(DSAuthFormData data)? onFormChanged;
 
   /// Callback cuando se valida un campo
-  final void Function(AppAuthFieldValidation validation)? onFieldValidated;
+  final void Function(DSAuthFieldValidation validation)? onFieldValidated;
 
   /// Callback cuando se navega entre pantallas
-  final void Function(AppAuthVariant from, AppAuthVariant to)? onNavigate;
+  final void Function(DSAuthVariant from, DSAuthVariant to)? onNavigate;
 
   /// Callback cuando se reenvía OTP
   final Future<bool> Function()? onResendOtp;
@@ -66,7 +66,7 @@ class AppAuthScreens extends StatefulWidget {
   /// Acción personalizada del botón volver
   final VoidCallback? onBack;
 
-  const AppAuthScreens({
+  const DSAuthScreens({
     super.key,
     required this.config,
     required this.fields,
@@ -89,14 +89,14 @@ class AppAuthScreens extends StatefulWidget {
   });
 
   @override
-  State<AppAuthScreens> createState() => _AppAuthScreensState();
+  State<DSAuthScreens> createState() => _DSAuthScreensState();
 }
 
-class _AppAuthScreensState extends State<AppAuthScreens>
+class _DSAuthScreensState extends State<DSAuthScreens>
     with TickerProviderStateMixin {
   late final GlobalKey<FormState> _formKey;
-  late final AppAuthScreensPlatformAdapter _platformAdapter;
-  late final AppAuthScreensA11yHelper _a11yHelper;
+  late final DSAuthScreensPlatformAdapter _platformAdapter;
+  late final DSAuthScreensA11yHelper _a11yHelper;
 
   // Controladores de animación
   late final AnimationController _mainAnimationController;
@@ -114,7 +114,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   final Map<String, TextEditingController> _controllers = {};
   final Map<String, FocusNode> _focusNodes = {};
   final Map<String, bool> _obscureText = {};
-  AppAuthFormData _formData = const AppAuthFormData(
+  DSAuthFormData _formData = const DSAuthFormData(
     values: {},
     validations: {},
   );
@@ -144,17 +144,17 @@ class _AppAuthScreensState extends State<AppAuthScreens>
 
   void _initializeComponents() {
     _formKey = widget.formKey ?? GlobalKey<FormState>();
-    _platformAdapter = AppAuthScreensPlatformAdapter(
+    _platformAdapter = DSAuthScreensPlatformAdapter(
       config: widget.config,
       context: context,
     );
-    _a11yHelper = AppAuthScreensA11yHelper(
-      config: widget.config.a11yConfig ?? const AppAuthA11yConfig(),
+    _a11yHelper = DSAuthScreensA11yHelper(
+      config: widget.config.a11yConfig ?? const DSAuthA11yConfig(),
     );
   }
 
   void _initializeAnimations() {
-    final animation = widget.config.animation ?? const AppAuthAnimation();
+    final animation = widget.config.animation ?? const DSAuthAnimation();
 
     _mainAnimationController = AnimationController(
       duration: animation.duration,
@@ -212,7 +212,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     ));
 
     // Iniciar animaciones según el estado
-    if (widget.config.state == AppAuthState.skeleton) {
+    if (widget.config.state == DSAuthState.skeleton) {
       _skeletonAnimationController.repeat(reverse: true);
     } else {
       _mainAnimationController.forward();
@@ -228,8 +228,8 @@ class _AppAuthScreensState extends State<AppAuthScreens>
 
       _focusNodes[field.key] = FocusNode();
 
-      if (field.type == AppAuthFieldType.password ||
-          field.type == AppAuthFieldType.confirmPassword) {
+      if (field.type == DSAuthFieldType.password ||
+          field.type == DSAuthFieldType.confirmPassword) {
         _obscureText[field.key] = true;
       }
 
@@ -271,7 +271,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     }
   }
 
-  void _onFieldChanged(AppAuthField field) {
+  void _onFieldChanged(DSAuthField field) {
     final value = _controllers[field.key]?.text ?? '';
     final newValues = Map<String, dynamic>.from(_formData.values);
     newValues[field.key] = value;
@@ -279,7 +279,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     _updateFormData(newValues);
 
     // Validar en tiempo real si está habilitado
-    final behavior = widget.config.behavior ?? const AppAuthBehavior();
+    final behavior = widget.config.behavior ?? const DSAuthBehavior();
     if (behavior.validateOnChange || behavior.enableRealTimeValidation) {
       _validateField(field);
     }
@@ -290,8 +290,8 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     }
   }
 
-  void _onFieldFocusChanged(AppAuthField field) {
-    final validation = widget.config.validation ?? const AppAuthValidation();
+  void _onFieldFocusChanged(DSAuthField field) {
+    final validation = widget.config.validation ?? const DSAuthValidation();
     if (_focusNodes[field.key]?.hasFocus == false && validation.enabled) {
       _validateField(field);
     }
@@ -311,19 +311,19 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     widget.onFormChanged?.call(newFormData);
   }
 
-  void _validateField(AppAuthField field) {
-    final validation = AppAuthUtils.validateField(
+  void _validateField(DSAuthField field) {
+    final validation = DSAuthUtils.validateField(
       field,
       _controllers[field.key]?.text,
       customMessages: widget.config.validation?.customMessages,
       customPatterns: widget.config.validation?.customPatterns,
-      confirmPasswordValue: field.type == AppAuthFieldType.confirmPassword
+      confirmPasswordValue: field.type == DSAuthFieldType.confirmPassword
           ? _controllers['password']?.text
           : null,
       validationConfig: widget.config.validation,
     );
 
-    final newValidations = Map<String, AppAuthFieldValidation>.from(_formData.validations);
+    final newValidations = Map<String, DSAuthFieldValidation>.from(_formData.validations);
     newValidations[field.key] = validation;
 
     final isFormValid = newValidations.values.every((v) => v.isValid);
@@ -347,7 +347,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
 
   void _clearFieldError(String fieldKey) {
     if (_formData.validations[fieldKey]?.isValid == false) {
-      final newValidations = Map<String, AppAuthFieldValidation>.from(_formData.validations);
+      final newValidations = Map<String, DSAuthFieldValidation>.from(_formData.validations);
       newValidations.remove(fieldKey);
 
       setState(() {
@@ -363,7 +363,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
 
     // Anunciar cambio para accesibilidad
     final isVisible = !(_obscureText[fieldKey] ?? false);
-    final a11yConfig = widget.config.a11yConfig ?? const AppAuthA11yConfig();
+    final a11yConfig = widget.config.a11yConfig ?? const DSAuthA11yConfig();
     final message = isVisible
         ? a11yConfig.showPasswordSemanticLabel
         : a11yConfig.hidePasswordSemanticLabel;
@@ -379,7 +379,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
 
     try {
       // Validar formulario completo
-      final behavior = widget.config.behavior ?? const AppAuthBehavior();
+      final behavior = widget.config.behavior ?? const DSAuthBehavior();
       if (behavior.validateOnSubmit) {
         if (!_formKey.currentState!.validate()) {
           _a11yHelper.announceError('Por favor corrige los errores en el formulario');
@@ -418,7 +418,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
       }
     } catch (e) {
       _a11yHelper.announceError('Error inesperado: $e');
-      _handleSubmissionError(AppAuthResult(
+      _handleSubmissionError(DSAuthResult(
         success: false,
         error: e.toString(),
       ));
@@ -430,8 +430,8 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     }
   }
 
-  void _handleSubmissionError(AppAuthResult result) {
-    final behavior = widget.config.behavior ?? const AppAuthBehavior();
+  void _handleSubmissionError(DSAuthResult result) {
+    final behavior = widget.config.behavior ?? const DSAuthBehavior();
 
     // Verificar límite de intentos
     if (_formData.attemptCount >= behavior.maxLoginAttempts) {
@@ -458,7 +458,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     }
   }
 
-  Future<void> _handleProviderAuth(AppAuthProvider provider) async {
+  Future<void> _handleProviderAuth(DSAuthProvider provider) async {
     if (_isSubmitting || widget.onProviderAuth == null) return;
 
     setState(() {
@@ -503,7 +503,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   void _startOtpCountdown() {
-    final behavior = widget.config.behavior ?? const AppAuthBehavior();
+    final behavior = widget.config.behavior ?? const DSAuthBehavior();
     _otpResendCountdown = behavior.otpResendCooldown.inSeconds;
 
     _otpResendTimer?.cancel();
@@ -526,8 +526,8 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   Widget _buildResponsiveLayout() {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final spacing = widget.config.spacing ?? const AppAuthSpacing();
-        final behavior = widget.config.behavior ?? const AppAuthBehavior();
+        final spacing = widget.config.spacing ?? const DSAuthSpacing();
+        final behavior = widget.config.behavior ?? const DSAuthBehavior();
 
         // Determinar layout según tamaño de pantalla
         final isDesktop = constraints.maxWidth > 1200;
@@ -556,15 +556,15 @@ class _AppAuthScreensState extends State<AppAuthScreens>
               child: _buildAnimatedContent(content),
             ),
           ),
-          resizeToAvoidBottomInset: behavior.keyboardBehavior != AppAuthKeyboardBehavior.alwaysVisible,
+          resizeToAvoidBottomInset: behavior.keyboardBehavior != DSAuthKeyboardBehavior.alwaysVisible,
         );
       },
     );
   }
 
   PreferredSizeWidget _buildAppBar() {
-    final colors = widget.config.colors ?? const AppAuthColors();
-    final a11yConfig = widget.config.a11yConfig ?? const AppAuthA11yConfig();
+    final colors = widget.config.colors ?? const DSAuthColors();
+    final a11yConfig = widget.config.a11yConfig ?? const DSAuthA11yConfig();
 
     return AppBar(
       backgroundColor: Colors.transparent,
@@ -585,18 +585,18 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   Color? _getBackgroundColor() {
-    final colors = widget.config.colors ?? const AppAuthColors();
+    final colors = widget.config.colors ?? const DSAuthColors();
     return colors.backgroundColor ?? colors.surfaceColor;
   }
 
   Widget _buildAnimatedContent(Widget content) {
-    final animation = widget.config.animation ?? const AppAuthAnimation();
+    final animation = widget.config.animation ?? const DSAuthAnimation();
 
     if (!animation.enabled) {
       return content;
     }
 
-    if (widget.config.state == AppAuthState.skeleton) {
+    if (widget.config.state == DSAuthState.skeleton) {
       return _buildSkeletonContent();
     }
 
@@ -653,8 +653,8 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   Widget _buildSkeletonItem({required double height, required double width}) {
-    final colors = widget.config.colors ?? const AppAuthColors();
-    final spacing = widget.config.spacing ?? const AppAuthSpacing();
+    final colors = widget.config.colors ?? const DSAuthColors();
+    final spacing = widget.config.spacing ?? const DSAuthSpacing();
 
     return Container(
       height: height,
@@ -714,8 +714,8 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   Widget _buildHeader() {
-    final colors = widget.config.colors ?? const AppAuthColors();
-    final spacing = widget.config.spacing ?? const AppAuthSpacing();
+    final colors = widget.config.colors ?? const DSAuthColors();
+    final spacing = widget.config.spacing ?? const DSAuthSpacing();
 
     return Padding(
       padding: spacing.headerPadding,
@@ -756,7 +756,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   Widget _buildForm() {
-    final spacing = widget.config.spacing ?? const AppAuthSpacing();
+    final spacing = widget.config.spacing ?? const DSAuthSpacing();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -769,29 +769,29 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     );
   }
 
-  Widget _buildField(AppAuthField field) {
+  Widget _buildField(DSAuthField field) {
     switch (field.type) {
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         return _buildOtpField(field);
-      case AppAuthFieldType.checkbox:
-      case AppAuthFieldType.terms:
-      case AppAuthFieldType.privacy:
+      case DSAuthFieldType.checkbox:
+      case DSAuthFieldType.terms:
+      case DSAuthFieldType.privacy:
         return _buildCheckboxField(field);
       default:
         return _buildTextFormField(field);
     }
   }
 
-  Widget _buildTextFormField(AppAuthField field) {
-    final colors = widget.config.colors ?? const AppAuthColors();
-    final spacing = widget.config.spacing ?? const AppAuthSpacing();
+  Widget _buildTextFormField(DSAuthField field) {
+    final colors = widget.config.colors ?? const DSAuthColors();
+    final spacing = widget.config.spacing ?? const DSAuthSpacing();
     final validation = _formData.validations[field.key];
     final hasError = validation?.isValid == false;
 
     return TextFormField(
       controller: _controllers[field.key],
       focusNode: _focusNodes[field.key],
-      enabled: field.enabled && widget.config.state != AppAuthState.disabled,
+      enabled: field.enabled && widget.config.state != DSAuthState.disabled,
       readOnly: field.readonly,
       maxLines: field.maxLines,
       maxLength: field.maxLength,
@@ -861,12 +861,12 @@ class _AppAuthScreensState extends State<AppAuthScreens>
             : colors.disabledTextColor,
       ),
       validator: field.required ? (value) {
-        final validation = AppAuthUtils.validateField(
+        final validation = DSAuthUtils.validateField(
           field,
           value,
           customMessages: widget.config.validation?.customMessages,
           customPatterns: widget.config.validation?.customPatterns,
-          confirmPasswordValue: field.type == AppAuthFieldType.confirmPassword
+          confirmPasswordValue: field.type == DSAuthFieldType.confirmPassword
               ? _controllers['password']?.text
               : null,
           validationConfig: widget.config.validation,
@@ -877,12 +877,12 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     );
   }
 
-  Widget? _buildSuffixIcon(AppAuthField field) {
-    final colors = widget.config.colors ?? const AppAuthColors();
-    final a11yConfig = widget.config.a11yConfig ?? const AppAuthA11yConfig();
+  Widget? _buildSuffixIcon(DSAuthField field) {
+    final colors = widget.config.colors ?? const DSAuthColors();
+    final a11yConfig = widget.config.a11yConfig ?? const DSAuthA11yConfig();
 
-    if (field.type == AppAuthFieldType.password ||
-        field.type == AppAuthFieldType.confirmPassword) {
+    if (field.type == DSAuthFieldType.password ||
+        field.type == DSAuthFieldType.confirmPassword) {
       final isObscured = _obscureText[field.key] ?? false;
 
       return IconButton(
@@ -907,10 +907,10 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     return null;
   }
 
-  Widget _buildOtpField(AppAuthField field) {
-    final spacing = widget.config.spacing ?? const AppAuthSpacing();
-    final behavior = widget.config.behavior ?? const AppAuthBehavior();
-    final colors = widget.config.colors ?? const AppAuthColors();
+  Widget _buildOtpField(DSAuthField field) {
+    final spacing = widget.config.spacing ?? const DSAuthSpacing();
+    final behavior = widget.config.behavior ?? const DSAuthBehavior();
+    final colors = widget.config.colors ?? const DSAuthColors();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -965,7 +965,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
           }),
         ),
 
-        if (widget.config.variant == AppAuthVariant.otp) ...[
+        if (widget.config.variant == DSAuthVariant.otp) ...[
           _buildSpacing(16),
           _buildResendOtpButton(),
         ],
@@ -973,8 +973,8 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     );
   }
 
-  Widget _buildCheckboxField(AppAuthField field) {
-    final colors = widget.config.colors ?? const AppAuthColors();
+  Widget _buildCheckboxField(DSAuthField field) {
+    final colors = widget.config.colors ?? const DSAuthColors();
     final validation = _formData.validations[field.key];
     final hasError = validation?.isValid == false;
     final isChecked = _formData.values[field.key] == true;
@@ -1033,8 +1033,8 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   Widget _buildResendOtpButton() {
-    final colors = widget.config.colors ?? const AppAuthColors();
-    final a11yConfig = widget.config.a11yConfig ?? const AppAuthA11yConfig();
+    final colors = widget.config.colors ?? const DSAuthColors();
+    final a11yConfig = widget.config.a11yConfig ?? const DSAuthA11yConfig();
     final canResend = _otpResendCountdown <= 0 && !_isSubmitting;
 
     return TextButton(
@@ -1053,7 +1053,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   Widget _buildActions() {
-    final spacing = widget.config.spacing ?? const AppAuthSpacing();
+    final spacing = widget.config.spacing ?? const DSAuthSpacing();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -1067,23 +1067,23 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   Widget _buildPrimaryButton() {
-    final colors = widget.config.colors ?? const AppAuthColors();
-    final spacing = widget.config.spacing ?? const AppAuthSpacing();
-    final a11yConfig = widget.config.a11yConfig ?? const AppAuthA11yConfig();
+    final colors = widget.config.colors ?? const DSAuthColors();
+    final spacing = widget.config.spacing ?? const DSAuthSpacing();
+    final a11yConfig = widget.config.a11yConfig ?? const DSAuthA11yConfig();
     final isEnabled = _canSubmit() && !_isSubmitting;
 
     String buttonText;
     switch (widget.config.variant) {
-      case AppAuthVariant.signIn:
+      case DSAuthVariant.signIn:
         buttonText = 'Iniciar Sesión';
         break;
-      case AppAuthVariant.signUp:
+      case DSAuthVariant.signUp:
         buttonText = a11yConfig.createAccountSemanticLabel;
         break;
-      case AppAuthVariant.otp:
+      case DSAuthVariant.otp:
         buttonText = 'Verificar';
         break;
-      case AppAuthVariant.sso:
+      case DSAuthVariant.sso:
         buttonText = 'Continuar';
         break;
     }
@@ -1117,7 +1117,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   Widget _buildLoadingIndicator() {
-    final colors = widget.config.colors ?? const AppAuthColors();
+    final colors = widget.config.colors ?? const DSAuthColors();
 
     return AnimatedBuilder(
       animation: _loadingAnimation,
@@ -1142,9 +1142,9 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   Widget _buildSecondaryActions() {
     return Column(
       children: [
-        if (widget.config.variant == AppAuthVariant.signIn) ...[
+        if (widget.config.variant == DSAuthVariant.signIn) ...[
           TextButton(
-            onPressed: () => _navigateTo(AppAuthVariant.signUp),
+            onPressed: () => _navigateTo(DSAuthVariant.signUp),
             child: Text('¿No tienes cuenta? Regístrate'),
           ),
           TextButton(
@@ -1155,9 +1155,9 @@ class _AppAuthScreensState extends State<AppAuthScreens>
           ),
         ],
 
-        if (widget.config.variant == AppAuthVariant.signUp) ...[
+        if (widget.config.variant == DSAuthVariant.signUp) ...[
           TextButton(
-            onPressed: () => _navigateTo(AppAuthVariant.signIn),
+            onPressed: () => _navigateTo(DSAuthVariant.signIn),
             child: Text('¿Ya tienes cuenta? Inicia sesión'),
           ),
         ],
@@ -1166,8 +1166,8 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   Widget _buildDivider() {
-    final colors = widget.config.colors ?? const AppAuthColors();
-    final spacing = widget.config.spacing ?? const AppAuthSpacing();
+    final colors = widget.config.colors ?? const DSAuthColors();
+    final spacing = widget.config.spacing ?? const DSAuthSpacing();
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: spacing.sectionSpacing),
@@ -1200,7 +1200,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   Widget _buildProviders() {
-    final spacing = widget.config.spacing ?? const AppAuthSpacing();
+    final spacing = widget.config.spacing ?? const DSAuthSpacing();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -1213,10 +1213,10 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     );
   }
 
-  Widget _buildProviderButton(AppAuthProvider provider) {
-    final colors = widget.config.colors ?? const AppAuthColors();
-    final spacing = widget.config.spacing ?? const AppAuthSpacing();
-    final a11yConfig = widget.config.a11yConfig ?? const AppAuthA11yConfig();
+  Widget _buildProviderButton(DSAuthProvider provider) {
+    final colors = widget.config.colors ?? const DSAuthColors();
+    final spacing = widget.config.spacing ?? const DSAuthSpacing();
+    final a11yConfig = widget.config.a11yConfig ?? const DSAuthA11yConfig();
     final isEnabled = provider.enabled && !_isSubmitting;
 
     return SizedBox(
@@ -1260,23 +1260,23 @@ class _AppAuthScreensState extends State<AppAuthScreens>
 
   // Métodos auxiliares
 
-  TextInputType _getKeyboardType(AppAuthFieldType type) {
+  TextInputType _getKeyboardType(DSAuthFieldType type) {
     switch (type) {
-      case AppAuthFieldType.email:
+      case DSAuthFieldType.email:
         return TextInputType.emailAddress;
-      case AppAuthFieldType.phone:
+      case DSAuthFieldType.phone:
         return TextInputType.phone;
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         return TextInputType.number;
       default:
         return TextInputType.text;
     }
   }
 
-  TextInputAction _getTextInputAction(AppAuthField field) {
+  TextInputAction _getTextInputAction(DSAuthField field) {
     final fieldIndex = widget.fields.indexOf(field);
     final isLastField = fieldIndex == widget.fields.length - 1;
-    final behavior = widget.config.behavior ?? const AppAuthBehavior();
+    final behavior = widget.config.behavior ?? const DSAuthBehavior();
 
     if (behavior.focusNextFieldOnEnter && !isLastField) {
       return TextInputAction.next;
@@ -1289,25 +1289,25 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     return TextInputAction.next;
   }
 
-  List<String>? _getAutofillHints(AppAuthFieldType type) {
-    final behavior = widget.config.behavior ?? const AppAuthBehavior();
+  List<String>? _getAutofillHints(DSAuthFieldType type) {
+    final behavior = widget.config.behavior ?? const DSAuthBehavior();
     if (!behavior.enableAutofill) return null;
 
     switch (type) {
-      case AppAuthFieldType.email:
+      case DSAuthFieldType.email:
         return [AutofillHints.email];
-      case AppAuthFieldType.password:
+      case DSAuthFieldType.password:
         return [AutofillHints.password];
-      case AppAuthFieldType.phone:
+      case DSAuthFieldType.phone:
         return [AutofillHints.telephoneNumber];
-      case AppAuthFieldType.text:
+      case DSAuthFieldType.text:
         return [AutofillHints.name];
       default:
         return null;
     }
   }
 
-  List<TextInputFormatter> _getInputFormatters(AppAuthField field) {
+  List<TextInputFormatter> _getInputFormatters(DSAuthField field) {
     final formatters = <TextInputFormatter>[];
 
     if (field.maxLength != null) {
@@ -1315,10 +1315,10 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     }
 
     switch (field.type) {
-      case AppAuthFieldType.phone:
+      case DSAuthFieldType.phone:
         formatters.add(FilteringTextInputFormatter.digitsOnly);
         break;
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         formatters.add(FilteringTextInputFormatter.digitsOnly);
         break;
       default:
@@ -1328,8 +1328,8 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     return formatters;
   }
 
-  void _handleFieldSubmitted(AppAuthField field) {
-    final behavior = widget.config.behavior ?? const AppAuthBehavior();
+  void _handleFieldSubmitted(DSAuthField field) {
+    final behavior = widget.config.behavior ?? const DSAuthBehavior();
 
     if (behavior.submitOnEnter && _canSubmit()) {
       _submitForm();
@@ -1352,7 +1352,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     }
 
     // Auto-submit si está completo
-    final behavior = widget.config.behavior ?? const AppAuthBehavior();
+    final behavior = widget.config.behavior ?? const DSAuthBehavior();
     if (behavior.autoSubmitOtp) {
       // Verificar si todos los campos OTP están llenos
       // Implementar lógica de auto-submit
@@ -1360,7 +1360,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
   }
 
   bool _canSubmit() {
-    final behavior = widget.config.behavior ?? const AppAuthBehavior();
+    final behavior = widget.config.behavior ?? const DSAuthBehavior();
 
     if (!behavior.validateOnSubmit) {
       return true;
@@ -1380,7 +1380,7 @@ class _AppAuthScreensState extends State<AppAuthScreens>
     return _formData.validations.values.every((v) => v.isValid);
   }
 
-  void _navigateTo(AppAuthVariant variant) {
+  void _navigateTo(DSAuthVariant variant) {
     widget.onNavigate?.call(widget.config.variant, variant);
   }
 }

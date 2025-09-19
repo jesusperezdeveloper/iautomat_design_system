@@ -5,24 +5,24 @@ import 'package:iautomat_design_system/src/components/command_palette/app_comman
 import 'package:iautomat_design_system/src/components/command_palette/command_palette_config.dart';
 
 void main() {
-  group('AppCommandPalette', () {
+  group('DSCommandPalette', () {
     group('Widget Tests', () {
       testWidgets('renders correctly with default configuration',
           (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [
-                  AppCommandResult(id: 'test1', title: 'Test Command 1'),
-                  AppCommandResult(id: 'test2', title: 'Test Command 2'),
+                  DSCommandResult(id: 'test1', title: 'Test Command 1'),
+                  DSCommandResult(id: 'test2', title: 'Test Command 2'),
                 ],
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCommandPalette), findsOneWidget);
+        expect(find.byType(DSCommandPalette), findsOneWidget);
         expect(find.byType(TextField), findsOneWidget);
         expect(find.text('Test Command 1'), findsOneWidget);
         expect(find.text('Test Command 2'), findsOneWidget);
@@ -32,17 +32,17 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette.globalSearch(
+              body: DSCommandPalette.globalSearch(
                 results: [
-                  AppCommandResult(id: 'search1', title: 'Search Result 1'),
-                  AppCommandResult(id: 'search2', title: 'Search Result 2'),
+                  DSCommandResult(id: 'search1', title: 'Search Result 1'),
+                  DSCommandResult(id: 'search2', title: 'Search Result 2'),
                 ],
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCommandPalette), findsOneWidget);
+        expect(find.byType(DSCommandPalette), findsOneWidget);
         expect(find.text('Search Result 1'), findsOneWidget);
         expect(find.text('Search Result 2'), findsOneWidget);
       });
@@ -51,17 +51,17 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette.actions(
+              body: DSCommandPalette.actions(
                 results: [
-                  AppCommandResult(id: 'action1', title: 'Action 1'),
-                  AppCommandResult(id: 'action2', title: 'Action 2'),
+                  DSCommandResult(id: 'action1', title: 'Action 1'),
+                  DSCommandResult(id: 'action2', title: 'Action 2'),
                 ],
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCommandPalette), findsOneWidget);
+        expect(find.byType(DSCommandPalette), findsOneWidget);
         expect(find.text('Action 1'), findsOneWidget);
         expect(find.text('Action 2'), findsOneWidget);
       });
@@ -70,9 +70,9 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [
-                  AppCommandResult(
+                  DSCommandResult(
                     id: 'icon1',
                     title: 'With Icon',
                     icon: Icons.star,
@@ -91,9 +91,9 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [],
-                config: AppCommandPaletteConfig(
+                config: DSCommandPaletteConfig(
                   placeholder: 'Custom placeholder',
                 ),
               ),
@@ -110,11 +110,11 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [],
                 showRecent: true,
                 recentCommands: [
-                  AppCommandResult(id: 'recent1', title: 'Recent Command'),
+                  DSCommandResult(id: 'recent1', title: 'Recent Command'),
                 ],
               ),
             ),
@@ -130,9 +130,9 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [],
-                state: AppCommandPaletteState.loading,
+                state: DSCommandPaletteState.loading,
               ),
             ),
           ),
@@ -145,10 +145,10 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [],
-                state: AppCommandPaletteState.skeleton,
-                config: AppCommandPaletteConfig(
+                state: DSCommandPaletteState.skeleton,
+                config: DSCommandPaletteConfig(
                   skeletonItemCount: 3,
                 ),
               ),
@@ -157,14 +157,14 @@ void main() {
         );
 
         await tester.pump();
-        expect(find.byType(AppCommandPalette), findsOneWidget);
+        expect(find.byType(DSCommandPalette), findsOneWidget);
       });
 
       testWidgets('shows empty state when no results', (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [],
                 showRecent: false,
               ),
@@ -179,9 +179,9 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [
-                  AppCommandResult(id: 'test', title: 'Test'),
+                  DSCommandResult(id: 'test', title: 'Test'),
                 ],
                 isVisible: false,
               ),
@@ -201,7 +201,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: const [],
                 onQuery: (query) {
                   queriedText = query;
@@ -219,14 +219,14 @@ void main() {
       });
 
       testWidgets('calls onInvoke when result is tapped', (tester) async {
-        AppCommandResult? invokedResult;
+        DSCommandResult? invokedResult;
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: const [
-                  AppCommandResult(id: 'test', title: 'Test Command'),
+                  DSCommandResult(id: 'test', title: 'Test Command'),
                 ],
                 onInvoke: (result) {
                   invokedResult = result;
@@ -247,10 +247,10 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [
-                  AppCommandResult(id: 'test1', title: 'Test 1'),
-                  AppCommandResult(id: 'test2', title: 'Test 2'),
+                  DSCommandResult(id: 'test1', title: 'Test 1'),
+                  DSCommandResult(id: 'test2', title: 'Test 2'),
                 ],
               ),
             ),
@@ -266,7 +266,7 @@ void main() {
         await tester.pumpAndSettle();
 
         // The first item should be selected by default
-        expect(find.byType(AppCommandPalette), findsOneWidget);
+        expect(find.byType(DSCommandPalette), findsOneWidget);
       });
 
       testWidgets('handles escape key to close', (tester) async {
@@ -275,7 +275,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: const [],
                 onClose: () {
                   closeCalled = true;
@@ -298,7 +298,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [],
                 initialQuery: 'test query',
               ),
@@ -324,9 +324,9 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [],
-                config: AppCommandPaletteConfig(
+                config: DSCommandPaletteConfig(
                   maxWidth: 800,
                   maxHeight: 600,
                   backgroundColor: Colors.red,
@@ -337,31 +337,31 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppCommandPalette), findsOneWidget);
+        expect(find.byType(DSCommandPalette), findsOneWidget);
       });
 
       testWidgets('uses size-specific configuration', (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [],
-                config: AppCommandPaletteConfig.large,
+                config: DSCommandPaletteConfig.large,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCommandPalette), findsOneWidget);
+        expect(find.byType(DSCommandPalette), findsOneWidget);
       });
 
       testWidgets('shows shortcuts when enabled', (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [
-                  AppCommandResult(
+                  DSCommandResult(
                     id: 'shortcut',
                     title: 'With Shortcut',
                     shortcut: [
@@ -370,7 +370,7 @@ void main() {
                     ],
                   ),
                 ],
-                config: AppCommandPaletteConfig(
+                config: DSCommandPaletteConfig(
                   showResultShortcuts: true,
                 ),
               ),
@@ -387,11 +387,11 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [
-                  AppCommandResult(id: '1', title: 'Create File'),
-                  AppCommandResult(id: '2', title: 'Open File'),
-                  AppCommandResult(id: '3', title: 'Save Document'),
+                  DSCommandResult(id: '1', title: 'Create File'),
+                  DSCommandResult(id: '2', title: 'Open File'),
+                  DSCommandResult(id: '3', title: 'Save Document'),
                 ],
               ),
             ),
@@ -413,10 +413,10 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [
-                  AppCommandResult(id: '1', title: 'Command 1'),
-                  AppCommandResult(id: '2', title: 'Command 2'),
+                  DSCommandResult(id: '1', title: 'Command 1'),
+                  DSCommandResult(id: '2', title: 'Command 2'),
                 ],
                 showRecent: false,
               ),
@@ -434,9 +434,9 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [
-                  AppCommandResult(id: 'rtl', title: 'RTL Command'),
+                  DSCommandResult(id: 'rtl', title: 'RTL Command'),
                 ],
                 textDirection: TextDirection.rtl,
               ),
@@ -451,9 +451,9 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppCommandPalette(
+              body: DSCommandPalette(
                 results: [
-                  AppCommandResult(id: 'focus', title: 'Focus Test'),
+                  DSCommandResult(id: 'focus', title: 'Focus Test'),
                 ],
               ),
             ),
@@ -472,9 +472,9 @@ void main() {
 
     group('Overlay Tests', () {
       testWidgets('shows overlay correctly', (tester) async {
-        final palette = AppCommandPalette(
+        final palette = DSCommandPalette(
           results: const [
-            AppCommandResult(id: 'overlay', title: 'Overlay Test'),
+            DSCommandResult(id: 'overlay', title: 'Overlay Test'),
           ],
           onClose: () {},
         );
@@ -486,7 +486,7 @@ void main() {
                 return Scaffold(
                   body: ElevatedButton(
                     onPressed: () {
-                      AppCommandPalette.showOverlay(
+                      DSCommandPalette.showOverlay(
                         context: context,
                         palette: palette,
                       );
@@ -509,25 +509,25 @@ void main() {
     });
   });
 
-  group('AppCommandResult', () {
+  group('DSCommandResult', () {
     test('creates result correctly', () {
-      const result = AppCommandResult(
+      const result = DSCommandResult(
         id: 'test',
         title: 'Test Command',
         description: 'Test description',
         icon: Icons.star,
-        type: AppCommandResultType.command,
+        type: DSCommandResultType.command,
       );
 
       expect(result.id, equals('test'));
       expect(result.title, equals('Test Command'));
       expect(result.description, equals('Test description'));
       expect(result.icon, equals(Icons.star));
-      expect(result.type, equals(AppCommandResultType.command));
+      expect(result.type, equals(DSCommandResultType.command));
     });
 
     test('matches query correctly', () {
-      const result = AppCommandResult(
+      const result = DSCommandResult(
         id: 'test',
         title: 'Create New File',
         description: 'Creates a new document',
@@ -543,7 +543,7 @@ void main() {
     });
 
     test('calculates fuzzy score correctly', () {
-      const result = AppCommandResult(
+      const result = DSCommandResult(
         id: 'test',
         title: 'Create New File',
         description: 'Creates a new document',
@@ -564,62 +564,62 @@ void main() {
     });
 
     test('creates navigation result with factory', () {
-      final result = AppCommandResult.navigation(
+      final result = DSCommandResult.navigation(
         id: 'nav',
         title: 'Navigate',
         description: 'Go somewhere',
       );
 
-      expect(result.type, equals(AppCommandResultType.navigation));
+      expect(result.type, equals(DSCommandResultType.navigation));
       expect(result.icon, equals(Icons.navigation));
     });
 
     test('creates action result with factory', () {
-      final result = AppCommandResult.action(
+      final result = DSCommandResult.action(
         id: 'action',
         title: 'Do Something',
         description: 'Perform action',
       );
 
-      expect(result.type, equals(AppCommandResultType.command));
+      expect(result.type, equals(DSCommandResultType.command));
       expect(result.icon, equals(Icons.flash_on));
     });
 
     test('creates search result with factory', () {
-      final result = AppCommandResult.search(
+      final result = DSCommandResult.search(
         id: 'search',
         title: 'Search Result',
         score: 0.8,
       );
 
-      expect(result.type, equals(AppCommandResultType.search));
+      expect(result.type, equals(DSCommandResultType.search));
       expect(result.icon, equals(Icons.search));
       expect(result.score, equals(0.8));
     });
 
     test('gets default icon for result type', () {
-      const commandResult = AppCommandResult(
+      const commandResult = DSCommandResult(
         id: 'cmd',
         title: 'Command',
-        type: AppCommandResultType.command,
+        type: DSCommandResultType.command,
       );
       expect(commandResult.defaultIcon, equals(Icons.flash_on));
 
-      const navResult = AppCommandResult(
+      const navResult = DSCommandResult(
         id: 'nav',
         title: 'Navigation',
-        type: AppCommandResultType.navigation,
+        type: DSCommandResultType.navigation,
       );
       expect(navResult.defaultIcon, equals(Icons.navigation));
     });
   });
 
-  group('AppCommandPaletteData', () {
+  group('DSCommandPaletteData', () {
     test('identifies selected result correctly', () {
-      const data = AppCommandPaletteData(
+      const data = DSCommandPaletteData(
         filteredResults: [
-          AppCommandResult(id: 'result1', title: 'Result 1'),
-          AppCommandResult(id: 'result2', title: 'Result 2'),
+          DSCommandResult(id: 'result1', title: 'Result 1'),
+          DSCommandResult(id: 'result2', title: 'Result 2'),
         ],
         selectedIndex: 1,
       );
@@ -628,9 +628,9 @@ void main() {
     });
 
     test('returns null when no result selected', () {
-      const data = AppCommandPaletteData(
+      const data = DSCommandPaletteData(
         filteredResults: [
-          AppCommandResult(id: 'result1', title: 'Result 1'),
+          DSCommandResult(id: 'result1', title: 'Result 1'),
         ],
         selectedIndex: -1,
       );
@@ -639,53 +639,53 @@ void main() {
     });
 
     test('identifies if has results', () {
-      const dataWithResults = AppCommandPaletteData(
+      const dataWithResults = DSCommandPaletteData(
         filteredResults: [
-          AppCommandResult(id: 'result1', title: 'Result 1'),
+          DSCommandResult(id: 'result1', title: 'Result 1'),
         ],
       );
       expect(dataWithResults.hasResults, isTrue);
 
-      const dataWithoutResults = AppCommandPaletteData(
+      const dataWithoutResults = DSCommandPaletteData(
         filteredResults: [],
       );
       expect(dataWithoutResults.hasResults, isFalse);
     });
 
     test('gets display results correctly', () {
-      const dataWithQuery = AppCommandPaletteData(
+      const dataWithQuery = DSCommandPaletteData(
         query: 'test',
         filteredResults: [
-          AppCommandResult(id: 'filtered', title: 'Filtered'),
+          DSCommandResult(id: 'filtered', title: 'Filtered'),
         ],
         recentCommands: [
-          AppCommandResult(id: 'recent', title: 'Recent'),
+          DSCommandResult(id: 'recent', title: 'Recent'),
         ],
       );
       expect(dataWithQuery.displayResults.first.id, equals('filtered'));
 
-      const dataWithoutQuery = AppCommandPaletteData(
+      const dataWithoutQuery = DSCommandPaletteData(
         query: '',
         filteredResults: [
-          AppCommandResult(id: 'filtered', title: 'Filtered'),
+          DSCommandResult(id: 'filtered', title: 'Filtered'),
         ],
         recentCommands: [
-          AppCommandResult(id: 'recent', title: 'Recent'),
+          DSCommandResult(id: 'recent', title: 'Recent'),
         ],
       );
       expect(dataWithoutQuery.displayResults.first.id, equals('recent'));
     });
   });
 
-  group('AppCommandPaletteUtils', () {
+  group('DSCommandPaletteUtils', () {
     test('filters results correctly', () {
       const results = [
-        AppCommandResult(id: '1', title: 'Create File'),
-        AppCommandResult(id: '2', title: 'Open File'),
-        AppCommandResult(id: '3', title: 'Save Document'),
+        DSCommandResult(id: '1', title: 'Create File'),
+        DSCommandResult(id: '2', title: 'Open File'),
+        DSCommandResult(id: '3', title: 'Save Document'),
       ];
 
-      final filtered = AppCommandPaletteUtils.filterResults(
+      final filtered = DSCommandPaletteUtils.filterResults(
         results,
         'file',
         maxResults: 10,
@@ -697,12 +697,12 @@ void main() {
 
     test('adds command to recent history', () {
       const recentCommands = [
-        AppCommandResult(id: 'old', title: 'Old Command'),
+        DSCommandResult(id: 'old', title: 'Old Command'),
       ];
 
-      const newCommand = AppCommandResult(id: 'new', title: 'New Command');
+      const newCommand = DSCommandResult(id: 'new', title: 'New Command');
 
-      final updated = AppCommandPaletteUtils.addToRecent(
+      final updated = DSCommandPaletteUtils.addToRecent(
         recentCommands,
         newCommand,
         5,
@@ -714,7 +714,7 @@ void main() {
 
     test('formats keyboard shortcuts correctly', () {
       final shortcut = [LogicalKeyboardKey.meta, LogicalKeyboardKey.keyN];
-      final formatted = AppCommandPaletteUtils.formatShortcut(shortcut);
+      final formatted = DSCommandPaletteUtils.formatShortcut(shortcut);
 
       expect(formatted, contains('⌘'));
       expect(formatted, contains('N'));
@@ -722,30 +722,30 @@ void main() {
 
     test('creates data from command list', () {
       final commands = ['Command 1', 'Command 2'];
-      final data = AppCommandPaletteUtils.fromCommandList(commands);
+      final data = DSCommandPaletteUtils.fromCommandList(commands);
 
       expect(data.results.length, equals(2));
       expect(data.results.first.title, equals('Command 1'));
     });
 
     test('validates data correctly', () {
-      const validData = AppCommandPaletteData(
+      const validData = DSCommandPaletteData(
         filteredResults: [
-          AppCommandResult(id: 'valid', title: 'Valid'),
+          DSCommandResult(id: 'valid', title: 'Valid'),
         ],
         selectedIndex: 0,
       );
-      expect(AppCommandPaletteUtils.validateData(validData), isTrue);
+      expect(DSCommandPaletteUtils.validateData(validData), isTrue);
 
-      const invalidData = AppCommandPaletteData(
+      const invalidData = DSCommandPaletteData(
         filteredResults: [],
         selectedIndex: 5, // Out of bounds
       );
-      expect(AppCommandPaletteUtils.validateData(invalidData), isFalse);
+      expect(DSCommandPaletteUtils.validateData(invalidData), isFalse);
     });
 
     test('highlights matches correctly', () {
-      final spans = AppCommandPaletteUtils.highlightMatches(
+      final spans = DSCommandPaletteUtils.highlightMatches(
         'Create New File',
         'new',
         const TextStyle(),

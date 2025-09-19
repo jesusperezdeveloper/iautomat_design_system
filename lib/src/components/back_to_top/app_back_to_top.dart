@@ -5,17 +5,17 @@ import 'app_back_to_top_config.dart';
 import 'app_back_to_top_platform_adapter.dart';
 import 'app_back_to_top_a11y_helper.dart';
 
-class AppBackToTop extends StatefulWidget {
+class DSBackToTop extends StatefulWidget {
   final ScrollController? scrollController;
-  final AppBackToTopConfig? config;
+  final DSBackToTopConfig? config;
   final bool interactive;
   final VoidCallback? onPressed;
-  final ValueChanged<AppBackToTopState>? onStateChanged;
+  final ValueChanged<DSBackToTopState>? onStateChanged;
   final IconData? icon;
   final Widget? child;
   final bool visible;
 
-  const AppBackToTop({
+  const DSBackToTop({
     super.key,
     this.scrollController,
     this.config,
@@ -27,7 +27,7 @@ class AppBackToTop extends StatefulWidget {
     this.visible = true,
   });
 
-  const AppBackToTop.web({
+  const DSBackToTop.web({
     super.key,
     this.scrollController,
     this.config,
@@ -40,14 +40,14 @@ class AppBackToTop extends StatefulWidget {
   });
 
   @override
-  State<AppBackToTop> createState() => _AppBackToTopState();
+  State<DSBackToTop> createState() => _DSBackToTopState();
 }
 
-class _AppBackToTopState extends State<AppBackToTop>
+class _DSBackToTopState extends State<DSBackToTop>
     with TickerProviderStateMixin {
-  late final AppBackToTopPlatformAdapter _platformAdapter;
-  late final AppBackToTopA11yHelper _a11yHelper;
-  late AppBackToTopConfig _effectiveConfig;
+  late final DSBackToTopPlatformAdapter _platformAdapter;
+  late final DSBackToTopA11yHelper _a11yHelper;
+  late DSBackToTopConfig _effectiveConfig;
   late AnimationController _fadeController;
   late AnimationController _scaleController;
   late Animation<double> _fadeAnimation;
@@ -57,7 +57,7 @@ class _AppBackToTopState extends State<AppBackToTop>
   StreamSubscription<double>? _scrollSubscription;
   Timer? _autoHideTimer;
 
-  AppBackToTopState _currentState = AppBackToTopState.defaultState;
+  DSBackToTopState _currentState = DSBackToTopState.defaultState;
   bool _isVisible = false;
   bool _isHovered = false;
   double _lastScrollPosition = 0.0;
@@ -66,8 +66,8 @@ class _AppBackToTopState extends State<AppBackToTop>
   @override
   void initState() {
     super.initState();
-    _platformAdapter = AppBackToTopPlatformAdapter();
-    _a11yHelper = AppBackToTopA11yHelper();
+    _platformAdapter = DSBackToTopPlatformAdapter();
+    _a11yHelper = DSBackToTopA11yHelper();
   }
 
   @override
@@ -80,8 +80,8 @@ class _AppBackToTopState extends State<AppBackToTop>
 
   void _initializeConfig() {
     final baseConfig = _platformAdapter.isWeb
-        ? AppBackToTopDefaults.webOptimized
-        : AppBackToTopDefaults.mobileOptimized;
+        ? DSBackToTopDefaults.webOptimized
+        : DSBackToTopDefaults.mobileOptimized;
 
     _effectiveConfig = widget.config != null
         ? baseConfig.copyWith(
@@ -97,12 +97,12 @@ class _AppBackToTopState extends State<AppBackToTop>
         : baseConfig;
 
     _effectiveConfig = _effectiveConfig.copyWith(
-      colors: _effectiveConfig.colors ?? AppBackToTopDefaults.colors,
-      spacing: _effectiveConfig.spacing ?? AppBackToTopDefaults.spacing,
-      typography: _effectiveConfig.typography ?? AppBackToTopDefaults.typography,
-      animations: _effectiveConfig.animations ?? AppBackToTopDefaults.animations,
-      accessibility: _effectiveConfig.accessibility ?? AppBackToTopDefaults.accessibility,
-      behavior: _effectiveConfig.behavior ?? AppBackToTopDefaults.behavior,
+      colors: _effectiveConfig.colors ?? DSBackToTopDefaults.colors,
+      spacing: _effectiveConfig.spacing ?? DSBackToTopDefaults.spacing,
+      typography: _effectiveConfig.typography ?? DSBackToTopDefaults.typography,
+      animations: _effectiveConfig.animations ?? DSBackToTopDefaults.animations,
+      accessibility: _effectiveConfig.accessibility ?? DSBackToTopDefaults.accessibility,
+      behavior: _effectiveConfig.behavior ?? DSBackToTopDefaults.behavior,
     );
 
     // Apply platform-specific adjustments
@@ -153,7 +153,7 @@ class _AppBackToTopState extends State<AppBackToTop>
   }
 
   @override
-  void didUpdateWidget(AppBackToTop oldWidget) {
+  void didUpdateWidget(DSBackToTop oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.scrollController != widget.scrollController) {
@@ -236,7 +236,7 @@ class _AppBackToTopState extends State<AppBackToTop>
     });
   }
 
-  void _handleStateChange(AppBackToTopState newState) {
+  void _handleStateChange(DSBackToTopState newState) {
     if (_currentState != newState) {
       setState(() {
         _currentState = newState;
@@ -247,9 +247,9 @@ class _AppBackToTopState extends State<AppBackToTop>
   }
 
   Future<void> _handlePressed() async {
-    if (!widget.interactive || _currentState == AppBackToTopState.disabled) return;
+    if (!widget.interactive || _currentState == DSBackToTopState.disabled) return;
 
-    _handleStateChange(AppBackToTopState.pressed);
+    _handleStateChange(DSBackToTopState.pressed);
 
     final behavior = _effectiveConfig.behavior!;
     final animations = _effectiveConfig.animations!;
@@ -261,7 +261,7 @@ class _AppBackToTopState extends State<AppBackToTop>
 
     // Scroll to top
     if (_scrollController != null) {
-      _handleStateChange(AppBackToTopState.loading);
+      _handleStateChange(DSBackToTopState.loading);
 
       try {
         if (behavior.smoothScrolling) {
@@ -280,8 +280,8 @@ class _AppBackToTopState extends State<AppBackToTop>
       } finally {
         if (mounted) {
           _handleStateChange(_isHovered
-            ? AppBackToTopState.hover
-            : AppBackToTopState.defaultState);
+            ? DSBackToTopState.hover
+            : DSBackToTopState.defaultState);
         }
       }
     }
@@ -293,8 +293,8 @@ class _AppBackToTopState extends State<AppBackToTop>
     Future.delayed(const Duration(milliseconds: 100), () {
       if (mounted) {
         _handleStateChange(_isHovered
-          ? AppBackToTopState.hover
-          : AppBackToTopState.defaultState);
+          ? DSBackToTopState.hover
+          : DSBackToTopState.defaultState);
       }
     });
   }
@@ -305,7 +305,7 @@ class _AppBackToTopState extends State<AppBackToTop>
     setState(() {
       _isHovered = true;
     });
-    _handleStateChange(AppBackToTopState.hover);
+    _handleStateChange(DSBackToTopState.hover);
   }
 
   void _handleHoverExit() {
@@ -314,15 +314,15 @@ class _AppBackToTopState extends State<AppBackToTop>
     setState(() {
       _isHovered = false;
     });
-    _handleStateChange(AppBackToTopState.defaultState);
+    _handleStateChange(DSBackToTopState.defaultState);
   }
 
   void _handleFocusChange(bool hasFocus) {
     if (!widget.interactive) return;
 
     _handleStateChange(hasFocus
-      ? AppBackToTopState.focus
-      : AppBackToTopState.defaultState);
+      ? DSBackToTopState.focus
+      : DSBackToTopState.defaultState);
   }
 
   Color _getBackgroundColor() {
@@ -332,29 +332,29 @@ class _AppBackToTopState extends State<AppBackToTop>
     Color baseColor = colors.backgroundColor ?? theme.colorScheme.primary;
 
     switch (_currentState) {
-      case AppBackToTopState.hover:
+      case DSBackToTopState.hover:
         return colors.hoverColor ?? Color.alphaBlend(
           theme.colorScheme.onPrimary.withValues(alpha: colors.hoverOpacity),
           baseColor,
         );
-      case AppBackToTopState.pressed:
+      case DSBackToTopState.pressed:
         return colors.pressedColor ?? Color.alphaBlend(
           theme.colorScheme.onPrimary.withValues(alpha: colors.pressedOpacity),
           baseColor,
         );
-      case AppBackToTopState.focus:
+      case DSBackToTopState.focus:
         return colors.focusColor ?? Color.alphaBlend(
           theme.colorScheme.secondary.withValues(alpha: 0.12),
           baseColor,
         );
-      case AppBackToTopState.selected:
+      case DSBackToTopState.selected:
         return Color.alphaBlend(
           theme.colorScheme.secondary.withValues(alpha: 0.16),
           baseColor,
         );
-      case AppBackToTopState.disabled:
+      case DSBackToTopState.disabled:
         return colors.disabledColor ?? baseColor.withValues(alpha: colors.disabledOpacity);
-      case AppBackToTopState.loading:
+      case DSBackToTopState.loading:
         return Color.alphaBlend(
           theme.colorScheme.onPrimary.withValues(alpha: 0.08),
           baseColor,
@@ -369,7 +369,7 @@ class _AppBackToTopState extends State<AppBackToTop>
     final theme = Theme.of(context);
 
     switch (_currentState) {
-      case AppBackToTopState.disabled:
+      case DSBackToTopState.disabled:
         return (colors.foregroundColor ?? theme.colorScheme.onPrimary)
             .withValues(alpha: colors.disabledOpacity);
       default:
@@ -379,9 +379,9 @@ class _AppBackToTopState extends State<AppBackToTop>
 
   Widget _buildIcon() {
     final spacing = _effectiveConfig.spacing!;
-    final iconData = widget.icon ?? AppBackToTopDefaults.getDefaultIcon();
+    final iconData = widget.icon ?? DSBackToTopDefaults.getDefaultIcon();
 
-    if (_currentState == AppBackToTopState.loading) {
+    if (_currentState == DSBackToTopState.loading) {
       return SizedBox(
         width: spacing.iconSize,
         height: spacing.iconSize,
@@ -502,7 +502,7 @@ class _AppBackToTopState extends State<AppBackToTop>
     // Position the button
     return Positioned.fill(
       child: Align(
-        alignment: AppBackToTopDefaults.getAlignmentForPosition(spacing.position),
+        alignment: DSBackToTopDefaults.getAlignmentForPosition(spacing.position),
         child: Container(
           margin: spacing.margin,
           child: backToTopWidget,
@@ -512,14 +512,14 @@ class _AppBackToTopState extends State<AppBackToTop>
   }
 }
 
-class AppBackToTopOverlay extends StatelessWidget {
+class DSBackToTopOverlay extends StatelessWidget {
   final Widget child;
   final ScrollController? scrollController;
-  final AppBackToTopConfig? config;
+  final DSBackToTopConfig? config;
   final VoidCallback? onPressed;
-  final ValueChanged<AppBackToTopState>? onStateChanged;
+  final ValueChanged<DSBackToTopState>? onStateChanged;
 
-  const AppBackToTopOverlay({
+  const DSBackToTopOverlay({
     super.key,
     required this.child,
     this.scrollController,
@@ -533,7 +533,7 @@ class AppBackToTopOverlay extends StatelessWidget {
     return Stack(
       children: [
         child,
-        AppBackToTop(
+        DSBackToTop(
           scrollController: scrollController,
           config: config,
           onPressed: onPressed,
@@ -544,23 +544,23 @@ class AppBackToTopOverlay extends StatelessWidget {
   }
 }
 
-class AppBackToTopProvider extends InheritedWidget {
+class DSBackToTopProvider extends InheritedWidget {
   final ScrollController scrollController;
-  final AppBackToTopConfig? config;
+  final DSBackToTopConfig? config;
 
-  const AppBackToTopProvider({
+  const DSBackToTopProvider({
     super.key,
     required this.scrollController,
     this.config,
     required super.child,
   });
 
-  static AppBackToTopProvider? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<AppBackToTopProvider>();
+  static DSBackToTopProvider? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<DSBackToTopProvider>();
   }
 
   @override
-  bool updateShouldNotify(AppBackToTopProvider oldWidget) {
+  bool updateShouldNotify(DSBackToTopProvider oldWidget) {
     return scrollController != oldWidget.scrollController ||
            config != oldWidget.config;
   }

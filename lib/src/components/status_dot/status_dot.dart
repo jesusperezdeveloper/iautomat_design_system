@@ -1,4 +1,4 @@
-/// Barrel file para exports de AppStatusDot
+/// Barrel file para exports de DSStatusDot
 library;
 
 export 'app_status_dot.dart';

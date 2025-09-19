@@ -1,0 +1,544 @@
+lib/src/theme/colors.dart:15:class AppColors {
+lib/src/theme/colors.dart:16:  AppColors._();
+test/integration/menu_integration_test.dart:7:    test('can import AppMenu from components barrel', () {
+test/integration/menu_integration_test.dart:8:      // Verify that AppMenu and related classes are exported properly
+test/integration/menu_integration_test.dart:9:      expect(AppMenu, isNotNull);
+test/integration/menu_integration_test.dart:10:      expect(AppMenuItem, isNotNull);
+test/integration/menu_integration_test.dart:12:      expect(AppMenuState, isNotNull);
+test/integration/menu_integration_test.dart:16:    test('AppMenu enums contain expected values', () {
+test/integration/menu_integration_test.dart:23:      // Test AppMenuState enum
+test/integration/menu_integration_test.dart:24:      expect(AppMenuState.values.length, equals(8));
+test/integration/menu_integration_test.dart:25:      expect(AppMenuState.values, contains(AppMenuState.defaultState));
+test/integration/menu_integration_test.dart:26:      expect(AppMenuState.values, contains(AppMenuState.hover));
+test/integration/menu_integration_test.dart:27:      expect(AppMenuState.values, contains(AppMenuState.pressed));
+test/integration/menu_integration_test.dart:28:      expect(AppMenuState.values, contains(AppMenuState.focus));
+test/integration/menu_integration_test.dart:29:      expect(AppMenuState.values, contains(AppMenuState.selected));
+test/integration/menu_integration_test.dart:30:      expect(AppMenuState.values, contains(AppMenuState.disabled));
+test/integration/menu_integration_test.dart:31:      expect(AppMenuState.values, contains(AppMenuState.loading));
+test/integration/menu_integration_test.dart:32:      expect(AppMenuState.values, contains(AppMenuState.skeleton));
+test/integration/menu_integration_test.dart:43:    test('AppMenuItem can be instantiated with required properties', () {
+test/integration/menu_integration_test.dart:44:      const item = AppMenuItem(
+test/integration/menu_integration_test.dart:58:    test('AppMenuItem with children has correct hasChildren value', () {
+test/integration/menu_integration_test.dart:59:      const item = AppMenuItem(
+test/integration/menu_integration_test.dart:63:          AppMenuItem(id: 'child1', label: 'Child 1'),
+test/integration/menu_integration_test.dart:64:          AppMenuItem(id: 'child2', label: 'Child 2'),
+lib/src/theme/spacing.dart:21:class AppSpacing {
+lib/src/theme/spacing.dart:22:  AppSpacing._();
+lib/src/theme/spacing.dart:224:  /// Uso: Padding de AppBar, headers, navigation bars
+test/theme/spacing_test.dart:6:  group('AppSpacing', () {
+test/theme/spacing_test.dart:9:        expect(AppSpacing.unit, 8.0);
+test/theme/spacing_test.dart:15:        expect(AppSpacing.xxxs, 2.0); // unit * 0.25
+test/theme/spacing_test.dart:16:        expect(AppSpacing.xxs, 4.0); // unit * 0.5
+test/theme/spacing_test.dart:17:        expect(AppSpacing.xs, 8.0); // unit * 1
+test/theme/spacing_test.dart:18:        expect(AppSpacing.sm, 16.0); // unit * 2
+test/theme/spacing_test.dart:19:        expect(AppSpacing.md, 24.0); // unit * 3
+test/theme/spacing_test.dart:20:        expect(AppSpacing.lg, 32.0); // unit * 4
+test/theme/spacing_test.dart:21:        expect(AppSpacing.xl, 48.0); // unit * 6
+test/theme/spacing_test.dart:22:        expect(AppSpacing.xxl, 64.0); // unit * 8
+test/theme/spacing_test.dart:23:        expect(AppSpacing.xxxl, 96.0); // unit * 12
+test/theme/spacing_test.dart:28:        expect(AppSpacing.sm, AppSpacing.xs * 2);
+test/theme/spacing_test.dart:29:        expect(AppSpacing.lg, AppSpacing.sm * 2);
+test/theme/spacing_test.dart:30:        expect(AppSpacing.xxl, AppSpacing.lg * 2);
+test/theme/spacing_test.dart:42:                  AppSpacing.verticalXs,
+test/theme/spacing_test.dart:43:                  AppSpacing.verticalSm,
+test/theme/spacing_test.dart:44:                  AppSpacing.verticalMd,
+test/theme/spacing_test.dart:45:                  AppSpacing.verticalLg,
+test/theme/spacing_test.dart:46:                  AppSpacing.verticalXl,
+test/theme/spacing_test.dart:55:          find.byWidget(AppSpacing.verticalXs),
+test/theme/spacing_test.dart:57:        expect(xsBox.height, AppSpacing.xs);
+test/theme/spacing_test.dart:60:          find.byWidget(AppSpacing.verticalSm),
+test/theme/spacing_test.dart:62:        expect(smBox.height, AppSpacing.sm);
+test/theme/spacing_test.dart:65:          find.byWidget(AppSpacing.verticalMd),
+test/theme/spacing_test.dart:67:        expect(mdBox.height, AppSpacing.md);
+test/theme/spacing_test.dart:77:                  AppSpacing.horizontalXs,
+test/theme/spacing_test.dart:78:                  AppSpacing.horizontalSm,
+test/theme/spacing_test.dart:79:                  AppSpacing.horizontalMd,
+test/theme/spacing_test.dart:80:                  AppSpacing.horizontalLg,
+test/theme/spacing_test.dart:81:                  AppSpacing.horizontalXl,
+test/theme/spacing_test.dart:90:          find.byWidget(AppSpacing.horizontalXs),
+test/theme/spacing_test.dart:92:        expect(xsBox.width, AppSpacing.xs);
+test/theme/spacing_test.dart:95:          find.byWidget(AppSpacing.horizontalSm),
+test/theme/spacing_test.dart:97:        expect(smBox.width, AppSpacing.sm);
+test/theme/spacing_test.dart:103:        expect(AppSpacing.paddingXs, const EdgeInsets.all(8.0));
+test/theme/spacing_test.dart:104:        expect(AppSpacing.paddingSm, const EdgeInsets.all(16.0));
+test/theme/spacing_test.dart:105:        expect(AppSpacing.paddingMd, const EdgeInsets.all(24.0));
+test/theme/spacing_test.dart:106:        expect(AppSpacing.paddingLg, const EdgeInsets.all(32.0));
+test/theme/spacing_test.dart:107:        expect(AppSpacing.paddingXl, const EdgeInsets.all(48.0));
+test/theme/spacing_test.dart:111:        expect(AppSpacing.cardPadding, const EdgeInsets.all(16.0));
+test/theme/spacing_test.dart:115:        expect(AppSpacing.pagePadding, const EdgeInsets.all(24.0));
+test/theme/spacing_test.dart:119:        expect(AppSpacing.sectionPadding, const EdgeInsets.all(32.0));
+test/theme/spacing_test.dart:128:        final mobilePadding = AppSpacing.getResponsivePadding(400);
+test/theme/spacing_test.dart:132:        final tabletPadding = AppSpacing.getResponsivePadding(800);
+test/theme/spacing_test.dart:136:        final desktopPadding = AppSpacing.getResponsivePadding(1200);
+test/theme/spacing_test.dart:140:        final ultraWidePadding = AppSpacing.getResponsivePadding(1600);
+test/theme/spacing_test.dart:146:        final mobileSpacing = AppSpacing.getResponsiveSpacing(
+test/theme/spacing_test.dart:147:          AppSpacing.md,
+test/theme/spacing_test.dart:150:        expect(mobileSpacing, lessThan(AppSpacing.md));
+test/theme/spacing_test.dart:153:        final desktopSpacing = AppSpacing.getResponsiveSpacing(
+test/theme/spacing_test.dart:154:          AppSpacing.md,
+test/theme/spacing_test.dart:157:        expect(desktopSpacing, greaterThanOrEqualTo(AppSpacing.md));
+test/theme/spacing_test.dart:170:        final spacedChildren = AppSpacing.spaceBetween(
+test/theme/spacing_test.dart:172:          AppSpacing.sm,
+test/theme/spacing_test.dart:192:        final paddedWidget = AppSpacing.wrapWithPadding(
+test/theme/spacing_test.dart:194:          AppSpacing.paddingMd,
+test/theme/spacing_test.dart:204:        expect(paddingWidget.padding, AppSpacing.paddingMd);
+test/theme/spacing_test.dart:210:        final customPadding = AppSpacing.custom(
+test/theme/spacing_test.dart:211:          top: AppSpacing.sm,
+test/theme/spacing_test.dart:212:          bottom: AppSpacing.lg,
+test/theme/spacing_test.dart:213:          left: AppSpacing.xs,
+test/theme/spacing_test.dart:214:          right: AppSpacing.xl,
+test/theme/spacing_test.dart:217:        expect(customPadding.top, AppSpacing.sm);
+test/theme/spacing_test.dart:218:        expect(customPadding.bottom, AppSpacing.lg);
+test/theme/spacing_test.dart:219:        expect(customPadding.left, AppSpacing.xs);
+test/theme/spacing_test.dart:220:        expect(customPadding.right, AppSpacing.xl);
+test/theme/spacing_test.dart:224:        final symmetricPadding = AppSpacing.symmetric(
+test/theme/spacing_test.dart:225:          horizontal: AppSpacing.lg,
+test/theme/spacing_test.dart:226:          vertical: AppSpacing.sm,
+test/theme/spacing_test.dart:229:        expect(symmetricPadding.left, AppSpacing.lg);
+test/theme/spacing_test.dart:230:        expect(symmetricPadding.right, AppSpacing.lg);
+test/theme/spacing_test.dart:231:        expect(symmetricPadding.top, AppSpacing.sm);
+test/theme/spacing_test.dart:232:        expect(symmetricPadding.bottom, AppSpacing.sm);
+test/theme/spacing_test.dart:236:        final onlyPadding = AppSpacing.only(
+test/theme/spacing_test.dart:237:          top: AppSpacing.md,
+test/theme/spacing_test.dart:238:          left: AppSpacing.sm,
+test/theme/spacing_test.dart:241:        expect(onlyPadding.top, AppSpacing.md);
+test/theme/spacing_test.dart:242:        expect(onlyPadding.left, AppSpacing.sm);
+test/theme/spacing_test.dart:251:        expect(AppSpacing.touchTarget, greaterThanOrEqualTo(44.0));
+test/theme/spacing_test.dart:254:        expect(AppSpacing.sm, lessThan(AppSpacing.touchTarget));
+test/theme/spacing_test.dart:255:        expect(AppSpacing.md, lessThan(AppSpacing.touchTarget));
+test/theme/spacing_test.dart:260:        expect(AppSpacing.cardPadding.left, greaterThanOrEqualTo(16.0));
+test/theme/spacing_test.dart:263:        expect(AppSpacing.pagePadding.left, greaterThanOrEqualTo(24.0));
+test/theme/spacing_test.dart:266:        expect(AppSpacing.sectionPadding.left, greaterThanOrEqualTo(32.0));
+test/theme/spacing_test.dart:273:          AppSpacing.xxxs,
+test/theme/spacing_test.dart:274:          AppSpacing.xxs,
+test/theme/spacing_test.dart:275:          AppSpacing.xs,
+test/theme/spacing_test.dart:276:          AppSpacing.sm,
+test/theme/spacing_test.dart:277:          AppSpacing.md,
+test/theme/spacing_test.dart:278:          AppSpacing.lg,
+test/theme/spacing_test.dart:279:          AppSpacing.xl,
+test/theme/spacing_test.dart:280:          AppSpacing.xxl,
+test/theme/spacing_test.dart:281:          AppSpacing.xxxl,
+test/theme/spacing_test.dart:293:          AppSpacing.xs, // 8
+test/theme/spacing_test.dart:294:          AppSpacing.sm, // 16
+test/theme/spacing_test.dart:295:          AppSpacing.md, // 24
+test/theme/spacing_test.dart:296:          AppSpacing.lg, // 32
+test/theme/spacing_test.dart:297:          AppSpacing.xl, // 48
+test/theme/spacing_test.dart:298:          AppSpacing.xxl, // 64
+test/theme/spacing_test.dart:299:          AppSpacing.xxxl, // 96
+test/theme/spacing_test.dart:326:        expect(AppSpacing.unit, 8.0);
+test/theme/spacing_test.dart:329:        expect(AppSpacing.sm, 16.0); // Standard button/card padding
+test/theme/spacing_test.dart:330:        expect(AppSpacing.md, 24.0); // Standard content padding
+test/theme/spacing_test.dart:331:        expect(AppSpacing.lg, 32.0); // Large sections
+test/theme/spacing_test.dart:336:        final mobileSpacing = AppSpacing.getResponsivePadding(500);
+test/theme/spacing_test.dart:340:        final tabletSpacing = AppSpacing.getResponsivePadding(700);
+test/theme/spacing_test.dart:344:        final desktopSpacing = AppSpacing.getResponsivePadding(1000);
+test/integration/drawer_integration_test.dart:8:    test('can import AppDrawer from components barrel', () {
+test/integration/drawer_integration_test.dart:9:      // Verify that AppDrawer and related classes are exported properly
+test/integration/drawer_integration_test.dart:10:      expect(AppDrawer, isNotNull);
+test/integration/drawer_integration_test.dart:12:      expect(AppDrawerState, isNotNull);
+test/integration/drawer_integration_test.dart:14:      expect(AppDrawerController, isNotNull);
+test/integration/drawer_integration_test.dart:15:      expect(AppDrawerHelper, isNotNull);
+test/integration/drawer_integration_test.dart:18:    test('AppDrawer enums contain expected values', () {
+test/integration/drawer_integration_test.dart:24:      // Test AppDrawerState enum
+test/integration/drawer_integration_test.dart:25:      expect(AppDrawerState.values.length, equals(8));
+test/integration/drawer_integration_test.dart:26:      expect(AppDrawerState.values, contains(AppDrawerState.defaultState));
+test/integration/drawer_integration_test.dart:27:      expect(AppDrawerState.values, contains(AppDrawerState.hover));
+test/integration/drawer_integration_test.dart:28:      expect(AppDrawerState.values, contains(AppDrawerState.pressed));
+test/integration/drawer_integration_test.dart:29:      expect(AppDrawerState.values, contains(AppDrawerState.focus));
+test/integration/drawer_integration_test.dart:30:      expect(AppDrawerState.values, contains(AppDrawerState.selected));
+test/integration/drawer_integration_test.dart:31:      expect(AppDrawerState.values, contains(AppDrawerState.disabled));
+test/integration/drawer_integration_test.dart:32:      expect(AppDrawerState.values, contains(AppDrawerState.loading));
+test/integration/drawer_integration_test.dart:33:      expect(AppDrawerState.values, contains(AppDrawerState.skeleton));
+test/integration/drawer_integration_test.dart:41:    test('AppDrawer factory constructors work correctly', () {
+test/integration/drawer_integration_test.dart:42:      const modalDrawer = AppDrawer.modal(
+test/integration/drawer_integration_test.dart:46:      const permanentDrawer = AppDrawer.permanent(
+test/integration/drawer_integration_test.dart:63:    test('AppDrawerController can be instantiated', () {
+test/integration/drawer_integration_test.dart:64:      final controller = AppDrawerController();
+test/integration/drawer_integration_test.dart:70:    test('AppDrawerHelper can create drawers', () {
+test/integration/drawer_integration_test.dart:71:      final modalDrawer = AppDrawerHelper.createModalDrawer(
+test/integration/drawer_integration_test.dart:75:      final permanentDrawer = AppDrawerHelper.createPermanentDrawer(
+test/integration/drawer_integration_test.dart:79:      expect(modalDrawer, isA<AppDrawer>());
+test/integration/drawer_integration_test.dart:80:      expect(permanentDrawer, isA<AppDrawer>());
+test/integration/main_exports_test.dart:7:    test('can import AppDrawer from main package', () {
+test/integration/main_exports_test.dart:8:      // Verify that AppDrawer and related classes are exported through main barrel
+test/integration/main_exports_test.dart:9:      expect(AppDrawer, isNotNull);
+test/integration/main_exports_test.dart:11:      expect(AppDrawerState, isNotNull);
+test/integration/main_exports_test.dart:13:      expect(AppDrawerController, isNotNull);
+test/integration/main_exports_test.dart:14:      expect(AppDrawerHelper, isNotNull);
+test/integration/main_exports_test.dart:17:    test('AppDrawer is accessible through main export', () {
+test/integration/main_exports_test.dart:19:      const modalDrawer = AppDrawer.modal(
+test/integration/main_exports_test.dart:23:      const permanentDrawer = AppDrawer.permanent(
+test/theme/colors_test.dart:6:  group('AppColors', () {
+test/theme/colors_test.dart:9:        expect(AppColors.primary, const Color(0xFF2563EB));
+test/theme/colors_test.dart:10:        expect(AppColors.primaryLight, const Color(0xFF60A5FA));
+test/theme/colors_test.dart:11:        expect(AppColors.primaryDark, const Color(0xFF1D4ED8));
+test/theme/colors_test.dart:15:        expect(AppColors.primaryDarkMode, const Color(0xFF60A5FA));
+test/theme/colors_test.dart:16:        expect(AppColors.primaryLightDarkMode, const Color(0xFF93C5FD));
+test/theme/colors_test.dart:17:        expect(AppColors.primaryDarkDarkMode, const Color(0xFF3B82F6));
+test/theme/colors_test.dart:23:        expect(AppColors.secondary, const Color(0xFFE879F9));
+test/theme/colors_test.dart:24:        expect(AppColors.secondaryLight, const Color(0xFFF0ABFC));
+test/theme/colors_test.dart:25:        expect(AppColors.secondaryDark, const Color(0xFFD946EF));
+test/theme/colors_test.dart:29:        expect(AppColors.secondaryDarkMode, const Color(0xFFE879F9));
+test/theme/colors_test.dart:30:        expect(AppColors.secondaryLightDarkMode, const Color(0xFFC084FC));
+test/theme/colors_test.dart:31:        expect(AppColors.secondaryDarkDarkMode, const Color(0xFF8B5CF6));
+test/theme/colors_test.dart:37:        expect(AppColors.success, const Color(0xFF10B981));
+test/theme/colors_test.dart:38:        expect(AppColors.successLight, const Color(0xFF34D399));
+test/theme/colors_test.dart:39:        expect(AppColors.successDark, const Color(0xFF059669));
+test/theme/colors_test.dart:41:        expect(AppColors.warning, const Color(0xFFF59E0B));
+test/theme/colors_test.dart:42:        expect(AppColors.warningLight, const Color(0xFFFBBF24));
+test/theme/colors_test.dart:43:        expect(AppColors.warningDark, const Color(0xFFD97706));
+test/theme/colors_test.dart:45:        expect(AppColors.error, const Color(0xFFDC2626));
+test/theme/colors_test.dart:46:        expect(AppColors.errorLight, const Color(0xFFF87171));
+test/theme/colors_test.dart:47:        expect(AppColors.errorDark, const Color(0xFFB91C1C));
+test/theme/colors_test.dart:49:        expect(AppColors.info, const Color(0xFF3B82F6));
+test/theme/colors_test.dart:50:        expect(AppColors.infoLight, const Color(0xFF60A5FA));
+test/theme/colors_test.dart:51:        expect(AppColors.infoDark, const Color(0xFF2563EB));
+test/theme/colors_test.dart:57:        expect(AppColors.gray50, const Color(0xFFFAFAFA));
+test/theme/colors_test.dart:58:        expect(AppColors.gray100, const Color(0xFFF5F5F5));
+test/theme/colors_test.dart:59:        expect(AppColors.gray200, const Color(0xFFE5E5E5));
+test/theme/colors_test.dart:60:        expect(AppColors.gray300, const Color(0xFFD4D4D4));
+test/theme/colors_test.dart:61:        expect(AppColors.gray400, const Color(0xFFA3A3A3));
+test/theme/colors_test.dart:62:        expect(AppColors.gray500, const Color(0xFF737373));
+test/theme/colors_test.dart:63:        expect(AppColors.gray600, const Color(0xFF525252));
+test/theme/colors_test.dart:64:        expect(AppColors.gray700, const Color(0xFF404040));
+test/theme/colors_test.dart:65:        expect(AppColors.gray800, const Color(0xFF262626));
+test/theme/colors_test.dart:66:        expect(AppColors.gray900, const Color(0xFF171717));
+test/theme/colors_test.dart:72:        expect(AppColors.surface, const Color(0xFFFFFFFF));
+test/theme/colors_test.dart:73:        expect(AppColors.surfaceVariant, const Color(0xFFFAFAFA));
+test/theme/colors_test.dart:74:        expect(AppColors.surfaceContainer, const Color(0xFFF5F5F5));
+test/theme/colors_test.dart:75:        expect(AppColors.surfaceContainerHigh, const Color(0xFFE5E5E5));
+test/theme/colors_test.dart:79:        expect(AppColors.surfaceDark, const Color(0xFF111827));
+test/theme/colors_test.dart:80:        expect(AppColors.surfaceVariantDark, const Color(0xFF1F2937));
+test/theme/colors_test.dart:81:        expect(AppColors.surfaceContainerDark, const Color(0xFF374151));
+test/theme/colors_test.dart:82:        expect(AppColors.surfaceContainerHighDark, const Color(0xFF4B5563));
+test/theme/colors_test.dart:88:        final transparentPrimary = AppColors.withOpacity(
+test/theme/colors_test.dart:89:          AppColors.primary,
+test/theme/colors_test.dart:95:            (AppColors.primary.r * 255.0).round() & 0xff);
+test/theme/colors_test.dart:97:            (AppColors.primary.g * 255.0).round() & 0xff);
+test/theme/colors_test.dart:99:            (AppColors.primary.b * 255.0).round() & 0xff);
+test/theme/colors_test.dart:103:        final lighterPrimary = AppColors.lighten(AppColors.primary, 0.2);
+test/theme/colors_test.dart:106:        final originalBrightness = AppColors.primary.computeLuminance();
+test/theme/colors_test.dart:112:        final darkerPrimary = AppColors.darken(AppColors.primary, 0.2);
+test/theme/colors_test.dart:115:        final originalBrightness = AppColors.primary.computeLuminance();
+test/theme/colors_test.dart:122:        final darkText = AppColors.getContrastingTextColor(Colors.white);
+test/theme/colors_test.dart:126:        final lightText = AppColors.getContrastingTextColor(Colors.black);
+test/theme/colors_test.dart:131:        expect(AppColors.isLight(Colors.white), isTrue);
+test/theme/colors_test.dart:132:        expect(AppColors.isLight(AppColors.gray50), isTrue);
+test/theme/colors_test.dart:133:        expect(AppColors.isLight(Colors.black), isFalse);
+test/theme/colors_test.dart:134:        expect(AppColors.isLight(AppColors.gray900), isFalse);
+test/theme/colors_test.dart:138:        expect(AppColors.isDark(Colors.black), isTrue);
+test/theme/colors_test.dart:139:        expect(AppColors.isDark(AppColors.gray900), isTrue);
+test/theme/colors_test.dart:140:        expect(AppColors.isDark(Colors.white), isFalse);
+test/theme/colors_test.dart:141:        expect(AppColors.isDark(AppColors.gray50), isFalse);
+test/theme/colors_test.dart:149:          AppColors.primary,
+test/theme/colors_test.dart:156:        final contrast = _calculateContrastRatio(AppColors.error, Colors.white);
+test/theme/colors_test.dart:163:          AppColors.textPrimary,
+test/theme/colors_test.dart:164:          AppColors.surface,
+test/theme/colors_test.dart:170:          AppColors.textPrimaryDark,
+test/theme/colors_test.dart:171:          AppColors.surfaceDark,
+test/theme/colors_test.dart:180:        final primaryHSV = HSVColor.fromColor(AppColors.primary);
+test/theme/colors_test.dart:181:        final primaryLightHSV = HSVColor.fromColor(AppColors.primaryLight);
+test/theme/colors_test.dart:182:        final primaryDarkHSV = HSVColor.fromColor(AppColors.primaryDark);
+test/theme/colors_test.dart:192:          AppColors.gray100,
+test/theme/colors_test.dart:193:          AppColors.gray300,
+test/theme/colors_test.dart:194:          AppColors.gray500,
+test/theme/colors_test.dart:195:          AppColors.gray700,
+test/theme/colors_test.dart:196:          AppColors.gray900,
+test/theme/colors_test.dart:209:        expect(AppColors.primary.toARGB32(), 0xFF2563EB);
+test/theme/colors_test.dart:212:        expect(AppColors.secondary.toARGB32(), 0xFFE879F9);
+test/theme/colors_test.dart:218:          AppColors.primary,
+test/theme/colors_test.dart:219:          AppColors.secondary,
+test/theme/typography_test.dart:7:  group('AppTypography', () {
+test/theme/typography_test.dart:10:        expect(AppTypography.h1.fontSize, 48);
+test/theme/typography_test.dart:11:        expect(AppTypography.h1.fontWeight, FontWeight.w700);
+test/theme/typography_test.dart:12:        expect(AppTypography.h1.letterSpacing, -0.02);
+test/theme/typography_test.dart:13:        expect(AppTypography.h1.height, 1.1);
+test/theme/typography_test.dart:14:        expect(AppTypography.h1.fontFamily, 'Inter');
+test/theme/typography_test.dart:18:        expect(AppTypography.h2.fontSize, 40);
+test/theme/typography_test.dart:19:        expect(AppTypography.h2.fontWeight, FontWeight.w700);
+test/theme/typography_test.dart:20:        expect(AppTypography.h2.letterSpacing, -0.02);
+test/theme/typography_test.dart:21:        expect(AppTypography.h2.height, 1.15);
+test/theme/typography_test.dart:25:        expect(AppTypography.h3.fontSize, 32);
+test/theme/typography_test.dart:26:        expect(AppTypography.h3.fontWeight, FontWeight.w600);
+test/theme/typography_test.dart:27:        expect(AppTypography.h3.letterSpacing, -0.01);
+test/theme/typography_test.dart:28:        expect(AppTypography.h3.height, 1.2);
+test/theme/typography_test.dart:32:        expect(AppTypography.h4.fontSize, 28);
+test/theme/typography_test.dart:33:        expect(AppTypography.h4.fontWeight, FontWeight.w600);
+test/theme/typography_test.dart:34:        expect(AppTypography.h4.letterSpacing, -0.01);
+test/theme/typography_test.dart:35:        expect(AppTypography.h4.height, 1.25);
+test/theme/typography_test.dart:39:        expect(AppTypography.h5.fontSize, 24);
+test/theme/typography_test.dart:40:        expect(AppTypography.h5.fontWeight, FontWeight.w600);
+test/theme/typography_test.dart:41:        expect(AppTypography.h5.letterSpacing, 0);
+test/theme/typography_test.dart:42:        expect(AppTypography.h5.height, 1.3);
+test/theme/typography_test.dart:46:        expect(AppTypography.h6.fontSize, 20);
+test/theme/typography_test.dart:47:        expect(AppTypography.h6.fontWeight, FontWeight.w600);
+test/theme/typography_test.dart:48:        expect(AppTypography.h6.letterSpacing, 0);
+test/theme/typography_test.dart:49:        expect(AppTypography.h6.height, 1.35);
+test/theme/typography_test.dart:55:        expect(AppTypography.bodyLarge.fontSize, 18);
+test/theme/typography_test.dart:56:        expect(AppTypography.bodyLarge.fontWeight, FontWeight.w400);
+test/theme/typography_test.dart:57:        expect(AppTypography.bodyLarge.letterSpacing, 0);
+test/theme/typography_test.dart:58:        expect(AppTypography.bodyLarge.height, 1.55);
+test/theme/typography_test.dart:62:        expect(AppTypography.bodyMedium.fontSize, 16);
+test/theme/typography_test.dart:63:        expect(AppTypography.bodyMedium.fontWeight, FontWeight.w400);
+test/theme/typography_test.dart:64:        expect(AppTypography.bodyMedium.letterSpacing, 0);
+test/theme/typography_test.dart:65:        expect(AppTypography.bodyMedium.height, 1.5);
+test/theme/typography_test.dart:69:        expect(AppTypography.bodySmall.fontSize, 14);
+test/theme/typography_test.dart:70:        expect(AppTypography.bodySmall.fontWeight, FontWeight.w400);
+test/theme/typography_test.dart:71:        expect(AppTypography.bodySmall.letterSpacing, 0);
+test/theme/typography_test.dart:72:        expect(AppTypography.bodySmall.height, 1.45);
+test/theme/typography_test.dart:78:        expect(AppTypography.labelLarge.fontSize, 16);
+test/theme/typography_test.dart:79:        expect(AppTypography.labelLarge.fontWeight, FontWeight.w500);
+test/theme/typography_test.dart:80:        expect(AppTypography.labelLarge.letterSpacing, 0.01);
+test/theme/typography_test.dart:81:        expect(AppTypography.labelLarge.height, 1.4);
+test/theme/typography_test.dart:85:        expect(AppTypography.labelMedium.fontSize, 14);
+test/theme/typography_test.dart:86:        expect(AppTypography.labelMedium.fontWeight, FontWeight.w500);
+test/theme/typography_test.dart:87:        expect(AppTypography.labelMedium.letterSpacing, 0.01);
+test/theme/typography_test.dart:88:        expect(AppTypography.labelMedium.height, 1.4);
+test/theme/typography_test.dart:92:        expect(AppTypography.labelSmall.fontSize, 12);
+test/theme/typography_test.dart:93:        expect(AppTypography.labelSmall.fontWeight, FontWeight.w500);
+test/theme/typography_test.dart:94:        expect(AppTypography.labelSmall.letterSpacing, 0.02);
+test/theme/typography_test.dart:95:        expect(AppTypography.labelSmall.height, 1.35);
+test/theme/typography_test.dart:101:        expect(AppTypography.button.fontSize, 16);
+test/theme/typography_test.dart:102:        expect(AppTypography.button.fontWeight, FontWeight.w600);
+test/theme/typography_test.dart:103:        expect(AppTypography.button.letterSpacing, 0.02);
+test/theme/typography_test.dart:104:        expect(AppTypography.button.height, 1.25);
+test/theme/typography_test.dart:108:        expect(AppTypography.caption.fontSize, 12);
+test/theme/typography_test.dart:109:        expect(AppTypography.caption.fontWeight, FontWeight.w400);
+test/theme/typography_test.dart:110:        expect(AppTypography.caption.letterSpacing, 0.01);
+test/theme/typography_test.dart:111:        expect(AppTypography.caption.height, 1.4);
+test/theme/typography_test.dart:115:        expect(AppTypography.overline.fontSize, 12);
+test/theme/typography_test.dart:116:        expect(AppTypography.overline.fontWeight, FontWeight.w600);
+test/theme/typography_test.dart:117:        expect(AppTypography.overline.letterSpacing, 0.08);
+test/theme/typography_test.dart:118:        expect(AppTypography.overline.height, 1.35);
+test/theme/typography_test.dart:127:        final mobileStyle = AppTypography.getResponsiveTextStyle(
+test/theme/typography_test.dart:134:        final desktopStyle = AppTypography.getResponsiveTextStyle(
+test/theme/typography_test.dart:150:            AppTypography.getResponsiveTextStyle(baseStyle, 800);
+test/theme/typography_test.dart:160:        final coloredStyle = AppTypography.withColor(
+test/theme/typography_test.dart:161:          AppTypography.h1,
+test/theme/typography_test.dart:166:        expect(coloredStyle.fontSize, AppTypography.h1.fontSize);
+test/theme/typography_test.dart:167:        expect(coloredStyle.fontWeight, AppTypography.h1.fontWeight);
+test/theme/typography_test.dart:171:        final weightedStyle = AppTypography.withWeight(
+test/theme/typography_test.dart:172:          AppTypography.bodyMedium,
+test/theme/typography_test.dart:177:        expect(weightedStyle.fontSize, AppTypography.bodyMedium.fontSize);
+test/theme/typography_test.dart:178:        expect(weightedStyle.color, AppTypography.bodyMedium.color);
+test/theme/typography_test.dart:182:        final sizedStyle = AppTypography.withSize(
+test/theme/typography_test.dart:183:          AppTypography.bodyMedium,
+test/theme/typography_test.dart:188:        expect(sizedStyle.fontWeight, AppTypography.bodyMedium.fontWeight);
+test/theme/typography_test.dart:189:        expect(sizedStyle.color, AppTypography.bodyMedium.color);
+test/theme/typography_test.dart:197:        final mergedStyle = AppTypography.merge(style1, style2);
+test/theme/typography_test.dart:206:      test('styles should use correct colors from AppColors', () {
+test/theme/typography_test.dart:208:        expect(AppTypography.bodyMedium.color, AppColors.textPrimary);
+test/theme/typography_test.dart:209:        expect(AppTypography.h1.color, AppColors.textPrimary);
+test/theme/typography_test.dart:210:        expect(AppTypography.labelLarge.color, AppColors.textPrimary);
+test/theme/typography_test.dart:214:        expect(AppTypography.bodySmallSecondary.color, AppColors.textSecondary);
+test/theme/typography_test.dart:215:        expect(AppTypography.captionSecondary.color, AppColors.textSecondary);
+test/theme/typography_test.dart:219:        expect(AppTypography.bodyMediumDisabled.color, AppColors.textDisabled);
+test/theme/typography_test.dart:226:        expect(AppTypography.bodySmall.fontSize, greaterThanOrEqualTo(14));
+test/theme/typography_test.dart:227:        expect(AppTypography.bodyMedium.fontSize, greaterThanOrEqualTo(16));
+test/theme/typography_test.dart:228:        expect(AppTypography.bodyLarge.fontSize, greaterThanOrEqualTo(18));
+test/theme/typography_test.dart:231:        expect(AppTypography.labelSmall.fontSize, greaterThanOrEqualTo(12));
+test/theme/typography_test.dart:232:        expect(AppTypography.labelMedium.fontSize, greaterThanOrEqualTo(14));
+test/theme/typography_test.dart:237:        expect(AppTypography.bodyMedium.height, greaterThanOrEqualTo(1.4));
+test/theme/typography_test.dart:238:        expect(AppTypography.bodyMedium.height, lessThanOrEqualTo(1.6));
+test/theme/typography_test.dart:241:        expect(AppTypography.h1.height, greaterThanOrEqualTo(1.0));
+test/theme/typography_test.dart:242:        expect(AppTypography.h2.height, greaterThanOrEqualTo(1.1));
+test/theme/typography_test.dart:247:        expect(AppTypography.h1.fontWeight!.index,
+test/theme/typography_test.dart:248:            greaterThan(AppTypography.bodyMedium.fontWeight!.index));
+test/theme/typography_test.dart:249:        expect(AppTypography.labelMedium.fontWeight!.index,
+test/theme/typography_test.dart:250:            greaterThan(AppTypography.bodyMedium.fontWeight!.index));
+test/theme/typography_test.dart:257:        final h1Size = AppTypography.h1.fontSize!;
+test/theme/typography_test.dart:258:        final h2Size = AppTypography.h2.fontSize!;
+test/theme/typography_test.dart:259:        final h3Size = AppTypography.h3.fontSize!;
+test/theme/typography_test.dart:269:        final largeSize = AppTypography.bodyLarge.fontSize!;
+test/theme/typography_test.dart:270:        final mediumSize = AppTypography.bodyMedium.fontSize!;
+test/theme/typography_test.dart:271:        final smallSize = AppTypography.bodySmall.fontSize!;
+test/theme/typography_test.dart:284:          AppTypography.h1,
+test/theme/typography_test.dart:285:          AppTypography.h2,
+test/theme/typography_test.dart:286:          AppTypography.h3,
+test/theme/typography_test.dart:287:          AppTypography.bodyLarge,
+test/theme/typography_test.dart:288:          AppTypography.bodyMedium,
+test/theme/typography_test.dart:289:          AppTypography.bodySmall,
+test/theme/typography_test.dart:290:          AppTypography.labelLarge,
+test/theme/typography_test.dart:291:          AppTypography.button,
+test/theme/typography_test.dart:292:          AppTypography.caption,
+test/theme/typography_test.dart:302:        final fontFeatures = AppTypography.baseFontFamily;
+test/components/app_navigation_test.dart:7:  group('AppNavigation', () {
+test/components/app_navigation_test.dart:13:              body: AppNavigation(),
+test/components/app_navigation_test.dart:18:        expect(find.byType(AppNavigation), findsOneWidget);
+test/components/app_navigation_test.dart:23:          AppNavigationDestination(
+test/components/app_navigation_test.dart:28:          AppNavigationDestination(
+test/components/app_navigation_test.dart:38:              body: AppNavigation(
+test/components/app_navigation_test.dart:52:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:54:            AppNavigationDestination(
+test/components/app_navigation_test.dart:65:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:77:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:78:          variant: AppNavigationVariant.bottomBar,
+test/components/app_navigation_test.dart:80:            AppNavigationDestination(
+test/components/app_navigation_test.dart:85:            AppNavigationDestination(
+test/components/app_navigation_test.dart:96:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:105:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:106:          variant: AppNavigationVariant.rail,
+test/components/app_navigation_test.dart:108:            AppNavigationDestination(
+test/components/app_navigation_test.dart:113:            AppNavigationDestination(
+test/components/app_navigation_test.dart:124:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:133:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:134:          variant: AppNavigationVariant.drawer,
+test/components/app_navigation_test.dart:136:            AppNavigationDestination(
+test/components/app_navigation_test.dart:141:            AppNavigationDestination(
+test/components/app_navigation_test.dart:152:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:161:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:162:          variant: AppNavigationVariant.permanentDrawer,
+test/components/app_navigation_test.dart:164:            AppNavigationDestination(
+test/components/app_navigation_test.dart:169:            AppNavigationDestination(
+test/components/app_navigation_test.dart:180:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:191:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:192:          state: AppNavigationState.loading,
+test/components/app_navigation_test.dart:194:            AppNavigationDestination(
+test/components/app_navigation_test.dart:199:            AppNavigationDestination(
+test/components/app_navigation_test.dart:210:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:219:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:220:          state: AppNavigationState.skeleton,
+test/components/app_navigation_test.dart:222:            AppNavigationDestination(
+test/components/app_navigation_test.dart:227:            AppNavigationDestination(
+test/components/app_navigation_test.dart:238:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:247:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:248:          state: AppNavigationState.disabled,
+test/components/app_navigation_test.dart:250:            AppNavigationDestination(
+test/components/app_navigation_test.dart:255:            AppNavigationDestination(
+test/components/app_navigation_test.dart:266:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:279:          AppNavigationBadge(
+test/components/app_navigation_test.dart:282:            type: AppNavigationBadgeType.count,
+test/components/app_navigation_test.dart:287:          AppNavigationDestination(
+test/components/app_navigation_test.dart:297:              body: AppNavigation(
+test/components/app_navigation_test.dart:311:          AppNavigationBadge(
+test/components/app_navigation_test.dart:313:            type: AppNavigationBadgeType.dot,
+test/components/app_navigation_test.dart:318:          AppNavigationDestination(
+test/components/app_navigation_test.dart:328:              body: AppNavigation(
+test/components/app_navigation_test.dart:341:          AppNavigationBadge(
+test/components/app_navigation_test.dart:344:            type: AppNavigationBadgeType.text,
+test/components/app_navigation_test.dart:349:          AppNavigationDestination(
+test/components/app_navigation_test.dart:359:              body: AppNavigation(
+test/components/app_navigation_test.dart:377:          AppNavigationDestination(
+test/components/app_navigation_test.dart:382:          AppNavigationDestination(
+test/components/app_navigation_test.dart:392:              body: AppNavigation(
+test/components/app_navigation_test.dart:409:        final config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:411:            AppNavigationDestination(
+test/components/app_navigation_test.dart:423:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:439:        final config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:441:            AppNavigationDestination(
+test/components/app_navigation_test.dart:453:              body: AppNavigation(
+test/components/app_navigation_test.dart:473:          AppNavigationDestination(
+test/components/app_navigation_test.dart:478:          AppNavigationDestination(
+test/components/app_navigation_test.dart:488:              body: AppNavigation(
+test/components/app_navigation_test.dart:504:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:507:            AppNavigationDestination(
+test/components/app_navigation_test.dart:512:            AppNavigationDestination(
+test/components/app_navigation_test.dart:523:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:536:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:539:            AppNavigationDestination(
+test/components/app_navigation_test.dart:544:            AppNavigationDestination(
+test/components/app_navigation_test.dart:555:              body: AppNavigation(
+test/components/app_navigation_test.dart:572:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:575:            AppNavigationDestination(
+test/components/app_navigation_test.dart:580:            AppNavigationDestination(
+test/components/app_navigation_test.dart:591:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:603:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:605:            AppNavigationDestination(
+test/components/app_navigation_test.dart:610:            AppNavigationDestination(
+test/components/app_navigation_test.dart:621:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:635:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:638:            AppNavigationDestination(
+test/components/app_navigation_test.dart:644:            AppNavigationDestination(
+test/components/app_navigation_test.dart:655:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:664:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:667:            AppNavigationDestination(
+test/components/app_navigation_test.dart:672:            AppNavigationDestination(
+test/components/app_navigation_test.dart:683:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:698:        const config = AppNavigationComponentConfig(
+test/components/app_navigation_test.dart:699:          state: AppNavigationState.defaultState,
+test/components/app_navigation_test.dart:701:            AppNavigationDestination(
+test/components/app_navigation_test.dart:706:            AppNavigationDestination(
+test/components/app_navigation_test.dart:717:              body: AppNavigation(config: config),
+test/components/app_navigation_test.dart:728:          AppNavigationDestination(
+test/components/app_navigation_test.dart:733:          AppNavigationDestination(
+test/components/app_navigation_test.dart:743:              body: AppNavigation(
+test/components/app_navigation_test.dart:757:  group('AppNavigationDestination', () {
+test/components/app_navigation_test.dart:759:      const destination = AppNavigationDestination(
+test/components/app_navigation_test.dart:768:      expect(destination.type, equals(AppNavigationDestinationType.standard));
+test/components/app_navigation_test.dart:772:      const destination = AppNavigationDestination(
+test/components/app_navigation_test.dart:779:        type: AppNavigationDestinationType.floating,
+test/components/app_navigation_test.dart:787:      expect(destination.type, equals(AppNavigationDestinationType.floating));
+test/components/app_navigation_test.dart:793:  group('AppNavigationBadge', () {
+test/components/app_navigation_test.dart:795:      const badge = AppNavigationBadge(
+test/components/app_navigation_test.dart:798:        type: AppNavigationBadgeType.count,
+test/components/app_navigation_test.dart:803:      expect(badge.type, equals(AppNavigationBadgeType.count));
+test/components/app_navigation_test.dart:809:      const badge = AppNavigationBadge(
+test/components/app_navigation_test.dart:812:        type: AppNavigationBadgeType.text,
+test/components/app_navigation_test.dart:816:      expect(badge.type, equals(AppNavigationBadgeType.text));
+test/components/app_navigation_test.dart:820:      const badge = AppNavigationBadge(
+test/components/app_navigation_test.dart:822:        type: AppNavigationBadgeType.dot,
+test/components/app_navigation_test.dart:825:      expect(badge.type, equals(AppNavigationBadgeType.dot));
+test/components/app_navigation_test.dart:830:    group('AppNavigationVariantExtension', () {
+test/components/app_navigation_test.dart:833:            AppNavigationVariant.bottomBar.displayName, equals('Bottom Bar'));
+test/components/app_navigation_test.dart:835:            AppNavigationVariant.rail.displayName, equals('Navigation Rail'));
+test/components/app_navigation_test.dart:836:        expect(AppNavigationVariant.drawer.displayName, equals('Drawer'));
+test/components/app_navigation_test.dart:837:        expect(AppNavigationVariant.permanentDrawer.displayName,
+test/components/app_navigation_test.dart:842:        expect(AppNavigationVariant.bottomBar.description,
+test/components/app_navigation_test.dart:844:        expect(AppNavigationVariant.rail.description,
+test/components/app_navigation_test.dart:846:        expect(AppNavigationVariant.drawer.description,
+test/components/app_navigation_test.dart:848:        expect(AppNavigationVariant.permanentDrawer.description,
+test/components/app_navigation_test.dart:853:        expect(AppNavigationVariant.bottomBar.isHorizontal, isTrue);
+test/components/app_navigation_test.dart:854:        expect(AppNavigationVariant.rail.isHorizontal, isFalse);
+test/components/app_navigation_test.dart:855:        expect(AppNavigationVariant.drawer.isHorizontal, isFalse);
+test/components/app_navigation_test.dart:856:        expect(AppNavigationVariant.permanentDrawer.isHorizontal, isFalse);
+test/components/app_navigation_test.dart:860:        expect(AppNavigationVariant.bottomBar.isModal, isFalse);
+test/components/app_navigation_test.dart:861:        expect(AppNavigationVariant.rail.isModal, isFalse);
+test/components/app_navigation_test.dart:862:        expect(AppNavigationVariant.drawer.isModal, isTrue);
+test/components/app_navigation_test.dart:863:        expect(AppNavigationVariant.permanentDrawer.isModal, isFalse);
+test/components/app_navigation_test.dart:867:        for (final variant in AppNavigationVariant.values) {
+test/components/app_navigation_test.dart:873:        expect(AppNavigationVariant.bottomBar.defaultWidth,
+test/components/app_navigation_test.dart:875:        expect(AppNavigationVariant.rail.defaultWidth, equals(72.0));
+test/components/app_navigation_test.dart:876:        expect(AppNavigationVariant.drawer.defaultWidth, equals(256.0));
+test/components/app_navigation_test.dart:878:            AppNavigationVariant.permanentDrawer.defaultWidth, equals(256.0));
+test/components/app_navigation_test.dart:882:    group('AppNavigationStateExtension', () {
+test/components/app_navigation_test.dart:884:        expect(AppNavigationState.defaultState.displayName, equals('Default'));
+test/components/app_navigation_test.dart:885:        expect(AppNavigationState.hover.displayName, equals('Hover'));
+test/components/app_navigation_test.dart:886:        expect(AppNavigationState.pressed.displayName, equals('Pressed'));
+test/components/app_navigation_test.dart:887:        expect(AppNavigationState.focus.displayName, equals('Focus'));
+test/components/app_navigation_test.dart:888:        expect(AppNavigationState.selected.displayName, equals('Selected'));
+test/components/app_navigation_test.dart:889:        expect(AppNavigationState.disabled.displayName, equals('Disabled'));
+test/components/app_navigation_test.dart:890:        expect(AppNavigationState.loading.displayName, equals('Loading'));
+test/components/app_navigation_test.dart:891:        expect(AppNavigationState.skeleton.displayName, equals('Skeleton'));
+test/components/app_navigation_test.dart:895:        expect(AppNavigationState.defaultState.isInteractive, isTrue);
+test/components/app_navigation_test.dart:896:        expect(AppNavigationState.hover.isInteractive, isTrue);
+test/components/app_navigation_test.dart:897:        expect(AppNavigationState.pressed.isInteractive, isTrue);
+test/components/app_navigation_test.dart:898:        expect(AppNavigationState.focus.isInteractive, isTrue);
+test/components/app_navigation_test.dart:899:        expect(AppNavigationState.selected.isInteractive, isTrue);
+test/components/app_navigation_test.dart:900:        expect(AppNavigationState.disabled.isInteractive, isFalse);
+test/components/app_navigation_test.dart:901:        expect(AppNavigationState.loading.isInteractive, isFalse);
+test/components/app_navigation_test.dart:902:        expect(AppNavigationState.skeleton.isInteractive, isFalse);
+test/components/app_navigation_test.dart:906:        expect(AppNavigationState.defaultState.opacity, equals(1.0));
+test/components/app_navigation_test.dart:907:        expect(AppNavigationState.hover.opacity, equals(1.0));
+test/components/app_navigation_test.dart:908:        expect(AppNavigationState.pressed.opacity, equals(1.0));
+test/components/app_navigation_test.dart:909:        expect(AppNavigationState.focus.opacity, equals(1.0));
+test/components/app_navigation_test.dart:910:        expect(AppNavigationState.selected.opacity, equals(1.0));
+test/components/app_navigation_test.dart:911:        expect(AppNavigationState.disabled.opacity, equals(0.6));
+test/components/app_navigation_test.dart:912:        expect(AppNavigationState.loading.opacity, equals(0.8));
+test/components/app_navigation_test.dart:913:        expect(AppNavigationState.skeleton.opacity, equals(0.3));
+test/components/app_navigation_test.dart:917:        expect(AppNavigationState.loading.showsLoader, isTrue);
+test/components/app_navigation_test.dart:918:        expect(AppNavigationState.skeleton.showsSkeleton, isTrue);
+test/components/app_navigation_test.dart:920:        for (final state in AppNavigationState.values) {
+test/components/app_navigation_test.dart:921:          if (state != AppNavigationState.loading) {
+test/components/app_navigation_test.dart:924:          if (state != AppNavigationState.skeleton) {
+test/components/app_navigation_test.dart:931:    group('AppNavigationBadgeTypeExtension', () {
+test/components/app_navigation_test.dart:933:        expect(AppNavigationBadgeType.dot.displayName, equals('Dot'));
+test/components/app_navigation_test.dart:934:        expect(AppNavigationBadgeType.count.displayName, equals('Count'));
+test/components/app_navigation_test.dart:935:        expect(AppNavigationBadgeType.text.displayName, equals('Text'));
+test/components/app_navigation_test.dart:939:        expect(AppNavigationBadgeType.dot.showsText, isFalse);
+test/components/app_navigation_test.dart:940:        expect(AppNavigationBadgeType.count.showsText, isTrue);
+test/components/app_navigation_test.dart:941:        expect(AppNavigationBadgeType.text.showsText, isTrue);
+test/components/app_navigation_test.dart:945:        expect(AppNavigationBadgeType.dot.isNumeric, isFalse);
+test/components/app_navigation_test.dart:946:        expect(AppNavigationBadgeType.count.isNumeric, isTrue);
+test/components/app_navigation_test.dart:947:        expect(AppNavigationBadgeType.text.isNumeric, isFalse);
+lib/src/theme/borders.dart:7:class AppBorders {
+lib/src/theme/borders.dart:8:  AppBorders._();

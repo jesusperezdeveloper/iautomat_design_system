@@ -20,44 +20,44 @@ import 'package:iautomat_design_system/src/components/cart_widget/app_cart_widge
 ///
 /// Ejemplo:
 /// ```dart
-/// AppCartWidget(
+/// DSCartWidget(
 ///   items: [
-///     AppCartItem(
+///     DSCartItem(
 ///       id: '1',
 ///       name: 'iPhone 15 Pro',
 ///       price: 999.99,
 ///       quantity: 1,
 ///     ),
 ///   ],
-///   variant: AppCartVariant.full,
+///   variant: DSCartVariant.full,
 ///   onQtyChange: (itemId, newQty) => print('Item $itemId: $newQty'),
 ///   onCheckout: (summary) => print('Checkout: ${summary.total}'),
 /// )
 /// ```
-class AppCartWidget extends StatefulWidget {
+class DSCartWidget extends StatefulWidget {
   /// Configuración completa del carrito
-  final AppCartWidgetConfig? config;
+  final DSCartWidgetConfig? config;
 
   /// Lista de items en el carrito
-  final List<AppCartItem> items;
+  final List<DSCartItem> items;
 
   /// Variante del carrito
-  final AppCartVariant? variant;
+  final DSCartVariant? variant;
 
   /// Estado inicial del carrito
-  final AppCartState? initialState;
+  final DSCartState? initialState;
 
   /// Callback cuando cambia la cantidad de un item
   final Function(String itemId, int newQuantity)? onQtyChange;
 
   /// Callback cuando se procede al checkout
-  final Function(AppCartSummary summary)? onCheckout;
+  final Function(DSCartSummary summary)? onCheckout;
 
   /// Callback cuando se remueve un item
   final Function(String itemId)? onItemRemove;
 
   /// Callback cuando se toca un item
-  final Function(AppCartItem item)? onItemTap;
+  final Function(DSCartItem item)? onItemTap;
 
   /// Callback cuando se aplica un código promocional
   final Function(String promoCode)? onPromoCodeApply;
@@ -101,7 +101,7 @@ class AppCartWidget extends StatefulWidget {
   /// Widget personalizado para el footer
   final Widget? footerWidget;
 
-  const AppCartWidget({
+  const DSCartWidget({
     super.key,
     this.config,
     required this.items,
@@ -128,16 +128,16 @@ class AppCartWidget extends StatefulWidget {
   });
 
   @override
-  State<AppCartWidget> createState() => _AppCartWidgetState();
+  State<DSCartWidget> createState() => _DSCartWidgetState();
 }
 
-class _AppCartWidgetState extends State<AppCartWidget>
+class _DSCartWidgetState extends State<DSCartWidget>
     with TickerProviderStateMixin {
-  late AppCartWidgetConfig _config;
-  late AppCartState _currentState;
-  late AppCartWidgetPlatformAdapter _platformAdapter;
-  late AppCartWidgetA11yHelper _a11yHelper;
-  late AppCartSummary _summary;
+  late DSCartWidgetConfig _config;
+  late DSCartState _currentState;
+  late DSCartWidgetPlatformAdapter _platformAdapter;
+  late DSCartWidgetA11yHelper _a11yHelper;
+  late DSCartSummary _summary;
 
   // Controladores de animación
   late AnimationController _stateAnimationController;
@@ -153,7 +153,7 @@ class _AppCartWidgetState extends State<AppCartWidget>
   bool _isExpanded = true;
 
   // Lista interna de items para animaciones
-  List<AppCartItem> _animatedItems = [];
+  List<DSCartItem> _animatedItems = [];
 
   // Focus node para navegación por teclado
   final FocusNode _focusNode = FocusNode();
@@ -173,10 +173,10 @@ class _AppCartWidgetState extends State<AppCartWidget>
 
   void _initializeConfig() {
     _config = widget.config ??
-        AppCartWidgetConfig(
-          variant: widget.variant ?? AppCartVariant.full,
+        DSCartWidgetConfig(
+          variant: widget.variant ?? DSCartVariant.full,
           state: widget.initialState ??
-                 (widget.enabled ? AppCartState.defaultState : AppCartState.disabled),
+                 (widget.enabled ? DSCartState.defaultState : DSCartState.disabled),
         );
 
     _currentState = _config.state;
@@ -227,9 +227,9 @@ class _AppCartWidgetState extends State<AppCartWidget>
   }
 
   void _initializeHelpers() {
-    _platformAdapter = AppCartWidgetPlatformAdapter();
-    _a11yHelper = AppCartWidgetA11yHelper(
-      config: _config.a11yConfig ?? const AppCartA11yConfig(),
+    _platformAdapter = DSCartWidgetPlatformAdapter();
+    _a11yHelper = DSCartWidgetA11yHelper(
+      config: _config.a11yConfig ?? const DSCartA11yConfig(),
     );
   }
 
@@ -244,9 +244,9 @@ class _AppCartWidgetState extends State<AppCartWidget>
       setState(() {
         _isFocused = _focusNode.hasFocus;
         if (_isFocused) {
-          _updateState(AppCartState.focus);
-        } else if (_currentState == AppCartState.focus) {
-          _updateState(AppCartState.defaultState);
+          _updateState(DSCartState.focus);
+        } else if (_currentState == DSCartState.focus) {
+          _updateState(DSCartState.defaultState);
         }
       });
     });
@@ -257,16 +257,16 @@ class _AppCartWidgetState extends State<AppCartWidget>
     if (_config.animation?.enableScaleAnimation != true) return 1.0;
 
     switch (_currentState) {
-      case AppCartState.hover:
+      case DSCartState.hover:
         return _config.animation?.hoverScale ?? 1.02;
-      case AppCartState.pressed:
+      case DSCartState.pressed:
         return _config.animation?.pressScale ?? 0.98;
       default:
         return 1.0;
     }
   }
 
-  void _updateState(AppCartState newState) {
+  void _updateState(DSCartState newState) {
     if (_currentState == newState || !widget.enabled) return;
 
     setState(() {
@@ -280,7 +280,7 @@ class _AppCartWidgetState extends State<AppCartWidget>
   }
 
   void _calculateSummary() {
-    _summary = AppCartUtils.calculateSummary(
+    _summary = DSCartUtils.calculateSummary(
       _animatedItems,
       taxRate: widget.taxRate,
       shippingCost: widget.shippingCost,
@@ -304,7 +304,7 @@ class _AppCartWidgetState extends State<AppCartWidget>
     if (itemIndex == -1) return;
 
     final item = _animatedItems[itemIndex];
-    if (!AppCartUtils.isValidQuantity(item, newQuantity)) return;
+    if (!DSCartUtils.isValidQuantity(item, newQuantity)) return;
 
     setState(() {
       if (newQuantity <= 0) {
@@ -345,19 +345,19 @@ class _AppCartWidgetState extends State<AppCartWidget>
   void _handleCheckout() {
     if (!widget.enabled || _summary.isEmpty) return;
 
-    _updateState(AppCartState.loading);
+    _updateState(DSCartState.loading);
 
     // Simular delay de checkout
     Future.delayed(const Duration(milliseconds: 500), () {
       if (mounted) {
-        _updateState(AppCartState.defaultState);
+        _updateState(DSCartState.defaultState);
         widget.onCheckout?.call(_summary);
         _a11yHelper.announceCheckout(_summary);
       }
     });
   }
 
-  void _handleItemTap(AppCartItem item) {
+  void _handleItemTap(DSCartItem item) {
     if (!widget.enabled) return;
     widget.onItemTap?.call(item);
   }
@@ -375,9 +375,9 @@ class _AppCartWidgetState extends State<AppCartWidget>
     });
 
     if (isHovered) {
-      _updateState(AppCartState.hover);
+      _updateState(DSCartState.hover);
     } else {
-      _updateState(AppCartState.defaultState);
+      _updateState(DSCartState.defaultState);
     }
   }
 
@@ -415,7 +415,7 @@ class _AppCartWidgetState extends State<AppCartWidget>
   }
 
   @override
-  void didUpdateWidget(AppCartWidget oldWidget) {
+  void didUpdateWidget(DSCartWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     // Actualizar items si cambiaron
@@ -429,8 +429,8 @@ class _AppCartWidgetState extends State<AppCartWidget>
     // Actualizar estado enabled
     if (widget.enabled != oldWidget.enabled) {
       _updateState(widget.enabled
-          ? AppCartState.defaultState
-          : AppCartState.disabled);
+          ? DSCartState.defaultState
+          : DSCartState.disabled);
     }
 
     // Recalcular si cambiaron parámetros de cálculo
@@ -498,7 +498,7 @@ class _AppCartWidgetState extends State<AppCartWidget>
                     height: widget.height,
                     constraints: BoxConstraints(
                       minWidth: spacing.minWidth,
-                      minHeight: variant == AppCartVariant.mini ? 80 : spacing.minHeight,
+                      minHeight: variant == DSCartVariant.mini ? 80 : spacing.minHeight,
                     ),
                     child: _buildCartContent(
                       context: context,
@@ -518,11 +518,11 @@ class _AppCartWidgetState extends State<AppCartWidget>
 
   Widget _buildCartContent({
     required BuildContext context,
-    required AppCartVariant variant,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartVariant variant,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
   }) {
-    if (_currentState == AppCartState.skeleton) {
+    if (_currentState == DSCartState.skeleton) {
       return _platformAdapter.buildSkeletonCart(
         context: context,
         variant: variant,
@@ -568,15 +568,15 @@ class _AppCartWidgetState extends State<AppCartWidget>
     );
   }
 
-  AppCartSpacing _resolveSpacing() {
-    return _config.spacing ?? const AppCartSpacing();
+  DSCartSpacing _resolveSpacing() {
+    return _config.spacing ?? const DSCartSpacing();
   }
 
-  AppCartColors _resolveColors(BuildContext context) {
+  DSCartColors _resolveColors(BuildContext context) {
     final theme = Theme.of(context);
-    final baseColors = _config.colors ?? const AppCartColors();
+    final baseColors = _config.colors ?? const DSCartColors();
 
-    return AppCartColors(
+    return DSCartColors(
       backgroundColor: baseColors.backgroundColor ?? theme.colorScheme.surface,
       borderColor: baseColors.borderColor ?? theme.colorScheme.outline.withValues(alpha: 0.2),
       shadowColor: baseColors.shadowColor ?? theme.colorScheme.shadow,

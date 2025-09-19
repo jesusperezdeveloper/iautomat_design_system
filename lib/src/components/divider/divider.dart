@@ -1,4 +1,4 @@
-// Exporta todos los archivos relacionados con AppDivider
+// Exporta todos los archivos relacionados con DSDivider
 
 export 'app_divider.dart';
 export 'app_divider_config.dart';

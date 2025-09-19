@@ -4,25 +4,25 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_cart_widget_config.freezed.dart';
 
-/// Configuración completa para el componente AppCartWidget
+/// Configuración completa para el componente DSCartWidget
 ///
 /// Utiliza Freezed para crear modelos inmutables y type-safe
 /// que definen todos los aspectos del comportamiento del carrito
 @freezed
-class AppCartWidgetConfig with _$AppCartWidgetConfig {
-  const factory AppCartWidgetConfig({
-    @Default(AppCartVariant.full) AppCartVariant variant,
-    @Default(AppCartState.defaultState) AppCartState state,
-    AppCartColors? colors,
-    AppCartSpacing? spacing,
-    AppCartAnimation? animation,
-    AppCartBehavior? behavior,
-    AppCartA11yConfig? a11yConfig,
-  }) = _AppCartWidgetConfig;
+class DSCartWidgetConfig with _$DSCartWidgetConfig {
+  const factory DSCartWidgetConfig({
+    @Default(DSCartVariant.full) DSCartVariant variant,
+    @Default(DSCartState.defaultState) DSCartState state,
+    DSCartColors? colors,
+    DSCartSpacing? spacing,
+    DSCartAnimation? animation,
+    DSCartBehavior? behavior,
+    DSCartA11yConfig? a11yConfig,
+  }) = _DSCartWidgetConfig;
 }
 
 /// Variantes del carrito
-enum AppCartVariant {
+enum DSCartVariant {
   /// Versión mini/compacta (contador + total)
   mini,
 
@@ -31,7 +31,7 @@ enum AppCartVariant {
 }
 
 /// Estados interactivos del carrito
-enum AppCartState {
+enum DSCartState {
   /// Estado por defecto
   defaultState,
 
@@ -59,8 +59,8 @@ enum AppCartState {
 
 /// Item del carrito
 @freezed
-class AppCartItem with _$AppCartItem {
-  const factory AppCartItem({
+class DSCartItem with _$DSCartItem {
+  const factory DSCartItem({
     required String id,
     required String name,
     required double price,
@@ -79,8 +79,8 @@ class AppCartItem with _$AppCartItem {
 
 /// Configuración de colores del carrito
 @freezed
-class AppCartColors with _$AppCartColors {
-  const factory AppCartColors({
+class DSCartColors with _$DSCartColors {
+  const factory DSCartColors({
     Color? backgroundColor,
     Color? borderColor,
     Color? shadowColor,
@@ -109,8 +109,8 @@ class AppCartColors with _$AppCartColors {
 
 /// Configuración de espaciado del carrito
 @freezed
-class AppCartSpacing with _$AppCartSpacing {
-  const factory AppCartSpacing({
+class DSCartSpacing with _$DSCartSpacing {
+  const factory DSCartSpacing({
     @Default(EdgeInsets.all(16)) EdgeInsets padding,
     @Default(EdgeInsets.zero) EdgeInsets margin,
     @Default(12.0) double borderRadius,
@@ -129,8 +129,8 @@ class AppCartSpacing with _$AppCartSpacing {
 
 /// Configuración de animaciones del carrito
 @freezed
-class AppCartAnimation with _$AppCartAnimation {
-  const factory AppCartAnimation({
+class DSCartAnimation with _$DSCartAnimation {
+  const factory DSCartAnimation({
     @Default(true) bool enabled,
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
@@ -147,8 +147,8 @@ class AppCartAnimation with _$AppCartAnimation {
 
 /// Configuración de comportamiento del carrito
 @freezed
-class AppCartBehavior with _$AppCartBehavior {
-  const factory AppCartBehavior({
+class DSCartBehavior with _$DSCartBehavior {
+  const factory DSCartBehavior({
     @Default(true) bool allowQuantityChange,
     @Default(true) bool allowItemRemoval,
     @Default(true) bool showImages,
@@ -161,13 +161,13 @@ class AppCartBehavior with _$AppCartBehavior {
     @Default(true) bool enableSwipeToDelete,
     @Default(true) bool enableQuantityValidation,
     @Default(false) bool autoCollapseOnEmpty,
-    @Default(AppCartLayout.list) AppCartLayout layout,
+    @Default(DSCartLayout.list) DSCartLayout layout,
     @Default(5) int maxVisibleItems,
   }) = _AppCartBehavior;
 }
 
 /// Layout del carrito
-enum AppCartLayout {
+enum DSCartLayout {
   /// Lista vertical
   list,
 
@@ -183,8 +183,8 @@ enum AppCartLayout {
 
 /// Configuración de accesibilidad del carrito
 @freezed
-class AppCartA11yConfig with _$AppCartA11yConfig {
-  const factory AppCartA11yConfig({
+class DSCartA11yConfig with _$DSCartA11yConfig {
+  const factory DSCartA11yConfig({
     String? cartLabel,
     String? itemLabel,
     String? quantityLabel,
@@ -201,13 +201,13 @@ class AppCartA11yConfig with _$AppCartA11yConfig {
     @Default(true) bool announceCheckout,
     @Default(true) bool enableKeyboardNavigation,
     @Default(true) bool enableSwipeActions,
-  }) = _AppCartA11yConfig;
+  }) = _DSCartA11yConfig;
 }
 
 /// Resumen del carrito
 @freezed
-class AppCartSummary with _$AppCartSummary {
-  const factory AppCartSummary({
+class DSCartSummary with _$DSCartSummary {
+  const factory DSCartSummary({
     required double subtotal,
     @Default(0.0) double taxes,
     @Default(0.0) double shipping,
@@ -220,14 +220,14 @@ class AppCartSummary with _$AppCartSummary {
   }) = _AppCartSummary;
 }
 
-/// Extensiones para AppCartVariant
-extension AppCartVariantExtensions on AppCartVariant {
+/// Extensiones para DSCartVariant
+extension DSCartVariantExtensions on DSCartVariant {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCartVariant.mini:
+      case DSCartVariant.mini:
         return 'Mini';
-      case AppCartVariant.full:
+      case DSCartVariant.full:
         return 'Completo';
     }
   }
@@ -235,71 +235,71 @@ extension AppCartVariantExtensions on AppCartVariant {
   /// Icono representativo
   IconData get icon {
     switch (this) {
-      case AppCartVariant.mini:
+      case DSCartVariant.mini:
         return Icons.shopping_cart_outlined;
-      case AppCartVariant.full:
+      case DSCartVariant.full:
         return Icons.shopping_cart;
     }
   }
 
   /// Si muestra la lista completa de items
   bool get showItemList {
-    return this == AppCartVariant.full;
+    return this == DSCartVariant.full;
   }
 
   /// Si muestra solo el resumen
   bool get showSummaryOnly {
-    return this == AppCartVariant.mini;
+    return this == DSCartVariant.mini;
   }
 
   /// Layout recomendado
-  AppCartLayout get recommendedLayout {
+  DSCartLayout get recommendedLayout {
     switch (this) {
-      case AppCartVariant.mini:
-        return AppCartLayout.carousel;
-      case AppCartVariant.full:
-        return AppCartLayout.list;
+      case DSCartVariant.mini:
+        return DSCartLayout.carousel;
+      case DSCartVariant.full:
+        return DSCartLayout.list;
     }
   }
 }
 
-/// Extensiones para AppCartState
-extension AppCartStateExtensions on AppCartState {
+/// Extensiones para DSCartState
+extension DSCartStateExtensions on DSCartState {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCartState.defaultState:
+      case DSCartState.defaultState:
         return 'Normal';
-      case AppCartState.hover:
+      case DSCartState.hover:
         return 'Hover';
-      case AppCartState.pressed:
+      case DSCartState.pressed:
         return 'Presionado';
-      case AppCartState.focus:
+      case DSCartState.focus:
         return 'Enfocado';
-      case AppCartState.selected:
+      case DSCartState.selected:
         return 'Seleccionado';
-      case AppCartState.disabled:
+      case DSCartState.disabled:
         return 'Deshabilitado';
-      case AppCartState.loading:
+      case DSCartState.loading:
         return 'Cargando';
-      case AppCartState.skeleton:
+      case DSCartState.skeleton:
         return 'Skeleton';
     }
   }
 
   /// Si el estado es interactivo
   bool get isInteractive {
-    return this != AppCartState.disabled &&
-           this != AppCartState.loading &&
-           this != AppCartState.skeleton;
+    return this != DSCartState.disabled &&
+           this != DSCartState.loading &&
+           this != DSCartState.skeleton;
   }
 
   /// Opacidad del estado
   double get opacity {
     switch (this) {
-      case AppCartState.disabled:
+      case DSCartState.disabled:
         return 0.5;
-      case AppCartState.loading:
+      case DSCartState.loading:
         return 0.7;
       default:
         return 1.0;
@@ -309,11 +309,11 @@ extension AppCartStateExtensions on AppCartState {
   /// Elevación del estado
   double get elevation {
     switch (this) {
-      case AppCartState.hover:
+      case DSCartState.hover:
         return 8.0;
-      case AppCartState.pressed:
+      case DSCartState.pressed:
         return 2.0;
-      case AppCartState.selected:
+      case DSCartState.selected:
         return 6.0;
       default:
         return 4.0;
@@ -321,8 +321,8 @@ extension AppCartStateExtensions on AppCartState {
   }
 }
 
-/// Extensiones para AppCartItem
-extension AppCartItemExtensions on AppCartItem {
+/// Extensiones para DSCartItem
+extension DSCartItemExtensions on DSCartItem {
   /// Precio total del item (precio × cantidad)
   double get totalPrice => price * quantity;
 
@@ -348,7 +348,7 @@ extension AppCartItemExtensions on AppCartItem {
   bool get canDecreaseQuantity => quantity > minQuantity;
 
   /// Crea una copia con nueva cantidad
-  AppCartItem copyWithQuantity(int newQuantity) {
+  DSCartItem copyWithQuantity(int newQuantity) {
     return copyWith(
       quantity: math.max(minQuantity, math.min(maxQuantity, newQuantity)),
     );
@@ -388,8 +388,8 @@ extension AppCartItemExtensions on AppCartItem {
   }
 }
 
-/// Extensiones para AppCartSummary
-extension AppCartSummaryExtensions on AppCartSummary {
+/// Extensiones para DSCartSummary
+extension DSCartSummaryExtensions on DSCartSummary {
   /// Si el carrito está vacío
   bool get isEmpty => itemCount == 0;
 
@@ -457,52 +457,52 @@ extension AppCartSummaryExtensions on AppCartSummary {
   }
 }
 
-/// Extensiones para AppCartLayout
-extension AppCartLayoutExtensions on AppCartLayout {
+/// Extensiones para DSCartLayout
+extension DSCartLayoutExtensions on DSCartLayout {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCartLayout.list:
+      case DSCartLayout.list:
         return 'Lista';
-      case AppCartLayout.grid:
+      case DSCartLayout.grid:
         return 'Grid';
-      case AppCartLayout.carousel:
+      case DSCartLayout.carousel:
         return 'Carrusel';
-      case AppCartLayout.accordion:
+      case DSCartLayout.accordion:
         return 'Acordeón';
     }
   }
 
   /// Si el layout es vertical
   bool get isVertical {
-    return this == AppCartLayout.list || this == AppCartLayout.accordion;
+    return this == DSCartLayout.list || this == DSCartLayout.accordion;
   }
 
   /// Si el layout es horizontal
   bool get isHorizontal {
-    return this == AppCartLayout.carousel;
+    return this == DSCartLayout.carousel;
   }
 
   /// Si soporta scroll
   bool get isScrollable {
-    return this != AppCartLayout.accordion;
+    return this != DSCartLayout.accordion;
   }
 
   /// Si permite colapsar
   bool get isCollapsible {
-    return this == AppCartLayout.accordion;
+    return this == DSCartLayout.accordion;
   }
 
   /// Aspect ratio recomendado para items
   double get recommendedItemRatio {
     switch (this) {
-      case AppCartLayout.list:
+      case DSCartLayout.list:
         return 4.0; // Ancho / alto
-      case AppCartLayout.grid:
+      case DSCartLayout.grid:
         return 1.2;
-      case AppCartLayout.carousel:
+      case DSCartLayout.carousel:
         return 2.0;
-      case AppCartLayout.accordion:
+      case DSCartLayout.accordion:
         return 3.0;
     }
   }
@@ -510,7 +510,7 @@ extension AppCartLayoutExtensions on AppCartLayout {
   /// Número de columnas para grid
   int get gridColumns {
     switch (this) {
-      case AppCartLayout.grid:
+      case DSCartLayout.grid:
         return 2;
       default:
         return 1;
@@ -519,10 +519,10 @@ extension AppCartLayoutExtensions on AppCartLayout {
 }
 
 /// Utilidades para cálculos de carrito
-class AppCartUtils {
+class DSCartUtils {
   /// Calcula el resumen del carrito desde una lista de items
-  static AppCartSummary calculateSummary(
-    List<AppCartItem> items, {
+  static DSCartSummary calculateSummary(
+    List<DSCartItem> items, {
     double taxRate = 0.0,
     double shippingCost = 0.0,
     double discountAmount = 0.0,
@@ -543,7 +543,7 @@ class AppCartUtils {
       (sum, item) => sum + item.quantity,
     );
 
-    return AppCartSummary(
+    return DSCartSummary(
       subtotal: subtotal,
       taxes: taxes,
       shipping: shippingCost,
@@ -576,7 +576,7 @@ class AppCartUtils {
   };
 
   /// Valida la cantidad de un item
-  static bool isValidQuantity(AppCartItem item, int quantity) {
+  static bool isValidQuantity(DSCartItem item, int quantity) {
     return quantity >= item.minQuantity &&
            quantity <= item.maxQuantity &&
            quantity > 0;
@@ -600,7 +600,7 @@ class AppCartUtils {
   }
 
   /// Filtra items disponibles
-  static List<AppCartItem> getAvailableItems(List<AppCartItem> items) {
+  static List<DSCartItem> getAvailableItems(List<DSCartItem> items) {
     return items.where((item) => item.available).toList();
   }
 }

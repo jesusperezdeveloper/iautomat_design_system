@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 part 'checkbox_config.freezed.dart';
 
 @freezed
-class AppCheckboxConfig with _$AppCheckboxConfig {
-  const factory AppCheckboxConfig({
+class DSCheckboxConfig with _$DSCheckboxConfig {
+  const factory DSCheckboxConfig({
     @Default(20.0) double size,
     @Default(2.0) double borderWidth,
     @Default(BorderRadius.all(Radius.circular(4))) BorderRadius borderRadius,
@@ -21,14 +21,14 @@ class AppCheckboxConfig with _$AppCheckboxConfig {
     @Default(true) bool enableHapticFeedback,
     @Default(true) bool enableSplashEffect,
     @Default(48.0) double minimumTouchTargetSize,
-  }) = _AppCheckboxConfig;
+  }) = _DSCheckboxConfig;
 
-  const AppCheckboxConfig._();
+  const DSCheckboxConfig._();
 }
 
 @freezed
-class AppCheckboxColors with _$AppCheckboxColors {
-  const factory AppCheckboxColors({
+class DSCheckboxColors with _$DSCheckboxColors {
+  const factory DSCheckboxColors({
     required Color borderColor,
     required Color fillColor,
     required Color checkColor,
@@ -42,13 +42,13 @@ class AppCheckboxColors with _$AppCheckboxColors {
     required Color disabledLabelColor,
   }) = _AppCheckboxColors;
 
-  const AppCheckboxColors._();
+  const DSCheckboxColors._();
 
-  factory AppCheckboxColors.fromTheme(ThemeData theme) {
+  factory DSCheckboxColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
 
-    return AppCheckboxColors(
+    return DSCheckboxColors(
       borderColor: isDark
           ? colorScheme.onSurface.withValues(alpha: 0.6)
           : colorScheme.onSurfaceVariant,
@@ -66,7 +66,7 @@ class AppCheckboxColors with _$AppCheckboxColors {
   }
 }
 
-enum AppCheckboxState {
+enum DSCheckboxState {
   defaultState,
   hover,
   pressed,
@@ -77,7 +77,7 @@ enum AppCheckboxState {
   skeleton,
 }
 
-enum AppCheckboxValue {
+enum DSCheckboxValue {
   unchecked,
   checked,
   indeterminate,

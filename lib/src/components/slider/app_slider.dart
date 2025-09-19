@@ -6,28 +6,28 @@ import 'package:flutter/services.dart';
 
 import 'slider_config.dart';
 
-class AppSlider extends StatefulWidget {
+class DSSlider extends StatefulWidget {
   final double? value;
-  final AppSliderRangeValue? rangeValue;
+  final DSSliderRangeValue? rangeValue;
   final double min;
   final double max;
   final double? step;
   final ValueChanged<double>? onChanged;
-  final ValueChanged<AppSliderRangeValue>? onRangeChanged;
-  final List<AppSliderMark> marks;
+  final ValueChanged<DSSliderRangeValue>? onRangeChanged;
+  final List<DSSliderMark> marks;
   final String? label;
   final String? helperText;
   final String? errorText;
   final String? Function(double?)? validator;
-  final String? Function(AppSliderRangeValue?)? rangeValidator;
-  final AppSliderVariant variant;
-  final AppSliderConfig? config;
-  final AppSliderColors? colors;
+  final String? Function(DSSliderRangeValue?)? rangeValidator;
+  final DSSliderVariant variant;
+  final DSSliderConfig? config;
+  final DSSliderColors? colors;
   final bool enabled;
   final bool autoFocus;
   final FocusNode? focusNode;
   final String? semanticLabel;
-  final AppSliderState? overrideState;
+  final DSSliderState? overrideState;
   final TextDirection? textDirection;
   final bool dense;
   final double? width;
@@ -38,7 +38,7 @@ class AppSlider extends StatefulWidget {
   final bool showLabels;
   final bool showTicks;
 
-  const AppSlider({
+  const DSSlider({
     super.key,
     this.value,
     this.rangeValue,
@@ -53,7 +53,7 @@ class AppSlider extends StatefulWidget {
     this.errorText,
     this.validator,
     this.rangeValidator,
-    this.variant = AppSliderVariant.continuous,
+    this.variant = DSSliderVariant.continuous,
     this.config,
     this.colors,
     this.enabled = true,
@@ -71,10 +71,10 @@ class AppSlider extends StatefulWidget {
     this.showLabels = true,
     this.showTicks = true,
   })  : assert(
-          (variant == AppSliderVariant.range &&
+          (variant == DSSliderVariant.range &&
                   rangeValue != null &&
                   onRangeChanged != null) ||
-              (variant != AppSliderVariant.range &&
+              (variant != DSSliderVariant.range &&
                   value != null &&
                   onChanged != null),
           'Range sliders require rangeValue and onRangeChanged, others require value and onChanged',
@@ -89,18 +89,18 @@ class AppSlider extends StatefulWidget {
         );
 
   @override
-  State<AppSlider> createState() => _AppSliderState();
+  State<DSSlider> createState() => _DSSliderState();
 }
 
-class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
+class _DSSliderState extends State<DSSlider> with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late AnimationController _animationController;
   late AnimationController _shimmerController;
   late Animation<double> _shimmerAnimation;
 
-  AppSliderConfig? _config;
-  AppSliderColors? _colors;
-  AppSliderState _currentState = AppSliderState.defaultState;
+  DSSliderConfig? _config;
+  DSSliderColors? _colors;
+  DSSliderState _currentState = DSSliderState.defaultState;
   bool _isPressed = false;
   bool _isHovered = false;
   String? _validationError;
@@ -141,7 +141,7 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(AppSlider oldWidget) {
+  void didUpdateWidget(DSSlider oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.focusNode != oldWidget.focusNode) {
       _focusNode.removeListener(_handleFocusChange);
@@ -165,26 +165,26 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
 
   void _updateColors() {
     final theme = Theme.of(context);
-    _colors = widget.colors ?? AppSliderColors.fromTheme(theme);
-    _config = widget.config ?? const AppSliderConfig();
+    _colors = widget.colors ?? DSSliderColors.fromTheme(theme);
+    _config = widget.config ?? const DSSliderConfig();
   }
 
   void _updateState() {
     if (widget.overrideState != null) {
       _currentState = widget.overrideState!;
     } else if (!widget.enabled) {
-      _currentState = AppSliderState.disabled;
+      _currentState = DSSliderState.disabled;
     } else if (_isPressed) {
-      _currentState = AppSliderState.pressed;
+      _currentState = DSSliderState.pressed;
     } else if (_isHovered) {
-      _currentState = AppSliderState.hover;
+      _currentState = DSSliderState.hover;
     } else if (_focusNode.hasFocus) {
-      _currentState = AppSliderState.focus;
+      _currentState = DSSliderState.focus;
     } else {
-      _currentState = AppSliderState.defaultState;
+      _currentState = DSSliderState.defaultState;
     }
 
-    if (_currentState == AppSliderState.skeleton) {
+    if (_currentState == DSSliderState.skeleton) {
       _shimmerController.repeat();
     } else {
       _shimmerController.stop();
@@ -223,7 +223,7 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
     }
 
     final rangeValue =
-        AppSliderRangeValue(start: values.start, end: values.end);
+        DSSliderRangeValue(start: values.start, end: values.end);
 
     // Validate the range
     if (widget.rangeValidator != null) {
@@ -312,11 +312,11 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
 
   Widget _buildSlider() {
     switch (widget.variant) {
-      case AppSliderVariant.continuous:
+      case DSSliderVariant.continuous:
         return _buildContinuousSlider();
-      case AppSliderVariant.discrete:
+      case DSSliderVariant.discrete:
         return _buildDiscreteSlider();
-      case AppSliderVariant.range:
+      case DSSliderVariant.range:
         return _buildRangeSlider();
     }
   }
@@ -420,37 +420,37 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
 
   Color _getThumbColor() {
     switch (_currentState) {
-      case AppSliderState.pressed:
+      case DSSliderState.pressed:
         return _colors!.pressedThumbColor;
-      case AppSliderState.hover:
+      case DSSliderState.hover:
         return _colors!.hoveredThumbColor;
-      case AppSliderState.focus:
-      case AppSliderState.selected:
+      case DSSliderState.focus:
+      case DSSliderState.selected:
         return _colors!.thumbColor;
-      case AppSliderState.disabled:
+      case DSSliderState.disabled:
         return _colors!.disabledThumbColor;
-      case AppSliderState.loading:
-      case AppSliderState.skeleton:
+      case DSSliderState.loading:
+      case DSSliderState.skeleton:
         return _colors!.thumbColor.withValues(alpha: 0.5);
-      case AppSliderState.defaultState:
+      case DSSliderState.defaultState:
         return _colors!.thumbColor;
     }
   }
 
   Color _getOverlayColor() {
     switch (_currentState) {
-      case AppSliderState.pressed:
+      case DSSliderState.pressed:
         return _colors!.pressOverlayColor;
-      case AppSliderState.hover:
+      case DSSliderState.hover:
         return _colors!.hoverOverlayColor;
-      case AppSliderState.focus:
-      case AppSliderState.selected:
+      case DSSliderState.focus:
+      case DSSliderState.selected:
         return _colors!.focusOverlayColor;
-      case AppSliderState.disabled:
-      case AppSliderState.loading:
-      case AppSliderState.skeleton:
+      case DSSliderState.disabled:
+      case DSSliderState.loading:
+      case DSSliderState.skeleton:
         return Colors.transparent;
-      case AppSliderState.defaultState:
+      case DSSliderState.defaultState:
         return _colors!.overlayColor;
     }
   }
@@ -517,7 +517,7 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
       textDirection: directionality,
       child: Semantics(
         label: widget.semanticLabel ?? widget.label,
-        value: widget.variant == AppSliderVariant.range
+        value: widget.variant == DSSliderVariant.range
             ? '${_formatValue(widget.rangeValue!.start)} to ${_formatValue(widget.rangeValue!.end)}'
             : _formatValue(widget.value ?? 0),
         enabled: widget.enabled,
@@ -548,12 +548,12 @@ class _AppSliderState extends State<AppSlider> with TickerProviderStateMixin {
                 _buildLabel(),
                 SizedBox(
                   height: _config!.minimumHeight,
-                  child: _currentState == AppSliderState.loading
+                  child: _currentState == DSSliderState.loading
                       ? Center(
                           child:
                               widget.loadingWidget ?? _buildLoadingIndicator(),
                         )
-                      : _currentState == AppSliderState.skeleton
+                      : _currentState == DSSliderState.skeleton
                           ? _buildSkeleton()
                           : Stack(
                               children: [

@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'toggle_view_config.freezed.dart';
 
 /// Toggle view variant types
-enum AppToggleViewVariant {
+enum DSToggleViewVariant {
   /// List view with vertical layout
   list,
 
@@ -16,7 +16,7 @@ enum AppToggleViewVariant {
 }
 
 /// Toggle view state types
-enum AppToggleViewState {
+enum DSToggleViewState {
   /// Default state
   defaultState,
 
@@ -43,7 +43,7 @@ enum AppToggleViewState {
 }
 
 /// Toggle view size variants
-enum AppToggleViewSize {
+enum DSToggleViewSize {
   /// Small toggle view
   small,
 
@@ -55,7 +55,7 @@ enum AppToggleViewSize {
 }
 
 /// Toggle view orientation
-enum AppToggleViewOrientation {
+enum DSToggleViewOrientation {
   /// Horizontal orientation
   horizontal,
 
@@ -66,18 +66,18 @@ enum AppToggleViewOrientation {
   auto,
 }
 
-/// Configuration model for AppToggleView
+/// Configuration model for DSToggleView
 @freezed
-class AppToggleViewConfig with _$AppToggleViewConfig {
-  const factory AppToggleViewConfig({
+class DSToggleViewConfig with _$DSToggleViewConfig {
+  const factory DSToggleViewConfig({
     // Animation configuration
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
 
     // Size and spacing configuration
-    @Default(AppToggleViewSize.medium) AppToggleViewSize size,
-    @Default(AppToggleViewOrientation.auto)
-    AppToggleViewOrientation orientation,
+    @Default(DSToggleViewSize.medium) DSToggleViewSize size,
+    @Default(DSToggleViewOrientation.auto)
+    DSToggleViewOrientation orientation,
     @Default(EdgeInsets.all(8.0)) EdgeInsets padding,
     @Default(EdgeInsets.symmetric(horizontal: 4.0)) EdgeInsets itemPadding,
     @Default(8.0) double itemSpacing,
@@ -173,11 +173,11 @@ class AppToggleViewConfig with _$AppToggleViewConfig {
     @Default(double.infinity) double maxHeight,
     double? minWidth,
     double? minHeight,
-  }) = _AppToggleViewConfig;
+  }) = _DSToggleViewConfig;
 
   /// Default configuration for small size
-  static const AppToggleViewConfig small = AppToggleViewConfig(
-    size: AppToggleViewSize.small,
+  static const DSToggleViewConfig small = DSToggleViewConfig(
+    size: DSToggleViewSize.small,
     fontSize: 12.0,
     iconSize: 16.0,
     padding: EdgeInsets.all(6.0),
@@ -185,8 +185,8 @@ class AppToggleViewConfig with _$AppToggleViewConfig {
   );
 
   /// Default configuration for medium size
-  static const AppToggleViewConfig medium = AppToggleViewConfig(
-    size: AppToggleViewSize.medium,
+  static const DSToggleViewConfig medium = DSToggleViewConfig(
+    size: DSToggleViewSize.medium,
     fontSize: 14.0,
     iconSize: 18.0,
     padding: EdgeInsets.all(8.0),
@@ -194,8 +194,8 @@ class AppToggleViewConfig with _$AppToggleViewConfig {
   );
 
   /// Default configuration for large size
-  static const AppToggleViewConfig large = AppToggleViewConfig(
-    size: AppToggleViewSize.large,
+  static const DSToggleViewConfig large = DSToggleViewConfig(
+    size: DSToggleViewSize.large,
     fontSize: 16.0,
     iconSize: 20.0,
     padding: EdgeInsets.all(10.0),
@@ -205,10 +205,10 @@ class AppToggleViewConfig with _$AppToggleViewConfig {
 
 /// Data model for toggle view options
 @freezed
-class AppToggleViewOption with _$AppToggleViewOption {
-  const AppToggleViewOption._();
+class DSToggleViewOption with _$DSToggleViewOption {
+  const DSToggleViewOption._();
 
-  const factory AppToggleViewOption({
+  const factory DSToggleViewOption({
     /// Unique identifier for the option
     required String id,
 
@@ -234,29 +234,29 @@ class AppToggleViewOption with _$AppToggleViewOption {
     String? semanticLabel,
 
     /// Custom styling for this specific option
-    AppToggleViewConfig? config,
+    DSToggleViewConfig? config,
 
     /// Additional metadata
     Map<String, dynamic>? metadata,
   }) = _AppToggleViewOption;
 
   /// Create option from simple string
-  factory AppToggleViewOption.fromString(String label) {
-    return AppToggleViewOption(
+  factory DSToggleViewOption.fromString(String label) {
+    return DSToggleViewOption(
       id: label.toLowerCase().replaceAll(' ', '_'),
       label: label,
     );
   }
 
   /// Create option with icon
-  factory AppToggleViewOption.withIcon({
+  factory DSToggleViewOption.withIcon({
     required String id,
     required String label,
     required IconData icon,
     dynamic value,
     bool enabled = true,
   }) {
-    return AppToggleViewOption(
+    return DSToggleViewOption(
       id: id,
       label: label,
       icon: icon,
@@ -268,21 +268,21 @@ class AppToggleViewOption with _$AppToggleViewOption {
 
 /// Data model for toggle view state management
 @freezed
-class AppToggleViewData with _$AppToggleViewData {
-  const AppToggleViewData._();
+class DSToggleViewData with _$DSToggleViewData {
+  const DSToggleViewData._();
 
-  const factory AppToggleViewData({
+  const factory DSToggleViewData({
     /// Current variant of the toggle view
-    @Default(AppToggleViewVariant.list) AppToggleViewVariant variant,
+    @Default(DSToggleViewVariant.list) DSToggleViewVariant variant,
 
     /// Current selected value(s)
     @Default([]) List<String> selectedValues,
 
     /// Available options
-    @Default([]) List<AppToggleViewOption> options,
+    @Default([]) List<DSToggleViewOption> options,
 
     /// Current state
-    @Default(AppToggleViewState.defaultState) AppToggleViewState state,
+    @Default(DSToggleViewState.defaultState) DSToggleViewState state,
 
     /// Whether the toggle view is enabled
     @Default(true) bool enabled,
@@ -316,31 +316,31 @@ class AppToggleViewData with _$AppToggleViewData {
       selectedValues.isNotEmpty ? selectedValues.first : null;
 
   /// Get selected options
-  List<AppToggleViewOption> get selectedOptions {
+  List<DSToggleViewOption> get selectedOptions {
     return options
         .where((option) => selectedValues.contains(option.id))
         .toList();
   }
 
   /// Get enabled options
-  List<AppToggleViewOption> get enabledOptions {
+  List<DSToggleViewOption> get enabledOptions {
     return options.where((option) => option.enabled).toList();
   }
 }
 
-/// Utility functions for AppToggleView
-class AppToggleViewUtils {
-  AppToggleViewUtils._();
+/// Utility functions for DSToggleView
+class DSToggleViewUtils {
+  DSToggleViewUtils._();
 
   /// Create toggle view data from string list
-  static AppToggleViewData fromStringList(
+  static DSToggleViewData fromStringList(
     List<String> items, {
-    AppToggleViewVariant variant = AppToggleViewVariant.list,
+    DSToggleViewVariant variant = DSToggleViewVariant.list,
     List<String>? selectedValues,
   }) {
     final options =
-        items.map((item) => AppToggleViewOption.fromString(item)).toList();
-    return AppToggleViewData(
+        items.map((item) => DSToggleViewOption.fromString(item)).toList();
+    return DSToggleViewData(
       variant: variant,
       options: options,
       selectedValues: selectedValues ?? [],
@@ -348,19 +348,19 @@ class AppToggleViewUtils {
   }
 
   /// Create toggle view data with icons
-  static AppToggleViewData withIcons(
+  static DSToggleViewData withIcons(
     Map<String, IconData> itemsWithIcons, {
-    AppToggleViewVariant variant = AppToggleViewVariant.list,
+    DSToggleViewVariant variant = DSToggleViewVariant.list,
     List<String>? selectedValues,
   }) {
     final options = itemsWithIcons.entries
-        .map((entry) => AppToggleViewOption.withIcon(
+        .map((entry) => DSToggleViewOption.withIcon(
               id: entry.key.toLowerCase().replaceAll(' ', '_'),
               label: entry.key,
               icon: entry.value,
             ))
         .toList();
-    return AppToggleViewData(
+    return DSToggleViewData(
       variant: variant,
       options: options,
       selectedValues: selectedValues ?? [],
@@ -393,37 +393,37 @@ class AppToggleViewUtils {
   }
 
   /// Get item size based on toggle view size
-  static Size getItemSize(AppToggleViewSize size) {
+  static Size getItemSize(DSToggleViewSize size) {
     switch (size) {
-      case AppToggleViewSize.small:
+      case DSToggleViewSize.small:
         return const Size(80, 32);
-      case AppToggleViewSize.medium:
+      case DSToggleViewSize.medium:
         return const Size(100, 40);
-      case AppToggleViewSize.large:
+      case DSToggleViewSize.large:
         return const Size(120, 48);
     }
   }
 
   /// Get padding based on toggle view size
-  static EdgeInsets getPadding(AppToggleViewSize size) {
+  static EdgeInsets getPadding(DSToggleViewSize size) {
     switch (size) {
-      case AppToggleViewSize.small:
+      case DSToggleViewSize.small:
         return const EdgeInsets.symmetric(horizontal: 8, vertical: 4);
-      case AppToggleViewSize.medium:
+      case DSToggleViewSize.medium:
         return const EdgeInsets.symmetric(horizontal: 12, vertical: 6);
-      case AppToggleViewSize.large:
+      case DSToggleViewSize.large:
         return const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
     }
   }
 
   /// Get icon size based on toggle view size
-  static double getIconSize(AppToggleViewSize size) {
+  static double getIconSize(DSToggleViewSize size) {
     switch (size) {
-      case AppToggleViewSize.small:
+      case DSToggleViewSize.small:
         return 16;
-      case AppToggleViewSize.medium:
+      case DSToggleViewSize.medium:
         return 18;
-      case AppToggleViewSize.large:
+      case DSToggleViewSize.large:
         return 20;
     }
   }
@@ -462,7 +462,7 @@ class AppToggleViewUtils {
   }
 
   /// Validate toggle view data
-  static bool validateData(AppToggleViewData data) {
+  static bool validateData(DSToggleViewData data) {
     // Check if all selected values exist in options
     final optionIds = data.options.map((option) => option.id).toSet();
     return data.selectedValues.every((value) => optionIds.contains(value));

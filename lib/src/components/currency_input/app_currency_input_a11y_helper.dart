@@ -14,27 +14,27 @@ import 'package:iautomat_design_system/src/components/currency_input/app_currenc
 /// - Anuncios de cambios de estado
 /// - Soporte para lectores de pantalla
 /// - Hints de accesibilidad contextuales
-class AppCurrencyInputA11yHelper {
-  final AppCurrencyInputA11yConfig config;
+class DSCurrencyInputA11yHelper {
+  final DSCurrencyInputA11yConfig config;
 
-  const AppCurrencyInputA11yHelper({
+  const DSCurrencyInputA11yHelper({
     required this.config,
   });
 
   /// Construye el wrapper semántico completo para el input
   Widget buildSemanticWrapper({
     required BuildContext context,
-    required AppCurrencyInputValue? value,
-    required AppCurrencyInputState state,
+    required DSCurrencyInputValue? value,
+    required DSCurrencyInputState state,
     required bool isRtl,
     required Widget child,
   }) {
     return Semantics(
-      enabled: state != AppCurrencyInputState.disabled,
+      enabled: state != DSCurrencyInputState.disabled,
       textField: true,
-      readOnly: state == AppCurrencyInputState.disabled || state == AppCurrencyInputState.loading,
-      focusable: state != AppCurrencyInputState.disabled,
-      focused: state == AppCurrencyInputState.focus,
+      readOnly: state == DSCurrencyInputState.disabled || state == DSCurrencyInputState.loading,
+      focusable: state != DSCurrencyInputState.disabled,
+      focused: state == DSCurrencyInputState.focus,
       label: _buildSemanticLabel(value, state),
       hint: _buildSemanticHint(value, state),
       value: _buildSemanticValue(value, state),
@@ -108,7 +108,7 @@ class AppCurrencyInputA11yHelper {
   }
 
   /// Anuncia cambios de estado para lectores de pantalla
-  void announceStateChange(AppCurrencyInputState state) {
+  void announceStateChange(DSCurrencyInputState state) {
     if (!config.enableStateAnnouncements) return;
 
     final announcement = _getStateAnnouncement(state);
@@ -122,7 +122,7 @@ class AppCurrencyInputA11yHelper {
   }
 
   /// Anuncia cambios de valor para lectores de pantalla
-  void announceValueChange(AppCurrencyInputValue value) {
+  void announceValueChange(DSCurrencyInputValue value) {
     if (!config.enableValueAnnouncements) return;
 
     final announcement = _getValueAnnouncement(value);
@@ -147,7 +147,7 @@ class AppCurrencyInputA11yHelper {
   }
 
   /// Construye la etiqueta semántica
-  String _buildSemanticLabel(AppCurrencyInputValue? value, AppCurrencyInputState state) {
+  String _buildSemanticLabel(DSCurrencyInputValue? value, DSCurrencyInputState state) {
     final baseLabel = config.customLabel ?? 'Campo de entrada de moneda';
 
     if (value != null) {
@@ -158,7 +158,7 @@ class AppCurrencyInputA11yHelper {
   }
 
   /// Construye el hint semántico
-  String? _buildSemanticHint(AppCurrencyInputValue? value, AppCurrencyInputState state) {
+  String? _buildSemanticHint(DSCurrencyInputValue? value, DSCurrencyInputState state) {
     final hints = <String>[];
 
     // Hint base
@@ -170,16 +170,16 @@ class AppCurrencyInputA11yHelper {
 
     // Hints específicos del estado
     switch (state) {
-      case AppCurrencyInputState.disabled:
+      case DSCurrencyInputState.disabled:
         hints.add('Campo deshabilitado');
         break;
-      case AppCurrencyInputState.loading:
+      case DSCurrencyInputState.loading:
         hints.add('Cargando');
         break;
-      case AppCurrencyInputState.skeleton:
+      case DSCurrencyInputState.skeleton:
         hints.add('Contenido placeholder');
         break;
-      case AppCurrencyInputState.focus:
+      case DSCurrencyInputState.focus:
         if (config.enableKeyboardIncrement) {
           hints.add('Use las flechas arriba y abajo para incrementar o decrementar');
         }
@@ -189,7 +189,7 @@ class AppCurrencyInputA11yHelper {
     }
 
     // Hints de navegación por teclado
-    if (state == AppCurrencyInputState.focus && config.enableKeyboardActivation) {
+    if (state == DSCurrencyInputState.focus && config.enableKeyboardActivation) {
       hints.add('Presione Enter para confirmar');
     }
 
@@ -197,14 +197,14 @@ class AppCurrencyInputA11yHelper {
   }
 
   /// Construye el valor semántico
-  String? _buildSemanticValue(AppCurrencyInputValue? value, AppCurrencyInputState state) {
+  String? _buildSemanticValue(DSCurrencyInputValue? value, DSCurrencyInputState state) {
     if (value == null) return null;
 
     return _formatValueForAnnouncement(value);
   }
 
   /// Formatea el valor para anuncios de accesibilidad
-  String _formatValueForAnnouncement(AppCurrencyInputValue value) {
+  String _formatValueForAnnouncement(DSCurrencyInputValue value) {
     // Formato específico para lectores de pantalla
     final amount = value.amount;
     final currency = value.currencyCode;
@@ -224,37 +224,37 @@ class AppCurrencyInputA11yHelper {
   }
 
   /// Obtiene el anuncio para cambios de estado
-  String? _getStateAnnouncement(AppCurrencyInputState state) {
+  String? _getStateAnnouncement(DSCurrencyInputState state) {
     switch (state) {
-      case AppCurrencyInputState.disabled:
+      case DSCurrencyInputState.disabled:
         return 'Campo deshabilitado';
-      case AppCurrencyInputState.loading:
+      case DSCurrencyInputState.loading:
         return 'Cargando';
-      case AppCurrencyInputState.skeleton:
+      case DSCurrencyInputState.skeleton:
         return null; // No anunciar estados skeleton
-      case AppCurrencyInputState.focus:
+      case DSCurrencyInputState.focus:
         return 'Campo enfocado';
-      case AppCurrencyInputState.selected:
+      case DSCurrencyInputState.selected:
         return 'Valor seleccionado';
-      case AppCurrencyInputState.hover:
+      case DSCurrencyInputState.hover:
         return null; // No anunciar hover para evitar spam
-      case AppCurrencyInputState.pressed:
+      case DSCurrencyInputState.pressed:
         return null; // No anunciar pressed para evitar spam
-      case AppCurrencyInputState.defaultState:
+      case DSCurrencyInputState.defaultState:
         return null; // No anunciar estado por defecto
     }
   }
 
   /// Obtiene el anuncio para cambios de valor
-  String? _getValueAnnouncement(AppCurrencyInputValue value) {
+  String? _getValueAnnouncement(DSCurrencyInputValue value) {
     return 'Nuevo valor: ${_formatValueForAnnouncement(value)}';
   }
 
   /// Obtiene el nivel de assertividad para anuncios de estado
-  Assertiveness _getAnnouncementAssertiveness(AppCurrencyInputState state) {
+  Assertiveness _getAnnouncementAssertiveness(DSCurrencyInputState state) {
     switch (state) {
-      case AppCurrencyInputState.disabled:
-      case AppCurrencyInputState.loading:
+      case DSCurrencyInputState.disabled:
+      case DSCurrencyInputState.loading:
         return Assertiveness.assertive;
       default:
         return Assertiveness.polite;
@@ -263,23 +263,23 @@ class AppCurrencyInputA11yHelper {
 
 
   /// Proporciona texto de ayuda contextual
-  String getContextualHelp(AppCurrencyInputState state) {
+  String getContextualHelp(DSCurrencyInputState state) {
     switch (state) {
-      case AppCurrencyInputState.focus:
+      case DSCurrencyInputState.focus:
         return 'Campo enfocado. Ingrese una cantidad monetaria. '
                '${config.enableKeyboardIncrement ? "Use flechas para incrementar/decrementar. " : ""}'
                '${config.enableKeyboardActivation ? "Presione Enter para confirmar." : ""}';
 
-      case AppCurrencyInputState.selected:
+      case DSCurrencyInputState.selected:
         return 'Valor seleccionado. Puede modificar la cantidad o confirmar con Enter.';
 
-      case AppCurrencyInputState.disabled:
+      case DSCurrencyInputState.disabled:
         return 'Este campo está actualmente deshabilitado.';
 
-      case AppCurrencyInputState.loading:
+      case DSCurrencyInputState.loading:
         return 'Procesando información. Por favor espere.';
 
-      case AppCurrencyInputState.skeleton:
+      case DSCurrencyInputState.skeleton:
         return 'Cargando contenido del campo.';
 
       default:

@@ -4,23 +4,23 @@ import 'package:iautomat_design_system/src/components/product_card/app_product_c
 import 'package:iautomat_design_system/src/components/product_card/app_product_card_config.dart';
 
 void main() {
-  group('AppProductCard', () {
-    late AppProductPrice testPrice;
-    late AppProductImage testImage;
-    late AppDiscountChip testDiscountChip;
+  group('DSProductCard', () {
+    late DSProductPrice testPrice;
+    late DSProductImage testImage;
+    late DSDiscountChip testDiscountChip;
 
     setUp(() {
-      testPrice = const AppProductPrice(
+      testPrice = const DSProductPrice(
         amount: 99.99,
         currency: '\$',
         originalPrice: 129.99,
       );
 
-      testImage = const AppProductImage(
+      testImage = const DSProductImage(
         url: 'assets/test_product.png',
       );
 
-      testDiscountChip = const AppDiscountChip(
+      testDiscountChip = const DSDiscountChip(
         text: '-23%',
       );
     });
@@ -29,7 +29,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppProductCard(
+            body: DSProductCard(
               title: 'Test Product',
               price: testPrice,
             ),
@@ -37,7 +37,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppProductCard), findsOneWidget);
+      expect(find.byType(DSProductCard), findsOneWidget);
       expect(find.text('Test Product'), findsOneWidget);
       expect(find.text('\$99.99'), findsOneWidget);
     });
@@ -47,10 +47,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
-                variant: AppProductCardVariant.price,
+                variant: DSProductCardVariant.price,
               ),
             ),
           ),
@@ -64,10 +64,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
-                variant: AppProductCardVariant.discount,
+                variant: DSProductCardVariant.discount,
               ),
             ),
           ),
@@ -81,10 +81,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
-                variant: AppProductCardVariant.discount,
+                variant: DSProductCardVariant.discount,
                 discountChip: testDiscountChip,
               ),
             ),
@@ -102,7 +102,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
                 onTap: () => tapped = true,
@@ -111,7 +111,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(AppProductCard));
+        await tester.tap(find.byType(DSProductCard));
         await tester.pumpAndSettle();
 
         expect(tapped, isTrue);
@@ -123,7 +123,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
                 onLongPress: () => longPressed = true,
@@ -132,7 +132,7 @@ void main() {
           ),
         );
 
-        await tester.longPress(find.byType(AppProductCard));
+        await tester.longPress(find.byType(DSProductCard));
         await tester.pumpAndSettle();
 
         expect(longPressed, isTrue);
@@ -146,7 +146,7 @@ void main() {
             home: Scaffold(
               body: StatefulBuilder(
                 builder: (context, setState) {
-                  return AppProductCard(
+                  return DSProductCard(
                     title: 'Test Product',
                     price: testPrice,
                     selected: selected,
@@ -164,7 +164,7 @@ void main() {
 
         expect(selected, isFalse);
 
-        await tester.tap(find.byType(AppProductCard));
+        await tester.tap(find.byType(DSProductCard));
         await tester.pumpAndSettle();
 
         expect(selected, isTrue);
@@ -176,7 +176,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
                 enabled: false,
@@ -186,7 +186,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(AppProductCard));
+        await tester.tap(find.byType(DSProductCard));
         await tester.pumpAndSettle();
 
         expect(tapped, isFalse);
@@ -196,10 +196,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
-                initialState: AppProductCardState.skeleton,
+                initialState: DSProductCardState.skeleton,
               ),
             ),
           ),
@@ -213,10 +213,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
-                initialState: AppProductCardState.loading,
+                initialState: DSProductCardState.loading,
               ),
             ),
           ),
@@ -231,17 +231,17 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
                 image: testImage,
-                layout: AppProductCardLayout.vertical,
+                layout: DSProductCardLayout.vertical,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppProductCard), findsOneWidget);
+        expect(find.byType(DSProductCard), findsOneWidget);
         // Verificar que los elementos están en columna
         expect(find.byType(Column), findsWidgets);
       });
@@ -250,17 +250,17 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
                 image: testImage,
-                layout: AppProductCardLayout.horizontal,
+                layout: DSProductCardLayout.horizontal,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppProductCard), findsOneWidget);
+        expect(find.byType(DSProductCard), findsOneWidget);
         // Verificar que los elementos están en fila
         expect(find.byType(Row), findsWidgets);
       });
@@ -271,18 +271,18 @@ void main() {
             home: Scaffold(
               body: SizedBox(
                 height: 300,
-                child: AppProductCard(
+                child: DSProductCard(
                   title: 'Test Product',
                   price: testPrice,
                   image: testImage,
-                  layout: AppProductCardLayout.overlay,
+                  layout: DSProductCardLayout.overlay,
                 ),
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppProductCard), findsOneWidget);
+        expect(find.byType(DSProductCard), findsOneWidget);
         // Verificar que usa Stack para overlay
         expect(find.byType(Stack), findsWidgets);
       });
@@ -291,17 +291,17 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
                 image: testImage,
-                layout: AppProductCardLayout.compact,
+                layout: DSProductCardLayout.compact,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppProductCard), findsOneWidget);
+        expect(find.byType(DSProductCard), findsOneWidget);
         expect(find.byType(Row), findsWidgets);
       });
     });
@@ -311,7 +311,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
                 additionalInfo: const Text('Free shipping'),
@@ -327,7 +327,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
                 image: testImage,
@@ -348,7 +348,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
                 width: 200,
@@ -360,7 +360,7 @@ void main() {
 
         final card = tester.widget<Container>(
           find.descendant(
-            of: find.byType(AppProductCard),
+            of: find.byType(DSProductCard),
             matching: find.byType(Container),
           ).first,
         );
@@ -372,7 +372,7 @@ void main() {
 
     group('Price extensions', () {
       test('calculates discount percentage correctly', () {
-        final price = AppProductPrice(
+        final price = DSProductPrice(
           amount: 75,
           originalPrice: 100,
         );
@@ -381,27 +381,27 @@ void main() {
       });
 
       test('formats price correctly', () {
-        final price = AppProductPrice(
+        final price = DSProductPrice(
           amount: 1234.56,
           currency: '\$',
-          format: AppPriceFormat.withThousands,
+          format: DSPriceFormat.withThousands,
         );
 
         expect(price.formatPrice(), equals('\$1,234.56'));
       });
 
       test('formats compact price correctly', () {
-        final price = AppProductPrice(
+        final price = DSProductPrice(
           amount: 99.99,
           currency: '\$',
-          format: AppPriceFormat.compact,
+          format: DSPriceFormat.compact,
         );
 
         expect(price.formatPrice(), equals('\$100'));
       });
 
       test('returns null discount for invalid prices', () {
-        final price = AppProductPrice(
+        final price = DSProductPrice(
           amount: 100,
           originalPrice: 100,
         );
@@ -412,13 +412,13 @@ void main() {
 
     group('Configuration', () {
       testWidgets('applies custom configuration', (tester) async {
-        final config = AppProductCardConfig(
-          variant: AppProductCardVariant.discount,
-          colors: AppProductCardColors(
+        final config = DSProductCardConfig(
+          variant: DSProductCardVariant.discount,
+          colors: DSProductCardColors(
             backgroundColor: Colors.blue,
             priceColor: Colors.red,
           ),
-          spacing: const AppProductCardSpacing(
+          spacing: const DSProductCardSpacing(
             padding: EdgeInsets.all(20),
             borderRadius: 16,
           ),
@@ -427,7 +427,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 config: config,
                 title: 'Test Product',
                 price: testPrice,
@@ -436,40 +436,40 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppProductCard), findsOneWidget);
+        expect(find.byType(DSProductCard), findsOneWidget);
       });
 
       test('variant extensions work correctly', () {
-        expect(AppProductCardVariant.price.displayName, equals('Precio'));
-        expect(AppProductCardVariant.discount.displayName, equals('Descuento'));
-        expect(AppProductCardVariant.price.showOriginalPrice, isFalse);
-        expect(AppProductCardVariant.discount.showOriginalPrice, isTrue);
-        expect(AppProductCardVariant.price.showDiscountChip, isFalse);
-        expect(AppProductCardVariant.discount.showDiscountChip, isTrue);
+        expect(DSProductCardVariant.price.displayName, equals('Precio'));
+        expect(DSProductCardVariant.discount.displayName, equals('Descuento'));
+        expect(DSProductCardVariant.price.showOriginalPrice, isFalse);
+        expect(DSProductCardVariant.discount.showOriginalPrice, isTrue);
+        expect(DSProductCardVariant.price.showDiscountChip, isFalse);
+        expect(DSProductCardVariant.discount.showDiscountChip, isTrue);
       });
 
       test('state extensions work correctly', () {
-        expect(AppProductCardState.defaultState.displayName, equals('Normal'));
-        expect(AppProductCardState.hover.displayName, equals('Hover'));
-        expect(AppProductCardState.disabled.isInteractive, isFalse);
-        expect(AppProductCardState.defaultState.isInteractive, isTrue);
-        expect(AppProductCardState.disabled.opacity, equals(0.5));
-        expect(AppProductCardState.hover.elevation, equals(8.0));
+        expect(DSProductCardState.defaultState.displayName, equals('Normal'));
+        expect(DSProductCardState.hover.displayName, equals('Hover'));
+        expect(DSProductCardState.disabled.isInteractive, isFalse);
+        expect(DSProductCardState.defaultState.isInteractive, isTrue);
+        expect(DSProductCardState.disabled.opacity, equals(0.5));
+        expect(DSProductCardState.hover.elevation, equals(8.0));
       });
 
       test('layout extensions work correctly', () {
-        expect(AppProductCardLayout.vertical.isVertical, isTrue);
-        expect(AppProductCardLayout.horizontal.isHorizontal, isTrue);
-        expect(AppProductCardLayout.overlay.hasOverlay, isTrue);
-        expect(AppProductCardLayout.compact.isCompact, isTrue);
-        expect(AppProductCardLayout.vertical.recommendedImageRatio, equals(1.0));
+        expect(DSProductCardLayout.vertical.isVertical, isTrue);
+        expect(DSProductCardLayout.horizontal.isHorizontal, isTrue);
+        expect(DSProductCardLayout.overlay.hasOverlay, isTrue);
+        expect(DSProductCardLayout.compact.isCompact, isTrue);
+        expect(DSProductCardLayout.vertical.recommendedImageRatio, equals(1.0));
       });
 
       test('discount chip position extensions work correctly', () {
-        expect(AppDiscountChipPosition.topLeft.alignment, equals(Alignment.topLeft));
-        expect(AppDiscountChipPosition.topRight.alignment, equals(Alignment.topRight));
-        expect(AppDiscountChipPosition.bottomLeft.alignment, equals(Alignment.bottomLeft));
-        expect(AppDiscountChipPosition.bottomRight.alignment, equals(Alignment.bottomRight));
+        expect(DSDiscountChipPosition.topLeft.alignment, equals(Alignment.topLeft));
+        expect(DSDiscountChipPosition.topRight.alignment, equals(Alignment.topRight));
+        expect(DSDiscountChipPosition.bottomLeft.alignment, equals(Alignment.bottomLeft));
+        expect(DSDiscountChipPosition.bottomRight.alignment, equals(Alignment.bottomRight));
       });
     });
 
@@ -478,7 +478,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
               ),
@@ -486,7 +486,7 @@ void main() {
           ),
         );
 
-        final semantics = tester.getSemantics(find.byType(AppProductCard));
+        final semantics = tester.getSemantics(find.byType(DSProductCard));
         expect(semantics.label, contains('Test Product'));
         expect(semantics.label, contains('99.99'));
       });
@@ -495,23 +495,23 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
-                initialState: AppProductCardState.focus,
+                initialState: DSProductCardState.focus,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppProductCard), findsOneWidget);
+        expect(find.byType(DSProductCard), findsOneWidget);
       });
 
       testWidgets('supports keyboard navigation', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
                 onTap: () {},
@@ -529,7 +529,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppProductCard(
+              body: DSProductCard(
                 title: 'Test Product',
                 price: testPrice,
               ),
@@ -546,7 +546,7 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.rtl,
               child: Scaffold(
-                body: AppProductCard(
+                body: DSProductCard(
                   title: 'منتج تجريبي',
                   price: testPrice,
                 ),

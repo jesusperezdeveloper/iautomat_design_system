@@ -10,8 +10,8 @@ void main() {
     GoogleFonts.config.allowRuntimeFetching = false;
   });
 
-  group('AppMap Golden Tests', () {
-    const testCenter = AppLatLng(latitude: 37.7749, longitude: -122.4194);
+  group('DSMap Golden Tests', () {
+    const testCenter = DSLatLng(latitude: 37.7749, longitude: -122.4194);
 
     testWidgets('default state golden test', (tester) async {
       await tester.pumpWidget(
@@ -22,7 +22,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
                 ),
               ),
@@ -34,7 +34,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_default.png'),
       );
     });
@@ -48,17 +48,17 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
                   markers: [
-                    AppMapMarker(
+                    DSMapMarker(
                       id: 'marker1',
-                      position: AppLatLng(latitude: 37.7749, longitude: -122.4194),
+                      position: DSLatLng(latitude: 37.7749, longitude: -122.4194),
                       title: 'San Francisco',
                     ),
-                    AppMapMarker(
+                    DSMapMarker(
                       id: 'marker2',
-                      position: AppLatLng(latitude: 37.7849, longitude: -122.4094),
+                      position: DSLatLng(latitude: 37.7849, longitude: -122.4094),
                       title: 'North Beach',
                     ),
                   ],
@@ -72,7 +72,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_with_markers.png'),
       );
     });
@@ -86,23 +86,23 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
                   shapes: [
-                    AppMapShape(
+                    DSMapShape(
                       id: 'polyline1',
-                      type: AppMapShapeType.polyline,
+                      type: DSMapShapeType.polyline,
                       points: [
-                        AppLatLng(latitude: 37.7749, longitude: -122.4194),
-                        AppLatLng(latitude: 37.7849, longitude: -122.4094),
+                        DSLatLng(latitude: 37.7749, longitude: -122.4194),
+                        DSLatLng(latitude: 37.7849, longitude: -122.4094),
                       ],
                       title: 'Route',
                     ),
-                    AppMapShape(
+                    DSMapShape(
                       id: 'circle1',
-                      type: AppMapShapeType.circle,
+                      type: DSMapShapeType.circle,
                       points: [
-                        AppLatLng(latitude: 37.7649, longitude: -122.4294),
+                        DSLatLng(latitude: 37.7649, longitude: -122.4294),
                       ],
                       title: 'Area',
                     ),
@@ -117,7 +117,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_with_shapes.png'),
       );
     });
@@ -131,7 +131,7 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
                   enabled: false,
                 ),
@@ -144,7 +144,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_disabled.png'),
       );
     });
@@ -158,10 +158,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMap(
+                child: DSMap(
                   center: testCenter,
-                  config: const AppMapConfig(
-                    state: AppMapState.loading,
+                  config: const DSMapConfig(
+                    state: DSMapState.loading,
                   ),
                 ),
               ),
@@ -173,7 +173,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_loading.png'),
       );
     });
@@ -187,10 +187,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMap(
+                child: DSMap(
                   center: testCenter,
-                  config: const AppMapConfig(
-                    state: AppMapState.skeleton,
+                  config: const DSMapConfig(
+                    state: DSMapState.skeleton,
                   ),
                 ),
               ),
@@ -202,7 +202,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_skeleton.png'),
       );
     });
@@ -216,15 +216,15 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMap(
+                child: DSMap(
                   center: testCenter,
-                  config: AppMapConfig(
-                    colors: const AppMapColors(
+                  config: DSMapConfig(
+                    colors: const DSMapColors(
                       backgroundColor: Colors.blue,
                       borderColor: Colors.red,
                       markerColor: Colors.green,
                     ),
-                    spacing: const AppMapSpacing(
+                    spacing: const DSMapSpacing(
                       borderRadius: 20.0,
                       borderWidth: 3.0,
                       elevation: 8.0,
@@ -240,16 +240,16 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_custom.png'),
       );
     });
 
     testWidgets('cluster variant golden test', (tester) async {
       final markers = List.generate(8, (index) {
-        return AppMapMarker(
+        return DSMapMarker(
           id: 'marker$index',
-          position: AppLatLng(
+          position: DSLatLng(
             latitude: testCenter.latitude + (index * 0.002),
             longitude: testCenter.longitude + (index * 0.002),
           ),
@@ -265,12 +265,12 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMap(
+                child: DSMap(
                   center: testCenter,
                   markers: markers,
-                  config: const AppMapConfig(
-                    variant: AppMapVariant.clusters,
-                    behavior: AppMapBehavior(
+                  config: const DSMapConfig(
+                    variant: DSMapVariant.clusters,
+                    behavior: DSMapBehavior(
                       enableClustering: true,
                       clusterRadius: 50,
                     ),
@@ -285,7 +285,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_clusters.png'),
       );
     });
@@ -299,10 +299,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMap(
+                child: DSMap(
                   center: testCenter,
-                  config: const AppMapConfig(
-                    state: AppMapState.focus,
+                  config: const DSMapConfig(
+                    state: DSMapState.focus,
                   ),
                 ),
               ),
@@ -314,14 +314,14 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_focus.png'),
       );
     });
   });
 
-  group('AppMap Theme Golden Tests', () {
-    const testCenter = AppLatLng(latitude: 37.7749, longitude: -122.4194);
+  group('DSMap Theme Golden Tests', () {
+    const testCenter = DSLatLng(latitude: 37.7749, longitude: -122.4194);
 
     testWidgets('light theme golden test', (tester) async {
       await tester.pumpWidget(
@@ -332,9 +332,9 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
-                  theme: AppMapTheme.light,
+                  theme: DSMapTheme.light,
                 ),
               ),
             ),
@@ -345,7 +345,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_theme_light.png'),
       );
     });
@@ -360,9 +360,9 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
-                  theme: AppMapTheme.dark,
+                  theme: DSMapTheme.dark,
                 ),
               ),
             ),
@@ -373,7 +373,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_theme_dark.png'),
       );
     });
@@ -387,9 +387,9 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
-                  theme: AppMapTheme.satellite,
+                  theme: DSMapTheme.satellite,
                 ),
               ),
             ),
@@ -400,7 +400,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_theme_satellite.png'),
       );
     });
@@ -414,9 +414,9 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
-                  theme: AppMapTheme.hybrid,
+                  theme: DSMapTheme.hybrid,
                 ),
               ),
             ),
@@ -427,7 +427,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_theme_hybrid.png'),
       );
     });
@@ -441,9 +441,9 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
-                  theme: AppMapTheme.terrain,
+                  theme: DSMapTheme.terrain,
                 ),
               ),
             ),
@@ -454,14 +454,14 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_theme_terrain.png'),
       );
     });
   });
 
-  group('AppMap RTL Golden Tests', () {
-    const testCenter = AppLatLng(latitude: 37.7749, longitude: -122.4194);
+  group('DSMap RTL Golden Tests', () {
+    const testCenter = DSLatLng(latitude: 37.7749, longitude: -122.4194);
 
     testWidgets('RTL layout golden test', (tester) async {
       await tester.pumpWidget(
@@ -474,10 +474,10 @@ void main() {
                 child: SizedBox(
                   width: 400,
                   height: 300,
-                  child: const AppMap(
+                  child: const DSMap(
                     center: testCenter,
                     markers: [
-                      AppMapMarker(
+                      DSMapMarker(
                         id: 'marker1',
                         position: testCenter,
                         title: 'نقطة على الخريطة',
@@ -494,14 +494,14 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_rtl.png'),
       );
     });
   });
 
-  group('AppMap Size Variants Golden Tests', () {
-    const testCenter = AppLatLng(latitude: 37.7749, longitude: -122.4194);
+  group('DSMap Size Variants Golden Tests', () {
+    const testCenter = DSLatLng(latitude: 37.7749, longitude: -122.4194);
 
     testWidgets('small size golden test', (tester) async {
       await tester.pumpWidget(
@@ -512,10 +512,10 @@ void main() {
               child: SizedBox(
                 width: 200,
                 height: 150,
-                child: AppMap(
+                child: DSMap(
                   center: testCenter,
-                  config: const AppMapConfig(
-                    spacing: AppMapSpacing(
+                  config: const DSMapConfig(
+                    spacing: DSMapSpacing(
                       minHeight: 100,
                       minWidth: 150,
                     ),
@@ -530,7 +530,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_small.png'),
       );
     });
@@ -544,10 +544,10 @@ void main() {
               child: SizedBox(
                 width: 600,
                 height: 400,
-                child: AppMap(
+                child: DSMap(
                   center: testCenter,
-                  config: const AppMapConfig(
-                    spacing: AppMapSpacing(
+                  config: const DSMapConfig(
+                    spacing: DSMapSpacing(
                       minHeight: 350,
                       minWidth: 500,
                     ),
@@ -562,14 +562,14 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_large.png'),
       );
     });
   });
 
-  group('AppMap Complex Scenarios Golden Tests', () {
-    const testCenter = AppLatLng(latitude: 37.7749, longitude: -122.4194);
+  group('DSMap Complex Scenarios Golden Tests', () {
+    const testCenter = DSLatLng(latitude: 37.7749, longitude: -122.4194);
 
     testWidgets('complex map with all elements golden test', (tester) async {
       await tester.pumpWidget(
@@ -580,40 +580,40 @@ void main() {
               child: SizedBox(
                 width: 500,
                 height: 400,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
                   zoom: 13.0,
                   markers: [
-                    AppMapMarker(
+                    DSMapMarker(
                       id: 'marker1',
-                      position: AppLatLng(latitude: 37.7749, longitude: -122.4194),
+                      position: DSLatLng(latitude: 37.7749, longitude: -122.4194),
                       title: 'Centro',
-                      type: AppMapMarkerType.standard,
+                      type: DSMapMarkerType.standard,
                     ),
-                    AppMapMarker(
+                    DSMapMarker(
                       id: 'marker2',
-                      position: AppLatLng(latitude: 37.7849, longitude: -122.4094),
+                      position: DSLatLng(latitude: 37.7849, longitude: -122.4094),
                       title: 'Norte',
-                      type: AppMapMarkerType.custom,
+                      type: DSMapMarkerType.custom,
                     ),
                   ],
                   shapes: [
-                    AppMapShape(
+                    DSMapShape(
                       id: 'route',
-                      type: AppMapShapeType.polyline,
+                      type: DSMapShapeType.polyline,
                       points: [
-                        AppLatLng(latitude: 37.7749, longitude: -122.4194),
-                        AppLatLng(latitude: 37.7849, longitude: -122.4094),
+                        DSLatLng(latitude: 37.7749, longitude: -122.4194),
+                        DSLatLng(latitude: 37.7849, longitude: -122.4094),
                       ],
                       title: 'Ruta',
                     ),
-                    AppMapShape(
+                    DSMapShape(
                       id: 'area',
-                      type: AppMapShapeType.polygon,
+                      type: DSMapShapeType.polygon,
                       points: [
-                        AppLatLng(latitude: 37.7649, longitude: -122.4294),
-                        AppLatLng(latitude: 37.7749, longitude: -122.4294),
-                        AppLatLng(latitude: 37.7699, longitude: -122.4194),
+                        DSLatLng(latitude: 37.7649, longitude: -122.4294),
+                        DSLatLng(latitude: 37.7749, longitude: -122.4294),
+                        DSLatLng(latitude: 37.7699, longitude: -122.4194),
                       ],
                       title: 'Área',
                     ),
@@ -628,7 +628,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_complex.png'),
       );
     });
@@ -642,26 +642,26 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: const AppMap(
+                child: const DSMap(
                   center: testCenter,
                   markers: [
-                    AppMapMarker(
+                    DSMapMarker(
                       id: 'custom1',
-                      position: AppLatLng(latitude: 37.7749, longitude: -122.4194),
+                      position: DSLatLng(latitude: 37.7749, longitude: -122.4194),
                       title: 'Restaurante',
                       iconData: Icons.restaurant,
                       color: Colors.orange,
                     ),
-                    AppMapMarker(
+                    DSMapMarker(
                       id: 'custom2',
-                      position: AppLatLng(latitude: 37.7849, longitude: -122.4094),
+                      position: DSLatLng(latitude: 37.7849, longitude: -122.4094),
                       title: 'Hotel',
                       iconData: Icons.hotel,
                       color: Colors.blue,
                     ),
-                    AppMapMarker(
+                    DSMapMarker(
                       id: 'custom3',
-                      position: AppLatLng(latitude: 37.7649, longitude: -122.4294),
+                      position: DSLatLng(latitude: 37.7649, longitude: -122.4294),
                       title: 'Tienda',
                       iconData: Icons.shopping_cart,
                       color: Colors.green,
@@ -677,7 +677,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppMap),
+        find.byType(DSMap),
         matchesGoldenFile('goldens/app_map_custom_markers.png'),
       );
     });

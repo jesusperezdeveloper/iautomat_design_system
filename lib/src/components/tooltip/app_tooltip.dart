@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 enum TooltipVariant { hover, focus, longPress }
 
-enum AppTooltipState {
+enum DSTooltipState {
   defaultState,
   hover,
   pressed,
@@ -28,11 +28,11 @@ enum TooltipPosition {
   bottomEnd
 }
 
-class AppTooltip extends StatefulWidget {
+class DSTooltip extends StatefulWidget {
   final String message;
   final Widget child;
   final TooltipVariant variant;
-  final AppTooltipState state;
+  final DSTooltipState state;
   final Duration showDelay;
   final Duration hideDelay;
   final Duration animationDuration;
@@ -57,12 +57,12 @@ class AppTooltip extends StatefulWidget {
   final TextOverflow overflow;
   final BoxShadow? boxShadow;
 
-  const AppTooltip({
+  const DSTooltip({
     super.key,
     required this.message,
     required this.child,
     this.variant = TooltipVariant.hover,
-    this.state = AppTooltipState.defaultState,
+    this.state = DSTooltipState.defaultState,
     this.showDelay = const Duration(milliseconds: 500),
     this.hideDelay = const Duration(milliseconds: 150),
     this.animationDuration = const Duration(milliseconds: 200),
@@ -89,10 +89,10 @@ class AppTooltip extends StatefulWidget {
   });
 
   @override
-  State<AppTooltip> createState() => _AppAppTooltipState();
+  State<DSTooltip> createState() => _DSAppTooltipState();
 
   /// Create a hover tooltip
-  factory AppTooltip.hover({
+  factory DSTooltip.hover({
     Key? key,
     required String message,
     Duration showDelay = const Duration(milliseconds: 300),
@@ -101,7 +101,7 @@ class AppTooltip extends StatefulWidget {
     VoidCallback? onHide,
     required Widget child,
   }) {
-    return AppTooltip(
+    return DSTooltip(
       key: key,
       message: message,
       variant: TooltipVariant.hover,
@@ -114,7 +114,7 @@ class AppTooltip extends StatefulWidget {
   }
 
   /// Create a focus tooltip
-  factory AppTooltip.focus({
+  factory DSTooltip.focus({
     Key? key,
     required String message,
     Duration showDelay = const Duration(milliseconds: 100),
@@ -123,7 +123,7 @@ class AppTooltip extends StatefulWidget {
     VoidCallback? onHide,
     required Widget child,
   }) {
-    return AppTooltip(
+    return DSTooltip(
       key: key,
       message: message,
       variant: TooltipVariant.focus,
@@ -136,7 +136,7 @@ class AppTooltip extends StatefulWidget {
   }
 
   /// Create a long-press tooltip
-  factory AppTooltip.longPress({
+  factory DSTooltip.longPress({
     Key? key,
     required String message,
     Duration showDelay = const Duration(milliseconds: 750),
@@ -145,7 +145,7 @@ class AppTooltip extends StatefulWidget {
     VoidCallback? onHide,
     required Widget child,
   }) {
-    return AppTooltip(
+    return DSTooltip(
       key: key,
       message: message,
       variant: TooltipVariant.longPress,
@@ -157,11 +157,11 @@ class AppTooltip extends StatefulWidget {
     );
   }
 
-  AppTooltip copyWith({
+  DSTooltip copyWith({
     String? message,
     Widget? child,
     TooltipVariant? variant,
-    AppTooltipState? state,
+    DSTooltipState? state,
     Duration? showDelay,
     Duration? hideDelay,
     Duration? animationDuration,
@@ -186,7 +186,7 @@ class AppTooltip extends StatefulWidget {
     TextOverflow? overflow,
     BoxShadow? boxShadow,
   }) {
-    return AppTooltip(
+    return DSTooltip(
       key: key,
       message: message ?? this.message,
       variant: variant ?? this.variant,
@@ -219,7 +219,7 @@ class AppTooltip extends StatefulWidget {
   }
 }
 
-class _AppAppTooltipState extends State<AppTooltip>
+class _DSAppTooltipState extends State<DSTooltip>
     with TickerProviderStateMixin {
   Timer? _showTimer;
   Timer? _hideTimer;
@@ -228,7 +228,7 @@ class _AppAppTooltipState extends State<AppTooltip>
   late Animation<double> _scaleAnimation;
   OverlayEntry? _overlayEntry;
   bool _isVisible = false;
-  AppTooltipState _currentState = AppTooltipState.defaultState;
+  DSTooltipState _currentState = DSTooltipState.defaultState;
 
   final LayerLink _layerLink = LayerLink();
   final FocusNode _focusNode = FocusNode();
@@ -283,9 +283,9 @@ class _AppAppTooltipState extends State<AppTooltip>
     });
   }
 
-  bool get _isDisabled => widget.state == AppTooltipState.disabled;
-  bool get _isLoading => widget.state == AppTooltipState.loading;
-  bool get _isSkeleton => widget.state == AppTooltipState.skeleton;
+  bool get _isDisabled => widget.state == DSTooltipState.disabled;
+  bool get _isLoading => widget.state == DSTooltipState.loading;
+  bool get _isSkeleton => widget.state == DSTooltipState.skeleton;
 
   bool get _shouldShowOnHover =>
       widget.variant == TooltipVariant.hover && !_isDisabled;
@@ -339,7 +339,7 @@ class _AppAppTooltipState extends State<AppTooltip>
 
   Widget _applyStateEffects(Widget child) {
     switch (_currentState) {
-      case AppTooltipState.hover:
+      case DSTooltipState.hover:
         return Transform.scale(
           scale: 1.02,
           child: AnimatedContainer(
@@ -347,7 +347,7 @@ class _AppAppTooltipState extends State<AppTooltip>
             child: child,
           ),
         );
-      case AppTooltipState.pressed:
+      case DSTooltipState.pressed:
         return Transform.scale(
           scale: 0.98,
           child: AnimatedContainer(
@@ -355,7 +355,7 @@ class _AppAppTooltipState extends State<AppTooltip>
             child: child,
           ),
         );
-      case AppTooltipState.focus:
+      case DSTooltipState.focus:
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
@@ -367,12 +367,12 @@ class _AppAppTooltipState extends State<AppTooltip>
           ),
           child: child,
         );
-      case AppTooltipState.disabled:
+      case DSTooltipState.disabled:
         return Opacity(
           opacity: 0.5,
           child: child,
         );
-      case AppTooltipState.selected:
+      case DSTooltipState.selected:
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
@@ -380,9 +380,9 @@ class _AppAppTooltipState extends State<AppTooltip>
           ),
           child: child,
         );
-      case AppTooltipState.defaultState:
-      case AppTooltipState.loading:
-      case AppTooltipState.skeleton:
+      case DSTooltipState.defaultState:
+      case DSTooltipState.loading:
+      case DSTooltipState.skeleton:
         return child;
     }
   }
@@ -453,7 +453,7 @@ class _AppAppTooltipState extends State<AppTooltip>
   void _handleMouseEnter(PointerEnterEvent event) {
     if (!_isDisabled) {
       setState(() {
-        _currentState = AppTooltipState.hover;
+        _currentState = DSTooltipState.hover;
       });
       _showTooltip();
     }
@@ -461,7 +461,7 @@ class _AppAppTooltipState extends State<AppTooltip>
 
   void _handleMouseExit(PointerExitEvent event) {
     setState(() {
-      _currentState = AppTooltipState.defaultState;
+      _currentState = DSTooltipState.defaultState;
     });
     _hideTooltip();
   }
@@ -469,7 +469,7 @@ class _AppAppTooltipState extends State<AppTooltip>
   void _handleFocusGained() {
     if (!_isDisabled) {
       setState(() {
-        _currentState = AppTooltipState.focus;
+        _currentState = DSTooltipState.focus;
       });
       if (_shouldShowOnFocus) {
         _showTooltip();
@@ -479,7 +479,7 @@ class _AppAppTooltipState extends State<AppTooltip>
 
   void _handleFocusLost() {
     setState(() {
-      _currentState = AppTooltipState.defaultState;
+      _currentState = DSTooltipState.defaultState;
     });
     _hideTooltip();
   }
@@ -487,7 +487,7 @@ class _AppAppTooltipState extends State<AppTooltip>
   void _handleLongPressStart(LongPressStartDetails details) {
     if (!_isDisabled) {
       setState(() {
-        _currentState = AppTooltipState.pressed;
+        _currentState = DSTooltipState.pressed;
       });
       _showTooltip();
       _triggerHapticFeedback();
@@ -496,26 +496,26 @@ class _AppAppTooltipState extends State<AppTooltip>
 
   void _handleLongPressEnd(LongPressEndDetails details) {
     setState(() {
-      _currentState = AppTooltipState.defaultState;
+      _currentState = DSTooltipState.defaultState;
     });
     _hideTooltip();
   }
 
   void _handleTapDown(TapDownDetails details) {
     setState(() {
-      _currentState = AppTooltipState.pressed;
+      _currentState = DSTooltipState.pressed;
     });
   }
 
   void _handleTapUp(TapUpDetails details) {
     setState(() {
-      _currentState = AppTooltipState.defaultState;
+      _currentState = DSTooltipState.defaultState;
     });
   }
 
   void _handleTapCancel() {
     setState(() {
-      _currentState = AppTooltipState.defaultState;
+      _currentState = DSTooltipState.defaultState;
     });
   }
 

@@ -4,22 +4,22 @@ import 'package:iautomat_design_system/src/components/stepper/app_stepper.dart';
 import 'package:iautomat_design_system/src/components/stepper/stepper_config.dart';
 
 void main() {
-  group('AppStepper Unit Tests', () {
+  group('DSStepper Unit Tests', () {
     final testSteps = [
-      const AppStep(
+      const DSStep(
         title: 'Step 1',
         subtitle: 'First step',
-        state: AppStepState.completed,
+        state: DSStepState.completed,
       ),
-      const AppStep(
+      const DSStep(
         title: 'Step 2',
         subtitle: 'Second step',
-        state: AppStepState.active,
+        state: DSStepState.active,
       ),
-      const AppStep(
+      const DSStep(
         title: 'Step 3',
         subtitle: 'Third step',
-        state: AppStepState.inactive,
+        state: DSStepState.inactive,
       ),
     ];
 
@@ -29,16 +29,16 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppStepper), findsOneWidget);
+        expect(find.byType(DSStepper), findsOneWidget);
         expect(find.text('Step 1'), findsOneWidget);
         expect(find.text('Step 2'), findsOneWidget);
         expect(find.text('Step 3'), findsOneWidget);
@@ -49,16 +49,16 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 1,
                 steps: testSteps,
-                variant: AppStepperVariant.horizontal,
+                variant: DSStepperVariant.horizontal,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppStepper), findsOneWidget);
+        expect(find.byType(DSStepper), findsOneWidget);
         expect(find.text('Step 1'), findsOneWidget);
         expect(find.text('Step 2'), findsOneWidget);
         expect(find.text('Step 3'), findsOneWidget);
@@ -68,10 +68,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -86,11 +86,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
-                variant: AppStepperVariant.vertical,
-                config: const AppStepperConfig(showProgressIndicator: true),
+                variant: DSStepperVariant.vertical,
+                config: const DSStepperConfig(showProgressIndicator: true),
               ),
             ),
           ),
@@ -103,11 +103,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
-                variant: AppStepperVariant.vertical,
-                config: const AppStepperConfig(showProgressIndicator: false),
+                variant: DSStepperVariant.vertical,
+                config: const DSStepperConfig(showProgressIndicator: false),
               ),
             ),
           ),
@@ -122,11 +122,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
-                overrideState: AppStepperState.loading,
-                variant: AppStepperVariant.vertical,
+                overrideState: DSStepperState.loading,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -139,11 +139,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
-                overrideState: AppStepperState.skeleton,
-                variant: AppStepperVariant.vertical,
+                overrideState: DSStepperState.skeleton,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -159,12 +159,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
                 enabled: false,
                 onStepTapped: (_) => tapped = true,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -180,7 +180,7 @@ void main() {
 
     group('Configuration', () {
       testWidgets('applies custom configuration', (tester) async {
-        const customConfig = AppStepperConfig(
+        const customConfig = DSStepperConfig(
           stepRadius: 16.0,
           stepBorderWidth: 3.0,
           horizontalSpacing: 32.0,
@@ -190,47 +190,47 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
                 config: customConfig,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppStepper), findsOneWidget);
+        expect(find.byType(DSStepper), findsOneWidget);
       });
 
       testWidgets('supports custom colors', (tester) async {
-        final customColors = AppStepperColors.fromTheme(ThemeData.dark());
+        final customColors = DSStepperColors.fromTheme(ThemeData.dark());
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
                 colors: customColors,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppStepper), findsOneWidget);
+        expect(find.byType(DSStepper), findsOneWidget);
       });
 
       testWidgets('shows controls when enabled', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 1,
                 steps: testSteps,
                 showControls: true,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -245,11 +245,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 1,
                 steps: testSteps,
                 showControls: false,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -267,11 +267,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
                 onStepTapped: (step) => tappedStep = step,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -289,11 +289,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 1,
                 steps: testSteps,
                 onStepContinue: () => continueCalled = true,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -311,11 +311,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 1,
                 steps: testSteps,
                 onStepCancel: () => cancelCalled = true,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -331,14 +331,14 @@ void main() {
     group('Step Content', () {
       testWidgets('displays step content when provided', (tester) async {
         final stepsWithContent = [
-          const AppStep(
+          const DSStep(
             title: 'Step 1',
-            state: AppStepState.active,
+            state: DSStepState.active,
             content: Text('Step 1 Content'),
           ),
-          const AppStep(
+          const DSStep(
             title: 'Step 2',
-            state: AppStepState.inactive,
+            state: DSStepState.inactive,
             content: Text('Step 2 Content'),
           ),
         ];
@@ -346,11 +346,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: stepsWithContent,
                 expandActiveStep: true,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -363,9 +363,9 @@ void main() {
 
       testWidgets('shows error state and error text', (tester) async {
         final errorSteps = [
-          const AppStep(
+          const DSStep(
             title: 'Step 1',
-            state: AppStepState.error,
+            state: DSStepState.error,
             errorText: 'This step has an error',
           ),
         ];
@@ -373,10 +373,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: errorSteps,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -388,19 +388,19 @@ void main() {
 
       testWidgets('shows completed state with check icon', (tester) async {
         final completedSteps = [
-          const AppStep(
+          const DSStep(
             title: 'Completed Step',
-            state: AppStepState.completed,
+            state: DSStepState.completed,
           ),
         ];
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: completedSteps,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -415,11 +415,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
                 semanticLabel: 'Progress Stepper',
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -433,18 +433,18 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
                 autoFocus: true,
-                variant: AppStepperVariant.vertical,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
         );
 
         await tester.pump();
-        expect(find.byType(AppStepper), findsOneWidget);
+        expect(find.byType(DSStepper), findsOneWidget);
       });
     });
 
@@ -453,11 +453,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 1,
                 steps: testSteps,
-                variant: AppStepperVariant.vertical,
-                controlsBuilder: const AppStepperControlsBuilder(
+                variant: DSStepperVariant.vertical,
+                controlsBuilder: const DSStepperControlsBuilder(
                   continueLabel: 'Next Step',
                   cancelLabel: 'Previous Step',
                 ),
@@ -474,13 +474,13 @@ void main() {
     group('Optional Steps', () {
       testWidgets('shows optional badge when configured', (tester) async {
         final optionalSteps = [
-          const AppStep(
+          const DSStep(
             title: 'Required Step',
-            state: AppStepState.active,
+            state: DSStepState.active,
           ),
-          const AppStep(
+          const DSStep(
             title: 'Optional Step',
-            state: AppStepState.inactive,
+            state: DSStepState.inactive,
             isOptional: true,
           ),
         ];
@@ -488,11 +488,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: optionalSteps,
-                config: const AppStepperConfig(showOptionalBadge: true),
-                variant: AppStepperVariant.vertical,
+                config: const DSStepperConfig(showOptionalBadge: true),
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -508,11 +508,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppStepper(
+              body: DSStepper(
                 currentStep: 0,
                 steps: testSteps,
-                overrideState: AppStepperState.loading,
-                variant: AppStepperVariant.vertical,
+                overrideState: DSStepperState.loading,
+                variant: DSStepperVariant.vertical,
               ),
             ),
           ),
@@ -524,14 +524,14 @@ void main() {
     });
   });
 
-  group('AppStep', () {
+  group('DSStep', () {
     test('has correct state properties', () {
-      const activeStep = AppStep(title: 'Active', state: AppStepState.active);
+      const activeStep = DSStep(title: 'Active', state: DSStepState.active);
       const completedStep =
-          AppStep(title: 'Completed', state: AppStepState.completed);
+          DSStep(title: 'Completed', state: DSStepState.completed);
       const disabledStep =
-          AppStep(title: 'Disabled', state: AppStepState.disabled);
-      const errorStep = AppStep(title: 'Error', state: AppStepState.error);
+          DSStep(title: 'Disabled', state: DSStepState.disabled);
+      const errorStep = DSStep(title: 'Error', state: DSStepState.error);
 
       expect(activeStep.isActive, true);
       expect(activeStep.isCompleted, false);
@@ -556,11 +556,11 @@ void main() {
 
     test('canInteract property works correctly', () {
       const interactiveStep =
-          AppStep(title: 'Interactive', isInteractive: true);
+          DSStep(title: 'Interactive', isInteractive: true);
       const nonInteractiveStep =
-          AppStep(title: 'Non-interactive', isInteractive: false);
+          DSStep(title: 'Non-interactive', isInteractive: false);
       const disabledStep =
-          AppStep(title: 'Disabled', state: AppStepState.disabled);
+          DSStep(title: 'Disabled', state: DSStepState.disabled);
 
       expect(interactiveStep.canInteract, true);
       expect(nonInteractiveStep.canInteract, false);
@@ -568,12 +568,12 @@ void main() {
     });
   });
 
-  group('AppStepperExtensions', () {
+  group('DSStepperExtensions', () {
     final testSteps = [
-      const AppStep(title: 'Step 1', state: AppStepState.completed),
-      const AppStep(title: 'Step 2', state: AppStepState.active),
-      const AppStep(title: 'Step 3', state: AppStepState.inactive),
-      const AppStep(title: 'Step 4', state: AppStepState.error),
+      const DSStep(title: 'Step 1', state: DSStepState.completed),
+      const DSStep(title: 'Step 2', state: DSStepState.active),
+      const DSStep(title: 'Step 3', state: DSStepState.inactive),
+      const DSStep(title: 'Step 4', state: DSStepState.error),
     ];
 
     test('activeStepIndex returns correct index', () {
@@ -631,15 +631,15 @@ void main() {
     });
   });
 
-  group('AppStepperValidator', () {
+  group('DSStepperValidator', () {
     test('required validator works correctly', () {
-      expect(AppStepperValidator.required('test'), null);
-      expect(AppStepperValidator.required(''), isNotNull);
-      expect(AppStepperValidator.required(null), isNotNull);
+      expect(DSStepperValidator.required('test'), null);
+      expect(DSStepperValidator.required(''), isNotNull);
+      expect(DSStepperValidator.required(null), isNotNull);
     });
 
     test('custom validator works correctly', () {
-      final validator = AppStepperValidator.custom(
+      final validator = DSStepperValidator.custom(
         (value) => value?.length == 5,
         'Must be 5 characters',
       );

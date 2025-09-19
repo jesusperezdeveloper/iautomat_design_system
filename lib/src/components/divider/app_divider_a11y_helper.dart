@@ -5,18 +5,18 @@ import 'app_divider_config.dart';
 
 typedef AnnouncementCallback = void Function(String message);
 
-class AppDividerA11yHelper {
-  final AppDividerConfig config;
+class DSDividerA11yHelper {
+  final DSDividerConfig config;
   final AnnouncementCallback? onAnnouncementRequested;
 
-  const AppDividerA11yHelper({
+  const DSDividerA11yHelper({
     required this.config,
     this.onAnnouncementRequested,
   });
 
   void announceStateChange(
-    AppDividerState previousState,
-    AppDividerState newState,
+    DSDividerState previousState,
+    DSDividerState newState,
   ) {
     if (!_shouldAnnounceStateChange(previousState, newState)) return;
 
@@ -75,13 +75,13 @@ class AppDividerA11yHelper {
     final state = _getCurrentState();
 
     switch (state) {
-      case AppDividerState.loading:
+      case DSDividerState.loading:
         return 'Cargando';
-      case AppDividerState.disabled:
+      case DSDividerState.disabled:
         return 'Deshabilitado';
-      case AppDividerState.selected:
+      case DSDividerState.selected:
         return 'Seleccionado';
-      case AppDividerState.focus:
+      case DSDividerState.focus:
         return 'Enfocado';
       default:
         return null;
@@ -93,7 +93,7 @@ class AppDividerA11yHelper {
     final state = _getCurrentState();
 
     return {
-      'enabled': accessibility.enabled && state != AppDividerState.disabled,
+      'enabled': accessibility.enabled && state != DSDividerState.disabled,
       'button': _isInteractive(),
       'focusable': accessibility.focusable && state.isInteractive,
       'hidden': !accessibility.enabled || accessibility.excludeSemantics,
@@ -116,7 +116,7 @@ class AppDividerA11yHelper {
 
     // Acciones adicionales según el estado
     final state = _getCurrentState();
-    if (state == AppDividerState.focus) {
+    if (state == DSDividerState.focus) {
       actions.add({'label': 'Confirmar', 'action': 'activate'});
     }
 
@@ -155,25 +155,25 @@ class AppDividerA11yHelper {
   }
 
   bool _shouldAnnounceStateChange(
-    AppDividerState previousState,
-    AppDividerState newState,
+    DSDividerState previousState,
+    DSDividerState newState,
   ) {
     final accessibility = _getAccessibilityConfig();
     if (!accessibility.enabled) return false;
 
     // No anunciar cambios menores como hover
-    if (newState == AppDividerState.hover) return false;
-    if (previousState == AppDividerState.hover &&
-        newState == AppDividerState.defaultState) {
+    if (newState == DSDividerState.hover) return false;
+    if (previousState == DSDividerState.hover &&
+        newState == DSDividerState.defaultState) {
       return false;
     }
 
     // Anunciar cambios importantes
     return previousState != newState &&
-        (newState == AppDividerState.loading ||
-            newState == AppDividerState.disabled ||
-            newState == AppDividerState.selected ||
-            newState == AppDividerState.focus);
+        (newState == DSDividerState.loading ||
+            newState == DSDividerState.disabled ||
+            newState == DSDividerState.selected ||
+            newState == DSDividerState.focus);
   }
 
   bool _shouldAnnounceVisibilityChange() {
@@ -197,19 +197,19 @@ class AppDividerA11yHelper {
   }
 
   String? _getStateChangeMessage(
-    AppDividerState previousState,
-    AppDividerState newState,
+    DSDividerState previousState,
+    DSDividerState newState,
   ) {
     switch (newState) {
-      case AppDividerState.loading:
+      case DSDividerState.loading:
         return 'Cargando';
-      case AppDividerState.disabled:
+      case DSDividerState.disabled:
         return 'Deshabilitado';
-      case AppDividerState.selected:
+      case DSDividerState.selected:
         return 'Seleccionado';
-      case AppDividerState.focus:
+      case DSDividerState.focus:
         return 'Enfocado';
-      case AppDividerState.pressed:
+      case DSDividerState.pressed:
         return 'Presionado';
       default:
         return null;
@@ -262,8 +262,8 @@ class AppDividerA11yHelper {
 
   bool _isLiveRegion() {
     final state = _getCurrentState();
-    return state == AppDividerState.loading ||
-        state == AppDividerState.skeleton;
+    return state == DSDividerState.loading ||
+        state == DSDividerState.skeleton;
   }
 
   bool _isInteractive() {
@@ -272,23 +272,23 @@ class AppDividerA11yHelper {
     return false;
   }
 
-  AppDividerAccessibilityConfig _getAccessibilityConfig() {
-    return const AppDividerAccessibilityConfig();
+  DSDividerAccessibilityConfig _getAccessibilityConfig() {
+    return const DSDividerAccessibilityConfig();
   }
 
-  AppDividerSpacing _getSpacingConfig() {
-    return const AppDividerSpacing();
+  DSDividerSpacing _getSpacingConfig() {
+    return const DSDividerSpacing();
   }
 
-  AppDividerState _getCurrentState() {
-    return AppDividerState.defaultState;
+  DSDividerState _getCurrentState() {
+    return DSDividerState.defaultState;
   }
 
-  AppDividerVariant _getVariant() {
-    return AppDividerVariant.full;
+  DSDividerVariant _getVariant() {
+    return DSDividerVariant.full;
   }
 
-  AppDividerOrientation _getOrientation() {
-    return AppDividerOrientation.horizontal;
+  DSDividerOrientation _getOrientation() {
+    return DSDividerOrientation.horizontal;
   }
 }

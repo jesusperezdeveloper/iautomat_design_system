@@ -5,9 +5,9 @@ import 'list_item_config.dart';
 /// A production-ready list item widget for Material 3 design systems
 ///
 /// Supports three main variants:
-/// - [AppListItem.oneLine]: Single line list item with title only
-/// - [AppListItem.twoLine]: Two line list item with title and subtitle
-/// - [AppListItem.threeLine]: Three line list item with extended content
+/// - [DSListItem.oneLine]: Single line list item with title only
+/// - [DSListItem.twoLine]: Two line list item with title and subtitle
+/// - [DSListItem.threeLine]: Three line list item with extended content
 ///
 /// Features:
 /// - Material 3 design with platform-adaptive behavior
@@ -17,9 +17,9 @@ import 'list_item_config.dart';
 /// - Loading and skeleton states
 /// - Multiple leading and trailing configurations
 /// - Responsive design
-class AppListItem extends StatefulWidget {
+class DSListItem extends StatefulWidget {
   /// List item variant
-  final AppListItemVariant variant;
+  final DSListItemVariant variant;
 
   /// List item title
   final String title;
@@ -28,46 +28,46 @@ class AppListItem extends StatefulWidget {
   final String? subtitle;
 
   /// Leading widget configuration
-  final AppListItemLeading? leading;
+  final DSListItemLeading? leading;
 
   /// Trailing widget configuration
-  final AppListItemTrailing? trailing;
+  final DSListItemTrailing? trailing;
 
   /// Swipe actions configuration
-  final AppListItemSwipeActions? swipeActions;
+  final DSListItemSwipeActions? swipeActions;
 
   /// Main tap callback
-  final AppListItemTapCallback? onTap;
+  final DSListItemTapCallback? onTap;
 
   /// Long press callback
-  final AppListItemLongPressCallback? onLongPress;
+  final DSListItemLongPressCallback? onLongPress;
 
   /// Focus change callback
-  final AppListItemFocusCallback? onFocusChange;
+  final DSListItemFocusCallback? onFocusChange;
 
   /// Hover change callback
-  final AppListItemHoverCallback? onHoverChange;
+  final DSListItemHoverCallback? onHoverChange;
 
   /// State change callback
-  final AppListItemStateChangeCallback? onStateChange;
+  final DSListItemStateChangeCallback? onStateChange;
 
   /// List item configuration
-  final AppListItemConfig config;
+  final DSListItemConfig config;
 
   /// Custom title builder
-  final AppListItemTitleBuilder? titleBuilder;
+  final DSListItemTitleBuilder? titleBuilder;
 
   /// Custom subtitle builder
-  final AppListItemSubtitleBuilder? subtitleBuilder;
+  final DSListItemSubtitleBuilder? subtitleBuilder;
 
   /// Custom leading builder
-  final AppListItemLeadingBuilder? leadingBuilder;
+  final DSListItemLeadingBuilder? leadingBuilder;
 
   /// Custom trailing builder
-  final AppListItemTrailingBuilder? trailingBuilder;
+  final DSListItemTrailingBuilder? trailingBuilder;
 
-  /// Creates an AppListItem with one line
-  const AppListItem.oneLine({
+  /// Creates an DSListItem with one line
+  const DSListItem.oneLine({
     super.key,
     required this.title,
     this.leading,
@@ -78,18 +78,18 @@ class AppListItem extends StatefulWidget {
     this.onFocusChange,
     this.onHoverChange,
     this.onStateChange,
-    this.config = const AppListItemConfig(
-      variant: AppListItemVariant.oneLine,
+    this.config = const DSListItemConfig(
+      variant: DSListItemVariant.oneLine,
     ),
     this.titleBuilder,
     this.leadingBuilder,
     this.trailingBuilder,
-  })  : variant = AppListItemVariant.oneLine,
+  })  : variant = DSListItemVariant.oneLine,
         subtitle = null,
         subtitleBuilder = null;
 
-  /// Creates an AppListItem with two lines
-  const AppListItem.twoLine({
+  /// Creates an DSListItem with two lines
+  const DSListItem.twoLine({
     super.key,
     required this.title,
     required this.subtitle,
@@ -101,17 +101,17 @@ class AppListItem extends StatefulWidget {
     this.onFocusChange,
     this.onHoverChange,
     this.onStateChange,
-    this.config = const AppListItemConfig(
-      variant: AppListItemVariant.twoLine,
+    this.config = const DSListItemConfig(
+      variant: DSListItemVariant.twoLine,
     ),
     this.titleBuilder,
     this.subtitleBuilder,
     this.leadingBuilder,
     this.trailingBuilder,
-  }) : variant = AppListItemVariant.twoLine;
+  }) : variant = DSListItemVariant.twoLine;
 
-  /// Creates an AppListItem with three lines
-  const AppListItem.threeLine({
+  /// Creates an DSListItem with three lines
+  const DSListItem.threeLine({
     super.key,
     required this.title,
     required this.subtitle,
@@ -123,17 +123,17 @@ class AppListItem extends StatefulWidget {
     this.onFocusChange,
     this.onHoverChange,
     this.onStateChange,
-    this.config = const AppListItemConfig(
-      variant: AppListItemVariant.threeLine,
+    this.config = const DSListItemConfig(
+      variant: DSListItemVariant.threeLine,
     ),
     this.titleBuilder,
     this.subtitleBuilder,
     this.leadingBuilder,
     this.trailingBuilder,
-  }) : variant = AppListItemVariant.threeLine;
+  }) : variant = DSListItemVariant.threeLine;
 
-  /// Creates a general AppListItem
-  const AppListItem({
+  /// Creates a general DSListItem
+  const DSListItem({
     super.key,
     required this.variant,
     required this.title,
@@ -146,7 +146,7 @@ class AppListItem extends StatefulWidget {
     this.onFocusChange,
     this.onHoverChange,
     this.onStateChange,
-    this.config = const AppListItemConfig(),
+    this.config = const DSListItemConfig(),
     this.titleBuilder,
     this.subtitleBuilder,
     this.leadingBuilder,
@@ -154,16 +154,16 @@ class AppListItem extends StatefulWidget {
   });
 
   @override
-  State<AppListItem> createState() => _AppListItemState();
+  State<DSListItem> createState() => _DSListItemState();
 }
 
-class _AppListItemState extends State<AppListItem>
+class _DSListItemState extends State<DSListItem>
     with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late AnimationController _animationController;
   late AnimationController _swipeController;
 
-  AppListItemState _currentState = AppListItemState.defaultState;
+  DSListItemState _currentState = DSListItemState.defaultState;
   bool _isHovered = false;
   bool _isFocused = false;
   final bool _isPressed = false;
@@ -194,7 +194,7 @@ class _AppListItemState extends State<AppListItem>
   }
 
   @override
-  void didUpdateWidget(AppListItem oldWidget) {
+  void didUpdateWidget(DSListItem oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.config.effectiveState != _currentState) {
@@ -212,7 +212,7 @@ class _AppListItemState extends State<AppListItem>
     super.dispose();
   }
 
-  void _updateState(AppListItemState newState) {
+  void _updateState(DSListItemState newState) {
     if (_currentState == newState) return;
 
     setState(() {
@@ -232,14 +232,14 @@ class _AppListItemState extends State<AppListItem>
   void _handleTap() {
     if (!widget.config.isInteractive) return;
 
-    _updateState(AppListItemState.pressed);
+    _updateState(DSListItemState.pressed);
 
     // Reset to default after a short delay
     Future.delayed(const Duration(milliseconds: 100), () {
       if (mounted) {
         _updateState(_isFocused
-            ? AppListItemState.focus
-            : AppListItemState.defaultState);
+            ? DSListItemState.focus
+            : DSListItemState.defaultState);
       }
     });
 
@@ -261,9 +261,9 @@ class _AppListItemState extends State<AppListItem>
     });
 
     if (hovered && !_isFocused && !_isPressed) {
-      _updateState(AppListItemState.hover);
-    } else if (!hovered && _currentState == AppListItemState.hover) {
-      _updateState(AppListItemState.defaultState);
+      _updateState(DSListItemState.hover);
+    } else if (!hovered && _currentState == DSListItemState.hover) {
+      _updateState(DSListItemState.defaultState);
     }
 
     widget.onHoverChange?.call(hovered);
@@ -275,10 +275,10 @@ class _AppListItemState extends State<AppListItem>
     });
 
     if (focused) {
-      _updateState(AppListItemState.focus);
-    } else if (_currentState == AppListItemState.focus) {
+      _updateState(DSListItemState.focus);
+    } else if (_currentState == DSListItemState.focus) {
       _updateState(
-          _isHovered ? AppListItemState.hover : AppListItemState.defaultState);
+          _isHovered ? DSListItemState.hover : DSListItemState.defaultState);
     }
 
     widget.onFocusChange?.call(focused);
@@ -328,7 +328,7 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildContent(
     BuildContext context,
     ThemeData theme,
-    AppListItemConfig config,
+    DSListItemConfig config,
   ) {
     if (config.isSkeleton) {
       return _buildSkeleton(context, theme, config);
@@ -347,10 +347,10 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildListItem(
     BuildContext context,
     ThemeData theme,
-    AppListItemConfig config,
+    DSListItemConfig config,
   ) {
-    final style = config.style ?? const AppListItemStyle();
-    final listItemTheme = config.theme ?? const AppListItemTheme();
+    final style = config.style ?? const DSListItemStyle();
+    final listItemTheme = config.theme ?? const DSListItemTheme();
 
     final backgroundColor = _getBackgroundColor(theme, listItemTheme, config);
     final contentPadding = style.getContentPaddingForDensity(config.density);
@@ -431,9 +431,9 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildRow(
     BuildContext context,
     ThemeData theme,
-    AppListItemConfig config,
+    DSListItemConfig config,
   ) {
-    final style = config.style ?? const AppListItemStyle();
+    final style = config.style ?? const DSListItemStyle();
     final children = <Widget>[];
 
     // Leading widget
@@ -469,10 +469,10 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildTitleSubtitle(
     BuildContext context,
     ThemeData theme,
-    AppListItemConfig config,
+    DSListItemConfig config,
   ) {
-    final style = config.style ?? const AppListItemStyle();
-    final listItemTheme = config.theme ?? const AppListItemTheme();
+    final style = config.style ?? const DSListItemStyle();
+    final listItemTheme = config.theme ?? const DSListItemTheme();
 
     final titleStyle = _getTitleStyle(theme, style, listItemTheme, config);
     final subtitleStyle =
@@ -484,9 +484,9 @@ class _AppListItemState extends State<AppListItem>
           Text(
             widget.title,
             style: titleStyle,
-            maxLines: config.variant == AppListItemVariant.oneLine
+            maxLines: config.variant == DSListItemVariant.oneLine
                 ? 1
-                : (config.variant == AppListItemVariant.twoLine ? 1 : 2),
+                : (config.variant == DSListItemVariant.twoLine ? 1 : 2),
             overflow: TextOverflow.ellipsis,
             semanticsLabel: config.semanticLabel,
           ),
@@ -501,7 +501,7 @@ class _AppListItemState extends State<AppListItem>
             Text(
               widget.subtitle!,
               style: subtitleStyle,
-              maxLines: config.variant == AppListItemVariant.twoLine ? 1 : 2,
+              maxLines: config.variant == DSListItemVariant.twoLine ? 1 : 2,
               overflow: TextOverflow.ellipsis,
             ),
       );
@@ -518,7 +518,7 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildLeading(
     BuildContext context,
     ThemeData theme,
-    AppListItemConfig config,
+    DSListItemConfig config,
   ) {
     final leading = widget.leading!;
 
@@ -537,17 +537,17 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildLeadingContent(
     BuildContext context,
     ThemeData theme,
-    AppListItemLeading leading,
-    AppListItemConfig config,
+    DSListItemLeading leading,
+    DSListItemConfig config,
   ) {
     Widget content;
 
     switch (leading.type) {
-      case AppListItemLeadingType.none:
+      case DSListItemLeadingType.none:
         content = const SizedBox.shrink();
         break;
 
-      case AppListItemLeadingType.icon:
+      case DSListItemLeadingType.icon:
         content = Icon(
           leading.icon,
           size: leading.iconSize,
@@ -555,7 +555,7 @@ class _AppListItemState extends State<AppListItem>
         );
         break;
 
-      case AppListItemLeadingType.avatar:
+      case DSListItemLeadingType.avatar:
         content = CircleAvatar(
           radius: leading.avatarRadius,
           backgroundColor: leading.avatarBackgroundColor,
@@ -564,7 +564,7 @@ class _AppListItemState extends State<AppListItem>
         );
         break;
 
-      case AppListItemLeadingType.image:
+      case DSListItemLeadingType.image:
         content = ClipRRect(
           borderRadius: BorderRadius.circular(leading.imageBorderRadius),
           child: Image(
@@ -576,7 +576,7 @@ class _AppListItemState extends State<AppListItem>
         );
         break;
 
-      case AppListItemLeadingType.checkbox:
+      case DSListItemLeadingType.checkbox:
         content = Checkbox(
           value: leading.checkboxValue ?? false,
           onChanged: config.isInteractive
@@ -587,7 +587,7 @@ class _AppListItemState extends State<AppListItem>
         );
         break;
 
-      case AppListItemLeadingType.radio:
+      case DSListItemLeadingType.radio:
         content = Container(
           width: 20,
           height: 20,
@@ -613,7 +613,7 @@ class _AppListItemState extends State<AppListItem>
         );
         break;
 
-      case AppListItemLeadingType.custom:
+      case DSListItemLeadingType.custom:
         content = leading.customWidget ?? const SizedBox.shrink();
         break;
     }
@@ -636,7 +636,7 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildTrailing(
     BuildContext context,
     ThemeData theme,
-    AppListItemConfig config,
+    DSListItemConfig config,
   ) {
     final trailing = widget.trailing!;
 
@@ -655,17 +655,17 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildTrailingContent(
     BuildContext context,
     ThemeData theme,
-    AppListItemTrailing trailing,
-    AppListItemConfig config,
+    DSListItemTrailing trailing,
+    DSListItemConfig config,
   ) {
     Widget content;
 
     switch (trailing.type) {
-      case AppListItemTrailingType.none:
+      case DSListItemTrailingType.none:
         content = const SizedBox.shrink();
         break;
 
-      case AppListItemTrailingType.icon:
+      case DSListItemTrailingType.icon:
         content = Icon(
           trailing.icon,
           size: trailing.iconSize,
@@ -673,28 +673,28 @@ class _AppListItemState extends State<AppListItem>
         );
         break;
 
-      case AppListItemTrailingType.text:
+      case DSListItemTrailingType.text:
         content = Text(
           trailing.text ?? '',
           style: trailing.textStyle ?? theme.textTheme.bodyMedium,
         );
         break;
 
-      case AppListItemTrailingType.switchWidget:
+      case DSListItemTrailingType.switchWidget:
         content = Switch(
           value: trailing.switchValue ?? false,
           onChanged: config.isInteractive ? trailing.onSwitchChanged : null,
         );
         break;
 
-      case AppListItemTrailingType.checkbox:
+      case DSListItemTrailingType.checkbox:
         content = Checkbox(
           value: trailing.checkboxValue ?? false,
           onChanged: config.isInteractive ? trailing.onCheckboxChanged : null,
         );
         break;
 
-      case AppListItemTrailingType.radio:
+      case DSListItemTrailingType.radio:
         content = Container(
           width: 20,
           height: 20,
@@ -720,7 +720,7 @@ class _AppListItemState extends State<AppListItem>
         );
         break;
 
-      case AppListItemTrailingType.custom:
+      case DSListItemTrailingType.custom:
         content = trailing.customWidget ?? const SizedBox.shrink();
         break;
     }
@@ -743,7 +743,7 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildSwipeActions(
     BuildContext context,
     ThemeData theme,
-    AppListItemConfig config,
+    DSListItemConfig config,
     Widget child,
   ) {
     // This is a simplified implementation
@@ -801,7 +801,7 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildLoadingOverlay(
     BuildContext context,
     ThemeData theme,
-    AppListItemConfig config,
+    DSListItemConfig config,
   ) {
     return Positioned.fill(
       child: Container(
@@ -825,9 +825,9 @@ class _AppListItemState extends State<AppListItem>
   Widget _buildSkeleton(
     BuildContext context,
     ThemeData theme,
-    AppListItemConfig config,
+    DSListItemConfig config,
   ) {
-    final style = config.style ?? const AppListItemStyle();
+    final style = config.style ?? const DSListItemStyle();
     final contentPadding = style.getContentPaddingForDensity(config.density);
     final minHeight =
         style.getMinHeightForVariant(config.variant, config.density);
@@ -898,20 +898,20 @@ class _AppListItemState extends State<AppListItem>
   // Helper methods
   Color _getBackgroundColor(
     ThemeData theme,
-    AppListItemTheme listItemTheme,
-    AppListItemConfig config,
+    DSListItemTheme listItemTheme,
+    DSListItemConfig config,
   ) {
     switch (_currentState) {
-      case AppListItemState.hover:
+      case DSListItemState.hover:
         return listItemTheme.hoverColor ?? theme.hoverColor;
-      case AppListItemState.pressed:
+      case DSListItemState.pressed:
         return listItemTheme.pressedColor ?? theme.focusColor;
-      case AppListItemState.focus:
+      case DSListItemState.focus:
         return listItemTheme.focusColor ?? theme.focusColor;
-      case AppListItemState.selected:
+      case DSListItemState.selected:
         return listItemTheme.selectedColor ??
             theme.colorScheme.primaryContainer;
-      case AppListItemState.disabled:
+      case DSListItemState.disabled:
         return listItemTheme.disabledColor ?? theme.disabledColor;
       default:
         return listItemTheme.backgroundColor ?? Colors.transparent;
@@ -920,9 +920,9 @@ class _AppListItemState extends State<AppListItem>
 
   TextStyle _getTitleStyle(
     ThemeData theme,
-    AppListItemStyle style,
-    AppListItemTheme listItemTheme,
-    AppListItemConfig config,
+    DSListItemStyle style,
+    DSListItemTheme listItemTheme,
+    DSListItemConfig config,
   ) {
     final baseStyle = style.titleStyle ?? theme.textTheme.bodyLarge!;
 
@@ -938,9 +938,9 @@ class _AppListItemState extends State<AppListItem>
 
   TextStyle _getSubtitleStyle(
     ThemeData theme,
-    AppListItemStyle style,
-    AppListItemTheme listItemTheme,
-    AppListItemConfig config,
+    DSListItemStyle style,
+    DSListItemTheme listItemTheme,
+    DSListItemConfig config,
   ) {
     final baseStyle = style.subtitleStyle ?? theme.textTheme.bodyMedium!;
 
@@ -955,39 +955,39 @@ class _AppListItemState extends State<AppListItem>
   }
 
   CrossAxisAlignment _getCrossAxisAlignment(
-      AppListItemContentAlignment alignment) {
+      DSListItemContentAlignment alignment) {
     switch (alignment) {
-      case AppListItemContentAlignment.top:
+      case DSListItemContentAlignment.top:
         return CrossAxisAlignment.start;
-      case AppListItemContentAlignment.center:
+      case DSListItemContentAlignment.center:
         return CrossAxisAlignment.center;
-      case AppListItemContentAlignment.bottom:
+      case DSListItemContentAlignment.bottom:
         return CrossAxisAlignment.end;
     }
   }
 
   MainAxisAlignment _getMainAxisAlignment(
-      AppListItemContentAlignment alignment) {
+      DSListItemContentAlignment alignment) {
     switch (alignment) {
-      case AppListItemContentAlignment.top:
+      case DSListItemContentAlignment.top:
         return MainAxisAlignment.start;
-      case AppListItemContentAlignment.center:
+      case DSListItemContentAlignment.center:
         return MainAxisAlignment.center;
-      case AppListItemContentAlignment.bottom:
+      case DSListItemContentAlignment.bottom:
         return MainAxisAlignment.end;
     }
   }
 
   DismissDirection _getDismissDirection() {
     final direction =
-        widget.swipeActions?.direction ?? AppListItemSwipeDirection.both;
+        widget.swipeActions?.direction ?? DSListItemSwipeDirection.both;
 
     switch (direction) {
-      case AppListItemSwipeDirection.startToEnd:
+      case DSListItemSwipeDirection.startToEnd:
         return DismissDirection.startToEnd;
-      case AppListItemSwipeDirection.endToStart:
+      case DSListItemSwipeDirection.endToStart:
         return DismissDirection.endToStart;
-      case AppListItemSwipeDirection.both:
+      case DSListItemSwipeDirection.both:
         return DismissDirection.horizontal;
     }
   }

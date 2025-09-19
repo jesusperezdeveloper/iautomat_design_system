@@ -4,32 +4,32 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_breadcrumbs_config.freezed.dart';
 
 @freezed
-class AppBreadcrumbsConfig with _$AppBreadcrumbsConfig {
-  const factory AppBreadcrumbsConfig({
-    @Default(AppBreadcrumbsVariant.defaultVariant)
-    AppBreadcrumbsVariant variant,
-    @Default(AppBreadcrumbsState.defaultState) AppBreadcrumbsState state,
+class DSBreadcrumbsConfig with _$DSBreadcrumbsConfig {
+  const factory DSBreadcrumbsConfig({
+    @Default(DSBreadcrumbsVariant.defaultVariant)
+    DSBreadcrumbsVariant variant,
+    @Default(DSBreadcrumbsState.defaultState) DSBreadcrumbsState state,
     @Default(true) bool isAdaptive,
     @Default(false) bool isRtl,
     @Default(true) bool enableA11y,
     @Default(true) bool enableKeyboardSupport,
-    @Default([]) List<AppBreadcrumbItem> items,
-    ValueChanged<AppBreadcrumbItem>? onTap,
-    AppBreadcrumbSeparator? separator,
+    @Default([]) List<DSBreadcrumbItem> items,
+    ValueChanged<DSBreadcrumbItem>? onTap,
+    DSBreadcrumbSeparator? separator,
     @Default(3) int maxVisibleItems,
     @Default(true) bool showHome,
-    AppBreadcrumbsColors? colors,
-    AppBreadcrumbsTypography? typography,
-    AppBreadcrumbsSpacing? spacing,
-    AppBreadcrumbsElevation? elevation,
-    AppBreadcrumbsBehavior? behavior,
-    AppBreadcrumbsAnimation? animation,
-  }) = _AppBreadcrumbsConfig;
+    DSBreadcrumbsColors? colors,
+    DSBreadcrumbsTypography? typography,
+    DSBreadcrumbsSpacing? spacing,
+    DSBreadcrumbsElevation? elevation,
+    DSBreadcrumbsBehavior? behavior,
+    DSBreadcrumbsAnimation? animation,
+  }) = _DSBreadcrumbsConfig;
 }
 
 @freezed
-class AppBreadcrumbItem with _$AppBreadcrumbItem {
-  const factory AppBreadcrumbItem({
+class DSBreadcrumbItem with _$DSBreadcrumbItem {
+  const factory DSBreadcrumbItem({
     required String id,
     required String title,
     String? subtitle,
@@ -37,17 +37,17 @@ class AppBreadcrumbItem with _$AppBreadcrumbItem {
     String? route,
     String? tooltip,
     @Default(false) bool disabled,
-    @Default(AppBreadcrumbType.text) AppBreadcrumbType type,
+    @Default(DSBreadcrumbType.text) DSBreadcrumbType type,
     VoidCallback? onTap,
     Map<String, dynamic>? metadata,
   }) = _AppBreadcrumbItem;
 }
 
 @freezed
-class AppBreadcrumbSeparator with _$AppBreadcrumbSeparator {
-  const factory AppBreadcrumbSeparator({
-    @Default(AppBreadcrumbSeparatorType.chevron)
-    AppBreadcrumbSeparatorType type,
+class DSBreadcrumbSeparator with _$DSBreadcrumbSeparator {
+  const factory DSBreadcrumbSeparator({
+    @Default(DSBreadcrumbSeparatorType.chevron)
+    DSBreadcrumbSeparatorType type,
     Widget? custom,
     String? text,
     IconData? icon,
@@ -57,8 +57,8 @@ class AppBreadcrumbSeparator with _$AppBreadcrumbSeparator {
 }
 
 @freezed
-class AppBreadcrumbsColors with _$AppBreadcrumbsColors {
-  const factory AppBreadcrumbsColors({
+class DSBreadcrumbsColors with _$DSBreadcrumbsColors {
+  const factory DSBreadcrumbsColors({
     Color? backgroundColor,
     Color? textColor,
     Color? selectedTextColor,
@@ -74,8 +74,8 @@ class AppBreadcrumbsColors with _$AppBreadcrumbsColors {
 }
 
 @freezed
-class AppBreadcrumbsTypography with _$AppBreadcrumbsTypography {
-  const factory AppBreadcrumbsTypography({
+class DSBreadcrumbsTypography with _$DSBreadcrumbsTypography {
+  const factory DSBreadcrumbsTypography({
     TextStyle? textStyle,
     TextStyle? selectedTextStyle,
     TextStyle? disabledTextStyle,
@@ -88,8 +88,8 @@ class AppBreadcrumbsTypography with _$AppBreadcrumbsTypography {
 }
 
 @freezed
-class AppBreadcrumbsSpacing with _$AppBreadcrumbsSpacing {
-  const factory AppBreadcrumbsSpacing({
+class DSBreadcrumbsSpacing with _$DSBreadcrumbsSpacing {
+  const factory DSBreadcrumbsSpacing({
     @Default(8.0) double itemPadding,
     @Default(4.0) double separatorSpacing,
     @Default(16.0) double containerPadding,
@@ -101,8 +101,8 @@ class AppBreadcrumbsSpacing with _$AppBreadcrumbsSpacing {
 }
 
 @freezed
-class AppBreadcrumbsElevation with _$AppBreadcrumbsElevation {
-  const factory AppBreadcrumbsElevation({
+class DSBreadcrumbsElevation with _$DSBreadcrumbsElevation {
+  const factory DSBreadcrumbsElevation({
     @Default(0.0) double defaultElevation,
     @Default(2.0) double hoveredElevation,
     @Default(4.0) double pressedElevation,
@@ -113,13 +113,13 @@ class AppBreadcrumbsElevation with _$AppBreadcrumbsElevation {
 }
 
 @freezed
-class AppBreadcrumbsBehavior with _$AppBreadcrumbsBehavior {
-  const factory AppBreadcrumbsBehavior({
+class DSBreadcrumbsBehavior with _$DSBreadcrumbsBehavior {
+  const factory DSBreadcrumbsBehavior({
     @Default(true) bool enableHapticFeedback,
     @Default(true) bool showTooltips,
     @Default(true) bool allowNavigation,
-    @Default(AppBreadcrumbsCollapseMode.ellipsis)
-    AppBreadcrumbsCollapseMode collapseMode,
+    @Default(DSBreadcrumbsCollapseMode.ellipsis)
+    DSBreadcrumbsCollapseMode collapseMode,
     @Default(true) bool showCurrentAsText,
     @Default(true) bool enableKeyboardNavigation,
     @Default(300) int animationDuration,
@@ -127,9 +127,9 @@ class AppBreadcrumbsBehavior with _$AppBreadcrumbsBehavior {
 }
 
 @freezed
-class AppBreadcrumbsAnimation with _$AppBreadcrumbsAnimation {
-  const factory AppBreadcrumbsAnimation({
-    @Default(AppBreadcrumbsAnimationType.fade) AppBreadcrumbsAnimationType type,
+class DSBreadcrumbsAnimation with _$DSBreadcrumbsAnimation {
+  const factory DSBreadcrumbsAnimation({
+    @Default(DSBreadcrumbsAnimationType.fade) DSBreadcrumbsAnimationType type,
     @Default(300) int duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(true) bool enableStateTransitions,
@@ -137,12 +137,12 @@ class AppBreadcrumbsAnimation with _$AppBreadcrumbsAnimation {
   }) = _AppBreadcrumbsAnimation;
 }
 
-enum AppBreadcrumbsVariant {
+enum DSBreadcrumbsVariant {
   defaultVariant,
   collapsing,
 }
 
-enum AppBreadcrumbsState {
+enum DSBreadcrumbsState {
   defaultState,
   hover,
   pressed,
@@ -153,14 +153,14 @@ enum AppBreadcrumbsState {
   skeleton,
 }
 
-enum AppBreadcrumbType {
+enum DSBreadcrumbType {
   text,
   icon,
   textWithIcon,
   custom,
 }
 
-enum AppBreadcrumbSeparatorType {
+enum DSBreadcrumbSeparatorType {
   chevron,
   slash,
   arrow,
@@ -168,242 +168,242 @@ enum AppBreadcrumbSeparatorType {
   custom,
 }
 
-enum AppBreadcrumbsCollapseMode {
+enum DSBreadcrumbsCollapseMode {
   ellipsis,
   dropdown,
   hidden,
 }
 
-enum AppBreadcrumbsAnimationType {
+enum DSBreadcrumbsAnimationType {
   none,
   fade,
   slide,
   scale,
 }
 
-extension AppBreadcrumbsVariantExtension on AppBreadcrumbsVariant {
+extension DSBreadcrumbsVariantExtension on DSBreadcrumbsVariant {
   String get displayName {
     switch (this) {
-      case AppBreadcrumbsVariant.defaultVariant:
+      case DSBreadcrumbsVariant.defaultVariant:
         return 'Default';
-      case AppBreadcrumbsVariant.collapsing:
+      case DSBreadcrumbsVariant.collapsing:
         return 'Collapsing';
     }
   }
 
   String get description {
     switch (this) {
-      case AppBreadcrumbsVariant.defaultVariant:
+      case DSBreadcrumbsVariant.defaultVariant:
         return 'Navegación de rutas completa y visible';
-      case AppBreadcrumbsVariant.collapsing:
+      case DSBreadcrumbsVariant.collapsing:
         return 'Navegación que colapsa elementos intermedios';
     }
   }
 
   bool get isCollapsible {
     switch (this) {
-      case AppBreadcrumbsVariant.defaultVariant:
+      case DSBreadcrumbsVariant.defaultVariant:
         return false;
-      case AppBreadcrumbsVariant.collapsing:
+      case DSBreadcrumbsVariant.collapsing:
         return true;
     }
   }
 
   int get defaultMaxItems {
     switch (this) {
-      case AppBreadcrumbsVariant.defaultVariant:
+      case DSBreadcrumbsVariant.defaultVariant:
         return 10;
-      case AppBreadcrumbsVariant.collapsing:
+      case DSBreadcrumbsVariant.collapsing:
         return 3;
     }
   }
 }
 
-extension AppBreadcrumbsStateExtension on AppBreadcrumbsState {
+extension DSBreadcrumbsStateExtension on DSBreadcrumbsState {
   String get displayName {
     switch (this) {
-      case AppBreadcrumbsState.defaultState:
+      case DSBreadcrumbsState.defaultState:
         return 'Default';
-      case AppBreadcrumbsState.hover:
+      case DSBreadcrumbsState.hover:
         return 'Hover';
-      case AppBreadcrumbsState.pressed:
+      case DSBreadcrumbsState.pressed:
         return 'Pressed';
-      case AppBreadcrumbsState.focus:
+      case DSBreadcrumbsState.focus:
         return 'Focus';
-      case AppBreadcrumbsState.selected:
+      case DSBreadcrumbsState.selected:
         return 'Selected';
-      case AppBreadcrumbsState.disabled:
+      case DSBreadcrumbsState.disabled:
         return 'Disabled';
-      case AppBreadcrumbsState.loading:
+      case DSBreadcrumbsState.loading:
         return 'Loading';
-      case AppBreadcrumbsState.skeleton:
+      case DSBreadcrumbsState.skeleton:
         return 'Skeleton';
     }
   }
 
   bool get isInteractive {
     switch (this) {
-      case AppBreadcrumbsState.defaultState:
-      case AppBreadcrumbsState.hover:
-      case AppBreadcrumbsState.pressed:
-      case AppBreadcrumbsState.focus:
-      case AppBreadcrumbsState.selected:
+      case DSBreadcrumbsState.defaultState:
+      case DSBreadcrumbsState.hover:
+      case DSBreadcrumbsState.pressed:
+      case DSBreadcrumbsState.focus:
+      case DSBreadcrumbsState.selected:
         return true;
-      case AppBreadcrumbsState.disabled:
-      case AppBreadcrumbsState.loading:
-      case AppBreadcrumbsState.skeleton:
+      case DSBreadcrumbsState.disabled:
+      case DSBreadcrumbsState.loading:
+      case DSBreadcrumbsState.skeleton:
         return false;
     }
   }
 
   double get opacity {
     switch (this) {
-      case AppBreadcrumbsState.defaultState:
-      case AppBreadcrumbsState.hover:
-      case AppBreadcrumbsState.pressed:
-      case AppBreadcrumbsState.focus:
-      case AppBreadcrumbsState.selected:
+      case DSBreadcrumbsState.defaultState:
+      case DSBreadcrumbsState.hover:
+      case DSBreadcrumbsState.pressed:
+      case DSBreadcrumbsState.focus:
+      case DSBreadcrumbsState.selected:
         return 1.0;
-      case AppBreadcrumbsState.disabled:
+      case DSBreadcrumbsState.disabled:
         return 0.6;
-      case AppBreadcrumbsState.loading:
+      case DSBreadcrumbsState.loading:
         return 0.8;
-      case AppBreadcrumbsState.skeleton:
+      case DSBreadcrumbsState.skeleton:
         return 0.3;
     }
   }
 
   bool get showsLoader {
-    return this == AppBreadcrumbsState.loading;
+    return this == DSBreadcrumbsState.loading;
   }
 
   bool get showsSkeleton {
-    return this == AppBreadcrumbsState.skeleton;
+    return this == DSBreadcrumbsState.skeleton;
   }
 }
 
-extension AppBreadcrumbTypeExtension on AppBreadcrumbType {
+extension DSBreadcrumbTypeExtension on DSBreadcrumbType {
   String get displayName {
     switch (this) {
-      case AppBreadcrumbType.text:
+      case DSBreadcrumbType.text:
         return 'Text Only';
-      case AppBreadcrumbType.icon:
+      case DSBreadcrumbType.icon:
         return 'Icon Only';
-      case AppBreadcrumbType.textWithIcon:
+      case DSBreadcrumbType.textWithIcon:
         return 'Text with Icon';
-      case AppBreadcrumbType.custom:
+      case DSBreadcrumbType.custom:
         return 'Custom';
     }
   }
 
   bool get hasText {
     switch (this) {
-      case AppBreadcrumbType.text:
-      case AppBreadcrumbType.textWithIcon:
+      case DSBreadcrumbType.text:
+      case DSBreadcrumbType.textWithIcon:
         return true;
-      case AppBreadcrumbType.icon:
-      case AppBreadcrumbType.custom:
+      case DSBreadcrumbType.icon:
+      case DSBreadcrumbType.custom:
         return false;
     }
   }
 
   bool get hasIcon {
     switch (this) {
-      case AppBreadcrumbType.icon:
-      case AppBreadcrumbType.textWithIcon:
+      case DSBreadcrumbType.icon:
+      case DSBreadcrumbType.textWithIcon:
         return true;
-      case AppBreadcrumbType.text:
-      case AppBreadcrumbType.custom:
+      case DSBreadcrumbType.text:
+      case DSBreadcrumbType.custom:
         return false;
     }
   }
 
   bool get isCustom {
-    return this == AppBreadcrumbType.custom;
+    return this == DSBreadcrumbType.custom;
   }
 }
 
-extension AppBreadcrumbSeparatorTypeExtension on AppBreadcrumbSeparatorType {
+extension DSBreadcrumbSeparatorTypeExtension on DSBreadcrumbSeparatorType {
   String get displayName {
     switch (this) {
-      case AppBreadcrumbSeparatorType.chevron:
+      case DSBreadcrumbSeparatorType.chevron:
         return 'Chevron';
-      case AppBreadcrumbSeparatorType.slash:
+      case DSBreadcrumbSeparatorType.slash:
         return 'Slash';
-      case AppBreadcrumbSeparatorType.arrow:
+      case DSBreadcrumbSeparatorType.arrow:
         return 'Arrow';
-      case AppBreadcrumbSeparatorType.dot:
+      case DSBreadcrumbSeparatorType.dot:
         return 'Dot';
-      case AppBreadcrumbSeparatorType.custom:
+      case DSBreadcrumbSeparatorType.custom:
         return 'Custom';
     }
   }
 
   IconData get defaultIcon {
     switch (this) {
-      case AppBreadcrumbSeparatorType.chevron:
+      case DSBreadcrumbSeparatorType.chevron:
         return Icons.chevron_right;
-      case AppBreadcrumbSeparatorType.slash:
+      case DSBreadcrumbSeparatorType.slash:
         return Icons.keyboard_arrow_right;
-      case AppBreadcrumbSeparatorType.arrow:
+      case DSBreadcrumbSeparatorType.arrow:
         return Icons.arrow_forward_ios;
-      case AppBreadcrumbSeparatorType.dot:
+      case DSBreadcrumbSeparatorType.dot:
         return Icons.circle;
-      case AppBreadcrumbSeparatorType.custom:
+      case DSBreadcrumbSeparatorType.custom:
         return Icons.more_horiz;
     }
   }
 
   String get defaultText {
     switch (this) {
-      case AppBreadcrumbSeparatorType.chevron:
+      case DSBreadcrumbSeparatorType.chevron:
         return '>';
-      case AppBreadcrumbSeparatorType.slash:
+      case DSBreadcrumbSeparatorType.slash:
         return '/';
-      case AppBreadcrumbSeparatorType.arrow:
+      case DSBreadcrumbSeparatorType.arrow:
         return '→';
-      case AppBreadcrumbSeparatorType.dot:
+      case DSBreadcrumbSeparatorType.dot:
         return '•';
-      case AppBreadcrumbSeparatorType.custom:
+      case DSBreadcrumbSeparatorType.custom:
         return '';
     }
   }
 }
 
-extension AppBreadcrumbsCollapseModeExtension on AppBreadcrumbsCollapseMode {
+extension DSBreadcrumbsCollapseModeExtension on DSBreadcrumbsCollapseMode {
   String get displayName {
     switch (this) {
-      case AppBreadcrumbsCollapseMode.ellipsis:
+      case DSBreadcrumbsCollapseMode.ellipsis:
         return 'Ellipsis';
-      case AppBreadcrumbsCollapseMode.dropdown:
+      case DSBreadcrumbsCollapseMode.dropdown:
         return 'Dropdown';
-      case AppBreadcrumbsCollapseMode.hidden:
+      case DSBreadcrumbsCollapseMode.hidden:
         return 'Hidden';
     }
   }
 
   String get description {
     switch (this) {
-      case AppBreadcrumbsCollapseMode.ellipsis:
+      case DSBreadcrumbsCollapseMode.ellipsis:
         return 'Mostrar "..." para elementos ocultos';
-      case AppBreadcrumbsCollapseMode.dropdown:
+      case DSBreadcrumbsCollapseMode.dropdown:
         return 'Mostrar dropdown con elementos ocultos';
-      case AppBreadcrumbsCollapseMode.hidden:
+      case DSBreadcrumbsCollapseMode.hidden:
         return 'Ocultar elementos intermedios completamente';
     }
   }
 
   bool get showsCollapsedIndicator {
     switch (this) {
-      case AppBreadcrumbsCollapseMode.ellipsis:
-      case AppBreadcrumbsCollapseMode.dropdown:
+      case DSBreadcrumbsCollapseMode.ellipsis:
+      case DSBreadcrumbsCollapseMode.dropdown:
         return true;
-      case AppBreadcrumbsCollapseMode.hidden:
+      case DSBreadcrumbsCollapseMode.hidden:
         return false;
     }
   }
 
   bool get isInteractive {
-    return this == AppBreadcrumbsCollapseMode.dropdown;
+    return this == DSBreadcrumbsCollapseMode.dropdown;
   }
 }

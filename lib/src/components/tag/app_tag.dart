@@ -5,20 +5,20 @@ import 'package:flutter/services.dart';
 
 import 'tag_config.dart';
 
-class AppTag extends StatefulWidget {
-  final AppTagConfig config;
+class DSTag extends StatefulWidget {
+  final DSTagConfig config;
 
-  const AppTag({
+  const DSTag({
     super.key,
     required this.config,
   });
 
-  AppTag.semantic({
+  DSTag.semantic({
     super.key,
     required String label,
-    AppTagSemanticColor semanticColor = AppTagSemanticColor.primary,
-    AppTagSize size = AppTagSize.medium,
-    AppTagShape shape = AppTagShape.rounded,
+    DSTagSemanticColor semanticColor = DSTagSemanticColor.primary,
+    DSTagSize size = DSTagSize.medium,
+    DSTagShape shape = DSTagShape.rounded,
     Color? color,
     Color? backgroundColor,
     Color? foregroundColor,
@@ -42,12 +42,12 @@ class AppTag extends StatefulWidget {
     bool outlined = false,
     double? borderWidth,
     double? elevation,
-    AppTagStyle? style,
-    AppTagInteraction? interaction,
-    AppTagAccessibility? accessibility,
-    AppTagAnimation? animation,
-  }) : config = AppTagConfig(
-          variant: AppTagVariant.semantic,
+    DSTagStyle? style,
+    DSTagInteraction? interaction,
+    DSTagAccessibility? accessibility,
+    DSTagAnimation? animation,
+  }) : config = DSTagConfig(
+          variant: DSTagVariant.semantic,
           label: label,
           semanticColor: semanticColor,
           size: size,
@@ -82,10 +82,10 @@ class AppTag extends StatefulWidget {
         );
 
   @override
-  State<AppTag> createState() => _AppTagState();
+  State<DSTag> createState() => _DSTagState();
 }
 
-class _AppTagState extends State<AppTag>
+class _DSTagState extends State<DSTag>
     with TickerProviderStateMixin, WidgetsBindingObserver {
   late AnimationController _animationController;
   late AnimationController _pulseController;
@@ -93,7 +93,7 @@ class _AppTagState extends State<AppTag>
   late Animation<double> _fadeAnimation;
   late Animation<double> _pulseAnimation;
 
-  AppTagState _currentState = AppTagState.defaultState;
+  DSTagState _currentState = DSTagState.defaultState;
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
@@ -114,7 +114,7 @@ class _AppTagState extends State<AppTag>
   }
 
   void _initializeAnimations() {
-    final animation = widget.config.animation ?? const AppTagAnimation();
+    final animation = widget.config.animation ?? const DSTagAnimation();
 
     _animationController = AnimationController(
       duration: animation.duration,
@@ -155,7 +155,7 @@ class _AppTagState extends State<AppTag>
     }
   }
 
-  void _updateState(AppTagState newState) {
+  void _updateState(DSTagState newState) {
     if (_currentState != newState) {
       setState(() {
         _currentState = newState;
@@ -164,14 +164,14 @@ class _AppTagState extends State<AppTag>
       final animation = widget.config.animation;
       if (animation?.enabled == true) {
         switch (animation!.type) {
-          case AppTagAnimationType.scale:
+          case DSTagAnimationType.scale:
             if (newState.isInteractiveState) {
               _animationController.forward();
             } else {
               _animationController.reverse();
             }
             break;
-          case AppTagAnimationType.fade:
+          case DSTagAnimationType.fade:
             if (newState.isInteractiveState) {
               _animationController.forward();
             } else {
@@ -187,21 +187,21 @@ class _AppTagState extends State<AppTag>
 
   void _handleTapDown(TapDownDetails details) {
     if (widget.config.canInteract) {
-      _updateState(AppTagState.pressed);
+      _updateState(DSTagState.pressed);
       setState(() => _isPressed = true);
     }
   }
 
   void _handleTapUp(TapUpDetails details) {
     if (widget.config.canInteract) {
-      _updateState(_isFocused ? AppTagState.focus : AppTagState.defaultState);
+      _updateState(_isFocused ? DSTagState.focus : DSTagState.defaultState);
       setState(() => _isPressed = false);
     }
   }
 
   void _handleTapCancel() {
     if (widget.config.canInteract) {
-      _updateState(_isFocused ? AppTagState.focus : AppTagState.defaultState);
+      _updateState(_isFocused ? DSTagState.focus : DSTagState.defaultState);
       setState(() => _isPressed = false);
     }
   }
@@ -224,10 +224,10 @@ class _AppTagState extends State<AppTag>
     if (widget.config.canInteract) {
       setState(() => _isHovered = hovering);
       if (hovering) {
-        _updateState(AppTagState.hover);
+        _updateState(DSTagState.hover);
         widget.config.onHover?.call();
       } else if (!_isPressed && !_isFocused) {
-        _updateState(AppTagState.defaultState);
+        _updateState(DSTagState.defaultState);
       }
     }
   }
@@ -236,9 +236,9 @@ class _AppTagState extends State<AppTag>
     if (widget.config.canInteract) {
       setState(() => _isFocused = focused);
       if (focused) {
-        _updateState(AppTagState.focus);
+        _updateState(DSTagState.focus);
       } else if (!_isHovered && !_isPressed) {
-        _updateState(AppTagState.defaultState);
+        _updateState(DSTagState.defaultState);
       }
     }
   }
@@ -258,13 +258,13 @@ class _AppTagState extends State<AppTag>
 
     final theme = Theme.of(context);
     final effectiveState = widget.config.isDisabled
-        ? AppTagState.disabled
+        ? DSTagState.disabled
         : widget.config.isLoading
-            ? AppTagState.loading
+            ? DSTagState.loading
             : widget.config.isSkeleton
-                ? AppTagState.skeleton
+                ? DSTagState.skeleton
                 : widget.config.isSelected
-                    ? AppTagState.selected
+                    ? DSTagState.selected
                     : _currentState;
 
     final style = _getEffectiveStyle(theme, widget.config, effectiveState);
@@ -287,7 +287,7 @@ class _AppTagState extends State<AppTag>
     final animation = widget.config.animation;
     if (animation?.enabled == true) {
       switch (animation!.type) {
-        case AppTagAnimationType.scale:
+        case DSTagAnimationType.scale:
           result = AnimatedBuilder(
             animation: _scaleAnimation,
             builder: (context, child) {
@@ -299,7 +299,7 @@ class _AppTagState extends State<AppTag>
             child: result,
           );
           break;
-        case AppTagAnimationType.fade:
+        case DSTagAnimationType.fade:
           result = AnimatedBuilder(
             animation: _fadeAnimation,
             builder: (context, child) {
@@ -311,7 +311,7 @@ class _AppTagState extends State<AppTag>
             child: result,
           );
           break;
-        case AppTagAnimationType.pulse:
+        case DSTagAnimationType.pulse:
           result = AnimatedBuilder(
             animation: _pulseAnimation,
             builder: (context, child) {
@@ -368,7 +368,7 @@ class _AppTagState extends State<AppTag>
   }
 
   Widget _buildTagContent(
-      ThemeData theme, AppTagConfig config, AppTagStyle style) {
+      ThemeData theme, DSTagConfig config, DSTagStyle style) {
     final children = <Widget>[];
 
     // Leading widget or icon
@@ -458,7 +458,7 @@ class _AppTagState extends State<AppTag>
 
     return Container(
       height: config.size.height,
-      constraints: style.constraints ?? AppTagConstants.defaultConstraints,
+      constraints: style.constraints ?? DSTagConstants.defaultConstraints,
       decoration: BoxDecoration(
         color: style.backgroundColor,
         borderRadius: config.shape.getBorderRadius(config.size),
@@ -490,7 +490,7 @@ class _AppTagState extends State<AppTag>
     );
   }
 
-  Widget _buildSkeletonContent(ThemeData theme, AppTagConfig config) {
+  Widget _buildSkeletonContent(ThemeData theme, DSTagConfig config) {
     return Container(
       height: config.size.height,
       width: _calculateSkeletonWidth(config),
@@ -509,7 +509,7 @@ class _AppTagState extends State<AppTag>
     );
   }
 
-  double _calculateSkeletonWidth(AppTagConfig config) {
+  double _calculateSkeletonWidth(DSTagConfig config) {
     double width = config.size.padding.horizontal;
 
     // Estimate label width based on text length
@@ -529,8 +529,8 @@ class _AppTagState extends State<AppTag>
     return math.max(width, 80.0); // Minimum width
   }
 
-  AppTagStyle _getEffectiveStyle(
-      ThemeData theme, AppTagConfig config, AppTagState state) {
+  DSTagStyle _getEffectiveStyle(
+      ThemeData theme, DSTagConfig config, DSTagState state) {
     final colorScheme = theme.colorScheme;
     final effectiveBackgroundColor =
         config.getEffectiveBackgroundColor(colorScheme);
@@ -538,7 +538,7 @@ class _AppTagState extends State<AppTag>
         config.getEffectiveForegroundColor(colorScheme);
     final effectiveBorderColor = config.getEffectiveBorderColor(colorScheme);
 
-    final baseStyle = AppTagStyle(
+    final baseStyle = DSTagStyle(
       backgroundColor: effectiveBackgroundColor,
       foregroundColor: effectiveForegroundColor,
       borderColor: effectiveBorderColor,
@@ -552,7 +552,7 @@ class _AppTagState extends State<AppTag>
       spacing: config.size.spacing,
     );
 
-    final customStyle = config.style ?? const AppTagStyle();
+    final customStyle = config.style ?? const DSTagStyle();
     final mergedStyle = baseStyle.copyWith(
       backgroundColor: customStyle.backgroundColor ?? baseStyle.backgroundColor,
       foregroundColor: customStyle.foregroundColor ?? baseStyle.foregroundColor,

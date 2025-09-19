@@ -6,8 +6,8 @@ import 'simple_table_config.dart';
 /// A simple, lightweight data table widget for basic tabular data display
 ///
 /// Supports two main variants:
-/// - [AppSimpleTable.standard]: Standard table layout with normal spacing
-/// - [AppSimpleTable.compact]: Compact table with reduced spacing for dense layouts
+/// - [DSSimpleTable.standard]: Standard table layout with normal spacing
+/// - [DSSimpleTable.compact]: Compact table with reduced spacing for dense layouts
 ///
 /// Features:
 /// - Material 3 design with platform-adaptive behavior
@@ -17,30 +17,30 @@ import 'simple_table_config.dart';
 /// - Loading and skeleton states
 /// - Empty state handling
 /// - Responsive design
-class AppSimpleTable extends StatefulWidget {
+class DSSimpleTable extends StatefulWidget {
   /// Table variant
-  final AppSimpleTableVariant variant;
+  final DSSimpleTableVariant variant;
 
   /// Table columns configuration
-  final List<AppSimpleTableColumn> columns;
+  final List<DSSimpleTableColumn> columns;
 
   /// Table rows data
-  final List<AppSimpleTableRow> rows;
+  final List<DSSimpleTableRow> rows;
 
   /// Selection configuration
-  final AppSimpleTableSelection? selection;
+  final DSSimpleTableSelection? selection;
 
   /// Sort configuration
-  final AppSimpleTableSort? sorting;
+  final DSSimpleTableSort? sorting;
 
   /// Empty state configuration
-  final AppSimpleTableEmptyState? emptyState;
+  final DSSimpleTableEmptyState? emptyState;
 
   /// Table configuration
-  final AppSimpleTableConfig config;
+  final DSSimpleTableConfig config;
 
   /// Row selection callback
-  final AppSimpleTableRowSelectCallback? onRowSelect;
+  final DSSimpleTableRowSelectCallback? onRowSelect;
 
   /// Scroll controller for horizontal scrolling
   final ScrollController? horizontalScrollController;
@@ -48,41 +48,41 @@ class AppSimpleTable extends StatefulWidget {
   /// Scroll controller for vertical scrolling
   final ScrollController? verticalScrollController;
 
-  /// Creates an AppSimpleTable with standard layout
-  const AppSimpleTable.standard({
+  /// Creates an DSSimpleTable with standard layout
+  const DSSimpleTable.standard({
     super.key,
     required this.columns,
     required this.rows,
     this.selection,
     this.sorting,
     this.emptyState,
-    this.config = const AppSimpleTableConfig(
-      variant: AppSimpleTableVariant.standard,
+    this.config = const DSSimpleTableConfig(
+      variant: DSSimpleTableVariant.standard,
     ),
     this.onRowSelect,
     this.horizontalScrollController,
     this.verticalScrollController,
-  }) : variant = AppSimpleTableVariant.standard;
+  }) : variant = DSSimpleTableVariant.standard;
 
-  /// Creates an AppSimpleTable with compact layout
-  const AppSimpleTable.compact({
+  /// Creates an DSSimpleTable with compact layout
+  const DSSimpleTable.compact({
     super.key,
     required this.columns,
     required this.rows,
     this.selection,
     this.sorting,
     this.emptyState,
-    this.config = const AppSimpleTableConfig(
-      variant: AppSimpleTableVariant.compact,
-      density: AppSimpleTableDensity.compact,
+    this.config = const DSSimpleTableConfig(
+      variant: DSSimpleTableVariant.compact,
+      density: DSSimpleTableDensity.compact,
     ),
     this.onRowSelect,
     this.horizontalScrollController,
     this.verticalScrollController,
-  }) : variant = AppSimpleTableVariant.compact;
+  }) : variant = DSSimpleTableVariant.compact;
 
-  /// Creates a general AppSimpleTable
-  const AppSimpleTable({
+  /// Creates a general DSSimpleTable
+  const DSSimpleTable({
     super.key,
     required this.variant,
     required this.columns,
@@ -90,17 +90,17 @@ class AppSimpleTable extends StatefulWidget {
     this.selection,
     this.sorting,
     this.emptyState,
-    this.config = const AppSimpleTableConfig(),
+    this.config = const DSSimpleTableConfig(),
     this.onRowSelect,
     this.horizontalScrollController,
     this.verticalScrollController,
   });
 
   @override
-  State<AppSimpleTable> createState() => _AppSimpleTableState();
+  State<DSSimpleTable> createState() => _DSSimpleTableState();
 }
 
-class _AppSimpleTableState extends State<AppSimpleTable>
+class _DSSimpleTableState extends State<DSSimpleTable>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -110,9 +110,9 @@ class _AppSimpleTableState extends State<AppSimpleTable>
 
   final Map<String, FocusNode> _cellFocusNodes = {};
 
-  AppSimpleTableSort? _currentSort;
-  AppSimpleTableSelection? _currentSelection;
-  List<AppSimpleTableRow> _displayRows = [];
+  DSSimpleTableSort? _currentSort;
+  DSSimpleTableSelection? _currentSelection;
+  List<DSSimpleTableRow> _displayRows = [];
 
   // Focus management
   int _focusedRowIndex = -1;
@@ -144,7 +144,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   @override
-  void didUpdateWidget(AppSimpleTable oldWidget) {
+  void didUpdateWidget(DSSimpleTable oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.rows != widget.rows ||
@@ -162,7 +162,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
 
     // Apply sorting if specified
     if (_currentSort?.columnId != null &&
-        _currentSort!.direction != AppSimpleTableSortDirection.none) {
+        _currentSort!.direction != DSSimpleTableSortDirection.none) {
       _applySorting(_currentSort!.columnId!, _currentSort!.direction);
     }
 
@@ -261,8 +261,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   Widget _buildHeader(
       BuildContext context, ThemeData theme, TextDirection textDirection) {
     final headerHeight =
-        AppSimpleTableUtils.getHeaderHeight(widget.config, theme.platform);
-    final headerPadding = AppSimpleTableUtils.getHeaderPadding(widget.config);
+        DSSimpleTableUtils.getHeaderHeight(widget.config, theme.platform);
+    final headerPadding = DSSimpleTableUtils.getHeaderPadding(widget.config);
 
     return Container(
       height: headerHeight,
@@ -349,7 +349,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     BuildContext context,
     ThemeData theme,
     TextDirection textDirection,
-    AppSimpleTableColumn column,
+    DSSimpleTableColumn column,
     EdgeInsets padding,
   ) {
     if (column.headerBuilder != null) {
@@ -362,7 +362,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     final alignment = column.getEffectiveAlignment(textDirection);
     final sortDirection = _currentSort?.columnId == column.id
         ? _currentSort!.direction
-        : AppSimpleTableSortDirection.none;
+        : DSSimpleTableSortDirection.none;
 
     return Expanded(
       flex: column.flex,
@@ -415,16 +415,16 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   Widget _buildSortIcon(
-      ThemeData theme, AppSimpleTableSortDirection direction) {
+      ThemeData theme, DSSimpleTableSortDirection direction) {
     IconData iconData;
     switch (direction) {
-      case AppSimpleTableSortDirection.ascending:
+      case DSSimpleTableSortDirection.ascending:
         iconData = Icons.arrow_upward;
         break;
-      case AppSimpleTableSortDirection.descending:
+      case DSSimpleTableSortDirection.descending:
         iconData = Icons.arrow_downward;
         break;
-      case AppSimpleTableSortDirection.none:
+      case DSSimpleTableSortDirection.none:
         iconData = Icons.unfold_more;
         break;
     }
@@ -432,7 +432,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     return Icon(
       iconData,
       size: 16,
-      color: direction != AppSimpleTableSortDirection.none
+      color: direction != DSSimpleTableSortDirection.none
           ? widget.config.theme?.sortIconColor ?? theme.colorScheme.primary
           : widget.config.theme?.sortIconColor?.withValues(alpha: 0.5) ??
               theme.colorScheme.onSurface.withValues(alpha: 0.5),
@@ -461,7 +461,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     BuildContext context,
     ThemeData theme,
     TextDirection textDirection,
-    AppSimpleTableRow row,
+    DSSimpleTableRow row,
     int index,
   ) {
     if (row.rowBuilder != null) {
@@ -474,9 +474,9 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     }
 
     final rowHeight =
-        AppSimpleTableUtils.getRowHeight(widget.config, theme.platform);
+        DSSimpleTableUtils.getRowHeight(widget.config, theme.platform);
     final isSelected = row.selected;
-    final isHovered = row.state == AppSimpleTableRowState.hovered;
+    final isHovered = row.state == DSSimpleTableRowState.hovered;
     final isEven = index.isEven;
 
     Color? backgroundColor;
@@ -522,7 +522,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   Widget _buildRowNumberCell(BuildContext context, ThemeData theme, int index) {
-    final cellPadding = AppSimpleTableUtils.getCellPadding(widget.config);
+    final cellPadding = DSSimpleTableUtils.getCellPadding(widget.config);
 
     return Container(
       width: widget.config.rowNumberWidth,
@@ -538,8 +538,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   Widget _buildSelectionCell(
-      BuildContext context, ThemeData theme, AppSimpleTableRow row) {
-    final cellPadding = AppSimpleTableUtils.getCellPadding(widget.config);
+      BuildContext context, ThemeData theme, DSSimpleTableRow row) {
+    final cellPadding = DSSimpleTableUtils.getCellPadding(widget.config);
 
     return Container(
       width: 48,
@@ -559,7 +559,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     BuildContext context,
     ThemeData theme,
     TextDirection textDirection,
-    AppSimpleTableRow row,
+    DSSimpleTableRow row,
     int index,
   ) {
     final visibleColumns =
@@ -577,13 +577,13 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     BuildContext context,
     ThemeData theme,
     TextDirection textDirection,
-    AppSimpleTableRow row,
-    AppSimpleTableColumn column,
+    DSSimpleTableRow row,
+    DSSimpleTableColumn column,
     int rowIndex,
   ) {
     final value = row.getValue(column.field);
     final cellKey = '${row.id}_${column.id}';
-    final cellPadding = AppSimpleTableUtils.getCellPadding(widget.config);
+    final cellPadding = DSSimpleTableUtils.getCellPadding(widget.config);
 
     if (column.cellBuilder != null) {
       return Expanded(
@@ -627,7 +627,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   Widget _buildCellContent(
     BuildContext context,
     ThemeData theme,
-    AppSimpleTableColumn column,
+    DSSimpleTableColumn column,
     String displayValue,
     dynamic value,
   ) {
@@ -635,7 +635,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
         theme.textTheme.bodyMedium;
 
     switch (column.cellType) {
-      case AppSimpleTableCellType.boolean:
+      case DSSimpleTableCellType.boolean:
         return Icon(
           value == true ? Icons.check_circle : Icons.radio_button_unchecked,
           size: 16,
@@ -644,13 +644,13 @@ class _AppSimpleTableState extends State<AppSimpleTable>
               : theme.colorScheme.onSurface.withValues(alpha: 0.5),
         );
 
-      case AppSimpleTableCellType.icon:
+      case DSSimpleTableCellType.icon:
         if (value is IconData) {
           return Icon(value, size: 16);
         }
         break;
 
-      case AppSimpleTableCellType.number:
+      case DSSimpleTableCellType.number:
         return Text(
           displayValue,
           style: cellStyle
@@ -764,8 +764,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
 
   Widget _buildSkeletonHeader(BuildContext context, ThemeData theme) {
     final headerHeight =
-        AppSimpleTableUtils.getHeaderHeight(widget.config, theme.platform);
-    final headerPadding = AppSimpleTableUtils.getHeaderPadding(widget.config);
+        DSSimpleTableUtils.getHeaderHeight(widget.config, theme.platform);
+    final headerPadding = DSSimpleTableUtils.getHeaderPadding(widget.config);
 
     return Container(
       height: headerHeight,
@@ -786,7 +786,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   Widget _buildSkeletonHeaderCell(BuildContext context, ThemeData theme,
-      AppSimpleTableColumn column, EdgeInsets padding) {
+      DSSimpleTableColumn column, EdgeInsets padding) {
     return Expanded(
       flex: column.flex,
       child: Container(
@@ -804,8 +804,8 @@ class _AppSimpleTableState extends State<AppSimpleTable>
 
   Widget _buildSkeletonRow(BuildContext context, ThemeData theme, int index) {
     final rowHeight =
-        AppSimpleTableUtils.getRowHeight(widget.config, theme.platform);
-    final cellPadding = AppSimpleTableUtils.getCellPadding(widget.config);
+        DSSimpleTableUtils.getRowHeight(widget.config, theme.platform);
+    final cellPadding = DSSimpleTableUtils.getCellPadding(widget.config);
 
     return Container(
       height: rowHeight,
@@ -825,7 +825,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   Widget _buildSkeletonCell(BuildContext context, ThemeData theme,
-      AppSimpleTableColumn column, EdgeInsets padding) {
+      DSSimpleTableColumn column, EdgeInsets padding) {
     return Expanded(
       flex: column.flex,
       child: Container(
@@ -844,18 +844,18 @@ class _AppSimpleTableState extends State<AppSimpleTable>
 
   // Helper methods
   bool _hasSelectionColumn() {
-    return _currentSelection?.mode != AppSimpleTableSelectionMode.none &&
+    return _currentSelection?.mode != DSSimpleTableSelectionMode.none &&
         _currentSelection?.showCheckboxes == true;
   }
 
   Alignment _getAlignmentFromColumnAlignment(
-      AppSimpleTableColumnAlignment alignment) {
+      DSSimpleTableColumnAlignment alignment) {
     switch (alignment) {
-      case AppSimpleTableColumnAlignment.left:
+      case DSSimpleTableColumnAlignment.left:
         return Alignment.centerLeft;
-      case AppSimpleTableColumnAlignment.center:
+      case DSSimpleTableColumnAlignment.center:
         return Alignment.center;
-      case AppSimpleTableColumnAlignment.right:
+      case DSSimpleTableColumnAlignment.right:
         return Alignment.centerRight;
     }
   }
@@ -864,18 +864,18 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   void _onSortColumn(String columnId) {
     final currentDirection = _currentSort?.columnId == columnId
         ? _currentSort!.direction
-        : AppSimpleTableSortDirection.none;
+        : DSSimpleTableSortDirection.none;
 
-    AppSimpleTableSortDirection newDirection;
+    DSSimpleTableSortDirection newDirection;
     switch (currentDirection) {
-      case AppSimpleTableSortDirection.none:
-        newDirection = AppSimpleTableSortDirection.ascending;
+      case DSSimpleTableSortDirection.none:
+        newDirection = DSSimpleTableSortDirection.ascending;
         break;
-      case AppSimpleTableSortDirection.ascending:
-        newDirection = AppSimpleTableSortDirection.descending;
+      case DSSimpleTableSortDirection.ascending:
+        newDirection = DSSimpleTableSortDirection.descending;
         break;
-      case AppSimpleTableSortDirection.descending:
-        newDirection = AppSimpleTableSortDirection.none;
+      case DSSimpleTableSortDirection.descending:
+        newDirection = DSSimpleTableSortDirection.none;
         break;
     }
 
@@ -886,25 +886,25 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     }
   }
 
-  void _applySorting(String columnId, AppSimpleTableSortDirection direction) {
+  void _applySorting(String columnId, DSSimpleTableSortDirection direction) {
     setState(() {
       _currentSort = widget.sorting?.copyWith(
             columnId:
-                direction != AppSimpleTableSortDirection.none ? columnId : null,
+                direction != DSSimpleTableSortDirection.none ? columnId : null,
             direction: direction,
           ) ??
-          AppSimpleTableSort(columnId: columnId, direction: direction);
+          DSSimpleTableSort(columnId: columnId, direction: direction);
 
       _displayRows =
-          AppSimpleTableUtils.sortRows(_displayRows, columnId, direction);
+          DSSimpleTableUtils.sortRows(_displayRows, columnId, direction);
     });
   }
 
-  void _onRowSelect(AppSimpleTableRow row, bool selected) {
-    if (_currentSelection?.mode == AppSimpleTableSelectionMode.none) return;
+  void _onRowSelect(DSSimpleTableRow row, bool selected) {
+    if (_currentSelection?.mode == DSSimpleTableSelectionMode.none) return;
 
     setState(() {
-      _displayRows = AppSimpleTableUtils.updateRowSelection(
+      _displayRows = DSSimpleTableUtils.updateRowSelection(
         _displayRows,
         row.id,
         selected,
@@ -917,7 +917,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     }
 
     if (_currentSelection?.onSelectionChanged != null) {
-      final selectedRowIds = AppSimpleTableUtils.getSelectedRows(_displayRows)
+      final selectedRowIds = DSSimpleTableUtils.getSelectedRows(_displayRows)
           .map((row) => row.id)
           .toList();
       _currentSelection!.onSelectionChanged!(selectedRowIds);
@@ -925,7 +925,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
   }
 
   void _onSelectAll(bool? selectAll) {
-    if (_currentSelection?.mode == AppSimpleTableSelectionMode.none) return;
+    if (_currentSelection?.mode == DSSimpleTableSelectionMode.none) return;
 
     setState(() {
       _displayRows = _displayRows
@@ -941,13 +941,13 @@ class _AppSimpleTableState extends State<AppSimpleTable>
     }
   }
 
-  void _onRowTap(AppSimpleTableRow row) {
-    if (_currentSelection?.mode == AppSimpleTableSelectionMode.single) {
+  void _onRowTap(DSSimpleTableRow row) {
+    if (_currentSelection?.mode == DSSimpleTableSelectionMode.single) {
       _onRowSelect(row, !row.selected);
     }
   }
 
-  void _onCellTap(AppSimpleTableRow row, AppSimpleTableColumn column) {
+  void _onCellTap(DSSimpleTableRow row, DSSimpleTableColumn column) {
     final cellKey = '${row.id}_${column.id}';
     _cellFocusNodes[cellKey]?.requestFocus();
 
@@ -959,7 +959,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
 
   // Keyboard event handler
   KeyEventResult _handleCellKeyEvent(
-      KeyEvent event, AppSimpleTableRow row, AppSimpleTableColumn column) {
+      KeyEvent event, DSSimpleTableRow row, DSSimpleTableColumn column) {
     if (event is KeyDownEvent) {
       switch (event.logicalKey) {
         case LogicalKeyboardKey.arrowUp:
@@ -975,7 +975,7 @@ class _AppSimpleTableState extends State<AppSimpleTable>
           _moveFocus(0, 1);
           return KeyEventResult.handled;
         case LogicalKeyboardKey.space:
-          if (_currentSelection?.mode != AppSimpleTableSelectionMode.none) {
+          if (_currentSelection?.mode != DSSimpleTableSelectionMode.none) {
             _onRowSelect(row, !row.selected);
             return KeyEventResult.handled;
           }

@@ -10,10 +10,10 @@ class TimelineStoryExample extends StatefulWidget {
 }
 
 class _TimelineStoryExampleState extends State<TimelineStoryExample> {
-  AppTimelineOrientation _orientation = AppTimelineOrientation.vertical;
-  AppTimelineConnectorStyle _connectorStyle = AppTimelineConnectorStyle.solid;
-  AppTimelineIndicatorStyle _indicatorStyle = AppTimelineIndicatorStyle.dot;
-  AppTimelineSpacing _spacing = AppTimelineSpacing.medium;
+  DSTimelineOrientation _orientation = DSTimelineOrientation.vertical;
+  DSTimelineConnectorStyle _connectorStyle = DSTimelineConnectorStyle.solid;
+  DSTimelineIndicatorStyle _indicatorStyle = DSTimelineIndicatorStyle.dot;
+  DSTimelineSpacing _spacing = DSTimelineSpacing.medium;
   bool _showAnimation = true;
   bool _staggered = false;
   bool _scrollable = false;
@@ -94,7 +94,7 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Orientación'),
-        DropdownButton<AppTimelineOrientation>(
+        DropdownButton<DSTimelineOrientation>(
           value: _orientation,
           onChanged: (value) {
             if (value != null) {
@@ -103,7 +103,7 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
               });
             }
           },
-          items: AppTimelineOrientation.values.map((orientation) {
+          items: DSTimelineOrientation.values.map((orientation) {
             return DropdownMenuItem(
               value: orientation,
               child: Text(orientation.name),
@@ -119,7 +119,7 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Estilo de Conector'),
-        DropdownButton<AppTimelineConnectorStyle>(
+        DropdownButton<DSTimelineConnectorStyle>(
           value: _connectorStyle,
           onChanged: (value) {
             if (value != null) {
@@ -128,7 +128,7 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
               });
             }
           },
-          items: AppTimelineConnectorStyle.values.map((style) {
+          items: DSTimelineConnectorStyle.values.map((style) {
             return DropdownMenuItem(
               value: style,
               child: Text(style.name),
@@ -144,7 +144,7 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Estilo de Indicador'),
-        DropdownButton<AppTimelineIndicatorStyle>(
+        DropdownButton<DSTimelineIndicatorStyle>(
           value: _indicatorStyle,
           onChanged: (value) {
             if (value != null) {
@@ -153,7 +153,7 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
               });
             }
           },
-          items: AppTimelineIndicatorStyle.values.map((style) {
+          items: DSTimelineIndicatorStyle.values.map((style) {
             return DropdownMenuItem(
               value: style,
               child: Text(style.name),
@@ -169,7 +169,7 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Espaciado'),
-        DropdownButton<AppTimelineSpacing>(
+        DropdownButton<DSTimelineSpacing>(
           value: _spacing,
           onChanged: (value) {
             if (value != null) {
@@ -178,7 +178,7 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
               });
             }
           },
-          items: AppTimelineSpacing.values.map((spacing) {
+          items: DSTimelineSpacing.values.map((spacing) {
             return DropdownMenuItem(
               value: spacing,
               child: Text(spacing.name),
@@ -269,8 +269,8 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
         ),
         const SizedBox(height: 16),
         SizedBox(
-          height: _orientation == AppTimelineOrientation.vertical ? 400 : 200,
-          child: AppTimeline.activity(
+          height: _orientation == DSTimelineOrientation.vertical ? 400 : 200,
+          child: DSTimeline.activity(
             events: _getBasicEvents(),
             orientation: _orientation,
             connectorStyle: _connectorStyle,
@@ -280,10 +280,10 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
             reversed: _reversed,
             selectedIndex: _selectedIndex,
             animation: _showAnimation
-                ? AppTimelineAnimation(
+                ? DSTimelineAnimation(
                     enabled: true,
                     staggered: _staggered,
-                    type: AppTimelineAnimationType.fade,
+                    type: DSTimelineAnimationType.fade,
                   )
                 : null,
             onEventTap: (index) {
@@ -308,15 +308,15 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
         const SizedBox(height: 16),
         SizedBox(
           height: 500,
-          child: AppTimeline.activity(
+          child: DSTimeline.activity(
             events: _getActivityEvents(),
-            orientation: AppTimelineOrientation.vertical,
-            indicatorStyle: AppTimelineIndicatorStyle.icon,
-            spacing: AppTimelineSpacing.comfortable,
-            animation: AppTimelineAnimation(
+            orientation: DSTimelineOrientation.vertical,
+            indicatorStyle: DSTimelineIndicatorStyle.icon,
+            spacing: DSTimelineSpacing.comfortable,
+            animation: DSTimelineAnimation(
               enabled: true,
               staggered: true,
-              type: AppTimelineAnimationType.slideUp,
+              type: DSTimelineAnimationType.slideUp,
             ),
             onEventTap: (index) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -343,15 +343,15 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
         const SizedBox(height: 16),
         SizedBox(
           height: 400,
-          child: AppTimeline.activity(
+          child: DSTimeline.activity(
             events: _getProjectEvents(),
-            orientation: AppTimelineOrientation.vertical,
-            indicatorStyle: AppTimelineIndicatorStyle.dot,
-            connectorStyle: AppTimelineConnectorStyle.dashed,
-            spacing: AppTimelineSpacing.medium,
-            animation: AppTimelineAnimation(
+            orientation: DSTimelineOrientation.vertical,
+            indicatorStyle: DSTimelineIndicatorStyle.dot,
+            connectorStyle: DSTimelineConnectorStyle.dashed,
+            spacing: DSTimelineSpacing.medium,
+            animation: DSTimelineAnimation(
               enabled: true,
-              type: AppTimelineAnimationType.slideLeft,
+              type: DSTimelineAnimationType.slideLeft,
             ),
           ),
         ),
@@ -370,97 +370,97 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
         const SizedBox(height: 16),
         SizedBox(
           height: 300,
-          child: AppTimeline.activity(
+          child: DSTimeline.activity(
             events: _getWorkflowEvents(),
-            orientation: AppTimelineOrientation.horizontal,
-            indicatorStyle: AppTimelineIndicatorStyle.square,
-            connectorStyle: AppTimelineConnectorStyle.solid,
-            spacing: AppTimelineSpacing.comfortable,
+            orientation: DSTimelineOrientation.horizontal,
+            indicatorStyle: DSTimelineIndicatorStyle.square,
+            connectorStyle: DSTimelineConnectorStyle.solid,
+            spacing: DSTimelineSpacing.comfortable,
           ),
         ),
       ],
     );
   }
 
-  List<AppTimelineEvent> _getBasicEvents() {
+  List<DSTimelineEvent> _getBasicEvents() {
     return [
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '1',
         title: 'Inicio del Proyecto',
         subtitle: 'Reunión de kickoff',
         timestamp: DateTime.now().subtract(const Duration(days: 30)),
-        type: AppTimelineEventType.milestone,
-        status: AppTimelineEventStatus.completed,
+        type: DSTimelineEventType.milestone,
+        status: DSTimelineEventStatus.completed,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '2',
         title: 'Fase de Diseño',
         subtitle: 'Creación de mockups y wireframes',
         timestamp: DateTime.now().subtract(const Duration(days: 25)),
-        type: AppTimelineEventType.task,
-        status: AppTimelineEventStatus.completed,
+        type: DSTimelineEventType.task,
+        status: DSTimelineEventStatus.completed,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '3',
         title: 'Desarrollo',
         subtitle: 'Implementación de funcionalidades',
         timestamp: DateTime.now().subtract(const Duration(days: 15)),
-        type: AppTimelineEventType.task,
-        status: AppTimelineEventStatus.inProgress,
+        type: DSTimelineEventType.task,
+        status: DSTimelineEventStatus.inProgress,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '4',
         title: 'Testing',
         subtitle: 'Pruebas de calidad',
         timestamp: DateTime.now().subtract(const Duration(days: 5)),
-        type: AppTimelineEventType.task,
-        status: AppTimelineEventStatus.pending,
+        type: DSTimelineEventType.task,
+        status: DSTimelineEventStatus.pending,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '5',
         title: 'Deployment',
         subtitle: 'Lanzamiento en producción',
         timestamp: DateTime.now().add(const Duration(days: 5)),
-        type: AppTimelineEventType.milestone,
-        status: AppTimelineEventStatus.pending,
+        type: DSTimelineEventType.milestone,
+        status: DSTimelineEventStatus.pending,
       ),
     ];
   }
 
-  List<AppTimelineEvent> _getActivityEvents() {
+  List<DSTimelineEvent> _getActivityEvents() {
     return [
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '1',
         title: 'Usuario registrado',
         subtitle: 'juan.perez@ejemplo.com',
         description: 'Nuevo usuario se registró en la plataforma',
         timestamp: DateTime.now().subtract(const Duration(hours: 2)),
-        type: AppTimelineEventType.success,
-        status: AppTimelineEventStatus.completed,
+        type: DSTimelineEventType.success,
+        status: DSTimelineEventStatus.completed,
         trailing: Chip(
           label: const Text('Nuevo'),
           backgroundColor: Colors.green.withValues(alpha: 0.1),
         ),
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '2',
         title: 'Reunión programada',
         subtitle: 'Revisión de Sprint',
         description:
             'Reunión de revisión del sprint actual programada para mañana',
         timestamp: DateTime.now().subtract(const Duration(hours: 4)),
-        type: AppTimelineEventType.meeting,
-        status: AppTimelineEventStatus.pending,
+        type: DSTimelineEventType.meeting,
+        status: DSTimelineEventStatus.pending,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '3',
         title: 'Tarea completada',
         subtitle: 'Feature: Sistema de autenticación',
         description:
             'Se completó la implementación del sistema de autenticación con OAuth2',
         timestamp: DateTime.now().subtract(const Duration(hours: 6)),
-        type: AppTimelineEventType.task,
-        status: AppTimelineEventStatus.completed,
+        type: DSTimelineEventType.task,
+        status: DSTimelineEventStatus.completed,
         content: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
@@ -476,15 +476,15 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
           ),
         ),
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '4',
         title: 'Error reportado',
         subtitle: 'Bug en el login',
         description:
             'Usuario reporta error al intentar iniciar sesión con credenciales válidas',
         timestamp: DateTime.now().subtract(const Duration(hours: 8)),
-        type: AppTimelineEventType.error,
-        status: AppTimelineEventStatus.inProgress,
+        type: DSTimelineEventType.error,
+        status: DSTimelineEventStatus.inProgress,
         trailing: Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           decoration: BoxDecoration(
@@ -497,108 +497,108 @@ class _TimelineStoryExampleState extends State<TimelineStoryExample> {
           ),
         ),
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '5',
         title: 'Deployment exitoso',
         subtitle: 'Versión 2.1.0',
         description: 'Nueva versión desplegada exitosamente en producción',
         timestamp: DateTime.now().subtract(const Duration(days: 1)),
-        type: AppTimelineEventType.milestone,
-        status: AppTimelineEventStatus.completed,
+        type: DSTimelineEventType.milestone,
+        status: DSTimelineEventStatus.completed,
       ),
     ];
   }
 
-  List<AppTimelineEvent> _getProjectEvents() {
+  List<DSTimelineEvent> _getProjectEvents() {
     return [
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '1',
         title: 'Planificación',
         subtitle: 'Definición de requerimientos',
         timestamp: DateTime.now().subtract(const Duration(days: 60)),
-        type: AppTimelineEventType.milestone,
-        status: AppTimelineEventStatus.completed,
+        type: DSTimelineEventType.milestone,
+        status: DSTimelineEventStatus.completed,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '2',
         title: 'Análisis',
         subtitle: 'Estudio de viabilidad técnica',
         timestamp: DateTime.now().subtract(const Duration(days: 50)),
-        type: AppTimelineEventType.task,
-        status: AppTimelineEventStatus.completed,
+        type: DSTimelineEventType.task,
+        status: DSTimelineEventStatus.completed,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '3',
         title: 'Diseño UX/UI',
         subtitle: 'Creación de prototipos',
         timestamp: DateTime.now().subtract(const Duration(days: 35)),
-        type: AppTimelineEventType.task,
-        status: AppTimelineEventStatus.completed,
+        type: DSTimelineEventType.task,
+        status: DSTimelineEventStatus.completed,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '4',
         title: 'Desarrollo Backend',
         subtitle: 'APIs y base de datos',
         timestamp: DateTime.now().subtract(const Duration(days: 20)),
-        type: AppTimelineEventType.task,
-        status: AppTimelineEventStatus.inProgress,
+        type: DSTimelineEventType.task,
+        status: DSTimelineEventStatus.inProgress,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '5',
         title: 'Desarrollo Frontend',
         subtitle: 'Interfaz de usuario',
         timestamp: DateTime.now().subtract(const Duration(days: 10)),
-        type: AppTimelineEventType.task,
-        status: AppTimelineEventStatus.pending,
+        type: DSTimelineEventType.task,
+        status: DSTimelineEventStatus.pending,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '6',
         title: 'Testing QA',
         subtitle: 'Pruebas de calidad',
         timestamp: DateTime.now().add(const Duration(days: 5)),
-        type: AppTimelineEventType.task,
-        status: AppTimelineEventStatus.pending,
+        type: DSTimelineEventType.task,
+        status: DSTimelineEventStatus.pending,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '7',
         title: 'Lanzamiento',
         subtitle: 'Release en producción',
         timestamp: DateTime.now().add(const Duration(days: 15)),
-        type: AppTimelineEventType.milestone,
-        status: AppTimelineEventStatus.pending,
+        type: DSTimelineEventType.milestone,
+        status: DSTimelineEventStatus.pending,
       ),
     ];
   }
 
-  List<AppTimelineEvent> _getWorkflowEvents() {
+  List<DSTimelineEvent> _getWorkflowEvents() {
     return [
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '1',
         title: 'Solicitud',
         subtitle: 'Creada',
-        type: AppTimelineEventType.info,
-        status: AppTimelineEventStatus.completed,
+        type: DSTimelineEventType.info,
+        status: DSTimelineEventStatus.completed,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '2',
         title: 'Revisión',
         subtitle: 'En proceso',
-        type: AppTimelineEventType.task,
-        status: AppTimelineEventStatus.inProgress,
+        type: DSTimelineEventType.task,
+        status: DSTimelineEventStatus.inProgress,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '3',
         title: 'Aprobación',
         subtitle: 'Pendiente',
-        type: AppTimelineEventType.warning,
-        status: AppTimelineEventStatus.pending,
+        type: DSTimelineEventType.warning,
+        status: DSTimelineEventStatus.pending,
       ),
-      AppTimelineEvent(
+      DSTimelineEvent(
         id: '4',
         title: 'Completado',
         subtitle: 'Finalizado',
-        type: AppTimelineEventType.success,
-        status: AppTimelineEventStatus.pending,
+        type: DSTimelineEventType.success,
+        status: DSTimelineEventStatus.pending,
       ),
     ];
   }
@@ -615,31 +615,31 @@ class TimelineStoryBasic extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: AppTimeline.activity(
+        child: DSTimeline.activity(
           events: [
-            AppTimelineEvent(
+            DSTimelineEvent(
               id: '1',
               title: 'Evento 1',
               subtitle: 'Descripción del primer evento',
               timestamp: DateTime.now().subtract(const Duration(hours: 2)),
-              type: AppTimelineEventType.milestone,
-              status: AppTimelineEventStatus.completed,
+              type: DSTimelineEventType.milestone,
+              status: DSTimelineEventStatus.completed,
             ),
-            AppTimelineEvent(
+            DSTimelineEvent(
               id: '2',
               title: 'Evento 2',
               subtitle: 'Descripción del segundo evento',
               timestamp: DateTime.now().subtract(const Duration(hours: 1)),
-              type: AppTimelineEventType.task,
-              status: AppTimelineEventStatus.inProgress,
+              type: DSTimelineEventType.task,
+              status: DSTimelineEventStatus.inProgress,
             ),
-            AppTimelineEvent(
+            DSTimelineEvent(
               id: '3',
               title: 'Evento 3',
               subtitle: 'Descripción del tercer evento',
               timestamp: DateTime.now(),
-              type: AppTimelineEventType.note,
-              status: AppTimelineEventStatus.pending,
+              type: DSTimelineEventType.note,
+              status: DSTimelineEventStatus.pending,
             ),
           ],
         ),
@@ -657,11 +657,11 @@ class TimelineStoryPlayground extends StatefulWidget {
 }
 
 class _TimelineStoryPlaygroundState extends State<TimelineStoryPlayground> {
-  final List<AppTimelineEvent> _events = [];
+  final List<DSTimelineEvent> _events = [];
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _subtitleController = TextEditingController();
-  AppTimelineEventType _selectedType = AppTimelineEventType.task;
-  AppTimelineEventStatus _selectedStatus = AppTimelineEventStatus.pending;
+  DSTimelineEventType _selectedType = DSTimelineEventType.task;
+  DSTimelineEventStatus _selectedStatus = DSTimelineEventStatus.pending;
 
   @override
   Widget build(BuildContext context) {
@@ -716,7 +716,7 @@ class _TimelineStoryPlaygroundState extends State<TimelineStoryPlayground> {
                 Row(
                   children: [
                     Expanded(
-                      child: DropdownButtonFormField<AppTimelineEventType>(
+                      child: DropdownButtonFormField<DSTimelineEventType>(
                         initialValue: _selectedType,
                         decoration: const InputDecoration(
                           labelText: 'Tipo',
@@ -729,7 +729,7 @@ class _TimelineStoryPlaygroundState extends State<TimelineStoryPlayground> {
                             });
                           }
                         },
-                        items: AppTimelineEventType.values.map((type) {
+                        items: DSTimelineEventType.values.map((type) {
                           return DropdownMenuItem(
                             value: type,
                             child: Row(
@@ -745,7 +745,7 @@ class _TimelineStoryPlaygroundState extends State<TimelineStoryPlayground> {
                     ),
                     const SizedBox(width: 16),
                     Expanded(
-                      child: DropdownButtonFormField<AppTimelineEventStatus>(
+                      child: DropdownButtonFormField<DSTimelineEventStatus>(
                         initialValue: _selectedStatus,
                         decoration: const InputDecoration(
                           labelText: 'Estado',
@@ -758,7 +758,7 @@ class _TimelineStoryPlaygroundState extends State<TimelineStoryPlayground> {
                             });
                           }
                         },
-                        items: AppTimelineEventStatus.values.map((status) {
+                        items: DSTimelineEventStatus.values.map((status) {
                           return DropdownMenuItem(
                             value: status,
                             child: Row(
@@ -791,15 +791,15 @@ class _TimelineStoryPlaygroundState extends State<TimelineStoryPlayground> {
                   )
                 : Padding(
                     padding: const EdgeInsets.all(16),
-                    child: AppTimeline.activity(
+                    child: DSTimeline.activity(
                       events: _events,
-                      orientation: AppTimelineOrientation.vertical,
-                      indicatorStyle: AppTimelineIndicatorStyle.icon,
-                      spacing: AppTimelineSpacing.medium,
-                      animation: AppTimelineAnimation(
+                      orientation: DSTimelineOrientation.vertical,
+                      indicatorStyle: DSTimelineIndicatorStyle.icon,
+                      spacing: DSTimelineSpacing.medium,
+                      animation: DSTimelineAnimation(
                         enabled: true,
                         staggered: true,
-                        type: AppTimelineAnimationType.slideUp,
+                        type: DSTimelineAnimationType.slideUp,
                       ),
                       onEventTap: _removeEvent,
                     ),
@@ -814,7 +814,7 @@ class _TimelineStoryPlaygroundState extends State<TimelineStoryPlayground> {
     if (_titleController.text.isNotEmpty) {
       setState(() {
         _events.add(
-          AppTimelineEvent(
+          DSTimelineEvent(
             id: DateTime.now().millisecondsSinceEpoch.toString(),
             title: _titleController.text,
             subtitle: _subtitleController.text.isNotEmpty

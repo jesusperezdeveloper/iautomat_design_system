@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/file_picker/app_file_picke
 import 'package:iautomat_design_system/src/components/file_picker/file_picker_config.dart';
 
 void main() {
-  group('AppFilePicker Golden Tests', () {
+  group('DSFilePicker Golden Tests', () {
     group('Basic Variants', () {
       testWidgets('drag and drop picker default state', (tester) async {
         await tester.pumpWidget(
@@ -14,8 +14,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Drag & Drop File Picker',
                     hint: 'Drag files here or click to select',
                     onFilesSelected: (files) {},
@@ -28,7 +28,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('drag_drop_picker_default.png'),
         );
       });
@@ -41,8 +41,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.multi,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.multi,
                     label: 'Multi File Picker',
                     hint: 'Select files',
                     onFilesSelected: (files) {},
@@ -55,7 +55,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('multi_picker_default.png'),
         );
       });
@@ -64,13 +64,13 @@ void main() {
     group('With Values', () {
       testWidgets('drag and drop picker with selected files', (tester) async {
         final mockFiles = [
-          AppFileData(
+          DSFileData(
             name: 'document.pdf',
             size: 1024 * 1024,
             type: 'application/pdf',
             lastModified: DateTime(2023, 1, 1),
           ),
-          AppFileData(
+          DSFileData(
             name: 'image.jpg',
             size: 512 * 1024,
             type: 'image/jpeg',
@@ -85,8 +85,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'With Selected Files',
                     value: mockFiles,
                     preview: true,
@@ -100,14 +100,14 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('drag_drop_with_files.png'),
         );
       });
 
       testWidgets('multi picker with selected files', (tester) async {
         final mockFiles = [
-          AppFileData(
+          DSFileData(
             name: 'presentation.pptx',
             size: 2 * 1024 * 1024,
             type:
@@ -123,8 +123,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.multi,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.multi,
                     label: 'Multi Picker with Files',
                     value: mockFiles,
                     preview: true,
@@ -138,7 +138,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('multi_picker_with_files.png'),
         );
       });
@@ -153,8 +153,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Disabled File Picker',
                     enabled: false,
                     hint: 'This picker is disabled',
@@ -168,7 +168,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_disabled.png'),
         );
       });
@@ -181,10 +181,10 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.multi,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.multi,
                     label: 'Loading File Picker',
-                    state: AppFilePickerState.loading,
+                    state: DSFilePickerState.loading,
                     onFilesSelected: (files) {},
                   ),
                 ),
@@ -195,7 +195,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_loading.png'),
         );
       });
@@ -208,10 +208,10 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Skeleton File Picker',
-                    state: AppFilePickerState.skeleton,
+                    state: DSFilePickerState.skeleton,
                     onFilesSelected: (files) {},
                   ),
                 ),
@@ -222,7 +222,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_skeleton.png'),
         );
       });
@@ -237,8 +237,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.multi,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.multi,
                     label: 'With Prefix Icon',
                     prefixIcon:
                         const Icon(Icons.cloud_upload, color: Colors.blue),
@@ -253,7 +253,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_prefix_icon.png'),
         );
       });
@@ -266,8 +266,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.multi,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.multi,
                     label: 'With Suffix Icon',
                     suffixIcon:
                         const Icon(Icons.folder_open, color: Colors.orange),
@@ -282,7 +282,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_suffix_icon.png'),
         );
       });
@@ -295,8 +295,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.multi,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.multi,
                     label: 'With Both Icons',
                     prefixIcon:
                         const Icon(Icons.attach_file, color: Colors.green),
@@ -313,7 +313,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_both_icons.png'),
         );
       });
@@ -328,8 +328,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'File Picker with Error',
                     errorText: 'File size too large. Maximum allowed is 10MB.',
                     onFilesSelected: (files) {},
@@ -342,7 +342,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_error.png'),
         );
       });
@@ -355,8 +355,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'File Picker with Helper',
                     helperText:
                         'Accepted formats: PDF, JPG, PNG. Maximum size: 10MB.',
@@ -370,7 +370,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_helper.png'),
         );
       });
@@ -378,7 +378,7 @@ void main() {
 
     group('Custom Configuration', () {
       testWidgets('custom border radius', (tester) async {
-        final customConfig = AppFilePickerConfig(
+        final customConfig = DSFilePickerConfig(
           borderRadius: const BorderRadius.all(Radius.circular(20.0)),
           borderWidth: 3.0,
         );
@@ -390,8 +390,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Custom Border Radius',
                     config: customConfig,
                     onFilesSelected: (files) {},
@@ -404,13 +404,13 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_custom_border.png'),
         );
       });
 
       testWidgets('custom colors', (tester) async {
-        final customColors = AppFilePickerColors(
+        final customColors = DSFilePickerColors(
           backgroundColor: Colors.lightBlue.shade50,
           borderColor: Colors.blue,
           hoverBackgroundColor: Colors.blue.shade100,
@@ -419,7 +419,7 @@ void main() {
           iconColor: Colors.blue.shade600,
         );
 
-        final customConfig = AppFilePickerConfig(
+        final customConfig = DSFilePickerConfig(
           colors: customColors,
         );
 
@@ -430,8 +430,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Custom Colors',
                     config: customConfig,
                     onFilesSelected: (files) {},
@@ -444,13 +444,13 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_custom_colors.png'),
         );
       });
 
       testWidgets('custom size', (tester) async {
-        final customConfig = AppFilePickerConfig(
+        final customConfig = DSFilePickerConfig(
           minSize: const Size(350, 180),
           contentPadding: const EdgeInsets.all(24.0),
         );
@@ -462,8 +462,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Custom Size',
                     config: customConfig,
                     onFilesSelected: (files) {},
@@ -476,7 +476,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_custom_size.png'),
         );
       });
@@ -491,8 +491,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Images Only',
                     accept: const ['jpg', 'jpeg', 'png', 'gif'],
                     helperText: 'Accepted formats: JPG, JPEG, PNG, GIF',
@@ -506,7 +506,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_images_only.png'),
         );
       });
@@ -519,8 +519,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.multi,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.multi,
                     label: 'Documents Only',
                     accept: const ['pdf', 'doc', 'docx', 'txt'],
                     helperText: 'Accepted formats: PDF, DOC, DOCX, TXT',
@@ -534,7 +534,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_documents_only.png'),
         );
       });
@@ -543,19 +543,19 @@ void main() {
     group('Preview Modes', () {
       testWidgets('with file preview', (tester) async {
         final mockFiles = [
-          AppFileData(
+          DSFileData(
             name: 'report.pdf',
             size: 1536 * 1024, // 1.5 MB
             type: 'application/pdf',
             lastModified: DateTime(2023, 1, 1),
           ),
-          AppFileData(
+          DSFileData(
             name: 'photo.jpg',
             size: 768 * 1024, // 768 KB
             type: 'image/jpeg',
             lastModified: DateTime(2023, 1, 1),
           ),
-          AppFileData(
+          DSFileData(
             name: 'data.xlsx',
             size: 2 * 1024 * 1024, // 2 MB
             type:
@@ -571,8 +571,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'With File Preview',
                     value: mockFiles,
                     preview: true,
@@ -586,14 +586,14 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_with_preview.png'),
         );
       });
 
       testWidgets('without preview', (tester) async {
         final mockFiles = [
-          AppFileData(
+          DSFileData(
             name: 'hidden.pdf',
             size: 1024 * 1024,
             type: 'application/pdf',
@@ -608,8 +608,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Without Preview',
                     value: mockFiles,
                     preview: false,
@@ -623,7 +623,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_no_preview.png'),
         );
       });
@@ -638,8 +638,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Dark Theme File Picker',
                     hint: 'Drop files here',
                     onFilesSelected: (files) {},
@@ -652,14 +652,14 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_dark_theme.png'),
         );
       });
 
       testWidgets('dark theme with files', (tester) async {
         final mockFiles = [
-          AppFileData(
+          DSFileData(
             name: 'dark_document.pdf',
             size: 1024 * 1024,
             type: 'application/pdf',
@@ -674,8 +674,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Dark Theme with Files',
                     value: mockFiles,
                     preview: true,
@@ -689,7 +689,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_dark_theme_with_files.png'),
         );
       });
@@ -702,8 +702,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 400,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.multi,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.multi,
                     label: 'Disabled Dark Theme',
                     enabled: false,
                     hint: 'Disabled picker',
@@ -717,7 +717,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_dark_theme_disabled.png'),
         );
       });
@@ -734,8 +734,8 @@ void main() {
                 body: Center(
                   child: SizedBox(
                     width: 400,
-                    child: AppFilePicker(
-                      variant: AppFilePickerVariant.dragAndDrop,
+                    child: DSFilePicker(
+                      variant: DSFilePickerVariant.dragAndDrop,
                       label: 'منتخب کریں فائلز',
                       hint: 'یہاں فائلز گھسیٹیں',
                       helperText: 'زیادہ سے زیادہ 10MB',
@@ -750,14 +750,14 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_rtl.png'),
         );
       });
 
       testWidgets('RTL with files', (tester) async {
         final mockFiles = [
-          AppFileData(
+          DSFileData(
             name: 'مستند.pdf',
             size: 1024 * 1024,
             type: 'application/pdf',
@@ -774,8 +774,8 @@ void main() {
                 body: Center(
                   child: SizedBox(
                     width: 400,
-                    child: AppFilePicker(
-                      variant: AppFilePickerVariant.dragAndDrop,
+                    child: DSFilePicker(
+                      variant: DSFilePickerVariant.dragAndDrop,
                       label: 'فائلز کے ساتھ',
                       value: mockFiles,
                       preview: true,
@@ -790,7 +790,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_rtl_with_files.png'),
         );
       });
@@ -805,8 +805,8 @@ void main() {
                 body: Center(
                   child: SizedBox(
                     width: 400,
-                    child: AppFilePicker(
-                      variant: AppFilePickerVariant.multi,
+                    child: DSFilePicker(
+                      variant: DSFilePickerVariant.multi,
                       label: 'آئیکنز کے ساتھ',
                       prefixIcon: const Icon(Icons.upload_file),
                       suffixIcon: const Icon(Icons.folder_open),
@@ -822,7 +822,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_rtl_with_icons.png'),
         );
       });
@@ -830,7 +830,7 @@ void main() {
 
     group('Size Variations', () {
       testWidgets('compact size', (tester) async {
-        final compactConfig = AppFilePickerConfig(
+        final compactConfig = DSFilePickerConfig(
           minSize: const Size(250, 80),
           contentPadding: const EdgeInsets.all(8.0),
         );
@@ -842,8 +842,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 300,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Compact Size',
                     config: compactConfig,
                     hint: 'Small picker',
@@ -857,13 +857,13 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_compact.png'),
         );
       });
 
       testWidgets('large size', (tester) async {
-        final largeConfig = AppFilePickerConfig(
+        final largeConfig = DSFilePickerConfig(
           minSize: const Size(500, 250),
           contentPadding: const EdgeInsets.all(32.0),
         );
@@ -875,8 +875,8 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 600,
-                  child: AppFilePicker(
-                    variant: AppFilePickerVariant.dragAndDrop,
+                  child: DSFilePicker(
+                    variant: DSFilePickerVariant.dragAndDrop,
                     label: 'Large Size',
                     config: largeConfig,
                     hint: 'Big drop zone',
@@ -890,7 +890,7 @@ void main() {
 
         await tester.pumpAndSettle();
         await expectLater(
-          find.byType(AppFilePicker),
+          find.byType(DSFilePicker),
           matchesGoldenFile('file_picker_large.png'),
         );
       });
@@ -910,8 +910,8 @@ void main() {
                     children: [
                       SizedBox(
                         width: 350,
-                        child: AppFilePicker(
-                          variant: AppFilePickerVariant.dragAndDrop,
+                        child: DSFilePicker(
+                          variant: DSFilePickerVariant.dragAndDrop,
                           label: 'Drag & Drop Variant',
                           hint: 'Drop files here',
                           onFilesSelected: (files) {},
@@ -919,8 +919,8 @@ void main() {
                       ),
                       SizedBox(
                         width: 350,
-                        child: AppFilePicker(
-                          variant: AppFilePickerVariant.multi,
+                        child: DSFilePicker(
+                          variant: DSFilePickerVariant.multi,
                           label: 'Multi Selector Variant',
                           hint: 'Select files',
                           onFilesSelected: (files) {},
@@ -957,16 +957,16 @@ void main() {
                         children: [
                           SizedBox(
                             width: 200,
-                            child: AppFilePicker(
-                              variant: AppFilePickerVariant.dragAndDrop,
+                            child: DSFilePicker(
+                              variant: DSFilePickerVariant.dragAndDrop,
                               label: 'Default',
                               onFilesSelected: (files) {},
                             ),
                           ),
                           SizedBox(
                             width: 200,
-                            child: AppFilePicker(
-                              variant: AppFilePickerVariant.dragAndDrop,
+                            child: DSFilePicker(
+                              variant: DSFilePickerVariant.dragAndDrop,
                               label: 'Disabled',
                               enabled: false,
                               onFilesSelected: (files) {},
@@ -979,17 +979,17 @@ void main() {
                         children: [
                           SizedBox(
                             width: 200,
-                            child: AppFilePicker(
-                              variant: AppFilePickerVariant.multi,
+                            child: DSFilePicker(
+                              variant: DSFilePickerVariant.multi,
                               label: 'Loading',
-                              state: AppFilePickerState.loading,
+                              state: DSFilePickerState.loading,
                               onFilesSelected: (files) {},
                             ),
                           ),
                           SizedBox(
                             width: 200,
-                            child: AppFilePicker(
-                              variant: AppFilePickerVariant.multi,
+                            child: DSFilePicker(
+                              variant: DSFilePickerVariant.multi,
                               label: 'With Error',
                               errorText: 'Error message',
                               onFilesSelected: (files) {},

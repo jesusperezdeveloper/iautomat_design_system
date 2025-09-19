@@ -4,14 +4,14 @@ import 'package:iautomat_design_system/src/components/date_picker/app_date_picke
 import 'package:iautomat_design_system/src/components/date_picker/date_picker_config.dart';
 
 void main() {
-  group('AppDatePicker', () {
+  group('DSDatePicker', () {
     late Widget testApp;
 
     setUp(() {
       testApp = MaterialApp(
         home: Scaffold(
-          body: AppDatePicker(
-            variant: AppDatePickerVariant.date,
+          body: DSDatePicker(
+            variant: DSDatePickerVariant.date,
             onChanged: (_) {},
           ),
         ),
@@ -23,7 +23,7 @@ void main() {
           (tester) async {
         await tester.pumpWidget(testApp);
 
-        expect(find.byType(AppDatePicker), findsOneWidget);
+        expect(find.byType(DSDatePicker), findsOneWidget);
         expect(find.byIcon(Icons.calendar_today), findsOneWidget);
       });
 
@@ -32,8 +32,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 hintText: 'Select a date',
                 onChanged: (_) {},
               ),
@@ -51,8 +51,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 value: testDate,
                 onChanged: (_) {},
               ),
@@ -70,8 +70,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.time,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.time,
                 value: testTime,
                 onChanged: (_) {},
               ),
@@ -88,8 +88,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.time,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.time,
                 value: testTime,
                 use24HourFormat: true,
                 onChanged: (_) {},
@@ -103,7 +103,7 @@ void main() {
 
       testWidgets('displays date range when range variant is used',
           (tester) async {
-        final testRange = AppDateRange(
+        final testRange = DSDateRange(
           start: DateTime(2023, 12, 1),
           end: DateTime(2023, 12, 31),
         );
@@ -111,8 +111,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.range,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.range,
                 value: testRange,
                 onChanged: (_) {},
               ),
@@ -128,7 +128,7 @@ void main() {
       testWidgets('opens date picker when tapped', (tester) async {
         await tester.pumpWidget(testApp);
 
-        await tester.tap(find.byType(AppDatePicker));
+        await tester.tap(find.byType(DSDatePicker));
         await tester.pumpAndSettle();
 
         // Should open the date picker dialog
@@ -141,15 +141,15 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 onChanged: (date) => selectedDate = date,
               ),
             ),
           ),
         );
 
-        await tester.tap(find.byType(AppDatePicker));
+        await tester.tap(find.byType(DSDatePicker));
         await tester.pumpAndSettle();
 
         // Tap on a date in the calendar
@@ -168,8 +168,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 enabled: false,
                 onChanged: (_) {},
               ),
@@ -177,7 +177,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(AppDatePicker));
+        await tester.tap(find.byType(DSDatePicker));
         await tester.pumpAndSettle();
 
         // Should not open date picker dialog
@@ -189,15 +189,15 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 onChanged: null,
               ),
             ),
           ),
         );
 
-        await tester.tap(find.byType(AppDatePicker));
+        await tester.tap(find.byType(DSDatePicker));
         await tester.pumpAndSettle();
 
         // Should not open date picker dialog
@@ -210,9 +210,9 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
-                state: AppDatePickerState.loading,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
+                state: DSDatePickerState.loading,
                 onChanged: (_) {},
               ),
             ),
@@ -226,9 +226,9 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
-                state: AppDatePickerState.skeleton,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
+                state: DSDatePickerState.skeleton,
                 onChanged: (_) {},
               ),
             ),
@@ -243,9 +243,9 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
-                state: AppDatePickerState.disabled,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
+                state: DSDatePickerState.disabled,
                 onChanged: (_) {},
               ),
             ),
@@ -253,14 +253,14 @@ void main() {
         );
 
         final appDatePicker =
-            tester.widget<AppDatePicker>(find.byType(AppDatePicker));
-        expect(appDatePicker.state, equals(AppDatePickerState.disabled));
+            tester.widget<DSDatePicker>(find.byType(DSDatePicker));
+        expect(appDatePicker.state, equals(DSDatePickerState.disabled));
       });
     });
 
     group('Configuration Tests', () {
       testWidgets('applies custom configuration', (tester) async {
-        const customConfig = AppDatePickerConfig(
+        const customConfig = DSDatePickerConfig(
           borderRadius: 20.0,
           borderWidth: 3.0,
           minHeight: 60.0,
@@ -269,8 +269,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 config: customConfig,
                 onChanged: (_) {},
               ),
@@ -281,7 +281,7 @@ void main() {
         final container = tester.widget<Container>(
           find
               .descendant(
-                of: find.byType(AppDatePicker),
+                of: find.byType(DSDatePicker),
                 matching: find.byType(Container),
               )
               .last,
@@ -297,8 +297,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 prefixIcon: const Icon(Icons.event_note),
                 suffixIcon: const Icon(Icons.arrow_drop_down),
                 onChanged: (_) {},
@@ -315,8 +315,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 onChanged: (_) {},
               ),
             ),
@@ -332,8 +332,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 onChanged: (_) {},
               ),
             ),
@@ -347,8 +347,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.time,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.time,
                 onChanged: (_) {},
               ),
             ),
@@ -362,8 +362,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.range,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.range,
                 onChanged: (_) {},
               ),
             ),
@@ -379,8 +379,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 semanticLabel: 'Date picker for appointment',
                 labelText: 'Appointment date',
                 onChanged: (_) {},
@@ -389,7 +389,7 @@ void main() {
           ),
         );
 
-        final semantics = tester.getSemantics(find.byType(AppDatePicker));
+        final semantics = tester.getSemantics(find.byType(DSDatePicker));
         expect(semantics.label, contains('Date picker for appointment'));
       });
 
@@ -399,8 +399,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 focusNode: focusNode,
                 onChanged: (_) {},
               ),
@@ -422,8 +422,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 errorText: 'Invalid date selected',
                 onChanged: (_) {},
               ),
@@ -438,8 +438,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 helperText: 'Select your birth date',
                 onChanged: (_) {},
               ),
@@ -456,8 +456,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 value: null,
                 onChanged: (_) {},
               ),
@@ -465,12 +465,12 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppDatePicker), findsOneWidget);
+        expect(find.byType(DSDatePicker), findsOneWidget);
         expect(find.text('Seleccionar fecha'), findsOneWidget);
       });
 
       testWidgets('handles partial date range gracefully', (tester) async {
-        final partialRange = AppDateRange(
+        final partialRange = DSDateRange(
           start: DateTime(2023, 12, 1),
           end: null,
         );
@@ -478,8 +478,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.range,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.range,
                 value: partialRange,
                 onChanged: (_) {},
               ),
@@ -497,8 +497,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 firstDate: firstDate,
                 lastDate: lastDate,
                 onChanged: (_) {},
@@ -508,7 +508,7 @@ void main() {
         );
 
         final appDatePicker =
-            tester.widget<AppDatePicker>(find.byType(AppDatePicker));
+            tester.widget<DSDatePicker>(find.byType(DSDatePicker));
         expect(appDatePicker.firstDate, equals(firstDate));
         expect(appDatePicker.lastDate, equals(lastDate));
       });
@@ -519,7 +519,7 @@ void main() {
         await tester.pumpWidget(testApp);
 
         final gesture = await tester.startGesture(
-          tester.getCenter(find.byType(AppDatePicker)),
+          tester.getCenter(find.byType(DSDatePicker)),
         );
 
         await tester.pump(const Duration(milliseconds: 100));
@@ -527,7 +527,7 @@ void main() {
         // Should have scale animation during press
         final transform = tester.widget<Transform>(
           find.descendant(
-            of: find.byType(AppDatePicker),
+            of: find.byType(DSDatePicker),
             matching: find.byType(Transform),
           ),
         );
@@ -545,8 +545,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 adaptivePlatform: true,
                 onChanged: (_) {},
               ),
@@ -555,7 +555,7 @@ void main() {
         );
 
         final appDatePicker =
-            tester.widget<AppDatePicker>(find.byType(AppDatePicker));
+            tester.widget<DSDatePicker>(find.byType(DSDatePicker));
         expect(appDatePicker.adaptivePlatform, isTrue);
       });
 
@@ -564,8 +564,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDatePicker(
-                variant: AppDatePickerVariant.date,
+              body: DSDatePicker(
+                variant: DSDatePickerVariant.date,
                 adaptivePlatform: false,
                 onChanged: (_) {},
               ),
@@ -574,15 +574,15 @@ void main() {
         );
 
         final appDatePicker =
-            tester.widget<AppDatePicker>(find.byType(AppDatePicker));
+            tester.widget<DSDatePicker>(find.byType(DSDatePicker));
         expect(appDatePicker.adaptivePlatform, isFalse);
       });
     });
   });
 
-  group('AppDateRange', () {
+  group('DSDateRange', () {
     test('creates valid range', () {
-      final range = AppDateRange(
+      final range = DSDateRange(
         start: DateTime(2023, 1, 1),
         end: DateTime(2023, 1, 31),
       );
@@ -594,7 +594,7 @@ void main() {
     });
 
     test('detects invalid range', () {
-      final range = AppDateRange(
+      final range = DSDateRange(
         start: DateTime(2023, 1, 31),
         end: DateTime(2023, 1, 1), // End before start
       );
@@ -603,19 +603,19 @@ void main() {
     });
 
     test('detects empty range', () {
-      const range = AppDateRange(start: null, end: null);
+      const range = DSDateRange(start: null, end: null);
 
       expect(range.isEmpty, isTrue);
       expect(range.isPartial, isFalse);
     });
 
     test('detects partial range', () {
-      final range1 = AppDateRange(
+      final range1 = DSDateRange(
         start: DateTime(2023, 1, 1),
         end: null,
       );
 
-      final range2 = AppDateRange(
+      final range2 = DSDateRange(
         start: null,
         end: DateTime(2023, 1, 31),
       );
@@ -625,7 +625,7 @@ void main() {
     });
 
     test('calculates duration correctly', () {
-      final range = AppDateRange(
+      final range = DSDateRange(
         start: DateTime(2023, 1, 1),
         end: DateTime(2023, 1, 31),
       );
@@ -634,7 +634,7 @@ void main() {
     });
 
     test('checks if date is contained in range', () {
-      final range = AppDateRange(
+      final range = DSDateRange(
         start: DateTime(2023, 1, 1),
         end: DateTime(2023, 1, 31),
       );
@@ -645,7 +645,7 @@ void main() {
     });
 
     test('copies with new start date', () {
-      final range = AppDateRange(
+      final range = DSDateRange(
         start: DateTime(2023, 1, 1),
         end: DateTime(2023, 1, 31),
       );
@@ -657,7 +657,7 @@ void main() {
     });
 
     test('copies with new end date', () {
-      final range = AppDateRange(
+      final range = DSDateRange(
         start: DateTime(2023, 1, 1),
         end: DateTime(2023, 1, 31),
       );
@@ -669,7 +669,7 @@ void main() {
     });
 
     test('clears range', () {
-      final range = AppDateRange(
+      final range = DSDateRange(
         start: DateTime(2023, 1, 1),
         end: DateTime(2023, 1, 31),
       );
@@ -680,9 +680,9 @@ void main() {
     });
   });
 
-  group('AppTimeValue', () {
+  group('DSTimeValue', () {
     test('creates valid time', () {
-      const time = AppTimeValue(hour: 14, minute: 30);
+      const time = DSTimeValue(hour: 14, minute: 30);
 
       expect(time.isValid(), isTrue);
       expect(time.hour, equals(14));
@@ -690,16 +690,16 @@ void main() {
     });
 
     test('creates time with seconds', () {
-      const time = AppTimeValue(hour: 14, minute: 30, second: 45);
+      const time = DSTimeValue(hour: 14, minute: 30, second: 45);
 
       expect(time.isValid(), isTrue);
       expect(time.second, equals(45));
     });
 
     test('validates time correctly', () {
-      const validTime = AppTimeValue(hour: 14, minute: 30);
-      const invalidHour = AppTimeValue(hour: 25, minute: 30);
-      const invalidMinute = AppTimeValue(hour: 14, minute: 60);
+      const validTime = DSTimeValue(hour: 14, minute: 30);
+      const invalidHour = DSTimeValue(hour: 25, minute: 30);
+      const invalidMinute = DSTimeValue(hour: 14, minute: 60);
 
       expect(validTime.isValid(), isTrue);
       expect(invalidHour.isValid(), isFalse);
@@ -707,7 +707,7 @@ void main() {
     });
 
     test('converts to TimeOfDay', () {
-      const time = AppTimeValue(hour: 14, minute: 30);
+      const time = DSTimeValue(hour: 14, minute: 30);
       final timeOfDay = time.toTimeOfDay();
 
       expect(timeOfDay.hour, equals(14));
@@ -715,7 +715,7 @@ void main() {
     });
 
     test('formats time correctly', () {
-      const time = AppTimeValue(hour: 14, minute: 30);
+      const time = DSTimeValue(hour: 14, minute: 30);
 
       expect(time.format(use24Hour: true), equals('14:30'));
       expect(time.format(use24Hour: false), equals('2:30 PM'));
@@ -723,14 +723,14 @@ void main() {
 
     test('creates from TimeOfDay', () {
       const timeOfDay = TimeOfDay(hour: 14, minute: 30);
-      final time = AppTimeValue.fromTimeOfDay(timeOfDay);
+      final time = DSTimeValue.fromTimeOfDay(timeOfDay);
 
       expect(time.hour, equals(14));
       expect(time.minute, equals(30));
     });
 
     test('creates from current time', () {
-      final time = AppTimeValue.now();
+      final time = DSTimeValue.now();
 
       expect(time.isValid(), isTrue);
       expect(time.hour, inInclusiveRange(0, 23));

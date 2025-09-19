@@ -5,9 +5,9 @@ import '../../theme/theme.dart';
 import 'calendar_config.dart';
 
 /// Widget principal para mostrar calendarios con diferentes vistas
-class AppCalendar extends StatefulWidget {
+class DSCalendar extends StatefulWidget {
   /// Configuración del calendario
-  final AppCalendarConfig config;
+  final DSCalendarConfig config;
 
   /// Callback cuando cambia el estado del calendario
   final VoidCallback? onChanged;
@@ -15,7 +15,7 @@ class AppCalendar extends StatefulWidget {
   /// Callback cuando ocurre un error
   final void Function(String error)? onError;
 
-  const AppCalendar({
+  const DSCalendar({
     super.key,
     required this.config,
     this.onChanged,
@@ -23,14 +23,14 @@ class AppCalendar extends StatefulWidget {
   });
 
   @override
-  State<AppCalendar> createState() => _AppCalendarState();
+  State<DSCalendar> createState() => _DSCalendarState();
 }
 
-class _AppCalendarState extends State<AppCalendar>
+class _DSCalendarState extends State<DSCalendar>
     with TickerProviderStateMixin {
   late DateTime _currentDate;
-  late AppCalendarVariant _currentVariant;
-  late AppCalendarState _currentState;
+  late DSCalendarVariant _currentVariant;
+  late DSCalendarState _currentState;
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
 
@@ -84,7 +84,7 @@ class _AppCalendarState extends State<AppCalendar>
   }
 
   @override
-  void didUpdateWidget(AppCalendar oldWidget) {
+  void didUpdateWidget(DSCalendar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.config.selectedDate != oldWidget.config.selectedDate) {
       _currentDate = widget.config.selectedDate ?? _currentDate;
@@ -112,7 +112,7 @@ class _AppCalendarState extends State<AppCalendar>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final localization =
-        widget.config.localization ?? AppCalendarDefaults.spanish();
+        widget.config.localization ?? DSCalendarDefaults.spanish();
 
     return AnimatedBuilder(
       animation: _fadeAnimation,
@@ -130,22 +130,22 @@ class _AppCalendarState extends State<AppCalendar>
     BuildContext context,
     ThemeData theme,
     ColorScheme colorScheme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
   ) {
-    if (_currentState == AppCalendarState.loading) {
+    if (_currentState == DSCalendarState.loading) {
       return _buildLoadingState(context, theme);
     }
 
-    if (_currentState == AppCalendarState.skeleton) {
+    if (_currentState == DSCalendarState.skeleton) {
       return _buildSkeletonState(context, theme);
     }
 
     return Container(
-      padding: widget.config.padding ?? AppSpacing.cardPadding,
+      padding: widget.config.padding ?? DSSpacing.cardPadding,
       margin: widget.config.margin,
       decoration: BoxDecoration(
         color: widget.config.backgroundColor ?? colorScheme.surface,
-        borderRadius: widget.config.borderRadius ?? AppBorders.medium,
+        borderRadius: widget.config.borderRadius ?? DSBorders.medium,
         boxShadow: widget.config.boxShadow,
       ),
       child: Column(
@@ -166,13 +166,13 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildHeader(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
   ) {
     final colorScheme = theme.colorScheme;
 
     return Container(
       height: widget.config.headerHeight,
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+      padding: const EdgeInsets.symmetric(horizontal: DSSpacing.sm),
       decoration: BoxDecoration(
         color: widget.config.headerBackgroundColor ??
             colorScheme.surfaceContainerHighest,
@@ -187,7 +187,7 @@ class _AppCalendarState extends State<AppCalendar>
               tooltip: localization.labels['previous'] ?? 'Anterior',
               onPressed: _goToPrevious,
             ),
-            const SizedBox(width: AppSpacing.xs),
+            const SizedBox(width: DSSpacing.xs),
           ],
 
           // Título del período actual
@@ -197,7 +197,7 @@ class _AppCalendarState extends State<AppCalendar>
 
           // Controles de navegación
           if (widget.config.showNavigationControls) ...[
-            const SizedBox(width: AppSpacing.xs),
+            const SizedBox(width: DSSpacing.xs),
             _buildNavigationButton(
               icon: Icons.chevron_right,
               tooltip: localization.labels['next'] ?? 'Siguiente',
@@ -207,13 +207,13 @@ class _AppCalendarState extends State<AppCalendar>
 
           // Botón "Hoy"
           if (widget.config.showTodayButton) ...[
-            const SizedBox(width: AppSpacing.sm),
+            const SizedBox(width: DSSpacing.sm),
             _buildTodayButton(context, theme, localization),
           ],
 
           // Selector de vista
           if (widget.config.showViewSelector) ...[
-            const SizedBox(width: AppSpacing.sm),
+            const SizedBox(width: DSSpacing.sm),
             _buildViewSelector(context, theme, localization),
           ],
         ],
@@ -239,20 +239,20 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildHeaderTitle(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
   ) {
     String title;
     switch (_currentVariant) {
-      case AppCalendarVariant.month:
+      case DSCalendarVariant.month:
         title =
             '${localization.monthNames[_currentDate.month - 1]} ${_currentDate.year}';
         break;
-      case AppCalendarVariant.week:
+      case DSCalendarVariant.week:
         final startOfWeek = _getStartOfWeek(_currentDate);
         final endOfWeek = startOfWeek.add(const Duration(days: 6));
         title = '${_formatDate(startOfWeek)} - ${_formatDate(endOfWeek)}';
         break;
-      case AppCalendarVariant.day:
+      case DSCalendarVariant.day:
         title = _formatDate(_currentDate);
         break;
     }
@@ -271,7 +271,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildTodayButton(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
   ) {
     return TextButton(
       onPressed: _goToToday,
@@ -285,25 +285,25 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildViewSelector(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
   ) {
-    return SegmentedButton<AppCalendarVariant>(
+    return SegmentedButton<DSCalendarVariant>(
       segments: [
         ButtonSegment(
-          value: AppCalendarVariant.month,
+          value: DSCalendarVariant.month,
           label: Text(localization.labels['month'] ?? 'Mes'),
         ),
         ButtonSegment(
-          value: AppCalendarVariant.week,
+          value: DSCalendarVariant.week,
           label: Text(localization.labels['week'] ?? 'Semana'),
         ),
         ButtonSegment(
-          value: AppCalendarVariant.day,
+          value: DSCalendarVariant.day,
           label: Text(localization.labels['day'] ?? 'Día'),
         ),
       ],
       selected: {_currentVariant},
-      onSelectionChanged: (Set<AppCalendarVariant> selection) {
+      onSelectionChanged: (Set<DSCalendarVariant> selection) {
         if (selection.isNotEmpty) {
           _changeView(selection.first);
         }
@@ -314,7 +314,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildCalendarView(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
   ) {
     return Focus(
       focusNode: _calendarFocusNode,
@@ -323,11 +323,11 @@ class _AppCalendarState extends State<AppCalendar>
       child: Builder(
         builder: (context) {
           switch (_currentVariant) {
-            case AppCalendarVariant.month:
+            case DSCalendarVariant.month:
               return _buildMonthView(context, theme, localization);
-            case AppCalendarVariant.week:
+            case DSCalendarVariant.week:
               return _buildWeekView(context, theme, localization);
-            case AppCalendarVariant.day:
+            case DSCalendarVariant.day:
               return _buildDayView(context, theme, localization);
           }
         },
@@ -338,7 +338,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildMonthView(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
   ) {
     final startOfMonth = DateTime(_currentDate.year, _currentDate.month, 1);
     final endOfMonth = DateTime(_currentDate.year, _currentDate.month + 1, 0);
@@ -378,7 +378,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildWeekView(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
   ) {
     final startOfWeek = _getStartOfWeek(_currentDate);
 
@@ -410,7 +410,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildDayView(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
   ) {
     return Row(
       children: [
@@ -428,7 +428,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildWeekHeader(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
   ) {
     return Container(
       height: 40,
@@ -460,7 +460,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildDayCell(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
     DateTime date, {
     bool isCurrentMonth = true,
   }) {
@@ -540,7 +540,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildMonthEvents(
     BuildContext context,
     ThemeData theme,
-    List<AppCalendarEvent> events,
+    List<DSCalendarEvent> events,
   ) {
     final maxEvents = widget.config.maxEventsPerDay;
     final visibleEvents = events.take(maxEvents).toList();
@@ -574,7 +574,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildMonthEventIndicator(
     BuildContext context,
     ThemeData theme,
-    AppCalendarEvent event,
+    DSCalendarEvent event,
   ) {
     return GestureDetector(
       onTap: () => _onEventTap(event),
@@ -630,7 +630,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildDayColumn(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
     DateTime date,
   ) {
     final events = _getEventsForDate(date);
@@ -665,7 +665,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildDayHeader(
     BuildContext context,
     ThemeData theme,
-    AppCalendarLocalization localization,
+    DSCalendarLocalization localization,
     DateTime date,
   ) {
     final isToday = _isSameDay(date, DateTime.now());
@@ -727,7 +727,7 @@ class _AppCalendarState extends State<AppCalendar>
   Widget _buildTimeEvent(
     BuildContext context,
     ThemeData theme,
-    AppCalendarEvent event,
+    DSCalendarEvent event,
     DateTime date,
   ) {
     final startHour = widget.config.startHour.toDouble();
@@ -805,13 +805,13 @@ class _AppCalendarState extends State<AppCalendar>
 
   Widget _buildLoadingState(BuildContext context, ThemeData theme) {
     return Container(
-      padding: AppSpacing.cardPadding,
+      padding: DSSpacing.cardPadding,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircularProgressIndicator(),
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: DSSpacing.md),
             Text(
               widget.config.localization?.labels['loading'] ?? 'Cargando...',
               style: theme.textTheme.bodyMedium,
@@ -824,7 +824,7 @@ class _AppCalendarState extends State<AppCalendar>
 
   Widget _buildSkeletonState(BuildContext context, ThemeData theme) {
     return Container(
-      padding: AppSpacing.cardPadding,
+      padding: DSSpacing.cardPadding,
       child: Column(
         children: [
           // Header skeleton
@@ -835,7 +835,7 @@ class _AppCalendarState extends State<AppCalendar>
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          const SizedBox(height: AppSpacing.md),
+          const SizedBox(height: DSSpacing.md),
 
           // Content skeleton
           Expanded(
@@ -866,13 +866,13 @@ class _AppCalendarState extends State<AppCalendar>
   void _goToPrevious() {
     setState(() {
       switch (_currentVariant) {
-        case AppCalendarVariant.month:
+        case DSCalendarVariant.month:
           _currentDate = DateTime(_currentDate.year, _currentDate.month - 1, 1);
           break;
-        case AppCalendarVariant.week:
+        case DSCalendarVariant.week:
           _currentDate = _currentDate.subtract(const Duration(days: 7));
           break;
-        case AppCalendarVariant.day:
+        case DSCalendarVariant.day:
           _currentDate = _currentDate.subtract(const Duration(days: 1));
           break;
       }
@@ -884,13 +884,13 @@ class _AppCalendarState extends State<AppCalendar>
   void _goToNext() {
     setState(() {
       switch (_currentVariant) {
-        case AppCalendarVariant.month:
+        case DSCalendarVariant.month:
           _currentDate = DateTime(_currentDate.year, _currentDate.month + 1, 1);
           break;
-        case AppCalendarVariant.week:
+        case DSCalendarVariant.week:
           _currentDate = _currentDate.add(const Duration(days: 7));
           break;
-        case AppCalendarVariant.day:
+        case DSCalendarVariant.day:
           _currentDate = _currentDate.add(const Duration(days: 1));
           break;
       }
@@ -907,7 +907,7 @@ class _AppCalendarState extends State<AppCalendar>
     widget.onChanged?.call();
   }
 
-  void _changeView(AppCalendarVariant variant) {
+  void _changeView(DSCalendarVariant variant) {
     setState(() {
       _currentVariant = variant;
     });
@@ -925,7 +925,7 @@ class _AppCalendarState extends State<AppCalendar>
     widget.onChanged?.call();
   }
 
-  void _onEventTap(AppCalendarEvent event) {
+  void _onEventTap(DSCalendarEvent event) {
     widget.config.onEventTap?.call(event);
   }
 
@@ -933,7 +933,7 @@ class _AppCalendarState extends State<AppCalendar>
 
   DateTime _getStartOfWeek(DateTime date) {
     final localization =
-        widget.config.localization ?? AppCalendarDefaults.spanish();
+        widget.config.localization ?? DSCalendarDefaults.spanish();
     final firstDayOfWeek = localization.firstDayOfWeek;
     final daysFromFirstDay = (date.weekday - firstDayOfWeek) % 7;
     return date.subtract(Duration(days: daysFromFirstDay));
@@ -954,36 +954,36 @@ class _AppCalendarState extends State<AppCalendar>
     return hour >= 9 && hour < 17;
   }
 
-  List<AppCalendarEvent> _getEventsForDate(DateTime date) {
+  List<DSCalendarEvent> _getEventsForDate(DateTime date) {
     return widget.config.events.where((event) {
       return _isSameDay(event.startTime, date) ||
           (event.startTime.isBefore(date) && event.endTime.isAfter(date));
     }).toList();
   }
 
-  Color _getEventColor(AppCalendarEvent event) {
+  Color _getEventColor(DSCalendarEvent event) {
     if (event.color != null) return event.color!;
 
     final theme = Theme.of(context);
     switch (event.type) {
-      case AppCalendarEventType.meeting:
+      case DSCalendarEventType.meeting:
         return theme.colorScheme.primary;
-      case AppCalendarEventType.task:
+      case DSCalendarEventType.task:
         return theme.colorScheme.secondary;
-      case AppCalendarEventType.reminder:
+      case DSCalendarEventType.reminder:
         return theme.colorScheme.tertiary;
-      case AppCalendarEventType.allDay:
+      case DSCalendarEventType.allDay:
         return theme.colorScheme.primaryContainer;
-      case AppCalendarEventType.busy:
+      case DSCalendarEventType.busy:
         return theme.colorScheme.error;
-      case AppCalendarEventType.tentative:
+      case DSCalendarEventType.tentative:
         return theme.colorScheme.outline;
       default:
         return theme.colorScheme.primary;
     }
   }
 
-  Color _getEventTextColor(AppCalendarEvent event) {
+  Color _getEventTextColor(DSCalendarEvent event) {
     if (event.textColor != null) return event.textColor!;
 
     final eventColor = _getEventColor(event);
@@ -993,14 +993,14 @@ class _AppCalendarState extends State<AppCalendar>
 
   String _formatDate(DateTime date) {
     final localization =
-        widget.config.localization ?? AppCalendarDefaults.spanish();
+        widget.config.localization ?? DSCalendarDefaults.spanish();
     final monthName = localization.monthNamesShort[date.month - 1];
     return '$monthName ${date.day}';
   }
 
   String _formatHour(int hour) {
     final localization =
-        widget.config.localization ?? AppCalendarDefaults.spanish();
+        widget.config.localization ?? DSCalendarDefaults.spanish();
     if (localization.timeFormat == 12) {
       final displayHour = hour == 0 ? 12 : (hour > 12 ? hour - 12 : hour);
       final amPm = hour < 12 ? 'AM' : 'PM';
@@ -1011,7 +1011,7 @@ class _AppCalendarState extends State<AppCalendar>
   }
 
   void _scrollToCurrentTime() {
-    if (_currentVariant == AppCalendarVariant.month) return;
+    if (_currentVariant == DSCalendarVariant.month) return;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final now = DateTime.now();
@@ -1069,10 +1069,10 @@ class _AppCalendarState extends State<AppCalendar>
       setState(() {
         _focusedDate = focusedDate;
         // Cambiar el mes/semana/día si es necesario
-        if (_currentVariant == AppCalendarVariant.month &&
+        if (_currentVariant == DSCalendarVariant.month &&
             focusedDate.month != _currentDate.month) {
           _currentDate = DateTime(focusedDate.year, focusedDate.month, 1);
-        } else if (_currentVariant != AppCalendarVariant.month) {
+        } else if (_currentVariant != DSCalendarVariant.month) {
           _currentDate = focusedDate;
         }
       });

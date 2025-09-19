@@ -3,53 +3,53 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppDataTable Golden Tests', () {
-    late List<AppDataTableColumn> basicColumns;
-    late List<AppDataTableRow> basicRows;
-    late List<AppDataTableColumn> complexColumns;
-    late List<AppDataTableRow> complexRows;
+  group('DSDataTable Golden Tests', () {
+    late List<DSDataTableColumn> basicColumns;
+    late List<DSDataTableRow> basicRows;
+    late List<DSDataTableColumn> complexColumns;
+    late List<DSDataTableRow> complexRows;
 
     setUp(() {
       basicColumns = [
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'id',
           label: 'ID',
           field: 'id',
           width: 80,
           sortable: true,
-          cellType: AppDataTableCellType.number,
-          alignment: AppDataTableColumnAlignment.center,
+          cellType: DSDataTableCellType.number,
+          alignment: DSDataTableColumnAlignment.center,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'name',
           label: 'Name',
           field: 'name',
           width: 200,
           sortable: true,
           editable: true,
-          cellType: AppDataTableCellType.text,
+          cellType: DSDataTableCellType.text,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'email',
           label: 'Email',
           field: 'email',
           width: 250,
           sortable: true,
-          cellType: AppDataTableCellType.text,
+          cellType: DSDataTableCellType.text,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'active',
           label: 'Active',
           field: 'active',
           width: 100,
           sortable: true,
-          cellType: AppDataTableCellType.boolean,
-          alignment: AppDataTableColumnAlignment.center,
+          cellType: DSDataTableCellType.boolean,
+          alignment: DSDataTableColumnAlignment.center,
         ),
       ];
 
       basicRows = [
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: '1',
           data: {
             'id': 1,
@@ -58,7 +58,7 @@ void main() {
             'active': true,
           },
         ),
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: '2',
           data: {
             'id': 2,
@@ -67,7 +67,7 @@ void main() {
             'active': false,
           },
         ),
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: '3',
           data: {
             'id': 3,
@@ -79,53 +79,53 @@ void main() {
       ];
 
       complexColumns = [
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'employee_id',
           label: 'ID',
           field: 'employee_id',
           width: 100,
           sortable: true,
-          cellType: AppDataTableCellType.text,
+          cellType: DSDataTableCellType.text,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'name',
           label: 'Full Name',
           field: 'name',
           width: 200,
           sortable: true,
           editable: true,
-          cellType: AppDataTableCellType.text,
+          cellType: DSDataTableCellType.text,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'department',
           label: 'Department',
           field: 'department',
           width: 150,
           sortable: true,
-          cellType: AppDataTableCellType.text,
+          cellType: DSDataTableCellType.text,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'salary',
           label: 'Salary',
           field: 'salary',
           width: 120,
           sortable: true,
-          cellType: AppDataTableCellType.number,
-          alignment: AppDataTableColumnAlignment.right,
+          cellType: DSDataTableCellType.number,
+          alignment: DSDataTableColumnAlignment.right,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'manager',
           label: 'Manager',
           field: 'manager',
           width: 100,
           sortable: true,
-          cellType: AppDataTableCellType.boolean,
-          alignment: AppDataTableColumnAlignment.center,
+          cellType: DSDataTableCellType.boolean,
+          alignment: DSDataTableColumnAlignment.center,
         ),
       ];
 
       complexRows = [
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: 'emp1',
           data: {
             'employee_id': 'EMP001',
@@ -135,7 +135,7 @@ void main() {
             'manager': false,
           },
         ),
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: 'emp2',
           data: {
             'employee_id': 'EMP002',
@@ -146,7 +146,7 @@ void main() {
           },
           selected: true,
         ),
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: 'emp3',
           data: {
             'employee_id': 'EMP003',
@@ -156,7 +156,7 @@ void main() {
             'manager': false,
           },
         ),
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: 'emp4',
           data: {
             'employee_id': 'EMP004',
@@ -178,11 +178,11 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: basicColumns,
                 rows: basicRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
                 ),
@@ -193,7 +193,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_default.png'),
       );
     });
@@ -206,13 +206,13 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable.resizable(
+              child: DSDataTable.resizable(
                 columns: basicColumns,
                 rows: basicRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
-                  resizeConfig: AppDataTableResizeConfig(
+                  resizeConfig: DSDataTableResizeConfig(
                     enabled: true,
                     showOnHover: true,
                   ),
@@ -224,7 +224,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_resizable.png'),
       );
     });
@@ -237,13 +237,13 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable.pinned(
+              child: DSDataTable.pinned(
                 columns: basicColumns,
                 rows: basicRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
-                  freezeConfig: AppDataTableFreezeConfig(
+                  freezeConfig: DSDataTableFreezeConfig(
                     leftColumns: 1,
                     rightColumns: 1,
                     showDividers: true,
@@ -256,7 +256,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_pinned.png'),
       );
     });
@@ -269,14 +269,14 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable.inlineEdit(
+              child: DSDataTable.inlineEdit(
                 columns: basicColumns,
                 rows: basicRows,
                 onEdit: (row, columnId, newValue) {},
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
-                  editMode: AppDataTableEditMode.cell,
+                  editMode: DSDataTableEditMode.cell,
                 ),
               ),
             ),
@@ -285,7 +285,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_inline_edit.png'),
       );
     });
@@ -298,16 +298,16 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: complexColumns,
                 rows: complexRows,
-                selection: const AppDataTableSelection(
-                  mode: AppDataTableSelectionMode.multiple,
+                selection: const DSDataTableSelection(
+                  mode: DSDataTableSelectionMode.multiple,
                   showCheckboxes: true,
                   allowSelectAll: true,
                 ),
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
                   alternateRowColors: true,
@@ -319,7 +319,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_with_selection.png'),
       );
     });
@@ -332,15 +332,15 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: basicColumns,
                 rows: basicRows,
-                sorting: const AppDataTableSort(
+                sorting: const DSDataTableSort(
                   columnId: 'name',
-                  direction: AppDataTableSortDirection.ascending,
+                  direction: DSDataTableSortDirection.ascending,
                 ),
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
                 ),
@@ -351,7 +351,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_sorted.png'),
       );
     });
@@ -364,11 +364,11 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: basicColumns,
                 rows: basicRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
                   showRowNumbers: true,
@@ -380,7 +380,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_with_row_numbers.png'),
       );
     });
@@ -393,14 +393,14 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: complexColumns,
                 rows: complexRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
-                  density: AppDataTableDensity.compact,
+                  density: DSDataTableDensity.compact,
                 ),
               ),
             ),
@@ -409,7 +409,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_dense.png'),
       );
     });
@@ -422,14 +422,14 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: basicColumns,
                 rows: basicRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
-                  density: AppDataTableDensity.comfortable,
+                  density: DSDataTableDensity.comfortable,
                 ),
               ),
             ),
@@ -438,7 +438,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_comfortable.png'),
       );
     });
@@ -451,11 +451,11 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: basicColumns,
                 rows: basicRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
                   showColumnDividers: true,
@@ -467,7 +467,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_with_column_dividers.png'),
       );
     });
@@ -480,11 +480,11 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: basicColumns,
                 rows: basicRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
                   alternateRowColors: true,
@@ -496,7 +496,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_dark_theme.png'),
       );
     });
@@ -509,11 +509,11 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: basicColumns,
                 rows: basicRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showLoading: true,
                 ),
               ),
@@ -523,7 +523,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_loading.png'),
       );
     });
@@ -536,11 +536,11 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: basicColumns,
                 rows: const [],
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showSkeleton: true,
                   skeletonRowCount: 5,
                 ),
@@ -551,7 +551,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_skeleton.png'),
       );
     });
@@ -564,11 +564,11 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: basicColumns,
                 rows: const [],
-                emptyState: const AppDataTableEmptyState(
+                emptyState: const DSDataTableEmptyState(
                   message: 'No data available',
                   icon: Icons.table_chart_outlined,
                   show: true,
@@ -580,7 +580,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_empty.png'),
       );
     });
@@ -595,11 +595,11 @@ void main() {
               body: SizedBox(
                 width: 800,
                 height: 400,
-                child: AppDataTable(
-                  variant: AppDataTableVariant.resizable,
+                child: DSDataTable(
+                  variant: DSDataTableVariant.resizable,
                   columns: basicColumns,
                   rows: basicRows,
-                  config: const AppDataTableConfig(
+                  config: const DSDataTableConfig(
                     showHeaders: true,
                     showRowDividers: true,
                   ),
@@ -611,7 +611,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_rtl.png'),
       );
     });
@@ -624,15 +624,15 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: basicColumns,
                 rows: basicRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
                   alternateRowColors: true,
-                  theme: AppDataTableTheme(
+                  theme: DSDataTableTheme(
                     headerBackgroundColor: Color(0xFF2196F3),
                     headerTextColor: Colors.white,
                     selectedRowBackgroundColor: Color(0xFFE3F2FD),
@@ -646,48 +646,48 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_custom_theme.png'),
       );
     });
 
     testWidgets('table with different cell types', (tester) async {
       final mixedColumns = [
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'text',
           label: 'Text',
           field: 'text',
           width: 150,
-          cellType: AppDataTableCellType.text,
+          cellType: DSDataTableCellType.text,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'number',
           label: 'Number',
           field: 'number',
           width: 100,
-          cellType: AppDataTableCellType.number,
-          alignment: AppDataTableColumnAlignment.right,
+          cellType: DSDataTableCellType.number,
+          alignment: DSDataTableColumnAlignment.right,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'boolean',
           label: 'Boolean',
           field: 'boolean',
           width: 100,
-          cellType: AppDataTableCellType.boolean,
-          alignment: AppDataTableColumnAlignment.center,
+          cellType: DSDataTableCellType.boolean,
+          alignment: DSDataTableColumnAlignment.center,
         ),
-        const AppDataTableColumn(
+        const DSDataTableColumn(
           id: 'icon',
           label: 'Icon',
           field: 'icon',
           width: 80,
-          cellType: AppDataTableCellType.icon,
-          alignment: AppDataTableColumnAlignment.center,
+          cellType: DSDataTableCellType.icon,
+          alignment: DSDataTableColumnAlignment.center,
         ),
       ];
 
       final mixedRows = [
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: '1',
           data: {
             'text': 'Sample Text',
@@ -696,7 +696,7 @@ void main() {
             'icon': Icons.star,
           },
         ),
-        const AppDataTableRow(
+        const DSDataTableRow(
           id: '2',
           data: {
             'text': 'Another Text',
@@ -714,11 +714,11 @@ void main() {
             body: SizedBox(
               width: 800,
               height: 400,
-              child: AppDataTable(
-                variant: AppDataTableVariant.resizable,
+              child: DSDataTable(
+                variant: DSDataTableVariant.resizable,
                 columns: mixedColumns,
                 rows: mixedRows,
-                config: const AppDataTableConfig(
+                config: const DSDataTableConfig(
                   showHeaders: true,
                   showRowDividers: true,
                 ),
@@ -729,7 +729,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppDataTable),
+        find.byType(DSDataTable),
         matchesGoldenFile('golden/app_data_table_mixed_cell_types.png'),
       );
     });

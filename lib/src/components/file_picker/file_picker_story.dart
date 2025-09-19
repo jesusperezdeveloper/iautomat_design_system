@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/src/components/file_picker/app_file_picker.dart';
 import 'package:iautomat_design_system/src/components/file_picker/file_picker_config.dart';
 
-/// Storybook examples for AppFilePicker component
+/// Storybook examples for DSFilePicker component
 ///
 /// This file contains various configurations and usage examples
-/// of the AppFilePicker component for demonstration and testing purposes.
-class AppFilePickerStory {
+/// of the DSFilePicker component for demonstration and testing purposes.
+class DSFilePickerStory {
   static Widget get title => const Text(
-        'AppFilePicker',
+        'DSFilePicker',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       );
 
@@ -237,7 +237,7 @@ class _DragDropFilePickerExample extends StatefulWidget {
 
 class _DragDropFilePickerExampleState
     extends State<_DragDropFilePickerExample> {
-  List<AppFileData>? selectedFiles;
+  List<DSFileData>? selectedFiles;
 
   @override
   Widget build(BuildContext context) {
@@ -246,8 +246,8 @@ class _DragDropFilePickerExampleState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppFilePicker(
-            variant: AppFilePickerVariant.dragAndDrop,
+          DSFilePicker(
+            variant: DSFilePickerVariant.dragAndDrop,
             label: 'Seleccionar archivos',
             hint: 'Arrastra archivos aquí o haz clic para seleccionar',
             onFilesSelected: (files) {
@@ -276,7 +276,7 @@ class _MultiFilePickerExample extends StatefulWidget {
 }
 
 class _MultiFilePickerExampleState extends State<_MultiFilePickerExample> {
-  List<AppFileData>? selectedFiles;
+  List<DSFileData>? selectedFiles;
 
   @override
   Widget build(BuildContext context) {
@@ -285,8 +285,8 @@ class _MultiFilePickerExampleState extends State<_MultiFilePickerExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppFilePicker(
-            variant: AppFilePickerVariant.multi,
+          DSFilePicker(
+            variant: DSFilePickerVariant.multi,
             label: 'Seleccionar archivos',
             hint: 'Elegir archivos',
             onFilesSelected: (files) {
@@ -316,24 +316,24 @@ class _StateExamplesWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          _buildStateExample('Default', AppFilePickerState.defaultState),
+          _buildStateExample('Default', DSFilePickerState.defaultState),
           const SizedBox(height: 16),
-          _buildStateExample('Hover', AppFilePickerState.hover),
+          _buildStateExample('Hover', DSFilePickerState.hover),
           const SizedBox(height: 16),
-          _buildStateExample('Focus', AppFilePickerState.focus),
+          _buildStateExample('Focus', DSFilePickerState.focus),
           const SizedBox(height: 16),
-          _buildStateExample('Selected', AppFilePickerState.selected),
+          _buildStateExample('Selected', DSFilePickerState.selected),
           const SizedBox(height: 16),
-          _buildStateExample('Disabled', AppFilePickerState.disabled,
+          _buildStateExample('Disabled', DSFilePickerState.disabled,
               enabled: false),
           const SizedBox(height: 16),
-          _buildStateExample('Loading', AppFilePickerState.loading),
+          _buildStateExample('Loading', DSFilePickerState.loading),
         ],
       ),
     );
   }
 
-  Widget _buildStateExample(String label, AppFilePickerState state,
+  Widget _buildStateExample(String label, DSFilePickerState state,
       {bool enabled = true}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -343,8 +343,8 @@ class _StateExamplesWidget extends StatelessWidget {
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
-        AppFilePicker(
-          variant: AppFilePickerVariant.dragAndDrop,
+        DSFilePicker(
+          variant: DSFilePickerVariant.dragAndDrop,
           state: state,
           enabled: enabled,
           hint: 'Estado: $label',
@@ -360,8 +360,8 @@ class _DisabledExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         enabled: false,
         label: 'File Picker Deshabilitado',
         hint: 'Este file picker está deshabilitado',
@@ -375,9 +375,9 @@ class _LoadingExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.multi,
-        state: AppFilePickerState.loading,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.multi,
+        state: DSFilePickerState.loading,
         label: 'Cargando archivos',
         hint: 'Procesando...',
       ),
@@ -390,9 +390,9 @@ class _SkeletonExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
-        state: AppFilePickerState.skeleton,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
+        state: DSFilePickerState.skeleton,
         label: 'Skeleton Loading',
       ),
     );
@@ -403,13 +403,13 @@ class _WithSelectedFilesExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mockFiles = [
-      AppFileData(
+      DSFileData(
         name: 'documento.pdf',
         size: 1024 * 1024,
         type: 'application/pdf',
         lastModified: DateTime.now(),
       ),
-      AppFileData(
+      DSFileData(
         name: 'imagen.jpg',
         size: 512 * 1024,
         type: 'image/jpeg',
@@ -419,8 +419,8 @@ class _WithSelectedFilesExample extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Con archivos pre-seleccionados',
         value: mockFiles,
         preview: true,
@@ -433,12 +433,12 @@ class _WithSelectedFilesExample extends StatelessWidget {
 class _CustomConfigExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final customConfig = AppFilePickerConfig(
+    final customConfig = DSFilePickerConfig(
       borderRadius: const BorderRadius.all(Radius.circular(16.0)),
       borderWidth: 3.0,
       minSize: const Size(300, 150),
       animationDuration: const Duration(milliseconds: 300),
-      colors: AppFilePickerColors.fromTheme(Theme.of(context)).copyWith(
+      colors: DSFilePickerColors.fromTheme(Theme.of(context)).copyWith(
         borderColor: Colors.purple,
         hoverBorderColor: Colors.purpleAccent,
         focusBorderColor: Colors.deepPurple,
@@ -447,8 +447,8 @@ class _CustomConfigExample extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Configuración personalizada',
         config: customConfig,
         onFilesSelected: (files) {},
@@ -464,8 +464,8 @@ class _FileTypeRestrictionsExample extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          AppFilePicker(
-            variant: AppFilePickerVariant.dragAndDrop,
+          DSFilePicker(
+            variant: DSFilePickerVariant.dragAndDrop,
             label: 'Solo imágenes',
             accept: const ['jpg', 'jpeg', 'png', 'gif'],
             hint: 'Acepta solo archivos de imagen',
@@ -473,8 +473,8 @@ class _FileTypeRestrictionsExample extends StatelessWidget {
             onFilesSelected: (files) {},
           ),
           const SizedBox(height: 24),
-          AppFilePicker(
-            variant: AppFilePickerVariant.multi,
+          DSFilePicker(
+            variant: DSFilePickerVariant.multi,
             label: 'Solo documentos',
             accept: const ['pdf', 'doc', 'docx', 'txt'],
             hint: 'Seleccionar documentos',
@@ -494,10 +494,10 @@ class _SizeLimitationsExample extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          AppFilePicker(
-            variant: AppFilePickerVariant.dragAndDrop,
+          DSFilePicker(
+            variant: DSFilePickerVariant.dragAndDrop,
             label: 'Tamaño máximo: 5MB',
-            maxSize: const AppFileSize(5, AppFileSizeUnit.mb),
+            maxSize: const DSFileSize(5, DSFileSizeUnit.mb),
             helperText: 'Los archivos no pueden exceder 5MB',
             onFilesSelected: (files) {},
             onValidationError: (error, file) {
@@ -507,10 +507,10 @@ class _SizeLimitationsExample extends StatelessWidget {
             },
           ),
           const SizedBox(height: 24),
-          AppFilePicker(
-            variant: AppFilePickerVariant.multi,
+          DSFilePicker(
+            variant: DSFilePickerVariant.multi,
             label: 'Archivos pequeños (500KB)',
-            maxSize: const AppFileSize(500, AppFileSizeUnit.kb),
+            maxSize: const DSFileSize(500, DSFileSizeUnit.kb),
             helperText: 'Solo archivos menores a 500KB',
             onFilesSelected: (files) {},
           ),
@@ -527,16 +527,16 @@ class _CustomIconsExample extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          AppFilePicker(
-            variant: AppFilePickerVariant.multi,
+          DSFilePicker(
+            variant: DSFilePickerVariant.multi,
             label: 'Con icono personalizado',
             prefixIcon: const Icon(Icons.cloud_upload, color: Colors.blue),
             hint: 'Subir a la nube',
             onFilesSelected: (files) {},
           ),
           const SizedBox(height: 24),
-          AppFilePicker(
-            variant: AppFilePickerVariant.multi,
+          DSFilePicker(
+            variant: DSFilePickerVariant.multi,
             label: 'Con iconos prefix y suffix',
             prefixIcon: const Icon(Icons.attach_file, color: Colors.green),
             suffixIcon: const Icon(Icons.arrow_forward, color: Colors.orange),
@@ -552,7 +552,7 @@ class _CustomIconsExample extends StatelessWidget {
 class _CustomColorsExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final customColors = AppFilePickerColors(
+    final customColors = DSFilePickerColors(
       backgroundColor: Colors.lightBlue.shade50,
       borderColor: Colors.blue,
       hoverBackgroundColor: Colors.blue.shade100,
@@ -563,14 +563,14 @@ class _CustomColorsExample extends StatelessWidget {
       iconColor: Colors.blue.shade600,
     );
 
-    final customConfig = AppFilePickerConfig(
+    final customConfig = DSFilePickerConfig(
       colors: customColors,
     );
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Esquema de colores personalizado',
         config: customConfig,
         onFilesSelected: (files) {},
@@ -584,8 +584,8 @@ class _ValidationErrorExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Con mensaje de error',
         errorText: 'El archivo seleccionado es demasiado grande',
         onFilesSelected: null,
@@ -607,8 +607,8 @@ class _CustomValidationExampleState extends State<_CustomValidationExample> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Validación personalizada',
         helperText:
             'Solo se permiten archivos con nombres que contengan "test"',
@@ -639,8 +639,8 @@ class _FileLimitsExample extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          AppFilePicker(
-            variant: AppFilePickerVariant.dragAndDrop,
+          DSFilePicker(
+            variant: DSFilePickerVariant.dragAndDrop,
             label: 'Máximo 3 archivos',
             allowMultiple: true,
             maxFiles: 3,
@@ -648,8 +648,8 @@ class _FileLimitsExample extends StatelessWidget {
             onFilesSelected: (files) {},
           ),
           const SizedBox(height: 24),
-          AppFilePicker(
-            variant: AppFilePickerVariant.multi,
+          DSFilePicker(
+            variant: DSFilePickerVariant.multi,
             label: 'Solo un archivo',
             allowMultiple: false,
             helperText: 'Solo se permite seleccionar un archivo',
@@ -665,7 +665,7 @@ class _PreviewEnabledExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mockFiles = [
-      AppFileData(
+      DSFileData(
         name: 'presentacion.pptx',
         size: 2 * 1024 * 1024,
         type:
@@ -676,8 +676,8 @@ class _PreviewEnabledExample extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Con preview habilitado',
         preview: true,
         value: mockFiles,
@@ -692,8 +692,8 @@ class _PreviewDisabledExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Sin preview',
         preview: false,
         helperText: 'El preview está deshabilitado',
@@ -706,15 +706,15 @@ class _PreviewDisabledExample extends StatelessWidget {
 class _ThumbnailPreviewExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final customConfig = AppFilePickerConfig(
-      previewMode: AppFilePreviewMode.thumbnail,
+    final customConfig = DSFilePickerConfig(
+      previewMode: DSFilePreviewMode.thumbnail,
       thumbnailSize: const Size(100, 100),
     );
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Preview con thumbnails',
         config: customConfig,
         preview: true,
@@ -731,7 +731,7 @@ class _FormIntegrationExample extends StatefulWidget {
 
 class _FormIntegrationExampleState extends State<_FormIntegrationExample> {
   final _formKey = GlobalKey<FormState>();
-  List<AppFileData>? selectedFiles;
+  List<DSFileData>? selectedFiles;
 
   @override
   Widget build(BuildContext context) {
@@ -754,8 +754,8 @@ class _FormIntegrationExampleState extends State<_FormIntegrationExample> {
               },
             ),
             const SizedBox(height: 16),
-            AppFilePicker(
-              variant: AppFilePickerVariant.dragAndDrop,
+            DSFilePicker(
+              variant: DSFilePickerVariant.dragAndDrop,
               label: 'Archivos del proyecto',
               accept: const ['pdf', 'doc', 'docx', 'jpg', 'png'],
               onFilesSelected: (files) {
@@ -793,25 +793,25 @@ class _MultiplePickersExample extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          AppFilePicker(
-            variant: AppFilePickerVariant.dragAndDrop,
+          DSFilePicker(
+            variant: DSFilePickerVariant.dragAndDrop,
             label: 'Documentos',
             accept: const ['pdf', 'doc', 'docx'],
             onFilesSelected: (files) {},
           ),
           const SizedBox(height: 24),
-          AppFilePicker(
-            variant: AppFilePickerVariant.multi,
+          DSFilePicker(
+            variant: DSFilePickerVariant.multi,
             label: 'Imágenes',
             accept: const ['jpg', 'jpeg', 'png', 'gif'],
             onFilesSelected: (files) {},
           ),
           const SizedBox(height: 24),
-          AppFilePicker(
-            variant: AppFilePickerVariant.dragAndDrop,
+          DSFilePicker(
+            variant: DSFilePickerVariant.dragAndDrop,
             label: 'Videos',
             accept: const ['mp4', 'avi', 'mov'],
-            maxSize: const AppFileSize(100, AppFileSizeUnit.mb),
+            maxSize: const DSFileSize(100, DSFileSizeUnit.mb),
             onFilesSelected: (files) {},
           ),
         ],
@@ -827,7 +827,7 @@ class _FormValidationExample extends StatefulWidget {
 
 class _FormValidationExampleState extends State<_FormValidationExample> {
   final _formKey = GlobalKey<FormState>();
-  List<AppFileData>? selectedFiles;
+  List<DSFileData>? selectedFiles;
   String? fileError;
 
   @override
@@ -838,8 +838,8 @@ class _FormValidationExampleState extends State<_FormValidationExample> {
         key: _formKey,
         child: Column(
           children: [
-            AppFilePicker(
-              variant: AppFilePickerVariant.dragAndDrop,
+            DSFilePicker(
+              variant: DSFilePickerVariant.dragAndDrop,
               label: 'Archivo requerido *',
               errorText: fileError,
               onFilesSelected: (files) {
@@ -881,8 +881,8 @@ class _AccessibilityExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Selector de archivos accesible',
         semanticLabel:
             'Seleccionar archivos para subir. Arrastra archivos aquí o usa el botón para explorar',
@@ -910,8 +910,8 @@ class _KeyboardNavigationExample extends StatelessWidget {
           Text('• Enter/Space: Abrir selector de archivos'),
           Text('• Escape: Cancelar selección'),
           SizedBox(height: 16),
-          AppFilePicker(
-            variant: AppFilePickerVariant.multi,
+          DSFilePicker(
+            variant: DSFilePickerVariant.multi,
             label: 'Prueba la navegación por teclado',
             hint: 'Usa Tab y Enter',
             onFilesSelected: null,
@@ -925,7 +925,7 @@ class _KeyboardNavigationExample extends StatelessWidget {
 class _HighContrastExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final highContrastColors = AppFilePickerColors(
+    final highContrastColors = DSFilePickerColors(
       backgroundColor: Colors.black,
       borderColor: Colors.white,
       hoverBackgroundColor: Colors.grey.shade900,
@@ -937,7 +937,7 @@ class _HighContrastExample extends StatelessWidget {
       iconColor: Colors.white,
     );
 
-    final highContrastConfig = AppFilePickerConfig(
+    final highContrastConfig = DSFilePickerConfig(
       colors: highContrastColors,
       borderWidth: 3.0,
       focusBorderWidth: 4.0,
@@ -945,8 +945,8 @@ class _HighContrastExample extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Alto contraste',
         config: highContrastConfig,
         onFilesSelected: (files) {},
@@ -962,8 +962,8 @@ class _RTLExample extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: const Padding(
         padding: EdgeInsets.all(16.0),
-        child: AppFilePicker(
-          variant: AppFilePickerVariant.dragAndDrop,
+        child: DSFilePicker(
+          variant: DSFilePickerVariant.dragAndDrop,
           label: 'منتخب کریں فائلز',
           hint: 'یہاں فائلز گھسیٹیں یا منتخب کرنے کے لیے کلک کریں',
           helperText: 'صرف PDF اور تصاویر کی اجازت ہے',
@@ -981,8 +981,8 @@ class _RTLWithIconsExample extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: AppFilePicker(
-          variant: AppFilePickerVariant.multi,
+        child: DSFilePicker(
+          variant: DSFilePickerVariant.multi,
           label: 'منتخب کریں فائلز',
           prefixIcon: const Icon(Icons.upload_file),
           suffixIcon: const Icon(Icons.folder_open),
@@ -997,7 +997,7 @@ class _RTLWithIconsExample extends StatelessWidget {
 class _PlatformAdaptiveExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final adaptiveConfig = AppFilePickerConfig(
+    final adaptiveConfig = DSFilePickerConfig(
       adaptToPlatform: true,
       useNativeFilePicker: true,
     );
@@ -1012,8 +1012,8 @@ class _PlatformAdaptiveExample extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
-          AppFilePicker(
-            variant: AppFilePickerVariant.dragAndDrop,
+          DSFilePicker(
+            variant: DSFilePickerVariant.dragAndDrop,
             label: 'Platform Adaptive',
             config: adaptiveConfig,
             onFilesSelected: (files) {},
@@ -1027,7 +1027,7 @@ class _PlatformAdaptiveExample extends StatelessWidget {
 class _WebOptimizedExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final webConfig = AppFilePickerConfig(
+    final webConfig = DSFilePickerConfig(
       enableDragAndDrop: true,
       maxSize: const Size(400, 250),
       borderRadius: const BorderRadius.all(Radius.circular(12.0)),
@@ -1035,8 +1035,8 @@ class _WebOptimizedExample extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.dragAndDrop,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.dragAndDrop,
         label: 'Optimizado para Web',
         config: webConfig,
         helperText: 'Soporte completo para drag & drop en navegadores',
@@ -1049,7 +1049,7 @@ class _WebOptimizedExample extends StatelessWidget {
 class _MobileOptimizedExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final mobileConfig = AppFilePickerConfig(
+    final mobileConfig = DSFilePickerConfig(
       minSize: const Size(double.infinity, 100),
       contentPadding: const EdgeInsets.all(20.0),
       enableHapticFeedback: true,
@@ -1057,8 +1057,8 @@ class _MobileOptimizedExample extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: AppFilePicker(
-        variant: AppFilePickerVariant.multi,
+      child: DSFilePicker(
+        variant: DSFilePickerVariant.multi,
         label: 'Optimizado para Móvil',
         config: mobileConfig,
         hint: 'Tocar para seleccionar archivos',

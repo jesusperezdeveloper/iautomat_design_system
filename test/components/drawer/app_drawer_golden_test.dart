@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/drawer/app_drawer.dart';
 
 void main() {
-  group('AppDrawer Golden Tests', () {
+  group('DSDrawer Golden Tests', () {
     testWidgets('modal drawer default state', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -12,7 +12,7 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               content: Column(
                 children: [
                   ListTile(
@@ -52,7 +52,7 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: Column(
                 children: [
                   const DrawerHeader(
@@ -104,7 +104,7 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               width: 400.0,
               content: Column(
                 children: [
@@ -142,7 +142,7 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               side: DrawerSide.right,
               content: Column(
                 children: [
@@ -178,8 +178,8 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppDrawer.permanent(
-              state: AppDrawerState.loading,
+            body: DSDrawer.permanent(
+              state: DSDrawerState.loading,
               content: Column(
                 children: [
                   ListTile(
@@ -209,8 +209,8 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppDrawer.permanent(
-              state: AppDrawerState.skeleton,
+            body: DSDrawer.permanent(
+              state: DSDrawerState.skeleton,
               content: Column(
                 children: [
                   ListTile(
@@ -240,7 +240,7 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               backgroundColor: Colors.grey[100],
               surfaceColor: Colors.white,
               shadowColor: Colors.black26,
@@ -281,7 +281,7 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               borderRadius: 16.0,
               elevation: 12.0,
               content: Column(
@@ -320,7 +320,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppDrawer.permanent(
+              body: DSDrawer.permanent(
                 side: DrawerSide.right,
                 content: Column(
                   children: [
@@ -359,7 +359,7 @@ void main() {
         MaterialApp(
           theme: ThemeData.dark(useMaterial3: true),
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: Column(
                 children: [
                   const DrawerHeader(

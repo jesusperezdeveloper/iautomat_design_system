@@ -4,31 +4,31 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_card_config.freezed.dart';
 
 @freezed
-class AppCardConfig with _$AppCardConfig {
-  const factory AppCardConfig({
-    @Default(AppCardVariant.elevated) AppCardVariant variant,
-    @Default(AppCardState.defaultState) AppCardState state,
+class DSCardConfig with _$DSCardConfig {
+  const factory DSCardConfig({
+    @Default(DSCardVariant.elevated) DSCardVariant variant,
+    @Default(DSCardState.defaultState) DSCardState state,
     @Default(true) bool isAdaptive,
     @Default(false) bool isRtl,
     @Default(true) bool enableA11y,
     @Default(true) bool enableKeyboardSupport,
     @Default(true) bool isInteractive,
-    AppCardColors? colors,
-    AppCardSpacing? spacing,
-    AppCardElevation? elevation,
-    AppCardBehavior? behavior,
-    AppCardAnimation? animation,
+    DSCardColors? colors,
+    DSCardSpacing? spacing,
+    DSCardElevation? elevation,
+    DSCardBehavior? behavior,
+    DSCardAnimation? animation,
     VoidCallback? onTap,
     VoidCallback? onDoubleTap,
     VoidCallback? onLongPress,
     ValueChanged<bool>? onHover,
     ValueChanged<bool>? onFocusChange,
-  }) = _AppCardConfig;
+  }) = _DSCardConfig;
 }
 
 @freezed
-class AppCardColors with _$AppCardColors {
-  const factory AppCardColors({
+class DSCardColors with _$DSCardColors {
+  const factory DSCardColors({
     Color? backgroundColor,
     Color? surfaceColor,
     Color? shadowColor,
@@ -47,8 +47,8 @@ class AppCardColors with _$AppCardColors {
 }
 
 @freezed
-class AppCardSpacing with _$AppCardSpacing {
-  const factory AppCardSpacing({
+class DSCardSpacing with _$DSCardSpacing {
+  const factory DSCardSpacing({
     @Default(16.0) double padding,
     @Default(12.0) double headerPadding,
     @Default(16.0) double bodyPadding,
@@ -62,8 +62,8 @@ class AppCardSpacing with _$AppCardSpacing {
 }
 
 @freezed
-class AppCardElevation with _$AppCardElevation {
-  const factory AppCardElevation({
+class DSCardElevation with _$DSCardElevation {
+  const factory DSCardElevation({
     @Default(1.0) double defaultElevation,
     @Default(4.0) double hoveredElevation,
     @Default(8.0) double pressedElevation,
@@ -76,14 +76,14 @@ class AppCardElevation with _$AppCardElevation {
 }
 
 @freezed
-class AppCardBehavior with _$AppCardBehavior {
-  const factory AppCardBehavior({
+class DSCardBehavior with _$DSCardBehavior {
+  const factory DSCardBehavior({
     @Default(true) bool enableHapticFeedback,
     @Default(true) bool enableRipple,
     @Default(true) bool enableHover,
     @Default(true) bool enableFocus,
     @Default(true) bool maintainState,
-    @Default(AppCardClipBehavior.antiAlias) AppCardClipBehavior clipBehavior,
+    @Default(DSCardClipBehavior.antiAlias) DSCardClipBehavior clipBehavior,
     @Default(300) int animationDuration,
     @Default(true) bool showLoadingIndicator,
     @Default(true) bool showSkeletonAnimation,
@@ -91,9 +91,9 @@ class AppCardBehavior with _$AppCardBehavior {
 }
 
 @freezed
-class AppCardAnimation with _$AppCardAnimation {
-  const factory AppCardAnimation({
-    @Default(AppCardAnimationType.scale) AppCardAnimationType type,
+class DSCardAnimation with _$DSCardAnimation {
+  const factory DSCardAnimation({
+    @Default(DSCardAnimationType.scale) DSCardAnimationType type,
     @Default(300) int duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(true) bool enableStateTransitions,
@@ -102,13 +102,13 @@ class AppCardAnimation with _$AppCardAnimation {
   }) = _AppCardAnimation;
 }
 
-enum AppCardVariant {
+enum DSCardVariant {
   elevated,
   filled,
   outlined,
 }
 
-enum AppCardState {
+enum DSCardState {
   defaultState,
   hover,
   pressed,
@@ -119,14 +119,14 @@ enum AppCardState {
   skeleton,
 }
 
-enum AppCardClipBehavior {
+enum DSCardClipBehavior {
   none,
   antiAlias,
   antiAliasWithSaveLayer,
   hardEdge,
 }
 
-enum AppCardAnimationType {
+enum DSCardAnimationType {
   none,
   scale,
   fade,
@@ -134,218 +134,218 @@ enum AppCardAnimationType {
   elevation,
 }
 
-extension AppCardVariantExtension on AppCardVariant {
+extension DSCardVariantExtension on DSCardVariant {
   String get displayName {
     switch (this) {
-      case AppCardVariant.elevated:
+      case DSCardVariant.elevated:
         return 'Elevated';
-      case AppCardVariant.filled:
+      case DSCardVariant.filled:
         return 'Filled';
-      case AppCardVariant.outlined:
+      case DSCardVariant.outlined:
         return 'Outlined';
     }
   }
 
   String get description {
     switch (this) {
-      case AppCardVariant.elevated:
+      case DSCardVariant.elevated:
         return 'Tarjeta con elevación y sombra';
-      case AppCardVariant.filled:
+      case DSCardVariant.filled:
         return 'Tarjeta con fondo sólido';
-      case AppCardVariant.outlined:
+      case DSCardVariant.outlined:
         return 'Tarjeta con borde y fondo transparente';
     }
   }
 
   bool get hasElevation {
     switch (this) {
-      case AppCardVariant.elevated:
+      case DSCardVariant.elevated:
         return true;
-      case AppCardVariant.filled:
-      case AppCardVariant.outlined:
+      case DSCardVariant.filled:
+      case DSCardVariant.outlined:
         return false;
     }
   }
 
   bool get hasBorder {
     switch (this) {
-      case AppCardVariant.outlined:
+      case DSCardVariant.outlined:
         return true;
-      case AppCardVariant.elevated:
-      case AppCardVariant.filled:
+      case DSCardVariant.elevated:
+      case DSCardVariant.filled:
         return false;
     }
   }
 
   bool get hasBackground {
     switch (this) {
-      case AppCardVariant.elevated:
-      case AppCardVariant.filled:
+      case DSCardVariant.elevated:
+      case DSCardVariant.filled:
         return true;
-      case AppCardVariant.outlined:
+      case DSCardVariant.outlined:
         return false;
     }
   }
 }
 
-extension AppCardStateExtension on AppCardState {
+extension DSCardStateExtension on DSCardState {
   String get displayName {
     switch (this) {
-      case AppCardState.defaultState:
+      case DSCardState.defaultState:
         return 'Default';
-      case AppCardState.hover:
+      case DSCardState.hover:
         return 'Hover';
-      case AppCardState.pressed:
+      case DSCardState.pressed:
         return 'Pressed';
-      case AppCardState.focus:
+      case DSCardState.focus:
         return 'Focus';
-      case AppCardState.selected:
+      case DSCardState.selected:
         return 'Selected';
-      case AppCardState.disabled:
+      case DSCardState.disabled:
         return 'Disabled';
-      case AppCardState.loading:
+      case DSCardState.loading:
         return 'Loading';
-      case AppCardState.skeleton:
+      case DSCardState.skeleton:
         return 'Skeleton';
     }
   }
 
   bool get isInteractive {
     switch (this) {
-      case AppCardState.defaultState:
-      case AppCardState.hover:
-      case AppCardState.pressed:
-      case AppCardState.focus:
-      case AppCardState.selected:
+      case DSCardState.defaultState:
+      case DSCardState.hover:
+      case DSCardState.pressed:
+      case DSCardState.focus:
+      case DSCardState.selected:
         return true;
-      case AppCardState.disabled:
-      case AppCardState.loading:
-      case AppCardState.skeleton:
+      case DSCardState.disabled:
+      case DSCardState.loading:
+      case DSCardState.skeleton:
         return false;
     }
   }
 
   double get opacity {
     switch (this) {
-      case AppCardState.defaultState:
-      case AppCardState.hover:
-      case AppCardState.pressed:
-      case AppCardState.focus:
-      case AppCardState.selected:
+      case DSCardState.defaultState:
+      case DSCardState.hover:
+      case DSCardState.pressed:
+      case DSCardState.focus:
+      case DSCardState.selected:
         return 1.0;
-      case AppCardState.disabled:
+      case DSCardState.disabled:
         return 0.6;
-      case AppCardState.loading:
+      case DSCardState.loading:
         return 0.8;
-      case AppCardState.skeleton:
+      case DSCardState.skeleton:
         return 0.3;
     }
   }
 
   bool get showsLoader {
-    return this == AppCardState.loading;
+    return this == DSCardState.loading;
   }
 
   bool get showsSkeleton {
-    return this == AppCardState.skeleton;
+    return this == DSCardState.skeleton;
   }
 
   bool get canInteract {
     switch (this) {
-      case AppCardState.defaultState:
-      case AppCardState.hover:
-      case AppCardState.pressed:
-      case AppCardState.focus:
-      case AppCardState.selected:
+      case DSCardState.defaultState:
+      case DSCardState.hover:
+      case DSCardState.pressed:
+      case DSCardState.focus:
+      case DSCardState.selected:
         return true;
-      case AppCardState.disabled:
-      case AppCardState.loading:
-      case AppCardState.skeleton:
+      case DSCardState.disabled:
+      case DSCardState.loading:
+      case DSCardState.skeleton:
         return false;
     }
   }
 
   double get elevationMultiplier {
     switch (this) {
-      case AppCardState.defaultState:
+      case DSCardState.defaultState:
         return 1.0;
-      case AppCardState.hover:
+      case DSCardState.hover:
         return 2.0;
-      case AppCardState.pressed:
+      case DSCardState.pressed:
         return 4.0;
-      case AppCardState.focus:
+      case DSCardState.focus:
         return 1.5;
-      case AppCardState.selected:
+      case DSCardState.selected:
         return 3.0;
-      case AppCardState.disabled:
+      case DSCardState.disabled:
         return 0.0;
-      case AppCardState.loading:
-      case AppCardState.skeleton:
+      case DSCardState.loading:
+      case DSCardState.skeleton:
         return 1.0;
     }
   }
 }
 
-extension AppCardClipBehaviorExtension on AppCardClipBehavior {
+extension DSCardClipBehaviorExtension on DSCardClipBehavior {
   String get displayName {
     switch (this) {
-      case AppCardClipBehavior.none:
+      case DSCardClipBehavior.none:
         return 'None';
-      case AppCardClipBehavior.antiAlias:
+      case DSCardClipBehavior.antiAlias:
         return 'Anti Alias';
-      case AppCardClipBehavior.antiAliasWithSaveLayer:
+      case DSCardClipBehavior.antiAliasWithSaveLayer:
         return 'Anti Alias with Save Layer';
-      case AppCardClipBehavior.hardEdge:
+      case DSCardClipBehavior.hardEdge:
         return 'Hard Edge';
     }
   }
 
   Clip get flutterClip {
     switch (this) {
-      case AppCardClipBehavior.none:
+      case DSCardClipBehavior.none:
         return Clip.none;
-      case AppCardClipBehavior.antiAlias:
+      case DSCardClipBehavior.antiAlias:
         return Clip.antiAlias;
-      case AppCardClipBehavior.antiAliasWithSaveLayer:
+      case DSCardClipBehavior.antiAliasWithSaveLayer:
         return Clip.antiAliasWithSaveLayer;
-      case AppCardClipBehavior.hardEdge:
+      case DSCardClipBehavior.hardEdge:
         return Clip.hardEdge;
     }
   }
 }
 
-extension AppCardAnimationTypeExtension on AppCardAnimationType {
+extension DSCardAnimationTypeExtension on DSCardAnimationType {
   String get displayName {
     switch (this) {
-      case AppCardAnimationType.none:
+      case DSCardAnimationType.none:
         return 'None';
-      case AppCardAnimationType.scale:
+      case DSCardAnimationType.scale:
         return 'Scale';
-      case AppCardAnimationType.fade:
+      case DSCardAnimationType.fade:
         return 'Fade';
-      case AppCardAnimationType.slide:
+      case DSCardAnimationType.slide:
         return 'Slide';
-      case AppCardAnimationType.elevation:
+      case DSCardAnimationType.elevation:
         return 'Elevation';
     }
   }
 
   Curve get defaultCurve {
     switch (this) {
-      case AppCardAnimationType.none:
+      case DSCardAnimationType.none:
         return Curves.linear;
-      case AppCardAnimationType.scale:
+      case DSCardAnimationType.scale:
         return Curves.elasticOut;
-      case AppCardAnimationType.fade:
+      case DSCardAnimationType.fade:
         return Curves.easeInOut;
-      case AppCardAnimationType.slide:
+      case DSCardAnimationType.slide:
         return Curves.easeOutCubic;
-      case AppCardAnimationType.elevation:
+      case DSCardAnimationType.elevation:
         return Curves.easeInOutQuart;
     }
   }
 
   bool get hasAnimation {
-    return this != AppCardAnimationType.none;
+    return this != DSCardAnimationType.none;
   }
 }

@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/tour/app_tour.dart';
 import 'package:iautomat_design_system/src/components/tour/app_tour_config.dart';
 
 void main() {
-  group('AppTour Golden Tests', () {
+  group('DSTour Golden Tests', () {
     late GlobalKey targetKey1;
     late GlobalKey targetKey2;
     late GlobalKey targetKey3;
@@ -16,8 +16,8 @@ void main() {
     });
 
     Widget buildTestWidget({
-      required AppTourConfig config,
-      required List<AppTourStep> steps,
+      required DSTourConfig config,
+      required List<DSTourStep> steps,
       ThemeData? theme,
       TextDirection? textDirection,
     }) {
@@ -58,7 +58,7 @@ void main() {
                       child: Text('Target Content'),
                     ),
                   ),
-                  AppTour(
+                  DSTour(
                     config: config,
                     steps: steps,
                     onFinish: () {},
@@ -74,18 +74,18 @@ void main() {
 
     testWidgets('basic tour default state', (tester) async {
       final steps = [
-        AppTourStep(
+        DSTourStep(
           id: 'step_1',
           targetKey: targetKey1,
           title: 'Menú Principal',
           description: 'Aquí puedes acceder al menú de navegación principal.',
-          position: AppTourPosition.bottom,
+          position: DSTourPosition.bottom,
         ),
       ];
 
       await tester.pumpWidget(buildTestWidget(
-        config: const AppTourConfig(
-          variant: AppTourVariant.coachmarks,
+        config: const DSTourConfig(
+          variant: DSTourVariant.coachmarks,
           enableA11y: false, // Disable for golden test consistency
         ),
         steps: steps,
@@ -100,25 +100,25 @@ void main() {
 
     testWidgets('tour with progress indicator', (tester) async {
       final steps = [
-        AppTourStep(
+        DSTourStep(
           id: 'step_1',
           targetKey: targetKey2,
           title: 'Búsqueda',
           description: 'Utiliza esta función para buscar contenido.',
-          position: AppTourPosition.bottom,
+          position: DSTourPosition.bottom,
         ),
-        AppTourStep(
+        DSTourStep(
           id: 'step_2',
           targetKey: targetKey3,
           title: 'Contenido',
           description: 'Este es el área principal de contenido.',
-          position: AppTourPosition.top,
+          position: DSTourPosition.top,
         ),
       ];
 
       await tester.pumpWidget(buildTestWidget(
-        config: const AppTourConfig(
-          variant: AppTourVariant.coachmarks,
+        config: const DSTourConfig(
+          variant: DSTourVariant.coachmarks,
           showProgress: true,
           enableA11y: false,
         ),
@@ -134,18 +134,18 @@ void main() {
 
     testWidgets('tour without skip button', (tester) async {
       final steps = [
-        AppTourStep(
+        DSTourStep(
           id: 'step_1',
           targetKey: targetKey3,
           title: 'Elemento Central',
           description: 'Este es un elemento importante en el centro.',
-          position: AppTourPosition.auto,
+          position: DSTourPosition.auto,
         ),
       ];
 
       await tester.pumpWidget(buildTestWidget(
-        config: const AppTourConfig(
-          variant: AppTourVariant.coachmarks,
+        config: const DSTourConfig(
+          variant: DSTourVariant.coachmarks,
           enableSkip: false,
           enableA11y: false,
         ),
@@ -161,20 +161,20 @@ void main() {
 
     testWidgets('tour with custom colors', (tester) async {
       final steps = [
-        AppTourStep(
+        DSTourStep(
           id: 'step_1',
           targetKey: targetKey1,
           title: 'Tour Personalizado',
           description: 'Este tour tiene colores personalizados para mejor integración visual.',
-          position: AppTourPosition.right,
+          position: DSTourPosition.right,
         ),
       ];
 
       await tester.pumpWidget(buildTestWidget(
-        config: const AppTourConfig(
-          variant: AppTourVariant.coachmarks,
+        config: const DSTourConfig(
+          variant: DSTourVariant.coachmarks,
           enableA11y: false,
-          colors: AppTourColors(
+          colors: DSTourColors(
             backgroundColor: Color(0xFF2E3440),
             overlayColor: Color(0xAA434C5E),
             textColor: Color(0xFFECEFF4),
@@ -198,22 +198,22 @@ void main() {
 
     testWidgets('tour with custom spacing', (tester) async {
       final steps = [
-        AppTourStep(
+        DSTourStep(
           id: 'step_1',
           targetKey: targetKey2,
           title: 'Espaciado Personalizado',
           description: 'Este tour demuestra el uso de espaciado personalizado.',
-          position: AppTourPosition.bottom,
+          position: DSTourPosition.bottom,
           targetRadius: 16.0,
           targetPadding: const EdgeInsets.all(20.0),
         ),
       ];
 
       await tester.pumpWidget(buildTestWidget(
-        config: const AppTourConfig(
-          variant: AppTourVariant.coachmarks,
+        config: const DSTourConfig(
+          variant: DSTourVariant.coachmarks,
           enableA11y: false,
-          spacing: AppTourSpacing(
+          spacing: DSTourSpacing(
             borderRadius: 16.0,
             elevation: 12.0,
             padding: EdgeInsets.all(20.0),
@@ -233,18 +233,18 @@ void main() {
 
     testWidgets('tour dark theme', (tester) async {
       final steps = [
-        AppTourStep(
+        DSTourStep(
           id: 'step_1',
           targetKey: targetKey3,
           title: 'Tema Oscuro',
           description: 'El tour se adapta automáticamente al tema oscuro de la aplicación.',
-          position: AppTourPosition.top,
+          position: DSTourPosition.top,
         ),
       ];
 
       await tester.pumpWidget(buildTestWidget(
-        config: const AppTourConfig(
-          variant: AppTourVariant.coachmarks,
+        config: const DSTourConfig(
+          variant: DSTourVariant.coachmarks,
           enableA11y: false,
         ),
         steps: steps,
@@ -260,21 +260,21 @@ void main() {
 
     testWidgets('tour RTL layout', (tester) async {
       final steps = [
-        AppTourStep(
+        DSTourStep(
           id: 'step_1',
           targetKey: targetKey1,
           title: 'القائمة الرئيسية',
           description: 'يمكنك الوصول إلى قائمة التنقل الرئيسية من هنا.',
-          position: AppTourPosition.bottom,
+          position: DSTourPosition.bottom,
         ),
       ];
 
       await tester.pumpWidget(buildTestWidget(
-        config: const AppTourConfig(
-          variant: AppTourVariant.coachmarks,
+        config: const DSTourConfig(
+          variant: DSTourVariant.coachmarks,
           isRtl: true,
           enableA11y: false,
-          controls: AppTourControls(
+          controls: DSTourControls(
             skipButtonText: 'تخطي',
             nextButtonText: 'التالي',
             finishButtonText: 'إنهاء',
@@ -293,19 +293,19 @@ void main() {
 
     testWidgets('tour loading state', (tester) async {
       final steps = [
-        AppTourStep(
+        DSTourStep(
           id: 'step_1',
           targetKey: targetKey2,
           title: 'Estado de Carga',
           description: 'El tour puede mostrar diferentes estados visuales.',
-          position: AppTourPosition.auto,
+          position: DSTourPosition.auto,
         ),
       ];
 
       await tester.pumpWidget(buildTestWidget(
-        config: const AppTourConfig(
-          variant: AppTourVariant.coachmarks,
-          state: AppTourState.loading,
+        config: const DSTourConfig(
+          variant: DSTourVariant.coachmarks,
+          state: DSTourState.loading,
           enableA11y: false,
         ),
         steps: steps,
@@ -320,32 +320,32 @@ void main() {
 
     testWidgets('tour multiple steps', (tester) async {
       final steps = [
-        AppTourStep(
+        DSTourStep(
           id: 'step_1',
           targetKey: targetKey1,
           title: 'Primer Paso',
           description: 'Este es el primer paso de un tour con múltiples pasos.',
-          position: AppTourPosition.bottom,
+          position: DSTourPosition.bottom,
         ),
-        AppTourStep(
+        DSTourStep(
           id: 'step_2',
           targetKey: targetKey2,
           title: 'Segundo Paso',
           description: 'Continuamos con el segundo paso del tour.',
-          position: AppTourPosition.bottom,
+          position: DSTourPosition.bottom,
         ),
-        AppTourStep(
+        DSTourStep(
           id: 'step_3',
           targetKey: targetKey3,
           title: 'Tercer Paso',
           description: 'Este es el paso final del tour de ejemplo.',
-          position: AppTourPosition.top,
+          position: DSTourPosition.top,
         ),
       ];
 
       await tester.pumpWidget(buildTestWidget(
-        config: const AppTourConfig(
-          variant: AppTourVariant.coachmarks,
+        config: const DSTourConfig(
+          variant: DSTourVariant.coachmarks,
           showProgress: true,
           enableA11y: false,
         ),
@@ -361,18 +361,18 @@ void main() {
 
     testWidgets('tour minimal configuration', (tester) async {
       final steps = [
-        AppTourStep(
+        DSTourStep(
           id: 'step_1',
           targetKey: targetKey3,
           title: 'Configuración Mínima',
           description: 'Tour con la configuración más básica posible.',
-          position: AppTourPosition.auto,
+          position: DSTourPosition.auto,
         ),
       ];
 
       await tester.pumpWidget(buildTestWidget(
-        config: const AppTourConfig(
-          variant: AppTourVariant.coachmarks,
+        config: const DSTourConfig(
+          variant: DSTourVariant.coachmarks,
           enableSkip: false,
           showProgress: false,
           enableA11y: false,

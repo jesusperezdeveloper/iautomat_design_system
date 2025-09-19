@@ -1,4 +1,4 @@
-// Exporta todos los archivos relacionados con AppSkeleton
+// Exporta todos los archivos relacionados con DSSkeleton
 
 export 'app_skeleton.dart';
 export 'app_skeleton_config.dart';

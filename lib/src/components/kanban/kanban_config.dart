@@ -4,19 +4,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'kanban_config.freezed.dart';
 
 @freezed
-class AppKanbanConfig with _$AppKanbanConfig {
-  const AppKanbanConfig._();
+class DSKanbanConfig with _$DSKanbanConfig {
+  const DSKanbanConfig._();
 
-  const factory AppKanbanConfig({
-    @Default(AppKanbanVariant.dragDrop) AppKanbanVariant variant,
-    @Default(AppKanbanState.defaultState) AppKanbanState state,
-    @Default(<AppKanbanColumn>[]) List<AppKanbanColumn> columns,
-    @Default(<AppKanbanCard>[]) List<AppKanbanCard> cards,
-    required AppKanbanMoveCallback? onMove,
-    @Default(AppKanbanDirection.horizontal) AppKanbanDirection direction,
-    @Default(AppKanbanSpacing.medium) AppKanbanSpacing spacing,
-    @Default(AppKanbanCardSize.medium) AppKanbanCardSize cardSize,
-    @Default(AppKanbanColumnStyle.elevated) AppKanbanColumnStyle columnStyle,
+  const factory DSKanbanConfig({
+    @Default(DSKanbanVariant.dragDrop) DSKanbanVariant variant,
+    @Default(DSKanbanState.defaultState) DSKanbanState state,
+    @Default(<DSKanbanColumn>[]) List<DSKanbanColumn> columns,
+    @Default(<DSKanbanCard>[]) List<DSKanbanCard> cards,
+    required DSKanbanMoveCallback? onMove,
+    @Default(DSKanbanDirection.horizontal) DSKanbanDirection direction,
+    @Default(DSKanbanSpacing.medium) DSKanbanSpacing spacing,
+    @Default(DSKanbanCardSize.medium) DSKanbanCardSize cardSize,
+    @Default(DSKanbanColumnStyle.elevated) DSKanbanColumnStyle columnStyle,
     Color? backgroundColor,
     Color? foregroundColor,
     Color? dragColor,
@@ -27,16 +27,16 @@ class AppKanbanConfig with _$AppKanbanConfig {
     double? itemSpacing,
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry? margin,
-    AppKanbanStyle? style,
-    AppKanbanInteraction? interaction,
-    AppKanbanAccessibility? accessibility,
-    AppKanbanAnimation? animation,
-    AppKanbanDropCallback? onDrop,
-    AppKanbanDragStartCallback? onDragStart,
-    AppKanbanDragEndCallback? onDragEnd,
-    AppKanbanColumnCallback? onColumnTap,
-    AppKanbanCardCallback? onCardTap,
-    AppKanbanCardCallback? onCardLongPress,
+    DSKanbanStyle? style,
+    DSKanbanInteraction? interaction,
+    DSKanbanAccessibility? accessibility,
+    DSKanbanAnimation? animation,
+    DSKanbanDropCallback? onDrop,
+    DSKanbanDragStartCallback? onDragStart,
+    DSKanbanDragEndCallback? onDragEnd,
+    DSKanbanColumnCallback? onColumnTap,
+    DSKanbanCardCallback? onCardTap,
+    DSKanbanCardCallback? onCardLongPress,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
     VoidCallback? onHover,
@@ -55,14 +55,14 @@ class AppKanbanConfig with _$AppKanbanConfig {
     String? selectedColumnId,
     ScrollController? scrollController,
     Map<String, dynamic>? metadata,
-  }) = _AppKanbanConfig;
+  }) = _DSKanbanConfig;
 
   bool get isInteractive =>
       onMove != null || onCardTap != null || onColumnTap != null;
   bool get isHoverable => onHover != null;
-  bool get isDisabled => !enabled || state == AppKanbanState.disabled;
-  bool get isLoading => loading || state == AppKanbanState.loading;
-  bool get isSkeleton => skeleton || state == AppKanbanState.skeleton;
+  bool get isDisabled => !enabled || state == DSKanbanState.disabled;
+  bool get isLoading => loading || state == DSKanbanState.loading;
+  bool get isSkeleton => skeleton || state == DSKanbanState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
   bool get canInteract =>
       isInteractive && !isDisabled && !isLoading && !isSkeleton;
@@ -70,13 +70,13 @@ class AppKanbanConfig with _$AppKanbanConfig {
   bool get hasCards => cards.isNotEmpty;
   bool get canDrag => draggable && canInteract;
   bool get canDrop => droppable && canInteract;
-  bool get isHorizontal => direction == AppKanbanDirection.horizontal;
-  bool get isVertical => direction == AppKanbanDirection.vertical;
+  bool get isHorizontal => direction == DSKanbanDirection.horizontal;
+  bool get isVertical => direction == DSKanbanDirection.vertical;
   bool get hasSelection => selectedCardId != null || selectedColumnId != null;
 
   double getEffectiveColumnWidth() {
     if (columnWidth != null) return columnWidth!;
-    return AppKanbanConstants.defaultColumnWidth;
+    return DSKanbanConstants.defaultColumnWidth;
   }
 
   double getEffectiveCardHeight() {
@@ -121,14 +121,14 @@ class AppKanbanConfig with _$AppKanbanConfig {
 
   EdgeInsetsGeometry getEffectiveMargin() {
     if (margin != null) return margin!;
-    return AppKanbanConstants.defaultMargin;
+    return DSKanbanConstants.defaultMargin;
   }
 
-  List<AppKanbanCard> getCardsForColumn(String columnId) {
+  List<DSKanbanCard> getCardsForColumn(String columnId) {
     return cards.where((card) => card.columnId == columnId).toList();
   }
 
-  AppKanbanColumn? getColumn(String columnId) {
+  DSKanbanColumn? getColumn(String columnId) {
     try {
       return columns.firstWhere((column) => column.id == columnId);
     } catch (e) {
@@ -136,7 +136,7 @@ class AppKanbanConfig with _$AppKanbanConfig {
     }
   }
 
-  AppKanbanCard? getCard(String cardId) {
+  DSKanbanCard? getCard(String cardId) {
     try {
       return cards.firstWhere((card) => card.id == cardId);
     } catch (e) {
@@ -154,10 +154,10 @@ class AppKanbanConfig with _$AppKanbanConfig {
 }
 
 @freezed
-class AppKanbanColumn with _$AppKanbanColumn {
-  const AppKanbanColumn._();
+class DSKanbanColumn with _$DSKanbanColumn {
+  const DSKanbanColumn._();
 
-  const factory AppKanbanColumn({
+  const factory DSKanbanColumn({
     required String id,
     required String title,
     String? subtitle,
@@ -171,8 +171,8 @@ class AppKanbanColumn with _$AppKanbanColumn {
     Widget? leading,
     Widget? trailing,
     String? semanticLabel,
-    AppKanbanColumnStatus? status,
-    AppKanbanColumnType? type,
+    DSKanbanColumnStatus? status,
+    DSKanbanColumnType? type,
     Map<String, dynamic>? metadata,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
@@ -233,15 +233,15 @@ class AppKanbanColumn with _$AppKanbanColumn {
 
   double getEffectiveWidth() {
     if (width != null) return width!;
-    return AppKanbanConstants.defaultColumnWidth;
+    return DSKanbanConstants.defaultColumnWidth;
   }
 }
 
 @freezed
-class AppKanbanCard with _$AppKanbanCard {
-  const AppKanbanCard._();
+class DSKanbanCard with _$DSKanbanCard {
+  const DSKanbanCard._();
 
-  const factory AppKanbanCard({
+  const factory DSKanbanCard({
     required String id,
     required String columnId,
     String? title,
@@ -259,9 +259,9 @@ class AppKanbanCard with _$AppKanbanCard {
     Color? backgroundColor,
     Color? foregroundColor,
     String? semanticLabel,
-    AppKanbanCardPriority? priority,
-    AppKanbanCardStatus? status,
-    AppKanbanCardType? type,
+    DSKanbanCardPriority? priority,
+    DSKanbanCardStatus? status,
+    DSKanbanCardType? type,
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? dueDate,
@@ -336,7 +336,7 @@ class AppKanbanCard with _$AppKanbanCard {
 
   double getEffectiveHeight() {
     if (height != null) return height!;
-    return AppKanbanConstants.defaultCardHeight;
+    return DSKanbanConstants.defaultCardHeight;
   }
 
   String formatDueDate() {
@@ -360,11 +360,11 @@ class AppKanbanCard with _$AppKanbanCard {
 }
 
 // Enums
-enum AppKanbanVariant {
+enum DSKanbanVariant {
   dragDrop,
 }
 
-enum AppKanbanState {
+enum DSKanbanState {
   defaultState,
   hover,
   pressed,
@@ -375,30 +375,30 @@ enum AppKanbanState {
   skeleton,
 }
 
-enum AppKanbanDirection {
+enum DSKanbanDirection {
   horizontal,
   vertical,
 }
 
-enum AppKanbanSpacing {
+enum DSKanbanSpacing {
   compact,
   medium,
   comfortable,
 }
 
-enum AppKanbanCardSize {
+enum DSKanbanCardSize {
   small,
   medium,
   large,
 }
 
-enum AppKanbanColumnStyle {
+enum DSKanbanColumnStyle {
   flat,
   elevated,
   outlined,
 }
 
-enum AppKanbanColumnStatus {
+enum DSKanbanColumnStatus {
   active,
   inactive,
   pending,
@@ -406,7 +406,7 @@ enum AppKanbanColumnStatus {
   blocked,
 }
 
-enum AppKanbanColumnType {
+enum DSKanbanColumnType {
   backlog,
   todo,
   inProgress,
@@ -415,14 +415,14 @@ enum AppKanbanColumnType {
   archived,
 }
 
-enum AppKanbanCardPriority {
+enum DSKanbanCardPriority {
   low,
   medium,
   high,
   critical,
 }
 
-enum AppKanbanCardStatus {
+enum DSKanbanCardStatus {
   draft,
   pending,
   inProgress,
@@ -431,7 +431,7 @@ enum AppKanbanCardStatus {
   cancelled,
 }
 
-enum AppKanbanCardType {
+enum DSKanbanCardType {
   task,
   bug,
   feature,
@@ -441,322 +441,322 @@ enum AppKanbanCardType {
 }
 
 // Type definitions
-typedef AppKanbanMoveCallback = void Function(
+typedef DSKanbanMoveCallback = void Function(
     String cardId, String fromColumnId, String toColumnId, int newIndex);
-typedef AppKanbanDropCallback = void Function(
+typedef DSKanbanDropCallback = void Function(
     String cardId, String columnId, int index);
-typedef AppKanbanDragStartCallback = void Function(String cardId);
-typedef AppKanbanDragEndCallback = void Function(String cardId, bool success);
-typedef AppKanbanColumnCallback = void Function(String columnId);
-typedef AppKanbanCardCallback = void Function(String cardId);
+typedef DSKanbanDragStartCallback = void Function(String cardId);
+typedef DSKanbanDragEndCallback = void Function(String cardId, bool success);
+typedef DSKanbanColumnCallback = void Function(String columnId);
+typedef DSKanbanCardCallback = void Function(String cardId);
 
 // Extensions
-extension AppKanbanVariantExtension on AppKanbanVariant {
-  bool get isDragDrop => this == AppKanbanVariant.dragDrop;
+extension DSKanbanVariantExtension on DSKanbanVariant {
+  bool get isDragDrop => this == DSKanbanVariant.dragDrop;
 }
 
-extension AppKanbanStateExtension on AppKanbanState {
+extension DSKanbanStateExtension on DSKanbanState {
   bool get isInteractiveState =>
-      this == AppKanbanState.hover ||
-      this == AppKanbanState.pressed ||
-      this == AppKanbanState.focus;
+      this == DSKanbanState.hover ||
+      this == DSKanbanState.pressed ||
+      this == DSKanbanState.focus;
 
-  bool get isDisabledState => this == AppKanbanState.disabled;
-  bool get isLoadingState => this == AppKanbanState.loading;
-  bool get isSkeletonState => this == AppKanbanState.skeleton;
-  bool get isSelectedState => this == AppKanbanState.selected;
+  bool get isDisabledState => this == DSKanbanState.disabled;
+  bool get isLoadingState => this == DSKanbanState.loading;
+  bool get isSkeletonState => this == DSKanbanState.skeleton;
+  bool get isSelectedState => this == DSKanbanState.selected;
 }
 
-extension AppKanbanSpacingExtension on AppKanbanSpacing {
+extension DSKanbanSpacingExtension on DSKanbanSpacing {
   double get value {
     switch (this) {
-      case AppKanbanSpacing.compact:
+      case DSKanbanSpacing.compact:
         return 8.0;
-      case AppKanbanSpacing.medium:
+      case DSKanbanSpacing.medium:
         return 16.0;
-      case AppKanbanSpacing.comfortable:
+      case DSKanbanSpacing.comfortable:
         return 24.0;
     }
   }
 
   EdgeInsetsGeometry get padding {
     switch (this) {
-      case AppKanbanSpacing.compact:
+      case DSKanbanSpacing.compact:
         return const EdgeInsets.all(8.0);
-      case AppKanbanSpacing.medium:
+      case DSKanbanSpacing.medium:
         return const EdgeInsets.all(16.0);
-      case AppKanbanSpacing.comfortable:
+      case DSKanbanSpacing.comfortable:
         return const EdgeInsets.all(24.0);
     }
   }
 
   EdgeInsetsGeometry get cardPadding {
     switch (this) {
-      case AppKanbanSpacing.compact:
+      case DSKanbanSpacing.compact:
         return const EdgeInsets.all(8.0);
-      case AppKanbanSpacing.medium:
+      case DSKanbanSpacing.medium:
         return const EdgeInsets.all(12.0);
-      case AppKanbanSpacing.comfortable:
+      case DSKanbanSpacing.comfortable:
         return const EdgeInsets.all(16.0);
     }
   }
 
   double get cardSpacing {
     switch (this) {
-      case AppKanbanSpacing.compact:
+      case DSKanbanSpacing.compact:
         return 4.0;
-      case AppKanbanSpacing.medium:
+      case DSKanbanSpacing.medium:
         return 8.0;
-      case AppKanbanSpacing.comfortable:
+      case DSKanbanSpacing.comfortable:
         return 12.0;
     }
   }
 }
 
-extension AppKanbanCardSizeExtension on AppKanbanCardSize {
+extension DSKanbanCardSizeExtension on DSKanbanCardSize {
   double get height {
     switch (this) {
-      case AppKanbanCardSize.small:
+      case DSKanbanCardSize.small:
         return 80.0;
-      case AppKanbanCardSize.medium:
+      case DSKanbanCardSize.medium:
         return 120.0;
-      case AppKanbanCardSize.large:
+      case DSKanbanCardSize.large:
         return 160.0;
     }
   }
 
   double get minHeight {
     switch (this) {
-      case AppKanbanCardSize.small:
+      case DSKanbanCardSize.small:
         return 60.0;
-      case AppKanbanCardSize.medium:
+      case DSKanbanCardSize.medium:
         return 80.0;
-      case AppKanbanCardSize.large:
+      case DSKanbanCardSize.large:
         return 120.0;
     }
   }
 }
 
-extension AppKanbanColumnStatusExtension on AppKanbanColumnStatus {
+extension DSKanbanColumnStatusExtension on DSKanbanColumnStatus {
   Color getColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppKanbanColumnStatus.active:
+      case DSKanbanColumnStatus.active:
         return colorScheme.primary;
-      case AppKanbanColumnStatus.inactive:
+      case DSKanbanColumnStatus.inactive:
         return colorScheme.outline;
-      case AppKanbanColumnStatus.pending:
+      case DSKanbanColumnStatus.pending:
         return Colors.orange;
-      case AppKanbanColumnStatus.completed:
+      case DSKanbanColumnStatus.completed:
         return Colors.green;
-      case AppKanbanColumnStatus.blocked:
+      case DSKanbanColumnStatus.blocked:
         return colorScheme.error;
     }
   }
 
   String get label {
     switch (this) {
-      case AppKanbanColumnStatus.active:
+      case DSKanbanColumnStatus.active:
         return 'Activo';
-      case AppKanbanColumnStatus.inactive:
+      case DSKanbanColumnStatus.inactive:
         return 'Inactivo';
-      case AppKanbanColumnStatus.pending:
+      case DSKanbanColumnStatus.pending:
         return 'Pendiente';
-      case AppKanbanColumnStatus.completed:
+      case DSKanbanColumnStatus.completed:
         return 'Completado';
-      case AppKanbanColumnStatus.blocked:
+      case DSKanbanColumnStatus.blocked:
         return 'Bloqueado';
     }
   }
 }
 
-extension AppKanbanColumnTypeExtension on AppKanbanColumnType {
+extension DSKanbanColumnTypeExtension on DSKanbanColumnType {
   Color getColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppKanbanColumnType.backlog:
+      case DSKanbanColumnType.backlog:
         return colorScheme.outline;
-      case AppKanbanColumnType.todo:
+      case DSKanbanColumnType.todo:
         return Colors.blue;
-      case AppKanbanColumnType.inProgress:
+      case DSKanbanColumnType.inProgress:
         return Colors.orange;
-      case AppKanbanColumnType.review:
+      case DSKanbanColumnType.review:
         return Colors.purple;
-      case AppKanbanColumnType.done:
+      case DSKanbanColumnType.done:
         return Colors.green;
-      case AppKanbanColumnType.archived:
+      case DSKanbanColumnType.archived:
         return colorScheme.outline.withValues(alpha: 0.5);
     }
   }
 
   String get label {
     switch (this) {
-      case AppKanbanColumnType.backlog:
+      case DSKanbanColumnType.backlog:
         return 'Backlog';
-      case AppKanbanColumnType.todo:
+      case DSKanbanColumnType.todo:
         return 'Por hacer';
-      case AppKanbanColumnType.inProgress:
+      case DSKanbanColumnType.inProgress:
         return 'En progreso';
-      case AppKanbanColumnType.review:
+      case DSKanbanColumnType.review:
         return 'Revisión';
-      case AppKanbanColumnType.done:
+      case DSKanbanColumnType.done:
         return 'Completado';
-      case AppKanbanColumnType.archived:
+      case DSKanbanColumnType.archived:
         return 'Archivado';
     }
   }
 
   IconData get icon {
     switch (this) {
-      case AppKanbanColumnType.backlog:
+      case DSKanbanColumnType.backlog:
         return Icons.inbox;
-      case AppKanbanColumnType.todo:
+      case DSKanbanColumnType.todo:
         return Icons.assignment;
-      case AppKanbanColumnType.inProgress:
+      case DSKanbanColumnType.inProgress:
         return Icons.build;
-      case AppKanbanColumnType.review:
+      case DSKanbanColumnType.review:
         return Icons.rate_review;
-      case AppKanbanColumnType.done:
+      case DSKanbanColumnType.done:
         return Icons.check_circle;
-      case AppKanbanColumnType.archived:
+      case DSKanbanColumnType.archived:
         return Icons.archive;
     }
   }
 }
 
-extension AppKanbanCardPriorityExtension on AppKanbanCardPriority {
+extension DSKanbanCardPriorityExtension on DSKanbanCardPriority {
   Color getColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppKanbanCardPriority.low:
+      case DSKanbanCardPriority.low:
         return Colors.blue;
-      case AppKanbanCardPriority.medium:
+      case DSKanbanCardPriority.medium:
         return Colors.orange;
-      case AppKanbanCardPriority.high:
+      case DSKanbanCardPriority.high:
         return Colors.red;
-      case AppKanbanCardPriority.critical:
+      case DSKanbanCardPriority.critical:
         return Colors.red.shade800;
     }
   }
 
   String get label {
     switch (this) {
-      case AppKanbanCardPriority.low:
+      case DSKanbanCardPriority.low:
         return 'Baja';
-      case AppKanbanCardPriority.medium:
+      case DSKanbanCardPriority.medium:
         return 'Media';
-      case AppKanbanCardPriority.high:
+      case DSKanbanCardPriority.high:
         return 'Alta';
-      case AppKanbanCardPriority.critical:
+      case DSKanbanCardPriority.critical:
         return 'Crítica';
     }
   }
 
   IconData get icon {
     switch (this) {
-      case AppKanbanCardPriority.low:
+      case DSKanbanCardPriority.low:
         return Icons.keyboard_arrow_down;
-      case AppKanbanCardPriority.medium:
+      case DSKanbanCardPriority.medium:
         return Icons.remove;
-      case AppKanbanCardPriority.high:
+      case DSKanbanCardPriority.high:
         return Icons.keyboard_arrow_up;
-      case AppKanbanCardPriority.critical:
+      case DSKanbanCardPriority.critical:
         return Icons.priority_high;
     }
   }
 }
 
-extension AppKanbanCardStatusExtension on AppKanbanCardStatus {
+extension DSKanbanCardStatusExtension on DSKanbanCardStatus {
   Color getColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppKanbanCardStatus.draft:
+      case DSKanbanCardStatus.draft:
         return colorScheme.outline;
-      case AppKanbanCardStatus.pending:
+      case DSKanbanCardStatus.pending:
         return Colors.orange;
-      case AppKanbanCardStatus.inProgress:
+      case DSKanbanCardStatus.inProgress:
         return Colors.blue;
-      case AppKanbanCardStatus.review:
+      case DSKanbanCardStatus.review:
         return Colors.purple;
-      case AppKanbanCardStatus.completed:
+      case DSKanbanCardStatus.completed:
         return Colors.green;
-      case AppKanbanCardStatus.cancelled:
+      case DSKanbanCardStatus.cancelled:
         return colorScheme.error;
     }
   }
 
   String get label {
     switch (this) {
-      case AppKanbanCardStatus.draft:
+      case DSKanbanCardStatus.draft:
         return 'Borrador';
-      case AppKanbanCardStatus.pending:
+      case DSKanbanCardStatus.pending:
         return 'Pendiente';
-      case AppKanbanCardStatus.inProgress:
+      case DSKanbanCardStatus.inProgress:
         return 'En progreso';
-      case AppKanbanCardStatus.review:
+      case DSKanbanCardStatus.review:
         return 'Revisión';
-      case AppKanbanCardStatus.completed:
+      case DSKanbanCardStatus.completed:
         return 'Completado';
-      case AppKanbanCardStatus.cancelled:
+      case DSKanbanCardStatus.cancelled:
         return 'Cancelado';
     }
   }
 }
 
-extension AppKanbanCardTypeExtension on AppKanbanCardType {
+extension DSKanbanCardTypeExtension on DSKanbanCardType {
   Color getColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppKanbanCardType.task:
+      case DSKanbanCardType.task:
         return colorScheme.primary;
-      case AppKanbanCardType.bug:
+      case DSKanbanCardType.bug:
         return colorScheme.error;
-      case AppKanbanCardType.feature:
+      case DSKanbanCardType.feature:
         return Colors.green;
-      case AppKanbanCardType.epic:
+      case DSKanbanCardType.epic:
         return Colors.purple;
-      case AppKanbanCardType.story:
+      case DSKanbanCardType.story:
         return Colors.blue;
-      case AppKanbanCardType.subtask:
+      case DSKanbanCardType.subtask:
         return colorScheme.secondary;
     }
   }
 
   String get label {
     switch (this) {
-      case AppKanbanCardType.task:
+      case DSKanbanCardType.task:
         return 'Tarea';
-      case AppKanbanCardType.bug:
+      case DSKanbanCardType.bug:
         return 'Error';
-      case AppKanbanCardType.feature:
+      case DSKanbanCardType.feature:
         return 'Funcionalidad';
-      case AppKanbanCardType.epic:
+      case DSKanbanCardType.epic:
         return 'Épica';
-      case AppKanbanCardType.story:
+      case DSKanbanCardType.story:
         return 'Historia';
-      case AppKanbanCardType.subtask:
+      case DSKanbanCardType.subtask:
         return 'Subtarea';
     }
   }
 
   IconData get icon {
     switch (this) {
-      case AppKanbanCardType.task:
+      case DSKanbanCardType.task:
         return Icons.task_alt;
-      case AppKanbanCardType.bug:
+      case DSKanbanCardType.bug:
         return Icons.bug_report;
-      case AppKanbanCardType.feature:
+      case DSKanbanCardType.feature:
         return Icons.star;
-      case AppKanbanCardType.epic:
+      case DSKanbanCardType.epic:
         return Icons.layers;
-      case AppKanbanCardType.story:
+      case DSKanbanCardType.story:
         return Icons.book;
-      case AppKanbanCardType.subtask:
+      case DSKanbanCardType.subtask:
         return Icons.subdirectory_arrow_right;
     }
   }
 }
 
 @freezed
-class AppKanbanStyle with _$AppKanbanStyle {
-  const AppKanbanStyle._();
+class DSKanbanStyle with _$DSKanbanStyle {
+  const DSKanbanStyle._();
 
-  const factory AppKanbanStyle({
+  const factory DSKanbanStyle({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? dragColor,
@@ -779,33 +779,33 @@ class AppKanbanStyle with _$AppKanbanStyle {
     Offset? offset,
   }) = _AppKanbanStyle;
 
-  AppKanbanStyle copyWithState(AppKanbanState state) {
+  DSKanbanStyle copyWithState(DSKanbanState state) {
     switch (state) {
-      case AppKanbanState.hover:
+      case DSKanbanState.hover:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.08),
           elevation: (elevation ?? 0) + 1,
         );
-      case AppKanbanState.pressed:
+      case DSKanbanState.pressed:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
           elevation: (elevation ?? 0) + 0.5,
         );
-      case AppKanbanState.focus:
+      case DSKanbanState.focus:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
         );
-      case AppKanbanState.selected:
+      case DSKanbanState.selected:
         return copyWith(
           elevation: (elevation ?? 0) + 2,
         );
-      case AppKanbanState.disabled:
+      case DSKanbanState.disabled:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.38),
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
         );
-      case AppKanbanState.loading:
-      case AppKanbanState.skeleton:
+      case DSKanbanState.loading:
+      case DSKanbanState.skeleton:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.6),
         );
@@ -816,8 +816,8 @@ class AppKanbanStyle with _$AppKanbanStyle {
 }
 
 @freezed
-class AppKanbanInteraction with _$AppKanbanInteraction {
-  const factory AppKanbanInteraction({
+class DSKanbanInteraction with _$DSKanbanInteraction {
+  const factory DSKanbanInteraction({
     @Default(true) bool enabled,
     @Default(true) bool focusable,
     @Default(true) bool hoverable,
@@ -829,19 +829,19 @@ class AppKanbanInteraction with _$AppKanbanInteraction {
     GestureTapCallback? onTap,
     GestureLongPressCallback? onLongPress,
     GestureTapCallback? onSecondaryTap,
-    AppKanbanMoveCallback? onMove,
-    AppKanbanDropCallback? onDrop,
-    AppKanbanDragStartCallback? onDragStart,
-    AppKanbanDragEndCallback? onDragEnd,
-    AppKanbanColumnCallback? onColumnTap,
-    AppKanbanCardCallback? onCardTap,
+    DSKanbanMoveCallback? onMove,
+    DSKanbanDropCallback? onDrop,
+    DSKanbanDragStartCallback? onDragStart,
+    DSKanbanDragEndCallback? onDragEnd,
+    DSKanbanColumnCallback? onColumnTap,
+    DSKanbanCardCallback? onCardTap,
     Map<ShortcutActivator, VoidCallback>? shortcuts,
   }) = _AppKanbanInteraction;
 }
 
 @freezed
-class AppKanbanAccessibility with _$AppKanbanAccessibility {
-  const factory AppKanbanAccessibility({
+class DSKanbanAccessibility with _$DSKanbanAccessibility {
+  const factory DSKanbanAccessibility({
     String? semanticLabel,
     String? tooltip,
     bool? excludeSemantics,
@@ -860,12 +860,12 @@ class AppKanbanAccessibility with _$AppKanbanAccessibility {
 }
 
 @freezed
-class AppKanbanAnimation with _$AppKanbanAnimation {
-  const factory AppKanbanAnimation({
+class DSKanbanAnimation with _$DSKanbanAnimation {
+  const factory DSKanbanAnimation({
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(false) bool enabled,
-    @Default(AppKanbanAnimationType.fade) AppKanbanAnimationType type,
+    @Default(DSKanbanAnimationType.fade) DSKanbanAnimationType type,
     Duration? delay,
     VoidCallback? onAnimationComplete,
     @Default(false) bool staggered,
@@ -876,7 +876,7 @@ class AppKanbanAnimation with _$AppKanbanAnimation {
   }) = _AppKanbanAnimation;
 }
 
-enum AppKanbanAnimationType {
+enum DSKanbanAnimationType {
   none,
   fade,
   slide,
@@ -889,7 +889,7 @@ enum AppKanbanAnimationType {
   elastic,
 }
 
-class AppKanbanConstants {
+class DSKanbanConstants {
   static const double defaultColumnWidth = 280.0;
   static const double defaultCardHeight = 120.0;
   static const double defaultSpacing = 16.0;

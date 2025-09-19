@@ -6,34 +6,34 @@ import 'package:intl/intl.dart';
 
 part 'app_currency_input_config.freezed.dart';
 
-/// Configuración completa para el componente AppCurrencyInput
+/// Configuración completa para el componente DSCurrencyInput
 ///
 /// Utiliza Freezed para crear modelos inmutables y type-safe
 /// que definen todos los aspectos del comportamiento del input de moneda
 @freezed
-class AppCurrencyInputConfig with _$AppCurrencyInputConfig {
-  const factory AppCurrencyInputConfig({
-    @Default(AppCurrencyInputVariant.localized) AppCurrencyInputVariant variant,
-    @Default(AppCurrencyInputState.defaultState) AppCurrencyInputState state,
-    AppCurrencyInputColors? colors,
-    AppCurrencyInputSpacing? spacing,
-    AppCurrencyInputAnimation? animation,
-    AppCurrencyInputBehavior? behavior,
-    AppCurrencyInputA11yConfig? a11yConfig,
-    AppCurrencyInputValidation? validation,
-    AppCurrencyFormat? format,
-  }) = _AppCurrencyInputConfig;
+class DSCurrencyInputConfig with _$DSCurrencyInputConfig {
+  const factory DSCurrencyInputConfig({
+    @Default(DSCurrencyInputVariant.localized) DSCurrencyInputVariant variant,
+    @Default(DSCurrencyInputState.defaultState) DSCurrencyInputState state,
+    DSCurrencyInputColors? colors,
+    DSCurrencyInputSpacing? spacing,
+    DSCurrencyInputAnimation? animation,
+    DSCurrencyInputBehavior? behavior,
+    DSCurrencyInputA11yConfig? a11yConfig,
+    DSCurrencyInputValidation? validation,
+    DSCurrencyFormat? format,
+  }) = _DSCurrencyInputConfig;
 
 }
 
 /// Variantes del input de moneda
-enum AppCurrencyInputVariant {
+enum DSCurrencyInputVariant {
   /// Versión localizada con formato automático según locale
   localized,
 }
 
 /// Estados interactivos del input
-enum AppCurrencyInputState {
+enum DSCurrencyInputState {
   /// Estado por defecto
   defaultState,
 
@@ -61,22 +61,22 @@ enum AppCurrencyInputState {
 
 /// Configuración de formato de moneda
 @freezed
-class AppCurrencyFormat with _$AppCurrencyFormat {
-  const factory AppCurrencyFormat({
+class DSCurrencyFormat with _$DSCurrencyFormat {
+  const factory DSCurrencyFormat({
     required String currencyCode,
     String? symbol,
     @Default(2) int decimalDigits,
     @Default('\$') String fallbackSymbol,
-    @Default(AppCurrencyDisplayType.symbol) AppCurrencyDisplayType displayType,
+    @Default(DSCurrencyDisplayType.symbol) DSCurrencyDisplayType displayType,
     @Default(true) bool showGroupingSeparator,
-    @Default(AppCurrencyPosition.before) AppCurrencyPosition position,
+    @Default(DSCurrencyPosition.before) DSCurrencyPosition position,
     String? customPattern,
   }) = _AppCurrencyFormat;
 
 }
 
 /// Tipo de visualización de moneda
-enum AppCurrencyDisplayType {
+enum DSCurrencyDisplayType {
   /// Símbolo de moneda ($, €, ¥)
   symbol,
 
@@ -91,7 +91,7 @@ enum AppCurrencyDisplayType {
 }
 
 /// Posición del símbolo de moneda
-enum AppCurrencyPosition {
+enum DSCurrencyPosition {
   /// Antes del monto ($100)
   before,
 
@@ -101,8 +101,8 @@ enum AppCurrencyPosition {
 
 /// Configuración de colores del input
 @freezed
-class AppCurrencyInputColors with _$AppCurrencyInputColors {
-  const factory AppCurrencyInputColors({
+class DSCurrencyInputColors with _$DSCurrencyInputColors {
+  const factory DSCurrencyInputColors({
     Color? backgroundColor,
     Color? borderColor,
     Color? focusedBorderColor,
@@ -131,8 +131,8 @@ class AppCurrencyInputColors with _$AppCurrencyInputColors {
 
 /// Configuración de espaciado del input
 @freezed
-class AppCurrencyInputSpacing with _$AppCurrencyInputSpacing {
-  const factory AppCurrencyInputSpacing({
+class DSCurrencyInputSpacing with _$DSCurrencyInputSpacing {
+  const factory DSCurrencyInputSpacing({
     @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 12)) EdgeInsets padding,
     @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 12)) EdgeInsets contentPadding,
     @Default(EdgeInsets.zero) EdgeInsets margin,
@@ -152,8 +152,8 @@ class AppCurrencyInputSpacing with _$AppCurrencyInputSpacing {
 
 /// Configuración de animaciones
 @freezed
-class AppCurrencyInputAnimation with _$AppCurrencyInputAnimation {
-  const factory AppCurrencyInputAnimation({
+class DSCurrencyInputAnimation with _$DSCurrencyInputAnimation {
+  const factory DSCurrencyInputAnimation({
     @Default(true) bool enabled,
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Duration(milliseconds: 200)) Duration transitionDuration,
@@ -174,8 +174,8 @@ class AppCurrencyInputAnimation with _$AppCurrencyInputAnimation {
 
 /// Configuración de comportamiento
 @freezed
-class AppCurrencyInputBehavior with _$AppCurrencyInputBehavior {
-  const factory AppCurrencyInputBehavior({
+class DSCurrencyInputBehavior with _$DSCurrencyInputBehavior {
+  const factory DSCurrencyInputBehavior({
     @Default(true) bool autoFormat,
     @Default(true) bool allowNegative,
     @Default(false) bool allowZero,
@@ -195,8 +195,8 @@ class AppCurrencyInputBehavior with _$AppCurrencyInputBehavior {
 
 /// Configuración de accesibilidad
 @freezed
-class AppCurrencyInputA11yConfig with _$AppCurrencyInputA11yConfig {
-  const factory AppCurrencyInputA11yConfig({
+class DSCurrencyInputA11yConfig with _$DSCurrencyInputA11yConfig {
+  const factory DSCurrencyInputA11yConfig({
     @Default(true) bool enabled,
     String? semanticsLabel,
     String? semanticsDescription,
@@ -217,14 +217,14 @@ class AppCurrencyInputA11yConfig with _$AppCurrencyInputA11yConfig {
     @Default('Ingrese el monto en') String amountLabel,
     @Default('Moneda seleccionada:') String currencyLabel,
     @Default('Monto inválido') String invalidAmountLabel,
-  }) = _AppCurrencyInputA11yConfig;
+  }) = _DSCurrencyInputA11yConfig;
 
 }
 
 /// Configuración de validación
 @freezed
-class AppCurrencyInputValidation with _$AppCurrencyInputValidation {
-  const factory AppCurrencyInputValidation({
+class DSCurrencyInputValidation with _$DSCurrencyInputValidation {
+  const factory DSCurrencyInputValidation({
     @Default(true) bool enabled,
     @Default(true) bool validateOnChange,
     @Default(true) bool validateOnSubmit,
@@ -240,17 +240,17 @@ class AppCurrencyInputValidation with _$AppCurrencyInputValidation {
 
 /// Resultado de validación
 @freezed
-class AppCurrencyInputValidationResult with _$AppCurrencyInputValidationResult {
-  const factory AppCurrencyInputValidationResult({
+class DSCurrencyInputValidationResult with _$DSCurrencyInputValidationResult {
+  const factory DSCurrencyInputValidationResult({
     required bool isValid,
     String? errorMessage,
-    @Default(AppCurrencyInputValidationLevel.none) AppCurrencyInputValidationLevel level,
+    @Default(DSCurrencyInputValidationLevel.none) DSCurrencyInputValidationLevel level,
   }) = _AppCurrencyInputValidationResult;
 
 }
 
 /// Niveles de validación
-enum AppCurrencyInputValidationLevel {
+enum DSCurrencyInputValidationLevel {
   none,
   info,
   warning,
@@ -260,8 +260,8 @@ enum AppCurrencyInputValidationLevel {
 
 /// Valor del input de moneda
 @freezed
-class AppCurrencyInputValue with _$AppCurrencyInputValue {
-  const factory AppCurrencyInputValue({
+class DSCurrencyInputValue with _$DSCurrencyInputValue {
+  const factory DSCurrencyInputValue({
     required double amount,
     required String currencyCode,
     String? formattedValue,
@@ -271,12 +271,12 @@ class AppCurrencyInputValue with _$AppCurrencyInputValue {
 
 }
 
-/// Extensiones para AppCurrencyInputVariant
-extension AppCurrencyInputVariantExtensions on AppCurrencyInputVariant {
+/// Extensiones para DSCurrencyInputVariant
+extension DSCurrencyInputVariantExtensions on DSCurrencyInputVariant {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCurrencyInputVariant.localized:
+      case DSCurrencyInputVariant.localized:
         return 'Localizado';
     }
   }
@@ -284,7 +284,7 @@ extension AppCurrencyInputVariantExtensions on AppCurrencyInputVariant {
   /// Descripción de la variante
   String get description {
     switch (this) {
-      case AppCurrencyInputVariant.localized:
+      case DSCurrencyInputVariant.localized:
         return 'Input de moneda con formato automático según locale';
     }
   }
@@ -292,37 +292,37 @@ extension AppCurrencyInputVariantExtensions on AppCurrencyInputVariant {
   /// Icono representativo
   IconData get icon {
     switch (this) {
-      case AppCurrencyInputVariant.localized:
+      case DSCurrencyInputVariant.localized:
         return Icons.attach_money;
     }
   }
 
   /// Si soporta múltiples monedas
   bool get supportsMultipleCurrencies {
-    return this == AppCurrencyInputVariant.localized;
+    return this == DSCurrencyInputVariant.localized;
   }
 }
 
-/// Extensiones para AppCurrencyInputState
-extension AppCurrencyInputStateExtensions on AppCurrencyInputState {
+/// Extensiones para DSCurrencyInputState
+extension DSCurrencyInputStateExtensions on DSCurrencyInputState {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCurrencyInputState.defaultState:
+      case DSCurrencyInputState.defaultState:
         return 'Normal';
-      case AppCurrencyInputState.hover:
+      case DSCurrencyInputState.hover:
         return 'Hover';
-      case AppCurrencyInputState.pressed:
+      case DSCurrencyInputState.pressed:
         return 'Presionado';
-      case AppCurrencyInputState.focus:
+      case DSCurrencyInputState.focus:
         return 'Enfocado';
-      case AppCurrencyInputState.selected:
+      case DSCurrencyInputState.selected:
         return 'Seleccionado';
-      case AppCurrencyInputState.disabled:
+      case DSCurrencyInputState.disabled:
         return 'Deshabilitado';
-      case AppCurrencyInputState.loading:
+      case DSCurrencyInputState.loading:
         return 'Cargando';
-      case AppCurrencyInputState.skeleton:
+      case DSCurrencyInputState.skeleton:
         return 'Skeleton';
     }
   }
@@ -330,35 +330,35 @@ extension AppCurrencyInputStateExtensions on AppCurrencyInputState {
   /// Si el estado permite interacción
   bool get isInteractive {
     switch (this) {
-      case AppCurrencyInputState.defaultState:
-      case AppCurrencyInputState.hover:
-      case AppCurrencyInputState.pressed:
-      case AppCurrencyInputState.focus:
-      case AppCurrencyInputState.selected:
+      case DSCurrencyInputState.defaultState:
+      case DSCurrencyInputState.hover:
+      case DSCurrencyInputState.pressed:
+      case DSCurrencyInputState.focus:
+      case DSCurrencyInputState.selected:
         return true;
-      case AppCurrencyInputState.disabled:
-      case AppCurrencyInputState.loading:
-      case AppCurrencyInputState.skeleton:
+      case DSCurrencyInputState.disabled:
+      case DSCurrencyInputState.loading:
+      case DSCurrencyInputState.skeleton:
         return false;
     }
   }
 
   /// Si el estado muestra loading
   bool get isLoading {
-    return this == AppCurrencyInputState.loading;
+    return this == DSCurrencyInputState.loading;
   }
 
   /// Si el estado muestra skeleton
   bool get isSkeleton {
-    return this == AppCurrencyInputState.skeleton;
+    return this == DSCurrencyInputState.skeleton;
   }
 
   /// Opacidad del estado
   double get opacity {
     switch (this) {
-      case AppCurrencyInputState.disabled:
+      case DSCurrencyInputState.disabled:
         return 0.5;
-      case AppCurrencyInputState.loading:
+      case DSCurrencyInputState.loading:
         return 0.7;
       default:
         return 1.0;
@@ -366,8 +366,8 @@ extension AppCurrencyInputStateExtensions on AppCurrencyInputState {
   }
 }
 
-/// Extensiones para AppCurrencyFormat
-extension AppCurrencyFormatExtensions on AppCurrencyFormat {
+/// Extensiones para DSCurrencyFormat
+extension DSCurrencyFormatExtensions on DSCurrencyFormat {
   /// Obtiene el símbolo de moneda efectivo
   String getEffectiveSymbol(Locale locale) {
     if (symbol != null) return symbol!;
@@ -404,7 +404,7 @@ extension AppCurrencyFormatExtensions on AppCurrencyFormat {
       final symbolStr = getEffectiveSymbol(locale);
       final amountStr = amount.toStringAsFixed(decimalDigits);
 
-      return position == AppCurrencyPosition.before
+      return position == DSCurrencyPosition.before
           ? '$symbolStr$amountStr'
           : '$amountStr$symbolStr';
     }
@@ -446,8 +446,8 @@ extension AppCurrencyFormatExtensions on AppCurrencyFormat {
   }
 }
 
-/// Extensiones para AppCurrencyInputValue
-extension AppCurrencyInputValueExtensions on AppCurrencyInputValue {
+/// Extensiones para DSCurrencyInputValue
+extension DSCurrencyInputValueExtensions on DSCurrencyInputValue {
   /// Si el valor está vacío
   bool get isEmpty {
     return amount == 0.0 && (formattedValue?.isEmpty ?? true);
@@ -486,7 +486,7 @@ extension AppCurrencyInputValueExtensions on AppCurrencyInputValue {
   }
 
   /// Crea una copia con nuevo monto
-  AppCurrencyInputValue copyWithAmount(double newAmount) {
+  DSCurrencyInputValue copyWithAmount(double newAmount) {
     return copyWith(
       amount: newAmount,
       formattedValue: null, // Se recalculará
@@ -495,7 +495,7 @@ extension AppCurrencyInputValueExtensions on AppCurrencyInputValue {
   }
 
   /// Crea una copia con nueva moneda
-  AppCurrencyInputValue copyWithCurrency(String newCurrencyCode) {
+  DSCurrencyInputValue copyWithCurrency(String newCurrencyCode) {
     return copyWith(
       currencyCode: newCurrencyCode,
       formattedValue: null, // Se recalculará
@@ -504,7 +504,7 @@ extension AppCurrencyInputValueExtensions on AppCurrencyInputValue {
 }
 
 /// Utilidades para el input de moneda
-class AppCurrencyInputUtils {
+class DSCurrencyInputUtils {
   /// Lista de monedas comunes con sus símbolos
   static const Map<String, String> commonCurrencies = {
     'USD': '\$',
@@ -527,58 +527,58 @@ class AppCurrencyInputUtils {
   };
 
   /// Valida un valor de moneda
-  static AppCurrencyInputValidationResult validateValue(
-    AppCurrencyInputValue value,
-    AppCurrencyInputValidation validation,
+  static DSCurrencyInputValidationResult validateValue(
+    DSCurrencyInputValue value,
+    DSCurrencyInputValidation validation,
   ) {
     if (!validation.enabled) {
-      return const AppCurrencyInputValidationResult(isValid: true);
+      return const DSCurrencyInputValidationResult(isValid: true);
     }
 
     // Validar rango de monto
     if (validation.minAmount != null && value.amount < validation.minAmount!) {
-      return AppCurrencyInputValidationResult(
+      return DSCurrencyInputValidationResult(
         isValid: false,
         errorMessage: validation.customErrorMessage ??
             'El monto debe ser mayor a ${validation.minAmount}',
-        level: AppCurrencyInputValidationLevel.error,
+        level: DSCurrencyInputValidationLevel.error,
       );
     }
 
     if (validation.maxAmount != null && value.amount > validation.maxAmount!) {
-      return AppCurrencyInputValidationResult(
+      return DSCurrencyInputValidationResult(
         isValid: false,
         errorMessage: validation.customErrorMessage ??
             'El monto debe ser menor a ${validation.maxAmount}',
-        level: AppCurrencyInputValidationLevel.error,
+        level: DSCurrencyInputValidationLevel.error,
       );
     }
 
     // Validar monedas permitidas
     if (validation.allowedCurrencies != null &&
         !validation.allowedCurrencies!.contains(value.currencyCode)) {
-      return AppCurrencyInputValidationResult(
+      return DSCurrencyInputValidationResult(
         isValid: false,
         errorMessage: validation.customErrorMessage ??
             'Moneda ${value.currencyCode} no permitida',
-        level: AppCurrencyInputValidationLevel.error,
+        level: DSCurrencyInputValidationLevel.error,
       );
     }
 
     // Validar monedas bloqueadas
     if (validation.blockedCurrencies != null &&
         validation.blockedCurrencies!.contains(value.currencyCode)) {
-      return AppCurrencyInputValidationResult(
+      return DSCurrencyInputValidationResult(
         isValid: false,
         errorMessage: validation.customErrorMessage ??
             'Moneda ${value.currencyCode} no disponible',
-        level: AppCurrencyInputValidationLevel.error,
+        level: DSCurrencyInputValidationLevel.error,
       );
     }
 
-    return const AppCurrencyInputValidationResult(
+    return const DSCurrencyInputValidationResult(
       isValid: true,
-      level: AppCurrencyInputValidationLevel.success,
+      level: DSCurrencyInputValidationLevel.success,
     );
   }
 
@@ -669,9 +669,9 @@ class AppCurrencyInputUtils {
 
   /// Crea un input formatter para moneda
   static List<TextInputFormatter> createInputFormatters(
-    AppCurrencyFormat format,
+    DSCurrencyFormat format,
     Locale locale,
-    AppCurrencyInputBehavior behavior,
+    DSCurrencyInputBehavior behavior,
   ) {
     final formatters = <TextInputFormatter>[];
 
@@ -719,9 +719,9 @@ class AppCurrencyInputUtils {
 
 /// Formatter personalizado para input de moneda
 class _CurrencyInputFormatter extends TextInputFormatter {
-  final AppCurrencyFormat format;
+  final DSCurrencyFormat format;
   final Locale locale;
-  final AppCurrencyInputBehavior behavior;
+  final DSCurrencyInputBehavior behavior;
 
   _CurrencyInputFormatter(this.format, this.locale, this.behavior);
 
@@ -735,7 +735,7 @@ class _CurrencyInputFormatter extends TextInputFormatter {
     }
 
     // Parsear el valor numérico
-    final numericValue = AppCurrencyInputUtils.parseInputValue(
+    final numericValue = DSCurrencyInputUtils.parseInputValue(
       newValue.text,
       locale,
     );

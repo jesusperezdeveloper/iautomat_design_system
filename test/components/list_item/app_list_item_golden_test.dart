@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/list_item/app_list_item.da
 import 'package:iautomat_design_system/src/components/list_item/list_item_config.dart';
 
 void main() {
-  group('AppListItem Golden Tests', () {
+  group('DSListItem Golden Tests', () {
     testWidgets('One-line variant golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -14,7 +14,7 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'Simple one-line item',
               ),
             ),
@@ -23,7 +23,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_one_line.png'),
       );
     });
@@ -37,7 +37,7 @@ void main() {
               width: 400,
               height: 120,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.twoLine(
+              child: DSListItem.twoLine(
                 title: 'John Doe',
                 subtitle: 'Software Engineer',
               ),
@@ -47,7 +47,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_two_line.png'),
       );
     });
@@ -61,7 +61,7 @@ void main() {
               width: 400,
               height: 150,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.threeLine(
+              child: DSListItem.threeLine(
                 title: 'Team Meeting',
                 subtitle:
                     'Discuss project milestones and upcoming deadlines. Review current progress and plan next steps.',
@@ -72,7 +72,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_three_line.png'),
       );
     });
@@ -86,10 +86,10 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'With leading icon',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.icon,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.icon,
                   icon: Icons.person,
                 ),
               ),
@@ -99,7 +99,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_leading_icon.png'),
       );
     });
@@ -113,10 +113,10 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'With leading avatar',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.avatar,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.avatar,
                   avatarText: 'JD',
                   avatarBackgroundColor: Colors.blue,
                 ),
@@ -127,7 +127,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_leading_avatar.png'),
       );
     });
@@ -141,10 +141,10 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'With checkbox',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.checkbox,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.checkbox,
                   checkboxValue: true,
                 ),
               ),
@@ -154,7 +154,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_leading_checkbox.png'),
       );
     });
@@ -168,10 +168,10 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'With radio button',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.radio,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.radio,
                   radioValue: true,
                 ),
               ),
@@ -181,7 +181,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_leading_radio.png'),
       );
     });
@@ -195,10 +195,10 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'With trailing icon',
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.icon,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.icon,
                   icon: Icons.arrow_forward_ios,
                 ),
               ),
@@ -208,7 +208,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_trailing_icon.png'),
       );
     });
@@ -222,10 +222,10 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'With trailing text',
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.text,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.text,
                   text: 'Now',
                 ),
               ),
@@ -235,7 +235,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_trailing_text.png'),
       );
     });
@@ -249,10 +249,10 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'With switch',
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.switchWidget,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.switchWidget,
                   switchValue: true,
                 ),
               ),
@@ -262,7 +262,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_trailing_switch.png'),
       );
     });
@@ -276,10 +276,10 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'With checkbox',
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.checkbox,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.checkbox,
                   checkboxValue: false,
                 ),
               ),
@@ -289,7 +289,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_trailing_checkbox.png'),
       );
     });
@@ -303,16 +303,16 @@ void main() {
               width: 400,
               height: 120,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.twoLine(
+              child: DSListItem.twoLine(
                 title: 'Alice Cooper',
                 subtitle: 'Product Designer',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.avatar,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.avatar,
                   avatarText: 'AC',
                   avatarBackgroundColor: Colors.pink,
                 ),
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.icon,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.icon,
                   icon: Icons.more_vert,
                 ),
               ),
@@ -322,7 +322,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_complete_example.png'),
       );
     });
@@ -336,9 +336,9 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'Selected item',
-                config: const AppListItemConfig(
+                config: const DSListItemConfig(
                   selected: true,
                 ),
               ),
@@ -348,7 +348,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_selected.png'),
       );
     });
@@ -362,9 +362,9 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'Disabled item',
-                config: const AppListItemConfig(
+                config: const DSListItemConfig(
                   enabled: false,
                 ),
               ),
@@ -374,7 +374,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_disabled.png'),
       );
     });
@@ -388,9 +388,9 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'Loading item',
-                config: const AppListItemConfig(
+                config: const DSListItemConfig(
                   loading: true,
                 ),
               ),
@@ -400,7 +400,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_loading.png'),
       );
     });
@@ -414,18 +414,18 @@ void main() {
               width: 400,
               height: 120,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.twoLine(
+              child: DSListItem.twoLine(
                 title: 'Skeleton item',
                 subtitle: 'Loading content...',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.avatar,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.avatar,
                   avatarText: 'SK',
                 ),
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.icon,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.icon,
                   icon: Icons.arrow_forward,
                 ),
-                config: const AppListItemConfig(
+                config: const DSListItemConfig(
                   skeleton: true,
                 ),
               ),
@@ -435,7 +435,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_skeleton.png'),
       );
     });
@@ -449,9 +449,9 @@ void main() {
               width: 400,
               height: 120,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.oneLine(
+              child: DSListItem.oneLine(
                 title: 'Item with divider',
-                config: const AppListItemConfig(
+                config: const DSListItemConfig(
                   showDivider: true,
                 ),
               ),
@@ -461,7 +461,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_with_divider.png'),
       );
     });
@@ -475,11 +475,11 @@ void main() {
               width: 400,
               height: 100,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.twoLine(
+              child: DSListItem.twoLine(
                 title: 'Compact density',
                 subtitle: 'Reduced spacing',
-                config: const AppListItemConfig(
-                  density: AppListItemDensity.compact,
+                config: const DSListItemConfig(
+                  density: DSListItemDensity.compact,
                 ),
               ),
             ),
@@ -488,7 +488,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_compact_density.png'),
       );
     });
@@ -502,11 +502,11 @@ void main() {
               width: 400,
               height: 140,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.twoLine(
+              child: DSListItem.twoLine(
                 title: 'Comfortable density',
                 subtitle: 'Increased spacing',
-                config: const AppListItemConfig(
-                  density: AppListItemDensity.comfortable,
+                config: const DSListItemConfig(
+                  density: DSListItemDensity.comfortable,
                 ),
               ),
             ),
@@ -515,7 +515,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_comfortable_density.png'),
       );
     });
@@ -531,15 +531,15 @@ void main() {
                 width: 400,
                 height: 120,
                 padding: const EdgeInsets.all(16),
-                child: AppListItem.twoLine(
+                child: DSListItem.twoLine(
                   title: 'RTL layout item',
                   subtitle: 'Right-to-left text direction',
-                  leading: const AppListItemLeading(
-                    type: AppListItemLeadingType.icon,
+                  leading: const DSListItemLeading(
+                    type: DSListItemLeadingType.icon,
                     icon: Icons.star,
                   ),
-                  trailing: const AppListItemTrailing(
-                    type: AppListItemTrailingType.icon,
+                  trailing: const DSListItemTrailing(
+                    type: DSListItemTrailingType.icon,
                     icon: Icons.arrow_forward,
                   ),
                 ),
@@ -550,7 +550,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_rtl.png'),
       );
     });
@@ -564,16 +564,16 @@ void main() {
               width: 400,
               height: 120,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.twoLine(
+              child: DSListItem.twoLine(
                 title: 'Dark theme item',
                 subtitle: 'Styled for dark mode',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.avatar,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.avatar,
                   avatarText: 'DT',
                   avatarBackgroundColor: Colors.purple,
                 ),
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.icon,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.icon,
                   icon: Icons.favorite,
                 ),
               ),
@@ -583,7 +583,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_dark_theme.png'),
       );
     });
@@ -597,16 +597,16 @@ void main() {
               width: 400,
               height: 120,
               padding: const EdgeInsets.all(16),
-              child: AppListItem.twoLine(
+              child: DSListItem.twoLine(
                 title: 'Custom styled item',
                 subtitle: 'With custom configuration',
-                config: const AppListItemConfig(
-                  theme: AppListItemTheme(
+                config: const DSListItemConfig(
+                  theme: DSListItemTheme(
                     backgroundColor: Colors.blue,
                     borderRadius: 12.0,
                     elevation: 4.0,
                   ),
-                  style: AppListItemStyle(
+                  style: DSListItemStyle(
                     contentPadding: EdgeInsets.all(20),
                   ),
                 ),
@@ -617,7 +617,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppListItem),
+        find.byType(DSListItem),
         matchesGoldenFile('goldens/list_item_custom_styling.png'),
       );
     });
@@ -633,46 +633,46 @@ void main() {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  AppListItem.oneLine(
+                  DSListItem.oneLine(
                     title: 'First item',
-                    leading: const AppListItemLeading(
-                      type: AppListItemLeadingType.icon,
+                    leading: const DSListItemLeading(
+                      type: DSListItemLeadingType.icon,
                       icon: Icons.home,
                     ),
-                    config: const AppListItemConfig(
+                    config: const DSListItemConfig(
                       showDivider: true,
                     ),
                   ),
-                  AppListItem.twoLine(
+                  DSListItem.twoLine(
                     title: 'Second item',
                     subtitle: 'With subtitle',
-                    leading: const AppListItemLeading(
-                      type: AppListItemLeadingType.avatar,
+                    leading: const DSListItemLeading(
+                      type: DSListItemLeadingType.avatar,
                       avatarText: 'SI',
                     ),
-                    trailing: const AppListItemTrailing(
-                      type: AppListItemTrailingType.switchWidget,
+                    trailing: const DSListItemTrailing(
+                      type: DSListItemTrailingType.switchWidget,
                       switchValue: true,
                     ),
-                    config: const AppListItemConfig(
+                    config: const DSListItemConfig(
                       showDivider: true,
                     ),
                   ),
-                  AppListItem.threeLine(
+                  DSListItem.threeLine(
                     title: 'Third item',
                     subtitle:
                         'With longer subtitle that spans multiple lines for better content display',
-                    trailing: const AppListItemTrailing(
-                      type: AppListItemTrailingType.text,
+                    trailing: const DSListItemTrailing(
+                      type: DSListItemTrailingType.text,
                       text: '12:30',
                     ),
-                    config: const AppListItemConfig(
+                    config: const DSListItemConfig(
                       showDivider: true,
                     ),
                   ),
-                  AppListItem.oneLine(
+                  DSListItem.oneLine(
                     title: 'Fourth item (disabled)',
-                    config: const AppListItemConfig(
+                    config: const DSListItemConfig(
                       enabled: false,
                     ),
                   ),

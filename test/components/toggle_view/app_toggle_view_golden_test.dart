@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/toggle_view/app_toggle_vie
 import 'package:iautomat_design_system/src/components/toggle_view/toggle_view_config.dart';
 
 void main() {
-  group('AppToggleView Golden Tests', () {
+  group('DSToggleView Golden Tests', () {
     testWidgets('Basic toggle view variants', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -13,38 +13,38 @@ void main() {
             body: Column(
               children: [
                 const Text('List Variant:'),
-                AppToggleView.list(
+                DSToggleView.list(
                   value: const ['option1'],
                   options: const [
-                    AppToggleViewOption(id: 'option1', label: 'Option 1'),
-                    AppToggleViewOption(id: 'option2', label: 'Option 2'),
-                    AppToggleViewOption(id: 'option3', label: 'Option 3'),
+                    DSToggleViewOption(id: 'option1', label: 'Option 1'),
+                    DSToggleViewOption(id: 'option2', label: 'Option 2'),
+                    DSToggleViewOption(id: 'option3', label: 'Option 3'),
                   ],
                   onChanged: (selected) {},
                 ),
                 const SizedBox(height: 16),
                 const Text('Grid Variant:'),
-                AppToggleView.grid(
+                DSToggleView.grid(
                   value: const ['grid1'],
-                  config: const AppToggleViewConfig(
+                  config: const DSToggleViewConfig(
                     gridCrossAxisCount: 2,
                   ),
                   options: const [
-                    AppToggleViewOption(id: 'grid1', label: 'Grid 1'),
-                    AppToggleViewOption(id: 'grid2', label: 'Grid 2'),
-                    AppToggleViewOption(id: 'grid3', label: 'Grid 3'),
-                    AppToggleViewOption(id: 'grid4', label: 'Grid 4'),
+                    DSToggleViewOption(id: 'grid1', label: 'Grid 1'),
+                    DSToggleViewOption(id: 'grid2', label: 'Grid 2'),
+                    DSToggleViewOption(id: 'grid3', label: 'Grid 3'),
+                    DSToggleViewOption(id: 'grid4', label: 'Grid 4'),
                   ],
                   onChanged: (selected) {},
                 ),
                 const SizedBox(height: 16),
                 const Text('Compact Variant:'),
-                AppToggleView.compact(
+                DSToggleView.compact(
                   value: const ['tag1'],
                   options: const [
-                    AppToggleViewOption(id: 'tag1', label: 'Tag 1'),
-                    AppToggleViewOption(id: 'tag2', label: 'Tag 2'),
-                    AppToggleViewOption(id: 'tag3', label: 'Tag 3'),
+                    DSToggleViewOption(id: 'tag1', label: 'Tag 1'),
+                    DSToggleViewOption(id: 'tag2', label: 'Tag 2'),
+                    DSToggleViewOption(id: 'tag3', label: 'Tag 3'),
                   ],
                   onChanged: (selected) {},
                 ),
@@ -67,20 +67,20 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppToggleView(
+                DSToggleView(
                   value: const ['home'],
                   options: const [
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'home',
                       label: 'Home',
                       icon: Icons.home,
                     ),
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'work',
                       label: 'Work',
                       icon: Icons.work,
                     ),
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'school',
                       label: 'School',
                       icon: Icons.school,
@@ -108,34 +108,34 @@ void main() {
             body: Column(
               children: [
                 const Text('Small Size:'),
-                AppToggleView(
+                DSToggleView(
                   value: const ['small'],
-                  size: AppToggleViewSize.small,
+                  size: DSToggleViewSize.small,
                   options: const [
-                    AppToggleViewOption(id: 'small', label: 'Small'),
-                    AppToggleViewOption(id: 'option', label: 'Option'),
+                    DSToggleViewOption(id: 'small', label: 'Small'),
+                    DSToggleViewOption(id: 'option', label: 'Option'),
                   ],
                   onChanged: (selected) {},
                 ),
                 const SizedBox(height: 16),
                 const Text('Medium Size:'),
-                AppToggleView(
+                DSToggleView(
                   value: const ['medium'],
-                  size: AppToggleViewSize.medium,
+                  size: DSToggleViewSize.medium,
                   options: const [
-                    AppToggleViewOption(id: 'medium', label: 'Medium'),
-                    AppToggleViewOption(id: 'option', label: 'Option'),
+                    DSToggleViewOption(id: 'medium', label: 'Medium'),
+                    DSToggleViewOption(id: 'option', label: 'Option'),
                   ],
                   onChanged: (selected) {},
                 ),
                 const SizedBox(height: 16),
                 const Text('Large Size:'),
-                AppToggleView(
+                DSToggleView(
                   value: const ['large'],
-                  size: AppToggleViewSize.large,
+                  size: DSToggleViewSize.large,
                   options: const [
-                    AppToggleViewOption(id: 'large', label: 'Large'),
-                    AppToggleViewOption(id: 'option', label: 'Option'),
+                    DSToggleViewOption(id: 'large', label: 'Large'),
+                    DSToggleViewOption(id: 'option', label: 'Option'),
                   ],
                   onChanged: (selected) {},
                 ),
@@ -159,23 +159,23 @@ void main() {
             body: Column(
               children: [
                 const Text('Enabled:'),
-                AppToggleView(
+                DSToggleView(
                   value: const ['enabled'],
                   enabled: true,
                   options: const [
-                    AppToggleViewOption(id: 'enabled', label: 'Enabled'),
-                    AppToggleViewOption(id: 'option', label: 'Option'),
+                    DSToggleViewOption(id: 'enabled', label: 'Enabled'),
+                    DSToggleViewOption(id: 'option', label: 'Option'),
                   ],
                   onChanged: (selected) {},
                 ),
                 const SizedBox(height: 16),
                 const Text('Disabled:'),
-                AppToggleView(
+                DSToggleView(
                   value: const ['disabled'],
                   enabled: false,
                   options: const [
-                    AppToggleViewOption(id: 'disabled', label: 'Disabled'),
-                    AppToggleViewOption(id: 'option', label: 'Option'),
+                    DSToggleViewOption(id: 'disabled', label: 'Disabled'),
+                    DSToggleViewOption(id: 'option', label: 'Option'),
                   ],
                   onChanged: (selected) {},
                 ),
@@ -198,12 +198,12 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                const AppToggleView(
+                const DSToggleView(
                   value: [],
-                  state: AppToggleViewState.loading,
+                  state: DSToggleViewState.loading,
                   options: [
-                    AppToggleViewOption(id: 'loading1', label: 'Loading 1'),
-                    AppToggleViewOption(id: 'loading2', label: 'Loading 2'),
+                    DSToggleViewOption(id: 'loading1', label: 'Loading 1'),
+                    DSToggleViewOption(id: 'loading2', label: 'Loading 2'),
                   ],
                 ),
               ],
@@ -225,12 +225,12 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                const AppToggleView(
+                const DSToggleView(
                   value: [],
-                  state: AppToggleViewState.skeleton,
+                  state: DSToggleViewState.skeleton,
                   options: [
-                    AppToggleViewOption(id: 'skeleton1', label: 'Skeleton 1'),
-                    AppToggleViewOption(id: 'skeleton2', label: 'Skeleton 2'),
+                    DSToggleViewOption(id: 'skeleton1', label: 'Skeleton 1'),
+                    DSToggleViewOption(id: 'skeleton2', label: 'Skeleton 2'),
                   ],
                 ),
               ],
@@ -253,26 +253,26 @@ void main() {
             body: Column(
               children: [
                 const Text('Multiple Selection:'),
-                AppToggleView(
+                DSToggleView(
                   value: const ['option1', 'option3'],
                   allowMultipleSelection: true,
                   options: const [
-                    AppToggleViewOption(id: 'option1', label: 'Option 1'),
-                    AppToggleViewOption(id: 'option2', label: 'Option 2'),
-                    AppToggleViewOption(id: 'option3', label: 'Option 3'),
-                    AppToggleViewOption(id: 'option4', label: 'Option 4'),
+                    DSToggleViewOption(id: 'option1', label: 'Option 1'),
+                    DSToggleViewOption(id: 'option2', label: 'Option 2'),
+                    DSToggleViewOption(id: 'option3', label: 'Option 3'),
+                    DSToggleViewOption(id: 'option4', label: 'Option 4'),
                   ],
                   onChanged: (selected) {},
                 ),
                 const SizedBox(height: 16),
                 const Text('Single Selection:'),
-                AppToggleView(
+                DSToggleView(
                   value: const ['single1'],
                   allowMultipleSelection: false,
                   options: const [
-                    AppToggleViewOption(id: 'single1', label: 'Single 1'),
-                    AppToggleViewOption(id: 'single2', label: 'Single 2'),
-                    AppToggleViewOption(id: 'single3', label: 'Single 3'),
+                    DSToggleViewOption(id: 'single1', label: 'Single 1'),
+                    DSToggleViewOption(id: 'single2', label: 'Single 2'),
+                    DSToggleViewOption(id: 'single3', label: 'Single 3'),
                   ],
                   onChanged: (selected) {},
                 ),
@@ -295,9 +295,9 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppToggleView(
+                DSToggleView(
                   value: const ['custom1'],
-                  config: const AppToggleViewConfig(
+                  config: const DSToggleViewConfig(
                     backgroundColor: Colors.grey,
                     selectedBackgroundColor: Colors.purple,
                     selectedTextColor: Colors.white,
@@ -306,9 +306,9 @@ void main() {
                     borderRadius: 20,
                   ),
                   options: const [
-                    AppToggleViewOption(id: 'custom1', label: 'Custom 1'),
-                    AppToggleViewOption(id: 'custom2', label: 'Custom 2'),
-                    AppToggleViewOption(id: 'custom3', label: 'Custom 3'),
+                    DSToggleViewOption(id: 'custom1', label: 'Custom 1'),
+                    DSToggleViewOption(id: 'custom2', label: 'Custom 2'),
+                    DSToggleViewOption(id: 'custom3', label: 'Custom 3'),
                   ],
                   onChanged: (selected) {},
                 ),
@@ -331,9 +331,9 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppToggleView(
+                DSToggleView(
                   value: const ['spacing1'],
-                  config: const AppToggleViewConfig(
+                  config: const DSToggleViewConfig(
                     itemPadding:
                         EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     itemSpacing: 16,
@@ -342,12 +342,12 @@ void main() {
                     iconSize: 20,
                   ),
                   options: const [
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'spacing1',
                       label: 'Large Spacing 1',
                       icon: Icons.star,
                     ),
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'spacing2',
                       label: 'Large Spacing 2',
                       icon: Icons.favorite,
@@ -375,35 +375,35 @@ void main() {
             body: Column(
               children: [
                 const Text('2 Columns Grid:'),
-                AppToggleView.grid(
+                DSToggleView.grid(
                   value: const ['grid1'],
-                  config: const AppToggleViewConfig(
+                  config: const DSToggleViewConfig(
                     gridCrossAxisCount: 2,
                     gridChildAspectRatio: 2.5,
                   ),
                   options: const [
-                    AppToggleViewOption(id: 'grid1', label: 'Grid 1'),
-                    AppToggleViewOption(id: 'grid2', label: 'Grid 2'),
-                    AppToggleViewOption(id: 'grid3', label: 'Grid 3'),
-                    AppToggleViewOption(id: 'grid4', label: 'Grid 4'),
+                    DSToggleViewOption(id: 'grid1', label: 'Grid 1'),
+                    DSToggleViewOption(id: 'grid2', label: 'Grid 2'),
+                    DSToggleViewOption(id: 'grid3', label: 'Grid 3'),
+                    DSToggleViewOption(id: 'grid4', label: 'Grid 4'),
                   ],
                   onChanged: (selected) {},
                 ),
                 const SizedBox(height: 16),
                 const Text('3 Columns Grid:'),
-                AppToggleView.grid(
+                DSToggleView.grid(
                   value: const ['grid1'],
-                  config: const AppToggleViewConfig(
+                  config: const DSToggleViewConfig(
                     gridCrossAxisCount: 3,
                     gridChildAspectRatio: 1.5,
                   ),
                   options: const [
-                    AppToggleViewOption(id: 'grid1', label: 'Item 1'),
-                    AppToggleViewOption(id: 'grid2', label: 'Item 2'),
-                    AppToggleViewOption(id: 'grid3', label: 'Item 3'),
-                    AppToggleViewOption(id: 'grid4', label: 'Item 4'),
-                    AppToggleViewOption(id: 'grid5', label: 'Item 5'),
-                    AppToggleViewOption(id: 'grid6', label: 'Item 6'),
+                    DSToggleViewOption(id: 'grid1', label: 'Item 1'),
+                    DSToggleViewOption(id: 'grid2', label: 'Item 2'),
+                    DSToggleViewOption(id: 'grid3', label: 'Item 3'),
+                    DSToggleViewOption(id: 'grid4', label: 'Item 4'),
+                    DSToggleViewOption(id: 'grid5', label: 'Item 5'),
+                    DSToggleViewOption(id: 'grid6', label: 'Item 6'),
                   ],
                   onChanged: (selected) {},
                 ),
@@ -427,30 +427,30 @@ void main() {
             body: Column(
               children: [
                 const Text('Wrapped Compact:'),
-                AppToggleView.compact(
+                DSToggleView.compact(
                   value: const ['tag1'],
-                  config: const AppToggleViewConfig(
+                  config: const DSToggleViewConfig(
                     compactWrapItems: true,
                   ),
                   options: const [
-                    AppToggleViewOption(id: 'tag1', label: 'JavaScript'),
-                    AppToggleViewOption(id: 'tag2', label: 'Flutter'),
-                    AppToggleViewOption(id: 'tag3', label: 'React'),
-                    AppToggleViewOption(id: 'tag4', label: 'Vue.js'),
+                    DSToggleViewOption(id: 'tag1', label: 'JavaScript'),
+                    DSToggleViewOption(id: 'tag2', label: 'Flutter'),
+                    DSToggleViewOption(id: 'tag3', label: 'React'),
+                    DSToggleViewOption(id: 'tag4', label: 'Vue.js'),
                   ],
                   onChanged: (selected) {},
                 ),
                 const SizedBox(height: 16),
                 const Text('Horizontal Scrolling:'),
-                AppToggleView.compact(
+                DSToggleView.compact(
                   value: const ['scroll1'],
-                  config: const AppToggleViewConfig(
+                  config: const DSToggleViewConfig(
                     compactWrapItems: false,
                   ),
                   options: const [
-                    AppToggleViewOption(id: 'scroll1', label: 'Technology'),
-                    AppToggleViewOption(id: 'scroll2', label: 'Programming'),
-                    AppToggleViewOption(id: 'scroll3', label: 'Mobile Dev'),
+                    DSToggleViewOption(id: 'scroll1', label: 'Technology'),
+                    DSToggleViewOption(id: 'scroll2', label: 'Programming'),
+                    DSToggleViewOption(id: 'scroll3', label: 'Mobile Dev'),
                   ],
                   onChanged: (selected) {},
                 ),
@@ -473,25 +473,25 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppToggleView(
+                DSToggleView(
                   value: const ['dark1'],
                   options: const [
-                    AppToggleViewOption(id: 'dark1', label: 'Dark 1'),
-                    AppToggleViewOption(id: 'dark2', label: 'Dark 2'),
-                    AppToggleViewOption(id: 'dark3', label: 'Dark 3'),
+                    DSToggleViewOption(id: 'dark1', label: 'Dark 1'),
+                    DSToggleViewOption(id: 'dark2', label: 'Dark 2'),
+                    DSToggleViewOption(id: 'dark3', label: 'Dark 3'),
                   ],
                   onChanged: (selected) {},
                 ),
                 const SizedBox(height: 16),
-                AppToggleView(
+                DSToggleView(
                   value: const ['icon1'],
                   options: const [
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'icon1',
                       label: 'With Icon',
                       icon: Icons.star,
                     ),
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'icon2',
                       label: 'Another',
                       icon: Icons.favorite,
@@ -519,16 +519,16 @@ void main() {
             body: Column(
               children: [
                 const Text('Left-to-Right (LTR):'),
-                AppToggleView(
+                DSToggleView(
                   value: const ['ltr1'],
                   textDirection: TextDirection.ltr,
                   options: const [
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'ltr1',
                       label: 'English 1',
                       icon: Icons.language,
                     ),
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'ltr2',
                       label: 'English 2',
                       icon: Icons.translate,
@@ -538,16 +538,16 @@ void main() {
                 ),
                 const SizedBox(height: 16),
                 const Text('Right-to-Left (RTL):'),
-                AppToggleView(
+                DSToggleView(
                   value: const ['rtl1'],
                   textDirection: TextDirection.rtl,
                   options: const [
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'rtl1',
                       label: 'عربي ١',
                       icon: Icons.language,
                     ),
-                    AppToggleViewOption(
+                    DSToggleViewOption(
                       id: 'rtl2',
                       label: 'عربي ٢',
                       icon: Icons.translate,

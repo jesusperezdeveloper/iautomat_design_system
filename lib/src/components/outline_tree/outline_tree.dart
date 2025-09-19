@@ -1,7 +1,7 @@
 /// Outline tree components barrel file
 ///
 /// Provides exports for:
-/// - AppOutlineTree widget with async and multi-select variants
+/// - DSOutlineTree widget with async and multi-select variants
 /// - Tree configuration models
 /// - Tree node data structures
 /// - Tree stories and examples

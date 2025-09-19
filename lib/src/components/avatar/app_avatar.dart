@@ -5,20 +5,20 @@ import 'package:flutter/services.dart';
 
 import 'avatar_config.dart';
 
-class AppAvatar extends StatefulWidget {
-  final AppAvatarConfig config;
+class DSAvatar extends StatefulWidget {
+  final DSAvatarConfig config;
 
-  const AppAvatar({
+  const DSAvatar({
     super.key,
     required this.config,
   });
 
-  AppAvatar.image({
+  DSAvatar.image({
     super.key,
     required String imageUrl,
-    AppAvatarSize size = AppAvatarSize.medium,
-    AppAvatarShape shape = AppAvatarShape.circle,
-    AppAvatarPresence? presence,
+    DSAvatarSize size = DSAvatarSize.medium,
+    DSAvatarShape shape = DSAvatarShape.circle,
+    DSAvatarPresence? presence,
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
@@ -39,12 +39,12 @@ class AppAvatar extends StatefulWidget {
     BoxFit? imageFit,
     Duration? cacheDuration,
     Map<String, String>? imageHeaders,
-    AppAvatarStyle? style,
-    AppAvatarInteraction? interaction,
-    AppAvatarAccessibility? accessibility,
-    AppAvatarAnimation? animation,
-  }) : config = AppAvatarConfig(
-          variant: AppAvatarVariant.image,
+    DSAvatarStyle? style,
+    DSAvatarInteraction? interaction,
+    DSAvatarAccessibility? accessibility,
+    DSAvatarAnimation? animation,
+  }) : config = DSAvatarConfig(
+          variant: DSAvatarVariant.image,
           size: size,
           shape: shape,
           imageUrl: imageUrl,
@@ -75,12 +75,12 @@ class AppAvatar extends StatefulWidget {
           animation: animation,
         );
 
-  AppAvatar.initials({
+  DSAvatar.initials({
     super.key,
     required String initials,
-    AppAvatarSize size = AppAvatarSize.medium,
-    AppAvatarShape shape = AppAvatarShape.circle,
-    AppAvatarPresence? presence,
+    DSAvatarSize size = DSAvatarSize.medium,
+    DSAvatarShape shape = DSAvatarShape.circle,
+    DSAvatarPresence? presence,
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
@@ -96,12 +96,12 @@ class AppAvatar extends StatefulWidget {
     bool showPresence = false,
     bool showBorder = false,
     double? borderWidth,
-    AppAvatarStyle? style,
-    AppAvatarInteraction? interaction,
-    AppAvatarAccessibility? accessibility,
-    AppAvatarAnimation? animation,
-  }) : config = AppAvatarConfig(
-          variant: AppAvatarVariant.initials,
+    DSAvatarStyle? style,
+    DSAvatarInteraction? interaction,
+    DSAvatarAccessibility? accessibility,
+    DSAvatarAnimation? animation,
+  }) : config = DSAvatarConfig(
+          variant: DSAvatarVariant.initials,
           size: size,
           shape: shape,
           initials: initials,
@@ -127,12 +127,12 @@ class AppAvatar extends StatefulWidget {
           animation: animation,
         );
 
-  AppAvatar.group({
+  DSAvatar.group({
     super.key,
     List<String>? groupImageUrls,
     List<String>? groupInitials,
-    AppAvatarSize size = AppAvatarSize.medium,
-    AppAvatarShape shape = AppAvatarShape.circle,
+    DSAvatarSize size = DSAvatarSize.medium,
+    DSAvatarShape shape = DSAvatarShape.circle,
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
@@ -151,12 +151,12 @@ class AppAvatar extends StatefulWidget {
     BoxFit? imageFit,
     Duration? cacheDuration,
     Map<String, String>? imageHeaders,
-    AppAvatarStyle? style,
-    AppAvatarInteraction? interaction,
-    AppAvatarAccessibility? accessibility,
-    AppAvatarAnimation? animation,
-  }) : config = AppAvatarConfig(
-          variant: AppAvatarVariant.group,
+    DSAvatarStyle? style,
+    DSAvatarInteraction? interaction,
+    DSAvatarAccessibility? accessibility,
+    DSAvatarAnimation? animation,
+  }) : config = DSAvatarConfig(
+          variant: DSAvatarVariant.group,
           size: size,
           shape: shape,
           groupImageUrls: groupImageUrls,
@@ -186,10 +186,10 @@ class AppAvatar extends StatefulWidget {
         );
 
   @override
-  State<AppAvatar> createState() => _AppAvatarState();
+  State<DSAvatar> createState() => _DSAvatarState();
 }
 
-class _AppAvatarState extends State<AppAvatar>
+class _DSAvatarState extends State<DSAvatar>
     with TickerProviderStateMixin, WidgetsBindingObserver {
   late AnimationController _animationController;
   late AnimationController _pulseController;
@@ -197,7 +197,7 @@ class _AppAvatarState extends State<AppAvatar>
   late Animation<double> _fadeAnimation;
   late Animation<double> _pulseAnimation;
 
-  AppAvatarState _currentState = AppAvatarState.defaultState;
+  DSAvatarState _currentState = DSAvatarState.defaultState;
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
@@ -218,7 +218,7 @@ class _AppAvatarState extends State<AppAvatar>
   }
 
   void _initializeAnimations() {
-    final animation = widget.config.animation ?? const AppAvatarAnimation();
+    final animation = widget.config.animation ?? const DSAvatarAnimation();
 
     _animationController = AnimationController(
       duration: animation.duration,
@@ -259,7 +259,7 @@ class _AppAvatarState extends State<AppAvatar>
     }
   }
 
-  void _updateState(AppAvatarState newState) {
+  void _updateState(DSAvatarState newState) {
     if (_currentState != newState) {
       setState(() {
         _currentState = newState;
@@ -268,14 +268,14 @@ class _AppAvatarState extends State<AppAvatar>
       final animation = widget.config.animation;
       if (animation?.enabled == true) {
         switch (animation!.type) {
-          case AppAvatarAnimationType.scale:
+          case DSAvatarAnimationType.scale:
             if (newState.isInteractiveState) {
               _animationController.forward();
             } else {
               _animationController.reverse();
             }
             break;
-          case AppAvatarAnimationType.fade:
+          case DSAvatarAnimationType.fade:
             if (newState.isInteractiveState) {
               _animationController.forward();
             } else {
@@ -291,7 +291,7 @@ class _AppAvatarState extends State<AppAvatar>
 
   void _handleTapDown(TapDownDetails details) {
     if (widget.config.canInteract) {
-      _updateState(AppAvatarState.pressed);
+      _updateState(DSAvatarState.pressed);
       setState(() => _isPressed = true);
     }
   }
@@ -299,7 +299,7 @@ class _AppAvatarState extends State<AppAvatar>
   void _handleTapUp(TapUpDetails details) {
     if (widget.config.canInteract) {
       _updateState(
-          _isFocused ? AppAvatarState.focus : AppAvatarState.defaultState);
+          _isFocused ? DSAvatarState.focus : DSAvatarState.defaultState);
       setState(() => _isPressed = false);
     }
   }
@@ -307,7 +307,7 @@ class _AppAvatarState extends State<AppAvatar>
   void _handleTapCancel() {
     if (widget.config.canInteract) {
       _updateState(
-          _isFocused ? AppAvatarState.focus : AppAvatarState.defaultState);
+          _isFocused ? DSAvatarState.focus : DSAvatarState.defaultState);
       setState(() => _isPressed = false);
     }
   }
@@ -330,10 +330,10 @@ class _AppAvatarState extends State<AppAvatar>
     if (widget.config.canInteract) {
       setState(() => _isHovered = hovering);
       if (hovering) {
-        _updateState(AppAvatarState.hover);
+        _updateState(DSAvatarState.hover);
         widget.config.onHover?.call();
       } else if (!_isPressed && !_isFocused) {
-        _updateState(AppAvatarState.defaultState);
+        _updateState(DSAvatarState.defaultState);
       }
     }
   }
@@ -342,9 +342,9 @@ class _AppAvatarState extends State<AppAvatar>
     if (widget.config.canInteract) {
       setState(() => _isFocused = focused);
       if (focused) {
-        _updateState(AppAvatarState.focus);
+        _updateState(DSAvatarState.focus);
       } else if (!_isHovered && !_isPressed) {
-        _updateState(AppAvatarState.defaultState);
+        _updateState(DSAvatarState.defaultState);
       }
     }
   }
@@ -357,11 +357,11 @@ class _AppAvatarState extends State<AppAvatar>
 
     final theme = Theme.of(context);
     final effectiveState = widget.config.isDisabled
-        ? AppAvatarState.disabled
+        ? DSAvatarState.disabled
         : widget.config.isLoading
-            ? AppAvatarState.loading
+            ? DSAvatarState.loading
             : widget.config.isSkeleton
-                ? AppAvatarState.skeleton
+                ? DSAvatarState.skeleton
                 : _currentState;
 
     final style = _getEffectiveStyle(theme, widget.config, effectiveState);
@@ -388,7 +388,7 @@ class _AppAvatarState extends State<AppAvatar>
     final animation = widget.config.animation;
     if (animation?.enabled == true) {
       switch (animation!.type) {
-        case AppAvatarAnimationType.scale:
+        case DSAvatarAnimationType.scale:
           result = AnimatedBuilder(
             animation: _scaleAnimation,
             builder: (context, child) {
@@ -400,7 +400,7 @@ class _AppAvatarState extends State<AppAvatar>
             child: result,
           );
           break;
-        case AppAvatarAnimationType.fade:
+        case DSAvatarAnimationType.fade:
           result = AnimatedBuilder(
             animation: _fadeAnimation,
             builder: (context, child) {
@@ -412,7 +412,7 @@ class _AppAvatarState extends State<AppAvatar>
             child: result,
           );
           break;
-        case AppAvatarAnimationType.pulse:
+        case DSAvatarAnimationType.pulse:
           result = AnimatedBuilder(
             animation: _pulseAnimation,
             builder: (context, child) {
@@ -469,19 +469,19 @@ class _AppAvatarState extends State<AppAvatar>
   }
 
   Widget _buildAvatarContent(
-      ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
+      ThemeData theme, DSAvatarConfig config, DSAvatarStyle style) {
     switch (config.variant) {
-      case AppAvatarVariant.image:
+      case DSAvatarVariant.image:
         return _buildImageAvatar(theme, config, style);
-      case AppAvatarVariant.initials:
+      case DSAvatarVariant.initials:
         return _buildInitialsAvatar(theme, config, style);
-      case AppAvatarVariant.group:
+      case DSAvatarVariant.group:
         return _buildGroupAvatar(theme, config, style);
     }
   }
 
   Widget _buildImageAvatar(
-      ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
+      ThemeData theme, DSAvatarConfig config, DSAvatarStyle style) {
     final size = config.size.size;
     final borderRadius = config.shape.getBorderRadius(size);
 
@@ -527,13 +527,13 @@ class _AppAvatarState extends State<AppAvatar>
     );
   }
 
-  Widget _buildNetworkImage(AppAvatarConfig config, AppAvatarStyle style) {
+  Widget _buildNetworkImage(DSAvatarConfig config, DSAvatarStyle style) {
     return Image.network(
       config.imageUrl!,
-      fit: config.imageFit ?? AppAvatarConstants.defaultImageFit,
+      fit: config.imageFit ?? DSAvatarConstants.defaultImageFit,
       filterQuality:
-          style.filterQuality ?? AppAvatarConstants.defaultFilterQuality,
-      headers: config.imageHeaders ?? AppAvatarConstants.defaultImageHeaders,
+          style.filterQuality ?? DSAvatarConstants.defaultFilterQuality,
+      headers: config.imageHeaders ?? DSAvatarConstants.defaultImageHeaders,
       loadingBuilder: (context, child, loadingProgress) {
         if (loadingProgress == null) return child;
         return Center(
@@ -560,7 +560,7 @@ class _AppAvatarState extends State<AppAvatar>
   }
 
   Widget _buildInitialsAvatar(
-      ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
+      ThemeData theme, DSAvatarConfig config, DSAvatarStyle style) {
     final size = config.size.size;
     final borderRadius = config.shape.getBorderRadius(size);
 
@@ -606,7 +606,7 @@ class _AppAvatarState extends State<AppAvatar>
   }
 
   Widget _buildGroupAvatar(
-      ThemeData theme, AppAvatarConfig config, AppAvatarStyle style) {
+      ThemeData theme, DSAvatarConfig config, DSAvatarStyle style) {
     final size = config.size.size;
     final groupImages = config.displayGroupImages;
     final groupInitials = config.displayGroupInitials;
@@ -684,8 +684,8 @@ class _AppAvatarState extends State<AppAvatar>
 
   Widget _buildGroupAvatarItem(
     ThemeData theme,
-    AppAvatarConfig config,
-    AppAvatarStyle style, {
+    DSAvatarConfig config,
+    DSAvatarStyle style, {
     String? imageUrl,
     String? initials,
   }) {
@@ -696,10 +696,10 @@ class _AppAvatarState extends State<AppAvatar>
     if (imageUrl != null) {
       content = Image.network(
         imageUrl,
-        fit: config.imageFit ?? AppAvatarConstants.defaultImageFit,
+        fit: config.imageFit ?? DSAvatarConstants.defaultImageFit,
         filterQuality:
-            style.filterQuality ?? AppAvatarConstants.defaultFilterQuality,
-        headers: config.imageHeaders ?? AppAvatarConstants.defaultImageHeaders,
+            style.filterQuality ?? DSAvatarConstants.defaultFilterQuality,
+        headers: config.imageHeaders ?? DSAvatarConstants.defaultImageHeaders,
         errorBuilder: (context, error, stackTrace) {
           return Icon(
             Icons.person,
@@ -745,7 +745,7 @@ class _AppAvatarState extends State<AppAvatar>
   }
 
   Widget _buildAvatarWithPresence(
-      ThemeData theme, AppAvatarConfig config, Widget avatar) {
+      ThemeData theme, DSAvatarConfig config, Widget avatar) {
     final presence = config.presence!;
     final presenceSize = config.size.presenceSize;
 
@@ -767,7 +767,7 @@ class _AppAvatarState extends State<AppAvatar>
                 width: 2.0,
               ),
             ),
-            child: presence == AppAvatarPresence.doNotDisturb
+            child: presence == DSAvatarPresence.doNotDisturb
                 ? Icon(
                     Icons.remove,
                     size: presenceSize * 0.6,
@@ -780,7 +780,7 @@ class _AppAvatarState extends State<AppAvatar>
     );
   }
 
-  Widget _buildSkeletonContent(ThemeData theme, AppAvatarConfig config) {
+  Widget _buildSkeletonContent(ThemeData theme, DSAvatarConfig config) {
     final size = config.size.size;
     final borderRadius = config.shape.getBorderRadius(size);
 
@@ -802,8 +802,8 @@ class _AppAvatarState extends State<AppAvatar>
     );
   }
 
-  AppAvatarStyle _getEffectiveStyle(
-      ThemeData theme, AppAvatarConfig config, AppAvatarState state) {
+  DSAvatarStyle _getEffectiveStyle(
+      ThemeData theme, DSAvatarConfig config, DSAvatarState state) {
     final colorScheme = theme.colorScheme;
     final effectiveBackgroundColor =
         config.getEffectiveBackgroundColor(colorScheme);
@@ -811,20 +811,20 @@ class _AppAvatarState extends State<AppAvatar>
         config.getEffectiveForegroundColor(colorScheme);
     final effectiveBorderColor = config.getEffectiveBorderColor(colorScheme);
 
-    final baseStyle = AppAvatarStyle(
+    final baseStyle = DSAvatarStyle(
       backgroundColor: effectiveBackgroundColor,
       foregroundColor: effectiveForegroundColor,
       borderColor: effectiveBorderColor,
       shadowColor: colorScheme.shadow,
       overlayColor: colorScheme.onSurface,
       borderWidth: config.getEffectiveBorderWidth(),
-      elevation: AppAvatarConstants.defaultElevation,
+      elevation: DSAvatarConstants.defaultElevation,
       textStyle: theme.textTheme.titleMedium,
-      imageFit: config.imageFit ?? AppAvatarConstants.defaultImageFit,
-      filterQuality: AppAvatarConstants.defaultFilterQuality,
+      imageFit: config.imageFit ?? DSAvatarConstants.defaultImageFit,
+      filterQuality: DSAvatarConstants.defaultFilterQuality,
     );
 
-    final customStyle = config.style ?? const AppAvatarStyle();
+    final customStyle = config.style ?? const DSAvatarStyle();
     final mergedStyle = baseStyle.copyWith(
       backgroundColor: customStyle.backgroundColor ?? baseStyle.backgroundColor,
       foregroundColor: customStyle.foregroundColor ?? baseStyle.foregroundColor,
@@ -852,14 +852,14 @@ class _AppAvatarState extends State<AppAvatar>
     final config = widget.config;
 
     switch (config.variant) {
-      case AppAvatarVariant.image:
+      case DSAvatarVariant.image:
         if (config.hasImageUrl) {
           return 'Avatar con imagen${config.hasPresence ? ', ${config.presence!.label}' : ''}';
         }
         return 'Avatar${config.hasPresence ? ', ${config.presence!.label}' : ''}';
-      case AppAvatarVariant.initials:
+      case DSAvatarVariant.initials:
         return 'Avatar de ${config.displayInitials}${config.hasPresence ? ', ${config.presence!.label}' : ''}';
-      case AppAvatarVariant.group:
+      case DSAvatarVariant.group:
         final total = (config.groupImageUrls?.length ?? 0) +
             (config.groupInitials?.length ?? 0);
         return 'Avatar de grupo con $total miembros';

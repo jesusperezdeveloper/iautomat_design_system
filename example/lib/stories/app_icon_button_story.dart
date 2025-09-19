@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppIconButtonStory extends StatefulWidget {
-  const AppIconButtonStory({super.key});
+class DSIconButtonStory extends StatefulWidget {
+  const DSIconButtonStory({super.key});
 
   @override
-  State<AppIconButtonStory> createState() => _AppIconButtonStoryState();
+  State<DSIconButtonStory> createState() => _DSIconButtonStoryState();
 }
 
-class _AppIconButtonStoryState extends State<AppIconButtonStory> {
-  AppIconButtonVariant _variant = AppIconButtonVariant.standard;
-  AppIconButtonState _state = AppIconButtonState.defaultState;
-  AppIconButtonSize _size = AppIconButtonSize.medium;
+class _DSIconButtonStoryState extends State<DSIconButtonStory> {
+  DSIconButtonVariant _variant = DSIconButtonVariant.standard;
+  DSIconButtonState _state = DSIconButtonState.defaultState;
+  DSIconButtonSize _size = DSIconButtonSize.medium;
   bool _isToggled = false;
   bool _isRtl = false;
   bool _enableA11y = true;
@@ -73,8 +73,8 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
     });
   }
 
-  Widget _buildSampleIconButton({required AppIconButtonConfig config}) {
-    return AppIconButton(
+  Widget _buildSampleIconButton({required DSIconButtonConfig config}) {
+    return DSIconButton(
       config: config,
       icon: Icon(_iconOptions[_selectedIcon]),
       tooltip: 'Botón de ejemplo',
@@ -87,7 +87,7 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppIconButton Stories'),
+        title: const Text('DSIconButton Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -113,11 +113,11 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                       children: [
                         const Text('Variante: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppIconButtonVariant>(
+                        DropdownButton<DSIconButtonVariant>(
                           value: _variant,
                           onChanged: (value) =>
                               setState(() => _variant = value!),
-                          items: AppIconButtonVariant.values.map((variant) {
+                          items: DSIconButtonVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
                               child: Text(variant.displayName),
@@ -132,10 +132,10 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                       children: [
                         const Text('Estado: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppIconButtonState>(
+                        DropdownButton<DSIconButtonState>(
                           value: _state,
                           onChanged: (value) => setState(() => _state = value!),
-                          items: AppIconButtonState.values.map((state) {
+                          items: DSIconButtonState.values.map((state) {
                             return DropdownMenuItem(
                               value: state,
                               child: Text(state.displayName),
@@ -150,10 +150,10 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                       children: [
                         const Text('Tamaño: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppIconButtonSize>(
+                        DropdownButton<DSIconButtonSize>(
                           value: _size,
                           onChanged: (value) => setState(() => _size = value!),
-                          items: AppIconButtonSize.values.map((size) {
+                          items: DSIconButtonSize.values.map((size) {
                             return DropdownMenuItem(
                               value: size,
                               child: Text(size.displayName),
@@ -341,7 +341,7 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                 ),
                 child: Center(
                   child: _buildSampleIconButton(
-                    config: AppIconButtonConfig(
+                    config: DSIconButtonConfig(
                       variant: _variant,
                       state: _state,
                       size: _size,
@@ -350,13 +350,13 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                       enableA11y: _enableA11y,
                       enableKeyboardSupport: _enableKeyboard,
                       isInteractive: _isInteractive,
-                      spacing: AppIconButtonSpacing(
+                      spacing: DSIconButtonSpacing(
                         borderRadius: _borderRadius,
                       ),
-                      elevation: AppIconButtonElevation(
+                      elevation: DSIconButtonElevation(
                         defaultElevation: _elevation,
                       ),
-                      behavior: AppIconButtonBehavior(
+                      behavior: DSIconButtonBehavior(
                         enableHover: true,
                         enableHapticFeedback: true,
                         enableToggle: _enableToggle,
@@ -385,7 +385,7 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
               'Variantes',
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: AppIconButtonVariant.values.map((variant) {
+                children: DSIconButtonVariant.values.map((variant) {
                   return _buildVariantExample(variant);
                 }).toList(),
               ),
@@ -396,7 +396,7 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
               'Tamaños',
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: AppIconButtonSize.values.map((size) {
+                children: DSIconButtonSize.values.map((size) {
                   return _buildSizeExample(size);
                 }).toList(),
               ),
@@ -414,9 +414,9 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                   mainAxisSpacing: 16,
                   childAspectRatio: 1.0,
                 ),
-                itemCount: AppIconButtonState.values.length,
+                itemCount: DSIconButtonState.values.length,
                 itemBuilder: (context, index) {
-                  final state = AppIconButtonState.values[index];
+                  final state = DSIconButtonState.values[index];
                   return _buildStateExample(state);
                 },
               ),
@@ -430,25 +430,25 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppIconButton(
-                        config: const AppIconButtonConfig(
-                          variant: AppIconButtonVariant.standard,
+                      DSIconButton(
+                        config: const DSIconButtonConfig(
+                          variant: DSIconButtonVariant.standard,
                         ),
                         icon: const Icon(Icons.favorite_border),
                         tooltip: 'Me gusta',
                       ),
-                      AppIconButton(
-                        config: const AppIconButtonConfig(
-                          variant: AppIconButtonVariant.filled,
-                          behavior: AppIconButtonBehavior(enableToggle: true),
+                      DSIconButton(
+                        config: const DSIconButtonConfig(
+                          variant: DSIconButtonVariant.filled,
+                          behavior: DSIconButtonBehavior(enableToggle: true),
                         ),
                         icon: const Icon(Icons.star),
                         tooltip: 'Favorito',
                         isToggled: true,
                       ),
-                      AppIconButton(
-                        config: const AppIconButtonConfig(
-                          variant: AppIconButtonVariant.tonal,
+                      DSIconButton(
+                        config: const DSIconButtonConfig(
+                          variant: DSIconButtonVariant.tonal,
                         ),
                         icon: const Icon(Icons.share),
                         tooltip: 'Compartir',
@@ -459,11 +459,11 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppIconButton(
-                        config: const AppIconButtonConfig(
-                          variant: AppIconButtonVariant.filled,
-                          size: AppIconButtonSize.small,
-                          colors: AppIconButtonColors(
+                      DSIconButton(
+                        config: const DSIconButtonConfig(
+                          variant: DSIconButtonVariant.filled,
+                          size: DSIconButtonSize.small,
+                          colors: DSIconButtonColors(
                             backgroundColor: Colors.red,
                             foregroundColor: Colors.white,
                           ),
@@ -471,11 +471,11 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                         icon: const Icon(Icons.delete),
                         tooltip: 'Eliminar',
                       ),
-                      AppIconButton(
-                        config: const AppIconButtonConfig(
-                          variant: AppIconButtonVariant.tonal,
-                          size: AppIconButtonSize.large,
-                          colors: AppIconButtonColors(
+                      DSIconButton(
+                        config: const DSIconButtonConfig(
+                          variant: DSIconButtonVariant.tonal,
+                          size: DSIconButtonSize.large,
+                          colors: DSIconButtonColors(
                             backgroundColor: Colors.green,
                             foregroundColor: Colors.white,
                           ),
@@ -483,10 +483,10 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                         icon: const Icon(Icons.check),
                         tooltip: 'Confirmar',
                       ),
-                      AppIconButton(
-                        config: const AppIconButtonConfig(
-                          variant: AppIconButtonVariant.standard,
-                          state: AppIconButtonState.disabled,
+                      DSIconButton(
+                        config: const DSIconButtonConfig(
+                          variant: DSIconButtonVariant.standard,
+                          state: DSIconButtonState.disabled,
                         ),
                         icon: const Icon(Icons.edit),
                         tooltip: 'Editar (deshabilitado)',
@@ -497,30 +497,30 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppIconButton(
-                        config: const AppIconButtonConfig(
-                          variant: AppIconButtonVariant.filled,
-                          animation: AppIconButtonAnimation(
-                            type: AppIconButtonAnimationType.scale,
+                      DSIconButton(
+                        config: const DSIconButtonConfig(
+                          variant: DSIconButtonVariant.filled,
+                          animation: DSIconButtonAnimation(
+                            type: DSIconButtonAnimationType.scale,
                           ),
                         ),
                         icon: const Icon(Icons.add),
                         tooltip: 'Agregar con animación',
                       ),
-                      AppIconButton(
-                        config: const AppIconButtonConfig(
-                          variant: AppIconButtonVariant.tonal,
-                          animation: AppIconButtonAnimation(
-                            type: AppIconButtonAnimationType.rotation,
+                      DSIconButton(
+                        config: const DSIconButtonConfig(
+                          variant: DSIconButtonVariant.tonal,
+                          animation: DSIconButtonAnimation(
+                            type: DSIconButtonAnimationType.rotation,
                           ),
                         ),
                         icon: const Icon(Icons.refresh),
                         tooltip: 'Actualizar con rotación',
                       ),
-                      AppIconButton(
-                        config: const AppIconButtonConfig(
-                          variant: AppIconButtonVariant.standard,
-                          state: AppIconButtonState.loading,
+                      DSIconButton(
+                        config: const DSIconButtonConfig(
+                          variant: DSIconButtonVariant.standard,
+                          state: DSIconButtonState.loading,
                         ),
                         icon: const Icon(Icons.sync),
                         tooltip: 'Cargando...',
@@ -550,12 +550,12 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
     );
   }
 
-  Widget _buildVariantExample(AppIconButtonVariant variant) {
+  Widget _buildVariantExample(DSIconButtonVariant variant) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AppIconButton(
-          config: AppIconButtonConfig(variant: variant),
+        DSIconButton(
+          config: DSIconButtonConfig(variant: variant),
           icon: const Icon(Icons.star),
           tooltip: variant.displayName,
         ),
@@ -569,12 +569,12 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
     );
   }
 
-  Widget _buildSizeExample(AppIconButtonSize size) {
+  Widget _buildSizeExample(DSIconButtonSize size) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AppIconButton(
-          config: AppIconButtonConfig(size: size),
+        DSIconButton(
+          config: DSIconButtonConfig(size: size),
           icon: const Icon(Icons.star),
           tooltip: size.displayName,
         ),
@@ -588,12 +588,12 @@ class _AppIconButtonStoryState extends State<AppIconButtonStory> {
     );
   }
 
-  Widget _buildStateExample(AppIconButtonState state) {
+  Widget _buildStateExample(DSIconButtonState state) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AppIconButton(
-          config: AppIconButtonConfig(state: state),
+        DSIconButton(
+          config: DSIconButtonConfig(state: state),
           icon: const Icon(Icons.star),
           tooltip: state.displayName,
         ),

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/progress/app_progress.dart';
 
 void main() {
-  group('AppProgress Golden Tests', () {
+  group('DSProgress Golden Tests', () {
     testWidgets('linear progress with default styling', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -11,7 +11,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppProgress.linear(
+                child: DSProgress.linear(
                   value: 0.65,
                   label: 'Default Progress',
                 ),
@@ -32,7 +32,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppProgress.circular(
+              child: DSProgress.circular(
                 value: 0.75,
                 label: 'Circular Progress',
               ),
@@ -54,7 +54,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 250,
-                child: AppProgress.linear(
+                child: DSProgress.linear(
                   label: 'Loading...',
                 ),
               ),
@@ -74,7 +74,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppProgress.circular(
+              child: DSProgress.circular(
                 label: 'Processing...',
               ),
             ),
@@ -94,9 +94,9 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppProgress.circular(
+                child: DSProgress.circular(
                   value: 0.6,
-                  state: AppProgressState.defaultState,
+                  state: DSProgressState.defaultState,
                 ),
               ),
             ),
@@ -114,9 +114,9 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppProgress.circular(
+                child: DSProgress.circular(
                   value: 0.6,
-                  state: AppProgressState.hover,
+                  state: DSProgressState.hover,
                 ),
               ),
             ),
@@ -134,9 +134,9 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppProgress.circular(
+                child: DSProgress.circular(
                   value: 0.6,
-                  state: AppProgressState.pressed,
+                  state: DSProgressState.pressed,
                 ),
               ),
             ),
@@ -154,9 +154,9 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppProgress.circular(
+                child: DSProgress.circular(
                   value: 0.6,
-                  state: AppProgressState.focus,
+                  state: DSProgressState.focus,
                 ),
               ),
             ),
@@ -174,9 +174,9 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppProgress.circular(
+                child: DSProgress.circular(
                   value: 0.6,
-                  state: AppProgressState.disabled,
+                  state: DSProgressState.disabled,
                 ),
               ),
             ),
@@ -194,9 +194,9 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppProgress.circular(
+                child: DSProgress.circular(
                   value: 0.6,
-                  state: AppProgressState.selected,
+                  state: DSProgressState.selected,
                 ),
               ),
             ),
@@ -214,9 +214,9 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppProgress.circular(
+                child: DSProgress.circular(
                   value: 0.6,
-                  state: AppProgressState.loading,
+                  state: DSProgressState.loading,
                 ),
               ),
             ),
@@ -234,9 +234,9 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppProgress.circular(
+                child: DSProgress.circular(
                   value: 0.6,
-                  state: AppProgressState.skeleton,
+                  state: DSProgressState.skeleton,
                 ),
               ),
             ),
@@ -257,7 +257,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 280,
-                child: AppProgress.linear(
+                child: DSProgress.linear(
                   value: 0.45,
                   label: 'Custom Styled',
                   backgroundColor: Colors.red.withValues(alpha: 0.2),
@@ -282,7 +282,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppProgress.circular(
+              child: DSProgress.circular(
                 value: 0.8,
                 label: 'Large Progress',
                 radius: 40.0,
@@ -309,7 +309,7 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 300,
-                  child: AppProgress.linear(
+                  child: DSProgress.linear(
                     value: 0.7,
                     label: 'Dark Theme Progress',
                   ),
@@ -331,7 +331,7 @@ void main() {
             theme: ThemeData.dark(),
             home: Scaffold(
               body: Center(
-                child: AppProgress.circular(
+                child: DSProgress.circular(
                   value: 0.55,
                   label: 'Dark Circular',
                 ),
@@ -357,7 +357,7 @@ void main() {
                 body: Center(
                   child: SizedBox(
                     width: 300,
-                    child: AppProgress.linear(
+                    child: DSProgress.linear(
                       value: 0.6,
                       label: 'RTL Progress تقدم',
                       rtlSupport: true,
@@ -388,23 +388,23 @@ void main() {
                   children: [
                     SizedBox(
                       width: 300,
-                      child: AppProgress.linear(
+                      child: DSProgress.linear(
                         value: 0.3,
                         label: 'Upload Progress',
                       ),
                     ),
-                    AppProgress.circular(
+                    DSProgress.circular(
                       value: 0.7,
                       label: 'Processing',
                     ),
                     SizedBox(
                       width: 280,
-                      child: AppProgress.linear(
+                      child: DSProgress.linear(
                         value: 0.9,
                         label: 'Nearly Complete',
                       ),
                     ),
-                    AppProgress.circular(
+                    DSProgress.circular(
                       label: 'Loading...',
                     ),
                   ],
@@ -434,7 +434,7 @@ void main() {
                     const SizedBox(height: 16),
                     SizedBox(
                       width: 350,
-                      child: AppProgress.linear(
+                      child: DSProgress.linear(
                         value: 0.65,
                         label: 'File Transfer',
                       ),
@@ -442,7 +442,7 @@ void main() {
                     const SizedBox(height: 32),
                     const Text('Mobile Style'),
                     const SizedBox(height: 16),
-                    AppProgress.circular(
+                    DSProgress.circular(
                       value: 0.8,
                       label: 'Syncing',
                       radius: 25,

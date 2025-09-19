@@ -1,12 +1,12 @@
 /// Lightbox components barrel file
 ///
 /// Provides a single entry point for all lightbox-related components:
-/// - AppLightbox widget with zoom and gallery variants
-/// - AppLightboxConfig with Freezed models for configuration
-/// - AppLightboxVariant, AppLightboxState, and AppLightboxGesture enums
-/// - AppLightboxImage, AppLightboxColors, AppLightboxSpacing classes
-/// - AppLightboxControls, AppLightboxAccessibility, AppLightboxAnimation configs
-/// - AppLightboxGalleryConfig for gallery-specific settings
+/// - DSLightbox widget with zoom and gallery variants
+/// - DSLightboxConfig with Freezed models for configuration
+/// - DSLightboxVariant, DSLightboxState, and DSLightboxGesture enums
+/// - DSLightboxImage, DSLightboxColors, DSLightboxSpacing classes
+/// - DSLightboxControls, DSLightboxAccessibility, DSLightboxAnimation configs
+/// - DSLightboxGalleryConfig for gallery-specific settings
 /// - Lightbox story examples for development
 library;
 

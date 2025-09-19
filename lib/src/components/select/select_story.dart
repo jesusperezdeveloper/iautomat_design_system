@@ -16,50 +16,50 @@ class _SelectStoryState extends State<SelectStory> {
   String? loadingValue;
   String? disabledValue;
 
-  final List<AppSelectItem<String>> countries = [
-    AppSelectItem(
+  final List<DSSelectItem<String>> countries = [
+    DSSelectItem(
       value: 'es',
       label: 'España',
       subtitle: 'Europa',
       leading: Icon(Icons.flag, color: Colors.red),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'us',
       label: 'Estados Unidos',
       subtitle: 'América del Norte',
       leading: Icon(Icons.flag, color: Colors.blue),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'mx',
       label: 'México',
       subtitle: 'América del Norte',
       leading: Icon(Icons.flag, color: Colors.green),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'ar',
       label: 'Argentina',
       subtitle: 'América del Sur',
       leading: Icon(Icons.flag, color: Colors.lightBlue),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'co',
       label: 'Colombia',
       subtitle: 'América del Sur',
       leading: Icon(Icons.flag, color: Colors.yellow),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'pe',
       label: 'Perú',
       subtitle: 'América del Sur',
       leading: Icon(Icons.flag, color: Colors.red),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'cl',
       label: 'Chile',
       subtitle: 'América del Sur',
       leading: Icon(Icons.flag, color: Colors.red),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'disabled',
       label: 'Opción Deshabilitada',
       subtitle: 'No disponible',
@@ -67,8 +67,8 @@ class _SelectStoryState extends State<SelectStory> {
     ),
   ];
 
-  final List<AppSelectItem<String>> colors = [
-    AppSelectItem(
+  final List<DSSelectItem<String>> colors = [
+    DSSelectItem(
       value: 'red',
       label: 'Rojo',
       leading: Container(
@@ -80,7 +80,7 @@ class _SelectStoryState extends State<SelectStory> {
         ),
       ),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'blue',
       label: 'Azul',
       leading: Container(
@@ -92,7 +92,7 @@ class _SelectStoryState extends State<SelectStory> {
         ),
       ),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'green',
       label: 'Verde',
       leading: Container(
@@ -104,7 +104,7 @@ class _SelectStoryState extends State<SelectStory> {
         ),
       ),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'yellow',
       label: 'Amarillo',
       leading: Container(
@@ -116,7 +116,7 @@ class _SelectStoryState extends State<SelectStory> {
         ),
       ),
     ),
-    AppSelectItem(
+    DSSelectItem(
       value: 'purple',
       label: 'Morado',
       leading: Container(
@@ -134,7 +134,7 @@ class _SelectStoryState extends State<SelectStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppSelect Story'),
+        title: const Text('DSSelect Story'),
         elevation: 0,
       ),
       body: ListView(
@@ -143,33 +143,33 @@ class _SelectStoryState extends State<SelectStory> {
           _buildStorySection(
             'Single Select',
             'Selección simple con opciones básicas',
-            AppSelect<String>(
+            DSSelect<String>(
               items: countries,
               value: singleValue,
               onChanged: (value) => setState(() => singleValue = value),
               placeholder: 'Selecciona un país',
               label: 'País',
               helperText: 'Elige tu país de residencia',
-              variant: AppSelectVariant.single,
+              variant: DSSelectVariant.single,
             ),
           ),
           _buildStorySection(
             'Multi Select',
             'Selección múltiple con chips',
-            AppSelect<String>(
+            DSSelect<String>(
               items: colors,
               values: multiValues,
               onMultiChanged: (values) => setState(() => multiValues = values),
               placeholder: 'Selecciona colores',
               label: 'Colores Favoritos',
               helperText: 'Puedes seleccionar múltiples colores',
-              variant: AppSelectVariant.multi,
+              variant: DSSelectVariant.multi,
             ),
           ),
           _buildStorySection(
             'Searchable Select',
             'Selección con búsqueda integrada',
-            AppSelect<String>(
+            DSSelect<String>(
               items: countries,
               value: searchableValue,
               onChanged: (value) => setState(() => searchableValue = value),
@@ -177,13 +177,13 @@ class _SelectStoryState extends State<SelectStory> {
               label: 'País (Búsqueda)',
               helperText: 'Usa la búsqueda para encontrar países',
               searchHint: 'Buscar países...',
-              variant: AppSelectVariant.searchable,
+              variant: DSSelectVariant.searchable,
             ),
           ),
           _buildStorySection(
             'With Icons',
             'Select con iconos de prefijo y sufijo',
-            AppSelect<String>(
+            DSSelect<String>(
               items: colors.take(3).toList(),
               value: singleValue,
               onChanged: (value) => setState(() => singleValue = value),
@@ -191,13 +191,13 @@ class _SelectStoryState extends State<SelectStory> {
               label: 'Color con Iconos',
               prefixIcon: Icon(Icons.palette),
               suffixIcon: Icon(Icons.star),
-              variant: AppSelectVariant.single,
+              variant: DSSelectVariant.single,
             ),
           ),
           _buildStorySection(
             'Disabled State',
             'Select deshabilitado',
-            AppSelect<String>(
+            DSSelect<String>(
               items: countries,
               value: disabledValue,
               onChanged: (value) => setState(() => disabledValue = value),
@@ -205,68 +205,68 @@ class _SelectStoryState extends State<SelectStory> {
               label: 'Select Deshabilitado',
               helperText: 'Este campo no se puede modificar',
               enabled: false,
-              variant: AppSelectVariant.single,
+              variant: DSSelectVariant.single,
             ),
           ),
           _buildStorySection(
             'Error State',
             'Select con mensaje de error',
-            AppSelect<String>(
+            DSSelect<String>(
               items: countries,
               value: singleValue,
               onChanged: (value) => setState(() => singleValue = value),
               placeholder: 'Selecciona una opción',
               label: 'Campo con Error',
               errorText: 'Este campo es requerido',
-              variant: AppSelectVariant.single,
+              variant: DSSelectVariant.single,
             ),
           ),
           _buildStorySection(
             'Loading State',
             'Select en estado de carga',
-            AppSelect<String>(
+            DSSelect<String>(
               items: countries,
               value: loadingValue,
               onChanged: (value) => setState(() => loadingValue = value),
               placeholder: 'Cargando...',
               label: 'Estado de Carga',
               helperText: 'Los datos se están cargando',
-              overrideState: AppSelectState.loading,
-              variant: AppSelectVariant.single,
+              overrideState: DSSelectState.loading,
+              variant: DSSelectVariant.single,
             ),
           ),
           _buildStorySection(
             'Skeleton State',
             'Select en estado skeleton',
-            AppSelect<String>(
+            DSSelect<String>(
               items: countries,
               value: null,
               onChanged: (_) {},
               placeholder: 'Cargando...',
               label: 'Estado Skeleton',
               helperText: 'Cargando contenido...',
-              overrideState: AppSelectState.skeleton,
-              variant: AppSelectVariant.single,
+              overrideState: DSSelectState.skeleton,
+              variant: DSSelectVariant.single,
             ),
           ),
           _buildStorySection(
             'Custom Configuration',
             'Select con configuración personalizada',
-            AppSelect<String>(
+            DSSelect<String>(
               items: countries,
               value: singleValue,
               onChanged: (value) => setState(() => singleValue = value),
               placeholder: 'Configuración personalizada',
               label: 'Custom Config',
               helperText: 'Con estilos personalizados',
-              config: const AppSelectConfig(
+              config: const DSSelectConfig(
                 borderRadius: 16,
                 contentPadding: EdgeInsets.all(20),
                 minimumHeight: 60,
                 borderWidth: 3,
                 maxDropdownHeight: 250,
               ),
-              variant: AppSelectVariant.single,
+              variant: DSSelectVariant.single,
             ),
           ),
           _buildStorySection(
@@ -277,7 +277,7 @@ class _SelectStoryState extends State<SelectStory> {
           _buildStorySection(
             'Compact Size',
             'Select con tamaño compacto',
-            AppSelect<String>(
+            DSSelect<String>(
               items: colors,
               value: singleValue,
               onChanged: (value) => setState(() => singleValue = value),
@@ -285,24 +285,24 @@ class _SelectStoryState extends State<SelectStory> {
               label: 'Select Compacto',
               dense: true,
               width: 200,
-              variant: AppSelectVariant.single,
+              variant: DSSelectVariant.single,
             ),
           ),
           _buildStorySection(
             'RTL Support',
             'Soporte para texto de derecha a izquierda',
-            AppSelect<String>(
+            DSSelect<String>(
               items: [
-                AppSelectItem(value: 'ar', label: 'العربية'),
-                AppSelectItem(value: 'he', label: 'עברית'),
-                AppSelectItem(value: 'fa', label: 'فارسی'),
+                DSSelectItem(value: 'ar', label: 'العربية'),
+                DSSelectItem(value: 'he', label: 'עברית'),
+                DSSelectItem(value: 'fa', label: 'فارسی'),
               ],
               value: singleValue,
               onChanged: (value) => setState(() => singleValue = value),
               placeholder: 'اختر لغة',
               label: 'اللغة',
               textDirection: TextDirection.rtl,
-              variant: AppSelectVariant.single,
+              variant: DSSelectVariant.single,
             ),
           ),
         ],
@@ -342,51 +342,51 @@ class _SelectStoryState extends State<SelectStory> {
     return Form(
       child: Column(
         children: [
-          AppSelect<String>(
+          DSSelect<String>(
             items: countries,
             value: singleValue,
             onChanged: (value) => setState(() => singleValue = value),
             placeholder: 'Campo requerido',
             label: 'País Requerido',
-            validator: AppSelectValidator.required,
-            variant: AppSelectVariant.single,
+            validator: DSSelectValidator.required,
+            variant: DSSelectVariant.single,
           ),
           const SizedBox(height: 16),
-          AppSelect<String>(
+          DSSelect<String>(
             items: colors,
             values: multiValues,
             onMultiChanged: (values) => setState(() => multiValues = values),
             placeholder: 'Mínimo 2 colores',
             label: 'Selección Múltiple (Min 2)',
-            multiValidator: AppSelectValidator.minSelection(2),
+            multiValidator: DSSelectValidator.minSelection(2),
             helperText: 'Selecciona al menos 2 colores',
-            variant: AppSelectVariant.multi,
+            variant: DSSelectVariant.multi,
           ),
           const SizedBox(height: 16),
-          AppSelect<String>(
+          DSSelect<String>(
             items: colors,
             values: multiValues,
             onMultiChanged: (values) => setState(() => multiValues = values),
             placeholder: 'Máximo 3 colores',
             label: 'Selección Múltiple (Max 3)',
-            multiValidator: AppSelectValidator.maxSelection(3),
+            multiValidator: DSSelectValidator.maxSelection(3),
             helperText: 'Selecciona máximo 3 colores',
-            variant: AppSelectVariant.multi,
+            variant: DSSelectVariant.multi,
           ),
           const SizedBox(height: 16),
-          AppSelect<String>(
+          DSSelect<String>(
             items: countries,
             values: multiValues,
             onMultiChanged: (values) => setState(() => multiValues = values),
             placeholder: 'Validación combinada',
             label: 'Validación Combinada',
-            multiValidator: AppSelectValidator.combine([
-              AppSelectValidator.required,
-              AppSelectValidator.minSelection(1),
-              AppSelectValidator.maxSelection(3),
+            multiValidator: DSSelectValidator.combine([
+              DSSelectValidator.required,
+              DSSelectValidator.minSelection(1),
+              DSSelectValidator.maxSelection(3),
             ]),
             helperText: 'Requerido, mínimo 1, máximo 3',
-            variant: AppSelectVariant.multi,
+            variant: DSSelectVariant.multi,
           ),
           const SizedBox(height: 16),
           ElevatedButton(

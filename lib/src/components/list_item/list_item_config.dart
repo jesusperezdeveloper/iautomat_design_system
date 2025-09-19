@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'list_item_config.freezed.dart';
 
 /// List item variant types
-enum AppListItemVariant {
+enum DSListItemVariant {
   /// Single line list item
   oneLine,
 
@@ -16,7 +16,7 @@ enum AppListItemVariant {
 }
 
 /// List item state types
-enum AppListItemState {
+enum DSListItemState {
   /// Default state
   defaultState,
 
@@ -43,7 +43,7 @@ enum AppListItemState {
 }
 
 /// Leading widget types
-enum AppListItemLeadingType {
+enum DSListItemLeadingType {
   /// No leading widget
   none,
 
@@ -67,7 +67,7 @@ enum AppListItemLeadingType {
 }
 
 /// Trailing widget types
-enum AppListItemTrailingType {
+enum DSListItemTrailingType {
   /// No trailing widget
   none,
 
@@ -91,7 +91,7 @@ enum AppListItemTrailingType {
 }
 
 /// Swipe action direction
-enum AppListItemSwipeDirection {
+enum DSListItemSwipeDirection {
   /// Start to end swipe (left to right in LTR)
   startToEnd,
 
@@ -103,7 +103,7 @@ enum AppListItemSwipeDirection {
 }
 
 /// Swipe action position
-enum AppListItemSwipeActionPosition {
+enum DSListItemSwipeActionPosition {
   /// Leading position (start side)
   leading,
 
@@ -112,14 +112,14 @@ enum AppListItemSwipeActionPosition {
 }
 
 /// Density options for the list item
-enum AppListItemDensity {
+enum DSListItemDensity {
   compact,
   standard,
   comfortable,
 }
 
 /// Content alignment options
-enum AppListItemContentAlignment {
+enum DSListItemContentAlignment {
   top,
   center,
   bottom,
@@ -127,12 +127,12 @@ enum AppListItemContentAlignment {
 
 /// Leading widget configuration
 @freezed
-class AppListItemLeading with _$AppListItemLeading {
-  const AppListItemLeading._();
+class DSListItemLeading with _$DSListItemLeading {
+  const DSListItemLeading._();
 
-  const factory AppListItemLeading({
+  const factory DSListItemLeading({
     /// Leading type
-    @Default(AppListItemLeadingType.none) AppListItemLeadingType type,
+    @Default(DSListItemLeadingType.none) DSListItemLeadingType type,
 
     /// Icon data for icon type
     IconData? icon,
@@ -201,8 +201,8 @@ class AppListItemLeading with _$AppListItemLeading {
   /// Whether the leading has interactive content
   bool get isInteractive =>
       onTap != null ||
-      type == AppListItemLeadingType.checkbox ||
-      type == AppListItemLeadingType.radio;
+      type == DSListItemLeadingType.checkbox ||
+      type == DSListItemLeadingType.radio;
 
   /// Get the effective margin for RTL layouts
   EdgeInsets getEffectiveMargin(TextDirection textDirection) {
@@ -220,12 +220,12 @@ class AppListItemLeading with _$AppListItemLeading {
 
 /// Trailing widget configuration
 @freezed
-class AppListItemTrailing with _$AppListItemTrailing {
-  const AppListItemTrailing._();
+class DSListItemTrailing with _$DSListItemTrailing {
+  const DSListItemTrailing._();
 
-  const factory AppListItemTrailing({
+  const factory DSListItemTrailing({
     /// Trailing type
-    @Default(AppListItemTrailingType.none) AppListItemTrailingType type,
+    @Default(DSListItemTrailingType.none) DSListItemTrailingType type,
 
     /// Icon data for icon type
     IconData? icon,
@@ -291,9 +291,9 @@ class AppListItemTrailing with _$AppListItemTrailing {
       onSwitchChanged != null ||
       onCheckboxChanged != null ||
       onRadioChanged != null ||
-      type == AppListItemTrailingType.switchWidget ||
-      type == AppListItemTrailingType.checkbox ||
-      type == AppListItemTrailingType.radio;
+      type == DSListItemTrailingType.switchWidget ||
+      type == DSListItemTrailingType.checkbox ||
+      type == DSListItemTrailingType.radio;
 
   /// Get the effective margin for RTL layouts
   EdgeInsets getEffectiveMargin(TextDirection textDirection) {
@@ -311,8 +311,8 @@ class AppListItemTrailing with _$AppListItemTrailing {
 
 /// Swipe action configuration
 @freezed
-class AppListItemSwipeAction with _$AppListItemSwipeAction {
-  const factory AppListItemSwipeAction({
+class DSListItemSwipeAction with _$DSListItemSwipeAction {
+  const factory DSListItemSwipeAction({
     /// Action key
     required String key,
 
@@ -338,8 +338,8 @@ class AppListItemSwipeAction with _$AppListItemSwipeAction {
     @Default(80.0) double width,
 
     /// Action position
-    @Default(AppListItemSwipeActionPosition.trailing)
-    AppListItemSwipeActionPosition position,
+    @Default(DSListItemSwipeActionPosition.trailing)
+    DSListItemSwipeActionPosition position,
 
     /// Accessibility label
     String? semanticLabel,
@@ -351,19 +351,19 @@ class AppListItemSwipeAction with _$AppListItemSwipeAction {
 
 /// Swipe actions configuration
 @freezed
-class AppListItemSwipeActions with _$AppListItemSwipeActions {
-  const AppListItemSwipeActions._();
+class DSListItemSwipeActions with _$DSListItemSwipeActions {
+  const DSListItemSwipeActions._();
 
-  const factory AppListItemSwipeActions({
+  const factory DSListItemSwipeActions({
     /// Leading swipe actions (start side)
-    @Default([]) List<AppListItemSwipeAction> leading,
+    @Default([]) List<DSListItemSwipeAction> leading,
 
     /// Trailing swipe actions (end side)
-    @Default([]) List<AppListItemSwipeAction> trailing,
+    @Default([]) List<DSListItemSwipeAction> trailing,
 
     /// Swipe direction
-    @Default(AppListItemSwipeDirection.both)
-    AppListItemSwipeDirection direction,
+    @Default(DSListItemSwipeDirection.both)
+    DSListItemSwipeDirection direction,
 
     /// Whether swipe is enabled
     @Default(true) bool enabled,
@@ -393,8 +393,8 @@ class AppListItemSwipeActions with _$AppListItemSwipeActions {
 
 /// List item theme configuration
 @freezed
-class AppListItemTheme with _$AppListItemTheme {
-  const factory AppListItemTheme({
+class DSListItemTheme with _$DSListItemTheme {
+  const factory DSListItemTheme({
     /// Default background color
     Color? backgroundColor,
 
@@ -462,10 +462,10 @@ class AppListItemTheme with _$AppListItemTheme {
 
 /// List item style configuration
 @freezed
-class AppListItemStyle with _$AppListItemStyle {
-  const AppListItemStyle._();
+class DSListItemStyle with _$DSListItemStyle {
+  const DSListItemStyle._();
 
-  const factory AppListItemStyle({
+  const factory DSListItemStyle({
     /// Content padding
     @Default(EdgeInsets.symmetric(horizontal: 16, vertical: 8))
     EdgeInsets contentPadding,
@@ -492,8 +492,8 @@ class AppListItemStyle with _$AppListItemStyle {
     @Default(4.0) double titleSubtitleSpacing,
 
     /// Content alignment
-    @Default(AppListItemContentAlignment.center)
-    AppListItemContentAlignment contentAlignment,
+    @Default(DSListItemContentAlignment.center)
+    DSListItemContentAlignment contentAlignment,
 
     /// Dense layout
     @Default(false) bool dense,
@@ -518,69 +518,69 @@ class AppListItemStyle with _$AppListItemStyle {
   }) = _AppListItemStyle;
 
   /// Get content padding for the given density
-  EdgeInsets getContentPaddingForDensity(AppListItemDensity density) {
+  EdgeInsets getContentPaddingForDensity(DSListItemDensity density) {
     switch (density) {
-      case AppListItemDensity.compact:
+      case DSListItemDensity.compact:
         return EdgeInsets.symmetric(
           horizontal: contentPadding.horizontal,
           vertical: contentPadding.vertical * 0.5,
         );
-      case AppListItemDensity.comfortable:
+      case DSListItemDensity.comfortable:
         return EdgeInsets.symmetric(
           horizontal: contentPadding.horizontal,
           vertical: contentPadding.vertical * 1.5,
         );
-      case AppListItemDensity.standard:
+      case DSListItemDensity.standard:
         return contentPadding;
     }
   }
 
   /// Get minimum height for the given variant and density
   double getMinHeightForVariant(
-      AppListItemVariant variant, AppListItemDensity density) {
+      DSListItemVariant variant, DSListItemDensity density) {
     final baseHeight = switch (variant) {
-      AppListItemVariant.oneLine => 48.0,
-      AppListItemVariant.twoLine => 64.0,
-      AppListItemVariant.threeLine => 88.0,
+      DSListItemVariant.oneLine => 48.0,
+      DSListItemVariant.twoLine => 64.0,
+      DSListItemVariant.threeLine => 88.0,
     };
 
     return switch (density) {
-      AppListItemDensity.compact => baseHeight * 0.8,
-      AppListItemDensity.comfortable => baseHeight * 1.2,
-      AppListItemDensity.standard => baseHeight,
+      DSListItemDensity.compact => baseHeight * 0.8,
+      DSListItemDensity.comfortable => baseHeight * 1.2,
+      DSListItemDensity.standard => baseHeight,
     };
   }
 }
 
 /// Main list item configuration
 @freezed
-class AppListItemConfig with _$AppListItemConfig {
-  const AppListItemConfig._();
+class DSListItemConfig with _$DSListItemConfig {
+  const DSListItemConfig._();
 
-  const factory AppListItemConfig({
+  const factory DSListItemConfig({
     /// List item variant
-    @Default(AppListItemVariant.oneLine) AppListItemVariant variant,
+    @Default(DSListItemVariant.oneLine) DSListItemVariant variant,
 
     /// Current state
-    @Default(AppListItemState.defaultState) AppListItemState state,
+    @Default(DSListItemState.defaultState) DSListItemState state,
 
     /// Leading configuration
-    AppListItemLeading? leading,
+    DSListItemLeading? leading,
 
     /// Trailing configuration
-    AppListItemTrailing? trailing,
+    DSListItemTrailing? trailing,
 
     /// Swipe actions configuration
-    AppListItemSwipeActions? swipeActions,
+    DSListItemSwipeActions? swipeActions,
 
     /// Theme configuration
-    AppListItemTheme? theme,
+    DSListItemTheme? theme,
 
     /// Style configuration
-    AppListItemStyle? style,
+    DSListItemStyle? style,
 
     /// Density
-    @Default(AppListItemDensity.standard) AppListItemDensity density,
+    @Default(DSListItemDensity.standard) DSListItemDensity density,
 
     /// Whether the item is enabled
     @Default(true) bool enabled,
@@ -620,123 +620,123 @@ class AppListItemConfig with _$AppListItemConfig {
 
     /// Custom data
     Map<String, dynamic>? customData,
-  }) = _AppListItemConfig;
+  }) = _DSListItemConfig;
 
   /// Whether the item is interactive
   bool get isInteractive => enabled && !loading && !skeleton;
 
   /// Whether the item shows loading state
-  bool get isLoading => loading || state == AppListItemState.loading;
+  bool get isLoading => loading || state == DSListItemState.loading;
 
   /// Whether the item shows skeleton state
-  bool get isSkeleton => skeleton || state == AppListItemState.skeleton;
+  bool get isSkeleton => skeleton || state == DSListItemState.skeleton;
 
   /// Whether the item is in a pressed state
-  bool get isPressed => state == AppListItemState.pressed;
+  bool get isPressed => state == DSListItemState.pressed;
 
   /// Whether the item is in a hover state
-  bool get isHovered => state == AppListItemState.hover;
+  bool get isHovered => state == DSListItemState.hover;
 
   /// Whether the item is focused
-  bool get isFocused => state == AppListItemState.focus;
+  bool get isFocused => state == DSListItemState.focus;
 
   /// Whether the item is in a disabled state
-  bool get isDisabled => !enabled || state == AppListItemState.disabled;
+  bool get isDisabled => !enabled || state == DSListItemState.disabled;
 
   /// Get the effective state considering loading and skeleton
-  AppListItemState get effectiveState {
-    if (isSkeleton) return AppListItemState.skeleton;
-    if (isLoading) return AppListItemState.loading;
-    if (isDisabled) return AppListItemState.disabled;
-    if (selected) return AppListItemState.selected;
+  DSListItemState get effectiveState {
+    if (isSkeleton) return DSListItemState.skeleton;
+    if (isLoading) return DSListItemState.loading;
+    if (isDisabled) return DSListItemState.disabled;
+    if (selected) return DSListItemState.selected;
     return state;
   }
 }
 
 /// Callback type definitions
-typedef AppListItemTapCallback = void Function();
-typedef AppListItemLongPressCallback = void Function();
-typedef AppListItemFocusCallback = void Function(bool focused);
-typedef AppListItemHoverCallback = void Function(bool hovered);
-typedef AppListItemStateChangeCallback = void Function(AppListItemState state);
+typedef DSListItemTapCallback = void Function();
+typedef DSListItemLongPressCallback = void Function();
+typedef DSListItemFocusCallback = void Function(bool focused);
+typedef DSListItemHoverCallback = void Function(bool hovered);
+typedef DSListItemStateChangeCallback = void Function(DSListItemState state);
 
 /// Builder type definitions
-typedef AppListItemLeadingBuilder = Widget Function(
+typedef DSListItemLeadingBuilder = Widget Function(
   BuildContext context,
-  AppListItemLeading leading,
-  AppListItemState state,
+  DSListItemLeading leading,
+  DSListItemState state,
 );
 
-typedef AppListItemTrailingBuilder = Widget Function(
+typedef DSListItemTrailingBuilder = Widget Function(
   BuildContext context,
-  AppListItemTrailing trailing,
-  AppListItemState state,
+  DSListItemTrailing trailing,
+  DSListItemState state,
 );
 
-typedef AppListItemTitleBuilder = Widget Function(
+typedef DSListItemTitleBuilder = Widget Function(
   BuildContext context,
   String title,
-  AppListItemState state,
+  DSListItemState state,
 );
 
-typedef AppListItemSubtitleBuilder = Widget Function(
+typedef DSListItemSubtitleBuilder = Widget Function(
   BuildContext context,
   String subtitle,
-  AppListItemState state,
+  DSListItemState state,
 );
 
 /// Utility extensions
-extension AppListItemVariantExtension on AppListItemVariant {
+extension DSListItemVariantExtension on DSListItemVariant {
   /// Get the maximum number of lines for this variant
   int get maxLines {
     switch (this) {
-      case AppListItemVariant.oneLine:
+      case DSListItemVariant.oneLine:
         return 1;
-      case AppListItemVariant.twoLine:
+      case DSListItemVariant.twoLine:
         return 2;
-      case AppListItemVariant.threeLine:
+      case DSListItemVariant.threeLine:
         return 3;
     }
   }
 
   /// Whether this variant supports subtitle
   bool get supportsSubtitle {
-    return this != AppListItemVariant.oneLine;
+    return this != DSListItemVariant.oneLine;
   }
 
   /// Get the default height for this variant
   double get defaultHeight {
     switch (this) {
-      case AppListItemVariant.oneLine:
+      case DSListItemVariant.oneLine:
         return 48.0;
-      case AppListItemVariant.twoLine:
+      case DSListItemVariant.twoLine:
         return 64.0;
-      case AppListItemVariant.threeLine:
+      case DSListItemVariant.threeLine:
         return 88.0;
     }
   }
 }
 
-extension AppListItemStateExtension on AppListItemState {
+extension DSListItemStateExtension on DSListItemState {
   /// Whether this state is interactive
   bool get isInteractive {
-    return this != AppListItemState.disabled &&
-        this != AppListItemState.loading &&
-        this != AppListItemState.skeleton;
+    return this != DSListItemState.disabled &&
+        this != DSListItemState.loading &&
+        this != DSListItemState.skeleton;
   }
 
   /// Whether this state shows visual feedback
   bool get hasVisualFeedback {
-    return this == AppListItemState.hover ||
-        this == AppListItemState.pressed ||
-        this == AppListItemState.focus ||
-        this == AppListItemState.selected;
+    return this == DSListItemState.hover ||
+        this == DSListItemState.pressed ||
+        this == DSListItemState.focus ||
+        this == DSListItemState.selected;
   }
 
   /// Whether this state is temporary
   bool get isTemporary {
-    return this == AppListItemState.hover ||
-        this == AppListItemState.pressed ||
-        this == AppListItemState.focus;
+    return this == DSListItemState.hover ||
+        this == DSListItemState.pressed ||
+        this == DSListItemState.focus;
   }
 }

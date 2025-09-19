@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'simple_table_config.freezed.dart';
 
 /// Simple table variant types
-enum AppSimpleTableVariant {
+enum DSSimpleTableVariant {
   /// Standard table layout
   standard,
 
@@ -14,7 +14,7 @@ enum AppSimpleTableVariant {
 }
 
 /// Simple table state types
-enum AppSimpleTableState {
+enum DSSimpleTableState {
   /// Default state
   defaultState,
 
@@ -41,14 +41,14 @@ enum AppSimpleTableState {
 }
 
 /// Column alignment options
-enum AppSimpleTableColumnAlignment {
+enum DSSimpleTableColumnAlignment {
   left,
   center,
   right,
 }
 
 /// Cell type for different data types
-enum AppSimpleTableCellType {
+enum DSSimpleTableCellType {
   text,
   number,
   boolean,
@@ -58,7 +58,7 @@ enum AppSimpleTableCellType {
 }
 
 /// Row state
-enum AppSimpleTableRowState {
+enum DSSimpleTableRowState {
   normal,
   selected,
   hovered,
@@ -67,7 +67,7 @@ enum AppSimpleTableRowState {
 }
 
 /// Selection mode for rows
-enum AppSimpleTableSelectionMode {
+enum DSSimpleTableSelectionMode {
   /// No selection allowed
   none,
 
@@ -79,14 +79,14 @@ enum AppSimpleTableSelectionMode {
 }
 
 /// Sort direction for columns
-enum AppSimpleTableSortDirection {
+enum DSSimpleTableSortDirection {
   ascending,
   descending,
   none,
 }
 
 /// Density options for the table
-enum AppSimpleTableDensity {
+enum DSSimpleTableDensity {
   compact,
   standard,
   comfortable,
@@ -94,10 +94,10 @@ enum AppSimpleTableDensity {
 
 /// Column configuration for simple table
 @freezed
-class AppSimpleTableColumn with _$AppSimpleTableColumn {
-  const AppSimpleTableColumn._();
+class DSSimpleTableColumn with _$DSSimpleTableColumn {
+  const DSSimpleTableColumn._();
 
-  const factory AppSimpleTableColumn({
+  const factory DSSimpleTableColumn({
     /// Unique identifier for the column
     required String id,
 
@@ -120,20 +120,20 @@ class AppSimpleTableColumn with _$AppSimpleTableColumn {
     @Default(true) bool visible,
 
     /// Column alignment
-    @Default(AppSimpleTableColumnAlignment.left)
-    AppSimpleTableColumnAlignment alignment,
+    @Default(DSSimpleTableColumnAlignment.left)
+    DSSimpleTableColumnAlignment alignment,
 
     /// Cell type for this column
-    @Default(AppSimpleTableCellType.text) AppSimpleTableCellType cellType,
+    @Default(DSSimpleTableCellType.text) DSSimpleTableCellType cellType,
 
     /// Custom cell builder
-    AppSimpleTableCellBuilder? cellBuilder,
+    DSSimpleTableCellBuilder? cellBuilder,
 
     /// Custom header builder
-    AppSimpleTableHeaderBuilder? headerBuilder,
+    DSSimpleTableHeaderBuilder? headerBuilder,
 
     /// Formatter for displaying cell values
-    AppSimpleTableCellFormatter? formatter,
+    DSSimpleTableCellFormatter? formatter,
 
     /// Tooltip for the column header
     String? tooltip,
@@ -148,8 +148,8 @@ class AppSimpleTableColumn with _$AppSimpleTableColumn {
     String? semanticLabel,
 
     /// Sort direction for this column
-    @Default(AppSimpleTableSortDirection.none)
-    AppSimpleTableSortDirection sortDirection,
+    @Default(DSSimpleTableSortDirection.none)
+    DSSimpleTableSortDirection sortDirection,
   }) = _AppSimpleTableColumn;
 
   /// Whether the column has a custom cell builder
@@ -159,16 +159,16 @@ class AppSimpleTableColumn with _$AppSimpleTableColumn {
   bool get hasCustomHeaderBuilder => headerBuilder != null;
 
   /// Get the effective alignment for RTL layouts
-  AppSimpleTableColumnAlignment getEffectiveAlignment(
+  DSSimpleTableColumnAlignment getEffectiveAlignment(
       TextDirection textDirection) {
     if (textDirection == TextDirection.rtl) {
       switch (alignment) {
-        case AppSimpleTableColumnAlignment.left:
-          return AppSimpleTableColumnAlignment.right;
-        case AppSimpleTableColumnAlignment.right:
-          return AppSimpleTableColumnAlignment.left;
-        case AppSimpleTableColumnAlignment.center:
-          return AppSimpleTableColumnAlignment.center;
+        case DSSimpleTableColumnAlignment.left:
+          return DSSimpleTableColumnAlignment.right;
+        case DSSimpleTableColumnAlignment.right:
+          return DSSimpleTableColumnAlignment.left;
+        case DSSimpleTableColumnAlignment.center:
+          return DSSimpleTableColumnAlignment.center;
       }
     }
     return alignment;
@@ -177,10 +177,10 @@ class AppSimpleTableColumn with _$AppSimpleTableColumn {
 
 /// Row data configuration
 @freezed
-class AppSimpleTableRow with _$AppSimpleTableRow {
-  const AppSimpleTableRow._();
+class DSSimpleTableRow with _$DSSimpleTableRow {
+  const DSSimpleTableRow._();
 
-  const factory AppSimpleTableRow({
+  const factory DSSimpleTableRow({
     /// Unique identifier for the row
     required String id,
 
@@ -197,10 +197,10 @@ class AppSimpleTableRow with _$AppSimpleTableRow {
     @Default(true) bool visible,
 
     /// Row state
-    @Default(AppSimpleTableRowState.normal) AppSimpleTableRowState state,
+    @Default(DSSimpleTableRowState.normal) DSSimpleTableRowState state,
 
     /// Custom row builder
-    AppSimpleTableRowBuilder? rowBuilder,
+    DSSimpleTableRowBuilder? rowBuilder,
 
     /// Row height override
     double? height,
@@ -223,7 +223,7 @@ class AppSimpleTableRow with _$AppSimpleTableRow {
 
   /// Get display value for a column with optional formatting
   String getDisplayValue(
-      String columnId, AppSimpleTableCellFormatter? formatter) {
+      String columnId, DSSimpleTableCellFormatter? formatter) {
     final value = getValue(columnId);
     if (formatter != null) {
       return formatter(value);
@@ -234,10 +234,10 @@ class AppSimpleTableRow with _$AppSimpleTableRow {
 
 /// Selection configuration
 @freezed
-class AppSimpleTableSelection with _$AppSimpleTableSelection {
-  const factory AppSimpleTableSelection({
+class DSSimpleTableSelection with _$DSSimpleTableSelection {
+  const factory DSSimpleTableSelection({
     /// Selection mode
-    @Default(AppSimpleTableSelectionMode.none) AppSimpleTableSelectionMode mode,
+    @Default(DSSimpleTableSelectionMode.none) DSSimpleTableSelectionMode mode,
 
     /// Selected row IDs
     @Default([]) List<String> selectedRows,
@@ -252,30 +252,30 @@ class AppSimpleTableSelection with _$AppSimpleTableSelection {
     int? maxSelections,
 
     /// Callback when selection changes
-    AppSimpleTableSelectionCallback? onSelectionChanged,
+    DSSimpleTableSelectionCallback? onSelectionChanged,
   }) = _AppSimpleTableSelection;
 }
 
 /// Sort configuration
 @freezed
-class AppSimpleTableSort with _$AppSimpleTableSort {
-  const factory AppSimpleTableSort({
+class DSSimpleTableSort with _$DSSimpleTableSort {
+  const factory DSSimpleTableSort({
     /// Column ID being sorted
     String? columnId,
 
     /// Sort direction
-    @Default(AppSimpleTableSortDirection.none)
-    AppSimpleTableSortDirection direction,
+    @Default(DSSimpleTableSortDirection.none)
+    DSSimpleTableSortDirection direction,
 
     /// Callback when sort changes
-    AppSimpleTableSortCallback? onSortChanged,
+    DSSimpleTableSortCallback? onSortChanged,
   }) = _AppSimpleTableSort;
 }
 
 /// Empty state configuration
 @freezed
-class AppSimpleTableEmptyState with _$AppSimpleTableEmptyState {
-  const factory AppSimpleTableEmptyState({
+class DSSimpleTableEmptyState with _$DSSimpleTableEmptyState {
+  const factory DSSimpleTableEmptyState({
     /// Empty state message
     @Default('No data available') String message,
 
@@ -292,14 +292,14 @@ class AppSimpleTableEmptyState with _$AppSimpleTableEmptyState {
     @Default(true) bool show,
 
     /// Custom empty state builder
-    AppSimpleTableEmptyStateBuilder? builder,
-  }) = _AppSimpleTableEmptyState;
+    DSSimpleTableEmptyStateBuilder? builder,
+  }) = _DSSimpleTableEmptyState;
 }
 
 /// Theme configuration for the simple table
 @freezed
-class AppSimpleTableTheme with _$AppSimpleTableTheme {
-  const factory AppSimpleTableTheme({
+class DSSimpleTableTheme with _$DSSimpleTableTheme {
+  const factory DSSimpleTableTheme({
     /// Header background color
     Color? headerBackgroundColor,
 
@@ -337,7 +337,7 @@ class AppSimpleTableTheme with _$AppSimpleTableTheme {
     Color? loadingIndicatorColor,
 
     /// Custom cell styles
-    Map<AppSimpleTableCellType, TextStyle>? cellStyles,
+    Map<DSSimpleTableCellType, TextStyle>? cellStyles,
 
     /// Custom header style
     TextStyle? headerStyle,
@@ -346,23 +346,23 @@ class AppSimpleTableTheme with _$AppSimpleTableTheme {
 
 /// Platform-specific configuration
 @freezed
-class AppSimpleTablePlatformConfig with _$AppSimpleTablePlatformConfig {
-  const factory AppSimpleTablePlatformConfig({
+class DSSimpleTablePlatformConfig with _$DSSimpleTablePlatformConfig {
+  const factory DSSimpleTablePlatformConfig({
     /// iOS-specific configurations
-    AppSimpleTableIOSConfig? ios,
+    DSSimpleTableIOSConfig? ios,
 
     /// Android-specific configurations
-    AppSimpleTableAndroidConfig? android,
+    DSSimpleTableAndroidConfig? android,
 
     /// Web-specific configurations
-    AppSimpleTableWebConfig? web,
-  }) = _AppSimpleTablePlatformConfig;
+    DSSimpleTableWebConfig? web,
+  }) = _DSSimpleTablePlatformConfig;
 }
 
 /// iOS-specific configuration
 @freezed
-class AppSimpleTableIOSConfig with _$AppSimpleTableIOSConfig {
-  const factory AppSimpleTableIOSConfig({
+class DSSimpleTableIOSConfig with _$DSSimpleTableIOSConfig {
+  const factory DSSimpleTableIOSConfig({
     /// Whether to use iOS-style scrollbars
     @Default(true) bool useIOSScrollbars,
 
@@ -371,25 +371,25 @@ class AppSimpleTableIOSConfig with _$AppSimpleTableIOSConfig {
 
     /// iOS-specific row height
     double? rowHeight,
-  }) = _AppSimpleTableIOSConfig;
+  }) = _DSSimpleTableIOSConfig;
 }
 
 /// Android-specific configuration
 @freezed
-class AppSimpleTableAndroidConfig with _$AppSimpleTableAndroidConfig {
-  const factory AppSimpleTableAndroidConfig({
+class DSSimpleTableAndroidConfig with _$DSSimpleTableAndroidConfig {
+  const factory DSSimpleTableAndroidConfig({
     /// Whether to use Material ripple effects
     @Default(true) bool useMaterialRipple,
 
     /// Android-specific row height
     double? rowHeight,
-  }) = _AppSimpleTableAndroidConfig;
+  }) = _DSSimpleTableAndroidConfig;
 }
 
 /// Web-specific configuration
 @freezed
-class AppSimpleTableWebConfig with _$AppSimpleTableWebConfig {
-  const factory AppSimpleTableWebConfig({
+class DSSimpleTableWebConfig with _$DSSimpleTableWebConfig {
+  const factory DSSimpleTableWebConfig({
     /// Whether to show horizontal scrollbar
     @Default(true) bool showHorizontalScrollbar,
 
@@ -401,14 +401,14 @@ class AppSimpleTableWebConfig with _$AppSimpleTableWebConfig {
 
     /// Web-specific row height
     double? rowHeight,
-  }) = _AppSimpleTableWebConfig;
+  }) = _DSSimpleTableWebConfig;
 }
 
 /// Accessibility configuration
 @freezed
-class AppSimpleTableAccessibilityConfig
-    with _$AppSimpleTableAccessibilityConfig {
-  const factory AppSimpleTableAccessibilityConfig({
+class DSSimpleTableAccessibilityConfig
+    with _$DSSimpleTableAccessibilityConfig {
+  const factory DSSimpleTableAccessibilityConfig({
     /// Whether to announce sort changes
     @Default(true) bool announceSortChanges,
 
@@ -426,15 +426,15 @@ class AppSimpleTableAccessibilityConfig
 
     /// Custom semantics for cells
     Map<String, String>? cellSemantics,
-  }) = _AppSimpleTableAccessibilityConfig;
+  }) = _DSSimpleTableAccessibilityConfig;
 }
 
-/// Main configuration for AppSimpleTable
+/// Main configuration for DSSimpleTable
 @freezed
-class AppSimpleTableConfig with _$AppSimpleTableConfig {
-  const factory AppSimpleTableConfig({
+class DSSimpleTableConfig with _$DSSimpleTableConfig {
+  const factory DSSimpleTableConfig({
     /// Table variant
-    @Default(AppSimpleTableVariant.standard) AppSimpleTableVariant variant,
+    @Default(DSSimpleTableVariant.standard) DSSimpleTableVariant variant,
 
     /// Whether to show column headers
     @Default(true) bool showHeaders,
@@ -496,7 +496,7 @@ class AppSimpleTableConfig with _$AppSimpleTableConfig {
     Widget? loadingIndicator,
 
     /// Skeleton row builder
-    AppSimpleTableSkeletonBuilder? skeletonBuilder,
+    DSSimpleTableSkeletonBuilder? skeletonBuilder,
 
     /// Animation duration for state changes
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
@@ -520,97 +520,97 @@ class AppSimpleTableConfig with _$AppSimpleTableConfig {
     @Default(60.0) double rowNumberWidth,
 
     /// Density for the table
-    @Default(AppSimpleTableDensity.standard) AppSimpleTableDensity density,
+    @Default(DSSimpleTableDensity.standard) DSSimpleTableDensity density,
 
     /// Custom theme overrides
-    AppSimpleTableTheme? theme,
+    DSSimpleTableTheme? theme,
 
     /// Platform-specific configurations
-    AppSimpleTablePlatformConfig? platformConfig,
+    DSSimpleTablePlatformConfig? platformConfig,
 
     /// RTL support configuration
     @Default(true) bool supportRTL,
 
     /// Accessibility configuration
-    AppSimpleTableAccessibilityConfig? accessibilityConfig,
-  }) = _AppSimpleTableConfig;
+    DSSimpleTableAccessibilityConfig? accessibilityConfig,
+  }) = _DSSimpleTableConfig;
 }
 
 /// Callback function types
-typedef AppSimpleTableCellBuilder = Widget Function(
+typedef DSSimpleTableCellBuilder = Widget Function(
   BuildContext context,
-  AppSimpleTableRow row,
-  AppSimpleTableColumn column,
+  DSSimpleTableRow row,
+  DSSimpleTableColumn column,
   dynamic value,
 );
 
-typedef AppSimpleTableHeaderBuilder = Widget Function(
+typedef DSSimpleTableHeaderBuilder = Widget Function(
   BuildContext context,
-  AppSimpleTableColumn column,
+  DSSimpleTableColumn column,
 );
 
-typedef AppSimpleTableCellFormatter = String Function(dynamic value);
+typedef DSSimpleTableCellFormatter = String Function(dynamic value);
 
-typedef AppSimpleTableRowBuilder = Widget Function(
+typedef DSSimpleTableRowBuilder = Widget Function(
   BuildContext context,
-  AppSimpleTableRow row,
+  DSSimpleTableRow row,
   List<Widget> cells,
 );
 
-typedef AppSimpleTableEmptyStateBuilder = Widget Function(
+typedef DSSimpleTableEmptyStateBuilder = Widget Function(
   BuildContext context,
 );
 
-typedef AppSimpleTableSkeletonBuilder = Widget Function(
+typedef DSSimpleTableSkeletonBuilder = Widget Function(
   BuildContext context,
   int rowIndex,
 );
 
-typedef AppSimpleTableSelectionCallback = void Function(
+typedef DSSimpleTableSelectionCallback = void Function(
   List<String> selectedRowIds,
 );
 
-typedef AppSimpleTableSortCallback = void Function(
+typedef DSSimpleTableSortCallback = void Function(
   String columnId,
-  AppSimpleTableSortDirection direction,
+  DSSimpleTableSortDirection direction,
 );
 
-typedef AppSimpleTableRowSelectCallback = void Function(
-  AppSimpleTableRow row,
+typedef DSSimpleTableRowSelectCallback = void Function(
+  DSSimpleTableRow row,
   bool selected,
 );
 
 /// Simple table event types
 @freezed
-class AppSimpleTableEvent with _$AppSimpleTableEvent {
-  const factory AppSimpleTableEvent.sort({
+class DSSimpleTableEvent with _$DSSimpleTableEvent {
+  const factory DSSimpleTableEvent.sort({
     required String columnId,
-    required AppSimpleTableSortDirection direction,
-  }) = AppSimpleTableSortEvent;
+    required DSSimpleTableSortDirection direction,
+  }) = DSSimpleTableSortEvent;
 
-  const factory AppSimpleTableEvent.select({
+  const factory DSSimpleTableEvent.select({
     required String rowId,
     required bool selected,
-  }) = AppSimpleTableSelectEvent;
+  }) = DSSimpleTableSelectEvent;
 
-  const factory AppSimpleTableEvent.hover({
+  const factory DSSimpleTableEvent.hover({
     required String rowId,
     required bool hovered,
-  }) = AppSimpleTableHoverEvent;
+  }) = DSSimpleTableHoverEvent;
 }
 
-/// Utility functions for AppSimpleTable
-class AppSimpleTableUtils {
+/// Utility functions for DSSimpleTable
+class DSSimpleTableUtils {
   /// Calculate total flex for visible columns
-  static int calculateTotalFlex(List<AppSimpleTableColumn> columns) {
+  static int calculateTotalFlex(List<DSSimpleTableColumn> columns) {
     return columns
         .where((col) => col.visible)
         .fold(0, (sum, col) => sum + col.flex);
   }
 
   /// Filter rows based on search criteria
-  static List<AppSimpleTableRow> filterRows(
-    List<AppSimpleTableRow> rows,
+  static List<DSSimpleTableRow> filterRows(
+    List<DSSimpleTableRow> rows,
     String searchQuery, {
     List<String>? searchColumns,
     bool caseSensitive = false,
@@ -631,14 +631,14 @@ class AppSimpleTableUtils {
   }
 
   /// Sort rows by column
-  static List<AppSimpleTableRow> sortRows(
-    List<AppSimpleTableRow> rows,
+  static List<DSSimpleTableRow> sortRows(
+    List<DSSimpleTableRow> rows,
     String columnId,
-    AppSimpleTableSortDirection direction,
+    DSSimpleTableSortDirection direction,
   ) {
-    if (direction == AppSimpleTableSortDirection.none) return rows;
+    if (direction == DSSimpleTableSortDirection.none) return rows;
 
-    final sortedRows = List<AppSimpleTableRow>.from(rows);
+    final sortedRows = List<DSSimpleTableRow>.from(rows);
 
     sortedRows.sort((a, b) {
       final aValue = a.getValue(columnId);
@@ -658,7 +658,7 @@ class AppSimpleTableUtils {
         comparison = aValue.toString().compareTo(bValue.toString());
       }
 
-      return direction == AppSimpleTableSortDirection.ascending
+      return direction == DSSimpleTableSortDirection.ascending
           ? comparison
           : -comparison;
     });
@@ -667,21 +667,21 @@ class AppSimpleTableUtils {
   }
 
   /// Get selected rows from a list
-  static List<AppSimpleTableRow> getSelectedRows(List<AppSimpleTableRow> rows) {
+  static List<DSSimpleTableRow> getSelectedRows(List<DSSimpleTableRow> rows) {
     return rows.where((row) => row.selected).toList();
   }
 
   /// Update row selection
-  static List<AppSimpleTableRow> updateRowSelection(
-    List<AppSimpleTableRow> rows,
+  static List<DSSimpleTableRow> updateRowSelection(
+    List<DSSimpleTableRow> rows,
     String rowId,
     bool selected,
-    AppSimpleTableSelectionMode mode,
+    DSSimpleTableSelectionMode mode,
   ) {
     return rows.map((row) {
       if (row.id == rowId) {
         return row.copyWith(selected: selected);
-      } else if (mode == AppSimpleTableSelectionMode.single && selected) {
+      } else if (mode == DSSimpleTableSelectionMode.single && selected) {
         // Deselect other rows for single selection
         return row.copyWith(selected: false);
       }
@@ -700,8 +700,8 @@ class AppSimpleTableUtils {
 
   /// Generate semantic label for cell
   static String generateCellSemanticLabel(
-    AppSimpleTableRow row,
-    AppSimpleTableColumn column,
+    DSSimpleTableRow row,
+    DSSimpleTableColumn column,
     dynamic value,
     int rowIndex,
     int columnIndex,
@@ -711,7 +711,7 @@ class AppSimpleTableUtils {
   }
 
   /// Validate column configuration
-  static List<String> validateColumns(List<AppSimpleTableColumn> columns) {
+  static List<String> validateColumns(List<DSSimpleTableColumn> columns) {
     final errors = <String>[];
     final ids = <String>{};
 
@@ -739,8 +739,8 @@ class AppSimpleTableUtils {
 
   /// Validate row data against columns
   static List<String> validateRowData(
-    AppSimpleTableRow row,
-    List<AppSimpleTableColumn> columns,
+    DSSimpleTableRow row,
+    List<DSSimpleTableColumn> columns,
   ) {
     final errors = <String>[];
     final requiredFields =
@@ -774,38 +774,38 @@ class AppSimpleTableUtils {
 
   /// Platform-specific row height calculation
   static double getPlatformRowHeight(
-      AppSimpleTableDensity density, TargetPlatform platform) {
+      DSSimpleTableDensity density, TargetPlatform platform) {
     switch (density) {
-      case AppSimpleTableDensity.compact:
+      case DSSimpleTableDensity.compact:
         return platform == TargetPlatform.iOS ? 36.0 : 32.0;
-      case AppSimpleTableDensity.standard:
+      case DSSimpleTableDensity.standard:
         return platform == TargetPlatform.iOS ? 48.0 : 48.0;
-      case AppSimpleTableDensity.comfortable:
+      case DSSimpleTableDensity.comfortable:
         return platform == TargetPlatform.iOS ? 60.0 : 56.0;
     }
   }
 
   /// Calculate row height based on density and config
   static double getRowHeight(
-      AppSimpleTableConfig config, TargetPlatform platform) {
-    if (config.variant == AppSimpleTableVariant.compact) {
-      return getPlatformRowHeight(AppSimpleTableDensity.compact, platform);
+      DSSimpleTableConfig config, TargetPlatform platform) {
+    if (config.variant == DSSimpleTableVariant.compact) {
+      return getPlatformRowHeight(DSSimpleTableDensity.compact, platform);
     }
     return config.rowHeight;
   }
 
   /// Calculate header height based on density and config
   static double getHeaderHeight(
-      AppSimpleTableConfig config, TargetPlatform platform) {
-    if (config.variant == AppSimpleTableVariant.compact) {
+      DSSimpleTableConfig config, TargetPlatform platform) {
+    if (config.variant == DSSimpleTableVariant.compact) {
       return config.headerHeight * 0.8; // 20% smaller for compact
     }
     return config.headerHeight;
   }
 
   /// Calculate padding based on density and config
-  static EdgeInsets getCellPadding(AppSimpleTableConfig config) {
-    if (config.variant == AppSimpleTableVariant.compact) {
+  static EdgeInsets getCellPadding(DSSimpleTableConfig config) {
+    if (config.variant == DSSimpleTableVariant.compact) {
       return EdgeInsets.symmetric(
         horizontal: config.cellPadding.horizontal * 0.75,
         vertical: config.cellPadding.vertical * 0.5,
@@ -815,8 +815,8 @@ class AppSimpleTableUtils {
   }
 
   /// Calculate header padding based on density and config
-  static EdgeInsets getHeaderPadding(AppSimpleTableConfig config) {
-    if (config.variant == AppSimpleTableVariant.compact) {
+  static EdgeInsets getHeaderPadding(DSSimpleTableConfig config) {
+    if (config.variant == DSSimpleTableVariant.compact) {
       return EdgeInsets.symmetric(
         horizontal: config.headerPadding.horizontal * 0.75,
         vertical: config.headerPadding.vertical * 0.5,

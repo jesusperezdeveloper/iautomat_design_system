@@ -4,37 +4,37 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_navigation_config.freezed.dart';
 
 @freezed
-class AppNavigationComponentConfig with _$AppNavigationComponentConfig {
-  const factory AppNavigationComponentConfig({
-    @Default(AppNavigationVariant.bottomBar) AppNavigationVariant variant,
-    @Default(AppNavigationState.defaultState) AppNavigationState state,
+class DSNavigationComponentConfig with _$DSNavigationComponentConfig {
+  const factory DSNavigationComponentConfig({
+    @Default(DSNavigationVariant.bottomBar) DSNavigationVariant variant,
+    @Default(DSNavigationState.defaultState) DSNavigationState state,
     @Default(true) bool isAdaptive,
     @Default(false) bool isRtl,
     @Default(true) bool enableA11y,
     @Default(true) bool enableKeyboardSupport,
-    @Default([]) List<AppNavigationDestination> destinations,
+    @Default([]) List<DSNavigationDestination> destinations,
     @Default(0) int currentIndex,
     ValueChanged<int>? onTap,
-    @Default([]) List<AppNavigationBadge> badges,
-    AppNavigationColors? colors,
-    AppNavigationTypography? typography,
-    AppNavigationSpacing? spacing,
-    AppNavigationElevation? elevation,
-    AppNavigationBehavior? behavior,
-  }) = _AppNavigationComponentConfig;
+    @Default([]) List<DSNavigationBadge> badges,
+    DSNavigationColors? colors,
+    DSNavigationTypography? typography,
+    DSNavigationSpacing? spacing,
+    DSNavigationElevation? elevation,
+    DSNavigationBehavior? behavior,
+  }) = _DSNavigationComponentConfig;
 }
 
 @freezed
-class AppNavigationDestination with _$AppNavigationDestination {
-  const factory AppNavigationDestination({
+class DSNavigationDestination with _$DSNavigationDestination {
+  const factory DSNavigationDestination({
     required String id,
     required String label,
     required Widget icon,
     Widget? selectedIcon,
     String? tooltip,
     @Default(false) bool disabled,
-    @Default(AppNavigationDestinationType.standard)
-    AppNavigationDestinationType type,
+    @Default(DSNavigationDestinationType.standard)
+    DSNavigationDestinationType type,
     Widget? leading,
     Widget? trailing,
     VoidCallback? onTap,
@@ -42,12 +42,12 @@ class AppNavigationDestination with _$AppNavigationDestination {
 }
 
 @freezed
-class AppNavigationBadge with _$AppNavigationBadge {
-  const factory AppNavigationBadge({
+class DSNavigationBadge with _$DSNavigationBadge {
+  const factory DSNavigationBadge({
     required String destinationId,
     String? text,
     @Default(0) int count,
-    @Default(AppNavigationBadgeType.count) AppNavigationBadgeType type,
+    @Default(DSNavigationBadgeType.count) DSNavigationBadgeType type,
     Color? backgroundColor,
     Color? textColor,
     @Default(true) bool isVisible,
@@ -56,8 +56,8 @@ class AppNavigationBadge with _$AppNavigationBadge {
 }
 
 @freezed
-class AppNavigationColors with _$AppNavigationColors {
-  const factory AppNavigationColors({
+class DSNavigationColors with _$DSNavigationColors {
+  const factory DSNavigationColors({
     Color? backgroundColor,
     Color? selectedItemColor,
     Color? unselectedItemColor,
@@ -73,8 +73,8 @@ class AppNavigationColors with _$AppNavigationColors {
 }
 
 @freezed
-class AppNavigationTypography with _$AppNavigationTypography {
-  const factory AppNavigationTypography({
+class DSNavigationTypography with _$DSNavigationTypography {
+  const factory DSNavigationTypography({
     TextStyle? selectedLabelStyle,
     TextStyle? unselectedLabelStyle,
     @Default(1.0) double labelScale,
@@ -83,8 +83,8 @@ class AppNavigationTypography with _$AppNavigationTypography {
 }
 
 @freezed
-class AppNavigationSpacing with _$AppNavigationSpacing {
-  const factory AppNavigationSpacing({
+class DSNavigationSpacing with _$DSNavigationSpacing {
+  const factory DSNavigationSpacing({
     @Default(8.0) double iconSize,
     @Default(12.0) double labelSpacing,
     @Default(16.0) double itemPadding,
@@ -97,8 +97,8 @@ class AppNavigationSpacing with _$AppNavigationSpacing {
 }
 
 @freezed
-class AppNavigationElevation with _$AppNavigationElevation {
-  const factory AppNavigationElevation({
+class DSNavigationElevation with _$DSNavigationElevation {
+  const factory DSNavigationElevation({
     @Default(8.0) double defaultElevation,
     @Default(0.0) double railElevation,
     @Default(16.0) double drawerElevation,
@@ -108,29 +108,29 @@ class AppNavigationElevation with _$AppNavigationElevation {
 }
 
 @freezed
-class AppNavigationBehavior with _$AppNavigationBehavior {
-  const factory AppNavigationBehavior({
-    @Default(AppNavigationLabelBehavior.alwaysShow)
-    AppNavigationLabelBehavior labelBehavior,
+class DSNavigationBehavior with _$DSNavigationBehavior {
+  const factory DSNavigationBehavior({
+    @Default(DSNavigationLabelBehavior.alwaysShow)
+    DSNavigationLabelBehavior labelBehavior,
     @Default(false) bool showTooltips,
     @Default(true) bool enableHapticFeedback,
     @Default(true) bool allowTabSwitching,
     @Default(false) bool persistentDrawer,
     @Default(true) bool enableSwipeGestures,
-    @Default(AppNavigationAnimationType.slide)
-    AppNavigationAnimationType animationType,
+    @Default(DSNavigationAnimationType.slide)
+    DSNavigationAnimationType animationType,
     @Default(300) int animationDuration,
   }) = _AppNavigationBehavior;
 }
 
-enum AppNavigationVariant {
+enum DSNavigationVariant {
   bottomBar,
   rail,
   drawer,
   permanentDrawer,
 }
 
-enum AppNavigationState {
+enum DSNavigationState {
   defaultState,
   hover,
   pressed,
@@ -141,78 +141,78 @@ enum AppNavigationState {
   skeleton,
 }
 
-enum AppNavigationDestinationType {
+enum DSNavigationDestinationType {
   standard,
   floating,
   badge,
   divider,
 }
 
-enum AppNavigationBadgeType {
+enum DSNavigationBadgeType {
   dot,
   count,
   text,
 }
 
-enum AppNavigationLabelBehavior {
+enum DSNavigationLabelBehavior {
   alwaysShow,
   alwaysHide,
   showSelected,
   auto,
 }
 
-enum AppNavigationAnimationType {
+enum DSNavigationAnimationType {
   none,
   fade,
   slide,
   scale,
 }
 
-extension AppNavigationVariantExtension on AppNavigationVariant {
+extension DSNavigationVariantExtension on DSNavigationVariant {
   String get displayName {
     switch (this) {
-      case AppNavigationVariant.bottomBar:
+      case DSNavigationVariant.bottomBar:
         return 'Bottom Bar';
-      case AppNavigationVariant.rail:
+      case DSNavigationVariant.rail:
         return 'Navigation Rail';
-      case AppNavigationVariant.drawer:
+      case DSNavigationVariant.drawer:
         return 'Drawer';
-      case AppNavigationVariant.permanentDrawer:
+      case DSNavigationVariant.permanentDrawer:
         return 'Permanent Drawer';
     }
   }
 
   String get description {
     switch (this) {
-      case AppNavigationVariant.bottomBar:
+      case DSNavigationVariant.bottomBar:
         return 'Navegación inferior para pantallas móviles';
-      case AppNavigationVariant.rail:
+      case DSNavigationVariant.rail:
         return 'Barra lateral compacta para tablet/desktop';
-      case AppNavigationVariant.drawer:
+      case DSNavigationVariant.drawer:
         return 'Cajón de navegación modal';
-      case AppNavigationVariant.permanentDrawer:
+      case DSNavigationVariant.permanentDrawer:
         return 'Cajón de navegación permanente';
     }
   }
 
   bool get isHorizontal {
     switch (this) {
-      case AppNavigationVariant.bottomBar:
+      case DSNavigationVariant.bottomBar:
         return true;
-      case AppNavigationVariant.rail:
-      case AppNavigationVariant.drawer:
-      case AppNavigationVariant.permanentDrawer:
+      case DSNavigationVariant.rail:
+      case DSNavigationVariant.drawer:
+      case DSNavigationVariant.permanentDrawer:
         return false;
     }
   }
 
   bool get isModal {
     switch (this) {
-      case AppNavigationVariant.bottomBar:
-      case AppNavigationVariant.rail:
-      case AppNavigationVariant.permanentDrawer:
+      case DSNavigationVariant.bottomBar:
+      case DSNavigationVariant.rail:
+      case DSNavigationVariant.permanentDrawer:
         return false;
-      case AppNavigationVariant.drawer:
+      case DSNavigationVariant.drawer:
         return true;
     }
   }
@@ -223,103 +223,103 @@ extension AppNavigationVariantExtension on AppNavigationVariant {
 
   double get defaultWidth {
     switch (this) {
-      case AppNavigationVariant.bottomBar:
+      case DSNavigationVariant.bottomBar:
         return double.infinity;
-      case AppNavigationVariant.rail:
+      case DSNavigationVariant.rail:
         return 72.0;
-      case AppNavigationVariant.drawer:
-      case AppNavigationVariant.permanentDrawer:
+      case DSNavigationVariant.drawer:
+      case DSNavigationVariant.permanentDrawer:
         return 256.0;
     }
   }
 }
 
-extension AppNavigationStateExtension on AppNavigationState {
+extension DSNavigationStateExtension on DSNavigationState {
   String get displayName {
     switch (this) {
-      case AppNavigationState.defaultState:
+      case DSNavigationState.defaultState:
         return 'Default';
-      case AppNavigationState.hover:
+      case DSNavigationState.hover:
         return 'Hover';
-      case AppNavigationState.pressed:
+      case DSNavigationState.pressed:
         return 'Pressed';
-      case AppNavigationState.focus:
+      case DSNavigationState.focus:
         return 'Focus';
-      case AppNavigationState.selected:
+      case DSNavigationState.selected:
         return 'Selected';
-      case AppNavigationState.disabled:
+      case DSNavigationState.disabled:
         return 'Disabled';
-      case AppNavigationState.loading:
+      case DSNavigationState.loading:
         return 'Loading';
-      case AppNavigationState.skeleton:
+      case DSNavigationState.skeleton:
         return 'Skeleton';
     }
   }
 
   bool get isInteractive {
     switch (this) {
-      case AppNavigationState.defaultState:
-      case AppNavigationState.hover:
-      case AppNavigationState.pressed:
-      case AppNavigationState.focus:
-      case AppNavigationState.selected:
+      case DSNavigationState.defaultState:
+      case DSNavigationState.hover:
+      case DSNavigationState.pressed:
+      case DSNavigationState.focus:
+      case DSNavigationState.selected:
         return true;
-      case AppNavigationState.disabled:
-      case AppNavigationState.loading:
-      case AppNavigationState.skeleton:
+      case DSNavigationState.disabled:
+      case DSNavigationState.loading:
+      case DSNavigationState.skeleton:
         return false;
     }
   }
 
   double get opacity {
     switch (this) {
-      case AppNavigationState.defaultState:
-      case AppNavigationState.hover:
-      case AppNavigationState.pressed:
-      case AppNavigationState.focus:
-      case AppNavigationState.selected:
+      case DSNavigationState.defaultState:
+      case DSNavigationState.hover:
+      case DSNavigationState.pressed:
+      case DSNavigationState.focus:
+      case DSNavigationState.selected:
         return 1.0;
-      case AppNavigationState.disabled:
+      case DSNavigationState.disabled:
         return 0.6;
-      case AppNavigationState.loading:
+      case DSNavigationState.loading:
         return 0.8;
-      case AppNavigationState.skeleton:
+      case DSNavigationState.skeleton:
         return 0.3;
     }
   }
 
   bool get showsLoader {
-    return this == AppNavigationState.loading;
+    return this == DSNavigationState.loading;
   }
 
   bool get showsSkeleton {
-    return this == AppNavigationState.skeleton;
+    return this == DSNavigationState.skeleton;
   }
 }
 
-extension AppNavigationBadgeTypeExtension on AppNavigationBadgeType {
+extension DSNavigationBadgeTypeExtension on DSNavigationBadgeType {
   String get displayName {
     switch (this) {
-      case AppNavigationBadgeType.dot:
+      case DSNavigationBadgeType.dot:
         return 'Dot';
-      case AppNavigationBadgeType.count:
+      case DSNavigationBadgeType.count:
         return 'Count';
-      case AppNavigationBadgeType.text:
+      case DSNavigationBadgeType.text:
         return 'Text';
     }
   }
 
   bool get showsText {
     switch (this) {
-      case AppNavigationBadgeType.dot:
+      case DSNavigationBadgeType.dot:
         return false;
-      case AppNavigationBadgeType.count:
-      case AppNavigationBadgeType.text:
+      case DSNavigationBadgeType.count:
+      case DSNavigationBadgeType.text:
         return true;
     }
   }
 
   bool get isNumeric {
-    return this == AppNavigationBadgeType.count;
+    return this == DSNavigationBadgeType.count;
   }
 }

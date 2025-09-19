@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/src/components/status_dot/app_status_dot.dart';
 
-/// Story interactivo que demuestra el uso del widget AppStatusDot
+/// Story interactivo que demuestra el uso del widget DSStatusDot
 /// con todas sus variantes, estados y configuraciones
 class StatusDotStory extends StatefulWidget {
   const StatusDotStory({super.key});
@@ -12,7 +12,7 @@ class StatusDotStory extends StatefulWidget {
 
 class _StatusDotStoryState extends State<StatusDotStory> {
   StatusDotVariant _selectedVariant = StatusDotVariant.success;
-  AppStatusDotState _selectedState = AppStatusDotState.defaultState;
+  DSStatusDotState _selectedState = DSStatusDotState.defaultState;
   String _customLabel = 'Status Label';
   bool _hasLabel = true;
   bool _animate = false;
@@ -25,7 +25,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppStatusDot Story'),
+        title: const Text('DSStatusDot Story'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -129,15 +129,15 @@ class _StatusDotStoryState extends State<StatusDotStory> {
       children: [
         const Text('State:', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
-        DropdownButton<AppStatusDotState>(
+        DropdownButton<DSStatusDotState>(
           value: _selectedState,
-          items: AppStatusDotState.values.map((state) {
+          items: DSStatusDotState.values.map((state) {
             return DropdownMenuItem(
               value: state,
               child: Text(state.name),
             );
           }).toList(),
-          onChanged: (AppStatusDotState? value) {
+          onChanged: (DSStatusDotState? value) {
             if (value != null) {
               setState(() {
                 _selectedState = value;
@@ -289,7 +289,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
             ),
             const SizedBox(height: 24),
             Center(
-              child: AppStatusDot(
+              child: DSStatusDot(
                 status: _selectedVariant,
                 label: _hasLabel ? _customLabel : null,
                 state: _selectedState,
@@ -328,25 +328,25 @@ class _StatusDotStoryState extends State<StatusDotStory> {
             _buildVariantExample(
               'Success',
               'Indica éxito, completado o estado positivo',
-              AppStatusDot.success(label: 'Connected'),
+              DSStatusDot.success(label: 'Connected'),
             ),
             const SizedBox(height: 16),
             _buildVariantExample(
               'Info',
               'Información general o neutral',
-              AppStatusDot.info(label: 'Processing'),
+              DSStatusDot.info(label: 'Processing'),
             ),
             const SizedBox(height: 16),
             _buildVariantExample(
               'Warning',
               'Advertencia o precaución necesaria',
-              AppStatusDot.warn(label: 'Limited'),
+              DSStatusDot.warn(label: 'Limited'),
             ),
             const SizedBox(height: 16),
             _buildVariantExample(
               'Error',
               'Error o estado crítico',
-              AppStatusDot.error(label: 'Disconnected'),
+              DSStatusDot.error(label: 'Disconnected'),
             ),
           ],
         ),
@@ -392,7 +392,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
               childAspectRatio: 3,
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
-              children: AppStatusDotState.values.map((state) {
+              children: DSStatusDotState.values.map((state) {
                 return _buildStateExample(state);
               }).toList(),
             ),
@@ -402,7 +402,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
     );
   }
 
-  Widget _buildStateExample(AppStatusDotState state) {
+  Widget _buildStateExample(DSStatusDotState state) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -412,7 +412,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          AppStatusDot(
+          DSStatusDot(
             status: StatusDotVariant.info,
             label: state.name,
             state: state,
@@ -457,7 +457,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
       children: [
         Text(title, style: const TextStyle(fontSize: 12)),
         const SizedBox(height: 8),
-        AppStatusDot.success(
+        DSStatusDot.success(
           label: 'Active',
           size: size,
         ),
@@ -480,7 +480,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
             _buildPlatformExample(
               'Desktop Hover',
               'Interacción con hover en desktop',
-              AppStatusDot.info(
+              DSStatusDot.info(
                 label: 'Hover me',
                 onHover: () {
                   debugPrint('Desktop hover detected');
@@ -496,7 +496,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
             _buildPlatformExample(
               'Mobile Touch',
               'Optimizado para interacción táctil',
-              AppStatusDot.success(
+              DSStatusDot.success(
                 label: 'Tap me',
                 size: 12,
                 onTap: () {
@@ -512,7 +512,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
               'Soporte completo para right-to-left',
               Directionality(
                 textDirection: TextDirection.rtl,
-                child: AppStatusDot.warn(
+                child: DSStatusDot.warn(
                   label: 'تحذير',
                   rtlSupport: true,
                 ),
@@ -583,13 +583,13 @@ class _StatusDotStoryState extends State<StatusDotStory> {
               'Estados de Proceso',
               Column(
                 children: [
-                  AppStatusDot.info(label: 'Initializing', animate: true),
+                  DSStatusDot.info(label: 'Initializing', animate: true),
                   const SizedBox(height: 8),
-                  AppStatusDot.info(label: 'Processing', animate: true),
+                  DSStatusDot.info(label: 'Processing', animate: true),
                   const SizedBox(height: 8),
-                  AppStatusDot.success(label: 'Completed'),
+                  DSStatusDot.success(label: 'Completed'),
                   const SizedBox(height: 8),
-                  AppStatusDot.error(label: 'Failed'),
+                  DSStatusDot.error(label: 'Failed'),
                 ],
               ),
             ),
@@ -598,13 +598,13 @@ class _StatusDotStoryState extends State<StatusDotStory> {
               'Estados de Notificación',
               Column(
                 children: [
-                  AppStatusDot.info(label: 'New message'),
+                  DSStatusDot.info(label: 'New message'),
                   const SizedBox(height: 8),
-                  AppStatusDot.warn(label: 'Update available'),
+                  DSStatusDot.warn(label: 'Update available'),
                   const SizedBox(height: 8),
-                  AppStatusDot.error(label: 'Action required'),
+                  DSStatusDot.error(label: 'Action required'),
                   const SizedBox(height: 8),
-                  AppStatusDot.success(label: 'Backup completed'),
+                  DSStatusDot.success(label: 'Backup completed'),
                 ],
               ),
             ),
@@ -619,7 +619,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(name),
-        AppStatusDot(
+        DSStatusDot(
           status: variant,
           label: _getStatusText(variant),
         ),
@@ -631,7 +631,7 @@ class _StatusDotStoryState extends State<StatusDotStory> {
     return Row(
       children: [
         if (color is StatusDotVariant)
-          AppStatusDot(status: color, size: 10)
+          DSStatusDot(status: color, size: 10)
         else
           Container(
             width: 10,

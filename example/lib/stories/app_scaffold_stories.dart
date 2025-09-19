@@ -1,47 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppScaffoldStories extends StatefulWidget {
-  const AppScaffoldStories({super.key});
+class DSScaffoldStories extends StatefulWidget {
+  const DSScaffoldStories({super.key});
 
   @override
-  State<AppScaffoldStories> createState() => _AppScaffoldStoriesState();
+  State<DSScaffoldStories> createState() => _DSScaffoldStoriesState();
 }
 
-class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
+class _DSScaffoldStoriesState extends State<DSScaffoldStories> {
   int _currentStory = 0;
 
   final List<StoryItem> _stories = [
     StoryItem(
-      title: 'Default AppShell',
+      title: 'Default DSShell',
       description: 'Scaffold básico con configuración por defecto',
-      builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(variant: AppScaffoldVariant.appShell),
+      builder: (context) => const DSScaffold(
+        config: DSScaffoldConfig(variant: DSScaffoldVariant.appShell),
         body: _DemoContent(title: 'App Shell Básico'),
       ),
     ),
     StoryItem(
       title: 'Loading State',
       description: 'Scaffold en estado de carga',
-      builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(state: AppScaffoldState.loading),
+      builder: (context) => const DSScaffold(
+        config: DSScaffoldConfig(state: DSScaffoldState.loading),
         body: _DemoContent(title: 'Contenido Cargando'),
       ),
     ),
     StoryItem(
       title: 'Skeleton State',
       description: 'Scaffold con esqueleto de carga',
-      builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(state: AppScaffoldState.skeleton),
+      builder: (context) => const DSScaffold(
+        config: DSScaffoldConfig(state: DSScaffoldState.skeleton),
         body: _DemoContent(title: 'Contenido Esqueleto'),
       ),
     ),
     StoryItem(
       title: 'With Gutters',
       description: 'Layout con márgenes laterales',
-      builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(
-          variant: AppScaffoldVariant.gutters,
+      builder: (context) => const DSScaffold(
+        config: DSScaffoldConfig(
+          variant: DSScaffoldVariant.gutters,
           hasGutters: true,
         ),
         body: _DemoContent(title: 'Layout con Gutters'),
@@ -50,24 +50,24 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
     StoryItem(
       title: 'Responsive Layout',
       description: 'Layout que se adapta al tamaño de pantalla',
-      builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(variant: AppScaffoldVariant.responsive),
+      builder: (context) => const DSScaffold(
+        config: DSScaffoldConfig(variant: DSScaffoldVariant.responsive),
         body: _DemoContent(title: 'Layout Responsive'),
       ),
     ),
     StoryItem(
       title: 'RTL Support',
       description: 'Scaffold con soporte para dirección RTL',
-      builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(isRtl: true),
+      builder: (context) => const DSScaffold(
+        config: DSScaffoldConfig(isRtl: true),
         body: _DemoContent(title: 'محتوى RTL'),
       ),
     ),
     StoryItem(
       title: 'With AppBar',
       description: 'Scaffold con barra de aplicación personalizada',
-      builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(appBar: AppBarConfig(height: 64.0)),
+      builder: (context) => const DSScaffold(
+        config: DSScaffoldConfig(appBar: DSBarConfig(height: 64.0)),
         appBar: _DemoAppBar(),
         body: _DemoContent(title: 'Con AppBar'),
       ),
@@ -75,9 +75,9 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
     StoryItem(
       title: 'With Navigation Drawer',
       description: 'Scaffold con drawer de navegación',
-      builder: (context) => AppScaffold(
-        config: const AppScaffoldConfig(
-          navigation: AppNavigationConfig(
+      builder: (context) => DSScaffold(
+        config: const DSScaffoldConfig(
+          navigation: DSNavigationConfig(
             type: NavigationType.drawer,
             width: 280.0,
             items: [
@@ -98,8 +98,8 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
     StoryItem(
       title: 'With Bottom Navigation',
       description: 'Scaffold con navegación inferior',
-      builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(
+      builder: (context) => const DSScaffold(
+        config: DSScaffoldConfig(
           bottomBar: BottomBarConfig(
             items: [
               BottomBarItem(label: 'Home', icon: Icons.home),
@@ -116,8 +116,8 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
     StoryItem(
       title: 'With FloatingActionButton',
       description: 'Scaffold con botón de acción flotante',
-      builder: (context) => AppScaffold(
-        config: const AppScaffoldConfig(
+      builder: (context) => DSScaffold(
+        config: const DSScaffoldConfig(
           floatingAction: FloatingActionConfig(
             mini: false,
             tooltip: 'Agregar elemento',
@@ -133,10 +133,10 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
     StoryItem(
       title: 'Desktop Layout with Rail',
       description: 'Layout de escritorio con rail de navegación',
-      builder: (context) => const AppScaffold(
-        config: AppScaffoldConfig(
-          variant: AppScaffoldVariant.appShell,
-          navigation: AppNavigationConfig(
+      builder: (context) => const DSScaffold(
+        config: DSScaffoldConfig(
+          variant: DSScaffoldVariant.appShell,
+          navigation: DSNavigationConfig(
             type: NavigationType.rail,
             items: [
               NavigationItem(label: 'Home', icon: Icons.home, isSelected: true),
@@ -151,11 +151,11 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
     StoryItem(
       title: 'Complete Example',
       description: 'Ejemplo completo con todas las características',
-      builder: (context) => AppScaffold(
-        config: AppScaffoldConfig(
-          variant: AppScaffoldVariant.responsive,
-          appBar: const AppBarConfig(height: 64.0),
-          navigation: const AppNavigationConfig(
+      builder: (context) => DSScaffold(
+        config: DSScaffoldConfig(
+          variant: DSScaffoldVariant.responsive,
+          appBar: const DSBarConfig(height: 64.0),
+          navigation: const DSNavigationConfig(
             type: NavigationType.drawer,
             items: [
               NavigationItem(
@@ -193,7 +193,7 @@ class _AppScaffoldStoriesState extends State<AppScaffoldStories> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'AppScaffold Stories (${_currentStory + 1}/${_stories.length})',
+          'DSScaffold Stories (${_currentStory + 1}/${_stories.length})',
         ),
         actions: [
           IconButton(
@@ -360,7 +360,7 @@ class _DemoContent extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'AppScaffold es un componente de scaffold avanzado que proporciona:',
+                    'DSScaffold es un componente de scaffold avanzado que proporciona:',
                   ),
                   SizedBox(height: 8),
                   Text(

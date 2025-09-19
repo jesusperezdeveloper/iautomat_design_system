@@ -3,19 +3,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_image_config.freezed.dart';
 
-/// Configuración principal para el componente AppImage
+/// Configuración principal para el componente DSImage
 ///
 /// Define todas las propiedades necesarias para personalizar
-/// el comportamiento y apariencia del widget AppImage usando
+/// el comportamiento y apariencia del widget DSImage usando
 /// solo design tokens del sistema.
 @freezed
-class AppImageConfig with _$AppImageConfig {
-  const factory AppImageConfig({
+class DSImageConfig with _$DSImageConfig {
+  const factory DSImageConfig({
     /// Variante del componente image
-    @Default(AppImageVariant.responsive) AppImageVariant variant,
+    @Default(DSImageVariant.responsive) DSImageVariant variant,
 
     /// Estado actual del componente
-    @Default(AppImageState.defaultState) AppImageState state,
+    @Default(DSImageState.defaultState) DSImageState state,
 
     /// URL o path de la imagen
     required String src,
@@ -36,28 +36,28 @@ class AppImageConfig with _$AppImageConfig {
     Widget? errorWidget,
 
     /// Configuración de colores
-    AppImageColors? colors,
+    DSImageColors? colors,
 
     /// Configuración de espaciado y dimensiones
-    AppImageSpacing? spacing,
+    DSImageSpacing? spacing,
 
     /// Configuración de elevación y sombras
-    AppImageElevation? elevation,
+    DSImageElevation? elevation,
 
     /// Configuración de comportamiento
-    AppImageBehavior? behavior,
+    DSImageBehavior? behavior,
 
     /// Configuración de animaciones
-    AppImageAnimation? animation,
+    DSImageAnimation? animation,
 
     /// Configuración de carga lazy
-    AppImageLazyConfig? lazyConfig,
+    DSImageLazyConfig? lazyConfig,
 
     /// Configuración de responsividad
-    AppImageResponsiveConfig? responsiveConfig,
+    DSImageResponsiveConfig? responsiveConfig,
 
     /// Configuración de accesibilidad
-    AppImageA11yConfig? a11yConfig,
+    DSImageA11yConfig? a11yConfig,
 
     /// Callbacks de interacción
     VoidCallback? onTap,
@@ -66,13 +66,13 @@ class AppImageConfig with _$AppImageConfig {
     ValueChanged<bool>? onFocusChange,
     VoidCallback? onLoad,
     VoidCallback? onError,
-  }) = _AppImageConfig;
+  }) = _DSImageConfig;
 }
 
-/// Configuración de colores para el AppImage
+/// Configuración de colores para el DSImage
 @freezed
-class AppImageColors with _$AppImageColors {
-  const factory AppImageColors({
+class DSImageColors with _$DSImageColors {
+  const factory DSImageColors({
     /// Color de fondo del container
     Color? backgroundColor,
 
@@ -110,8 +110,8 @@ class AppImageColors with _$AppImageColors {
 
 /// Configuración de espaciado y dimensiones
 @freezed
-class AppImageSpacing with _$AppImageSpacing {
-  const factory AppImageSpacing({
+class DSImageSpacing with _$DSImageSpacing {
+  const factory DSImageSpacing({
     /// Ancho del componente
     double? width,
 
@@ -149,8 +149,8 @@ class AppImageSpacing with _$AppImageSpacing {
 
 /// Configuración de elevación y sombras
 @freezed
-class AppImageElevation with _$AppImageElevation {
-  const factory AppImageElevation({
+class DSImageElevation with _$DSImageElevation {
+  const factory DSImageElevation({
     /// Elevación por defecto
     @Default(0.0) double defaultElevation,
 
@@ -179,8 +179,8 @@ class AppImageElevation with _$AppImageElevation {
 
 /// Configuración de comportamiento
 @freezed
-class AppImageBehavior with _$AppImageBehavior {
-  const factory AppImageBehavior({
+class DSImageBehavior with _$DSImageBehavior {
+  const factory DSImageBehavior({
     /// Habilitar feedback háptico
     @Default(true) bool enableHapticFeedback,
 
@@ -197,7 +197,7 @@ class AppImageBehavior with _$AppImageBehavior {
     @Default(true) bool maintainState,
 
     /// Comportamiento de recorte
-    @Default(AppImageClipBehavior.antiAlias) AppImageClipBehavior clipBehavior,
+    @Default(DSImageClipBehavior.antiAlias) DSImageClipBehavior clipBehavior,
 
     /// Duración de animaciones en milisegundos
     @Default(300) int animationDuration,
@@ -230,10 +230,10 @@ class AppImageBehavior with _$AppImageBehavior {
 
 /// Configuración de animaciones
 @freezed
-class AppImageAnimation with _$AppImageAnimation {
-  const factory AppImageAnimation({
+class DSImageAnimation with _$DSImageAnimation {
+  const factory DSImageAnimation({
     /// Tipo de animación
-    @Default(AppImageAnimationType.fade) AppImageAnimationType type,
+    @Default(DSImageAnimationType.fade) DSImageAnimationType type,
 
     /// Duración de la animación en milisegundos
     @Default(300) int duration,
@@ -263,8 +263,8 @@ class AppImageAnimation with _$AppImageAnimation {
 
 /// Configuración para carga lazy
 @freezed
-class AppImageLazyConfig with _$AppImageLazyConfig {
-  const factory AppImageLazyConfig({
+class DSImageLazyConfig with _$DSImageLazyConfig {
+  const factory DSImageLazyConfig({
     /// Habilitar carga lazy
     @Default(true) bool enabled,
 
@@ -282,37 +282,37 @@ class AppImageLazyConfig with _$AppImageLazyConfig {
 
     /// Usar skeleton durante carga lazy
     @Default(true) bool useSkeleton,
-  }) = _AppImageLazyConfig;
+  }) = _DSImageLazyConfig;
 }
 
 /// Configuración de responsividad
 @freezed
-class AppImageResponsiveConfig with _$AppImageResponsiveConfig {
-  const factory AppImageResponsiveConfig({
+class DSImageResponsiveConfig with _$DSImageResponsiveConfig {
+  const factory DSImageResponsiveConfig({
     /// Habilitar comportamiento responsivo
     @Default(true) bool enabled,
 
     /// Configuración para mobile
-    AppImageBreakpointConfig? mobile,
+    DSImageBreakpointConfig? mobile,
 
     /// Configuración para tablet
-    AppImageBreakpointConfig? tablet,
+    DSImageBreakpointConfig? tablet,
 
     /// Configuración para desktop
-    AppImageBreakpointConfig? desktop,
+    DSImageBreakpointConfig? desktop,
 
     /// Usar diferentes resoluciones según dispositivo
     @Default(true) bool useAdaptiveResolution,
 
     /// Factor de escala para imágenes en diferentes densidades
     @Default(true) bool scaleByDevicePixelRatio,
-  }) = _AppImageResponsiveConfig;
+  }) = _DSImageResponsiveConfig;
 }
 
 /// Configuración por breakpoint de responsividad
 @freezed
-class AppImageBreakpointConfig with _$AppImageBreakpointConfig {
-  const factory AppImageBreakpointConfig({
+class DSImageBreakpointConfig with _$DSImageBreakpointConfig {
+  const factory DSImageBreakpointConfig({
     /// Ancho para este breakpoint
     double? width,
 
@@ -327,13 +327,13 @@ class AppImageBreakpointConfig with _$AppImageBreakpointConfig {
 
     /// Calidad de imagen para este breakpoint
     int? quality,
-  }) = _AppImageBreakpointConfig;
+  }) = _DSImageBreakpointConfig;
 }
 
 /// Configuración de accesibilidad
 @freezed
-class AppImageA11yConfig with _$AppImageA11yConfig {
-  const factory AppImageA11yConfig({
+class DSImageA11yConfig with _$DSImageA11yConfig {
+  const factory DSImageA11yConfig({
     /// Habilitar funciones de accesibilidad
     @Default(true) bool enabled,
 
@@ -357,11 +357,11 @@ class AppImageA11yConfig with _$AppImageA11yConfig {
 
     /// Rol semántico personalizado
     String? semanticsRole,
-  }) = _AppImageA11yConfig;
+  }) = _DSImageA11yConfig;
 }
 
-/// Variantes del componente AppImage
-enum AppImageVariant {
+/// Variantes del componente DSImage
+enum DSImageVariant {
   /// Imagen responsiva estándar
   responsive,
 
@@ -369,8 +369,8 @@ enum AppImageVariant {
   lazy,
 }
 
-/// Estados del componente AppImage
-enum AppImageState {
+/// Estados del componente DSImage
+enum DSImageState {
   /// Estado por defecto
   defaultState,
 
@@ -397,7 +397,7 @@ enum AppImageState {
 }
 
 /// Tipos de comportamiento de recorte
-enum AppImageClipBehavior {
+enum DSImageClipBehavior {
   /// Sin recorte
   none,
 
@@ -412,7 +412,7 @@ enum AppImageClipBehavior {
 }
 
 /// Tipos de animación
-enum AppImageAnimationType {
+enum DSImageAnimationType {
   /// Sin animación
   none,
 
@@ -431,192 +431,192 @@ enum AppImageAnimationType {
 
 // Extensions para facilitar el uso de los enums
 
-extension AppImageVariantExtension on AppImageVariant {
+extension DSImageVariantExtension on DSImageVariant {
   String get displayName {
     switch (this) {
-      case AppImageVariant.responsive:
+      case DSImageVariant.responsive:
         return 'Responsive';
-      case AppImageVariant.lazy:
+      case DSImageVariant.lazy:
         return 'Lazy';
     }
   }
 
   String get description {
     switch (this) {
-      case AppImageVariant.responsive:
+      case DSImageVariant.responsive:
         return 'Imagen que se adapta automáticamente a diferentes tamaños de pantalla';
-      case AppImageVariant.lazy:
+      case DSImageVariant.lazy:
         return 'Imagen que se carga solo cuando está visible en el viewport';
     }
   }
 
   bool get isLazy {
-    return this == AppImageVariant.lazy;
+    return this == DSImageVariant.lazy;
   }
 
   bool get isResponsive {
-    return this == AppImageVariant.responsive;
+    return this == DSImageVariant.responsive;
   }
 }
 
-extension AppImageStateExtension on AppImageState {
+extension DSImageStateExtension on DSImageState {
   String get displayName {
     switch (this) {
-      case AppImageState.defaultState:
+      case DSImageState.defaultState:
         return 'Default';
-      case AppImageState.hover:
+      case DSImageState.hover:
         return 'Hover';
-      case AppImageState.pressed:
+      case DSImageState.pressed:
         return 'Pressed';
-      case AppImageState.focus:
+      case DSImageState.focus:
         return 'Focus';
-      case AppImageState.selected:
+      case DSImageState.selected:
         return 'Selected';
-      case AppImageState.disabled:
+      case DSImageState.disabled:
         return 'Disabled';
-      case AppImageState.loading:
+      case DSImageState.loading:
         return 'Loading';
-      case AppImageState.skeleton:
+      case DSImageState.skeleton:
         return 'Skeleton';
     }
   }
 
   bool get isInteractive {
     switch (this) {
-      case AppImageState.defaultState:
-      case AppImageState.hover:
-      case AppImageState.pressed:
-      case AppImageState.focus:
-      case AppImageState.selected:
+      case DSImageState.defaultState:
+      case DSImageState.hover:
+      case DSImageState.pressed:
+      case DSImageState.focus:
+      case DSImageState.selected:
         return true;
-      case AppImageState.disabled:
-      case AppImageState.loading:
-      case AppImageState.skeleton:
+      case DSImageState.disabled:
+      case DSImageState.loading:
+      case DSImageState.skeleton:
         return false;
     }
   }
 
   double get opacity {
     switch (this) {
-      case AppImageState.defaultState:
-      case AppImageState.hover:
-      case AppImageState.pressed:
-      case AppImageState.focus:
-      case AppImageState.selected:
+      case DSImageState.defaultState:
+      case DSImageState.hover:
+      case DSImageState.pressed:
+      case DSImageState.focus:
+      case DSImageState.selected:
         return 1.0;
-      case AppImageState.disabled:
+      case DSImageState.disabled:
         return 0.6;
-      case AppImageState.loading:
+      case DSImageState.loading:
         return 0.8;
-      case AppImageState.skeleton:
+      case DSImageState.skeleton:
         return 0.3;
     }
   }
 
   bool get showsLoader {
-    return this == AppImageState.loading;
+    return this == DSImageState.loading;
   }
 
   bool get showsSkeleton {
-    return this == AppImageState.skeleton;
+    return this == DSImageState.skeleton;
   }
 
   bool get canInteract {
     switch (this) {
-      case AppImageState.defaultState:
-      case AppImageState.hover:
-      case AppImageState.pressed:
-      case AppImageState.focus:
-      case AppImageState.selected:
+      case DSImageState.defaultState:
+      case DSImageState.hover:
+      case DSImageState.pressed:
+      case DSImageState.focus:
+      case DSImageState.selected:
         return true;
-      case AppImageState.disabled:
-      case AppImageState.loading:
-      case AppImageState.skeleton:
+      case DSImageState.disabled:
+      case DSImageState.loading:
+      case DSImageState.skeleton:
         return false;
     }
   }
 
   double get elevationMultiplier {
     switch (this) {
-      case AppImageState.defaultState:
+      case DSImageState.defaultState:
         return 1.0;
-      case AppImageState.hover:
+      case DSImageState.hover:
         return 1.5;
-      case AppImageState.pressed:
+      case DSImageState.pressed:
         return 0.5;
-      case AppImageState.focus:
+      case DSImageState.focus:
         return 2.0;
-      case AppImageState.selected:
+      case DSImageState.selected:
         return 2.5;
-      case AppImageState.disabled:
+      case DSImageState.disabled:
         return 0.0;
-      case AppImageState.loading:
-      case AppImageState.skeleton:
+      case DSImageState.loading:
+      case DSImageState.skeleton:
         return 1.0;
     }
   }
 }
 
-extension AppImageClipBehaviorExtension on AppImageClipBehavior {
+extension DSImageClipBehaviorExtension on DSImageClipBehavior {
   String get displayName {
     switch (this) {
-      case AppImageClipBehavior.none:
+      case DSImageClipBehavior.none:
         return 'None';
-      case AppImageClipBehavior.antiAlias:
+      case DSImageClipBehavior.antiAlias:
         return 'Anti Alias';
-      case AppImageClipBehavior.antiAliasWithSaveLayer:
+      case DSImageClipBehavior.antiAliasWithSaveLayer:
         return 'Anti Alias with Save Layer';
-      case AppImageClipBehavior.hardEdge:
+      case DSImageClipBehavior.hardEdge:
         return 'Hard Edge';
     }
   }
 
   Clip get flutterClip {
     switch (this) {
-      case AppImageClipBehavior.none:
+      case DSImageClipBehavior.none:
         return Clip.none;
-      case AppImageClipBehavior.antiAlias:
+      case DSImageClipBehavior.antiAlias:
         return Clip.antiAlias;
-      case AppImageClipBehavior.antiAliasWithSaveLayer:
+      case DSImageClipBehavior.antiAliasWithSaveLayer:
         return Clip.antiAliasWithSaveLayer;
-      case AppImageClipBehavior.hardEdge:
+      case DSImageClipBehavior.hardEdge:
         return Clip.hardEdge;
     }
   }
 }
 
-extension AppImageAnimationTypeExtension on AppImageAnimationType {
+extension DSImageAnimationTypeExtension on DSImageAnimationType {
   String get displayName {
     switch (this) {
-      case AppImageAnimationType.none:
+      case DSImageAnimationType.none:
         return 'None';
-      case AppImageAnimationType.fade:
+      case DSImageAnimationType.fade:
         return 'Fade';
-      case AppImageAnimationType.scale:
+      case DSImageAnimationType.scale:
         return 'Scale';
-      case AppImageAnimationType.slide:
+      case DSImageAnimationType.slide:
         return 'Slide';
-      case AppImageAnimationType.blur:
+      case DSImageAnimationType.blur:
         return 'Blur';
     }
   }
 
   Curve get defaultCurve {
     switch (this) {
-      case AppImageAnimationType.none:
+      case DSImageAnimationType.none:
         return Curves.linear;
-      case AppImageAnimationType.fade:
+      case DSImageAnimationType.fade:
         return Curves.easeInOut;
-      case AppImageAnimationType.scale:
+      case DSImageAnimationType.scale:
         return Curves.elasticOut;
-      case AppImageAnimationType.slide:
+      case DSImageAnimationType.slide:
         return Curves.easeOutCubic;
-      case AppImageAnimationType.blur:
+      case DSImageAnimationType.blur:
         return Curves.easeInOutQuart;
     }
   }
 
   bool get hasAnimation {
-    return this != AppImageAnimationType.none;
+    return this != DSImageAnimationType.none;
   }
 }

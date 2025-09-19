@@ -6,14 +6,14 @@ import 'package:iautomat_design_system/src/components/image/app_image_config.dar
 import 'package:iautomat_design_system/src/theme/colors.dart';
 
 void main() {
-  group('AppImage Golden Tests', () {
+  group('DSImage Golden Tests', () {
     testWidgets('default state golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Test image',
                 width: 200,
@@ -21,9 +21,9 @@ void main() {
                 placeholder: Container(
                   width: 200,
                   height: 150,
-                  color: AppColors.gray100,
+                  color: DSColors.gray100,
                   child: const Center(
-                    child: Icon(Icons.image, size: 48, color: AppColors.gray400),
+                    child: Icon(Icons.image, size: 48, color: DSColors.gray400),
                   ),
                 ),
               ),
@@ -34,7 +34,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_default.png'),
       );
     });
@@ -45,14 +45,14 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'https://example.com/loading-image.jpg',
                 alt: 'Loading image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'https://example.com/loading-image.jpg',
-                  state: AppImageState.loading,
+                  state: DSImageState.loading,
                 ),
               ),
             ),
@@ -62,7 +62,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_loading.png'),
       );
     });
@@ -73,14 +73,14 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Skeleton image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'assets/test_image.jpg',
-                  state: AppImageState.skeleton,
+                  state: DSImageState.skeleton,
                 ),
               ),
             ),
@@ -90,7 +90,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_skeleton.png'),
       );
     });
@@ -106,10 +106,10 @@ void main() {
                 height: 150,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppColors.gray100,
+                    color: DSColors.gray100,
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: AppColors.error.withValues(alpha: 0.3),
+                      color: DSColors.error.withValues(alpha: 0.3),
                       width: 1,
                     ),
                   ),
@@ -119,14 +119,14 @@ void main() {
                       Icon(
                         Icons.broken_image_outlined,
                         size: 32,
-                        color: AppColors.error.withValues(alpha: 0.7),
+                        color: DSColors.error.withValues(alpha: 0.7),
                       ),
                       const SizedBox(height: 8),
                       const Text(
                         'Error al cargar imagen',
                         style: TextStyle(
                           fontSize: 12,
-                          color: AppColors.textSecondary,
+                          color: DSColors.textSecondary,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -152,21 +152,21 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Disabled image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'assets/test_image.jpg',
-                  state: AppImageState.disabled,
+                  state: DSImageState.disabled,
                 ),
                 placeholder: Container(
                   width: 200,
                   height: 150,
-                  color: AppColors.gray100,
+                  color: DSColors.gray100,
                   child: const Center(
-                    child: Icon(Icons.image, size: 48, color: AppColors.gray400),
+                    child: Icon(Icons.image, size: 48, color: DSColors.gray400),
                   ),
                 ),
               ),
@@ -177,7 +177,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_disabled.png'),
       );
     });
@@ -188,21 +188,21 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Hover image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'assets/test_image.jpg',
-                  state: AppImageState.hover,
+                  state: DSImageState.hover,
                 ),
                 placeholder: Container(
                   width: 200,
                   height: 150,
-                  color: AppColors.gray100,
+                  color: DSColors.gray100,
                   child: const Center(
-                    child: Icon(Icons.image, size: 48, color: AppColors.gray400),
+                    child: Icon(Icons.image, size: 48, color: DSColors.gray400),
                   ),
                 ),
               ),
@@ -213,7 +213,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_hover.png'),
       );
     });
@@ -224,21 +224,21 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Pressed image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'assets/test_image.jpg',
-                  state: AppImageState.pressed,
+                  state: DSImageState.pressed,
                 ),
                 placeholder: Container(
                   width: 200,
                   height: 150,
-                  color: AppColors.gray100,
+                  color: DSColors.gray100,
                   child: const Center(
-                    child: Icon(Icons.image, size: 48, color: AppColors.gray400),
+                    child: Icon(Icons.image, size: 48, color: DSColors.gray400),
                   ),
                 ),
               ),
@@ -249,7 +249,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_pressed.png'),
       );
     });
@@ -260,21 +260,21 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Focus image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'assets/test_image.jpg',
-                  state: AppImageState.focus,
+                  state: DSImageState.focus,
                 ),
                 placeholder: Container(
                   width: 200,
                   height: 150,
-                  color: AppColors.gray100,
+                  color: DSColors.gray100,
                   child: const Center(
-                    child: Icon(Icons.image, size: 48, color: AppColors.gray400),
+                    child: Icon(Icons.image, size: 48, color: DSColors.gray400),
                   ),
                 ),
               ),
@@ -285,7 +285,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_focus.png'),
       );
     });
@@ -296,21 +296,21 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Selected image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'assets/test_image.jpg',
-                  state: AppImageState.selected,
+                  state: DSImageState.selected,
                 ),
                 placeholder: Container(
                   width: 200,
                   height: 150,
-                  color: AppColors.gray100,
+                  color: DSColors.gray100,
                   child: const Center(
-                    child: Icon(Icons.image, size: 48, color: AppColors.gray400),
+                    child: Icon(Icons.image, size: 48, color: DSColors.gray400),
                   ),
                 ),
               ),
@@ -321,7 +321,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_selected.png'),
       );
     });
@@ -332,18 +332,18 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Custom colors image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'assets/test_image.jpg',
-                  colors: AppImageColors(
+                  colors: DSImageColors(
                     backgroundColor: Colors.red,
                     borderColor: Colors.blue,
                   ),
-                  spacing: AppImageSpacing(
+                  spacing: DSImageSpacing(
                     borderWidth: 3.0,
                     borderRadius: 16.0,
                   ),
@@ -364,7 +364,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_custom_colors.png'),
       );
     });
@@ -375,14 +375,14 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Rounded image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'assets/test_image.jpg',
-                  spacing: AppImageSpacing(
+                  spacing: DSImageSpacing(
                     borderRadius: 24.0,
                   ),
                 ),
@@ -390,11 +390,11 @@ void main() {
                   width: 200,
                   height: 150,
                   decoration: BoxDecoration(
-                    color: AppColors.gray100,
+                    color: DSColors.gray100,
                     borderRadius: BorderRadius.circular(24.0),
                   ),
                   child: const Center(
-                    child: Icon(Icons.image, size: 48, color: AppColors.gray400),
+                    child: Icon(Icons.image, size: 48, color: DSColors.gray400),
                   ),
                 ),
               ),
@@ -405,7 +405,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_rounded.png'),
       );
     });
@@ -418,14 +418,14 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppImage(
+                child: DSImage(
                   src: 'assets/test_image.jpg',
                   alt: 'Aspect ratio image',
                   ratio: 16 / 9,
                   placeholder: Container(
-                    color: AppColors.gray100,
+                    color: DSColors.gray100,
                     child: const Center(
-                      child: Icon(Icons.image, size: 48, color: AppColors.gray400),
+                      child: Icon(Icons.image, size: 48, color: DSColors.gray400),
                     ),
                   ),
                 ),
@@ -437,7 +437,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_aspect_ratio.png'),
       );
     });
@@ -448,23 +448,23 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Elevated image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'assets/test_image.jpg',
-                  elevation: AppImageElevation(
+                  elevation: DSImageElevation(
                     defaultElevation: 8.0,
                   ),
                 ),
                 placeholder: Container(
                   width: 200,
                   height: 150,
-                  color: AppColors.gray100,
+                  color: DSColors.gray100,
                   child: const Center(
-                    child: Icon(Icons.image, size: 48, color: AppColors.gray400),
+                    child: Icon(Icons.image, size: 48, color: DSColors.gray400),
                   ),
                 ),
               ),
@@ -475,7 +475,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_elevation.png'),
       );
     });
@@ -486,7 +486,7 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Small image',
                 width: 64,
@@ -494,9 +494,9 @@ void main() {
                 placeholder: Container(
                   width: 64,
                   height: 64,
-                  color: AppColors.gray100,
+                  color: DSColors.gray100,
                   child: const Center(
-                    child: Icon(Icons.image, size: 24, color: AppColors.gray400),
+                    child: Icon(Icons.image, size: 24, color: DSColors.gray400),
                   ),
                 ),
               ),
@@ -507,7 +507,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_small.png'),
       );
     });
@@ -518,7 +518,7 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Large image',
                 width: 400,
@@ -526,9 +526,9 @@ void main() {
                 placeholder: Container(
                   width: 400,
                   height: 300,
-                  color: AppColors.gray100,
+                  color: DSColors.gray100,
                   child: const Center(
-                    child: Icon(Icons.image, size: 96, color: AppColors.gray400),
+                    child: Icon(Icons.image, size: 96, color: DSColors.gray400),
                   ),
                 ),
               ),
@@ -539,7 +539,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_large.png'),
       );
     });
@@ -551,7 +551,7 @@ void main() {
             home: Scaffold(
               backgroundColor: Colors.white,
               body: Center(
-                child: AppImage(
+                child: DSImage(
                   src: 'assets/test_image.jpg',
                   alt: 'Fit test image',
                   width: 200,
@@ -560,18 +560,18 @@ void main() {
                   placeholder: Container(
                     width: 200,
                     height: 150,
-                    color: AppColors.gray100,
+                    color: DSColors.gray100,
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.image, size: 32, color: AppColors.gray400),
+                          const Icon(Icons.image, size: 32, color: DSColors.gray400),
                           const SizedBox(height: 4),
                           Text(
                             fit.toString().split('.').last,
                             style: const TextStyle(
                               fontSize: 10,
-                              color: AppColors.gray600,
+                              color: DSColors.gray600,
                             ),
                           ),
                         ],
@@ -586,14 +586,14 @@ void main() {
 
         await tester.pump();
         await expectLater(
-          find.byType(AppImage),
+          find.byType(DSImage),
           matchesGoldenFile('goldens/app_image_fit_${fit.toString().split('.').last}.png'),
         );
       }
     });
   });
 
-  group('AppImage Dark Mode Golden Tests', () {
+  group('DSImage Dark Mode Golden Tests', () {
     testWidgets('default state dark mode golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -601,7 +601,7 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.black,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'Dark mode image',
                 width: 200,
@@ -609,9 +609,9 @@ void main() {
                 placeholder: Container(
                   width: 200,
                   height: 150,
-                  color: AppColors.gray800,
+                  color: DSColors.gray800,
                   child: const Center(
-                    child: Icon(Icons.image, size: 48, color: AppColors.gray300),
+                    child: Icon(Icons.image, size: 48, color: DSColors.gray300),
                   ),
                 ),
               ),
@@ -622,7 +622,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_dark_mode.png'),
       );
     });
@@ -634,14 +634,14 @@ void main() {
           home: Scaffold(
             backgroundColor: Colors.black,
             body: Center(
-              child: AppImage(
+              child: DSImage(
                 src: 'https://example.com/loading-image.jpg',
                 alt: 'Dark mode loading image',
                 width: 200,
                 height: 150,
-                config: const AppImageConfig(
+                config: const DSImageConfig(
                   src: 'https://example.com/loading-image.jpg',
-                  state: AppImageState.loading,
+                  state: DSImageState.loading,
                 ),
               ),
             ),
@@ -651,7 +651,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppImage),
+        find.byType(DSImage),
         matchesGoldenFile('goldens/app_image_dark_loading.png'),
       );
     });

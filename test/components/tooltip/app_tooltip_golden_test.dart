@@ -3,13 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/tooltip/app_tooltip.dart';
 
 void main() {
-  group('AppTooltip Golden Tests', () {
+  group('DSTooltip Golden Tests', () {
     testWidgets('hover tooltip with default styling', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip.hover(
+              child: DSTooltip.hover(
                 message: 'This is a hover tooltip',
                 child: Container(
                   padding: const EdgeInsets.all(16),
@@ -36,7 +36,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip.focus(
+              child: DSTooltip.focus(
                 message: 'Focus tooltip message',
                 child: ElevatedButton(
                   onPressed: () {},
@@ -59,7 +59,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip.longPress(
+              child: DSTooltip.longPress(
                 message: 'Long press to show tooltip',
                 child: Container(
                   padding: const EdgeInsets.all(20),
@@ -86,9 +86,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message: 'Default state tooltip',
-                state: AppTooltipState.defaultState,
+                state: DSTooltipState.defaultState,
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -114,9 +114,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message: 'Hover state tooltip',
-                state: AppTooltipState.hover,
+                state: DSTooltipState.hover,
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -142,9 +142,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message: 'Pressed state tooltip',
-                state: AppTooltipState.pressed,
+                state: DSTooltipState.pressed,
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -170,9 +170,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message: 'Focus state tooltip',
-                state: AppTooltipState.focus,
+                state: DSTooltipState.focus,
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -198,9 +198,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message: 'Disabled state tooltip',
-                state: AppTooltipState.disabled,
+                state: DSTooltipState.disabled,
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -226,9 +226,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message: 'Selected state tooltip',
-                state: AppTooltipState.selected,
+                state: DSTooltipState.selected,
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -254,9 +254,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message: 'Loading state tooltip',
-                state: AppTooltipState.loading,
+                state: DSTooltipState.loading,
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -282,9 +282,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message: 'Skeleton state tooltip',
-                state: AppTooltipState.skeleton,
+                state: DSTooltipState.skeleton,
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -310,7 +310,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message: 'Custom styled tooltip',
                 backgroundColor: Colors.purple.shade700,
                 textColor: Colors.white,
@@ -341,7 +341,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppTooltip(
+              child: DSTooltip(
                 message:
                     'This is a very long tooltip message that demonstrates how the tooltip handles text wrapping and maintains proper readability across multiple lines.',
                 maxWidth: 200,
@@ -373,7 +373,7 @@ void main() {
             theme: ThemeData.dark(),
             home: Scaffold(
               body: Center(
-                child: AppTooltip(
+                child: DSTooltip(
                   message: 'Dark theme tooltip',
                   child: Container(
                     padding: const EdgeInsets.all(16),
@@ -401,7 +401,7 @@ void main() {
             theme: ThemeData.dark(),
             home: Scaffold(
               body: Center(
-                child: AppTooltip.hover(
+                child: DSTooltip.hover(
                   message: 'Dark hover tooltip',
                   child: ElevatedButton(
                     onPressed: () {},
@@ -428,7 +428,7 @@ void main() {
               textDirection: TextDirection.rtl,
               child: Scaffold(
                 body: Center(
-                  child: AppTooltip(
+                  child: DSTooltip(
                     message: 'RTL tooltip message',
                     rtlSupport: true,
                     child: Text('RTL Test'),
@@ -456,7 +456,7 @@ void main() {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    AppTooltip.hover(
+                    DSTooltip.hover(
                       message: 'Hover tooltip',
                       child: Container(
                         padding: const EdgeInsets.all(12),
@@ -467,7 +467,7 @@ void main() {
                         child: const Text('Hover'),
                       ),
                     ),
-                    AppTooltip.focus(
+                    DSTooltip.focus(
                       message: 'Focus tooltip',
                       child: Container(
                         padding: const EdgeInsets.all(12),
@@ -478,7 +478,7 @@ void main() {
                         child: const Text('Focus'),
                       ),
                     ),
-                    AppTooltip.longPress(
+                    DSTooltip.longPress(
                       message: 'Long press tooltip',
                       child: Container(
                         padding: const EdgeInsets.all(12),
@@ -511,7 +511,7 @@ void main() {
               body: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppTooltip.hover(
+                  DSTooltip.hover(
                     message: 'Desktop optimized',
                     showDelay: const Duration(milliseconds: 300),
                     child: Container(
@@ -523,7 +523,7 @@ void main() {
                       child: const Text('Desktop'),
                     ),
                   ),
-                  AppTooltip.longPress(
+                  DSTooltip.longPress(
                     message: 'Mobile optimized',
                     showDelay: const Duration(milliseconds: 750),
                     child: Container(

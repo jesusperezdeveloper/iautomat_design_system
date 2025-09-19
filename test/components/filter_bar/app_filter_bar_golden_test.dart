@@ -4,33 +4,33 @@ import 'package:iautomat_design_system/src/components/filter_bar/app_filter_bar.
 import 'package:iautomat_design_system/src/components/filter_bar/filter_bar_config.dart';
 
 void main() {
-  group('AppFilterBar Golden Tests', () {
-    late List<AppFilter> basicFilters;
-    late List<AppFilter> activeFilters;
+  group('DSFilterBar Golden Tests', () {
+    late List<DSFilter> basicFilters;
+    late List<DSFilter> activeFilters;
 
     setUp(() {
       basicFilters = [
-        AppFilter(
+        DSFilter(
           id: 'status',
           label: 'Status',
           type: FilterType.single,
           icon: Icons.info,
           options: const [
-            AppFilterOption(value: 'active', label: 'Active'),
-            AppFilterOption(value: 'inactive', label: 'Inactive'),
+            DSFilterOption(value: 'active', label: 'Active'),
+            DSFilterOption(value: 'inactive', label: 'Inactive'),
           ],
         ),
-        AppFilter(
+        DSFilter(
           id: 'category',
           label: 'Category',
           type: FilterType.multiple,
           icon: Icons.category,
           options: const [
-            AppFilterOption(value: 'electronics', label: 'Electronics'),
-            AppFilterOption(value: 'clothing', label: 'Clothing'),
+            DSFilterOption(value: 'electronics', label: 'Electronics'),
+            DSFilterOption(value: 'clothing', label: 'Clothing'),
           ],
         ),
-        const AppFilter(
+        const DSFilter(
           id: 'featured',
           label: 'Featured',
           type: FilterType.boolean,
@@ -39,7 +39,7 @@ void main() {
       ];
 
       activeFilters = [
-        AppFilter(
+        DSFilter(
           id: 'status',
           label: 'Status',
           type: FilterType.single,
@@ -47,11 +47,11 @@ void main() {
           value: 'active',
           isActive: true,
           options: const [
-            AppFilterOption(value: 'active', label: 'Active'),
-            AppFilterOption(value: 'inactive', label: 'Inactive'),
+            DSFilterOption(value: 'active', label: 'Active'),
+            DSFilterOption(value: 'inactive', label: 'Inactive'),
           ],
         ),
-        AppFilter(
+        DSFilter(
           id: 'category',
           label: 'Category',
           type: FilterType.multiple,
@@ -59,8 +59,8 @@ void main() {
           value: const ['electronics', 'clothing'],
           isActive: true,
           options: const [
-            AppFilterOption(value: 'electronics', label: 'Electronics'),
-            AppFilterOption(value: 'clothing', label: 'Clothing'),
+            DSFilterOption(value: 'electronics', label: 'Electronics'),
+            DSFilterOption(value: 'clothing', label: 'Clothing'),
           ],
         ),
       ];
@@ -71,7 +71,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: basicFilters,
                 onChanged: (filters) {},
               ),
@@ -81,7 +81,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_chips_default.png'),
       );
     });
@@ -91,7 +91,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.popovers(
+              child: DSFilterBar.popovers(
                 filters: basicFilters,
                 onChanged: (filters) {},
               ),
@@ -101,7 +101,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_popovers_default.png'),
       );
     });
@@ -111,7 +111,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: activeFilters,
                 onChanged: (filters) {},
               ),
@@ -121,7 +121,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_chips_active.png'),
       );
     });
@@ -131,9 +131,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: basicFilters,
-                config: AppFilterBarConfig.small,
+                config: DSFilterBarConfig.small,
                 onChanged: (filters) {},
               ),
             ),
@@ -142,7 +142,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_small_size.png'),
       );
     });
@@ -152,9 +152,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: basicFilters,
-                config: AppFilterBarConfig.large,
+                config: DSFilterBarConfig.large,
                 onChanged: (filters) {},
               ),
             ),
@@ -163,7 +163,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_large_size.png'),
       );
     });
@@ -173,10 +173,10 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: activeFilters,
-                config: const AppFilterBarConfig(
-                  chipStyle: AppFilterChipStyle.filled,
+                config: const DSFilterBarConfig(
+                  chipStyle: DSFilterChipStyle.filled,
                 ),
                 onChanged: (filters) {},
               ),
@@ -186,7 +186,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_filled_style.png'),
       );
     });
@@ -196,10 +196,10 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: activeFilters,
-                config: const AppFilterBarConfig(
-                  chipStyle: AppFilterChipStyle.elevated,
+                config: const DSFilterBarConfig(
+                  chipStyle: DSFilterChipStyle.elevated,
                 ),
                 onChanged: (filters) {},
               ),
@@ -209,7 +209,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_elevated_style.png'),
       );
     });
@@ -219,9 +219,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: activeFilters,
-                config: const AppFilterBarConfig(
+                config: const DSFilterBarConfig(
                   backgroundColor: Colors.blue,
                   selectedBackgroundColor: Colors.orange,
                   borderColor: Colors.purple,
@@ -237,7 +237,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_custom_colors.png'),
       );
     });
@@ -247,9 +247,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: activeFilters,
-                config: const AppFilterBarConfig(
+                config: const DSFilterBarConfig(
                   enableClearAll: true,
                 ),
                 onChanged: (filters) {},
@@ -260,7 +260,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_with_clear_all.png'),
       );
     });
@@ -270,9 +270,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: activeFilters,
-                config: const AppFilterBarConfig(
+                config: const DSFilterBarConfig(
                   showSummary: true,
                 ),
                 onChanged: (filters) {},
@@ -283,7 +283,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_with_summary.png'),
       );
     });
@@ -293,9 +293,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: const [],
-                state: AppFilterBarState.loading,
+                state: DSFilterBarState.loading,
                 onChanged: (filters) {},
               ),
             ),
@@ -304,7 +304,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_loading_state.png'),
       );
     });
@@ -314,10 +314,10 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: const [],
-                state: AppFilterBarState.skeleton,
-                config: const AppFilterBarConfig(
+                state: DSFilterBarState.skeleton,
+                config: const DSFilterBarConfig(
                   skeletonFilterCount: 4,
                 ),
                 onChanged: (filters) {},
@@ -328,7 +328,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_skeleton_state.png'),
       );
     });
@@ -338,11 +338,11 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: basicFilters
                     .map((f) => f.copyWith(isDisabled: true))
                     .toList(),
-                state: AppFilterBarState.disabled,
+                state: DSFilterBarState.disabled,
                 onChanged: (filters) {},
               ),
             ),
@@ -351,7 +351,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_disabled_state.png'),
       );
     });
@@ -359,16 +359,16 @@ void main() {
     testWidgets('max visible chips with more button', (tester) async {
       final manyFilters = List.generate(
         8,
-        (i) => AppFilter(id: 'filter$i', label: 'Filter $i'),
+        (i) => DSFilter(id: 'filter$i', label: 'Filter $i'),
       );
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: manyFilters,
-                config: const AppFilterBarConfig(
+                config: const DSFilterBarConfig(
                   maxVisibleChips: 3,
                 ),
                 onChanged: (filters) {},
@@ -379,7 +379,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_max_visible_chips.png'),
       );
     });
@@ -389,10 +389,10 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: basicFilters,
-                config: const AppFilterBarConfig(
-                  layout: AppFilterBarLayout.vertical,
+                config: const DSFilterBarConfig(
+                  layout: DSFilterBarLayout.vertical,
                 ),
                 onChanged: (filters) {},
               ),
@@ -402,7 +402,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_vertical_layout.png'),
       );
     });
@@ -410,7 +410,7 @@ void main() {
     testWidgets('wrap layout', (tester) async {
       final manyFilters = List.generate(
         10,
-        (i) => AppFilter(id: 'filter$i', label: 'Filter $i'),
+        (i) => DSFilter(id: 'filter$i', label: 'Filter $i'),
       );
 
       await tester.pumpWidget(
@@ -418,10 +418,10 @@ void main() {
           home: Scaffold(
             body: SizedBox(
               width: 300,
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: manyFilters,
-                config: const AppFilterBarConfig(
-                  layout: AppFilterBarLayout.wrap,
+                config: const DSFilterBarConfig(
+                  layout: DSFilterBarLayout.wrap,
                 ),
                 onChanged: (filters) {},
               ),
@@ -431,7 +431,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_wrap_layout.png'),
       );
     });
@@ -442,7 +442,7 @@ void main() {
           theme: ThemeData.dark(),
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: activeFilters,
                 onChanged: (filters) {},
               ),
@@ -452,7 +452,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_dark_theme.png'),
       );
     });
@@ -464,9 +464,9 @@ void main() {
             textDirection: TextDirection.rtl,
             child: Scaffold(
               body: Center(
-                child: AppFilterBar.chips(
+                child: DSFilterBar.chips(
                   filters: activeFilters,
-                  config: const AppFilterBarConfig(
+                  config: const DSFilterBarConfig(
                     enableRTL: true,
                     textDirection: TextDirection.rtl,
                   ),
@@ -479,7 +479,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_rtl_layout.png'),
       );
     });
@@ -489,7 +489,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppFilterBar.chips(
+              child: DSFilterBar.chips(
                 filters: activeFilters,
                 summaryBuilder: (context, activeFilters, total) {
                   return Container(
@@ -515,7 +515,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppFilterBar),
+        find.byType(DSFilterBar),
         matchesGoldenFile('filter_bar_custom_summary.png'),
       );
     });

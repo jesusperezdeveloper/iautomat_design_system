@@ -3,27 +3,27 @@ import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'app_lightbox_config.dart';
 
-class AppLightbox extends StatefulWidget {
-  final AppLightboxConfig config;
-  final List<AppLightboxImage> images;
+class DSLightbox extends StatefulWidget {
+  final DSLightboxConfig config;
+  final List<DSLightboxImage> images;
   final VoidCallback? onClose;
   final ValueChanged<int>? onIndexChanged;
-  final ValueChanged<AppLightboxState>? onStateChanged;
+  final ValueChanged<DSLightboxState>? onStateChanged;
 
-  const AppLightbox({
+  const DSLightbox({
     super.key,
     required this.images,
-    this.config = const AppLightboxConfig(),
+    this.config = const DSLightboxConfig(),
     this.onClose,
     this.onIndexChanged,
     this.onStateChanged,
   });
 
   @override
-  State<AppLightbox> createState() => _AppLightboxState();
+  State<DSLightbox> createState() => _DSLightboxState();
 }
 
-class _AppLightboxState extends State<AppLightbox>
+class _DSLightboxState extends State<DSLightbox>
     with TickerProviderStateMixin {
   late PageController _pageController;
   late AnimationController _fadeController;
@@ -172,11 +172,11 @@ class _AppLightboxState extends State<AppLightbox>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    if (widget.config.state == AppLightboxState.loading) {
+    if (widget.config.state == DSLightboxState.loading) {
       return _buildLoadingState(context, theme);
     }
 
-    if (widget.config.state == AppLightboxState.skeleton) {
+    if (widget.config.state == DSLightboxState.skeleton) {
       return _buildSkeletonState(context, theme);
     }
 
@@ -230,10 +230,10 @@ class _AppLightboxState extends State<AppLightbox>
               _buildCloseButton(context, theme),
             if (widget.config.controls?.showCounter ?? true)
               _buildCounter(context, theme),
-            if (widget.config.variant == AppLightboxVariant.gallery)
+            if (widget.config.variant == DSLightboxVariant.gallery)
               ..._buildGalleryControls(context, theme),
             if (widget.config.enableThumbnails &&
-                widget.config.variant == AppLightboxVariant.gallery)
+                widget.config.variant == DSLightboxVariant.gallery)
               _buildThumbnails(context, theme),
           ],
         ),
@@ -243,14 +243,14 @@ class _AppLightboxState extends State<AppLightbox>
 
   Widget _buildImageContainer(BuildContext context, ThemeData theme) {
     return GestureDetector(
-      onTap: widget.config.enabledGestures.contains(AppLightboxGesture.tap)
+      onTap: widget.config.enabledGestures.contains(DSLightboxGesture.tap)
         ? _toggleControls
         : null,
-      onDoubleTap: widget.config.enabledGestures.contains(AppLightboxGesture.doubleTap)
+      onDoubleTap: widget.config.enabledGestures.contains(DSLightboxGesture.doubleTap)
         ? _handleDoubleTap
         : null,
       child: Center(
-        child: widget.config.variant == AppLightboxVariant.zoom
+        child: widget.config.variant == DSLightboxVariant.zoom
           ? _buildZoomableImage(context, theme)
           : _buildGalleryView(context, theme),
       ),
@@ -264,7 +264,7 @@ class _AppLightboxState extends State<AppLightbox>
       transformationController: _transformationController,
       minScale: widget.config.minZoom,
       maxScale: widget.config.maxZoom,
-      // enablePanAlways: widget.config.enabledGestures.contains(AppLightboxGesture.pan), // Deprecated parameter
+      // enablePanAlways: widget.config.enabledGestures.contains(DSLightboxGesture.pan), // Deprecated parameter
       onInteractionUpdate: (details) {
         _showControls();
         _startAutoHideTimer();
@@ -285,7 +285,7 @@ class _AppLightboxState extends State<AppLightbox>
       child: PageView.builder(
         controller: _pageController,
         onPageChanged: _handlePageChanged,
-        physics: widget.config.enabledGestures.contains(AppLightboxGesture.swipe)
+        physics: widget.config.enabledGestures.contains(DSLightboxGesture.swipe)
           ? const PageScrollPhysics()
           : const NeverScrollableScrollPhysics(),
         itemCount: widget.images.length,
@@ -302,7 +302,7 @@ class _AppLightboxState extends State<AppLightbox>
     );
   }
 
-  Widget _buildImageWidget(AppLightboxImage imageConfig, ThemeData theme) {
+  Widget _buildImageWidget(DSLightboxImage imageConfig, ThemeData theme) {
     if (imageConfig.isLoading) {
       return _buildImagePlaceholder(theme);
     }
@@ -338,7 +338,7 @@ class _AppLightboxState extends State<AppLightbox>
     return image;
   }
 
-  Widget _buildImageInfo(AppLightboxImage imageConfig, ThemeData theme) {
+  Widget _buildImageInfo(DSLightboxImage imageConfig, ThemeData theme) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16.0),
@@ -696,7 +696,7 @@ class _AppLightboxState extends State<AppLightbox>
   }
 
   void _handleDoubleTap() {
-    if (widget.config.variant == AppLightboxVariant.zoom) {
+    if (widget.config.variant == DSLightboxVariant.zoom) {
       final currentScale = _transformationController.value.getMaxScaleOnAxis();
       final targetScale = currentScale > 1.1 ? 1.0 : 2.0;
 
@@ -772,7 +772,7 @@ class _AppLightboxState extends State<AppLightbox>
   }
 
   KeyEventResult _handleKeyEvent(FocusNode node, KeyEvent event) {
-    if (widget.config.state == AppLightboxState.disabled) {
+    if (widget.config.state == DSLightboxState.disabled) {
       return KeyEventResult.ignored;
     }
 
@@ -786,14 +786,14 @@ class _AppLightboxState extends State<AppLightbox>
         return KeyEventResult.handled;
 
       case LogicalKeyboardKey.arrowLeft:
-        if (widget.config.variant == AppLightboxVariant.gallery) {
+        if (widget.config.variant == DSLightboxVariant.gallery) {
           _handlePrevious();
           return KeyEventResult.handled;
         }
         break;
 
       case LogicalKeyboardKey.arrowRight:
-        if (widget.config.variant == AppLightboxVariant.gallery) {
+        if (widget.config.variant == DSLightboxVariant.gallery) {
           _handleNext();
           return KeyEventResult.handled;
         }

@@ -6,9 +6,9 @@ import 'data_table_config.dart';
 /// A production-ready data table widget with advanced features
 ///
 /// Supports three main variants:
-/// - [AppDataTable.resizable]: Columns can be resized by dragging handles
-/// - [AppDataTable.pinned]: Columns can be pinned (frozen) for horizontal scrolling
-/// - [AppDataTable.inlineEdit]: Cells can be edited inline with validation
+/// - [DSDataTable.resizable]: Columns can be resized by dragging handles
+/// - [DSDataTable.pinned]: Columns can be pinned (frozen) for horizontal scrolling
+/// - [DSDataTable.inlineEdit]: Cells can be edited inline with validation
 ///
 /// Features:
 /// - Material 3 design with platform-adaptive behavior
@@ -18,39 +18,39 @@ import 'data_table_config.dart';
 /// - Loading and skeleton states
 /// - Empty state handling
 /// - Responsive design
-class AppDataTable extends StatefulWidget {
+class DSDataTable extends StatefulWidget {
   /// Table variant
-  final AppDataTableVariant variant;
+  final DSDataTableVariant variant;
 
   /// Table columns configuration
-  final List<AppDataTableColumn> columns;
+  final List<DSDataTableColumn> columns;
 
   /// Table rows data
-  final List<AppDataTableRow> rows;
+  final List<DSDataTableRow> rows;
 
   /// Selection configuration
-  final AppDataTableSelection? selection;
+  final DSDataTableSelection? selection;
 
   /// Sort configuration
-  final AppDataTableSort? sorting;
+  final DSDataTableSort? sorting;
 
   /// Edit callback for inline editing
-  final AppDataTableEditCallback? onEdit;
+  final DSDataTableEditCallback? onEdit;
 
   /// Empty state configuration
-  final AppDataTableEmptyState? emptyState;
+  final DSDataTableEmptyState? emptyState;
 
   /// Table configuration
-  final AppDataTableConfig config;
+  final DSDataTableConfig config;
 
   /// Row selection callback
-  final AppDataTableRowSelectCallback? onRowSelect;
+  final DSDataTableRowSelectCallback? onRowSelect;
 
   /// Column resize callback
   final Function(String columnId, double newWidth)? onColumnResize;
 
   /// Column reorder callback
-  final AppDataTableColumnReorderCallback? onColumnReorder;
+  final DSDataTableColumnReorderCallback? onColumnReorder;
 
   /// Scroll controller for horizontal scrolling
   final ScrollController? horizontalScrollController;
@@ -58,8 +58,8 @@ class AppDataTable extends StatefulWidget {
   /// Scroll controller for vertical scrolling
   final ScrollController? verticalScrollController;
 
-  /// Creates an AppDataTable with resizable columns
-  const AppDataTable.resizable({
+  /// Creates an DSDataTable with resizable columns
+  const DSDataTable.resizable({
     super.key,
     required this.columns,
     required this.rows,
@@ -67,19 +67,19 @@ class AppDataTable extends StatefulWidget {
     this.sorting,
     this.onEdit,
     this.emptyState,
-    this.config = const AppDataTableConfig(
-      variant: AppDataTableVariant.resizable,
-      resizeConfig: AppDataTableResizeConfig(),
+    this.config = const DSDataTableConfig(
+      variant: DSDataTableVariant.resizable,
+      resizeConfig: DSDataTableResizeConfig(),
     ),
     this.onRowSelect,
     this.onColumnResize,
     this.onColumnReorder,
     this.horizontalScrollController,
     this.verticalScrollController,
-  }) : variant = AppDataTableVariant.resizable;
+  }) : variant = DSDataTableVariant.resizable;
 
-  /// Creates an AppDataTable with pinned columns
-  const AppDataTable.pinned({
+  /// Creates an DSDataTable with pinned columns
+  const DSDataTable.pinned({
     super.key,
     required this.columns,
     required this.rows,
@@ -87,19 +87,19 @@ class AppDataTable extends StatefulWidget {
     this.sorting,
     this.onEdit,
     this.emptyState,
-    this.config = const AppDataTableConfig(
-      variant: AppDataTableVariant.pinned,
-      freezeConfig: AppDataTableFreezeConfig(),
+    this.config = const DSDataTableConfig(
+      variant: DSDataTableVariant.pinned,
+      freezeConfig: DSDataTableFreezeConfig(),
     ),
     this.onRowSelect,
     this.onColumnResize,
     this.onColumnReorder,
     this.horizontalScrollController,
     this.verticalScrollController,
-  }) : variant = AppDataTableVariant.pinned;
+  }) : variant = DSDataTableVariant.pinned;
 
-  /// Creates an AppDataTable with inline editing
-  const AppDataTable.inlineEdit({
+  /// Creates an DSDataTable with inline editing
+  const DSDataTable.inlineEdit({
     super.key,
     required this.columns,
     required this.rows,
@@ -107,19 +107,19 @@ class AppDataTable extends StatefulWidget {
     this.sorting,
     required this.onEdit,
     this.emptyState,
-    this.config = const AppDataTableConfig(
-      variant: AppDataTableVariant.inlineEdit,
-      editMode: AppDataTableEditMode.cell,
+    this.config = const DSDataTableConfig(
+      variant: DSDataTableVariant.inlineEdit,
+      editMode: DSDataTableEditMode.cell,
     ),
     this.onRowSelect,
     this.onColumnResize,
     this.onColumnReorder,
     this.horizontalScrollController,
     this.verticalScrollController,
-  }) : variant = AppDataTableVariant.inlineEdit;
+  }) : variant = DSDataTableVariant.inlineEdit;
 
-  /// Creates a general AppDataTable
-  const AppDataTable({
+  /// Creates a general DSDataTable
+  const DSDataTable({
     super.key,
     required this.variant,
     required this.columns,
@@ -128,7 +128,7 @@ class AppDataTable extends StatefulWidget {
     this.sorting,
     this.onEdit,
     this.emptyState,
-    this.config = const AppDataTableConfig(),
+    this.config = const DSDataTableConfig(),
     this.onRowSelect,
     this.onColumnResize,
     this.onColumnReorder,
@@ -137,10 +137,10 @@ class AppDataTable extends StatefulWidget {
   });
 
   @override
-  State<AppDataTable> createState() => _AppDataTableState();
+  State<DSDataTable> createState() => _DSDataTableState();
 }
 
-class _AppDataTableState extends State<AppDataTable>
+class _DSDataTableState extends State<DSDataTable>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -152,9 +152,9 @@ class _AppDataTableState extends State<AppDataTable>
   final Map<String, FocusNode> _cellFocusNodes = {};
   final Map<String, TextEditingController> _editControllers = {};
 
-  AppDataTableSort? _currentSort;
-  AppDataTableSelection? _currentSelection;
-  List<AppDataTableRow> _displayRows = [];
+  DSDataTableSort? _currentSort;
+  DSDataTableSelection? _currentSelection;
+  List<DSDataTableRow> _displayRows = [];
 
   // Resize state
   String? _resizingColumnId;
@@ -195,7 +195,7 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   @override
-  void didUpdateWidget(AppDataTable oldWidget) {
+  void didUpdateWidget(DSDataTable oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.rows != widget.rows ||
@@ -220,7 +220,7 @@ class _AppDataTableState extends State<AppDataTable>
 
     // Apply sorting if specified
     if (_currentSort?.columnId != null &&
-        _currentSort!.direction != AppDataTableSortDirection.none) {
+        _currentSort!.direction != DSDataTableSortDirection.none) {
       _applySorting(_currentSort!.columnId!, _currentSort!.direction);
     }
 
@@ -385,7 +385,7 @@ class _AppDataTableState extends State<AppDataTable>
 
   Widget _buildColumnsHeader(
       BuildContext context, ThemeData theme, TextDirection textDirection) {
-    if (widget.variant == AppDataTableVariant.pinned &&
+    if (widget.variant == DSDataTableVariant.pinned &&
         widget.config.freezeConfig != null) {
       return _buildPinnedColumnsHeader(context, theme, textDirection);
     }
@@ -452,10 +452,10 @@ class _AppDataTableState extends State<AppDataTable>
     BuildContext context,
     ThemeData theme,
     TextDirection textDirection,
-    AppDataTableColumn column,
+    DSDataTableColumn column,
   ) {
     final width = _columnWidths[column.id] ?? column.width ?? 150.0;
-    final isResizable = widget.variant == AppDataTableVariant.resizable &&
+    final isResizable = widget.variant == DSDataTableVariant.resizable &&
         column.resizable &&
         widget.config.resizeConfig?.enabled == true;
 
@@ -495,7 +495,7 @@ class _AppDataTableState extends State<AppDataTable>
     BuildContext context,
     ThemeData theme,
     TextDirection textDirection,
-    AppDataTableColumn column,
+    DSDataTableColumn column,
   ) {
     if (column.headerBuilder != null) {
       return column.headerBuilder!(context, column);
@@ -504,7 +504,7 @@ class _AppDataTableState extends State<AppDataTable>
     final alignment = column.getEffectiveAlignment(textDirection);
     final sortDirection = _currentSort?.columnId == column.id
         ? _currentSort!.direction
-        : AppDataTableSortDirection.none;
+        : DSDataTableSortDirection.none;
 
     return InkWell(
       onTap: column.sortable ? () => _onSortColumn(column.id) : null,
@@ -542,16 +542,16 @@ class _AppDataTableState extends State<AppDataTable>
     );
   }
 
-  Widget _buildSortIcon(ThemeData theme, AppDataTableSortDirection direction) {
+  Widget _buildSortIcon(ThemeData theme, DSDataTableSortDirection direction) {
     IconData iconData;
     switch (direction) {
-      case AppDataTableSortDirection.ascending:
+      case DSDataTableSortDirection.ascending:
         iconData = Icons.arrow_upward;
         break;
-      case AppDataTableSortDirection.descending:
+      case DSDataTableSortDirection.descending:
         iconData = Icons.arrow_downward;
         break;
-      case AppDataTableSortDirection.none:
+      case DSDataTableSortDirection.none:
         iconData = Icons.unfold_more;
         break;
     }
@@ -559,7 +559,7 @@ class _AppDataTableState extends State<AppDataTable>
     return Icon(
       iconData,
       size: 16,
-      color: direction != AppDataTableSortDirection.none
+      color: direction != DSDataTableSortDirection.none
           ? widget.config.theme?.sortIconColor ?? theme.colorScheme.primary
           : widget.config.theme?.sortIconColor?.withValues(alpha: 0.5) ??
               theme.colorScheme.onSurface.withValues(alpha: 0.5),
@@ -567,7 +567,7 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   Widget _buildResizeHandle(
-      BuildContext context, ThemeData theme, AppDataTableColumn column) {
+      BuildContext context, ThemeData theme, DSDataTableColumn column) {
     final resizeConfig = widget.config.resizeConfig!;
 
     return MouseRegion(
@@ -590,7 +590,7 @@ class _AppDataTableState extends State<AppDataTable>
 
   Widget _buildTableBody(
       BuildContext context, ThemeData theme, TextDirection textDirection) {
-    if (widget.variant == AppDataTableVariant.pinned &&
+    if (widget.variant == DSDataTableVariant.pinned &&
         widget.config.freezeConfig != null) {
       return _buildPinnedTableBody(context, theme, textDirection);
     }
@@ -634,7 +634,7 @@ class _AppDataTableState extends State<AppDataTable>
     BuildContext context,
     ThemeData theme,
     TextDirection textDirection,
-    AppDataTableRow row,
+    DSDataTableRow row,
     int index,
   ) {
     if (row.rowBuilder != null) {
@@ -647,7 +647,7 @@ class _AppDataTableState extends State<AppDataTable>
     }
 
     final isSelected = row.selected;
-    final isHovered = row.state == AppDataTableRowState.hovered;
+    final isHovered = row.state == DSDataTableRowState.hovered;
     final isEven = index.isEven;
 
     Color? backgroundColor;
@@ -696,10 +696,10 @@ class _AppDataTableState extends State<AppDataTable>
     BuildContext context,
     ThemeData theme,
     TextDirection textDirection,
-    AppDataTableRow row,
+    DSDataTableRow row,
     int index,
-    List<AppDataTableColumn> visibleColumns,
-    AppDataTableFreezeConfig freezeConfig,
+    List<DSDataTableColumn> visibleColumns,
+    DSDataTableFreezeConfig freezeConfig,
   ) {
     final leftColumns = visibleColumns.take(freezeConfig.leftColumns).toList();
     final centerColumns = visibleColumns
@@ -713,7 +713,7 @@ class _AppDataTableState extends State<AppDataTable>
         .toList();
 
     final isSelected = row.selected;
-    final isHovered = row.state == AppDataTableRowState.hovered;
+    final isHovered = row.state == DSDataTableRowState.hovered;
     final isEven = index.isEven;
 
     Color? backgroundColor;
@@ -790,7 +790,7 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   Widget _buildSelectionCell(
-      BuildContext context, ThemeData theme, AppDataTableRow row) {
+      BuildContext context, ThemeData theme, DSDataTableRow row) {
     return Container(
       width: 48,
       alignment: Alignment.center,
@@ -809,8 +809,8 @@ class _AppDataTableState extends State<AppDataTable>
     BuildContext context,
     ThemeData theme,
     TextDirection textDirection,
-    AppDataTableRow row,
-    AppDataTableColumn column,
+    DSDataTableRow row,
+    DSDataTableColumn column,
     int rowIndex,
   ) {
     final width = _columnWidths[column.id] ?? column.width ?? 150.0;
@@ -864,7 +864,7 @@ class _AppDataTableState extends State<AppDataTable>
   Widget _buildCellContent(
     BuildContext context,
     ThemeData theme,
-    AppDataTableColumn column,
+    DSDataTableColumn column,
     String displayValue,
     dynamic value,
   ) {
@@ -872,7 +872,7 @@ class _AppDataTableState extends State<AppDataTable>
         theme.textTheme.bodyMedium;
 
     switch (column.cellType) {
-      case AppDataTableCellType.boolean:
+      case DSDataTableCellType.boolean:
         return Icon(
           value == true ? Icons.check_circle : Icons.radio_button_unchecked,
           size: 16,
@@ -881,13 +881,13 @@ class _AppDataTableState extends State<AppDataTable>
               : theme.colorScheme.onSurface.withValues(alpha: 0.5),
         );
 
-      case AppDataTableCellType.icon:
+      case DSDataTableCellType.icon:
         if (value is IconData) {
           return Icon(value, size: 16);
         }
         break;
 
-      case AppDataTableCellType.image:
+      case DSDataTableCellType.image:
         if (value is String && value.isNotEmpty) {
           return ClipRRect(
             borderRadius: BorderRadius.circular(4),
@@ -919,8 +919,8 @@ class _AppDataTableState extends State<AppDataTable>
     BuildContext context,
     ThemeData theme,
     TextDirection textDirection,
-    AppDataTableRow row,
-    AppDataTableColumn column,
+    DSDataTableRow row,
+    DSDataTableColumn column,
     dynamic value,
     double width,
   ) {
@@ -1072,7 +1072,7 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   Widget _buildSkeletonHeaderCell(
-      BuildContext context, ThemeData theme, AppDataTableColumn column) {
+      BuildContext context, ThemeData theme, DSDataTableColumn column) {
     final width = _columnWidths[column.id] ?? column.width ?? 150.0;
 
     return Container(
@@ -1106,7 +1106,7 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   Widget _buildSkeletonCell(
-      BuildContext context, ThemeData theme, AppDataTableColumn column) {
+      BuildContext context, ThemeData theme, DSDataTableColumn column) {
     final width = _columnWidths[column.id] ?? column.width ?? 150.0;
 
     return Container(
@@ -1125,18 +1125,18 @@ class _AppDataTableState extends State<AppDataTable>
 
   // Helper methods
   bool _hasSelectionColumn() {
-    return _currentSelection?.mode != AppDataTableSelectionMode.none &&
+    return _currentSelection?.mode != DSDataTableSelectionMode.none &&
         _currentSelection?.showCheckboxes == true;
   }
 
   Alignment _getAlignmentFromColumnAlignment(
-      AppDataTableColumnAlignment alignment) {
+      DSDataTableColumnAlignment alignment) {
     switch (alignment) {
-      case AppDataTableColumnAlignment.left:
+      case DSDataTableColumnAlignment.left:
         return Alignment.centerLeft;
-      case AppDataTableColumnAlignment.center:
+      case DSDataTableColumnAlignment.center:
         return Alignment.center;
-      case AppDataTableColumnAlignment.right:
+      case DSDataTableColumnAlignment.right:
         return Alignment.centerRight;
     }
   }
@@ -1145,18 +1145,18 @@ class _AppDataTableState extends State<AppDataTable>
   void _onSortColumn(String columnId) {
     final currentDirection = _currentSort?.columnId == columnId
         ? _currentSort!.direction
-        : AppDataTableSortDirection.none;
+        : DSDataTableSortDirection.none;
 
-    AppDataTableSortDirection newDirection;
+    DSDataTableSortDirection newDirection;
     switch (currentDirection) {
-      case AppDataTableSortDirection.none:
-        newDirection = AppDataTableSortDirection.ascending;
+      case DSDataTableSortDirection.none:
+        newDirection = DSDataTableSortDirection.ascending;
         break;
-      case AppDataTableSortDirection.ascending:
-        newDirection = AppDataTableSortDirection.descending;
+      case DSDataTableSortDirection.ascending:
+        newDirection = DSDataTableSortDirection.descending;
         break;
-      case AppDataTableSortDirection.descending:
-        newDirection = AppDataTableSortDirection.none;
+      case DSDataTableSortDirection.descending:
+        newDirection = DSDataTableSortDirection.none;
         break;
     }
 
@@ -1167,25 +1167,25 @@ class _AppDataTableState extends State<AppDataTable>
     }
   }
 
-  void _applySorting(String columnId, AppDataTableSortDirection direction) {
+  void _applySorting(String columnId, DSDataTableSortDirection direction) {
     setState(() {
       _currentSort = widget.sorting?.copyWith(
             columnId:
-                direction != AppDataTableSortDirection.none ? columnId : null,
+                direction != DSDataTableSortDirection.none ? columnId : null,
             direction: direction,
           ) ??
-          AppDataTableSort(columnId: columnId, direction: direction);
+          DSDataTableSort(columnId: columnId, direction: direction);
 
       _displayRows =
-          AppDataTableUtils.sortRows(_displayRows, columnId, direction);
+          DSDataTableUtils.sortRows(_displayRows, columnId, direction);
     });
   }
 
-  void _onRowSelect(AppDataTableRow row, bool selected) {
-    if (_currentSelection?.mode == AppDataTableSelectionMode.none) return;
+  void _onRowSelect(DSDataTableRow row, bool selected) {
+    if (_currentSelection?.mode == DSDataTableSelectionMode.none) return;
 
     setState(() {
-      _displayRows = AppDataTableUtils.updateRowSelection(
+      _displayRows = DSDataTableUtils.updateRowSelection(
         _displayRows,
         row.id,
         selected,
@@ -1198,7 +1198,7 @@ class _AppDataTableState extends State<AppDataTable>
     }
 
     if (_currentSelection?.onSelectionChanged != null) {
-      final selectedRowIds = AppDataTableUtils.getSelectedRows(_displayRows)
+      final selectedRowIds = DSDataTableUtils.getSelectedRows(_displayRows)
           .map((row) => row.id)
           .toList();
       _currentSelection!.onSelectionChanged!(selectedRowIds);
@@ -1206,7 +1206,7 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   void _onSelectAll(bool? selectAll) {
-    if (_currentSelection?.mode == AppDataTableSelectionMode.none) return;
+    if (_currentSelection?.mode == DSDataTableSelectionMode.none) return;
 
     setState(() {
       _displayRows = _displayRows
@@ -1222,13 +1222,13 @@ class _AppDataTableState extends State<AppDataTable>
     }
   }
 
-  void _onRowTap(AppDataTableRow row) {
-    if (_currentSelection?.mode == AppDataTableSelectionMode.single) {
+  void _onRowTap(DSDataTableRow row) {
+    if (_currentSelection?.mode == DSDataTableSelectionMode.single) {
       _onRowSelect(row, !row.selected);
     }
   }
 
-  void _onCellTap(AppDataTableRow row, AppDataTableColumn column) {
+  void _onCellTap(DSDataTableRow row, DSDataTableColumn column) {
     final cellKey = '${row.id}_${column.id}';
     _cellFocusNodes[cellKey]?.requestFocus();
 
@@ -1238,8 +1238,8 @@ class _AppDataTableState extends State<AppDataTable>
     });
   }
 
-  void _startEditing(AppDataTableRow row, AppDataTableColumn column) {
-    if (!column.editable || widget.variant != AppDataTableVariant.inlineEdit) {
+  void _startEditing(DSDataTableRow row, DSDataTableColumn column) {
+    if (!column.editable || widget.variant != DSDataTableVariant.inlineEdit) {
       return;
     }
 
@@ -1256,15 +1256,15 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   void _submitEdit(
-      AppDataTableRow row, AppDataTableColumn column, String newValue) {
+      DSDataTableRow row, DSDataTableColumn column, String newValue) {
     dynamic parsedValue = newValue;
 
     // Parse value based on cell type
     switch (column.cellType) {
-      case AppDataTableCellType.number:
+      case DSDataTableCellType.number:
         parsedValue = double.tryParse(newValue) ?? newValue;
         break;
-      case AppDataTableCellType.boolean:
+      case DSDataTableCellType.boolean:
         parsedValue = newValue.toLowerCase() == 'true' || newValue == '1';
         break;
       default:
@@ -1285,7 +1285,7 @@ class _AppDataTableState extends State<AppDataTable>
   }
 
   void _onCellValueChanged(
-      AppDataTableRow row, AppDataTableColumn column, dynamic newValue) {
+      DSDataTableRow row, DSDataTableColumn column, dynamic newValue) {
     if (widget.onEdit != null) {
       widget.onEdit!(row, column.field, newValue);
     }
@@ -1357,7 +1357,7 @@ class _AppDataTableState extends State<AppDataTable>
 
   // Keyboard event handler
   KeyEventResult _handleCellKeyEvent(
-      KeyEvent event, AppDataTableRow row, AppDataTableColumn column) {
+      KeyEvent event, DSDataTableRow row, DSDataTableColumn column) {
     if (event is KeyDownEvent) {
       switch (event.logicalKey) {
         case LogicalKeyboardKey.arrowUp:
@@ -1383,7 +1383,7 @@ class _AppDataTableState extends State<AppDataTable>
           _cancelEdit();
           return KeyEventResult.handled;
         case LogicalKeyboardKey.space:
-          if (_currentSelection?.mode != AppDataTableSelectionMode.none) {
+          if (_currentSelection?.mode != DSDataTableSelectionMode.none) {
             _onRowSelect(row, !row.selected);
             return KeyEventResult.handled;
           }

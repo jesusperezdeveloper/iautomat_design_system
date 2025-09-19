@@ -10,18 +10,18 @@ void main() {
   setUpAll(() {
     GoogleFonts.config.allowRuntimeFetching = false;
   });
-  group('AppCameraPicker Widget Tests', () {
+  group('DSCameraPicker Widget Tests', () {
 
     testWidgets('renders correctly with default configuration', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(),
+            body: DSCameraPicker(),
           ),
         ),
       );
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
       expect(find.text('Agregar Imagen'), findsOneWidget);
       expect(find.byIcon(Icons.add_a_photo), findsOneWidget);
     });
@@ -30,14 +30,14 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
-              source: AppCameraPickerSource.camera,
+            body: DSCameraPicker(
+              source: DSCameraPickerSource.camera,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
       expect(find.text('Tomar Foto'), findsOneWidget);
       expect(find.byIcon(Icons.camera_alt), findsOneWidget);
     });
@@ -46,14 +46,14 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
-              source: AppCameraPickerSource.gallery,
+            body: DSCameraPicker(
+              source: DSCameraPickerSource.gallery,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
       expect(find.text('Seleccionar'), findsOneWidget);
       expect(find.byIcon(Icons.photo_library), findsOneWidget);
     });
@@ -62,7 +62,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
+            body: DSCameraPicker(
               buttonText: 'Custom Text',
               buttonIcon: Icons.upload,
             ),
@@ -78,27 +78,27 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
+            body: DSCameraPicker(
               enabled: false,
             ),
           ),
         ),
       );
 
-      final picker = tester.widget<AppCameraPicker>(
-        find.byType(AppCameraPicker),
+      final picker = tester.widget<DSCameraPicker>(
+        find.byType(DSCameraPicker),
       );
       expect(picker.enabled, isFalse);
 
       // El botón debe estar presente pero deshabilitado
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
     });
 
     testWidgets('handles tap interactions', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
+            body: DSCameraPicker(
               onPicked: (files) {
                 // Callback de prueba
               },
@@ -107,11 +107,11 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppCameraPicker));
+      await tester.tap(find.byType(DSCameraPicker));
       await tester.pump();
 
       // La interacción debe registrarse (aunque la implementación es simulada)
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
 
       // Esperar a que se completen las operaciones asíncronas
       await tester.pumpAndSettle();
@@ -121,7 +121,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(),
+            body: DSCameraPicker(),
           ),
         ),
       );
@@ -134,23 +134,23 @@ void main() {
       await tester.sendKeyEvent(LogicalKeyboardKey.enter);
       await tester.pump();
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
     });
 
     testWidgets('renders with custom configuration', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
-              config: AppCameraPickerConfig(
-                variant: AppCameraPickerVariant.android,
-                source: AppCameraPickerSource.camera,
-                fileType: AppCameraPickerFileType.image,
-                behavior: const AppCameraPickerBehavior(
+            body: DSCameraPicker(
+              config: DSCameraPickerConfig(
+                variant: DSCameraPickerVariant.android,
+                source: DSCameraPickerSource.camera,
+                fileType: DSCameraPickerFileType.image,
+                behavior: const DSCameraPickerBehavior(
                   allowMultiple: true,
                   maxFiles: 5,
                 ),
-                a11yConfig: const AppCameraPickerA11yConfig(
+                a11yConfig: const DSCameraPickerA11yConfig(
                   semanticsLabel: 'Custom camera picker',
                 ),
               ),
@@ -159,23 +159,23 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
     });
 
     testWidgets('renders skeleton state', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
-              config: const AppCameraPickerConfig(
-                state: AppCameraPickerState.skeleton,
+            body: DSCameraPicker(
+              config: const DSCameraPickerConfig(
+                state: DSCameraPickerState.skeleton,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
       // En estado skeleton no debe mostrar texto
       expect(find.text('Agregar Imagen'), findsNothing);
     });
@@ -184,16 +184,16 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
-              config: const AppCameraPickerConfig(
-                state: AppCameraPickerState.loading,
+            body: DSCameraPicker(
+              config: const DSCameraPickerConfig(
+                state: DSCameraPickerState.loading,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
       expect(find.text('Cargando...'), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
@@ -204,13 +204,13 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: const Scaffold(
-              body: AppCameraPicker(),
+              body: DSCameraPicker(),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
       expect(find.byType(Directionality), findsWidgets);
     });
 
@@ -218,7 +218,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
+            body: DSCameraPicker(
               onPicked: (files) {
                 // Test callback
               },
@@ -237,8 +237,8 @@ void main() {
       );
 
       // Los callbacks están configurados
-      final picker = tester.widget<AppCameraPicker>(
-        find.byType(AppCameraPicker),
+      final picker = tester.widget<DSCameraPicker>(
+        find.byType(DSCameraPicker),
       );
       expect(picker.onPicked, isNotNull);
       expect(picker.onError, isNotNull);
@@ -252,7 +252,7 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppCameraPicker(),
+                DSCameraPicker(),
                 TextField(), // Para poder cambiar el foco
               ],
             ),
@@ -261,40 +261,40 @@ void main() {
       );
 
       // Cambiar foco al picker
-      await tester.tap(find.byType(AppCameraPicker));
+      await tester.tap(find.byType(DSCameraPicker));
       await tester.pump();
 
       // Cambiar foco al TextField
       await tester.tap(find.byType(TextField));
       await tester.pump();
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
     });
 
     testWidgets('validates allowMultiple property', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
+            body: DSCameraPicker(
               allowMultiple: true,
             ),
           ),
         ),
       );
 
-      final picker = tester.widget<AppCameraPicker>(
-        find.byType(AppCameraPicker),
+      final picker = tester.widget<DSCameraPicker>(
+        find.byType(DSCameraPicker),
       );
       expect(picker.allowMultiple, isTrue);
     });
 
     testWidgets('supports different platform variants', (tester) async {
-      for (final variant in AppCameraPickerVariant.values) {
+      for (final variant in DSCameraPickerVariant.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCameraPicker(
-                config: AppCameraPickerConfig(
+              body: DSCameraPicker(
+                config: DSCameraPickerConfig(
                   variant: variant,
                 ),
               ),
@@ -302,7 +302,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppCameraPicker), findsOneWidget);
+        expect(find.byType(DSCameraPicker), findsOneWidget);
         await tester.pump();
       }
     });
@@ -311,9 +311,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
-              config: const AppCameraPickerConfig(
-                a11yConfig: AppCameraPickerA11yConfig(
+            body: DSCameraPicker(
+              config: const DSCameraPickerConfig(
+                a11yConfig: DSCameraPickerA11yConfig(
                   semanticsLabel: 'Test camera picker',
                   semanticsDescription: 'Pick images from camera',
                   semanticsHint: 'Tap to activate',
@@ -325,14 +325,14 @@ void main() {
       );
 
       expect(find.byType(Semantics), findsWidgets);
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
     });
   });
 
-  group('AppCameraPicker Configuration Tests', () {
+  group('DSCameraPicker Configuration Tests', () {
     testWidgets('updates when configuration changes', (tester) async {
-      AppCameraPickerConfig config = const AppCameraPickerConfig(
-        source: AppCameraPickerSource.camera,
+      DSCameraPickerConfig config = const DSCameraPickerConfig(
+        source: DSCameraPickerSource.camera,
       );
 
       await tester.pumpWidget(
@@ -342,12 +342,12 @@ void main() {
               return Scaffold(
                 body: Column(
                   children: [
-                    AppCameraPicker(config: config),
+                    DSCameraPicker(config: config),
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          config = const AppCameraPickerConfig(
-                            source: AppCameraPickerSource.gallery,
+                          config = const DSCameraPickerConfig(
+                            source: DSCameraPickerSource.gallery,
                           );
                         });
                       },
@@ -376,9 +376,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
-              config: const AppCameraPickerConfig(
-                spacing: AppCameraPickerSpacing(
+            body: DSCameraPicker(
+              config: const DSCameraPickerConfig(
+                spacing: DSCameraPickerSpacing(
                   padding: EdgeInsets.all(24.0),
                   borderRadius: 16.0,
                   minHeight: 80.0,
@@ -389,16 +389,16 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
     });
 
     testWidgets('respects animation configuration', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
-              config: const AppCameraPickerConfig(
-                animation: AppCameraPickerAnimation(
+            body: DSCameraPicker(
+              config: const DSCameraPickerConfig(
+                animation: DSCameraPickerAnimation(
                   enabled: false,
                 ),
               ),
@@ -407,34 +407,34 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
     });
   });
 
-  group('AppCameraPicker Extension Tests', () {
-    test('AppCameraPickerSource extension works correctly', () {
-      expect(AppCameraPickerSource.camera.displayName, equals('Cámara'));
-      expect(AppCameraPickerSource.gallery.displayName, equals('Galería'));
-      expect(AppCameraPickerSource.both.displayName, equals('Cámara y Galería'));
+  group('DSCameraPicker Extension Tests', () {
+    test('DSCameraPickerSource extension works correctly', () {
+      expect(DSCameraPickerSource.camera.displayName, equals('Cámara'));
+      expect(DSCameraPickerSource.gallery.displayName, equals('Galería'));
+      expect(DSCameraPickerSource.both.displayName, equals('Cámara y Galería'));
 
-      expect(AppCameraPickerSource.camera.icon, equals(Icons.camera_alt));
-      expect(AppCameraPickerSource.gallery.icon, equals(Icons.photo_library));
-      expect(AppCameraPickerSource.both.icon, equals(Icons.add_a_photo));
+      expect(DSCameraPickerSource.camera.icon, equals(Icons.camera_alt));
+      expect(DSCameraPickerSource.gallery.icon, equals(Icons.photo_library));
+      expect(DSCameraPickerSource.both.icon, equals(Icons.add_a_photo));
     });
 
-    test('AppCameraPickerState extension works correctly', () {
-      expect(AppCameraPickerState.defaultState.canInteract, isTrue);
-      expect(AppCameraPickerState.hover.canInteract, isTrue);
-      expect(AppCameraPickerState.pressed.canInteract, isTrue);
-      expect(AppCameraPickerState.focus.canInteract, isTrue);
-      expect(AppCameraPickerState.selected.canInteract, isTrue);
-      expect(AppCameraPickerState.disabled.canInteract, isFalse);
-      expect(AppCameraPickerState.loading.canInteract, isFalse);
-      expect(AppCameraPickerState.skeleton.canInteract, isFalse);
+    test('DSCameraPickerState extension works correctly', () {
+      expect(DSCameraPickerState.defaultState.canInteract, isTrue);
+      expect(DSCameraPickerState.hover.canInteract, isTrue);
+      expect(DSCameraPickerState.pressed.canInteract, isTrue);
+      expect(DSCameraPickerState.focus.canInteract, isTrue);
+      expect(DSCameraPickerState.selected.canInteract, isTrue);
+      expect(DSCameraPickerState.disabled.canInteract, isFalse);
+      expect(DSCameraPickerState.loading.canInteract, isFalse);
+      expect(DSCameraPickerState.skeleton.canInteract, isFalse);
     });
 
-    test('AppCameraPickerFile extension works correctly', () {
-      const file = AppCameraPickerFile(
+    test('DSCameraPickerFile extension works correctly', () {
+      const file = DSCameraPickerFile(
         name: 'test.jpg',
         path: '/path/test.jpg',
         size: 1024,
@@ -447,38 +447,38 @@ void main() {
       expect(file.formattedSize, equals('1.0 KB'));
     });
 
-    test('AppCameraPickerQuality extension works correctly', () {
-      expect(AppCameraPickerQuality.low.compressionQuality, equals(30));
-      expect(AppCameraPickerQuality.medium.compressionQuality, equals(70));
-      expect(AppCameraPickerQuality.high.compressionQuality, equals(85));
-      expect(AppCameraPickerQuality.max.compressionQuality, equals(95));
+    test('DSCameraPickerQuality extension works correctly', () {
+      expect(DSCameraPickerQuality.low.compressionQuality, equals(30));
+      expect(DSCameraPickerQuality.medium.compressionQuality, equals(70));
+      expect(DSCameraPickerQuality.high.compressionQuality, equals(85));
+      expect(DSCameraPickerQuality.max.compressionQuality, equals(95));
     });
 
-    test('AppCameraPickerFileType extension works correctly', () {
+    test('DSCameraPickerFileType extension works correctly', () {
       expect(
-        AppCameraPickerFileType.image.allowedMimeTypes,
+        DSCameraPickerFileType.image.allowedMimeTypes,
         contains('image/jpeg'),
       );
       expect(
-        AppCameraPickerFileType.video.allowedMimeTypes,
+        DSCameraPickerFileType.video.allowedMimeTypes,
         contains('video/mp4'),
       );
       expect(
-        AppCameraPickerFileType.media.allowedMimeTypes,
+        DSCameraPickerFileType.media.allowedMimeTypes,
         containsAll(['image/jpeg', 'video/mp4']),
       );
     });
   });
 
-  group('AppCameraPicker Error Handling Tests', () {
+  group('DSCameraPicker Error Handling Tests', () {
     testWidgets('handles configuration validation', (tester) async {
       // Configuración con valores extremos
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
-              config: const AppCameraPickerConfig(
-                behavior: AppCameraPickerBehavior(
+            body: DSCameraPicker(
+              config: const DSCameraPickerConfig(
+                behavior: DSCameraPickerBehavior(
                   maxFiles: 0, // Valor inválido
                 ),
               ),
@@ -487,24 +487,24 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
     });
 
     testWidgets('handles null callbacks gracefully', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCameraPicker(
+            body: DSCameraPicker(
               // Sin callbacks
             ),
           ),
         ),
       );
 
-      await tester.tap(find.byType(AppCameraPicker));
+      await tester.tap(find.byType(DSCameraPicker));
       await tester.pump();
 
-      expect(find.byType(AppCameraPicker), findsOneWidget);
+      expect(find.byType(DSCameraPicker), findsOneWidget);
 
       // Esperar a que se completen las operaciones asíncronas
       await tester.pumpAndSettle();

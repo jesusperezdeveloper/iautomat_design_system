@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppBackToTopStory extends StatefulWidget {
-  const AppBackToTopStory({super.key});
+class DSBackToTopStory extends StatefulWidget {
+  const DSBackToTopStory({super.key});
 
   @override
-  State<AppBackToTopStory> createState() => _AppBackToTopStoryState();
+  State<DSBackToTopStory> createState() => _DSBackToTopStoryState();
 }
 
-class _AppBackToTopStoryState extends State<AppBackToTopStory> {
+class _DSBackToTopStoryState extends State<DSBackToTopStory> {
   late ScrollController _scrollController;
-  AppBackToTopState _selectedState = AppBackToTopState.defaultState;
-  AppBackToTopPosition _selectedPosition = AppBackToTopPosition.bottomRight;
-  AppBackToTopScrollBehavior _selectedScrollBehavior = AppBackToTopScrollBehavior.smooth;
+  DSBackToTopState _selectedState = DSBackToTopState.defaultState;
+  DSBackToTopPosition _selectedPosition = DSBackToTopPosition.bottomRight;
+  DSBackToTopScrollBehavior _selectedScrollBehavior = DSBackToTopScrollBehavior.smooth;
   double _size = 56;
   double _iconSize = 24;
   double _borderRadius = 28;
@@ -43,7 +43,7 @@ class _AppBackToTopStoryState extends State<AppBackToTopStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppBackToTop Stories'),
+        title: const Text('DSBackToTop Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Stack(
@@ -93,24 +93,24 @@ class _AppBackToTopStoryState extends State<AppBackToTopStory> {
               ),
             ],
           ),
-          AppBackToTop(
+          DSBackToTop(
             scrollController: _scrollController,
-            config: AppBackToTopConfig(
+            config: DSBackToTopConfig(
               state: _selectedState,
-              spacing: AppBackToTopSpacing(
+              spacing: DSBackToTopSpacing(
                 size: _size,
                 iconSize: _iconSize,
                 borderRadius: _borderRadius,
                 elevation: _elevation,
                 position: _selectedPosition,
               ),
-              animations: AppBackToTopAnimations(
+              animations: DSBackToTopAnimations(
                 enabled: _animationsEnabled,
                 fadeEnabled: _fadeEnabled,
                 scaleEnabled: _scaleEnabled,
                 scrollBehavior: _selectedScrollBehavior,
               ),
-              behavior: AppBackToTopBehavior(
+              behavior: DSBackToTopBehavior(
                 showAfterPixels: _showAfterPixels,
                 autoHide: _autoHide,
                 showOnScrollUp: _showOnScrollUp,
@@ -188,14 +188,14 @@ class _AppBackToTopStoryState extends State<AppBackToTopStory> {
       children: [
         const Text('Estado'),
         const SizedBox(height: 8),
-        DropdownButton<AppBackToTopState>(
+        DropdownButton<DSBackToTopState>(
           value: _selectedState,
           onChanged: (value) {
             setState(() {
               _selectedState = value!;
             });
           },
-          items: AppBackToTopState.values.map((state) {
+          items: DSBackToTopState.values.map((state) {
             return DropdownMenuItem(
               value: state,
               child: Text(state.name),
@@ -212,14 +212,14 @@ class _AppBackToTopStoryState extends State<AppBackToTopStory> {
       children: [
         const Text('Posición'),
         const SizedBox(height: 8),
-        DropdownButton<AppBackToTopPosition>(
+        DropdownButton<DSBackToTopPosition>(
           value: _selectedPosition,
           onChanged: (value) {
             setState(() {
               _selectedPosition = value!;
             });
           },
-          items: AppBackToTopPosition.values.map((position) {
+          items: DSBackToTopPosition.values.map((position) {
             return DropdownMenuItem(
               value: position,
               child: Text(position.name),
@@ -236,14 +236,14 @@ class _AppBackToTopStoryState extends State<AppBackToTopStory> {
       children: [
         const Text('Comportamiento de Scroll'),
         const SizedBox(height: 8),
-        DropdownButton<AppBackToTopScrollBehavior>(
+        DropdownButton<DSBackToTopScrollBehavior>(
           value: _selectedScrollBehavior,
           onChanged: (value) {
             setState(() {
               _selectedScrollBehavior = value!;
             });
           },
-          items: AppBackToTopScrollBehavior.values.map((behavior) {
+          items: DSBackToTopScrollBehavior.values.map((behavior) {
             return DropdownMenuItem(
               value: behavior,
               child: Text(behavior.name),
@@ -522,7 +522,7 @@ class _AppBackToTopStoryState extends State<AppBackToTopStory> {
               childAspectRatio: 2,
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
-              children: AppBackToTopPosition.values.map((position) {
+              children: DSBackToTopPosition.values.map((position) {
                 return Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey.shade300),
@@ -560,7 +560,7 @@ class _AppBackToTopStoryState extends State<AppBackToTopStory> {
             Wrap(
               spacing: 16,
               runSpacing: 16,
-              children: AppBackToTopState.values.map((state) {
+              children: DSBackToTopState.values.map((state) {
                 return Column(
                   children: [
                     Text(
@@ -578,7 +578,7 @@ class _AppBackToTopStoryState extends State<AppBackToTopStory> {
                       child: Center(
                         child: Icon(
                           Icons.keyboard_arrow_up,
-                          color: state == AppBackToTopState.disabled
+                          color: state == DSBackToTopState.disabled
                               ? Colors.grey
                               : Theme.of(context).colorScheme.primary,
                         ),
@@ -618,7 +618,7 @@ class _AppBackToTopStoryState extends State<AppBackToTopStory> {
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 8),
-                      ...AppBackToTopScrollBehavior.values.map((behavior) {
+                      ...DSBackToTopScrollBehavior.values.map((behavior) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 4),
                           child: Row(

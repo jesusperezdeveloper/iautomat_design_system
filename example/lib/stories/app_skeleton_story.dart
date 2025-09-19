@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppSkeletonStory extends StatefulWidget {
-  const AppSkeletonStory({super.key});
+class DSSkeletonStory extends StatefulWidget {
+  const DSSkeletonStory({super.key});
 
   @override
-  State<AppSkeletonStory> createState() => _AppSkeletonStoryState();
+  State<DSSkeletonStory> createState() => _DSSkeletonStoryState();
 }
 
-class _AppSkeletonStoryState extends State<AppSkeletonStory> {
-  AppSkeletonShape _selectedShape = AppSkeletonShape.rectangle;
-  AppSkeletonState _selectedState = AppSkeletonState.skeleton;
-  final AppSkeletonVariant _selectedVariant = AppSkeletonVariant.universal;
+class _DSSkeletonStoryState extends State<DSSkeletonStory> {
+  DSSkeletonShape _selectedShape = DSSkeletonShape.rectangle;
+  DSSkeletonState _selectedState = DSSkeletonState.skeleton;
+  final DSSkeletonVariant _selectedVariant = DSSkeletonVariant.universal;
   double _width = 120;
   double _height = 80;
   bool _interactive = false;
@@ -27,7 +27,7 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppSkeleton Stories'),
+        title: const Text('DSSkeleton Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -84,26 +84,26 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
             ),
             const SizedBox(height: 16),
             Center(
-              child: AppSkeleton(
+              child: DSSkeleton(
                 shape: _selectedShape,
                 width: _width,
                 height: _height,
                 interactive: _interactive,
-                config: AppSkeletonConfig(
+                config: DSSkeletonConfig(
                   variant: _selectedVariant,
                   state: _selectedState,
-                  colors: AppSkeletonColors(
+                  colors: DSSkeletonColors(
                     opacity: _opacity,
                   ),
-                  spacing: AppSkeletonSpacing(
+                  spacing: DSSkeletonSpacing(
                     borderRadius: _borderRadius,
                   ),
-                  animations: AppSkeletonAnimations(
+                  animations: DSSkeletonAnimations(
                     enabled: _animationsEnabled,
                     shimmerEnabled: _shimmerEnabled,
                     pulseEnabled: _pulseEnabled,
                   ),
-                  behavior: AppSkeletonBehavior(
+                  behavior: DSSkeletonBehavior(
                     showBorder: _showBorder,
                     showShadow: _showShadow,
                   ),
@@ -130,35 +130,35 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
       children: [
         const Text('Forma'),
         const SizedBox(height: 8),
-        DropdownButton<AppSkeletonShape>(
+        DropdownButton<DSSkeletonShape>(
           value: _selectedShape,
           onChanged: (value) {
             setState(() {
               _selectedShape = value!;
               // Ajustar dimensiones automáticamente según la forma
               switch (value) {
-                case AppSkeletonShape.circle:
-                case AppSkeletonShape.avatar:
+                case DSSkeletonShape.circle:
+                case DSSkeletonShape.avatar:
                   _width = 48;
                   _height = 48;
                   _borderRadius = 24;
                   break;
-                case AppSkeletonShape.button:
+                case DSSkeletonShape.button:
                   _width = 120;
                   _height = 36;
                   _borderRadius = 8;
                   break;
-                case AppSkeletonShape.card:
+                case DSSkeletonShape.card:
                   _width = 300;
                   _height = 200;
                   _borderRadius = 12;
                   break;
-                case AppSkeletonShape.text:
+                case DSSkeletonShape.text:
                   _width = 200;
                   _height = 16;
                   _borderRadius = 4;
                   break;
-                case AppSkeletonShape.line:
+                case DSSkeletonShape.line:
                   _width = 300;
                   _height = 1;
                   _borderRadius = 0;
@@ -170,7 +170,7 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
               }
             });
           },
-          items: AppSkeletonShape.values.map((shape) {
+          items: DSSkeletonShape.values.map((shape) {
             return DropdownMenuItem(
               value: shape,
               child: Text(shape.name),
@@ -187,14 +187,14 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
       children: [
         const Text('Estado'),
         const SizedBox(height: 8),
-        DropdownButton<AppSkeletonState>(
+        DropdownButton<DSSkeletonState>(
           value: _selectedState,
           onChanged: (value) {
             setState(() {
               _selectedState = value!;
             });
           },
-          items: AppSkeletonState.values.map((state) {
+          items: DSSkeletonState.values.map((state) {
             return DropdownMenuItem(
               value: state,
               child: Text(state.name),
@@ -394,30 +394,30 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
             const SizedBox(height: 16),
             const Text('Skeleton básico con configuración por defecto:'),
             const SizedBox(height: 8),
-            const AppSkeleton(),
+            const DSSkeleton(),
             const SizedBox(height: 16),
             const Text('Skeleton con dimensiones personalizadas:'),
             const SizedBox(height: 8),
-            const AppSkeleton(
+            const DSSkeleton(
               width: 200,
               height: 100,
             ),
             const SizedBox(height: 16),
             const Text('Skeleton con configuración personalizada:'),
             const SizedBox(height: 8),
-            AppSkeleton(
+            DSSkeleton(
               width: 150,
               height: 60,
-              config: AppSkeletonConfig(
-                colors: AppSkeletonColors(
+              config: DSSkeletonConfig(
+                colors: DSSkeletonColors(
                   backgroundColor: Colors.blue.shade100,
                   shimmerColor: Colors.blue.shade300,
                   opacity: 0.6,
                 ),
-                spacing: const AppSkeletonSpacing(
+                spacing: const DSSkeletonSpacing(
                   borderRadius: 16,
                 ),
-                behavior: const AppSkeletonBehavior(
+                behavior: const DSSkeletonBehavior(
                   showBorder: true,
                   showShadow: true,
                 ),
@@ -445,14 +445,14 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
               spacing: 16,
               runSpacing: 16,
               children: [
-                _buildShapeExample('Rectangle', const AppSkeleton.rectangle()),
-                _buildShapeExample('Circle', const AppSkeleton.circle()),
-                _buildShapeExample('Avatar', const AppSkeleton.avatar()),
-                _buildShapeExample('Button', const AppSkeleton.button()),
-                _buildShapeExample('Card', const AppSkeleton.card(width: 200, height: 120)),
-                _buildShapeExample('Text', const AppSkeleton.text(width: 150)),
-                _buildShapeExample('Line', const AppSkeleton.line(width: 200)),
-                _buildShapeExample('Rounded Rectangle', const AppSkeleton.roundedRectangle()),
+                _buildShapeExample('Rectangle', const DSSkeleton.rectangle()),
+                _buildShapeExample('Circle', const DSSkeleton.circle()),
+                _buildShapeExample('Avatar', const DSSkeleton.avatar()),
+                _buildShapeExample('Button', const DSSkeleton.button()),
+                _buildShapeExample('Card', const DSSkeleton.card(width: 200, height: 120)),
+                _buildShapeExample('Text', const DSSkeleton.text(width: 150)),
+                _buildShapeExample('Line', const DSSkeleton.line(width: 200)),
+                _buildShapeExample('Rounded Rectangle', const DSSkeleton.roundedRectangle()),
               ],
             ),
           ],
@@ -486,18 +486,18 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
             Wrap(
               spacing: 16,
               runSpacing: 16,
-              children: AppSkeletonState.values.map((state) {
+              children: DSSkeletonState.values.map((state) {
                 return Column(
                   children: [
                     Text(state.name, style: Theme.of(context).textTheme.labelMedium),
                     const SizedBox(height: 8),
-                    AppSkeleton(
+                    DSSkeleton(
                       width: 100,
                       height: 60,
-                      interactive: state == AppSkeletonState.hover ||
-                                 state == AppSkeletonState.pressed ||
-                                 state == AppSkeletonState.focus,
-                      config: AppSkeletonConfig(state: state),
+                      interactive: state == DSSkeletonState.hover ||
+                                 state == DSSkeletonState.pressed ||
+                                 state == DSSkeletonState.focus,
+                      config: DSSkeletonConfig(state: state),
                     ),
                   ],
                 );
@@ -524,18 +524,18 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
 
             const Text('Grupo de skeletons:'),
             const SizedBox(height: 8),
-            const AppSkeletonGroup(
+            const DSSkeletonGroup(
               children: [
-                AppSkeleton.circle(width: 40, height: 40),
-                AppSkeleton.text(width: 200, height: 16),
-                AppSkeleton.text(width: 150, height: 12),
+                DSSkeleton.circle(width: 40, height: 40),
+                DSSkeleton.text(width: 200, height: 16),
+                DSSkeleton.text(width: 150, height: 12),
               ],
             ),
 
             const SizedBox(height: 16),
             const Text('Texto multilínea:'),
             const SizedBox(height: 8),
-            const AppSkeletonText(
+            const DSSkeletonText(
               lines: 4,
               lastLineWidthFactor: 0.7,
             ),
@@ -543,7 +543,7 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
             const SizedBox(height: 16),
             const Text('Lista de elementos:'),
             const SizedBox(height: 8),
-            const AppSkeletonList(
+            const DSSkeletonList(
               itemCount: 3,
               itemHeight: 50,
             ),
@@ -579,14 +579,14 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
               ),
               child: const Row(
                 children: [
-                  AppSkeleton.avatar(),
+                  DSSkeleton.avatar(),
                   SizedBox(width: 16),
                   Expanded(
-                    child: AppSkeletonGroup(
+                    child: DSSkeletonGroup(
                       children: [
-                        AppSkeleton.text(height: 20, width: 150),
-                        AppSkeleton.text(height: 14, width: 100),
-                        AppSkeleton.text(height: 12, width: 200),
+                        DSSkeleton.text(height: 20, width: 150),
+                        DSSkeleton.text(height: 14, width: 100),
+                        DSSkeleton.text(height: 12, width: 200),
                       ],
                     ),
                   ),
@@ -607,12 +607,12 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
                 border: Border.all(color: Colors.grey.shade300),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const AppSkeletonGroup(
+              child: const DSSkeletonGroup(
                 children: [
-                  AppSkeleton.rectangle(width: double.infinity, height: 150),
-                  AppSkeleton.text(height: 18, width: double.infinity),
-                  AppSkeleton.text(height: 14, width: 180),
-                  AppSkeleton.button(width: double.infinity),
+                  DSSkeleton.rectangle(width: double.infinity, height: 150),
+                  DSSkeleton.text(height: 18, width: double.infinity),
+                  DSSkeleton.text(height: 14, width: 180),
+                  DSSkeleton.button(width: double.infinity),
                 ],
               ),
             ),
@@ -633,15 +633,15 @@ class _AppSkeletonStoryState extends State<AppSkeletonStory> {
                     border: Border.all(color: Colors.grey.shade300),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const AppSkeletonGroup(
+                  child: const DSSkeletonGroup(
                     children: [
-                      AppSkeleton.circle(width: 32, height: 32),
-                      AppSkeleton.text(height: 14, width: 120),
-                      AppSkeleton.text(height: 12, width: 80),
-                      AppSkeleton.text(height: 16, width: double.infinity),
-                      AppSkeleton.text(height: 16, width: double.infinity),
-                      AppSkeleton.text(height: 16, width: 200),
-                      AppSkeleton.rectangle(width: double.infinity, height: 120),
+                      DSSkeleton.circle(width: 32, height: 32),
+                      DSSkeleton.text(height: 14, width: 120),
+                      DSSkeleton.text(height: 12, width: 80),
+                      DSSkeleton.text(height: 16, width: double.infinity),
+                      DSSkeleton.text(height: 16, width: double.infinity),
+                      DSSkeleton.text(height: 16, width: 200),
+                      DSSkeleton.rectangle(width: double.infinity, height: 120),
                     ],
                   ),
                 );

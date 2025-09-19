@@ -3,24 +3,24 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppAccordion', () {
-    late List<AppAccordionItem> testItems;
+  group('DSAccordion', () {
+    late List<DSAccordionItem> testItems;
 
     setUp(() {
       testItems = [
-        const AppAccordionItem(
+        const DSAccordionItem(
           key: 'item1',
           title: 'Título 1',
           subtitle: 'Subtítulo 1',
           content: Text('Contenido 1'),
         ),
-        const AppAccordionItem(
+        const DSAccordionItem(
           key: 'item2',
           title: 'Título 2',
           subtitle: 'Subtítulo 2',
           content: Text('Contenido 2'),
         ),
-        const AppAccordionItem(
+        const DSAccordionItem(
           key: 'item3',
           title: 'Título 3',
           content: Text('Contenido 3'),
@@ -32,7 +32,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
             ),
           ),
@@ -50,7 +50,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
               expandedKeys: const {'item1'},
             ),
@@ -69,12 +69,12 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
               expandedKeys: expandedKeys,
               onChanged: (keys) => expandedKeys = keys,
-              config: const AppAccordionConfig(
-                variant: AppAccordionVariant.single,
+              config: const DSAccordionConfig(
+                variant: DSAccordionVariant.single,
               ),
             ),
           ),
@@ -94,12 +94,12 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
               expandedKeys: expandedKeys,
               onChanged: (keys) => expandedKeys = keys,
-              config: const AppAccordionConfig(
-                variant: AppAccordionVariant.multiple,
+              config: const DSAccordionConfig(
+                variant: DSAccordionVariant.multiple,
                 allowMultiple: true,
               ),
             ),
@@ -121,10 +121,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
-              config: const AppAccordionConfig(
-                state: AppAccordionState.loading,
+              config: const DSAccordionConfig(
+                state: DSAccordionState.loading,
               ),
             ),
           ),
@@ -138,10 +138,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
-              config: const AppAccordionConfig(
-                state: AppAccordionState.skeleton,
+              config: const DSAccordionConfig(
+                state: DSAccordionState.skeleton,
               ),
             ),
           ),
@@ -157,7 +157,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
               expandedKeys: expandedKeys,
               onChanged: (keys) => expandedKeys = keys,
@@ -177,9 +177,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
-              config: const AppAccordionConfig(
+              config: const DSAccordionConfig(
                 showDividers: true,
               ),
             ),
@@ -194,9 +194,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
-              config: const AppAccordionConfig(
+              config: const DSAccordionConfig(
                 showDividers: false,
               ),
             ),
@@ -211,9 +211,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
-              config: const AppAccordionConfig(
+              config: const DSAccordionConfig(
                 useMaterialIcons: true,
               ),
             ),
@@ -228,9 +228,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
-              config: const AppAccordionConfig(
+              config: const DSAccordionConfig(
                 useMaterialIcons: false,
               ),
             ),
@@ -242,12 +242,12 @@ void main() {
     });
 
     testWidgets('calls onStateChanged when state changes', (tester) async {
-      AppAccordionState? capturedState;
+      DSAccordionState? capturedState;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
               onStateChanged: (state) => capturedState = state,
             ),
@@ -258,17 +258,17 @@ void main() {
       await tester.longPress(find.text('Título 1'));
       await tester.pumpAndSettle();
 
-      expect(capturedState, equals(AppAccordionState.pressed));
+      expect(capturedState, equals(DSAccordionState.pressed));
     });
 
     testWidgets('supports semantic labels correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppAccordion(
+            body: DSAccordion(
               items: testItems,
-              config: const AppAccordionConfig(
-                accessibility: AppAccordionAccessibilityConfig(
+              config: const DSAccordionConfig(
+                accessibility: DSAccordionAccessibilityConfig(
                   enabled: true,
                 ),
               ),
@@ -280,37 +280,37 @@ void main() {
       expect(find.bySemanticsLabel('Componente acordeón simple'), findsOneWidget);
     });
 
-    group('AppAccordionConfig', () {
+    group('DSAccordionConfig', () {
       test('has correct default values', () {
-        const config = AppAccordionConfig();
+        const config = DSAccordionConfig();
 
-        expect(config.variant, equals(AppAccordionVariant.single));
-        expect(config.state, equals(AppAccordionState.defaultState));
+        expect(config.variant, equals(DSAccordionVariant.single));
+        expect(config.state, equals(DSAccordionState.defaultState));
         expect(config.allowMultiple, equals(false));
         expect(config.showDividers, equals(true));
         expect(config.useMaterialIcons, equals(true));
       });
 
       test('copyWith works correctly', () {
-        const original = AppAccordionConfig(
-          variant: AppAccordionVariant.single,
+        const original = DSAccordionConfig(
+          variant: DSAccordionVariant.single,
           allowMultiple: false,
         );
 
         final updated = original.copyWith(
-          variant: AppAccordionVariant.multiple,
+          variant: DSAccordionVariant.multiple,
           allowMultiple: true,
         );
 
-        expect(updated.variant, equals(AppAccordionVariant.multiple));
+        expect(updated.variant, equals(DSAccordionVariant.multiple));
         expect(updated.allowMultiple, equals(true));
         expect(updated.showDividers, equals(original.showDividers));
       });
     });
 
-    group('AppAccordionItem', () {
+    group('DSAccordionItem', () {
       test('has correct required properties', () {
-        const item = AppAccordionItem(
+        const item = DSAccordionItem(
           key: 'test',
           title: 'Test Title',
           content: Text('Test Content'),
@@ -321,7 +321,7 @@ void main() {
       });
 
       test('supports optional properties', () {
-        const item = AppAccordionItem(
+        const item = DSAccordionItem(
           key: 'test_key',
           title: 'Test Title',
           subtitle: 'Test Subtitle',

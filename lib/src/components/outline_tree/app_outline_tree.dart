@@ -1,4 +1,4 @@
-/// AppOutlineTree widget for displaying hierarchical tree structures
+/// DSOutlineTree widget for displaying hierarchical tree structures
 ///
 /// A comprehensive tree component that supports:
 /// - Async variant with lazy loading of children
@@ -10,9 +10,9 @@
 ///
 /// Example usage:
 /// ```dart
-/// AppOutlineTree.async(
+/// DSOutlineTree.async(
 ///   nodes: [
-///     AppTreeNode(id: '1', label: 'Root', hasChildren: true),
+///     DSTreeNode(id: '1', label: 'Root', hasChildren: true),
 ///   ],
 ///   onToggle: (node) => print('Toggled: ${node.label}'),
 ///   onAsyncLoad: (node) async => await fetchChildren(node.id),
@@ -24,13 +24,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'outline_tree_config.dart';
 
-/// Main AppOutlineTree widget
-class AppOutlineTree extends StatefulWidget {
+/// Main DSOutlineTree widget
+class DSOutlineTree extends StatefulWidget {
   /// The variant of the outline tree
-  final AppOutlineTreeVariant variant;
+  final DSOutlineTreeVariant variant;
 
   /// List of root nodes to display
-  final List<AppTreeNode> nodes;
+  final List<DSTreeNode> nodes;
 
   /// Callback when a node is toggled (expanded/collapsed)
   final OnNodeToggle? onToggle;
@@ -51,16 +51,16 @@ class AppOutlineTree extends StatefulWidget {
   final NodeIconBuilder? iconBuilder;
 
   /// Current state of the tree
-  final AppOutlineTreeState state;
+  final DSOutlineTreeState state;
 
   /// Whether the tree is visible
   final bool isVisible;
 
   /// Configuration for the tree
-  final AppOutlineTreeConfig? config;
+  final DSOutlineTreeConfig? config;
 
   /// Constructor with all parameters
-  const AppOutlineTree({
+  const DSOutlineTree({
     super.key,
     required this.variant,
     required this.nodes,
@@ -70,28 +70,28 @@ class AppOutlineTree extends StatefulWidget {
     this.onAsyncLoad,
     this.nodeBuilder,
     this.iconBuilder,
-    this.state = AppOutlineTreeState.defaultState,
+    this.state = DSOutlineTreeState.defaultState,
     this.isVisible = true,
     this.config,
   });
 
   /// Factory constructor for async variant
-  factory AppOutlineTree.async({
+  factory DSOutlineTree.async({
     Key? key,
-    required List<AppTreeNode> nodes,
+    required List<DSTreeNode> nodes,
     OnNodeToggle? onToggle,
     OnNodeSelect? onSelect,
     OnNodeExpand? onExpand,
     required OnAsyncLoad onAsyncLoad,
     NodeBuilder? nodeBuilder,
     NodeIconBuilder? iconBuilder,
-    AppOutlineTreeState state = AppOutlineTreeState.defaultState,
+    DSOutlineTreeState state = DSOutlineTreeState.defaultState,
     bool isVisible = true,
-    AppOutlineTreeConfig? config,
+    DSOutlineTreeConfig? config,
   }) {
-    return AppOutlineTree(
+    return DSOutlineTree(
       key: key,
-      variant: AppOutlineTreeVariant.async,
+      variant: DSOutlineTreeVariant.async,
       nodes: nodes,
       onToggle: onToggle,
       onSelect: onSelect,
@@ -106,22 +106,22 @@ class AppOutlineTree extends StatefulWidget {
   }
 
   /// Factory constructor for multi-select variant
-  factory AppOutlineTree.multiSelect({
+  factory DSOutlineTree.multiSelect({
     Key? key,
-    required List<AppTreeNode> nodes,
+    required List<DSTreeNode> nodes,
     OnNodeToggle? onToggle,
     OnNodeSelect? onSelect,
     OnNodeExpand? onExpand,
     OnAsyncLoad? onAsyncLoad,
     NodeBuilder? nodeBuilder,
     NodeIconBuilder? iconBuilder,
-    AppOutlineTreeState state = AppOutlineTreeState.defaultState,
+    DSOutlineTreeState state = DSOutlineTreeState.defaultState,
     bool isVisible = true,
-    AppOutlineTreeConfig? config,
+    DSOutlineTreeConfig? config,
   }) {
-    return AppOutlineTree(
+    return DSOutlineTree(
       key: key,
-      variant: AppOutlineTreeVariant.multiSelect,
+      variant: DSOutlineTreeVariant.multiSelect,
       nodes: nodes,
       onToggle: onToggle,
       onSelect: onSelect,
@@ -136,17 +136,17 @@ class AppOutlineTree extends StatefulWidget {
   }
 
   @override
-  State<AppOutlineTree> createState() => _AppOutlineTreeState();
+  State<DSOutlineTree> createState() => _DSOutlineTreeState();
 }
 
-class _AppOutlineTreeState extends State<AppOutlineTree>
+class _DSOutlineTreeState extends State<DSOutlineTree>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late AnimationController _skeletonController;
   late Animation<double> _fadeAnimation;
   late Animation<double> _skeletonAnimation;
   late FocusNode _focusNode;
-  late List<AppTreeNode> _currentNodes;
+  late List<DSTreeNode> _currentNodes;
   late ScrollController _scrollController;
 
   String? _hoveredNodeId;
@@ -155,8 +155,8 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   final Map<String, AnimationController> _expansionControllers = {};
   final Map<String, Animation<double>> _expansionAnimations = {};
 
-  AppOutlineTreeConfig get _effectiveConfig {
-    return widget.config ?? const AppOutlineTreeConfig();
+  DSOutlineTreeConfig get _effectiveConfig {
+    return widget.config ?? const DSOutlineTreeConfig();
   }
 
   @override
@@ -201,7 +201,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   }
 
   @override
-  void didUpdateWidget(AppOutlineTree oldWidget) {
+  void didUpdateWidget(DSOutlineTree oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.nodes != widget.nodes) {
@@ -231,7 +231,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     super.dispose();
   }
 
-  void _handleNodeToggle(AppTreeNode node) {
+  void _handleNodeToggle(DSTreeNode node) {
     if (_effectiveConfig.enableHapticFeedback) {
       HapticFeedback.lightImpact();
     }
@@ -246,7 +246,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     widget.onExpand?.call(node, !node.isExpanded);
 
     // Handle async loading if needed
-    if (widget.variant == AppOutlineTreeVariant.async &&
+    if (widget.variant == DSOutlineTreeVariant.async &&
         !node.isExpanded &&
         node.hasChildren &&
         node.children.isEmpty &&
@@ -255,7 +255,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     }
   }
 
-  void _handleNodeSelect(AppTreeNode node) {
+  void _handleNodeSelect(DSTreeNode node) {
     if (_effectiveConfig.enableHapticFeedback) {
       HapticFeedback.selectionClick();
     }
@@ -263,12 +263,12 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     final newSelection = !node.isSelected;
 
     setState(() {
-      if (_effectiveConfig.selectionMode == AppTreeSelectionMode.single) {
+      if (_effectiveConfig.selectionMode == DSTreeSelectionMode.single) {
         // Clear all selections first
         _currentNodes = _clearAllSelections(_currentNodes);
       }
 
-      _currentNodes = AppOutlineTreeUtils.updateSelection(
+      _currentNodes = DSOutlineTreeUtils.updateSelection(
         _currentNodes,
         node.id,
         newSelection,
@@ -279,7 +279,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     widget.onSelect?.call(node, newSelection);
   }
 
-  Future<void> _loadNodeChildren(AppTreeNode node) async {
+  Future<void> _loadNodeChildren(DSTreeNode node) async {
     if (widget.onAsyncLoad == null) return;
 
     // Set loading state
@@ -309,15 +309,15 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     }
   }
 
-  List<AppTreeNode> _updateNodeInTree(
-    List<AppTreeNode> nodes,
+  List<DSTreeNode> _updateNodeInTree(
+    List<DSTreeNode> nodes,
     String nodeId,
-    AppTreeNode Function(AppTreeNode) updater,
+    DSTreeNode Function(DSTreeNode) updater,
   ) {
     return nodes.map((node) => node.updateNode(nodeId, updater)).toList();
   }
 
-  List<AppTreeNode> _clearAllSelections(List<AppTreeNode> nodes) {
+  List<DSTreeNode> _clearAllSelections(List<DSTreeNode> nodes) {
     return nodes.map((node) {
       final updatedChildren = _clearAllSelections(node.children);
       return node.copyWith(isSelected: false, children: updatedChildren);
@@ -369,7 +369,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
                 label: _effectiveConfig.semanticLabel ?? 'Tree view',
                 hint: _effectiveConfig.semanticHint ??
                     'Use arrow keys to navigate',
-                enabled: widget.state != AppOutlineTreeState.disabled,
+                enabled: widget.state != DSOutlineTreeState.disabled,
                 child: Container(
                   constraints: _effectiveConfig.constraints,
                   padding: _effectiveConfig.padding,
@@ -386,9 +386,9 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
 
   Widget _buildContent(BuildContext context, ColorScheme colorScheme) {
     switch (widget.state) {
-      case AppOutlineTreeState.skeleton:
+      case DSOutlineTreeState.skeleton:
         return _buildSkeletonState(context, colorScheme);
-      case AppOutlineTreeState.loading:
+      case DSOutlineTreeState.loading:
         return _buildLoadingState(context, colorScheme);
       default:
         return _buildNormalState(context, colorScheme);
@@ -396,7 +396,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   }
 
   Widget _buildNormalState(BuildContext context, ColorScheme colorScheme) {
-    final flattenedNodes = AppOutlineTreeUtils.flattenTree(
+    final flattenedNodes = DSOutlineTreeUtils.flattenTree(
       _currentNodes,
       maxDepth: _effectiveConfig.maxExpandDepth,
     );
@@ -407,7 +407,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
 
     return SingleChildScrollView(
       controller: _scrollController,
-      child: _effectiveConfig.layout == AppTreeLayout.vertical
+      child: _effectiveConfig.layout == DSTreeLayout.vertical
           ? Column(
               children: flattenedNodes
                   .map((node) => _buildTreeNode(context, colorScheme, node))
@@ -423,7 +423,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   }
 
   Widget _buildTreeNode(
-      BuildContext context, ColorScheme colorScheme, AppTreeNode node) {
+      BuildContext context, ColorScheme colorScheme, DSTreeNode node) {
     if (widget.nodeBuilder != null) {
       return widget.nodeBuilder!(context, node, node.depth);
     }
@@ -432,7 +432,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     final isFocused = _focusedNodeId == node.id;
     final isPressed = _pressedNodeId == node.id;
     final isDisabled =
-        node.isDisabled || widget.state == AppOutlineTreeState.disabled;
+        node.isDisabled || widget.state == DSOutlineTreeState.disabled;
 
     return _buildExpandableNode(context, colorScheme, node, isHovered,
         isFocused, isPressed, isDisabled);
@@ -441,7 +441,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   Widget _buildExpandableNode(
     BuildContext context,
     ColorScheme colorScheme,
-    AppTreeNode node,
+    DSTreeNode node,
     bool isHovered,
     bool isFocused,
     bool isPressed,
@@ -469,17 +469,17 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
                 child: Align(
                   alignment: Alignment.topLeft,
                   heightFactor: _effectiveConfig.expansionAnimation ==
-                          AppTreeExpansionAnimation.slide
+                          DSTreeExpansionAnimation.slide
                       ? animation.value
                       : null,
                   child: Opacity(
                     opacity: _effectiveConfig.expansionAnimation ==
-                            AppTreeExpansionAnimation.fade
+                            DSTreeExpansionAnimation.fade
                         ? animation.value
                         : 1.0,
                     child: Transform.scale(
                       scale: _effectiveConfig.expansionAnimation ==
-                              AppTreeExpansionAnimation.scale
+                              DSTreeExpansionAnimation.scale
                           ? animation.value
                           : 1.0,
                       alignment: Alignment.topLeft,
@@ -497,7 +497,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   Widget _buildNodeItem(
     BuildContext context,
     ColorScheme colorScheme,
-    AppTreeNode node,
+    DSTreeNode node,
     bool isHovered,
     bool isFocused,
     bool isPressed,
@@ -584,7 +584,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
                 : null,
           ),
           child: Semantics(
-            label: AppOutlineTreeUtils.getNodeSemanticLabel(
+            label: DSOutlineTreeUtils.getNodeSemanticLabel(
                 node, _effectiveConfig),
             selected: node.isSelected,
             button: true,
@@ -596,7 +596,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
                       context, colorScheme, node, iconColor, isDisabled),
                 if (_effectiveConfig.showSelectionCheckboxes &&
                     _effectiveConfig.selectionMode !=
-                        AppTreeSelectionMode.single)
+                        DSTreeSelectionMode.single)
                   _buildSelectionIcon(context, colorScheme, node, iconColor),
                 if (_effectiveConfig.showIcons)
                   _buildNodeIcon(context, colorScheme, node, iconColor),
@@ -604,7 +604,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
                 if (node.badge != null) _buildBadge(context, colorScheme, node),
                 if (node.isLoading)
                   _buildLoadingIndicator(context, colorScheme),
-                if (node.state == AppTreeNodeState.error)
+                if (node.state == DSTreeNodeState.error)
                   _buildErrorIcon(context, colorScheme),
               ],
             ),
@@ -617,7 +617,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   Widget _buildExpanderIcon(
     BuildContext context,
     ColorScheme colorScheme,
-    AppTreeNode node,
+    DSTreeNode node,
     Color? iconColor,
     bool isDisabled,
   ) {
@@ -650,13 +650,13 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   Widget _buildSelectionIcon(
     BuildContext context,
     ColorScheme colorScheme,
-    AppTreeNode node,
+    DSTreeNode node,
     Color? iconColor,
   ) {
     IconData iconData;
     Color? finalIconColor = iconColor;
 
-    if (_effectiveConfig.selectionMode == AppTreeSelectionMode.single) {
+    if (_effectiveConfig.selectionMode == DSTreeSelectionMode.single) {
       iconData = node.isSelected
           ? _effectiveConfig.radioCheckedIcon
           : _effectiveConfig.radioUncheckedIcon;
@@ -687,7 +687,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   Widget _buildNodeIcon(
     BuildContext context,
     ColorScheme colorScheme,
-    AppTreeNode node,
+    DSTreeNode node,
     Color? iconColor,
   ) {
     if (widget.iconBuilder != null) {
@@ -718,7 +718,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   }
 
   Widget _buildNodeContent(
-      BuildContext context, AppTreeNode node, Color? textColor) {
+      BuildContext context, DSTreeNode node, Color? textColor) {
     if (node.customWidget != null) {
       return node.customWidget!;
     }
@@ -745,7 +745,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   }
 
   Widget _buildBadge(
-      BuildContext context, ColorScheme colorScheme, AppTreeNode node) {
+      BuildContext context, ColorScheme colorScheme, DSTreeNode node) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
@@ -793,7 +793,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   }
 
   Widget _buildChildren(
-      BuildContext context, ColorScheme colorScheme, AppTreeNode node) {
+      BuildContext context, ColorScheme colorScheme, DSTreeNode node) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: node.children
@@ -929,7 +929,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
   KeyEventResult _handleKeyEvent(KeyEvent event) {
     if (event is! KeyDownEvent) return KeyEventResult.ignored;
 
-    final flattenedNodes = AppOutlineTreeUtils.flattenTree(_currentNodes);
+    final flattenedNodes = DSOutlineTreeUtils.flattenTree(_currentNodes);
     if (flattenedNodes.isEmpty) return KeyEventResult.ignored;
 
     final currentIndex = _focusedNodeId != null
@@ -979,7 +979,7 @@ class _AppOutlineTreeState extends State<AppOutlineTree>
     return KeyEventResult.ignored;
   }
 
-  void _moveFocus(List<AppTreeNode> nodes, int newIndex) {
+  void _moveFocus(List<DSTreeNode> nodes, int newIndex) {
     if (newIndex < 0 || newIndex >= nodes.length) return;
 
     setState(() {

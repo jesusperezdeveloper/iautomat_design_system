@@ -4,13 +4,13 @@ import 'package:iautomat_design_system/src/components/cart_widget/app_cart_widge
 import 'package:iautomat_design_system/src/components/cart_widget/app_cart_widget_config.dart';
 
 void main() {
-  group('AppCartWidget', () {
-    late List<AppCartItem> testItems;
-    late AppCartItem testItem1;
-    late AppCartItem testItem2;
+  group('DSCartWidget', () {
+    late List<DSCartItem> testItems;
+    late DSCartItem testItem1;
+    late DSCartItem testItem2;
 
     setUp(() {
-      testItem1 = const AppCartItem(
+      testItem1 = const DSCartItem(
         id: '1',
         name: 'iPhone 15 Pro',
         price: 999.99,
@@ -19,7 +19,7 @@ void main() {
         originalPrice: 1199.99,
       );
 
-      testItem2 = const AppCartItem(
+      testItem2 = const DSCartItem(
         id: '2',
         name: 'AirPods Pro',
         price: 249.99,
@@ -34,14 +34,14 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCartWidget(
+            body: DSCartWidget(
               items: testItems,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppCartWidget), findsOneWidget);
+      expect(find.byType(DSCartWidget), findsOneWidget);
       expect(find.text('iPhone 15 Pro'), findsOneWidget);
       expect(find.text('AirPods Pro'), findsOneWidget);
     });
@@ -51,15 +51,15 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: testItems,
-                variant: AppCartVariant.mini,
+                variant: DSCartVariant.mini,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCartWidget), findsOneWidget);
+        expect(find.byType(DSCartWidget), findsOneWidget);
         // En mini variant debería mostrar un resumen compacto
       });
 
@@ -67,15 +67,15 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: testItems,
-                variant: AppCartVariant.full,
+                variant: DSCartVariant.full,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCartWidget), findsOneWidget);
+        expect(find.byType(DSCartWidget), findsOneWidget);
         expect(find.text('iPhone 15 Pro'), findsOneWidget);
         expect(find.text('AirPods Pro'), findsOneWidget);
       });
@@ -86,14 +86,14 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: const [],
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCartWidget), findsOneWidget);
+        expect(find.byType(DSCartWidget), findsOneWidget);
         expect(find.text('Tu carrito está vacío'), findsOneWidget);
       });
     });
@@ -106,7 +106,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: testItems,
                 onQtyChange: (itemId, qty) {
                   changedItemId = itemId;
@@ -126,12 +126,12 @@ void main() {
       });
 
       testWidgets('calls onCheckout when checkout button is pressed', (tester) async {
-        AppCartSummary? checkoutSummary;
+        DSCartSummary? checkoutSummary;
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: testItems,
                 onCheckout: (summary) {
                   checkoutSummary = summary;
@@ -154,7 +154,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: const [],
                 onCheckout: (summary) {},
               ),
@@ -171,15 +171,15 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: testItems,
-                initialState: AppCartState.skeleton,
+                initialState: DSCartState.skeleton,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCartWidget), findsOneWidget);
+        expect(find.byType(DSCartWidget), findsOneWidget);
         // Verificar que se muestran shimmer/skeleton loaders
       });
 
@@ -187,15 +187,15 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: testItems,
-                initialState: AppCartState.loading,
+                initialState: DSCartState.loading,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCartWidget), findsOneWidget);
+        expect(find.byType(DSCartWidget), findsOneWidget);
         expect(find.byType(CircularProgressIndicator), findsOneWidget);
       });
 
@@ -203,15 +203,15 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: testItems,
-                initialState: AppCartState.disabled,
+                initialState: DSCartState.disabled,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCartWidget), findsOneWidget);
+        expect(find.byType(DSCartWidget), findsOneWidget);
         // Los botones deberían estar deshabilitados
       });
     });
@@ -219,7 +219,7 @@ void main() {
     group('Cart Calculations', () {
       test('calculates cart totals correctly', () {
         final items = [testItem1, testItem2];
-        final summary = AppCartUtils.calculateSummary(items);
+        final summary = DSCartUtils.calculateSummary(items);
 
         expect(summary.subtotal, equals(1499.97)); // 999.99 + (249.99 * 2)
         expect(summary.taxes, equals(149.997)); // 10% tax
@@ -229,7 +229,7 @@ void main() {
 
       test('applies discounts correctly', () {
         final items = [testItem1, testItem2];
-        final summary = AppCartUtils.calculateSummary(
+        final summary = DSCartUtils.calculateSummary(
           items,
           discountAmount: 100.0,
         );
@@ -239,7 +239,7 @@ void main() {
       });
     });
 
-    group('AppCartItem Extensions', () {
+    group('DSCartItem Extensions', () {
       test('calculates item totals correctly', () {
         expect(testItem1.totalPrice, equals(999.99));
         expect(testItem2.totalPrice, equals(499.98)); // 249.99 * 2
@@ -251,7 +251,7 @@ void main() {
       });
 
       test('checks quantity limits correctly', () {
-        final maxItem = AppCartItem(
+        final maxItem = DSCartItem(
           id: testItem1.id,
           name: testItem1.name,
           price: testItem1.price,
@@ -267,7 +267,7 @@ void main() {
         );
         expect(maxItem.canIncreaseQuantity, isFalse);
 
-        final minItem = AppCartItem(
+        final minItem = DSCartItem(
           id: testItem1.id,
           name: testItem1.name,
           price: testItem1.price,
@@ -285,9 +285,9 @@ void main() {
       });
     });
 
-    group('AppCartSummary', () {
+    group('DSCartSummary', () {
       test('creates summary correctly', () {
-        const summary = AppCartSummary(
+        const summary = DSCartSummary(
           subtotal: 100.0,
           taxes: 10.0,
           shipping: 5.0,
@@ -306,7 +306,7 @@ void main() {
       });
 
       test('applies promo codes correctly', () {
-        const summary = AppCartSummary(
+        const summary = DSCartSummary(
           subtotal: 100.0,
           taxes: 10.0,
           shipping: 5.0,
@@ -322,9 +322,9 @@ void main() {
       });
     });
 
-    group('AppCartUtils', () {
+    group('DSCartUtils', () {
       test('validates quantities correctly', () {
-        final limitedItem = AppCartItem(
+        final limitedItem = DSCartItem(
           id: testItem1.id,
           name: testItem1.name,
           price: testItem1.price,
@@ -338,21 +338,21 @@ void main() {
           originalPrice: testItem1.originalPrice,
           metadata: testItem1.metadata,
         );
-        expect(AppCartUtils.isValidQuantity(limitedItem, 1), isFalse);
-        expect(AppCartUtils.isValidQuantity(limitedItem, 3), isTrue);
-        expect(AppCartUtils.isValidQuantity(limitedItem, 6), isFalse);
+        expect(DSCartUtils.isValidQuantity(limitedItem, 1), isFalse);
+        expect(DSCartUtils.isValidQuantity(limitedItem, 3), isTrue);
+        expect(DSCartUtils.isValidQuantity(limitedItem, 6), isFalse);
       });
 
       test('formats currency correctly', () {
-        expect(AppCartUtils.formatCurrency(123.45), equals('\$123.45'));
-        expect(AppCartUtils.formatCurrency(1000.0), equals('\$1,000.00'));
+        expect(DSCartUtils.formatCurrency(123.45), equals('\$123.45'));
+        expect(DSCartUtils.formatCurrency(1000.0), equals('\$1,000.00'));
       });
 
       test('filters items correctly', () {
-        final availableItems = AppCartUtils.getAvailableItems(testItems);
+        final availableItems = DSCartUtils.getAvailableItems(testItems);
         expect(availableItems.length, equals(2));
 
-        final unavailableItem = AppCartItem(
+        final unavailableItem = DSCartItem(
           id: '3',
           name: 'Out of Stock',
           price: 99.99,
@@ -361,7 +361,7 @@ void main() {
         );
 
         final mixedItems = [...testItems, unavailableItem];
-        final availableFromMixed = AppCartUtils.getAvailableItems(mixedItems);
+        final availableFromMixed = DSCartUtils.getAvailableItems(mixedItems);
         expect(availableFromMixed.length, equals(2));
       });
     });
@@ -371,7 +371,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: testItems,
               ),
             ),
@@ -389,7 +389,7 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.rtl,
               child: Scaffold(
-                body: AppCartWidget(
+                body: DSCartWidget(
                   items: testItems,
                 ),
               ),
@@ -397,7 +397,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppCartWidget), findsOneWidget);
+        expect(find.byType(DSCartWidget), findsOneWidget);
         // El layout debería adaptarse a RTL
       });
     });
@@ -407,24 +407,24 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: testItems,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppCartWidget), findsOneWidget);
+        expect(find.byType(DSCartWidget), findsOneWidget);
         // El comportamiento debería adaptarse según la plataforma
       });
     });
 
     group('Custom Configuration', () {
       testWidgets('applies custom configuration correctly', (tester) async {
-        const config = AppCartWidgetConfig(
-          variant: AppCartVariant.full,
-          state: AppCartState.defaultState,
-          colors: AppCartColors(
+        const config = DSCartWidgetConfig(
+          variant: DSCartVariant.full,
+          state: DSCartState.defaultState,
+          colors: DSCartColors(
             backgroundColor: Colors.red,
             borderColor: Colors.blue,
           ),
@@ -433,7 +433,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppCartWidget(
+              body: DSCartWidget(
                 items: testItems,
                 config: config,
               ),
@@ -441,7 +441,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppCartWidget), findsOneWidget);
+        expect(find.byType(DSCartWidget), findsOneWidget);
       });
     });
   });

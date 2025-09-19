@@ -9,7 +9,7 @@ void main() {
   setUpAll(() {
     GoogleFonts.config.allowRuntimeFetching = false;
   });
-  group('AppCameraPicker Golden Tests', () {
+  group('DSCameraPicker Golden Tests', () {
     testWidgets('default state golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -19,7 +19,7 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: const AppCameraPicker(),
+                child: const DSCameraPicker(),
               ),
             ),
           ),
@@ -29,7 +29,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_default.png'),
       );
     });
@@ -43,8 +43,8 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: const AppCameraPicker(
-                  source: AppCameraPickerSource.camera,
+                child: const DSCameraPicker(
+                  source: DSCameraPickerSource.camera,
                 ),
               ),
             ),
@@ -55,7 +55,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_camera.png'),
       );
     });
@@ -69,8 +69,8 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: const AppCameraPicker(
-                  source: AppCameraPickerSource.gallery,
+                child: const DSCameraPicker(
+                  source: DSCameraPickerSource.gallery,
                 ),
               ),
             ),
@@ -81,7 +81,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_gallery.png'),
       );
     });
@@ -95,7 +95,7 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: const AppCameraPicker(
+                child: const DSCameraPicker(
                   enabled: false,
                 ),
               ),
@@ -107,7 +107,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_disabled.png'),
       );
     });
@@ -121,9 +121,9 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    state: AppCameraPickerState.loading,
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    state: DSCameraPickerState.loading,
                   ),
                 ),
               ),
@@ -135,7 +135,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_loading.png'),
       );
     });
@@ -149,9 +149,9 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    state: AppCameraPickerState.skeleton,
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    state: DSCameraPickerState.skeleton,
                   ),
                 ),
               ),
@@ -163,7 +163,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_skeleton.png'),
       );
     });
@@ -177,14 +177,14 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: AppCameraPicker(
-                  config: AppCameraPickerConfig(
-                    colors: const AppCameraPickerColors(
+                child: DSCameraPicker(
+                  config: DSCameraPickerConfig(
+                    colors: const DSCameraPickerColors(
                       backgroundColor: Colors.blue,
                       textColor: Colors.white,
                       iconColor: Colors.white,
                     ),
-                    spacing: const AppCameraPickerSpacing(
+                    spacing: const DSCameraPickerSpacing(
                       borderRadius: 20.0,
                       padding: EdgeInsets.all(20.0),
                     ),
@@ -199,7 +199,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_custom.png'),
       );
     });
@@ -213,7 +213,7 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: const AppCameraPicker(
+                child: const DSCameraPicker(
                   buttonText: 'Upload File',
                   buttonIcon: Icons.cloud_upload,
                 ),
@@ -226,7 +226,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_custom_text.png'),
       );
     });
@@ -240,9 +240,9 @@ void main() {
               child: SizedBox(
                 width: 200,
                 height: 60,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    spacing: AppCameraPickerSpacing(
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    spacing: DSCameraPickerSpacing(
                       minHeight: 40,
                       minWidth: 150,
                       padding: EdgeInsets.all(8.0),
@@ -258,7 +258,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_small.png'),
       );
     });
@@ -272,9 +272,9 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 120,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    spacing: AppCameraPickerSpacing(
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    spacing: DSCameraPickerSpacing(
                       minHeight: 80,
                       minWidth: 300,
                       padding: EdgeInsets.all(24.0),
@@ -290,13 +290,13 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_large.png'),
       );
     });
   });
 
-  group('AppCameraPicker Dark Mode Golden Tests', () {
+  group('DSCameraPicker Dark Mode Golden Tests', () {
     testWidgets('dark mode default golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -307,7 +307,7 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: const AppCameraPicker(),
+                child: const DSCameraPicker(),
               ),
             ),
           ),
@@ -317,7 +317,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_dark_default.png'),
       );
     });
@@ -332,7 +332,7 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: const AppCameraPicker(
+                child: const DSCameraPicker(
                   enabled: false,
                 ),
               ),
@@ -344,7 +344,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_dark_disabled.png'),
       );
     });
@@ -359,9 +359,9 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    state: AppCameraPickerState.loading,
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    state: DSCameraPickerState.loading,
                   ),
                 ),
               ),
@@ -373,13 +373,13 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_dark_loading.png'),
       );
     });
   });
 
-  group('AppCameraPicker Platform Variant Golden Tests', () {
+  group('DSCameraPicker Platform Variant Golden Tests', () {
     testWidgets('iOS variant golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -389,9 +389,9 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    variant: AppCameraPickerVariant.ios,
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    variant: DSCameraPickerVariant.ios,
                   ),
                 ),
               ),
@@ -403,7 +403,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_ios.png'),
       );
     });
@@ -417,9 +417,9 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    variant: AppCameraPickerVariant.android,
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    variant: DSCameraPickerVariant.android,
                   ),
                 ),
               ),
@@ -431,7 +431,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_android.png'),
       );
     });
@@ -445,9 +445,9 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    variant: AppCameraPickerVariant.web,
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    variant: DSCameraPickerVariant.web,
                   ),
                 ),
               ),
@@ -459,13 +459,13 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_web.png'),
       );
     });
   });
 
-  group('AppCameraPicker RTL Golden Tests', () {
+  group('DSCameraPicker RTL Golden Tests', () {
     testWidgets('RTL layout golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -477,7 +477,7 @@ void main() {
                 child: SizedBox(
                   width: 300,
                   height: 100,
-                  child: const AppCameraPicker(),
+                  child: const DSCameraPicker(),
                 ),
               ),
             ),
@@ -488,7 +488,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_rtl.png'),
       );
     });
@@ -504,7 +504,7 @@ void main() {
                 child: SizedBox(
                   width: 300,
                   height: 100,
-                  child: const AppCameraPicker(
+                  child: const DSCameraPicker(
                     buttonText: 'اختيار صورة',
                   ),
                 ),
@@ -517,13 +517,13 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_rtl_arabic.png'),
       );
     });
   });
 
-  group('AppCameraPicker Focus State Golden Tests', () {
+  group('DSCameraPicker Focus State Golden Tests', () {
     testWidgets('focus state golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -533,9 +533,9 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    state: AppCameraPickerState.focus,
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    state: DSCameraPickerState.focus,
                   ),
                 ),
               ),
@@ -547,7 +547,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_focus.png'),
       );
     });
@@ -561,9 +561,9 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    state: AppCameraPickerState.hover,
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    state: DSCameraPickerState.hover,
                   ),
                 ),
               ),
@@ -575,7 +575,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_hover.png'),
       );
     });
@@ -589,9 +589,9 @@ void main() {
               child: SizedBox(
                 width: 300,
                 height: 100,
-                child: AppCameraPicker(
-                  config: const AppCameraPickerConfig(
-                    state: AppCameraPickerState.pressed,
+                child: DSCameraPicker(
+                  config: const DSCameraPickerConfig(
+                    state: DSCameraPickerState.pressed,
                   ),
                 ),
               ),
@@ -603,7 +603,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppCameraPicker),
+        find.byType(DSCameraPicker),
         matchesGoldenFile('goldens/app_camera_picker_pressed.png'),
       );
     });

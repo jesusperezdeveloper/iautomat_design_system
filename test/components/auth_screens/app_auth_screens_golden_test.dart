@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppAuthScreens Golden Tests', () {
+  group('DSAuthScreens Golden Tests', () {
     testWidgets('sign-in variant renders correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -12,29 +12,29 @@ void main() {
             body: SizedBox(
               width: 400,
               height: 600,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.signIn,
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.signIn,
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'email',
                     label: 'Email',
-                    type: AppAuthFieldType.email,
+                    type: DSAuthFieldType.email,
                     placeholder: 'ejemplo@correo.com',
                     required: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppAuthFieldType.password,
+                    type: DSAuthFieldType.password,
                     placeholder: 'Ingresa tu contraseña',
                     required: true,
                     sensitive: true,
                   ),
                 ],
                 providers: const [],
-                onSubmit: (data) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
                 title: 'Bienvenido de vuelta',
                 subtitle: 'Ingresa tus credenciales para continuar',
               ),
@@ -44,7 +44,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_sign_in.png'),
       );
     });
@@ -57,44 +57,44 @@ void main() {
             body: SizedBox(
               width: 400,
               height: 700,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.signUp,
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.signUp,
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'name',
                     label: 'Nombre completo',
-                    type: AppAuthFieldType.text,
+                    type: DSAuthFieldType.text,
                     placeholder: 'Tu nombre completo',
                     required: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'email',
                     label: 'Email',
-                    type: AppAuthFieldType.email,
+                    type: DSAuthFieldType.email,
                     placeholder: 'ejemplo@correo.com',
                     required: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppAuthFieldType.password,
+                    type: DSAuthFieldType.password,
                     placeholder: 'Crea una contraseña segura',
                     required: true,
                     sensitive: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'confirmPassword',
                     label: 'Confirmar contraseña',
-                    type: AppAuthFieldType.confirmPassword,
+                    type: DSAuthFieldType.confirmPassword,
                     placeholder: 'Confirma tu contraseña',
                     required: true,
                     sensitive: true,
                   ),
                 ],
                 providers: const [],
-                onSubmit: (data) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
                 title: 'Crear cuenta',
                 subtitle: 'Completa el formulario para crear tu cuenta',
               ),
@@ -104,7 +104,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_sign_up.png'),
       );
     });
@@ -117,22 +117,22 @@ void main() {
             body: SizedBox(
               width: 400,
               height: 500,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.otp,
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.otp,
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'otp',
                     label: 'Código de verificación',
-                    type: AppAuthFieldType.otp,
+                    type: DSAuthFieldType.otp,
                     placeholder: '000000',
                     required: true,
                     maxLength: 6,
                   ),
                 ],
                 providers: const [],
-                onSubmit: (data) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
                 onResendOtp: () async => true,
                 title: 'Verificar código',
                 subtitle: 'Ingresa el código de 6 dígitos que enviamos a tu email',
@@ -144,7 +144,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_otp.png'),
       );
     });
@@ -157,13 +157,13 @@ void main() {
             body: SizedBox(
               width: 400,
               height: 500,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.sso,
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.sso,
                 ),
                 fields: const [],
                 providers: const [
-                  AppAuthProvider(
+                  DSAuthProvider(
                     id: 'google',
                     name: 'google',
                     displayName: 'Google',
@@ -171,7 +171,7 @@ void main() {
                     backgroundColor: Colors.white,
                     textColor: Colors.black87,
                   ),
-                  AppAuthProvider(
+                  DSAuthProvider(
                     id: 'apple',
                     name: 'apple',
                     displayName: 'Apple',
@@ -179,7 +179,7 @@ void main() {
                     backgroundColor: Colors.black,
                     textColor: Colors.white,
                   ),
-                  AppAuthProvider(
+                  DSAuthProvider(
                     id: 'facebook',
                     name: 'facebook',
                     displayName: 'Facebook',
@@ -188,8 +188,8 @@ void main() {
                     textColor: Colors.white,
                   ),
                 ],
-                onSubmit: (data) async => const AppAuthResult(success: true),
-                onProviderAuth: (provider) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
+                onProviderAuth: (provider) async => const DSAuthResult(success: true),
                 title: 'Inicia sesión con',
                 subtitle: 'Elige tu proveedor de autenticación preferido',
               ),
@@ -199,7 +199,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_sso.png'),
       );
     });
@@ -212,28 +212,28 @@ void main() {
             body: SizedBox(
               width: 400,
               height: 600,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.signIn,
-                  state: AppAuthState.loading,
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.signIn,
+                  state: DSAuthState.loading,
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'email',
                     label: 'Email',
-                    type: AppAuthFieldType.email,
+                    type: DSAuthFieldType.email,
                     required: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppAuthFieldType.password,
+                    type: DSAuthFieldType.password,
                     required: true,
                     sensitive: true,
                   ),
                 ],
                 providers: const [],
-                onSubmit: (data) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
                 title: 'Bienvenido de vuelta',
                 subtitle: 'Ingresa tus credenciales para continuar',
               ),
@@ -243,7 +243,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_loading.png'),
       );
     });
@@ -256,28 +256,28 @@ void main() {
             body: SizedBox(
               width: 400,
               height: 600,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.signIn,
-                  state: AppAuthState.skeleton,
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.signIn,
+                  state: DSAuthState.skeleton,
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'email',
                     label: 'Email',
-                    type: AppAuthFieldType.email,
+                    type: DSAuthFieldType.email,
                     required: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppAuthFieldType.password,
+                    type: DSAuthFieldType.password,
                     required: true,
                     sensitive: true,
                   ),
                 ],
                 providers: const [],
-                onSubmit: (data) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
               ),
             ),
           ),
@@ -289,7 +289,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 100));
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_skeleton.png'),
       );
     });
@@ -302,30 +302,30 @@ void main() {
             body: SizedBox(
               width: 400,
               height: 600,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.signIn,
-                  state: AppAuthState.disabled,
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.signIn,
+                  state: DSAuthState.disabled,
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'email',
                     label: 'Email',
-                    type: AppAuthFieldType.email,
+                    type: DSAuthFieldType.email,
                     required: true,
                     enabled: false,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppAuthFieldType.password,
+                    type: DSAuthFieldType.password,
                     required: true,
                     sensitive: true,
                     enabled: false,
                   ),
                 ],
                 providers: const [],
-                onSubmit: (data) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
                 title: 'Bienvenido de vuelta',
                 subtitle: 'Servicio temporalmente no disponible',
               ),
@@ -335,7 +335,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_disabled.png'),
       );
     });
@@ -348,37 +348,37 @@ void main() {
             body: SizedBox(
               width: 400,
               height: 600,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.signIn,
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.signIn,
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'email',
                     label: 'Email',
-                    type: AppAuthFieldType.email,
+                    type: DSAuthFieldType.email,
                     placeholder: 'ejemplo@correo.com',
                     required: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppAuthFieldType.password,
+                    type: DSAuthFieldType.password,
                     placeholder: 'Ingresa tu contraseña',
                     required: true,
                     sensitive: true,
                   ),
                 ],
                 providers: const [
-                  AppAuthProvider(
+                  DSAuthProvider(
                     id: 'google',
                     name: 'google',
                     displayName: 'Google',
                     icon: Icons.login,
                   ),
                 ],
-                onSubmit: (data) async => const AppAuthResult(success: true),
-                onProviderAuth: (provider) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
+                onProviderAuth: (provider) async => const DSAuthResult(success: true),
                 title: 'Bienvenido de vuelta',
                 subtitle: 'Ingresa tus credenciales para continuar',
               ),
@@ -388,7 +388,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_dark_theme.png'),
       );
     });
@@ -401,10 +401,10 @@ void main() {
             body: SizedBox(
               width: 300,
               height: 500,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.signIn,
-                  spacing: AppAuthSpacing(
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.signIn,
+                  spacing: DSAuthSpacing(
                     screenPadding: EdgeInsets.all(16),
                     fieldSpacing: 12,
                     sectionSpacing: 24,
@@ -413,22 +413,22 @@ void main() {
                   ),
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'email',
                     label: 'Email',
-                    type: AppAuthFieldType.email,
+                    type: DSAuthFieldType.email,
                     required: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppAuthFieldType.password,
+                    type: DSAuthFieldType.password,
                     required: true,
                     sensitive: true,
                   ),
                 ],
                 providers: const [],
-                onSubmit: (data) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
                 title: 'Iniciar Sesión',
               ),
             ),
@@ -437,7 +437,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_compact.png'),
       );
     });
@@ -452,32 +452,32 @@ void main() {
             body: SizedBox(
               width: 400,
               height: 600,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.signIn,
-                  validation: AppAuthValidation(
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.signIn,
+                  validation: DSAuthValidation(
                     showErrorMessages: true,
                   ),
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'email',
                     label: 'Email',
-                    type: AppAuthFieldType.email,
+                    type: DSAuthFieldType.email,
                     placeholder: 'ejemplo@correo.com',
                     required: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppAuthFieldType.password,
+                    type: DSAuthFieldType.password,
                     placeholder: 'Ingresa tu contraseña',
                     required: true,
                     sensitive: true,
                   ),
                 ],
                 providers: const [],
-                onSubmit: (data) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
                 formKey: formKey,
                 title: 'Bienvenido de vuelta',
                 subtitle: 'Ingresa tus credenciales para continuar',
@@ -496,7 +496,7 @@ void main() {
       await tester.pump();
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_validation_errors.png'),
       );
     });
@@ -509,37 +509,37 @@ void main() {
             body: SizedBox(
               width: 768,
               height: 600,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.signIn,
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.signIn,
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'email',
                     label: 'Email',
-                    type: AppAuthFieldType.email,
+                    type: DSAuthFieldType.email,
                     placeholder: 'ejemplo@correo.com',
                     required: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppAuthFieldType.password,
+                    type: DSAuthFieldType.password,
                     placeholder: 'Ingresa tu contraseña',
                     required: true,
                     sensitive: true,
                   ),
                 ],
                 providers: const [
-                  AppAuthProvider(
+                  DSAuthProvider(
                     id: 'google',
                     name: 'google',
                     displayName: 'Google',
                     icon: Icons.login,
                   ),
                 ],
-                onSubmit: (data) async => const AppAuthResult(success: true),
-                onProviderAuth: (provider) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
+                onProviderAuth: (provider) async => const DSAuthResult(success: true),
                 title: 'Bienvenido de vuelta',
                 subtitle: 'Ingresa tus credenciales para continuar',
               ),
@@ -549,7 +549,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_tablet.png'),
       );
     });
@@ -562,43 +562,43 @@ void main() {
             body: SizedBox(
               width: 1200,
               height: 800,
-              child: AppAuthScreens(
-                config: const AppAuthScreensConfig(
-                  variant: AppAuthVariant.signIn,
+              child: DSAuthScreens(
+                config: const DSAuthScreensConfig(
+                  variant: DSAuthVariant.signIn,
                 ),
                 fields: const [
-                  AppAuthField(
+                  DSAuthField(
                     key: 'email',
                     label: 'Email',
-                    type: AppAuthFieldType.email,
+                    type: DSAuthFieldType.email,
                     placeholder: 'ejemplo@correo.com',
                     required: true,
                   ),
-                  AppAuthField(
+                  DSAuthField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppAuthFieldType.password,
+                    type: DSAuthFieldType.password,
                     placeholder: 'Ingresa tu contraseña',
                     required: true,
                     sensitive: true,
                   ),
                 ],
                 providers: const [
-                  AppAuthProvider(
+                  DSAuthProvider(
                     id: 'google',
                     name: 'google',
                     displayName: 'Google',
                     icon: Icons.login,
                   ),
-                  AppAuthProvider(
+                  DSAuthProvider(
                     id: 'apple',
                     name: 'apple',
                     displayName: 'Apple',
                     icon: Icons.apple,
                   ),
                 ],
-                onSubmit: (data) async => const AppAuthResult(success: true),
-                onProviderAuth: (provider) async => const AppAuthResult(success: true),
+                onSubmit: (data) async => const DSAuthResult(success: true),
+                onProviderAuth: (provider) async => const DSAuthResult(success: true),
                 title: 'Bienvenido de vuelta',
                 subtitle: 'Ingresa tus credenciales para continuar',
                 logo: Container(
@@ -621,7 +621,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppAuthScreens),
+        find.byType(DSAuthScreens),
         matchesGoldenFile('app_auth_screens_desktop.png'),
       );
     });

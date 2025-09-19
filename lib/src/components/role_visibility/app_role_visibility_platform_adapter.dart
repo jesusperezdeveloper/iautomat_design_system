@@ -4,13 +4,13 @@ import 'package:flutter/services.dart';
 
 import 'app_role_visibility_config.dart';
 
-class AppRoleVisibilityPlatformAdapter {
-  static AppRoleVisibilityPlatformAdapter? _instance;
+class DSRoleVisibilityPlatformAdapter {
+  static DSRoleVisibilityPlatformAdapter? _instance;
 
-  AppRoleVisibilityPlatformAdapter._();
+  DSRoleVisibilityPlatformAdapter._();
 
-  factory AppRoleVisibilityPlatformAdapter() {
-    return _instance ??= AppRoleVisibilityPlatformAdapter._();
+  factory DSRoleVisibilityPlatformAdapter() {
+    return _instance ??= DSRoleVisibilityPlatformAdapter._();
   }
 
   bool get isIOS => defaultTargetPlatform == TargetPlatform.iOS;
@@ -24,11 +24,11 @@ class AppRoleVisibilityPlatformAdapter {
   bool get supportsHighContrast => !isWeb;
   bool get supportsReducedMotion => true;
 
-  AppRoleVisibilityColors getDefaultColors(BuildContext context) {
+  DSRoleVisibilityColors getDefaultColors(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return AppRoleVisibilityColors(
+    return DSRoleVisibilityColors(
       primaryColor: colorScheme.primary,
       backgroundColor: colorScheme.surface,
       foregroundColor: colorScheme.onSurface,
@@ -46,8 +46,8 @@ class AppRoleVisibilityPlatformAdapter {
     );
   }
 
-  AppRoleVisibilityAnimations getDefaultAnimations() {
-    return AppRoleVisibilityAnimations(
+  DSRoleVisibilityAnimations getDefaultAnimations() {
+    return DSRoleVisibilityAnimations(
       duration: Duration(milliseconds: isWeb ? 200 : 300),
       curve: isIOS ? Curves.easeInOut : Curves.fastOutSlowIn,
       enableAnimations: true,
@@ -55,8 +55,8 @@ class AppRoleVisibilityPlatformAdapter {
     );
   }
 
-  AppRoleVisibilityBehavior getDefaultBehavior() {
-    return AppRoleVisibilityBehavior(
+  DSRoleVisibilityBehavior getDefaultBehavior() {
+    return DSRoleVisibilityBehavior(
       preserveSpaceWhenHidden: false,
       showErrorMessages: true,
       enableDebugMode: kDebugMode,
@@ -110,7 +110,7 @@ class AppRoleVisibilityPlatformAdapter {
     }
   }
 
-  EdgeInsets getPlatformPadding(AppRoleVisibilityPadding padding) {
+  EdgeInsets getPlatformPadding(DSRoleVisibilityPadding padding) {
     final double horizontalMultiplier = isWeb ? 1.2 : 1.0;
     final double verticalMultiplier = isIOS ? 1.1 : 1.0;
 
@@ -120,13 +120,13 @@ class AppRoleVisibilityPlatformAdapter {
     );
   }
 
-  BorderRadius getPlatformBorderRadius(AppRoleVisibilityBorderRadius borderRadius) {
+  BorderRadius getPlatformBorderRadius(DSRoleVisibilityBorderRadius borderRadius) {
     final double radiusMultiplier = isIOS ? 1.2 : 1.0;
 
     return BorderRadius.circular(borderRadius.radius * radiusMultiplier);
   }
 
-  TextStyle getPlatformTextStyle(BuildContext context, AppRoleVisibilityTextStyle textStyle) {
+  TextStyle getPlatformTextStyle(BuildContext context, DSRoleVisibilityTextStyle textStyle) {
     final theme = Theme.of(context);
     final baseStyle = theme.textTheme.bodyMedium ?? const TextStyle();
 
@@ -143,7 +143,7 @@ class AppRoleVisibilityPlatformAdapter {
     );
   }
 
-  Duration getAnimationDuration(AppRoleVisibilityAnimations animations) {
+  Duration getAnimationDuration(DSRoleVisibilityAnimations animations) {
     if (!animations.enableAnimations) return Duration.zero;
 
     if (animations.respectReducedMotion) {
@@ -157,12 +157,12 @@ class AppRoleVisibilityPlatformAdapter {
     return animations.duration;
   }
 
-  Curve getAnimationCurve(AppRoleVisibilityAnimations animations) {
+  Curve getAnimationCurve(DSRoleVisibilityAnimations animations) {
     if (!animations.enableAnimations) return Curves.linear;
     return animations.curve;
   }
 
-  BoxShadow getPlatformShadow(AppRoleVisibilityShadow shadow) {
+  BoxShadow getPlatformShadow(DSRoleVisibilityShadow shadow) {
     if (isWeb) {
       return BoxShadow(
         color: shadow.color.withValues(alpha: shadow.opacity * 0.8),
@@ -192,7 +192,7 @@ class AppRoleVisibilityPlatformAdapter {
 
   InputDecoration getPlatformInputDecoration(
     BuildContext context,
-    AppRoleVisibilityInputDecoration decoration,
+    DSRoleVisibilityInputDecoration decoration,
   ) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -231,7 +231,7 @@ class AppRoleVisibilityPlatformAdapter {
 
   SystemUiOverlayStyle getSystemUIOverlayStyle(
     BuildContext context,
-    AppRoleVisibilityColors colors,
+    DSRoleVisibilityColors colors,
   ) {
     final brightness = Theme.of(context).brightness;
 
@@ -274,7 +274,7 @@ class AppRoleVisibilityPlatformAdapter {
   void logPlatformInfo(String message) {
     if (kDebugMode) {
       final platform = isIOS ? 'iOS' : isAndroid ? 'Android' : isWeb ? 'Web' : 'Desktop';
-      debugPrint('[AppRoleVisibility-$platform] $message');
+      debugPrint('[DSRoleVisibility-$platform] $message');
     }
   }
 }

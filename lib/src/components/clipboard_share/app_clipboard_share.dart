@@ -6,20 +6,20 @@ import 'app_clipboard_share_config.dart';
 import 'app_clipboard_share_platform_adapter.dart';
 import 'app_clipboard_share_a11y_helper.dart';
 
-class AppClipboardShare extends StatefulWidget {
-  final AppShareData data;
+class DSClipboardShare extends StatefulWidget {
+  final DSShareData data;
   final String? subject;
-  final List<AppShareFile> files;
-  final AppClipboardShareConfig? config;
+  final List<DSShareFile> files;
+  final DSClipboardShareConfig? config;
   final VoidCallback? onSharePressed;
   final VoidCallback? onCopyPressed;
-  final ValueChanged<AppClipboardShareState>? onStateChanged;
+  final ValueChanged<DSClipboardShareState>? onStateChanged;
   final Function(String)? onShareCompleted;
   final Function(String)? onShareError;
   final Function(String)? onCopyCompleted;
   final bool interactive;
 
-  const AppClipboardShare({
+  const DSClipboardShare({
     super.key,
     required this.data,
     this.subject,
@@ -35,15 +35,15 @@ class AppClipboardShare extends StatefulWidget {
   });
 
   @override
-  State<AppClipboardShare> createState() => _AppClipboardShareState();
+  State<DSClipboardShare> createState() => _DSClipboardShareState();
 }
 
-class _AppClipboardShareState extends State<AppClipboardShare>
+class _DSClipboardShareState extends State<DSClipboardShare>
     with SingleTickerProviderStateMixin {
-  AppClipboardShareConfig? _effectiveConfig;
-  late AppClipboardSharePlatformAdapter _platformAdapter;
-  late AppClipboardShareA11yHelper _a11yHelper;
-  AppClipboardShareState _currentState = AppClipboardShareState.defaultState;
+  DSClipboardShareConfig? _effectiveConfig;
+  late DSClipboardSharePlatformAdapter _platformAdapter;
+  late DSClipboardShareA11yHelper _a11yHelper;
+  DSClipboardShareState _currentState = DSClipboardShareState.defaultState;
   late AnimationController _animationController;
   late Animation<double> _animation;
   bool _isProcessing = false;
@@ -52,8 +52,8 @@ class _AppClipboardShareState extends State<AppClipboardShare>
   @override
   void initState() {
     super.initState();
-    _platformAdapter = AppClipboardSharePlatformAdapter();
-    _a11yHelper = AppClipboardShareA11yHelper();
+    _platformAdapter = DSClipboardSharePlatformAdapter();
+    _a11yHelper = DSClipboardShareA11yHelper();
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
@@ -71,7 +71,7 @@ class _AppClipboardShareState extends State<AppClipboardShare>
   }
 
   @override
-  void didUpdateWidget(AppClipboardShare oldWidget) {
+  void didUpdateWidget(DSClipboardShare oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.config != oldWidget.config) {
       _initializeConfig();
@@ -86,19 +86,19 @@ class _AppClipboardShareState extends State<AppClipboardShare>
 
   void _initializeConfig() {
     _effectiveConfig = _platformAdapter.adaptConfigForPlatform(
-      widget.config ?? const AppClipboardShareConfig(),
+      widget.config ?? const DSClipboardShareConfig(),
       context,
     );
   }
 
-  void _handleStateChange(AppClipboardShareState newState) {
+  void _handleStateChange(DSClipboardShareState newState) {
     if (_currentState != newState) {
       setState(() {
         _currentState = newState;
       });
       widget.onStateChanged?.call(newState);
 
-      if (newState == AppClipboardShareState.pressed) {
+      if (newState == DSClipboardShareState.pressed) {
         _animationController.forward();
       } else {
         _animationController.reverse();
@@ -113,12 +113,12 @@ class _AppClipboardShareState extends State<AppClipboardShare>
       _isProcessing = true;
       _lastError = null;
     });
-    _handleStateChange(AppClipboardShareState.loading);
+    _handleStateChange(DSClipboardShareState.loading);
 
     try {
       await _platformAdapter.triggerHapticFeedback();
 
-      if (_effectiveConfig!.variant == AppClipboardShareVariant.shareSheet) {
+      if (_effectiveConfig!.variant == DSClipboardShareVariant.shareSheet) {
         await _showNativeShareSheet();
       } else {
         await _showCustomShareDialog();
@@ -142,7 +142,7 @@ class _AppClipboardShareState extends State<AppClipboardShare>
       setState(() {
         _isProcessing = false;
       });
-      _handleStateChange(AppClipboardShareState.defaultState);
+      _handleStateChange(DSClipboardShareState.defaultState);
     }
   }
 
@@ -207,7 +207,7 @@ class _AppClipboardShareState extends State<AppClipboardShare>
       _isProcessing = true;
       _lastError = null;
     });
-    _handleStateChange(AppClipboardShareState.loading);
+    _handleStateChange(DSClipboardShareState.loading);
 
     try {
       await _platformAdapter.triggerHapticFeedback();
@@ -233,7 +233,7 @@ class _AppClipboardShareState extends State<AppClipboardShare>
       setState(() {
         _isProcessing = false;
       });
-      _handleStateChange(AppClipboardShareState.defaultState);
+      _handleStateChange(DSClipboardShareState.defaultState);
     }
   }
 
@@ -267,11 +267,11 @@ class _AppClipboardShareState extends State<AppClipboardShare>
       return const SizedBox.shrink();
     }
 
-    if (_currentState == AppClipboardShareState.skeleton) {
+    if (_currentState == DSClipboardShareState.skeleton) {
       return _buildSkeletonLoader();
     }
 
-    if (_currentState == AppClipboardShareState.loading) {
+    if (_currentState == DSClipboardShareState.loading) {
       return _buildLoadingState();
     }
 
@@ -313,17 +313,17 @@ class _AppClipboardShareState extends State<AppClipboardShare>
                     ? (hovering) {
                         _handleStateChange(
                           hovering
-                              ? AppClipboardShareState.hover
-                              : AppClipboardShareState.defaultState,
+                              ? DSClipboardShareState.hover
+                              : DSClipboardShareState.defaultState,
                         );
                       }
                     : null,
                 onTapDown: (_) =>
-                    _handleStateChange(AppClipboardShareState.pressed),
+                    _handleStateChange(DSClipboardShareState.pressed),
                 onTapUp: (_) =>
-                    _handleStateChange(AppClipboardShareState.defaultState),
+                    _handleStateChange(DSClipboardShareState.defaultState),
                 onTapCancel: () =>
-                    _handleStateChange(AppClipboardShareState.defaultState),
+                    _handleStateChange(DSClipboardShareState.defaultState),
                 borderRadius: BorderRadius.circular(spacing.buttonBorderRadius),
                 child: Container(
                   padding: spacing.buttonPadding,
@@ -346,7 +346,7 @@ class _AppClipboardShareState extends State<AppClipboardShare>
                         color: _getIconColor(colors),
                       ),
                       if (config.variant !=
-                          AppClipboardShareVariant.quickActions) ...[
+                          DSClipboardShareVariant.quickActions) ...[
                         SizedBox(width: spacing.iconSpacing),
                         Text(
                           _platformAdapter.getShareLabel(),
@@ -630,38 +630,38 @@ class _AppClipboardShareState extends State<AppClipboardShare>
     );
   }
 
-  Color? _getButtonColor(AppClipboardShareColors colors) {
+  Color? _getButtonColor(DSClipboardShareColors colors) {
     switch (_currentState) {
-      case AppClipboardShareState.hover:
+      case DSClipboardShareState.hover:
         return colors.hoverColor;
-      case AppClipboardShareState.pressed:
+      case DSClipboardShareState.pressed:
         return colors.pressedColor;
-      case AppClipboardShareState.focus:
+      case DSClipboardShareState.focus:
         return colors.focusColor;
-      case AppClipboardShareState.selected:
+      case DSClipboardShareState.selected:
         return colors.selectedColor;
-      case AppClipboardShareState.disabled:
+      case DSClipboardShareState.disabled:
         return colors.disabledColor?.withValues(alpha: 0.5);
       default:
         return colors.primaryButtonColor;
     }
   }
 
-  Color? _getIconColor(AppClipboardShareColors colors) {
-    if (_currentState == AppClipboardShareState.disabled) {
+  Color? _getIconColor(DSClipboardShareColors colors) {
+    if (_currentState == DSClipboardShareState.disabled) {
       return colors.disabledColor;
     }
     return colors.iconColor;
   }
 
-  Color? _getTextColor(AppClipboardShareColors colors) {
-    if (_currentState == AppClipboardShareState.disabled) {
+  Color? _getTextColor(DSClipboardShareColors colors) {
+    if (_currentState == DSClipboardShareState.disabled) {
       return colors.disabledColor;
     }
     return colors.primaryTextColor;
   }
 
-  IconData _getFileIcon(AppShareFile file) {
+  IconData _getFileIcon(DSShareFile file) {
     if (file.isImage) return Icons.image;
     if (file.isVideo) return Icons.video_file;
     if (file.isDocument) return Icons.description;

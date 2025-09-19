@@ -9,7 +9,7 @@
 ///
 /// Ejemplo de uso:
 /// ```dart
-/// AppInput(
+/// DSInput(
 ///   validator: Validators.compose([
 ///     Validators.required('Este campo es obligatorio'),
 ///     Validators.email('Ingresa un email válido'),

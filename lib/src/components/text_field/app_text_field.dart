@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'text_field_config.dart';
 
-class AppTextField extends StatefulWidget {
+class DSTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String? hint;
   final String? label;
@@ -16,14 +16,14 @@ class AppTextField extends StatefulWidget {
   final IconData? suffixIcon;
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatters;
-  final AppTextFieldVariant variant;
-  final AppTextFieldConfig? config;
-  final AppTextFieldColors? colors;
+  final DSTextFieldVariant variant;
+  final DSTextFieldConfig? config;
+  final DSTextFieldColors? colors;
   final bool enabled;
   final bool autoFocus;
   final FocusNode? focusNode;
   final String? semanticLabel;
-  final AppTextFieldState? overrideState;
+  final DSTextFieldState? overrideState;
   final TextDirection? textDirection;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
@@ -46,7 +46,7 @@ class AppTextField extends StatefulWidget {
   final TextAlignVertical? textAlignVertical;
   final TextCapitalization textCapitalization;
 
-  const AppTextField({
+  const DSTextField({
     super.key,
     this.controller,
     this.hint,
@@ -57,7 +57,7 @@ class AppTextField extends StatefulWidget {
     this.suffixIcon,
     this.validator,
     this.inputFormatters,
-    this.variant = AppTextFieldVariant.single,
+    this.variant = DSTextFieldVariant.single,
     this.config,
     this.colors,
     this.enabled = true,
@@ -89,10 +89,10 @@ class AppTextField extends StatefulWidget {
   });
 
   @override
-  State<AppTextField> createState() => _AppTextFieldState();
+  State<DSTextField> createState() => _DSTextFieldState();
 }
 
-class _AppTextFieldState extends State<AppTextField>
+class _DSTextFieldState extends State<DSTextField>
     with TickerProviderStateMixin {
   late TextEditingController _controller;
   late FocusNode _focusNode;
@@ -106,10 +106,10 @@ class _AppTextFieldState extends State<AppTextField>
   bool _obscureText = false;
   String? _errorText;
 
-  AppTextFieldConfig get _config => widget.config ?? const AppTextFieldConfig();
+  DSTextFieldConfig get _config => widget.config ?? const DSTextFieldConfig();
 
-  AppTextFieldColors get _colors =>
-      widget.colors ?? AppTextFieldColors.fromTheme(Theme.of(context));
+  DSTextFieldColors get _colors =>
+      widget.colors ?? DSTextFieldColors.fromTheme(Theme.of(context));
 
   bool get _isEnabled => widget.enabled && !widget.readOnly;
 
@@ -117,68 +117,68 @@ class _AppTextFieldState extends State<AppTextField>
 
   String? get _effectiveErrorText => widget.errorText ?? _errorText;
 
-  AppTextFieldState get _currentState {
+  DSTextFieldState get _currentState {
     if (widget.overrideState != null) {
       return widget.overrideState!;
     }
 
-    if (widget.overrideState == AppTextFieldState.skeleton) {
-      return AppTextFieldState.skeleton;
+    if (widget.overrideState == DSTextFieldState.skeleton) {
+      return DSTextFieldState.skeleton;
     }
 
-    if (widget.overrideState == AppTextFieldState.loading) {
-      return AppTextFieldState.loading;
+    if (widget.overrideState == DSTextFieldState.loading) {
+      return DSTextFieldState.loading;
     }
 
     if (!_isEnabled) {
-      return AppTextFieldState.disabled;
+      return DSTextFieldState.disabled;
     }
 
     if (_hasError) {
-      return AppTextFieldState.error;
+      return DSTextFieldState.error;
     }
 
     if (_isPressed) {
-      return AppTextFieldState.pressed;
+      return DSTextFieldState.pressed;
     }
 
     if (_isFocused) {
-      return AppTextFieldState.focus;
+      return DSTextFieldState.focus;
     }
 
     if (_isHovered) {
-      return AppTextFieldState.hover;
+      return DSTextFieldState.hover;
     }
 
     if (_controller.text.isNotEmpty) {
-      return AppTextFieldState.selected;
+      return DSTextFieldState.selected;
     }
 
-    return AppTextFieldState.defaultState;
+    return DSTextFieldState.defaultState;
   }
 
   int get _effectiveMaxLines {
     switch (widget.variant) {
-      case AppTextFieldVariant.single:
-      case AppTextFieldVariant.password:
+      case DSTextFieldVariant.single:
+      case DSTextFieldVariant.password:
         return 1;
-      case AppTextFieldVariant.multiline:
+      case DSTextFieldVariant.multiline:
         return widget.maxLines ?? _config.maxLinesMultiline;
     }
   }
 
   int? get _effectiveMinLines {
     switch (widget.variant) {
-      case AppTextFieldVariant.single:
-      case AppTextFieldVariant.password:
+      case DSTextFieldVariant.single:
+      case DSTextFieldVariant.password:
         return null;
-      case AppTextFieldVariant.multiline:
+      case DSTextFieldVariant.multiline:
         return widget.minLines;
     }
   }
 
   bool get _effectiveObscureText {
-    if (widget.variant == AppTextFieldVariant.password) {
+    if (widget.variant == DSTextFieldVariant.password) {
       return widget.obscureText || _obscureText;
     }
     return widget.obscureText;
@@ -190,11 +190,11 @@ class _AppTextFieldState extends State<AppTextField>
     }
 
     switch (widget.variant) {
-      case AppTextFieldVariant.single:
+      case DSTextFieldVariant.single:
         return TextInputType.text;
-      case AppTextFieldVariant.multiline:
+      case DSTextFieldVariant.multiline:
         return TextInputType.multiline;
-      case AppTextFieldVariant.password:
+      case DSTextFieldVariant.password:
         return TextInputType.visiblePassword;
     }
   }
@@ -207,7 +207,7 @@ class _AppTextFieldState extends State<AppTextField>
     _focusNode.addListener(_handleFocusChange);
     _controller.addListener(_handleTextChange);
 
-    _obscureText = widget.variant == AppTextFieldVariant.password;
+    _obscureText = widget.variant == DSTextFieldVariant.password;
 
     _animationController = AnimationController(
       duration: _config.animationDuration,
@@ -228,13 +228,13 @@ class _AppTextFieldState extends State<AppTextField>
       curve: Curves.easeInOut,
     ));
 
-    if (_currentState == AppTextFieldState.skeleton) {
+    if (_currentState == DSTextFieldState.skeleton) {
       _skeletonAnimationController.repeat(reverse: true);
     }
   }
 
   @override
-  void didUpdateWidget(AppTextField oldWidget) {
+  void didUpdateWidget(DSTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.controller != widget.controller) {
@@ -245,7 +245,7 @@ class _AppTextFieldState extends State<AppTextField>
     }
 
     if (oldWidget.overrideState != widget.overrideState) {
-      if (_currentState == AppTextFieldState.skeleton) {
+      if (_currentState == DSTextFieldState.skeleton) {
         _skeletonAnimationController.repeat(reverse: true);
       } else {
         _skeletonAnimationController.stop();
@@ -304,11 +304,11 @@ class _AppTextFieldState extends State<AppTextField>
 
   @override
   Widget build(BuildContext context) {
-    if (_currentState == AppTextFieldState.skeleton) {
+    if (_currentState == DSTextFieldState.skeleton) {
       return _buildSkeleton();
     }
 
-    if (_currentState == AppTextFieldState.loading) {
+    if (_currentState == DSTextFieldState.loading) {
       return _buildLoadingField();
     }
 
@@ -591,7 +591,7 @@ class _AppTextFieldState extends State<AppTextField>
   }
 
   Widget? _buildSuffixIcon() {
-    if (widget.variant == AppTextFieldVariant.password) {
+    if (widget.variant == DSTextFieldVariant.password) {
       return IconButton(
         icon: Icon(
           _obscureText ? Icons.visibility : Icons.visibility_off,

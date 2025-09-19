@@ -5,7 +5,7 @@ import 'package:iautomat_design_system/src/components/media_viewer/app_media_vie
 import 'package:iautomat_design_system/src/theme/colors.dart';
 import 'package:iautomat_design_system/src/theme/spacing.dart';
 
-/// Widget de controles avanzados para el AppMediaViewer
+/// Widget de controles avanzados para el DSMediaViewer
 ///
 /// Proporciona una interfaz completa de controles para:
 /// - Reproducción y pausa
@@ -15,9 +15,9 @@ import 'package:iautomat_design_system/src/theme/spacing.dart';
 /// - Pantalla completa
 /// - Información del archivo
 /// - Navegación por teclado completa
-class AppMediaViewerControlsWidget extends StatefulWidget {
+class DSMediaViewerControlsWidget extends StatefulWidget {
   /// Elementos de media
-  final List<AppMediaItem> items;
+  final List<DSMediaItem> items;
 
   /// Índice actual
   final int currentIndex;
@@ -41,10 +41,10 @@ class AppMediaViewerControlsWidget extends StatefulWidget {
   final double volume;
 
   /// Configuración de controles
-  final AppMediaViewerControls? config;
+  final DSMediaViewerControls? config;
 
   /// Configuración de accesibilidad
-  final AppMediaViewerA11yConfig? a11yConfig;
+  final DSMediaViewerA11yConfig? a11yConfig;
 
   /// Si los controles están visibles
   final bool isVisible;
@@ -60,7 +60,7 @@ class AppMediaViewerControlsWidget extends StatefulWidget {
   final VoidCallback? onClose;
   final VoidCallback? onInfo;
 
-  const AppMediaViewerControlsWidget({
+  const DSMediaViewerControlsWidget({
     super.key,
     required this.items,
     required this.currentIndex,
@@ -85,10 +85,10 @@ class AppMediaViewerControlsWidget extends StatefulWidget {
   });
 
   @override
-  State<AppMediaViewerControlsWidget> createState() => _AppMediaViewerControlsState();
+  State<DSMediaViewerControlsWidget> createState() => _DSMediaViewerControlsState();
 }
 
-class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
+class _DSMediaViewerControlsState extends State<DSMediaViewerControlsWidget>
     with TickerProviderStateMixin {
   late final AnimationController _visibilityController;
   late final Animation<double> _visibilityAnimation;
@@ -120,7 +120,7 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
   }
 
   @override
-  void didUpdateWidget(AppMediaViewerControlsWidget oldWidget) {
+  void didUpdateWidget(DSMediaViewerControlsWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.isVisible != oldWidget.isVisible) {
@@ -132,7 +132,7 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
     }
   }
 
-  AppMediaItem get _currentItem => widget.items[widget.currentIndex];
+  DSMediaItem get _currentItem => widget.items[widget.currentIndex];
 
   void _handleSeekStart(double value) {
     setState(() {
@@ -171,7 +171,7 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
         // Previous button
         if (widget.items.length > 1) ...[
           _buildIconButton(
-            icon: AppMediaViewerA11yHelper.buildRTLAwareIcon(
+            icon: DSMediaViewerA11yHelper.buildRTLAwareIcon(
               Icons.skip_previous,
               Directionality.of(context),
               size: 32,
@@ -179,19 +179,19 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
             onPressed: widget.currentIndex > 0 ? widget.onPrevious : null,
             tooltip: widget.a11yConfig?.previousButtonLabel ?? 'Anterior',
           ),
-          const SizedBox(width: AppSpacing.lg),
+          const SizedBox(width: DSSpacing.lg),
         ],
 
         // Play/Pause button
         if (_currentItem.isPlayable) ...[
           _buildPlayPauseButton(),
-          const SizedBox(width: AppSpacing.lg),
+          const SizedBox(width: DSSpacing.lg),
         ],
 
         // Next button
         if (widget.items.length > 1) ...[
           _buildIconButton(
-            icon: AppMediaViewerA11yHelper.buildRTLAwareIcon(
+            icon: DSMediaViewerA11yHelper.buildRTLAwareIcon(
               Icons.skip_next,
               Directionality.of(context),
               size: 32,
@@ -211,11 +211,11 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
       width: 64,
       height: 64,
       decoration: BoxDecoration(
-        color: AppColors.primary,
+        color: DSColors.primary,
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.3),
+            color: DSColors.primary.withValues(alpha: 0.3),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -267,7 +267,7 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
             ],
           ),
 
-        const SizedBox(height: AppSpacing.xs),
+        const SizedBox(height: DSSpacing.xs),
 
         // Seek slider
         SliderTheme(
@@ -275,10 +275,10 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
             trackHeight: 4,
             thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 8),
             overlayShape: const RoundSliderOverlayShape(overlayRadius: 16),
-            activeTrackColor: AppColors.primary,
+            activeTrackColor: DSColors.primary,
             inactiveTrackColor: Colors.white.withValues(alpha: 0.3),
-            thumbColor: AppColors.primary,
-            overlayColor: AppColors.primary.withValues(alpha: 0.2),
+            thumbColor: DSColors.primary,
+            overlayColor: DSColors.primary.withValues(alpha: 0.2),
           ),
           child: Slider(
             value: progress,
@@ -301,7 +301,7 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
         // Volume controls
         if (_currentItem.hasAudio) ...[
           _buildVolumeControls(),
-          const SizedBox(width: AppSpacing.md),
+          const SizedBox(width: DSSpacing.md),
         ],
 
         const Spacer(),
@@ -309,7 +309,7 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
         // Page indicators
         if (widget.items.length > 1) ...[
           _buildPageIndicators(),
-          const SizedBox(width: AppSpacing.md),
+          const SizedBox(width: DSSpacing.md),
         ],
 
         // Info button
@@ -319,7 +319,7 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
             onPressed: widget.onInfo,
             tooltip: 'Información del archivo',
           ),
-          const SizedBox(width: AppSpacing.sm),
+          const SizedBox(width: DSSpacing.sm),
         ],
 
         // Fullscreen button
@@ -334,7 +334,7 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
                 ? 'Salir de pantalla completa'
                 : (widget.a11yConfig?.fullscreenButtonLabel ?? 'Pantalla completa'),
           ),
-          const SizedBox(width: AppSpacing.sm),
+          const SizedBox(width: DSSpacing.sm),
         ],
 
         // Close button
@@ -370,7 +370,7 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
         ),
 
         if (_showVolumeSlider) ...[
-          const SizedBox(width: AppSpacing.sm),
+          const SizedBox(width: DSSpacing.sm),
           SizedBox(
             width: 80,
             child: SliderTheme(
@@ -471,7 +471,7 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
         );
       },
       child: Container(
-        padding: const EdgeInsets.all(AppSpacing.md),
+        padding: const EdgeInsets.all(DSSpacing.md),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -489,13 +489,13 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
               // Seek bar
               if ((widget.config?.showSeekBar ?? true) && _currentItem.isPlayable) ...[
                 _buildSeekBar(),
-                const SizedBox(height: AppSpacing.md),
+                const SizedBox(height: DSSpacing.md),
               ],
 
               // Main controls
               _buildMainControls(),
 
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: DSSpacing.md),
 
               // Secondary controls
               _buildSecondaryControls(),
@@ -514,13 +514,13 @@ class _AppMediaViewerControlsState extends State<AppMediaViewerControlsWidget>
 }
 
 /// Widget para mostrar información detallada del archivo
-class AppMediaViewerFileInfo extends StatelessWidget {
-  final AppMediaItem item;
+class DSMediaViewerFileInfo extends StatelessWidget {
+  final DSMediaItem item;
   final int index;
   final int total;
   final VoidCallback? onClose;
 
-  const AppMediaViewerFileInfo({
+  const DSMediaViewerFileInfo({
     super.key,
     required this.item,
     required this.index,
@@ -531,8 +531,8 @@ class AppMediaViewerFileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(AppSpacing.md),
-      padding: const EdgeInsets.all(AppSpacing.md),
+      margin: const EdgeInsets.all(DSSpacing.md),
+      padding: const EdgeInsets.all(DSSpacing.md),
       decoration: BoxDecoration(
         color: Colors.black.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(12),
@@ -553,7 +553,7 @@ class AppMediaViewerFileInfo extends StatelessWidget {
                 color: Colors.white,
                 size: 24,
               ),
-              const SizedBox(width: AppSpacing.sm),
+              const SizedBox(width: DSSpacing.sm),
               Expanded(
                 child: Text(
                   '${item.type.displayName} ${index + 1} de $total',
@@ -571,7 +571,7 @@ class AppMediaViewerFileInfo extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: AppSpacing.md),
+          const SizedBox(height: DSSpacing.md),
 
           // File info
           _buildInfoRow('Archivo', _getFileName()),
@@ -592,7 +592,7 @@ class AppMediaViewerFileInfo extends StatelessWidget {
 
           // Caption if available
           if (item.caption != null && item.caption!.isNotEmpty) ...[
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: DSSpacing.md),
             const Text(
               'Descripción:',
               style: TextStyle(
@@ -601,7 +601,7 @@ class AppMediaViewerFileInfo extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            const SizedBox(height: AppSpacing.xs),
+            const SizedBox(height: DSSpacing.xs),
             Text(
               item.caption!,
               style: TextStyle(
@@ -617,7 +617,7 @@ class AppMediaViewerFileInfo extends StatelessWidget {
 
   Widget _buildInfoRow(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+      padding: const EdgeInsets.only(bottom: DSSpacing.xs),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

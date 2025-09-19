@@ -9,7 +9,7 @@ import 'package:iautomat_design_system/src/theme/spacing.dart';
 
 /// Widget de visualizador de media profesional para el Design System de IAutomat
 ///
-/// AppMediaViewer es un widget altamente configurable que soporta:
+/// DSMediaViewer es un widget altamente configurable que soporta:
 /// - Visualización de imágenes, videos y audio
 /// - Navegación entre múltiples elementos
 /// - Controles de reproducción adaptativos
@@ -23,15 +23,15 @@ import 'package:iautomat_design_system/src/theme/spacing.dart';
 ///
 /// ### Ejemplo básico con imágenes:
 /// ```dart
-/// AppMediaViewer(
+/// DSMediaViewer(
 ///   items: [
-///     AppMediaItem(
-///       type: AppMediaType.image,
+///     DSMediaItem(
+///       type: DSMediaType.image,
 ///       src: 'https://example.com/image1.jpg',
 ///       caption: 'Primera imagen',
 ///     ),
-///     AppMediaItem(
-///       type: AppMediaType.image,
+///     DSMediaItem(
+///       type: DSMediaType.image,
 ///       src: 'https://example.com/image2.jpg',
 ///       caption: 'Segunda imagen',
 ///     ),
@@ -42,26 +42,26 @@ import 'package:iautomat_design_system/src/theme/spacing.dart';
 ///
 /// ### Ejemplo con video:
 /// ```dart
-/// AppMediaViewer(
+/// DSMediaViewer(
 ///   items: [
-///     AppMediaItem(
-///       type: AppMediaType.video,
+///     DSMediaItem(
+///       type: DSMediaType.video,
 ///       src: 'https://example.com/video.mp4',
 ///       thumbnail: 'https://example.com/thumbnail.jpg',
 ///       caption: 'Video promocional',
 ///       duration: 120.0,
 ///     ),
 ///   ],
-///   config: AppMediaViewerConfig(
-///     variant: AppMediaViewerVariant.video,
+///   config: DSMediaViewerConfig(
+///     variant: DSMediaViewerVariant.video,
 ///     autoPlay: true,
 ///     showControls: true,
 ///   ),
 /// )
 /// ```
-class AppMediaViewer extends StatefulWidget {
+class DSMediaViewer extends StatefulWidget {
   /// Lista de elementos de media para mostrar
-  final List<AppMediaItem> items;
+  final List<DSMediaItem> items;
 
   /// Índice inicial del elemento a mostrar
   final int initialIndex;
@@ -70,13 +70,13 @@ class AppMediaViewer extends StatefulWidget {
   final bool showCaptions;
 
   /// Configuración completa del componente
-  final AppMediaViewerConfig? config;
+  final DSMediaViewerConfig? config;
 
   /// Callback cuando cambia la página/elemento actual
   final ValueChanged<int>? onPageChanged;
 
   /// Callback cuando se hace tap en un elemento
-  final ValueChanged<AppMediaItem>? onItemTap;
+  final ValueChanged<DSMediaItem>? onItemTap;
 
   /// Callback cuando se alterna pantalla completa
   final VoidCallback? onFullscreenToggle;
@@ -93,7 +93,7 @@ class AppMediaViewer extends StatefulWidget {
   /// Callback cuando se cierra el viewer
   final VoidCallback? onClose;
 
-  const AppMediaViewer({
+  const DSMediaViewer({
     super.key,
     required this.items,
     this.initialIndex = 0,
@@ -110,18 +110,18 @@ class AppMediaViewer extends StatefulWidget {
        assert(initialIndex >= 0, 'Initial index must be non-negative');
 
   @override
-  State<AppMediaViewer> createState() => _AppMediaViewerState();
+  State<DSMediaViewer> createState() => _DSMediaViewerState();
 }
 
-class _AppMediaViewerState extends State<AppMediaViewer>
+class _DSMediaViewerState extends State<DSMediaViewer>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  late final AppMediaViewerConfig _config;
+  late final DSMediaViewerConfig _config;
   late final PageController _pageController;
   late final FocusNode _focusNode;
   late final AnimationController _controlsAnimationController;
   late final AnimationController _loadingController;
 
-  AppMediaViewerState _currentState = AppMediaViewerState.defaultState;
+  DSMediaViewerState _currentState = DSMediaViewerState.defaultState;
   int _currentIndex = 0;
   bool _isHovered = false;
   bool _isPressed = false;
@@ -146,7 +146,7 @@ class _AppMediaViewerState extends State<AppMediaViewer>
   }
 
   void _initializeConfig() {
-    _config = widget.config ?? const AppMediaViewerConfig();
+    _config = widget.config ?? const DSMediaViewerConfig();
     _currentIndex = widget.initialIndex.clamp(0, widget.items.length - 1);
   }
 
@@ -197,7 +197,7 @@ class _AppMediaViewerState extends State<AppMediaViewer>
     _updateCurrentState();
   }
 
-  AppMediaItem get _currentItem => widget.items[_currentIndex];
+  DSMediaItem get _currentItem => widget.items[_currentIndex];
 
   void _handleFocusChange() {
     final isFocused = _focusNode.hasFocus;
@@ -216,13 +216,13 @@ class _AppMediaViewerState extends State<AppMediaViewer>
     }
 
     if (_isPressed) {
-      _currentState = AppMediaViewerState.pressed;
+      _currentState = DSMediaViewerState.pressed;
     } else if (_isFocused) {
-      _currentState = AppMediaViewerState.focus;
+      _currentState = DSMediaViewerState.focus;
     } else if (_isHovered) {
-      _currentState = AppMediaViewerState.hover;
+      _currentState = DSMediaViewerState.hover;
     } else {
-      _currentState = AppMediaViewerState.defaultState;
+      _currentState = DSMediaViewerState.defaultState;
     }
   }
 
@@ -460,18 +460,18 @@ class _AppMediaViewerState extends State<AppMediaViewer>
     );
   }
 
-  Widget _buildMediaItem(AppMediaItem item, bool isActive) {
+  Widget _buildMediaItem(DSMediaItem item, bool isActive) {
     switch (item.type) {
-      case AppMediaType.image:
+      case DSMediaType.image:
         return _buildImageItem(item, isActive);
-      case AppMediaType.video:
+      case DSMediaType.video:
         return _buildVideoItem(item, isActive);
-      case AppMediaType.audio:
+      case DSMediaType.audio:
         return _buildAudioItem(item, isActive);
     }
   }
 
-  Widget _buildImageItem(AppMediaItem item, bool isActive) {
+  Widget _buildImageItem(DSMediaItem item, bool isActive) {
     return InteractiveViewer(
       panEnabled: isActive && _zoomLevel > 1.0,
       scaleEnabled: isActive && (_config.behavior?.enablePinchZoom ?? true),
@@ -503,10 +503,10 @@ class _AppMediaViewerState extends State<AppMediaViewer>
     );
   }
 
-  Widget _buildVideoItem(AppMediaItem item, bool isActive) {
+  Widget _buildVideoItem(DSMediaItem item, bool isActive) {
     // En una implementación real, aquí usarías un package como video_player
     return Container(
-      color: AppColors.gray900,
+      color: DSColors.gray900,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -521,7 +521,7 @@ class _AppMediaViewerState extends State<AppMediaViewer>
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: 0.8),
+              color: DSColors.primary.withValues(alpha: 0.8),
               shape: BoxShape.circle,
             ),
             child: Icon(
@@ -554,9 +554,9 @@ class _AppMediaViewerState extends State<AppMediaViewer>
     );
   }
 
-  Widget _buildAudioItem(AppMediaItem item, bool isActive) {
+  Widget _buildAudioItem(DSMediaItem item, bool isActive) {
     return Container(
-      color: AppColors.gray100,
+      color: DSColors.gray100,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -564,20 +564,20 @@ class _AppMediaViewerState extends State<AppMediaViewer>
             width: 120,
             height: 120,
             decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: 0.1),
+              color: DSColors.primary.withValues(alpha: 0.1),
               shape: BoxShape.circle,
               border: Border.all(
-                color: AppColors.primary,
+                color: DSColors.primary,
                 width: 2,
               ),
             ),
             child: Icon(
               _isPlaying ? Icons.pause : Icons.play_arrow,
-              color: AppColors.primary,
+              color: DSColors.primary,
               size: 60,
             ),
           ),
-          const SizedBox(height: AppSpacing.md),
+          const SizedBox(height: DSSpacing.md),
           if (item.caption != null)
             Text(
               item.caption!,
@@ -588,12 +588,12 @@ class _AppMediaViewerState extends State<AppMediaViewer>
               textAlign: TextAlign.center,
             ),
           if (item.duration != null) ...[
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: DSSpacing.sm),
             Text(
               item.formattedDuration,
               style: TextStyle(
                 fontSize: 14,
-                color: AppColors.gray600,
+                color: DSColors.gray600,
               ),
             ),
           ],
@@ -619,21 +619,21 @@ class _AppMediaViewerState extends State<AppMediaViewer>
 
   Widget _buildErrorWidget() {
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.md),
+      padding: const EdgeInsets.all(DSSpacing.md),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             Icons.error_outline,
             size: 48,
-            color: AppColors.error.withValues(alpha: 0.7),
+            color: DSColors.error.withValues(alpha: 0.7),
           ),
-          const SizedBox(height: AppSpacing.sm),
+          const SizedBox(height: DSSpacing.sm),
           Text(
             'Error al cargar el contenido',
             style: TextStyle(
               fontSize: 14,
-              color: AppColors.textSecondary,
+              color: DSColors.textSecondary,
             ),
             textAlign: TextAlign.center,
           ),
@@ -678,25 +678,25 @@ class _AppMediaViewerState extends State<AppMediaViewer>
           children: [
             if (_currentItem.isPlayable) ...[
               _buildPlayPauseButton(),
-              const SizedBox(width: AppSpacing.sm),
+              const SizedBox(width: DSSpacing.sm),
             ],
             if (widget.items.length > 1) ...[
               _buildPreviousButton(),
-              const SizedBox(width: AppSpacing.xs),
+              const SizedBox(width: DSSpacing.xs),
               _buildNextButton(),
-              const SizedBox(width: AppSpacing.sm),
+              const SizedBox(width: DSSpacing.sm),
             ],
             Expanded(
               child: _buildProgressIndicator(),
             ),
-            const SizedBox(width: AppSpacing.sm),
+            const SizedBox(width: DSSpacing.sm),
             if (_currentItem.hasAudio) ...[
               _buildVolumeButton(),
-              const SizedBox(width: AppSpacing.sm),
+              const SizedBox(width: DSSpacing.sm),
             ],
             _buildFullscreenButton(),
             if (widget.onClose != null) ...[
-              const SizedBox(width: AppSpacing.sm),
+              const SizedBox(width: DSSpacing.sm),
               _buildCloseButton(),
             ],
           ],
@@ -810,12 +810,12 @@ class _AppMediaViewerState extends State<AppMediaViewer>
     return Positioned(
       left: 0,
       right: 0,
-      bottom: (_config.spacing?.controlsBarHeight ?? 56.0) + AppSpacing.sm,
+      bottom: (_config.spacing?.controlsBarHeight ?? 56.0) + DSSpacing.sm,
       child: Container(
         margin: _config.spacing?.captionPadding ?? const EdgeInsets.all(16.0),
         padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.md,
-          vertical: AppSpacing.sm,
+          horizontal: DSSpacing.md,
+          vertical: DSSpacing.sm,
         ),
         decoration: BoxDecoration(
           color: _resolveColor('captionBackground'),
@@ -839,7 +839,7 @@ class _AppMediaViewerState extends State<AppMediaViewer>
 
     switch (colorType) {
       case 'background':
-        return colors?.backgroundColor ?? AppColors.background;
+        return colors?.backgroundColor ?? DSColors.background;
       case 'controlsBackground':
         return colors?.controlsBackgroundColor ??
                Colors.black.withValues(alpha: 0.7);
@@ -860,12 +860,12 @@ class _AppMediaViewerState extends State<AppMediaViewer>
       case 'loading':
         return colors?.loadingColor ?? theme.primaryColor;
       default:
-        return AppColors.surface;
+        return DSColors.surface;
     }
   }
 
   Widget _buildContainer(Widget child) {
-    final spacing = _config.spacing ?? const AppMediaViewerSpacing();
+    final spacing = _config.spacing ?? const DSMediaViewerSpacing();
     final borderRadius = spacing.borderRadius;
     final borderWidth = spacing.borderWidth;
 

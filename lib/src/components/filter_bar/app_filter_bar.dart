@@ -1,4 +1,4 @@
-/// AppFilterBar widget for filtering data with chips and popovers
+/// DSFilterBar widget for filtering data with chips and popovers
 ///
 /// A comprehensive filter bar component that supports:
 /// - Chip-based and popover-based filter variants
@@ -10,10 +10,10 @@
 ///
 /// Example usage:
 /// ```dart
-/// AppFilterBar.chips(
+/// DSFilterBar.chips(
 ///   filters: [
-///     AppFilter(id: 'status', label: 'Status', options: [...]),
-///     AppFilter(id: 'category', label: 'Category', type: FilterType.multiple),
+///     DSFilter(id: 'status', label: 'Status', options: [...]),
+///     DSFilter(id: 'category', label: 'Category', type: FilterType.multiple),
 ///   ],
 ///   onChanged: (filters) => print('Active filters: $filters'),
 /// )
@@ -24,13 +24,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'filter_bar_config.dart';
 
-/// Main AppFilterBar widget
-class AppFilterBar extends StatefulWidget {
+/// Main DSFilterBar widget
+class DSFilterBar extends StatefulWidget {
   /// The variant of the filter bar
-  final AppFilterBarVariant variant;
+  final DSFilterBarVariant variant;
 
   /// List of filters to display
-  final List<AppFilter> filters;
+  final List<DSFilter> filters;
 
   /// Callback when filters change
   final OnFiltersChanged? onChanged;
@@ -45,19 +45,19 @@ class AppFilterBar extends StatefulWidget {
   final SummaryBuilder? summaryBuilder;
 
   /// Current state of the filter bar
-  final AppFilterBarState state;
+  final DSFilterBarState state;
 
   /// Whether the filter bar is visible
   final bool isVisible;
 
   /// Configuration for the filter bar
-  final AppFilterBarConfig? config;
+  final DSFilterBarConfig? config;
 
   /// Filter groups for organizing filters
-  final List<AppFilterGroup>? groups;
+  final List<DSFilterGroup>? groups;
 
   /// Constructor with all parameters
-  const AppFilterBar({
+  const DSFilterBar({
     super.key,
     required this.variant,
     required this.filters,
@@ -65,28 +65,28 @@ class AppFilterBar extends StatefulWidget {
     this.onApplied,
     this.onCleared,
     this.summaryBuilder,
-    this.state = AppFilterBarState.defaultState,
+    this.state = DSFilterBarState.defaultState,
     this.isVisible = true,
     this.config,
     this.groups,
   });
 
   /// Factory constructor for chips variant
-  factory AppFilterBar.chips({
+  factory DSFilterBar.chips({
     Key? key,
-    required List<AppFilter> filters,
+    required List<DSFilter> filters,
     OnFiltersChanged? onChanged,
     OnFilterApplied? onApplied,
     OnFilterCleared? onCleared,
     SummaryBuilder? summaryBuilder,
-    AppFilterBarState state = AppFilterBarState.defaultState,
+    DSFilterBarState state = DSFilterBarState.defaultState,
     bool isVisible = true,
-    AppFilterBarConfig? config,
-    List<AppFilterGroup>? groups,
+    DSFilterBarConfig? config,
+    List<DSFilterGroup>? groups,
   }) {
-    return AppFilterBar(
+    return DSFilterBar(
       key: key,
-      variant: AppFilterBarVariant.chips,
+      variant: DSFilterBarVariant.chips,
       filters: filters,
       onChanged: onChanged,
       onApplied: onApplied,
@@ -100,21 +100,21 @@ class AppFilterBar extends StatefulWidget {
   }
 
   /// Factory constructor for popovers variant
-  factory AppFilterBar.popovers({
+  factory DSFilterBar.popovers({
     Key? key,
-    required List<AppFilter> filters,
+    required List<DSFilter> filters,
     OnFiltersChanged? onChanged,
     OnFilterApplied? onApplied,
     OnFilterCleared? onCleared,
     SummaryBuilder? summaryBuilder,
-    AppFilterBarState state = AppFilterBarState.defaultState,
+    DSFilterBarState state = DSFilterBarState.defaultState,
     bool isVisible = true,
-    AppFilterBarConfig? config,
-    List<AppFilterGroup>? groups,
+    DSFilterBarConfig? config,
+    List<DSFilterGroup>? groups,
   }) {
-    return AppFilterBar(
+    return DSFilterBar(
       key: key,
-      variant: AppFilterBarVariant.popovers,
+      variant: DSFilterBarVariant.popovers,
       filters: filters,
       onChanged: onChanged,
       onApplied: onApplied,
@@ -128,10 +128,10 @@ class AppFilterBar extends StatefulWidget {
   }
 
   @override
-  State<AppFilterBar> createState() => _AppFilterBarState();
+  State<DSFilterBar> createState() => _DSFilterBarState();
 }
 
-class _AppFilterBarState extends State<AppFilterBar>
+class _DSFilterBarState extends State<DSFilterBar>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late AnimationController _skeletonController;
@@ -139,15 +139,15 @@ class _AppFilterBarState extends State<AppFilterBar>
   late Animation<double> _scaleAnimation;
   late Animation<double> _skeletonAnimation;
   late FocusNode _focusNode;
-  late List<AppFilter> _currentFilters;
+  late List<DSFilter> _currentFilters;
   final Map<String, GlobalKey> _filterKeys = {};
   final Map<String, OverlayEntry?> _overlayEntries = {};
   String? _hoveredFilterId;
   String? _focusedFilterId;
   String? _pressedFilterId;
 
-  AppFilterBarConfig get _effectiveConfig {
-    return widget.config ?? AppFilterBarConfig.medium;
+  DSFilterBarConfig get _effectiveConfig {
+    return widget.config ?? DSFilterBarConfig.medium;
   }
 
   @override
@@ -204,7 +204,7 @@ class _AppFilterBarState extends State<AppFilterBar>
   }
 
   @override
-  void didUpdateWidget(AppFilterBar oldWidget) {
+  void didUpdateWidget(DSFilterBar oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.filters != widget.filters) {
@@ -234,13 +234,13 @@ class _AppFilterBarState extends State<AppFilterBar>
     super.dispose();
   }
 
-  void _handleFilterChanged(AppFilter filter, dynamic value) {
+  void _handleFilterChanged(DSFilter filter, dynamic value) {
     if (_effectiveConfig.enableHapticFeedback) {
       HapticFeedback.lightImpact();
     }
 
     setState(() {
-      _currentFilters = AppFilterBarUtils.applyFilter(
+      _currentFilters = DSFilterBarUtils.applyFilter(
         _currentFilters,
         filter.id,
         value,
@@ -257,13 +257,13 @@ class _AppFilterBarState extends State<AppFilterBar>
     }
 
     setState(() {
-      _currentFilters = AppFilterBarUtils.clearAllFilters(_currentFilters);
+      _currentFilters = DSFilterBarUtils.clearAllFilters(_currentFilters);
     });
 
     widget.onChanged?.call(_currentFilters);
   }
 
-  void _showFilterPopover(AppFilter filter) {
+  void _showFilterPopover(DSFilter filter) {
     final key = _filterKeys[filter.id];
     if (key == null) return;
 
@@ -326,7 +326,7 @@ class _AppFilterBarState extends State<AppFilterBar>
                   label: _effectiveConfig.semanticLabel ?? 'Filter bar',
                   hint: _effectiveConfig.semanticHint ??
                       'Use arrow keys to navigate filters',
-                  enabled: widget.state != AppFilterBarState.disabled,
+                  enabled: widget.state != DSFilterBarState.disabled,
                   child: Container(
                     constraints: _effectiveConfig.constraints,
                     margin: _effectiveConfig.margin,
@@ -343,9 +343,9 @@ class _AppFilterBarState extends State<AppFilterBar>
 
   Widget _buildContent(BuildContext context, ColorScheme colorScheme) {
     switch (widget.state) {
-      case AppFilterBarState.skeleton:
+      case DSFilterBarState.skeleton:
         return _buildSkeletonState(context, colorScheme);
-      case AppFilterBarState.loading:
+      case DSFilterBarState.loading:
         return _buildLoadingState(context, colorScheme);
       default:
         return _buildNormalState(context, colorScheme);
@@ -353,7 +353,7 @@ class _AppFilterBarState extends State<AppFilterBar>
   }
 
   Widget _buildNormalState(BuildContext context, ColorScheme colorScheme) {
-    final activeFilters = AppFilterBarUtils.getActiveFilters(_currentFilters);
+    final activeFilters = DSFilterBarUtils.getActiveFilters(_currentFilters);
     final showSummary =
         _effectiveConfig.showSummary && activeFilters.isNotEmpty;
 
@@ -372,9 +372,9 @@ class _AppFilterBarState extends State<AppFilterBar>
 
   Widget _buildFilterBar(BuildContext context, ColorScheme colorScheme) {
     switch (widget.variant) {
-      case AppFilterBarVariant.chips:
+      case DSFilterBarVariant.chips:
         return _buildChipsVariant(context, colorScheme);
-      case AppFilterBarVariant.popovers:
+      case DSFilterBarVariant.popovers:
         return _buildPopoversVariant(context, colorScheme);
     }
   }
@@ -396,7 +396,7 @@ class _AppFilterBarState extends State<AppFilterBar>
           _buildMoreChip(context, colorScheme,
               visibleFilters.length - _effectiveConfig.maxVisibleChips),
         if (_effectiveConfig.enableClearAll &&
-            AppFilterBarUtils.getActiveFilters(_currentFilters).isNotEmpty)
+            DSFilterBarUtils.getActiveFilters(_currentFilters).isNotEmpty)
           _buildClearAllChip(context, colorScheme),
       ],
     );
@@ -412,19 +412,19 @@ class _AppFilterBarState extends State<AppFilterBar>
         ...visibleFilters.map((filter) =>
             _buildFilterPopoverButton(context, colorScheme, filter)),
         if (_effectiveConfig.enableClearAll &&
-            AppFilterBarUtils.getActiveFilters(_currentFilters).isNotEmpty)
+            DSFilterBarUtils.getActiveFilters(_currentFilters).isNotEmpty)
           _buildClearAllChip(context, colorScheme),
       ],
     );
   }
 
   Widget _buildFilterChip(
-      BuildContext context, ColorScheme colorScheme, AppFilter filter) {
+      BuildContext context, ColorScheme colorScheme, DSFilter filter) {
     final isHovered = _hoveredFilterId == filter.id;
     final isFocused = _focusedFilterId == filter.id;
     final isPressed = _pressedFilterId == filter.id;
     final isDisabled =
-        filter.isDisabled || widget.state == AppFilterBarState.disabled;
+        filter.isDisabled || widget.state == DSFilterBarState.disabled;
     final isActive = filter.isActive;
 
     Color? backgroundColor;
@@ -563,7 +563,7 @@ class _AppFilterBarState extends State<AppFilterBar>
   }
 
   Widget _buildFilterPopoverButton(
-      BuildContext context, ColorScheme colorScheme, AppFilter filter) {
+      BuildContext context, ColorScheme colorScheme, DSFilter filter) {
     return _buildFilterChip(context, colorScheme, filter);
   }
 
@@ -637,13 +637,13 @@ class _AppFilterBarState extends State<AppFilterBar>
   }
 
   Widget _buildSummary(BuildContext context, ColorScheme colorScheme,
-      List<AppFilter> activeFilters) {
+      List<DSFilter> activeFilters) {
     if (widget.summaryBuilder != null) {
       return widget.summaryBuilder!(
           context, activeFilters, _currentFilters.length);
     }
 
-    final summaryText = AppFilterBarUtils.generateSummaryText(
+    final summaryText = DSFilterBarUtils.generateSummaryText(
       activeFilters,
       separator: _effectiveConfig.summarySeparator ?? ' • ',
       maxLength: _effectiveConfig.maxSummaryLength,
@@ -774,10 +774,10 @@ class _AppFilterBarState extends State<AppFilterBar>
 
 /// Filter popover widget
 class _FilterPopover extends StatefulWidget {
-  final AppFilter filter;
+  final DSFilter filter;
   final Offset position;
   final Size anchorSize;
-  final AppFilterBarConfig config;
+  final DSFilterBarConfig config;
   final Function(dynamic) onApply;
   final VoidCallback onClose;
 

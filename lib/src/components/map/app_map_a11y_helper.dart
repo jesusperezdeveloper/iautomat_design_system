@@ -5,7 +5,7 @@ import 'package:flutter/semantics.dart';
 import 'package:iautomat_design_system/src/components/map/app_map_config.dart';
 
 /// Helper para gestionar accesibilidad, RTL y navegación por teclado
-/// en el AppMap
+/// en el DSMap
 ///
 /// Proporciona:
 /// - Soporte completo para lectores de pantalla
@@ -14,16 +14,16 @@ import 'package:iautomat_design_system/src/components/map/app_map_config.dart';
 /// - Anuncios de estado para accesibilidad
 /// - Semántica contextual para mapas
 /// - Navegación espacial por el mapa
-class AppMapA11yHelper {
+class DSMapA11yHelper {
   /// Configuración de accesibilidad
-  final AppMapA11yConfig? config;
+  final DSMapA11yConfig? config;
 
-  const AppMapA11yHelper(this.config);
+  const DSMapA11yHelper(this.config);
 
   /// Construye wrapper de semántica para el mapa
   Widget buildSemanticsWrapper({
     required BuildContext context,
-    required AppMapState state,
+    required DSMapState state,
     required Widget child,
   }) {
     if (!(config?.enabled ?? true)) {
@@ -31,7 +31,7 @@ class AppMapA11yHelper {
     }
 
     final isRtl = Directionality.of(context) == TextDirection.rtl;
-    final effectiveConfig = config ?? const AppMapA11yConfig();
+    final effectiveConfig = config ?? const DSMapA11yConfig();
 
     return Semantics(
       label: effectiveConfig.semanticsLabel ?? _getDefaultLabel(state),
@@ -122,7 +122,7 @@ class AppMapA11yHelper {
   }
 
   /// Anuncia cambios de estado para accesibilidad
-  void announceStateChange(AppMapState state) {
+  void announceStateChange(DSMapState state) {
     if (!_shouldAnnounceStateChanges()) return;
 
     final announcement = _getStateAnnouncement(state);
@@ -135,10 +135,10 @@ class AppMapA11yHelper {
   }
 
   /// Anuncia interacción con marcador
-  void announceMarkerTap(AppMapMarker marker) {
+  void announceMarkerTap(DSMapMarker marker) {
     if (!_shouldAnnounceStateChanges()) return;
 
-    final effectiveConfig = config ?? const AppMapA11yConfig();
+    final effectiveConfig = config ?? const DSMapA11yConfig();
     final title = marker.title?.isNotEmpty == true ? marker.title! : 'Marcador';
     final announcement = '${effectiveConfig.markerLabel}: $title';
 
@@ -149,10 +149,10 @@ class AppMapA11yHelper {
   }
 
   /// Anuncia interacción con forma
-  void announceShapeTap(AppMapShape shape) {
+  void announceShapeTap(DSMapShape shape) {
     if (!_shouldAnnounceStateChanges()) return;
 
-    final effectiveConfig = config ?? const AppMapA11yConfig();
+    final effectiveConfig = config ?? const DSMapA11yConfig();
     final title = shape.title?.isNotEmpty == true ? shape.title! : shape.type.displayName;
     final announcement = '${effectiveConfig.shapeLabel}: $title';
 
@@ -164,7 +164,7 @@ class AppMapA11yHelper {
 
   /// Anuncia cambio de posición del mapa
   void announceCameraMove({
-    required AppLatLng center,
+    required DSLatLng center,
     required double zoom,
   }) {
     if (!_shouldAnnounceStateChanges()) return;
@@ -212,79 +212,79 @@ class AppMapA11yHelper {
   }
 
   /// Obtiene label por defecto según el estado
-  String _getDefaultLabel(AppMapState state) {
-    final effectiveConfig = config ?? const AppMapA11yConfig();
+  String _getDefaultLabel(DSMapState state) {
+    final effectiveConfig = config ?? const DSMapA11yConfig();
 
     switch (state) {
-      case AppMapState.defaultState:
+      case DSMapState.defaultState:
         return effectiveConfig.mapLabel;
-      case AppMapState.hover:
+      case DSMapState.hover:
         return '${effectiveConfig.mapLabel}, resaltado';
-      case AppMapState.pressed:
+      case DSMapState.pressed:
         return '${effectiveConfig.mapLabel}, presionado';
-      case AppMapState.focus:
+      case DSMapState.focus:
         return '${effectiveConfig.mapLabel}, enfocado';
-      case AppMapState.selected:
+      case DSMapState.selected:
         return '${effectiveConfig.mapLabel}, seleccionado';
-      case AppMapState.disabled:
+      case DSMapState.disabled:
         return '${effectiveConfig.mapLabel}, deshabilitado';
-      case AppMapState.loading:
+      case DSMapState.loading:
         return '${effectiveConfig.mapLabel}, cargando';
-      case AppMapState.skeleton:
+      case DSMapState.skeleton:
         return 'Cargando mapa';
     }
   }
 
   /// Obtiene hint por defecto según el estado
-  String _getDefaultHint(AppMapState state) {
+  String _getDefaultHint(DSMapState state) {
     switch (state) {
-      case AppMapState.defaultState:
-      case AppMapState.hover:
-      case AppMapState.focus:
+      case DSMapState.defaultState:
+      case DSMapState.hover:
+      case DSMapState.focus:
         return 'Toca para interactuar, usa + y - para zoom, flechas para navegar';
-      case AppMapState.pressed:
+      case DSMapState.pressed:
         return 'Procesando interacción';
-      case AppMapState.selected:
+      case DSMapState.selected:
         return 'Mapa seleccionado';
-      case AppMapState.disabled:
+      case DSMapState.disabled:
         return 'Mapa no disponible';
-      case AppMapState.loading:
+      case DSMapState.loading:
         return 'Cargando contenido del mapa';
-      case AppMapState.skeleton:
+      case DSMapState.skeleton:
         return 'Preparando vista del mapa';
     }
   }
 
   /// Obtiene descripción por defecto según el estado
-  String _getDefaultDescription(AppMapState state) {
+  String _getDefaultDescription(DSMapState state) {
     switch (state) {
-      case AppMapState.defaultState:
+      case DSMapState.defaultState:
         return 'Mapa interactivo con marcadores y navegación';
-      case AppMapState.hover:
+      case DSMapState.hover:
         return 'Mapa resaltado, listo para interactuar';
-      case AppMapState.pressed:
+      case DSMapState.pressed:
         return 'Mapa presionado, procesando interacción';
-      case AppMapState.focus:
+      case DSMapState.focus:
         return 'Mapa enfocado, navegable con teclado';
-      case AppMapState.selected:
+      case DSMapState.selected:
         return 'Vista de mapa seleccionada';
-      case AppMapState.disabled:
+      case DSMapState.disabled:
         return 'Mapa deshabilitado temporalmente';
-      case AppMapState.loading:
+      case DSMapState.loading:
         return 'Cargando datos del mapa';
-      case AppMapState.skeleton:
+      case DSMapState.skeleton:
         return 'Cargando interfaz del mapa';
     }
   }
 
   /// Obtiene anuncio de cambio de estado
-  String _getStateAnnouncement(AppMapState state) {
+  String _getStateAnnouncement(DSMapState state) {
     switch (state) {
-      case AppMapState.loading:
+      case DSMapState.loading:
         return 'Cargando mapa';
-      case AppMapState.disabled:
+      case DSMapState.disabled:
         return 'Mapa deshabilitado';
-      case AppMapState.focus:
+      case DSMapState.focus:
         return 'Mapa enfocado, navega con teclado';
       default:
         return '';
@@ -302,20 +302,20 @@ class AppMapA11yHelper {
   }
 
   /// Construye indicador de estado para lectores de pantalla
-  Widget buildStateIndicator(AppMapState state) {
+  Widget buildStateIndicator(DSMapState state) {
     if (!_shouldAnnounceStateChanges()) {
       return const SizedBox.shrink();
     }
 
     String stateText;
     switch (state) {
-      case AppMapState.loading:
+      case DSMapState.loading:
         stateText = 'Cargando';
         break;
-      case AppMapState.disabled:
+      case DSMapState.disabled:
         stateText = 'Deshabilitado';
         break;
-      case AppMapState.focus:
+      case DSMapState.focus:
         stateText = 'Enfocado';
         break;
       default:
@@ -351,12 +351,12 @@ Controles del mapa:
   }
 
   /// Construye descripción de marcadores para accesibilidad
-  Widget buildMarkersDescription(List<AppMapMarker> markers) {
+  Widget buildMarkersDescription(List<DSMapMarker> markers) {
     if (markers.isEmpty) {
       return const SizedBox.shrink();
     }
 
-    final effectiveConfig = config ?? const AppMapA11yConfig();
+    final effectiveConfig = config ?? const DSMapA11yConfig();
     final description = _buildMarkersListDescription(markers, effectiveConfig);
 
     return Semantics(
@@ -367,7 +367,7 @@ Controles del mapa:
   }
 
   /// Construye descripción textual de lista de marcadores
-  String _buildMarkersListDescription(List<AppMapMarker> markers, AppMapA11yConfig config) {
+  String _buildMarkersListDescription(List<DSMapMarker> markers, DSMapA11yConfig config) {
     if (markers.isEmpty) {
       return 'No hay marcadores en el mapa';
     }
@@ -378,7 +378,7 @@ Controles del mapa:
       return '${config.markerLabel}: $title en ${marker.position.displayString}';
     }
 
-    final clusters = markers.where((m) => m.type == AppMapMarkerType.cluster).length;
+    final clusters = markers.where((m) => m.type == DSMapMarkerType.cluster).length;
     final individual = markers.length - clusters;
 
     if (clusters > 0) {
@@ -389,12 +389,12 @@ Controles del mapa:
   }
 
   /// Construye descripción de formas para accesibilidad
-  Widget buildShapesDescription(List<AppMapShape> shapes) {
+  Widget buildShapesDescription(List<DSMapShape> shapes) {
     if (shapes.isEmpty) {
       return const SizedBox.shrink();
     }
 
-    final effectiveConfig = config ?? const AppMapA11yConfig();
+    final effectiveConfig = config ?? const DSMapA11yConfig();
     final description = _buildShapesListDescription(shapes, effectiveConfig);
 
     return Semantics(
@@ -405,7 +405,7 @@ Controles del mapa:
   }
 
   /// Construye descripción textual de lista de formas
-  String _buildShapesListDescription(List<AppMapShape> shapes, AppMapA11yConfig config) {
+  String _buildShapesListDescription(List<DSMapShape> shapes, DSMapA11yConfig config) {
     if (shapes.isEmpty) {
       return 'No hay formas en el mapa';
     }
@@ -416,7 +416,7 @@ Controles del mapa:
       return '${config.shapeLabel}: $title';
     }
 
-    final typeGroups = <AppMapShapeType, int>{};
+    final typeGroups = <DSMapShapeType, int>{};
     for (final shape in shapes) {
       typeGroups[shape.type] = (typeGroups[shape.type] ?? 0) + 1;
     }
@@ -432,8 +432,8 @@ Controles del mapa:
 
   /// Construye ayuda contextual para el usuario
   Widget buildContextualHelp({
-    required AppMapTheme theme,
-    required AppMapVariant variant,
+    required DSMapTheme theme,
+    required DSMapVariant variant,
     required int markerCount,
     required int shapeCount,
   }) {
@@ -452,8 +452,8 @@ Controles del mapa:
 
   /// Construye texto de ayuda contextual
   String _buildHelpText({
-    required AppMapTheme theme,
-    required AppMapVariant variant,
+    required DSMapTheme theme,
+    required DSMapVariant variant,
     required int markerCount,
     required int shapeCount,
   }) {
@@ -553,7 +553,7 @@ Controles del mapa:
   }
 
   /// Anuncia cambio de tema del mapa
-  void announceThemeChange(AppMapTheme newTheme) {
+  void announceThemeChange(DSMapTheme newTheme) {
     if (!_shouldAnnounceStateChanges()) return;
 
     SemanticsService.announce(
@@ -563,7 +563,7 @@ Controles del mapa:
   }
 
   /// Anuncia cambio de variante del mapa
-  void announceVariantChange(AppMapVariant newVariant) {
+  void announceVariantChange(DSMapVariant newVariant) {
     if (!_shouldAnnounceStateChanges()) return;
 
     SemanticsService.announce(

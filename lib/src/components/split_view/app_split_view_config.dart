@@ -4,30 +4,30 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_split_view_config.freezed.dart';
 
 @freezed
-class AppSplitViewConfig with _$AppSplitViewConfig {
-  const factory AppSplitViewConfig({
-    @Default(AppSplitViewVariant.resizable) AppSplitViewVariant variant,
-    @Default(AppSplitViewState.defaultState) AppSplitViewState state,
-    @Default(AppSplitViewDirection.horizontal) AppSplitViewDirection direction,
+class DSSplitViewConfig with _$DSSplitViewConfig {
+  const factory DSSplitViewConfig({
+    @Default(DSSplitViewVariant.resizable) DSSplitViewVariant variant,
+    @Default(DSSplitViewState.defaultState) DSSplitViewState state,
+    @Default(DSSplitViewDirection.horizontal) DSSplitViewDirection direction,
     @Default(true) bool isAdaptive,
     @Default(false) bool isRtl,
     @Default(true) bool enableA11y,
     @Default(true) bool enableKeyboardSupport,
     @Default(0.5) double initialRatio,
-    AppSplitViewMinSizes? minSizes,
-    AppSplitViewColors? colors,
-    AppSplitViewSpacing? spacing,
-    AppSplitViewElevation? elevation,
-    AppSplitViewBehavior? behavior,
-    AppSplitViewAnimation? animation,
+    DSSplitViewMinSizes? minSizes,
+    DSSplitViewColors? colors,
+    DSSplitViewSpacing? spacing,
+    DSSplitViewElevation? elevation,
+    DSSplitViewBehavior? behavior,
+    DSSplitViewAnimation? animation,
     VoidCallback? onRatioChanged,
     ValueChanged<double>? onRatioUpdated,
-  }) = _AppSplitViewConfig;
+  }) = _DSSplitViewConfig;
 }
 
 @freezed
-class AppSplitViewMinSizes with _$AppSplitViewMinSizes {
-  const factory AppSplitViewMinSizes({
+class DSSplitViewMinSizes with _$DSSplitViewMinSizes {
+  const factory DSSplitViewMinSizes({
     @Default(100.0) double startMin,
     @Default(100.0) double endMin,
     @Default(200.0) double startMax,
@@ -36,8 +36,8 @@ class AppSplitViewMinSizes with _$AppSplitViewMinSizes {
 }
 
 @freezed
-class AppSplitViewColors with _$AppSplitViewColors {
-  const factory AppSplitViewColors({
+class DSSplitViewColors with _$DSSplitViewColors {
+  const factory DSSplitViewColors({
     Color? backgroundColor,
     Color? startPaneColor,
     Color? endPaneColor,
@@ -55,8 +55,8 @@ class AppSplitViewColors with _$AppSplitViewColors {
 }
 
 @freezed
-class AppSplitViewSpacing with _$AppSplitViewSpacing {
-  const factory AppSplitViewSpacing({
+class DSSplitViewSpacing with _$DSSplitViewSpacing {
+  const factory DSSplitViewSpacing({
     @Default(1.0) double dividerWidth,
     @Default(8.0) double handleWidth,
     @Default(24.0) double handleHeight,
@@ -69,8 +69,8 @@ class AppSplitViewSpacing with _$AppSplitViewSpacing {
 }
 
 @freezed
-class AppSplitViewElevation with _$AppSplitViewElevation {
-  const factory AppSplitViewElevation({
+class DSSplitViewElevation with _$DSSplitViewElevation {
+  const factory DSSplitViewElevation({
     @Default(0.0) double defaultElevation,
     @Default(2.0) double hoveredElevation,
     @Default(4.0) double pressedElevation,
@@ -82,12 +82,12 @@ class AppSplitViewElevation with _$AppSplitViewElevation {
 }
 
 @freezed
-class AppSplitViewBehavior with _$AppSplitViewBehavior {
-  const factory AppSplitViewBehavior({
+class DSSplitViewBehavior with _$DSSplitViewBehavior {
+  const factory DSSplitViewBehavior({
     @Default(true) bool enableHapticFeedback,
     @Default(true) bool enableResize,
     @Default(true) bool enableKeyboardResize,
-    @Default(AppSplitViewResizeMode.drag) AppSplitViewResizeMode resizeMode,
+    @Default(DSSplitViewResizeMode.drag) DSSplitViewResizeMode resizeMode,
     @Default(true) bool snapToEdges,
     @Default(0.1) double snapThreshold,
     @Default(300) int animationDuration,
@@ -97,10 +97,10 @@ class AppSplitViewBehavior with _$AppSplitViewBehavior {
 }
 
 @freezed
-class AppSplitViewAnimation with _$AppSplitViewAnimation {
-  const factory AppSplitViewAnimation({
-    @Default(AppSplitViewAnimationType.easeInOut)
-    AppSplitViewAnimationType type,
+class DSSplitViewAnimation with _$DSSplitViewAnimation {
+  const factory DSSplitViewAnimation({
+    @Default(DSSplitViewAnimationType.easeInOut)
+    DSSplitViewAnimationType type,
     @Default(300) int duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(true) bool enableStateTransitions,
@@ -108,12 +108,12 @@ class AppSplitViewAnimation with _$AppSplitViewAnimation {
   }) = _AppSplitViewAnimation;
 }
 
-enum AppSplitViewVariant {
+enum DSSplitViewVariant {
   resizable,
   twoPane,
 }
 
-enum AppSplitViewState {
+enum DSSplitViewState {
   defaultState,
   hover,
   pressed,
@@ -124,19 +124,19 @@ enum AppSplitViewState {
   skeleton,
 }
 
-enum AppSplitViewDirection {
+enum DSSplitViewDirection {
   horizontal,
   vertical,
 }
 
-enum AppSplitViewResizeMode {
+enum DSSplitViewResizeMode {
   drag,
   tap,
   keyboard,
   programmatic,
 }
 
-enum AppSplitViewAnimationType {
+enum DSSplitViewAnimationType {
   none,
   linear,
   easeIn,
@@ -145,218 +145,218 @@ enum AppSplitViewAnimationType {
   bounce,
 }
 
-extension AppSplitViewVariantExtension on AppSplitViewVariant {
+extension DSSplitViewVariantExtension on DSSplitViewVariant {
   String get displayName {
     switch (this) {
-      case AppSplitViewVariant.resizable:
+      case DSSplitViewVariant.resizable:
         return 'Resizable';
-      case AppSplitViewVariant.twoPane:
+      case DSSplitViewVariant.twoPane:
         return 'Two Pane';
     }
   }
 
   String get description {
     switch (this) {
-      case AppSplitViewVariant.resizable:
+      case DSSplitViewVariant.resizable:
         return 'Vista dividida redimensionable con divisor arrastrable';
-      case AppSplitViewVariant.twoPane:
+      case DSSplitViewVariant.twoPane:
         return 'Vista de dos paneles fija sin redimensionar';
     }
   }
 
   bool get isResizable {
     switch (this) {
-      case AppSplitViewVariant.resizable:
+      case DSSplitViewVariant.resizable:
         return true;
-      case AppSplitViewVariant.twoPane:
+      case DSSplitViewVariant.twoPane:
         return false;
     }
   }
 
   bool get showsDivider {
     switch (this) {
-      case AppSplitViewVariant.resizable:
+      case DSSplitViewVariant.resizable:
         return true;
-      case AppSplitViewVariant.twoPane:
+      case DSSplitViewVariant.twoPane:
         return true;
     }
   }
 }
 
-extension AppSplitViewStateExtension on AppSplitViewState {
+extension DSSplitViewStateExtension on DSSplitViewState {
   String get displayName {
     switch (this) {
-      case AppSplitViewState.defaultState:
+      case DSSplitViewState.defaultState:
         return 'Default';
-      case AppSplitViewState.hover:
+      case DSSplitViewState.hover:
         return 'Hover';
-      case AppSplitViewState.pressed:
+      case DSSplitViewState.pressed:
         return 'Pressed';
-      case AppSplitViewState.focus:
+      case DSSplitViewState.focus:
         return 'Focus';
-      case AppSplitViewState.selected:
+      case DSSplitViewState.selected:
         return 'Selected';
-      case AppSplitViewState.disabled:
+      case DSSplitViewState.disabled:
         return 'Disabled';
-      case AppSplitViewState.loading:
+      case DSSplitViewState.loading:
         return 'Loading';
-      case AppSplitViewState.skeleton:
+      case DSSplitViewState.skeleton:
         return 'Skeleton';
     }
   }
 
   bool get isInteractive {
     switch (this) {
-      case AppSplitViewState.defaultState:
-      case AppSplitViewState.hover:
-      case AppSplitViewState.pressed:
-      case AppSplitViewState.focus:
-      case AppSplitViewState.selected:
+      case DSSplitViewState.defaultState:
+      case DSSplitViewState.hover:
+      case DSSplitViewState.pressed:
+      case DSSplitViewState.focus:
+      case DSSplitViewState.selected:
         return true;
-      case AppSplitViewState.disabled:
-      case AppSplitViewState.loading:
-      case AppSplitViewState.skeleton:
+      case DSSplitViewState.disabled:
+      case DSSplitViewState.loading:
+      case DSSplitViewState.skeleton:
         return false;
     }
   }
 
   double get opacity {
     switch (this) {
-      case AppSplitViewState.defaultState:
-      case AppSplitViewState.hover:
-      case AppSplitViewState.pressed:
-      case AppSplitViewState.focus:
-      case AppSplitViewState.selected:
+      case DSSplitViewState.defaultState:
+      case DSSplitViewState.hover:
+      case DSSplitViewState.pressed:
+      case DSSplitViewState.focus:
+      case DSSplitViewState.selected:
         return 1.0;
-      case AppSplitViewState.disabled:
+      case DSSplitViewState.disabled:
         return 0.6;
-      case AppSplitViewState.loading:
+      case DSSplitViewState.loading:
         return 0.8;
-      case AppSplitViewState.skeleton:
+      case DSSplitViewState.skeleton:
         return 0.3;
     }
   }
 
   bool get showsLoader {
-    return this == AppSplitViewState.loading;
+    return this == DSSplitViewState.loading;
   }
 
   bool get showsSkeleton {
-    return this == AppSplitViewState.skeleton;
+    return this == DSSplitViewState.skeleton;
   }
 
   bool get canResize {
     switch (this) {
-      case AppSplitViewState.defaultState:
-      case AppSplitViewState.hover:
-      case AppSplitViewState.pressed:
-      case AppSplitViewState.focus:
-      case AppSplitViewState.selected:
+      case DSSplitViewState.defaultState:
+      case DSSplitViewState.hover:
+      case DSSplitViewState.pressed:
+      case DSSplitViewState.focus:
+      case DSSplitViewState.selected:
         return true;
-      case AppSplitViewState.disabled:
-      case AppSplitViewState.loading:
-      case AppSplitViewState.skeleton:
+      case DSSplitViewState.disabled:
+      case DSSplitViewState.loading:
+      case DSSplitViewState.skeleton:
         return false;
     }
   }
 }
 
-extension AppSplitViewDirectionExtension on AppSplitViewDirection {
+extension DSSplitViewDirectionExtension on DSSplitViewDirection {
   String get displayName {
     switch (this) {
-      case AppSplitViewDirection.horizontal:
+      case DSSplitViewDirection.horizontal:
         return 'Horizontal';
-      case AppSplitViewDirection.vertical:
+      case DSSplitViewDirection.vertical:
         return 'Vertical';
     }
   }
 
   bool get isHorizontal {
-    return this == AppSplitViewDirection.horizontal;
+    return this == DSSplitViewDirection.horizontal;
   }
 
   bool get isVertical {
-    return this == AppSplitViewDirection.vertical;
+    return this == DSSplitViewDirection.vertical;
   }
 
   Axis get axis {
     switch (this) {
-      case AppSplitViewDirection.horizontal:
+      case DSSplitViewDirection.horizontal:
         return Axis.horizontal;
-      case AppSplitViewDirection.vertical:
+      case DSSplitViewDirection.vertical:
         return Axis.vertical;
     }
   }
 }
 
-extension AppSplitViewResizeModeExtension on AppSplitViewResizeMode {
+extension DSSplitViewResizeModeExtension on DSSplitViewResizeMode {
   String get displayName {
     switch (this) {
-      case AppSplitViewResizeMode.drag:
+      case DSSplitViewResizeMode.drag:
         return 'Drag';
-      case AppSplitViewResizeMode.tap:
+      case DSSplitViewResizeMode.tap:
         return 'Tap';
-      case AppSplitViewResizeMode.keyboard:
+      case DSSplitViewResizeMode.keyboard:
         return 'Keyboard';
-      case AppSplitViewResizeMode.programmatic:
+      case DSSplitViewResizeMode.programmatic:
         return 'Programmatic';
     }
   }
 
   bool get supportsDrag {
     switch (this) {
-      case AppSplitViewResizeMode.drag:
-      case AppSplitViewResizeMode.keyboard:
+      case DSSplitViewResizeMode.drag:
+      case DSSplitViewResizeMode.keyboard:
         return true;
-      case AppSplitViewResizeMode.tap:
-      case AppSplitViewResizeMode.programmatic:
+      case DSSplitViewResizeMode.tap:
+      case DSSplitViewResizeMode.programmatic:
         return false;
     }
   }
 
   bool get supportsKeyboard {
     switch (this) {
-      case AppSplitViewResizeMode.keyboard:
-      case AppSplitViewResizeMode.drag:
+      case DSSplitViewResizeMode.keyboard:
+      case DSSplitViewResizeMode.drag:
         return true;
-      case AppSplitViewResizeMode.tap:
-      case AppSplitViewResizeMode.programmatic:
+      case DSSplitViewResizeMode.tap:
+      case DSSplitViewResizeMode.programmatic:
         return false;
     }
   }
 }
 
-extension AppSplitViewAnimationTypeExtension on AppSplitViewAnimationType {
+extension DSSplitViewAnimationTypeExtension on DSSplitViewAnimationType {
   String get displayName {
     switch (this) {
-      case AppSplitViewAnimationType.none:
+      case DSSplitViewAnimationType.none:
         return 'None';
-      case AppSplitViewAnimationType.linear:
+      case DSSplitViewAnimationType.linear:
         return 'Linear';
-      case AppSplitViewAnimationType.easeIn:
+      case DSSplitViewAnimationType.easeIn:
         return 'Ease In';
-      case AppSplitViewAnimationType.easeOut:
+      case DSSplitViewAnimationType.easeOut:
         return 'Ease Out';
-      case AppSplitViewAnimationType.easeInOut:
+      case DSSplitViewAnimationType.easeInOut:
         return 'Ease In Out';
-      case AppSplitViewAnimationType.bounce:
+      case DSSplitViewAnimationType.bounce:
         return 'Bounce';
     }
   }
 
   Curve get curve {
     switch (this) {
-      case AppSplitViewAnimationType.none:
+      case DSSplitViewAnimationType.none:
         return Curves.linear;
-      case AppSplitViewAnimationType.linear:
+      case DSSplitViewAnimationType.linear:
         return Curves.linear;
-      case AppSplitViewAnimationType.easeIn:
+      case DSSplitViewAnimationType.easeIn:
         return Curves.easeIn;
-      case AppSplitViewAnimationType.easeOut:
+      case DSSplitViewAnimationType.easeOut:
         return Curves.easeOut;
-      case AppSplitViewAnimationType.easeInOut:
+      case DSSplitViewAnimationType.easeInOut:
         return Curves.easeInOut;
-      case AppSplitViewAnimationType.bounce:
+      case DSSplitViewAnimationType.bounce:
         return Curves.bounceOut;
     }
   }

@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'outline_tree_config.freezed.dart';
 
 /// Outline tree variant types
-enum AppOutlineTreeVariant {
+enum DSOutlineTreeVariant {
   /// Async tree with lazy loading of children
   async,
 
@@ -15,7 +15,7 @@ enum AppOutlineTreeVariant {
 }
 
 /// Outline tree state types
-enum AppOutlineTreeState {
+enum DSOutlineTreeState {
   /// Default state
   defaultState,
 
@@ -42,7 +42,7 @@ enum AppOutlineTreeState {
 }
 
 /// Tree node state
-enum AppTreeNodeState {
+enum DSTreeNodeState {
   /// Node is collapsed
   collapsed,
 
@@ -60,7 +60,7 @@ enum AppTreeNodeState {
 }
 
 /// Selection mode for multi-select trees
-enum AppTreeSelectionMode {
+enum DSTreeSelectionMode {
   /// Single selection only
   single,
 
@@ -72,7 +72,7 @@ enum AppTreeSelectionMode {
 }
 
 /// Tree layout orientation
-enum AppTreeLayout {
+enum DSTreeLayout {
   /// Vertical layout (default)
   vertical,
 
@@ -81,7 +81,7 @@ enum AppTreeLayout {
 }
 
 /// Expansion animation types
-enum AppTreeExpansionAnimation {
+enum DSTreeExpansionAnimation {
   /// No animation
   none,
 
@@ -98,18 +98,18 @@ enum AppTreeExpansionAnimation {
   custom,
 }
 
-/// Configuration model for AppOutlineTree
+/// Configuration model for DSOutlineTree
 @freezed
-class AppOutlineTreeConfig with _$AppOutlineTreeConfig {
-  const factory AppOutlineTreeConfig({
+class DSOutlineTreeConfig with _$DSOutlineTreeConfig {
+  const factory DSOutlineTreeConfig({
     // Animation configuration
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
-    @Default(AppTreeExpansionAnimation.slide)
-    AppTreeExpansionAnimation expansionAnimation,
+    @Default(DSTreeExpansionAnimation.slide)
+    DSTreeExpansionAnimation expansionAnimation,
 
     // Layout and spacing
-    @Default(AppTreeLayout.vertical) AppTreeLayout layout,
+    @Default(DSTreeLayout.vertical) DSTreeLayout layout,
     @Default(16.0) double indentSize,
     @Default(8.0) double itemSpacing,
     @Default(4.0) double itemPadding,
@@ -138,7 +138,7 @@ class AppOutlineTreeConfig with _$AppOutlineTreeConfig {
     @Default(Icons.error) IconData errorIcon,
 
     // Selection configuration
-    @Default(AppTreeSelectionMode.single) AppTreeSelectionMode selectionMode,
+    @Default(DSTreeSelectionMode.single) DSTreeSelectionMode selectionMode,
     @Default(true) bool showSelectionCheckboxes,
     @Default(true) bool allowPartialSelection,
     @Default(false) bool autoExpandSelected,
@@ -219,10 +219,10 @@ class AppOutlineTreeConfig with _$AppOutlineTreeConfig {
     BoxConstraints? constraints,
     EdgeInsets? padding,
     EdgeInsets? margin,
-  }) = _AppOutlineTreeConfig;
+  }) = _DSOutlineTreeConfig;
 
   /// Default configuration for compact trees
-  static const AppOutlineTreeConfig compact = AppOutlineTreeConfig(
+  static const DSOutlineTreeConfig compact = DSOutlineTreeConfig(
     itemHeight: 24.0,
     indentSize: 12.0,
     itemSpacing: 2.0,
@@ -231,7 +231,7 @@ class AppOutlineTreeConfig with _$AppOutlineTreeConfig {
   );
 
   /// Default configuration for spacious trees
-  static const AppOutlineTreeConfig spacious = AppOutlineTreeConfig(
+  static const DSOutlineTreeConfig spacious = DSOutlineTreeConfig(
     itemHeight: 48.0,
     indentSize: 24.0,
     itemSpacing: 12.0,
@@ -242,10 +242,10 @@ class AppOutlineTreeConfig with _$AppOutlineTreeConfig {
 
 /// Tree node data model
 @freezed
-class AppTreeNode with _$AppTreeNode {
-  const AppTreeNode._();
+class DSTreeNode with _$DSTreeNode {
+  const DSTreeNode._();
 
-  const factory AppTreeNode({
+  const factory DSTreeNode({
     /// Unique identifier for the node
     required String id,
 
@@ -259,7 +259,7 @@ class AppTreeNode with _$AppTreeNode {
     Color? color,
 
     /// Child nodes
-    @Default([]) List<AppTreeNode> children,
+    @Default([]) List<DSTreeNode> children,
 
     /// Whether the node is expanded
     @Default(false) bool isExpanded,
@@ -274,7 +274,7 @@ class AppTreeNode with _$AppTreeNode {
     @Default(true) bool isVisible,
 
     /// Current state of the node
-    @Default(AppTreeNodeState.collapsed) AppTreeNodeState state,
+    @Default(DSTreeNodeState.collapsed) DSTreeNodeState state,
 
     /// Whether the node is a leaf (no children possible)
     @Default(false) bool isLeaf,
@@ -326,8 +326,8 @@ class AppTreeNode with _$AppTreeNode {
   bool get hasVisibleChildren => children.any((child) => child.isVisible);
 
   /// Get all descendants of this node
-  List<AppTreeNode> get allDescendants {
-    final descendants = <AppTreeNode>[];
+  List<DSTreeNode> get allDescendants {
+    final descendants = <DSTreeNode>[];
     for (final child in children) {
       descendants.add(child);
       descendants.addAll(child.allDescendants);
@@ -336,7 +336,7 @@ class AppTreeNode with _$AppTreeNode {
   }
 
   /// Get all selected descendants
-  List<AppTreeNode> get selectedDescendants {
+  List<DSTreeNode> get selectedDescendants {
     return allDescendants.where((node) => node.isSelected).toList();
   }
 
@@ -354,43 +354,43 @@ class AppTreeNode with _$AppTreeNode {
   }
 
   /// Create a copy with updated selection state
-  AppTreeNode withSelection(bool selected) {
+  DSTreeNode withSelection(bool selected) {
     return copyWith(isSelected: selected);
   }
 
   /// Create a copy with updated expansion state
-  AppTreeNode withExpansion(bool expanded) {
+  DSTreeNode withExpansion(bool expanded) {
     return copyWith(
         isExpanded: expanded,
         state:
-            expanded ? AppTreeNodeState.expanded : AppTreeNodeState.collapsed);
+            expanded ? DSTreeNodeState.expanded : DSTreeNodeState.collapsed);
   }
 
   /// Create a copy with updated children
-  AppTreeNode withChildren(List<AppTreeNode> newChildren) {
+  DSTreeNode withChildren(List<DSTreeNode> newChildren) {
     return copyWith(children: newChildren);
   }
 
   /// Create a copy with loading state
-  AppTreeNode withLoading(bool loading) {
+  DSTreeNode withLoading(bool loading) {
     return copyWith(
       isLoading: loading,
-      state: loading ? AppTreeNodeState.loading : AppTreeNodeState.collapsed,
+      state: loading ? DSTreeNodeState.loading : DSTreeNodeState.collapsed,
     );
   }
 
   /// Create a copy with error state
-  AppTreeNode withError(String? error) {
+  DSTreeNode withError(String? error) {
     return copyWith(
       errorMessage: error,
       state:
-          error != null ? AppTreeNodeState.error : AppTreeNodeState.collapsed,
+          error != null ? DSTreeNodeState.error : DSTreeNodeState.collapsed,
       isLoading: false,
     );
   }
 
   /// Find a node by ID in this subtree
-  AppTreeNode? findNode(String nodeId) {
+  DSTreeNode? findNode(String nodeId) {
     if (id == nodeId) return this;
 
     for (final child in children) {
@@ -402,8 +402,8 @@ class AppTreeNode with _$AppTreeNode {
   }
 
   /// Update a node by ID in this subtree
-  AppTreeNode updateNode(
-      String nodeId, AppTreeNode Function(AppTreeNode) updater) {
+  DSTreeNode updateNode(
+      String nodeId, DSTreeNode Function(DSTreeNode) updater) {
     if (id == nodeId) {
       return updater(this);
     }
@@ -431,54 +431,54 @@ enum TreeSelectionState {
 }
 
 /// Callback function types
-typedef OnNodeToggle = void Function(AppTreeNode node);
-typedef OnNodeSelect = void Function(AppTreeNode node, bool selected);
-typedef OnNodeExpand = void Function(AppTreeNode node, bool expanded);
-typedef OnAsyncLoad = Future<List<AppTreeNode>> Function(AppTreeNode node);
+typedef OnNodeToggle = void Function(DSTreeNode node);
+typedef OnNodeSelect = void Function(DSTreeNode node, bool selected);
+typedef OnNodeExpand = void Function(DSTreeNode node, bool expanded);
+typedef OnAsyncLoad = Future<List<DSTreeNode>> Function(DSTreeNode node);
 typedef NodeBuilder = Widget Function(
-    BuildContext context, AppTreeNode node, int depth);
+    BuildContext context, DSTreeNode node, int depth);
 typedef NodeIconBuilder = Widget Function(
-    BuildContext context, AppTreeNode node);
+    BuildContext context, DSTreeNode node);
 
 /// Tree event data
 @freezed
-class AppTreeEvent with _$AppTreeEvent {
-  const factory AppTreeEvent.toggle({
-    required AppTreeNode node,
-  }) = AppTreeToggleEvent;
+class DSTreeEvent with _$DSTreeEvent {
+  const factory DSTreeEvent.toggle({
+    required DSTreeNode node,
+  }) = DSTreeToggleEvent;
 
-  const factory AppTreeEvent.select({
-    required AppTreeNode node,
+  const factory DSTreeEvent.select({
+    required DSTreeNode node,
     required bool selected,
-  }) = AppTreeSelectEvent;
+  }) = DSTreeSelectEvent;
 
-  const factory AppTreeEvent.expand({
-    required AppTreeNode node,
+  const factory DSTreeEvent.expand({
+    required DSTreeNode node,
     required bool expanded,
-  }) = AppTreeExpandEvent;
+  }) = DSTreeExpandEvent;
 
-  const factory AppTreeEvent.load({
-    required AppTreeNode node,
-    required List<AppTreeNode> children,
-  }) = AppTreeLoadEvent;
+  const factory DSTreeEvent.load({
+    required DSTreeNode node,
+    required List<DSTreeNode> children,
+  }) = DSTreeLoadEvent;
 
-  const factory AppTreeEvent.error({
-    required AppTreeNode node,
+  const factory DSTreeEvent.error({
+    required DSTreeNode node,
     required String error,
-  }) = AppTreeErrorEvent;
+  }) = DSTreeErrorEvent;
 }
 
-/// Utility functions for AppOutlineTree
-class AppOutlineTreeUtils {
+/// Utility functions for DSOutlineTree
+class DSOutlineTreeUtils {
   /// Flatten tree into a list for rendering
-  static List<AppTreeNode> flattenTree(
-    List<AppTreeNode> nodes, {
+  static List<DSTreeNode> flattenTree(
+    List<DSTreeNode> nodes, {
     bool showCollapsed = false,
     int maxDepth = -1,
   }) {
-    final flattened = <AppTreeNode>[];
+    final flattened = <DSTreeNode>[];
 
-    void flatten(List<AppTreeNode> currentNodes, int depth) {
+    void flatten(List<DSTreeNode> currentNodes, int depth) {
       if (maxDepth >= 0 && depth > maxDepth) return;
 
       for (final node in currentNodes) {
@@ -497,10 +497,10 @@ class AppOutlineTreeUtils {
   }
 
   /// Get selected nodes from tree
-  static List<AppTreeNode> getSelectedNodes(List<AppTreeNode> nodes) {
-    final selected = <AppTreeNode>[];
+  static List<DSTreeNode> getSelectedNodes(List<DSTreeNode> nodes) {
+    final selected = <DSTreeNode>[];
 
-    void collectSelected(List<AppTreeNode> currentNodes) {
+    void collectSelected(List<DSTreeNode> currentNodes) {
       for (final node in currentNodes) {
         if (node.isSelected) {
           selected.add(node);
@@ -514,27 +514,27 @@ class AppOutlineTreeUtils {
   }
 
   /// Update node selection with hierarchical logic
-  static List<AppTreeNode> updateSelection(
-    List<AppTreeNode> nodes,
+  static List<DSTreeNode> updateSelection(
+    List<DSTreeNode> nodes,
     String nodeId,
     bool selected,
-    AppTreeSelectionMode mode,
+    DSTreeSelectionMode mode,
   ) {
     return nodes
         .map((node) => _updateNodeSelection(node, nodeId, selected, mode))
         .toList();
   }
 
-  static AppTreeNode _updateNodeSelection(
-    AppTreeNode node,
+  static DSTreeNode _updateNodeSelection(
+    DSTreeNode node,
     String targetId,
     bool selected,
-    AppTreeSelectionMode mode,
+    DSTreeSelectionMode mode,
   ) {
     if (node.id == targetId) {
       var updatedNode = node.copyWith(isSelected: selected);
 
-      if (mode == AppTreeSelectionMode.hierarchical) {
+      if (mode == DSTreeSelectionMode.hierarchical) {
         // Update all children
         final updatedChildren = node.children.map((child) {
           return _selectAllDescendants(child, selected);
@@ -553,7 +553,7 @@ class AppOutlineTreeUtils {
     var updatedNode = node.copyWith(children: updatedChildren);
 
     // Update partial selection state
-    if (mode == AppTreeSelectionMode.hierarchical) {
+    if (mode == DSTreeSelectionMode.hierarchical) {
       final selectedCount = updatedChildren.where((c) => c.isSelected).length;
       final partialCount =
           updatedChildren.where((c) => c.isPartiallySelected).length;
@@ -574,7 +574,7 @@ class AppOutlineTreeUtils {
     return updatedNode;
   }
 
-  static AppTreeNode _selectAllDescendants(AppTreeNode node, bool selected) {
+  static DSTreeNode _selectAllDescendants(DSTreeNode node, bool selected) {
     final updatedChildren = node.children.map((child) {
       return _selectAllDescendants(child, selected);
     }).toList();
@@ -587,8 +587,8 @@ class AppOutlineTreeUtils {
   }
 
   /// Expand path to a specific node
-  static List<AppTreeNode> expandPath(
-      List<AppTreeNode> nodes, List<String> path) {
+  static List<DSTreeNode> expandPath(
+      List<DSTreeNode> nodes, List<String> path) {
     if (path.isEmpty) return nodes;
 
     return nodes.map((node) {
@@ -601,10 +601,10 @@ class AppOutlineTreeUtils {
   }
 
   /// Get all expanded node IDs
-  static Set<String> getExpandedNodeIds(List<AppTreeNode> nodes) {
+  static Set<String> getExpandedNodeIds(List<DSTreeNode> nodes) {
     final expanded = <String>{};
 
-    void collectExpanded(List<AppTreeNode> currentNodes) {
+    void collectExpanded(List<DSTreeNode> currentNodes) {
       for (final node in currentNodes) {
         if (node.isExpanded) {
           expanded.add(node.id);
@@ -618,15 +618,15 @@ class AppOutlineTreeUtils {
   }
 
   /// Search nodes by label
-  static List<AppTreeNode> searchNodes(
-    List<AppTreeNode> nodes,
+  static List<DSTreeNode> searchNodes(
+    List<DSTreeNode> nodes,
     String query, {
     bool caseSensitive = false,
   }) {
-    final results = <AppTreeNode>[];
+    final results = <DSTreeNode>[];
     final searchQuery = caseSensitive ? query : query.toLowerCase();
 
-    void search(List<AppTreeNode> currentNodes) {
+    void search(List<DSTreeNode> currentNodes) {
       for (final node in currentNodes) {
         final nodeLabel = caseSensitive ? node.label : node.label.toLowerCase();
         if (nodeLabel.contains(searchQuery)) {
@@ -657,12 +657,12 @@ class AppOutlineTreeUtils {
 
   /// Generate semantic description for a node
   static String getNodeSemanticLabel(
-      AppTreeNode node, AppOutlineTreeConfig config) {
+      DSTreeNode node, DSOutlineTreeConfig config) {
     final parts = <String>[];
 
     parts.add(node.label);
 
-    if (config.selectionMode != AppTreeSelectionMode.single) {
+    if (config.selectionMode != DSTreeSelectionMode.single) {
       if (node.isSelected) {
         parts.add('selected');
       } else if (node.isPartiallySelected) {
@@ -691,14 +691,14 @@ class AppOutlineTreeUtils {
   }
 
   /// Calculate tree statistics
-  static TreeStatistics calculateStatistics(List<AppTreeNode> nodes) {
+  static TreeStatistics calculateStatistics(List<DSTreeNode> nodes) {
     var totalNodes = 0;
     var selectedNodes = 0;
     var expandedNodes = 0;
     var maxDepth = 0;
     var leafNodes = 0;
 
-    void analyze(List<AppTreeNode> currentNodes, int depth) {
+    void analyze(List<DSTreeNode> currentNodes, int depth) {
       for (final node in currentNodes) {
         totalNodes++;
         maxDepth = math.max(maxDepth, depth);

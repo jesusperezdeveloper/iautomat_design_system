@@ -4,22 +4,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppFab', () {
+  group('DSFab', () {
     const testIcon = Icon(Icons.add);
     const testLabel = 'Test FAB';
 
     Widget createFabApp({
-      AppFabConfig? config,
+      DSFabConfig? config,
       Widget? icon,
       String? label,
-      AppFabLocation? location,
+      DSFabLocation? location,
       String? heroTag,
       String? tooltip,
     }) {
       return MaterialApp(
         home: Scaffold(
-          body: AppFab(
-            config: config ?? const AppFabConfig(),
+          body: DSFab(
+            config: config ?? const DSFabConfig(),
             icon: icon,
             label: label,
             location: location,
@@ -36,7 +36,7 @@ void main() {
       ));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppFab), findsOneWidget);
+      expect(find.byType(DSFab), findsOneWidget);
       expect(find.byType(FloatingActionButton), findsOneWidget);
       expect(find.byIcon(Icons.add), findsOneWidget);
     });
@@ -53,8 +53,8 @@ void main() {
 
     testWidgets('shows loading state correctly', (tester) async {
       await tester.pumpWidget(createFabApp(
-        config: const AppFabConfig(
-          state: AppFabState.loading,
+        config: const DSFabConfig(
+          state: DSFabState.loading,
         ),
         icon: testIcon,
       ));
@@ -65,8 +65,8 @@ void main() {
 
     testWidgets('shows skeleton state correctly', (tester) async {
       await tester.pumpWidget(createFabApp(
-        config: const AppFabConfig(
-          state: AppFabState.skeleton,
+        config: const DSFabConfig(
+          state: DSFabState.skeleton,
         ),
         icon: testIcon,
       ));
@@ -87,8 +87,8 @@ void main() {
 
       testWidgets('renders small variant correctly', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            variant: AppFabVariant.small,
+          config: const DSFabConfig(
+            variant: DSFabVariant.small,
           ),
           icon: testIcon,
         ));
@@ -99,8 +99,8 @@ void main() {
 
       testWidgets('renders large variant correctly', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            variant: AppFabVariant.large,
+          config: const DSFabConfig(
+            variant: DSFabVariant.large,
           ),
           icon: testIcon,
         ));
@@ -111,8 +111,8 @@ void main() {
 
       testWidgets('renders extended variant correctly', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            variant: AppFabVariant.extended,
+          config: const DSFabConfig(
+            variant: DSFabVariant.extended,
           ),
           icon: testIcon,
           label: testLabel,
@@ -127,9 +127,9 @@ void main() {
 
     group('States', () {
       testWidgets('renders all states correctly', (tester) async {
-        for (final state in AppFabState.values) {
+        for (final state in DSFabState.values) {
           await tester.pumpWidget(createFabApp(
-            config: AppFabConfig(state: state),
+            config: DSFabConfig(state: state),
             icon: testIcon,
           ));
           await tester.pump();
@@ -148,15 +148,15 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createFabApp(
-          config: AppFabConfig(
-            state: AppFabState.disabled,
+          config: DSFabConfig(
+            state: DSFabState.disabled,
             onPressed: () => tapped = true,
           ),
           icon: testIcon,
         ));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byType(AppFab));
+        await tester.tap(find.byType(DSFab));
         await tester.pumpAndSettle();
 
         expect(tapped, isFalse);
@@ -168,7 +168,7 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createFabApp(
-          config: AppFabConfig(
+          config: DSFabConfig(
             onPressed: () => tapped = true,
           ),
           icon: testIcon,
@@ -185,8 +185,8 @@ void main() {
         var hovered = false;
 
         await tester.pumpWidget(createFabApp(
-          config: AppFabConfig(
-            behavior: const AppFabBehavior(enableHover: true),
+          config: DSFabConfig(
+            behavior: const DSFabBehavior(enableHover: true),
             onHover: (isHovered) => hovered = isHovered,
           ),
           icon: testIcon,
@@ -213,7 +213,7 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createFabApp(
-          config: AppFabConfig(
+          config: DSFabConfig(
             enableKeyboardSupport: true,
             onPressed: () => tapped = true,
           ),
@@ -232,7 +232,7 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createFabApp(
-          config: AppFabConfig(
+          config: DSFabConfig(
             enableKeyboardSupport: false,
             onPressed: () => tapped = true,
           ),
@@ -251,7 +251,7 @@ void main() {
       testWidgets('applies RTL directionality when isRtl is true',
           (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(isRtl: true),
+          config: const DSFabConfig(isRtl: true),
           icon: testIcon,
         ));
         await tester.pumpAndSettle();
@@ -275,7 +275,7 @@ void main() {
       testWidgets('provides semantic labels when a11y is enabled',
           (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(enableA11y: true),
+          config: const DSFabConfig(enableA11y: true),
           icon: testIcon,
         ));
         await tester.pumpAndSettle();
@@ -285,7 +285,7 @@ void main() {
 
       testWidgets('is focusable for keyboard navigation', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
+          config: const DSFabConfig(
             enableKeyboardSupport: true,
           ),
           icon: testIcon,
@@ -299,8 +299,8 @@ void main() {
     group('Custom styling', () {
       testWidgets('applies custom colors', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            colors: AppFabColors(
+          config: const DSFabConfig(
+            colors: DSFabColors(
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
             ),
@@ -314,8 +314,8 @@ void main() {
 
       testWidgets('applies custom spacing', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            spacing: AppFabSpacing(
+          config: const DSFabConfig(
+            spacing: DSFabSpacing(
               borderRadius: 24.0,
             ),
           ),
@@ -328,8 +328,8 @@ void main() {
 
       testWidgets('applies custom elevation', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            elevation: AppFabElevation(
+          config: const DSFabConfig(
+            elevation: DSFabElevation(
               defaultElevation: 8.0,
             ),
           ),
@@ -344,8 +344,8 @@ void main() {
     group('Behavior configuration', () {
       testWidgets('enables haptic feedback when configured', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            behavior: AppFabBehavior(
+          config: const DSFabConfig(
+            behavior: DSFabBehavior(
               enableHapticFeedback: true,
             ),
           ),
@@ -358,8 +358,8 @@ void main() {
 
       testWidgets('maintains state when configured', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            behavior: AppFabBehavior(
+          config: const DSFabConfig(
+            behavior: DSFabBehavior(
               maintainState: true,
             ),
           ),
@@ -374,8 +374,8 @@ void main() {
     group('Animation support', () {
       testWidgets('animates state transitions when enabled', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            animation: AppFabAnimation(
+          config: const DSFabConfig(
+            animation: DSFabAnimation(
               enableStateTransitions: true,
               duration: 100,
             ),
@@ -389,8 +389,8 @@ void main() {
 
       testWidgets('does not animate when disabled', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            animation: AppFabAnimation(
+          config: const DSFabConfig(
+            animation: DSFabAnimation(
               enableStateTransitions: false,
             ),
           ),
@@ -405,7 +405,7 @@ void main() {
     group('Platform adaptive behavior', () {
       testWidgets('adapts to platform when isAdaptive is true', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
+          config: const DSFabConfig(
             isAdaptive: true,
           ),
           icon: testIcon,
@@ -419,8 +419,8 @@ void main() {
     group('Location support', () {
       testWidgets('sets correct location via config', (tester) async {
         await tester.pumpWidget(createFabApp(
-          config: const AppFabConfig(
-            location: AppFabLocation.centerFloat,
+          config: const DSFabConfig(
+            location: DSFabLocation.centerFloat,
           ),
           icon: testIcon,
         ));
@@ -432,7 +432,7 @@ void main() {
       testWidgets('sets correct location via prop', (tester) async {
         await tester.pumpWidget(createFabApp(
           icon: testIcon,
-          location: AppFabLocation.startFloat,
+          location: DSFabLocation.startFloat,
         ));
         await tester.pumpAndSettle();
 
@@ -441,18 +441,18 @@ void main() {
     });
   });
 
-  group('AppFabScaffold', () {
+  group('DSFabScaffold', () {
     testWidgets('renders scaffold with FAB correctly', (tester) async {
-      final fab = AppFab(
-        config: const AppFabConfig(
-          location: AppFabLocation.endFloat,
+      final fab = DSFab(
+        config: const DSFabConfig(
+          location: DSFabLocation.endFloat,
         ),
         icon: const Icon(Icons.add),
       );
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppFabScaffold(
+          home: DSFabScaffold(
             fab: fab,
             body: const Center(child: Text('Test Body')),
             appBar: AppBar(title: const Text('Test App')),
@@ -462,7 +462,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(Scaffold), findsOneWidget);
-      expect(find.byType(AppFab), findsOneWidget);
+      expect(find.byType(DSFab), findsOneWidget);
       expect(find.text('Test Body'), findsOneWidget);
       expect(find.text('Test App'), findsOneWidget);
     });

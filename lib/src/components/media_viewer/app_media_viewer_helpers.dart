@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/src/components/media_viewer/app_media_viewer_config.dart';
 import 'package:iautomat_design_system/src/theme/colors.dart';
 
-/// Helper para gestionar diferentes tipos de media en el AppMediaViewer
+/// Helper para gestionar diferentes tipos de media en el DSMediaViewer
 ///
 /// Proporciona utilidades específicas para cada tipo de contenido:
 /// - Validación y parsing de URLs
@@ -11,31 +11,31 @@ import 'package:iautomat_design_system/src/theme/colors.dart';
 /// - Helpers de rendering específicos por tipo
 /// - Optimizaciones por plataforma
 /// - Gestión de metadata
-class AppMediaViewerHelpers {
+class DSMediaViewerHelpers {
   /// Determina automáticamente el tipo de media basado en la URL
-  static AppMediaType determineMediaType(String src) {
+  static DSMediaType determineMediaType(String src) {
     final extension = _getFileExtension(src).toLowerCase();
 
     if (_imageExtensions.contains(extension)) {
-      return AppMediaType.image;
+      return DSMediaType.image;
     } else if (_videoExtensions.contains(extension)) {
-      return AppMediaType.video;
+      return DSMediaType.video;
     } else if (_audioExtensions.contains(extension)) {
-      return AppMediaType.audio;
+      return DSMediaType.audio;
     }
 
     // Fallback: intentar determinar por URL patterns
     if (src.contains('youtube.com') || src.contains('youtu.be') ||
         src.contains('vimeo.com') || src.contains('dailymotion.com')) {
-      return AppMediaType.video;
+      return DSMediaType.video;
     }
 
     if (src.contains('soundcloud.com') || src.contains('spotify.com')) {
-      return AppMediaType.audio;
+      return DSMediaType.audio;
     }
 
     // Default to image if uncertain
-    return AppMediaType.image;
+    return DSMediaType.image;
   }
 
   /// Obtiene la extensión del archivo de una URL
@@ -119,14 +119,14 @@ class AppMediaViewerHelpers {
   }
 
   /// Optimiza la configuración del viewer según el tipo de media
-  static AppMediaViewerConfig optimizeConfigForMediaType(
-    AppMediaViewerConfig config,
-    AppMediaType primaryType,
+  static DSMediaViewerConfig optimizeConfigForMediaType(
+    DSMediaViewerConfig config,
+    DSMediaType primaryType,
   ) {
     switch (primaryType) {
-      case AppMediaType.image:
+      case DSMediaType.image:
         return config.copyWith(
-          variant: AppMediaViewerVariant.image,
+          variant: DSMediaViewerVariant.image,
           behavior: config.behavior?.copyWith(
             enableDoubleTapZoom: true,
             enablePinchZoom: true,
@@ -141,9 +141,9 @@ class AppMediaViewerHelpers {
           ),
         );
 
-      case AppMediaType.video:
+      case DSMediaType.video:
         return config.copyWith(
-          variant: AppMediaViewerVariant.video,
+          variant: DSMediaViewerVariant.video,
           behavior: config.behavior?.copyWith(
             enableDoubleTapZoom: false,
             enablePinchZoom: false,
@@ -158,9 +158,9 @@ class AppMediaViewerHelpers {
           ),
         );
 
-      case AppMediaType.audio:
+      case DSMediaType.audio:
         return config.copyWith(
-          variant: AppMediaViewerVariant.audio,
+          variant: DSMediaViewerVariant.audio,
           behavior: config.behavior?.copyWith(
             enableDoubleTapZoom: false,
             enablePinchZoom: false,
@@ -178,7 +178,7 @@ class AppMediaViewerHelpers {
   }
 
   /// Crea elementos de media automáticamente desde URLs
-  static List<AppMediaItem> createItemsFromUrls(
+  static List<DSMediaItem> createItemsFromUrls(
     List<String> urls, {
     List<String>? captions,
     List<String>? thumbnails,
@@ -187,7 +187,7 @@ class AppMediaViewerHelpers {
       final index = entry.key;
       final url = entry.value;
 
-      return AppMediaItem(
+      return DSMediaItem(
         type: determineMediaType(url),
         src: url,
         caption: captions != null && index < captions.length
@@ -215,38 +215,38 @@ class AppMediaViewerHelpers {
   }
 
   /// Calcula el aspecto ratio óptimo para diferentes tipos de media
-  static double getOptimalAspectRatio(AppMediaType type) {
+  static double getOptimalAspectRatio(DSMediaType type) {
     switch (type) {
-      case AppMediaType.image:
+      case DSMediaType.image:
         return 4 / 3; // Ratio estándar para fotos
-      case AppMediaType.video:
+      case DSMediaType.video:
         return 16 / 9; // Ratio estándar para video
-      case AppMediaType.audio:
+      case DSMediaType.audio:
         return 1; // Cuadrado para reproductores de audio
     }
   }
 
   /// Obtiene el ícono apropiado para cada tipo de media
-  static IconData getMediaTypeIcon(AppMediaType type) {
+  static IconData getMediaTypeIcon(DSMediaType type) {
     switch (type) {
-      case AppMediaType.image:
+      case DSMediaType.image:
         return Icons.image;
-      case AppMediaType.video:
+      case DSMediaType.video:
         return Icons.play_circle_filled;
-      case AppMediaType.audio:
+      case DSMediaType.audio:
         return Icons.audiotrack;
     }
   }
 
   /// Obtiene el color apropiado para cada tipo de media
-  static Color getMediaTypeColor(AppMediaType type) {
+  static Color getMediaTypeColor(DSMediaType type) {
     switch (type) {
-      case AppMediaType.image:
-        return AppColors.info;
-      case AppMediaType.video:
-        return AppColors.primary;
-      case AppMediaType.audio:
-        return AppColors.secondary;
+      case DSMediaType.image:
+        return DSColors.info;
+      case DSMediaType.video:
+        return DSColors.primary;
+      case DSMediaType.audio:
+        return DSColors.secondary;
     }
   }
 
@@ -276,7 +276,7 @@ class AppMediaViewerHelpers {
   }
 
   /// Valida que una lista de elementos sea coherente
-  static bool validateMediaItems(List<AppMediaItem> items) {
+  static bool validateMediaItems(List<DSMediaItem> items) {
     if (items.isEmpty) return false;
 
     return items.every((item) =>
@@ -285,10 +285,10 @@ class AppMediaViewerHelpers {
   }
 
   /// Agrupa elementos por tipo de media
-  static Map<AppMediaType, List<AppMediaItem>> groupItemsByType(
-    List<AppMediaItem> items,
+  static Map<DSMediaType, List<DSMediaItem>> groupItemsByType(
+    List<DSMediaItem> items,
   ) {
-    final groups = <AppMediaType, List<AppMediaItem>>{};
+    final groups = <DSMediaType, List<DSMediaItem>>{};
 
     for (final item in items) {
       groups.putIfAbsent(item.type, () => []).add(item);
@@ -298,7 +298,7 @@ class AppMediaViewerHelpers {
   }
 
   /// Calcula estadísticas de una colección de media
-  static AppMediaCollectionStats calculateStats(List<AppMediaItem> items) {
+  static DSMediaCollectionStats calculateStats(List<DSMediaItem> items) {
     var totalDuration = 0.0;
     var imageCount = 0;
     var videoCount = 0;
@@ -310,19 +310,19 @@ class AppMediaViewerHelpers {
       }
 
       switch (item.type) {
-        case AppMediaType.image:
+        case DSMediaType.image:
           imageCount++;
           break;
-        case AppMediaType.video:
+        case DSMediaType.video:
           videoCount++;
           break;
-        case AppMediaType.audio:
+        case DSMediaType.audio:
           audioCount++;
           break;
       }
     }
 
-    return AppMediaCollectionStats(
+    return DSMediaCollectionStats(
       totalItems: items.length,
       imageCount: imageCount,
       videoCount: videoCount,
@@ -333,12 +333,12 @@ class AppMediaViewerHelpers {
 }
 
 /// Widget helper para renderizar previews de diferentes tipos de media
-class AppMediaPreview extends StatelessWidget {
-  final AppMediaItem item;
+class DSMediaPreview extends StatelessWidget {
+  final DSMediaItem item;
   final double size;
   final VoidCallback? onTap;
 
-  const AppMediaPreview({
+  const DSMediaPreview({
     super.key,
     required this.item,
     this.size = 60,
@@ -355,7 +355,7 @@ class AppMediaPreview extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: AppColors.divider,
+            color: DSColors.divider,
             width: 1,
           ),
         ),
@@ -369,11 +369,11 @@ class AppMediaPreview extends StatelessWidget {
 
   Widget _buildPreviewContent() {
     switch (item.type) {
-      case AppMediaType.image:
+      case DSMediaType.image:
         return _buildImagePreview();
-      case AppMediaType.video:
+      case DSMediaType.video:
         return _buildVideoPreview();
-      case AppMediaType.audio:
+      case DSMediaType.audio:
         return _buildAudioPreview();
     }
   }
@@ -406,7 +406,7 @@ class AppMediaPreview extends StatelessWidget {
             errorBuilder: (context, error, stackTrace) => _buildErrorPreview(),
           )
         else
-          _buildIconPreview(Icons.videocam, AppColors.primary),
+          _buildIconPreview(Icons.videocam, DSColors.primary),
         Positioned(
           bottom: 2,
           right: 2,
@@ -447,7 +447,7 @@ class AppMediaPreview extends StatelessWidget {
   }
 
   Widget _buildAudioPreview() {
-    return _buildIconPreview(Icons.music_note, AppColors.secondary);
+    return _buildIconPreview(Icons.music_note, DSColors.secondary);
   }
 
   Widget _buildIconPreview(IconData icon, Color color) {
@@ -465,11 +465,11 @@ class AppMediaPreview extends StatelessWidget {
 
   Widget _buildErrorPreview() {
     return Container(
-      color: AppColors.gray100,
+      color: DSColors.gray100,
       child: Center(
         child: Icon(
           Icons.broken_image,
-          color: AppColors.gray400,
+          color: DSColors.gray400,
           size: size * 0.5,
         ),
       ),
@@ -478,14 +478,14 @@ class AppMediaPreview extends StatelessWidget {
 }
 
 /// Estadísticas de una colección de media
-class AppMediaCollectionStats {
+class DSMediaCollectionStats {
   final int totalItems;
   final int imageCount;
   final int videoCount;
   final int audioCount;
   final double totalDuration;
 
-  const AppMediaCollectionStats({
+  const DSMediaCollectionStats({
     required this.totalItems,
     required this.imageCount,
     required this.videoCount,
@@ -494,13 +494,13 @@ class AppMediaCollectionStats {
   });
 
   /// Tipo predominante en la colección
-  AppMediaType get predominantType {
+  DSMediaType get predominantType {
     if (imageCount >= videoCount && imageCount >= audioCount) {
-      return AppMediaType.image;
+      return DSMediaType.image;
     } else if (videoCount >= audioCount) {
-      return AppMediaType.video;
+      return DSMediaType.video;
     } else {
-      return AppMediaType.audio;
+      return DSMediaType.audio;
     }
   }
 
@@ -516,7 +516,7 @@ class AppMediaCollectionStats {
 
   /// Duración total formateada
   String get formattedTotalDuration {
-    return AppMediaViewerHelpers.formatDuration(totalDuration);
+    return DSMediaViewerHelpers.formatDuration(totalDuration);
   }
 
   /// Descripción de la colección

@@ -4,13 +4,13 @@ import 'package:iautomat_design_system/src/components/color_picker/app_color_pic
 import 'package:iautomat_design_system/src/components/color_picker/color_picker_config.dart';
 
 void main() {
-  group('AppColorPicker Golden Tests', () {
+  group('DSColorPicker Golden Tests', () {
     Widget buildTestWidget({
-      required AppColorPickerVariant variant,
-      AppColorValue? value,
-      AppColorPickerState state = AppColorPickerState.defaultState,
+      required DSColorPickerVariant variant,
+      DSColorValue? value,
+      DSColorPickerState state = DSColorPickerState.defaultState,
       bool enabled = true,
-      AppColorPickerConfig? config,
+      DSColorPickerConfig? config,
       String? labelText,
       String? hintText,
       String? errorText,
@@ -29,7 +29,7 @@ void main() {
             child: SizedBox(
               width: 300,
               height: 100,
-              child: AppColorPicker(
+              child: DSColorPicker(
                 variant: variant,
                 value: value,
                 state: state,
@@ -56,14 +56,14 @@ void main() {
       testWidgets('hsv picker default state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             labelText: 'Select Color',
             hintText: 'Choose a color',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('hsv_picker_default.png'),
         );
       });
@@ -71,14 +71,14 @@ void main() {
       testWidgets('palette picker default state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.palette,
+            variant: DSColorPickerVariant.palette,
             labelText: 'Select Color',
             hintText: 'Choose from palette',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('palette_picker_default.png'),
         );
       });
@@ -88,14 +88,14 @@ void main() {
       testWidgets('hsv picker with selected color', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            value: AppColorValue.fromColor(Colors.red),
+            variant: DSColorPickerVariant.hsv,
+            value: DSColorValue.fromColor(Colors.red),
             labelText: 'Selected Color',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('hsv_picker_with_value.png'),
         );
       });
@@ -103,14 +103,14 @@ void main() {
       testWidgets('palette picker with selected color', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.palette,
-            value: AppColorValue.fromColor(Colors.blue),
+            variant: DSColorPickerVariant.palette,
+            value: DSColorValue.fromColor(Colors.blue),
             labelText: 'Selected Color',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('palette_picker_with_value.png'),
         );
       });
@@ -118,8 +118,8 @@ void main() {
       testWidgets('color with alpha channel', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            value: AppColorValue(
+            variant: DSColorPickerVariant.hsv,
+            value: DSColorValue(
               color: Colors.green,
               alpha: 0.7,
             ),
@@ -128,7 +128,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_with_alpha.png'),
         );
       });
@@ -136,15 +136,15 @@ void main() {
       testWidgets('hex format display', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             value:
-                AppColorValue.fromColor(Colors.purple, format: ColorFormat.hex),
+                DSColorValue.fromColor(Colors.purple, format: ColorFormat.hex),
             labelText: 'HEX Format',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_hex_format.png'),
         );
       });
@@ -152,15 +152,15 @@ void main() {
       testWidgets('rgb format display', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             value:
-                AppColorValue.fromColor(Colors.orange, format: ColorFormat.rgb),
+                DSColorValue.fromColor(Colors.orange, format: ColorFormat.rgb),
             labelText: 'RGB Format',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_rgb_format.png'),
         );
       });
@@ -170,14 +170,14 @@ void main() {
       testWidgets('hover state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            state: AppColorPickerState.hover,
+            variant: DSColorPickerVariant.hsv,
+            state: DSColorPickerState.hover,
             labelText: 'Hover State',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_hover.png'),
         );
       });
@@ -185,14 +185,14 @@ void main() {
       testWidgets('focus state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            state: AppColorPickerState.focus,
+            variant: DSColorPickerVariant.hsv,
+            state: DSColorPickerState.focus,
             labelText: 'Focus State',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_focus.png'),
         );
       });
@@ -200,14 +200,14 @@ void main() {
       testWidgets('pressed state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            state: AppColorPickerState.pressed,
+            variant: DSColorPickerVariant.hsv,
+            state: DSColorPickerState.pressed,
             labelText: 'Pressed State',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_pressed.png'),
         );
       });
@@ -215,15 +215,15 @@ void main() {
       testWidgets('selected state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            state: AppColorPickerState.selected,
-            value: AppColorValue.fromColor(Colors.teal),
+            variant: DSColorPickerVariant.hsv,
+            state: DSColorPickerState.selected,
+            value: DSColorValue.fromColor(Colors.teal),
             labelText: 'Selected State',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_selected.png'),
         );
       });
@@ -231,14 +231,14 @@ void main() {
       testWidgets('disabled state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             enabled: false,
             labelText: 'Disabled State',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_disabled.png'),
         );
       });
@@ -246,14 +246,14 @@ void main() {
       testWidgets('loading state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            state: AppColorPickerState.loading,
+            variant: DSColorPickerVariant.hsv,
+            state: DSColorPickerState.loading,
             labelText: 'Loading State',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_loading.png'),
         );
       });
@@ -261,14 +261,14 @@ void main() {
       testWidgets('skeleton state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            state: AppColorPickerState.skeleton,
+            variant: DSColorPickerVariant.hsv,
+            state: DSColorPickerState.skeleton,
             labelText: 'Skeleton State',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_skeleton.png'),
         );
       });
@@ -278,14 +278,14 @@ void main() {
       testWidgets('with prefix icon', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             prefixIcon: const Icon(Icons.brush),
             labelText: 'With Prefix Icon',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_prefix_icon.png'),
         );
       });
@@ -293,14 +293,14 @@ void main() {
       testWidgets('with suffix icon', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             suffixIcon: const Icon(Icons.arrow_drop_down),
             labelText: 'With Suffix Icon',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_suffix_icon.png'),
         );
       });
@@ -308,7 +308,7 @@ void main() {
       testWidgets('with both prefix and suffix icons', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             prefixIcon: const Icon(Icons.brush),
             suffixIcon: const Icon(Icons.arrow_drop_down),
             labelText: 'Both Icons',
@@ -316,7 +316,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_both_icons.png'),
         );
       });
@@ -326,14 +326,14 @@ void main() {
       testWidgets('with error text', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             errorText: 'Invalid color selected',
             labelText: 'Color with Error',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_error.png'),
         );
       });
@@ -341,14 +341,14 @@ void main() {
       testWidgets('with helper text', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             helperText: 'Select a vibrant color',
             labelText: 'Color with Helper',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_helper.png'),
         );
       });
@@ -356,7 +356,7 @@ void main() {
       testWidgets('with both error and helper text', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             errorText: 'Color has poor contrast',
             helperText: 'Choose a color with good contrast',
             labelText: 'Color with Both Texts',
@@ -364,7 +364,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_error_helper.png'),
         );
       });
@@ -374,14 +374,14 @@ void main() {
       testWidgets('custom border radius', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            config: const AppColorPickerConfig(borderRadius: 20.0),
+            variant: DSColorPickerVariant.hsv,
+            config: const DSColorPickerConfig(borderRadius: 20.0),
             labelText: 'Custom Border Radius',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_custom_radius.png'),
         );
       });
@@ -389,14 +389,14 @@ void main() {
       testWidgets('custom border width', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            config: const AppColorPickerConfig(borderWidth: 4.0),
+            variant: DSColorPickerVariant.hsv,
+            config: const DSColorPickerConfig(borderWidth: 4.0),
             labelText: 'Custom Border Width',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_custom_border.png'),
         );
       });
@@ -404,8 +404,8 @@ void main() {
       testWidgets('with shadow', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            config: const AppColorPickerConfig(
+            variant: DSColorPickerVariant.hsv,
+            config: const DSColorPickerConfig(
               enableShadow: true,
               shadowBlurRadius: 8.0,
               shadowOffset: Offset(0, 4),
@@ -415,7 +415,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_with_shadow.png'),
         );
       });
@@ -423,14 +423,14 @@ void main() {
       testWidgets('custom minimum height', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            config: const AppColorPickerConfig(minHeight: 80.0),
+            variant: DSColorPickerVariant.hsv,
+            config: const DSColorPickerConfig(minHeight: 80.0),
             labelText: 'Custom Height',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_custom_height.png'),
         );
       });
@@ -438,9 +438,9 @@ void main() {
       testWidgets('with color preview', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            value: AppColorValue.fromColor(Colors.cyan),
-            config: const AppColorPickerConfig(
+            variant: DSColorPickerVariant.hsv,
+            value: DSColorValue.fromColor(Colors.cyan),
+            config: const DSColorPickerConfig(
               showColorPreview: true,
               colorPreviewSize: 32.0,
             ),
@@ -449,7 +449,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_with_preview.png'),
         );
       });
@@ -459,15 +459,15 @@ void main() {
       testWidgets('basic palette', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.palette,
-            customPalette: AppColorPalettes.basic,
+            variant: DSColorPickerVariant.palette,
+            customPalette: DSColorPalettes.basic,
             paletteName: 'Basic',
             labelText: 'Basic Palette',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_basic_palette.png'),
         );
       });
@@ -475,15 +475,15 @@ void main() {
       testWidgets('pastel palette', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.palette,
-            customPalette: AppColorPalettes.pastel,
+            variant: DSColorPickerVariant.palette,
+            customPalette: DSColorPalettes.pastel,
             paletteName: 'Pastel',
             labelText: 'Pastel Palette',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_pastel_palette.png'),
         );
       });
@@ -491,15 +491,15 @@ void main() {
       testWidgets('vibrant palette', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.palette,
-            customPalette: AppColorPalettes.vibrant,
+            variant: DSColorPickerVariant.palette,
+            customPalette: DSColorPalettes.vibrant,
             paletteName: 'Vibrant',
             labelText: 'Vibrant Palette',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_vibrant_palette.png'),
         );
       });
@@ -516,7 +516,7 @@ void main() {
 
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.palette,
+            variant: DSColorPickerVariant.palette,
             customPalette: customColors,
             paletteName: 'Custom',
             labelText: 'Custom Palette',
@@ -524,7 +524,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_custom_palette.png'),
         );
       });
@@ -534,7 +534,7 @@ void main() {
       testWidgets('dark theme', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             theme: ThemeData.dark(),
             labelText: 'Dark Theme',
             hintText: 'Select a color',
@@ -542,7 +542,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_dark_theme.png'),
         );
       });
@@ -550,15 +550,15 @@ void main() {
       testWidgets('dark theme with value', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
-            value: AppColorValue.fromColor(Colors.amber),
+            variant: DSColorPickerVariant.hsv,
+            value: DSColorValue.fromColor(Colors.amber),
             theme: ThemeData.dark(),
             labelText: 'Dark Theme with Value',
           ),
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_dark_with_value.png'),
         );
       });
@@ -566,7 +566,7 @@ void main() {
       testWidgets('dark theme disabled', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            variant: AppColorPickerVariant.hsv,
+            variant: DSColorPickerVariant.hsv,
             enabled: false,
             theme: ThemeData.dark(),
             labelText: 'Dark Theme Disabled',
@@ -574,7 +574,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_dark_disabled.png'),
         );
       });
@@ -592,8 +592,8 @@ void main() {
                   child: SizedBox(
                     width: 300,
                     height: 100,
-                    child: AppColorPicker(
-                      variant: AppColorPickerVariant.hsv,
+                    child: DSColorPicker(
+                      variant: DSColorPickerVariant.hsv,
                       labelText: 'اللون',
                       hintText: 'اختر لونًا',
                       textDirection: TextDirection.rtl,
@@ -607,7 +607,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_rtl.png'),
         );
       });
@@ -623,9 +623,9 @@ void main() {
                   child: SizedBox(
                     width: 300,
                     height: 100,
-                    child: AppColorPicker(
-                      variant: AppColorPickerVariant.hsv,
-                      value: AppColorValue.fromColor(Colors.indigo),
+                    child: DSColorPicker(
+                      variant: DSColorPickerVariant.hsv,
+                      value: DSColorValue.fromColor(Colors.indigo),
                       labelText: 'اللون المحدد',
                       textDirection: TextDirection.rtl,
                       onChanged: (_) {},
@@ -638,7 +638,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_rtl_with_value.png'),
         );
       });
@@ -654,8 +654,8 @@ void main() {
                   child: SizedBox(
                     width: 300,
                     height: 100,
-                    child: AppColorPicker(
-                      variant: AppColorPickerVariant.hsv,
+                    child: DSColorPicker(
+                      variant: DSColorPickerVariant.hsv,
                       prefixIcon: const Icon(Icons.brush),
                       suffixIcon: const Icon(Icons.arrow_drop_down),
                       labelText: 'مع الرموز',
@@ -670,7 +670,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_rtl_with_icons.png'),
         );
       });
@@ -686,9 +686,9 @@ void main() {
                 child: SizedBox(
                   width: 200,
                   height: 60,
-                  child: AppColorPicker(
-                    variant: AppColorPickerVariant.hsv,
-                    config: const AppColorPickerConfig(
+                  child: DSColorPicker(
+                    variant: DSColorPickerVariant.hsv,
+                    config: const DSColorPickerConfig(
                       minHeight: 40.0,
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -703,7 +703,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_compact.png'),
         );
       });
@@ -717,9 +717,9 @@ void main() {
                 child: SizedBox(
                   width: 400,
                   height: 120,
-                  child: AppColorPicker(
-                    variant: AppColorPickerVariant.hsv,
-                    config: const AppColorPickerConfig(
+                  child: DSColorPicker(
+                    variant: DSColorPickerVariant.hsv,
+                    config: const DSColorPickerConfig(
                       minHeight: 80.0,
                       contentPadding: EdgeInsets.all(24),
                       iconSize: 24.0,
@@ -735,7 +735,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppColorPicker),
+          find.byType(DSColorPicker),
           matchesGoldenFile('color_picker_large.png'),
         );
       });
@@ -754,15 +754,15 @@ void main() {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppColorPicker(
-                        variant: AppColorPickerVariant.hsv,
-                        value: AppColorValue.fromColor(Colors.red),
+                      DSColorPicker(
+                        variant: DSColorPickerVariant.hsv,
+                        value: DSColorValue.fromColor(Colors.red),
                         labelText: 'HSV Picker',
                         onChanged: (_) {},
                       ),
-                      AppColorPicker(
-                        variant: AppColorPickerVariant.palette,
-                        value: AppColorValue.fromColor(Colors.blue),
+                      DSColorPicker(
+                        variant: DSColorPickerVariant.palette,
+                        value: DSColorValue.fromColor(Colors.blue),
                         labelText: 'Palette Picker',
                         onChanged: (_) {},
                       ),
@@ -792,33 +792,33 @@ void main() {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppColorPicker(
-                        variant: AppColorPickerVariant.hsv,
-                        state: AppColorPickerState.defaultState,
+                      DSColorPicker(
+                        variant: DSColorPickerVariant.hsv,
+                        state: DSColorPickerState.defaultState,
                         labelText: 'Default',
                         onChanged: (_) {},
                       ),
-                      AppColorPicker(
-                        variant: AppColorPickerVariant.hsv,
-                        state: AppColorPickerState.hover,
+                      DSColorPicker(
+                        variant: DSColorPickerVariant.hsv,
+                        state: DSColorPickerState.hover,
                         labelText: 'Hover',
                         onChanged: (_) {},
                       ),
-                      AppColorPicker(
-                        variant: AppColorPickerVariant.hsv,
-                        state: AppColorPickerState.focus,
+                      DSColorPicker(
+                        variant: DSColorPickerVariant.hsv,
+                        state: DSColorPickerState.focus,
                         labelText: 'Focus',
                         onChanged: (_) {},
                       ),
-                      AppColorPicker(
-                        variant: AppColorPickerVariant.hsv,
-                        state: AppColorPickerState.selected,
-                        value: AppColorValue.fromColor(Colors.green),
+                      DSColorPicker(
+                        variant: DSColorPickerVariant.hsv,
+                        state: DSColorPickerState.selected,
+                        value: DSColorValue.fromColor(Colors.green),
                         labelText: 'Selected',
                         onChanged: (_) {},
                       ),
-                      AppColorPicker(
-                        variant: AppColorPickerVariant.hsv,
+                      DSColorPicker(
+                        variant: DSColorPickerVariant.hsv,
                         enabled: false,
                         labelText: 'Disabled',
                         onChanged: (_) {},

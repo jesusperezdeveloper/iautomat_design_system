@@ -5,26 +5,26 @@ import 'package:iautomat_design_system/src/components/lightbox/app_lightbox.dart
 import 'package:iautomat_design_system/src/components/lightbox/app_lightbox_config.dart';
 
 void main() {
-  group('AppLightbox Widget Tests', () {
-    late List<AppLightboxImage> testImages;
+  group('DSLightbox Widget Tests', () {
+    late List<DSLightboxImage> testImages;
 
     setUp(() {
       testImages = [
-        const AppLightboxImage(
+        const DSLightboxImage(
           id: 'test_1',
           imageProvider: AssetImage('assets/test/test_image_1.png'),
           title: 'Test Image 1',
           description: 'First test image',
           alt: 'Alt text for test image 1',
         ),
-        const AppLightboxImage(
+        const DSLightboxImage(
           id: 'test_2',
           imageProvider: AssetImage('assets/test/test_image_2.png'),
           title: 'Test Image 2',
           description: 'Second test image',
           alt: 'Alt text for test image 2',
         ),
-        const AppLightboxImage(
+        const DSLightboxImage(
           id: 'test_3',
           imageProvider: AssetImage('assets/test/test_image_3.png'),
           title: 'Test Image 3',
@@ -37,9 +37,9 @@ void main() {
     testWidgets('renders zoom lightbox correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              variant: AppLightboxVariant.zoom,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              variant: DSLightboxVariant.zoom,
             ),
             images: [testImages.first],
             onClose: () {},
@@ -47,7 +47,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppLightbox), findsOneWidget);
+      expect(find.byType(DSLightbox), findsOneWidget);
       expect(find.byType(InteractiveViewer), findsOneWidget);
       expect(find.byType(PageView), findsNothing);
     });
@@ -55,9 +55,9 @@ void main() {
     testWidgets('renders gallery lightbox correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              variant: AppLightboxVariant.gallery,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              variant: DSLightboxVariant.gallery,
             ),
             images: testImages,
             onClose: () {},
@@ -65,7 +65,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppLightbox), findsOneWidget);
+      expect(find.byType(DSLightbox), findsOneWidget);
       expect(find.byType(PageView), findsOneWidget);
       expect(find.byType(InteractiveViewer), findsOneWidget);
     });
@@ -73,8 +73,8 @@ void main() {
     testWidgets('shows close button when enabled', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
+          home: DSLightbox(
+            config: const DSLightboxConfig(
               enableCloseButton: true,
             ),
             images: [testImages.first],
@@ -89,8 +89,8 @@ void main() {
     testWidgets('hides close button when disabled', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
+          home: DSLightbox(
+            config: const DSLightboxConfig(
               enableCloseButton: false,
             ),
             images: [testImages.first],
@@ -105,9 +105,9 @@ void main() {
     testWidgets('shows counter when enabled in gallery mode', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              variant: AppLightboxVariant.gallery,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              variant: DSLightboxVariant.gallery,
               enableCounter: true,
             ),
             images: testImages,
@@ -122,9 +122,9 @@ void main() {
     testWidgets('hides counter when disabled', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              variant: AppLightboxVariant.gallery,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              variant: DSLightboxVariant.gallery,
               enableCounter: false,
             ),
             images: testImages,
@@ -139,9 +139,9 @@ void main() {
     testWidgets('shows thumbnails when enabled in gallery mode', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              variant: AppLightboxVariant.gallery,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              variant: DSLightboxVariant.gallery,
               enableThumbnails: true,
             ),
             images: testImages,
@@ -159,8 +159,8 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
+          home: DSLightbox(
+            config: const DSLightboxConfig(
               enableCloseButton: true,
             ),
             images: [testImages.first],
@@ -176,9 +176,9 @@ void main() {
     testWidgets('handles initial index correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              variant: AppLightboxVariant.gallery,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              variant: DSLightboxVariant.gallery,
               initialIndex: 1,
               enableCounter: true,
             ),
@@ -197,9 +197,9 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              variant: AppLightboxVariant.gallery,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              variant: DSLightboxVariant.gallery,
             ),
             images: testImages,
             onClose: () {},
@@ -220,9 +220,9 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              variant: AppLightboxVariant.gallery,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              variant: DSLightboxVariant.gallery,
               enableKeyboardSupport: true,
             ),
             images: testImages,
@@ -233,7 +233,7 @@ void main() {
       );
 
       // Focus the lightbox
-      await tester.tap(find.byType(AppLightbox));
+      await tester.tap(find.byType(DSLightbox));
       await tester.pumpAndSettle();
 
       // Press right arrow key
@@ -254,8 +254,8 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
+          home: DSLightbox(
+            config: const DSLightboxConfig(
               enableKeyboardSupport: true,
             ),
             images: [testImages.first],
@@ -265,7 +265,7 @@ void main() {
       );
 
       // Focus the lightbox
-      await tester.tap(find.byType(AppLightbox));
+      await tester.tap(find.byType(DSLightbox));
       await tester.pumpAndSettle();
 
       // Press escape key
@@ -278,9 +278,9 @@ void main() {
     testWidgets('shows loading state correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              state: AppLightboxState.loading,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              state: DSLightboxState.loading,
             ),
             images: [testImages.first],
             onClose: () {},
@@ -292,7 +292,7 @@ void main() {
     });
 
     testWidgets('applies custom colors correctly', (tester) async {
-      const customColors = AppLightboxColors(
+      const customColors = DSLightboxColors(
         backgroundColor: Colors.red,
         overlayColor: Colors.blue,
         controlsColor: Colors.green,
@@ -300,8 +300,8 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
+          home: DSLightbox(
+            config: const DSLightboxConfig(
               colors: customColors,
               enableCloseButton: true,
             ),
@@ -313,7 +313,7 @@ void main() {
 
       final container = tester.widget<Container>(
         find.descendant(
-          of: find.byType(AppLightbox),
+          of: find.byType(DSLightbox),
           matching: find.byType(Container),
         ).first,
       );
@@ -326,9 +326,9 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              variant: AppLightboxVariant.gallery,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              variant: DSLightboxVariant.gallery,
               enableThumbnails: true,
             ),
             images: testImages,
@@ -354,9 +354,9 @@ void main() {
         MaterialApp(
           home: Directionality(
             textDirection: TextDirection.rtl,
-            child: AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.gallery,
+            child: DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.gallery,
                 enableCounter: true,
               ),
               images: testImages,
@@ -366,18 +366,18 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppLightbox), findsOneWidget);
+      expect(find.byType(DSLightbox), findsOneWidget);
       expect(find.text('1 / 3'), findsOneWidget);
     });
 
     testWidgets('handles gesture configuration correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
+          home: DSLightbox(
+            config: const DSLightboxConfig(
               enabledGestures: {
-                AppLightboxGesture.tap,
-                AppLightboxGesture.pinchZoom,
+                DSLightboxGesture.tap,
+                DSLightboxGesture.pinchZoom,
               },
             ),
             images: [testImages.first],
@@ -391,7 +391,7 @@ void main() {
     });
 
     testWidgets('shows proper semantic labels', (tester) async {
-      const customAccessibility = AppLightboxAccessibility(
+      const customAccessibility = DSLightboxAccessibility(
         semanticLabel: 'Custom Lightbox',
         closeButtonLabel: 'Custom Close',
         counterLabel: 'Image {} of {}',
@@ -399,9 +399,9 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppLightbox(
-            config: const AppLightboxConfig(
-              variant: AppLightboxVariant.gallery,
+          home: DSLightbox(
+            config: const DSLightboxConfig(
+              variant: DSLightboxVariant.gallery,
               enableA11y: true,
               enableCloseButton: true,
               enableCounter: true,
@@ -418,12 +418,12 @@ void main() {
     });
   });
 
-  group('AppLightboxConfig Tests', () {
+  group('DSLightboxConfig Tests', () {
     test('creates config with default values', () {
-      const config = AppLightboxConfig();
+      const config = DSLightboxConfig();
 
-      expect(config.variant, equals(AppLightboxVariant.zoom));
-      expect(config.state, equals(AppLightboxState.defaultState));
+      expect(config.variant, equals(DSLightboxVariant.zoom));
+      expect(config.state, equals(DSLightboxState.defaultState));
       expect(config.initialIndex, equals(0));
       expect(config.enableCloseButton, isTrue);
       expect(config.enableCounter, isTrue);
@@ -434,9 +434,9 @@ void main() {
     });
 
     test('creates config with custom values', () {
-      const config = AppLightboxConfig(
-        variant: AppLightboxVariant.gallery,
-        state: AppLightboxState.loading,
+      const config = DSLightboxConfig(
+        variant: DSLightboxVariant.gallery,
+        state: DSLightboxState.loading,
         initialIndex: 2,
         enableCloseButton: false,
         enableCounter: false,
@@ -444,8 +444,8 @@ void main() {
         maxZoom: 10.0,
       );
 
-      expect(config.variant, equals(AppLightboxVariant.gallery));
-      expect(config.state, equals(AppLightboxState.loading));
+      expect(config.variant, equals(DSLightboxVariant.gallery));
+      expect(config.state, equals(DSLightboxState.loading));
       expect(config.initialIndex, equals(2));
       expect(config.enableCloseButton, isFalse);
       expect(config.enableCounter, isFalse);
@@ -454,29 +454,29 @@ void main() {
     });
 
     test('copyWith works correctly', () {
-      const originalConfig = AppLightboxConfig();
+      const originalConfig = DSLightboxConfig();
       final modifiedConfig = originalConfig.copyWith(
-        variant: AppLightboxVariant.gallery,
+        variant: DSLightboxVariant.gallery,
         enableCounter: false,
       );
 
-      expect(modifiedConfig.variant, equals(AppLightboxVariant.gallery));
+      expect(modifiedConfig.variant, equals(DSLightboxVariant.gallery));
       expect(modifiedConfig.enableCounter, isFalse);
       expect(modifiedConfig.enableCloseButton, isTrue); // Should remain unchanged
       expect(modifiedConfig.initialIndex, equals(0)); // Should remain unchanged
     });
 
     test('equality works correctly', () {
-      const config1 = AppLightboxConfig(
-        variant: AppLightboxVariant.gallery,
+      const config1 = DSLightboxConfig(
+        variant: DSLightboxVariant.gallery,
         initialIndex: 1,
       );
-      const config2 = AppLightboxConfig(
-        variant: AppLightboxVariant.gallery,
+      const config2 = DSLightboxConfig(
+        variant: DSLightboxVariant.gallery,
         initialIndex: 1,
       );
-      const config3 = AppLightboxConfig(
-        variant: AppLightboxVariant.zoom,
+      const config3 = DSLightboxConfig(
+        variant: DSLightboxVariant.zoom,
         initialIndex: 1,
       );
 
@@ -485,9 +485,9 @@ void main() {
     });
   });
 
-  group('AppLightboxImage Tests', () {
+  group('DSLightboxImage Tests', () {
     test('creates image with required values', () {
-      const image = AppLightboxImage(
+      const image = DSLightboxImage(
         id: 'test_image',
         imageProvider: AssetImage('test.png'),
       );
@@ -503,7 +503,7 @@ void main() {
     });
 
     test('creates image with all values', () {
-      const image = AppLightboxImage(
+      const image = DSLightboxImage(
         id: 'test_image',
         imageProvider: AssetImage('test.png'),
         title: 'Test Title',
@@ -526,7 +526,7 @@ void main() {
     });
 
     test('copyWith works correctly', () {
-      const originalImage = AppLightboxImage(
+      const originalImage = DSLightboxImage(
         id: 'test_image',
         imageProvider: AssetImage('test.png'),
         title: 'Original Title',
@@ -544,17 +544,17 @@ void main() {
     });
 
     test('equality works correctly', () {
-      const image1 = AppLightboxImage(
+      const image1 = DSLightboxImage(
         id: 'test_image',
         imageProvider: AssetImage('test.png'),
         title: 'Test Title',
       );
-      const image2 = AppLightboxImage(
+      const image2 = DSLightboxImage(
         id: 'test_image',
         imageProvider: AssetImage('test.png'),
         title: 'Test Title',
       );
-      const image3 = AppLightboxImage(
+      const image3 = DSLightboxImage(
         id: 'different_image',
         imageProvider: AssetImage('test.png'),
         title: 'Test Title',

@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/metric_card/app_metric_car
 import 'package:iautomat_design_system/src/components/metric_card/metric_card_config.dart';
 
 void main() {
-  group('AppMetricCard Golden Tests', () {
+  group('DSMetricCard Golden Tests', () {
     testWidgets('métrica básica simple', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -12,7 +12,7 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard(
+              child: DSMetricCard(
                 title: 'Usuarios Activos',
                 value: '2,847',
                 icon: Icons.people,
@@ -23,7 +23,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_basic.png'),
       );
     });
@@ -35,7 +35,7 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard(
+              child: DSMetricCard(
                 title: 'Ingresos Mensuales',
                 value: '45,234',
                 unit: 'USD',
@@ -49,7 +49,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_with_subtitle_unit.png'),
       );
     });
@@ -61,13 +61,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
+              child: DSMetricCard.delta(
                 title: 'Ventas Mensuales',
                 value: '\$24,567',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 12.5,
-                  type: AppMetricCardDeltaType.increase,
-                  period: AppMetricCardDeltaPeriod.month,
+                  type: DSMetricCardDeltaType.increase,
+                  period: DSMetricCardDeltaPeriod.month,
                 ),
                 icon: Icons.shopping_cart,
                 iconColor: Colors.green,
@@ -78,7 +78,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_delta_increase.png'),
       );
     });
@@ -90,13 +90,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
+              child: DSMetricCard.delta(
                 title: 'Gastos Operativos',
                 value: '\$8,234',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: -5.2,
-                  type: AppMetricCardDeltaType.decrease,
-                  period: AppMetricCardDeltaPeriod.month,
+                  type: DSMetricCardDeltaType.decrease,
+                  period: DSMetricCardDeltaPeriod.month,
                   label: 'Reducción',
                 ),
                 icon: Icons.trending_down,
@@ -108,7 +108,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_delta_decrease.png'),
       );
     });
@@ -120,14 +120,14 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
+              child: DSMetricCard.delta(
                 title: 'Tiempo de Carga',
                 value: '2.34',
                 unit: 's',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 0.0,
-                  type: AppMetricCardDeltaType.neutral,
-                  period: AppMetricCardDeltaPeriod.day,
+                  type: DSMetricCardDeltaType.neutral,
+                  period: DSMetricCardDeltaPeriod.day,
                   label: 'Sin cambios',
                 ),
                 icon: Icons.speed,
@@ -139,14 +139,14 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_delta_neutral.png'),
       );
     });
 
     testWidgets('variante sparkline', (tester) async {
       final trend = List.generate(10, (index) {
-        return AppMetricCardDataPoint(
+        return DSMetricCardDataPoint(
           value: 50.0 + index * 5 + (index % 3) * 10,
           timestamp: DateTime.now().subtract(Duration(days: 9 - index)),
         );
@@ -158,7 +158,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppMetricCard.sparkline(
+              child: DSMetricCard.sparkline(
                 title: 'Visitas del Sitio',
                 value: '12,847',
                 trend: trend,
@@ -171,7 +171,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_sparkline.png'),
       );
     });
@@ -183,14 +183,14 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                size: AppMetricCardSize.small,
-                layout: AppMetricCardLayout.compact,
+              child: DSMetricCard.delta(
+                size: DSMetricCardSize.small,
+                layout: DSMetricCardLayout.compact,
                 title: 'Métrica Pequeña',
                 value: '123',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 5.2,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                 ),
                 icon: Icons.star,
               ),
@@ -200,7 +200,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_small_size.png'),
       );
     });
@@ -212,13 +212,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                size: AppMetricCardSize.medium,
+              child: DSMetricCard.delta(
+                size: DSMetricCardSize.medium,
                 title: 'Métrica Mediana',
                 value: '4,567',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: -2.1,
-                  type: AppMetricCardDeltaType.decrease,
+                  type: DSMetricCardDeltaType.decrease,
                 ),
                 icon: Icons.favorite,
                 iconColor: Colors.red,
@@ -229,7 +229,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_medium_size.png'),
       );
     });
@@ -241,14 +241,14 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                size: AppMetricCardSize.large,
+              child: DSMetricCard.delta(
+                size: DSMetricCardSize.large,
                 title: 'Métrica Grande',
                 value: '\$89,123',
                 subtitle: 'Ingresos totales',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 15.7,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                   label: 'Crecimiento',
                 ),
                 icon: Icons.account_balance,
@@ -260,7 +260,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_large_size.png'),
       );
     });
@@ -272,13 +272,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                layout: AppMetricCardLayout.vertical,
+              child: DSMetricCard.delta(
+                layout: DSMetricCardLayout.vertical,
                 title: 'Layout Vertical',
                 value: '1,234',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 8.5,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                 ),
                 icon: Icons.vertical_align_top,
               ),
@@ -288,7 +288,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_vertical_layout.png'),
       );
     });
@@ -300,13 +300,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                layout: AppMetricCardLayout.horizontal,
+              child: DSMetricCard.delta(
+                layout: DSMetricCardLayout.horizontal,
                 title: 'Layout Horizontal',
                 value: '5,678',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: -3.2,
-                  type: AppMetricCardDeltaType.decrease,
+                  type: DSMetricCardDeltaType.decrease,
                 ),
                 icon: Icons.horizontal_rule,
               ),
@@ -316,14 +316,14 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_horizontal_layout.png'),
       );
     });
 
     testWidgets('layout compacto', (tester) async {
       final trend = List.generate(8, (index) {
-        return AppMetricCardDataPoint(
+        return DSMetricCardDataPoint(
           value: 40.0 + index * 8,
           timestamp: DateTime.now().subtract(Duration(days: 7 - index)),
         );
@@ -335,8 +335,8 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppMetricCard.sparkline(
-                layout: AppMetricCardLayout.compact,
+              child: DSMetricCard.sparkline(
+                layout: DSMetricCardLayout.compact,
                 title: 'Layout Compacto',
                 value: '9,876',
                 trend: trend,
@@ -349,7 +349,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_compact_layout.png'),
       );
     });
@@ -361,13 +361,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                state: AppMetricCardState.hover,
+              child: DSMetricCard.delta(
+                state: DSMetricCardState.hover,
                 title: 'Estado Hover',
                 value: '2,345',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 3.2,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                 ),
                 icon: Icons.mouse,
                 iconColor: Colors.blue,
@@ -378,7 +378,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_hover_state.png'),
       );
     });
@@ -390,13 +390,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                state: AppMetricCardState.pressed,
+              child: DSMetricCard.delta(
+                state: DSMetricCardState.pressed,
                 title: 'Estado Pressed',
                 value: '3,456',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: -1.5,
-                  type: AppMetricCardDeltaType.decrease,
+                  type: DSMetricCardDeltaType.decrease,
                 ),
                 icon: Icons.touch_app,
                 iconColor: Colors.orange,
@@ -407,7 +407,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_pressed_state.png'),
       );
     });
@@ -419,13 +419,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                state: AppMetricCardState.focus,
+              child: DSMetricCard.delta(
+                state: DSMetricCardState.focus,
                 title: 'Estado Focus',
                 value: '4,567',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 7.8,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                 ),
                 icon: Icons.center_focus_strong,
                 iconColor: Colors.purple,
@@ -436,7 +436,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_focus_state.png'),
       );
     });
@@ -448,13 +448,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                state: AppMetricCardState.selected,
+              child: DSMetricCard.delta(
+                state: DSMetricCardState.selected,
                 title: 'Estado Selected',
                 value: '5,678',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 2.1,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                 ),
                 icon: Icons.radio_button_checked,
                 iconColor: Colors.green,
@@ -465,7 +465,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_selected_state.png'),
       );
     });
@@ -477,13 +477,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                state: AppMetricCardState.disabled,
+              child: DSMetricCard.delta(
+                state: DSMetricCardState.disabled,
                 title: 'Estado Disabled',
                 value: '6,789',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 0.0,
-                  type: AppMetricCardDeltaType.neutral,
+                  type: DSMetricCardDeltaType.neutral,
                 ),
                 icon: Icons.block,
                 iconColor: Colors.grey,
@@ -494,7 +494,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_disabled_state.png'),
       );
     });
@@ -506,8 +506,8 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard(
-                state: AppMetricCardState.skeleton,
+              child: DSMetricCard(
+                state: DSMetricCardState.skeleton,
                 title: 'Cargando...',
                 value: '---',
                 icon: Icons.hourglass_empty,
@@ -518,7 +518,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_skeleton_state.png'),
       );
     });
@@ -530,12 +530,12 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
+              child: DSMetricCard.delta(
                 title: 'Ventas Premium',
                 value: '\$156,789',
-                delta: const AppMetricCardDelta(
+                delta: const DSMetricCardDelta(
                   value: 23.5,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                   label: 'Este mes',
                 ),
                 prefix: Container(
@@ -554,7 +554,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_prefix_suffix.png'),
       );
     });
@@ -566,20 +566,20 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
+              child: DSMetricCard.delta(
                 title: 'Métrica Personalizada',
                 value: '\$24,567',
-                delta: const AppMetricCardDelta(
+                delta: const DSMetricCardDelta(
                   value: 12.5,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                   label: 'Crecimiento',
                 ),
-                style: AppMetricCardStyle(
+                style: DSMetricCardStyle(
                   backgroundColor: Colors.blue.withValues(alpha: 0.05),
                   borderColor: Colors.blue,
                   borderWidth: 2,
                   borderRadius: 16,
-                  deltaStyle: AppMetricCardDeltaStyle(
+                  deltaStyle: DSMetricCardDeltaStyle(
                     backgroundColor: Colors.green.withValues(alpha: 0.1),
                     foregroundColor: Colors.green.shade700,
                     borderRadius: 12,
@@ -594,14 +594,14 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_custom_blue_style.png'),
       );
     });
 
     testWidgets('sparkline con estilo personalizado', (tester) async {
       final trend = List.generate(15, (index) {
-        return AppMetricCardDataPoint(
+        return DSMetricCardDataPoint(
           value: 90.0 + index * 0.5 + (index % 4) * 2,
           timestamp: DateTime.now().subtract(Duration(hours: 14 - index)),
         );
@@ -613,17 +613,17 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppMetricCard.sparkline(
+              child: DSMetricCard.sparkline(
                 title: 'Rendimiento del Servidor',
                 value: '99.9',
                 unit: '%',
                 subtitle: 'Tiempo de actividad',
                 trend: trend,
-                style: AppMetricCardStyle(
+                style: DSMetricCardStyle(
                   backgroundColor: Colors.green.withValues(alpha: 0.05),
                   borderColor: Colors.green,
                   borderWidth: 1,
-                  sparklineStyle: AppMetricCardSparklineStyle(
+                  sparklineStyle: DSMetricCardSparklineStyle(
                     lineColor: Colors.green,
                     fillColor: Colors.green.withValues(alpha: 0.2),
                     showFill: true,
@@ -640,7 +640,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_custom_sparkline_style.png'),
       );
     });
@@ -652,13 +652,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
+              child: DSMetricCard.delta(
                 title: 'Tema Oscuro',
                 value: '\$45,234',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 8.7,
-                  type: AppMetricCardDeltaType.increase,
-                  period: AppMetricCardDeltaPeriod.week,
+                  type: DSMetricCardDeltaType.increase,
+                  period: DSMetricCardDeltaPeriod.week,
                 ),
                 icon: Icons.dark_mode,
                 iconColor: Colors.amber,
@@ -669,7 +669,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_dark_theme.png'),
       );
     });
@@ -681,7 +681,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppMetricCard(
+              child: DSMetricCard(
                 title: 'Estado del Sistema',
                 value: 'N/A',
                 customValueWidget: Row(
@@ -715,7 +715,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_custom_value_widget.png'),
       );
     });
@@ -727,16 +727,16 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                size: AppMetricCardSize.large,
+              child: DSMetricCard.delta(
+                size: DSMetricCardSize.large,
                 title: 'Dashboard Ejecutivo',
                 value: '\$2,847,392',
                 unit: 'USD',
                 subtitle: 'Ingresos totales del trimestre',
-                delta: const AppMetricCardDelta(
+                delta: const DSMetricCardDelta(
                   value: 18.7,
-                  type: AppMetricCardDeltaType.increase,
-                  period: AppMetricCardDeltaPeriod.quarter,
+                  type: DSMetricCardDeltaType.increase,
+                  period: DSMetricCardDeltaPeriod.quarter,
                   label: 'vs Q3',
                   showPercentage: true,
                 ),
@@ -765,14 +765,14 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_complex_example.png'),
       );
     });
 
     testWidgets('sparkline horizontal layout', (tester) async {
       final trend = List.generate(12, (index) {
-        return AppMetricCardDataPoint(
+        return DSMetricCardDataPoint(
           value: 1000 + index * 200 + (index % 3) * 100,
           timestamp: DateTime.now().subtract(Duration(days: 11 - index)),
         );
@@ -784,16 +784,16 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppMetricCard.sparkline(
-                layout: AppMetricCardLayout.horizontal,
+              child: DSMetricCard.sparkline(
+                layout: DSMetricCardLayout.horizontal,
                 title: 'Tráfico Web',
                 value: '45.2K',
                 subtitle: 'Visitantes únicos',
                 trend: trend,
                 icon: Icons.language,
                 iconColor: Colors.blue,
-                style: AppMetricCardStyle(
-                  sparklineStyle: AppMetricCardSparklineStyle(
+                style: DSMetricCardStyle(
+                  sparklineStyle: DSMetricCardSparklineStyle(
                     lineColor: Colors.blue,
                     fillColor: Colors.blue.withValues(alpha: 0.1),
                     showFill: true,
@@ -807,7 +807,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_sparkline_horizontal.png'),
       );
     });
@@ -819,13 +819,13 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppMetricCard.delta(
-                spacing: AppMetricCardSpacing.relaxed,
+              child: DSMetricCard.delta(
+                spacing: DSMetricCardSpacing.relaxed,
                 title: 'Espaciado Relajado',
                 value: '12,345',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 6.8,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                 ),
                 icon: Icons.space_bar,
                 iconColor: Colors.indigo,
@@ -836,7 +836,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppMetricCard),
+        find.byType(DSMetricCard),
         matchesGoldenFile('metric_card_relaxed_spacing.png'),
       );
     });

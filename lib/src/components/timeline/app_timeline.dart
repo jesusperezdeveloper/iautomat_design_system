@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'timeline_config.dart';
 
-class AppTimeline extends StatefulWidget {
-  final AppTimelineConfig config;
+class DSTimeline extends StatefulWidget {
+  final DSTimelineConfig config;
 
-  const AppTimeline._({
+  const DSTimeline._({
     super.key,
     required this.config,
   });
 
-  factory AppTimeline.activity({
+  factory DSTimeline.activity({
     Key? key,
-    required List<AppTimelineEvent> events,
-    AppTimelineOrientation orientation = AppTimelineOrientation.vertical,
-    AppTimelineConnectorStyle connectorStyle = AppTimelineConnectorStyle.solid,
-    AppTimelineIndicatorStyle indicatorStyle = AppTimelineIndicatorStyle.dot,
-    AppTimelineAlignment alignment = AppTimelineAlignment.start,
-    AppTimelineSpacing spacing = AppTimelineSpacing.medium,
+    required List<DSTimelineEvent> events,
+    DSTimelineOrientation orientation = DSTimelineOrientation.vertical,
+    DSTimelineConnectorStyle connectorStyle = DSTimelineConnectorStyle.solid,
+    DSTimelineIndicatorStyle indicatorStyle = DSTimelineIndicatorStyle.dot,
+    DSTimelineAlignment alignment = DSTimelineAlignment.start,
+    DSTimelineSpacing spacing = DSTimelineSpacing.medium,
     Color? connectorColor,
     Color? indicatorColor,
     Color? backgroundColor,
@@ -27,10 +27,10 @@ class AppTimeline extends StatefulWidget {
     double? itemSpacing,
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry? margin,
-    AppTimelineStyle? style,
-    AppTimelineInteraction? interaction,
-    AppTimelineAccessibility? accessibility,
-    AppTimelineAnimation? animation,
+    DSTimelineStyle? style,
+    DSTimelineInteraction? interaction,
+    DSTimelineAccessibility? accessibility,
+    DSTimelineAnimation? animation,
     ValueChanged<int>? onEventTap,
     ValueChanged<int>? onEventLongPress,
     ValueChanged<int>? onEventHover,
@@ -50,10 +50,10 @@ class AppTimeline extends StatefulWidget {
     int? selectedIndex,
     ScrollController? scrollController,
   }) {
-    return AppTimeline._(
+    return DSTimeline._(
       key: key,
-      config: AppTimelineConfig(
-        variant: AppTimelineVariant.activity,
+      config: DSTimelineConfig(
+        variant: DSTimelineVariant.activity,
         events: events,
         orientation: orientation,
         connectorStyle: connectorStyle,
@@ -96,10 +96,10 @@ class AppTimeline extends StatefulWidget {
   }
 
   @override
-  State<AppTimeline> createState() => _AppTimelineState();
+  State<DSTimeline> createState() => _DSTimelineState();
 }
 
-class _AppTimelineState extends State<AppTimeline>
+class _DSTimelineState extends State<DSTimeline>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late List<AnimationController> _itemAnimationControllers;
@@ -120,7 +120,7 @@ class _AppTimelineState extends State<AppTimeline>
   void _initializeAnimations() {
     _animationController = AnimationController(
       duration: widget.config.animation?.duration ??
-          AppTimelineConstants.defaultAnimationDuration,
+          DSTimelineConstants.defaultAnimationDuration,
       vsync: this,
     );
 
@@ -128,7 +128,7 @@ class _AppTimelineState extends State<AppTimeline>
       widget.config.events.length,
       (index) => AnimationController(
         duration: widget.config.animation?.duration ??
-            AppTimelineConstants.defaultAnimationDuration,
+            DSTimelineConstants.defaultAnimationDuration,
         vsync: this,
       ),
     );
@@ -138,7 +138,7 @@ class _AppTimelineState extends State<AppTimeline>
         CurvedAnimation(
           parent: controller,
           curve: widget.config.animation?.curve ??
-              AppTimelineConstants.defaultAnimationCurve,
+              DSTimelineConstants.defaultAnimationCurve,
         ),
       );
     }).toList();
@@ -252,19 +252,19 @@ class _AppTimelineState extends State<AppTimeline>
     }
   }
 
-  AppTimelineState get _currentState {
-    if (widget.config.isDisabled) return AppTimelineState.disabled;
-    if (widget.config.isLoading) return AppTimelineState.loading;
-    if (widget.config.isSkeleton) return AppTimelineState.skeleton;
-    if (_isPressed) return AppTimelineState.pressed;
-    if (_isHovered) return AppTimelineState.hover;
-    if (_isFocused) return AppTimelineState.focus;
-    if (widget.config.hasSelection) return AppTimelineState.selected;
-    return AppTimelineState.defaultState;
+  DSTimelineState get _currentState {
+    if (widget.config.isDisabled) return DSTimelineState.disabled;
+    if (widget.config.isLoading) return DSTimelineState.loading;
+    if (widget.config.isSkeleton) return DSTimelineState.skeleton;
+    if (_isPressed) return DSTimelineState.pressed;
+    if (_isHovered) return DSTimelineState.hover;
+    if (_isFocused) return DSTimelineState.focus;
+    if (widget.config.hasSelection) return DSTimelineState.selected;
+    return DSTimelineState.defaultState;
   }
 
   @override
-  void didUpdateWidget(AppTimeline oldWidget) {
+  void didUpdateWidget(DSTimeline oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.config.events.length != widget.config.events.length) {
@@ -315,7 +315,7 @@ class _AppTimelineState extends State<AppTimeline>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final effectiveStyle = widget.config.style?.copyWithState(_currentState) ??
-        AppTimelineStyle().copyWithState(_currentState);
+        DSTimelineStyle().copyWithState(_currentState);
 
     Widget timeline = Container(
       padding: widget.config.getEffectivePadding(),
@@ -397,7 +397,7 @@ class _AppTimelineState extends State<AppTimeline>
   Widget _buildTimelineItem(
     BuildContext context,
     ColorScheme colorScheme,
-    AppTimelineEvent event,
+    DSTimelineEvent event,
     int originalIndex, {
     required bool isFirst,
     required bool isLast,
@@ -444,7 +444,7 @@ class _AppTimelineState extends State<AppTimeline>
   Widget _buildVerticalItem(
     BuildContext context,
     ColorScheme colorScheme,
-    AppTimelineEvent event,
+    DSTimelineEvent event,
     int index, {
     required bool isFirst,
     required bool isLast,
@@ -515,7 +515,7 @@ class _AppTimelineState extends State<AppTimeline>
   Widget _buildHorizontalItem(
     BuildContext context,
     ColorScheme colorScheme,
-    AppTimelineEvent event,
+    DSTimelineEvent event,
     int index, {
     required bool isFirst,
     required bool isLast,
@@ -580,7 +580,7 @@ class _AppTimelineState extends State<AppTimeline>
   Widget _buildIndicator(
     BuildContext context,
     ColorScheme colorScheme,
-    AppTimelineEvent event,
+    DSTimelineEvent event,
     int index, {
     required bool isSelected,
     required bool isHovered,
@@ -592,7 +592,7 @@ class _AppTimelineState extends State<AppTimeline>
     Widget indicator;
 
     switch (widget.config.indicatorStyle) {
-      case AppTimelineIndicatorStyle.dot:
+      case DSTimelineIndicatorStyle.dot:
         indicator = Container(
           width: size,
           height: size,
@@ -607,7 +607,7 @@ class _AppTimelineState extends State<AppTimeline>
         );
         break;
 
-      case AppTimelineIndicatorStyle.circle:
+      case DSTimelineIndicatorStyle.circle:
         indicator = Container(
           width: size,
           height: size,
@@ -622,7 +622,7 @@ class _AppTimelineState extends State<AppTimeline>
         );
         break;
 
-      case AppTimelineIndicatorStyle.square:
+      case DSTimelineIndicatorStyle.square:
         indicator = Container(
           width: size,
           height: size,
@@ -637,7 +637,7 @@ class _AppTimelineState extends State<AppTimeline>
         );
         break;
 
-      case AppTimelineIndicatorStyle.diamond:
+      case DSTimelineIndicatorStyle.diamond:
         indicator = Transform.rotate(
           angle: 0.785398, // 45 degrees in radians
           child: Container(
@@ -655,7 +655,7 @@ class _AppTimelineState extends State<AppTimeline>
         );
         break;
 
-      case AppTimelineIndicatorStyle.icon:
+      case DSTimelineIndicatorStyle.icon:
         indicator = Container(
           width: size,
           height: size,
@@ -674,7 +674,7 @@ class _AppTimelineState extends State<AppTimeline>
         );
         break;
 
-      case AppTimelineIndicatorStyle.custom:
+      case DSTimelineIndicatorStyle.custom:
         indicator = event.leading ??
             Container(
               width: size,
@@ -721,7 +721,7 @@ class _AppTimelineState extends State<AppTimeline>
     Widget connector;
 
     switch (widget.config.connectorStyle) {
-      case AppTimelineConnectorStyle.solid:
+      case DSTimelineConnectorStyle.solid:
         connector = Container(
           width: isVertical ? width : length,
           height: isVertical ? length : width,
@@ -729,7 +729,7 @@ class _AppTimelineState extends State<AppTimeline>
         );
         break;
 
-      case AppTimelineConnectorStyle.dashed:
+      case DSTimelineConnectorStyle.dashed:
         connector = _buildDashedConnector(
           color,
           isVertical: isVertical,
@@ -738,7 +738,7 @@ class _AppTimelineState extends State<AppTimeline>
         );
         break;
 
-      case AppTimelineConnectorStyle.dotted:
+      case DSTimelineConnectorStyle.dotted:
         connector = _buildDottedConnector(
           color,
           isVertical: isVertical,
@@ -747,7 +747,7 @@ class _AppTimelineState extends State<AppTimeline>
         );
         break;
 
-      case AppTimelineConnectorStyle.none:
+      case DSTimelineConnectorStyle.none:
         connector = SizedBox(
           width: isVertical ? width : length,
           height: isVertical ? length : width,
@@ -799,7 +799,7 @@ class _AppTimelineState extends State<AppTimeline>
   Widget _buildEventContent(
     BuildContext context,
     ColorScheme colorScheme,
-    AppTimelineEvent event,
+    DSTimelineEvent event,
     int index, {
     required bool isSelected,
     required bool isHovered,
@@ -966,10 +966,10 @@ class _AppTimelineState extends State<AppTimeline>
   }
 
   Widget _wrapWithAnimation(Widget child, Animation<double> animation) {
-    switch (widget.config.animation?.type ?? AppTimelineAnimationType.fade) {
-      case AppTimelineAnimationType.fade:
+    switch (widget.config.animation?.type ?? DSTimelineAnimationType.fade) {
+      case DSTimelineAnimationType.fade:
         return FadeTransition(opacity: animation, child: child);
-      case AppTimelineAnimationType.slide:
+      case DSTimelineAnimationType.slide:
         return SlideTransition(
           position: Tween<Offset>(
             begin: const Offset(0, 0.3),
@@ -977,9 +977,9 @@ class _AppTimelineState extends State<AppTimeline>
           ).animate(animation),
           child: child,
         );
-      case AppTimelineAnimationType.scale:
+      case DSTimelineAnimationType.scale:
         return ScaleTransition(scale: animation, child: child);
-      case AppTimelineAnimationType.slideUp:
+      case DSTimelineAnimationType.slideUp:
         return SlideTransition(
           position: Tween<Offset>(
             begin: const Offset(0, 1),
@@ -987,7 +987,7 @@ class _AppTimelineState extends State<AppTimeline>
           ).animate(animation),
           child: child,
         );
-      case AppTimelineAnimationType.slideDown:
+      case DSTimelineAnimationType.slideDown:
         return SlideTransition(
           position: Tween<Offset>(
             begin: const Offset(0, -1),
@@ -995,7 +995,7 @@ class _AppTimelineState extends State<AppTimeline>
           ).animate(animation),
           child: child,
         );
-      case AppTimelineAnimationType.slideLeft:
+      case DSTimelineAnimationType.slideLeft:
         return SlideTransition(
           position: Tween<Offset>(
             begin: const Offset(1, 0),
@@ -1003,7 +1003,7 @@ class _AppTimelineState extends State<AppTimeline>
           ).animate(animation),
           child: child,
         );
-      case AppTimelineAnimationType.slideRight:
+      case DSTimelineAnimationType.slideRight:
         return SlideTransition(
           position: Tween<Offset>(
             begin: const Offset(-1, 0),
@@ -1011,7 +1011,7 @@ class _AppTimelineState extends State<AppTimeline>
           ).animate(animation),
           child: child,
         );
-      case AppTimelineAnimationType.stagger:
+      case DSTimelineAnimationType.stagger:
         return FadeTransition(
           opacity: animation,
           child: SlideTransition(
@@ -1022,7 +1022,7 @@ class _AppTimelineState extends State<AppTimeline>
             child: child,
           ),
         );
-      case AppTimelineAnimationType.none:
+      case DSTimelineAnimationType.none:
         return child;
     }
   }

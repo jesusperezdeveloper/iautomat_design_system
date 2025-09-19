@@ -4,21 +4,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppIconButton', () {
+  group('DSIconButton', () {
     const testIcon = Icon(Icons.favorite);
     const testTooltip = 'Test IconButton';
 
     Widget createIconButtonApp({
-      AppIconButtonConfig? config,
+      DSIconButtonConfig? config,
       Widget? icon,
       String? tooltip,
-      AppIconButtonSize? size,
+      DSIconButtonSize? size,
       bool? isToggled,
     }) {
       return MaterialApp(
         home: Scaffold(
-          body: AppIconButton(
-            config: config ?? const AppIconButtonConfig(),
+          body: DSIconButton(
+            config: config ?? const DSIconButtonConfig(),
             icon: icon ?? testIcon,
             tooltip: tooltip,
             size: size,
@@ -32,7 +32,7 @@ void main() {
       await tester.pumpWidget(createIconButtonApp());
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppIconButton), findsOneWidget);
+      expect(find.byType(DSIconButton), findsOneWidget);
       expect(find.byType(IconButton), findsOneWidget);
       expect(find.byIcon(Icons.favorite), findsOneWidget);
     });
@@ -48,8 +48,8 @@ void main() {
 
     testWidgets('shows loading state correctly', (tester) async {
       await tester.pumpWidget(createIconButtonApp(
-        config: const AppIconButtonConfig(
-          state: AppIconButtonState.loading,
+        config: const DSIconButtonConfig(
+          state: DSIconButtonState.loading,
         ),
       ));
       await tester.pump();
@@ -59,8 +59,8 @@ void main() {
 
     testWidgets('shows skeleton state correctly', (tester) async {
       await tester.pumpWidget(createIconButtonApp(
-        config: const AppIconButtonConfig(
-          state: AppIconButtonState.skeleton,
+        config: const DSIconButtonConfig(
+          state: DSIconButtonState.skeleton,
         ),
       ));
       await tester.pumpAndSettle();
@@ -78,8 +78,8 @@ void main() {
 
       testWidgets('renders filled variant correctly', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            variant: AppIconButtonVariant.filled,
+          config: const DSIconButtonConfig(
+            variant: DSIconButtonVariant.filled,
           ),
         ));
         await tester.pumpAndSettle();
@@ -89,8 +89,8 @@ void main() {
 
       testWidgets('renders tonal variant correctly', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            variant: AppIconButtonVariant.tonal,
+          config: const DSIconButtonConfig(
+            variant: DSIconButtonVariant.tonal,
           ),
         ));
         await tester.pumpAndSettle();
@@ -101,9 +101,9 @@ void main() {
 
     group('States', () {
       testWidgets('renders all states correctly', (tester) async {
-        for (final state in AppIconButtonState.values) {
+        for (final state in DSIconButtonState.values) {
           await tester.pumpWidget(createIconButtonApp(
-            config: AppIconButtonConfig(state: state),
+            config: DSIconButtonConfig(state: state),
           ));
           await tester.pump();
 
@@ -121,14 +121,14 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createIconButtonApp(
-          config: AppIconButtonConfig(
-            state: AppIconButtonState.disabled,
+          config: DSIconButtonConfig(
+            state: DSIconButtonState.disabled,
             onPressed: () => tapped = true,
           ),
         ));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byType(AppIconButton));
+        await tester.tap(find.byType(DSIconButton));
         await tester.pumpAndSettle();
 
         expect(tapped, isFalse);
@@ -138,7 +138,7 @@ void main() {
     group('Sizes', () {
       testWidgets('renders small size correctly', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          size: AppIconButtonSize.small,
+          size: DSIconButtonSize.small,
         ));
         await tester.pumpAndSettle();
 
@@ -147,7 +147,7 @@ void main() {
 
       testWidgets('renders medium size correctly', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          size: AppIconButtonSize.medium,
+          size: DSIconButtonSize.medium,
         ));
         await tester.pumpAndSettle();
 
@@ -156,7 +156,7 @@ void main() {
 
       testWidgets('renders large size correctly', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          size: AppIconButtonSize.large,
+          size: DSIconButtonSize.large,
         ));
         await tester.pumpAndSettle();
 
@@ -169,8 +169,8 @@ void main() {
         var toggledState = false;
 
         await tester.pumpWidget(createIconButtonApp(
-          config: AppIconButtonConfig(
-            behavior: const AppIconButtonBehavior(enableToggle: true),
+          config: DSIconButtonConfig(
+            behavior: const DSIconButtonBehavior(enableToggle: true),
             onToggle: (isToggled) => toggledState = isToggled,
           ),
         ));
@@ -197,7 +197,7 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createIconButtonApp(
-          config: AppIconButtonConfig(
+          config: DSIconButtonConfig(
             onPressed: () => tapped = true,
           ),
         ));
@@ -213,8 +213,8 @@ void main() {
         var hovered = false;
 
         await tester.pumpWidget(createIconButtonApp(
-          config: AppIconButtonConfig(
-            behavior: const AppIconButtonBehavior(enableHover: true),
+          config: DSIconButtonConfig(
+            behavior: const DSIconButtonBehavior(enableHover: true),
             onHover: (isHovered) => hovered = isHovered,
           ),
         ));
@@ -239,7 +239,7 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createIconButtonApp(
-          config: AppIconButtonConfig(
+          config: DSIconButtonConfig(
             enableKeyboardSupport: true,
             onPressed: () => tapped = true,
           ),
@@ -257,7 +257,7 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createIconButtonApp(
-          config: AppIconButtonConfig(
+          config: DSIconButtonConfig(
             enableKeyboardSupport: false,
             onPressed: () => tapped = true,
           ),
@@ -275,7 +275,7 @@ void main() {
       testWidgets('applies RTL directionality when isRtl is true',
           (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(isRtl: true),
+          config: const DSIconButtonConfig(isRtl: true),
         ));
         await tester.pumpAndSettle();
 
@@ -298,7 +298,7 @@ void main() {
       testWidgets('provides semantic labels when a11y is enabled',
           (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(enableA11y: true),
+          config: const DSIconButtonConfig(enableA11y: true),
           tooltip: testTooltip,
         ));
         await tester.pumpAndSettle();
@@ -308,7 +308,7 @@ void main() {
 
       testWidgets('is focusable for keyboard navigation', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
+          config: const DSIconButtonConfig(
             enableKeyboardSupport: true,
           ),
         ));
@@ -321,8 +321,8 @@ void main() {
     group('Custom styling', () {
       testWidgets('applies custom colors', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            colors: AppIconButtonColors(
+          config: const DSIconButtonConfig(
+            colors: DSIconButtonColors(
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
             ),
@@ -335,8 +335,8 @@ void main() {
 
       testWidgets('applies custom spacing', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            spacing: AppIconButtonSpacing(
+          config: const DSIconButtonConfig(
+            spacing: DSIconButtonSpacing(
               borderRadius: 16.0,
             ),
           ),
@@ -348,8 +348,8 @@ void main() {
 
       testWidgets('applies custom elevation', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            elevation: AppIconButtonElevation(
+          config: const DSIconButtonConfig(
+            elevation: DSIconButtonElevation(
               defaultElevation: 4.0,
             ),
           ),
@@ -363,8 +363,8 @@ void main() {
     group('Behavior configuration', () {
       testWidgets('enables haptic feedback when configured', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            behavior: AppIconButtonBehavior(
+          config: const DSIconButtonConfig(
+            behavior: DSIconButtonBehavior(
               enableHapticFeedback: true,
             ),
           ),
@@ -376,8 +376,8 @@ void main() {
 
       testWidgets('maintains state when configured', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            behavior: AppIconButtonBehavior(
+          config: const DSIconButtonConfig(
+            behavior: DSIconButtonBehavior(
               maintainState: true,
             ),
           ),
@@ -391,8 +391,8 @@ void main() {
     group('Animation support', () {
       testWidgets('animates state transitions when enabled', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            animation: AppIconButtonAnimation(
+          config: const DSIconButtonConfig(
+            animation: DSIconButtonAnimation(
               enableStateTransitions: true,
               duration: 100,
             ),
@@ -405,8 +405,8 @@ void main() {
 
       testWidgets('does not animate when disabled', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            animation: AppIconButtonAnimation(
+          config: const DSIconButtonConfig(
+            animation: DSIconButtonAnimation(
               enableStateTransitions: false,
             ),
           ),
@@ -418,9 +418,9 @@ void main() {
 
       testWidgets('applies scale animation when configured', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            animation: AppIconButtonAnimation(
-              type: AppIconButtonAnimationType.scale,
+          config: const DSIconButtonConfig(
+            animation: DSIconButtonAnimation(
+              type: DSIconButtonAnimationType.scale,
             ),
           ),
         ));
@@ -431,9 +431,9 @@ void main() {
 
       testWidgets('applies rotation animation when configured', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
-            animation: AppIconButtonAnimation(
-              type: AppIconButtonAnimationType.rotation,
+          config: const DSIconButtonConfig(
+            animation: DSIconButtonAnimation(
+              type: DSIconButtonAnimationType.rotation,
             ),
           ),
         ));
@@ -446,7 +446,7 @@ void main() {
     group('Platform adaptive behavior', () {
       testWidgets('adapts to platform when isAdaptive is true', (tester) async {
         await tester.pumpWidget(createIconButtonApp(
-          config: const AppIconButtonConfig(
+          config: const DSIconButtonConfig(
             isAdaptive: true,
           ),
         ));

@@ -4,38 +4,38 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_clipboard_share_config.freezed.dart';
 
-/// Configuración principal para AppClipboardShare
+/// Configuración principal para DSClipboardShare
 ///
 /// Define el comportamiento, apariencia y funcionalidad del componente
 /// de compartir/clipboard, con soporte para share sheets nativos
 /// y acciones de copiado al portapapeles.
 @freezed
-class AppClipboardShareConfig with _$AppClipboardShareConfig {
-  const factory AppClipboardShareConfig({
+class DSClipboardShareConfig with _$DSClipboardShareConfig {
+  const factory DSClipboardShareConfig({
     /// Variante del componente
-    @Default(AppClipboardShareVariant.shareSheet)
-    AppClipboardShareVariant variant,
+    @Default(DSClipboardShareVariant.shareSheet)
+    DSClipboardShareVariant variant,
 
     /// Estado actual del componente
-    @Default(AppClipboardShareState.defaultState) AppClipboardShareState state,
+    @Default(DSClipboardShareState.defaultState) DSClipboardShareState state,
 
     /// Configuración de colores (solo design tokens)
-    AppClipboardShareColors? colors,
+    DSClipboardShareColors? colors,
 
     /// Configuración de espaciado (solo design tokens)
-    AppClipboardShareSpacing? spacing,
+    DSClipboardShareSpacing? spacing,
 
     /// Configuración de tipografía (solo design tokens)
-    AppClipboardShareTypography? typography,
+    DSClipboardShareTypography? typography,
 
     /// Configuración de animaciones
-    AppClipboardShareAnimations? animations,
+    DSClipboardShareAnimations? animations,
 
     /// Configuración de comportamiento
-    AppClipboardShareBehavior? behavior,
+    DSClipboardShareBehavior? behavior,
 
     /// Configuración de accesibilidad
-    AppClipboardShareAccessibility? accessibility,
+    DSClipboardShareAccessibility? accessibility,
 
     /// Si muestra preview del contenido antes de compartir
     @Default(true) bool showPreview,
@@ -66,9 +66,9 @@ class AppClipboardShareConfig with _$AppClipboardShareConfig {
 
     /// Calidad de compresión de imagen (0-100)
     @Default(85) int imageQuality,
-  }) = _AppClipboardShareConfig;
+  }) = _DSClipboardShareConfig;
 
-  const AppClipboardShareConfig._();
+  const DSClipboardShareConfig._();
 
   /// Validación de configuración
   bool get isValid {
@@ -79,14 +79,14 @@ class AppClipboardShareConfig with _$AppClipboardShareConfig {
   }
 
   /// Si el componente está habilitado
-  bool get isEnabled => state != AppClipboardShareState.disabled;
+  bool get isEnabled => state != DSClipboardShareState.disabled;
 
   /// Si el componente está en estado de carga
-  bool get isLoading => state == AppClipboardShareState.loading;
+  bool get isLoading => state == DSClipboardShareState.loading;
 }
 
-/// Variantes del componente AppClipboardShare
-enum AppClipboardShareVariant {
+/// Variantes del componente DSClipboardShare
+enum DSClipboardShareVariant {
   /// Share sheet nativo del sistema
   shareSheet,
 
@@ -100,8 +100,8 @@ enum AppClipboardShareVariant {
   modalPreview,
 }
 
-/// Estados del componente AppClipboardShare
-enum AppClipboardShareState {
+/// Estados del componente DSClipboardShare
+enum DSClipboardShareState {
   defaultState,
   hover,
   pressed,
@@ -113,24 +113,24 @@ enum AppClipboardShareState {
 }
 
 /// Extensión para obtener nombres para display
-extension AppClipboardShareStateExtension on AppClipboardShareState {
+extension DSClipboardShareStateExtension on DSClipboardShareState {
   String get displayName {
     switch (this) {
-      case AppClipboardShareState.defaultState:
+      case DSClipboardShareState.defaultState:
         return 'Default';
-      case AppClipboardShareState.hover:
+      case DSClipboardShareState.hover:
         return 'Hover';
-      case AppClipboardShareState.pressed:
+      case DSClipboardShareState.pressed:
         return 'Pressed';
-      case AppClipboardShareState.focus:
+      case DSClipboardShareState.focus:
         return 'Focus';
-      case AppClipboardShareState.selected:
+      case DSClipboardShareState.selected:
         return 'Selected';
-      case AppClipboardShareState.disabled:
+      case DSClipboardShareState.disabled:
         return 'Disabled';
-      case AppClipboardShareState.loading:
+      case DSClipboardShareState.loading:
         return 'Loading';
-      case AppClipboardShareState.skeleton:
+      case DSClipboardShareState.skeleton:
         return 'Skeleton';
     }
   }
@@ -138,8 +138,8 @@ extension AppClipboardShareStateExtension on AppClipboardShareState {
 
 /// Datos para compartir
 @freezed
-class AppShareData with _$AppShareData {
-  const factory AppShareData({
+class DSShareData with _$DSShareData {
+  const factory DSShareData({
     /// Texto principal para compartir
     String? text,
 
@@ -147,7 +147,7 @@ class AppShareData with _$AppShareData {
     String? subject,
 
     /// Lista de archivos para compartir
-    @Default([]) List<AppShareFile> files,
+    @Default([]) List<DSShareFile> files,
 
     /// URL para compartir
     String? url,
@@ -162,7 +162,7 @@ class AppShareData with _$AppShareData {
     @Default(false) bool isSensitive,
   }) = _AppShareData;
 
-  const AppShareData._();
+  const DSShareData._();
 
   /// Si tiene contenido para compartir
   bool get hasContent =>
@@ -176,8 +176,8 @@ class AppShareData with _$AppShareData {
 
 /// Archivo para compartir
 @freezed
-class AppShareFile with _$AppShareFile {
-  const factory AppShareFile({
+class DSShareFile with _$DSShareFile {
+  const factory DSShareFile({
     /// Nombre del archivo
     required String name,
 
@@ -197,7 +197,7 @@ class AppShareFile with _$AppShareFile {
     Uint8List? thumbnail,
   }) = _AppShareFile;
 
-  const AppShareFile._();
+  const DSShareFile._();
 
   /// Si el archivo es una imagen
   bool get isImage => mimeType.startsWith('image/');
@@ -214,8 +214,8 @@ class AppShareFile with _$AppShareFile {
 
 /// Configuración de colores
 @freezed
-class AppClipboardShareColors with _$AppClipboardShareColors {
-  const factory AppClipboardShareColors({
+class DSClipboardShareColors with _$DSClipboardShareColors {
+  const factory DSClipboardShareColors({
     /// Color de fondo
     Color? backgroundColor,
 
@@ -274,8 +274,8 @@ class AppClipboardShareColors with _$AppClipboardShareColors {
 
 /// Configuración de espaciado
 @freezed
-class AppClipboardShareSpacing with _$AppClipboardShareSpacing {
-  const factory AppClipboardShareSpacing({
+class DSClipboardShareSpacing with _$DSClipboardShareSpacing {
+  const factory DSClipboardShareSpacing({
     /// Padding del contenedor principal
     @Default(EdgeInsets.all(16.0)) EdgeInsets containerPadding,
 
@@ -317,8 +317,8 @@ class AppClipboardShareSpacing with _$AppClipboardShareSpacing {
 
 /// Configuración de tipografía
 @freezed
-class AppClipboardShareTypography with _$AppClipboardShareTypography {
-  const factory AppClipboardShareTypography({
+class DSClipboardShareTypography with _$DSClipboardShareTypography {
+  const factory DSClipboardShareTypography({
     /// Estilo del título
     TextStyle? titleStyle,
 
@@ -347,8 +347,8 @@ class AppClipboardShareTypography with _$AppClipboardShareTypography {
 
 /// Configuración de animaciones
 @freezed
-class AppClipboardShareAnimations with _$AppClipboardShareAnimations {
-  const factory AppClipboardShareAnimations({
+class DSClipboardShareAnimations with _$DSClipboardShareAnimations {
+  const factory DSClipboardShareAnimations({
     /// Duración de la animación de estado
     @Default(Duration(milliseconds: 200)) Duration stateDuration,
 
@@ -380,8 +380,8 @@ class AppClipboardShareAnimations with _$AppClipboardShareAnimations {
 
 /// Configuración de comportamiento
 @freezed
-class AppClipboardShareBehavior with _$AppClipboardShareBehavior {
-  const factory AppClipboardShareBehavior({
+class DSClipboardShareBehavior with _$DSClipboardShareBehavior {
+  const factory DSClipboardShareBehavior({
     /// Si muestra información de debug
     @Default(false) bool showDebugInfo,
 
@@ -419,8 +419,8 @@ class AppClipboardShareBehavior with _$AppClipboardShareBehavior {
 
 /// Configuración de accesibilidad
 @freezed
-class AppClipboardShareAccessibility with _$AppClipboardShareAccessibility {
-  const factory AppClipboardShareAccessibility({
+class DSClipboardShareAccessibility with _$DSClipboardShareAccessibility {
+  const factory DSClipboardShareAccessibility({
     /// Si la accesibilidad está habilitada
     @Default(true) bool enabled,
 

@@ -9,11 +9,11 @@ class BadgeStoryExample extends StatefulWidget {
 }
 
 class _BadgeStoryExampleState extends State<BadgeStoryExample> {
-  AppBadgeVariant _selectedVariant = AppBadgeVariant.dot;
-  AppBadgeSize _selectedSize = AppBadgeSize.medium;
-  AppBadgePosition _selectedPosition = AppBadgePosition.topRight;
-  AppBadgeShape _selectedShape = AppBadgeShape.circle;
-  AppBadgeStatus? _selectedStatus = AppBadgeStatus.success;
+  DSBadgeVariant _selectedVariant = DSBadgeVariant.dot;
+  DSBadgeSize _selectedSize = DSBadgeSize.medium;
+  DSBadgePosition _selectedPosition = DSBadgePosition.topRight;
+  DSBadgeShape _selectedShape = DSBadgeShape.circle;
+  DSBadgeStatus? _selectedStatus = DSBadgeStatus.success;
   bool _hasChild = true;
   bool _enabled = true;
   bool _loading = false;
@@ -94,10 +94,10 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Variante:'),
-        DropdownButton<AppBadgeVariant>(
+        DropdownButton<DSBadgeVariant>(
           value: _selectedVariant,
           onChanged: (value) => setState(() => _selectedVariant = value!),
-          items: AppBadgeVariant.values.map((variant) {
+          items: DSBadgeVariant.values.map((variant) {
             return DropdownMenuItem(
               value: variant,
               child: Text(variant.name),
@@ -113,10 +113,10 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Tamaño:'),
-        DropdownButton<AppBadgeSize>(
+        DropdownButton<DSBadgeSize>(
           value: _selectedSize,
           onChanged: (value) => setState(() => _selectedSize = value!),
-          items: AppBadgeSize.values.map((size) {
+          items: DSBadgeSize.values.map((size) {
             return DropdownMenuItem(
               value: size,
               child: Text(size.name),
@@ -132,10 +132,10 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Posición:'),
-        DropdownButton<AppBadgePosition>(
+        DropdownButton<DSBadgePosition>(
           value: _selectedPosition,
           onChanged: (value) => setState(() => _selectedPosition = value!),
-          items: AppBadgePosition.values.map((position) {
+          items: DSBadgePosition.values.map((position) {
             return DropdownMenuItem(
               value: position,
               child: Text(position.name),
@@ -151,10 +151,10 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Forma:'),
-        DropdownButton<AppBadgeShape>(
+        DropdownButton<DSBadgeShape>(
           value: _selectedShape,
           onChanged: (value) => setState(() => _selectedShape = value!),
-          items: AppBadgeShape.values.map((shape) {
+          items: DSBadgeShape.values.map((shape) {
             return DropdownMenuItem(
               value: shape,
               child: Text(shape.name),
@@ -170,15 +170,15 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Estado:'),
-        DropdownButton<AppBadgeStatus?>(
+        DropdownButton<DSBadgeStatus?>(
           value: _selectedStatus,
           onChanged: (value) => setState(() => _selectedStatus = value),
           items: [
-            const DropdownMenuItem<AppBadgeStatus?>(
+            const DropdownMenuItem<DSBadgeStatus?>(
               value: null,
               child: Text('Ninguno'),
             ),
-            ...AppBadgeStatus.values.map((status) {
+            ...DSBadgeStatus.values.map((status) {
               return DropdownMenuItem(
                 value: status,
                 child: Text(status.label),
@@ -276,7 +276,7 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
     return _buildExampleSection(
       'Ejemplo Principal',
       [
-        AppBadge.counter(
+        DSBadge.counter(
           value: _value,
           size: _selectedSize,
           position: _selectedPosition,
@@ -298,15 +298,15 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
     return _buildExampleSection(
       'Variantes de Badge',
       [
-        AppBadge.dot(
+        DSBadge.dot(
           child: _buildExampleChild(),
         ),
-        AppBadge.counter(
+        DSBadge.counter(
           value: 42,
           child: _buildExampleChild(),
         ),
-        AppBadge.status(
-          status: AppBadgeStatus.success,
+        DSBadge.status(
+          status: DSBadgeStatus.success,
           label: 'Activo',
           child: _buildExampleChild(),
         ),
@@ -318,19 +318,19 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
     return _buildExampleSection(
       'Tamaños',
       [
-        AppBadge.counter(
+        DSBadge.counter(
           value: 5,
-          size: AppBadgeSize.small,
+          size: DSBadgeSize.small,
           child: _buildExampleChild(),
         ),
-        AppBadge.counter(
+        DSBadge.counter(
           value: 15,
-          size: AppBadgeSize.medium,
+          size: DSBadgeSize.medium,
           child: _buildExampleChild(),
         ),
-        AppBadge.counter(
+        DSBadge.counter(
           value: 25,
-          size: AppBadgeSize.large,
+          size: DSBadgeSize.large,
           child: _buildExampleChild(),
         ),
       ],
@@ -340,8 +340,8 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
   Widget _buildPositionExamples() {
     return _buildExampleSection(
       'Posiciones',
-      AppBadgePosition.values.map((position) {
-        return AppBadge.counter(
+      DSBadgePosition.values.map((position) {
+        return DSBadge.counter(
           value: 9,
           position: position,
           child: Container(
@@ -368,8 +368,8 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
   Widget _buildStatusExamples() {
     return _buildExampleSection(
       'Estados de Status',
-      AppBadgeStatus.values.map((status) {
-        return AppBadge.status(
+      DSBadgeStatus.values.map((status) {
+        return DSBadge.status(
           status: status,
           label: status.label,
           child: _buildExampleChild(),
@@ -382,22 +382,22 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
     return _buildExampleSection(
       'Estados del Badge',
       [
-        AppBadge.counter(
+        DSBadge.counter(
           value: 1,
           enabled: true,
           child: _buildExampleChild('Normal'),
         ),
-        AppBadge.counter(
+        DSBadge.counter(
           value: 2,
           enabled: false,
           child: _buildExampleChild('Deshabilitado'),
         ),
-        AppBadge.counter(
+        DSBadge.counter(
           value: 3,
           loading: true,
           child: _buildExampleChild('Cargando'),
         ),
-        AppBadge.counter(
+        DSBadge.counter(
           value: 4,
           skeleton: true,
           child: _buildExampleChild('Esqueleto'),
@@ -410,27 +410,27 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
     return _buildExampleSection(
       'Animaciones',
       [
-        AppBadge.dot(
-          animation: const AppBadgeAnimation(
+        DSBadge.dot(
+          animation: const DSBadgeAnimation(
             enabled: true,
             pulse: true,
-            type: AppBadgeAnimationType.pulse,
+            type: DSBadgeAnimationType.pulse,
           ),
           child: _buildExampleChild('Pulse'),
         ),
-        AppBadge.counter(
+        DSBadge.counter(
           value: 3,
-          animation: const AppBadgeAnimation(
+          animation: const DSBadgeAnimation(
             enabled: true,
-            type: AppBadgeAnimationType.scale,
+            type: DSBadgeAnimationType.scale,
           ),
           child: _buildExampleChild('Scale'),
         ),
-        AppBadge.counter(
+        DSBadge.counter(
           value: 7,
-          animation: const AppBadgeAnimation(
+          animation: const DSBadgeAnimation(
             enabled: true,
-            type: AppBadgeAnimationType.bounce,
+            type: DSBadgeAnimationType.bounce,
           ),
           child: _buildExampleChild('Bounce'),
         ),
@@ -442,18 +442,18 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
     return _buildExampleSection(
       'Badges Interactivos',
       [
-        AppBadge.counter(
+        DSBadge.counter(
           value: 1,
           onTap: () => _showSnackBar('Badge con Tap'),
           child: _buildExampleChild('Tap'),
         ),
-        AppBadge.status(
-          status: AppBadgeStatus.warning,
+        DSBadge.status(
+          status: DSBadgeStatus.warning,
           label: 'Hover',
           onHover: () => _showSnackBar('Badge con Hover'),
           child: _buildExampleChild('Hover'),
         ),
-        AppBadge.counter(
+        DSBadge.counter(
           value: 99,
           onLongPress: () => _showSnackBar('Badge con Long Press'),
           child: _buildExampleChild('Long Press'),
@@ -466,15 +466,15 @@ class _BadgeStoryExampleState extends State<BadgeStoryExample> {
     return _buildExampleSection(
       'Badges Independientes',
       [
-        AppBadge.dot(),
-        AppBadge.counter(value: 42),
-        AppBadge.counter(value: 150, maxValue: 99),
-        AppBadge.status(
-          status: AppBadgeStatus.error,
+        DSBadge.dot(),
+        DSBadge.counter(value: 42),
+        DSBadge.counter(value: 150, maxValue: 99),
+        DSBadge.status(
+          status: DSBadgeStatus.error,
           label: 'Error',
         ),
-        AppBadge.status(
-          status: AppBadgeStatus.info,
+        DSBadge.status(
+          status: DSBadgeStatus.info,
           label: 'Info con texto largo',
         ),
       ],
@@ -568,21 +568,21 @@ class BadgeStoryBasic extends StatelessWidget {
               children: [
                 _buildBasicExample(
                   'Dot Badge',
-                  AppBadge.dot(
+                  DSBadge.dot(
                     child: const Icon(Icons.mail, size: 32),
                   ),
                 ),
                 _buildBasicExample(
                   'Counter Badge',
-                  AppBadge.counter(
+                  DSBadge.counter(
                     value: 5,
                     child: const Icon(Icons.notifications, size: 32),
                   ),
                 ),
                 _buildBasicExample(
                   'Status Badge',
-                  AppBadge.status(
-                    status: AppBadgeStatus.success,
+                  DSBadge.status(
+                    status: DSBadgeStatus.success,
                     label: 'Activo',
                     child: const Icon(Icons.person, size: 32),
                   ),
@@ -622,7 +622,7 @@ class _BadgeStoryPlaygroundState extends State<BadgeStoryPlayground> {
       appBar: AppBar(
         title: const Text('Badge Playground'),
         actions: [
-          AppBadge.counter(
+          DSBadge.counter(
             value: _notificationCount,
             child: IconButton(
               icon: const Icon(Icons.notifications),
@@ -638,7 +638,7 @@ class _BadgeStoryPlaygroundState extends State<BadgeStoryPlayground> {
           children: [
             Card(
               child: ListTile(
-                leading: AppBadge.dot(
+                leading: DSBadge.dot(
                   child: const CircleAvatar(
                     child: Icon(Icons.person),
                   ),
@@ -650,8 +650,8 @@ class _BadgeStoryPlaygroundState extends State<BadgeStoryPlayground> {
             const SizedBox(height: 16),
             Card(
               child: ListTile(
-                leading: AppBadge.status(
-                  status: AppBadgeStatus.warning,
+                leading: DSBadge.status(
+                  status: DSBadgeStatus.warning,
                   label: 'Pendiente',
                   child: const Icon(Icons.task),
                 ),
@@ -662,7 +662,7 @@ class _BadgeStoryPlaygroundState extends State<BadgeStoryPlayground> {
             const SizedBox(height: 16),
             Card(
               child: ListTile(
-                leading: AppBadge.counter(
+                leading: DSBadge.counter(
                   value: 99,
                   maxValue: 50,
                   child: const Icon(Icons.message),
@@ -674,7 +674,7 @@ class _BadgeStoryPlaygroundState extends State<BadgeStoryPlayground> {
           ],
         ),
       ),
-      floatingActionButton: AppBadge.counter(
+      floatingActionButton: DSBadge.counter(
         value: _notificationCount > 0 ? _notificationCount : null,
         child: FloatingActionButton(
           onPressed: _addNotification,

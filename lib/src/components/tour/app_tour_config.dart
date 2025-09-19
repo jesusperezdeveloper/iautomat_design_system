@@ -3,9 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_tour_config.freezed.dart';
 
-enum AppTourVariant { coachmarks }
+enum DSTourVariant { coachmarks }
 
-enum AppTourState {
+enum DSTourState {
   defaultState,
   hover,
   pressed,
@@ -16,7 +16,7 @@ enum AppTourState {
   skeleton
 }
 
-enum AppTourPosition {
+enum DSTourPosition {
   top,
   bottom,
   left,
@@ -25,17 +25,17 @@ enum AppTourPosition {
   auto
 }
 
-enum AppTourAlignment {
+enum DSTourAlignment {
   start,
   center,
   end
 }
 
 @freezed
-class AppTourConfig with _$AppTourConfig {
-  const factory AppTourConfig({
-    @Default(AppTourVariant.coachmarks) AppTourVariant variant,
-    @Default(AppTourState.defaultState) AppTourState state,
+class DSTourConfig with _$DSTourConfig {
+  const factory DSTourConfig({
+    @Default(DSTourVariant.coachmarks) DSTourVariant variant,
+    @Default(DSTourState.defaultState) DSTourState state,
     @Default(true) bool enableSkip,
     @Default(true) bool enableNext,
     @Default(true) bool enablePrevious,
@@ -48,18 +48,18 @@ class AppTourConfig with _$AppTourConfig {
     @Default(Curves.easeInOut) Curve animationCurve,
     @Default(true) bool showProgress,
     @Default(true) bool isRtl,
-    AppTourColors? colors,
-    AppTourSpacing? spacing,
-    AppTourTypography? typography,
-    AppTourControls? controls,
-    AppTourAccessibility? accessibility,
-    AppTourAnimation? animation,
-  }) = _AppTourConfig;
+    DSTourColors? colors,
+    DSTourSpacing? spacing,
+    DSTourTypography? typography,
+    DSTourControls? controls,
+    DSTourAccessibility? accessibility,
+    DSTourAnimation? animation,
+  }) = _DSTourConfig;
 }
 
 @freezed
-class AppTourColors with _$AppTourColors {
-  const factory AppTourColors({
+class DSTourColors with _$DSTourColors {
+  const factory DSTourColors({
     Color? backgroundColor,
     Color? overlayColor,
     Color? highlightColor,
@@ -80,8 +80,8 @@ class AppTourColors with _$AppTourColors {
 }
 
 @freezed
-class AppTourSpacing with _$AppTourSpacing {
-  const factory AppTourSpacing({
+class DSTourSpacing with _$DSTourSpacing {
+  const factory DSTourSpacing({
     @Default(EdgeInsets.all(16.0)) EdgeInsets padding,
     @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)) EdgeInsets buttonPadding,
     @Default(EdgeInsets.all(12.0)) EdgeInsets contentPadding,
@@ -99,8 +99,8 @@ class AppTourSpacing with _$AppTourSpacing {
 }
 
 @freezed
-class AppTourTypography with _$AppTourTypography {
-  const factory AppTourTypography({
+class DSTourTypography with _$DSTourTypography {
+  const factory DSTourTypography({
     TextStyle? titleStyle,
     TextStyle? descriptionStyle,
     TextStyle? buttonStyle,
@@ -110,8 +110,8 @@ class AppTourTypography with _$AppTourTypography {
 }
 
 @freezed
-class AppTourControls with _$AppTourControls {
-  const factory AppTourControls({
+class DSTourControls with _$DSTourControls {
+  const factory DSTourControls({
     @Default(true) bool showSkipButton,
     @Default(true) bool showNextButton,
     @Default(true) bool showPreviousButton,
@@ -129,8 +129,8 @@ class AppTourControls with _$AppTourControls {
 }
 
 @freezed
-class AppTourAccessibility with _$AppTourAccessibility {
-  const factory AppTourAccessibility({
+class DSTourAccessibility with _$DSTourAccessibility {
+  const factory DSTourAccessibility({
     @Default('Tour') String semanticLabel,
     @Default('Skip tour') String skipButtonLabel,
     @Default('Next step') String nextButtonLabel,
@@ -147,8 +147,8 @@ class AppTourAccessibility with _$AppTourAccessibility {
 }
 
 @freezed
-class AppTourAnimation with _$AppTourAnimation {
-  const factory AppTourAnimation({
+class DSTourAnimation with _$DSTourAnimation {
+  const factory DSTourAnimation({
     @Default(Duration(milliseconds: 300)) Duration fadeInDuration,
     @Default(Duration(milliseconds: 200)) Duration fadeOutDuration,
     @Default(Duration(milliseconds: 250)) Duration scaleTransitionDuration,
@@ -165,14 +165,14 @@ class AppTourAnimation with _$AppTourAnimation {
 }
 
 @freezed
-class AppTourStep with _$AppTourStep {
-  const factory AppTourStep({
+class DSTourStep with _$DSTourStep {
+  const factory DSTourStep({
     required String id,
     required GlobalKey targetKey,
     required String title,
     String? description,
-    @Default(AppTourPosition.auto) AppTourPosition position,
-    @Default(AppTourAlignment.center) AppTourAlignment alignment,
+    @Default(DSTourPosition.auto) DSTourPosition position,
+    @Default(DSTourAlignment.center) DSTourAlignment alignment,
     Widget? customContent,
     Widget? customOverlay,
     @Default(true) bool showHighlight,
@@ -188,19 +188,19 @@ class AppTourStep with _$AppTourStep {
 }
 
 @freezed
-class AppTourController with _$AppTourController {
-  const factory AppTourController({
+class DSTourController with _$DSTourController {
+  const factory DSTourController({
     @Default(0) int currentIndex,
     @Default(false) bool isActive,
     @Default(false) bool isCompleted,
     @Default(false) bool isSkipped,
     @Default(false) bool isPaused,
-    List<AppTourStep>? steps,
+    List<DSTourStep>? steps,
     VoidCallback? onStart,
     VoidCallback? onFinish,
     VoidCallback? onSkip,
     ValueChanged<int>? onStepChanged,
-    ValueChanged<AppTourStep>? onStepShow,
-    ValueChanged<AppTourStep>? onStepHide,
-  }) = _AppTourController;
+    ValueChanged<DSTourStep>? onStepShow,
+    ValueChanged<DSTourStep>? onStepHide,
+  }) = _DSTourController;
 }

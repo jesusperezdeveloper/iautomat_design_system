@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/checkbox/app_checkbox.dart
 import 'package:iautomat_design_system/src/components/checkbox/checkbox_config.dart';
 
 void main() {
-  group('AppCheckbox Golden Tests', () {
+  group('DSCheckbox Golden Tests', () {
     testWidgets('checkbox states light theme', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -16,48 +16,48 @@ void main() {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Unchecked'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.unchecked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.unchecked,
                     onChanged: (_) {},
                   ),
                   const SizedBox(height: 16),
                   const Text('Checked'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: (_) {},
                   ),
                   const SizedBox(height: 16),
                   const Text('Indeterminate'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.indeterminate,
+                  DSCheckbox(
+                    value: DSCheckboxValue.indeterminate,
                     onChanged: (_) {},
                     tristate: true,
                   ),
                   const SizedBox(height: 16),
                   const Text('Disabled Unchecked'),
-                  const AppCheckbox(
-                    value: AppCheckboxValue.unchecked,
+                  const DSCheckbox(
+                    value: DSCheckboxValue.unchecked,
                     onChanged: null,
                   ),
                   const SizedBox(height: 16),
                   const Text('Disabled Checked'),
-                  const AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  const DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: null,
                   ),
                   const SizedBox(height: 16),
                   const Text('Loading'),
-                  const AppCheckbox(
+                  const DSCheckbox(
                     value: null,
                     onChanged: null,
-                    overrideState: AppCheckboxState.loading,
+                    overrideState: DSCheckboxState.loading,
                   ),
                   const SizedBox(height: 16),
                   const Text('Skeleton'),
-                  const AppCheckbox(
+                  const DSCheckbox(
                     value: null,
                     onChanged: null,
-                    overrideState: AppCheckboxState.skeleton,
+                    overrideState: DSCheckboxState.skeleton,
                   ),
                 ],
               ),
@@ -84,48 +84,48 @@ void main() {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Unchecked'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.unchecked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.unchecked,
                     onChanged: (_) {},
                   ),
                   const SizedBox(height: 16),
                   const Text('Checked'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: (_) {},
                   ),
                   const SizedBox(height: 16),
                   const Text('Indeterminate'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.indeterminate,
+                  DSCheckbox(
+                    value: DSCheckboxValue.indeterminate,
                     onChanged: (_) {},
                     tristate: true,
                   ),
                   const SizedBox(height: 16),
                   const Text('Disabled Unchecked'),
-                  const AppCheckbox(
-                    value: AppCheckboxValue.unchecked,
+                  const DSCheckbox(
+                    value: DSCheckboxValue.unchecked,
                     onChanged: null,
                   ),
                   const SizedBox(height: 16),
                   const Text('Disabled Checked'),
-                  const AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  const DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: null,
                   ),
                   const SizedBox(height: 16),
                   const Text('Loading'),
-                  const AppCheckbox(
+                  const DSCheckbox(
                     value: null,
                     onChanged: null,
-                    overrideState: AppCheckboxState.loading,
+                    overrideState: DSCheckboxState.loading,
                   ),
                   const SizedBox(height: 16),
                   const Text('Skeleton'),
-                  const AppCheckbox(
+                  const DSCheckbox(
                     value: null,
                     onChanged: null,
-                    overrideState: AppCheckboxState.skeleton,
+                    overrideState: DSCheckboxState.skeleton,
                   ),
                 ],
               ),
@@ -151,26 +151,26 @@ void main() {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppCheckbox(
-                    value: AppCheckboxValue.unchecked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.unchecked,
                     onChanged: (_) {},
                     label: 'Accept terms and conditions',
                   ),
                   const SizedBox(height: 16),
-                  AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: (_) {},
                     label: 'Subscribe to newsletter',
                   ),
                   const SizedBox(height: 16),
-                  const AppCheckbox(
-                    value: AppCheckboxValue.unchecked,
+                  const DSCheckbox(
+                    value: DSCheckboxValue.unchecked,
                     onChanged: null,
                     label: 'Disabled option',
                   ),
                   const SizedBox(height: 16),
-                  AppCheckbox(
-                    value: AppCheckboxValue.indeterminate,
+                  DSCheckbox(
+                    value: DSCheckboxValue.indeterminate,
                     onChanged: (_) {},
                     label: 'Select all items',
                     tristate: true,
@@ -200,30 +200,30 @@ void main() {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Large (28px)'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: (_) {},
-                    config: const AppCheckboxConfig(
+                    config: const DSCheckboxConfig(
                       size: 28,
                       borderWidth: 3,
                     ),
                   ),
                   const SizedBox(height: 16),
                   const Text('Small (16px)'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: (_) {},
-                    config: const AppCheckboxConfig(
+                    config: const DSCheckboxConfig(
                       size: 16,
                       borderWidth: 1.5,
                     ),
                   ),
                   const SizedBox(height: 16),
                   const Text('Custom Colors'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: (_) {},
-                    colors: AppCheckboxColors(
+                    colors: DSCheckboxColors(
                       borderColor: Colors.purple,
                       fillColor: Colors.purple,
                       checkColor: Colors.white,
@@ -239,10 +239,10 @@ void main() {
                   ),
                   const SizedBox(height: 16),
                   const Text('Circular'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: (_) {},
-                    config: const AppCheckboxConfig(
+                    config: const DSCheckboxConfig(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
@@ -271,16 +271,16 @@ void main() {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const Text('LTR Layout'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: (_) {},
                     label: 'Left to right text',
                     textDirection: TextDirection.ltr,
                   ),
                   const SizedBox(height: 24),
                   const Text('RTL Layout'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: (_) {},
                     label: 'نص من اليمين إلى اليسار',
                     textDirection: TextDirection.rtl,
@@ -310,35 +310,35 @@ void main() {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Default'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.unchecked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.unchecked,
                     onChanged: (_) {},
                   ),
                   const SizedBox(height: 16),
                   const Text('Hover'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.unchecked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.unchecked,
                     onChanged: (_) {},
-                    overrideState: AppCheckboxState.hover,
+                    overrideState: DSCheckboxState.hover,
                   ),
                   const SizedBox(height: 16),
                   const Text('Pressed'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.unchecked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.unchecked,
                     onChanged: (_) {},
-                    overrideState: AppCheckboxState.pressed,
+                    overrideState: DSCheckboxState.pressed,
                   ),
                   const SizedBox(height: 16),
                   const Text('Focus'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.unchecked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.unchecked,
                     onChanged: (_) {},
-                    overrideState: AppCheckboxState.focus,
+                    overrideState: DSCheckboxState.focus,
                   ),
                   const SizedBox(height: 16),
                   const Text('Selected'),
-                  AppCheckbox(
-                    value: AppCheckboxValue.checked,
+                  DSCheckbox(
+                    value: DSCheckboxValue.checked,
                     onChanged: (_) {},
                   ),
                 ],

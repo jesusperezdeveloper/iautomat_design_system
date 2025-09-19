@@ -6,49 +6,49 @@ import 'package:iautomat_design_system/src/components/file_picker/app_file_picke
 import 'package:iautomat_design_system/src/components/file_picker/file_picker_config.dart';
 
 void main() {
-  group('AppFilePicker', () {
+  group('DSFilePicker', () {
     group('Widget Tests', () {
       testWidgets('renders correctly with default configuration',
           (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(),
+              body: DSFilePicker(),
             ),
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
       });
 
       testWidgets('renders with drag and drop variant', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
-                variant: AppFilePickerVariant.dragAndDrop,
+              body: DSFilePicker(
+                variant: DSFilePickerVariant.dragAndDrop,
                 onFilesSelected: (files) {},
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
       });
 
       testWidgets('renders with multi selector variant', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
-                variant: AppFilePickerVariant.multi,
+              body: DSFilePicker(
+                variant: DSFilePickerVariant.multi,
                 onFilesSelected: (files) {},
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
       });
 
       testWidgets('displays label when provided', (tester) async {
@@ -57,7 +57,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 label: labelText,
                 onFilesSelected: (files) {},
               ),
@@ -74,7 +74,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 hint: hintText,
                 onFilesSelected: (files) {},
               ),
@@ -91,7 +91,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 helperText: helperText,
                 onFilesSelected: (files) {},
               ),
@@ -108,7 +108,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 errorText: errorText,
                 onFilesSelected: (files) {},
               ),
@@ -123,8 +123,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
-                variant: AppFilePickerVariant.multi,
+              body: DSFilePicker(
+                variant: DSFilePickerVariant.multi,
                 prefixIcon: const Icon(Icons.upload),
                 onFilesSelected: (files) {},
               ),
@@ -139,8 +139,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
-                variant: AppFilePickerVariant.multi,
+              body: DSFilePicker(
+                variant: DSFilePickerVariant.multi,
                 suffixIcon: const Icon(Icons.folder),
                 onFilesSelected: (files) {},
               ),
@@ -157,7 +157,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 enabled: false,
                 label: 'Disabled File Picker',
               ),
@@ -165,7 +165,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
         expect(find.text('Disabled File Picker'), findsOneWidget);
       });
 
@@ -173,8 +173,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
-                state: AppFilePickerState.loading,
+              body: DSFilePicker(
+                state: DSFilePickerState.loading,
                 onFilesSelected: (files) {},
               ),
             ),
@@ -188,8 +188,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
-                state: AppFilePickerState.skeleton,
+              body: DSFilePicker(
+                state: DSFilePickerState.skeleton,
                 onFilesSelected: (files) {},
               ),
             ),
@@ -202,7 +202,7 @@ void main() {
       testWidgets('shows selected files count when files are present',
           (tester) async {
         final mockFiles = [
-          AppFileData(
+          DSFileData(
             name: 'test.pdf',
             size: 1024,
             type: 'application/pdf',
@@ -213,8 +213,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
-                variant: AppFilePickerVariant.dragAndDrop,
+              body: DSFilePicker(
+                variant: DSFilePickerVariant.dragAndDrop,
                 value: mockFiles,
                 onFilesSelected: (files) {},
               ),
@@ -229,13 +229,13 @@ void main() {
     group('Interaction Tests', () {
       testWidgets('calls onFilesSelected when tapped', (tester) async {
         bool callbackCalled = false;
-        List<AppFileData>? selectedFiles;
+        List<DSFileData>? selectedFiles;
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
-                variant: AppFilePickerVariant.multi,
+              body: DSFilePicker(
+                variant: DSFilePickerVariant.multi,
                 onFilesSelected: (files) {
                   callbackCalled = true;
                   selectedFiles = files;
@@ -260,7 +260,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 enabled: false,
                 onFilesSelected: (files) {
                   callbackCalled = true;
@@ -270,7 +270,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(AppFilePicker));
+        await tester.tap(find.byType(DSFilePicker));
         await tester.pumpAndSettle();
 
         expect(callbackCalled, isFalse);
@@ -278,7 +278,7 @@ void main() {
 
       testWidgets('removes file when remove button is tapped', (tester) async {
         final mockFiles = [
-          AppFileData(
+          DSFileData(
             name: 'test.pdf',
             size: 1024,
             type: 'application/pdf',
@@ -286,12 +286,12 @@ void main() {
           ),
         ];
 
-        List<AppFileData>? updatedFiles;
+        List<DSFileData>? updatedFiles;
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 value: mockFiles,
                 preview: true,
                 onFilesSelected: (files) {
@@ -314,7 +314,7 @@ void main() {
     group('Preview Tests', () {
       testWidgets('shows file preview when preview is enabled', (tester) async {
         final mockFiles = [
-          AppFileData(
+          DSFileData(
             name: 'test.pdf',
             size: 1024,
             type: 'application/pdf',
@@ -325,7 +325,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 value: mockFiles,
                 preview: true,
                 onFilesSelected: (files) {},
@@ -341,7 +341,7 @@ void main() {
       testWidgets('does not show preview when preview is disabled',
           (tester) async {
         final mockFiles = [
-          AppFileData(
+          DSFileData(
             name: 'test.pdf',
             size: 1024,
             type: 'application/pdf',
@@ -352,7 +352,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 value: mockFiles,
                 preview: false,
                 onFilesSelected: (files) {},
@@ -368,7 +368,7 @@ void main() {
 
     group('Configuration Tests', () {
       testWidgets('applies custom configuration correctly', (tester) async {
-        final customConfig = AppFilePickerConfig(
+        final customConfig = DSFilePickerConfig(
           borderRadius: const BorderRadius.all(Radius.circular(16.0)),
           minSize: const Size(300, 150),
         );
@@ -376,7 +376,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 config: customConfig,
                 onFilesSelected: (files) {},
               ),
@@ -384,14 +384,14 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
       });
 
       testWidgets('respects file type restrictions', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 accept: const ['pdf', 'jpg', 'png'],
                 onFilesSelected: (files) {},
               ),
@@ -399,29 +399,29 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
       });
 
       testWidgets('respects max file size', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
-                maxSize: const AppFileSize(5, AppFileSizeUnit.mb),
+              body: DSFilePicker(
+                maxSize: const DSFileSize(5, DSFileSizeUnit.mb),
                 onFilesSelected: (files) {},
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
       });
 
       testWidgets('respects multiple file selection settings', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 allowMultiple: false,
                 onFilesSelected: (files) {},
               ),
@@ -429,14 +429,14 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
       });
 
       testWidgets('respects max files limit', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 maxFiles: 3,
                 onFilesSelected: (files) {},
               ),
@@ -444,7 +444,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
       });
     });
 
@@ -453,7 +453,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 semanticLabel: 'File picker for documents',
                 onFilesSelected: (files) {},
               ),
@@ -471,7 +471,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 onFilesSelected: (files) {},
               ),
             ),
@@ -485,7 +485,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 onFilesSelected: (files) {},
               ),
             ),
@@ -503,12 +503,12 @@ void main() {
       testWidgets('calls validation error callback on invalid file',
           (tester) async {
         String? errorMessage;
-        AppFileData? errorFile;
+        DSFileData? errorFile;
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 accept: const ['pdf'],
                 onValidationError: (error, file) {
                   errorMessage = error;
@@ -520,7 +520,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
         // Note: Validation testing would require mock file selection
         // Variables are prepared for validation callback testing
         expect(errorMessage, isNull); // No error yet without file selection
@@ -531,7 +531,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 customValidator: (file) => file.name.contains('test'),
                 onFilesSelected: (files) {},
               ),
@@ -539,7 +539,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
       });
     });
 
@@ -550,7 +550,7 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.rtl,
               child: Scaffold(
-                body: AppFilePicker(
+                body: DSFilePicker(
                   label: 'اختر ملفات',
                   onFilesSelected: (files) {},
                 ),
@@ -560,7 +560,7 @@ void main() {
         );
 
         expect(find.text('اختر ملفات'), findsOneWidget);
-        expect(find.byType(AppFilePicker), findsOneWidget);
+        expect(find.byType(DSFilePicker), findsOneWidget);
       });
     });
 
@@ -569,7 +569,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
+              body: DSFilePicker(
                 onFilesSelected: (files) {},
               ),
             ),
@@ -583,8 +583,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppFilePicker(
-                variant: AppFilePickerVariant.dragAndDrop,
+              body: DSFilePicker(
+                variant: DSFilePickerVariant.dragAndDrop,
                 onFilesSelected: (files) {},
               ),
             ),
@@ -604,9 +604,9 @@ void main() {
     });
   });
 
-  group('AppFileData', () {
+  group('DSFileData', () {
     test('correctly identifies file extensions', () {
-      final pdfFile = AppFileData(
+      final pdfFile = DSFileData(
         name: 'document.pdf',
         size: 1024,
         type: 'application/pdf',
@@ -617,14 +617,14 @@ void main() {
     });
 
     test('formats file size correctly', () {
-      final smallFile = AppFileData(
+      final smallFile = DSFileData(
         name: 'small.txt',
         size: 512,
         type: 'text/plain',
         lastModified: DateTime.now(),
       );
 
-      final largeFile = AppFileData(
+      final largeFile = DSFileData(
         name: 'large.zip',
         size: 1024 * 1024,
         type: 'application/zip',
@@ -636,21 +636,21 @@ void main() {
     });
 
     test('correctly identifies file types', () {
-      final imageFile = AppFileData(
+      final imageFile = DSFileData(
         name: 'photo.jpg',
         size: 1024,
         type: 'image/jpeg',
         lastModified: DateTime.now(),
       );
 
-      final videoFile = AppFileData(
+      final videoFile = DSFileData(
         name: 'video.mp4',
         size: 1024,
         type: 'video/mp4',
         lastModified: DateTime.now(),
       );
 
-      final documentFile = AppFileData(
+      final documentFile = DSFileData(
         name: 'document.pdf',
         size: 1024,
         type: 'application/pdf',
@@ -663,9 +663,9 @@ void main() {
     });
 
     test('returns appropriate icons for file types', () {
-      const icons = AppFilePickerIcons();
+      const icons = DSFilePickerIcons();
 
-      final imageFile = AppFileData(
+      final imageFile = DSFileData(
         name: 'photo.jpg',
         size: 1024,
         type: 'image/jpeg',
@@ -676,11 +676,11 @@ void main() {
     });
   });
 
-  group('AppFileSize', () {
+  group('DSFileSize', () {
     test('converts to bytes correctly', () {
-      const kbSize = AppFileSize(1, AppFileSizeUnit.kb);
-      const mbSize = AppFileSize(1, AppFileSizeUnit.mb);
-      const gbSize = AppFileSize(1, AppFileSizeUnit.gb);
+      const kbSize = DSFileSize(1, DSFileSizeUnit.kb);
+      const mbSize = DSFileSize(1, DSFileSizeUnit.mb);
+      const gbSize = DSFileSize(1, DSFileSizeUnit.gb);
 
       expect(kbSize.bytes, equals(1024));
       expect(mbSize.bytes, equals(1024 * 1024));
@@ -688,9 +688,9 @@ void main() {
     });
 
     test('formats size correctly', () {
-      const bytesSize = AppFileSize(500, AppFileSizeUnit.bytes);
-      const kbSize = AppFileSize(1.5, AppFileSizeUnit.kb);
-      const mbSize = AppFileSize(2.7, AppFileSizeUnit.mb);
+      const bytesSize = DSFileSize(500, DSFileSizeUnit.bytes);
+      const kbSize = DSFileSize(1.5, DSFileSizeUnit.kb);
+      const mbSize = DSFileSize(2.7, DSFileSizeUnit.mb);
 
       expect(bytesSize.formatted, equals('500 B'));
       expect(kbSize.formatted, equals('1.5 KB'));
@@ -698,37 +698,37 @@ void main() {
     });
   });
 
-  group('AppFileValidators', () {
+  group('DSFileValidators', () {
     test('validates file size correctly', () {
-      final smallFile = AppFileData(
+      final smallFile = DSFileData(
         name: 'small.txt',
         size: 1024,
         type: 'text/plain',
         lastModified: DateTime.now(),
       );
 
-      final largeFile = AppFileData(
+      final largeFile = DSFileData(
         name: 'large.zip',
         size: 10 * 1024 * 1024,
         type: 'application/zip',
         lastModified: DateTime.now(),
       );
 
-      const maxSize = AppFileSize(5, AppFileSizeUnit.mb);
+      const maxSize = DSFileSize(5, DSFileSizeUnit.mb);
 
-      expect(AppFileValidators.validateSize(smallFile, maxSize), isTrue);
-      expect(AppFileValidators.validateSize(largeFile, maxSize), isFalse);
+      expect(DSFileValidators.validateSize(smallFile, maxSize), isTrue);
+      expect(DSFileValidators.validateSize(largeFile, maxSize), isFalse);
     });
 
     test('validates file extensions correctly', () {
-      final pdfFile = AppFileData(
+      final pdfFile = DSFileData(
         name: 'document.pdf',
         size: 1024,
         type: 'application/pdf',
         lastModified: DateTime.now(),
       );
 
-      final txtFile = AppFileData(
+      final txtFile = DSFileData(
         name: 'readme.txt',
         size: 1024,
         type: 'text/plain',
@@ -737,74 +737,74 @@ void main() {
 
       const allowedExtensions = ['pdf', 'doc', 'docx'];
 
-      expect(AppFileValidators.validateExtension(pdfFile, allowedExtensions),
+      expect(DSFileValidators.validateExtension(pdfFile, allowedExtensions),
           isTrue);
-      expect(AppFileValidators.validateExtension(txtFile, allowedExtensions),
+      expect(DSFileValidators.validateExtension(txtFile, allowedExtensions),
           isFalse);
     });
 
     test('validates empty extension list as allowing all files', () {
-      final anyFile = AppFileData(
+      final anyFile = DSFileData(
         name: 'any.xyz',
         size: 1024,
         type: 'application/unknown',
         lastModified: DateTime.now(),
       );
 
-      expect(AppFileValidators.validateExtension(anyFile, []), isTrue);
+      expect(DSFileValidators.validateExtension(anyFile, []), isTrue);
     });
 
     test('validates file names correctly', () {
-      expect(AppFileValidators.validateFileName('valid_file.txt'), isTrue);
+      expect(DSFileValidators.validateFileName('valid_file.txt'), isTrue);
       expect(
-          AppFileValidators.validateFileName('file with spaces.pdf'), isTrue);
-      expect(AppFileValidators.validateFileName(''), isFalse);
-      expect(AppFileValidators.validateFileName('invalid/file.txt'), isFalse);
-      expect(AppFileValidators.validateFileName('invalid\\file.txt'), isFalse);
-      expect(AppFileValidators.validateFileName('invalid:file.txt'), isFalse);
+          DSFileValidators.validateFileName('file with spaces.pdf'), isTrue);
+      expect(DSFileValidators.validateFileName(''), isFalse);
+      expect(DSFileValidators.validateFileName('invalid/file.txt'), isFalse);
+      expect(DSFileValidators.validateFileName('invalid\\file.txt'), isFalse);
+      expect(DSFileValidators.validateFileName('invalid:file.txt'), isFalse);
     });
 
     test('gets file size from bytes correctly', () {
-      final bytesSize = AppFileValidators.getFileSize(500);
-      final kbSize = AppFileValidators.getFileSize(1500);
-      final mbSize = AppFileValidators.getFileSize(2 * 1024 * 1024);
+      final bytesSize = DSFileValidators.getFileSize(500);
+      final kbSize = DSFileValidators.getFileSize(1500);
+      final mbSize = DSFileValidators.getFileSize(2 * 1024 * 1024);
 
-      expect(bytesSize.unit, equals(AppFileSizeUnit.bytes));
-      expect(kbSize.unit, equals(AppFileSizeUnit.kb));
-      expect(mbSize.unit, equals(AppFileSizeUnit.mb));
+      expect(bytesSize.unit, equals(DSFileSizeUnit.bytes));
+      expect(kbSize.unit, equals(DSFileSizeUnit.kb));
+      expect(mbSize.unit, equals(DSFileSizeUnit.mb));
     });
   });
 
-  group('AppFilePickerUtils', () {
+  group('DSFilePickerUtils', () {
     test('gets correct MIME type from extension', () {
       expect(
-        AppFilePickerUtils.getMimeTypeFromExtension('pdf'),
+        DSFilePickerUtils.getMimeTypeFromExtension('pdf'),
         equals('application/pdf'),
       );
       expect(
-        AppFilePickerUtils.getMimeTypeFromExtension('jpg'),
+        DSFilePickerUtils.getMimeTypeFromExtension('jpg'),
         equals('image/jpeg'),
       );
       expect(
-        AppFilePickerUtils.getMimeTypeFromExtension('mp4'),
+        DSFilePickerUtils.getMimeTypeFromExtension('mp4'),
         equals('video/mp4'),
       );
       expect(
-        AppFilePickerUtils.getMimeTypeFromExtension('unknown'),
+        DSFilePickerUtils.getMimeTypeFromExtension('unknown'),
         equals('application/octet-stream'),
       );
     });
 
     test('formats file size correctly', () {
-      expect(AppFilePickerUtils.formatFileSize(500), equals('500 B'));
-      expect(AppFilePickerUtils.formatFileSize(1536), equals('1.5 KB'));
+      expect(DSFilePickerUtils.formatFileSize(500), equals('500 B'));
+      expect(DSFilePickerUtils.formatFileSize(1536), equals('1.5 KB'));
       expect(
-          AppFilePickerUtils.formatFileSize(2 * 1024 * 1024), equals('2.0 MB'));
+          DSFilePickerUtils.formatFileSize(2 * 1024 * 1024), equals('2.0 MB'));
     });
 
     test('checks platform support correctly', () {
-      expect(AppFilePickerUtils.supportsDragAndDrop, isA<bool>());
-      expect(AppFilePickerUtils.supportsNativeFilePicker, isA<bool>());
+      expect(DSFilePickerUtils.supportsDragAndDrop, isA<bool>());
+      expect(DSFilePickerUtils.supportsNativeFilePicker, isA<bool>());
     });
   });
 }

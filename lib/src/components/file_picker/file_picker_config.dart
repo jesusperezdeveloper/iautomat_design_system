@@ -4,10 +4,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'file_picker_config.freezed.dart';
 
-/// Enums and types for AppFilePicker
+/// Enums and types for DSFilePicker
 
 /// File picker variants
-enum AppFilePickerVariant {
+enum DSFilePickerVariant {
   /// Drag and drop file picker
   dragAndDrop,
 
@@ -16,7 +16,7 @@ enum AppFilePickerVariant {
 }
 
 /// File picker states
-enum AppFilePickerState {
+enum DSFilePickerState {
   /// Default state
   defaultState,
 
@@ -43,7 +43,7 @@ enum AppFilePickerState {
 }
 
 /// File preview mode
-enum AppFilePreviewMode {
+enum DSFilePreviewMode {
   /// No preview
   none,
 
@@ -58,7 +58,7 @@ enum AppFilePreviewMode {
 }
 
 /// File size unit
-enum AppFileSizeUnit {
+enum DSFileSizeUnit {
   /// Bytes
   bytes,
 
@@ -72,10 +72,10 @@ enum AppFileSizeUnit {
   gb,
 }
 
-/// Configuration model for AppFilePicker
+/// Configuration model for DSFilePicker
 @freezed
-class AppFilePickerConfig with _$AppFilePickerConfig {
-  const factory AppFilePickerConfig({
+class DSFilePickerConfig with _$DSFilePickerConfig {
+  const factory DSFilePickerConfig({
     // Animation configuration
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
@@ -91,16 +91,16 @@ class AppFilePickerConfig with _$AppFilePickerConfig {
     @Default(4.0) double focusBorderWidth,
 
     // Color configuration
-    AppFilePickerColors? colors,
+    DSFilePickerColors? colors,
 
     // Typography configuration
-    AppFilePickerTypography? typography,
+    DSFilePickerTypography? typography,
 
     // Icons configuration
-    AppFilePickerIcons? icons,
+    DSFilePickerIcons? icons,
 
     // Preview configuration
-    @Default(AppFilePreviewMode.thumbnail) AppFilePreviewMode previewMode,
+    @Default(DSFilePreviewMode.thumbnail) DSFilePreviewMode previewMode,
     @Default(Size(80, 80)) Size thumbnailSize,
     @Default(3) int maxPreviewItems,
     @Default(true) bool showFileSize,
@@ -118,7 +118,7 @@ class AppFilePickerConfig with _$AppFilePickerConfig {
     @Default(10) int maxFiles,
 
     // File validation configuration
-    @Default(AppFileSize(10, AppFileSizeUnit.mb)) AppFileSize maxFileSize,
+    @Default(DSFileSize(10, DSFileSizeUnit.mb)) DSFileSize maxFileSize,
     @Default([]) List<String> acceptedExtensions,
     @Default([]) List<String> acceptedMimeTypes,
 
@@ -145,24 +145,24 @@ class AppFilePickerConfig with _$AppFilePickerConfig {
 
     // RTL configuration
     @Default(true) bool supportRTL,
-  }) = _AppFilePickerConfig;
+  }) = _DSFilePickerConfig;
 
-  const AppFilePickerConfig._();
+  const DSFilePickerConfig._();
 
   /// Create configuration from theme
-  factory AppFilePickerConfig.fromTheme(ThemeData theme) {
-    return AppFilePickerConfig(
-      colors: AppFilePickerColors.fromTheme(theme),
-      typography: AppFilePickerTypography.fromTheme(theme),
-      icons: const AppFilePickerIcons(),
+  factory DSFilePickerConfig.fromTheme(ThemeData theme) {
+    return DSFilePickerConfig(
+      colors: DSFilePickerColors.fromTheme(theme),
+      typography: DSFilePickerTypography.fromTheme(theme),
+      icons: const DSFilePickerIcons(),
     );
   }
 }
 
-/// Color configuration for AppFilePicker
+/// Color configuration for DSFilePicker
 @freezed
-class AppFilePickerColors with _$AppFilePickerColors {
-  const factory AppFilePickerColors({
+class DSFilePickerColors with _$DSFilePickerColors {
+  const factory DSFilePickerColors({
     // Background colors
     @Default(Colors.transparent) Color backgroundColor,
     @Default(Color(0xFFF5F5F5)) Color hoverBackgroundColor,
@@ -220,12 +220,12 @@ class AppFilePickerColors with _$AppFilePickerColors {
     @Default(Color(0xFFF5F5F5)) Color skeletonHighlightColor,
   }) = _AppFilePickerColors;
 
-  const AppFilePickerColors._();
+  const DSFilePickerColors._();
 
-  factory AppFilePickerColors.fromTheme(ThemeData theme) {
+  factory DSFilePickerColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
 
-    return AppFilePickerColors(
+    return DSFilePickerColors(
       backgroundColor: colorScheme.surface,
       hoverBackgroundColor: colorScheme.surface,
       focusBackgroundColor: colorScheme.primaryContainer,
@@ -269,10 +269,10 @@ class AppFilePickerColors with _$AppFilePickerColors {
   }
 }
 
-/// Typography configuration for AppFilePicker
+/// Typography configuration for DSFilePicker
 @freezed
-class AppFilePickerTypography with _$AppFilePickerTypography {
-  const factory AppFilePickerTypography({
+class DSFilePickerTypography with _$DSFilePickerTypography {
+  const factory DSFilePickerTypography({
     // Text styles
     @Default(TextStyle(fontSize: 16, fontWeight: FontWeight.w400))
     TextStyle labelStyle,
@@ -304,12 +304,12 @@ class AppFilePickerTypography with _$AppFilePickerTypography {
     TextStyle loadingStyle,
   }) = _AppFilePickerTypography;
 
-  const AppFilePickerTypography._();
+  const DSFilePickerTypography._();
 
-  factory AppFilePickerTypography.fromTheme(ThemeData theme) {
+  factory DSFilePickerTypography.fromTheme(ThemeData theme) {
     final textTheme = theme.textTheme;
 
-    return AppFilePickerTypography(
+    return DSFilePickerTypography(
       labelStyle: textTheme.bodyLarge ?? const TextStyle(),
       hintStyle: textTheme.bodyMedium ?? const TextStyle(),
       helperStyle: textTheme.bodySmall ?? const TextStyle(),
@@ -325,10 +325,10 @@ class AppFilePickerTypography with _$AppFilePickerTypography {
   }
 }
 
-/// Icon configuration for AppFilePicker
+/// Icon configuration for DSFilePicker
 @freezed
-class AppFilePickerIcons with _$AppFilePickerIcons {
-  const factory AppFilePickerIcons({
+class DSFilePickerIcons with _$DSFilePickerIcons {
+  const factory DSFilePickerIcons({
     // Main icons
     @Default(Icons.upload_file) IconData uploadIcon,
     @Default(Icons.folder_open) IconData folderIcon,
@@ -368,24 +368,24 @@ class AppFilePickerIcons with _$AppFilePickerIcons {
 
 /// File size model
 @freezed
-class AppFileSize with _$AppFileSize {
-  const factory AppFileSize(
+class DSFileSize with _$DSFileSize {
+  const factory DSFileSize(
     double value,
-    AppFileSizeUnit unit,
+    DSFileSizeUnit unit,
   ) = _AppFileSize;
 
-  const AppFileSize._();
+  const DSFileSize._();
 
   /// Convert to bytes
   int get bytes {
     switch (unit) {
-      case AppFileSizeUnit.bytes:
+      case DSFileSizeUnit.bytes:
         return value.round();
-      case AppFileSizeUnit.kb:
+      case DSFileSizeUnit.kb:
         return (value * 1024).round();
-      case AppFileSizeUnit.mb:
+      case DSFileSizeUnit.mb:
         return (value * 1024 * 1024).round();
-      case AppFileSizeUnit.gb:
+      case DSFileSizeUnit.gb:
         return (value * 1024 * 1024 * 1024).round();
     }
   }
@@ -393,13 +393,13 @@ class AppFileSize with _$AppFileSize {
   /// Format size for display
   String get formatted {
     switch (unit) {
-      case AppFileSizeUnit.bytes:
+      case DSFileSizeUnit.bytes:
         return '${value.round()} B';
-      case AppFileSizeUnit.kb:
+      case DSFileSizeUnit.kb:
         return '${value.toStringAsFixed(1)} KB';
-      case AppFileSizeUnit.mb:
+      case DSFileSizeUnit.mb:
         return '${value.toStringAsFixed(1)} MB';
-      case AppFileSizeUnit.gb:
+      case DSFileSizeUnit.gb:
         return '${value.toStringAsFixed(2)} GB';
     }
   }
@@ -407,8 +407,8 @@ class AppFileSize with _$AppFileSize {
 
 /// File data model
 @freezed
-class AppFileData with _$AppFileData {
-  const factory AppFileData({
+class DSFileData with _$DSFileData {
+  const factory DSFileData({
     required String name,
     required int size,
     required String type,
@@ -419,7 +419,7 @@ class AppFileData with _$AppFileData {
     Map<String, dynamic>? metadata,
   }) = _AppFileData;
 
-  const AppFileData._();
+  const DSFileData._();
 
   /// Get file extension
   String get extension {
@@ -478,7 +478,7 @@ class AppFileData with _$AppFileData {
   }
 
   /// Get appropriate icon for file type
-  IconData getIcon(AppFilePickerIcons icons) {
+  IconData getIcon(DSFilePickerIcons icons) {
     if (isImage) return icons.imageIcon;
     if (isVideo) return icons.videoIcon;
     if (isAudio) return icons.audioIcon;
@@ -489,22 +489,22 @@ class AppFileData with _$AppFileData {
 }
 
 /// File validation utilities
-class AppFileValidators {
+class DSFileValidators {
   /// Validate file size
-  static bool validateSize(AppFileData file, AppFileSize maxSize) {
+  static bool validateSize(DSFileData file, DSFileSize maxSize) {
     return file.size <= maxSize.bytes;
   }
 
   /// Validate file extension
   static bool validateExtension(
-      AppFileData file, List<String> allowedExtensions) {
+      DSFileData file, List<String> allowedExtensions) {
     if (allowedExtensions.isEmpty) return true;
     return allowedExtensions.contains(file.extension);
   }
 
   /// Validate file MIME type
   static bool validateMimeType(
-      AppFileData file, List<String> allowedMimeTypes) {
+      DSFileData file, List<String> allowedMimeTypes) {
     if (allowedMimeTypes.isEmpty) return true;
     return allowedMimeTypes.contains(file.type);
   }
@@ -518,22 +518,22 @@ class AppFileValidators {
   }
 
   /// Get file size from bytes
-  static AppFileSize getFileSize(int bytes) {
+  static DSFileSize getFileSize(int bytes) {
     if (bytes < 1024) {
-      return AppFileSize(bytes.toDouble(), AppFileSizeUnit.bytes);
+      return DSFileSize(bytes.toDouble(), DSFileSizeUnit.bytes);
     }
     if (bytes < 1024 * 1024) {
-      return AppFileSize(bytes / 1024, AppFileSizeUnit.kb);
+      return DSFileSize(bytes / 1024, DSFileSizeUnit.kb);
     }
     if (bytes < 1024 * 1024 * 1024) {
-      return AppFileSize(bytes / (1024 * 1024), AppFileSizeUnit.mb);
+      return DSFileSize(bytes / (1024 * 1024), DSFileSizeUnit.mb);
     }
-    return AppFileSize(bytes / (1024 * 1024 * 1024), AppFileSizeUnit.gb);
+    return DSFileSize(bytes / (1024 * 1024 * 1024), DSFileSizeUnit.gb);
   }
 }
 
 /// File picker utilities
-class AppFilePickerUtils {
+class DSFilePickerUtils {
   /// Get MIME type from extension
   static String getMimeTypeFromExtension(String extension) {
     switch (extension.toLowerCase()) {

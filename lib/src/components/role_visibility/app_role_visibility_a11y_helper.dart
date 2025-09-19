@@ -3,16 +3,16 @@ import 'package:flutter/services.dart';
 
 import 'app_role_visibility_config.dart';
 
-class AppRoleVisibilityA11yHelper {
-  final AppRoleVisibilityConfig config;
+class DSRoleVisibilityA11yHelper {
+  final DSRoleVisibilityConfig config;
   final void Function(String)? onAnnouncementRequested;
 
-  AppRoleVisibilityA11yHelper({
+  DSRoleVisibilityA11yHelper({
     required this.config,
     this.onAnnouncementRequested,
   });
 
-  void announceVisibilityChange(AppRoleEvaluationResult result) {
+  void announceVisibilityChange(DSRoleEvaluationResult result) {
     if (config.accessibility?.enableA11yAnnouncements != true) return;
 
     String message;
@@ -27,7 +27,7 @@ class AppRoleVisibilityA11yHelper {
     onAnnouncementRequested?.call(message);
   }
 
-  void announceRoleChange(List<AppRole> newRoles) {
+  void announceRoleChange(List<DSRole> newRoles) {
     if (config.accessibility?.enableA11yAnnouncements != true) return;
 
     final message = config.accessibility?.roleChangeMessage ??
@@ -36,7 +36,7 @@ class AppRoleVisibilityA11yHelper {
     onAnnouncementRequested?.call(message);
   }
 
-  void announceError(AppRoleValidationError error) {
+  void announceError(DSRoleValidationError error) {
     if (config.accessibility?.enableA11yAnnouncements != true) return;
 
     final message = config.accessibility?.errorAnnouncementMessage ??
@@ -45,7 +45,7 @@ class AppRoleVisibilityA11yHelper {
     onAnnouncementRequested?.call(message);
   }
 
-  String getAccessibilityLabel(AppRole role) {
+  String getAccessibilityLabel(DSRole role) {
     if (role.accessibility?.label != null) {
       return role.accessibility!.label!;
     }
@@ -54,28 +54,28 @@ class AppRoleVisibilityA11yHelper {
     return '${role.displayName ?? role.name}$level role';
   }
 
-  String getAccessibilityHint(AppRole role) {
+  String getAccessibilityHint(DSRole role) {
     if (role.accessibility?.hint != null) {
       return role.accessibility!.hint!;
     }
 
     switch (role.type) {
-      case AppRoleType.user:
+      case DSRoleType.user:
         return 'Basic user access level';
-      case AppRoleType.admin:
+      case DSRoleType.admin:
         return 'Administrative access level';
-      case AppRoleType.editor:
+      case DSRoleType.editor:
         return 'Content editing access level';
-      case AppRoleType.moderator:
+      case DSRoleType.moderator:
         return 'Content moderation access level';
-      case AppRoleType.guest:
+      case DSRoleType.guest:
         return 'Limited guest access';
-      case AppRoleType.custom:
+      case DSRoleType.custom:
         return 'Custom role with specific permissions';
     }
   }
 
-  String getAccessibilityValue(AppRole role) {
+  String getAccessibilityValue(DSRole role) {
     if (role.accessibility?.value != null) {
       return role.accessibility!.value!;
     }
@@ -90,7 +90,7 @@ class AppRoleVisibilityA11yHelper {
 
   Widget wrapWithAccessibility({
     required Widget child,
-    required AppRole role,
+    required DSRole role,
     bool excludeSemantics = false,
     VoidCallback? onTap,
   }) {
@@ -112,7 +112,7 @@ class AppRoleVisibilityA11yHelper {
 
   Widget buildFocusableWrapper({
     required Widget child,
-    required AppRole role,
+    required DSRole role,
     FocusNode? focusNode,
     VoidCallback? onFocusChange,
     bool autofocus = false,
@@ -137,7 +137,7 @@ class AppRoleVisibilityA11yHelper {
   KeyEventResult handleKeyboardNavigation(
     FocusNode node,
     KeyEvent event,
-    List<AppRole> availableRoles,
+    List<DSRole> availableRoles,
     int currentIndex,
     void Function(int) onIndexChanged,
   ) {
@@ -183,7 +183,7 @@ class AppRoleVisibilityA11yHelper {
   }
 
   Widget buildScreenReaderContent({
-    required AppRoleEvaluationResult result,
+    required DSRoleEvaluationResult result,
     required Widget visibleChild,
   }) {
     if (!result.hasAccess) {
@@ -203,37 +203,37 @@ class AppRoleVisibilityA11yHelper {
   }
 
   List<Widget> buildAccessibilityActions(
-    List<AppRole> roles,
-    void Function(AppRole) onRoleSelected,
+    List<DSRole> roles,
+    void Function(DSRole) onRoleSelected,
   ) {
     return roles.map((role) {
       return const SizedBox.shrink();
     }).toList();
   }
 
-  double getAccessibilityPriority(AppRole role) {
-    final importance = role.importance ?? AppRoleImportance.medium;
+  double getAccessibilityPriority(DSRole role) {
+    final importance = role.importance ?? DSRoleImportance.medium;
 
     switch (importance) {
-      case AppRoleImportance.low:
+      case DSRoleImportance.low:
         return 25.0;
-      case AppRoleImportance.medium:
+      case DSRoleImportance.medium:
         return 50.0;
-      case AppRoleImportance.high:
+      case DSRoleImportance.high:
         return 75.0;
-      case AppRoleImportance.critical:
+      case DSRoleImportance.critical:
         return 100.0;
     }
   }
 
-  bool shouldAnnounceRole(AppRole role) {
+  bool shouldAnnounceRole(DSRole role) {
     if (config.accessibility?.enableA11yAnnouncements != true) return false;
 
-    final importance = role.importance ?? AppRoleImportance.medium;
-    return importance.index >= AppRoleImportance.high.index;
+    final importance = role.importance ?? DSRoleImportance.medium;
+    return importance.index >= DSRoleImportance.high.index;
   }
 
-  void announceDebugInfo(AppRoleEvaluationResult result) {
+  void announceDebugInfo(DSRoleEvaluationResult result) {
     if (config.behavior?.enableDebugMode != true) return;
     if (config.accessibility?.enableA11yAnnouncements != true) return;
 
@@ -245,7 +245,7 @@ class AppRoleVisibilityA11yHelper {
 
   Widget buildHighContrastWrapper({
     required Widget child,
-    required AppRole role,
+    required DSRole role,
   }) {
     return Builder(
       builder: (context) {

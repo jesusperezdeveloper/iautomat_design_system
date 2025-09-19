@@ -4,28 +4,28 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_top_app_bar_config.freezed.dart';
 
 @freezed
-class AppTopAppBarConfig with _$AppTopAppBarConfig {
-  const factory AppTopAppBarConfig({
-    @Default(AppTopAppBarVariant.primary) AppTopAppBarVariant variant,
-    @Default(AppTopAppBarState.defaultState) AppTopAppBarState state,
+class DSTopAppBarConfig with _$DSTopAppBarConfig {
+  const factory DSTopAppBarConfig({
+    @Default(DSTopAppBarVariant.primary) DSTopAppBarVariant variant,
+    @Default(DSTopAppBarState.defaultState) DSTopAppBarState state,
     @Default(true) bool isAdaptive,
     @Default(false) bool isRtl,
     @Default(true) bool enableA11y,
     @Default(true) bool enableKeyboardSupport,
-    AppTopAppBarTitle? title,
-    AppTopAppBarActions? actions,
-    AppTopAppBarNavigationIcon? navigationIcon,
-    AppTopAppBarElevation? elevation,
-    AppTopAppBarScrollBehavior? scrollBehavior,
-    AppTopAppBarColors? colors,
-    AppTopAppBarTypography? typography,
-    AppTopAppBarSpacing? spacing,
-  }) = _AppTopAppBarConfig;
+    DSTopAppBarTitle? title,
+    DSTopAppBarActions? actions,
+    DSTopAppBarNavigationIcon? navigationIcon,
+    DSTopAppBarElevation? elevation,
+    DSTopAppBarScrollBehavior? scrollBehavior,
+    DSTopAppBarColors? colors,
+    DSTopAppBarTypography? typography,
+    DSTopAppBarSpacing? spacing,
+  }) = _DSTopAppBarConfig;
 }
 
 @freezed
-class AppTopAppBarTitle with _$AppTopAppBarTitle {
-  const factory AppTopAppBarTitle({
+class DSTopAppBarTitle with _$DSTopAppBarTitle {
+  const factory DSTopAppBarTitle({
     String? text,
     Widget? customWidget,
     @Default(TextAlign.start) TextAlign alignment,
@@ -37,10 +37,10 @@ class AppTopAppBarTitle with _$AppTopAppBarTitle {
 }
 
 @freezed
-class AppTopAppBarActions with _$AppTopAppBarActions {
-  const factory AppTopAppBarActions({
-    @Default([]) List<AppTopAppBarAction> primary,
-    @Default([]) List<AppTopAppBarAction> secondary,
+class DSTopAppBarActions with _$DSTopAppBarActions {
+  const factory DSTopAppBarActions({
+    @Default([]) List<DSTopAppBarAction> primary,
+    @Default([]) List<DSTopAppBarAction> secondary,
     @Default(3) int maxPrimary,
     @Default(true) bool showOverflow,
     String? overflowTooltip,
@@ -49,34 +49,34 @@ class AppTopAppBarActions with _$AppTopAppBarActions {
 }
 
 @freezed
-class AppTopAppBarAction with _$AppTopAppBarAction {
-  const factory AppTopAppBarAction({
+class DSTopAppBarAction with _$DSTopAppBarAction {
+  const factory DSTopAppBarAction({
     required String id,
     Widget? icon,
     String? text,
     String? tooltip,
     VoidCallback? onPressed,
     @Default(false) bool disabled,
-    @Default(AppTopAppBarActionType.icon) AppTopAppBarActionType type,
-    @Default(AppTopAppBarActionPriority.primary)
-    AppTopAppBarActionPriority priority,
+    @Default(DSTopAppBarActionType.icon) DSTopAppBarActionType type,
+    @Default(DSTopAppBarActionPriority.primary)
+    DSTopAppBarActionPriority priority,
   }) = _AppTopAppBarAction;
 }
 
 @freezed
-class AppTopAppBarNavigationIcon with _$AppTopAppBarNavigationIcon {
-  const factory AppTopAppBarNavigationIcon({
+class DSTopAppBarNavigationIcon with _$DSTopAppBarNavigationIcon {
+  const factory DSTopAppBarNavigationIcon({
     Widget? icon,
     String? tooltip,
     VoidCallback? onPressed,
-    @Default(AppTopAppBarNavigationType.auto) AppTopAppBarNavigationType type,
+    @Default(DSTopAppBarNavigationType.auto) DSTopAppBarNavigationType type,
     @Default(false) bool disabled,
   }) = _AppTopAppBarNavigationIcon;
 }
 
 @freezed
-class AppTopAppBarElevation with _$AppTopAppBarElevation {
-  const factory AppTopAppBarElevation({
+class DSTopAppBarElevation with _$DSTopAppBarElevation {
+  const factory DSTopAppBarElevation({
     @Default(4.0) double defaultElevation,
     @Default(8.0) double scrolledElevation,
     @Default(true) bool adaptive,
@@ -86,9 +86,9 @@ class AppTopAppBarElevation with _$AppTopAppBarElevation {
 }
 
 @freezed
-class AppTopAppBarScrollBehavior with _$AppTopAppBarScrollBehavior {
-  const factory AppTopAppBarScrollBehavior({
-    @Default(AppTopAppBarScrollType.pinned) AppTopAppBarScrollType type,
+class DSTopAppBarScrollBehavior with _$DSTopAppBarScrollBehavior {
+  const factory DSTopAppBarScrollBehavior({
+    @Default(DSTopAppBarScrollType.pinned) DSTopAppBarScrollType type,
     @Default(true) bool snap,
     @Default(true) bool floating,
     @Default(0.0) double expandedHeight,
@@ -99,8 +99,8 @@ class AppTopAppBarScrollBehavior with _$AppTopAppBarScrollBehavior {
 }
 
 @freezed
-class AppTopAppBarColors with _$AppTopAppBarColors {
-  const factory AppTopAppBarColors({
+class DSTopAppBarColors with _$DSTopAppBarColors {
+  const factory DSTopAppBarColors({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? surfaceTintColor,
@@ -112,8 +112,8 @@ class AppTopAppBarColors with _$AppTopAppBarColors {
 }
 
 @freezed
-class AppTopAppBarTypography with _$AppTopAppBarTypography {
-  const factory AppTopAppBarTypography({
+class DSTopAppBarTypography with _$DSTopAppBarTypography {
+  const factory DSTopAppBarTypography({
     TextStyle? titleStyle,
     TextStyle? actionStyle,
     @Default(1.0) double titleScale,
@@ -123,8 +123,8 @@ class AppTopAppBarTypography with _$AppTopAppBarTypography {
 }
 
 @freezed
-class AppTopAppBarSpacing with _$AppTopAppBarSpacing {
-  const factory AppTopAppBarSpacing({
+class DSTopAppBarSpacing with _$DSTopAppBarSpacing {
+  const factory DSTopAppBarSpacing({
     @Default(16.0) double titlePadding,
     @Default(8.0) double actionPadding,
     @Default(4.0) double actionSpacing,
@@ -134,14 +134,14 @@ class AppTopAppBarSpacing with _$AppTopAppBarSpacing {
   }) = _AppTopAppBarSpacing;
 }
 
-enum AppTopAppBarVariant {
+enum DSTopAppBarVariant {
   primary,
   center,
   large,
   collapsed,
 }
 
-enum AppTopAppBarState {
+enum DSTopAppBarState {
   defaultState,
   hover,
   pressed,
@@ -152,19 +152,19 @@ enum AppTopAppBarState {
   skeleton,
 }
 
-enum AppTopAppBarActionType {
+enum DSTopAppBarActionType {
   icon,
   text,
   iconText,
 }
 
-enum AppTopAppBarActionPriority {
+enum DSTopAppBarActionPriority {
   primary,
   secondary,
   overflow,
 }
 
-enum AppTopAppBarNavigationType {
+enum DSTopAppBarNavigationType {
   auto,
   back,
   close,
@@ -173,7 +173,7 @@ enum AppTopAppBarNavigationType {
   custom,
 }
 
-enum AppTopAppBarScrollType {
+enum DSTopAppBarScrollType {
   pinned,
   floating,
   snap,
@@ -181,110 +181,110 @@ enum AppTopAppBarScrollType {
   collapsed,
 }
 
-extension AppTopAppBarVariantExtension on AppTopAppBarVariant {
+extension DSTopAppBarVariantExtension on DSTopAppBarVariant {
   String get displayName {
     switch (this) {
-      case AppTopAppBarVariant.primary:
+      case DSTopAppBarVariant.primary:
         return 'Primary';
-      case AppTopAppBarVariant.center:
+      case DSTopAppBarVariant.center:
         return 'Center';
-      case AppTopAppBarVariant.large:
+      case DSTopAppBarVariant.large:
         return 'Large';
-      case AppTopAppBarVariant.collapsed:
+      case DSTopAppBarVariant.collapsed:
         return 'Collapsed';
     }
   }
 
   String get description {
     switch (this) {
-      case AppTopAppBarVariant.primary:
+      case DSTopAppBarVariant.primary:
         return 'AppBar estándar con título alineado a la izquierda';
-      case AppTopAppBarVariant.center:
+      case DSTopAppBarVariant.center:
         return 'AppBar con título centrado';
-      case AppTopAppBarVariant.large:
+      case DSTopAppBarVariant.large:
         return 'AppBar grande con título prominente';
-      case AppTopAppBarVariant.collapsed:
+      case DSTopAppBarVariant.collapsed:
         return 'AppBar colapsado para espacios reducidos';
     }
   }
 
   double get preferredHeight {
     switch (this) {
-      case AppTopAppBarVariant.primary:
+      case DSTopAppBarVariant.primary:
         return 56.0;
-      case AppTopAppBarVariant.center:
+      case DSTopAppBarVariant.center:
         return 56.0;
-      case AppTopAppBarVariant.large:
+      case DSTopAppBarVariant.large:
         return 112.0;
-      case AppTopAppBarVariant.collapsed:
+      case DSTopAppBarVariant.collapsed:
         return 48.0;
     }
   }
 
   bool get centerTitle {
     switch (this) {
-      case AppTopAppBarVariant.primary:
+      case DSTopAppBarVariant.primary:
         return false;
-      case AppTopAppBarVariant.center:
+      case DSTopAppBarVariant.center:
         return true;
-      case AppTopAppBarVariant.large:
+      case DSTopAppBarVariant.large:
         return false;
-      case AppTopAppBarVariant.collapsed:
+      case DSTopAppBarVariant.collapsed:
         return false;
     }
   }
 }
 
-extension AppTopAppBarStateExtension on AppTopAppBarState {
+extension DSTopAppBarStateExtension on DSTopAppBarState {
   String get displayName {
     switch (this) {
-      case AppTopAppBarState.defaultState:
+      case DSTopAppBarState.defaultState:
         return 'Default';
-      case AppTopAppBarState.hover:
+      case DSTopAppBarState.hover:
         return 'Hover';
-      case AppTopAppBarState.pressed:
+      case DSTopAppBarState.pressed:
         return 'Pressed';
-      case AppTopAppBarState.focus:
+      case DSTopAppBarState.focus:
         return 'Focus';
-      case AppTopAppBarState.selected:
+      case DSTopAppBarState.selected:
         return 'Selected';
-      case AppTopAppBarState.disabled:
+      case DSTopAppBarState.disabled:
         return 'Disabled';
-      case AppTopAppBarState.loading:
+      case DSTopAppBarState.loading:
         return 'Loading';
-      case AppTopAppBarState.skeleton:
+      case DSTopAppBarState.skeleton:
         return 'Skeleton';
     }
   }
 
   bool get isInteractive {
     switch (this) {
-      case AppTopAppBarState.defaultState:
-      case AppTopAppBarState.hover:
-      case AppTopAppBarState.pressed:
-      case AppTopAppBarState.focus:
-      case AppTopAppBarState.selected:
+      case DSTopAppBarState.defaultState:
+      case DSTopAppBarState.hover:
+      case DSTopAppBarState.pressed:
+      case DSTopAppBarState.focus:
+      case DSTopAppBarState.selected:
         return true;
-      case AppTopAppBarState.disabled:
-      case AppTopAppBarState.loading:
-      case AppTopAppBarState.skeleton:
+      case DSTopAppBarState.disabled:
+      case DSTopAppBarState.loading:
+      case DSTopAppBarState.skeleton:
         return false;
     }
   }
 
   double get opacity {
     switch (this) {
-      case AppTopAppBarState.defaultState:
-      case AppTopAppBarState.hover:
-      case AppTopAppBarState.pressed:
-      case AppTopAppBarState.focus:
-      case AppTopAppBarState.selected:
+      case DSTopAppBarState.defaultState:
+      case DSTopAppBarState.hover:
+      case DSTopAppBarState.pressed:
+      case DSTopAppBarState.focus:
+      case DSTopAppBarState.selected:
         return 1.0;
-      case AppTopAppBarState.disabled:
+      case DSTopAppBarState.disabled:
         return 0.6;
-      case AppTopAppBarState.loading:
+      case DSTopAppBarState.loading:
         return 0.8;
-      case AppTopAppBarState.skeleton:
+      case DSTopAppBarState.skeleton:
         return 0.3;
     }
   }

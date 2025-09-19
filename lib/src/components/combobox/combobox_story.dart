@@ -18,74 +18,74 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
   String loadingQuery = '';
   String disabledQuery = '';
 
-  final List<AppComboBoxSuggestion<String>> countries = [
-    AppComboBoxSuggestion(
+  final List<DSComboBoxSuggestion<String>> countries = [
+    DSComboBoxSuggestion(
       value: 'es',
       label: 'España',
       subtitle: 'Europa',
       leading: Icon(Icons.flag, color: Colors.red),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'us',
       label: 'Estados Unidos',
       subtitle: 'América del Norte',
       leading: Icon(Icons.flag, color: Colors.blue),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'mx',
       label: 'México',
       subtitle: 'América del Norte',
       leading: Icon(Icons.flag, color: Colors.green),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'ar',
       label: 'Argentina',
       subtitle: 'América del Sur',
       leading: Icon(Icons.flag, color: Colors.lightBlue),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'co',
       label: 'Colombia',
       subtitle: 'América del Sur',
       leading: Icon(Icons.flag, color: Colors.yellow),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'pe',
       label: 'Perú',
       subtitle: 'América del Sur',
       leading: Icon(Icons.flag, color: Colors.red),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'cl',
       label: 'Chile',
       subtitle: 'América del Sur',
       leading: Icon(Icons.flag, color: Colors.red),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'br',
       label: 'Brasil',
       subtitle: 'América del Sur',
       leading: Icon(Icons.flag, color: Colors.green),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'fr',
       label: 'Francia',
       subtitle: 'Europa',
       leading: Icon(Icons.flag, color: Colors.blue),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'de',
       label: 'Alemania',
       subtitle: 'Europa',
       leading: Icon(Icons.flag, color: Colors.black),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'it',
       label: 'Italia',
       subtitle: 'Europa',
       leading: Icon(Icons.flag, color: Colors.green),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'disabled',
       label: 'País Deshabilitado',
       subtitle: 'No disponible',
@@ -93,44 +93,44 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
     ),
   ];
 
-  final List<AppComboBoxSuggestion<String>> technologies = [
-    AppComboBoxSuggestion(
+  final List<DSComboBoxSuggestion<String>> technologies = [
+    DSComboBoxSuggestion(
       value: 'flutter',
       label: 'Flutter',
       subtitle: 'UI Framework',
       leading: Icon(Icons.phone_android, color: Colors.blue),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'react',
       label: 'React',
       subtitle: 'JavaScript Library',
       leading: Icon(Icons.web, color: Colors.cyan),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'vue',
       label: 'Vue.js',
       subtitle: 'Progressive Framework',
       leading: Icon(Icons.web, color: Colors.green),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'angular',
       label: 'Angular',
       subtitle: 'Web Framework',
       leading: Icon(Icons.web, color: Colors.red),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'nextjs',
       label: 'Next.js',
       subtitle: 'React Framework',
       leading: Icon(Icons.web, color: Colors.black),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'nuxtjs',
       label: 'Nuxt.js',
       subtitle: 'Vue Framework',
       leading: Icon(Icons.web, color: Colors.green),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'svelte',
       label: 'Svelte',
       subtitle: 'Compile-time Framework',
@@ -138,8 +138,8 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
     ),
   ];
 
-  final List<AppComboBoxSuggestion<String>> emails = [
-    AppComboBoxSuggestion(
+  final List<DSComboBoxSuggestion<String>> emails = [
+    DSComboBoxSuggestion(
       value: 'juan.perez@example.com',
       label: 'Juan Pérez',
       subtitle: 'juan.perez@example.com',
@@ -148,7 +148,7 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
         child: Text('JP', style: TextStyle(color: Colors.white)),
       ),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'maria.garcia@example.com',
       label: 'María García',
       subtitle: 'maria.garcia@example.com',
@@ -157,7 +157,7 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
         child: Text('MG', style: TextStyle(color: Colors.white)),
       ),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'carlos.rodriguez@example.com',
       label: 'Carlos Rodríguez',
       subtitle: 'carlos.rodriguez@example.com',
@@ -166,7 +166,7 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
         child: Text('CR', style: TextStyle(color: Colors.white)),
       ),
     ),
-    AppComboBoxSuggestion(
+    DSComboBoxSuggestion(
       value: 'ana.martinez@example.com',
       label: 'Ana Martínez',
       subtitle: 'ana.martinez@example.com',
@@ -181,7 +181,7 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppComboBox Story'),
+        title: const Text('DSComboBox Story'),
         elevation: 0,
       ),
       body: ListView(
@@ -190,7 +190,7 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
           _buildStorySection(
             'Basic Typeahead',
             'ComboBox básico con sugerencias estáticas',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: basicQuery,
               onQueryChanged: (query) => setState(() => basicQuery = query),
               suggestions: countries,
@@ -202,13 +202,13 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               placeholder: 'Buscar países...',
               label: 'País',
               helperText: 'Escribe para buscar países',
-              variant: AppComboBoxVariant.typeahead,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'With Icons and Subtitles',
             'ComboBox con iconos y subtítulos',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: '',
               onQueryChanged: (query) {},
               suggestions: technologies,
@@ -221,13 +221,13 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               label: 'Tecnología',
               helperText: 'Elige tu tecnología favorita',
               prefixIcon: Icon(Icons.code),
-              variant: AppComboBoxVariant.typeahead,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'Email Suggestions',
             'ComboBox para sugerencias de email',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: '',
               onQueryChanged: (query) {},
               suggestions: emails,
@@ -240,13 +240,13 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               label: 'Para',
               helperText: 'Busca contactos por nombre o email',
               prefixIcon: Icon(Icons.email),
-              variant: AppComboBoxVariant.typeahead,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'With Validation',
             'ComboBox con validación',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: validationQuery,
               onQueryChanged: (query) =>
                   setState(() => validationQuery = query),
@@ -256,14 +256,14 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               },
               placeholder: 'Campo requerido',
               label: 'País Requerido',
-              validator: AppComboBoxValidator.required,
-              variant: AppComboBoxVariant.typeahead,
+              validator: DSComboBoxValidator.required,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'Error State',
             'ComboBox con mensaje de error',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: '',
               onQueryChanged: (query) {},
               suggestions: countries,
@@ -271,13 +271,13 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               placeholder: 'Campo con error',
               label: 'Campo con Error',
               errorText: 'Este campo es requerido',
-              variant: AppComboBoxVariant.typeahead,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'Disabled State',
             'ComboBox deshabilitado',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: disabledQuery,
               onQueryChanged: (query) => setState(() => disabledQuery = query),
               suggestions: countries,
@@ -286,13 +286,13 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               label: 'ComboBox Deshabilitado',
               helperText: 'Este campo no se puede modificar',
               enabled: false,
-              variant: AppComboBoxVariant.typeahead,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'Loading State',
             'ComboBox en estado de carga',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: loadingQuery,
               onQueryChanged: (query) => setState(() => loadingQuery = query),
               suggestions: countries,
@@ -300,14 +300,14 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               placeholder: 'Cargando...',
               label: 'Estado de Carga',
               helperText: 'Los datos se están cargando',
-              overrideState: AppComboBoxState.loading,
-              variant: AppComboBoxVariant.typeahead,
+              overrideState: DSComboBoxState.loading,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'Skeleton State',
             'ComboBox en estado skeleton',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: '',
               onQueryChanged: (query) {},
               suggestions: countries,
@@ -315,14 +315,14 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               placeholder: 'Cargando...',
               label: 'Estado Skeleton',
               helperText: 'Cargando contenido...',
-              overrideState: AppComboBoxState.skeleton,
-              variant: AppComboBoxVariant.typeahead,
+              overrideState: DSComboBoxState.skeleton,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'Async Suggestions',
             'ComboBox con búsqueda asíncrona',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: asyncQuery,
               onQueryChanged: (query) => setState(() => asyncQuery = query),
               suggestions: const [], // No usamos las sugerencias estáticas
@@ -335,13 +335,13 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               placeholder: 'Búsqueda asíncrona...',
               label: 'Búsqueda Externa',
               helperText: 'Simula búsqueda en servidor',
-              variant: AppComboBoxVariant.typeahead,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'Custom Configuration',
             'ComboBox con configuración personalizada',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: customQuery,
               onQueryChanged: (query) => setState(() => customQuery = query),
               suggestions: countries,
@@ -351,7 +351,7 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               placeholder: 'Configuración personalizada',
               label: 'Custom Config',
               helperText: 'Con estilos personalizados',
-              config: const AppComboBoxConfig(
+              config: const DSComboBoxConfig(
                 borderRadius: 16,
                 minimumHeight: 60,
                 borderWidth: 3,
@@ -361,13 +361,13 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
                 highlightMatches: true,
                 enableFloatingLabel: false,
               ),
-              variant: AppComboBoxVariant.typeahead,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'Multiple Validators',
             'ComboBox con validación combinada',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: '',
               onQueryChanged: (query) {},
               suggestions: countries,
@@ -375,19 +375,19 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               placeholder: 'Email con validación',
               label: 'Email Válido',
               helperText: 'Debe ser un email válido de al menos 5 caracteres',
-              validator: AppComboBoxValidator.combine([
-                AppComboBoxValidator.required,
-                AppComboBoxValidator.minLength(5),
-                AppComboBoxValidator.email,
+              validator: DSComboBoxValidator.combine([
+                DSComboBoxValidator.required,
+                DSComboBoxValidator.minLength(5),
+                DSComboBoxValidator.email,
               ]),
               keyboardType: TextInputType.emailAddress,
-              variant: AppComboBoxVariant.typeahead,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'Compact Size',
             'ComboBox con tamaño compacto',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: '',
               onQueryChanged: (query) {},
               suggestions: technologies,
@@ -396,26 +396,26 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
               label: 'ComboBox Compacto',
               dense: true,
               width: 250,
-              variant: AppComboBoxVariant.typeahead,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
             'RTL Support',
             'Soporte para texto de derecha a izquierda',
-            AppComboBox<String>(
+            DSComboBox<String>(
               query: '',
               onQueryChanged: (query) {},
               suggestions: [
-                AppComboBoxSuggestion(value: 'ar', label: 'العربية'),
-                AppComboBoxSuggestion(value: 'he', label: 'עברית'),
-                AppComboBoxSuggestion(value: 'fa', label: 'فارسی'),
-                AppComboBoxSuggestion(value: 'ur', label: 'اردو'),
+                DSComboBoxSuggestion(value: 'ar', label: 'العربية'),
+                DSComboBoxSuggestion(value: 'he', label: 'עברית'),
+                DSComboBoxSuggestion(value: 'fa', label: 'فارسی'),
+                DSComboBoxSuggestion(value: 'ur', label: 'اردو'),
               ],
               onSelected: (suggestion) {},
               placeholder: 'اختر لغة',
               label: 'اللغة',
               textDirection: TextDirection.rtl,
-              variant: AppComboBoxVariant.typeahead,
+              variant: DSComboBoxVariant.typeahead,
             ),
           ),
           _buildStorySection(
@@ -428,7 +428,7 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
     );
   }
 
-  Future<List<AppComboBoxSuggestion<String>>> _performAsyncSearch(
+  Future<List<DSComboBoxSuggestion<String>>> _performAsyncSearch(
       String query) async {
     // Simular búsqueda asíncrona
     await Future.delayed(const Duration(milliseconds: 800));
@@ -451,7 +451,7 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
 
     return mockResults
         .where((company) => company.toLowerCase().contains(query.toLowerCase()))
-        .map((company) => AppComboBoxSuggestion(
+        .map((company) => DSComboBoxSuggestion(
               value: company.toLowerCase().replaceAll(' ', '_'),
               label: company,
               subtitle: 'Empresa de tecnología',
@@ -464,7 +464,7 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
     return Form(
       child: Column(
         children: [
-          AppComboBox<String>(
+          DSComboBox<String>(
             query: formQuery,
             onQueryChanged: (query) => setState(() => formQuery = query),
             suggestions: countries,
@@ -473,34 +473,34 @@ class _ComboBoxStoryState extends State<ComboBoxStory> {
             },
             placeholder: 'Selecciona tu país',
             label: 'País de Residencia',
-            validator: AppComboBoxValidator.required,
-            variant: AppComboBoxVariant.typeahead,
+            validator: DSComboBoxValidator.required,
+            variant: DSComboBoxVariant.typeahead,
           ),
           const SizedBox(height: 16),
-          AppComboBox<String>(
+          DSComboBox<String>(
             query: '',
             onQueryChanged: (query) {},
             suggestions: technologies,
             onSelected: (suggestion) {},
             placeholder: 'Tu especialidad',
             label: 'Tecnología Principal',
-            validator: AppComboBoxValidator.required,
-            variant: AppComboBoxVariant.typeahead,
+            validator: DSComboBoxValidator.required,
+            variant: DSComboBoxVariant.typeahead,
           ),
           const SizedBox(height: 16),
-          AppComboBox<String>(
+          DSComboBox<String>(
             query: '',
             onQueryChanged: (query) {},
             suggestions: emails,
             onSelected: (suggestion) {},
             placeholder: 'contacto@ejemplo.com',
             label: 'Email de Contacto',
-            validator: AppComboBoxValidator.combine([
-              AppComboBoxValidator.required,
-              AppComboBoxValidator.email,
+            validator: DSComboBoxValidator.combine([
+              DSComboBoxValidator.required,
+              DSComboBoxValidator.email,
             ]),
             keyboardType: TextInputType.emailAddress,
-            variant: AppComboBoxVariant.typeahead,
+            variant: DSComboBoxVariant.typeahead,
           ),
           const SizedBox(height: 16),
           ElevatedButton(

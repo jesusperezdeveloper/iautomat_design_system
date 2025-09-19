@@ -3,49 +3,49 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppTag', () {
+  group('DSTag', () {
     group('Constructor', () {
-      test('should create AppTag with semantic constructor', () {
-        final tag = AppTag.semantic(label: 'Test Tag');
+      test('should create DSTag with semantic constructor', () {
+        final tag = DSTag.semantic(label: 'Test Tag');
 
         expect(tag.config.label, equals('Test Tag'));
-        expect(tag.config.variant, equals(AppTagVariant.semantic));
-        expect(tag.config.semanticColor, equals(AppTagSemanticColor.primary));
-        expect(tag.config.size, equals(AppTagSize.medium));
-        expect(tag.config.shape, equals(AppTagShape.rounded));
+        expect(tag.config.variant, equals(DSTagVariant.semantic));
+        expect(tag.config.semanticColor, equals(DSTagSemanticColor.primary));
+        expect(tag.config.size, equals(DSTagSize.medium));
+        expect(tag.config.shape, equals(DSTagShape.rounded));
       });
 
-      test('should create AppTag with custom semantic color', () {
-        final tag = AppTag.semantic(
+      test('should create DSTag with custom semantic color', () {
+        final tag = DSTag.semantic(
           label: 'Success Tag',
-          semanticColor: AppTagSemanticColor.success,
+          semanticColor: DSTagSemanticColor.success,
         );
 
-        expect(tag.config.semanticColor, equals(AppTagSemanticColor.success));
+        expect(tag.config.semanticColor, equals(DSTagSemanticColor.success));
       });
 
-      test('should create AppTag with custom size', () {
-        final tag = AppTag.semantic(
+      test('should create DSTag with custom size', () {
+        final tag = DSTag.semantic(
           label: 'Large Tag',
-          size: AppTagSize.large,
+          size: DSTagSize.large,
         );
 
-        expect(tag.config.size, equals(AppTagSize.large));
+        expect(tag.config.size, equals(DSTagSize.large));
       });
 
-      test('should create AppTag with custom shape', () {
-        final tag = AppTag.semantic(
+      test('should create DSTag with custom shape', () {
+        final tag = DSTag.semantic(
           label: 'Pill Tag',
-          shape: AppTagShape.pill,
+          shape: DSTagShape.pill,
         );
 
-        expect(tag.config.shape, equals(AppTagShape.pill));
+        expect(tag.config.shape, equals(DSTagShape.pill));
       });
     });
 
     group('Configuration Properties', () {
       test('should be interactive when onTap is provided', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Interactive Tag',
           onTap: () {},
         );
@@ -54,7 +54,7 @@ void main() {
       });
 
       test('should be removable when removable is true', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Removable Tag',
           removable: true,
         );
@@ -64,7 +64,7 @@ void main() {
       });
 
       test('should be disabled when enabled is false', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Disabled Tag',
           enabled: false,
         );
@@ -74,7 +74,7 @@ void main() {
       });
 
       test('should be loading when loading is true', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Loading Tag',
           loading: true,
         );
@@ -84,7 +84,7 @@ void main() {
       });
 
       test('should be skeleton when skeleton is true', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Skeleton Tag',
           skeleton: true,
         );
@@ -94,7 +94,7 @@ void main() {
       });
 
       test('should be selected when selected is true', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Selected Tag',
           selected: true,
         );
@@ -103,7 +103,7 @@ void main() {
       });
 
       test('should have border when outlined is true', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Outlined Tag',
           outlined: true,
         );
@@ -112,7 +112,7 @@ void main() {
       });
 
       test('should have leading icon when provided', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Icon Tag',
           leadingIcon: Icons.star,
         );
@@ -122,7 +122,7 @@ void main() {
       });
 
       test('should have trailing icon when provided', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Icon Tag',
           trailingIcon: Icons.arrow_forward,
         );
@@ -136,19 +136,19 @@ void main() {
       test('should use semantic colors correctly', () {
         const colorScheme = ColorScheme.light();
 
-        final primaryTag = AppTag.semantic(
+        final primaryTag = DSTag.semantic(
           label: 'Primary',
-          semanticColor: AppTagSemanticColor.primary,
+          semanticColor: DSTagSemanticColor.primary,
         );
 
-        final successTag = AppTag.semantic(
+        final successTag = DSTag.semantic(
           label: 'Success',
-          semanticColor: AppTagSemanticColor.success,
+          semanticColor: DSTagSemanticColor.success,
         );
 
-        final errorTag = AppTag.semantic(
+        final errorTag = DSTag.semantic(
           label: 'Error',
-          semanticColor: AppTagSemanticColor.error,
+          semanticColor: DSTagSemanticColor.error,
         );
 
         expect(
@@ -171,7 +171,7 @@ void main() {
         const customColor = Colors.purple;
         const colorScheme = ColorScheme.light();
 
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Custom Color',
           color: customColor,
         );
@@ -185,7 +185,7 @@ void main() {
       test('should calculate background color for outlined tags', () {
         const colorScheme = ColorScheme.light();
 
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Outlined',
           outlined: true,
         );
@@ -199,7 +199,7 @@ void main() {
       test('should calculate background color for selected tags', () {
         const colorScheme = ColorScheme.light();
 
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Selected',
           selected: true,
         );
@@ -214,7 +214,7 @@ void main() {
       test('should calculate background color for normal tags', () {
         const colorScheme = ColorScheme.light();
 
-        final tag = AppTag.semantic(label: 'Normal');
+        final tag = DSTag.semantic(label: 'Normal');
 
         final effectiveColor = tag.config.getEffectiveColor(colorScheme);
         expect(
@@ -226,7 +226,7 @@ void main() {
 
     group('Widget Rendering', () {
       testWidgets('should render label text', (tester) async {
-        final tag = AppTag.semantic(label: 'Test Label');
+        final tag = DSTag.semantic(label: 'Test Label');
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: tag)));
 
@@ -234,7 +234,7 @@ void main() {
       });
 
       testWidgets('should render leading icon', (tester) async {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Icon Tag',
           leadingIcon: Icons.star,
         );
@@ -245,7 +245,7 @@ void main() {
       });
 
       testWidgets('should render trailing icon', (tester) async {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Icon Tag',
           trailingIcon: Icons.arrow_forward,
         );
@@ -257,7 +257,7 @@ void main() {
 
       testWidgets('should render remove button for removable tags',
           (tester) async {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Removable Tag',
           removable: true,
         );
@@ -268,7 +268,7 @@ void main() {
       });
 
       testWidgets('should not render content when not visible', (tester) async {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Hidden Tag',
           visible: false,
         );
@@ -283,28 +283,28 @@ void main() {
       testWidgets('should call onTap when tapped', (tester) async {
         bool tapped = false;
 
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Tappable Tag',
           onTap: () => tapped = true,
         );
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: tag)));
 
-        await tester.tap(find.byType(AppTag));
+        await tester.tap(find.byType(DSTag));
         expect(tapped, isTrue);
       });
 
       testWidgets('should call onLongPress when long pressed', (tester) async {
         bool longPressed = false;
 
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Long Pressable Tag',
           onLongPress: () => longPressed = true,
         );
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: tag)));
 
-        await tester.longPress(find.byType(AppTag));
+        await tester.longPress(find.byType(DSTag));
         expect(longPressed, isTrue);
       });
 
@@ -312,7 +312,7 @@ void main() {
           (tester) async {
         bool removed = false;
 
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Removable Tag',
           removable: true,
           onRemove: () => removed = true,
@@ -328,7 +328,7 @@ void main() {
           (tester) async {
         bool tapped = false;
 
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Disabled Tag',
           enabled: false,
           onTap: () => tapped = true,
@@ -336,14 +336,14 @@ void main() {
 
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: tag)));
 
-        await tester.tap(find.byType(AppTag));
+        await tester.tap(find.byType(DSTag));
         expect(tapped, isFalse);
       });
     });
 
     group('Accessibility', () {
       testWidgets('should have semantic label', (tester) async {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Accessible Tag',
           semanticLabel: 'Custom semantic label',
         );
@@ -351,13 +351,13 @@ void main() {
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: tag)));
 
         expect(
-          tester.getSemantics(find.byType(AppTag)),
+          tester.getSemantics(find.byType(DSTag)),
           matchesSemantics(label: 'Custom semantic label'),
         );
       });
 
       testWidgets('should be interactive when has onTap', (tester) async {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Interactive Tag',
           onTap: () {},
         );
@@ -365,16 +365,16 @@ void main() {
         await tester.pumpWidget(MaterialApp(home: Scaffold(body: tag)));
 
         // Just verify the widget renders correctly
-        expect(find.byType(AppTag), findsOneWidget);
+        expect(find.byType(DSTag), findsOneWidget);
         expect(find.text('Interactive Tag'), findsOneWidget);
       });
     });
 
     group('Sizes', () {
       test('should apply small size correctly', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Small Tag',
-          size: AppTagSize.small,
+          size: DSTagSize.small,
         );
 
         expect(tag.config.size.height, equals(24.0));
@@ -383,9 +383,9 @@ void main() {
       });
 
       test('should apply medium size correctly', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Medium Tag',
-          size: AppTagSize.medium,
+          size: DSTagSize.medium,
         );
 
         expect(tag.config.size.height, equals(32.0));
@@ -394,9 +394,9 @@ void main() {
       });
 
       test('should apply large size correctly', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Large Tag',
-          size: AppTagSize.large,
+          size: DSTagSize.large,
         );
 
         expect(tag.config.size.height, equals(40.0));
@@ -407,9 +407,9 @@ void main() {
 
     group('Shapes', () {
       test('should apply rounded shape correctly', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Rounded Tag',
-          shape: AppTagShape.rounded,
+          shape: DSTagShape.rounded,
         );
 
         final borderRadius = tag.config.shape.getBorderRadius(tag.config.size);
@@ -418,9 +418,9 @@ void main() {
       });
 
       test('should apply pill shape correctly', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Pill Tag',
-          shape: AppTagShape.pill,
+          shape: DSTagShape.pill,
         );
 
         final borderRadius = tag.config.shape.getBorderRadius(tag.config.size);
@@ -428,9 +428,9 @@ void main() {
       });
 
       test('should apply square shape correctly', () {
-        final tag = AppTag.semantic(
+        final tag = DSTag.semantic(
           label: 'Square Tag',
-          shape: AppTagShape.square,
+          shape: DSTagShape.square,
         );
 
         final borderRadius = tag.config.shape.getBorderRadius(tag.config.size);
@@ -439,119 +439,119 @@ void main() {
     });
   });
 
-  group('AppTagSemanticColor', () {
+  group('DSTagSemanticColor', () {
     test('should return correct colors for light theme', () {
       const colorScheme = ColorScheme.light();
 
       expect(
-        AppTagSemanticColor.primary.getColor(colorScheme),
+        DSTagSemanticColor.primary.getColor(colorScheme),
         equals(colorScheme.primary),
       );
 
       expect(
-        AppTagSemanticColor.secondary.getColor(colorScheme),
+        DSTagSemanticColor.secondary.getColor(colorScheme),
         equals(colorScheme.secondary),
       );
 
       expect(
-        AppTagSemanticColor.success.getColor(colorScheme),
+        DSTagSemanticColor.success.getColor(colorScheme),
         equals(Colors.green),
       );
 
       expect(
-        AppTagSemanticColor.warning.getColor(colorScheme),
+        DSTagSemanticColor.warning.getColor(colorScheme),
         equals(Colors.orange),
       );
 
       expect(
-        AppTagSemanticColor.error.getColor(colorScheme),
+        DSTagSemanticColor.error.getColor(colorScheme),
         equals(colorScheme.error),
       );
 
       expect(
-        AppTagSemanticColor.info.getColor(colorScheme),
+        DSTagSemanticColor.info.getColor(colorScheme),
         equals(Colors.blue),
       );
 
       expect(
-        AppTagSemanticColor.neutral.getColor(colorScheme),
+        DSTagSemanticColor.neutral.getColor(colorScheme),
         equals(colorScheme.outline),
       );
     });
 
     test('should return correct labels', () {
-      expect(AppTagSemanticColor.primary.label, equals('Primario'));
-      expect(AppTagSemanticColor.secondary.label, equals('Secundario'));
-      expect(AppTagSemanticColor.success.label, equals('Éxito'));
-      expect(AppTagSemanticColor.warning.label, equals('Advertencia'));
-      expect(AppTagSemanticColor.error.label, equals('Error'));
-      expect(AppTagSemanticColor.info.label, equals('Información'));
-      expect(AppTagSemanticColor.neutral.label, equals('Neutral'));
+      expect(DSTagSemanticColor.primary.label, equals('Primario'));
+      expect(DSTagSemanticColor.secondary.label, equals('Secundario'));
+      expect(DSTagSemanticColor.success.label, equals('Éxito'));
+      expect(DSTagSemanticColor.warning.label, equals('Advertencia'));
+      expect(DSTagSemanticColor.error.label, equals('Error'));
+      expect(DSTagSemanticColor.info.label, equals('Información'));
+      expect(DSTagSemanticColor.neutral.label, equals('Neutral'));
     });
 
     test('should return correct icons', () {
-      expect(AppTagSemanticColor.primary.icon, equals(Icons.star));
-      expect(AppTagSemanticColor.secondary.icon, equals(Icons.label));
-      expect(AppTagSemanticColor.success.icon, equals(Icons.check_circle));
-      expect(AppTagSemanticColor.warning.icon, equals(Icons.warning));
-      expect(AppTagSemanticColor.error.icon, equals(Icons.error));
-      expect(AppTagSemanticColor.info.icon, equals(Icons.info));
-      expect(AppTagSemanticColor.neutral.icon, equals(Icons.circle));
+      expect(DSTagSemanticColor.primary.icon, equals(Icons.star));
+      expect(DSTagSemanticColor.secondary.icon, equals(Icons.label));
+      expect(DSTagSemanticColor.success.icon, equals(Icons.check_circle));
+      expect(DSTagSemanticColor.warning.icon, equals(Icons.warning));
+      expect(DSTagSemanticColor.error.icon, equals(Icons.error));
+      expect(DSTagSemanticColor.info.icon, equals(Icons.info));
+      expect(DSTagSemanticColor.neutral.icon, equals(Icons.circle));
     });
   });
 
-  group('AppTagSize Extensions', () {
+  group('DSTagSize Extensions', () {
     test('should return correct heights', () {
-      expect(AppTagSize.small.height, equals(24.0));
-      expect(AppTagSize.medium.height, equals(32.0));
-      expect(AppTagSize.large.height, equals(40.0));
+      expect(DSTagSize.small.height, equals(24.0));
+      expect(DSTagSize.medium.height, equals(32.0));
+      expect(DSTagSize.large.height, equals(40.0));
     });
 
     test('should return correct font sizes', () {
-      expect(AppTagSize.small.fontSize, equals(12.0));
-      expect(AppTagSize.medium.fontSize, equals(14.0));
-      expect(AppTagSize.large.fontSize, equals(16.0));
+      expect(DSTagSize.small.fontSize, equals(12.0));
+      expect(DSTagSize.medium.fontSize, equals(14.0));
+      expect(DSTagSize.large.fontSize, equals(16.0));
     });
 
     test('should return correct icon sizes', () {
-      expect(AppTagSize.small.iconSize, equals(14.0));
-      expect(AppTagSize.medium.iconSize, equals(16.0));
-      expect(AppTagSize.large.iconSize, equals(18.0));
+      expect(DSTagSize.small.iconSize, equals(14.0));
+      expect(DSTagSize.medium.iconSize, equals(16.0));
+      expect(DSTagSize.large.iconSize, equals(18.0));
     });
 
     test('should return correct spacing', () {
-      expect(AppTagSize.small.spacing, equals(4.0));
-      expect(AppTagSize.medium.spacing, equals(6.0));
-      expect(AppTagSize.large.spacing, equals(8.0));
+      expect(DSTagSize.small.spacing, equals(4.0));
+      expect(DSTagSize.medium.spacing, equals(6.0));
+      expect(DSTagSize.large.spacing, equals(8.0));
     });
 
     test('should return correct border radius', () {
-      expect(AppTagSize.small.borderRadius, equals(12.0));
-      expect(AppTagSize.medium.borderRadius, equals(16.0));
-      expect(AppTagSize.large.borderRadius, equals(20.0));
+      expect(DSTagSize.small.borderRadius, equals(12.0));
+      expect(DSTagSize.medium.borderRadius, equals(16.0));
+      expect(DSTagSize.large.borderRadius, equals(20.0));
     });
   });
 
-  group('AppTagShape Extensions', () {
+  group('DSTagShape Extensions', () {
     test('should return correct border radius for rounded shape', () {
-      const shape = AppTagShape.rounded;
-      const size = AppTagSize.medium;
+      const shape = DSTagShape.rounded;
+      const size = DSTagSize.medium;
 
       final borderRadius = shape.getBorderRadius(size);
       expect(borderRadius, equals(BorderRadius.circular(16.0)));
     });
 
     test('should return correct border radius for pill shape', () {
-      const shape = AppTagShape.pill;
-      const size = AppTagSize.medium;
+      const shape = DSTagShape.pill;
+      const size = DSTagSize.medium;
 
       final borderRadius = shape.getBorderRadius(size);
       expect(borderRadius, equals(BorderRadius.circular(16.0))); // height / 2
     });
 
     test('should return correct border radius for square shape', () {
-      const shape = AppTagShape.square;
-      const size = AppTagSize.medium;
+      const shape = DSTagShape.square;
+      const size = DSTagSize.medium;
 
       final borderRadius = shape.getBorderRadius(size);
       expect(borderRadius, equals(BorderRadius.circular(4.0)));

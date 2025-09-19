@@ -3,51 +3,51 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_profile_preferences_config.freezed.dart';
 
-/// Configuración principal para AppProfilePreferences
+/// Configuración principal para DSProfilePreferences
 ///
 /// Define el comportamiento, apariencia y funcionalidad del componente
 /// de preferencias de perfil, incluyendo todas las variantes de secciones,
 /// estados, colores, espaciado, animaciones y accesibilidad.
 @freezed
-class AppProfilePreferencesConfig with _$AppProfilePreferencesConfig {
-  const factory AppProfilePreferencesConfig({
+class DSProfilePreferencesConfig with _$DSProfilePreferencesConfig {
+  const factory DSProfilePreferencesConfig({
     /// Variante de secciones del componente
-    @Default(AppProfileVariant.sections) AppProfileVariant variant,
+    @Default(DSProfileVariant.sections) DSProfileVariant variant,
 
     /// Lista de campos/secciones de preferencias
-    @Default([]) List<AppProfileField> fields,
+    @Default([]) List<DSProfileField> fields,
 
     /// Estado actual del componente
-    @Default(AppProfileState.defaultState) AppProfileState state,
+    @Default(DSProfileState.defaultState) DSProfileState state,
 
     /// Configuración de colores (solo design tokens)
-    AppProfileColors? colors,
+    DSProfileColors? colors,
 
     /// Configuración de espaciado (solo design tokens)
-    AppProfileSpacing? spacing,
+    DSProfileSpacing? spacing,
 
     /// Configuración de tipografía (solo design tokens)
-    AppProfileTypography? typography,
+    DSProfileTypography? typography,
 
     /// Configuración de animaciones
-    AppProfileAnimation? animation,
+    DSProfileAnimation? animation,
 
     /// Configuración de comportamiento
-    AppProfileBehavior? behavior,
+    DSProfileBehavior? behavior,
 
     /// Configuración de accesibilidad
-    AppProfileA11yConfig? a11yConfig,
-  }) = _AppProfilePreferencesConfig;
+    DSProfileA11yConfig? a11yConfig,
+  }) = _DSProfilePreferencesConfig;
 }
 
 /// Variantes disponibles para el componente
-enum AppProfileVariant {
+enum DSProfileVariant {
   /// Vista por secciones (default)
   sections,
 }
 
 /// Estados disponibles del componente
-enum AppProfileState {
+enum DSProfileState {
   /// Estado por defecto
   defaultState,
 
@@ -74,25 +74,25 @@ enum AppProfileState {
 }
 
 /// Extensión para obtener propiedades de los estados
-extension AppProfileStateExtension on AppProfileState {
+extension DSProfileStateExtension on DSProfileState {
   /// Obtiene el nombre del estado para mostrar
   String get displayName {
     switch (this) {
-      case AppProfileState.defaultState:
+      case DSProfileState.defaultState:
         return 'Default';
-      case AppProfileState.hover:
+      case DSProfileState.hover:
         return 'Hover';
-      case AppProfileState.pressed:
+      case DSProfileState.pressed:
         return 'Pressed';
-      case AppProfileState.focus:
+      case DSProfileState.focus:
         return 'Focus';
-      case AppProfileState.selected:
+      case DSProfileState.selected:
         return 'Selected';
-      case AppProfileState.disabled:
+      case DSProfileState.disabled:
         return 'Disabled';
-      case AppProfileState.loading:
+      case DSProfileState.loading:
         return 'Loading';
-      case AppProfileState.skeleton:
+      case DSProfileState.skeleton:
         return 'Skeleton';
     }
   }
@@ -100,9 +100,9 @@ extension AppProfileStateExtension on AppProfileState {
   /// Indica si el estado permite interacciones
   bool get isInteractive {
     switch (this) {
-      case AppProfileState.disabled:
-      case AppProfileState.loading:
-      case AppProfileState.skeleton:
+      case DSProfileState.disabled:
+      case DSProfileState.loading:
+      case DSProfileState.skeleton:
         return false;
       default:
         return true;
@@ -111,12 +111,12 @@ extension AppProfileStateExtension on AppProfileState {
 
   /// Indica si el estado muestra loading
   bool get isLoading {
-    return this == AppProfileState.loading || this == AppProfileState.skeleton;
+    return this == DSProfileState.loading || this == DSProfileState.skeleton;
   }
 }
 
 /// Tipos de campos/secciones de preferencias
-enum AppProfileFieldType {
+enum DSProfileFieldType {
   /// Sección de header
   header,
 
@@ -155,7 +155,7 @@ enum AppProfileFieldType {
 }
 
 /// Importancia de los campos para accesibilidad
-enum AppProfileFieldImportance {
+enum DSProfileFieldImportance {
   /// Crítico - debe ser anunciado inmediatamente
   critical,
 
@@ -171,13 +171,13 @@ enum AppProfileFieldImportance {
 
 /// Configuración de un campo/sección de preferencias
 @freezed
-class AppProfileField with _$AppProfileField {
-  const factory AppProfileField({
+class DSProfileField with _$DSProfileField {
+  const factory DSProfileField({
     /// ID único del campo
     required String id,
 
     /// Tipo de campo
-    required AppProfileFieldType type,
+    required DSProfileFieldType type,
 
     /// Etiqueta principal del campo
     required String label,
@@ -195,10 +195,10 @@ class AppProfileField with _$AppProfileField {
     String? placeholder,
 
     /// Opciones para campos de selección
-    @Default([]) List<AppProfileFieldOption> options,
+    @Default([]) List<DSProfileFieldOption> options,
 
     /// Validación del campo
-    AppProfileFieldValidation? validation,
+    DSProfileFieldValidation? validation,
 
     /// Si el campo es requerido
     @Default(false) bool required,
@@ -210,7 +210,7 @@ class AppProfileField with _$AppProfileField {
     @Default(false) bool readonly,
 
     /// Importancia del campo para accesibilidad
-    @Default(AppProfileFieldImportance.normal) AppProfileFieldImportance importance,
+    @Default(DSProfileFieldImportance.normal) DSProfileFieldImportance importance,
 
     /// Icono del campo
     IconData? icon,
@@ -228,8 +228,8 @@ class AppProfileField with _$AppProfileField {
 
 /// Opción para campos de selección
 @freezed
-class AppProfileFieldOption with _$AppProfileFieldOption {
-  const factory AppProfileFieldOption({
+class DSProfileFieldOption with _$DSProfileFieldOption {
+  const factory DSProfileFieldOption({
     /// Valor de la opción
     required Object value,
 
@@ -249,8 +249,8 @@ class AppProfileFieldOption with _$AppProfileFieldOption {
 
 /// Validación de campos
 @freezed
-class AppProfileFieldValidation with _$AppProfileFieldValidation {
-  const factory AppProfileFieldValidation({
+class DSProfileFieldValidation with _$DSProfileFieldValidation {
+  const factory DSProfileFieldValidation({
     /// Si el campo es requerido
     @Default(false) bool required,
 
@@ -279,8 +279,8 @@ class AppProfileFieldValidation with _$AppProfileFieldValidation {
 
 /// Configuración de colores (solo design tokens)
 @freezed
-class AppProfileColors with _$AppProfileColors {
-  const factory AppProfileColors({
+class DSProfileColors with _$DSProfileColors {
+  const factory DSProfileColors({
     /// Color de fondo principal
     Color? backgroundColor,
 
@@ -363,8 +363,8 @@ class AppProfileColors with _$AppProfileColors {
 
 /// Configuración de espaciado (solo design tokens)
 @freezed
-class AppProfileSpacing with _$AppProfileSpacing {
-  const factory AppProfileSpacing({
+class DSProfileSpacing with _$DSProfileSpacing {
+  const factory DSProfileSpacing({
     /// Padding de la pantalla principal
     @Default(EdgeInsets.all(16)) EdgeInsets screenPadding,
 
@@ -417,8 +417,8 @@ class AppProfileSpacing with _$AppProfileSpacing {
 
 /// Configuración de tipografía (solo design tokens)
 @freezed
-class AppProfileTypography with _$AppProfileTypography {
-  const factory AppProfileTypography({
+class DSProfileTypography with _$DSProfileTypography {
+  const factory DSProfileTypography({
     /// Estilo para títulos de sección
     TextStyle? sectionHeaderStyle,
 
@@ -447,8 +447,8 @@ class AppProfileTypography with _$AppProfileTypography {
 
 /// Configuración de animaciones
 @freezed
-class AppProfileAnimation with _$AppProfileAnimation {
-  const factory AppProfileAnimation({
+class DSProfileAnimation with _$DSProfileAnimation {
+  const factory DSProfileAnimation({
     /// Duración de animaciones principales
     @Default(Duration(milliseconds: 200)) Duration duration,
 
@@ -468,8 +468,8 @@ class AppProfileAnimation with _$AppProfileAnimation {
 
 /// Configuración de comportamiento
 @freezed
-class AppProfileBehavior with _$AppProfileBehavior {
-  const factory AppProfileBehavior({
+class DSProfileBehavior with _$DSProfileBehavior {
+  const factory DSProfileBehavior({
     /// Auto-guardar cambios
     @Default(false) bool autoSave,
 
@@ -489,15 +489,15 @@ class AppProfileBehavior with _$AppProfileBehavior {
     @Default(false) bool allowReorder,
 
     /// Comportamiento de scroll
-    @Default(AppProfileScrollBehavior.adaptive) AppProfileScrollBehavior scrollBehavior,
+    @Default(DSProfileScrollBehavior.adaptive) DSProfileScrollBehavior scrollBehavior,
 
     /// Comportamiento de teclado
-    @Default(AppProfileKeyboardBehavior.adaptive) AppProfileKeyboardBehavior keyboardBehavior,
+    @Default(DSProfileKeyboardBehavior.adaptive) DSProfileKeyboardBehavior keyboardBehavior,
   }) = _AppProfileBehavior;
 }
 
 /// Comportamiento de scroll
-enum AppProfileScrollBehavior {
+enum DSProfileScrollBehavior {
   /// Adaptativo según plataforma
   adaptive,
 
@@ -509,7 +509,7 @@ enum AppProfileScrollBehavior {
 }
 
 /// Comportamiento de teclado
-enum AppProfileKeyboardBehavior {
+enum DSProfileKeyboardBehavior {
   /// Adaptativo según plataforma
   adaptive,
 
@@ -525,8 +525,8 @@ enum AppProfileKeyboardBehavior {
 
 /// Configuración de accesibilidad
 @freezed
-class AppProfileA11yConfig with _$AppProfileA11yConfig {
-  const factory AppProfileA11yConfig({
+class DSProfileA11yConfig with _$DSProfileA11yConfig {
+  const factory DSProfileA11yConfig({
     /// Si la accesibilidad está habilitada
     @Default(true) bool enabled,
 
@@ -565,18 +565,18 @@ class AppProfileA11yConfig with _$AppProfileA11yConfig {
 
     /// Label semántico para botón cancelar
     @Default('Cancelar cambios') String cancelButtonSemanticLabel,
-  }) = _AppProfileA11yConfig;
+  }) = _DSProfileA11yConfig;
 }
 
 /// Datos del formulario de preferencias
 @freezed
-class AppProfileFormData with _$AppProfileFormData {
-  const factory AppProfileFormData({
+class DSProfileFormData with _$DSProfileFormData {
+  const factory DSProfileFormData({
     /// Valores de los campos
     @Default({}) Map<String, dynamic> values,
 
     /// Validaciones de los campos
-    @Default({}) Map<String, AppProfileFieldValidation> validations,
+    @Default({}) Map<String, DSProfileFieldValidation> validations,
 
     /// Errores de validación
     @Default({}) Map<String, String> errors,
@@ -600,8 +600,8 @@ class AppProfileFormData with _$AppProfileFormData {
 
 /// Resultado de validación de campo
 @freezed
-class AppProfileFieldValidationResult with _$AppProfileFieldValidationResult {
-  const factory AppProfileFieldValidationResult({
+class DSProfileFieldValidationResult with _$DSProfileFieldValidationResult {
+  const factory DSProfileFieldValidationResult({
     /// ID del campo
     required String fieldId,
 
@@ -619,27 +619,27 @@ class AppProfileFieldValidationResult with _$AppProfileFieldValidationResult {
 /// Funciones de utilidad para configuración
 
 /// Configuración por defecto para diferentes contextos
-class AppProfilePreferencesConfigDefaults {
+class DSProfilePreferencesConfigDefaults {
   /// Configuración por defecto estándar
-  static const standard = AppProfilePreferencesConfig();
+  static const standard = DSProfilePreferencesConfig();
 
   /// Configuración para perfil básico
-  static AppProfilePreferencesConfig get basicProfile => const AppProfilePreferencesConfig(
+  static DSProfilePreferencesConfig get basicProfile => const DSProfilePreferencesConfig(
     fields: [
-      AppProfileField(
+      DSProfileField(
         id: 'personal_info',
-        type: AppProfileFieldType.header,
+        type: DSProfileFieldType.header,
         label: 'Información Personal',
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'name',
-        type: AppProfileFieldType.text,
+        type: DSProfileFieldType.text,
         label: 'Nombre',
         required: true,
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'email',
-        type: AppProfileFieldType.email,
+        type: DSProfileFieldType.email,
         label: 'Email',
         required: true,
       ),
@@ -647,44 +647,44 @@ class AppProfilePreferencesConfigDefaults {
   );
 
   /// Configuración para perfil completo
-  static AppProfilePreferencesConfig get fullProfile => const AppProfilePreferencesConfig(
+  static DSProfilePreferencesConfig get fullProfile => const DSProfilePreferencesConfig(
     fields: [
-      AppProfileField(
+      DSProfileField(
         id: 'personal_info',
-        type: AppProfileFieldType.header,
+        type: DSProfileFieldType.header,
         label: 'Información Personal',
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'name',
-        type: AppProfileFieldType.text,
+        type: DSProfileFieldType.text,
         label: 'Nombre completo',
         required: true,
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'email',
-        type: AppProfileFieldType.email,
+        type: DSProfileFieldType.email,
         label: 'Correo electrónico',
         required: true,
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'phone',
-        type: AppProfileFieldType.phone,
+        type: DSProfileFieldType.phone,
         label: 'Teléfono',
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'notifications_header',
-        type: AppProfileFieldType.header,
+        type: DSProfileFieldType.header,
         label: 'Notificaciones',
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'email_notifications',
-        type: AppProfileFieldType.toggle,
+        type: DSProfileFieldType.toggle,
         label: 'Notificaciones por email',
         value: true,
       ),
-      AppProfileField(
+      DSProfileField(
         id: 'push_notifications',
-        type: AppProfileFieldType.toggle,
+        type: DSProfileFieldType.toggle,
         label: 'Notificaciones push',
         value: false,
       ),
@@ -693,7 +693,7 @@ class AppProfilePreferencesConfigDefaults {
 }
 
 /// Validadores comunes
-class AppProfileValidators {
+class DSProfileValidators {
   /// Validador de email
   static String? email(Object? value) {
     if (value == null || value.toString().isEmpty) return null;

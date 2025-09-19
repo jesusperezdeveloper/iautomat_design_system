@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import 'app_skeleton_config.dart';
 import 'app_skeleton_a11y_helper.dart';
 
-class AppSkeleton extends StatefulWidget {
-  final AppSkeletonShape shape;
+class DSSkeleton extends StatefulWidget {
+  final DSSkeletonShape shape;
   final double? width;
   final double? height;
-  final AppSkeletonConfig? config;
+  final DSSkeletonConfig? config;
   final bool interactive;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
-  final ValueChanged<AppSkeletonState>? onStateChanged;
+  final ValueChanged<DSSkeletonState>? onStateChanged;
   final Widget? child;
   final Duration? animationDuration;
 
-  const AppSkeleton({
+  const DSSkeleton({
     super.key,
-    this.shape = AppSkeletonShape.rectangle,
+    this.shape = DSSkeletonShape.rectangle,
     this.width,
     this.height,
     this.config,
@@ -29,7 +29,7 @@ class AppSkeleton extends StatefulWidget {
     this.animationDuration,
   });
 
-  const AppSkeleton.rectangle({
+  const DSSkeleton.rectangle({
     super.key,
     this.width,
     this.height,
@@ -40,9 +40,9 @@ class AppSkeleton extends StatefulWidget {
     this.onStateChanged,
     this.child,
     this.animationDuration,
-  }) : shape = AppSkeletonShape.rectangle;
+  }) : shape = DSSkeletonShape.rectangle;
 
-  const AppSkeleton.circle({
+  const DSSkeleton.circle({
     super.key,
     this.width,
     this.height,
@@ -53,9 +53,9 @@ class AppSkeleton extends StatefulWidget {
     this.onStateChanged,
     this.child,
     this.animationDuration,
-  }) : shape = AppSkeletonShape.circle;
+  }) : shape = DSSkeletonShape.circle;
 
-  const AppSkeleton.avatar({
+  const DSSkeleton.avatar({
     super.key,
     this.width,
     this.height,
@@ -66,9 +66,9 @@ class AppSkeleton extends StatefulWidget {
     this.onStateChanged,
     this.child,
     this.animationDuration,
-  }) : shape = AppSkeletonShape.avatar;
+  }) : shape = DSSkeletonShape.avatar;
 
-  const AppSkeleton.button({
+  const DSSkeleton.button({
     super.key,
     this.width,
     this.height,
@@ -79,9 +79,9 @@ class AppSkeleton extends StatefulWidget {
     this.onStateChanged,
     this.child,
     this.animationDuration,
-  }) : shape = AppSkeletonShape.button;
+  }) : shape = DSSkeletonShape.button;
 
-  const AppSkeleton.card({
+  const DSSkeleton.card({
     super.key,
     this.width,
     this.height,
@@ -92,9 +92,9 @@ class AppSkeleton extends StatefulWidget {
     this.onStateChanged,
     this.child,
     this.animationDuration,
-  }) : shape = AppSkeletonShape.card;
+  }) : shape = DSSkeletonShape.card;
 
-  const AppSkeleton.text({
+  const DSSkeleton.text({
     super.key,
     this.width,
     this.height,
@@ -105,9 +105,9 @@ class AppSkeleton extends StatefulWidget {
     this.onStateChanged,
     this.child,
     this.animationDuration,
-  }) : shape = AppSkeletonShape.text;
+  }) : shape = DSSkeletonShape.text;
 
-  const AppSkeleton.line({
+  const DSSkeleton.line({
     super.key,
     this.width,
     this.height,
@@ -118,9 +118,9 @@ class AppSkeleton extends StatefulWidget {
     this.onStateChanged,
     this.child,
     this.animationDuration,
-  }) : shape = AppSkeletonShape.line;
+  }) : shape = DSSkeletonShape.line;
 
-  const AppSkeleton.roundedRectangle({
+  const DSSkeleton.roundedRectangle({
     super.key,
     this.width,
     this.height,
@@ -131,16 +131,16 @@ class AppSkeleton extends StatefulWidget {
     this.onStateChanged,
     this.child,
     this.animationDuration,
-  }) : shape = AppSkeletonShape.roundedRectangle;
+  }) : shape = DSSkeletonShape.roundedRectangle;
 
   @override
-  State<AppSkeleton> createState() => _AppSkeletonState();
+  State<DSSkeleton> createState() => _DSSkeletonState();
 }
 
-class _AppSkeletonState extends State<AppSkeleton>
+class _DSSkeletonState extends State<DSSkeleton>
     with TickerProviderStateMixin {
-  late final AppSkeletonA11yHelper _a11yHelper;
-  late AppSkeletonConfig _effectiveConfig;
+  late final DSSkeletonA11yHelper _a11yHelper;
+  late DSSkeletonConfig _effectiveConfig;
   late AnimationController _shimmerController;
   late AnimationController _fadeController;
   late AnimationController _pulseController;
@@ -148,19 +148,19 @@ class _AppSkeletonState extends State<AppSkeleton>
   late Animation<double> _fadeAnimation;
   late Animation<double> _pulseAnimation;
 
-  AppSkeletonState _currentState = AppSkeletonState.skeleton;
+  DSSkeletonState _currentState = DSSkeletonState.skeleton;
   bool _isHovered = false;
 
   @override
   void initState() {
     super.initState();
-    _a11yHelper = AppSkeletonA11yHelper();
+    _a11yHelper = DSSkeletonA11yHelper();
     _initializeConfig();
     _initializeAnimations();
   }
 
   void _initializeConfig() {
-    final baseConfig = AppSkeletonDefaults.configForShape(widget.shape);
+    final baseConfig = DSSkeletonDefaults.configForShape(widget.shape);
     _effectiveConfig = baseConfig.copyWith(
       spacing: baseConfig.spacing?.copyWith(
         width: widget.width ?? baseConfig.spacing?.width,
@@ -183,13 +183,13 @@ class _AppSkeletonState extends State<AppSkeleton>
     }
 
     _effectiveConfig = _effectiveConfig.copyWith(
-      colors: _effectiveConfig.colors ?? AppSkeletonDefaults.colors,
-      spacing: _effectiveConfig.spacing ?? AppSkeletonDefaults.spacing,
-      typography: _effectiveConfig.typography ?? AppSkeletonDefaults.typography,
-      animations: _effectiveConfig.animations ?? AppSkeletonDefaults.animations,
+      colors: _effectiveConfig.colors ?? DSSkeletonDefaults.colors,
+      spacing: _effectiveConfig.spacing ?? DSSkeletonDefaults.spacing,
+      typography: _effectiveConfig.typography ?? DSSkeletonDefaults.typography,
+      animations: _effectiveConfig.animations ?? DSSkeletonDefaults.animations,
       accessibility:
-          _effectiveConfig.accessibility ?? AppSkeletonDefaults.accessibility,
-      behavior: _effectiveConfig.behavior ?? AppSkeletonDefaults.behavior,
+          _effectiveConfig.accessibility ?? DSSkeletonDefaults.accessibility,
+      behavior: _effectiveConfig.behavior ?? DSSkeletonDefaults.behavior,
     );
   }
 
@@ -237,7 +237,7 @@ class _AppSkeletonState extends State<AppSkeleton>
   }
 
   @override
-  void didUpdateWidget(AppSkeleton oldWidget) {
+  void didUpdateWidget(DSSkeleton oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.config != widget.config ||
         oldWidget.shape != widget.shape ||
@@ -255,7 +255,7 @@ class _AppSkeletonState extends State<AppSkeleton>
     super.dispose();
   }
 
-  void _handleStateChange(AppSkeletonState newState) {
+  void _handleStateChange(DSSkeletonState newState) {
     if (_currentState != newState) {
       setState(() {
         _currentState = newState;
@@ -268,13 +268,13 @@ class _AppSkeletonState extends State<AppSkeleton>
   void _handleTap() {
     if (!widget.interactive) return;
 
-    _handleStateChange(AppSkeletonState.pressed);
+    _handleStateChange(DSSkeletonState.pressed);
     widget.onTap?.call();
 
     Future.delayed(const Duration(milliseconds: 100), () {
       if (mounted) {
         _handleStateChange(
-          _isHovered ? AppSkeletonState.hover : AppSkeletonState.defaultState,
+          _isHovered ? DSSkeletonState.hover : DSSkeletonState.defaultState,
         );
       }
     });
@@ -283,7 +283,7 @@ class _AppSkeletonState extends State<AppSkeleton>
   void _handleLongPress() {
     if (!widget.interactive) return;
 
-    _handleStateChange(AppSkeletonState.pressed);
+    _handleStateChange(DSSkeletonState.pressed);
     widget.onLongPress?.call();
   }
 
@@ -293,7 +293,7 @@ class _AppSkeletonState extends State<AppSkeleton>
     setState(() {
       _isHovered = true;
     });
-    _handleStateChange(AppSkeletonState.hover);
+    _handleStateChange(DSSkeletonState.hover);
   }
 
   void _handleHoverExit() {
@@ -302,14 +302,14 @@ class _AppSkeletonState extends State<AppSkeleton>
     setState(() {
       _isHovered = false;
     });
-    _handleStateChange(AppSkeletonState.defaultState);
+    _handleStateChange(DSSkeletonState.defaultState);
   }
 
   void _handleFocusChange(bool hasFocus) {
     if (!widget.interactive) return;
 
     _handleStateChange(
-      hasFocus ? AppSkeletonState.focus : AppSkeletonState.defaultState,
+      hasFocus ? DSSkeletonState.focus : DSSkeletonState.defaultState,
     );
   }
 
@@ -321,27 +321,27 @@ class _AppSkeletonState extends State<AppSkeleton>
         colors.backgroundColor ?? theme.colorScheme.surfaceContainerHighest;
 
     switch (_currentState) {
-      case AppSkeletonState.hover:
+      case DSSkeletonState.hover:
         return Color.alphaBlend(
           theme.colorScheme.onSurface.withValues(alpha: 0.08),
           baseColor,
         );
-      case AppSkeletonState.pressed:
+      case DSSkeletonState.pressed:
         return Color.alphaBlend(
           theme.colorScheme.onSurface.withValues(alpha: 0.12),
           baseColor,
         );
-      case AppSkeletonState.focus:
+      case DSSkeletonState.focus:
         return Color.alphaBlend(
           theme.colorScheme.primary.withValues(alpha: 0.08),
           baseColor,
         );
-      case AppSkeletonState.selected:
+      case DSSkeletonState.selected:
         return Color.alphaBlend(
           theme.colorScheme.primary.withValues(alpha: 0.12),
           baseColor,
         );
-      case AppSkeletonState.disabled:
+      case DSSkeletonState.disabled:
         return baseColor.withValues(alpha: 0.38);
       default:
         return baseColor;
@@ -352,9 +352,9 @@ class _AppSkeletonState extends State<AppSkeleton>
     final colors = _effectiveConfig.colors!;
 
     switch (_currentState) {
-      case AppSkeletonState.disabled:
+      case DSSkeletonState.disabled:
         return 0.38;
-      case AppSkeletonState.loading:
+      case DSSkeletonState.loading:
         return colors.opacity * 0.8;
       default:
         return colors.opacity;
@@ -366,7 +366,7 @@ class _AppSkeletonState extends State<AppSkeleton>
     final animations = _effectiveConfig.animations!;
 
     if (!animations.shimmerEnabled ||
-        _currentState == AppSkeletonState.disabled) {
+        _currentState == DSSkeletonState.disabled) {
       return child;
     }
 
@@ -508,14 +508,14 @@ class _AppSkeletonState extends State<AppSkeleton>
   }
 }
 
-class AppSkeletonGroup extends StatelessWidget {
-  final List<AppSkeleton> children;
+class DSSkeletonGroup extends StatelessWidget {
+  final List<DSSkeleton> children;
   final Axis direction;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final double spacing;
 
-  const AppSkeletonGroup({
+  const DSSkeletonGroup({
     super.key,
     required this.children,
     this.direction = Axis.vertical,
@@ -552,14 +552,14 @@ class AppSkeletonGroup extends StatelessWidget {
   }
 }
 
-class AppSkeletonText extends StatelessWidget {
+class DSSkeletonText extends StatelessWidget {
   final int lines;
   final double? lastLineWidthFactor;
   final double lineHeight;
   final double spacing;
-  final AppSkeletonConfig? config;
+  final DSSkeletonConfig? config;
 
-  const AppSkeletonText({
+  const DSSkeletonText({
     super.key,
     this.lines = 3,
     this.lastLineWidthFactor,
@@ -570,7 +570,7 @@ class AppSkeletonText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppSkeletonGroup(
+    return DSSkeletonGroup(
       spacing: spacing,
       children: List.generate(lines, (index) {
         final isLast = index == lines - 1;
@@ -578,7 +578,7 @@ class AppSkeletonText extends StatelessWidget {
             ? lastLineWidthFactor!
             : 1.0;
 
-        return AppSkeleton.text(
+        return DSSkeleton.text(
           height: lineHeight,
           width: widthFactor < 1.0 ? null : double.infinity,
           config: config?.copyWith(
@@ -592,13 +592,13 @@ class AppSkeletonText extends StatelessWidget {
   }
 }
 
-class AppSkeletonList extends StatelessWidget {
+class DSSkeletonList extends StatelessWidget {
   final int itemCount;
   final double itemHeight;
   final double spacing;
-  final AppSkeletonConfig? config;
+  final DSSkeletonConfig? config;
 
-  const AppSkeletonList({
+  const DSSkeletonList({
     super.key,
     this.itemCount = 5,
     this.itemHeight = 60,
@@ -608,10 +608,10 @@ class AppSkeletonList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppSkeletonGroup(
+    return DSSkeletonGroup(
       spacing: spacing,
       children: List.generate(itemCount, (index) {
-        return AppSkeleton.card(
+        return DSSkeleton.card(
           height: itemHeight,
           width: double.infinity,
           config: config,

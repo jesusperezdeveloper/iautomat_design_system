@@ -4,12 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/tooltip/app_tooltip.dart';
 
 void main() {
-  group('AppTooltip', () {
+  group('DSTooltip', () {
     testWidgets('renders with basic message and child', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTooltip(
+            body: DSTooltip(
               message: 'Test tooltip',
               child: Text('Child widget'),
             ),
@@ -26,7 +26,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTooltip(
+            body: DSTooltip(
               message: 'Hover tooltip',
               variant: TooltipVariant.hover,
               showDelay: Duration(milliseconds: 100),
@@ -57,7 +57,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTooltip.focus(
+            body: DSTooltip.focus(
               message: 'Focus tooltip',
               showDelay: const Duration(milliseconds: 50),
               child: ElevatedButton(
@@ -81,7 +81,7 @@ void main() {
 
     testWidgets('creates correct factory constructors', (tester) async {
       // Test hover factory
-      final hoverTooltip = AppTooltip.hover(
+      final hoverTooltip = DSTooltip.hover(
         message: 'Hover test',
         child: const Text('Hover'),
       );
@@ -89,7 +89,7 @@ void main() {
       expect(hoverTooltip.showDelay, const Duration(milliseconds: 300));
 
       // Test focus factory
-      final focusTooltip = AppTooltip.focus(
+      final focusTooltip = DSTooltip.focus(
         message: 'Focus test',
         child: const Text('Focus'),
       );
@@ -97,7 +97,7 @@ void main() {
       expect(focusTooltip.showDelay, const Duration(milliseconds: 100));
 
       // Test long press factory
-      final longPressTooltip = AppTooltip.longPress(
+      final longPressTooltip = DSTooltip.longPress(
         message: 'Long press test',
         child: const Text('Long press'),
       );
@@ -106,11 +106,11 @@ void main() {
     });
 
     testWidgets('applies different states correctly', (tester) async {
-      for (final state in AppTooltipState.values) {
+      for (final state in DSTooltipState.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppTooltip(
+              body: DSTooltip(
                 message: 'State test',
                 state: state,
                 child: Container(
@@ -124,7 +124,7 @@ void main() {
         );
 
         // Skeleton state adds an additional Container wrapper
-        if (state == AppTooltipState.skeleton) {
+        if (state == DSTooltipState.skeleton) {
           expect(find.byType(Container), findsNWidgets(2));
         } else {
           expect(find.byType(Container), findsOneWidget);
@@ -140,7 +140,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppTooltip(
+                child: DSTooltip(
                   message: 'Position test',
                   preferredPosition: position,
                   child: const Text('Test'),
@@ -162,7 +162,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTooltip(
+            body: DSTooltip(
               message: 'Delay test',
               showDelay: customShowDelay,
               hideDelay: customHideDelay,
@@ -172,7 +172,7 @@ void main() {
         ),
       );
 
-      final tooltip = tester.widget<AppTooltip>(find.byType(AppTooltip));
+      final tooltip = tester.widget<DSTooltip>(find.byType(DSTooltip));
       expect(tooltip.showDelay, customShowDelay);
       expect(tooltip.hideDelay, customHideDelay);
     });
@@ -183,7 +183,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppTooltip(
+              body: DSTooltip(
                 message: 'RTL tooltip',
                 rtlSupport: true,
                 child: Text('RTL test'),
@@ -195,7 +195,7 @@ void main() {
 
       expect(find.text('RTL test'), findsOneWidget);
 
-      final tooltip = tester.widget<AppTooltip>(find.byType(AppTooltip));
+      final tooltip = tester.widget<DSTooltip>(find.byType(DSTooltip));
       expect(tooltip.rtlSupport, isTrue);
     });
 
@@ -203,7 +203,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTooltip(
+            body: DSTooltip(
               message: 'Accessible tooltip',
               accessibilityLabel: 'Custom accessibility label',
               accessibilitySupport: true,
@@ -215,7 +215,7 @@ void main() {
 
       expect(find.text('Accessible element'), findsOneWidget);
 
-      final tooltip = tester.widget<AppTooltip>(find.byType(AppTooltip));
+      final tooltip = tester.widget<DSTooltip>(find.byType(DSTooltip));
       expect(tooltip.accessibilitySupport, isTrue);
       expect(tooltip.accessibilityLabel, 'Custom accessibility label');
     });
@@ -228,7 +228,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTooltip(
+            body: DSTooltip(
               message: 'Styled tooltip',
               backgroundColor: customBgColor,
               textColor: customTextColor,
@@ -239,29 +239,29 @@ void main() {
         ),
       );
 
-      final tooltip = tester.widget<AppTooltip>(find.byType(AppTooltip));
+      final tooltip = tester.widget<DSTooltip>(find.byType(DSTooltip));
       expect(tooltip.backgroundColor, customBgColor);
       expect(tooltip.textColor, customTextColor);
       expect(tooltip.padding, customPadding);
     });
 
     testWidgets('copyWith creates correct copy', (tester) async {
-      final original = AppTooltip(
+      final original = DSTooltip(
         message: 'Original message',
         variant: TooltipVariant.hover,
-        state: AppTooltipState.defaultState,
+        state: DSTooltipState.defaultState,
         child: Text('Original child'),
       );
 
       final copy = original.copyWith(
         message: 'Updated message',
         variant: TooltipVariant.focus,
-        state: AppTooltipState.disabled,
+        state: DSTooltipState.disabled,
       );
 
       expect(copy.message, 'Updated message');
       expect(copy.variant, TooltipVariant.focus);
-      expect(copy.state, AppTooltipState.disabled);
+      expect(copy.state, DSTooltipState.disabled);
       expect(copy.child, original.child); // Should remain the same
     });
 
@@ -269,9 +269,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTooltip(
+            body: DSTooltip(
               message: 'Loading tooltip',
-              state: AppTooltipState.loading,
+              state: DSTooltipState.loading,
               child: Container(
                 width: 50,
                 height: 50,
@@ -290,9 +290,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTooltip(
+            body: DSTooltip(
               message: 'Skeleton tooltip',
-              state: AppTooltipState.skeleton,
+              state: DSTooltipState.skeleton,
               child: Container(
                 width: 50,
                 height: 50,
@@ -311,7 +311,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTooltip(
+            body: DSTooltip(
               message: 'Long press tooltip',
               variant: TooltipVariant.longPress,
               child: Container(
@@ -341,7 +341,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTooltip(
+            body: DSTooltip(
               message: 'Callback tooltip',
               onShow: () => showCalled = true,
               onHide: () => hideCalled = true,
@@ -363,7 +363,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTooltip(
+            body: DSTooltip(
               message: 'Very long tooltip message that should be constrained',
               maxWidth: 200,
               maxLines: 2,
@@ -374,7 +374,7 @@ void main() {
         ),
       );
 
-      final tooltip = tester.widget<AppTooltip>(find.byType(AppTooltip));
+      final tooltip = tester.widget<DSTooltip>(find.byType(DSTooltip));
       expect(tooltip.maxWidth, 200);
       expect(tooltip.maxLines, 2);
       expect(tooltip.overflow, TextOverflow.ellipsis);
@@ -390,17 +390,17 @@ void main() {
     });
   });
 
-  group('AppTooltipState', () {
+  group('DSTooltipState', () {
     test('has correct values', () {
-      expect(AppTooltipState.values.length, 8);
-      expect(AppTooltipState.values, contains(AppTooltipState.defaultState));
-      expect(AppTooltipState.values, contains(AppTooltipState.hover));
-      expect(AppTooltipState.values, contains(AppTooltipState.pressed));
-      expect(AppTooltipState.values, contains(AppTooltipState.focus));
-      expect(AppTooltipState.values, contains(AppTooltipState.selected));
-      expect(AppTooltipState.values, contains(AppTooltipState.disabled));
-      expect(AppTooltipState.values, contains(AppTooltipState.loading));
-      expect(AppTooltipState.values, contains(AppTooltipState.skeleton));
+      expect(DSTooltipState.values.length, 8);
+      expect(DSTooltipState.values, contains(DSTooltipState.defaultState));
+      expect(DSTooltipState.values, contains(DSTooltipState.hover));
+      expect(DSTooltipState.values, contains(DSTooltipState.pressed));
+      expect(DSTooltipState.values, contains(DSTooltipState.focus));
+      expect(DSTooltipState.values, contains(DSTooltipState.selected));
+      expect(DSTooltipState.values, contains(DSTooltipState.disabled));
+      expect(DSTooltipState.values, contains(DSTooltipState.loading));
+      expect(DSTooltipState.values, contains(DSTooltipState.skeleton));
     });
   });
 

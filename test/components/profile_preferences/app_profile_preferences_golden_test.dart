@@ -3,14 +3,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppProfilePreferences Golden Tests', () {
+  group('DSProfilePreferences Golden Tests', () {
     testWidgets('Basic Profile - Light Theme', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: ThemeData.light(),
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: AppProfilePreferencesConfigDefaults.basicProfile,
+            body: DSProfilePreferences(
+              config: DSProfilePreferencesConfigDefaults.basicProfile,
               onSave: (data) {},
               onCancel: () {},
             ),
@@ -19,7 +19,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProfilePreferences),
+        find.byType(DSProfilePreferences),
         matchesGoldenFile('profile_preferences_basic_light.png'),
       );
     });
@@ -29,8 +29,8 @@ void main() {
         MaterialApp(
           theme: ThemeData.dark(),
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: AppProfilePreferencesConfigDefaults.basicProfile,
+            body: DSProfilePreferences(
+              config: DSProfilePreferencesConfigDefaults.basicProfile,
               onSave: (data) {},
               onCancel: () {},
             ),
@@ -39,7 +39,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProfilePreferences),
+        find.byType(DSProfilePreferences),
         matchesGoldenFile('profile_preferences_basic_dark.png'),
       );
     });
@@ -49,8 +49,8 @@ void main() {
         MaterialApp(
           theme: ThemeData.light(),
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: AppProfilePreferencesConfigDefaults.fullProfile,
+            body: DSProfilePreferences(
+              config: DSProfilePreferencesConfigDefaults.fullProfile,
               onSave: (data) {},
               onCancel: () {},
             ),
@@ -59,7 +59,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProfilePreferences),
+        find.byType(DSProfilePreferences),
         matchesGoldenFile('profile_preferences_full.png'),
       );
     });
@@ -69,40 +69,40 @@ void main() {
         MaterialApp(
           theme: ThemeData.light(),
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'header',
-                    type: AppProfileFieldType.header,
+                    type: DSProfileFieldType.header,
                     label: 'Configuración',
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'text',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Texto',
                     icon: Icons.text_fields,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'email',
-                    type: AppProfileFieldType.email,
+                    type: DSProfileFieldType.email,
                     label: 'Email',
                     icon: Icons.email,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'toggle',
-                    type: AppProfileFieldType.toggle,
+                    type: DSProfileFieldType.toggle,
                     label: 'Activar',
                     icon: Icons.toggle_on,
                     value: true,
                   ),
-                  AppProfileField(
+                  DSProfileField(
                     id: 'select',
-                    type: AppProfileFieldType.select,
+                    type: DSProfileFieldType.select,
                     label: 'Selección',
                     icon: Icons.arrow_drop_down,
                     options: [
-                      AppProfileFieldOption(
+                      DSProfileFieldOption(
                         value: 'option1',
                         label: 'Opción 1',
                       ),
@@ -117,7 +117,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProfilePreferences),
+        find.byType(DSProfilePreferences),
         matchesGoldenFile('profile_preferences_all_fields.png'),
       );
     });
@@ -127,13 +127,13 @@ void main() {
         MaterialApp(
           theme: ThemeData.light(),
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
-                state: AppProfileState.disabled,
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
+                state: DSProfileState.disabled,
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'name',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Nombre',
                   ),
                 ],
@@ -146,7 +146,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProfilePreferences),
+        find.byType(DSProfilePreferences),
         matchesGoldenFile('profile_preferences_disabled.png'),
       );
     });
@@ -156,13 +156,13 @@ void main() {
         MaterialApp(
           theme: ThemeData.light(),
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
-                state: AppProfileState.loading,
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
+                state: DSProfileState.loading,
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'name',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Nombre',
                   ),
                 ],
@@ -174,7 +174,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProfilePreferences),
+        find.byType(DSProfilePreferences),
         matchesGoldenFile('profile_preferences_loading.png'),
       );
     });
@@ -184,16 +184,16 @@ void main() {
         MaterialApp(
           theme: ThemeData.light(),
           home: Scaffold(
-            body: AppProfilePreferences(
-              config: const AppProfilePreferencesConfig(
+            body: DSProfilePreferences(
+              config: const DSProfilePreferencesConfig(
                 fields: [
-                  AppProfileField(
+                  DSProfileField(
                     id: 'name',
-                    type: AppProfileFieldType.text,
+                    type: DSProfileFieldType.text,
                     label: 'Nombre',
                   ),
                 ],
-                colors: AppProfileColors(
+                colors: DSProfileColors(
                   primaryButtonColor: Colors.purple,
                   fieldBackgroundColor: Color(0xFFF0F0F0),
                   borderColor: Colors.purple,
@@ -206,7 +206,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProfilePreferences),
+        find.byType(DSProfilePreferences),
         matchesGoldenFile('profile_preferences_custom_colors.png'),
       );
     });
@@ -220,8 +220,8 @@ void main() {
           MaterialApp(
             theme: ThemeData.light(),
             home: Scaffold(
-              body: AppProfilePreferences(
-                config: AppProfilePreferencesConfigDefaults.fullProfile,
+              body: DSProfilePreferences(
+                config: DSProfilePreferencesConfigDefaults.fullProfile,
                 onSave: (data) {},
               ),
             ),
@@ -229,7 +229,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppProfilePreferences),
+          find.byType(DSProfilePreferences),
           matchesGoldenFile('profile_preferences_mobile.png'),
         );
 
@@ -244,8 +244,8 @@ void main() {
           MaterialApp(
             theme: ThemeData.light(),
             home: Scaffold(
-              body: AppProfilePreferences(
-                config: AppProfilePreferencesConfigDefaults.fullProfile,
+              body: DSProfilePreferences(
+                config: DSProfilePreferencesConfigDefaults.fullProfile,
                 onSave: (data) {},
               ),
             ),
@@ -253,7 +253,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppProfilePreferences),
+          find.byType(DSProfilePreferences),
           matchesGoldenFile('profile_preferences_tablet.png'),
         );
 
@@ -268,8 +268,8 @@ void main() {
           MaterialApp(
             theme: ThemeData.light(),
             home: Scaffold(
-              body: AppProfilePreferences(
-                config: AppProfilePreferencesConfigDefaults.fullProfile,
+              body: DSProfilePreferences(
+                config: DSProfilePreferencesConfigDefaults.fullProfile,
                 onSave: (data) {},
               ),
             ),
@@ -277,7 +277,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppProfilePreferences),
+          find.byType(DSProfilePreferences),
           matchesGoldenFile('profile_preferences_desktop.png'),
         );
 
@@ -293,18 +293,18 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.rtl,
               child: Scaffold(
-                body: AppProfilePreferences(
-                  config: const AppProfilePreferencesConfig(
+                body: DSProfilePreferences(
+                  config: const DSProfilePreferencesConfig(
                     fields: [
-                      AppProfileField(
+                      DSProfileField(
                         id: 'name',
-                        type: AppProfileFieldType.text,
+                        type: DSProfileFieldType.text,
                         label: 'الاسم',
                         icon: Icons.person,
                       ),
-                      AppProfileField(
+                      DSProfileField(
                         id: 'email',
-                        type: AppProfileFieldType.email,
+                        type: DSProfileFieldType.email,
                         label: 'البريد الإلكتروني',
                         icon: Icons.email,
                       ),
@@ -318,7 +318,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppProfilePreferences),
+          find.byType(DSProfilePreferences),
           matchesGoldenFile('profile_preferences_rtl.png'),
         );
       });
@@ -330,18 +330,18 @@ void main() {
           MaterialApp(
             theme: ThemeData.light(),
             home: Scaffold(
-              body: AppProfilePreferences(
-                config: const AppProfilePreferencesConfig(
+              body: DSProfilePreferences(
+                config: const DSProfilePreferencesConfig(
                   fields: [
-                    AppProfileField(
+                    DSProfileField(
                       id: 'email',
-                      type: AppProfileFieldType.email,
+                      type: DSProfileFieldType.email,
                       label: 'Email',
                       required: true,
                     ),
                   ],
                 ),
-                initialData: const AppProfileFormData(
+                initialData: const DSProfileFormData(
                   values: {'email': 'invalid-email'},
                   errors: {'email': 'Email inválido'},
                   isValid: false,
@@ -353,7 +353,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppProfilePreferences),
+          find.byType(DSProfilePreferences),
           matchesGoldenFile('profile_preferences_field_error.png'),
         );
       });
@@ -363,19 +363,19 @@ void main() {
           MaterialApp(
             theme: ThemeData.light(),
             home: Scaffold(
-              body: AppProfilePreferences(
-                config: const AppProfilePreferencesConfig(
+              body: DSProfilePreferences(
+                config: const DSProfilePreferencesConfig(
                   fields: [
-                    AppProfileField(
+                    DSProfileField(
                       id: 'required_field',
-                      type: AppProfileFieldType.text,
+                      type: DSProfileFieldType.text,
                       label: 'Campo Obligatorio',
                       required: true,
                       icon: Icons.star,
                     ),
-                    AppProfileField(
+                    DSProfileField(
                       id: 'optional_field',
-                      type: AppProfileFieldType.text,
+                      type: DSProfileFieldType.text,
                       label: 'Campo Opcional',
                       required: false,
                       icon: Icons.info,
@@ -389,7 +389,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppProfilePreferences),
+          find.byType(DSProfilePreferences),
           matchesGoldenFile('profile_preferences_required_fields.png'),
         );
       });

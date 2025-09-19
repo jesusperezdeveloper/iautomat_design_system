@@ -6,18 +6,18 @@ import 'package:flutter/services.dart';
 
 import 'checkbox_config.dart';
 
-class AppCheckbox extends StatefulWidget {
-  final AppCheckboxValue? value;
-  final ValueChanged<AppCheckboxValue?>? onChanged;
+class DSCheckbox extends StatefulWidget {
+  final DSCheckboxValue? value;
+  final ValueChanged<DSCheckboxValue?>? onChanged;
   final String? label;
   final Widget? labelWidget;
-  final AppCheckboxConfig? config;
-  final AppCheckboxColors? colors;
+  final DSCheckboxConfig? config;
+  final DSCheckboxColors? colors;
   final bool enabled;
   final bool autoFocus;
   final FocusNode? focusNode;
   final String? semanticLabel;
-  final AppCheckboxState? overrideState;
+  final DSCheckboxState? overrideState;
   final bool tristate;
   final TextDirection? textDirection;
   final MainAxisAlignment mainAxisAlignment;
@@ -25,7 +25,7 @@ class AppCheckbox extends StatefulWidget {
   final MainAxisSize mainAxisSize;
   final double? spacing;
 
-  const AppCheckbox({
+  const DSCheckbox({
     super.key,
     required this.value,
     required this.onChanged,
@@ -50,10 +50,10 @@ class AppCheckbox extends StatefulWidget {
         );
 
   @override
-  State<AppCheckbox> createState() => _AppCheckboxState();
+  State<DSCheckbox> createState() => _DSCheckboxState();
 }
 
-class _AppCheckboxState extends State<AppCheckbox>
+class _DSCheckboxState extends State<DSCheckbox>
     with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late AnimationController _animationController;
@@ -65,47 +65,47 @@ class _AppCheckboxState extends State<AppCheckbox>
   bool _isPressed = false;
   bool _isFocused = false;
 
-  AppCheckboxConfig get _config => widget.config ?? const AppCheckboxConfig();
+  DSCheckboxConfig get _config => widget.config ?? const DSCheckboxConfig();
 
-  AppCheckboxColors get _colors =>
-      widget.colors ?? AppCheckboxColors.fromTheme(Theme.of(context));
+  DSCheckboxColors get _colors =>
+      widget.colors ?? DSCheckboxColors.fromTheme(Theme.of(context));
 
   bool get _isEnabled => widget.enabled && widget.onChanged != null;
 
-  AppCheckboxState get _currentState {
+  DSCheckboxState get _currentState {
     if (widget.overrideState != null) {
       return widget.overrideState!;
     }
 
-    if (widget.overrideState == AppCheckboxState.skeleton) {
-      return AppCheckboxState.skeleton;
+    if (widget.overrideState == DSCheckboxState.skeleton) {
+      return DSCheckboxState.skeleton;
     }
 
-    if (widget.overrideState == AppCheckboxState.loading) {
-      return AppCheckboxState.loading;
+    if (widget.overrideState == DSCheckboxState.loading) {
+      return DSCheckboxState.loading;
     }
 
     if (!_isEnabled) {
-      return AppCheckboxState.disabled;
+      return DSCheckboxState.disabled;
     }
 
     if (_isPressed) {
-      return AppCheckboxState.pressed;
+      return DSCheckboxState.pressed;
     }
 
     if (_isFocused) {
-      return AppCheckboxState.focus;
+      return DSCheckboxState.focus;
     }
 
     if (_isHovered) {
-      return AppCheckboxState.hover;
+      return DSCheckboxState.hover;
     }
 
-    if (widget.value == AppCheckboxValue.checked) {
-      return AppCheckboxState.selected;
+    if (widget.value == DSCheckboxValue.checked) {
+      return DSCheckboxState.selected;
     }
 
-    return AppCheckboxState.defaultState;
+    return DSCheckboxState.defaultState;
   }
 
   @override
@@ -142,19 +142,19 @@ class _AppCheckboxState extends State<AppCheckbox>
 
     _updateAnimationState();
 
-    if (widget.value == AppCheckboxValue.indeterminate) {
+    if (widget.value == DSCheckboxValue.indeterminate) {
       _indeterminateAnimationController.repeat(reverse: true);
     }
   }
 
   @override
-  void didUpdateWidget(AppCheckbox oldWidget) {
+  void didUpdateWidget(DSCheckbox oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.value != widget.value) {
       _updateAnimationState();
 
-      if (widget.value == AppCheckboxValue.indeterminate) {
+      if (widget.value == DSCheckboxValue.indeterminate) {
         _indeterminateAnimationController.repeat(reverse: true);
       } else {
         _indeterminateAnimationController.stop();
@@ -163,9 +163,9 @@ class _AppCheckboxState extends State<AppCheckbox>
   }
 
   void _updateAnimationState() {
-    if (widget.value == AppCheckboxValue.checked) {
+    if (widget.value == DSCheckboxValue.checked) {
       _animationController.forward();
-    } else if (widget.value == AppCheckboxValue.unchecked) {
+    } else if (widget.value == DSCheckboxValue.unchecked) {
       _animationController.reverse();
     } else {
       _animationController.value = 0.5;
@@ -204,24 +204,24 @@ class _AppCheckboxState extends State<AppCheckbox>
     _focusNode.requestFocus();
   }
 
-  AppCheckboxValue _getNextBiStateValue() {
-    return widget.value == AppCheckboxValue.checked
-        ? AppCheckboxValue.unchecked
-        : AppCheckboxValue.checked;
+  DSCheckboxValue _getNextBiStateValue() {
+    return widget.value == DSCheckboxValue.checked
+        ? DSCheckboxValue.unchecked
+        : DSCheckboxValue.checked;
   }
 
-  AppCheckboxValue? _getNextTriStateValue() {
+  DSCheckboxValue? _getNextTriStateValue() {
     switch (widget.value) {
-      case AppCheckboxValue.unchecked:
-        return AppCheckboxValue.checked;
-      case AppCheckboxValue.checked:
+      case DSCheckboxValue.unchecked:
+        return DSCheckboxValue.checked;
+      case DSCheckboxValue.checked:
         return widget.tristate
-            ? AppCheckboxValue.indeterminate
-            : AppCheckboxValue.unchecked;
-      case AppCheckboxValue.indeterminate:
-        return AppCheckboxValue.unchecked;
+            ? DSCheckboxValue.indeterminate
+            : DSCheckboxValue.unchecked;
+      case DSCheckboxValue.indeterminate:
+        return DSCheckboxValue.unchecked;
       case null:
-        return AppCheckboxValue.checked;
+        return DSCheckboxValue.checked;
     }
   }
 
@@ -253,8 +253,8 @@ class _AppCheckboxState extends State<AppCheckbox>
 
     return Semantics(
       enabled: _isEnabled,
-      checked: widget.value == AppCheckboxValue.checked,
-      mixed: widget.value == AppCheckboxValue.indeterminate,
+      checked: widget.value == DSCheckboxValue.checked,
+      mixed: widget.value == DSCheckboxValue.indeterminate,
       label: widget.semanticLabel ?? widget.label,
       child: GestureDetector(
         onTap: _handleTap,
@@ -277,11 +277,11 @@ class _AppCheckboxState extends State<AppCheckbox>
   }
 
   Widget _buildCheckbox() {
-    if (_currentState == AppCheckboxState.skeleton) {
+    if (_currentState == DSCheckboxState.skeleton) {
       return _buildSkeleton();
     }
 
-    if (_currentState == AppCheckboxState.loading) {
+    if (_currentState == DSCheckboxState.loading) {
       return _buildLoadingIndicator();
     }
 
@@ -373,15 +373,15 @@ class _AppCheckboxState extends State<AppCheckbox>
     double opacity = 0.0;
 
     switch (_currentState) {
-      case AppCheckboxState.hover:
+      case DSCheckboxState.hover:
         overlayColor = _colors.hoverOverlay;
         opacity = _config.hoverOpacity;
         break;
-      case AppCheckboxState.focus:
+      case DSCheckboxState.focus:
         overlayColor = _colors.focusOverlay;
         opacity = _config.focusOpacity;
         break;
-      case AppCheckboxState.pressed:
+      case DSCheckboxState.pressed:
         overlayColor = _colors.pressedOverlay;
         opacity = _config.pressedOpacity;
         break;
@@ -405,8 +405,8 @@ class _AppCheckboxState extends State<AppCheckbox>
   }
 
   Widget _buildCheckboxBox() {
-    final isChecked = widget.value == AppCheckboxValue.checked ||
-        widget.value == AppCheckboxValue.indeterminate;
+    final isChecked = widget.value == DSCheckboxValue.checked ||
+        widget.value == DSCheckboxValue.indeterminate;
 
     final borderColor = _isEnabled
         ? (isChecked ? _colors.fillColor : _colors.borderColor)
@@ -433,14 +433,14 @@ class _AppCheckboxState extends State<AppCheckbox>
   }
 
   Widget _buildCheckMark() {
-    if (widget.value == AppCheckboxValue.unchecked) {
+    if (widget.value == DSCheckboxValue.unchecked) {
       return const SizedBox.shrink();
     }
 
     final checkColor =
         _isEnabled ? _colors.checkColor : _colors.disabledCheckColor;
 
-    if (widget.value == AppCheckboxValue.indeterminate) {
+    if (widget.value == DSCheckboxValue.indeterminate) {
       return AnimatedBuilder(
         animation: _indeterminateAnimation,
         builder: (context, child) {

@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/slider/app_slider.dart';
 import 'package:iautomat_design_system/src/components/slider/slider_config.dart';
 
 void main() {
-  group('AppSlider Unit Tests', () {
+  group('DSSlider Unit Tests', () {
     group('Widget Rendering', () {
       testWidgets('renders with required props for continuous variant',
           (tester) async {
@@ -12,18 +12,18 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: value,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (newValue) => value = newValue,
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppSlider), findsOneWidget);
+        expect(find.byType(DSSlider), findsOneWidget);
         expect(find.byType(Slider), findsOneWidget);
       });
 
@@ -33,41 +33,41 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: value,
                 min: 1.0,
                 max: 5.0,
                 step: 1.0,
                 onChanged: (newValue) => value = newValue,
-                variant: AppSliderVariant.discrete,
+                variant: DSSliderVariant.discrete,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppSlider), findsOneWidget);
+        expect(find.byType(DSSlider), findsOneWidget);
         expect(find.byType(Slider), findsOneWidget);
       });
 
       testWidgets('renders with required props for range variant',
           (tester) async {
-        AppSliderRangeValue value =
-            const AppSliderRangeValue(start: 20.0, end: 80.0);
+        DSSliderRangeValue value =
+            const DSSliderRangeValue(start: 20.0, end: 80.0);
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 rangeValue: value,
                 min: 0.0,
                 max: 100.0,
                 onRangeChanged: (newValue) => value = newValue,
-                variant: AppSliderVariant.range,
+                variant: DSSliderVariant.range,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppSlider), findsOneWidget);
+        expect(find.byType(DSSlider), findsOneWidget);
         expect(find.byType(RangeSlider), findsOneWidget);
       });
 
@@ -75,14 +75,14 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
                 label: 'Test Slider',
                 helperText: 'This is a helper text',
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -96,14 +96,14 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
                 label: 'Test Slider',
                 errorText: 'This is an error',
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -118,13 +118,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
-                overrideState: AppSliderState.loading,
-                variant: AppSliderVariant.continuous,
+                overrideState: DSSliderState.loading,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -137,13 +137,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
-                overrideState: AppSliderState.skeleton,
-                variant: AppSliderVariant.continuous,
+                overrideState: DSSliderState.skeleton,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -159,13 +159,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) => changed = true,
                 enabled: false,
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -181,7 +181,7 @@ void main() {
 
     group('Configuration', () {
       testWidgets('applies custom configuration', (tester) async {
-        const customConfig = AppSliderConfig(
+        const customConfig = DSSliderConfig(
           thumbRadius: 25.0,
           trackHeight: 8.0,
           minimumHeight: 60.0,
@@ -190,40 +190,40 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
                 config: customConfig,
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppSlider), findsOneWidget);
+        expect(find.byType(DSSlider), findsOneWidget);
       });
 
       testWidgets('supports custom colors', (tester) async {
-        final customColors = AppSliderColors.fromTheme(ThemeData.dark());
+        final customColors = DSSliderColors.fromTheme(ThemeData.dark());
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
                 colors: customColors,
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppSlider), findsOneWidget);
+        expect(find.byType(DSSlider), findsOneWidget);
       });
     });
 
@@ -232,17 +232,17 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
                 marks: const [
-                  AppSliderMark(value: 0, label: 'Min'),
-                  AppSliderMark(value: 50, label: 'Mid'),
-                  AppSliderMark(value: 100, label: 'Max'),
+                  DSSliderMark(value: 0, label: 'Min'),
+                  DSSliderMark(value: 50, label: 'Mid'),
+                  DSSliderMark(value: 100, label: 'Max'),
                 ],
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -257,17 +257,17 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
                 marks: const [
-                  AppSliderMark(value: 0, label: 'Min'),
-                  AppSliderMark(value: 100, label: 'Max'),
+                  DSSliderMark(value: 0, label: 'Min'),
+                  DSSliderMark(value: 100, label: 'Max'),
                 ],
                 showTicks: false,
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -284,13 +284,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
                 semanticLabel: 'Volume Control',
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -304,13 +304,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
                 autoFocus: true,
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -318,7 +318,7 @@ void main() {
 
         await tester.pump();
 
-        expect(find.byType(AppSlider), findsOneWidget);
+        expect(find.byType(DSSlider), findsOneWidget);
       });
     });
 
@@ -329,12 +329,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (value) => changedValue = value,
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -353,16 +353,16 @@ void main() {
       });
 
       testWidgets('calls onRangeChanged when range changes', (tester) async {
-        AppSliderRangeValue? changedValue;
+        DSSliderRangeValue? changedValue;
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
-                rangeValue: const AppSliderRangeValue(start: 20.0, end: 80.0),
+              body: DSSlider(
+                rangeValue: const DSSliderRangeValue(start: 20.0, end: 80.0),
                 min: 0.0,
                 max: 100.0,
                 onRangeChanged: (value) => changedValue = value,
-                variant: AppSliderVariant.range,
+                variant: DSSliderVariant.range,
               ),
             ),
           ),
@@ -386,13 +386,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) => tapped = true,
                 enabled: true,
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -410,7 +410,7 @@ void main() {
             builder: (context, setState) {
               return MaterialApp(
                 home: Scaffold(
-                  body: AppSlider(
+                  body: DSSlider(
                     value: 50.0,
                     min: 0.0,
                     max: 100.0,
@@ -421,7 +421,7 @@ void main() {
                       }
                       return null;
                     },
-                    variant: AppSliderVariant.continuous,
+                    variant: DSSliderVariant.continuous,
                   ),
                 ),
               );
@@ -429,7 +429,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppSlider), findsOneWidget);
+        expect(find.byType(DSSlider), findsOneWidget);
       });
     });
 
@@ -438,19 +438,19 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
                 labelFormatter: (value) => '${value.toInt()}%',
-                variant: AppSliderVariant.continuous,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppSlider), findsOneWidget);
+        expect(find.byType(DSSlider), findsOneWidget);
       });
     });
 
@@ -460,13 +460,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSlider(
+              body: DSSlider(
                 value: 50.0,
                 min: 0.0,
                 max: 100.0,
                 onChanged: (_) {},
-                overrideState: AppSliderState.loading,
-                variant: AppSliderVariant.continuous,
+                overrideState: DSSliderState.loading,
+                variant: DSSliderVariant.continuous,
               ),
             ),
           ),
@@ -478,24 +478,24 @@ void main() {
     });
   });
 
-  group('AppSliderRangeValue', () {
+  group('DSSliderRangeValue', () {
     test('validates correctly', () {
-      const validRange = AppSliderRangeValue(start: 10, end: 20);
-      const invalidRange = AppSliderRangeValue(start: 20, end: 10);
+      const validRange = DSSliderRangeValue(start: 10, end: 20);
+      const invalidRange = DSSliderRangeValue(start: 20, end: 10);
 
       expect(validRange.isValid, true);
       expect(invalidRange.isValid, false);
     });
 
     test('calculates range correctly', () {
-      const range = AppSliderRangeValue(start: 10, end: 30);
+      const range = DSSliderRangeValue(start: 10, end: 30);
 
       expect(range.range, 20);
       expect(range.center, 20);
     });
 
     test('contains method works correctly', () {
-      const range = AppSliderRangeValue(start: 10, end: 30);
+      const range = DSSliderRangeValue(start: 10, end: 30);
 
       expect(range.contains(15), true);
       expect(range.contains(5), false);
@@ -505,7 +505,7 @@ void main() {
     });
 
     test('copy methods work correctly', () {
-      const original = AppSliderRangeValue(start: 10, end: 30);
+      const original = DSSliderRangeValue(start: 10, end: 30);
       final withNewStart = original.copyWithStart(5);
       final withNewEnd = original.copyWithEnd(35);
 
@@ -516,29 +516,29 @@ void main() {
     });
   });
 
-  group('AppSliderMark', () {
+  group('DSSliderMark', () {
     test('isActive method works correctly for continuous/discrete', () {
-      const mark = AppSliderMark(value: 50, label: 'Middle');
+      const mark = DSSliderMark(value: 50, label: 'Middle');
 
-      expect(mark.isActive(60, AppSliderVariant.continuous), true);
-      expect(mark.isActive(40, AppSliderVariant.continuous), false);
-      expect(mark.isActive(50, AppSliderVariant.continuous), true);
+      expect(mark.isActive(60, DSSliderVariant.continuous), true);
+      expect(mark.isActive(40, DSSliderVariant.continuous), false);
+      expect(mark.isActive(50, DSSliderVariant.continuous), true);
 
-      expect(mark.isActive(60, AppSliderVariant.discrete), true);
-      expect(mark.isActive(40, AppSliderVariant.discrete), false);
-      expect(mark.isActive(50, AppSliderVariant.discrete), true);
+      expect(mark.isActive(60, DSSliderVariant.discrete), true);
+      expect(mark.isActive(40, DSSliderVariant.discrete), false);
+      expect(mark.isActive(50, DSSliderVariant.discrete), true);
     });
 
     test('isActive method returns false for range variant', () {
-      const mark = AppSliderMark(value: 50, label: 'Middle');
+      const mark = DSSliderMark(value: 50, label: 'Middle');
 
-      expect(mark.isActive(60, AppSliderVariant.range), false);
+      expect(mark.isActive(60, DSSliderVariant.range), false);
     });
   });
 
-  group('AppSliderValidator', () {
+  group('DSSliderValidator', () {
     test('minimum validator works correctly', () {
-      final validator = AppSliderValidator.minimum(10);
+      final validator = DSSliderValidator.minimum(10);
 
       expect(validator(15), null);
       expect(validator(5), isNotNull);
@@ -547,7 +547,7 @@ void main() {
     });
 
     test('maximum validator works correctly', () {
-      final validator = AppSliderValidator.maximum(100);
+      final validator = DSSliderValidator.maximum(100);
 
       expect(validator(50), null);
       expect(validator(105), isNotNull);
@@ -556,7 +556,7 @@ void main() {
     });
 
     test('step validator works correctly', () {
-      final validator = AppSliderValidator.step(5);
+      final validator = DSSliderValidator.step(5);
 
       expect(validator(10), null);
       expect(validator(7), isNotNull);

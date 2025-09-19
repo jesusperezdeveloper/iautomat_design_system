@@ -3,17 +3,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppDivider', () {
+  group('DSDivider', () {
     testWidgets('renders with default configuration', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(),
+            body: DSDivider(),
           ),
         ),
       );
 
-      expect(find.byType(AppDivider), findsOneWidget);
+      expect(find.byType(DSDivider), findsOneWidget);
       expect(find.byType(Divider), findsOneWidget);
     });
 
@@ -21,7 +21,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(),
+            body: DSDivider(),
           ),
         ),
       );
@@ -34,9 +34,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(
-              config: AppDividerConfig(
-                orientation: AppDividerOrientation.vertical,
+            body: DSDivider(
+              config: DSDividerConfig(
+                orientation: DSDividerOrientation.vertical,
               ),
             ),
           ),
@@ -53,8 +53,8 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(
-              config: AppDividerConfig(
+            body: DSDivider(
+              config: DSDividerConfig(
                 thickness: thickness,
               ),
             ),
@@ -72,8 +72,8 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(
-              config: AppDividerConfig(
+            body: DSDivider(
+              config: DSDividerConfig(
                 color: color,
               ),
             ),
@@ -89,9 +89,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(
-              config: AppDividerConfig(
-                state: AppDividerState.loading,
+            body: DSDivider(
+              config: DSDividerConfig(
+                state: DSDividerState.loading,
               ),
             ),
           ),
@@ -106,16 +106,16 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(
-              config: AppDividerConfig(
-                state: AppDividerState.skeleton,
+            body: DSDivider(
+              config: DSDividerConfig(
+                state: DSDividerState.skeleton,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppDivider), findsOneWidget);
+      expect(find.byType(DSDivider), findsOneWidget);
       expect(find.byType(Divider), findsNothing);
     });
 
@@ -123,7 +123,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(
+            body: DSDivider(
               enabled: false,
             ),
           ),
@@ -140,7 +140,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDivider(
+            body: DSDivider(
               interactive: true,
               onTap: () {
                 tapped = true;
@@ -150,19 +150,19 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppDivider));
+      await tester.tap(find.byType(DSDivider));
       await tester.pump();
 
       expect(tapped, isTrue);
     });
 
     testWidgets('calls onStateChanged when state changes', (tester) async {
-      AppDividerState? changedState;
+      DSDividerState? changedState;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDivider(
+            body: DSDivider(
               onStateChanged: (state) {
                 changedState = state;
               },
@@ -174,7 +174,7 @@ void main() {
       await tester.pump();
 
       expect(changedState, isNotNull);
-      expect(changedState, equals(AppDividerState.defaultState));
+      expect(changedState, equals(DSDividerState.defaultState));
     });
 
     testWidgets('supports inset variant with indents', (tester) async {
@@ -184,9 +184,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(
-              config: AppDividerConfig(
-                variant: AppDividerVariant.inset,
+            body: DSDivider(
+              config: DSDividerConfig(
+                variant: DSDividerVariant.inset,
                 indent: indent,
                 endIndent: endIndent,
               ),
@@ -206,7 +206,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(
+            body: DSDivider(
               semanticLabel: semanticLabel,
             ),
           ),
@@ -220,7 +220,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppDivider(
+            body: DSDivider(
               excludeSemantics: true,
             ),
           ),
@@ -228,30 +228,30 @@ void main() {
       );
 
       // Verifica que el widget se renderiza sin errores
-      expect(find.byType(AppDivider), findsOneWidget);
+      expect(find.byType(DSDivider), findsOneWidget);
     });
 
     testWidgets('renders with different configurations', (tester) async {
       final configs = [
-        const AppDividerConfig(),
-        const AppDividerConfig(variant: AppDividerVariant.inset),
-        const AppDividerConfig(orientation: AppDividerOrientation.vertical),
-        const AppDividerConfig(state: AppDividerState.loading),
-        const AppDividerConfig(state: AppDividerState.skeleton),
-        const AppDividerConfig(thickness: 2.0),
-        const AppDividerConfig(color: Colors.blue),
+        const DSDividerConfig(),
+        const DSDividerConfig(variant: DSDividerVariant.inset),
+        const DSDividerConfig(orientation: DSDividerOrientation.vertical),
+        const DSDividerConfig(state: DSDividerState.loading),
+        const DSDividerConfig(state: DSDividerState.skeleton),
+        const DSDividerConfig(thickness: 2.0),
+        const DSDividerConfig(color: Colors.blue),
       ];
 
       for (final config in configs) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDivider(config: config),
+              body: DSDivider(config: config),
             ),
           ),
         );
 
-        expect(find.byType(AppDivider), findsOneWidget);
+        expect(find.byType(DSDivider), findsOneWidget);
 
         // Limpia el widget tree entre pruebas
         await tester.pumpWidget(Container());
@@ -259,94 +259,94 @@ void main() {
     });
   });
 
-  group('AppDividerConfig', () {
+  group('DSDividerConfig', () {
     test('creates with default values', () {
-      const config = AppDividerConfig();
+      const config = DSDividerConfig();
 
-      expect(config.variant, equals(AppDividerVariant.full));
-      expect(config.state, equals(AppDividerState.defaultState));
-      expect(config.orientation, equals(AppDividerOrientation.horizontal));
+      expect(config.variant, equals(DSDividerVariant.full));
+      expect(config.state, equals(DSDividerState.defaultState));
+      expect(config.orientation, equals(DSDividerOrientation.horizontal));
       expect(config.interactive, isFalse);
       expect(config.thickness, isNull);
       expect(config.color, isNull);
     });
 
     test('creates with custom values', () {
-      const config = AppDividerConfig(
-        variant: AppDividerVariant.inset,
-        state: AppDividerState.loading,
-        orientation: AppDividerOrientation.vertical,
+      const config = DSDividerConfig(
+        variant: DSDividerVariant.inset,
+        state: DSDividerState.loading,
+        orientation: DSDividerOrientation.vertical,
         interactive: true,
         thickness: 2.0,
         color: Colors.red,
       );
 
-      expect(config.variant, equals(AppDividerVariant.inset));
-      expect(config.state, equals(AppDividerState.loading));
-      expect(config.orientation, equals(AppDividerOrientation.vertical));
+      expect(config.variant, equals(DSDividerVariant.inset));
+      expect(config.state, equals(DSDividerState.loading));
+      expect(config.orientation, equals(DSDividerOrientation.vertical));
       expect(config.interactive, isTrue);
       expect(config.thickness, equals(2.0));
       expect(config.color, equals(Colors.red));
     });
 
     test('supports copyWith', () {
-      const originalConfig = AppDividerConfig();
+      const originalConfig = DSDividerConfig();
       final newConfig = originalConfig.copyWith(
-        variant: AppDividerVariant.inset,
+        variant: DSDividerVariant.inset,
         thickness: 3.0,
       );
 
-      expect(newConfig.variant, equals(AppDividerVariant.inset));
+      expect(newConfig.variant, equals(DSDividerVariant.inset));
       expect(newConfig.thickness, equals(3.0));
       expect(newConfig.state, equals(originalConfig.state));
       expect(newConfig.orientation, equals(originalConfig.orientation));
     });
   });
 
-  group('AppDividerValidators', () {
+  group('DSDividerValidators', () {
     test('validates thickness correctly', () {
-      expect(AppDividerValidators.isValidThickness(null), isTrue);
-      expect(AppDividerValidators.isValidThickness(1.0), isTrue);
-      expect(AppDividerValidators.isValidThickness(5.0), isTrue);
-      expect(AppDividerValidators.isValidThickness(0.0), isTrue);
-      expect(AppDividerValidators.isValidThickness(-1.0), isFalse);
-      expect(AppDividerValidators.isValidThickness(11.0), isFalse);
+      expect(DSDividerValidators.isValidThickness(null), isTrue);
+      expect(DSDividerValidators.isValidThickness(1.0), isTrue);
+      expect(DSDividerValidators.isValidThickness(5.0), isTrue);
+      expect(DSDividerValidators.isValidThickness(0.0), isTrue);
+      expect(DSDividerValidators.isValidThickness(-1.0), isFalse);
+      expect(DSDividerValidators.isValidThickness(11.0), isFalse);
     });
 
     test('validates indent correctly', () {
-      expect(AppDividerValidators.isValidIndent(null), isTrue);
-      expect(AppDividerValidators.isValidIndent(0.0), isTrue);
-      expect(AppDividerValidators.isValidIndent(16.0), isTrue);
-      expect(AppDividerValidators.isValidIndent(-1.0), isFalse);
+      expect(DSDividerValidators.isValidIndent(null), isTrue);
+      expect(DSDividerValidators.isValidIndent(0.0), isTrue);
+      expect(DSDividerValidators.isValidIndent(16.0), isTrue);
+      expect(DSDividerValidators.isValidIndent(-1.0), isFalse);
     });
 
     test('validates dimensions correctly', () {
-      expect(AppDividerValidators.isValidDimensions(), isTrue);
+      expect(DSDividerValidators.isValidDimensions(), isTrue);
       expect(
-        AppDividerValidators.isValidDimensions(
+        DSDividerValidators.isValidDimensions(
           height: 1.0,
-          orientation: AppDividerOrientation.horizontal,
+          orientation: DSDividerOrientation.horizontal,
         ),
         isTrue,
       );
       expect(
-        AppDividerValidators.isValidDimensions(
+        DSDividerValidators.isValidDimensions(
           width: 1.0,
-          orientation: AppDividerOrientation.vertical,
+          orientation: DSDividerOrientation.vertical,
         ),
         isTrue,
       );
       expect(
-        AppDividerValidators.isValidDimensions(
+        DSDividerValidators.isValidDimensions(
           height: 0.0,
-          orientation: AppDividerOrientation.horizontal,
+          orientation: DSDividerOrientation.horizontal,
         ),
         isFalse,
       );
       expect(
-        AppDividerValidators.isValidDimensions(
+        DSDividerValidators.isValidDimensions(
           width: 0.0,
-          orientation: AppDividerOrientation.vertical,
+          orientation: DSDividerOrientation.vertical,
         ),
         isFalse,
       );
@@ -354,12 +354,12 @@ void main() {
 
     test('validates complete config correctly', () {
       expect(
-        AppDividerValidators.isValidConfig(const AppDividerConfig()),
+        DSDividerValidators.isValidConfig(const DSDividerConfig()),
         isTrue,
       );
       expect(
-        AppDividerValidators.isValidConfig(
-          const AppDividerConfig(
+        DSDividerValidators.isValidConfig(
+          const DSDividerConfig(
             thickness: 2.0,
             indent: 16.0,
             endIndent: 16.0,
@@ -369,8 +369,8 @@ void main() {
         isTrue,
       );
       expect(
-        AppDividerValidators.isValidConfig(
-          const AppDividerConfig(
+        DSDividerValidators.isValidConfig(
+          const DSDividerConfig(
             thickness: -1.0,
           ),
         ),
@@ -380,60 +380,60 @@ void main() {
   });
 
   group('Extensions', () {
-    test('AppDividerStateExtension works correctly', () {
-      expect(AppDividerState.defaultState.displayName, equals('Default'));
-      expect(AppDividerState.loading.displayName, equals('Loading'));
-      expect(AppDividerState.disabled.displayName, equals('Disabled'));
+    test('DSDividerStateExtension works correctly', () {
+      expect(DSDividerState.defaultState.displayName, equals('Default'));
+      expect(DSDividerState.loading.displayName, equals('Loading'));
+      expect(DSDividerState.disabled.displayName, equals('Disabled'));
 
-      expect(AppDividerState.defaultState.isInteractive, isTrue);
-      expect(AppDividerState.disabled.isInteractive, isFalse);
-      expect(AppDividerState.loading.isInteractive, isFalse);
+      expect(DSDividerState.defaultState.isInteractive, isTrue);
+      expect(DSDividerState.disabled.isInteractive, isFalse);
+      expect(DSDividerState.loading.isInteractive, isFalse);
 
-      expect(AppDividerState.loading.isLoading, isTrue);
-      expect(AppDividerState.skeleton.isLoading, isTrue);
-      expect(AppDividerState.defaultState.isLoading, isFalse);
+      expect(DSDividerState.loading.isLoading, isTrue);
+      expect(DSDividerState.skeleton.isLoading, isTrue);
+      expect(DSDividerState.defaultState.isLoading, isFalse);
     });
 
-    test('AppDividerVariantExtensions works correctly', () {
-      expect(AppDividerVariant.inset.isInset, isTrue);
-      expect(AppDividerVariant.full.isInset, isFalse);
-      expect(AppDividerVariant.full.isFull, isTrue);
-      expect(AppDividerVariant.inset.isFull, isFalse);
+    test('DSDividerVariantExtensions works correctly', () {
+      expect(DSDividerVariant.inset.isInset, isTrue);
+      expect(DSDividerVariant.full.isInset, isFalse);
+      expect(DSDividerVariant.full.isFull, isTrue);
+      expect(DSDividerVariant.inset.isFull, isFalse);
     });
 
-    test('AppDividerOrientationExtensions works correctly', () {
-      expect(AppDividerOrientation.horizontal.isHorizontal, isTrue);
-      expect(AppDividerOrientation.vertical.isHorizontal, isFalse);
-      expect(AppDividerOrientation.vertical.isVertical, isTrue);
-      expect(AppDividerOrientation.horizontal.isVertical, isFalse);
-      expect(AppDividerOrientation.horizontal.axis, equals(Axis.horizontal));
-      expect(AppDividerOrientation.vertical.axis, equals(Axis.vertical));
+    test('DSDividerOrientationExtensions works correctly', () {
+      expect(DSDividerOrientation.horizontal.isHorizontal, isTrue);
+      expect(DSDividerOrientation.vertical.isHorizontal, isFalse);
+      expect(DSDividerOrientation.vertical.isVertical, isTrue);
+      expect(DSDividerOrientation.horizontal.isVertical, isFalse);
+      expect(DSDividerOrientation.horizontal.axis, equals(Axis.horizontal));
+      expect(DSDividerOrientation.vertical.axis, equals(Axis.vertical));
     });
   });
 
   group('Configuration Defaults', () {
     test('standard config has correct defaults', () {
-      const config = AppDividerConfigDefaults.standard;
+      const config = DSDividerConfigDefaults.standard;
 
-      expect(config.variant, equals(AppDividerVariant.full));
-      expect(config.state, equals(AppDividerState.defaultState));
-      expect(config.orientation, equals(AppDividerOrientation.horizontal));
+      expect(config.variant, equals(DSDividerVariant.full));
+      expect(config.state, equals(DSDividerState.defaultState));
+      expect(config.orientation, equals(DSDividerOrientation.horizontal));
     });
 
     test('inset config sets inset variant', () {
-      const config = AppDividerConfigDefaults.inset;
+      const config = DSDividerConfigDefaults.inset;
 
-      expect(config.variant, equals(AppDividerVariant.inset));
+      expect(config.variant, equals(DSDividerVariant.inset));
     });
 
     test('vertical config sets vertical orientation', () {
-      const config = AppDividerConfigDefaults.vertical;
+      const config = DSDividerConfigDefaults.vertical;
 
-      expect(config.orientation, equals(AppDividerOrientation.vertical));
+      expect(config.orientation, equals(DSDividerOrientation.vertical));
     });
 
     test('interactive config enables interaction', () {
-      const config = AppDividerConfigDefaults.interactive;
+      const config = DSDividerConfigDefaults.interactive;
 
       expect(config.interactive, isTrue);
     });

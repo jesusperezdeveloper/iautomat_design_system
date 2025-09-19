@@ -5,13 +5,13 @@ import 'package:iautomat_design_system/src/components/metric_card/app_metric_car
 import 'package:iautomat_design_system/src/components/metric_card/metric_card_config.dart';
 
 void main() {
-  group('AppMetricCard', () {
+  group('DSMetricCard', () {
     testWidgets('renderiza correctamente con propiedades básicas',
         (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test Metric',
               value: '1,234',
             ),
@@ -27,7 +27,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test Metric',
               value: '1,234',
               icon: Icons.star,
@@ -43,7 +43,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test Metric',
               value: '1,234',
               subtitle: 'Test Subtitle',
@@ -59,7 +59,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test Metric',
               value: '1,234',
               unit: 'USD',
@@ -76,7 +76,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test Metric',
               value: '1,234',
               onTap: () {
@@ -87,7 +87,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppMetricCard));
+      await tester.tap(find.byType(DSMetricCard));
       await tester.pump();
 
       expect(tapped, isTrue);
@@ -98,7 +98,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test Metric',
               value: '1,234',
               enabled: false,
@@ -110,7 +110,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppMetricCard));
+      await tester.tap(find.byType(DSMetricCard));
       await tester.pump();
 
       expect(tapped, isFalse);
@@ -121,10 +121,10 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test Metric',
               value: '1,234',
-              state: AppMetricCardState.skeleton,
+              state: DSMetricCardState.skeleton,
             ),
           ),
         ),
@@ -138,12 +138,12 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppMetricCard.delta(
+              body: DSMetricCard.delta(
                 title: 'Sales',
                 value: '\$1,234',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 12.5,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                 ),
               ),
             ),
@@ -160,12 +160,12 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppMetricCard.delta(
+              body: DSMetricCard.delta(
                 title: 'Expenses',
                 value: '\$567',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: -8.3,
-                  type: AppMetricCardDeltaType.decrease,
+                  type: DSMetricCardDeltaType.decrease,
                 ),
               ),
             ),
@@ -182,12 +182,12 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppMetricCard.delta(
+              body: DSMetricCard.delta(
                 title: 'Balance',
                 value: '\$1,000',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 0.0,
-                  type: AppMetricCardDeltaType.neutral,
+                  type: DSMetricCardDeltaType.neutral,
                 ),
               ),
             ),
@@ -204,12 +204,12 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppMetricCard.delta(
+              body: DSMetricCard.delta(
                 title: 'Revenue',
                 value: '\$2,345',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 15.7,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                   label: 'vs last month',
                 ),
               ),
@@ -225,7 +225,7 @@ void main() {
       testWidgets('renderiza correctamente con datos de tendencia',
           (tester) async {
         final trend = List.generate(5, (index) {
-          return AppMetricCardDataPoint(
+          return DSMetricCardDataPoint(
             value: 50.0 + index * 10,
             timestamp: DateTime.now().subtract(Duration(days: 4 - index)),
           );
@@ -234,7 +234,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppMetricCard.sparkline(
+              body: DSMetricCard.sparkline(
                 title: 'Website Traffic',
                 value: '12,847',
                 trend: trend,
@@ -252,7 +252,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppMetricCard.sparkline(
+              body: DSMetricCard.sparkline(
                 title: 'Empty Trend',
                 value: '0',
                 trend: [],
@@ -269,11 +269,11 @@ void main() {
     group('Tamaños', () {
       testWidgets('aplica constraints correctos para cada tamaño',
           (tester) async {
-        for (final size in AppMetricCardSize.values) {
+        for (final size in DSMetricCardSize.values) {
           await tester.pumpWidget(
             MaterialApp(
               home: Scaffold(
-                body: AppMetricCard(
+                body: DSMetricCard(
                   title: 'Test',
                   value: '123',
                   size: size,
@@ -296,10 +296,10 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppMetricCard(
+              body: DSMetricCard(
                 title: 'Vertical Layout',
                 value: '1,234',
-                layout: AppMetricCardLayout.vertical,
+                layout: DSMetricCardLayout.vertical,
                 icon: Icons.star,
               ),
             ),
@@ -313,10 +313,10 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppMetricCard(
+              body: DSMetricCard(
                 title: 'Horizontal Layout',
                 value: '1,234',
-                layout: AppMetricCardLayout.horizontal,
+                layout: DSMetricCardLayout.horizontal,
                 icon: Icons.star,
               ),
             ),
@@ -330,10 +330,10 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppMetricCard(
+              body: DSMetricCard(
                 title: 'Compact Layout',
                 value: '1,234',
-                layout: AppMetricCardLayout.compact,
+                layout: DSMetricCardLayout.compact,
                 icon: Icons.star,
               ),
             ),
@@ -348,10 +348,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Custom Style',
               value: '1,234',
-              style: AppMetricCardStyle(
+              style: DSMetricCardStyle(
                 backgroundColor: Colors.blue,
                 borderRadius: 16,
                 padding: const EdgeInsets.all(20),
@@ -376,7 +376,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test',
               value: '1,234',
               prefix: prefixIcon,
@@ -397,7 +397,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test',
               value: 'Original Value',
               customValueWidget: customValueWidget,
@@ -414,12 +414,12 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Animated',
               value: '1,234',
-              animation: AppMetricCardAnimation(
+              animation: DSMetricCardAnimation(
                 enabled: true,
-                type: AppMetricCardAnimationType.fade,
+                type: DSMetricCardAnimationType.fade,
               ),
             ),
           ),
@@ -433,7 +433,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test',
               value: '1,234',
               tooltip: 'Test tooltip',
@@ -449,7 +449,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test',
               value: '1,234',
               visible: false,
@@ -466,7 +466,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test',
               value: '1,234',
               onTap: () {},
@@ -485,7 +485,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test',
               value: '1,234',
               onHover: () {
@@ -511,7 +511,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMetricCard(
+            body: DSMetricCard(
               title: 'Test',
               value: '1,234',
               semanticLabel: 'Test metric card',
@@ -524,9 +524,9 @@ void main() {
       expect(find.byType(Semantics), findsAtLeastNWidgets(1));
     });
 
-    group('AppMetricCardConfig', () {
+    group('DSMetricCardConfig', () {
       test('isInteractive devuelve true cuando hay callbacks', () {
-        const config = AppMetricCardConfig(
+        const config = DSMetricCardConfig(
           title: 'Test',
           value: '123',
           onTap: _mockCallback,
@@ -536,7 +536,7 @@ void main() {
       });
 
       test('isDisabled devuelve true cuando enabled es false', () {
-        const config = AppMetricCardConfig(
+        const config = DSMetricCardConfig(
           title: 'Test',
           value: '123',
           enabled: false,
@@ -546,7 +546,7 @@ void main() {
       });
 
       test('isLoading devuelve true cuando loading es true', () {
-        const config = AppMetricCardConfig(
+        const config = DSMetricCardConfig(
           title: 'Test',
           value: '123',
           loading: true,
@@ -556,7 +556,7 @@ void main() {
       });
 
       test('shouldShowSkeleton devuelve true cuando skeleton es true', () {
-        const config = AppMetricCardConfig(
+        const config = DSMetricCardConfig(
           title: 'Test',
           value: '123',
           skeleton: true,
@@ -566,12 +566,12 @@ void main() {
       });
 
       test('hasDelta devuelve true cuando delta está presente', () {
-        const config = AppMetricCardConfig(
+        const config = DSMetricCardConfig(
           title: 'Test',
           value: '123',
-          delta: AppMetricCardDelta(
+          delta: DSMetricCardDelta(
             value: 5.0,
-            type: AppMetricCardDeltaType.increase,
+            type: DSMetricCardDeltaType.increase,
           ),
         );
 
@@ -579,11 +579,11 @@ void main() {
       });
 
       test('hasTrend devuelve true cuando trend está presente', () {
-        final config = AppMetricCardConfig(
+        final config = DSMetricCardConfig(
           title: 'Test',
           value: '123',
           trend: [
-            AppMetricCardDataPoint(
+            DSMetricCardDataPoint(
               value: 10,
               timestamp: DateTime.now(),
             ),
@@ -594,11 +594,11 @@ void main() {
       });
     });
 
-    group('AppMetricCardDelta', () {
+    group('DSMetricCardDelta', () {
       test('isPositive devuelve true para valores positivos', () {
-        const delta = AppMetricCardDelta(
+        const delta = DSMetricCardDelta(
           value: 5.0,
-          type: AppMetricCardDeltaType.increase,
+          type: DSMetricCardDeltaType.increase,
         );
 
         expect(delta.isPositive, isTrue);
@@ -607,9 +607,9 @@ void main() {
       });
 
       test('isNegative devuelve true para valores negativos', () {
-        const delta = AppMetricCardDelta(
+        const delta = DSMetricCardDelta(
           value: -3.0,
-          type: AppMetricCardDeltaType.decrease,
+          type: DSMetricCardDeltaType.decrease,
         );
 
         expect(delta.isPositive, isFalse);
@@ -618,9 +618,9 @@ void main() {
       });
 
       test('isNeutral devuelve true para valor cero', () {
-        const delta = AppMetricCardDelta(
+        const delta = DSMetricCardDelta(
           value: 0.0,
-          type: AppMetricCardDeltaType.neutral,
+          type: DSMetricCardDeltaType.neutral,
         );
 
         expect(delta.isPositive, isFalse);
@@ -629,9 +629,9 @@ void main() {
       });
 
       test('formattedValue formatea correctamente con porcentaje', () {
-        const delta = AppMetricCardDelta(
+        const delta = DSMetricCardDelta(
           value: 12.5,
-          type: AppMetricCardDeltaType.increase,
+          type: DSMetricCardDeltaType.increase,
           showPercentage: true,
         );
 
@@ -639,9 +639,9 @@ void main() {
       });
 
       test('formattedValue formatea correctamente sin porcentaje', () {
-        const delta = AppMetricCardDelta(
+        const delta = DSMetricCardDelta(
           value: -5.0,
-          type: AppMetricCardDeltaType.decrease,
+          type: DSMetricCardDeltaType.decrease,
           showPercentage: false,
         );
 
@@ -649,9 +649,9 @@ void main() {
       });
 
       test('formattedValue formatea correctamente con unidad', () {
-        const delta = AppMetricCardDelta(
+        const delta = DSMetricCardDelta(
           value: 10.0,
-          type: AppMetricCardDeltaType.increase,
+          type: DSMetricCardDeltaType.increase,
           showPercentage: false,
           unit: 'USD',
         );
@@ -660,84 +660,84 @@ void main() {
       });
 
       test('defaultIcon devuelve icono correcto para cada tipo', () {
-        const increaseDelta = AppMetricCardDelta(
+        const increaseDelta = DSMetricCardDelta(
           value: 5.0,
-          type: AppMetricCardDeltaType.increase,
+          type: DSMetricCardDeltaType.increase,
         );
         expect(increaseDelta.defaultIcon, equals(Icons.trending_up));
 
-        const decreaseDelta = AppMetricCardDelta(
+        const decreaseDelta = DSMetricCardDelta(
           value: -5.0,
-          type: AppMetricCardDeltaType.decrease,
+          type: DSMetricCardDeltaType.decrease,
         );
         expect(decreaseDelta.defaultIcon, equals(Icons.trending_down));
 
-        const neutralDelta = AppMetricCardDelta(
+        const neutralDelta = DSMetricCardDelta(
           value: 0.0,
-          type: AppMetricCardDeltaType.neutral,
+          type: DSMetricCardDeltaType.neutral,
         );
         expect(neutralDelta.defaultIcon, equals(Icons.trending_flat));
       });
     });
 
     group('Extensions', () {
-      test('AppMetricCardSize extensions funcionan correctamente', () {
-        expect(AppMetricCardSize.small.height, equals(80.0));
-        expect(AppMetricCardSize.medium.height, equals(120.0));
-        expect(AppMetricCardSize.large.height, equals(160.0));
+      test('DSMetricCardSize extensions funcionan correctamente', () {
+        expect(DSMetricCardSize.small.height, equals(80.0));
+        expect(DSMetricCardSize.medium.height, equals(120.0));
+        expect(DSMetricCardSize.large.height, equals(160.0));
 
-        expect(AppMetricCardSize.small.iconSize, equals(20.0));
-        expect(AppMetricCardSize.medium.iconSize, equals(24.0));
-        expect(AppMetricCardSize.large.iconSize, equals(28.0));
+        expect(DSMetricCardSize.small.iconSize, equals(20.0));
+        expect(DSMetricCardSize.medium.iconSize, equals(24.0));
+        expect(DSMetricCardSize.large.iconSize, equals(28.0));
       });
 
-      test('AppMetricCardSpacing extension funciona correctamente', () {
-        expect(AppMetricCardSpacing.tight.value, equals(8.0));
-        expect(AppMetricCardSpacing.normal.value, equals(12.0));
-        expect(AppMetricCardSpacing.relaxed.value, equals(16.0));
+      test('DSMetricCardSpacing extension funciona correctamente', () {
+        expect(DSMetricCardSpacing.tight.value, equals(8.0));
+        expect(DSMetricCardSpacing.normal.value, equals(12.0));
+        expect(DSMetricCardSpacing.relaxed.value, equals(16.0));
       });
 
-      test('AppMetricCardVariant extensions funcionan correctamente', () {
-        expect(AppMetricCardVariant.delta.isDelta, isTrue);
-        expect(AppMetricCardVariant.delta.isSparkline, isFalse);
-        expect(AppMetricCardVariant.sparkline.isDelta, isFalse);
-        expect(AppMetricCardVariant.sparkline.isSparkline, isTrue);
+      test('DSMetricCardVariant extensions funcionan correctamente', () {
+        expect(DSMetricCardVariant.delta.isDelta, isTrue);
+        expect(DSMetricCardVariant.delta.isSparkline, isFalse);
+        expect(DSMetricCardVariant.sparkline.isDelta, isFalse);
+        expect(DSMetricCardVariant.sparkline.isSparkline, isTrue);
       });
 
-      test('AppMetricCardLayout extensions funcionan correctamente', () {
-        expect(AppMetricCardLayout.vertical.isVertical, isTrue);
-        expect(AppMetricCardLayout.horizontal.isHorizontal, isTrue);
-        expect(AppMetricCardLayout.compact.isCompact, isTrue);
+      test('DSMetricCardLayout extensions funcionan correctamente', () {
+        expect(DSMetricCardLayout.vertical.isVertical, isTrue);
+        expect(DSMetricCardLayout.horizontal.isHorizontal, isTrue);
+        expect(DSMetricCardLayout.compact.isCompact, isTrue);
       });
 
-      test('AppMetricCardState extensions funcionan correctamente', () {
-        expect(AppMetricCardState.hover.isInteractiveState, isTrue);
-        expect(AppMetricCardState.pressed.isInteractiveState, isTrue);
-        expect(AppMetricCardState.focus.isInteractiveState, isTrue);
-        expect(AppMetricCardState.disabled.isDisabledState, isTrue);
-        expect(AppMetricCardState.loading.isLoadingState, isTrue);
-        expect(AppMetricCardState.skeleton.isSkeletonState, isTrue);
-        expect(AppMetricCardState.selected.isSelectedState, isTrue);
+      test('DSMetricCardState extensions funcionan correctamente', () {
+        expect(DSMetricCardState.hover.isInteractiveState, isTrue);
+        expect(DSMetricCardState.pressed.isInteractiveState, isTrue);
+        expect(DSMetricCardState.focus.isInteractiveState, isTrue);
+        expect(DSMetricCardState.disabled.isDisabledState, isTrue);
+        expect(DSMetricCardState.loading.isLoadingState, isTrue);
+        expect(DSMetricCardState.skeleton.isSkeletonState, isTrue);
+        expect(DSMetricCardState.selected.isSelectedState, isTrue);
       });
 
-      test('AppMetricCardDeltaPeriod extensions funcionan correctamente', () {
-        expect(AppMetricCardDeltaPeriod.day.label, equals('vs ayer'));
-        expect(AppMetricCardDeltaPeriod.week.label, equals('vs semana pasada'));
-        expect(AppMetricCardDeltaPeriod.month.label, equals('vs mes pasado'));
+      test('DSMetricCardDeltaPeriod extensions funcionan correctamente', () {
+        expect(DSMetricCardDeltaPeriod.day.label, equals('vs ayer'));
+        expect(DSMetricCardDeltaPeriod.week.label, equals('vs semana pasada'));
+        expect(DSMetricCardDeltaPeriod.month.label, equals('vs mes pasado'));
 
-        expect(AppMetricCardDeltaPeriod.day.shortLabel, equals('1d'));
-        expect(AppMetricCardDeltaPeriod.week.shortLabel, equals('1w'));
-        expect(AppMetricCardDeltaPeriod.month.shortLabel, equals('1m'));
+        expect(DSMetricCardDeltaPeriod.day.shortLabel, equals('1d'));
+        expect(DSMetricCardDeltaPeriod.week.shortLabel, equals('1w'));
+        expect(DSMetricCardDeltaPeriod.month.shortLabel, equals('1m'));
       });
     });
 
     group('Diferentes estados', () {
-      for (final state in AppMetricCardState.values) {
+      for (final state in DSMetricCardState.values) {
         testWidgets('maneja estado $state correctamente', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
               home: Scaffold(
-                body: AppMetricCard(
+                body: DSMetricCard(
                   title: 'Test',
                   value: '1,234',
                   state: state,
@@ -752,12 +752,12 @@ void main() {
     });
 
     group('Diferentes tamaños', () {
-      for (final size in AppMetricCardSize.values) {
+      for (final size in DSMetricCardSize.values) {
         testWidgets('maneja tamaño $size correctamente', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
               home: Scaffold(
-                body: AppMetricCard(
+                body: DSMetricCard(
                   title: 'Test',
                   value: '1,234',
                   size: size,
@@ -772,12 +772,12 @@ void main() {
     });
 
     group('Diferentes layouts', () {
-      for (final layout in AppMetricCardLayout.values) {
+      for (final layout in DSMetricCardLayout.values) {
         testWidgets('maneja layout $layout correctamente', (tester) async {
           await tester.pumpWidget(
             MaterialApp(
               home: Scaffold(
-                body: AppMetricCard(
+                body: DSMetricCard(
                   title: 'Test',
                   value: '1,234',
                   layout: layout,
@@ -801,12 +801,12 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppMetricCard.delta(
+              body: DSMetricCard.delta(
                 title: 'Test',
                 value: '1,234',
-                delta: AppMetricCardDelta(
+                delta: DSMetricCardDelta(
                   value: 5.0,
-                  type: AppMetricCardDeltaType.increase,
+                  type: DSMetricCardDeltaType.increase,
                 ),
                 customDeltaWidget: customDeltaWidget,
               ),
@@ -826,11 +826,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppMetricCard.sparkline(
+              body: DSMetricCard.sparkline(
                 title: 'Test',
                 value: '1,234',
                 trend: [
-                  AppMetricCardDataPoint(
+                  DSMetricCardDataPoint(
                     value: 10,
                     timestamp: DateTime.now(),
                   ),

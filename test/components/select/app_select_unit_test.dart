@@ -4,11 +4,11 @@ import 'package:iautomat_design_system/src/components/select/app_select.dart';
 import 'package:iautomat_design_system/src/components/select/select_config.dart';
 
 void main() {
-  group('AppSelect Unit Tests', () {
+  group('DSSelect Unit Tests', () {
     final testItems = [
-      AppSelectItem(value: 'item1', label: 'Item 1'),
-      AppSelectItem(value: 'item2', label: 'Item 2'),
-      AppSelectItem(value: 'item3', label: 'Item 3'),
+      DSSelectItem(value: 'item1', label: 'Item 1'),
+      DSSelectItem(value: 'item2', label: 'Item 2'),
+      DSSelectItem(value: 'item3', label: 'Item 3'),
     ];
 
     group('Widget Rendering', () {
@@ -19,18 +19,18 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Select an item',
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppSelect<String>), findsOneWidget);
+        expect(find.byType(DSSelect<String>), findsOneWidget);
         expect(find.text('Select an item'), findsOneWidget);
       });
 
@@ -41,14 +41,14 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Select an item',
                 label: 'Test Label',
-                config: const AppSelectConfig(enableFloatingLabel: false),
-                variant: AppSelectVariant.single,
+                config: const DSSelectConfig(enableFloatingLabel: false),
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
@@ -62,12 +62,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: 'item2',
                 onChanged: (value) {},
                 placeholder: 'Select an item',
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
@@ -82,18 +82,18 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 values: selectedValues,
                 onMultiChanged: (values) => selectedValues = values,
                 placeholder: 'Select items',
-                variant: AppSelectVariant.multi,
+                variant: DSSelectVariant.multi,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppSelect<String>), findsOneWidget);
+        expect(find.byType(DSSelect<String>), findsOneWidget);
         expect(find.text('Select items'), findsOneWidget);
       });
 
@@ -103,18 +103,18 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Search and select',
-                variant: AppSelectVariant.searchable,
+                variant: DSSelectVariant.searchable,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppSelect<String>), findsOneWidget);
+        expect(find.byType(DSSelect<String>), findsOneWidget);
         expect(find.text('Search and select'), findsOneWidget);
       });
     });
@@ -124,13 +124,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: null,
                 onChanged: (value) {},
                 placeholder: 'Loading...',
-                overrideState: AppSelectState.loading,
-                variant: AppSelectVariant.single,
+                overrideState: DSSelectState.loading,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
@@ -143,13 +143,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: null,
                 onChanged: (value) {},
                 placeholder: 'Loading...',
-                overrideState: AppSelectState.skeleton,
-                variant: AppSelectVariant.single,
+                overrideState: DSSelectState.skeleton,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
@@ -164,13 +164,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Select with error',
                 errorText: 'This field is required',
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
@@ -185,13 +185,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Select with helper',
                 helperText: 'This is helpful information',
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
@@ -203,7 +203,7 @@ void main() {
 
     group('Configuration', () {
       testWidgets('applies custom configuration', (tester) async {
-        const customConfig = AppSelectConfig(
+        const customConfig = DSSelectConfig(
           borderRadius: 16,
           minimumHeight: 60,
           borderWidth: 3,
@@ -214,27 +214,27 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Custom config',
                 config: customConfig,
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
         );
 
         final select =
-            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+            tester.widget<DSSelect<String>>(find.byType(DSSelect<String>));
         expect(select.config?.borderRadius, 16);
         expect(select.config?.minimumHeight, 60);
         expect(select.config?.borderWidth, 3);
       });
 
       testWidgets('accepts custom colors', (tester) async {
-        final customColors = AppSelectColors(
+        final customColors = DSSelectColors(
           borderColor: Colors.red,
           focusedBorderColor: Colors.blue,
           errorBorderColor: Colors.orange,
@@ -279,41 +279,41 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Custom colors',
                 colors: customColors,
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
         );
 
         final select =
-            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+            tester.widget<DSSelect<String>>(find.byType(DSSelect<String>));
         expect(select.colors, customColors);
       });
     });
 
     group('Validators', () {
       test('required validator works for single select', () {
-        final validator = AppSelectValidator.required<String>;
+        final validator = DSSelectValidator.required<String>;
 
         expect(validator(null), 'Este campo es requerido');
         expect(validator('value'), null);
       });
 
       test('required validator works for multi select', () {
-        final validator = AppSelectValidator.required<List<String>>;
+        final validator = DSSelectValidator.required<List<String>>;
 
         expect(validator([]), 'Selecciona al menos una opción');
         expect(validator(['value']), null);
       });
 
       test('minSelection validator works', () {
-        final validator = AppSelectValidator.minSelection<List<String>>(2);
+        final validator = DSSelectValidator.minSelection<List<String>>(2);
 
         expect(validator(['item1']), 'Selecciona al menos 2 opciones');
         expect(validator(['item1', 'item2']), null);
@@ -321,7 +321,7 @@ void main() {
       });
 
       test('maxSelection validator works', () {
-        final validator = AppSelectValidator.maxSelection<List<String>>(2);
+        final validator = DSSelectValidator.maxSelection<List<String>>(2);
 
         expect(validator(['item1']), null);
         expect(validator(['item1', 'item2']), null);
@@ -330,10 +330,10 @@ void main() {
       });
 
       test('combined validators work', () {
-        final validator = AppSelectValidator.combine<List<String>>([
-          AppSelectValidator.required,
-          AppSelectValidator.minSelection(1),
-          AppSelectValidator.maxSelection(3),
+        final validator = DSSelectValidator.combine<List<String>>([
+          DSSelectValidator.required,
+          DSSelectValidator.minSelection(1),
+          DSSelectValidator.maxSelection(3),
         ]);
 
         expect(validator([]), 'Selecciona al menos una opción');
@@ -348,18 +348,18 @@ void main() {
     group('Items', () {
       testWidgets('handles items with different properties', (tester) async {
         final complexItems = [
-          AppSelectItem(
+          DSSelectItem(
             value: 'item1',
             label: 'Item 1',
             subtitle: 'Subtitle 1',
             enabled: true,
           ),
-          AppSelectItem(
+          DSSelectItem(
             value: 'item2',
             label: 'Item 2 (Disabled)',
             enabled: false,
           ),
-          AppSelectItem(
+          DSSelectItem(
             value: 'item3',
             label: 'Item 3',
             searchableText: 'custom search text',
@@ -371,19 +371,19 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: complexItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Select complex item',
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
         );
 
         final select =
-            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+            tester.widget<DSSelect<String>>(find.byType(DSSelect<String>));
         expect(select.items.length, 3);
         expect(select.items[0].subtitle, 'Subtitle 1');
         expect(select.items[1].enabled, false);
@@ -398,20 +398,20 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Autofocus select',
                 autoFocus: true,
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
         );
 
         final select =
-            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+            tester.widget<DSSelect<String>>(find.byType(DSSelect<String>));
         expect(select.autoFocus, true);
       });
 
@@ -421,20 +421,20 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Select with semantics',
                 semanticLabel: 'Choose an option',
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
         );
 
         final select =
-            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+            tester.widget<DSSelect<String>>(find.byType(DSSelect<String>));
         expect(select.semanticLabel, 'Choose an option');
       });
 
@@ -444,20 +444,20 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Disabled select',
                 enabled: false,
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
         );
 
         final select =
-            tester.widget<AppSelect<String>>(find.byType(AppSelect<String>));
+            tester.widget<DSSelect<String>>(find.byType(DSSelect<String>));
         expect(select.enabled, false);
       });
     });
@@ -467,12 +467,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 values: ['item1', 'item2'],
                 onMultiChanged: (values) {},
                 placeholder: 'Select items',
-                variant: AppSelectVariant.multi,
+                variant: DSSelectVariant.multi,
               ),
             ),
           ),
@@ -489,12 +489,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 values: selectedValues,
                 onMultiChanged: (values) => selectedValues = values,
                 placeholder: 'Select items',
-                variant: AppSelectVariant.multi,
+                variant: DSSelectVariant.multi,
               ),
             ),
           ),
@@ -511,22 +511,22 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSelect<String>(
+              body: DSSelect<String>(
                 items: testItems,
                 value: selectedValue,
                 onChanged: (value) => selectedValue = value,
                 placeholder: 'Tappable select',
-                variant: AppSelectVariant.single,
+                variant: DSSelectVariant.single,
               ),
             ),
           ),
         );
 
-        await tester.tap(find.byType(AppSelect<String>));
+        await tester.tap(find.byType(DSSelect<String>));
         await tester.pumpAndSettle();
 
         // The tap gesture should be detected without errors
-        expect(find.byType(AppSelect<String>), findsOneWidget);
+        expect(find.byType(DSSelect<String>), findsOneWidget);
       });
     });
   });

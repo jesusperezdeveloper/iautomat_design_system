@@ -4,8 +4,8 @@ import '../../theme/theme.dart';
 import '../../utils/responsive.dart';
 import 'app_scaffold_config.dart';
 
-class AppScaffold extends StatefulWidget {
-  final AppScaffoldConfig config;
+class DSScaffold extends StatefulWidget {
+  final DSScaffoldConfig config;
   final Widget? body;
   final PreferredSizeWidget? appBar;
   final Widget? bottomNavigationBar;
@@ -27,9 +27,9 @@ class AppScaffold extends StatefulWidget {
   final bool endDrawerEnableOpenDragGesture;
   final String? restorationId;
 
-  const AppScaffold({
+  const DSScaffold({
     super.key,
-    this.config = const AppScaffoldConfig(),
+    this.config = const DSScaffoldConfig(),
     this.body,
     this.appBar,
     this.bottomNavigationBar,
@@ -53,10 +53,10 @@ class AppScaffold extends StatefulWidget {
   });
 
   @override
-  State<AppScaffold> createState() => _AppScaffoldState();
+  State<DSScaffold> createState() => _DSScaffoldState();
 }
 
-class _AppScaffoldState extends State<AppScaffold>
+class _DSScaffoldState extends State<DSScaffold>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -77,7 +77,7 @@ class _AppScaffoldState extends State<AppScaffold>
       curve: Curves.easeInOut,
     ));
 
-    if (widget.config.state != AppScaffoldState.loading) {
+    if (widget.config.state != DSScaffoldState.loading) {
       _animationController.forward();
     } else {
       _setLoadingState();
@@ -85,7 +85,7 @@ class _AppScaffoldState extends State<AppScaffold>
   }
 
   @override
-  void didUpdateWidget(AppScaffold oldWidget) {
+  void didUpdateWidget(DSScaffold oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.config.state != widget.config.state) {
       _handleStateChange();
@@ -106,11 +106,11 @@ class _AppScaffoldState extends State<AppScaffold>
 
   void _handleStateChange() {
     switch (widget.config.state) {
-      case AppScaffoldState.loading:
+      case DSScaffoldState.loading:
         _setLoadingState();
         _animationController.reset();
         break;
-      case AppScaffoldState.skeleton:
+      case DSScaffoldState.skeleton:
         setState(() {
           _isLoading = false;
         });
@@ -148,11 +148,11 @@ class _AppScaffoldState extends State<AppScaffold>
     bool isRtl,
   ) {
     switch (widget.config.variant) {
-      case AppScaffoldVariant.appShell:
+      case DSScaffoldVariant.appShell:
         return _buildAppShell(context, theme, responsive, isRtl);
-      case AppScaffoldVariant.gutters:
+      case DSScaffoldVariant.gutters:
         return _buildGuttersLayout(context, theme, responsive, isRtl);
-      case AppScaffoldVariant.responsive:
+      case DSScaffoldVariant.responsive:
         return _buildResponsiveLayout(context, theme, responsive, isRtl);
     }
   }
@@ -250,7 +250,7 @@ class _AppScaffoldState extends State<AppScaffold>
   ) {
     final body = _buildBody(context, theme);
     final gutterWidth =
-        Responsive.isMobile(responsive) ? AppSpacing.md : AppSpacing.xl;
+        Responsive.isMobile(responsive) ? DSSpacing.md : DSSpacing.xl;
 
     return Scaffold(
       key: widget.key,
@@ -320,7 +320,7 @@ class _AppScaffoldState extends State<AppScaffold>
       return const SizedBox.shrink();
     }
 
-    if (widget.config.state == AppScaffoldState.skeleton) {
+    if (widget.config.state == DSScaffoldState.skeleton) {
       body = _buildSkeletonBody(context, theme);
     }
 
@@ -361,7 +361,7 @@ class _AppScaffoldState extends State<AppScaffold>
           CircularProgressIndicator(
             color: theme.colorScheme.primary,
           ),
-          AppSpacing.verticalMd,
+          DSSpacing.verticalMd,
           Text(
             'Cargando...',
             style: theme.textTheme.bodyLarge?.copyWith(
@@ -375,11 +375,11 @@ class _AppScaffoldState extends State<AppScaffold>
 
   Widget _buildSkeletonBody(BuildContext context, ThemeData theme) {
     return ListView.builder(
-      padding: AppSpacing.pagePadding,
+      padding: DSSpacing.pagePadding,
       itemCount: 6,
       itemBuilder: (context, index) {
         return Padding(
-          padding: EdgeInsets.only(bottom: AppSpacing.md),
+          padding: EdgeInsets.only(bottom: DSSpacing.md),
           child: Container(
             height: 80,
             decoration: BoxDecoration(
@@ -424,7 +424,7 @@ class _AppScaffoldState extends State<AppScaffold>
   }
 
   Widget _buildNavigationRail(
-    AppNavigationConfig navigation,
+    DSNavigationConfig navigation,
     ThemeData theme,
   ) {
     final items = navigation.items.map((item) {

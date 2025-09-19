@@ -1,4 +1,4 @@
-// Exporta todos los archivos relacionados con AppBackToTop
+// Exporta todos los archivos relacionados con DSBackToTop
 
 export 'app_back_to_top.dart';
 export 'app_back_to_top_config.dart';

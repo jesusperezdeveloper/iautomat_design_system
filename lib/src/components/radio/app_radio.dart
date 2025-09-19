@@ -6,28 +6,28 @@ import 'package:flutter/services.dart';
 
 import 'radio_config.dart';
 
-class AppRadio<T> extends StatefulWidget {
+class DSRadio<T> extends StatefulWidget {
   final T? value;
   final T? groupValue;
   final ValueChanged<T?>? onChanged;
   final String? label;
   final Widget? labelWidget;
-  final AppRadioConfig? config;
-  final AppRadioColors? colors;
-  final AppRadioVariant variant;
+  final DSRadioConfig? config;
+  final DSRadioColors? colors;
+  final DSRadioVariant variant;
   final bool enabled;
   final bool autoFocus;
   final FocusNode? focusNode;
   final String? semanticLabel;
-  final AppRadioState? overrideState;
+  final DSRadioState? overrideState;
   final TextDirection? textDirection;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
   final double? spacing;
-  final List<AppRadioValue<T>>? options;
+  final List<DSRadioValue<T>>? options;
 
-  const AppRadio({
+  const DSRadio({
     super.key,
     required this.value,
     required this.groupValue,
@@ -36,7 +36,7 @@ class AppRadio<T> extends StatefulWidget {
     this.labelWidget,
     this.config,
     this.colors,
-    this.variant = AppRadioVariant.standard,
+    this.variant = DSRadioVariant.standard,
     this.enabled = true,
     this.autoFocus = false,
     this.focusNode,
@@ -53,15 +53,15 @@ class AppRadio<T> extends StatefulWidget {
           'Cannot provide both label and labelWidget',
         ),
         assert(
-          variant == AppRadioVariant.standard || options != null,
+          variant == DSRadioVariant.standard || options != null,
           'Segmented variant requires options parameter',
         );
 
   @override
-  State<AppRadio<T>> createState() => _AppRadioState<T>();
+  State<DSRadio<T>> createState() => _DSRadioState<T>();
 }
 
-class _AppRadioState<T> extends State<AppRadio<T>>
+class _DSRadioState<T> extends State<DSRadio<T>>
     with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late AnimationController _animationController;
@@ -71,49 +71,49 @@ class _AppRadioState<T> extends State<AppRadio<T>>
   bool _isPressed = false;
   bool _isFocused = false;
 
-  AppRadioConfig get _config => widget.config ?? const AppRadioConfig();
+  DSRadioConfig get _config => widget.config ?? const DSRadioConfig();
 
-  AppRadioColors get _colors =>
-      widget.colors ?? AppRadioColors.fromTheme(Theme.of(context));
+  DSRadioColors get _colors =>
+      widget.colors ?? DSRadioColors.fromTheme(Theme.of(context));
 
   bool get _isEnabled => widget.enabled && widget.onChanged != null;
 
   bool get _isSelected => widget.value == widget.groupValue;
 
-  AppRadioState get _currentState {
+  DSRadioState get _currentState {
     if (widget.overrideState != null) {
       return widget.overrideState!;
     }
 
-    if (widget.overrideState == AppRadioState.skeleton) {
-      return AppRadioState.skeleton;
+    if (widget.overrideState == DSRadioState.skeleton) {
+      return DSRadioState.skeleton;
     }
 
-    if (widget.overrideState == AppRadioState.loading) {
-      return AppRadioState.loading;
+    if (widget.overrideState == DSRadioState.loading) {
+      return DSRadioState.loading;
     }
 
     if (!_isEnabled) {
-      return AppRadioState.disabled;
+      return DSRadioState.disabled;
     }
 
     if (_isPressed) {
-      return AppRadioState.pressed;
+      return DSRadioState.pressed;
     }
 
     if (_isFocused) {
-      return AppRadioState.focus;
+      return DSRadioState.focus;
     }
 
     if (_isHovered) {
-      return AppRadioState.hover;
+      return DSRadioState.hover;
     }
 
     if (_isSelected) {
-      return AppRadioState.selected;
+      return DSRadioState.selected;
     }
 
-    return AppRadioState.defaultState;
+    return DSRadioState.defaultState;
   }
 
   @override
@@ -139,7 +139,7 @@ class _AppRadioState<T> extends State<AppRadio<T>>
   }
 
   @override
-  void didUpdateWidget(AppRadio<T> oldWidget) {
+  void didUpdateWidget(DSRadio<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.groupValue != widget.groupValue ||
@@ -187,9 +187,9 @@ class _AppRadioState<T> extends State<AppRadio<T>>
   @override
   Widget build(BuildContext context) {
     switch (widget.variant) {
-      case AppRadioVariant.standard:
+      case DSRadioVariant.standard:
         return _buildStandardRadio();
-      case AppRadioVariant.segmented:
+      case DSRadioVariant.segmented:
         return _buildSegmentedRadio();
     }
   }
@@ -296,11 +296,11 @@ class _AppRadioState<T> extends State<AppRadio<T>>
   }
 
   Widget _buildRadioControl() {
-    if (_currentState == AppRadioState.skeleton) {
+    if (_currentState == DSRadioState.skeleton) {
       return _buildSkeleton();
     }
 
-    if (_currentState == AppRadioState.loading) {
+    if (_currentState == DSRadioState.loading) {
       return _buildLoadingIndicator();
     }
 
@@ -392,15 +392,15 @@ class _AppRadioState<T> extends State<AppRadio<T>>
     double opacity = 0.0;
 
     switch (_currentState) {
-      case AppRadioState.hover:
+      case DSRadioState.hover:
         overlayColor = _colors.hoverOverlay;
         opacity = _config.hoverOpacity;
         break;
-      case AppRadioState.focus:
+      case DSRadioState.focus:
         overlayColor = _colors.focusOverlay;
         opacity = _config.focusOpacity;
         break;
-      case AppRadioState.pressed:
+      case DSRadioState.pressed:
         overlayColor = _colors.pressedOverlay;
         opacity = _config.pressedOpacity;
         break;
@@ -475,13 +475,13 @@ class _AppRadioState<T> extends State<AppRadio<T>>
 }
 
 class _SegmentedRadioItem<T> extends StatefulWidget {
-  final AppRadioValue<T> option;
+  final DSRadioValue<T> option;
   final bool isSelected;
   final bool isEnabled;
   final bool isFirst;
   final bool isLast;
-  final AppRadioColors colors;
-  final AppRadioConfig config;
+  final DSRadioColors colors;
+  final DSRadioConfig config;
   final VoidCallback onTap;
 
   const _SegmentedRadioItem({

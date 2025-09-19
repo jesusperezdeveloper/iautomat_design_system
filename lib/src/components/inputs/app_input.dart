@@ -5,7 +5,7 @@ import 'input_styles.dart';
 
 /// Componente de input personalizado para el Design System de IAutomat
 ///
-/// AppInput es el componente base para todos los campos de entrada en la aplicación.
+/// DSInput es el componente base para todos los campos de entrada en la aplicación.
 /// Proporciona una interfaz consistente y accesible con m�ltiples tipos,
 /// estados y funcionalidades avanzadas.
 ///
@@ -22,7 +22,7 @@ import 'input_styles.dart';
 ///
 /// Ejemplo de uso:
 /// ```dart
-/// AppInput(
+/// DSInput(
 ///   label: 'Email',
 ///   type: InputType.email,
 ///   validator: Validators.email(),
@@ -30,7 +30,7 @@ import 'input_styles.dart';
 ///   prefixIcon: Icons.email,
 /// )
 /// ```
-class AppInput extends StatefulWidget {
+class DSInput extends StatefulWidget {
   /// Controlador del texto del input
   final TextEditingController? controller;
 
@@ -136,8 +136,8 @@ class AppInput extends StatefulWidget {
   /// Label sem�ntico para accesibilidad
   final String? semanticsLabel;
 
-  /// Crear un AppInput
-  const AppInput({
+  /// Crear un DSInput
+  const DSInput({
     super.key,
     this.controller,
     this.initialValue,
@@ -180,7 +180,7 @@ class AppInput extends StatefulWidget {
         );
 
   /// Constructor para email
-  const AppInput.email({
+  const DSInput.email({
     super.key,
     this.controller,
     this.initialValue,
@@ -219,7 +219,7 @@ class AppInput extends StatefulWidget {
         showVisibilityToggle = false;
 
   /// Constructor para password
-  const AppInput.password({
+  const DSInput.password({
     super.key,
     this.controller,
     this.initialValue,
@@ -258,7 +258,7 @@ class AppInput extends StatefulWidget {
         minLines = null;
 
   /// Constructor para multiline
-  const AppInput.multiline({
+  const DSInput.multiline({
     super.key,
     this.controller,
     this.initialValue,
@@ -297,7 +297,7 @@ class AppInput extends StatefulWidget {
         showVisibilityToggle = false;
 
   /// Constructor para search
-  const AppInput.search({
+  const DSInput.search({
     super.key,
     this.controller,
     this.initialValue,
@@ -336,10 +336,10 @@ class AppInput extends StatefulWidget {
         showVisibilityToggle = false;
 
   @override
-  State<AppInput> createState() => _AppInputState();
+  State<DSInput> createState() => _DSInputState();
 }
 
-class _AppInputState extends State<AppInput> {
+class _DSInputState extends State<DSInput> {
   late TextEditingController _controller;
   late FocusNode _focusNode;
   bool _obscureText = false;
@@ -378,7 +378,7 @@ class _AppInputState extends State<AppInput> {
   }
 
   @override
-  void didUpdateWidget(AppInput oldWidget) {
+  void didUpdateWidget(DSInput oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     // Actualizar obscureText si cambi�
@@ -431,7 +431,7 @@ class _AppInputState extends State<AppInput> {
     final isDark = theme.brightness == Brightness.dark;
 
     // Determinar estado del input
-    final inputState = AppInputStyles.getInputState(
+    final inputState = DSInputStyles.getInputState(
       hasError: _hasError,
       isFocused: _focusNode.hasFocus,
       isEnabled: widget.enabled,
@@ -440,9 +440,9 @@ class _AppInputState extends State<AppInput> {
     );
 
     // Configurar teclado y formatters
-    final keyboardType = AppInputStyles.getKeyboardType(widget.type);
+    final keyboardType = DSInputStyles.getKeyboardType(widget.type);
     final textInputAction = widget.textInputAction ??
-        AppInputStyles.getTextInputAction(
+        DSInputStyles.getTextInputAction(
             widget.type, widget.type == InputType.multiline);
 
     // Configurar m�ximo de l�neas
@@ -457,7 +457,7 @@ class _AppInputState extends State<AppInput> {
     final suffixWidgets = _buildSuffixWidgets(inputState, isDark);
 
     // Construir decoraci�n
-    final decoration = AppInputStyles.getDecoration(
+    final decoration = DSInputStyles.getDecoration(
       state: inputState,
       isDark: isDark,
       label: widget.label,
@@ -533,7 +533,7 @@ class _AppInputState extends State<AppInput> {
   Widget? _buildPrefixIcon(InputState state, bool isDark) {
     if (widget.prefixWidget != null) return null;
     if (widget.prefixIcon != null) {
-      return AppInputStyles.animatedIcon(
+      return DSInputStyles.animatedIcon(
         icon: widget.prefixIcon!,
         state: state,
         isDark: isDark,
@@ -541,9 +541,9 @@ class _AppInputState extends State<AppInput> {
     }
 
     // �cono por defecto seg�n el tipo
-    final defaultIcon = AppInputStyles.getDefaultIcon(widget.type);
+    final defaultIcon = DSInputStyles.getDefaultIcon(widget.type);
     if (defaultIcon != null) {
-      return AppInputStyles.animatedIcon(
+      return DSInputStyles.animatedIcon(
         icon: defaultIcon,
         state: state,
         isDark: isDark,
@@ -558,14 +558,14 @@ class _AppInputState extends State<AppInput> {
     final List<Widget> suffixes = [];
 
     // Clear button
-    if (AppInputStyles.shouldShowClearButton(
+    if (DSInputStyles.shouldShowClearButton(
       text: _currentValue,
       isFocused: _focusNode.hasFocus,
       showClearButton: widget.showClearButton,
       type: widget.type,
     )) {
       suffixes.add(
-        AppInputStyles.animatedIcon(
+        DSInputStyles.animatedIcon(
           icon: Icons.clear,
           state: state,
           isDark: isDark,
@@ -578,7 +578,7 @@ class _AppInputState extends State<AppInput> {
     // Password visibility toggle
     if (widget.type == InputType.password && widget.showVisibilityToggle) {
       suffixes.add(
-        AppInputStyles.animatedIcon(
+        DSInputStyles.animatedIcon(
           icon: _obscureText ? Icons.visibility : Icons.visibility_off,
           state: state,
           isDark: isDark,
@@ -593,7 +593,7 @@ class _AppInputState extends State<AppInput> {
       suffixes.add(widget.suffixWidget!);
     } else if (widget.suffixIcon != null) {
       suffixes.add(
-        AppInputStyles.animatedIcon(
+        DSInputStyles.animatedIcon(
           icon: widget.suffixIcon!,
           state: state,
           isDark: isDark,
@@ -616,10 +616,10 @@ class _AppInputState extends State<AppInput> {
 // EXTENSIONES �TILES
 // ==========================================================================
 
-/// Extensi�n para facilitar el uso de AppInput
-extension AppInputExtension on AppInput {
+/// Extensi�n para facilitar el uso de DSInput
+extension DSInputExtension on DSInput {
   /// Crea una copia del input con propiedades modificadas
-  AppInput copyWith({
+  DSInput copyWith({
     Key? key,
     TextEditingController? controller,
     String? initialValue,
@@ -657,7 +657,7 @@ extension AppInputExtension on AppInput {
     String? tooltip,
     String? semanticsLabel,
   }) {
-    return AppInput(
+    return DSInput(
       key: key ?? this.key,
       controller: controller ?? this.controller,
       initialValue: initialValue ?? this.initialValue,
@@ -703,7 +703,7 @@ extension AppInputExtension on AppInput {
 // ==========================================================================
 
 /// Grupo de inputs con spacing autom�tico
-class AppInputGroup extends StatelessWidget {
+class DSInputGroup extends StatelessWidget {
   /// Lista de inputs a mostrar
   final List<Widget> children;
 
@@ -711,7 +711,7 @@ class AppInputGroup extends StatelessWidget {
   final double spacing;
 
   /// Crear un grupo de inputs
-  const AppInputGroup({
+  const DSInputGroup({
     super.key,
     required this.children,
     this.spacing = 16,

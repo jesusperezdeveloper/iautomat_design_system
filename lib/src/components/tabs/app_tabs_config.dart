@@ -4,37 +4,37 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_tabs_config.freezed.dart';
 
 @freezed
-class AppTabsConfig with _$AppTabsConfig {
-  const factory AppTabsConfig({
-    @Default(AppTabsVariant.fixed) AppTabsVariant variant,
-    @Default(AppTabsState.defaultState) AppTabsState state,
+class DSTabsConfig with _$DSTabsConfig {
+  const factory DSTabsConfig({
+    @Default(DSTabsVariant.fixed) DSTabsVariant variant,
+    @Default(DSTabsState.defaultState) DSTabsState state,
     @Default(true) bool isAdaptive,
     @Default(false) bool isRtl,
     @Default(true) bool enableA11y,
     @Default(true) bool enableKeyboardSupport,
-    @Default([]) List<AppTabItem> tabs,
+    @Default([]) List<DSTabItem> tabs,
     @Default(0) int initialIndex,
     ValueChanged<int>? onChanged,
-    @Default([]) List<AppTabBadge> badges,
-    AppTabsColors? colors,
-    AppTabsTypography? typography,
-    AppTabsSpacing? spacing,
-    AppTabsElevation? elevation,
-    AppTabsBehavior? behavior,
-    AppTabsAnimation? animation,
-  }) = _AppTabsConfig;
+    @Default([]) List<DSTabBadge> badges,
+    DSTabsColors? colors,
+    DSTabsTypography? typography,
+    DSTabsSpacing? spacing,
+    DSTabsElevation? elevation,
+    DSTabsBehavior? behavior,
+    DSTabsAnimation? animation,
+  }) = _DSTabsConfig;
 }
 
 @freezed
-class AppTabItem with _$AppTabItem {
-  const factory AppTabItem({
+class DSTabItem with _$DSTabItem {
+  const factory DSTabItem({
     required String id,
     required String text,
     Widget? icon,
     Widget? child,
     String? tooltip,
     @Default(false) bool disabled,
-    @Default(AppTabType.text) AppTabType type,
+    @Default(DSTabType.text) DSTabType type,
     Widget? leading,
     Widget? trailing,
     VoidCallback? onTap,
@@ -43,23 +43,23 @@ class AppTabItem with _$AppTabItem {
 }
 
 @freezed
-class AppTabBadge with _$AppTabBadge {
-  const factory AppTabBadge({
+class DSTabBadge with _$DSTabBadge {
+  const factory DSTabBadge({
     required String tabId,
     String? text,
     @Default(0) int count,
-    @Default(AppTabBadgeType.count) AppTabBadgeType type,
+    @Default(DSTabBadgeType.count) DSTabBadgeType type,
     Color? backgroundColor,
     Color? textColor,
     @Default(true) bool isVisible,
     @Default(99) int maxCount,
-    @Default(AppTabBadgePosition.topRight) AppTabBadgePosition position,
+    @Default(DSTabBadgePosition.topRight) DSTabBadgePosition position,
   }) = _AppTabBadge;
 }
 
 @freezed
-class AppTabsColors with _$AppTabsColors {
-  const factory AppTabsColors({
+class DSTabsColors with _$DSTabsColors {
+  const factory DSTabsColors({
     Color? backgroundColor,
     Color? indicatorColor,
     Color? selectedLabelColor,
@@ -75,8 +75,8 @@ class AppTabsColors with _$AppTabsColors {
 }
 
 @freezed
-class AppTabsTypography with _$AppTabsTypography {
-  const factory AppTabsTypography({
+class DSTabsTypography with _$DSTabsTypography {
+  const factory DSTabsTypography({
     TextStyle? selectedLabelStyle,
     TextStyle? unselectedLabelStyle,
     @Default(1.0) double labelScale,
@@ -86,8 +86,8 @@ class AppTabsTypography with _$AppTabsTypography {
 }
 
 @freezed
-class AppTabsSpacing with _$AppTabsSpacing {
-  const factory AppTabsSpacing({
+class DSTabsSpacing with _$DSTabsSpacing {
+  const factory DSTabsSpacing({
     @Default(16.0) double iconSize,
     @Default(8.0) double labelPadding,
     @Default(12.0) double tabPadding,
@@ -102,8 +102,8 @@ class AppTabsSpacing with _$AppTabsSpacing {
 }
 
 @freezed
-class AppTabsElevation with _$AppTabsElevation {
-  const factory AppTabsElevation({
+class DSTabsElevation with _$DSTabsElevation {
+  const factory DSTabsElevation({
     @Default(0.0) double defaultElevation,
     @Default(2.0) double hoveredElevation,
     @Default(4.0) double pressedElevation,
@@ -114,25 +114,25 @@ class AppTabsElevation with _$AppTabsElevation {
 }
 
 @freezed
-class AppTabsBehavior with _$AppTabsBehavior {
-  const factory AppTabsBehavior({
+class DSTabsBehavior with _$DSTabsBehavior {
+  const factory DSTabsBehavior({
     @Default(true) bool isScrollable,
     @Default(true) bool showTooltips,
     @Default(true) bool enableHapticFeedback,
     @Default(true) bool allowTabSwitching,
     @Default(false) bool automaticIndicatorColorAdjustment,
-    @Default(AppTabsIndicatorSize.tab) AppTabsIndicatorSize indicatorSize,
-    @Default(AppTabsLabelBehavior.alwaysShow)
-    AppTabsLabelBehavior labelBehavior,
+    @Default(DSTabsIndicatorSize.tab) DSTabsIndicatorSize indicatorSize,
+    @Default(DSTabsLabelBehavior.alwaysShow)
+    DSTabsLabelBehavior labelBehavior,
     @Default(TabAlignment.start) TabAlignment tabAlignment,
     @Default(300) int animationDuration,
   }) = _AppTabsBehavior;
 }
 
 @freezed
-class AppTabsAnimation with _$AppTabsAnimation {
-  const factory AppTabsAnimation({
-    @Default(AppTabsAnimationType.slide) AppTabsAnimationType type,
+class DSTabsAnimation with _$DSTabsAnimation {
+  const factory DSTabsAnimation({
+    @Default(DSTabsAnimationType.slide) DSTabsAnimationType type,
     @Default(300) int duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(true) bool enableStateTransitions,
@@ -140,13 +140,13 @@ class AppTabsAnimation with _$AppTabsAnimation {
   }) = _AppTabsAnimation;
 }
 
-enum AppTabsVariant {
+enum DSTabsVariant {
   fixed,
   scrollable,
   withBadges,
 }
 
-enum AppTabsState {
+enum DSTabsState {
   defaultState,
   hover,
   pressed,
@@ -157,266 +157,266 @@ enum AppTabsState {
   skeleton,
 }
 
-enum AppTabType {
+enum DSTabType {
   text,
   icon,
   textWithIcon,
   custom,
 }
 
-enum AppTabBadgeType {
+enum DSTabBadgeType {
   dot,
   count,
   text,
 }
 
-enum AppTabBadgePosition {
+enum DSTabBadgePosition {
   topRight,
   topLeft,
   bottomRight,
   bottomLeft,
 }
 
-enum AppTabsIndicatorSize {
+enum DSTabsIndicatorSize {
   label,
   tab,
 }
 
-enum AppTabsLabelBehavior {
+enum DSTabsLabelBehavior {
   alwaysShow,
   alwaysHide,
   showSelected,
   auto,
 }
 
-enum AppTabsAnimationType {
+enum DSTabsAnimationType {
   none,
   fade,
   slide,
   scale,
 }
 
-extension AppTabsVariantExtension on AppTabsVariant {
+extension DSTabsVariantExtension on DSTabsVariant {
   String get displayName {
     switch (this) {
-      case AppTabsVariant.fixed:
+      case DSTabsVariant.fixed:
         return 'Fixed';
-      case AppTabsVariant.scrollable:
+      case DSTabsVariant.scrollable:
         return 'Scrollable';
-      case AppTabsVariant.withBadges:
+      case DSTabsVariant.withBadges:
         return 'With Badges';
     }
   }
 
   String get description {
     switch (this) {
-      case AppTabsVariant.fixed:
+      case DSTabsVariant.fixed:
         return 'Pestañas de ancho fijo distribuidas uniformemente';
-      case AppTabsVariant.scrollable:
+      case DSTabsVariant.scrollable:
         return 'Pestañas desplazables horizontalmente';
-      case AppTabsVariant.withBadges:
+      case DSTabsVariant.withBadges:
         return 'Pestañas con notificaciones y badges';
     }
   }
 
   bool get isScrollable {
     switch (this) {
-      case AppTabsVariant.fixed:
+      case DSTabsVariant.fixed:
         return false;
-      case AppTabsVariant.scrollable:
-      case AppTabsVariant.withBadges:
+      case DSTabsVariant.scrollable:
+      case DSTabsVariant.withBadges:
         return true;
     }
   }
 
   bool get supportsBadges {
     switch (this) {
-      case AppTabsVariant.fixed:
-      case AppTabsVariant.scrollable:
+      case DSTabsVariant.fixed:
+      case DSTabsVariant.scrollable:
         return false;
-      case AppTabsVariant.withBadges:
+      case DSTabsVariant.withBadges:
         return true;
     }
   }
 
   TabAlignment get defaultAlignment {
     switch (this) {
-      case AppTabsVariant.fixed:
+      case DSTabsVariant.fixed:
         return TabAlignment.fill;
-      case AppTabsVariant.scrollable:
-      case AppTabsVariant.withBadges:
+      case DSTabsVariant.scrollable:
+      case DSTabsVariant.withBadges:
         return TabAlignment.start;
     }
   }
 }
 
-extension AppTabsStateExtension on AppTabsState {
+extension DSTabsStateExtension on DSTabsState {
   String get displayName {
     switch (this) {
-      case AppTabsState.defaultState:
+      case DSTabsState.defaultState:
         return 'Default';
-      case AppTabsState.hover:
+      case DSTabsState.hover:
         return 'Hover';
-      case AppTabsState.pressed:
+      case DSTabsState.pressed:
         return 'Pressed';
-      case AppTabsState.focus:
+      case DSTabsState.focus:
         return 'Focus';
-      case AppTabsState.selected:
+      case DSTabsState.selected:
         return 'Selected';
-      case AppTabsState.disabled:
+      case DSTabsState.disabled:
         return 'Disabled';
-      case AppTabsState.loading:
+      case DSTabsState.loading:
         return 'Loading';
-      case AppTabsState.skeleton:
+      case DSTabsState.skeleton:
         return 'Skeleton';
     }
   }
 
   bool get isInteractive {
     switch (this) {
-      case AppTabsState.defaultState:
-      case AppTabsState.hover:
-      case AppTabsState.pressed:
-      case AppTabsState.focus:
-      case AppTabsState.selected:
+      case DSTabsState.defaultState:
+      case DSTabsState.hover:
+      case DSTabsState.pressed:
+      case DSTabsState.focus:
+      case DSTabsState.selected:
         return true;
-      case AppTabsState.disabled:
-      case AppTabsState.loading:
-      case AppTabsState.skeleton:
+      case DSTabsState.disabled:
+      case DSTabsState.loading:
+      case DSTabsState.skeleton:
         return false;
     }
   }
 
   double get opacity {
     switch (this) {
-      case AppTabsState.defaultState:
-      case AppTabsState.hover:
-      case AppTabsState.pressed:
-      case AppTabsState.focus:
-      case AppTabsState.selected:
+      case DSTabsState.defaultState:
+      case DSTabsState.hover:
+      case DSTabsState.pressed:
+      case DSTabsState.focus:
+      case DSTabsState.selected:
         return 1.0;
-      case AppTabsState.disabled:
+      case DSTabsState.disabled:
         return 0.6;
-      case AppTabsState.loading:
+      case DSTabsState.loading:
         return 0.8;
-      case AppTabsState.skeleton:
+      case DSTabsState.skeleton:
         return 0.3;
     }
   }
 
   bool get showsLoader {
-    return this == AppTabsState.loading;
+    return this == DSTabsState.loading;
   }
 
   bool get showsSkeleton {
-    return this == AppTabsState.skeleton;
+    return this == DSTabsState.skeleton;
   }
 }
 
-extension AppTabTypeExtension on AppTabType {
+extension DSTabTypeExtension on DSTabType {
   String get displayName {
     switch (this) {
-      case AppTabType.text:
+      case DSTabType.text:
         return 'Text Only';
-      case AppTabType.icon:
+      case DSTabType.icon:
         return 'Icon Only';
-      case AppTabType.textWithIcon:
+      case DSTabType.textWithIcon:
         return 'Text with Icon';
-      case AppTabType.custom:
+      case DSTabType.custom:
         return 'Custom';
     }
   }
 
   bool get hasText {
     switch (this) {
-      case AppTabType.text:
-      case AppTabType.textWithIcon:
+      case DSTabType.text:
+      case DSTabType.textWithIcon:
         return true;
-      case AppTabType.icon:
-      case AppTabType.custom:
+      case DSTabType.icon:
+      case DSTabType.custom:
         return false;
     }
   }
 
   bool get hasIcon {
     switch (this) {
-      case AppTabType.icon:
-      case AppTabType.textWithIcon:
+      case DSTabType.icon:
+      case DSTabType.textWithIcon:
         return true;
-      case AppTabType.text:
-      case AppTabType.custom:
+      case DSTabType.text:
+      case DSTabType.custom:
         return false;
     }
   }
 
   bool get isCustom {
-    return this == AppTabType.custom;
+    return this == DSTabType.custom;
   }
 }
 
-extension AppTabBadgeTypeExtension on AppTabBadgeType {
+extension DSTabBadgeTypeExtension on DSTabBadgeType {
   String get displayName {
     switch (this) {
-      case AppTabBadgeType.dot:
+      case DSTabBadgeType.dot:
         return 'Dot';
-      case AppTabBadgeType.count:
+      case DSTabBadgeType.count:
         return 'Count';
-      case AppTabBadgeType.text:
+      case DSTabBadgeType.text:
         return 'Text';
     }
   }
 
   bool get showsText {
     switch (this) {
-      case AppTabBadgeType.dot:
+      case DSTabBadgeType.dot:
         return false;
-      case AppTabBadgeType.count:
-      case AppTabBadgeType.text:
+      case DSTabBadgeType.count:
+      case DSTabBadgeType.text:
         return true;
     }
   }
 
   bool get isNumeric {
-    return this == AppTabBadgeType.count;
+    return this == DSTabBadgeType.count;
   }
 }
 
-extension AppTabBadgePositionExtension on AppTabBadgePosition {
+extension DSTabBadgePositionExtension on DSTabBadgePosition {
   String get displayName {
     switch (this) {
-      case AppTabBadgePosition.topRight:
+      case DSTabBadgePosition.topRight:
         return 'Top Right';
-      case AppTabBadgePosition.topLeft:
+      case DSTabBadgePosition.topLeft:
         return 'Top Left';
-      case AppTabBadgePosition.bottomRight:
+      case DSTabBadgePosition.bottomRight:
         return 'Bottom Right';
-      case AppTabBadgePosition.bottomLeft:
+      case DSTabBadgePosition.bottomLeft:
         return 'Bottom Left';
     }
   }
 
   Alignment get alignment {
     switch (this) {
-      case AppTabBadgePosition.topRight:
+      case DSTabBadgePosition.topRight:
         return Alignment.topRight;
-      case AppTabBadgePosition.topLeft:
+      case DSTabBadgePosition.topLeft:
         return Alignment.topLeft;
-      case AppTabBadgePosition.bottomRight:
+      case DSTabBadgePosition.bottomRight:
         return Alignment.bottomRight;
-      case AppTabBadgePosition.bottomLeft:
+      case DSTabBadgePosition.bottomLeft:
         return Alignment.bottomLeft;
     }
   }
 
   EdgeInsets get padding {
     switch (this) {
-      case AppTabBadgePosition.topRight:
+      case DSTabBadgePosition.topRight:
         return const EdgeInsets.only(top: 2, right: 2);
-      case AppTabBadgePosition.topLeft:
+      case DSTabBadgePosition.topLeft:
         return const EdgeInsets.only(top: 2, left: 2);
-      case AppTabBadgePosition.bottomRight:
+      case DSTabBadgePosition.bottomRight:
         return const EdgeInsets.only(bottom: 2, right: 2);
-      case AppTabBadgePosition.bottomLeft:
+      case DSTabBadgePosition.bottomLeft:
         return const EdgeInsets.only(bottom: 2, left: 2);
     }
   }

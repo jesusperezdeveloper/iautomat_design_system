@@ -5,7 +5,7 @@ import 'app_profile_preferences_config.dart';
 import 'app_profile_preferences_platform_adapter.dart';
 import 'app_profile_preferences_a11y_helper.dart';
 
-/// AppProfilePreferences - Widget de preferencias de perfil para el Design System
+/// DSProfilePreferences - Widget de preferencias de perfil para el Design System
 ///
 /// Un widget completo y personalizable para gestionar preferencias de perfil
 /// con soporte para múltiples tipos de campos, validación, accesibilidad,
@@ -23,12 +23,12 @@ import 'app_profile_preferences_a11y_helper.dart';
 ///
 /// Ejemplo de uso:
 /// ```dart
-/// AppProfilePreferences(
-///   config: AppProfilePreferencesConfig(
+/// DSProfilePreferences(
+///   config: DSProfilePreferencesConfig(
 ///     fields: [
-///       AppProfileField(
+///       DSProfileField(
 ///         id: 'name',
-///         type: AppProfileFieldType.text,
+///         type: DSProfileFieldType.text,
 ///         label: 'Nombre',
 ///         required: true,
 ///       ),
@@ -37,27 +37,27 @@ import 'app_profile_preferences_a11y_helper.dart';
 ///   onSave: (data) => print('Saved: $data'),
 /// )
 /// ```
-class AppProfilePreferences extends StatefulWidget {
+class DSProfilePreferences extends StatefulWidget {
   /// Configuración del componente
-  final AppProfilePreferencesConfig config;
+  final DSProfilePreferencesConfig config;
 
   /// Callback para guardar cambios
-  final Function(AppProfileFormData data)? onSave;
+  final Function(DSProfileFormData data)? onSave;
 
   /// Callback para cancelar cambios
   final VoidCallback? onCancel;
 
   /// Callback cuando cambia el formulario
-  final Function(AppProfileFormData data)? onFormChanged;
+  final Function(DSProfileFormData data)? onFormChanged;
 
   /// Callback cuando se valida un campo
-  final Function(AppProfileFieldValidationResult validation)? onFieldValidated;
+  final Function(DSProfileFieldValidationResult validation)? onFieldValidated;
 
   /// Callback para navegación personalizada
   final Function(String from, String to)? onNavigate;
 
   /// Datos iniciales del formulario
-  final AppProfileFormData? initialData;
+  final DSProfileFormData? initialData;
 
   /// Si el componente está habilitado
   final bool enabled;
@@ -65,7 +65,7 @@ class AppProfilePreferences extends StatefulWidget {
   /// Clave para el formulario
   final GlobalKey<FormState>? formKey;
 
-  const AppProfilePreferences({
+  const DSProfilePreferences({
     super.key,
     required this.config,
     this.onSave,
@@ -79,10 +79,10 @@ class AppProfilePreferences extends StatefulWidget {
   });
 
   @override
-  State<AppProfilePreferences> createState() => _AppProfilePreferencesState();
+  State<DSProfilePreferences> createState() => _DSProfilePreferencesState();
 }
 
-class _AppProfilePreferencesState extends State<AppProfilePreferences>
+class _DSProfilePreferencesState extends State<DSProfilePreferences>
     with TickerProviderStateMixin {
   // Controladores de animación
   late final AnimationController _mainAnimationController;
@@ -98,15 +98,15 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   final Map<String, TextEditingController> _controllers = {};
   final Map<String, FocusNode> _focusNodes = {};
   late final GlobalKey<FormState> _formKey;
-  AppProfileFormData _formData = const AppProfileFormData();
+  DSProfileFormData _formData = const DSProfileFormData();
 
   // Estado de la UI
   bool _isSubmitting = false;
   Timer? _autoSaveTimer;
 
   // Helpers
-  late final AppProfilePreferencesPlatformAdapter _platformAdapter;
-  late final AppProfilePreferencesA11yHelper _a11yHelper;
+  late final DSProfilePreferencesPlatformAdapter _platformAdapter;
+  late final DSProfilePreferencesA11yHelper _a11yHelper;
 
   @override
   void initState() {
@@ -125,7 +125,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   }
 
   void _initializeAnimations() {
-    final animation = widget.config.animation ?? const AppProfileAnimation();
+    final animation = widget.config.animation ?? const DSProfileAnimation();
 
     _mainAnimationController = AnimationController(
       duration: animation.duration,
@@ -170,7 +170,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     ));
 
     // Iniciar animaciones
-    if (widget.config.state == AppProfileState.skeleton) {
+    if (widget.config.state == DSProfileState.skeleton) {
       _skeletonAnimationController.repeat(reverse: true);
     } else {
       _mainAnimationController.forward();
@@ -178,18 +178,18 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   }
 
   void _initializeHelpers() {
-    _platformAdapter = AppProfilePreferencesPlatformAdapter(
+    _platformAdapter = DSProfilePreferencesPlatformAdapter(
       config: widget.config,
       context: context,
     );
 
-    _a11yHelper = AppProfilePreferencesA11yHelper(
-      config: widget.config.a11yConfig ?? const AppProfileA11yConfig(),
+    _a11yHelper = DSProfilePreferencesA11yHelper(
+      config: widget.config.a11yConfig ?? const DSProfileA11yConfig(),
     );
   }
 
   void _initializeFormData() {
-    _formData = widget.initialData ?? const AppProfileFormData();
+    _formData = widget.initialData ?? const DSProfileFormData();
   }
 
   void _initializeControllers() {
@@ -207,16 +207,16 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     }
   }
 
-  bool _needsTextController(AppProfileFieldType type) {
+  bool _needsTextController(DSProfileFieldType type) {
     return [
-      AppProfileFieldType.text,
-      AppProfileFieldType.email,
-      AppProfileFieldType.phone,
+      DSProfileFieldType.text,
+      DSProfileFieldType.email,
+      DSProfileFieldType.phone,
     ].contains(type);
   }
 
   void _setupAutoSave() {
-    final behavior = widget.config.behavior ?? const AppProfileBehavior();
+    final behavior = widget.config.behavior ?? const DSProfileBehavior();
     if (behavior.autoSave) {
       _autoSaveTimer = Timer.periodic(
         Duration(milliseconds: behavior.autoSaveDelay),
@@ -283,7 +283,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   }
 
   Widget _buildMainContent() {
-    if (widget.config.state == AppProfileState.skeleton) {
+    if (widget.config.state == DSProfileState.skeleton) {
       return _buildSkeletonView();
     }
 
@@ -305,7 +305,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   }
 
   Widget _buildFormContent() {
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
 
     return _a11yHelper.buildSemanticForm(
       child: Form(
@@ -336,42 +336,42 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     );
   }
 
-  Widget _buildFieldItem(AppProfileField field) {
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
+  Widget _buildFieldItem(DSProfileField field) {
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
 
     Widget fieldWidget;
 
     switch (field.type) {
-      case AppProfileFieldType.header:
+      case DSProfileFieldType.header:
         fieldWidget = _buildHeaderField(field);
         break;
-      case AppProfileFieldType.text:
-      case AppProfileFieldType.email:
-      case AppProfileFieldType.phone:
+      case DSProfileFieldType.text:
+      case DSProfileFieldType.email:
+      case DSProfileFieldType.phone:
         fieldWidget = _buildTextFormField(field);
         break;
-      case AppProfileFieldType.toggle:
+      case DSProfileFieldType.toggle:
         fieldWidget = _buildToggleField(field);
         break;
-      case AppProfileFieldType.select:
+      case DSProfileFieldType.select:
         fieldWidget = _buildSelectField(field);
         break;
-      case AppProfileFieldType.slider:
+      case DSProfileFieldType.slider:
         fieldWidget = _buildSliderField(field);
         break;
-      case AppProfileFieldType.date:
+      case DSProfileFieldType.date:
         fieldWidget = _buildDateField(field);
         break;
-      case AppProfileFieldType.color:
+      case DSProfileFieldType.color:
         fieldWidget = _buildColorField(field);
         break;
-      case AppProfileFieldType.file:
+      case DSProfileFieldType.file:
         fieldWidget = _buildFileField(field);
         break;
-      case AppProfileFieldType.divider:
+      case DSProfileFieldType.divider:
         fieldWidget = _buildDividerField();
         break;
-      case AppProfileFieldType.actions:
+      case DSProfileFieldType.actions:
         fieldWidget = const SizedBox.shrink(); // Manejado separadamente
         break;
     }
@@ -382,10 +382,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     );
   }
 
-  Widget _buildHeaderField(AppProfileField field) {
-    final typography = widget.config.typography ?? const AppProfileTypography();
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
+  Widget _buildHeaderField(DSProfileField field) {
+    final typography = widget.config.typography ?? const DSProfileTypography();
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
 
     return _a11yHelper.buildSemanticHeader(
       label: field.label,
@@ -407,10 +407,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     );
   }
 
-  Widget _buildTextFormField(AppProfileField field) {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
-    final typography = widget.config.typography ?? const AppProfileTypography();
+  Widget _buildTextFormField(DSProfileField field) {
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
+    final typography = widget.config.typography ?? const DSProfileTypography();
 
     final controller = _controllers[field.id];
     final focusNode = _focusNodes[field.id];
@@ -435,7 +435,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
           readOnly: field.readonly,
           keyboardType: _getKeyboardType(field.type),
           textInputAction: _getTextInputAction(field),
-          autocorrect: field.type != AppProfileFieldType.email,
+          autocorrect: field.type != DSProfileFieldType.email,
           autofillHints: _getAutofillHints(field.type),
           style: typography.fieldTextStyle ?? Theme.of(context).textTheme.bodyLarge,
           decoration: InputDecoration(
@@ -460,10 +460,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     );
   }
 
-  Widget _buildToggleField(AppProfileField field) {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
-    final typography = widget.config.typography ?? const AppProfileTypography();
+  Widget _buildToggleField(DSProfileField field) {
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
+    final typography = widget.config.typography ?? const DSProfileTypography();
 
     final value = _formData.values[field.id] as bool? ?? false;
 
@@ -527,10 +527,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     );
   }
 
-  Widget _buildSelectField(AppProfileField field) {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
-    final typography = widget.config.typography ?? const AppProfileTypography();
+  Widget _buildSelectField(DSProfileField field) {
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
+    final typography = widget.config.typography ?? const DSProfileTypography();
 
     final currentValue = _formData.values[field.id];
 
@@ -600,10 +600,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     );
   }
 
-  Widget _buildSliderField(AppProfileField field) {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
-    final typography = widget.config.typography ?? const AppProfileTypography();
+  Widget _buildSliderField(DSProfileField field) {
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
+    final typography = widget.config.typography ?? const DSProfileTypography();
 
     final value = (_formData.values[field.id] as num?)?.toDouble() ?? 0.0;
     final config = field.config ?? {};
@@ -672,10 +672,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     );
   }
 
-  Widget _buildDateField(AppProfileField field) {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
-    final typography = widget.config.typography ?? const AppProfileTypography();
+  Widget _buildDateField(DSProfileField field) {
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
+    final typography = widget.config.typography ?? const DSProfileTypography();
 
     final value = _formData.values[field.id] as DateTime?;
     final displayText = value?.toString().split(' ')[0] ?? field.placeholder ?? 'Seleccionar fecha';
@@ -738,10 +738,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     );
   }
 
-  Widget _buildColorField(AppProfileField field) {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
-    final typography = widget.config.typography ?? const AppProfileTypography();
+  Widget _buildColorField(DSProfileField field) {
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
+    final typography = widget.config.typography ?? const DSProfileTypography();
 
     final value = _formData.values[field.id] as Color? ?? Colors.blue;
 
@@ -801,10 +801,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     );
   }
 
-  Widget _buildFileField(AppProfileField field) {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
-    final typography = widget.config.typography ?? const AppProfileTypography();
+  Widget _buildFileField(DSProfileField field) {
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
+    final typography = widget.config.typography ?? const DSProfileTypography();
 
     final value = _formData.values[field.id] as String?;
 
@@ -867,8 +867,8 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   }
 
   Widget _buildDividerField() {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: spacing.smallSpacing),
@@ -880,7 +880,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   }
 
   Widget _buildActionButtons() {
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
 
     return Padding(
       padding: EdgeInsets.only(top: spacing.sectionSpacing),
@@ -903,10 +903,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   }
 
   Widget _buildPrimaryButton() {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
-    final typography = widget.config.typography ?? const AppProfileTypography();
-    final a11yConfig = widget.config.a11yConfig ?? const AppProfileA11yConfig();
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
+    final typography = widget.config.typography ?? const DSProfileTypography();
+    final a11yConfig = widget.config.a11yConfig ?? const DSProfileA11yConfig();
 
     final isEnabled = _canSave() && !_isSubmitting && widget.enabled;
 
@@ -939,10 +939,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   }
 
   Widget _buildSecondaryButton() {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
-    final typography = widget.config.typography ?? const AppProfileTypography();
-    final a11yConfig = widget.config.a11yConfig ?? const AppProfileA11yConfig();
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
+    final typography = widget.config.typography ?? const DSProfileTypography();
+    final a11yConfig = widget.config.a11yConfig ?? const DSProfileA11yConfig();
 
     return SizedBox(
       height: spacing.buttonMinHeight,
@@ -968,7 +968,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   }
 
   Widget _buildLoadingIndicator() {
-    final colors = widget.config.colors ?? const AppProfileColors();
+    final colors = widget.config.colors ?? const DSProfileColors();
 
     return SizedBox(
       height: 20,
@@ -992,8 +992,8 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
   }
 
   Widget _buildSkeletonContent() {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
 
     return Padding(
       padding: spacing.screenPadding,
@@ -1061,8 +1061,8 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     required double height,
     Color? color,
   }) {
-    final colors = widget.config.colors ?? const AppProfileColors();
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
+    final colors = widget.config.colors ?? const DSProfileColors();
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
 
     return Container(
       width: width,
@@ -1089,38 +1089,38 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
 
   // Helpers para campos de texto
 
-  TextInputType _getKeyboardType(AppProfileFieldType type) {
+  TextInputType _getKeyboardType(DSProfileFieldType type) {
     switch (type) {
-      case AppProfileFieldType.email:
+      case DSProfileFieldType.email:
         return TextInputType.emailAddress;
-      case AppProfileFieldType.phone:
+      case DSProfileFieldType.phone:
         return TextInputType.phone;
       default:
         return TextInputType.text;
     }
   }
 
-  TextInputAction _getTextInputAction(AppProfileField field) {
+  TextInputAction _getTextInputAction(DSProfileField field) {
     final fieldIndex = widget.config.fields.indexOf(field);
     final isLastField = fieldIndex == widget.config.fields.length - 1;
     return isLastField ? TextInputAction.done : TextInputAction.next;
   }
 
-  List<String> _getAutofillHints(AppProfileFieldType type) {
+  List<String> _getAutofillHints(DSProfileFieldType type) {
     switch (type) {
-      case AppProfileFieldType.email:
+      case DSProfileFieldType.email:
         return [AutofillHints.email];
-      case AppProfileFieldType.phone:
+      case DSProfileFieldType.phone:
         return [AutofillHints.telephoneNumber];
-      case AppProfileFieldType.text:
+      case DSProfileFieldType.text:
         return [AutofillHints.name];
       default:
         return [];
     }
   }
 
-  Widget? _buildFieldSuffixIcon(AppProfileField field) {
-    if (field.type == AppProfileFieldType.email) {
+  Widget? _buildFieldSuffixIcon(DSProfileField field) {
+    if (field.type == DSProfileFieldType.email) {
       final isValid = _formData.errors[field.id] == null;
       final hasValue = _controllers[field.id]?.text.isNotEmpty ?? false;
 
@@ -1135,8 +1135,8 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     return null;
   }
 
-  Color _getFieldBorderColor(AppProfileField field) {
-    final colors = widget.config.colors ?? const AppProfileColors();
+  Color _getFieldBorderColor(DSProfileField field) {
+    final colors = widget.config.colors ?? const DSProfileColors();
     final focusNode = _focusNodes[field.id];
     final hasError = _formData.errors[field.id] != null;
 
@@ -1151,8 +1151,8 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     return colors.borderColor ?? Theme.of(context).colorScheme.outline;
   }
 
-  double _getFieldBorderWidth(AppProfileField field) {
-    final spacing = widget.config.spacing ?? const AppProfileSpacing();
+  double _getFieldBorderWidth(DSProfileField field) {
+    final spacing = widget.config.spacing ?? const DSProfileSpacing();
     final focusNode = _focusNodes[field.id];
 
     if (focusNode?.hasFocus ?? false) {
@@ -1187,7 +1187,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     });
 
     // Validar en tiempo real si está habilitado
-    final behavior = widget.config.behavior ?? const AppProfileBehavior();
+    final behavior = widget.config.behavior ?? const DSProfileBehavior();
     if (behavior.realtimeValidation) {
       _validateField(widget.config.fields.firstWhere((f) => f.id == fieldId), value);
     }
@@ -1213,7 +1213,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
 
   // Validation
 
-  String? _validateField(AppProfileField field, Object? value) {
+  String? _validateField(DSProfileField field, Object? value) {
     final validation = field.validation;
     if (validation == null) return null;
 
@@ -1252,10 +1252,10 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
 
     // Validaciones por tipo de campo
     switch (field.type) {
-      case AppProfileFieldType.email:
-        return AppProfileValidators.email(value);
-      case AppProfileFieldType.phone:
-        return AppProfileValidators.phone(value);
+      case DSProfileFieldType.email:
+        return DSProfileValidators.email(value);
+      case DSProfileFieldType.phone:
+        return DSProfileValidators.phone(value);
       default:
         break;
     }
@@ -1340,7 +1340,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
 
   // Pickers
 
-  Future<void> _showDatePicker(AppProfileField field) async {
+  Future<void> _showDatePicker(DSProfileField field) async {
     final currentValue = _formData.values[field.id] as DateTime?;
     final config = field.config ?? {};
 
@@ -1359,7 +1359,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     }
   }
 
-  Future<void> _showColorPicker(AppProfileField field) async {
+  Future<void> _showColorPicker(DSProfileField field) async {
     // Implementación simplificada - en un caso real usarías un color picker completo
     final colors = [
       Colors.red,
@@ -1397,7 +1397,7 @@ class _AppProfilePreferencesState extends State<AppProfilePreferences>
     }
   }
 
-  Future<void> _showFilePicker(AppProfileField field) async {
+  Future<void> _showFilePicker(DSProfileField field) async {
     // Implementación simplificada - en un caso real usarías file_picker
     final fileName = 'archivo_seleccionado.pdf';
     _handleFieldValueChanged(field.id, fileName);

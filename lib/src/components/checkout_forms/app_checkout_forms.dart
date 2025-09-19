@@ -7,30 +7,30 @@ import 'package:iautomat_design_system/src/components/checkout_forms/app_checkou
 ///
 /// Proporciona formularios adaptativos para direcciones y pagos
 /// con validación completa, accesibilidad y soporte multiplataforma
-class AppCheckoutForms extends StatefulWidget {
+class DSCheckoutForms extends StatefulWidget {
   /// Configuración completa del formulario
-  final AppCheckoutFormsConfig? config;
+  final DSCheckoutFormsConfig? config;
 
   /// Lista de campos del formulario
-  final List<AppCheckoutField> fields;
+  final List<DSCheckoutField> fields;
 
   /// Variante del formulario (address o payment)
-  final AppCheckoutVariant? variant;
+  final DSCheckoutVariant? variant;
 
   /// Estado inicial del formulario
-  final AppCheckoutState? initialState;
+  final DSCheckoutState? initialState;
 
   /// Validadores personalizados por campo
   final Map<String, String Function(String?)>? validators;
 
   /// Callback cuando se envía el formulario
-  final Function(AppCheckoutFormData)? onSubmit;
+  final Function(DSCheckoutFormData)? onSubmit;
 
   /// Callback cuando cambia un campo
   final Function(String fieldKey, dynamic value)? onFieldChanged;
 
   /// Callback cuando cambia la validación
-  final Function(AppCheckoutFormData)? onValidationChanged;
+  final Function(DSCheckoutFormData)? onValidationChanged;
 
   /// Valores iniciales del formulario
   final Map<String, dynamic>? initialValues;
@@ -62,7 +62,7 @@ class AppCheckoutForms extends StatefulWidget {
   /// Nodos de enfoque personalizados para campos específicos
   final Map<String, FocusNode>? fieldFocusNodes;
 
-  const AppCheckoutForms({
+  const DSCheckoutForms({
     super.key,
     this.config,
     required this.fields,
@@ -85,14 +85,14 @@ class AppCheckoutForms extends StatefulWidget {
   });
 
   /// Crea un formulario de dirección predefinido
-  factory AppCheckoutForms.address({
+  factory DSCheckoutForms.address({
     Key? key,
-    AppCheckoutFormsConfig? config,
-    List<AppCheckoutField>? customFields,
+    DSCheckoutFormsConfig? config,
+    List<DSCheckoutField>? customFields,
     Map<String, String Function(String?)>? validators,
-    Function(AppCheckoutFormData)? onSubmit,
+    Function(DSCheckoutFormData)? onSubmit,
     Function(String, dynamic)? onFieldChanged,
-    Function(AppCheckoutFormData)? onValidationChanged,
+    Function(DSCheckoutFormData)? onValidationChanged,
     Map<String, dynamic>? initialValues,
     bool autoFocus = false,
     bool autoValidate = true,
@@ -104,11 +104,11 @@ class AppCheckoutForms extends StatefulWidget {
     Map<String, TextEditingController>? fieldControllers,
     Map<String, FocusNode>? fieldFocusNodes,
   }) {
-    return AppCheckoutForms(
+    return DSCheckoutForms(
       key: key,
-      config: config ?? const AppCheckoutFormsConfig(variant: AppCheckoutVariant.address),
-      fields: customFields ?? AppCheckoutVariant.address.defaultFields,
-      variant: AppCheckoutVariant.address,
+      config: config ?? const DSCheckoutFormsConfig(variant: DSCheckoutVariant.address),
+      fields: customFields ?? DSCheckoutVariant.address.defaultFields,
+      variant: DSCheckoutVariant.address,
       validators: validators,
       onSubmit: onSubmit,
       onFieldChanged: onFieldChanged,
@@ -127,14 +127,14 @@ class AppCheckoutForms extends StatefulWidget {
   }
 
   /// Crea un formulario de pago predefinido
-  factory AppCheckoutForms.payment({
+  factory DSCheckoutForms.payment({
     Key? key,
-    AppCheckoutFormsConfig? config,
-    List<AppCheckoutField>? customFields,
+    DSCheckoutFormsConfig? config,
+    List<DSCheckoutField>? customFields,
     Map<String, String Function(String?)>? validators,
-    Function(AppCheckoutFormData)? onSubmit,
+    Function(DSCheckoutFormData)? onSubmit,
     Function(String, dynamic)? onFieldChanged,
-    Function(AppCheckoutFormData)? onValidationChanged,
+    Function(DSCheckoutFormData)? onValidationChanged,
     Map<String, dynamic>? initialValues,
     bool autoFocus = false,
     bool autoValidate = true,
@@ -146,11 +146,11 @@ class AppCheckoutForms extends StatefulWidget {
     Map<String, TextEditingController>? fieldControllers,
     Map<String, FocusNode>? fieldFocusNodes,
   }) {
-    return AppCheckoutForms(
+    return DSCheckoutForms(
       key: key,
-      config: config ?? const AppCheckoutFormsConfig(variant: AppCheckoutVariant.payment),
-      fields: customFields ?? AppCheckoutVariant.payment.defaultFields,
-      variant: AppCheckoutVariant.payment,
+      config: config ?? const DSCheckoutFormsConfig(variant: DSCheckoutVariant.payment),
+      fields: customFields ?? DSCheckoutVariant.payment.defaultFields,
+      variant: DSCheckoutVariant.payment,
       validators: validators,
       onSubmit: onSubmit,
       onFieldChanged: onFieldChanged,
@@ -169,17 +169,17 @@ class AppCheckoutForms extends StatefulWidget {
   }
 
   @override
-  State<AppCheckoutForms> createState() => _AppCheckoutFormsState();
+  State<DSCheckoutForms> createState() => _DSCheckoutFormsState();
 }
 
-class _AppCheckoutFormsState extends State<AppCheckoutForms>
+class _DSCheckoutFormsState extends State<DSCheckoutForms>
     with TickerProviderStateMixin {
   // Configuración efectiva
-  late AppCheckoutFormsConfig _effectiveConfig;
+  late DSCheckoutFormsConfig _effectiveConfig;
 
   // Estado del formulario
-  late AppCheckoutState _currentState;
-  late AppCheckoutFormData _formData;
+  late DSCheckoutState _currentState;
+  late DSCheckoutFormData _formData;
 
   // Controladores de animación
   late AnimationController _stateAnimationController;
@@ -194,8 +194,8 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   // Helpers
-  late AppCheckoutFormsPlatformAdapter _platformAdapter;
-  late AppCheckoutFormsA11yHelper _a11yHelper;
+  late DSCheckoutFormsPlatformAdapter _platformAdapter;
+  late DSCheckoutFormsA11yHelper _a11yHelper;
 
   // Estado interno
   bool _isSubmitting = false;
@@ -214,13 +214,13 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
   }
 
   @override
-  void didUpdateWidget(AppCheckoutForms oldWidget) {
+  void didUpdateWidget(DSCheckoutForms oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.config != oldWidget.config) {
       _initializeConfig();
     }
     if (widget.initialState != oldWidget.initialState) {
-      _updateState(widget.initialState ?? AppCheckoutState.defaultState);
+      _updateState(widget.initialState ?? DSCheckoutState.defaultState);
     }
     if (widget.fields != oldWidget.fields) {
       _reinitializeControllers();
@@ -241,7 +241,7 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
   }
 
   void _initializeConfig() {
-    _effectiveConfig = widget.config ?? const AppCheckoutFormsConfig();
+    _effectiveConfig = widget.config ?? const DSCheckoutFormsConfig();
   }
 
   void _initializeState() {
@@ -249,7 +249,7 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
   }
 
   void _initializeAnimations() {
-    final animConfig = _effectiveConfig.animation ?? const AppCheckoutAnimation();
+    final animConfig = _effectiveConfig.animation ?? const DSCheckoutAnimation();
 
     _stateAnimationController = AnimationController(
       duration: animConfig.transitionDuration,
@@ -347,8 +347,8 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
   }
 
   void _initializeHelpers() {
-    _platformAdapter = AppCheckoutFormsPlatformAdapter();
-    _a11yHelper = AppCheckoutFormsA11yHelper();
+    _platformAdapter = DSCheckoutFormsPlatformAdapter();
+    _a11yHelper = DSCheckoutFormsA11yHelper();
   }
 
   void _initializeFormData() {
@@ -360,7 +360,7 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
       }
     }
 
-    _formData = AppCheckoutFormData(
+    _formData = DSCheckoutFormData(
       values: initialValues,
       validations: {},
       isValid: false,
@@ -386,7 +386,7 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
     // Formatear valor si es necesario
     final field = widget.fields.firstWhere((f) => f.key == fieldKey);
     if (_effectiveConfig.behavior?.enableFormatting == true) {
-      final formattedValue = AppCheckoutUtils.formatFieldValue(field.type, value.toString());
+      final formattedValue = DSCheckoutUtils.formatFieldValue(field.type, value.toString());
       if (formattedValue != value) {
         _controllers[fieldKey]?.value = _controllers[fieldKey]!.value.copyWith(
           text: formattedValue,
@@ -410,14 +410,14 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
     });
 
     if (hasFocus) {
-      _updateState(AppCheckoutState.focus);
+      _updateState(DSCheckoutState.focus);
     } else if (_currentFocusedField == null) {
-      _updateState(AppCheckoutState.defaultState);
+      _updateState(DSCheckoutState.defaultState);
     }
   }
 
   void _validateForm() {
-    final validatedData = AppCheckoutUtils.validateForm(
+    final validatedData = DSCheckoutUtils.validateForm(
       widget.fields,
       _formData.values,
       customMessages: _effectiveConfig.validation?.customMessages,
@@ -431,7 +431,7 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
     widget.onValidationChanged?.call(validatedData);
   }
 
-  void _updateState(AppCheckoutState newState) {
+  void _updateState(DSCheckoutState newState) {
     if (_currentState != newState) {
       setState(() {
         _currentState = newState;
@@ -450,7 +450,7 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
       _isSubmitting = true;
     });
 
-    _updateState(AppCheckoutState.loading);
+    _updateState(DSCheckoutState.loading);
 
     // Validar formulario antes del envío
     _validateForm();
@@ -459,7 +459,7 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
       setState(() {
         _isSubmitting = false;
       });
-      _updateState(AppCheckoutState.defaultState);
+      _updateState(DSCheckoutState.defaultState);
 
       // Enfocar el primer campo con error
       final firstErrorField = widget.fields.firstWhere(
@@ -504,7 +504,7 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
         _isSubmitting = false;
         _formData = _formData.copyWith(isSubmitting: false);
       });
-      _updateState(AppCheckoutState.defaultState);
+      _updateState(DSCheckoutState.defaultState);
 
       // Notificar error via a11y
       if (_effectiveConfig.a11yConfig?.announceErrors == true) {
@@ -519,8 +519,8 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
         _submitAnimationController.reverse();
       }
 
-      if (_currentState == AppCheckoutState.loading) {
-        _updateState(AppCheckoutState.defaultState);
+      if (_currentState == DSCheckoutState.loading) {
+        _updateState(DSCheckoutState.defaultState);
       }
     }
   }
@@ -531,7 +531,7 @@ class _AppCheckoutFormsState extends State<AppCheckoutForms>
     }
 
     setState(() {
-      _formData = AppCheckoutFormData(
+      _formData = DSCheckoutFormData(
         values: {},
         validations: {},
         isValid: false,

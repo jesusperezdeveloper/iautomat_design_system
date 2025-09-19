@@ -5,13 +5,13 @@ import 'package:flutter/semantics.dart';
 
 import 'app_accordion_config.dart';
 
-class AppAccordionPlatformAdapter {
-  static AppAccordionPlatformAdapter? _instance;
+class DSAccordionPlatformAdapter {
+  static DSAccordionPlatformAdapter? _instance;
 
-  AppAccordionPlatformAdapter._();
+  DSAccordionPlatformAdapter._();
 
-  factory AppAccordionPlatformAdapter() {
-    return _instance ??= AppAccordionPlatformAdapter._();
+  factory DSAccordionPlatformAdapter() {
+    return _instance ??= DSAccordionPlatformAdapter._();
   }
 
   bool get isIOS => defaultTargetPlatform == TargetPlatform.iOS;
@@ -25,11 +25,11 @@ class AppAccordionPlatformAdapter {
   bool get supportsHighContrast => !isWeb;
   bool get supportsReducedMotion => true;
 
-  AppAccordionColors getDefaultColors(BuildContext context) {
+  DSAccordionColors getDefaultColors(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return AppAccordionColors(
+    return DSAccordionColors(
       backgroundColor: colorScheme.surface,
       surfaceColor: colorScheme.surfaceContainerHighest,
       headerColor: colorScheme.surface,
@@ -51,8 +51,8 @@ class AppAccordionPlatformAdapter {
     );
   }
 
-  AppAccordionSpacing getDefaultSpacing() {
-    return AppAccordionSpacing(
+  DSAccordionSpacing getDefaultSpacing() {
+    return DSAccordionSpacing(
       headerPadding: EdgeInsets.symmetric(
         horizontal: isWeb ? 24.0 : 16.0,
         vertical: isWeb ? 16.0 : 12.0,
@@ -65,10 +65,10 @@ class AppAccordionPlatformAdapter {
     );
   }
 
-  AppAccordionTypography getDefaultTypography(BuildContext context) {
+  DSAccordionTypography getDefaultTypography(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return AppAccordionTypography(
+    return DSAccordionTypography(
       titleStyle: textTheme.bodyLarge ?? const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
@@ -82,8 +82,8 @@ class AppAccordionPlatformAdapter {
     );
   }
 
-  AppAccordionAnimations getDefaultAnimations() {
-    return AppAccordionAnimations(
+  DSAccordionAnimations getDefaultAnimations() {
+    return DSAccordionAnimations(
       stateDuration: Duration(
         milliseconds: isWeb
             ? 150
@@ -99,8 +99,8 @@ class AppAccordionPlatformAdapter {
     );
   }
 
-  AppAccordionBehavior getDefaultBehavior() {
-    return AppAccordionBehavior(
+  DSAccordionBehavior getDefaultBehavior() {
+    return DSAccordionBehavior(
       showDebugInfo: kDebugMode,
       enableHoverEffects: !isMobile,
       showFocusIndicator: !isMobile,
@@ -110,8 +110,8 @@ class AppAccordionPlatformAdapter {
     );
   }
 
-  AppAccordionAccessibilityConfig getDefaultAccessibility() {
-    return const AppAccordionAccessibilityConfig(
+  DSAccordionAccessibilityConfig getDefaultAccessibility() {
+    return const DSAccordionAccessibilityConfig(
       enabled: true,
       semanticRole: 'expandable',
       focusable: true,
@@ -164,7 +164,7 @@ class AppAccordionPlatformAdapter {
     }
   }
 
-  Duration getAnimationDuration(AppAccordionAnimations animations) {
+  Duration getAnimationDuration(DSAccordionAnimations animations) {
     if (!animations.enabled) return Duration.zero;
 
     if (animations.respectReducedMotion) {
@@ -178,7 +178,7 @@ class AppAccordionPlatformAdapter {
     return animations.stateDuration;
   }
 
-  Curve getAnimationCurve(AppAccordionAnimations animations) {
+  Curve getAnimationCurve(DSAccordionAnimations animations) {
     if (!animations.enabled) return Curves.linear;
     return animations.stateCurve;
   }
@@ -205,12 +205,12 @@ class AppAccordionPlatformAdapter {
           : isWeb
           ? 'Web'
           : 'Desktop';
-      debugPrint('[AppAccordion-$platform] $message');
+      debugPrint('[DSAccordion-$platform] $message');
     }
   }
 
-  AppAccordionConfig adaptConfigForPlatform(
-    AppAccordionConfig config,
+  DSAccordionConfig adaptConfigForPlatform(
+    DSAccordionConfig config,
     BuildContext context,
   ) {
     return config.copyWith(

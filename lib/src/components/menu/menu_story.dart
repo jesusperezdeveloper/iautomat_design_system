@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/src/components/menu/app_menu.dart';
 
-/// Stories para AppMenu - Ejemplos interactivos del menú
+/// Stories para DSMenu - Ejemplos interactivos del menú
 class MenuStoryExample extends StatefulWidget {
   const MenuStoryExample({super.key});
 
@@ -13,64 +13,64 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
   String _selectedItem = 'Ninguno';
   String _lastAction = 'Ninguna';
   MenuAlignment _alignment = MenuAlignment.bottomLeft;
-  AppMenuState _menuState = AppMenuState.defaultState;
+  DSMenuState _menuState = DSMenuState.defaultState;
   bool _enableSearch = false;
   double _elevation = 8.0;
   double _borderRadius = 8.0;
 
-  final List<AppMenuItem> _contextMenuItems = [
-    const AppMenuItem(
+  final List<DSMenuItem> _contextMenuItems = [
+    const DSMenuItem(
       id: 'new',
       label: 'Nuevo',
       icon: Icons.add,
       shortcut: 'Ctrl+N',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'open',
       label: 'Abrir',
       icon: Icons.folder_open,
       shortcut: 'Ctrl+O',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'recent',
       label: 'Recientes',
       icon: Icons.history,
       trailingIcon: Icons.chevron_right,
       children: [
-        AppMenuItem(id: 'file1', label: 'Documento 1.pdf'),
-        AppMenuItem(id: 'file2', label: 'Imagen.png'),
-        AppMenuItem(id: 'file3', label: 'Proyecto.zip'),
+        DSMenuItem(id: 'file1', label: 'Documento 1.pdf'),
+        DSMenuItem(id: 'file2', label: 'Imagen.png'),
+        DSMenuItem(id: 'file3', label: 'Proyecto.zip'),
       ],
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'divider1',
       label: '',
       showDividerBefore: true,
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'save',
       label: 'Guardar',
       icon: Icons.save,
       shortcut: 'Ctrl+S',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'save_as',
       label: 'Guardar como...',
       icon: Icons.save_as,
       shortcut: 'Ctrl+Shift+S',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'divider2',
       label: '',
       showDividerBefore: true,
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'print',
       label: 'Imprimir',
       icon: Icons.print,
       shortcut: 'Ctrl+P',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'delete',
       label: 'Eliminar',
       icon: Icons.delete,
@@ -79,68 +79,68 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
     ),
   ];
 
-  final List<AppMenuItem> _submenuItems = [
-    const AppMenuItem(
+  final List<DSMenuItem> _submenuItems = [
+    const DSMenuItem(
       id: 'cut',
       label: 'Cortar',
       icon: Icons.cut,
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'copy',
       label: 'Copiar',
       icon: Icons.copy,
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'paste',
       label: 'Pegar',
       icon: Icons.paste,
     ),
   ];
 
-  final List<AppMenuItem> _typeaheadItems = [
-    const AppMenuItem(
+  final List<DSMenuItem> _typeaheadItems = [
+    const DSMenuItem(
       id: 'user1',
       label: 'Juan Pérez',
       icon: Icons.person,
       tooltip: 'Desarrollador Frontend',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'user2',
       label: 'María García',
       icon: Icons.person,
       tooltip: 'Diseñadora UX/UI',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'user3',
       label: 'Carlos López',
       icon: Icons.person,
       tooltip: 'Backend Developer',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'user4',
       label: 'Ana Martínez',
       icon: Icons.person,
       tooltip: 'Product Manager',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'user5',
       label: 'Pedro Rodríguez',
       icon: Icons.person,
       tooltip: 'DevOps Engineer',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'team1',
       label: 'Equipo Frontend',
       icon: Icons.group,
       tooltip: 'Equipo de desarrollo frontend',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'team2',
       label: 'Equipo Backend',
       icon: Icons.group,
       tooltip: 'Equipo de desarrollo backend',
     ),
-    const AppMenuItem(
+    const DSMenuItem(
       id: 'team3',
       label: 'Equipo QA',
       icon: Icons.group,
@@ -148,14 +148,14 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
     ),
   ];
 
-  void _onItemSelected(AppMenuItem item) {
+  void _onItemSelected(DSMenuItem item) {
     setState(() {
       _selectedItem = item.label;
       _lastAction = 'Seleccionado: ${item.label}';
     });
   }
 
-  void _onMenuStateChanged(AppMenuState state) {
+  void _onMenuStateChanged(DSMenuState state) {
     setState(() {
       _menuState = state;
     });
@@ -165,7 +165,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppMenu Stories'),
+        title: const Text('DSMenu Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -195,7 +195,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'AppMenu Component',
+          'DSMenu Component',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
           ),
@@ -270,10 +270,10 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text('Estado:'),
-                    DropdownButton<AppMenuState>(
+                    DropdownButton<DSMenuState>(
                       value: _menuState,
                       onChanged: (value) => setState(() => _menuState = value!),
-                      items: AppMenuState.values.map((state) {
+                      items: DSMenuState.values.map((state) {
                         return DropdownMenuItem(
                           value: state,
                           child: Text(state.name),
@@ -371,7 +371,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
                   final position = renderBox.localToGlobal(Offset.zero);
                   final size = renderBox.size;
 
-                  AppMenu.showMenu(
+                  DSMenu.showMenu(
                     context: context,
                     anchorRect: Rect.fromLTWH(
                       position.dx,
@@ -379,7 +379,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
                       size.width,
                       size.height,
                     ),
-                    menu: AppMenu.context(
+                    menu: DSMenu.context(
                       items: _contextMenuItems,
                       onSelected: _onItemSelected,
                       alignment: _alignment,
@@ -424,7 +424,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
                   final position = renderBox.localToGlobal(Offset.zero);
                   final size = renderBox.size;
 
-                  AppMenu.showMenu(
+                  DSMenu.showMenu(
                     context: context,
                     anchorRect: Rect.fromLTWH(
                       position.dx,
@@ -432,7 +432,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
                       size.width,
                       size.height,
                     ),
-                    menu: AppMenu.submenu(
+                    menu: DSMenu.submenu(
                       items: _submenuItems,
                       onSelected: _onItemSelected,
                       alignment: _alignment,
@@ -477,7 +477,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
                   final position = renderBox.localToGlobal(Offset.zero);
                   final size = renderBox.size;
 
-                  AppMenu.showMenu(
+                  DSMenu.showMenu(
                     context: context,
                     anchorRect: Rect.fromLTWH(
                       position.dx,
@@ -485,7 +485,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
                       size.width,
                       size.height,
                     ),
-                    menu: AppMenu.typeahead(
+                    menu: DSMenu.typeahead(
                       items: _typeaheadItems,
                       onSelected: _onItemSelected,
                       alignment: _alignment,
@@ -524,7 +524,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: AppMenuState.values.map((state) {
+          children: DSMenuState.values.map((state) {
             return Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
@@ -532,7 +532,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
                   final position = renderBox.localToGlobal(Offset.zero);
                   final size = renderBox.size;
 
-                  AppMenu.showMenu(
+                  DSMenu.showMenu(
                     context: context,
                     anchorRect: Rect.fromLTWH(
                       position.dx,
@@ -540,7 +540,7 @@ class _MenuStoryExampleState extends State<MenuStoryExample> {
                       size.width,
                       size.height,
                     ),
-                    menu: AppMenu.context(
+                    menu: DSMenu.context(
                       items: _contextMenuItems.take(3).toList(),
                       onSelected: _onItemSelected,
                       state: state,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/src/components/drawer/app_drawer.dart';
 
-/// Stories para AppDrawer - Ejemplos interactivos del drawer
+/// Stories para DSDrawer - Ejemplos interactivos del drawer
 class DrawerStoryExample extends StatefulWidget {
   const DrawerStoryExample({super.key});
 
@@ -12,7 +12,7 @@ class DrawerStoryExample extends StatefulWidget {
 class _DrawerStoryExampleState extends State<DrawerStoryExample> {
   DrawerVariant _variant = DrawerVariant.modal;
   DrawerSide _side = DrawerSide.left;
-  AppDrawerState _drawerState = AppDrawerState.defaultState;
+  DSDrawerState _drawerState = DSDrawerState.defaultState;
   double _width = 280.0;
   double _elevation = 16.0;
   double _borderRadius = 0.0;
@@ -21,7 +21,7 @@ class _DrawerStoryExampleState extends State<DrawerStoryExample> {
   String _lastAction = 'Ninguna';
   String _visibilityStatus = 'Cerrado';
 
-  final AppDrawerController _modalController = AppDrawerController();
+  final DSDrawerController _modalController = DSDrawerController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Widget _buildDrawerContent() {
@@ -124,7 +124,7 @@ class _DrawerStoryExampleState extends State<DrawerStoryExample> {
     );
   }
 
-  void _onDrawerStateChanged(AppDrawerState state) {
+  void _onDrawerStateChanged(DSDrawerState state) {
     setState(() {
       _drawerState = state;
       _lastAction = 'Estado cambiado: ${state.name}';
@@ -143,7 +143,7 @@ class _DrawerStoryExampleState extends State<DrawerStoryExample> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text('AppDrawer Stories'),
+        title: const Text('DSDrawer Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         leading: _variant == DrawerVariant.modal
           ? IconButton(
@@ -157,7 +157,7 @@ class _DrawerStoryExampleState extends State<DrawerStoryExample> {
         ? Row(
             children: [
               // Permanent drawer
-              AppDrawer.permanent(
+              DSDrawer.permanent(
                 content: _buildDrawerContent(),
                 side: _side,
                 width: _width,
@@ -181,7 +181,7 @@ class _DrawerStoryExampleState extends State<DrawerStoryExample> {
 
               // Modal drawer overlay
               if (_modalController.isOpen)
-                AppDrawer.modal(
+                DSDrawer.modal(
                   key: _modalController.key,
                   content: _buildDrawerContent(),
                   side: _side,
@@ -227,7 +227,7 @@ class _DrawerStoryExampleState extends State<DrawerStoryExample> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'AppDrawer Component',
+          'DSDrawer Component',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
           ),
@@ -320,10 +320,10 @@ class _DrawerStoryExampleState extends State<DrawerStoryExample> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text('Estado:'),
-                    DropdownButton<AppDrawerState>(
+                    DropdownButton<DSDrawerState>(
                       value: _drawerState,
                       onChanged: (value) => setState(() => _drawerState = value!),
-                      items: AppDrawerState.values.map((state) {
+                      items: DSDrawerState.values.map((state) {
                         return DropdownMenuItem(
                           value: state,
                           child: Text(state.name),
@@ -503,7 +503,7 @@ class _DrawerStoryExampleState extends State<DrawerStoryExample> {
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: AppDrawerState.values.map((state) {
+          children: DSDrawerState.values.map((state) {
             return ElevatedButton(
               onPressed: () {
                 setState(() {

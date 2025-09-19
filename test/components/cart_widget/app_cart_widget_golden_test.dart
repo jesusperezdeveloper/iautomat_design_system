@@ -3,9 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppCartWidget Golden Tests', () {
+  group('DSCartWidget Golden Tests', () {
     final testItems = [
-      const AppCartItem(
+      const DSCartItem(
         id: '1',
         name: 'Product 1',
         price: 29.99,
@@ -13,7 +13,7 @@ void main() {
         imageUrl: 'https://example.com/product1.jpg',
         description: 'High-quality product with great features',
       ),
-      const AppCartItem(
+      const DSCartItem(
         id: '2',
         name: 'Product 2',
         price: 19.99,
@@ -24,10 +24,10 @@ void main() {
     ];
 
     Widget createCartWidget({
-      AppCartWidgetConfig? config,
-      List<AppCartItem>? items,
-      AppCartVariant? variant,
-      AppCartState? state,
+      DSCartWidgetConfig? config,
+      List<DSCartItem>? items,
+      DSCartVariant? variant,
+      DSCartState? state,
     }) {
       return MaterialApp(
         theme: ThemeData(useMaterial3: true),
@@ -36,7 +36,7 @@ void main() {
             child: SizedBox(
               width: 400,
               height: 600,
-              child: AppCartWidget(
+              child: DSCartWidget(
                 config: config,
                 items: items ?? testItems,
                 variant: variant,
@@ -50,78 +50,78 @@ void main() {
 
     testWidgets('full variant default state', (tester) async {
       await tester.pumpWidget(createCartWidget(
-        variant: AppCartVariant.full,
-        state: AppCartState.defaultState,
+        variant: DSCartVariant.full,
+        state: DSCartState.defaultState,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_full_default.png'),
       );
     });
 
     testWidgets('mini variant default state', (tester) async {
       await tester.pumpWidget(createCartWidget(
-        variant: AppCartVariant.mini,
-        state: AppCartState.defaultState,
+        variant: DSCartVariant.mini,
+        state: DSCartState.defaultState,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_mini_default.png'),
       );
     });
 
     testWidgets('full variant hover state', (tester) async {
       await tester.pumpWidget(createCartWidget(
-        variant: AppCartVariant.full,
-        state: AppCartState.hover,
+        variant: DSCartVariant.full,
+        state: DSCartState.hover,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_full_hover.png'),
       );
     });
 
     testWidgets('full variant loading state', (tester) async {
       await tester.pumpWidget(createCartWidget(
-        variant: AppCartVariant.full,
-        state: AppCartState.loading,
+        variant: DSCartVariant.full,
+        state: DSCartState.loading,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_full_loading.png'),
       );
     });
 
     testWidgets('full variant skeleton state', (tester) async {
       await tester.pumpWidget(createCartWidget(
-        variant: AppCartVariant.full,
-        state: AppCartState.skeleton,
+        variant: DSCartVariant.full,
+        state: DSCartState.skeleton,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_full_skeleton.png'),
       );
     });
 
     testWidgets('mini variant disabled state', (tester) async {
       await tester.pumpWidget(createCartWidget(
-        variant: AppCartVariant.mini,
-        state: AppCartState.disabled,
+        variant: DSCartVariant.mini,
+        state: DSCartState.disabled,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_mini_disabled.png'),
       );
     });
@@ -129,22 +129,22 @@ void main() {
     testWidgets('empty cart state', (tester) async {
       await tester.pumpWidget(createCartWidget(
         items: [],
-        variant: AppCartVariant.full,
-        state: AppCartState.defaultState,
+        variant: DSCartVariant.full,
+        state: DSCartState.defaultState,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_empty.png'),
       );
     });
 
     testWidgets('custom colors configuration', (tester) async {
-      final customConfig = AppCartWidgetConfig(
-        variant: AppCartVariant.full,
-        state: AppCartState.defaultState,
-        colors: const AppCartColors(
+      final customConfig = DSCartWidgetConfig(
+        variant: DSCartVariant.full,
+        state: DSCartState.defaultState,
+        colors: const DSCartColors(
           backgroundColor: Colors.grey,
           borderColor: Colors.grey,
           headerColor: Colors.purple,
@@ -165,7 +165,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_custom_colors.png'),
       );
     });
@@ -181,10 +181,10 @@ void main() {
                 child: SizedBox(
                   width: 400,
                   height: 600,
-                  child: AppCartWidget(
+                  child: DSCartWidget(
                     items: testItems,
-                    variant: AppCartVariant.full,
-                    initialState: AppCartState.defaultState,
+                    variant: DSCartVariant.full,
+                    initialState: DSCartState.defaultState,
                   ),
                 ),
               ),
@@ -195,7 +195,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_rtl.png'),
       );
     });
@@ -209,10 +209,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 600,
-                child: AppCartWidget(
+                child: DSCartWidget(
                   items: testItems,
-                  variant: AppCartVariant.full,
-                  initialState: AppCartState.defaultState,
+                  variant: DSCartVariant.full,
+                  initialState: DSCartState.defaultState,
                 ),
               ),
             ),
@@ -222,13 +222,13 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_dark_theme.png'),
       );
     });
 
     testWidgets('large item list', (tester) async {
-      final manyItems = List.generate(10, (index) => AppCartItem(
+      final manyItems = List.generate(10, (index) => DSCartItem(
         id: 'item_$index',
         name: 'Product ${index + 1}',
         price: 10.0 + (index * 5),
@@ -239,52 +239,52 @@ void main() {
 
       await tester.pumpWidget(createCartWidget(
         items: manyItems,
-        variant: AppCartVariant.full,
-        state: AppCartState.defaultState,
+        variant: DSCartVariant.full,
+        state: DSCartState.defaultState,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_many_items.png'),
       );
     });
 
     testWidgets('focused state', (tester) async {
       await tester.pumpWidget(createCartWidget(
-        variant: AppCartVariant.full,
-        state: AppCartState.focus,
+        variant: DSCartVariant.full,
+        state: DSCartState.focus,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_focus.png'),
       );
     });
 
     testWidgets('pressed state', (tester) async {
       await tester.pumpWidget(createCartWidget(
-        variant: AppCartVariant.full,
-        state: AppCartState.pressed,
+        variant: DSCartVariant.full,
+        state: DSCartState.pressed,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_pressed.png'),
       );
     });
 
     testWidgets('selected state', (tester) async {
       await tester.pumpWidget(createCartWidget(
-        variant: AppCartVariant.full,
-        state: AppCartState.selected,
+        variant: DSCartVariant.full,
+        state: DSCartState.selected,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCartWidget),
+        find.byType(DSCartWidget),
         matchesGoldenFile('golden/cart_widget_selected.png'),
       );
     });

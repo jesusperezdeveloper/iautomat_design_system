@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppTopAppBarStories extends StatefulWidget {
-  const AppTopAppBarStories({super.key});
+class DSTopAppBarStories extends StatefulWidget {
+  const DSTopAppBarStories({super.key});
 
   @override
-  State<AppTopAppBarStories> createState() => _AppTopAppBarStoriesState();
+  State<DSTopAppBarStories> createState() => _DSTopAppBarStoriesState();
 }
 
-class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
+class _DSTopAppBarStoriesState extends State<DSTopAppBarStories> {
   int _currentStory = 0;
 
   final List<StoryItem> _stories = [
@@ -16,8 +16,8 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Primary AppBar',
       description: 'AppBar estándar con configuración primaria',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(variant: AppTopAppBarVariant.primary),
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(variant: DSTopAppBarVariant.primary),
           title: Text('Primary AppBar'),
         ),
       ),
@@ -26,8 +26,8 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Center AppBar',
       description: 'AppBar con título centrado',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(variant: AppTopAppBarVariant.center),
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(variant: DSTopAppBarVariant.center),
           title: Text('Center AppBar'),
         ),
       ),
@@ -36,8 +36,8 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Large AppBar',
       description: 'AppBar grande con título prominente',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(variant: AppTopAppBarVariant.large),
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(variant: DSTopAppBarVariant.large),
           title: Text('Large AppBar'),
         ),
       ),
@@ -46,8 +46,8 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Collapsed AppBar',
       description: 'AppBar colapsado para espacios reducidos',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(variant: AppTopAppBarVariant.collapsed),
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(variant: DSTopAppBarVariant.collapsed),
           title: Text('Collapsed'),
         ),
       ),
@@ -56,8 +56,8 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Loading State',
       description: 'AppBar en estado de carga',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(state: AppTopAppBarState.loading),
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(state: DSTopAppBarState.loading),
         ),
       ),
     ),
@@ -65,8 +65,8 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Skeleton State',
       description: 'AppBar con esqueleto de carga',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(state: AppTopAppBarState.skeleton),
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(state: DSTopAppBarState.skeleton),
         ),
       ),
     ),
@@ -74,8 +74,8 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Disabled State',
       description: 'AppBar en estado deshabilitado',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(state: AppTopAppBarState.disabled),
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(state: DSTopAppBarState.disabled),
           title: Text('Disabled AppBar'),
         ),
       ),
@@ -84,8 +84,8 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'RTL Support',
       description: 'AppBar con soporte para dirección RTL',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(isRtl: true),
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(isRtl: true),
           title: Text('مرحبا بك'),
         ),
       ),
@@ -94,21 +94,21 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'With Actions',
       description: 'AppBar con acciones personalizadas',
       builder: (context) => _DemoScaffold(
-        appBar: AppTopAppBar(
-          config: const AppTopAppBarConfig(
-            actions: AppTopAppBarActions(
+        appBar: DSTopAppBar(
+          config: const DSTopAppBarConfig(
+            actions: DSTopAppBarActions(
               primary: [
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'search',
                   icon: Icon(Icons.search),
                   tooltip: 'Buscar',
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'favorite',
                   icon: Icon(Icons.favorite),
                   tooltip: 'Favoritos',
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'share',
                   icon: Icon(Icons.share),
                   tooltip: 'Compartir',
@@ -124,32 +124,32 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Actions Overflow',
       description: 'AppBar con desbordamiento de acciones',
       builder: (context) => _DemoScaffold(
-        appBar: AppTopAppBar(
-          config: const AppTopAppBarConfig(
-            actions: AppTopAppBarActions(
+        appBar: DSTopAppBar(
+          config: const DSTopAppBarConfig(
+            actions: DSTopAppBarActions(
               maxPrimary: 2,
               primary: [
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'search',
                   icon: Icon(Icons.search),
                   tooltip: 'Buscar',
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'favorite',
                   icon: Icon(Icons.favorite),
                   tooltip: 'Favoritos',
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'share',
                   icon: Icon(Icons.share),
                   tooltip: 'Compartir',
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'download',
                   icon: Icon(Icons.download),
                   tooltip: 'Descargar',
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'edit',
                   icon: Icon(Icons.edit),
                   tooltip: 'Editar',
@@ -165,10 +165,10 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'With Navigation',
       description: 'AppBar con icono de navegación personalizado',
       builder: (context) => _DemoScaffold(
-        appBar: AppTopAppBar(
-          config: AppTopAppBarConfig(
-            navigationIcon: AppTopAppBarNavigationIcon(
-              type: AppTopAppBarNavigationType.menu,
+        appBar: DSTopAppBar(
+          config: DSTopAppBarConfig(
+            navigationIcon: DSTopAppBarNavigationIcon(
+              type: DSTopAppBarNavigationType.menu,
               tooltip: 'Menú',
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -185,10 +185,10 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Back Navigation',
       description: 'AppBar con botón de retroceso',
       builder: (context) => _DemoScaffold(
-        appBar: AppTopAppBar(
-          config: AppTopAppBarConfig(
-            navigationIcon: AppTopAppBarNavigationIcon(
-              type: AppTopAppBarNavigationType.back,
+        appBar: DSTopAppBar(
+          config: DSTopAppBarConfig(
+            navigationIcon: DSTopAppBarNavigationIcon(
+              type: DSTopAppBarNavigationType.back,
               tooltip: 'Atrás',
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -205,26 +205,26 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Mixed Action Types',
       description: 'AppBar con diferentes tipos de acciones',
       builder: (context) => _DemoScaffold(
-        appBar: AppTopAppBar(
-          config: AppTopAppBarConfig(
-            actions: AppTopAppBarActions(
+        appBar: DSTopAppBar(
+          config: DSTopAppBarConfig(
+            actions: DSTopAppBarActions(
               primary: [
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'icon',
-                  type: AppTopAppBarActionType.icon,
+                  type: DSTopAppBarActionType.icon,
                   icon: const Icon(Icons.star),
                   tooltip: 'Favorito',
                   onPressed: () => _showSnackBar(context, 'Favorito'),
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'text',
-                  type: AppTopAppBarActionType.text,
+                  type: DSTopAppBarActionType.text,
                   text: 'SAVE',
                   onPressed: () => _showSnackBar(context, 'Guardar'),
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'iconText',
-                  type: AppTopAppBarActionType.iconText,
+                  type: DSTopAppBarActionType.iconText,
                   icon: const Icon(Icons.share),
                   text: 'Share',
                   onPressed: () => _showSnackBar(context, 'Compartir'),
@@ -240,9 +240,9 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Custom Colors',
       description: 'AppBar con colores personalizados',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            colors: AppTopAppBarColors(
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(
+            colors: DSTopAppBarColors(
               backgroundColor: Colors.deepPurple,
               foregroundColor: Colors.white,
               iconColor: Colors.amber,
@@ -262,9 +262,9 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Custom Typography',
       description: 'AppBar con tipografía personalizada',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            typography: AppTopAppBarTypography(
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(
+            typography: DSTopAppBarTypography(
               titleStyle: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -280,9 +280,9 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Custom Elevation',
       description: 'AppBar con elevación personalizada',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            elevation: AppTopAppBarElevation(
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(
+            elevation: DSTopAppBarElevation(
               defaultElevation: 8.0,
               scrolledElevation: 12.0,
               shadowColor: Colors.purple,
@@ -296,9 +296,9 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Custom Spacing',
       description: 'AppBar con espaciado personalizado',
       builder: (context) => _DemoScaffold(
-        appBar: const AppTopAppBar(
-          config: AppTopAppBarConfig(
-            spacing: AppTopAppBarSpacing(
+        appBar: const DSTopAppBar(
+          config: DSTopAppBarConfig(
+            spacing: DSTopAppBarSpacing(
               titlePadding: 32.0,
               actionPadding: 16.0,
               minHeight: 72.0,
@@ -313,42 +313,42 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
       title: 'Complete Example',
       description: 'Ejemplo completo con todas las características',
       builder: (context) => _DemoScaffold(
-        appBar: AppTopAppBar(
-          config: AppTopAppBarConfig(
-            variant: AppTopAppBarVariant.primary,
-            navigationIcon: AppTopAppBarNavigationIcon(
-              type: AppTopAppBarNavigationType.menu,
+        appBar: DSTopAppBar(
+          config: DSTopAppBarConfig(
+            variant: DSTopAppBarVariant.primary,
+            navigationIcon: DSTopAppBarNavigationIcon(
+              type: DSTopAppBarNavigationType.menu,
               tooltip: 'Menú principal',
               onPressed: () => _showSnackBar(context, 'Menú'),
             ),
-            actions: AppTopAppBarActions(
+            actions: DSTopAppBarActions(
               maxPrimary: 3,
               primary: [
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'search',
                   icon: const Icon(Icons.search),
                   tooltip: 'Buscar contenido',
                   onPressed: () => _showSnackBar(context, 'Buscar'),
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'notifications',
                   icon: const Icon(Icons.notifications),
                   tooltip: 'Notificaciones',
                   onPressed: () => _showSnackBar(context, 'Notificaciones'),
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'profile',
                   icon: const Icon(Icons.account_circle),
                   tooltip: 'Perfil de usuario',
                   onPressed: () => _showSnackBar(context, 'Perfil'),
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'settings',
                   icon: const Icon(Icons.settings),
                   tooltip: 'Configuración',
                   onPressed: () => _showSnackBar(context, 'Configuración'),
                 ),
-                AppTopAppBarAction(
+                DSTopAppBarAction(
                   id: 'help',
                   icon: const Icon(Icons.help),
                   tooltip: 'Ayuda',
@@ -356,11 +356,11 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
                 ),
               ],
             ),
-            colors: const AppTopAppBarColors(
+            colors: const DSTopAppBarColors(
               backgroundColor: Colors.indigo,
               foregroundColor: Colors.white,
             ),
-            elevation: const AppTopAppBarElevation(
+            elevation: const DSTopAppBarElevation(
               defaultElevation: 4.0,
               shadowColor: Colors.black26,
             ),
@@ -387,7 +387,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'AppTopAppBar Stories (${_currentStory + 1}/${_stories.length})',
+          'DSTopAppBar Stories (${_currentStory + 1}/${_stories.length})',
         ),
         backgroundColor: Theme.of(context).colorScheme.inverseSurface,
         foregroundColor: Theme.of(context).colorScheme.onInverseSurface,
@@ -463,7 +463,7 @@ class _AppTopAppBarStoriesState extends State<AppTopAppBarStories> {
             Text(_stories[_currentStory].description),
             const SizedBox(height: 16),
             const Text(
-              'Características del AppTopAppBar:',
+              'Características del DSTopAppBar:',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
@@ -572,12 +572,12 @@ class _DemoScaffold extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Información del AppTopAppBar',
+                      'Información del DSTopAppBar',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 12),
                     const Text(
-                      'AppTopAppBar es un componente de barra de aplicación avanzado que proporciona:',
+                      'DSTopAppBar es un componente de barra de aplicación avanzado que proporciona:',
                     ),
                     const SizedBox(height: 8),
                     const Text(

@@ -18,8 +18,8 @@ import 'package:flutter/material.dart';
 /// - Escala proporcional y predecible
 /// - Spacing responsive automático
 /// - Consistent vertical rhythm
-class AppSpacing {
-  AppSpacing._();
+class DSSpacing {
+  DSSpacing._();
 
   // ==========================================================================
   // UNIDAD BASE Y ESCALA DE ESPACIADO

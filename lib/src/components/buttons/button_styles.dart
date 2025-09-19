@@ -56,7 +56,7 @@ enum ButtonSize {
   large,
 }
 
-/// Sistema de estilos para AppButton
+/// Sistema de estilos para DSButton
 ///
 /// Proporciona estilos consistentes para todas las variantes y tama�os
 /// de botones en el Design System, incluyendo:
@@ -65,8 +65,8 @@ enum ButtonSize {
 /// - Estados interactivos (hover, pressed, disabled)
 /// - Animaciones y efectos visuales
 /// - Integraci�n completa con el tema
-class AppButtonStyles {
-  AppButtonStyles._();
+class DSButtonStyles {
+  DSButtonStyles._();
 
   // ==========================================================================
   // CONFIGURACIÓN DE TAMAÑOS
@@ -77,29 +77,29 @@ class AppButtonStyles {
         ButtonSize.small: ButtonSizeConfig(
           height: 32,
           minWidth: 64,
-          padding: AppSpacing.buttonPaddingSmall,
-          textStyle: AppTypography.labelSmall,
+          padding: DSSpacing.buttonPaddingSmall,
+          textStyle: DSTypography.labelSmall,
           iconSize: 16,
           borderRadius: 4.0,
-          spacing: AppSpacing.xxs,
+          spacing: DSSpacing.xxs,
         ),
         ButtonSize.medium: ButtonSizeConfig(
           height: 40,
           minWidth: 80,
-          padding: AppSpacing.buttonPadding,
-          textStyle: AppTypography.button,
+          padding: DSSpacing.buttonPadding,
+          textStyle: DSTypography.button,
           iconSize: 20,
           borderRadius: 6.0,
-          spacing: AppSpacing.xs,
+          spacing: DSSpacing.xs,
         ),
         ButtonSize.large: ButtonSizeConfig(
           height: 48,
           minWidth: 120,
-          padding: AppSpacing.buttonPaddingLarge,
-          textStyle: AppTypography.labelLarge,
+          padding: DSSpacing.buttonPaddingLarge,
+          textStyle: DSTypography.labelLarge,
           iconSize: 24,
           borderRadius: 8.0,
-          spacing: AppSpacing.unit,
+          spacing: DSSpacing.unit,
         ),
       };
 
@@ -136,10 +136,10 @@ class AppButtonStyles {
 
   /// Estilo para bot�n primary
   static ButtonStyle _primaryStyle(ButtonSizeConfig config, bool isDark) {
-    final primaryColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
+    final primaryColor = isDark ? DSColors.primaryDarkMode : DSColors.primary;
     final onPrimaryColor =
-        isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
-    final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;
+        isDark ? DSColors.backgroundDarkMode : DSColors.textOnColor;
+    final disabledColor = isDark ? DSColors.gray600 : DSColors.gray300;
 
     return ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
@@ -148,7 +148,7 @@ class AppButtonStyles {
       }),
       foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
         if (states.contains(WidgetState.disabled)) {
-          return isDark ? AppColors.gray400 : AppColors.textDisabled;
+          return isDark ? DSColors.gray400 : DSColors.textDisabled;
         }
         return onPrimaryColor;
       }),
@@ -162,11 +162,11 @@ class AppButtonStyles {
 
       // Sombra
       shadowColor:
-          WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
+          WidgetStateProperty.all(isDark ? Colors.black : DSColors.shadow),
 
       // Forma y tama�o
       shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+          RoundedRectangleBorder(borderRadius: DSTheme.radiusMd)),
       minimumSize:
           WidgetStateProperty.all(Size(config.minWidth, config.height)),
       maximumSize: WidgetStateProperty.all(Size.infinite),
@@ -176,7 +176,7 @@ class AppButtonStyles {
       textStyle: WidgetStateProperty.all(config.textStyle),
 
       // Animaciones
-      animationDuration: AppTheme.durationFast,
+      animationDuration: DSTheme.durationFast,
 
       // Splash
       splashFactory: InkRipple.splashFactory,
@@ -198,10 +198,10 @@ class AppButtonStyles {
   /// Estilo para bot�n secondary
   static ButtonStyle _secondaryStyle(ButtonSizeConfig config, bool isDark) {
     final secondaryColor =
-        isDark ? AppColors.secondaryDarkMode : AppColors.secondary;
+        isDark ? DSColors.secondaryDarkMode : DSColors.secondary;
     final onSecondaryColor =
-        isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
-    final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;
+        isDark ? DSColors.backgroundDarkMode : DSColors.textOnColor;
+    final disabledColor = isDark ? DSColors.gray600 : DSColors.gray300;
 
     return ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
@@ -210,7 +210,7 @@ class AppButtonStyles {
       }),
       foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
         if (states.contains(WidgetState.disabled)) {
-          return isDark ? AppColors.gray400 : AppColors.textDisabled;
+          return isDark ? DSColors.gray400 : DSColors.textDisabled;
         }
         return onSecondaryColor;
       }),
@@ -222,15 +222,15 @@ class AppButtonStyles {
         return 1;
       }),
       shadowColor:
-          WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
+          WidgetStateProperty.all(isDark ? Colors.black : DSColors.shadow),
       shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+          RoundedRectangleBorder(borderRadius: DSTheme.radiusMd)),
       minimumSize:
           WidgetStateProperty.all(Size(config.minWidth, config.height)),
       maximumSize: WidgetStateProperty.all(Size.infinite),
       padding: WidgetStateProperty.all(config.padding),
       textStyle: WidgetStateProperty.all(config.textStyle),
-      animationDuration: AppTheme.durationFast,
+      animationDuration: DSTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
       overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.hovered)) {
@@ -249,12 +249,12 @@ class AppButtonStyles {
 
   /// Estilo para bot�n outline
   static ButtonStyle _outlineStyle(ButtonSizeConfig config, bool isDark) {
-    final borderColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
-    final textColor = isDark ? AppColors.primaryDarkMode : AppColors.primary;
+    final borderColor = isDark ? DSColors.primaryDarkMode : DSColors.primary;
+    final textColor = isDark ? DSColors.primaryDarkMode : DSColors.primary;
     final backgroundColor = isDark ? Colors.transparent : Colors.transparent;
-    final disabledBorderColor = isDark ? AppColors.gray600 : AppColors.gray300;
+    final disabledBorderColor = isDark ? DSColors.gray600 : DSColors.gray300;
     final disabledTextColor =
-        isDark ? AppColors.gray400 : AppColors.textDisabled;
+        isDark ? DSColors.gray400 : DSColors.textDisabled;
 
     return ButtonStyle(
       backgroundColor: WidgetStateProperty.all(backgroundColor),
@@ -273,13 +273,13 @@ class AppButtonStyles {
       }),
       elevation: WidgetStateProperty.all(0),
       shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+          RoundedRectangleBorder(borderRadius: DSTheme.radiusMd)),
       minimumSize:
           WidgetStateProperty.all(Size(config.minWidth, config.height)),
       maximumSize: WidgetStateProperty.all(Size.infinite),
       padding: WidgetStateProperty.all(config.padding),
       textStyle: WidgetStateProperty.all(config.textStyle),
-      animationDuration: AppTheme.durationFast,
+      animationDuration: DSTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
       overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.hovered)) {
@@ -299,9 +299,9 @@ class AppButtonStyles {
   /// Estilo para bot�n ghost
   static ButtonStyle _ghostStyle(ButtonSizeConfig config, bool isDark) {
     final textColor =
-        isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary;
+        isDark ? DSColors.textPrimaryDarkMode : DSColors.textPrimary;
     final disabledTextColor =
-        isDark ? AppColors.gray400 : AppColors.textDisabled;
+        isDark ? DSColors.gray400 : DSColors.textDisabled;
 
     return ButtonStyle(
       backgroundColor: WidgetStateProperty.all(Colors.transparent),
@@ -311,13 +311,13 @@ class AppButtonStyles {
       }),
       elevation: WidgetStateProperty.all(0),
       shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+          RoundedRectangleBorder(borderRadius: DSTheme.radiusMd)),
       minimumSize:
           WidgetStateProperty.all(Size(config.minWidth, config.height)),
       maximumSize: WidgetStateProperty.all(Size.infinite),
       padding: WidgetStateProperty.all(config.padding),
       textStyle: WidgetStateProperty.all(config.textStyle),
-      animationDuration: AppTheme.durationFast,
+      animationDuration: DSTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
       overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.hovered)) {
@@ -336,10 +336,10 @@ class AppButtonStyles {
 
   /// Estilo para bot�n danger
   static ButtonStyle _dangerStyle(ButtonSizeConfig config, bool isDark) {
-    final dangerColor = isDark ? AppColors.errorDarkMode : AppColors.error;
+    final dangerColor = isDark ? DSColors.errorDarkMode : DSColors.error;
     final onDangerColor =
-        isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
-    final disabledColor = isDark ? AppColors.gray600 : AppColors.gray300;
+        isDark ? DSColors.backgroundDarkMode : DSColors.textOnColor;
+    final disabledColor = isDark ? DSColors.gray600 : DSColors.gray300;
 
     return ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
@@ -348,7 +348,7 @@ class AppButtonStyles {
       }),
       foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
         if (states.contains(WidgetState.disabled)) {
-          return isDark ? AppColors.gray400 : AppColors.textDisabled;
+          return isDark ? DSColors.gray400 : DSColors.textDisabled;
         }
         return onDangerColor;
       }),
@@ -360,15 +360,15 @@ class AppButtonStyles {
         return 2;
       }),
       shadowColor:
-          WidgetStateProperty.all(isDark ? Colors.black : AppColors.shadow),
+          WidgetStateProperty.all(isDark ? Colors.black : DSColors.shadow),
       shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: AppTheme.radiusMd)),
+          RoundedRectangleBorder(borderRadius: DSTheme.radiusMd)),
       minimumSize:
           WidgetStateProperty.all(Size(config.minWidth, config.height)),
       maximumSize: WidgetStateProperty.all(Size.infinite),
       padding: WidgetStateProperty.all(config.padding),
       textStyle: WidgetStateProperty.all(config.textStyle),
-      animationDuration: AppTheme.durationFast,
+      animationDuration: DSTheme.durationFast,
       splashFactory: InkRipple.splashFactory,
       overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.hovered)) {
@@ -395,13 +395,13 @@ class AppButtonStyles {
   }
 
   /// Duraci�n de animaci�n para hover effects
-  static Duration get hoverAnimationDuration => AppTheme.durationFast;
+  static Duration get hoverAnimationDuration => DSTheme.durationFast;
 
   /// Duraci�n de animaci�n para tap effects
-  static Duration get tapAnimationDuration => AppTheme.durationExtraFast;
+  static Duration get tapAnimationDuration => DSTheme.durationExtraFast;
 
   /// Curva de animaci�n para efectos interactivos
-  static Curve get interactionCurve => AppTheme.curveStandard;
+  static Curve get interactionCurve => DSTheme.curveStandard;
 
   // ==========================================================================
   // UTILIDADES DE COLOR
@@ -411,20 +411,20 @@ class AppButtonStyles {
   static Color getTextColor(
       ButtonVariant variant, bool isDark, bool isDisabled) {
     if (isDisabled) {
-      return isDark ? AppColors.gray400 : AppColors.textDisabled;
+      return isDark ? DSColors.gray400 : DSColors.textDisabled;
     }
 
     switch (variant) {
       case ButtonVariant.primary:
-        return isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
+        return isDark ? DSColors.backgroundDarkMode : DSColors.textOnColor;
       case ButtonVariant.secondary:
-        return isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
+        return isDark ? DSColors.backgroundDarkMode : DSColors.textOnColor;
       case ButtonVariant.outline:
-        return isDark ? AppColors.primaryDarkMode : AppColors.primary;
+        return isDark ? DSColors.primaryDarkMode : DSColors.primary;
       case ButtonVariant.ghost:
-        return isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary;
+        return isDark ? DSColors.textPrimaryDarkMode : DSColors.textPrimary;
       case ButtonVariant.danger:
-        return isDark ? AppColors.backgroundDarkMode : AppColors.textOnColor;
+        return isDark ? DSColors.backgroundDarkMode : DSColors.textOnColor;
     }
   }
 
@@ -432,20 +432,20 @@ class AppButtonStyles {
   static Color getBackgroundColor(
       ButtonVariant variant, bool isDark, bool isDisabled) {
     if (isDisabled) {
-      return isDark ? AppColors.gray600 : AppColors.gray300;
+      return isDark ? DSColors.gray600 : DSColors.gray300;
     }
 
     switch (variant) {
       case ButtonVariant.primary:
-        return isDark ? AppColors.primaryDarkMode : AppColors.primary;
+        return isDark ? DSColors.primaryDarkMode : DSColors.primary;
       case ButtonVariant.secondary:
-        return isDark ? AppColors.secondaryDarkMode : AppColors.secondary;
+        return isDark ? DSColors.secondaryDarkMode : DSColors.secondary;
       case ButtonVariant.outline:
         return Colors.transparent;
       case ButtonVariant.ghost:
         return Colors.transparent;
       case ButtonVariant.danger:
-        return isDark ? AppColors.errorDarkMode : AppColors.error;
+        return isDark ? DSColors.errorDarkMode : DSColors.error;
     }
   }
 

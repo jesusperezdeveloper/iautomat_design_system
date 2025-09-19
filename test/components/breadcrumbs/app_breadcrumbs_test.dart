@@ -3,35 +3,35 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppBreadcrumbs', () {
+  group('DSBreadcrumbs', () {
     const defaultItems = [
-      AppBreadcrumbItem(
+      DSBreadcrumbItem(
         id: 'home',
         title: 'Inicio',
         icon: Icon(Icons.home, size: 16),
-        type: AppBreadcrumbType.icon,
+        type: DSBreadcrumbType.icon,
       ),
-      AppBreadcrumbItem(
+      DSBreadcrumbItem(
         id: 'products',
         title: 'Productos',
-        type: AppBreadcrumbType.text,
+        type: DSBreadcrumbType.text,
       ),
-      AppBreadcrumbItem(
+      DSBreadcrumbItem(
         id: 'electronics',
         title: 'Electrónicos',
-        type: AppBreadcrumbType.text,
+        type: DSBreadcrumbType.text,
       ),
     ];
 
     Widget createBreadcrumbsApp({
-      AppBreadcrumbsConfig? config,
-      List<AppBreadcrumbItem>? items,
-      ValueChanged<AppBreadcrumbItem>? onTap,
+      DSBreadcrumbsConfig? config,
+      List<DSBreadcrumbItem>? items,
+      ValueChanged<DSBreadcrumbItem>? onTap,
     }) {
       return MaterialApp(
         home: Scaffold(
-          body: AppBreadcrumbs(
-            config: config ?? const AppBreadcrumbsConfig(),
+          body: DSBreadcrumbs(
+            config: config ?? const DSBreadcrumbsConfig(),
             items: items,
             onTap: onTap,
           ),
@@ -51,8 +51,8 @@ void main() {
 
     testWidgets('shows loading state correctly', (tester) async {
       await tester.pumpWidget(createBreadcrumbsApp(
-        config: const AppBreadcrumbsConfig(
-          state: AppBreadcrumbsState.loading,
+        config: const DSBreadcrumbsConfig(
+          state: DSBreadcrumbsState.loading,
         ),
         items: defaultItems,
       ));
@@ -64,8 +64,8 @@ void main() {
 
     testWidgets('shows skeleton state correctly', (tester) async {
       await tester.pumpWidget(createBreadcrumbsApp(
-        config: const AppBreadcrumbsConfig(
-          state: AppBreadcrumbsState.skeleton,
+        config: const DSBreadcrumbsConfig(
+          state: DSBreadcrumbsState.skeleton,
         ),
         items: defaultItems,
       ));
@@ -83,12 +83,12 @@ void main() {
 
     testWidgets('shows home item when showHome is true', (tester) async {
       await tester.pumpWidget(createBreadcrumbsApp(
-        config: const AppBreadcrumbsConfig(showHome: true),
+        config: const DSBreadcrumbsConfig(showHome: true),
         items: [
-          const AppBreadcrumbItem(
+          const DSBreadcrumbItem(
             id: 'products',
             title: 'Productos',
-            type: AppBreadcrumbType.text,
+            type: DSBreadcrumbType.text,
           ),
         ],
       ));
@@ -99,7 +99,7 @@ void main() {
     });
 
     testWidgets('handles item tap correctly', (tester) async {
-      AppBreadcrumbItem? tappedItem;
+      DSBreadcrumbItem? tappedItem;
 
       await tester.pumpWidget(createBreadcrumbsApp(
         items: defaultItems,
@@ -136,8 +136,8 @@ void main() {
       bool wasTapped = false;
 
       await tester.pumpWidget(createBreadcrumbsApp(
-        config: const AppBreadcrumbsConfig(
-          state: AppBreadcrumbsState.disabled,
+        config: const DSBreadcrumbsConfig(
+          state: DSBreadcrumbsState.disabled,
         ),
         items: defaultItems,
         onTap: (item) {
@@ -154,46 +154,46 @@ void main() {
 
     group('Collapsing variant', () {
       const longItems = [
-        AppBreadcrumbItem(
+        DSBreadcrumbItem(
           id: 'home',
           title: 'Inicio',
-          type: AppBreadcrumbType.text,
+          type: DSBreadcrumbType.text,
         ),
-        AppBreadcrumbItem(
+        DSBreadcrumbItem(
           id: 'level1',
           title: 'Nivel 1',
-          type: AppBreadcrumbType.text,
+          type: DSBreadcrumbType.text,
         ),
-        AppBreadcrumbItem(
+        DSBreadcrumbItem(
           id: 'level2',
           title: 'Nivel 2',
-          type: AppBreadcrumbType.text,
+          type: DSBreadcrumbType.text,
         ),
-        AppBreadcrumbItem(
+        DSBreadcrumbItem(
           id: 'level3',
           title: 'Nivel 3',
-          type: AppBreadcrumbType.text,
+          type: DSBreadcrumbType.text,
         ),
-        AppBreadcrumbItem(
+        DSBreadcrumbItem(
           id: 'level4',
           title: 'Nivel 4',
-          type: AppBreadcrumbType.text,
+          type: DSBreadcrumbType.text,
         ),
-        AppBreadcrumbItem(
+        DSBreadcrumbItem(
           id: 'current',
           title: 'Actual',
-          type: AppBreadcrumbType.text,
+          type: DSBreadcrumbType.text,
         ),
       ];
 
       testWidgets('shows ellipsis when items exceed maxVisibleItems',
           (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
-          config: const AppBreadcrumbsConfig(
-            variant: AppBreadcrumbsVariant.collapsing,
+          config: const DSBreadcrumbsConfig(
+            variant: DSBreadcrumbsVariant.collapsing,
             maxVisibleItems: 3,
-            behavior: AppBreadcrumbsBehavior(
-              collapseMode: AppBreadcrumbsCollapseMode.ellipsis,
+            behavior: DSBreadcrumbsBehavior(
+              collapseMode: DSBreadcrumbsCollapseMode.ellipsis,
             ),
           ),
           items: longItems,
@@ -208,11 +208,11 @@ void main() {
       testWidgets('shows dropdown when collapse mode is dropdown',
           (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
-          config: const AppBreadcrumbsConfig(
-            variant: AppBreadcrumbsVariant.collapsing,
+          config: const DSBreadcrumbsConfig(
+            variant: DSBreadcrumbsVariant.collapsing,
             maxVisibleItems: 3,
-            behavior: AppBreadcrumbsBehavior(
-              collapseMode: AppBreadcrumbsCollapseMode.dropdown,
+            behavior: DSBreadcrumbsBehavior(
+              collapseMode: DSBreadcrumbsCollapseMode.dropdown,
             ),
           ),
           items: longItems,
@@ -220,16 +220,16 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byIcon(Icons.more_horiz), findsOneWidget);
-        expect(find.byType(PopupMenuButton<AppBreadcrumbItem>), findsOneWidget);
+        expect(find.byType(PopupMenuButton<DSBreadcrumbItem>), findsOneWidget);
       });
 
       testWidgets('opens dropdown menu on tap', (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
-          config: const AppBreadcrumbsConfig(
-            variant: AppBreadcrumbsVariant.collapsing,
+          config: const DSBreadcrumbsConfig(
+            variant: DSBreadcrumbsVariant.collapsing,
             maxVisibleItems: 3,
-            behavior: AppBreadcrumbsBehavior(
-              collapseMode: AppBreadcrumbsCollapseMode.dropdown,
+            behavior: DSBreadcrumbsBehavior(
+              collapseMode: DSBreadcrumbsCollapseMode.dropdown,
             ),
           ),
           items: longItems,
@@ -246,8 +246,8 @@ void main() {
       testWidgets('does not show collapse indicator when items fit',
           (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
-          config: const AppBreadcrumbsConfig(
-            variant: AppBreadcrumbsVariant.collapsing,
+          config: const DSBreadcrumbsConfig(
+            variant: DSBreadcrumbsVariant.collapsing,
             maxVisibleItems: 5,
           ),
           items: defaultItems,
@@ -269,9 +269,9 @@ void main() {
 
       testWidgets('shows custom separator when provided', (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
-          config: const AppBreadcrumbsConfig(
-            separator: AppBreadcrumbSeparator(
-              type: AppBreadcrumbSeparatorType.slash,
+          config: const DSBreadcrumbsConfig(
+            separator: DSBreadcrumbSeparator(
+              type: DSBreadcrumbSeparatorType.slash,
             ),
           ),
           items: defaultItems,
@@ -283,9 +283,9 @@ void main() {
 
       testWidgets('shows text separator when provided', (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
-          config: const AppBreadcrumbsConfig(
-            separator: AppBreadcrumbSeparator(
-              type: AppBreadcrumbSeparatorType.custom,
+          config: const DSBreadcrumbsConfig(
+            separator: DSBreadcrumbSeparator(
+              type: DSBreadcrumbSeparatorType.custom,
               text: ' > ',
             ),
           ),
@@ -300,10 +300,10 @@ void main() {
     group('Item types', () {
       testWidgets('renders text-only items correctly', (tester) async {
         const items = [
-          AppBreadcrumbItem(
+          DSBreadcrumbItem(
             id: 'text',
             title: 'Text Item',
-            type: AppBreadcrumbType.text,
+            type: DSBreadcrumbType.text,
           ),
         ];
 
@@ -315,11 +315,11 @@ void main() {
 
       testWidgets('renders icon-only items correctly', (tester) async {
         const items = [
-          AppBreadcrumbItem(
+          DSBreadcrumbItem(
             id: 'icon',
             title: 'Icon Item',
             icon: Icon(Icons.folder, size: 16),
-            type: AppBreadcrumbType.icon,
+            type: DSBreadcrumbType.icon,
           ),
         ];
 
@@ -331,11 +331,11 @@ void main() {
 
       testWidgets('renders text with icon items correctly', (tester) async {
         const items = [
-          AppBreadcrumbItem(
+          DSBreadcrumbItem(
             id: 'textWithIcon',
             title: 'Text with Icon',
             icon: Icon(Icons.star, size: 16),
-            type: AppBreadcrumbType.textWithIcon,
+            type: DSBreadcrumbType.textWithIcon,
           ),
         ];
 
@@ -351,7 +351,7 @@ void main() {
       testWidgets('applies RTL directionality when isRtl is true',
           (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
-          config: const AppBreadcrumbsConfig(isRtl: true),
+          config: const DSBreadcrumbsConfig(isRtl: true),
           items: defaultItems,
         ));
         await tester.pumpAndSettle();
@@ -376,7 +376,7 @@ void main() {
       testWidgets('provides semantic labels when a11y is enabled',
           (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
-          config: const AppBreadcrumbsConfig(enableA11y: true),
+          config: const DSBreadcrumbsConfig(enableA11y: true),
           items: defaultItems,
         ));
         await tester.pumpAndSettle();
@@ -386,15 +386,15 @@ void main() {
 
       testWidgets('provides tooltips when enabled', (tester) async {
         await tester.pumpWidget(createBreadcrumbsApp(
-          config: const AppBreadcrumbsConfig(
-            behavior: AppBreadcrumbsBehavior(showTooltips: true),
+          config: const DSBreadcrumbsConfig(
+            behavior: DSBreadcrumbsBehavior(showTooltips: true),
           ),
           items: [
-            const AppBreadcrumbItem(
+            const DSBreadcrumbItem(
               id: 'item',
               title: 'Item',
               tooltip: 'Item tooltip',
-              type: AppBreadcrumbType.text,
+              type: DSBreadcrumbType.text,
             ),
           ],
         ));

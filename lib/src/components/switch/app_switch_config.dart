@@ -4,31 +4,31 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_switch_config.freezed.dart';
 
 @freezed
-class AppSwitchConfig with _$AppSwitchConfig {
-  const factory AppSwitchConfig({
-    @Default(AppSwitchVariant.android) AppSwitchVariant variant,
-    @Default(AppSwitchState.defaultState) AppSwitchState state,
+class DSSwitchConfig with _$DSSwitchConfig {
+  const factory DSSwitchConfig({
+    @Default(DSSwitchVariant.android) DSSwitchVariant variant,
+    @Default(DSSwitchState.defaultState) DSSwitchState state,
     @Default(false) bool value,
     @Default(true) bool isAdaptive,
     @Default(false) bool isRtl,
     @Default(true) bool enableA11y,
     @Default(true) bool enableKeyboardSupport,
     @Default(true) bool isInteractive,
-    AppSwitchColors? colors,
-    AppSwitchSpacing? spacing,
-    AppSwitchElevation? elevation,
-    AppSwitchBehavior? behavior,
-    AppSwitchAnimation? animation,
+    DSSwitchColors? colors,
+    DSSwitchSpacing? spacing,
+    DSSwitchElevation? elevation,
+    DSSwitchBehavior? behavior,
+    DSSwitchAnimation? animation,
     ValueChanged<bool>? onChanged,
     ValueChanged<bool>? onHover,
     ValueChanged<bool>? onFocusChange,
     String? semanticsLabel,
-  }) = _AppSwitchConfig;
+  }) = _DSSwitchConfig;
 }
 
 @freezed
-class AppSwitchColors with _$AppSwitchColors {
-  const factory AppSwitchColors({
+class DSSwitchColors with _$DSSwitchColors {
+  const factory DSSwitchColors({
     Color? activeTrackColor,
     Color? inactiveTrackColor,
     Color? activeThumbColor,
@@ -46,8 +46,8 @@ class AppSwitchColors with _$AppSwitchColors {
 }
 
 @freezed
-class AppSwitchSpacing with _$AppSwitchSpacing {
-  const factory AppSwitchSpacing({
+class DSSwitchSpacing with _$DSSwitchSpacing {
+  const factory DSSwitchSpacing({
     @Default(14.0) double thumbRadius,
     @Default(20.0) double trackHeight,
     @Default(52.0) double trackWidth,
@@ -57,8 +57,8 @@ class AppSwitchSpacing with _$AppSwitchSpacing {
 }
 
 @freezed
-class AppSwitchElevation with _$AppSwitchElevation {
-  const factory AppSwitchElevation({
+class DSSwitchElevation with _$DSSwitchElevation {
+  const factory DSSwitchElevation({
     @Default(1.0) double defaultElevation,
     @Default(2.0) double hoveredElevation,
     @Default(3.0) double pressedElevation,
@@ -70,8 +70,8 @@ class AppSwitchElevation with _$AppSwitchElevation {
 }
 
 @freezed
-class AppSwitchBehavior with _$AppSwitchBehavior {
-  const factory AppSwitchBehavior({
+class DSSwitchBehavior with _$DSSwitchBehavior {
+  const factory DSSwitchBehavior({
     @Default(true) bool enableHapticFeedback,
     @Default(true) bool enableRipple,
     @Default(true) bool enableHover,
@@ -85,9 +85,9 @@ class AppSwitchBehavior with _$AppSwitchBehavior {
 }
 
 @freezed
-class AppSwitchAnimation with _$AppSwitchAnimation {
-  const factory AppSwitchAnimation({
-    @Default(AppSwitchAnimationType.slide) AppSwitchAnimationType type,
+class DSSwitchAnimation with _$DSSwitchAnimation {
+  const factory DSSwitchAnimation({
+    @Default(DSSwitchAnimationType.slide) DSSwitchAnimationType type,
     @Default(200) int duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(true) bool enableStateTransitions,
@@ -97,12 +97,12 @@ class AppSwitchAnimation with _$AppSwitchAnimation {
   }) = _AppSwitchAnimation;
 }
 
-enum AppSwitchVariant {
+enum DSSwitchVariant {
   android,
   cupertino,
 }
 
-enum AppSwitchState {
+enum DSSwitchState {
   defaultState,
   hover,
   pressed,
@@ -113,137 +113,137 @@ enum AppSwitchState {
   skeleton,
 }
 
-enum AppSwitchAnimationType {
+enum DSSwitchAnimationType {
   none,
   slide,
   fade,
   scale,
 }
 
-extension AppSwitchVariantExtension on AppSwitchVariant {
+extension DSSwitchVariantExtension on DSSwitchVariant {
   String get displayName {
     switch (this) {
-      case AppSwitchVariant.android:
+      case DSSwitchVariant.android:
         return 'Android';
-      case AppSwitchVariant.cupertino:
+      case DSSwitchVariant.cupertino:
         return 'Cupertino';
     }
   }
 
   String get description {
     switch (this) {
-      case AppSwitchVariant.android:
+      case DSSwitchVariant.android:
         return 'Switch estilo Material Design para Android';
-      case AppSwitchVariant.cupertino:
+      case DSSwitchVariant.cupertino:
         return 'Switch estilo iOS/Cupertino';
     }
   }
 
   bool get isCupertino {
-    return this == AppSwitchVariant.cupertino;
+    return this == DSSwitchVariant.cupertino;
   }
 
   bool get isAndroid {
-    return this == AppSwitchVariant.android;
+    return this == DSSwitchVariant.android;
   }
 
   Color getActiveTrackColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppSwitchVariant.android:
+      case DSSwitchVariant.android:
         return colorScheme.primary;
-      case AppSwitchVariant.cupertino:
+      case DSSwitchVariant.cupertino:
         return colorScheme.primary;
     }
   }
 
   Color getInactiveTrackColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppSwitchVariant.android:
+      case DSSwitchVariant.android:
         return colorScheme.surfaceContainerHighest;
-      case AppSwitchVariant.cupertino:
+      case DSSwitchVariant.cupertino:
         return colorScheme.outline;
     }
   }
 
   Color getActiveThumbColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppSwitchVariant.android:
+      case DSSwitchVariant.android:
         return colorScheme.onPrimary;
-      case AppSwitchVariant.cupertino:
+      case DSSwitchVariant.cupertino:
         return colorScheme.onPrimary;
     }
   }
 
   Color getInactiveThumbColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppSwitchVariant.android:
+      case DSSwitchVariant.android:
         return colorScheme.outline;
-      case AppSwitchVariant.cupertino:
+      case DSSwitchVariant.cupertino:
         return colorScheme.onSurfaceVariant;
     }
   }
 }
 
-extension AppSwitchStateExtension on AppSwitchState {
+extension DSSwitchStateExtension on DSSwitchState {
   String get displayName {
     switch (this) {
-      case AppSwitchState.defaultState:
+      case DSSwitchState.defaultState:
         return 'Default';
-      case AppSwitchState.hover:
+      case DSSwitchState.hover:
         return 'Hover';
-      case AppSwitchState.pressed:
+      case DSSwitchState.pressed:
         return 'Pressed';
-      case AppSwitchState.focus:
+      case DSSwitchState.focus:
         return 'Focus';
-      case AppSwitchState.selected:
+      case DSSwitchState.selected:
         return 'Selected';
-      case AppSwitchState.disabled:
+      case DSSwitchState.disabled:
         return 'Disabled';
-      case AppSwitchState.loading:
+      case DSSwitchState.loading:
         return 'Loading';
-      case AppSwitchState.skeleton:
+      case DSSwitchState.skeleton:
         return 'Skeleton';
     }
   }
 
   bool get isInteractive {
     switch (this) {
-      case AppSwitchState.defaultState:
-      case AppSwitchState.hover:
-      case AppSwitchState.pressed:
-      case AppSwitchState.focus:
-      case AppSwitchState.selected:
+      case DSSwitchState.defaultState:
+      case DSSwitchState.hover:
+      case DSSwitchState.pressed:
+      case DSSwitchState.focus:
+      case DSSwitchState.selected:
         return true;
-      case AppSwitchState.disabled:
-      case AppSwitchState.loading:
-      case AppSwitchState.skeleton:
+      case DSSwitchState.disabled:
+      case DSSwitchState.loading:
+      case DSSwitchState.skeleton:
         return false;
     }
   }
 
   double get opacity {
     switch (this) {
-      case AppSwitchState.defaultState:
-      case AppSwitchState.hover:
-      case AppSwitchState.pressed:
-      case AppSwitchState.focus:
-      case AppSwitchState.selected:
+      case DSSwitchState.defaultState:
+      case DSSwitchState.hover:
+      case DSSwitchState.pressed:
+      case DSSwitchState.focus:
+      case DSSwitchState.selected:
         return 1.0;
-      case AppSwitchState.disabled:
+      case DSSwitchState.disabled:
         return 0.38;
-      case AppSwitchState.loading:
+      case DSSwitchState.loading:
         return 0.8;
-      case AppSwitchState.skeleton:
+      case DSSwitchState.skeleton:
         return 0.3;
     }
   }
 
   bool get showsLoader {
-    return this == AppSwitchState.loading;
+    return this == DSSwitchState.loading;
   }
 
   bool get showsSkeleton {
-    return this == AppSwitchState.skeleton;
+    return this == DSSwitchState.skeleton;
   }
 
   bool get canInteract {
@@ -252,53 +252,53 @@ extension AppSwitchStateExtension on AppSwitchState {
 
   double get elevationMultiplier {
     switch (this) {
-      case AppSwitchState.defaultState:
+      case DSSwitchState.defaultState:
         return 1.0;
-      case AppSwitchState.hover:
+      case DSSwitchState.hover:
         return 1.5;
-      case AppSwitchState.pressed:
+      case DSSwitchState.pressed:
         return 2.0;
-      case AppSwitchState.focus:
+      case DSSwitchState.focus:
         return 1.5;
-      case AppSwitchState.selected:
+      case DSSwitchState.selected:
         return 1.8;
-      case AppSwitchState.disabled:
+      case DSSwitchState.disabled:
         return 0.0;
-      case AppSwitchState.loading:
-      case AppSwitchState.skeleton:
+      case DSSwitchState.loading:
+      case DSSwitchState.skeleton:
         return 1.0;
     }
   }
 }
 
-extension AppSwitchAnimationTypeExtension on AppSwitchAnimationType {
+extension DSSwitchAnimationTypeExtension on DSSwitchAnimationType {
   String get displayName {
     switch (this) {
-      case AppSwitchAnimationType.none:
+      case DSSwitchAnimationType.none:
         return 'None';
-      case AppSwitchAnimationType.slide:
+      case DSSwitchAnimationType.slide:
         return 'Slide';
-      case AppSwitchAnimationType.fade:
+      case DSSwitchAnimationType.fade:
         return 'Fade';
-      case AppSwitchAnimationType.scale:
+      case DSSwitchAnimationType.scale:
         return 'Scale';
     }
   }
 
   Curve get defaultCurve {
     switch (this) {
-      case AppSwitchAnimationType.none:
+      case DSSwitchAnimationType.none:
         return Curves.linear;
-      case AppSwitchAnimationType.slide:
+      case DSSwitchAnimationType.slide:
         return Curves.easeInOut;
-      case AppSwitchAnimationType.fade:
+      case DSSwitchAnimationType.fade:
         return Curves.easeInOut;
-      case AppSwitchAnimationType.scale:
+      case DSSwitchAnimationType.scale:
         return Curves.elasticOut;
     }
   }
 
   bool get hasAnimation {
-    return this != AppSwitchAnimationType.none;
+    return this != DSSwitchAnimationType.none;
   }
 }

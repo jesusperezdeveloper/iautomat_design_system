@@ -5,33 +5,33 @@ import 'package:flutter/services.dart';
 
 import 'app_profile_preferences_config.dart';
 
-/// Adaptador para comportamiento específico de plataforma en AppProfilePreferences
+/// Adaptador para comportamiento específico de plataforma en DSProfilePreferences
 ///
 /// Maneja diferencias entre Android, iOS y Web para optimizar UX
-class AppProfilePreferencesPlatformAdapter {
-  final AppProfilePreferencesConfig config;
+class DSProfilePreferencesPlatformAdapter {
+  final DSProfilePreferencesConfig config;
   final BuildContext context;
 
-  AppProfilePreferencesPlatformAdapter({
+  DSProfilePreferencesPlatformAdapter({
     required this.config,
     required this.context,
   });
 
   /// Configura el manejo del teclado según la plataforma
   void setupKeyboardHandling() {
-    final behavior = config.behavior ?? const AppProfileBehavior();
+    final behavior = config.behavior ?? const DSProfileBehavior();
 
     switch (behavior.keyboardBehavior) {
-      case AppProfileKeyboardBehavior.adaptive:
+      case DSProfileKeyboardBehavior.adaptive:
         _setupAdaptiveKeyboard();
         break;
-      case AppProfileKeyboardBehavior.alwaysVisible:
+      case DSProfileKeyboardBehavior.alwaysVisible:
         _setupAlwaysVisibleKeyboard();
         break;
-      case AppProfileKeyboardBehavior.dismissOnScroll:
+      case DSProfileKeyboardBehavior.dismissOnScroll:
         _setupDismissOnScrollKeyboard();
         break;
-      case AppProfileKeyboardBehavior.dismissOnTap:
+      case DSProfileKeyboardBehavior.dismissOnTap:
         _setupDismissOnTapKeyboard();
         break;
     }
@@ -106,7 +106,7 @@ class AppProfilePreferencesPlatformAdapter {
   /// Obtiene el padding seguro según la plataforma
   EdgeInsets getSafePadding() {
     final mediaQuery = MediaQuery.of(context);
-    final spacing = config.spacing ?? const AppProfileSpacing();
+    final spacing = config.spacing ?? const DSProfileSpacing();
 
     EdgeInsets basePadding = spacing.screenPadding;
 
@@ -128,18 +128,18 @@ class AppProfilePreferencesPlatformAdapter {
 
   /// Obtiene el comportamiento de scroll según la plataforma
   ScrollPhysics getScrollPhysics() {
-    final behavior = config.behavior ?? const AppProfileBehavior();
+    final behavior = config.behavior ?? const DSProfileBehavior();
 
     switch (behavior.scrollBehavior) {
-      case AppProfileScrollBehavior.adaptive:
+      case DSProfileScrollBehavior.adaptive:
         if (isIOS) {
           return const BouncingScrollPhysics();
         } else {
           return const ClampingScrollPhysics();
         }
-      case AppProfileScrollBehavior.smooth:
+      case DSProfileScrollBehavior.smooth:
         return const BouncingScrollPhysics();
-      case AppProfileScrollBehavior.clamping:
+      case DSProfileScrollBehavior.clamping:
         return const ClampingScrollPhysics();
     }
   }
@@ -180,7 +180,7 @@ class AppProfilePreferencesPlatformAdapter {
 
   /// Obtiene la duración de animación optimizada para la plataforma
   Duration getOptimizedAnimationDuration() {
-    final animation = config.animation ?? const AppProfileAnimation();
+    final animation = config.animation ?? const DSProfileAnimation();
 
     if (isIOS) {
       return Duration(
@@ -199,7 +199,7 @@ class AppProfilePreferencesPlatformAdapter {
 
   /// Obtiene la curva de animación optimizada para la plataforma
   Curve getOptimizedAnimationCurve() {
-    final animation = config.animation ?? const AppProfileAnimation();
+    final animation = config.animation ?? const DSProfileAnimation();
 
     if (isIOS) {
       return Curves.easeInOutCubic;

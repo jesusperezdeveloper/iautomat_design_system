@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppDividerStory extends StatefulWidget {
-  const AppDividerStory({super.key});
+class DSDividerStory extends StatefulWidget {
+  const DSDividerStory({super.key});
 
   @override
-  State<AppDividerStory> createState() => _AppDividerStoryState();
+  State<DSDividerStory> createState() => _DSDividerStoryState();
 }
 
-class _AppDividerStoryState extends State<AppDividerStory> {
-  AppDividerState _selectedState = AppDividerState.defaultState;
-  AppDividerVariant _selectedVariant = AppDividerVariant.full;
-  AppDividerOrientation _selectedOrientation = AppDividerOrientation.horizontal;
+class _DSDividerStoryState extends State<DSDividerStory> {
+  DSDividerState _selectedState = DSDividerState.defaultState;
+  DSDividerVariant _selectedVariant = DSDividerVariant.full;
+  DSDividerOrientation _selectedOrientation = DSDividerOrientation.horizontal;
   bool _interactive = false;
   bool _showDebugInfo = false;
   double _thickness = 1.0;
@@ -21,7 +21,7 @@ class _AppDividerStoryState extends State<AppDividerStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppDivider Examples'),
+        title: const Text('DSDivider Examples'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -57,10 +57,10 @@ class _AppDividerStoryState extends State<AppDividerStory> {
             const SizedBox(height: 16),
 
             // Variant Control
-            DropdownButtonFormField<AppDividerVariant>(
+            DropdownButtonFormField<DSDividerVariant>(
               initialValue: _selectedVariant,
               decoration: const InputDecoration(labelText: 'Variante'),
-              items: AppDividerVariant.values.map((variant) {
+              items: DSDividerVariant.values.map((variant) {
                 return DropdownMenuItem(
                   value: variant,
                   child: Text(variant.name),
@@ -77,10 +77,10 @@ class _AppDividerStoryState extends State<AppDividerStory> {
             const SizedBox(height: 16),
 
             // State Control
-            DropdownButtonFormField<AppDividerState>(
+            DropdownButtonFormField<DSDividerState>(
               initialValue: _selectedState,
               decoration: const InputDecoration(labelText: 'Estado'),
-              items: AppDividerState.values.map((state) {
+              items: DSDividerState.values.map((state) {
                 return DropdownMenuItem(
                   value: state,
                   child: Text(state.displayName),
@@ -97,10 +97,10 @@ class _AppDividerStoryState extends State<AppDividerStory> {
             const SizedBox(height: 16),
 
             // Orientation Control
-            DropdownButtonFormField<AppDividerOrientation>(
+            DropdownButtonFormField<DSDividerOrientation>(
               initialValue: _selectedOrientation,
               decoration: const InputDecoration(labelText: 'Orientación'),
-              items: AppDividerOrientation.values.map((orientation) {
+              items: DSDividerOrientation.values.map((orientation) {
                 return DropdownMenuItem(
                   value: orientation,
                   child: Text(orientation.name),
@@ -244,7 +244,7 @@ class _AppDividerStoryState extends State<AppDividerStory> {
                       children: [
                         const Text('Contenido superior'),
                         Expanded(
-                          child: AppDivider(
+                          child: DSDivider(
                             config: _buildCurrentConfig(),
                             interactive: _interactive,
                             onTap: _interactive
@@ -269,7 +269,7 @@ class _AppDividerStoryState extends State<AppDividerStory> {
                   : Row(
                       children: [
                         const Text('Izquierda'),
-                        AppDivider(
+                        DSDivider(
                           config: _buildCurrentConfig(),
                           interactive: _interactive,
                           onTap: _interactive
@@ -297,14 +297,14 @@ class _AppDividerStoryState extends State<AppDividerStory> {
     );
   }
 
-  AppDividerConfig _buildCurrentConfig() {
-    return AppDividerConfig(
+  DSDividerConfig _buildCurrentConfig() {
+    return DSDividerConfig(
       variant: _selectedVariant,
       state: _selectedState,
       orientation: _selectedOrientation,
       thickness: _thickness,
       color: _selectedColor,
-      behavior: AppDividerBehavior(
+      behavior: DSDividerBehavior(
         showDebugInfo: _showDebugInfo,
         enableHoverEffects: _interactive,
         showFocusIndicator: _interactive,
@@ -351,7 +351,7 @@ class _AppDividerStoryState extends State<AppDividerStory> {
             _buildExampleSection(
               'Full Divider',
               'Divider que se extiende por todo el ancho',
-              const AppDividerConfig(variant: AppDividerVariant.full),
+              const DSDividerConfig(variant: DSDividerVariant.full),
             ),
 
             const SizedBox(height: 16),
@@ -359,7 +359,7 @@ class _AppDividerStoryState extends State<AppDividerStory> {
             _buildExampleSection(
               'Inset Divider',
               'Divider con márgenes en los extremos',
-              const AppDividerConfig(variant: AppDividerVariant.inset),
+              const DSDividerConfig(variant: DSDividerVariant.inset),
             ),
           ],
         ),
@@ -377,13 +377,13 @@ class _AppDividerStoryState extends State<AppDividerStory> {
             Text('Estados', style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 16),
 
-            ...AppDividerState.values.map(
+            ...DSDividerState.values.map(
               (state) => Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: _buildExampleSection(
                   state.displayName,
                   'Divider en estado ${state.displayName.toLowerCase()}',
-                  AppDividerConfig(state: state),
+                  DSDividerConfig(state: state),
                 ),
               ),
             ),
@@ -409,8 +409,8 @@ class _AppDividerStoryState extends State<AppDividerStory> {
             _buildExampleSection(
               'Horizontal',
               'Divider horizontal (por defecto)',
-              const AppDividerConfig(
-                orientation: AppDividerOrientation.horizontal,
+              const DSDividerConfig(
+                orientation: DSDividerOrientation.horizontal,
               ),
             ),
 
@@ -426,9 +426,9 @@ class _AppDividerStoryState extends State<AppDividerStory> {
               child: Row(
                 children: [
                   const Text('Izquierda'),
-                  const AppDivider(
-                    config: AppDividerConfig(
-                      orientation: AppDividerOrientation.vertical,
+                  const DSDivider(
+                    config: DSDividerConfig(
+                      orientation: DSDividerOrientation.vertical,
                     ),
                   ),
                   const Text('Derecha'),
@@ -462,8 +462,8 @@ class _AppDividerStoryState extends State<AppDividerStory> {
             _buildInteractiveSection(
               'Divider Clickeable',
               'Presiona el divider para interactuar',
-              AppDividerConfig(
-                behavior: const AppDividerBehavior(
+              DSDividerConfig(
+                behavior: const DSDividerBehavior(
                   enableHoverEffects: true,
                   showFocusIndicator: true,
                 ),
@@ -478,7 +478,7 @@ class _AppDividerStoryState extends State<AppDividerStory> {
   Widget _buildExampleSection(
     String title,
     String description,
-    AppDividerConfig config,
+    DSDividerConfig config,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -503,7 +503,7 @@ class _AppDividerStoryState extends State<AppDividerStory> {
           child: Column(
             children: [
               const Text('Contenido superior'),
-              Expanded(child: AppDivider(config: config)),
+              Expanded(child: DSDivider(config: config)),
               const Text('Contenido inferior'),
             ],
           ),
@@ -515,7 +515,7 @@ class _AppDividerStoryState extends State<AppDividerStory> {
   Widget _buildInteractiveSection(
     String title,
     String description,
-    AppDividerConfig config,
+    DSDividerConfig config,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -541,7 +541,7 @@ class _AppDividerStoryState extends State<AppDividerStory> {
             children: [
               const Text('Contenido superior'),
               Expanded(
-                child: AppDivider(
+                child: DSDivider(
                   config: config,
                   interactive: true,
                   onTap: () {

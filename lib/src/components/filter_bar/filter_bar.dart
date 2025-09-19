@@ -1,7 +1,7 @@
 /// Filter bar components barrel file
 ///
 /// Provides exports for:
-/// - AppFilterBar widget with chips and popovers variants
+/// - DSFilterBar widget with chips and popovers variants
 /// - Filter configuration models
 /// - Filter bar stories and examples
 library;

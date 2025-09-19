@@ -1,13 +1,13 @@
 /// Tour components barrel file
 ///
 /// Provides a single entry point for all tour-related components:
-/// - AppTour widget with coachmarks variant
-/// - AppTourConfig with Freezed models for configuration
-/// - AppTourVariant, AppTourState, AppTourPosition, AppTourAlignment enums
-/// - AppTourStep for defining tour steps with targets
-/// - AppTourColors, AppTourSpacing, AppTourTypography classes
-/// - AppTourControls, AppTourAccessibility, AppTourAnimation configs
-/// - AppTourController for programmatic tour control
+/// - DSTour widget with coachmarks variant
+/// - DSTourConfig with Freezed models for configuration
+/// - DSTourVariant, DSTourState, DSTourPosition, DSTourAlignment enums
+/// - DSTourStep for defining tour steps with targets
+/// - DSTourColors, DSTourSpacing, DSTourTypography classes
+/// - DSTourControls, DSTourAccessibility, DSTourAnimation configs
+/// - DSTourController for programmatic tour control
 /// - Tour story examples for development
 library;
 

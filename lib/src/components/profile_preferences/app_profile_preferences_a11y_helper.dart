@@ -5,15 +5,15 @@ import 'package:flutter/services.dart';
 
 import 'app_profile_preferences_config.dart';
 
-/// Helper para funcionalidades de accesibilidad en AppProfilePreferences
+/// Helper para funcionalidades de accesibilidad en DSProfilePreferences
 ///
 /// Maneja anuncios de screen reader, navegación por teclado,
 /// y otras características de accesibilidad
-class AppProfilePreferencesA11yHelper {
-  final AppProfileA11yConfig config;
+class DSProfilePreferencesA11yHelper {
+  final DSProfileA11yConfig config;
   Timer? _announceTimer;
 
-  AppProfilePreferencesA11yHelper({
+  DSProfilePreferencesA11yHelper({
     required this.config,
   });
 
@@ -49,7 +49,7 @@ class AppProfilePreferencesA11yHelper {
   }
 
   /// Configura navegación por teclado para un campo
-  Map<LogicalKeySet, Intent> getKeyboardShortcuts(AppProfileField field) {
+  Map<LogicalKeySet, Intent> getKeyboardShortcuts(DSProfileField field) {
     if (!config.enabled || !config.enableKeyboardNavigation) {
       return {};
     }
@@ -71,15 +71,15 @@ class AppProfilePreferencesA11yHelper {
 
     // Shortcuts específicos por tipo de campo
     switch (field.type) {
-      case AppProfileFieldType.toggle:
+      case DSProfileFieldType.toggle:
         // Espacio para toggle
         shortcuts[LogicalKeySet(LogicalKeyboardKey.space)] = const ActivateIntent();
         break;
-      case AppProfileFieldType.select:
+      case DSProfileFieldType.select:
         // Arrow down para abrir dropdown
         shortcuts[LogicalKeySet(LogicalKeyboardKey.arrowDown)] = const ActivateIntent();
         break;
-      case AppProfileFieldType.slider:
+      case DSProfileFieldType.slider:
         // Arrows para ajustar slider
         shortcuts[LogicalKeySet(LogicalKeyboardKey.arrowLeft)] =
             const SliderDecrementIntent();
@@ -95,7 +95,7 @@ class AppProfilePreferencesA11yHelper {
 
   /// Configura acciones de teclado para un campo
   Map<Type, Action<Intent>> getKeyboardActions(
-    AppProfileField field,
+    DSProfileField field,
     VoidCallback? onSubmit,
     VoidCallback? onToggle,
     Function(double)? onSliderChange,
@@ -114,14 +114,14 @@ class AppProfilePreferencesA11yHelper {
     }
 
     // Toggle para switches
-    if (onToggle != null && field.type == AppProfileFieldType.toggle) {
+    if (onToggle != null && field.type == DSProfileFieldType.toggle) {
       actions[ActivateIntent] = CallbackAction<ActivateIntent>(
         onInvoke: (_) => onToggle(),
       );
     }
 
     // Slider actions
-    if (onSliderChange != null && field.type == AppProfileFieldType.slider) {
+    if (onSliderChange != null && field.type == DSProfileFieldType.slider) {
       actions[SliderIncrementIntent] = CallbackAction<SliderIncrementIntent>(
         onInvoke: (_) {
           final config = field.config ?? {};
@@ -145,7 +145,7 @@ class AppProfilePreferencesA11yHelper {
   }
 
   /// Genera labels semánticos para un campo
-  String getFieldSemanticLabel(AppProfileField field) {
+  String getFieldSemanticLabel(DSProfileField field) {
     if (!config.enabled || !config.enableSemanticLabels) {
       return field.label;
     }
@@ -162,28 +162,28 @@ class AppProfilePreferencesA11yHelper {
 
     // Tipo específico
     switch (field.type) {
-      case AppProfileFieldType.email:
+      case DSProfileFieldType.email:
         buffer.write(', campo de email');
         break;
-      case AppProfileFieldType.phone:
+      case DSProfileFieldType.phone:
         buffer.write(', campo de teléfono');
         break;
-      case AppProfileFieldType.toggle:
+      case DSProfileFieldType.toggle:
         buffer.write(', interruptor');
         break;
-      case AppProfileFieldType.slider:
+      case DSProfileFieldType.slider:
         buffer.write(', deslizador');
         break;
-      case AppProfileFieldType.select:
+      case DSProfileFieldType.select:
         buffer.write(', lista de selección');
         break;
-      case AppProfileFieldType.date:
+      case DSProfileFieldType.date:
         buffer.write(', selector de fecha');
         break;
-      case AppProfileFieldType.color:
+      case DSProfileFieldType.color:
         buffer.write(', selector de color');
         break;
-      case AppProfileFieldType.file:
+      case DSProfileFieldType.file:
         buffer.write(', selector de archivo');
         break;
       default:
@@ -203,7 +203,7 @@ class AppProfilePreferencesA11yHelper {
   }
 
   /// Genera hints semánticos para un campo
-  String? getFieldSemanticHint(AppProfileField field) {
+  String? getFieldSemanticHint(DSProfileField field) {
     if (!config.enabled || !config.enableHints) {
       return field.description;
     }
@@ -217,22 +217,22 @@ class AppProfilePreferencesA11yHelper {
 
     // Hints específicos por tipo
     switch (field.type) {
-      case AppProfileFieldType.toggle:
+      case DSProfileFieldType.toggle:
         hints.add('Presiona espacio para alternar');
         break;
-      case AppProfileFieldType.select:
+      case DSProfileFieldType.select:
         hints.add('Presiona flecha abajo para ver opciones');
         break;
-      case AppProfileFieldType.slider:
+      case DSProfileFieldType.slider:
         hints.add('Usa las flechas izquierda y derecha para ajustar el valor');
         break;
-      case AppProfileFieldType.date:
+      case DSProfileFieldType.date:
         hints.add('Toca para seleccionar una fecha');
         break;
-      case AppProfileFieldType.color:
+      case DSProfileFieldType.color:
         hints.add('Toca para seleccionar un color');
         break;
-      case AppProfileFieldType.file:
+      case DSProfileFieldType.file:
         hints.add('Toca para seleccionar un archivo');
         break;
       default:
@@ -283,7 +283,7 @@ class AppProfilePreferencesA11yHelper {
   /// Construye wrapper semántico para campos de texto
   Widget buildSemanticTextField({
     required Widget child,
-    required AppProfileField field,
+    required DSProfileField field,
     String? value,
     String? errorMessage,
   }) {
@@ -308,7 +308,7 @@ class AppProfilePreferencesA11yHelper {
   /// Construye wrapper semántico para switches
   Widget buildSemanticSwitch({
     required Widget child,
-    required AppProfileField field,
+    required DSProfileField field,
     required bool value,
   }) {
     if (!config.enabled) {
@@ -327,7 +327,7 @@ class AppProfilePreferencesA11yHelper {
   /// Construye wrapper semántico para dropdowns
   Widget buildSemanticDropdown({
     required Widget child,
-    required AppProfileField field,
+    required DSProfileField field,
     Object? value,
   }) {
     if (!config.enabled) {
@@ -347,7 +347,7 @@ class AppProfilePreferencesA11yHelper {
   /// Construye wrapper semántico para sliders
   Widget buildSemanticSlider({
     required Widget child,
-    required AppProfileField field,
+    required DSProfileField field,
     required double value,
   }) {
     if (!config.enabled) {
@@ -439,50 +439,50 @@ class CancelIntent extends Intent {
 
 // Extensiones auxiliares
 
-extension AppProfileFieldA11yExtensions on AppProfileField {
+extension DSProfileFieldA11yExtensions on DSProfileField {
   /// Obtiene prioridad de accesibilidad según importancia
   int get accessibilityPriority {
     switch (importance) {
-      case AppProfileFieldImportance.critical:
+      case DSProfileFieldImportance.critical:
         return 100;
-      case AppProfileFieldImportance.high:
+      case DSProfileFieldImportance.high:
         return 75;
-      case AppProfileFieldImportance.normal:
+      case DSProfileFieldImportance.normal:
         return 50;
-      case AppProfileFieldImportance.low:
+      case DSProfileFieldImportance.low:
         return 25;
     }
   }
 
   /// Verifica si el campo necesita anuncios especiales
   bool get needsSpecialAnnouncements {
-    return type == AppProfileFieldType.toggle ||
-           type == AppProfileFieldType.slider ||
-           importance == AppProfileFieldImportance.critical;
+    return type == DSProfileFieldType.toggle ||
+           type == DSProfileFieldType.slider ||
+           importance == DSProfileFieldImportance.critical;
   }
 
   /// Obtiene el rol semántico del campo
   String get semanticRole {
     switch (type) {
-      case AppProfileFieldType.text:
-      case AppProfileFieldType.email:
-      case AppProfileFieldType.phone:
+      case DSProfileFieldType.text:
+      case DSProfileFieldType.email:
+      case DSProfileFieldType.phone:
         return 'text field';
-      case AppProfileFieldType.toggle:
+      case DSProfileFieldType.toggle:
         return 'switch';
-      case AppProfileFieldType.select:
+      case DSProfileFieldType.select:
         return 'dropdown';
-      case AppProfileFieldType.slider:
+      case DSProfileFieldType.slider:
         return 'slider';
-      case AppProfileFieldType.date:
+      case DSProfileFieldType.date:
         return 'date picker';
-      case AppProfileFieldType.color:
+      case DSProfileFieldType.color:
         return 'color picker';
-      case AppProfileFieldType.file:
+      case DSProfileFieldType.file:
         return 'file picker';
-      case AppProfileFieldType.header:
+      case DSProfileFieldType.header:
         return 'heading';
-      case AppProfileFieldType.divider:
+      case DSProfileFieldType.divider:
         return 'separator';
       default:
         return 'field';

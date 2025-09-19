@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppSwitchStory extends StatefulWidget {
-  const AppSwitchStory({super.key});
+class DSSwitchStory extends StatefulWidget {
+  const DSSwitchStory({super.key});
 
   @override
-  State<AppSwitchStory> createState() => _AppSwitchStoryState();
+  State<DSSwitchStory> createState() => _DSSwitchStoryState();
 }
 
-class _AppSwitchStoryState extends State<AppSwitchStory> {
-  AppSwitchVariant _variant = AppSwitchVariant.android;
-  AppSwitchState _state = AppSwitchState.defaultState;
+class _DSSwitchStoryState extends State<DSSwitchStory> {
+  DSSwitchVariant _variant = DSSwitchVariant.android;
+  DSSwitchState _state = DSSwitchState.defaultState;
   bool _value = false;
   bool _isAdaptive = false;
   bool _isRtl = false;
@@ -43,8 +43,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
     });
   }
 
-  Widget _buildSampleSwitch({required AppSwitchConfig config}) {
-    return AppSwitch(
+  Widget _buildSampleSwitch({required DSSwitchConfig config}) {
+    return DSSwitch(
       config: config,
       value: _value,
       onChanged: _isInteractive ? _handleChanged : null,
@@ -56,7 +56,7 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppSwitch Stories'),
+        title: const Text('DSSwitch Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -82,11 +82,11 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                       children: [
                         const Text('Variante: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppSwitchVariant>(
+                        DropdownButton<DSSwitchVariant>(
                           value: _variant,
                           onChanged: (value) =>
                               setState(() => _variant = value!),
-                          items: AppSwitchVariant.values.map((variant) {
+                          items: DSSwitchVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
                               child: Text(variant.displayName),
@@ -101,10 +101,10 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                       children: [
                         const Text('Estado: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppSwitchState>(
+                        DropdownButton<DSSwitchState>(
                           value: _state,
                           onChanged: (value) => setState(() => _state = value!),
-                          items: AppSwitchState.values.map((state) {
+                          items: DSSwitchState.values.map((state) {
                             return DropdownMenuItem(
                               value: state,
                               child: Text(state.displayName),
@@ -307,7 +307,7 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                 ),
                 child: Center(
                   child: _buildSampleSwitch(
-                    config: AppSwitchConfig(
+                    config: DSSwitchConfig(
                       variant: _variant,
                       state: _state,
                       value: _value,
@@ -316,15 +316,15 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                       enableA11y: _enableA11y,
                       enableKeyboardSupport: _enableKeyboard,
                       isInteractive: _isInteractive,
-                      spacing: AppSwitchSpacing(
+                      spacing: DSSwitchSpacing(
                         thumbRadius: _thumbRadius,
                         trackWidth: _trackWidth,
                         trackHeight: _trackHeight,
                       ),
-                      elevation: AppSwitchElevation(
+                      elevation: DSSwitchElevation(
                         defaultElevation: _elevation,
                       ),
-                      behavior: const AppSwitchBehavior(
+                      behavior: const DSSwitchBehavior(
                         enableHover: true,
                         enableHapticFeedback: true,
                       ),
@@ -351,7 +351,7 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
               'Variantes',
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: AppSwitchVariant.values.map((variant) {
+                children: DSSwitchVariant.values.map((variant) {
                   return _buildVariantExample(variant);
                 }).toList(),
               ),
@@ -369,9 +369,9 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                   mainAxisSpacing: 16,
                   childAspectRatio: 2.0,
                 ),
-                itemCount: AppSwitchState.values.length,
+                itemCount: DSSwitchState.values.length,
                 itemBuilder: (context, index) {
-                  final state = AppSwitchState.values[index];
+                  final state = DSSwitchState.values[index];
                   return _buildStateExample(state);
                 },
               ),
@@ -388,13 +388,13 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                       _buildUseCaseExample(
                         'Configuraciones',
                         'Activar notificaciones',
-                        const AppSwitchConfig(),
+                        const DSSwitchConfig(),
                       ),
                       _buildUseCaseExample(
                         'Modo Oscuro',
                         'Tema oscuro',
-                        const AppSwitchConfig(
-                          colors: AppSwitchColors(
+                        const DSSwitchConfig(
+                          colors: DSSwitchColors(
                             activeTrackColor: Colors.purple,
                             activeThumbColor: Colors.white,
                           ),
@@ -409,9 +409,9 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                       _buildUseCaseExample(
                         'iOS Style',
                         'Switch Cupertino',
-                        const AppSwitchConfig(
-                          variant: AppSwitchVariant.cupertino,
-                          colors: AppSwitchColors(
+                        const DSSwitchConfig(
+                          variant: DSSwitchVariant.cupertino,
+                          colors: DSSwitchColors(
                             activeTrackColor: Colors.green,
                           ),
                         ),
@@ -419,8 +419,8 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                       _buildUseCaseExample(
                         'Peligro',
                         'Eliminar datos',
-                        const AppSwitchConfig(
-                          colors: AppSwitchColors(
+                        const DSSwitchConfig(
+                          colors: DSSwitchColors(
                             activeTrackColor: Colors.red,
                             activeThumbColor: Colors.white,
                           ),
@@ -435,12 +435,12 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
                       _buildUseCaseExample(
                         'Deshabilitado',
                         'Función no disponible',
-                        const AppSwitchConfig(state: AppSwitchState.disabled),
+                        const DSSwitchConfig(state: DSSwitchState.disabled),
                       ),
                       _buildUseCaseExample(
                         'Cargando',
                         'Sincronizando...',
-                        const AppSwitchConfig(state: AppSwitchState.loading),
+                        const DSSwitchConfig(state: DSSwitchState.loading),
                       ),
                     ],
                   ),
@@ -467,12 +467,12 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
     );
   }
 
-  Widget _buildVariantExample(AppSwitchVariant variant) {
+  Widget _buildVariantExample(DSSwitchVariant variant) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AppSwitch(
-          config: AppSwitchConfig(variant: variant),
+        DSSwitch(
+          config: DSSwitchConfig(variant: variant),
           value: true,
           onChanged: (_) {},
         ),
@@ -486,13 +486,13 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
     );
   }
 
-  Widget _buildStateExample(AppSwitchState state) {
+  Widget _buildStateExample(DSSwitchState state) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AppSwitch(
-          config: AppSwitchConfig(state: state),
-          value: state != AppSwitchState.defaultState,
+        DSSwitch(
+          config: DSSwitchConfig(state: state),
+          value: state != DSSwitchState.defaultState,
           onChanged: state.canInteract ? (_) {} : null,
         ),
         const SizedBox(height: 8),
@@ -508,7 +508,7 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
   Widget _buildUseCaseExample(
     String title,
     String description,
-    AppSwitchConfig config,
+    DSSwitchConfig config,
   ) {
     return SizedBox(
       width: 160,
@@ -520,7 +520,7 @@ class _AppSwitchStoryState extends State<AppSwitchStory> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
-          AppSwitch(
+          DSSwitch(
             config: config,
             value: true,
             onChanged: config.state.canInteract ? (_) {} : null,

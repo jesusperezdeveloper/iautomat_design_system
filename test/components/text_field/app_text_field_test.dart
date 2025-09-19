@@ -4,14 +4,14 @@ import 'package:iautomat_design_system/src/components/text_field/app_text_field.
 import 'package:iautomat_design_system/src/components/text_field/text_field_config.dart';
 
 void main() {
-  group('AppTextField', () {
+  group('DSTextField', () {
     testWidgets('renders correctly with basic properties', (tester) async {
       final controller = TextEditingController();
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Test Label',
               hint: 'Test Hint',
@@ -20,7 +20,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppTextField), findsOneWidget);
+      expect(find.byType(DSTextField), findsOneWidget);
       expect(find.text('Test Label'), findsOneWidget);
       expect(find.text('Test Hint'), findsOneWidget);
 
@@ -33,7 +33,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Test Field',
             ),
@@ -41,7 +41,7 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextField), 'Hello World');
+      await tester.enterText(find.byType(DSTextField), 'Hello World');
       expect(controller.text, 'Hello World');
 
       controller.dispose();
@@ -56,10 +56,10 @@ void main() {
           home: Scaffold(
             body: Form(
               key: formKey,
-              child: AppTextField(
+              child: DSTextField(
                 controller: controller,
                 label: 'Required Field',
-                validator: AppTextFieldValidator.required,
+                validator: DSTextFieldValidator.required,
               ),
             ),
           ),
@@ -74,7 +74,7 @@ void main() {
       expect(find.text('Este campo es requerido'), findsOneWidget);
 
       // Enter valid text and validate again
-      await tester.enterText(find.byType(AppTextField), 'Valid text');
+      await tester.enterText(find.byType(DSTextField), 'Valid text');
       formKey.currentState!.validate();
       await tester.pump();
 
@@ -90,16 +90,16 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Password',
-              variant: AppTextFieldVariant.password,
+              variant: DSTextFieldVariant.password,
             ),
           ),
         ),
       );
 
-      await tester.enterText(find.byType(AppTextField), 'secret123');
+      await tester.enterText(find.byType(DSTextField), 'secret123');
       await tester.pump();
 
       // Initially, visibility icon should be present (password is hidden)
@@ -131,10 +131,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Multiline',
-              variant: AppTextFieldVariant.multiline,
+              variant: DSTextFieldVariant.multiline,
               maxLines: 3,
             ),
           ),
@@ -142,7 +142,7 @@ void main() {
       );
 
       await tester.enterText(
-          find.byType(AppTextField), 'Line 1\nLine 2\nLine 3');
+          find.byType(DSTextField), 'Line 1\nLine 2\nLine 3');
       expect(controller.text, 'Line 1\nLine 2\nLine 3');
 
       controller.dispose();
@@ -154,7 +154,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Disabled Field',
               enabled: false,
@@ -164,7 +164,7 @@ void main() {
       );
 
       // Try to enter text
-      await tester.enterText(find.byType(AppTextField), 'Should not work');
+      await tester.enterText(find.byType(DSTextField), 'Should not work');
       expect(controller.text, '');
 
       controller.dispose();
@@ -176,7 +176,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Read Only Field',
               readOnly: true,
@@ -186,7 +186,7 @@ void main() {
       );
 
       // Try to enter text
-      await tester.enterText(find.byType(AppTextField), 'Should not change');
+      await tester.enterText(find.byType(DSTextField), 'Should not change');
       expect(controller.text, 'Initial text');
 
       controller.dispose();
@@ -196,9 +196,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               label: 'Loading Field',
-              overrideState: AppTextFieldState.loading,
+              overrideState: DSTextFieldState.loading,
             ),
           ),
         ),
@@ -216,9 +216,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               label: 'Skeleton Field',
-              overrideState: AppTextFieldState.skeleton,
+              overrideState: DSTextFieldState.skeleton,
             ),
           ),
         ),
@@ -231,7 +231,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               label: 'Field with helper',
               helperText: 'This is helper text',
             ),
@@ -246,7 +246,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               label: 'Field with error',
               errorText: 'This is an error',
             ),
@@ -261,7 +261,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               label: 'Field with icons',
               prefixIcon: Icons.search,
               suffixIcon: Icons.clear,
@@ -278,7 +278,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               label: 'Field with widgets',
               prefix: const Text('\$'),
               suffix: const Text('USD'),
@@ -298,7 +298,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Focusable Field',
               focusNode: focusNode,
@@ -325,7 +325,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Autofocus Field',
               autoFocus: true,
@@ -336,9 +336,9 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      // Verify the AppTextField widget has autofocus enabled
-      final appTextField = tester.widget<AppTextField>(
-        find.byType(AppTextField),
+      // Verify the DSTextField widget has autofocus enabled
+      final appTextField = tester.widget<DSTextField>(
+        find.byType(DSTextField),
       );
 
       expect(appTextField.autoFocus, true);
@@ -347,7 +347,7 @@ void main() {
     });
 
     testWidgets('applies custom configuration', (tester) async {
-      const customConfig = AppTextFieldConfig(
+      const customConfig = DSTextFieldConfig(
         borderRadius: 16,
         contentPadding: EdgeInsets.all(20),
         minimumHeight: 60,
@@ -358,7 +358,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Custom Config Field',
               config: customConfig,
@@ -368,7 +368,7 @@ void main() {
       );
 
       // Verify configuration is applied
-      final textField = tester.widget<AppTextField>(find.byType(AppTextField));
+      final textField = tester.widget<DSTextField>(find.byType(DSTextField));
       expect(textField.config?.borderRadius, 16);
       expect(textField.config?.minimumHeight, 60);
 
@@ -376,7 +376,7 @@ void main() {
     });
 
     testWidgets('applies custom colors', (tester) async {
-      final customColors = AppTextFieldColors(
+      final customColors = DSTextFieldColors(
         borderColor: Colors.red,
         focusedBorderColor: Colors.blue,
         errorBorderColor: Colors.orange,
@@ -410,7 +410,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Custom Colors Field',
               colors: customColors,
@@ -421,7 +421,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppTextField), findsOneWidget);
+      expect(find.byType(DSTextField), findsOneWidget);
 
       controller.dispose();
     });
@@ -433,7 +433,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'OnChanged Field',
               onChanged: (value) => changedValue = value,
@@ -442,7 +442,7 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextField), 'test');
+      await tester.enterText(find.byType(DSTextField), 'test');
       expect(changedValue, 'test');
 
       controller.dispose();
@@ -455,7 +455,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'OnSubmitted Field',
               onSubmitted: (value) => submittedValue = value,
@@ -464,7 +464,7 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextField), 'test');
+      await tester.enterText(find.byType(DSTextField), 'test');
       await tester.testTextInput.receiveAction(TextInputAction.done);
 
       expect(submittedValue, 'test');
@@ -478,7 +478,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextField(
+            body: DSTextField(
               controller: controller,
               label: 'Counter Field',
               maxLength: 50,
@@ -488,7 +488,7 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextField), 'Hello');
+      await tester.enterText(find.byType(DSTextField), 'Hello');
       await tester.pump();
 
       expect(find.text('5/50'), findsOneWidget);
@@ -506,7 +506,7 @@ void main() {
               builder: (context, setState) {
                 return Column(
                   children: [
-                    AppTextField(
+                    DSTextField(
                       controller: controller,
                       label: 'Rebuild Test',
                     ),
@@ -522,7 +522,7 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextField), 'Persistent text');
+      await tester.enterText(find.byType(DSTextField), 'Persistent text');
       expect(controller.text, 'Persistent text');
 
       await tester.tap(find.text('Rebuild'));
@@ -543,10 +543,10 @@ void main() {
             home: Scaffold(
               body: Form(
                 key: formKey,
-                child: AppTextField(
+                child: DSTextField(
                   controller: controller,
                   label: 'Required Field',
-                  validator: AppTextFieldValidator.required,
+                  validator: DSTextFieldValidator.required,
                 ),
               ),
             ),
@@ -560,7 +560,7 @@ void main() {
         expect(find.text('Este campo es requerido'), findsOneWidget);
 
         // Enter valid text and validate
-        await tester.enterText(find.byType(AppTextField), 'Not empty');
+        await tester.enterText(find.byType(DSTextField), 'Not empty');
         formKey.currentState!.validate();
         await tester.pump();
 
@@ -578,10 +578,10 @@ void main() {
             home: Scaffold(
               body: Form(
                 key: formKey,
-                child: AppTextField(
+                child: DSTextField(
                   controller: controller,
                   label: 'Email Field',
-                  validator: AppTextFieldValidator.email,
+                  validator: DSTextFieldValidator.email,
                 ),
               ),
             ),
@@ -589,14 +589,14 @@ void main() {
         );
 
         // Test invalid email
-        await tester.enterText(find.byType(AppTextField), 'invalid-email');
+        await tester.enterText(find.byType(DSTextField), 'invalid-email');
         formKey.currentState!.validate();
         await tester.pump();
 
         expect(find.text('Ingresa un email válido'), findsOneWidget);
 
         // Test valid email
-        await tester.enterText(find.byType(AppTextField), 'valid@email.com');
+        await tester.enterText(find.byType(DSTextField), 'valid@email.com');
         formKey.currentState!.validate();
         await tester.pump();
 
@@ -614,10 +614,10 @@ void main() {
             home: Scaffold(
               body: Form(
                 key: formKey,
-                child: AppTextField(
+                child: DSTextField(
                   controller: controller,
                   label: 'MinLength Field',
-                  validator: AppTextFieldValidator.minLength(5),
+                  validator: DSTextFieldValidator.minLength(5),
                 ),
               ),
             ),
@@ -625,14 +625,14 @@ void main() {
         );
 
         // Test short text
-        await tester.enterText(find.byType(AppTextField), '123');
+        await tester.enterText(find.byType(DSTextField), '123');
         formKey.currentState!.validate();
         await tester.pump();
 
         expect(find.text('Mínimo 5 caracteres'), findsOneWidget);
 
         // Test valid length
-        await tester.enterText(find.byType(AppTextField), '12345');
+        await tester.enterText(find.byType(DSTextField), '12345');
         formKey.currentState!.validate();
         await tester.pump();
 
@@ -649,16 +649,16 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppTextField(
+              body: DSTextField(
                 controller: controller,
                 label: 'Numeric Field',
-                inputFormatters: AppTextFieldFormatters.numeric(),
+                inputFormatters: DSTextFieldFormatters.numeric(),
               ),
             ),
           ),
         );
 
-        await tester.enterText(find.byType(AppTextField), '123abc456');
+        await tester.enterText(find.byType(DSTextField), '123abc456');
         expect(controller.text, '123456');
 
         controller.dispose();
@@ -670,16 +670,16 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppTextField(
+              body: DSTextField(
                 controller: controller,
                 label: 'UpperCase Field',
-                inputFormatters: AppTextFieldFormatters.upperCase(),
+                inputFormatters: DSTextFieldFormatters.upperCase(),
               ),
             ),
           ),
         );
 
-        await tester.enterText(find.byType(AppTextField), 'hello world');
+        await tester.enterText(find.byType(DSTextField), 'hello world');
         expect(controller.text, 'HELLO WORLD');
 
         controller.dispose();
@@ -691,16 +691,16 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppTextField(
+              body: DSTextField(
                 controller: controller,
                 label: 'LowerCase Field',
-                inputFormatters: AppTextFieldFormatters.lowerCase(),
+                inputFormatters: DSTextFieldFormatters.lowerCase(),
               ),
             ),
           ),
         );
 
-        await tester.enterText(find.byType(AppTextField), 'HELLO WORLD');
+        await tester.enterText(find.byType(DSTextField), 'HELLO WORLD');
         expect(controller.text, 'hello world');
 
         controller.dispose();

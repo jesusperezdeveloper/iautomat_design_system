@@ -9,14 +9,14 @@ import 'command_palette_config.dart';
 typedef OnCommandQuery = void Function(String query);
 
 /// Callback function type for command invocation
-typedef OnCommandInvoke = void Function(AppCommandResult result);
+typedef OnCommandInvoke = void Function(DSCommandResult result);
 
 /// Callback function type for shortcut activation
 typedef OnShortcutActivate = void Function(List<LogicalKeyboardKey> shortcut);
 
 /// A comprehensive command palette widget based on Material Design
 ///
-/// The [AppCommandPalette] provides a powerful command interface with:
+/// The [DSCommandPalette] provides a powerful command interface with:
 /// - Multiple variants: global search, actions
 /// - Real-time search with fuzzy matching
 /// - Keyboard navigation and shortcuts
@@ -28,43 +28,43 @@ typedef OnShortcutActivate = void Function(List<LogicalKeyboardKey> shortcut);
 ///
 /// Example usage:
 /// ```dart
-/// AppCommandPalette(
-///   variant: AppCommandPaletteVariant.globalSearch,
+/// DSCommandPalette(
+///   variant: DSCommandPaletteVariant.globalSearch,
 ///   results: [
-///     AppCommandResult(id: '1', title: 'Open File'),
-///     AppCommandResult(id: '2', title: 'Save As'),
+///     DSCommandResult(id: '1', title: 'Open File'),
+///     DSCommandResult(id: '2', title: 'Save As'),
 ///   ],
 ///   onQuery: (query) => print('Searching: $query'),
 ///   onInvoke: (result) => print('Invoked: ${result.title}'),
 /// )
 /// ```
-class AppCommandPalette extends StatefulWidget {
+class DSCommandPalette extends StatefulWidget {
   /// The variant of the command palette
-  final AppCommandPaletteVariant variant;
+  final DSCommandPaletteVariant variant;
 
   /// Callback when query changes
   final OnCommandQuery? onQuery;
 
   /// Available results
-  final List<AppCommandResult> results;
+  final List<DSCommandResult> results;
 
   /// Callback when a command is invoked
   final OnCommandInvoke? onInvoke;
 
   /// Available keyboard shortcuts
-  final Map<List<LogicalKeyboardKey>, AppCommandResult>? shortcuts;
+  final Map<List<LogicalKeyboardKey>, DSCommandResult>? shortcuts;
 
   /// Current state of the command palette
-  final AppCommandPaletteState state;
+  final DSCommandPaletteState state;
 
   /// Whether the command palette is visible
   final bool isVisible;
 
   /// Configuration for the command palette
-  final AppCommandPaletteConfig? config;
+  final DSCommandPaletteConfig? config;
 
   /// Command palette data model for complex configurations
-  final AppCommandPaletteData? data;
+  final DSCommandPaletteData? data;
 
   /// Callback when the palette should be closed
   final VoidCallback? onClose;
@@ -79,7 +79,7 @@ class AppCommandPalette extends StatefulWidget {
   final bool showRecent;
 
   /// Recent commands list
-  final List<AppCommandResult> recentCommands;
+  final List<DSCommandResult> recentCommands;
 
   /// Custom loading builder
   final Widget Function(BuildContext context)? loadingBuilder;
@@ -92,7 +92,7 @@ class AppCommandPalette extends StatefulWidget {
 
   /// Custom result builder
   final Widget Function(
-          BuildContext context, AppCommandResult result, bool isSelected)?
+          BuildContext context, DSCommandResult result, bool isSelected)?
       resultBuilder;
 
   /// Whether to enable haptic feedback
@@ -110,14 +110,14 @@ class AppCommandPalette extends StatefulWidget {
   /// Custom scroll controller
   final ScrollController? scrollController;
 
-  const AppCommandPalette({
+  const DSCommandPalette({
     super.key,
-    this.variant = AppCommandPaletteVariant.globalSearch,
+    this.variant = DSCommandPaletteVariant.globalSearch,
     this.onQuery,
     this.results = const [],
     this.onInvoke,
     this.shortcuts,
-    this.state = AppCommandPaletteState.defaultState,
+    this.state = DSCommandPaletteState.defaultState,
     this.isVisible = true,
     this.config,
     this.data,
@@ -138,13 +138,13 @@ class AppCommandPalette extends StatefulWidget {
   });
 
   /// Create a global search command palette
-  const AppCommandPalette.globalSearch({
+  const DSCommandPalette.globalSearch({
     super.key,
     this.onQuery,
     this.results = const [],
     this.onInvoke,
     this.shortcuts,
-    this.state = AppCommandPaletteState.defaultState,
+    this.state = DSCommandPaletteState.defaultState,
     this.isVisible = true,
     this.config,
     this.data,
@@ -162,16 +162,16 @@ class AppCommandPalette extends StatefulWidget {
     this.textDirection,
     this.focusNode,
     this.scrollController,
-  }) : variant = AppCommandPaletteVariant.globalSearch;
+  }) : variant = DSCommandPaletteVariant.globalSearch;
 
   /// Create an actions command palette
-  const AppCommandPalette.actions({
+  const DSCommandPalette.actions({
     super.key,
     this.onQuery,
     this.results = const [],
     this.onInvoke,
     this.shortcuts,
-    this.state = AppCommandPaletteState.defaultState,
+    this.state = DSCommandPaletteState.defaultState,
     this.isVisible = true,
     this.config,
     this.data,
@@ -189,15 +189,15 @@ class AppCommandPalette extends StatefulWidget {
     this.textDirection,
     this.focusNode,
     this.scrollController,
-  }) : variant = AppCommandPaletteVariant.actions;
+  }) : variant = DSCommandPaletteVariant.actions;
 
   @override
-  State<AppCommandPalette> createState() => _AppCommandPaletteState();
+  State<DSCommandPalette> createState() => _DSCommandPaletteState();
 
   /// Show command palette as overlay
   static OverlayEntry showOverlay({
     required BuildContext context,
-    required AppCommandPalette palette,
+    required DSCommandPalette palette,
     VoidCallback? onClose,
   }) {
     final overlay = OverlayEntry(
@@ -212,7 +212,7 @@ class AppCommandPalette extends StatefulWidget {
   }
 }
 
-class _AppCommandPaletteState extends State<AppCommandPalette>
+class _DSCommandPaletteState extends State<DSCommandPalette>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late AnimationController _skeletonController;
@@ -226,9 +226,9 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
   late ScrollController _scrollController;
 
   Timer? _debounceTimer;
-  List<AppCommandResult> _filteredResults = [];
+  List<DSCommandResult> _filteredResults = [];
   int _selectedIndex = -1;
-  AppCommandPaletteConfig _effectiveConfig = const AppCommandPaletteConfig();
+  DSCommandPaletteConfig _effectiveConfig = const DSCommandPaletteConfig();
 
   @override
   void initState() {
@@ -255,7 +255,7 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
       vsync: this,
     );
 
-    if (widget.state == AppCommandPaletteState.skeleton) {
+    if (widget.state == DSCommandPaletteState.skeleton) {
       _skeletonController.repeat();
     }
 
@@ -304,14 +304,14 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
     _effectiveConfig = widget.config ?? _getDefaultConfig();
   }
 
-  AppCommandPaletteConfig _getDefaultConfig() {
+  DSCommandPaletteConfig _getDefaultConfig() {
     switch (_effectiveConfig.size) {
-      case AppCommandPaletteSize.small:
-        return AppCommandPaletteConfig.small;
-      case AppCommandPaletteSize.medium:
-        return AppCommandPaletteConfig.medium;
-      case AppCommandPaletteSize.large:
-        return AppCommandPaletteConfig.large;
+      case DSCommandPaletteSize.small:
+        return DSCommandPaletteConfig.small;
+      case DSCommandPaletteSize.medium:
+        return DSCommandPaletteConfig.medium;
+      case DSCommandPaletteSize.large:
+        return DSCommandPaletteConfig.large;
     }
   }
 
@@ -322,7 +322,7 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
   }
 
   @override
-  void didUpdateWidget(AppCommandPalette oldWidget) {
+  void didUpdateWidget(DSCommandPalette oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.isVisible != widget.isVisible) {
@@ -343,12 +343,12 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
     }
   }
 
-  void _updateState(AppCommandPaletteState newState) {
+  void _updateState(DSCommandPaletteState newState) {
     switch (newState) {
-      case AppCommandPaletteState.skeleton:
+      case DSCommandPaletteState.skeleton:
         _skeletonController.repeat();
         break;
-      case AppCommandPaletteState.loading:
+      case DSCommandPaletteState.loading:
         _animationController.forward();
         break;
       default:
@@ -492,11 +492,11 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
   }
 
   Widget _buildResultsList(BuildContext context, ThemeData theme) {
-    if (widget.state == AppCommandPaletteState.skeleton) {
+    if (widget.state == DSCommandPaletteState.skeleton) {
       return _buildSkeletonResults(context, theme);
     }
 
-    if (widget.state == AppCommandPaletteState.loading) {
+    if (widget.state == DSCommandPaletteState.loading) {
       return _buildLoadingResults(context, theme);
     }
 
@@ -524,7 +524,7 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
   Widget _buildResultItem(
     BuildContext context,
     ThemeData theme,
-    AppCommandResult result,
+    DSCommandResult result,
     int index,
     bool isSelected,
   ) {
@@ -624,7 +624,7 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
     );
   }
 
-  List<AppCommandResult> _getDisplayResults() {
+  List<DSCommandResult> _getDisplayResults() {
     if (_queryController.text.isEmpty && widget.showRecent) {
       return widget.recentCommands;
     }
@@ -641,7 +641,7 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
 
   void _filterResults() {
     setState(() {
-      _filteredResults = AppCommandPaletteUtils.filterResults(
+      _filteredResults = DSCommandPaletteUtils.filterResults(
         widget.results,
         _queryController.text,
         fuzzySearch: _effectiveConfig.fuzzySearch,
@@ -660,7 +660,7 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
     }
   }
 
-  void _invokeResult(AppCommandResult result) {
+  void _invokeResult(DSCommandResult result) {
     if (widget.enableHapticFeedback) {
       HapticFeedback.lightImpact();
     }
@@ -700,7 +700,7 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
       // Handle shortcuts first
       if (widget.shortcuts != null) {
         for (final entry in widget.shortcuts!.entries) {
-          if (AppCommandPaletteUtils.matchesShortcut(entry.key, event)) {
+          if (DSCommandPaletteUtils.matchesShortcut(entry.key, event)) {
             _invokeResult(entry.value);
             return KeyEventResult.handled;
           }
@@ -813,7 +813,7 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
 
   String _getPlaceholder() {
     return _effectiveConfig.placeholder ??
-        (widget.variant == AppCommandPaletteVariant.globalSearch
+        (widget.variant == DSCommandPaletteVariant.globalSearch
             ? 'Search anything...'
             : 'Type a command...');
   }
@@ -821,9 +821,9 @@ class _AppCommandPaletteState extends State<AppCommandPalette>
 
 /// Internal widget for rendering individual result items
 class _ResultItemWidget extends StatefulWidget {
-  final AppCommandResult result;
+  final DSCommandResult result;
   final bool isSelected;
-  final AppCommandPaletteConfig config;
+  final DSCommandPaletteConfig config;
   final ThemeData theme;
   final String query;
   final VoidCallback onTap;
@@ -899,7 +899,7 @@ class _ResultItemWidgetState extends State<_ResultItemWidget> {
 
   Widget _buildTitle() {
     if (widget.config.highlightMatches && widget.query.isNotEmpty) {
-      final spans = AppCommandPaletteUtils.highlightMatches(
+      final spans = DSCommandPaletteUtils.highlightMatches(
         widget.result.title,
         widget.query,
         _getTitleStyle(),
@@ -932,7 +932,7 @@ class _ResultItemWidgetState extends State<_ResultItemWidget> {
   Widget _buildShortcut() {
     final shortcutText = widget.result.shortcutText ??
         (widget.result.shortcut != null
-            ? AppCommandPaletteUtils.formatShortcut(widget.result.shortcut!)
+            ? DSCommandPaletteUtils.formatShortcut(widget.result.shortcut!)
             : '');
 
     if (shortcutText.isEmpty) return const SizedBox.shrink();
@@ -1019,7 +1019,7 @@ class _ResultItemWidgetState extends State<_ResultItemWidget> {
 
 /// Overlay wrapper for command palette
 class _OverlayWrapper extends StatelessWidget {
-  final AppCommandPalette palette;
+  final DSCommandPalette palette;
   final VoidCallback? onClose;
 
   const _OverlayWrapper({
@@ -1029,7 +1029,7 @@ class _OverlayWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final config = palette.config ?? const AppCommandPaletteConfig();
+    final config = palette.config ?? const DSCommandPaletteConfig();
 
     return Material(
       color: config.overlayColor ?? Colors.black.withValues(alpha: 0.5),
@@ -1048,13 +1048,13 @@ class _OverlayWrapper extends StatelessWidget {
     );
   }
 
-  Alignment _getAlignment(AppCommandPalettePosition position) {
+  Alignment _getAlignment(DSCommandPalettePosition position) {
     switch (position) {
-      case AppCommandPalettePosition.top:
+      case DSCommandPalettePosition.top:
         return Alignment.topCenter;
-      case AppCommandPalettePosition.center:
+      case DSCommandPalettePosition.center:
         return Alignment.center;
-      case AppCommandPalettePosition.bottom:
+      case DSCommandPalettePosition.bottom:
         return Alignment.bottomCenter;
     }
   }

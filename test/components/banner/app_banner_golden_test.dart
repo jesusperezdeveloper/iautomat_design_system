@@ -3,14 +3,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/banner/app_banner.dart';
 
 void main() {
-  group('AppBanner Golden Tests', () {
+  group('DSBanner Golden Tests', () {
     testWidgets('info banner', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.info,
                 message: 'This is an information banner',
@@ -33,7 +33,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.success,
                 message: 'Operation completed successfully!',
@@ -62,7 +62,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.warning,
                 message: 'Please review your settings',
@@ -85,7 +85,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.error,
                 message: 'Something went wrong. Please try again.',
@@ -119,7 +119,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.neutral,
                 message: 'Neutral banner message',
@@ -142,7 +142,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.info,
                 message: 'Banner without leading icon',
@@ -164,7 +164,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.info,
                 message: 'Banner without dismiss button',
@@ -188,7 +188,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.neutral,
                 message: 'Custom styled banner',
@@ -215,7 +215,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.info,
                 message:
@@ -245,7 +245,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.error,
                 priority: BannerPriority.critical,
@@ -269,7 +269,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.info,
                 state: BannerState.hover,
@@ -293,7 +293,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.info,
                 state: BannerState.pressed,
@@ -317,7 +317,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.info,
                 state: BannerState.disabled,
@@ -341,7 +341,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.info,
                 state: BannerState.loading,
@@ -365,7 +365,7 @@ void main() {
           home: Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16.0),
-              child: AppBanner(
+              child: DSBanner(
                 variant: BannerVariant.inline,
                 type: BannerType.info,
                 state: BannerState.skeleton,
@@ -391,7 +391,7 @@ void main() {
             home: const Scaffold(
               body: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: AppBanner(
+                child: DSBanner(
                   variant: BannerVariant.inline,
                   type: BannerType.info,
                   message: 'This is an information banner in dark theme',
@@ -415,7 +415,7 @@ void main() {
             home: Scaffold(
               body: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: AppBanner(
+                child: DSBanner(
                   variant: BannerVariant.inline,
                   type: BannerType.error,
                   message: 'Error banner in dark theme',
@@ -448,7 +448,7 @@ void main() {
               child: Scaffold(
                 body: Padding(
                   padding: EdgeInsets.all(16.0),
-                  child: AppBanner(
+                  child: DSBanner(
                     variant: BannerVariant.inline,
                     type: BannerType.info,
                     message: 'Banner with RTL support',

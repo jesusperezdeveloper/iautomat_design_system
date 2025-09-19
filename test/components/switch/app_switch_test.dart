@@ -5,19 +5,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppSwitch', () {
+  group('DSSwitch', () {
     const testSemanticLabel = 'Test Switch';
 
     Widget createSwitchApp({
-      AppSwitchConfig? config,
+      DSSwitchConfig? config,
       bool? value,
       ValueChanged<bool>? onChanged,
       String? semanticsLabel,
     }) {
       return MaterialApp(
         home: Scaffold(
-          body: AppSwitch(
-            config: config ?? const AppSwitchConfig(),
+          body: DSSwitch(
+            config: config ?? const DSSwitchConfig(),
             value: value,
             onChanged: onChanged,
             semanticsLabel: semanticsLabel,
@@ -30,7 +30,7 @@ void main() {
       await tester.pumpWidget(createSwitchApp());
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppSwitch), findsOneWidget);
+      expect(find.byType(DSSwitch), findsOneWidget);
       expect(find.byType(Switch), findsOneWidget);
     });
 
@@ -45,8 +45,8 @@ void main() {
 
     testWidgets('shows loading state correctly', (tester) async {
       await tester.pumpWidget(createSwitchApp(
-        config: const AppSwitchConfig(
-          state: AppSwitchState.loading,
+        config: const DSSwitchConfig(
+          state: DSSwitchState.loading,
         ),
       ));
       await tester.pump();
@@ -56,8 +56,8 @@ void main() {
 
     testWidgets('shows skeleton state correctly', (tester) async {
       await tester.pumpWidget(createSwitchApp(
-        config: const AppSwitchConfig(
-          state: AppSwitchState.skeleton,
+        config: const DSSwitchConfig(
+          state: DSSwitchState.skeleton,
         ),
       ));
       await tester.pumpAndSettle();
@@ -75,8 +75,8 @@ void main() {
 
       testWidgets('renders cupertino variant correctly', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
-            variant: AppSwitchVariant.cupertino,
+          config: const DSSwitchConfig(
+            variant: DSSwitchVariant.cupertino,
             isAdaptive: false, // Force cupertino even on test platform
           ),
         ));
@@ -87,7 +87,7 @@ void main() {
 
       testWidgets('adapts to platform when isAdaptive is true', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
+          config: const DSSwitchConfig(
             isAdaptive: true,
           ),
         ));
@@ -100,9 +100,9 @@ void main() {
 
     group('States', () {
       testWidgets('renders all states correctly', (tester) async {
-        for (final state in AppSwitchState.values) {
+        for (final state in DSSwitchState.values) {
           await tester.pumpWidget(createSwitchApp(
-            config: AppSwitchConfig(state: state),
+            config: DSSwitchConfig(state: state),
           ));
           await tester.pump();
 
@@ -120,14 +120,14 @@ void main() {
         var toggled = false;
 
         await tester.pumpWidget(createSwitchApp(
-          config: AppSwitchConfig(
-            state: AppSwitchState.disabled,
+          config: DSSwitchConfig(
+            state: DSSwitchState.disabled,
             onChanged: (value) => toggled = value,
           ),
         ));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byType(AppSwitch));
+        await tester.tap(find.byType(DSSwitch));
         await tester.pumpAndSettle();
 
         expect(toggled, isFalse);
@@ -185,8 +185,8 @@ void main() {
         var hovered = false;
 
         await tester.pumpWidget(createSwitchApp(
-          config: AppSwitchConfig(
-            behavior: const AppSwitchBehavior(enableHover: true),
+          config: DSSwitchConfig(
+            behavior: const DSSwitchBehavior(enableHover: true),
             onHover: (isHovered) => hovered = isHovered,
           ),
         ));
@@ -211,7 +211,7 @@ void main() {
         var toggledValue = false;
 
         await tester.pumpWidget(createSwitchApp(
-          config: AppSwitchConfig(
+          config: DSSwitchConfig(
             enableKeyboardSupport: true,
             onChanged: (value) => toggledValue = value,
           ),
@@ -231,7 +231,7 @@ void main() {
         var toggledValue = false;
 
         await tester.pumpWidget(createSwitchApp(
-          config: AppSwitchConfig(
+          config: DSSwitchConfig(
             enableKeyboardSupport: false,
             onChanged: (value) => toggledValue = value,
           ),
@@ -250,7 +250,7 @@ void main() {
       testWidgets('applies RTL directionality when isRtl is true',
           (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(isRtl: true),
+          config: const DSSwitchConfig(isRtl: true),
         ));
         await tester.pumpAndSettle();
 
@@ -273,7 +273,7 @@ void main() {
       testWidgets('provides semantic labels when a11y is enabled',
           (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(enableA11y: true),
+          config: const DSSwitchConfig(enableA11y: true),
           semanticsLabel: testSemanticLabel,
         ));
         await tester.pumpAndSettle();
@@ -283,7 +283,7 @@ void main() {
 
       testWidgets('is focusable for keyboard navigation', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
+          config: const DSSwitchConfig(
             enableKeyboardSupport: true,
           ),
         ));
@@ -296,8 +296,8 @@ void main() {
     group('Custom styling', () {
       testWidgets('applies custom colors', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
-            colors: AppSwitchColors(
+          config: const DSSwitchConfig(
+            colors: DSSwitchColors(
               activeTrackColor: Colors.red,
               inactiveTrackColor: Colors.grey,
             ),
@@ -310,8 +310,8 @@ void main() {
 
       testWidgets('applies custom spacing', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
-            spacing: AppSwitchSpacing(
+          config: const DSSwitchConfig(
+            spacing: DSSwitchSpacing(
               thumbRadius: 16.0,
               trackWidth: 60.0,
             ),
@@ -324,8 +324,8 @@ void main() {
 
       testWidgets('applies custom elevation', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
-            elevation: AppSwitchElevation(
+          config: const DSSwitchConfig(
+            elevation: DSSwitchElevation(
               defaultElevation: 4.0,
             ),
           ),
@@ -339,8 +339,8 @@ void main() {
     group('Behavior configuration', () {
       testWidgets('enables haptic feedback when configured', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
-            behavior: AppSwitchBehavior(
+          config: const DSSwitchConfig(
+            behavior: DSSwitchBehavior(
               enableHapticFeedback: true,
             ),
           ),
@@ -352,8 +352,8 @@ void main() {
 
       testWidgets('maintains state when configured', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
-            behavior: AppSwitchBehavior(
+          config: const DSSwitchConfig(
+            behavior: DSSwitchBehavior(
               maintainState: true,
             ),
           ),
@@ -367,8 +367,8 @@ void main() {
     group('Animation support', () {
       testWidgets('animates state transitions when enabled', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
-            animation: AppSwitchAnimation(
+          config: const DSSwitchConfig(
+            animation: DSSwitchAnimation(
               enableStateTransitions: true,
               duration: 100,
             ),
@@ -381,8 +381,8 @@ void main() {
 
       testWidgets('does not animate when disabled', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
-            animation: AppSwitchAnimation(
+          config: const DSSwitchConfig(
+            animation: DSSwitchAnimation(
               enableStateTransitions: false,
             ),
           ),
@@ -394,9 +394,9 @@ void main() {
 
       testWidgets('applies scale animation when configured', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
-            animation: AppSwitchAnimation(
-              type: AppSwitchAnimationType.scale,
+          config: const DSSwitchConfig(
+            animation: DSSwitchAnimation(
+              type: DSSwitchAnimationType.scale,
             ),
           ),
         ));
@@ -407,9 +407,9 @@ void main() {
 
       testWidgets('applies fade animation when configured', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
-            animation: AppSwitchAnimation(
-              type: AppSwitchAnimationType.fade,
+          config: const DSSwitchConfig(
+            animation: DSSwitchAnimation(
+              type: DSSwitchAnimationType.fade,
             ),
           ),
         ));
@@ -422,7 +422,7 @@ void main() {
     group('Platform adaptive behavior', () {
       testWidgets('adapts to platform when isAdaptive is true', (tester) async {
         await tester.pumpWidget(createSwitchApp(
-          config: const AppSwitchConfig(
+          config: const DSSwitchConfig(
             isAdaptive: true,
           ),
         ));
@@ -438,7 +438,7 @@ void main() {
         var configCallbackValue = false;
 
         await tester.pumpWidget(createSwitchApp(
-          config: AppSwitchConfig(
+          config: DSSwitchConfig(
             onChanged: (value) => configCallbackValue = value,
           ),
           onChanged: (value) => widgetCallbackValue = value,
@@ -458,7 +458,7 @@ void main() {
         var configCallbackValue = false;
 
         await tester.pumpWidget(createSwitchApp(
-          config: AppSwitchConfig(
+          config: DSSwitchConfig(
             onChanged: (value) => configCallbackValue = value,
           ),
           value: false,

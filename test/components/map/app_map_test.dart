@@ -11,21 +11,21 @@ void main() {
     GoogleFonts.config.allowRuntimeFetching = false;
   });
 
-  group('AppMap Widget Tests', () {
-    const testCenter = AppLatLng(latitude: 37.7749, longitude: -122.4194);
+  group('DSMap Widget Tests', () {
+    const testCenter = DSLatLng(latitude: 37.7749, longitude: -122.4194);
 
     testWidgets('renders correctly with default configuration', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
@@ -33,7 +33,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
               zoom: 15.0,
             ),
@@ -41,13 +41,13 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
     testWidgets('renders correctly with markers', (tester) async {
       const markers = [
-        AppMapMarker(
+        DSMapMarker(
           id: 'marker1',
           position: testCenter,
           title: 'Test Marker',
@@ -57,7 +57,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
               markers: markers,
             ),
@@ -65,18 +65,18 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
     testWidgets('renders correctly with shapes', (tester) async {
       const shapes = [
-        AppMapShape(
+        DSMapShape(
           id: 'shape1',
-          type: AppMapShapeType.polyline,
+          type: DSMapShapeType.polyline,
           points: [
-            AppLatLng(latitude: 37.7749, longitude: -122.4194),
-            AppLatLng(latitude: 37.7849, longitude: -122.4094),
+            DSLatLng(latitude: 37.7749, longitude: -122.4194),
+            DSLatLng(latitude: 37.7849, longitude: -122.4094),
           ],
           title: 'Test Shape',
         ),
@@ -85,7 +85,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
               shapes: shapes,
             ),
@@ -93,7 +93,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
@@ -101,7 +101,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
               enabled: false,
             ),
@@ -109,18 +109,18 @@ void main() {
         ),
       );
 
-      final map = tester.widget<AppMap>(find.byType(AppMap));
+      final map = tester.widget<DSMap>(find.byType(DSMap));
       expect(map.enabled, isFalse);
       await tester.pumpAndSettle();
     });
 
     testWidgets('handles tap interactions', (tester) async {
-      AppLatLng? tappedPosition;
+      DSLatLng? tappedPosition;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
               onTap: (position) {
                 tappedPosition = position;
@@ -130,10 +130,10 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppMap));
+      await tester.tap(find.byType(DSMap));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       expect(tappedPosition, isNotNull);
     });
 
@@ -141,7 +141,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
             ),
           ),
@@ -149,7 +149,7 @@ void main() {
       );
 
       // Obtener el foco
-      await tester.tap(find.byType(AppMap));
+      await tester.tap(find.byType(DSMap));
       await tester.pump();
 
       // Simular navegación por teclado
@@ -159,7 +159,7 @@ void main() {
       await tester.sendKeyEvent(LogicalKeyboardKey.equal);
       await tester.pump();
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
@@ -167,16 +167,16 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
-              config: AppMapConfig(
-                variant: AppMapVariant.clusters,
-                theme: AppMapTheme.dark,
-                behavior: const AppMapBehavior(
+              config: DSMapConfig(
+                variant: DSMapVariant.clusters,
+                theme: DSMapTheme.dark,
+                behavior: const DSMapBehavior(
                   enableClustering: true,
                   clusterRadius: 100,
                 ),
-                a11yConfig: const AppMapA11yConfig(
+                a11yConfig: const DSMapA11yConfig(
                   semanticsLabel: 'Custom map',
                 ),
               ),
@@ -185,7 +185,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
@@ -193,17 +193,17 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
-              config: const AppMapConfig(
-                state: AppMapState.loading,
+              config: const DSMapConfig(
+                state: DSMapState.loading,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       expect(find.text('Cargando mapa...'), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       await tester.pumpAndSettle();
@@ -213,26 +213,26 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
-              config: const AppMapConfig(
-                state: AppMapState.skeleton,
+              config: const DSMapConfig(
+                state: DSMapState.skeleton,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
     testWidgets('supports different themes', (tester) async {
-      for (final theme in AppMapTheme.values) {
+      for (final theme in DSMapTheme.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppMap(
+              body: DSMap(
                 center: testCenter,
                 theme: theme,
               ),
@@ -240,22 +240,22 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppMap), findsOneWidget);
+        expect(find.byType(DSMap), findsOneWidget);
         await tester.pumpAndSettle();
       }
     });
 
     testWidgets('calls callbacks correctly', (tester) async {
 
-      const marker = AppMapMarker(
+      const marker = DSMapMarker(
         id: 'marker1',
         position: testCenter,
         title: 'Test Marker',
       );
 
-      const shape = AppMapShape(
+      const shape = DSMapShape(
         id: 'shape1',
-        type: AppMapShapeType.circle,
+        type: DSMapShapeType.circle,
         points: [testCenter],
         title: 'Test Shape',
       );
@@ -263,7 +263,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
               markers: const [marker],
               shapes: const [shape],
@@ -275,7 +275,7 @@ void main() {
         ),
       );
 
-      final map = tester.widget<AppMap>(find.byType(AppMap));
+      final map = tester.widget<DSMap>(find.byType(DSMap));
       expect(map.onTap, isNotNull);
       expect(map.onMarkerTap, isNotNull);
       expect(map.onShapeTap, isNotNull);
@@ -290,7 +290,7 @@ void main() {
             body: Column(
               children: [
                 Expanded(
-                  child: AppMap(
+                  child: DSMap(
                     center: testCenter,
                   ),
                 ),
@@ -302,25 +302,25 @@ void main() {
       );
 
       // Cambiar foco al mapa
-      await tester.tap(find.byType(AppMap));
+      await tester.tap(find.byType(DSMap));
       await tester.pump();
 
       // Cambiar foco al TextField
       await tester.tap(find.byType(TextField));
       await tester.pump();
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
     testWidgets('supports different variants', (tester) async {
-      for (final variant in AppMapVariant.values) {
+      for (final variant in DSMapVariant.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppMap(
+              body: DSMap(
                 center: testCenter,
-                config: AppMapConfig(
+                config: DSMapConfig(
                   variant: variant,
                 ),
               ),
@@ -328,7 +328,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppMap), findsOneWidget);
+        expect(find.byType(DSMap), findsOneWidget);
         await tester.pumpAndSettle();
       }
     });
@@ -337,10 +337,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
-              config: const AppMapConfig(
-                a11yConfig: AppMapA11yConfig(
+              config: const DSMapConfig(
+                a11yConfig: DSMapA11yConfig(
                   semanticsLabel: 'Test map',
                   semanticsDescription: 'Interactive map for testing',
                   semanticsHint: 'Tap to interact',
@@ -352,15 +352,15 @@ void main() {
       );
 
       expect(find.byType(Semantics), findsWidgets);
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
     testWidgets('handles clustering correctly', (tester) async {
       final markers = List.generate(10, (index) {
-        return AppMapMarker(
+        return DSMapMarker(
           id: 'marker$index',
-          position: AppLatLng(
+          position: DSLatLng(
             latitude: testCenter.latitude + (index * 0.001),
             longitude: testCenter.longitude + (index * 0.001),
           ),
@@ -371,12 +371,12 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: testCenter,
               markers: markers,
-              config: const AppMapConfig(
-                variant: AppMapVariant.clusters,
-                behavior: AppMapBehavior(
+              config: const DSMapConfig(
+                variant: DSMapVariant.clusters,
+                behavior: DSMapBehavior(
                   enableClustering: true,
                   clusterRadius: 50,
                 ),
@@ -386,15 +386,15 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
   });
 
-  group('AppMap Configuration Tests', () {
+  group('DSMap Configuration Tests', () {
     testWidgets('updates when configuration changes', (tester) async {
-      AppMapConfig config = const AppMapConfig(
-        theme: AppMapTheme.light,
+      DSMapConfig config = const DSMapConfig(
+        theme: DSMapTheme.light,
       );
 
       await tester.pumpWidget(
@@ -405,16 +405,16 @@ void main() {
                 body: Column(
                   children: [
                     Expanded(
-                      child: AppMap(
-                        center: const AppLatLng(latitude: 37.7749, longitude: -122.4194),
+                      child: DSMap(
+                        center: const DSLatLng(latitude: 37.7749, longitude: -122.4194),
                         config: config,
                       ),
                     ),
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          config = const AppMapConfig(
-                            theme: AppMapTheme.dark,
+                          config = const DSMapConfig(
+                            theme: DSMapTheme.dark,
                           );
                         });
                       },
@@ -432,17 +432,17 @@ void main() {
       await tester.tap(find.text('Change Theme'));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
     });
 
     testWidgets('respects spacing configuration', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMap(
-              center: const AppLatLng(latitude: 37.7749, longitude: -122.4194),
-              config: const AppMapConfig(
-                spacing: AppMapSpacing(
+            body: DSMap(
+              center: const DSLatLng(latitude: 37.7749, longitude: -122.4194),
+              config: const DSMapConfig(
+                spacing: DSMapSpacing(
                   padding: EdgeInsets.all(24.0),
                   borderRadius: 16.0,
                   minHeight: 300.0,
@@ -453,7 +453,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
@@ -461,10 +461,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMap(
-              center: const AppLatLng(latitude: 37.7749, longitude: -122.4194),
-              config: const AppMapConfig(
-                animation: AppMapAnimation(
+            body: DSMap(
+              center: const DSLatLng(latitude: 37.7749, longitude: -122.4194),
+              config: const DSMapConfig(
+                animation: DSMapAnimation(
                   enabled: false,
                 ),
               ),
@@ -473,44 +473,44 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
   });
 
-  group('AppMap Extension Tests', () {
-    test('AppMapVariant extension works correctly', () {
-      expect(AppMapVariant.markers.displayName, equals('Marcadores'));
-      expect(AppMapVariant.clusters.displayName, equals('Clusters'));
+  group('DSMap Extension Tests', () {
+    test('DSMapVariant extension works correctly', () {
+      expect(DSMapVariant.markers.displayName, equals('Marcadores'));
+      expect(DSMapVariant.clusters.displayName, equals('Clusters'));
 
-      expect(AppMapVariant.markers.enablesClustering, isFalse);
-      expect(AppMapVariant.clusters.enablesClustering, isTrue);
+      expect(DSMapVariant.markers.enablesClustering, isFalse);
+      expect(DSMapVariant.clusters.enablesClustering, isTrue);
     });
 
-    test('AppMapState extension works correctly', () {
-      expect(AppMapState.defaultState.canInteract, isTrue);
-      expect(AppMapState.hover.canInteract, isTrue);
-      expect(AppMapState.pressed.canInteract, isTrue);
-      expect(AppMapState.focus.canInteract, isTrue);
-      expect(AppMapState.selected.canInteract, isTrue);
-      expect(AppMapState.disabled.canInteract, isFalse);
-      expect(AppMapState.loading.canInteract, isFalse);
-      expect(AppMapState.skeleton.canInteract, isFalse);
+    test('DSMapState extension works correctly', () {
+      expect(DSMapState.defaultState.canInteract, isTrue);
+      expect(DSMapState.hover.canInteract, isTrue);
+      expect(DSMapState.pressed.canInteract, isTrue);
+      expect(DSMapState.focus.canInteract, isTrue);
+      expect(DSMapState.selected.canInteract, isTrue);
+      expect(DSMapState.disabled.canInteract, isFalse);
+      expect(DSMapState.loading.canInteract, isFalse);
+      expect(DSMapState.skeleton.canInteract, isFalse);
     });
 
-    test('AppMapTheme extension works correctly', () {
-      expect(AppMapTheme.light.displayName, equals('Claro'));
-      expect(AppMapTheme.dark.displayName, equals('Oscuro'));
-      expect(AppMapTheme.satellite.displayName, equals('Satelital'));
+    test('DSMapTheme extension works correctly', () {
+      expect(DSMapTheme.light.displayName, equals('Claro'));
+      expect(DSMapTheme.dark.displayName, equals('Oscuro'));
+      expect(DSMapTheme.satellite.displayName, equals('Satelital'));
 
-      expect(AppMapTheme.light.isDark, isFalse);
-      expect(AppMapTheme.dark.isDark, isTrue);
-      expect(AppMapTheme.satellite.isDark, isTrue);
+      expect(DSMapTheme.light.isDark, isFalse);
+      expect(DSMapTheme.dark.isDark, isTrue);
+      expect(DSMapTheme.satellite.isDark, isTrue);
     });
 
-    test('AppLatLng extension works correctly', () {
-      const position1 = AppLatLng(latitude: 37.7749, longitude: -122.4194);
-      const position2 = AppLatLng(latitude: 37.7849, longitude: -122.4094);
+    test('DSLatLng extension works correctly', () {
+      const position1 = DSLatLng(latitude: 37.7749, longitude: -122.4194);
+      const position2 = DSLatLng(latitude: 37.7849, longitude: -122.4094);
 
       expect(position1.isValid, isTrue);
       expect(position1.displayString, contains('37.774900'));
@@ -521,49 +521,49 @@ void main() {
       expect(distance, lessThan(20)); // Should be less than 20km
     });
 
-    test('AppMapMarkerType extension works correctly', () {
-      expect(AppMapMarkerType.standard.displayName, equals('Estándar'));
-      expect(AppMapMarkerType.custom.displayName, equals('Personalizado'));
-      expect(AppMapMarkerType.cluster.displayName, equals('Cluster'));
+    test('DSMapMarkerType extension works correctly', () {
+      expect(DSMapMarkerType.standard.displayName, equals('Estándar'));
+      expect(DSMapMarkerType.custom.displayName, equals('Personalizado'));
+      expect(DSMapMarkerType.cluster.displayName, equals('Cluster'));
 
-      expect(AppMapMarkerType.standard.defaultIcon, isNotNull);
-      expect(AppMapMarkerType.custom.defaultIcon, isNotNull);
-      expect(AppMapMarkerType.cluster.defaultIcon, isNotNull);
+      expect(DSMapMarkerType.standard.defaultIcon, isNotNull);
+      expect(DSMapMarkerType.custom.defaultIcon, isNotNull);
+      expect(DSMapMarkerType.cluster.defaultIcon, isNotNull);
     });
 
-    test('AppMapShapeType extension works correctly', () {
-      expect(AppMapShapeType.polyline.displayName, equals('Línea'));
-      expect(AppMapShapeType.polygon.displayName, equals('Polígono'));
-      expect(AppMapShapeType.circle.displayName, equals('Círculo'));
-      expect(AppMapShapeType.rectangle.displayName, equals('Rectángulo'));
+    test('DSMapShapeType extension works correctly', () {
+      expect(DSMapShapeType.polyline.displayName, equals('Línea'));
+      expect(DSMapShapeType.polygon.displayName, equals('Polígono'));
+      expect(DSMapShapeType.circle.displayName, equals('Círculo'));
+      expect(DSMapShapeType.rectangle.displayName, equals('Rectángulo'));
 
-      expect(AppMapShapeType.polyline.requiresMultiplePoints, isTrue);
-      expect(AppMapShapeType.polygon.requiresMultiplePoints, isTrue);
-      expect(AppMapShapeType.circle.requiresMultiplePoints, isFalse);
-      expect(AppMapShapeType.rectangle.requiresMultiplePoints, isFalse);
+      expect(DSMapShapeType.polyline.requiresMultiplePoints, isTrue);
+      expect(DSMapShapeType.polygon.requiresMultiplePoints, isTrue);
+      expect(DSMapShapeType.circle.requiresMultiplePoints, isFalse);
+      expect(DSMapShapeType.rectangle.requiresMultiplePoints, isFalse);
 
-      expect(AppMapShapeType.polyline.minimumPoints, equals(2));
-      expect(AppMapShapeType.polygon.minimumPoints, equals(3));
-      expect(AppMapShapeType.circle.minimumPoints, equals(1));
-      expect(AppMapShapeType.rectangle.minimumPoints, equals(2));
+      expect(DSMapShapeType.polyline.minimumPoints, equals(2));
+      expect(DSMapShapeType.polygon.minimumPoints, equals(3));
+      expect(DSMapShapeType.circle.minimumPoints, equals(1));
+      expect(DSMapShapeType.rectangle.minimumPoints, equals(2));
     });
   });
 
-  group('AppMap Error Handling Tests', () {
+  group('DSMap Error Handling Tests', () {
     testWidgets('handles invalid coordinates gracefully', (tester) async {
-      const invalidCenter = AppLatLng(latitude: 200, longitude: 300);
+      const invalidCenter = DSLatLng(latitude: 200, longitude: 300);
 
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMap(
+            body: DSMap(
               center: invalidCenter,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
@@ -571,15 +571,15 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMap(
-              center: AppLatLng(latitude: 37.7749, longitude: -122.4194),
+            body: DSMap(
+              center: DSLatLng(latitude: 37.7749, longitude: -122.4194),
               markers: [],
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
@@ -587,25 +587,25 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppMap(
-              center: AppLatLng(latitude: 37.7749, longitude: -122.4194),
+            body: DSMap(
+              center: DSLatLng(latitude: 37.7749, longitude: -122.4194),
             ),
           ),
         ),
       );
 
-      await tester.tap(find.byType(AppMap));
+      await tester.tap(find.byType(DSMap));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppMap), findsOneWidget);
+      expect(find.byType(DSMap), findsOneWidget);
     });
   });
 
-  group('AppMapMarker and AppMapShape Tests', () {
-    test('AppMapMarker copyWith works correctly', () {
-      const originalMarker = AppMapMarker(
+  group('DSMapMarker and DSMapShape Tests', () {
+    test('DSMapMarker copyWith works correctly', () {
+      const originalMarker = DSMapMarker(
         id: 'test',
-        position: AppLatLng(latitude: 0, longitude: 0),
+        position: DSLatLng(latitude: 0, longitude: 0),
         title: 'Original',
       );
 
@@ -620,21 +620,21 @@ void main() {
       expect(updatedMarker.position, equals(originalMarker.position));
     });
 
-    test('AppMapShape isValid works correctly', () {
-      const validPolyline = AppMapShape(
+    test('DSMapShape isValid works correctly', () {
+      const validPolyline = DSMapShape(
         id: 'test',
-        type: AppMapShapeType.polyline,
+        type: DSMapShapeType.polyline,
         points: [
-          AppLatLng(latitude: 0, longitude: 0),
-          AppLatLng(latitude: 1, longitude: 1),
+          DSLatLng(latitude: 0, longitude: 0),
+          DSLatLng(latitude: 1, longitude: 1),
         ],
       );
 
-      const invalidPolyline = AppMapShape(
+      const invalidPolyline = DSMapShape(
         id: 'test',
-        type: AppMapShapeType.polyline,
+        type: DSMapShapeType.polyline,
         points: [
-          AppLatLng(latitude: 0, longitude: 0),
+          DSLatLng(latitude: 0, longitude: 0),
         ],
       );
 
@@ -642,14 +642,14 @@ void main() {
       expect(invalidPolyline.isValid, isFalse);
     });
 
-    test('AppMapShape center calculation works correctly', () {
-      const shape = AppMapShape(
+    test('DSMapShape center calculation works correctly', () {
+      const shape = DSMapShape(
         id: 'test',
-        type: AppMapShapeType.polygon,
+        type: DSMapShapeType.polygon,
         points: [
-          AppLatLng(latitude: 0, longitude: 0),
-          AppLatLng(latitude: 1, longitude: 0),
-          AppLatLng(latitude: 0.5, longitude: 1),
+          DSLatLng(latitude: 0, longitude: 0),
+          DSLatLng(latitude: 1, longitude: 0),
+          DSLatLng(latitude: 0.5, longitude: 1),
         ],
       );
 

@@ -7,25 +7,25 @@ import 'package:flutter/services.dart';
 
 import 'combobox_config.dart';
 
-class AppComboBox<T> extends StatefulWidget {
+class DSComboBox<T> extends StatefulWidget {
   final String? query;
   final ValueChanged<String>? onQueryChanged;
-  final List<AppComboBoxSuggestion<T>> suggestions;
-  final ValueChanged<AppComboBoxSuggestion<T>>? onSelected;
+  final List<DSComboBoxSuggestion<T>> suggestions;
+  final ValueChanged<DSComboBoxSuggestion<T>>? onSelected;
   final String? placeholder;
   final String? label;
   final String? helperText;
   final String? errorText;
   final String? Function(String?)? validator;
-  final AppComboBoxVariant variant;
-  final AppComboBoxConfig? config;
-  final AppComboBoxColors? colors;
+  final DSComboBoxVariant variant;
+  final DSComboBoxConfig? config;
+  final DSComboBoxColors? colors;
   final bool enabled;
   final bool autoFocus;
   final FocusNode? focusNode;
   final TextEditingController? controller;
   final String? semanticLabel;
-  final AppComboBoxState? overrideState;
+  final DSComboBoxState? overrideState;
   final TextDirection? textDirection;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -43,10 +43,10 @@ class AppComboBox<T> extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final String? noResultsText;
   final Widget? loadingWidget;
-  final Future<List<AppComboBoxSuggestion<T>>> Function(String)?
+  final Future<List<DSComboBoxSuggestion<T>>> Function(String)?
       onQuerySubmitted;
 
-  const AppComboBox({
+  const DSComboBox({
     super.key,
     this.query,
     this.onQueryChanged,
@@ -57,7 +57,7 @@ class AppComboBox<T> extends StatefulWidget {
     this.helperText,
     this.errorText,
     this.validator,
-    this.variant = AppComboBoxVariant.typeahead,
+    this.variant = DSComboBoxVariant.typeahead,
     this.config,
     this.colors,
     this.enabled = true,
@@ -90,10 +90,10 @@ class AppComboBox<T> extends StatefulWidget {
         );
 
   @override
-  State<AppComboBox<T>> createState() => _AppComboBoxState<T>();
+  State<DSComboBox<T>> createState() => _DSComboBoxState<T>();
 }
 
-class _AppComboBoxState<T> extends State<AppComboBox<T>>
+class _DSComboBoxState<T> extends State<DSComboBox<T>>
     with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late TextEditingController _controller;
@@ -106,21 +106,21 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>>
   Timer? _debounceTimer;
   Timer? _loadingTimer;
 
-  late AppComboBoxConfig _config;
-  late AppComboBoxColors _colors;
-  AppComboBoxState _currentState = AppComboBoxState.defaultState;
+  late DSComboBoxConfig _config;
+  late DSComboBoxColors _colors;
+  DSComboBoxState _currentState = DSComboBoxState.defaultState;
 
   bool _isHovered = false;
   bool _isFocused = false;
   final bool _isPressed = false;
   bool _isSuggestionsOpen = false;
   bool _isLoading = false;
-  List<AppComboBoxSuggestion<T>> _filteredSuggestions = [];
+  List<DSComboBoxSuggestion<T>> _filteredSuggestions = [];
   String _lastQuery = '';
   int _selectedSuggestionIndex = -1;
 
   bool get _isEnabled =>
-      widget.enabled && widget.overrideState != AppComboBoxState.disabled;
+      widget.enabled && widget.overrideState != DSComboBoxState.disabled;
   bool get _hasError => widget.errorText != null || _effectiveErrorText != null;
   String? get _effectiveErrorText => widget.errorText ?? _validationError;
   String? _validationError;
@@ -170,13 +170,13 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>>
     _updateState();
     _updateFilteredSuggestions();
 
-    if (widget.overrideState == AppComboBoxState.skeleton) {
+    if (widget.overrideState == DSComboBoxState.skeleton) {
       _skeletonAnimationController.repeat(reverse: true);
     }
   }
 
   @override
-  void didUpdateWidget(AppComboBox<T> oldWidget) {
+  void didUpdateWidget(DSComboBox<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     _updateConfig();
@@ -193,7 +193,7 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>>
     }
 
     if (oldWidget.overrideState != widget.overrideState) {
-      if (_currentState == AppComboBoxState.skeleton) {
+      if (_currentState == DSComboBoxState.skeleton) {
         _skeletonAnimationController.repeat(reverse: true);
       } else {
         _skeletonAnimationController.stop();
@@ -219,12 +219,12 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>>
   }
 
   void _updateConfig() {
-    _config = widget.config ?? const AppComboBoxConfig();
+    _config = widget.config ?? const DSComboBoxConfig();
   }
 
   void _updateColors() {
     final theme = Theme.of(context);
-    _colors = widget.colors ?? AppComboBoxColors.fromTheme(theme);
+    _colors = widget.colors ?? DSComboBoxColors.fromTheme(theme);
   }
 
   void _updateState() {
@@ -234,17 +234,17 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>>
     }
 
     if (!_isEnabled) {
-      _currentState = AppComboBoxState.disabled;
+      _currentState = DSComboBoxState.disabled;
     } else if (_hasError) {
-      _currentState = AppComboBoxState.error;
+      _currentState = DSComboBoxState.error;
     } else if (_isFocused) {
-      _currentState = AppComboBoxState.focus;
+      _currentState = DSComboBoxState.focus;
     } else if (_isPressed) {
-      _currentState = AppComboBoxState.pressed;
+      _currentState = DSComboBoxState.pressed;
     } else if (_isHovered) {
-      _currentState = AppComboBoxState.hover;
+      _currentState = DSComboBoxState.hover;
     } else {
-      _currentState = AppComboBoxState.defaultState;
+      _currentState = DSComboBoxState.defaultState;
     }
   }
 
@@ -357,7 +357,7 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>>
     _selectedSuggestionIndex = -1;
   }
 
-  void _handleSuggestionSelected(AppComboBoxSuggestion<T> suggestion) {
+  void _handleSuggestionSelected(DSComboBoxSuggestion<T> suggestion) {
     if (widget.onSelected != null) {
       widget.onSelected!(suggestion);
     }
@@ -533,7 +533,7 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>>
   }
 
   Widget _buildSuggestionItem(
-      AppComboBoxSuggestion<T> suggestion, bool isSelected, int index) {
+      DSComboBoxSuggestion<T> suggestion, bool isSelected, int index) {
     return Material(
       color: isSelected
           ? _colors.suggestionItemSelectedColor
@@ -619,11 +619,11 @@ class _AppComboBoxState<T> extends State<AppComboBox<T>>
 
   @override
   Widget build(BuildContext context) {
-    if (_currentState == AppComboBoxState.skeleton) {
+    if (_currentState == DSComboBoxState.skeleton) {
       return _buildSkeleton();
     }
 
-    if (_currentState == AppComboBoxState.loading) {
+    if (_currentState == DSComboBoxState.loading) {
       return _buildLoadingField();
     }
 

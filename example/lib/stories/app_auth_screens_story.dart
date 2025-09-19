@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 /// Stories para demostrar todas las variantes y configuraciones
-/// del componente AppAuthScreens
-class AppAuthScreensStory extends StatefulWidget {
-  const AppAuthScreensStory({super.key});
+/// del componente DSAuthScreens
+class DSAuthScreensStory extends StatefulWidget {
+  const DSAuthScreensStory({super.key});
 
   @override
-  State<AppAuthScreensStory> createState() => _AppAuthScreensStoryState();
+  State<DSAuthScreensStory> createState() => _DSAuthScreensStoryState();
 }
 
-class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
-  AppAuthVariant _currentVariant = AppAuthVariant.signIn;
-  AppAuthState _currentState = AppAuthState.defaultState;
+class _DSAuthScreensStoryState extends State<DSAuthScreensStory> {
+  DSAuthVariant _currentVariant = DSAuthVariant.signIn;
+  DSAuthState _currentState = DSAuthState.defaultState;
   bool _isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppAuthScreens Stories'),
+        title: const Text('DSAuthScreens Stories'),
         actions: [
           IconButton(
             icon: Icon(_isDarkMode ? Icons.light_mode : Icons.dark_mode),
@@ -72,7 +72,7 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
-              children: AppAuthVariant.values.map((variant) {
+              children: DSAuthVariant.values.map((variant) {
                 return ChoiceChip(
                   label: Text(variant.displayName),
                   selected: _currentVariant == variant,
@@ -97,7 +97,7 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
-              children: AppAuthState.values.map((state) {
+              children: DSAuthState.values.map((state) {
                 return ChoiceChip(
                   label: Text(state.displayName),
                   selected: _currentState == state,
@@ -158,7 +158,7 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
         _buildVariantSection(
           title: 'Sign In',
           description: 'Pantalla de inicio de sesión con email y contraseña',
-          child: _buildAuthScreen(variant: AppAuthVariant.signIn),
+          child: _buildAuthScreen(variant: DSAuthVariant.signIn),
         ),
 
         const SizedBox(height: 24),
@@ -167,7 +167,7 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
         _buildVariantSection(
           title: 'Sign Up',
           description: 'Pantalla de registro con formulario completo',
-          child: _buildAuthScreen(variant: AppAuthVariant.signUp),
+          child: _buildAuthScreen(variant: DSAuthVariant.signUp),
         ),
 
         const SizedBox(height: 24),
@@ -176,7 +176,7 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
         _buildVariantSection(
           title: 'OTP Verification',
           description: 'Pantalla de verificación de código OTP',
-          child: _buildAuthScreen(variant: AppAuthVariant.otp),
+          child: _buildAuthScreen(variant: DSAuthVariant.otp),
         ),
 
         const SizedBox(height: 24),
@@ -185,7 +185,7 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
         _buildVariantSection(
           title: 'Social Sign-On',
           description: 'Pantalla con proveedores de autenticación social',
-          child: _buildAuthScreen(variant: AppAuthVariant.sso),
+          child: _buildAuthScreen(variant: DSAuthVariant.sso),
         ),
 
         const SizedBox(height: 24),
@@ -256,8 +256,8 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
                       SizedBox(
                         height: 300,
                         child: _buildAuthScreen(
-                          variant: AppAuthVariant.signIn,
-                          state: AppAuthState.loading,
+                          variant: DSAuthVariant.signIn,
+                          state: DSAuthState.loading,
                         ),
                       ),
                     ],
@@ -278,8 +278,8 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
                       SizedBox(
                         height: 300,
                         child: _buildAuthScreen(
-                          variant: AppAuthVariant.signIn,
-                          state: AppAuthState.skeleton,
+                          variant: DSAuthVariant.signIn,
+                          state: DSAuthState.skeleton,
                         ),
                       ),
                     ],
@@ -300,8 +300,8 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
                       SizedBox(
                         height: 300,
                         child: _buildAuthScreen(
-                          variant: AppAuthVariant.signIn,
-                          state: AppAuthState.disabled,
+                          variant: DSAuthVariant.signIn,
+                          state: DSAuthState.disabled,
                         ),
                       ),
                     ],
@@ -316,24 +316,24 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
   }
 
   Widget _buildAuthScreen({
-    required AppAuthVariant variant,
-    AppAuthState state = AppAuthState.defaultState,
+    required DSAuthVariant variant,
+    DSAuthState state = DSAuthState.defaultState,
   }) {
-    final config = AppAuthScreensConfig(
+    final config = DSAuthScreensConfig(
       variant: variant,
       state: state,
       colors: _getColorsForVariant(variant),
       spacing: _getSpacingForVariant(variant),
-      animation: const AppAuthAnimation(
+      animation: const DSAuthAnimation(
         enabled: true,
         duration: Duration(milliseconds: 300),
       ),
       behavior: _getBehaviorForVariant(variant),
-      a11yConfig: const AppAuthA11yConfig(),
-      validation: const AppAuthValidation(),
+      a11yConfig: const DSAuthA11yConfig(),
+      validation: const DSAuthValidation(),
     );
 
-    return AppAuthScreens(
+    return DSAuthScreens(
       config: config,
       fields: _getFieldsForVariant(variant),
       providers: _getProvidersForVariant(variant),
@@ -342,14 +342,14 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
       onFormChanged: _handleFormChanged,
       onFieldValidated: _handleFieldValidated,
       onNavigate: _handleNavigate,
-      onResendOtp: variant == AppAuthVariant.otp ? _handleResendOtp : null,
+      onResendOtp: variant == DSAuthVariant.otp ? _handleResendOtp : null,
       logo: _buildLogo(),
       title: _getTitleForVariant(variant),
       subtitle: _getSubtitleForVariant(variant),
       footer: _buildFooter(),
       initialValues: _getInitialValuesForVariant(variant),
-      autofocus: state != AppAuthState.disabled && state != AppAuthState.skeleton,
-      showBackButton: variant != AppAuthVariant.signIn,
+      autofocus: state != DSAuthState.disabled && state != DSAuthState.skeleton,
+      showBackButton: variant != DSAuthVariant.signIn,
       onBack: () {
         // Simular navegación hacia atrás
         debugPrint('Back pressed for ${variant.displayName}');
@@ -357,10 +357,10 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
     );
   }
 
-  AppAuthColors _getColorsForVariant(AppAuthVariant variant) {
+  DSAuthColors _getColorsForVariant(DSAuthVariant variant) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return AppAuthColors(
+    return DSAuthColors(
       backgroundColor: colorScheme.surface,
       surfaceColor: colorScheme.surface,
       primaryColor: colorScheme.primary,
@@ -389,8 +389,8 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
     );
   }
 
-  AppAuthSpacing _getSpacingForVariant(AppAuthVariant variant) {
-    return const AppAuthSpacing(
+  DSAuthSpacing _getSpacingForVariant(DSAuthVariant variant) {
+    return const DSAuthSpacing(
       screenPadding: EdgeInsets.all(24),
       fieldSpacing: 16,
       sectionSpacing: 32,
@@ -402,35 +402,35 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
     );
   }
 
-  AppAuthBehavior _getBehaviorForVariant(AppAuthVariant variant) {
-    return AppAuthBehavior(
+  DSAuthBehavior _getBehaviorForVariant(DSAuthVariant variant) {
+    return DSAuthBehavior(
       autoValidate: true,
       validateOnChange: true,
       enableAutofill: true,
       enablePasswordToggle: true,
       showLogo: true,
       showHeader: true,
-      otpLength: variant == AppAuthVariant.otp ? 6 : 6,
-      autoSubmitOtp: variant == AppAuthVariant.otp,
+      otpLength: variant == DSAuthVariant.otp ? 6 : 6,
+      autoSubmitOtp: variant == DSAuthVariant.otp,
     );
   }
 
-  List<AppAuthField> _getFieldsForVariant(AppAuthVariant variant) {
+  List<DSAuthField> _getFieldsForVariant(DSAuthVariant variant) {
     switch (variant) {
-      case AppAuthVariant.signIn:
+      case DSAuthVariant.signIn:
         return [
-          const AppAuthField(
+          const DSAuthField(
             key: 'email',
             label: 'Email',
-            type: AppAuthFieldType.email,
+            type: DSAuthFieldType.email,
             placeholder: 'ejemplo@correo.com',
             required: true,
             prefixIcon: Icons.email_outlined,
           ),
-          const AppAuthField(
+          const DSAuthField(
             key: 'password',
             label: 'Contraseña',
-            type: AppAuthFieldType.password,
+            type: DSAuthFieldType.password,
             placeholder: 'Ingresa tu contraseña',
             required: true,
             sensitive: true,
@@ -438,107 +438,107 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
           ),
         ];
 
-      case AppAuthVariant.signUp:
+      case DSAuthVariant.signUp:
         return [
-          const AppAuthField(
+          const DSAuthField(
             key: 'name',
             label: 'Nombre completo',
-            type: AppAuthFieldType.text,
+            type: DSAuthFieldType.text,
             placeholder: 'Tu nombre completo',
             required: true,
             prefixIcon: Icons.person_outlined,
           ),
-          const AppAuthField(
+          const DSAuthField(
             key: 'email',
             label: 'Email',
-            type: AppAuthFieldType.email,
+            type: DSAuthFieldType.email,
             placeholder: 'ejemplo@correo.com',
             required: true,
             prefixIcon: Icons.email_outlined,
           ),
-          const AppAuthField(
+          const DSAuthField(
             key: 'password',
             label: 'Contraseña',
-            type: AppAuthFieldType.password,
+            type: DSAuthFieldType.password,
             placeholder: 'Crea una contraseña segura',
             required: true,
             sensitive: true,
             prefixIcon: Icons.lock_outlined,
           ),
-          const AppAuthField(
+          const DSAuthField(
             key: 'confirmPassword',
             label: 'Confirmar contraseña',
-            type: AppAuthFieldType.confirmPassword,
+            type: DSAuthFieldType.confirmPassword,
             placeholder: 'Confirma tu contraseña',
             required: true,
             sensitive: true,
             prefixIcon: Icons.lock_outlined,
           ),
-          const AppAuthField(
+          const DSAuthField(
             key: 'terms',
             label: 'Acepto los términos y condiciones',
-            type: AppAuthFieldType.terms,
+            type: DSAuthFieldType.terms,
             required: true,
           ),
         ];
 
-      case AppAuthVariant.otp:
+      case DSAuthVariant.otp:
         return [
-          const AppAuthField(
+          const DSAuthField(
             key: 'otp',
             label: 'Código de verificación',
-            type: AppAuthFieldType.otp,
+            type: DSAuthFieldType.otp,
             placeholder: '000000',
             required: true,
             maxLength: 6,
           ),
         ];
 
-      case AppAuthVariant.sso:
+      case DSAuthVariant.sso:
         return []; // Solo proveedores sociales
     }
   }
 
-  List<AppAuthProvider> _getProvidersForVariant(AppAuthVariant variant) {
-    if (variant == AppAuthVariant.sso || variant == AppAuthVariant.signIn) {
+  List<DSAuthProvider> _getProvidersForVariant(DSAuthVariant variant) {
+    if (variant == DSAuthVariant.sso || variant == DSAuthVariant.signIn) {
       return [
-        AppAuthProviders.google,
-        AppAuthProviders.apple,
-        AppAuthProviders.facebook,
-        AppAuthProviders.github,
+        DSAuthProviders.google,
+        DSAuthProviders.apple,
+        DSAuthProviders.facebook,
+        DSAuthProviders.github,
       ];
     }
     return [];
   }
 
-  String _getTitleForVariant(AppAuthVariant variant) {
+  String _getTitleForVariant(DSAuthVariant variant) {
     switch (variant) {
-      case AppAuthVariant.signIn:
+      case DSAuthVariant.signIn:
         return 'Bienvenido de vuelta';
-      case AppAuthVariant.signUp:
+      case DSAuthVariant.signUp:
         return 'Crear cuenta';
-      case AppAuthVariant.otp:
+      case DSAuthVariant.otp:
         return 'Verificar código';
-      case AppAuthVariant.sso:
+      case DSAuthVariant.sso:
         return 'Inicia sesión con';
     }
   }
 
-  String _getSubtitleForVariant(AppAuthVariant variant) {
+  String _getSubtitleForVariant(DSAuthVariant variant) {
     switch (variant) {
-      case AppAuthVariant.signIn:
+      case DSAuthVariant.signIn:
         return 'Ingresa tus credenciales para continuar';
-      case AppAuthVariant.signUp:
+      case DSAuthVariant.signUp:
         return 'Completa el formulario para crear tu cuenta';
-      case AppAuthVariant.otp:
+      case DSAuthVariant.otp:
         return 'Ingresa el código de 6 dígitos que enviamos a tu email';
-      case AppAuthVariant.sso:
+      case DSAuthVariant.sso:
         return 'Elige tu proveedor de autenticación preferido';
     }
   }
 
-  Map<String, dynamic> _getInitialValuesForVariant(AppAuthVariant variant) {
-    if (variant == AppAuthVariant.signIn) {
+  Map<String, dynamic> _getInitialValuesForVariant(DSAuthVariant variant) {
+    if (variant == DSAuthVariant.signIn) {
       return {
         'email': 'demo@iautomat.com',
       };
@@ -580,7 +580,7 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
 
   // Handlers de eventos
 
-  Future<AppAuthResult> _handleSubmit(AppAuthFormData data) async {
+  Future<DSAuthResult> _handleSubmit(DSAuthFormData data) async {
     debugPrint('Form submitted: ${data.values}');
 
     // Simular delay de red
@@ -588,7 +588,7 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
 
     // Simular diferentes resultados según el formulario
     if (data.values['email'] == 'error@test.com') {
-      return const AppAuthResult(
+      return const DSAuthResult(
         success: false,
         error: 'Credenciales inválidas',
         errorCode: 'invalid_credentials',
@@ -596,14 +596,14 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
     }
 
     if (data.values['email'] == 'locked@test.com') {
-      return const AppAuthResult(
+      return const DSAuthResult(
         success: false,
         error: 'Cuenta bloqueada temporalmente',
         errorCode: 'account_locked',
       );
     }
 
-    return AppAuthResult(
+    return DSAuthResult(
       success: true,
       token: 'fake_jwt_token_${DateTime.now().millisecondsSinceEpoch}',
       user: {
@@ -615,13 +615,13 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
     );
   }
 
-  Future<AppAuthResult> _handleProviderAuth(AppAuthProvider provider) async {
+  Future<DSAuthResult> _handleProviderAuth(DSAuthProvider provider) async {
     debugPrint('Provider auth: ${provider.name}');
 
     // Simular delay de OAuth
     await Future.delayed(const Duration(seconds: 1));
 
-    return AppAuthResult(
+    return DSAuthResult(
       success: true,
       token: 'oauth_token_${provider.name}_${DateTime.now().millisecondsSinceEpoch}',
       user: {
@@ -629,21 +629,21 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
         'name': 'Usuario ${provider.displayName}',
         'email': 'user@${provider.name}.com',
       },
-      type: AppAuthResultType.social,
+      type: DSAuthResultType.social,
       provider: provider,
       timestamp: DateTime.now(),
     );
   }
 
-  void _handleFormChanged(AppAuthFormData data) {
+  void _handleFormChanged(DSAuthFormData data) {
     debugPrint('Form changed: ${data.values.keys}');
   }
 
-  void _handleFieldValidated(AppAuthFieldValidation validation) {
+  void _handleFieldValidated(DSAuthFieldValidation validation) {
     debugPrint('Field validated: ${validation.fieldKey} -> ${validation.isValid}');
   }
 
-  void _handleNavigate(AppAuthVariant from, AppAuthVariant to) {
+  void _handleNavigate(DSAuthVariant from, DSAuthVariant to) {
     debugPrint('Navigate: $from -> $to');
     setState(() {
       _currentVariant = to;
@@ -657,25 +657,25 @@ class _AppAuthScreensStoryState extends State<AppAuthScreensStory> {
   }
 }
 
-// Extensión para agregar displayName a AppAuthState
-extension AppAuthStateDisplayName on AppAuthState {
+// Extensión para agregar displayName a DSAuthState
+extension DSAuthStateDisplayName on DSAuthState {
   String get displayName {
     switch (this) {
-      case AppAuthState.defaultState:
+      case DSAuthState.defaultState:
         return 'Default';
-      case AppAuthState.hover:
+      case DSAuthState.hover:
         return 'Hover';
-      case AppAuthState.pressed:
+      case DSAuthState.pressed:
         return 'Pressed';
-      case AppAuthState.focus:
+      case DSAuthState.focus:
         return 'Focus';
-      case AppAuthState.selected:
+      case DSAuthState.selected:
         return 'Selected';
-      case AppAuthState.disabled:
+      case DSAuthState.disabled:
         return 'Disabled';
-      case AppAuthState.loading:
+      case DSAuthState.loading:
         return 'Loading';
-      case AppAuthState.skeleton:
+      case DSAuthState.skeleton:
         return 'Skeleton';
     }
   }

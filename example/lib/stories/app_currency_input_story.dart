@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-/// Story que demuestra el uso del AppCurrencyInput
+/// Story que demuestra el uso del DSCurrencyInput
 ///
 /// Incluye ejemplos de:
 /// - Diferentes estados (default, focus, disabled, loading, skeleton)
@@ -9,14 +9,14 @@ import 'package:iautomat_design_system/iautomat_design_system.dart';
 /// - Validación de rangos
 /// - Formateo localizado
 /// - Configuraciones personalizadas
-class AppCurrencyInputStory extends StatefulWidget {
-  const AppCurrencyInputStory({super.key});
+class DSCurrencyInputStory extends StatefulWidget {
+  const DSCurrencyInputStory({super.key});
 
   @override
-  State<AppCurrencyInputStory> createState() => _AppCurrencyInputStoryState();
+  State<DSCurrencyInputStory> createState() => _DSCurrencyInputStoryState();
 }
 
-class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
+class _DSCurrencyInputStoryState extends State<DSCurrencyInputStory> {
   // Controllers para diferentes ejemplos
   final TextEditingController _basicController = TextEditingController();
   final TextEditingController _usdController = TextEditingController();
@@ -45,7 +45,7 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppCurrencyInput Story'),
+        title: const Text('DSCurrencyInput Story'),
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
       body: SingleChildScrollView(
@@ -53,7 +53,7 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildTitle('AppCurrencyInput - Casos de Uso'),
+            _buildTitle('DSCurrencyInput - Casos de Uso'),
             const SizedBox(height: 32),
 
             // Ejemplo básico
@@ -140,7 +140,7 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
   Widget _buildBasicExample() {
     return Column(
       children: [
-        AppCurrencyInput(
+        DSCurrencyInput(
           controller: _basicController,
           amount: _basicAmount,
           currency: 'USD',
@@ -173,7 +173,7 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
     return Column(
       children: [
         // USD
-        AppCurrencyInput(
+        DSCurrencyInput(
           controller: _usdController,
           amount: _usdAmount,
           currency: 'USD',
@@ -190,7 +190,7 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
         const SizedBox(height: 16),
 
         // EUR
-        AppCurrencyInput(
+        DSCurrencyInput(
           controller: _eurController,
           amount: _eurAmount,
           currency: 'EUR',
@@ -207,7 +207,7 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
         const SizedBox(height: 16),
 
         // COP
-        AppCurrencyInput(
+        DSCurrencyInput(
           controller: _copController,
           amount: _copAmount,
           currency: 'COP',
@@ -229,7 +229,7 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
     return Column(
       children: [
         // Estado normal
-        const AppCurrencyInput(
+        const DSCurrencyInput(
           amount: 150.0,
           currency: 'USD',
           label: 'Estado Normal',
@@ -238,7 +238,7 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
         const SizedBox(height: 16),
 
         // Estado deshabilitado
-        const AppCurrencyInput(
+        const DSCurrencyInput(
           amount: 250.0,
           currency: 'USD',
           label: 'Estado Deshabilitado',
@@ -248,7 +248,7 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
         const SizedBox(height: 16),
 
         // Estado de solo lectura
-        const AppCurrencyInput(
+        const DSCurrencyInput(
           amount: 350.0,
           currency: 'USD',
           label: 'Solo Lectura',
@@ -258,22 +258,22 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
         const SizedBox(height: 16),
 
         // Estado loading
-        AppCurrencyInput(
+        DSCurrencyInput(
           amount: 450.0,
           currency: 'USD',
           label: 'Estado Loading',
           hint: 'Procesando...',
-          initialState: _isLoading ? AppCurrencyInputState.loading : null,
+          initialState: _isLoading ? DSCurrencyInputState.loading : null,
         ),
         const SizedBox(height: 16),
 
         // Estado skeleton
-        AppCurrencyInput(
+        DSCurrencyInput(
           amount: 550.0,
           currency: 'USD',
           label: 'Estado Skeleton',
           hint: 'Cargando contenido...',
-          initialState: _showSkeleton ? AppCurrencyInputState.skeleton : null,
+          initialState: _showSkeleton ? DSCurrencyInputState.skeleton : null,
         ),
       ],
     );
@@ -283,13 +283,13 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
     return Column(
       children: [
         // Validación con rango
-        AppCurrencyInput(
+        DSCurrencyInput(
           amount: 50.0,
           currency: 'USD',
           label: 'Rango 100-1000',
           hint: 'Mínimo \$100, máximo \$1000',
           helperText: 'Ingrese un valor entre \$100 y \$1000',
-          validation: const AppCurrencyInputValidation(
+          validation: const DSCurrencyInputValidation(
             enabled: true,
             minAmount: 100.0,
             maxAmount: 1000.0,
@@ -310,7 +310,7 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
         const SizedBox(height: 16),
 
         // Con error
-        const AppCurrencyInput(
+        const DSCurrencyInput(
           amount: 50.0,
           currency: 'USD',
           label: 'Con Error',
@@ -322,21 +322,21 @@ class _AppCurrencyInputStoryState extends State<AppCurrencyInputStory> {
   }
 
   Widget _buildCustomExample() {
-    return AppCurrencyInput(
+    return DSCurrencyInput(
       amount: 1500.0,
       currency: 'USD',
       label: 'Configuración Personalizada',
       hint: 'Con colores y espaciado custom',
       helperText: 'Ejemplo con tema personalizado',
-      config: AppCurrencyInputConfig(
-        variant: AppCurrencyInputVariant.localized,
-        colors: AppCurrencyInputColors(
+      config: DSCurrencyInputConfig(
+        variant: DSCurrencyInputVariant.localized,
+        colors: DSCurrencyInputColors(
           backgroundColor: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.1),
           borderColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
           focusedBorderColor: Theme.of(context).colorScheme.primary,
           textColor: Theme.of(context).colorScheme.onSurface,
         ),
-        spacing: const AppCurrencyInputSpacing(
+        spacing: const DSCurrencyInputSpacing(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           borderRadius: 12,
           borderWidth: 2,

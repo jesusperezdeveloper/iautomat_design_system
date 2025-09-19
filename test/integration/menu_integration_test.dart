@@ -4,32 +4,32 @@ import 'package:iautomat_design_system/src/components/menu/menu_story.dart';
 
 void main() {
   group('Menu Integration Tests', () {
-    test('can import AppMenu from components barrel', () {
-      // Verify that AppMenu and related classes are exported properly
-      expect(AppMenu, isNotNull);
-      expect(AppMenuItem, isNotNull);
+    test('can import DSMenu from components barrel', () {
+      // Verify that DSMenu and related classes are exported properly
+      expect(DSMenu, isNotNull);
+      expect(DSMenuItem, isNotNull);
       expect(MenuVariant, isNotNull);
-      expect(AppMenuState, isNotNull);
+      expect(DSMenuState, isNotNull);
       expect(MenuAlignment, isNotNull);
     });
 
-    test('AppMenu enums contain expected values', () {
+    test('DSMenu enums contain expected values', () {
       // Test MenuVariant enum
       expect(MenuVariant.values.length, equals(3));
       expect(MenuVariant.values, contains(MenuVariant.context));
       expect(MenuVariant.values, contains(MenuVariant.submenu));
       expect(MenuVariant.values, contains(MenuVariant.typeahead));
 
-      // Test AppMenuState enum
-      expect(AppMenuState.values.length, equals(8));
-      expect(AppMenuState.values, contains(AppMenuState.defaultState));
-      expect(AppMenuState.values, contains(AppMenuState.hover));
-      expect(AppMenuState.values, contains(AppMenuState.pressed));
-      expect(AppMenuState.values, contains(AppMenuState.focus));
-      expect(AppMenuState.values, contains(AppMenuState.selected));
-      expect(AppMenuState.values, contains(AppMenuState.disabled));
-      expect(AppMenuState.values, contains(AppMenuState.loading));
-      expect(AppMenuState.values, contains(AppMenuState.skeleton));
+      // Test DSMenuState enum
+      expect(DSMenuState.values.length, equals(8));
+      expect(DSMenuState.values, contains(DSMenuState.defaultState));
+      expect(DSMenuState.values, contains(DSMenuState.hover));
+      expect(DSMenuState.values, contains(DSMenuState.pressed));
+      expect(DSMenuState.values, contains(DSMenuState.focus));
+      expect(DSMenuState.values, contains(DSMenuState.selected));
+      expect(DSMenuState.values, contains(DSMenuState.disabled));
+      expect(DSMenuState.values, contains(DSMenuState.loading));
+      expect(DSMenuState.values, contains(DSMenuState.skeleton));
 
       // Test MenuAlignment enum
       expect(MenuAlignment.values.length, equals(5));
@@ -40,8 +40,8 @@ void main() {
       expect(MenuAlignment.values, contains(MenuAlignment.center));
     });
 
-    test('AppMenuItem can be instantiated with required properties', () {
-      const item = AppMenuItem(
+    test('DSMenuItem can be instantiated with required properties', () {
+      const item = DSMenuItem(
         id: 'test-item',
         label: 'Test Item',
       );
@@ -55,13 +55,13 @@ void main() {
       expect(item.children, isEmpty);
     });
 
-    test('AppMenuItem with children has correct hasChildren value', () {
-      const item = AppMenuItem(
+    test('DSMenuItem with children has correct hasChildren value', () {
+      const item = DSMenuItem(
         id: 'parent',
         label: 'Parent Item',
         children: [
-          AppMenuItem(id: 'child1', label: 'Child 1'),
-          AppMenuItem(id: 'child2', label: 'Child 2'),
+          DSMenuItem(id: 'child1', label: 'Child 1'),
+          DSMenuItem(id: 'child2', label: 'Child 2'),
         ],
       );
 

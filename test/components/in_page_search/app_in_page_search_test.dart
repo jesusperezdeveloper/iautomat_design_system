@@ -4,17 +4,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppInPageSearch Widget Tests', () {
+  group('DSInPageSearch Widget Tests', () {
     testWidgets('renders inline search correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(),
+            body: DSInPageSearch.inline(),
           ),
         ),
       );
 
-      expect(find.byType(AppInPageSearch), findsOneWidget);
+      expect(find.byType(DSInPageSearch), findsOneWidget);
       expect(find.byType(TextField), findsOneWidget);
       expect(find.byIcon(Icons.search), findsOneWidget);
     });
@@ -25,7 +25,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
+            body: DSInPageSearch.inline(
               controller: controller,
             ),
           ),
@@ -37,12 +37,12 @@ void main() {
 
     testWidgets('calls onFind when search is performed', (tester) async {
       String? capturedQuery;
-      List<AppSearchHighlight>? capturedHighlights;
+      List<DSSearchHighlight>? capturedHighlights;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
+            body: DSInPageSearch.inline(
               onFind: (query, highlights) {
                 capturedQuery = query;
                 capturedHighlights = highlights;
@@ -62,7 +62,7 @@ void main() {
     });
 
     testWidgets('shows search results count', (tester) async {
-      const searchData = AppInPageSearchData(
+      const searchData = DSInPageSearchData(
         totalResults: 5,
         currentResultIndex: 2,
       );
@@ -70,9 +70,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
+            body: DSInPageSearch.inline(
               data: searchData,
-              config: const AppInPageSearchConfig(
+              config: const DSInPageSearchConfig(
                 showResultCount: true,
               ),
             ),
@@ -84,7 +84,7 @@ void main() {
     });
 
     testWidgets('shows navigation buttons when enabled', (tester) async {
-      const searchData = AppInPageSearchData(
+      const searchData = DSInPageSearchData(
         totalResults: 3,
         currentResultIndex: 1,
       );
@@ -92,9 +92,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
+            body: DSInPageSearch.inline(
               data: searchData,
-              config: const AppInPageSearchConfig(
+              config: const DSInPageSearchConfig(
                 showNavigationButtons: true,
               ),
             ),
@@ -110,19 +110,19 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
+            body: DSInPageSearch.inline(
               isVisible: false,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppInPageSearch), findsOneWidget);
+      expect(find.byType(DSInPageSearch), findsOneWidget);
       expect(find.byType(TextField), findsNothing);
     });
 
     testWidgets('applies custom configuration', (tester) async {
-      const config = AppInPageSearchConfig(
+      const config = DSInPageSearchConfig(
         placeholder: 'Custom placeholder',
         width: 400.0,
         height: 50.0,
@@ -131,7 +131,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
+            body: DSInPageSearch.inline(
               config: config,
             ),
           ),
@@ -149,13 +149,13 @@ void main() {
     });
   });
 
-  group('AppInPageSearch State Tests', () {
+  group('DSInPageSearch State Tests', () {
     testWidgets('disabled state prevents interaction', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
-              state: AppInPageSearchState.disabled,
+            body: DSInPageSearch.inline(
+              state: DSInPageSearchState.disabled,
             ),
           ),
         ),
@@ -170,8 +170,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
-              state: AppInPageSearchState.skeleton,
+            body: DSInPageSearch.inline(
+              state: DSInPageSearchState.skeleton,
             ),
           ),
         ),
@@ -185,22 +185,22 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
-              state: AppInPageSearchState.loading,
+            body: DSInPageSearch.inline(
+              state: DSInPageSearchState.loading,
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppInPageSearch), findsOneWidget);
+      expect(find.byType(DSInPageSearch), findsOneWidget);
     });
   });
 
-  group('AppInPageSearchController Tests', () {
-    late AppInPageSearchController controller;
+  group('DSInPageSearchController Tests', () {
+    late DSInPageSearchController controller;
 
     setUp(() {
-      controller = AppInPageSearchController();
+      controller = DSInPageSearchController();
     });
 
     tearDown(() {
@@ -214,7 +214,7 @@ void main() {
     });
 
     test('updates search data correctly', () {
-      const newData = AppInPageSearchData(
+      const newData = DSInPageSearchData(
         query: 'test',
         totalResults: 5,
       );
@@ -233,8 +233,8 @@ void main() {
 
     test('updates results correctly', () {
       const highlights = [
-        AppSearchHighlight(start: 0, end: 4, text: 'test'),
-        AppSearchHighlight(start: 10, end: 14, text: 'test'),
+        DSSearchHighlight(start: 0, end: 4, text: 'test'),
+        DSSearchHighlight(start: 10, end: 14, text: 'test'),
       ];
 
       controller.updateResults(highlights);
@@ -247,9 +247,9 @@ void main() {
 
     test('navigates to next result', () {
       const highlights = [
-        AppSearchHighlight(start: 0, end: 4, text: 'test'),
-        AppSearchHighlight(start: 10, end: 14, text: 'test'),
-        AppSearchHighlight(start: 20, end: 24, text: 'test'),
+        DSSearchHighlight(start: 0, end: 4, text: 'test'),
+        DSSearchHighlight(start: 10, end: 14, text: 'test'),
+        DSSearchHighlight(start: 20, end: 24, text: 'test'),
       ];
 
       controller.updateResults(highlights);
@@ -261,9 +261,9 @@ void main() {
 
     test('navigates to previous result', () {
       const highlights = [
-        AppSearchHighlight(start: 0, end: 4, text: 'test'),
-        AppSearchHighlight(start: 10, end: 14, text: 'test'),
-        AppSearchHighlight(start: 20, end: 24, text: 'test'),
+        DSSearchHighlight(start: 0, end: 4, text: 'test'),
+        DSSearchHighlight(start: 10, end: 14, text: 'test'),
+        DSSearchHighlight(start: 20, end: 24, text: 'test'),
       ];
 
       controller.updateResults(highlights);
@@ -277,7 +277,7 @@ void main() {
     test('clears search correctly', () {
       controller.search('test');
       controller.updateResults([
-        const AppSearchHighlight(start: 0, end: 4, text: 'test'),
+        const DSSearchHighlight(start: 0, end: 4, text: 'test'),
       ]);
 
       controller.clear();
@@ -303,12 +303,12 @@ void main() {
     });
   });
 
-  group('AppInPageSearchConfig Tests', () {
+  group('DSInPageSearchConfig Tests', () {
     test('has correct default values', () {
-      const config = AppInPageSearchConfig();
+      const config = DSInPageSearchConfig();
 
-      expect(config.size, equals(AppInPageSearchSize.medium));
-      expect(config.position, equals(AppInPageSearchPosition.top));
+      expect(config.size, equals(DSInPageSearchSize.medium));
+      expect(config.position, equals(DSInPageSearchPosition.top));
       expect(config.width, equals(320.0));
       expect(config.height, equals(40.0));
       expect(config.showBorder, isTrue);
@@ -317,9 +317,9 @@ void main() {
     });
 
     test('small config has correct dimensions', () {
-      const config = AppInPageSearchConfig.small;
+      const config = DSInPageSearchConfig.small;
 
-      expect(config.size, equals(AppInPageSearchSize.small));
+      expect(config.size, equals(DSInPageSearchSize.small));
       expect(config.width, equals(280.0));
       expect(config.height, equals(32.0));
       expect(config.fontSize, equals(12.0));
@@ -327,9 +327,9 @@ void main() {
     });
 
     test('medium config has correct dimensions', () {
-      const config = AppInPageSearchConfig.medium;
+      const config = DSInPageSearchConfig.medium;
 
-      expect(config.size, equals(AppInPageSearchSize.medium));
+      expect(config.size, equals(DSInPageSearchSize.medium));
       expect(config.width, equals(320.0));
       expect(config.height, equals(40.0));
       expect(config.fontSize, equals(14.0));
@@ -337,9 +337,9 @@ void main() {
     });
 
     test('large config has correct dimensions', () {
-      const config = AppInPageSearchConfig.large;
+      const config = DSInPageSearchConfig.large;
 
-      expect(config.size, equals(AppInPageSearchSize.large));
+      expect(config.size, equals(DSInPageSearchSize.large));
       expect(config.width, equals(400.0));
       expect(config.height, equals(48.0));
       expect(config.fontSize, equals(16.0));
@@ -347,9 +347,9 @@ void main() {
     });
   });
 
-  group('AppInPageSearchData Tests', () {
+  group('DSInPageSearchData Tests', () {
     test('initializes with correct defaults', () {
-      const data = AppInPageSearchData();
+      const data = DSInPageSearchData();
 
       expect(data.query, isEmpty);
       expect(data.highlights, isEmpty);
@@ -360,20 +360,20 @@ void main() {
     });
 
     test('hasResults returns correct value', () {
-      const emptyData = AppInPageSearchData();
+      const emptyData = DSInPageSearchData();
       expect(emptyData.hasResults, isFalse);
 
-      const dataWithResults = AppInPageSearchData(totalResults: 5);
+      const dataWithResults = DSInPageSearchData(totalResults: 5);
       expect(dataWithResults.hasResults, isTrue);
     });
 
     test('hasActiveHighlight returns correct value', () {
-      const noHighlight = AppInPageSearchData();
+      const noHighlight = DSInPageSearchData();
       expect(noHighlight.hasActiveHighlight, isFalse);
 
-      const withHighlight = AppInPageSearchData(
+      const withHighlight = DSInPageSearchData(
         highlights: [
-          AppSearchHighlight(start: 0, end: 4, text: 'test'),
+          DSSearchHighlight(start: 0, end: 4, text: 'test'),
         ],
         activeHighlightIndex: 0,
       );
@@ -382,11 +382,11 @@ void main() {
 
     test('activeHighlight returns correct highlight', () {
       const highlights = [
-        AppSearchHighlight(start: 0, end: 4, text: 'test1'),
-        AppSearchHighlight(start: 10, end: 15, text: 'test2'),
+        DSSearchHighlight(start: 0, end: 4, text: 'test1'),
+        DSSearchHighlight(start: 10, end: 15, text: 'test2'),
       ];
 
-      const data = AppInPageSearchData(
+      const data = DSInPageSearchData(
         highlights: highlights,
         activeHighlightIndex: 1,
       );
@@ -395,14 +395,14 @@ void main() {
     });
 
     test('canNavigateNext returns correct value', () {
-      const data = AppInPageSearchData(
+      const data = DSInPageSearchData(
         totalResults: 5,
         currentResultIndex: 3,
       );
 
       expect(data.canNavigateNext, isTrue);
 
-      const lastResult = AppInPageSearchData(
+      const lastResult = DSInPageSearchData(
         totalResults: 5,
         currentResultIndex: 5,
       );
@@ -411,14 +411,14 @@ void main() {
     });
 
     test('canNavigatePrevious returns correct value', () {
-      const data = AppInPageSearchData(
+      const data = DSInPageSearchData(
         totalResults: 5,
         currentResultIndex: 3,
       );
 
       expect(data.canNavigatePrevious, isTrue);
 
-      const firstResult = AppInPageSearchData(
+      const firstResult = DSInPageSearchData(
         totalResults: 5,
         currentResultIndex: 1,
       );
@@ -427,10 +427,10 @@ void main() {
     });
 
     test('resultPositionText returns correct format', () {
-      const emptyData = AppInPageSearchData();
+      const emptyData = DSInPageSearchData();
       expect(emptyData.resultPositionText, equals('0 / 0'));
 
-      const dataWithResults = AppInPageSearchData(
+      const dataWithResults = DSInPageSearchData(
         totalResults: 10,
         currentResultIndex: 5,
       );
@@ -438,12 +438,12 @@ void main() {
     });
   });
 
-  group('AppInPageSearchUtils Tests', () {
+  group('DSInPageSearchUtils Tests', () {
     test('filterHighlights finds simple matches', () {
       const text = 'This is a test document with test content.';
       const query = 'test';
 
-      final highlights = AppInPageSearchUtils.filterHighlights(text, query);
+      final highlights = DSInPageSearchUtils.filterHighlights(text, query);
 
       expect(highlights.length, equals(2));
       expect(highlights[0].text, equals('test'));
@@ -457,14 +457,14 @@ void main() {
       const text = 'This is a Test document with test content.';
       const query = 'test';
 
-      final caseSensitive = AppInPageSearchUtils.filterHighlights(
+      final caseSensitive = DSInPageSearchUtils.filterHighlights(
         text,
         query,
         caseSensitive: true,
       );
       expect(caseSensitive.length, equals(1));
 
-      final caseInsensitive = AppInPageSearchUtils.filterHighlights(
+      final caseInsensitive = DSInPageSearchUtils.filterHighlights(
         text,
         query,
         caseSensitive: false,
@@ -476,7 +476,7 @@ void main() {
       const text = 'testing test tested';
       const query = 'test';
 
-      final wholeWords = AppInPageSearchUtils.filterHighlights(
+      final wholeWords = DSInPageSearchUtils.filterHighlights(
         text,
         query,
         wholeWordsOnly: true,
@@ -484,7 +484,7 @@ void main() {
       expect(wholeWords.length, equals(1));
       expect(wholeWords[0].start, equals(8));
 
-      final partialWords = AppInPageSearchUtils.filterHighlights(
+      final partialWords = DSInPageSearchUtils.filterHighlights(
         text,
         query,
         wholeWordsOnly: false,
@@ -496,7 +496,7 @@ void main() {
       const text = 'test123 test456 testing';
       const query = r'test\d+';
 
-      final highlights = AppInPageSearchUtils.filterHighlights(
+      final highlights = DSInPageSearchUtils.filterHighlights(
         text,
         query,
         useRegex: true,
@@ -511,7 +511,7 @@ void main() {
       const text = 'test document';
       const query = '[invalid regex';
 
-      final highlights = AppInPageSearchUtils.filterHighlights(
+      final highlights = DSInPageSearchUtils.filterHighlights(
         text,
         query,
         useRegex: true,
@@ -521,16 +521,16 @@ void main() {
     });
 
     test('isValidQuery validates queries correctly', () {
-      expect(AppInPageSearchUtils.isValidQuery(''), isFalse);
-      expect(AppInPageSearchUtils.isValidQuery('   '), isFalse);
-      expect(AppInPageSearchUtils.isValidQuery('valid query'), isTrue);
-      expect(AppInPageSearchUtils.isValidQuery('[invalid', useRegex: true),
+      expect(DSInPageSearchUtils.isValidQuery(''), isFalse);
+      expect(DSInPageSearchUtils.isValidQuery('   '), isFalse);
+      expect(DSInPageSearchUtils.isValidQuery('valid query'), isTrue);
+      expect(DSInPageSearchUtils.isValidQuery('[invalid', useRegex: true),
           isFalse);
-      expect(AppInPageSearchUtils.isValidQuery(r'\d+', useRegex: true), isTrue);
+      expect(DSInPageSearchUtils.isValidQuery(r'\d+', useRegex: true), isTrue);
     });
 
     test('getPlatformShortcuts returns expected shortcuts', () {
-      final shortcuts = AppInPageSearchUtils.getPlatformShortcuts();
+      final shortcuts = DSInPageSearchUtils.getPlatformShortcuts();
 
       expect(shortcuts, containsPair('close', [LogicalKeyboardKey.escape]));
       expect(shortcuts, containsPair('search', [LogicalKeyboardKey.enter]));
@@ -542,10 +542,10 @@ void main() {
     test('createHighlightedTextSpans creates correct spans', () {
       const text = 'This is a test document';
       const highlights = [
-        AppSearchHighlight(start: 10, end: 14, text: 'test'),
+        DSSearchHighlight(start: 10, end: 14, text: 'test'),
       ];
 
-      final spans = AppInPageSearchUtils.createHighlightedTextSpans(
+      final spans = DSInPageSearchUtils.createHighlightedTextSpans(
         text,
         highlights,
         defaultStyle: const TextStyle(color: Colors.black),
@@ -559,10 +559,10 @@ void main() {
     });
 
     test('calculateSearchScore computes relevance score', () {
-      const highlight = AppSearchHighlight(start: 0, end: 4, text: 'test');
+      const highlight = DSSearchHighlight(start: 0, end: 4, text: 'test');
       const text = 'test document with more content';
 
-      final score = AppInPageSearchUtils.calculateSearchScore(highlight, text);
+      final score = DSInPageSearchUtils.calculateSearchScore(highlight, text);
 
       expect(score, isA<double>());
       expect(score, greaterThan(0.0));
@@ -577,8 +577,8 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppInPageSearch.inline(
-                config: const AppInPageSearchConfig(
+              body: DSInPageSearch.inline(
+                config: const DSInPageSearchConfig(
                   textDirection: TextDirection.rtl,
                 ),
               ),
@@ -587,15 +587,15 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppInPageSearch), findsOneWidget);
+      expect(find.byType(DSInPageSearch), findsOneWidget);
     });
 
     testWidgets('provides accessibility semantics', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
-              config: const AppInPageSearchConfig(
+            body: DSInPageSearch.inline(
+              config: const DSInPageSearchConfig(
                 semanticLabel: 'Search input',
                 semanticHint: 'Enter search terms',
               ),
@@ -604,26 +604,26 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppInPageSearch), findsOneWidget);
+      expect(find.byType(DSInPageSearch), findsOneWidget);
     });
   });
 
   group('Integration Tests', () {
     testWidgets('complete search workflow', (tester) async {
-      final controller = AppInPageSearchController();
+      final controller = DSInPageSearchController();
       String? lastQuery;
-      List<AppSearchHighlight>? lastHighlights;
+      List<DSSearchHighlight>? lastHighlights;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppInPageSearch.inline(
+            body: DSInPageSearch.inline(
               searchController: controller,
               onFind: (query, highlights) {
                 lastQuery = query;
                 lastHighlights = highlights;
               },
-              config: const AppInPageSearchConfig(
+              config: const DSInPageSearchConfig(
                 showResultCount: true,
                 showNavigationButtons: true,
                 showClearButton: true,

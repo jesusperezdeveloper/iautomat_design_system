@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app_card_config.dart';
 
-class AppCard extends StatefulWidget {
-  final AppCardConfig config;
+class DSCard extends StatefulWidget {
+  final DSCardConfig config;
   final Widget? header;
   final Widget? body;
   final Widget? footer;
@@ -13,9 +13,9 @@ class AppCard extends StatefulWidget {
   final double? height;
   final Decoration? decoration;
 
-  const AppCard({
+  const DSCard({
     super.key,
-    this.config = const AppCardConfig(),
+    this.config = const DSCardConfig(),
     this.header,
     this.body,
     this.footer,
@@ -27,10 +27,10 @@ class AppCard extends StatefulWidget {
   });
 
   @override
-  State<AppCard> createState() => _AppCardState();
+  State<DSCard> createState() => _DSCardState();
 }
 
-class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
+class _DSCardState extends State<DSCard> with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _hoverAnimationController;
   late AnimationController _pressAnimationController;
@@ -96,7 +96,7 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(AppCard oldWidget) {
+  void didUpdateWidget(DSCard oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.config.state != oldWidget.config.state) {
@@ -106,11 +106,11 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
 
   void _updateStateAnimation() {
     switch (widget.config.state) {
-      case AppCardState.loading:
-      case AppCardState.skeleton:
+      case DSCardState.loading:
+      case DSCardState.skeleton:
         _stateAnimationController.repeat(reverse: true);
         break;
-      case AppCardState.disabled:
+      case DSCardState.disabled:
         _stateAnimationController.animateTo(0.6);
         break;
       default:
@@ -270,11 +270,11 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
     Widget cardContent = _buildInteractiveCard(theme, isRtl);
 
     switch (widget.config.variant) {
-      case AppCardVariant.elevated:
+      case DSCardVariant.elevated:
         return _buildElevatedCard(cardContent, theme);
-      case AppCardVariant.filled:
+      case DSCardVariant.filled:
         return _buildFilledCard(cardContent, theme);
-      case AppCardVariant.outlined:
+      case DSCardVariant.outlined:
         return _buildOutlinedCard(cardContent, theme);
     }
   }
@@ -534,22 +534,22 @@ class _AppCardState extends State<AppCard> with TickerProviderStateMixin {
 
   // Color getters
   Color? _getBackgroundColor(ThemeData theme) {
-    if (widget.config.state == AppCardState.disabled) {
+    if (widget.config.state == DSCardState.disabled) {
       return widget.config.colors?.disabledColor ??
           theme.colorScheme.surface.withValues(alpha: 0.5);
     }
 
-    if (widget.config.state == AppCardState.selected) {
+    if (widget.config.state == DSCardState.selected) {
       return widget.config.colors?.selectedColor ??
           theme.colorScheme.primaryContainer;
     }
 
     switch (widget.config.variant) {
-      case AppCardVariant.elevated:
-      case AppCardVariant.filled:
+      case DSCardVariant.elevated:
+      case DSCardVariant.filled:
         return widget.config.colors?.backgroundColor ??
             theme.colorScheme.surface;
-      case AppCardVariant.outlined:
+      case DSCardVariant.outlined:
         return widget.config.colors?.backgroundColor ?? Colors.transparent;
     }
   }

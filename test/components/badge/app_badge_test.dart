@@ -3,29 +3,29 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppBadge', () {
+  group('DSBadge', () {
     testWidgets('should render dot badge without child', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.dot(),
+            body: DSBadge.dot(),
           ),
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
     });
 
     testWidgets('should render counter badge with value', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(value: 5),
+            body: DSBadge.counter(value: 5),
           ),
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
       expect(find.text('5'), findsOneWidget);
     });
 
@@ -33,15 +33,15 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.status(
-              status: AppBadgeStatus.success,
+            body: DSBadge.status(
+              status: DSBadgeStatus.success,
               label: 'Activo',
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
       expect(find.text('Activo'), findsOneWidget);
     });
 
@@ -49,7 +49,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 3,
               child: Icon(Icons.notifications),
             ),
@@ -57,7 +57,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
       expect(find.byIcon(Icons.notifications), findsOneWidget);
       expect(find.text('3'), findsOneWidget);
     });
@@ -68,7 +68,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 1,
               onTap: () => tapped = true,
             ),
@@ -76,7 +76,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppBadge));
+      await tester.tap(find.byType(DSBadge));
       expect(tapped, isTrue);
     });
 
@@ -86,7 +86,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 1,
               onLongPress: () => longPressed = true,
             ),
@@ -94,7 +94,7 @@ void main() {
         ),
       );
 
-      await tester.longPress(find.byType(AppBadge));
+      await tester.longPress(find.byType(DSBadge));
       expect(longPressed, isTrue);
     });
 
@@ -102,7 +102,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 5,
               visible: false,
               child: Icon(Icons.notifications),
@@ -119,7 +119,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 150,
               maxValue: 99,
             ),
@@ -134,7 +134,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(value: 0),
+            body: DSBadge.counter(value: 0),
           ),
         ),
       );
@@ -146,7 +146,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 0,
               showZero: true,
             ),
@@ -163,17 +163,17 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 1,
-                  size: AppBadgeSize.small,
+                  size: DSBadgeSize.small,
                 ),
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 2,
-                  size: AppBadgeSize.medium,
+                  size: DSBadgeSize.medium,
                 ),
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 3,
-                  size: AppBadgeSize.large,
+                  size: DSBadgeSize.large,
                 ),
               ],
             ),
@@ -192,24 +192,24 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 1,
-                  position: AppBadgePosition.topLeft,
+                  position: DSBadgePosition.topLeft,
                   child: Icon(Icons.notifications),
                 ),
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 2,
-                  position: AppBadgePosition.topRight,
+                  position: DSBadgePosition.topRight,
                   child: Icon(Icons.notifications),
                 ),
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 3,
-                  position: AppBadgePosition.bottomLeft,
+                  position: DSBadgePosition.bottomLeft,
                   child: Icon(Icons.notifications),
                 ),
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 4,
-                  position: AppBadgePosition.bottomRight,
+                  position: DSBadgePosition.bottomRight,
                   child: Icon(Icons.notifications),
                 ),
               ],
@@ -230,17 +230,17 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 1,
-                  shape: AppBadgeShape.circle,
+                  shape: DSBadgeShape.circle,
                 ),
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 2,
-                  shape: AppBadgeShape.square,
+                  shape: DSBadgeShape.square,
                 ),
-                AppBadge.counter(
+                DSBadge.counter(
                   value: 3,
-                  shape: AppBadgeShape.rounded,
+                  shape: DSBadgeShape.rounded,
                 ),
               ],
             ),
@@ -259,24 +259,24 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppBadge.status(
-                  status: AppBadgeStatus.success,
+                DSBadge.status(
+                  status: DSBadgeStatus.success,
                   label: 'Éxito',
                 ),
-                AppBadge.status(
-                  status: AppBadgeStatus.warning,
+                DSBadge.status(
+                  status: DSBadgeStatus.warning,
                   label: 'Advertencia',
                 ),
-                AppBadge.status(
-                  status: AppBadgeStatus.error,
+                DSBadge.status(
+                  status: DSBadgeStatus.error,
                   label: 'Error',
                 ),
-                AppBadge.status(
-                  status: AppBadgeStatus.info,
+                DSBadge.status(
+                  status: DSBadgeStatus.info,
                   label: 'Información',
                 ),
-                AppBadge.status(
-                  status: AppBadgeStatus.neutral,
+                DSBadge.status(
+                  status: DSBadgeStatus.neutral,
                   label: 'Neutral',
                 ),
               ],
@@ -296,8 +296,8 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.status(
-              status: AppBadgeStatus.success,
+            body: DSBadge.status(
+              status: DSBadgeStatus.success,
             ),
           ),
         ),
@@ -312,7 +312,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 1,
               enabled: false,
               onTap: () => tapped = true,
@@ -321,7 +321,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppBadge));
+      await tester.tap(find.byType(DSBadge));
       expect(tapped, isFalse);
     });
 
@@ -329,7 +329,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 5,
               loading: true,
             ),
@@ -337,14 +337,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
     });
 
     testWidgets('should show skeleton state', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 5,
               skeleton: true,
             ),
@@ -352,14 +352,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
     });
 
     testWidgets('should have semantic label', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 5,
               semanticLabel: 'Test badge',
             ),
@@ -367,14 +367,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
     });
 
     testWidgets('should handle tooltip', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 5,
               tooltip: 'Badge tooltip',
             ),
@@ -382,7 +382,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
     });
 
     testWidgets('should generate automatic semantic label for counter',
@@ -390,12 +390,12 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(value: 5),
+            body: DSBadge.counter(value: 5),
           ),
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
     });
 
     testWidgets('should generate automatic semantic label for status',
@@ -403,22 +403,22 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.status(
-              status: AppBadgeStatus.success,
+            body: DSBadge.status(
+              status: DSBadgeStatus.success,
               label: 'Activo',
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
     });
 
     testWidgets('should handle custom colors', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 5,
               color: Colors.purple,
               backgroundColor: Colors.yellow,
@@ -428,18 +428,18 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
     });
 
     testWidgets('should handle animation configuration', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBadge.counter(
+            body: DSBadge.counter(
               value: 5,
-              animation: AppBadgeAnimation(
+              animation: DSBadgeAnimation(
                 enabled: true,
-                type: AppBadgeAnimationType.pulse,
+                type: DSBadgeAnimationType.pulse,
                 pulse: true,
               ),
             ),
@@ -447,19 +447,19 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(DSBadge), findsOneWidget);
     });
   });
 
-  group('AppBadgeConfig', () {
+  group('DSBadgeConfig', () {
     test('should have correct default values', () {
-      const config = AppBadgeConfig();
+      const config = DSBadgeConfig();
 
-      expect(config.variant, AppBadgeVariant.dot);
-      expect(config.state, AppBadgeState.defaultState);
-      expect(config.size, AppBadgeSize.medium);
-      expect(config.position, AppBadgePosition.topRight);
-      expect(config.shape, AppBadgeShape.circle);
+      expect(config.variant, DSBadgeVariant.dot);
+      expect(config.state, DSBadgeState.defaultState);
+      expect(config.size, DSBadgeSize.medium);
+      expect(config.position, DSBadgePosition.topRight);
+      expect(config.shape, DSBadgeShape.circle);
       expect(config.enabled, isTrue);
       expect(config.loading, isFalse);
       expect(config.skeleton, isFalse);
@@ -469,45 +469,45 @@ void main() {
     });
 
     test('should detect interactive state correctly', () {
-      const interactiveConfig = AppBadgeConfig(onTap: _mockCallback);
-      const nonInteractiveConfig = AppBadgeConfig();
+      const interactiveConfig = DSBadgeConfig(onTap: _mockCallback);
+      const nonInteractiveConfig = DSBadgeConfig();
 
       expect(interactiveConfig.isInteractive, isTrue);
       expect(nonInteractiveConfig.isInteractive, isFalse);
     });
 
     test('should detect disabled state correctly', () {
-      const disabledConfig = AppBadgeConfig(enabled: false);
-      const enabledConfig = AppBadgeConfig(enabled: true);
+      const disabledConfig = DSBadgeConfig(enabled: false);
+      const enabledConfig = DSBadgeConfig(enabled: true);
 
       expect(disabledConfig.isDisabled, isTrue);
       expect(enabledConfig.isDisabled, isFalse);
     });
 
     test('should detect loading state correctly', () {
-      const loadingConfig = AppBadgeConfig(loading: true);
-      const normalConfig = AppBadgeConfig(loading: false);
+      const loadingConfig = DSBadgeConfig(loading: true);
+      const normalConfig = DSBadgeConfig(loading: false);
 
       expect(loadingConfig.isLoading, isTrue);
       expect(normalConfig.isLoading, isFalse);
     });
 
     test('should detect skeleton state correctly', () {
-      const skeletonConfig = AppBadgeConfig(skeleton: true);
-      const normalConfig = AppBadgeConfig(skeleton: false);
+      const skeletonConfig = DSBadgeConfig(skeleton: true);
+      const normalConfig = DSBadgeConfig(skeleton: false);
 
       expect(skeletonConfig.isSkeleton, isTrue);
       expect(normalConfig.isSkeleton, isFalse);
     });
 
     test('should determine if can interact correctly', () {
-      const canInteractConfig = AppBadgeConfig(
+      const canInteractConfig = DSBadgeConfig(
         onTap: _mockCallback,
         enabled: true,
         loading: false,
         skeleton: false,
       );
-      const cannotInteractConfig = AppBadgeConfig(
+      const cannotInteractConfig = DSBadgeConfig(
         onTap: _mockCallback,
         enabled: false,
       );
@@ -517,10 +517,10 @@ void main() {
     });
 
     test('should detect value properties correctly', () {
-      const configWithValue = AppBadgeConfig(value: 5);
-      const configWithLabel = AppBadgeConfig(label: 'Test');
-      const configWithStatus = AppBadgeConfig(status: AppBadgeStatus.success);
-      const emptyConfig = AppBadgeConfig();
+      const configWithValue = DSBadgeConfig(value: 5);
+      const configWithLabel = DSBadgeConfig(label: 'Test');
+      const configWithStatus = DSBadgeConfig(status: DSBadgeStatus.success);
+      const emptyConfig = DSBadgeConfig();
 
       expect(configWithValue.hasValue, isTrue);
       expect(configWithLabel.hasLabel, isTrue);
@@ -531,10 +531,10 @@ void main() {
     });
 
     test('should format display value correctly', () {
-      const normalValue = AppBadgeConfig(value: 5);
-      const overMaxValue = AppBadgeConfig(value: 150, maxValue: 99);
-      const zeroValue = AppBadgeConfig(value: 0);
-      const zeroValueShow = AppBadgeConfig(value: 0, showZero: true);
+      const normalValue = DSBadgeConfig(value: 5);
+      const overMaxValue = DSBadgeConfig(value: 150, maxValue: 99);
+      const zeroValue = DSBadgeConfig(value: 0);
+      const zeroValueShow = DSBadgeConfig(value: 0, showZero: true);
 
       expect(normalValue.displayValue, '5');
       expect(overMaxValue.displayValue, '99+');
@@ -544,109 +544,109 @@ void main() {
 
     test('should return correct colors from theme', () {
       // This would require a proper ThemeData test, but we can test the structure
-      const config = AppBadgeConfig();
+      const config = DSBadgeConfig();
       expect(config.color, isNull);
       expect(config.backgroundColor, isNull);
       expect(config.textColor, isNull);
     });
   });
 
-  group('AppBadgeVariant', () {
+  group('DSBadgeVariant', () {
     test('should have correct extension properties', () {
-      expect(AppBadgeVariant.dot.isDot, isTrue);
-      expect(AppBadgeVariant.dot.isCounter, isFalse);
-      expect(AppBadgeVariant.dot.isStatus, isFalse);
+      expect(DSBadgeVariant.dot.isDot, isTrue);
+      expect(DSBadgeVariant.dot.isCounter, isFalse);
+      expect(DSBadgeVariant.dot.isStatus, isFalse);
 
-      expect(AppBadgeVariant.counter.isDot, isFalse);
-      expect(AppBadgeVariant.counter.isCounter, isTrue);
-      expect(AppBadgeVariant.counter.isStatus, isFalse);
+      expect(DSBadgeVariant.counter.isDot, isFalse);
+      expect(DSBadgeVariant.counter.isCounter, isTrue);
+      expect(DSBadgeVariant.counter.isStatus, isFalse);
 
-      expect(AppBadgeVariant.status.isDot, isFalse);
-      expect(AppBadgeVariant.status.isCounter, isFalse);
-      expect(AppBadgeVariant.status.isStatus, isTrue);
+      expect(DSBadgeVariant.status.isDot, isFalse);
+      expect(DSBadgeVariant.status.isCounter, isFalse);
+      expect(DSBadgeVariant.status.isStatus, isTrue);
     });
   });
 
-  group('AppBadgeStatus', () {
+  group('DSBadgeStatus', () {
     test('should have correct labels', () {
-      expect(AppBadgeStatus.success.label, 'Éxito');
-      expect(AppBadgeStatus.warning.label, 'Advertencia');
-      expect(AppBadgeStatus.error.label, 'Error');
-      expect(AppBadgeStatus.info.label, 'Información');
-      expect(AppBadgeStatus.neutral.label, 'Neutral');
+      expect(DSBadgeStatus.success.label, 'Éxito');
+      expect(DSBadgeStatus.warning.label, 'Advertencia');
+      expect(DSBadgeStatus.error.label, 'Error');
+      expect(DSBadgeStatus.info.label, 'Información');
+      expect(DSBadgeStatus.neutral.label, 'Neutral');
     });
 
     test('should have correct icons', () {
-      expect(AppBadgeStatus.success.icon, Icons.check_circle);
-      expect(AppBadgeStatus.warning.icon, Icons.warning);
-      expect(AppBadgeStatus.error.icon, Icons.error);
-      expect(AppBadgeStatus.info.icon, Icons.info);
-      expect(AppBadgeStatus.neutral.icon, Icons.circle);
+      expect(DSBadgeStatus.success.icon, Icons.check_circle);
+      expect(DSBadgeStatus.warning.icon, Icons.warning);
+      expect(DSBadgeStatus.error.icon, Icons.error);
+      expect(DSBadgeStatus.info.icon, Icons.info);
+      expect(DSBadgeStatus.neutral.icon, Icons.circle);
     });
   });
 
-  group('AppBadgeSize', () {
+  group('DSBadgeSize', () {
     test('should have correct dot sizes', () {
-      expect(AppBadgeSize.small.dotSize, 8.0);
-      expect(AppBadgeSize.medium.dotSize, 12.0);
-      expect(AppBadgeSize.large.dotSize, 16.0);
+      expect(DSBadgeSize.small.dotSize, 8.0);
+      expect(DSBadgeSize.medium.dotSize, 12.0);
+      expect(DSBadgeSize.large.dotSize, 16.0);
     });
 
     test('should have correct counter sizes', () {
-      expect(AppBadgeSize.small.counterSize, 16.0);
-      expect(AppBadgeSize.medium.counterSize, 20.0);
-      expect(AppBadgeSize.large.counterSize, 24.0);
+      expect(DSBadgeSize.small.counterSize, 16.0);
+      expect(DSBadgeSize.medium.counterSize, 20.0);
+      expect(DSBadgeSize.large.counterSize, 24.0);
     });
 
     test('should have correct status sizes', () {
-      expect(AppBadgeSize.small.statusSize, 20.0);
-      expect(AppBadgeSize.medium.statusSize, 24.0);
-      expect(AppBadgeSize.large.statusSize, 28.0);
+      expect(DSBadgeSize.small.statusSize, 20.0);
+      expect(DSBadgeSize.medium.statusSize, 24.0);
+      expect(DSBadgeSize.large.statusSize, 28.0);
     });
 
     test('should have correct font sizes', () {
-      expect(AppBadgeSize.small.fontSize, 10.0);
-      expect(AppBadgeSize.medium.fontSize, 12.0);
-      expect(AppBadgeSize.large.fontSize, 14.0);
+      expect(DSBadgeSize.small.fontSize, 10.0);
+      expect(DSBadgeSize.medium.fontSize, 12.0);
+      expect(DSBadgeSize.large.fontSize, 14.0);
     });
 
     test('should have correct icon sizes', () {
-      expect(AppBadgeSize.small.iconSize, 12.0);
-      expect(AppBadgeSize.medium.iconSize, 16.0);
-      expect(AppBadgeSize.large.iconSize, 20.0);
+      expect(DSBadgeSize.small.iconSize, 12.0);
+      expect(DSBadgeSize.medium.iconSize, 16.0);
+      expect(DSBadgeSize.large.iconSize, 20.0);
     });
   });
 
-  group('AppBadgePosition', () {
+  group('DSBadgePosition', () {
     test('should have correct alignments', () {
-      expect(AppBadgePosition.topLeft.alignment, Alignment.topLeft);
-      expect(AppBadgePosition.topRight.alignment, Alignment.topRight);
-      expect(AppBadgePosition.bottomLeft.alignment, Alignment.bottomLeft);
-      expect(AppBadgePosition.bottomRight.alignment, Alignment.bottomRight);
-      expect(AppBadgePosition.center.alignment, Alignment.center);
+      expect(DSBadgePosition.topLeft.alignment, Alignment.topLeft);
+      expect(DSBadgePosition.topRight.alignment, Alignment.topRight);
+      expect(DSBadgePosition.bottomLeft.alignment, Alignment.bottomLeft);
+      expect(DSBadgePosition.bottomRight.alignment, Alignment.bottomRight);
+      expect(DSBadgePosition.center.alignment, Alignment.center);
     });
 
     test('should calculate correct offsets', () {
       final topRightOffset =
-          AppBadgePosition.topRight.getOffset(AppBadgeSize.medium);
+          DSBadgePosition.topRight.getOffset(DSBadgeSize.medium);
       expect(topRightOffset.dx, 6.0);
       expect(topRightOffset.dy, -6.0);
 
       final centerOffset =
-          AppBadgePosition.center.getOffset(AppBadgeSize.medium);
+          DSBadgePosition.center.getOffset(DSBadgeSize.medium);
       expect(centerOffset, Offset.zero);
     });
   });
 
-  group('AppBadgeShape', () {
+  group('DSBadgeShape', () {
     test('should generate correct border radius', () {
-      final circleRadius = AppBadgeShape.circle.getBorderRadius(20.0);
+      final circleRadius = DSBadgeShape.circle.getBorderRadius(20.0);
       expect(circleRadius, BorderRadius.circular(10.0));
 
-      final squareRadius = AppBadgeShape.square.getBorderRadius(20.0);
+      final squareRadius = DSBadgeShape.square.getBorderRadius(20.0);
       expect(squareRadius, BorderRadius.zero);
 
-      final roundedRadius = AppBadgeShape.rounded.getBorderRadius(20.0);
+      final roundedRadius = DSBadgeShape.rounded.getBorderRadius(20.0);
       expect(roundedRadius, BorderRadius.circular(4.0));
     });
   });

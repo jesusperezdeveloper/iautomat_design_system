@@ -3,25 +3,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'app_switch_config.dart';
 
-class AppSwitch extends StatefulWidget {
-  final AppSwitchConfig config;
+class DSSwitch extends StatefulWidget {
+  final DSSwitchConfig config;
   final bool? value;
   final ValueChanged<bool>? onChanged;
   final String? semanticsLabel;
 
-  const AppSwitch({
+  const DSSwitch({
     super.key,
-    this.config = const AppSwitchConfig(),
+    this.config = const DSSwitchConfig(),
     this.value,
     this.onChanged,
     this.semanticsLabel,
   });
 
   @override
-  State<AppSwitch> createState() => _AppSwitchState();
+  State<DSSwitch> createState() => _DSSwitchState();
 }
 
-class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
+class _DSSwitchState extends State<DSSwitch> with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _hoverAnimationController;
   late AnimationController _toggleAnimationController;
@@ -102,7 +102,7 @@ class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(AppSwitch oldWidget) {
+  void didUpdateWidget(DSSwitch oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     final newValue = widget.value ?? widget.config.value;
@@ -120,13 +120,13 @@ class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
 
   void _updateStateAnimation() {
     switch (widget.config.state) {
-      case AppSwitchState.loading:
+      case DSSwitchState.loading:
         _loadingAnimationController.repeat();
         break;
-      case AppSwitchState.skeleton:
+      case DSSwitchState.skeleton:
         _stateAnimationController.repeat(reverse: true);
         break;
-      case AppSwitchState.disabled:
+      case DSSwitchState.disabled:
         _stateAnimationController.animateTo(0.6);
         break;
       default:
@@ -191,7 +191,7 @@ class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
   }
 
   Widget _buildLoadingState(ThemeData theme) {
-    final spacing = widget.config.spacing ?? const AppSwitchSpacing();
+    final spacing = widget.config.spacing ?? const DSSwitchSpacing();
     return Container(
       width: spacing.trackWidth,
       height: spacing.trackHeight,
@@ -222,7 +222,7 @@ class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
   }
 
   Widget _buildSkeletonState(ThemeData theme) {
-    final spacing = widget.config.spacing ?? const AppSwitchSpacing();
+    final spacing = widget.config.spacing ?? const DSSwitchSpacing();
     return AnimatedBuilder(
       animation: _stateAnimationController,
       builder: (context, child) {
@@ -278,10 +278,10 @@ class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
       content = _buildAdaptiveSwitch(theme);
     } else {
       switch (widget.config.variant) {
-        case AppSwitchVariant.android:
+        case DSSwitchVariant.android:
           content = _buildAndroidSwitch(theme);
           break;
-        case AppSwitchVariant.cupertino:
+        case DSSwitchVariant.cupertino:
           content = _buildCupertinoSwitch(theme);
           break;
       }
@@ -343,14 +343,14 @@ class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
   Widget _wrapWithEffects(Widget switchWidget, ThemeData theme) {
     Widget wrappedSwitch = switchWidget;
 
-    if (widget.config.animation?.type == AppSwitchAnimationType.scale) {
+    if (widget.config.animation?.type == DSSwitchAnimationType.scale) {
       wrappedSwitch = ScaleTransition(
         scale: _scaleAnimation,
         child: wrappedSwitch,
       );
     }
 
-    if (widget.config.animation?.type == AppSwitchAnimationType.fade) {
+    if (widget.config.animation?.type == DSSwitchAnimationType.fade) {
       wrappedSwitch = AnimatedOpacity(
         opacity: _fadeAnimation.value,
         duration:
@@ -371,7 +371,7 @@ class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
   }
 
   Color _getActiveTrackColor(ThemeData theme) {
-    if (widget.config.state == AppSwitchState.disabled) {
+    if (widget.config.state == DSSwitchState.disabled) {
       return widget.config.colors?.disabledTrackColor ??
           theme.colorScheme.onSurface.withValues(alpha: 0.12);
     }
@@ -381,7 +381,7 @@ class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
   }
 
   Color _getInactiveTrackColor(ThemeData theme) {
-    if (widget.config.state == AppSwitchState.disabled) {
+    if (widget.config.state == DSSwitchState.disabled) {
       return widget.config.colors?.disabledTrackColor ??
           theme.colorScheme.onSurface.withValues(alpha: 0.12);
     }
@@ -391,7 +391,7 @@ class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
   }
 
   Color _getActiveThumbColor(ThemeData theme) {
-    if (widget.config.state == AppSwitchState.disabled) {
+    if (widget.config.state == DSSwitchState.disabled) {
       return widget.config.colors?.disabledThumbColor ??
           theme.colorScheme.onSurface.withValues(alpha: 0.38);
     }
@@ -401,7 +401,7 @@ class _AppSwitchState extends State<AppSwitch> with TickerProviderStateMixin {
   }
 
   Color _getInactiveThumbColor(ThemeData theme) {
-    if (widget.config.state == AppSwitchState.disabled) {
+    if (widget.config.state == DSSwitchState.disabled) {
       return widget.config.colors?.disabledThumbColor ??
           theme.colorScheme.onSurface.withValues(alpha: 0.38);
     }

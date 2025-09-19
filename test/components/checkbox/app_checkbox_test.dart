@@ -4,20 +4,20 @@ import 'package:iautomat_design_system/src/components/checkbox/app_checkbox.dart
 import 'package:iautomat_design_system/src/components/checkbox/checkbox_config.dart';
 
 void main() {
-  group('AppCheckbox', () {
+  group('DSCheckbox', () {
     testWidgets('renders correctly in unchecked state', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.unchecked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.unchecked,
               onChanged: (_) {},
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppCheckbox), findsOneWidget);
+      expect(find.byType(DSCheckbox), findsOneWidget);
       // The checkbox contains CustomPaint for the check mark animation holder even when unchecked
       expect(find.byType(CustomPaint), findsWidgets);
     });
@@ -26,8 +26,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.checked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.checked,
               onChanged: (_) {},
             ),
           ),
@@ -36,7 +36,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppCheckbox), findsOneWidget);
+      expect(find.byType(DSCheckbox), findsOneWidget);
       expect(find.byType(CustomPaint), findsWidgets);
     });
 
@@ -44,8 +44,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.indeterminate,
+            body: DSCheckbox(
+              value: DSCheckboxValue.indeterminate,
               onChanged: (_) {},
               tristate: true,
             ),
@@ -57,19 +57,19 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 100));
 
-      expect(find.byType(AppCheckbox), findsOneWidget);
+      expect(find.byType(DSCheckbox), findsOneWidget);
       expect(find.byType(CustomPaint), findsWidgets);
     });
 
     testWidgets('toggles between states when tapped', (tester) async {
-      AppCheckboxValue? currentValue = AppCheckboxValue.unchecked;
+      DSCheckboxValue? currentValue = DSCheckboxValue.unchecked;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: StatefulBuilder(
               builder: (context, setState) {
-                return AppCheckbox(
+                return DSCheckbox(
                   value: currentValue,
                   onChanged: (value) {
                     setState(() {
@@ -83,28 +83,28 @@ void main() {
         ),
       );
 
-      expect(currentValue, AppCheckboxValue.unchecked);
+      expect(currentValue, DSCheckboxValue.unchecked);
 
-      await tester.tap(find.byType(AppCheckbox));
+      await tester.tap(find.byType(DSCheckbox));
       await tester.pumpAndSettle();
 
-      expect(currentValue, AppCheckboxValue.checked);
+      expect(currentValue, DSCheckboxValue.checked);
 
-      await tester.tap(find.byType(AppCheckbox));
+      await tester.tap(find.byType(DSCheckbox));
       await tester.pumpAndSettle();
 
-      expect(currentValue, AppCheckboxValue.unchecked);
+      expect(currentValue, DSCheckboxValue.unchecked);
     });
 
     testWidgets('supports tristate toggling', (tester) async {
-      AppCheckboxValue? currentValue = AppCheckboxValue.unchecked;
+      DSCheckboxValue? currentValue = DSCheckboxValue.unchecked;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: StatefulBuilder(
               builder: (context, setState) {
-                return AppCheckbox(
+                return DSCheckbox(
                   value: currentValue,
                   onChanged: (value) {
                     setState(() {
@@ -119,17 +119,17 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppCheckbox));
+      await tester.tap(find.byType(DSCheckbox));
       await tester.pump();
-      expect(currentValue, AppCheckboxValue.checked);
+      expect(currentValue, DSCheckboxValue.checked);
 
-      await tester.tap(find.byType(AppCheckbox));
+      await tester.tap(find.byType(DSCheckbox));
       await tester.pump(); // Don't use pumpAndSettle for indeterminate state
-      expect(currentValue, AppCheckboxValue.indeterminate);
+      expect(currentValue, DSCheckboxValue.indeterminate);
 
-      await tester.tap(find.byType(AppCheckbox));
+      await tester.tap(find.byType(DSCheckbox));
       await tester.pump();
-      expect(currentValue, AppCheckboxValue.unchecked);
+      expect(currentValue, DSCheckboxValue.unchecked);
     });
 
     testWidgets('displays label when provided', (tester) async {
@@ -138,8 +138,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.unchecked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.unchecked,
               onChanged: (_) {},
               label: testLabel,
             ),
@@ -156,8 +156,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.unchecked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.unchecked,
               onChanged: (_) {},
               labelWidget: const Text(customText),
             ),
@@ -172,18 +172,18 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.unchecked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.unchecked,
               onChanged: null,
             ),
           ),
         ),
       );
 
-      await tester.tap(find.byType(AppCheckbox));
+      await tester.tap(find.byType(DSCheckbox));
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppCheckbox), findsOneWidget);
+      expect(find.byType(DSCheckbox), findsOneWidget);
     });
 
     testWidgets('is disabled when enabled is false', (tester) async {
@@ -192,8 +192,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.unchecked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.unchecked,
               onChanged: (_) {
                 wasCalled = true;
               },
@@ -203,7 +203,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppCheckbox));
+      await tester.tap(find.byType(DSCheckbox));
       await tester.pumpAndSettle();
 
       expect(wasCalled, false);
@@ -213,10 +213,10 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
+            body: DSCheckbox(
               value: null,
               onChanged: null,
-              overrideState: AppCheckboxState.loading,
+              overrideState: DSCheckboxState.loading,
             ),
           ),
         ),
@@ -234,10 +234,10 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
+            body: DSCheckbox(
               value: null,
               onChanged: null,
-              overrideState: AppCheckboxState.skeleton,
+              overrideState: DSCheckboxState.skeleton,
             ),
           ),
         ),
@@ -252,8 +252,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.unchecked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.unchecked,
               onChanged: (_) {},
               focusNode: focusNode,
             ),
@@ -277,8 +277,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.unchecked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.unchecked,
               onChanged: (_) {},
               autoFocus: true,
             ),
@@ -290,7 +290,7 @@ void main() {
 
       final Focus focus = tester.widget<Focus>(
         find.descendant(
-          of: find.byType(AppCheckbox),
+          of: find.byType(DSCheckbox),
           matching: find.byType(Focus),
         ),
       );
@@ -302,8 +302,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.unchecked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.unchecked,
               onChanged: (_) {},
               label: 'RTL Text',
               textDirection: TextDirection.rtl,
@@ -314,7 +314,7 @@ void main() {
 
       final Row row = tester.widget<Row>(
         find.descendant(
-          of: find.byType(AppCheckbox),
+          of: find.byType(DSCheckbox),
           matching: find.byType(Row),
         ),
       );
@@ -329,10 +329,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.unchecked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.unchecked,
               onChanged: (_) {},
-              config: const AppCheckboxConfig(
+              config: const DSCheckboxConfig(
                 size: customSize,
                 borderWidth: customBorderWidth,
               ),
@@ -344,13 +344,13 @@ void main() {
       await tester.pumpAndSettle();
 
       // Verify configuration is applied
-      final checkbox = tester.widget<AppCheckbox>(find.byType(AppCheckbox));
+      final checkbox = tester.widget<DSCheckbox>(find.byType(DSCheckbox));
       expect(checkbox.config?.size, customSize);
       expect(checkbox.config?.borderWidth, customBorderWidth);
     });
 
     testWidgets('applies custom colors', (tester) async {
-      final customColors = AppCheckboxColors(
+      final customColors = DSCheckboxColors(
         borderColor: Colors.red,
         fillColor: Colors.blue,
         checkColor: Colors.green,
@@ -367,8 +367,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.checked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.checked,
               onChanged: (_) {},
               colors: customColors,
             ),
@@ -378,7 +378,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppCheckbox), findsOneWidget);
+      expect(find.byType(DSCheckbox), findsOneWidget);
     });
 
     testWidgets('has correct semantics', (tester) async {
@@ -387,8 +387,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.checked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.checked,
               onChanged: (_) {},
               semanticLabel: semanticLabel,
             ),
@@ -398,7 +398,7 @@ void main() {
 
       // Verify the semantic label is properly set
       final semanticsWidget = find.descendant(
-        of: find.byType(AppCheckbox),
+        of: find.byType(DSCheckbox),
         matching: find.byType(Semantics),
       );
       expect(semanticsWidget, findsWidgets);
@@ -408,8 +408,8 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.indeterminate,
+            body: DSCheckbox(
+              value: DSCheckboxValue.indeterminate,
               onChanged: (_) {},
               tristate: true,
             ),
@@ -419,21 +419,21 @@ void main() {
 
       // Verify the indeterminate state is accessible
       final semanticsWidget = find.descendant(
-        of: find.byType(AppCheckbox),
+        of: find.byType(DSCheckbox),
         matching: find.byType(Semantics),
       );
       expect(semanticsWidget, findsWidgets);
     });
 
     testWidgets('tap on label toggles checkbox', (tester) async {
-      AppCheckboxValue? currentValue = AppCheckboxValue.unchecked;
+      DSCheckboxValue? currentValue = DSCheckboxValue.unchecked;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: StatefulBuilder(
               builder: (context, setState) {
-                return AppCheckbox(
+                return DSCheckbox(
                   value: currentValue,
                   onChanged: (value) {
                     setState(() {
@@ -451,11 +451,11 @@ void main() {
       await tester.tap(find.text('Tap me'));
       await tester.pumpAndSettle();
 
-      expect(currentValue, AppCheckboxValue.checked);
+      expect(currentValue, DSCheckboxValue.checked);
     });
 
     testWidgets('maintains state during rebuild', (tester) async {
-      AppCheckboxValue? value = AppCheckboxValue.checked;
+      DSCheckboxValue? value = DSCheckboxValue.checked;
 
       await tester.pumpWidget(
         MaterialApp(
@@ -464,7 +464,7 @@ void main() {
               builder: (context, setState) {
                 return Column(
                   children: [
-                    AppCheckbox(
+                    DSCheckbox(
                       value: value,
                       onChanged: (newValue) {
                         setState(() {
@@ -486,22 +486,22 @@ void main() {
         ),
       );
 
-      expect(value, AppCheckboxValue.checked);
+      expect(value, DSCheckboxValue.checked);
 
       await tester.tap(find.text('Rebuild'));
       await tester.pumpAndSettle();
 
-      expect(value, AppCheckboxValue.checked);
+      expect(value, DSCheckboxValue.checked);
     });
 
     testWidgets('minimum touch target size is maintained', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCheckbox(
-              value: AppCheckboxValue.unchecked,
+            body: DSCheckbox(
+              value: DSCheckboxValue.unchecked,
               onChanged: (_) {},
-              config: const AppCheckboxConfig(
+              config: const DSCheckboxConfig(
                 size: 16,
                 minimumTouchTargetSize: 48,
               ),
@@ -513,7 +513,7 @@ void main() {
       final gestureDetector = tester.widget<GestureDetector>(
         find
             .descendant(
-              of: find.byType(AppCheckbox),
+              of: find.byType(DSCheckbox),
               matching: find.byType(GestureDetector),
             )
             .first,

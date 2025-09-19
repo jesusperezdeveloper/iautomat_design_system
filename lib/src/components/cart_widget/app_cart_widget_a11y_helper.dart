@@ -3,25 +3,25 @@ import 'package:flutter/services.dart';
 import 'package:flutter/semantics.dart';
 import 'package:iautomat_design_system/src/components/cart_widget/app_cart_widget_config.dart';
 
-/// Helper de accesibilidad para AppCartWidget
+/// Helper de accesibilidad para DSCartWidget
 ///
 /// Maneja todos los aspectos de accesibilidad incluyendo:
 /// - Etiquetas semánticas para lectores de pantalla
 /// - Navegación por teclado
 /// - Soporte RTL
 /// - Anuncios de cambios de estado y cantidades
-class AppCartWidgetA11yHelper {
-  final AppCartA11yConfig config;
+class DSCartWidgetA11yHelper {
+  final DSCartA11yConfig config;
 
-  AppCartWidgetA11yHelper({
+  DSCartWidgetA11yHelper({
     required this.config,
   });
 
   /// Construye el wrapper semántico para el carrito
   Widget buildSemanticWrapper({
     required BuildContext context,
-    required AppCartSummary summary,
-    required AppCartState state,
+    required DSCartSummary summary,
+    required DSCartState state,
     required bool isRtl,
     required Widget child,
   }) {
@@ -37,11 +37,11 @@ class AppCartWidgetA11yHelper {
       label: semanticLabel,
       hint: semanticHint,
       container: true,
-      enabled: state != AppCartState.disabled,
+      enabled: state != DSCartState.disabled,
       focusable: state.isInteractive,
-      focused: state == AppCartState.focus,
+      focused: state == DSCartState.focus,
       child: ExcludeSemantics(
-        excluding: state == AppCartState.skeleton,
+        excluding: state == DSCartState.skeleton,
         child: child,
       ),
     );
@@ -49,8 +49,8 @@ class AppCartWidgetA11yHelper {
 
   /// Construye la etiqueta semántica
   String _buildSemanticLabel({
-    required AppCartSummary summary,
-    required AppCartState state,
+    required DSCartSummary summary,
+    required DSCartState state,
     required bool isRtl,
   }) {
     final buffer = StringBuffer();
@@ -69,7 +69,7 @@ class AppCartWidgetA11yHelper {
     }
 
     // Estado
-    if (state != AppCartState.defaultState) {
+    if (state != DSCartState.defaultState) {
       buffer.write('. ');
       buffer.write(_getStateDescription(state, isRtl));
     }
@@ -78,7 +78,7 @@ class AppCartWidgetA11yHelper {
   }
 
   /// Construye el hint semántico
-  String _buildSemanticHint(AppCartState state, bool isRtl) {
+  String _buildSemanticHint(DSCartState state, bool isRtl) {
     if (!state.isInteractive) {
       return isRtl ? 'غير متاح' : 'Not available';
     }
@@ -89,43 +89,43 @@ class AppCartWidgetA11yHelper {
   }
 
   /// Obtiene la descripción del estado para accesibilidad
-  String _getStateDescription(AppCartState state, bool isRtl) {
+  String _getStateDescription(DSCartState state, bool isRtl) {
     if (isRtl) {
       switch (state) {
-        case AppCartState.hover:
+        case DSCartState.hover:
           return 'مؤشر فوق السلة';
-        case AppCartState.pressed:
+        case DSCartState.pressed:
           return 'مضغوط';
-        case AppCartState.focus:
+        case DSCartState.focus:
           return 'مركز عليه';
-        case AppCartState.selected:
+        case DSCartState.selected:
           return 'محدد';
-        case AppCartState.disabled:
+        case DSCartState.disabled:
           return 'معطل';
-        case AppCartState.loading:
+        case DSCartState.loading:
           return 'جاري التحميل';
-        case AppCartState.skeleton:
+        case DSCartState.skeleton:
           return 'محتوى غير محمل';
-        case AppCartState.defaultState:
+        case DSCartState.defaultState:
           return '';
       }
     } else {
       switch (state) {
-        case AppCartState.hover:
+        case DSCartState.hover:
           return 'Hovered';
-        case AppCartState.pressed:
+        case DSCartState.pressed:
           return 'Pressed';
-        case AppCartState.focus:
+        case DSCartState.focus:
           return 'Focused';
-        case AppCartState.selected:
+        case DSCartState.selected:
           return 'Selected';
-        case AppCartState.disabled:
+        case DSCartState.disabled:
           return 'Disabled';
-        case AppCartState.loading:
+        case DSCartState.loading:
           return 'Loading';
-        case AppCartState.skeleton:
+        case DSCartState.skeleton:
           return 'Content not loaded';
-        case AppCartState.defaultState:
+        case DSCartState.defaultState:
           return '';
       }
     }
@@ -176,7 +176,7 @@ class AppCartWidgetA11yHelper {
   }
 
   /// Anuncia cambios de estado
-  void announceStateChange(AppCartState state) {
+  void announceStateChange(DSCartState state) {
     final message = _getStateAnnouncementMessage(state);
     if (message.isNotEmpty) {
       SemanticsService.announce(
@@ -187,13 +187,13 @@ class AppCartWidgetA11yHelper {
   }
 
   /// Obtiene el mensaje de anuncio para un estado
-  String _getStateAnnouncementMessage(AppCartState state) {
+  String _getStateAnnouncementMessage(DSCartState state) {
     switch (state) {
-      case AppCartState.focus:
+      case DSCartState.focus:
         return 'Carrito enfocado. Use teclas para navegar';
-      case AppCartState.disabled:
+      case DSCartState.disabled:
         return 'Carrito no disponible';
-      case AppCartState.loading:
+      case DSCartState.loading:
         return 'Procesando carrito';
       default:
         return '';
@@ -215,7 +215,7 @@ class AppCartWidgetA11yHelper {
   }
 
   /// Anuncia cambios de items
-  void announceItemChange(AppCartItem item, bool added) {
+  void announceItemChange(DSCartItem item, bool added) {
     if (!config.announceItemChanges) return;
 
     final message = added
@@ -239,7 +239,7 @@ class AppCartWidgetA11yHelper {
   }
 
   /// Anuncia cambios de total
-  void announceTotalChange(AppCartSummary summary) {
+  void announceTotalChange(DSCartSummary summary) {
     if (!config.announceTotalChanges) return;
 
     final message = summary.isEmpty
@@ -253,7 +253,7 @@ class AppCartWidgetA11yHelper {
   }
 
   /// Anuncia checkout
-  void announceCheckout(AppCartSummary summary) {
+  void announceCheckout(DSCartSummary summary) {
     if (!config.announceCheckout) return;
 
     final message = 'Procediendo al pago. Total: ${summary.formatTotal()}';
@@ -298,7 +298,7 @@ class AppCartWidgetA11yHelper {
   /// Construye etiquetas semánticas para items del carrito
   Widget buildItemSemanticWrapper({
     required BuildContext context,
-    required AppCartItem item,
+    required DSCartItem item,
     required bool isRtl,
     required Widget child,
   }) {
@@ -313,7 +313,7 @@ class AppCartWidgetA11yHelper {
   }
 
   /// Construye etiqueta semántica para un item
-  String _buildItemSemanticLabel(AppCartItem item, bool isRtl) {
+  String _buildItemSemanticLabel(DSCartItem item, bool isRtl) {
     final buffer = StringBuffer();
 
     if (isRtl) {
@@ -349,7 +349,7 @@ class AppCartWidgetA11yHelper {
   /// Construye etiquetas para controles de cantidad
   Widget buildQuantityControlSemantics({
     required BuildContext context,
-    required AppCartItem item,
+    required DSCartItem item,
     required Widget decreaseButton,
     required Widget increaseButton,
     required Widget quantityDisplay,
@@ -394,7 +394,7 @@ class AppCartWidgetA11yHelper {
   /// Construye etiquetas para botón de checkout
   Widget buildCheckoutButtonSemantics({
     required BuildContext context,
-    required AppCartSummary summary,
+    required DSCartSummary summary,
     required Widget button,
     required bool isRtl,
   }) {
@@ -455,9 +455,9 @@ class AppCartWidgetA11yHelper {
 
   /// Genera descripción completa del carrito para accesibilidad
   String generateFullCartDescription({
-    required AppCartSummary summary,
-    required List<AppCartItem> items,
-    required AppCartState state,
+    required DSCartSummary summary,
+    required List<DSCartItem> items,
+    required DSCartState state,
     bool isRtl = false,
   }) {
     final buffer = StringBuffer();
@@ -540,7 +540,7 @@ class AppCartWidgetA11yHelper {
   /// Construye etiquetas para swipe actions
   Widget buildSwipeActionSemantics({
     required BuildContext context,
-    required AppCartItem item,
+    required DSCartItem item,
     required Widget swipeWidget,
     required bool isRtl,
   }) {
@@ -580,7 +580,7 @@ class AppCartWidgetA11yHelper {
   /// Construye etiquetas para totales y resumen
   Widget buildSummarySemantics({
     required BuildContext context,
-    required AppCartSummary summary,
+    required DSCartSummary summary,
     required Widget summaryWidget,
     required bool isRtl,
   }) {
@@ -591,7 +591,7 @@ class AppCartWidgetA11yHelper {
       hint: generateFullCartDescription(
         summary: summary,
         items: [],
-        state: AppCartState.defaultState,
+        state: DSCartState.defaultState,
         isRtl: isRtl,
       ),
       child: summaryWidget,

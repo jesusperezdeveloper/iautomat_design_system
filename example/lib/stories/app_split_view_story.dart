@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppSplitViewStory extends StatefulWidget {
-  const AppSplitViewStory({super.key});
+class DSSplitViewStory extends StatefulWidget {
+  const DSSplitViewStory({super.key});
 
   @override
-  State<AppSplitViewStory> createState() => _AppSplitViewStoryState();
+  State<DSSplitViewStory> createState() => _DSSplitViewStoryState();
 }
 
-class _AppSplitViewStoryState extends State<AppSplitViewStory> {
-  AppSplitViewVariant _variant = AppSplitViewVariant.resizable;
-  AppSplitViewState _state = AppSplitViewState.defaultState;
-  AppSplitViewDirection _direction = AppSplitViewDirection.horizontal;
+class _DSSplitViewStoryState extends State<DSSplitViewStory> {
+  DSSplitViewVariant _variant = DSSplitViewVariant.resizable;
+  DSSplitViewState _state = DSSplitViewState.defaultState;
+  DSSplitViewDirection _direction = DSSplitViewDirection.horizontal;
   bool _isRtl = false;
   bool _enableA11y = true;
   bool _enableKeyboard = true;
@@ -127,7 +127,7 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppSplitView Stories'),
+        title: const Text('DSSplitView Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -153,11 +153,11 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                       children: [
                         const Text('Variante: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppSplitViewVariant>(
+                        DropdownButton<DSSplitViewVariant>(
                           value: _variant,
                           onChanged: (value) =>
                               setState(() => _variant = value!),
-                          items: AppSplitViewVariant.values.map((variant) {
+                          items: DSSplitViewVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
                               child: Text(variant.displayName),
@@ -172,10 +172,10 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                       children: [
                         const Text('Estado: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppSplitViewState>(
+                        DropdownButton<DSSplitViewState>(
                           value: _state,
                           onChanged: (value) => setState(() => _state = value!),
-                          items: AppSplitViewState.values.map((state) {
+                          items: DSSplitViewState.values.map((state) {
                             return DropdownMenuItem(
                               value: state,
                               child: Text(state.displayName),
@@ -190,11 +190,11 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                       children: [
                         const Text('Dirección: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppSplitViewDirection>(
+                        DropdownButton<DSSplitViewDirection>(
                           value: _direction,
                           onChanged: (value) =>
                               setState(() => _direction = value!),
-                          items: AppSplitViewDirection.values.map((direction) {
+                          items: DSSplitViewDirection.values.map((direction) {
                             return DropdownMenuItem(
                               value: direction,
                               child: Text(direction.displayName),
@@ -339,8 +339,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: AppSplitView(
-                config: AppSplitViewConfig(
+              child: DSSplitView(
+                config: DSSplitViewConfig(
                   variant: _variant,
                   state: _state,
                   direction: _direction,
@@ -348,11 +348,11 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                   enableA11y: _enableA11y,
                   enableKeyboardSupport: _enableKeyboard,
                   initialRatio: _initialRatio,
-                  spacing: AppSplitViewSpacing(
+                  spacing: DSSplitViewSpacing(
                     handleWidth: _dividerWidth,
                     dividerWidth: _dividerWidth / 2,
                   ),
-                  behavior: AppSplitViewBehavior(
+                  behavior: DSSplitViewBehavior(
                     enableResize: _enableResize,
                     snapToEdges: _snapToEdges,
                   ),
@@ -375,10 +375,10 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
             // Horizontal Resizable
             _buildExampleSection(
               'Horizontal Redimensionable',
-              AppSplitView(
-                config: const AppSplitViewConfig(
-                  variant: AppSplitViewVariant.resizable,
-                  direction: AppSplitViewDirection.horizontal,
+              DSSplitView(
+                config: const DSSplitViewConfig(
+                  variant: DSSplitViewVariant.resizable,
+                  direction: DSSplitViewDirection.horizontal,
                 ),
                 start: _buildSimplePanel('Izquierda', Colors.blue[100]!),
                 end: _buildSimplePanel('Derecha', Colors.red[100]!),
@@ -388,10 +388,10 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
             // Vertical Resizable
             _buildExampleSection(
               'Vertical Redimensionable',
-              AppSplitView(
-                config: const AppSplitViewConfig(
-                  variant: AppSplitViewVariant.resizable,
-                  direction: AppSplitViewDirection.vertical,
+              DSSplitView(
+                config: const DSSplitViewConfig(
+                  variant: DSSplitViewVariant.resizable,
+                  direction: DSSplitViewDirection.vertical,
                 ),
                 start: _buildSimplePanel('Superior', Colors.green[100]!),
                 end: _buildSimplePanel('Inferior', Colors.orange[100]!),
@@ -401,9 +401,9 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
             // Two Pane Fixed
             _buildExampleSection(
               'Dos Paneles Fijos',
-              AppSplitView(
-                config: const AppSplitViewConfig(
-                  variant: AppSplitViewVariant.twoPane,
+              DSSplitView(
+                config: const DSSplitViewConfig(
+                  variant: DSSplitViewVariant.twoPane,
                   initialRatio: 0.3,
                 ),
                 start: _buildSimplePanel('30%', Colors.purple[100]!),
@@ -414,9 +414,9 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
             // Custom Colors
             _buildExampleSection(
               'Colores Personalizados',
-              AppSplitView(
-                config: const AppSplitViewConfig(
-                  colors: AppSplitViewColors(
+              DSSplitView(
+                config: const DSSplitViewConfig(
+                  colors: DSSplitViewColors(
                     backgroundColor: Color(0xFFF5F5F5),
                     startPaneColor: Color(0xFFE3F2FD),
                     endPaneColor: Color(0xFFF3E5F5),
@@ -434,7 +434,7 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
               'Estados del Componente',
               Column(
                 children: [
-                  ...AppSplitViewState.values.map((state) {
+                  ...DSSplitViewState.values.map((state) {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child: Column(
@@ -447,8 +447,8 @@ class _AppSplitViewStoryState extends State<AppSplitViewStory> {
                           const SizedBox(height: 4),
                           SizedBox(
                             height: 150,
-                            child: AppSplitView(
-                              config: AppSplitViewConfig(state: state),
+                            child: DSSplitView(
+                              config: DSSplitViewConfig(state: state),
                               start: _buildSimplePanel(
                                 'Start',
                                 Colors.blue[50]!,

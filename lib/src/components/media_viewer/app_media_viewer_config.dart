@@ -3,22 +3,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_media_viewer_config.freezed.dart';
 
-/// Configuración principal para el componente AppMediaViewer
+/// Configuración principal para el componente DSMediaViewer
 ///
 /// Define todas las propiedades necesarias para personalizar
-/// el comportamiento y apariencia del widget AppMediaViewer usando
+/// el comportamiento y apariencia del widget DSMediaViewer usando
 /// solo design tokens del sistema.
 @freezed
-class AppMediaViewerConfig with _$AppMediaViewerConfig {
-  const factory AppMediaViewerConfig({
+class DSMediaViewerConfig with _$DSMediaViewerConfig {
+  const factory DSMediaViewerConfig({
     /// Variante del componente media viewer
-    @Default(AppMediaViewerVariant.image) AppMediaViewerVariant variant,
+    @Default(DSMediaViewerVariant.image) DSMediaViewerVariant variant,
 
     /// Estado actual del componente
-    @Default(AppMediaViewerState.defaultState) AppMediaViewerState state,
+    @Default(DSMediaViewerState.defaultState) DSMediaViewerState state,
 
     /// Lista de elementos de media para mostrar
-    @Default([]) List<AppMediaItem> items,
+    @Default([]) List<DSMediaItem> items,
 
     /// Índice inicial del elemento a mostrar
     @Default(0) int initialIndex,
@@ -48,43 +48,43 @@ class AppMediaViewerConfig with _$AppMediaViewerConfig {
     @Default(false) bool muted,
 
     /// Configuración de colores
-    AppMediaViewerColors? colors,
+    DSMediaViewerColors? colors,
 
     /// Configuración de espaciado y dimensiones
-    AppMediaViewerSpacing? spacing,
+    DSMediaViewerSpacing? spacing,
 
     /// Configuración de elevación y sombras
-    AppMediaViewerElevation? elevation,
+    DSMediaViewerElevation? elevation,
 
     /// Configuración de comportamiento
-    AppMediaViewerBehavior? behavior,
+    DSMediaViewerBehavior? behavior,
 
     /// Configuración de animaciones
-    AppMediaViewerAnimation? animation,
+    DSMediaViewerAnimation? animation,
 
     /// Configuración de controles
-    AppMediaViewerControls? controls,
+    DSMediaViewerControls? controls,
 
     /// Configuración de accesibilidad
-    AppMediaViewerA11yConfig? a11yConfig,
+    DSMediaViewerA11yConfig? a11yConfig,
 
     /// Callbacks de interacción
     ValueChanged<int>? onPageChanged,
-    ValueChanged<AppMediaItem>? onItemTap,
+    ValueChanged<DSMediaItem>? onItemTap,
     VoidCallback? onFullscreenToggle,
     ValueChanged<bool>? onPlayPause,
     ValueChanged<double>? onSeek,
     ValueChanged<double>? onVolumeChange,
     VoidCallback? onClose,
-  }) = _AppMediaViewerConfig;
+  }) = _DSMediaViewerConfig;
 }
 
 /// Modelo para un elemento de media
 @freezed
-class AppMediaItem with _$AppMediaItem {
-  const factory AppMediaItem({
+class DSMediaItem with _$DSMediaItem {
+  const factory DSMediaItem({
     /// Tipo de media
-    required AppMediaType type,
+    required DSMediaType type,
 
     /// URL o path del archivo
     required String src,
@@ -109,10 +109,10 @@ class AppMediaItem with _$AppMediaItem {
   }) = _AppMediaItem;
 }
 
-/// Configuración de colores para el AppMediaViewer
+/// Configuración de colores para el DSMediaViewer
 @freezed
-class AppMediaViewerColors with _$AppMediaViewerColors {
-  const factory AppMediaViewerColors({
+class DSMediaViewerColors with _$DSMediaViewerColors {
+  const factory DSMediaViewerColors({
     /// Color de fondo del viewer
     Color? backgroundColor,
 
@@ -171,8 +171,8 @@ class AppMediaViewerColors with _$AppMediaViewerColors {
 
 /// Configuración de espaciado y dimensiones
 @freezed
-class AppMediaViewerSpacing with _$AppMediaViewerSpacing {
-  const factory AppMediaViewerSpacing({
+class DSMediaViewerSpacing with _$DSMediaViewerSpacing {
+  const factory DSMediaViewerSpacing({
     /// Ancho del componente
     double? width,
 
@@ -225,8 +225,8 @@ class AppMediaViewerSpacing with _$AppMediaViewerSpacing {
 
 /// Configuración de elevación y sombras
 @freezed
-class AppMediaViewerElevation with _$AppMediaViewerElevation {
-  const factory AppMediaViewerElevation({
+class DSMediaViewerElevation with _$DSMediaViewerElevation {
+  const factory DSMediaViewerElevation({
     /// Elevación por defecto
     @Default(0.0) double defaultElevation,
 
@@ -258,8 +258,8 @@ class AppMediaViewerElevation with _$AppMediaViewerElevation {
 
 /// Configuración de comportamiento
 @freezed
-class AppMediaViewerBehavior with _$AppMediaViewerBehavior {
-  const factory AppMediaViewerBehavior({
+class DSMediaViewerBehavior with _$DSMediaViewerBehavior {
+  const factory DSMediaViewerBehavior({
     /// Habilitar feedback háptico
     @Default(true) bool enableHapticFeedback,
 
@@ -276,7 +276,7 @@ class AppMediaViewerBehavior with _$AppMediaViewerBehavior {
     @Default(true) bool maintainState,
 
     /// Comportamiento de recorte
-    @Default(AppMediaViewerClipBehavior.antiAlias) AppMediaViewerClipBehavior clipBehavior,
+    @Default(DSMediaViewerClipBehavior.antiAlias) DSMediaViewerClipBehavior clipBehavior,
 
     /// Duración de animaciones en milisegundos
     @Default(300) int animationDuration,
@@ -315,10 +315,10 @@ class AppMediaViewerBehavior with _$AppMediaViewerBehavior {
 
 /// Configuración de animaciones
 @freezed
-class AppMediaViewerAnimation with _$AppMediaViewerAnimation {
-  const factory AppMediaViewerAnimation({
+class DSMediaViewerAnimation with _$DSMediaViewerAnimation {
+  const factory DSMediaViewerAnimation({
     /// Tipo de animación para transiciones
-    @Default(AppMediaViewerAnimationType.slide) AppMediaViewerAnimationType type,
+    @Default(DSMediaViewerAnimationType.slide) DSMediaViewerAnimationType type,
 
     /// Duración de la animación en milisegundos
     @Default(300) int duration,
@@ -351,8 +351,8 @@ class AppMediaViewerAnimation with _$AppMediaViewerAnimation {
 
 /// Configuración de controles
 @freezed
-class AppMediaViewerControls with _$AppMediaViewerControls {
-  const factory AppMediaViewerControls({
+class DSMediaViewerControls with _$DSMediaViewerControls {
+  const factory DSMediaViewerControls({
     /// Mostrar botón de play/pause
     @Default(true) bool showPlayPause,
 
@@ -384,17 +384,17 @@ class AppMediaViewerControls with _$AppMediaViewerControls {
     @Default(false) bool showFileInfo,
 
     /// Posición de los controles
-    @Default(AppMediaViewerControlsPosition.bottom) AppMediaViewerControlsPosition position,
+    @Default(DSMediaViewerControlsPosition.bottom) DSMediaViewerControlsPosition position,
 
     /// Comportamiento de overlay
-    @Default(AppMediaViewerOverlayBehavior.auto) AppMediaViewerOverlayBehavior overlayBehavior,
+    @Default(DSMediaViewerOverlayBehavior.auto) DSMediaViewerOverlayBehavior overlayBehavior,
   }) = _AppMediaViewerControls;
 }
 
 /// Configuración de accesibilidad
 @freezed
-class AppMediaViewerA11yConfig with _$AppMediaViewerA11yConfig {
-  const factory AppMediaViewerA11yConfig({
+class DSMediaViewerA11yConfig with _$DSMediaViewerA11yConfig {
+  const factory DSMediaViewerA11yConfig({
     /// Habilitar funciones de accesibilidad
     @Default(true) bool enabled,
 
@@ -433,11 +433,11 @@ class AppMediaViewerA11yConfig with _$AppMediaViewerA11yConfig {
 
     /// Rol semántico personalizado
     String? semanticsRole,
-  }) = _AppMediaViewerA11yConfig;
+  }) = _DSMediaViewerA11yConfig;
 }
 
 /// Tipos de media soportados
-enum AppMediaType {
+enum DSMediaType {
   /// Imagen estática
   image,
 
@@ -448,8 +448,8 @@ enum AppMediaType {
   audio,
 }
 
-/// Variantes del componente AppMediaViewer
-enum AppMediaViewerVariant {
+/// Variantes del componente DSMediaViewer
+enum DSMediaViewerVariant {
   /// Variante para imágenes
   image,
 
@@ -460,8 +460,8 @@ enum AppMediaViewerVariant {
   audio,
 }
 
-/// Estados del componente AppMediaViewer
-enum AppMediaViewerState {
+/// Estados del componente DSMediaViewer
+enum DSMediaViewerState {
   /// Estado por defecto
   defaultState,
 
@@ -488,7 +488,7 @@ enum AppMediaViewerState {
 }
 
 /// Tipos de comportamiento de recorte
-enum AppMediaViewerClipBehavior {
+enum DSMediaViewerClipBehavior {
   /// Sin recorte
   none,
 
@@ -503,7 +503,7 @@ enum AppMediaViewerClipBehavior {
 }
 
 /// Tipos de animación
-enum AppMediaViewerAnimationType {
+enum DSMediaViewerAnimationType {
   /// Sin animación
   none,
 
@@ -521,7 +521,7 @@ enum AppMediaViewerAnimationType {
 }
 
 /// Posición de los controles
-enum AppMediaViewerControlsPosition {
+enum DSMediaViewerControlsPosition {
   /// Controles en la parte superior
   top,
 
@@ -536,7 +536,7 @@ enum AppMediaViewerControlsPosition {
 }
 
 /// Comportamiento del overlay
-enum AppMediaViewerOverlayBehavior {
+enum DSMediaViewerOverlayBehavior {
   /// Mostrar siempre
   always,
 
@@ -552,242 +552,242 @@ enum AppMediaViewerOverlayBehavior {
 
 // Extensions para facilitar el uso de los enums
 
-extension AppMediaTypeExtension on AppMediaType {
+extension DSMediaTypeExtension on DSMediaType {
   String get displayName {
     switch (this) {
-      case AppMediaType.image:
+      case DSMediaType.image:
         return 'Imagen';
-      case AppMediaType.video:
+      case DSMediaType.video:
         return 'Video';
-      case AppMediaType.audio:
+      case DSMediaType.audio:
         return 'Audio';
     }
   }
 
   String get description {
     switch (this) {
-      case AppMediaType.image:
+      case DSMediaType.image:
         return 'Archivo de imagen estática';
-      case AppMediaType.video:
+      case DSMediaType.video:
         return 'Archivo de video con audio';
-      case AppMediaType.audio:
+      case DSMediaType.audio:
         return 'Archivo de audio';
     }
   }
 
-  bool get isImage => this == AppMediaType.image;
-  bool get isVideo => this == AppMediaType.video;
-  bool get isAudio => this == AppMediaType.audio;
-  bool get hasAudio => this == AppMediaType.video || this == AppMediaType.audio;
-  bool get isPlayable => this == AppMediaType.video || this == AppMediaType.audio;
+  bool get isImage => this == DSMediaType.image;
+  bool get isVideo => this == DSMediaType.video;
+  bool get isAudio => this == DSMediaType.audio;
+  bool get hasAudio => this == DSMediaType.video || this == DSMediaType.audio;
+  bool get isPlayable => this == DSMediaType.video || this == DSMediaType.audio;
 }
 
-extension AppMediaViewerVariantExtension on AppMediaViewerVariant {
+extension DSMediaViewerVariantExtension on DSMediaViewerVariant {
   String get displayName {
     switch (this) {
-      case AppMediaViewerVariant.image:
+      case DSMediaViewerVariant.image:
         return 'Image Viewer';
-      case AppMediaViewerVariant.video:
+      case DSMediaViewerVariant.video:
         return 'Video Player';
-      case AppMediaViewerVariant.audio:
+      case DSMediaViewerVariant.audio:
         return 'Audio Player';
     }
   }
 
   String get description {
     switch (this) {
-      case AppMediaViewerVariant.image:
+      case DSMediaViewerVariant.image:
         return 'Visualizador optimizado para imágenes con zoom y navegación';
-      case AppMediaViewerVariant.video:
+      case DSMediaViewerVariant.video:
         return 'Reproductor de video con controles completos';
-      case AppMediaViewerVariant.audio:
+      case DSMediaViewerVariant.audio:
         return 'Reproductor de audio con visualización de waveform';
     }
   }
 
-  AppMediaType get primaryMediaType {
+  DSMediaType get primaryMediaType {
     switch (this) {
-      case AppMediaViewerVariant.image:
-        return AppMediaType.image;
-      case AppMediaViewerVariant.video:
-        return AppMediaType.video;
-      case AppMediaViewerVariant.audio:
-        return AppMediaType.audio;
+      case DSMediaViewerVariant.image:
+        return DSMediaType.image;
+      case DSMediaViewerVariant.video:
+        return DSMediaType.video;
+      case DSMediaViewerVariant.audio:
+        return DSMediaType.audio;
     }
   }
 
   bool get supportsPlayback {
-    return this == AppMediaViewerVariant.video || this == AppMediaViewerVariant.audio;
+    return this == DSMediaViewerVariant.video || this == DSMediaViewerVariant.audio;
   }
 
   bool get supportsZoom {
-    return this == AppMediaViewerVariant.image;
+    return this == DSMediaViewerVariant.image;
   }
 }
 
-extension AppMediaViewerStateExtension on AppMediaViewerState {
+extension DSMediaViewerStateExtension on DSMediaViewerState {
   String get displayName {
     switch (this) {
-      case AppMediaViewerState.defaultState:
+      case DSMediaViewerState.defaultState:
         return 'Default';
-      case AppMediaViewerState.hover:
+      case DSMediaViewerState.hover:
         return 'Hover';
-      case AppMediaViewerState.pressed:
+      case DSMediaViewerState.pressed:
         return 'Pressed';
-      case AppMediaViewerState.focus:
+      case DSMediaViewerState.focus:
         return 'Focus';
-      case AppMediaViewerState.selected:
+      case DSMediaViewerState.selected:
         return 'Selected';
-      case AppMediaViewerState.disabled:
+      case DSMediaViewerState.disabled:
         return 'Disabled';
-      case AppMediaViewerState.loading:
+      case DSMediaViewerState.loading:
         return 'Loading';
-      case AppMediaViewerState.skeleton:
+      case DSMediaViewerState.skeleton:
         return 'Skeleton';
     }
   }
 
   bool get isInteractive {
     switch (this) {
-      case AppMediaViewerState.defaultState:
-      case AppMediaViewerState.hover:
-      case AppMediaViewerState.pressed:
-      case AppMediaViewerState.focus:
-      case AppMediaViewerState.selected:
+      case DSMediaViewerState.defaultState:
+      case DSMediaViewerState.hover:
+      case DSMediaViewerState.pressed:
+      case DSMediaViewerState.focus:
+      case DSMediaViewerState.selected:
         return true;
-      case AppMediaViewerState.disabled:
-      case AppMediaViewerState.loading:
-      case AppMediaViewerState.skeleton:
+      case DSMediaViewerState.disabled:
+      case DSMediaViewerState.loading:
+      case DSMediaViewerState.skeleton:
         return false;
     }
   }
 
   double get opacity {
     switch (this) {
-      case AppMediaViewerState.defaultState:
-      case AppMediaViewerState.hover:
-      case AppMediaViewerState.pressed:
-      case AppMediaViewerState.focus:
-      case AppMediaViewerState.selected:
+      case DSMediaViewerState.defaultState:
+      case DSMediaViewerState.hover:
+      case DSMediaViewerState.pressed:
+      case DSMediaViewerState.focus:
+      case DSMediaViewerState.selected:
         return 1.0;
-      case AppMediaViewerState.disabled:
+      case DSMediaViewerState.disabled:
         return 0.6;
-      case AppMediaViewerState.loading:
+      case DSMediaViewerState.loading:
         return 0.8;
-      case AppMediaViewerState.skeleton:
+      case DSMediaViewerState.skeleton:
         return 0.3;
     }
   }
 
   bool get showsLoader {
-    return this == AppMediaViewerState.loading;
+    return this == DSMediaViewerState.loading;
   }
 
   bool get showsSkeleton {
-    return this == AppMediaViewerState.skeleton;
+    return this == DSMediaViewerState.skeleton;
   }
 
   bool get canInteract {
     switch (this) {
-      case AppMediaViewerState.defaultState:
-      case AppMediaViewerState.hover:
-      case AppMediaViewerState.pressed:
-      case AppMediaViewerState.focus:
-      case AppMediaViewerState.selected:
+      case DSMediaViewerState.defaultState:
+      case DSMediaViewerState.hover:
+      case DSMediaViewerState.pressed:
+      case DSMediaViewerState.focus:
+      case DSMediaViewerState.selected:
         return true;
-      case AppMediaViewerState.disabled:
-      case AppMediaViewerState.loading:
-      case AppMediaViewerState.skeleton:
+      case DSMediaViewerState.disabled:
+      case DSMediaViewerState.loading:
+      case DSMediaViewerState.skeleton:
         return false;
     }
   }
 
   double get elevationMultiplier {
     switch (this) {
-      case AppMediaViewerState.defaultState:
+      case DSMediaViewerState.defaultState:
         return 1.0;
-      case AppMediaViewerState.hover:
+      case DSMediaViewerState.hover:
         return 1.5;
-      case AppMediaViewerState.pressed:
+      case DSMediaViewerState.pressed:
         return 0.5;
-      case AppMediaViewerState.focus:
+      case DSMediaViewerState.focus:
         return 2.0;
-      case AppMediaViewerState.selected:
+      case DSMediaViewerState.selected:
         return 2.5;
-      case AppMediaViewerState.disabled:
+      case DSMediaViewerState.disabled:
         return 0.0;
-      case AppMediaViewerState.loading:
-      case AppMediaViewerState.skeleton:
+      case DSMediaViewerState.loading:
+      case DSMediaViewerState.skeleton:
         return 1.0;
     }
   }
 }
 
-extension AppMediaViewerClipBehaviorExtension on AppMediaViewerClipBehavior {
+extension DSMediaViewerClipBehaviorExtension on DSMediaViewerClipBehavior {
   String get displayName {
     switch (this) {
-      case AppMediaViewerClipBehavior.none:
+      case DSMediaViewerClipBehavior.none:
         return 'None';
-      case AppMediaViewerClipBehavior.antiAlias:
+      case DSMediaViewerClipBehavior.antiAlias:
         return 'Anti Alias';
-      case AppMediaViewerClipBehavior.antiAliasWithSaveLayer:
+      case DSMediaViewerClipBehavior.antiAliasWithSaveLayer:
         return 'Anti Alias with Save Layer';
-      case AppMediaViewerClipBehavior.hardEdge:
+      case DSMediaViewerClipBehavior.hardEdge:
         return 'Hard Edge';
     }
   }
 
   Clip get flutterClip {
     switch (this) {
-      case AppMediaViewerClipBehavior.none:
+      case DSMediaViewerClipBehavior.none:
         return Clip.none;
-      case AppMediaViewerClipBehavior.antiAlias:
+      case DSMediaViewerClipBehavior.antiAlias:
         return Clip.antiAlias;
-      case AppMediaViewerClipBehavior.antiAliasWithSaveLayer:
+      case DSMediaViewerClipBehavior.antiAliasWithSaveLayer:
         return Clip.antiAliasWithSaveLayer;
-      case AppMediaViewerClipBehavior.hardEdge:
+      case DSMediaViewerClipBehavior.hardEdge:
         return Clip.hardEdge;
     }
   }
 }
 
-extension AppMediaViewerAnimationTypeExtension on AppMediaViewerAnimationType {
+extension DSMediaViewerAnimationTypeExtension on DSMediaViewerAnimationType {
   String get displayName {
     switch (this) {
-      case AppMediaViewerAnimationType.none:
+      case DSMediaViewerAnimationType.none:
         return 'None';
-      case AppMediaViewerAnimationType.slide:
+      case DSMediaViewerAnimationType.slide:
         return 'Slide';
-      case AppMediaViewerAnimationType.fade:
+      case DSMediaViewerAnimationType.fade:
         return 'Fade';
-      case AppMediaViewerAnimationType.scale:
+      case DSMediaViewerAnimationType.scale:
         return 'Scale';
-      case AppMediaViewerAnimationType.rotation:
+      case DSMediaViewerAnimationType.rotation:
         return 'Rotation';
     }
   }
 
   Curve get defaultCurve {
     switch (this) {
-      case AppMediaViewerAnimationType.none:
+      case DSMediaViewerAnimationType.none:
         return Curves.linear;
-      case AppMediaViewerAnimationType.slide:
+      case DSMediaViewerAnimationType.slide:
         return Curves.easeOutCubic;
-      case AppMediaViewerAnimationType.fade:
+      case DSMediaViewerAnimationType.fade:
         return Curves.easeInOut;
-      case AppMediaViewerAnimationType.scale:
+      case DSMediaViewerAnimationType.scale:
         return Curves.elasticOut;
-      case AppMediaViewerAnimationType.rotation:
+      case DSMediaViewerAnimationType.rotation:
         return Curves.easeInOutQuart;
     }
   }
 
   bool get hasAnimation {
-    return this != AppMediaViewerAnimationType.none;
+    return this != DSMediaViewerAnimationType.none;
   }
 }
 
-extension AppMediaItemExtension on AppMediaItem {
+extension DSMediaItemExtension on DSMediaItem {
   /// Determina si es un elemento de imagen
   bool get isImage => type.isImage;
 

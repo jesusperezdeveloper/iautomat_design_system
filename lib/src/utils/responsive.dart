@@ -270,11 +270,11 @@ class Responsive {
   /// [context] BuildContext para determinar el breakpoint
   static EdgeInsets getResponsivePadding(BuildContext context) {
     if (isMobile(context)) {
-      return AppSpacing.pagePaddingMobile;
+      return DSSpacing.pagePaddingMobile;
     } else if (isTablet(context)) {
-      return AppSpacing.pagePadding;
+      return DSSpacing.pagePadding;
     } else {
-      return EdgeInsets.all(AppSpacing.lg);
+      return EdgeInsets.all(DSSpacing.lg);
     }
   }
 
@@ -283,10 +283,10 @@ class Responsive {
   /// [context] BuildContext para determinar el breakpoint
   static double getMaxContentWidth(BuildContext context) {
     return ResponsiveValue<double>(
-      mobile: AppSpacing.maxCompactWidth,
-      tablet: AppSpacing.maxContentWidth,
-      desktop: AppSpacing.maxExpandedWidth,
-      ultraWide: AppSpacing.maxFullWidth,
+      mobile: DSSpacing.maxCompactWidth,
+      tablet: DSSpacing.maxContentWidth,
+      desktop: DSSpacing.maxExpandedWidth,
+      ultraWide: DSSpacing.maxFullWidth,
     ).getValue(context);
   }
 }
@@ -581,7 +581,7 @@ class ResponsiveGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final columnCount = columns.getValue(context);
-    final gridSpacing = spacing?.getValue(context) ?? AppSpacing.md;
+    final gridSpacing = spacing?.getValue(context) ?? DSSpacing.md;
 
     return Padding(
       padding: padding ?? EdgeInsets.zero,
@@ -635,8 +635,8 @@ class ResponsiveWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wrapSpacing = spacing?.getValue(context) ?? AppSpacing.sm;
-    final wrapRunSpacing = runSpacing?.getValue(context) ?? AppSpacing.sm;
+    final wrapSpacing = spacing?.getValue(context) ?? DSSpacing.sm;
+    final wrapRunSpacing = runSpacing?.getValue(context) ?? DSSpacing.sm;
 
     return Wrap(
       spacing: wrapSpacing,

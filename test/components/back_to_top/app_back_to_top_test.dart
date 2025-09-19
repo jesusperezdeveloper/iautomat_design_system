@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppBackToTop', () {
+  group('DSBackToTop', () {
     late ScrollController scrollController;
 
     setUp(() {
@@ -22,7 +22,7 @@ void main() {
             body: Stack(
               children: [
                 const SizedBox.expand(),
-                AppBackToTop(
+                DSBackToTop(
                   scrollController: scrollController,
                 ),
               ],
@@ -31,7 +31,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppBackToTop), findsOneWidget);
+      expect(find.byType(DSBackToTop), findsOneWidget);
     });
 
     testWidgets('shows button when scroll position exceeds threshold', (tester) async {
@@ -52,10 +52,10 @@ void main() {
                     ),
                   ),
                 ),
-                AppBackToTop(
+                DSBackToTop(
                   scrollController: scrollController,
-                  config: const AppBackToTopConfig(
-                    behavior: AppBackToTopBehavior(
+                  config: const DSBackToTopConfig(
+                    behavior: DSBackToTopBehavior(
                       showAfterPixels: 100,
                     ),
                   ),
@@ -67,13 +67,13 @@ void main() {
       );
 
       // Initially button should not be visible
-      expect(find.byType(AppBackToTop), findsOneWidget);
+      expect(find.byType(DSBackToTop), findsOneWidget);
 
       // Scroll down to trigger button visibility
       scrollController.jumpTo(200);
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppBackToTop), findsOneWidget);
+      expect(find.byType(DSBackToTop), findsOneWidget);
     });
 
     testWidgets('responds to tap when interactive', (tester) async {
@@ -88,14 +88,14 @@ void main() {
                   controller: scrollController,
                   child: const SizedBox(height: 2000),
                 ),
-                AppBackToTop(
+                DSBackToTop(
                   scrollController: scrollController,
                   interactive: true,
                   onPressed: () {
                     pressed = true;
                   },
-                  config: const AppBackToTopConfig(
-                    behavior: AppBackToTopBehavior(
+                  config: const DSBackToTopConfig(
+                    behavior: DSBackToTopBehavior(
                       showAfterPixels: 100,
                     ),
                   ),
@@ -127,10 +127,10 @@ void main() {
                   controller: scrollController,
                   child: const SizedBox(height: 2000),
                 ),
-                AppBackToTop(
+                DSBackToTop(
                   scrollController: scrollController,
-                  config: const AppBackToTopConfig(
-                    behavior: AppBackToTopBehavior(
+                  config: const DSBackToTopConfig(
+                    behavior: DSBackToTopBehavior(
                       showAfterPixels: 100,
                       smoothScrolling: false, // Use instant scroll for testing
                     ),
@@ -167,14 +167,14 @@ void main() {
                   controller: scrollController,
                   child: const SizedBox(height: 2000),
                 ),
-                AppBackToTop(
+                DSBackToTop(
                   scrollController: scrollController,
                   interactive: false,
                   onPressed: () {
                     pressed = true;
                   },
-                  config: const AppBackToTopConfig(
-                    behavior: AppBackToTopBehavior(
+                  config: const DSBackToTopConfig(
+                    behavior: DSBackToTopBehavior(
                       showAfterPixels: 100,
                     ),
                   ),
@@ -190,23 +190,23 @@ void main() {
       await tester.pumpAndSettle();
 
       // Try to tap the button
-      await tester.tap(find.byType(AppBackToTop));
+      await tester.tap(find.byType(DSBackToTop));
       await tester.pump();
 
       expect(pressed, isFalse);
     });
 
     testWidgets('displays different states correctly', (tester) async {
-      for (final state in AppBackToTopState.values) {
+      for (final state in DSBackToTopState.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
               body: Stack(
                 children: [
                   const SizedBox.expand(),
-                  AppBackToTop(
+                  DSBackToTop(
                     scrollController: scrollController,
-                    config: AppBackToTopConfig(
+                    config: DSBackToTopConfig(
                       state: state,
                     ),
                   ),
@@ -216,7 +216,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppBackToTop), findsOneWidget);
+        expect(find.byType(DSBackToTop), findsOneWidget);
         await tester.pump();
       }
     });
@@ -228,10 +228,10 @@ void main() {
             body: Stack(
               children: [
                 const SizedBox.expand(),
-                AppBackToTop(
+                DSBackToTop(
                   scrollController: scrollController,
-                  config: const AppBackToTopConfig(
-                    state: AppBackToTopState.loading,
+                  config: const DSBackToTopConfig(
+                    state: DSBackToTopState.loading,
                   ),
                 ),
               ],
@@ -244,7 +244,7 @@ void main() {
     });
 
     testWidgets('calls onStateChanged when state changes', (tester) async {
-      AppBackToTopState? capturedState;
+      DSBackToTopState? capturedState;
 
       await tester.pumpWidget(
         MaterialApp(
@@ -252,7 +252,7 @@ void main() {
             body: Stack(
               children: [
                 const SizedBox.expand(),
-                AppBackToTop(
+                DSBackToTop(
                   scrollController: scrollController,
                   interactive: true,
                   onStateChanged: (state) => capturedState = state,
@@ -271,21 +271,21 @@ void main() {
       await gesture.moveTo(tester.getCenter(find.byType(InkWell)));
       await tester.pump();
 
-      expect(capturedState, equals(AppBackToTopState.hover));
+      expect(capturedState, equals(DSBackToTopState.hover));
     });
 
     testWidgets('positions button correctly based on configuration', (tester) async {
-      for (final position in AppBackToTopPosition.values) {
+      for (final position in DSBackToTopPosition.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
               body: Stack(
                 children: [
                   const SizedBox.expand(),
-                  AppBackToTop(
+                  DSBackToTop(
                     scrollController: scrollController,
-                    config: AppBackToTopConfig(
-                      spacing: AppBackToTopSpacing(
+                    config: DSBackToTopConfig(
+                      spacing: DSBackToTopSpacing(
                         position: position,
                       ),
                     ),
@@ -296,7 +296,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppBackToTop), findsOneWidget);
+        expect(find.byType(DSBackToTop), findsOneWidget);
         await tester.pump();
       }
     });
@@ -308,10 +308,10 @@ void main() {
             body: Stack(
               children: [
                 const SizedBox.expand(),
-                AppBackToTop(
+                DSBackToTop(
                   scrollController: scrollController,
-                  config: const AppBackToTopConfig(
-                    accessibility: AppBackToTopAccessibility(
+                  config: const DSBackToTopConfig(
+                    accessibility: DSBackToTopAccessibility(
                       enabled: true,
                       label: 'Ir al inicio personalizado',
                     ),
@@ -323,63 +323,63 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppBackToTop), findsOneWidget);
+      expect(find.byType(DSBackToTop), findsOneWidget);
     });
 
-    group('AppBackToTopConfig', () {
+    group('DSBackToTopConfig', () {
       test('has correct default values', () {
-        const config = AppBackToTopConfig();
+        const config = DSBackToTopConfig();
 
-        expect(config.variant, equals(AppBackToTopVariant.webOnly));
-        expect(config.state, equals(AppBackToTopState.defaultState));
+        expect(config.variant, equals(DSBackToTopVariant.webOnly));
+        expect(config.state, equals(DSBackToTopState.defaultState));
       });
 
       test('copyWith works correctly', () {
-        const original = AppBackToTopConfig(
-          variant: AppBackToTopVariant.webOnly,
-          state: AppBackToTopState.defaultState,
+        const original = DSBackToTopConfig(
+          variant: DSBackToTopVariant.webOnly,
+          state: DSBackToTopState.defaultState,
         );
 
         final updated = original.copyWith(
-          state: AppBackToTopState.hover,
+          state: DSBackToTopState.hover,
         );
 
-        expect(updated.state, equals(AppBackToTopState.hover));
+        expect(updated.state, equals(DSBackToTopState.hover));
         expect(updated.variant, equals(original.variant));
       });
 
       test('validation works correctly', () {
-        const validConfig = AppBackToTopConfig(
-          spacing: AppBackToTopSpacing(
+        const validConfig = DSBackToTopConfig(
+          spacing: DSBackToTopSpacing(
             size: 56,
             iconSize: 24,
             borderRadius: 28,
             elevation: 8,
           ),
-          animations: AppBackToTopAnimations(
+          animations: DSBackToTopAnimations(
             duration: Duration(milliseconds: 300),
             scrollDuration: Duration(milliseconds: 600),
           ),
-          behavior: AppBackToTopBehavior(
+          behavior: DSBackToTopBehavior(
             showAfterPixels: 200,
             hideAfterPixels: 0,
           ),
         );
 
-        const invalidConfig1 = AppBackToTopConfig(
-          spacing: AppBackToTopSpacing(
+        const invalidConfig1 = DSBackToTopConfig(
+          spacing: DSBackToTopSpacing(
             size: -10, // Invalid
           ),
         );
 
-        const invalidConfig2 = AppBackToTopConfig(
-          animations: AppBackToTopAnimations(
+        const invalidConfig2 = DSBackToTopConfig(
+          animations: DSBackToTopAnimations(
             duration: Duration(milliseconds: -100), // Invalid
           ),
         );
 
-        const invalidConfig3 = AppBackToTopConfig(
-          behavior: AppBackToTopBehavior(
+        const invalidConfig3 = DSBackToTopConfig(
+          behavior: DSBackToTopBehavior(
             showAfterPixels: -50, // Invalid
           ),
         );
@@ -391,9 +391,9 @@ void main() {
       });
     });
 
-    group('AppBackToTopColors', () {
+    group('DSBackToTopColors', () {
       test('has correct default values', () {
-        const colors = AppBackToTopColors();
+        const colors = DSBackToTopColors();
 
         expect(colors.opacity, equals(1.0));
         expect(colors.hoverOpacity, equals(0.12));
@@ -402,18 +402,18 @@ void main() {
       });
 
       test('validation works correctly', () {
-        const validColors = AppBackToTopColors(
+        const validColors = DSBackToTopColors(
           opacity: 0.8,
           hoverOpacity: 0.12,
           pressedOpacity: 0.16,
           disabledOpacity: 0.38,
         );
 
-        const invalidColors1 = AppBackToTopColors(
+        const invalidColors1 = DSBackToTopColors(
           opacity: 1.5, // Invalid
         );
 
-        const invalidColors2 = AppBackToTopColors(
+        const invalidColors2 = DSBackToTopColors(
           hoverOpacity: -0.1, // Invalid
         );
 
@@ -423,30 +423,30 @@ void main() {
       });
     });
 
-    group('AppBackToTopSpacing', () {
+    group('DSBackToTopSpacing', () {
       test('has correct default values', () {
-        const spacing = AppBackToTopSpacing();
+        const spacing = DSBackToTopSpacing();
 
         expect(spacing.size, equals(56.0));
         expect(spacing.iconSize, equals(24.0));
         expect(spacing.borderRadius, equals(28.0));
         expect(spacing.elevation, equals(8.0));
-        expect(spacing.position, equals(AppBackToTopPosition.bottomRight));
+        expect(spacing.position, equals(DSBackToTopPosition.bottomRight));
       });
 
       test('validation works correctly', () {
-        const validSpacing = AppBackToTopSpacing(
+        const validSpacing = DSBackToTopSpacing(
           size: 56,
           iconSize: 24,
           borderRadius: 28,
           elevation: 8,
         );
 
-        const invalidSpacing1 = AppBackToTopSpacing(
+        const invalidSpacing1 = DSBackToTopSpacing(
           size: -10, // Invalid
         );
 
-        const invalidSpacing2 = AppBackToTopSpacing(
+        const invalidSpacing2 = DSBackToTopSpacing(
           elevation: -1, // Invalid
         );
 
@@ -456,9 +456,9 @@ void main() {
       });
     });
 
-    group('AppBackToTopAnimations', () {
+    group('DSBackToTopAnimations', () {
       test('has correct default values', () {
-        const animations = AppBackToTopAnimations();
+        const animations = DSBackToTopAnimations();
 
         expect(animations.duration, equals(const Duration(milliseconds: 300)));
         expect(animations.scrollDuration, equals(const Duration(milliseconds: 800)));
@@ -467,20 +467,20 @@ void main() {
         expect(animations.enabled, isTrue);
         expect(animations.fadeEnabled, isTrue);
         expect(animations.scaleEnabled, isTrue);
-        expect(animations.scrollBehavior, equals(AppBackToTopScrollBehavior.smooth));
+        expect(animations.scrollBehavior, equals(DSBackToTopScrollBehavior.smooth));
       });
 
       test('validation works correctly', () {
-        const validAnimations = AppBackToTopAnimations(
+        const validAnimations = DSBackToTopAnimations(
           duration: Duration(milliseconds: 300),
           scrollDuration: Duration(milliseconds: 800),
         );
 
-        const invalidAnimations1 = AppBackToTopAnimations(
+        const invalidAnimations1 = DSBackToTopAnimations(
           duration: Duration(milliseconds: -100), // Invalid
         );
 
-        const invalidAnimations2 = AppBackToTopAnimations(
+        const invalidAnimations2 = DSBackToTopAnimations(
           scrollDuration: Duration(milliseconds: -200), // Invalid
         );
 
@@ -490,9 +490,9 @@ void main() {
       });
     });
 
-    group('AppBackToTopBehavior', () {
+    group('DSBackToTopBehavior', () {
       test('has correct default values', () {
-        const behavior = AppBackToTopBehavior();
+        const behavior = DSBackToTopBehavior();
 
         expect(behavior.showAfterPixels, equals(200.0));
         expect(behavior.hideAfterPixels, equals(0.0));
@@ -505,17 +505,17 @@ void main() {
       });
 
       test('validation works correctly', () {
-        const validBehavior = AppBackToTopBehavior(
+        const validBehavior = DSBackToTopBehavior(
           showAfterPixels: 200,
           hideAfterPixels: 0,
           autoHideDelay: Duration(seconds: 30),
         );
 
-        const invalidBehavior1 = AppBackToTopBehavior(
+        const invalidBehavior1 = DSBackToTopBehavior(
           showAfterPixels: -100, // Invalid
         );
 
-        const invalidBehavior2 = AppBackToTopBehavior(
+        const invalidBehavior2 = DSBackToTopBehavior(
           autoHideDelay: Duration(milliseconds: -100), // Invalid
         );
 
@@ -525,56 +525,56 @@ void main() {
       });
     });
 
-    group('AppBackToTopDefaults', () {
+    group('DSBackToTopDefaults', () {
       test('provides correct optimized configs', () {
-        final webConfig = AppBackToTopDefaults.webOptimized;
+        final webConfig = DSBackToTopDefaults.webOptimized;
         expect(webConfig.spacing?.size, equals(48));
         expect(webConfig.animations?.scrollDuration, equals(const Duration(milliseconds: 600)));
         expect(webConfig.behavior?.showAfterPixels, equals(300));
 
-        final mobileConfig = AppBackToTopDefaults.mobileOptimized;
+        final mobileConfig = DSBackToTopDefaults.mobileOptimized;
         expect(mobileConfig.spacing?.size, equals(56));
         expect(mobileConfig.animations?.scrollDuration, equals(const Duration(milliseconds: 500)));
         expect(mobileConfig.behavior?.showAfterPixels, equals(200));
       });
 
       test('provides correct position-specific configs', () {
-        final bottomRightConfig = AppBackToTopDefaults.configForPosition(
-          AppBackToTopPosition.bottomRight,
+        final bottomRightConfig = DSBackToTopDefaults.configForPosition(
+          DSBackToTopPosition.bottomRight,
         );
-        expect(bottomRightConfig.spacing?.position, equals(AppBackToTopPosition.bottomRight));
+        expect(bottomRightConfig.spacing?.position, equals(DSBackToTopPosition.bottomRight));
 
-        final topLeftConfig = AppBackToTopDefaults.configForPosition(
-          AppBackToTopPosition.topLeft,
+        final topLeftConfig = DSBackToTopDefaults.configForPosition(
+          DSBackToTopPosition.topLeft,
         );
-        expect(topLeftConfig.spacing?.position, equals(AppBackToTopPosition.topLeft));
+        expect(topLeftConfig.spacing?.position, equals(DSBackToTopPosition.topLeft));
       });
 
       test('provides correct alignment for positions', () {
         expect(
-          AppBackToTopDefaults.getAlignmentForPosition(AppBackToTopPosition.bottomRight),
+          DSBackToTopDefaults.getAlignmentForPosition(DSBackToTopPosition.bottomRight),
           equals(Alignment.bottomRight),
         );
         expect(
-          AppBackToTopDefaults.getAlignmentForPosition(AppBackToTopPosition.topLeft),
+          DSBackToTopDefaults.getAlignmentForPosition(DSBackToTopPosition.topLeft),
           equals(Alignment.topLeft),
         );
         expect(
-          AppBackToTopDefaults.getAlignmentForPosition(AppBackToTopPosition.centerRight),
+          DSBackToTopDefaults.getAlignmentForPosition(DSBackToTopPosition.centerRight),
           equals(Alignment.centerRight),
         );
       });
     });
   });
 
-  group('AppBackToTopOverlay', () {
+  group('DSBackToTopOverlay', () {
     testWidgets('renders child and back to top button', (tester) async {
       final scrollController = ScrollController();
       addTearDown(() => scrollController.dispose());
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppBackToTopOverlay(
+          home: DSBackToTopOverlay(
             scrollController: scrollController,
             child: const Scaffold(
               body: Center(child: Text('Main Content')),
@@ -584,24 +584,24 @@ void main() {
       );
 
       expect(find.text('Main Content'), findsOneWidget);
-      expect(find.byType(AppBackToTop), findsOneWidget);
+      expect(find.byType(DSBackToTop), findsOneWidget);
     });
   });
 
-  group('AppBackToTopProvider', () {
+  group('DSBackToTopProvider', () {
     testWidgets('provides scroll controller to descendants', (tester) async {
       final scrollController = ScrollController();
       addTearDown(() => scrollController.dispose());
 
-      AppBackToTopProvider? provider;
+      DSBackToTopProvider? provider;
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppBackToTopProvider(
+          home: DSBackToTopProvider(
             scrollController: scrollController,
             child: Builder(
               builder: (context) {
-                provider = AppBackToTopProvider.of(context);
+                provider = DSBackToTopProvider.of(context);
                 return const SizedBox();
               },
             ),

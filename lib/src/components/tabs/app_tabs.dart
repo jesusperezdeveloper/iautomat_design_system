@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app_tabs_config.dart';
 
-class AppTabs extends StatefulWidget {
-  final AppTabsConfig config;
-  final List<AppTabItem>? tabs;
+class DSTabs extends StatefulWidget {
+  final DSTabsConfig config;
+  final List<DSTabItem>? tabs;
   final TabController? controller;
   final ValueChanged<int>? onChanged;
-  final List<AppTabBadge>? badges;
+  final List<DSTabBadge>? badges;
   final List<Widget>? children;
   final EdgeInsetsGeometry? padding;
   final double? height;
@@ -16,9 +16,9 @@ class AppTabs extends StatefulWidget {
   final Color? labelColor;
   final Color? unselectedLabelColor;
 
-  const AppTabs({
+  const DSTabs({
     super.key,
-    this.config = const AppTabsConfig(),
+    this.config = const DSTabsConfig(),
     this.tabs,
     this.controller,
     this.onChanged,
@@ -33,10 +33,10 @@ class AppTabs extends StatefulWidget {
   });
 
   @override
-  State<AppTabs> createState() => _AppTabsState();
+  State<DSTabs> createState() => _DSTabsState();
 }
 
-class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
+class _DSTabsState extends State<DSTabs> with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late AnimationController _selectionAnimationController;
   late Animation<double> _scaleAnimation;
@@ -119,7 +119,7 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(AppTabs oldWidget) {
+  void didUpdateWidget(DSTabs oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.controller != oldWidget.controller) {
@@ -134,11 +134,11 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
 
   void _updateStateAnimation() {
     switch (widget.config.state) {
-      case AppTabsState.loading:
-      case AppTabsState.skeleton:
+      case DSTabsState.loading:
+      case DSTabsState.skeleton:
         _stateAnimationController.repeat(reverse: true);
         break;
-      case AppTabsState.disabled:
+      case DSTabsState.disabled:
         _stateAnimationController.animateTo(0.6);
         break;
       default:
@@ -275,16 +275,16 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
     if (tabs.isEmpty) return const SizedBox.shrink();
 
     switch (widget.config.variant) {
-      case AppTabsVariant.fixed:
+      case DSTabsVariant.fixed:
         return _buildFixedTabs(tabs, theme, isRtl);
-      case AppTabsVariant.scrollable:
+      case DSTabsVariant.scrollable:
         return _buildScrollableTabs(tabs, theme, isRtl);
-      case AppTabsVariant.withBadges:
+      case DSTabsVariant.withBadges:
         return _buildTabsWithBadges(tabs, theme, isRtl);
     }
   }
 
-  Widget _buildFixedTabs(List<AppTabItem> tabs, ThemeData theme, bool isRtl) {
+  Widget _buildFixedTabs(List<DSTabItem> tabs, ThemeData theme, bool isRtl) {
     return Column(
       children: [
         Container(
@@ -331,7 +331,7 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
   }
 
   Widget _buildScrollableTabs(
-      List<AppTabItem> tabs, ThemeData theme, bool isRtl) {
+      List<DSTabItem> tabs, ThemeData theme, bool isRtl) {
     return Column(
       children: [
         Container(
@@ -354,7 +354,7 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
             indicatorColor: _getIndicatorColor(theme),
             indicatorWeight: widget.config.spacing?.indicatorWeight ?? 4.0,
             indicatorSize: (widget.config.behavior?.indicatorSize ==
-                    AppTabsIndicatorSize.tab)
+                    DSTabsIndicatorSize.tab)
                 ? TabBarIndicatorSize.tab
                 : TabBarIndicatorSize.label,
             indicatorPadding: EdgeInsets.symmetric(
@@ -386,7 +386,7 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
   }
 
   Widget _buildTabsWithBadges(
-      List<AppTabItem> tabs, ThemeData theme, bool isRtl) {
+      List<DSTabItem> tabs, ThemeData theme, bool isRtl) {
     return Column(
       children: [
         Container(
@@ -409,7 +409,7 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
             indicatorColor: _getIndicatorColor(theme),
             indicatorWeight: widget.config.spacing?.indicatorWeight ?? 4.0,
             indicatorSize: (widget.config.behavior?.indicatorSize ==
-                    AppTabsIndicatorSize.tab)
+                    DSTabsIndicatorSize.tab)
                 ? TabBarIndicatorSize.tab
                 : TabBarIndicatorSize.label,
             indicatorPadding: EdgeInsets.symmetric(
@@ -440,21 +440,21 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildTab(AppTabItem tab, ThemeData theme) {
+  Widget _buildTab(DSTabItem tab, ThemeData theme) {
     Widget content;
 
     switch (tab.type) {
-      case AppTabType.text:
+      case DSTabType.text:
         content = Text(
           tab.text,
           style: _getLabelStyle(theme),
           textAlign: widget.config.typography?.textAlign ?? TextAlign.center,
         );
         break;
-      case AppTabType.icon:
+      case DSTabType.icon:
         content = tab.icon ?? const Icon(Icons.tab);
         break;
-      case AppTabType.textWithIcon:
+      case DSTabType.textWithIcon:
         content = Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -471,7 +471,7 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
           ],
         );
         break;
-      case AppTabType.custom:
+      case DSTabType.custom:
         content = tab.child ?? Text(tab.text);
         break;
     }
@@ -502,7 +502,7 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildTabWithBadge(AppTabItem tab, ThemeData theme) {
+  Widget _buildTabWithBadge(DSTabItem tab, ThemeData theme) {
     final badge = _getBadgeForTab(tab.id);
     final tabWidget = _buildTab(tab, theme);
 
@@ -527,9 +527,9 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildBadge(AppTabBadge badge, ThemeData theme) {
+  Widget _buildBadge(DSTabBadge badge, ThemeData theme) {
     switch (badge.type) {
-      case AppTabBadgeType.dot:
+      case DSTabBadgeType.dot:
         return Container(
           width: 8,
           height: 8,
@@ -538,7 +538,7 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
             shape: BoxShape.circle,
           ),
         );
-      case AppTabBadgeType.count:
+      case DSTabBadgeType.count:
         final countText = badge.count > badge.maxCount
             ? '${badge.maxCount}+'
             : badge.count.toString();
@@ -557,7 +557,7 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
             ),
           ),
         );
-      case AppTabBadgeType.text:
+      case DSTabBadgeType.text:
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
           decoration: BoxDecoration(
@@ -576,15 +576,15 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
     }
   }
 
-  Offset _getBadgeOffset(AppTabBadgePosition position) {
+  Offset _getBadgeOffset(DSTabBadgePosition position) {
     switch (position) {
-      case AppTabBadgePosition.topRight:
+      case DSTabBadgePosition.topRight:
         return const Offset(8, -8);
-      case AppTabBadgePosition.topLeft:
+      case DSTabBadgePosition.topLeft:
         return const Offset(-8, -8);
-      case AppTabBadgePosition.bottomRight:
+      case DSTabBadgePosition.bottomRight:
         return const Offset(8, 8);
-      case AppTabBadgePosition.bottomLeft:
+      case DSTabBadgePosition.bottomLeft:
         return const Offset(-8, 8);
     }
   }
@@ -598,15 +598,15 @@ class _AppTabsState extends State<AppTabs> with TickerProviderStateMixin {
     }
   }
 
-  List<AppTabItem> _getTabs() {
+  List<DSTabItem> _getTabs() {
     return widget.tabs ?? widget.config.tabs;
   }
 
-  List<AppTabBadge> _getBadges() {
+  List<DSTabBadge> _getBadges() {
     return widget.badges ?? widget.config.badges;
   }
 
-  AppTabBadge? _getBadgeForTab(String tabId) {
+  DSTabBadge? _getBadgeForTab(String tabId) {
     final badges = _getBadges();
     try {
       return badges.firstWhere((badge) => badge.tabId == tabId);

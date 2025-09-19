@@ -3,25 +3,25 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppOutlineTree Golden Tests', () {
-    late List<AppTreeNode> basicNodes;
-    late List<AppTreeNode> complexNodes;
+  group('DSOutlineTree Golden Tests', () {
+    late List<DSTreeNode> basicNodes;
+    late List<DSTreeNode> complexNodes;
 
     setUp(() {
       basicNodes = [
-        const AppTreeNode(
+        const DSTreeNode(
           id: '1',
           label: 'Root 1',
           children: [
-            AppTreeNode(
+            DSTreeNode(
               id: '1-1',
               label: 'Child 1-1',
             ),
-            AppTreeNode(
+            DSTreeNode(
               id: '1-2',
               label: 'Child 1-2',
               children: [
-                AppTreeNode(
+                DSTreeNode(
                   id: '1-2-1',
                   label: 'Grandchild 1-2-1',
                 ),
@@ -29,11 +29,11 @@ void main() {
             ),
           ],
         ),
-        const AppTreeNode(
+        const DSTreeNode(
           id: '2',
           label: 'Root 2',
           children: [
-            AppTreeNode(
+            DSTreeNode(
               id: '2-1',
               label: 'Child 2-1',
             ),
@@ -42,34 +42,34 @@ void main() {
       ];
 
       complexNodes = [
-        const AppTreeNode(
+        const DSTreeNode(
           id: 'folder1',
           label: 'Documents',
           icon: Icons.folder,
           children: [
-            AppTreeNode(
+            DSTreeNode(
               id: 'file1',
               label: 'document.pdf',
               icon: Icons.picture_as_pdf,
             ),
-            AppTreeNode(
+            DSTreeNode(
               id: 'file2',
               label: 'presentation.pptx',
               icon: Icons.slideshow,
             ),
           ],
         ),
-        const AppTreeNode(
+        const DSTreeNode(
           id: 'folder2',
           label: 'Images',
           icon: Icons.folder,
           children: [
-            AppTreeNode(
+            DSTreeNode(
               id: 'img1',
               label: 'photo1.jpg',
               icon: Icons.image,
             ),
-            AppTreeNode(
+            DSTreeNode(
               id: 'img2',
               label: 'photo2.png',
               icon: Icons.image,
@@ -87,8 +87,8 @@ void main() {
             body: SizedBox(
               width: 300,
               height: 400,
-              child: AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              child: DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: basicNodes,
                 onToggle: (_) {},
                 onSelect: (_, __) {},
@@ -99,7 +99,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppOutlineTree),
+        find.byType(DSOutlineTree),
         matchesGoldenFile('golden/app_outline_tree_default.png'),
       );
     });
@@ -124,8 +124,8 @@ void main() {
             body: SizedBox(
               width: 300,
               height: 400,
-              child: AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              child: DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: expandedNodes,
                 onToggle: (_) {},
                 onSelect: (_, __) {},
@@ -136,7 +136,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppOutlineTree),
+        find.byType(DSOutlineTree),
         matchesGoldenFile('golden/app_outline_tree_expanded_selected.png'),
       );
     });
@@ -162,7 +162,7 @@ void main() {
             body: SizedBox(
               width: 300,
               height: 400,
-              child: AppOutlineTree.multiSelect(
+              child: DSOutlineTree.multiSelect(
                 nodes: multiSelectNodes,
                 onToggle: (_) {},
                 onSelect: (_, __) {},
@@ -173,30 +173,30 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppOutlineTree),
+        find.byType(DSOutlineTree),
         matchesGoldenFile('golden/app_outline_tree_multi_select.png'),
       );
     });
 
     testWidgets('async variant with loading states', (tester) async {
       final asyncNodes = [
-        const AppTreeNode(
+        const DSTreeNode(
           id: '1',
           label: 'Root with Children',
           isExpanded: true,
           children: [
-            AppTreeNode(
+            DSTreeNode(
               id: '1-1',
               label: 'Regular Child',
             ),
           ],
         ),
-        const AppTreeNode(
+        const DSTreeNode(
           id: '2',
           label: 'Loading Node',
           isLoading: true,
         ),
-        const AppTreeNode(
+        const DSTreeNode(
           id: '3',
           label: 'Async Parent',
         ),
@@ -209,7 +209,7 @@ void main() {
             body: SizedBox(
               width: 300,
               height: 400,
-              child: AppOutlineTree.async(
+              child: DSOutlineTree.async(
                 nodes: asyncNodes,
                 onToggle: (_) {},
                 onSelect: (_, __) {},
@@ -221,7 +221,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppOutlineTree),
+        find.byType(DSOutlineTree),
         matchesGoldenFile('golden/app_outline_tree_async_loading.png'),
       );
     });
@@ -245,8 +245,8 @@ void main() {
             body: SizedBox(
               width: 300,
               height: 400,
-              child: AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              child: DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: disabledNodes,
                 onToggle: (_) {},
                 onSelect: (_, __) {},
@@ -257,7 +257,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppOutlineTree),
+        find.byType(DSOutlineTree),
         matchesGoldenFile('golden/app_outline_tree_disabled.png'),
       );
     });
@@ -276,8 +276,8 @@ void main() {
             body: SizedBox(
               width: 350,
               height: 400,
-              child: AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              child: DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: expandedComplexNodes,
                 onToggle: (_) {},
                 onSelect: (_, __) {},
@@ -288,7 +288,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppOutlineTree),
+        find.byType(DSOutlineTree),
         matchesGoldenFile('golden/app_outline_tree_complex.png'),
       );
     });
@@ -301,8 +301,8 @@ void main() {
             body: SizedBox(
               width: 300,
               height: 400,
-              child: AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              child: DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: basicNodes
                     .map((node) => node.copyWith(
                           isExpanded: true,
@@ -317,7 +317,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppOutlineTree),
+        find.byType(DSOutlineTree),
         matchesGoldenFile('golden/app_outline_tree_dark_theme.png'),
       );
     });
@@ -330,8 +330,8 @@ void main() {
             body: SizedBox(
               width: 300,
               height: 400,
-              child: AppOutlineTree(
-                variant: AppOutlineTreeVariant.async,
+              child: DSOutlineTree(
+                variant: DSOutlineTreeVariant.async,
                 nodes: const [],
                 onToggle: (_) {},
                 onSelect: (_, __) {},
@@ -342,7 +342,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppOutlineTree),
+        find.byType(DSOutlineTree),
         matchesGoldenFile('golden/app_outline_tree_empty.png'),
       );
     });
@@ -357,8 +357,8 @@ void main() {
               body: SizedBox(
                 width: 300,
                 height: 400,
-                child: AppOutlineTree(
-                  variant: AppOutlineTreeVariant.async,
+                child: DSOutlineTree(
+                  variant: DSOutlineTreeVariant.async,
                   nodes: basicNodes
                       .map((node) => node.copyWith(
                             isExpanded: true,
@@ -374,7 +374,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppOutlineTree),
+        find.byType(DSOutlineTree),
         matchesGoldenFile('golden/app_outline_tree_rtl.png'),
       );
     });

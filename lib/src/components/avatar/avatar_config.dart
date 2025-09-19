@@ -4,28 +4,28 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'avatar_config.freezed.dart';
 
 @freezed
-class AppAvatarConfig with _$AppAvatarConfig {
-  const AppAvatarConfig._();
+class DSAvatarConfig with _$DSAvatarConfig {
+  const DSAvatarConfig._();
 
-  const factory AppAvatarConfig({
-    @Default(AppAvatarVariant.image) AppAvatarVariant variant,
-    @Default(AppAvatarState.defaultState) AppAvatarState state,
-    @Default(AppAvatarSize.medium) AppAvatarSize size,
-    @Default(AppAvatarShape.circle) AppAvatarShape shape,
+  const factory DSAvatarConfig({
+    @Default(DSAvatarVariant.image) DSAvatarVariant variant,
+    @Default(DSAvatarState.defaultState) DSAvatarState state,
+    @Default(DSAvatarSize.medium) DSAvatarSize size,
+    @Default(DSAvatarShape.circle) DSAvatarShape shape,
     String? imageUrl,
     String? initials,
     List<String>? groupImageUrls,
     List<String>? groupInitials,
-    AppAvatarPresence? presence,
+    DSAvatarPresence? presence,
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
     Widget? placeholder,
     Widget? errorWidget,
-    AppAvatarStyle? style,
-    AppAvatarInteraction? interaction,
-    AppAvatarAccessibility? accessibility,
-    AppAvatarAnimation? animation,
+    DSAvatarStyle? style,
+    DSAvatarInteraction? interaction,
+    DSAvatarAccessibility? accessibility,
+    DSAvatarAnimation? animation,
     VoidCallback? onTap,
     VoidCallback? onLongPress,
     VoidCallback? onHover,
@@ -42,13 +42,13 @@ class AppAvatarConfig with _$AppAvatarConfig {
     BoxFit? imageFit,
     Duration? cacheDuration,
     Map<String, String>? imageHeaders,
-  }) = _AppAvatarConfig;
+  }) = _DSAvatarConfig;
 
   bool get isInteractive => onTap != null || onLongPress != null;
   bool get isHoverable => onHover != null;
-  bool get isDisabled => !enabled || state == AppAvatarState.disabled;
-  bool get isLoading => loading || state == AppAvatarState.loading;
-  bool get isSkeleton => skeleton || state == AppAvatarState.skeleton;
+  bool get isDisabled => !enabled || state == DSAvatarState.disabled;
+  bool get isLoading => loading || state == DSAvatarState.loading;
+  bool get isSkeleton => skeleton || state == DSAvatarState.skeleton;
   bool get shouldShowSkeleton => isSkeleton || isLoading;
   bool get canInteract =>
       isInteractive && !isDisabled && !isLoading && !isSkeleton;
@@ -90,7 +90,7 @@ class AppAvatarConfig with _$AppAvatarConfig {
   }
 
   int get remainingGroupCount {
-    if (variant == AppAvatarVariant.group) {
+    if (variant == DSAvatarVariant.group) {
       final totalImages = groupImageUrls?.length ?? 0;
       final totalInitials = groupInitials?.length ?? 0;
       final total = totalImages > 0 ? totalImages : totalInitials;
@@ -103,11 +103,11 @@ class AppAvatarConfig with _$AppAvatarConfig {
     if (backgroundColor != null) return backgroundColor!;
 
     switch (variant) {
-      case AppAvatarVariant.image:
+      case DSAvatarVariant.image:
         return colorScheme.surfaceContainerHighest;
-      case AppAvatarVariant.initials:
+      case DSAvatarVariant.initials:
         return colorScheme.primaryContainer;
-      case AppAvatarVariant.group:
+      case DSAvatarVariant.group:
         return colorScheme.surfaceContainerHighest;
     }
   }
@@ -116,11 +116,11 @@ class AppAvatarConfig with _$AppAvatarConfig {
     if (foregroundColor != null) return foregroundColor!;
 
     switch (variant) {
-      case AppAvatarVariant.image:
+      case DSAvatarVariant.image:
         return colorScheme.onSurface;
-      case AppAvatarVariant.initials:
+      case DSAvatarVariant.initials:
         return colorScheme.onPrimaryContainer;
-      case AppAvatarVariant.group:
+      case DSAvatarVariant.group:
         return colorScheme.onSurface;
     }
   }
@@ -132,17 +132,17 @@ class AppAvatarConfig with _$AppAvatarConfig {
 
   double getEffectiveBorderWidth() {
     if (borderWidth != null) return borderWidth!;
-    return showBorder ? AppAvatarConstants.defaultBorderWidth : 0.0;
+    return showBorder ? DSAvatarConstants.defaultBorderWidth : 0.0;
   }
 }
 
-enum AppAvatarVariant {
+enum DSAvatarVariant {
   image,
   initials,
   group,
 }
 
-enum AppAvatarState {
+enum DSAvatarState {
   defaultState,
   hover,
   pressed,
@@ -153,7 +153,7 @@ enum AppAvatarState {
   skeleton,
 }
 
-enum AppAvatarSize {
+enum DSAvatarSize {
   xxsmall,
   xsmall,
   small,
@@ -163,13 +163,13 @@ enum AppAvatarSize {
   xxlarge,
 }
 
-enum AppAvatarShape {
+enum DSAvatarShape {
   circle,
   square,
   rounded,
 }
 
-enum AppAvatarPresence {
+enum DSAvatarPresence {
   online,
   offline,
   away,
@@ -177,58 +177,58 @@ enum AppAvatarPresence {
   doNotDisturb,
 }
 
-extension AppAvatarPresenceExtension on AppAvatarPresence {
+extension DSAvatarPresenceExtension on DSAvatarPresence {
   Color getColor(ColorScheme colorScheme) {
     switch (this) {
-      case AppAvatarPresence.online:
+      case DSAvatarPresence.online:
         return Colors.green;
-      case AppAvatarPresence.offline:
+      case DSAvatarPresence.offline:
         return colorScheme.outline;
-      case AppAvatarPresence.away:
+      case DSAvatarPresence.away:
         return Colors.orange;
-      case AppAvatarPresence.busy:
+      case DSAvatarPresence.busy:
         return Colors.red;
-      case AppAvatarPresence.doNotDisturb:
+      case DSAvatarPresence.doNotDisturb:
         return Colors.red;
     }
   }
 
   IconData get icon {
     switch (this) {
-      case AppAvatarPresence.online:
+      case DSAvatarPresence.online:
         return Icons.circle;
-      case AppAvatarPresence.offline:
+      case DSAvatarPresence.offline:
         return Icons.circle_outlined;
-      case AppAvatarPresence.away:
+      case DSAvatarPresence.away:
         return Icons.schedule;
-      case AppAvatarPresence.busy:
+      case DSAvatarPresence.busy:
         return Icons.circle;
-      case AppAvatarPresence.doNotDisturb:
+      case DSAvatarPresence.doNotDisturb:
         return Icons.do_not_disturb_on;
     }
   }
 
   String get label {
     switch (this) {
-      case AppAvatarPresence.online:
+      case DSAvatarPresence.online:
         return 'En línea';
-      case AppAvatarPresence.offline:
+      case DSAvatarPresence.offline:
         return 'Desconectado';
-      case AppAvatarPresence.away:
+      case DSAvatarPresence.away:
         return 'Ausente';
-      case AppAvatarPresence.busy:
+      case DSAvatarPresence.busy:
         return 'Ocupado';
-      case AppAvatarPresence.doNotDisturb:
+      case DSAvatarPresence.doNotDisturb:
         return 'No molestar';
     }
   }
 }
 
 @freezed
-class AppAvatarStyle with _$AppAvatarStyle {
-  const AppAvatarStyle._();
+class DSAvatarStyle with _$DSAvatarStyle {
+  const DSAvatarStyle._();
 
-  const factory AppAvatarStyle({
+  const factory DSAvatarStyle({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? borderColor,
@@ -248,36 +248,36 @@ class AppAvatarStyle with _$AppAvatarStyle {
     FilterQuality? filterQuality,
   }) = _AppAvatarStyle;
 
-  AppAvatarStyle copyWithState(AppAvatarState state) {
+  DSAvatarStyle copyWithState(DSAvatarState state) {
     switch (state) {
-      case AppAvatarState.hover:
+      case DSAvatarState.hover:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.08),
           elevation: (elevation ?? 0) + 1,
         );
-      case AppAvatarState.pressed:
+      case DSAvatarState.pressed:
         return copyWith(
           overlayColor: overlayColor?.withValues(alpha: 0.12),
           elevation: (elevation ?? 0) + 0.5,
         );
-      case AppAvatarState.focus:
+      case DSAvatarState.focus:
         return copyWith(
           borderColor: borderColor,
           borderWidth: 2.0,
         );
-      case AppAvatarState.selected:
+      case DSAvatarState.selected:
         return copyWith(
           borderColor: borderColor,
           borderWidth: 3.0,
           elevation: (elevation ?? 0) + 2,
         );
-      case AppAvatarState.disabled:
+      case DSAvatarState.disabled:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.38),
           backgroundColor: backgroundColor?.withValues(alpha: 0.12),
         );
-      case AppAvatarState.loading:
-      case AppAvatarState.skeleton:
+      case DSAvatarState.loading:
+      case DSAvatarState.skeleton:
         return copyWith(
           foregroundColor: foregroundColor?.withValues(alpha: 0.6),
         );
@@ -288,8 +288,8 @@ class AppAvatarStyle with _$AppAvatarStyle {
 }
 
 @freezed
-class AppAvatarInteraction with _$AppAvatarInteraction {
-  const factory AppAvatarInteraction({
+class DSAvatarInteraction with _$DSAvatarInteraction {
+  const factory DSAvatarInteraction({
     @Default(true) bool enabled,
     @Default(true) bool focusable,
     @Default(true) bool hoverable,
@@ -306,8 +306,8 @@ class AppAvatarInteraction with _$AppAvatarInteraction {
 }
 
 @freezed
-class AppAvatarAccessibility with _$AppAvatarAccessibility {
-  const factory AppAvatarAccessibility({
+class DSAvatarAccessibility with _$DSAvatarAccessibility {
+  const factory DSAvatarAccessibility({
     String? semanticLabel,
     String? tooltip,
     bool? excludeSemantics,
@@ -325,12 +325,12 @@ class AppAvatarAccessibility with _$AppAvatarAccessibility {
 }
 
 @freezed
-class AppAvatarAnimation with _$AppAvatarAnimation {
-  const factory AppAvatarAnimation({
+class DSAvatarAnimation with _$DSAvatarAnimation {
+  const factory DSAvatarAnimation({
     @Default(Duration(milliseconds: 200)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(false) bool enabled,
-    @Default(AppAvatarAnimationType.fade) AppAvatarAnimationType type,
+    @Default(DSAvatarAnimationType.fade) DSAvatarAnimationType type,
     Duration? delay,
     VoidCallback? onAnimationComplete,
     @Default(false) bool pulse,
@@ -338,7 +338,7 @@ class AppAvatarAnimation with _$AppAvatarAnimation {
   }) = _AppAvatarAnimation;
 }
 
-enum AppAvatarAnimationType {
+enum DSAvatarAnimationType {
   none,
   fade,
   slide,
@@ -347,116 +347,116 @@ enum AppAvatarAnimationType {
   pulse,
 }
 
-extension AppAvatarVariantExtension on AppAvatarVariant {
-  bool get isImage => this == AppAvatarVariant.image;
-  bool get isInitials => this == AppAvatarVariant.initials;
-  bool get isGroup => this == AppAvatarVariant.group;
+extension DSAvatarVariantExtension on DSAvatarVariant {
+  bool get isImage => this == DSAvatarVariant.image;
+  bool get isInitials => this == DSAvatarVariant.initials;
+  bool get isGroup => this == DSAvatarVariant.group;
 }
 
-extension AppAvatarStateExtension on AppAvatarState {
+extension DSAvatarStateExtension on DSAvatarState {
   bool get isInteractiveState =>
-      this == AppAvatarState.hover ||
-      this == AppAvatarState.pressed ||
-      this == AppAvatarState.focus;
+      this == DSAvatarState.hover ||
+      this == DSAvatarState.pressed ||
+      this == DSAvatarState.focus;
 
-  bool get isDisabledState => this == AppAvatarState.disabled;
-  bool get isLoadingState => this == AppAvatarState.loading;
-  bool get isSkeletonState => this == AppAvatarState.skeleton;
-  bool get isSelectedState => this == AppAvatarState.selected;
+  bool get isDisabledState => this == DSAvatarState.disabled;
+  bool get isLoadingState => this == DSAvatarState.loading;
+  bool get isSkeletonState => this == DSAvatarState.skeleton;
+  bool get isSelectedState => this == DSAvatarState.selected;
 }
 
-extension AppAvatarSizeExtension on AppAvatarSize {
+extension DSAvatarSizeExtension on DSAvatarSize {
   double get size {
     switch (this) {
-      case AppAvatarSize.xxsmall:
+      case DSAvatarSize.xxsmall:
         return 20.0;
-      case AppAvatarSize.xsmall:
+      case DSAvatarSize.xsmall:
         return 24.0;
-      case AppAvatarSize.small:
+      case DSAvatarSize.small:
         return 32.0;
-      case AppAvatarSize.medium:
+      case DSAvatarSize.medium:
         return 40.0;
-      case AppAvatarSize.large:
+      case DSAvatarSize.large:
         return 48.0;
-      case AppAvatarSize.xlarge:
+      case DSAvatarSize.xlarge:
         return 56.0;
-      case AppAvatarSize.xxlarge:
+      case DSAvatarSize.xxlarge:
         return 64.0;
     }
   }
 
   double get fontSize {
     switch (this) {
-      case AppAvatarSize.xxsmall:
+      case DSAvatarSize.xxsmall:
         return 8.0;
-      case AppAvatarSize.xsmall:
+      case DSAvatarSize.xsmall:
         return 10.0;
-      case AppAvatarSize.small:
+      case DSAvatarSize.small:
         return 12.0;
-      case AppAvatarSize.medium:
+      case DSAvatarSize.medium:
         return 16.0;
-      case AppAvatarSize.large:
+      case DSAvatarSize.large:
         return 18.0;
-      case AppAvatarSize.xlarge:
+      case DSAvatarSize.xlarge:
         return 20.0;
-      case AppAvatarSize.xxlarge:
+      case DSAvatarSize.xxlarge:
         return 24.0;
     }
   }
 
   double get iconSize {
     switch (this) {
-      case AppAvatarSize.xxsmall:
+      case DSAvatarSize.xxsmall:
         return 10.0;
-      case AppAvatarSize.xsmall:
+      case DSAvatarSize.xsmall:
         return 12.0;
-      case AppAvatarSize.small:
+      case DSAvatarSize.small:
         return 16.0;
-      case AppAvatarSize.medium:
+      case DSAvatarSize.medium:
         return 20.0;
-      case AppAvatarSize.large:
+      case DSAvatarSize.large:
         return 24.0;
-      case AppAvatarSize.xlarge:
+      case DSAvatarSize.xlarge:
         return 28.0;
-      case AppAvatarSize.xxlarge:
+      case DSAvatarSize.xxlarge:
         return 32.0;
     }
   }
 
   double get presenceSize {
     switch (this) {
-      case AppAvatarSize.xxsmall:
+      case DSAvatarSize.xxsmall:
         return 6.0;
-      case AppAvatarSize.xsmall:
+      case DSAvatarSize.xsmall:
         return 8.0;
-      case AppAvatarSize.small:
+      case DSAvatarSize.small:
         return 10.0;
-      case AppAvatarSize.medium:
+      case DSAvatarSize.medium:
         return 12.0;
-      case AppAvatarSize.large:
+      case DSAvatarSize.large:
         return 14.0;
-      case AppAvatarSize.xlarge:
+      case DSAvatarSize.xlarge:
         return 16.0;
-      case AppAvatarSize.xxlarge:
+      case DSAvatarSize.xxlarge:
         return 18.0;
     }
   }
 
   EdgeInsetsGeometry get padding {
     switch (this) {
-      case AppAvatarSize.xxsmall:
+      case DSAvatarSize.xxsmall:
         return const EdgeInsets.all(2.0);
-      case AppAvatarSize.xsmall:
+      case DSAvatarSize.xsmall:
         return const EdgeInsets.all(2.0);
-      case AppAvatarSize.small:
+      case DSAvatarSize.small:
         return const EdgeInsets.all(4.0);
-      case AppAvatarSize.medium:
+      case DSAvatarSize.medium:
         return const EdgeInsets.all(6.0);
-      case AppAvatarSize.large:
+      case DSAvatarSize.large:
         return const EdgeInsets.all(8.0);
-      case AppAvatarSize.xlarge:
+      case DSAvatarSize.xlarge:
         return const EdgeInsets.all(10.0);
-      case AppAvatarSize.xxlarge:
+      case DSAvatarSize.xxlarge:
         return const EdgeInsets.all(12.0);
     }
   }
@@ -466,30 +466,30 @@ extension AppAvatarSizeExtension on AppAvatarSize {
   }
 }
 
-extension AppAvatarShapeExtension on AppAvatarShape {
+extension DSAvatarShapeExtension on DSAvatarShape {
   BorderRadius? getBorderRadius(double size) {
     switch (this) {
-      case AppAvatarShape.circle:
+      case DSAvatarShape.circle:
         return BorderRadius.circular(size / 2);
-      case AppAvatarShape.square:
+      case DSAvatarShape.square:
         return BorderRadius.zero;
-      case AppAvatarShape.rounded:
+      case DSAvatarShape.rounded:
         return BorderRadius.circular(size * 0.125);
     }
   }
 
   BoxShape get boxShape {
     switch (this) {
-      case AppAvatarShape.circle:
+      case DSAvatarShape.circle:
         return BoxShape.circle;
-      case AppAvatarShape.square:
-      case AppAvatarShape.rounded:
+      case DSAvatarShape.square:
+      case DSAvatarShape.rounded:
         return BoxShape.rectangle;
     }
   }
 }
 
-class AppAvatarConstants {
+class DSAvatarConstants {
   static const double defaultBorderWidth = 2.0;
   static const double defaultElevation = 0.0;
   static const double defaultPresenceSize = 12.0;

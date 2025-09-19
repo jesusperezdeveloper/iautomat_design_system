@@ -4,13 +4,13 @@ import 'package:iautomat_design_system/src/components/pagination/app_pagination.
 import 'package:iautomat_design_system/src/components/pagination/pagination_config.dart';
 
 void main() {
-  group('AppPagination Golden Tests', () {
+  group('DSPagination Golden Tests', () {
     testWidgets('page-based pagination default', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 5,
                 pageSize: 10,
                 total: 100,
@@ -22,7 +22,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_page_based_default.png'),
       );
     });
@@ -32,11 +32,11 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 3,
                 pageSize: 10,
                 total: 80,
-                config: AppPaginationConfig.small,
+                config: DSPaginationConfig.small,
                 onPageChanged: (page) {},
               ),
             ),
@@ -45,7 +45,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_page_based_small.png'),
       );
     });
@@ -55,11 +55,11 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 7,
                 pageSize: 10,
                 total: 200,
-                config: AppPaginationConfig.large,
+                config: DSPaginationConfig.large,
                 onPageChanged: (page) {},
               ),
             ),
@@ -68,7 +68,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_page_based_large.png'),
       );
     });
@@ -78,7 +78,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.cursor(
+              child: DSPagination.cursor(
                 hasNextPage: true,
                 hasPreviousPage: true,
                 nextCursor: 'next-token',
@@ -91,7 +91,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_cursor_based.png'),
       );
     });
@@ -101,12 +101,12 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 4,
                 pageSize: 10,
                 total: 120,
-                config: const AppPaginationConfig(
-                  buttonStyle: AppPageButtonStyle.filled,
+                config: const DSPaginationConfig(
+                  buttonStyle: DSPageButtonStyle.filled,
                 ),
                 onPageChanged: (page) {},
               ),
@@ -116,7 +116,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_filled_style.png'),
       );
     });
@@ -126,12 +126,12 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 2,
                 pageSize: 10,
                 total: 50,
-                config: const AppPaginationConfig(
-                  buttonStyle: AppPageButtonStyle.text,
+                config: const DSPaginationConfig(
+                  buttonStyle: DSPageButtonStyle.text,
                 ),
                 onPageChanged: (page) {},
               ),
@@ -141,7 +141,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_text_style.png'),
       );
     });
@@ -151,11 +151,11 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 3,
                 pageSize: 10,
                 total: 100,
-                data: const AppPaginationData(
+                data: const DSPaginationData(
                   currentPage: 3,
                   pageSize: 10,
                   totalItems: 100,
@@ -170,7 +170,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_loading_state.png'),
       );
     });
@@ -180,7 +180,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 1,
                 pageSize: 10,
                 total: 100,
@@ -192,7 +192,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_first_page.png'),
       );
     });
@@ -202,7 +202,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 10,
                 pageSize: 10,
                 total: 100,
@@ -214,7 +214,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_last_page.png'),
       );
     });
@@ -224,7 +224,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 25,
                 pageSize: 10,
                 total: 1000, // 100 pages
@@ -236,7 +236,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_many_pages.png'),
       );
     });
@@ -246,12 +246,12 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 3,
                 pageSize: 10,
                 total: 60,
-                config: const AppPaginationConfig(
-                  layout: AppPaginationLayout.compact,
+                config: const DSPaginationConfig(
+                  layout: DSPaginationLayout.compact,
                 ),
                 onPageChanged: (page) {},
               ),
@@ -261,7 +261,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_compact_layout.png'),
       );
     });
@@ -271,11 +271,11 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 4,
                 pageSize: 10,
                 total: 80,
-                config: const AppPaginationConfig(
+                config: const DSPaginationConfig(
                   backgroundColor: Colors.blue,
                   selectedBackgroundColor: Colors.orange,
                   borderColor: Colors.purple,
@@ -290,7 +290,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_custom_colors.png'),
       );
     });
@@ -300,11 +300,11 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 2,
                 pageSize: 10,
                 total: 40,
-                config: const AppPaginationConfig(
+                config: const DSPaginationConfig(
                   showFirstLast: false,
                   showPageInfo: false,
                   maxVisiblePages: 3,
@@ -317,7 +317,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_minimal.png'),
       );
     });
@@ -327,7 +327,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 1,
                 pageSize: 10,
                 total: 0,
@@ -339,7 +339,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_empty_state.png'),
       );
     });
@@ -350,7 +350,7 @@ void main() {
           theme: ThemeData.dark(),
           home: Scaffold(
             body: Center(
-              child: AppPagination.pageBased(
+              child: DSPagination.pageBased(
                 page: 5,
                 pageSize: 10,
                 total: 100,
@@ -362,7 +362,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppPagination),
+        find.byType(DSPagination),
         matchesGoldenFile('pagination_dark_theme.png'),
       );
     });

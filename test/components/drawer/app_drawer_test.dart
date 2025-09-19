@@ -5,14 +5,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/drawer/app_drawer.dart';
 
 void main() {
-  group('AppDrawer', () {
+  group('DSDrawer', () {
     testWidgets('renders modal drawer correctly', (tester) async {
       bool visibilityChanged = false;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               content: const Center(child: Text('Drawer Content')),
               onVisibilityChanged: (visible) {
                 visibilityChanged = visible;
@@ -34,7 +34,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: const Center(child: Text('Permanent Drawer')),
               onVisibilityChanged: (visible) {
                 visibilityChanged = visible;
@@ -51,14 +51,14 @@ void main() {
     });
 
     testWidgets('modal drawer has correct default properties', (tester) async {
-      const drawer = AppDrawer.modal(
+      const drawer = DSDrawer.modal(
         content: Text('Test'),
       );
 
       expect(drawer.variant, equals(DrawerVariant.modal));
       expect(drawer.side, equals(DrawerSide.left));
       expect(drawer.width, equals(280.0));
-      expect(drawer.state, equals(AppDrawerState.defaultState));
+      expect(drawer.state, equals(DSDrawerState.defaultState));
       expect(drawer.elevation, equals(16.0));
       expect(drawer.borderRadius, equals(0.0));
       expect(drawer.scrimOpacity, equals(0.5));
@@ -66,14 +66,14 @@ void main() {
     });
 
     testWidgets('permanent drawer has correct default properties', (tester) async {
-      const drawer = AppDrawer.permanent(
+      const drawer = DSDrawer.permanent(
         content: Text('Test'),
       );
 
       expect(drawer.variant, equals(DrawerVariant.permanent));
       expect(drawer.side, equals(DrawerSide.left));
       expect(drawer.width, equals(280.0));
-      expect(drawer.state, equals(AppDrawerState.defaultState));
+      expect(drawer.state, equals(DSDrawerState.defaultState));
       expect(drawer.elevation, equals(0.0));
       expect(drawer.borderRadius, equals(0.0));
       expect(drawer.scrimOpacity, equals(0.0));
@@ -84,7 +84,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: const Text('Test'),
               width: 350.0,
             ),
@@ -102,7 +102,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: const Text('Test'),
               side: DrawerSide.right,
             ),
@@ -112,16 +112,16 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
     });
 
     testWidgets('handles loading state', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: const Text('Test Content'),
-              state: AppDrawerState.loading,
+              state: DSDrawerState.loading,
             ),
           ),
         ),
@@ -138,9 +138,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: const Text('Test Content'),
-              state: AppDrawerState.skeleton,
+              state: DSDrawerState.skeleton,
             ),
           ),
         ),
@@ -156,7 +156,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: const Text('Test'),
               backgroundColor: Colors.red,
               surfaceColor: Colors.blue,
@@ -169,14 +169,14 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
     });
 
     testWidgets('supports custom elevation and border radius', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               content: const Text('Test'),
               elevation: 24.0,
               borderRadius: 16.0,
@@ -187,14 +187,14 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
     });
 
     testWidgets('supports custom scrim opacity', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               content: const Text('Test'),
               scrimOpacity: 0.8,
             ),
@@ -204,14 +204,14 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
     });
 
     testWidgets('supports custom animation duration', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               content: const Text('Test'),
               animationDuration: const Duration(milliseconds: 500),
             ),
@@ -221,16 +221,16 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
     });
 
     testWidgets('responds to hover interactions', (tester) async {
-      AppDrawerState? capturedState;
+      DSDrawerState? capturedState;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: const Text('Test'),
               onStateChanged: (state) => capturedState = state,
             ),
@@ -240,7 +240,7 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
 
       // Simulate hover using pointer events for desktop testing
       final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
@@ -250,7 +250,7 @@ void main() {
       await tester.pump();
 
       // Move mouse over the drawer
-      await gesture.moveTo(tester.getCenter(find.byType(AppDrawer)));
+      await gesture.moveTo(tester.getCenter(find.byType(DSDrawer)));
       await tester.pump();
 
       // Verify hover state was captured if supported
@@ -260,12 +260,12 @@ void main() {
     });
 
     testWidgets('responds to focus interactions', (tester) async {
-      AppDrawerState? capturedState;
+      DSDrawerState? capturedState;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               content: const Text('Test'),
               onStateChanged: (state) => capturedState = state,
             ),
@@ -275,7 +275,7 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
 
       // Simulate focus interaction using keyboard navigation
       await tester.sendKeyEvent(LogicalKeyboardKey.tab);
@@ -287,7 +287,7 @@ void main() {
       }
 
       // Test that the drawer can receive focus
-      final drawerWidget = find.byType(AppDrawer);
+      final drawerWidget = find.byType(DSDrawer);
       expect(drawerWidget, findsOneWidget);
     });
 
@@ -295,7 +295,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               content: const Text('Test'),
             ),
           ),
@@ -317,16 +317,16 @@ void main() {
       await tester.pump();
 
       // No exceptions should be thrown
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
     });
 
     testWidgets('handles disabled state correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: const Text('Test'),
-              state: AppDrawerState.disabled,
+              state: DSDrawerState.disabled,
             ),
           ),
         ),
@@ -334,7 +334,7 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
     });
 
     testWidgets('supports RTL layout', (tester) async {
@@ -343,7 +343,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppDrawer.permanent(
+              body: DSDrawer.permanent(
                 content: const Text('Test'),
                 side: DrawerSide.right,
               ),
@@ -354,7 +354,7 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
       expect(find.text('Test'), findsOneWidget);
     });
 
@@ -362,7 +362,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.permanent(
+            body: DSDrawer.permanent(
               content: const Text('Test'),
               semanticsLabel: 'Custom drawer label',
             ),
@@ -381,7 +381,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               content: const Text('Test'),
               restorationId: 'drawer_restoration',
             ),
@@ -391,14 +391,14 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
     });
 
     testWidgets('handles drag gestures when enabled', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               content: const Text('Test'),
               enableDragGesture: true,
             ),
@@ -413,14 +413,14 @@ void main() {
       await gesture.up();
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
     });
 
     testWidgets('ignores drag gestures when disabled', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppDrawer.modal(
+            body: DSDrawer.modal(
               content: const Text('Test'),
               enableDragGesture: false,
             ),
@@ -430,17 +430,17 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppDrawer), findsOneWidget);
+      expect(find.byType(DSDrawer), findsOneWidget);
     });
 
-    group('AppDrawerController', () {
+    group('DSDrawerController', () {
       testWidgets('can control drawer state', (tester) async {
-        final controller = AppDrawerController();
+        final controller = DSDrawerController();
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppDrawer.modal(
+              body: DSDrawer.modal(
                 key: controller.key,
                 content: const Text('Test'),
               ),
@@ -462,11 +462,11 @@ void main() {
         controller.toggle();
         await tester.pump();
 
-        expect(find.byType(AppDrawer), findsOneWidget);
+        expect(find.byType(DSDrawer), findsOneWidget);
       });
 
       test('notifies listeners on state changes', () {
-        final controller = AppDrawerController();
+        final controller = DSDrawerController();
         bool wasNotified = false;
 
         controller.addListener(() {
@@ -486,9 +486,9 @@ void main() {
       });
     });
 
-    group('AppDrawerHelper', () {
+    group('DSDrawerHelper', () {
       testWidgets('creates modal drawer with correct properties', (tester) async {
-        final drawer = AppDrawerHelper.createModalDrawer(
+        final drawer = DSDrawerHelper.createModalDrawer(
           content: const Text('Modal Test'),
           width: 320.0,
           elevation: 20.0,
@@ -504,9 +504,9 @@ void main() {
         await tester.pump();
 
         expect(find.text('Modal Test'), findsOneWidget);
-        expect(find.byType(AppDrawer), findsOneWidget);
+        expect(find.byType(DSDrawer), findsOneWidget);
 
-        final appDrawer = tester.widget<AppDrawer>(find.byType(AppDrawer));
+        final appDrawer = tester.widget<DSDrawer>(find.byType(DSDrawer));
         expect(appDrawer.variant, equals(DrawerVariant.modal));
         expect(appDrawer.width, equals(320.0));
         expect(appDrawer.elevation, equals(20.0));
@@ -514,7 +514,7 @@ void main() {
       });
 
       testWidgets('creates permanent drawer with correct properties', (tester) async {
-        final drawer = AppDrawerHelper.createPermanentDrawer(
+        final drawer = DSDrawerHelper.createPermanentDrawer(
           content: const Text('Permanent Test'),
           width: 350.0,
           elevation: 8.0,
@@ -530,9 +530,9 @@ void main() {
         await tester.pump();
 
         expect(find.text('Permanent Test'), findsOneWidget);
-        expect(find.byType(AppDrawer), findsOneWidget);
+        expect(find.byType(DSDrawer), findsOneWidget);
 
-        final appDrawer = tester.widget<AppDrawer>(find.byType(AppDrawer));
+        final appDrawer = tester.widget<DSDrawer>(find.byType(DSDrawer));
         expect(appDrawer.variant, equals(DrawerVariant.permanent));
         expect(appDrawer.width, equals(350.0));
         expect(appDrawer.elevation, equals(8.0));
@@ -547,16 +547,16 @@ void main() {
         expect(DrawerVariant.values, contains(DrawerVariant.permanent));
       });
 
-      test('AppDrawerState contains expected values', () {
-        expect(AppDrawerState.values.length, equals(8));
-        expect(AppDrawerState.values, contains(AppDrawerState.defaultState));
-        expect(AppDrawerState.values, contains(AppDrawerState.hover));
-        expect(AppDrawerState.values, contains(AppDrawerState.pressed));
-        expect(AppDrawerState.values, contains(AppDrawerState.focus));
-        expect(AppDrawerState.values, contains(AppDrawerState.selected));
-        expect(AppDrawerState.values, contains(AppDrawerState.disabled));
-        expect(AppDrawerState.values, contains(AppDrawerState.loading));
-        expect(AppDrawerState.values, contains(AppDrawerState.skeleton));
+      test('DSDrawerState contains expected values', () {
+        expect(DSDrawerState.values.length, equals(8));
+        expect(DSDrawerState.values, contains(DSDrawerState.defaultState));
+        expect(DSDrawerState.values, contains(DSDrawerState.hover));
+        expect(DSDrawerState.values, contains(DSDrawerState.pressed));
+        expect(DSDrawerState.values, contains(DSDrawerState.focus));
+        expect(DSDrawerState.values, contains(DSDrawerState.selected));
+        expect(DSDrawerState.values, contains(DSDrawerState.disabled));
+        expect(DSDrawerState.values, contains(DSDrawerState.loading));
+        expect(DSDrawerState.values, contains(DSDrawerState.skeleton));
       });
 
       test('DrawerSide contains expected values', () {

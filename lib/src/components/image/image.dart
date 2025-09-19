@@ -1,10 +1,10 @@
 /// Image component barrel file
 ///
 /// Provides a single entry point for all image-related components:
-/// - AppImage: Main image widget with responsive and lazy loading capabilities
-/// - AppImageConfig: Configuration models using Freezed
-/// - AppImageResponsiveHelper: Utilities for responsive behavior
-/// - AppImageA11yHelper: Utilities for accessibility and RTL support
+/// - DSImage: Main image widget with responsive and lazy loading capabilities
+/// - DSImageConfig: Configuration models using Freezed
+/// - DSImageResponsiveHelper: Utilities for responsive behavior
+/// - DSImageA11yHelper: Utilities for accessibility and RTL support
 /// - ImageStory: Examples and stories for the component
 library;
 

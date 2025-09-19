@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppChip Golden Tests', () {
+  group('DSChip Golden Tests', () {
     testWidgets('Basic chip variants', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -11,25 +11,25 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.input(
+                DSChip.input(
                   label: 'Input Chip',
                   selected: false,
                   onSelected: (selected) {},
                 ),
                 const SizedBox(height: 8),
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Filter Chip',
                   selected: true,
                   onSelected: (selected) {},
                 ),
                 const SizedBox(height: 8),
-                AppChip.choice(
+                DSChip.choice(
                   label: 'Choice Chip',
                   selected: false,
                   onSelected: (selected) {},
                 ),
                 const SizedBox(height: 8),
-                AppChip.assist(
+                DSChip.assist(
                   label: 'Assist Chip',
                   onSelected: (selected) {},
                 ),
@@ -52,7 +52,7 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.input(
+                DSChip.input(
                   label: 'With Avatar',
                   avatar: const CircleAvatar(
                     radius: 12,
@@ -63,14 +63,14 @@ void main() {
                   onSelected: (selected) {},
                 ),
                 const SizedBox(height: 8),
-                AppChip.filter(
+                DSChip.filter(
                   label: 'With Icon',
                   icon: Icons.star,
                   selected: true,
                   onSelected: (selected) {},
                 ),
                 const SizedBox(height: 8),
-                AppChip.choice(
+                DSChip.choice(
                   label: 'Deletable',
                   deletable: true,
                   selected: false,
@@ -78,7 +78,7 @@ void main() {
                   onDeleted: () {},
                 ),
                 const SizedBox(height: 8),
-                AppChip.assist(
+                DSChip.assist(
                   label: 'Icon + Action',
                   icon: Icons.add,
                   onSelected: (selected) {},
@@ -102,25 +102,25 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Small',
                   selected: true,
                   onSelected: (selected) {},
-                  size: AppChipSize.small,
+                  size: DSChipSize.small,
                 ),
                 const SizedBox(height: 8),
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Medium',
                   selected: true,
                   onSelected: (selected) {},
-                  size: AppChipSize.medium,
+                  size: DSChipSize.medium,
                 ),
                 const SizedBox(height: 8),
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Large',
                   selected: true,
                   onSelected: (selected) {},
-                  size: AppChipSize.large,
+                  size: DSChipSize.large,
                 ),
               ],
             ),
@@ -141,25 +141,25 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.choice(
+                DSChip.choice(
                   label: 'Rounded',
                   selected: true,
                   onSelected: (selected) {},
-                  shape: AppChipShape.rounded,
+                  shape: DSChipShape.rounded,
                 ),
                 const SizedBox(height: 8),
-                AppChip.choice(
+                DSChip.choice(
                   label: 'Circular',
                   selected: true,
                   onSelected: (selected) {},
-                  shape: AppChipShape.circular,
+                  shape: DSChipShape.circular,
                 ),
                 const SizedBox(height: 8),
-                AppChip.choice(
+                DSChip.choice(
                   label: 'Stadium',
                   selected: true,
                   onSelected: (selected) {},
-                  shape: AppChipShape.stadium,
+                  shape: DSChipShape.stadium,
                 ),
               ],
             ),
@@ -180,28 +180,28 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Enabled',
                   selected: true,
                   onSelected: (selected) {},
                   enabled: true,
                 ),
                 const SizedBox(height: 8),
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Disabled',
                   selected: true,
                   onSelected: (selected) {},
                   enabled: false,
                 ),
                 const SizedBox(height: 8),
-                AppChip.input(
+                DSChip.input(
                   label: 'Enabled Input',
                   selected: false,
                   onSelected: (selected) {},
                   enabled: true,
                 ),
                 const SizedBox(height: 8),
-                AppChip.input(
+                DSChip.input(
                   label: 'Disabled Input',
                   selected: false,
                   onSelected: (selected) {},
@@ -226,17 +226,17 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Loading',
                   selected: true,
                   onSelected: (selected) {},
-                  state: AppChipState.loading,
+                  state: DSChipState.loading,
                 ),
                 const SizedBox(height: 8),
-                AppChip.assist(
+                DSChip.assist(
                   label: 'Loading Assist',
                   onSelected: (selected) {},
-                  state: AppChipState.loading,
+                  state: DSChipState.loading,
                 ),
               ],
             ),
@@ -257,18 +257,18 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Skeleton',
                   selected: false,
                   onSelected: (selected) {},
-                  state: AppChipState.skeleton,
+                  state: DSChipState.skeleton,
                 ),
                 const SizedBox(height: 8),
-                AppChip.choice(
+                DSChip.choice(
                   label: 'Skeleton Choice',
                   selected: false,
                   onSelected: (selected) {},
-                  state: AppChipState.skeleton,
+                  state: DSChipState.skeleton,
                 ),
               ],
             ),
@@ -289,21 +289,21 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.choice(
+                DSChip.choice(
                   label: 'Custom Selected',
                   selected: true,
                   onSelected: (selected) {},
                   color: Colors.green,
                 ),
                 const SizedBox(height: 8),
-                AppChip.choice(
+                DSChip.choice(
                   label: 'Custom Unselected',
                   selected: false,
                   onSelected: (selected) {},
                   backgroundColor: Colors.orange.shade100,
                 ),
                 const SizedBox(height: 8),
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Custom Color',
                   selected: false,
                   onSelected: (selected) {},
@@ -328,13 +328,13 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Default Padding',
                   selected: true,
                   onSelected: (selected) {},
                 ),
                 const SizedBox(height: 8),
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Custom Padding',
                   selected: true,
                   onSelected: (selected) {},
@@ -344,7 +344,7 @@ void main() {
                   ),
                 ),
                 const SizedBox(height: 8),
-                AppChip.choice(
+                DSChip.choice(
                   label: 'With Margin',
                   selected: false,
                   onSelected: (selected) {},
@@ -372,25 +372,25 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.input(
+                DSChip.input(
                   label: 'Dark Input',
                   selected: false,
                   onSelected: (selected) {},
                 ),
                 const SizedBox(height: 8),
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Dark Filter',
                   selected: true,
                   onSelected: (selected) {},
                 ),
                 const SizedBox(height: 8),
-                AppChip.choice(
+                DSChip.choice(
                   label: 'Dark Choice',
                   selected: true,
                   onSelected: (selected) {},
                 ),
                 const SizedBox(height: 8),
-                AppChip.assist(
+                DSChip.assist(
                   label: 'Dark Assist',
                   onSelected: (selected) {},
                 ),
@@ -413,18 +413,18 @@ void main() {
           home: Scaffold(
             body: Column(
               children: [
-                AppChip.filter(
+                DSChip.filter(
                   label: 'Complex 1',
                   icon: Icons.star,
                   deletable: true,
                   selected: true,
                   onSelected: (selected) {},
                   onDeleted: () {},
-                  size: AppChipSize.large,
-                  shape: AppChipShape.circular,
+                  size: DSChipSize.large,
+                  shape: DSChipShape.circular,
                 ),
                 const SizedBox(height: 8),
-                AppChip.input(
+                DSChip.input(
                   label: 'Complex 2',
                   avatar: const CircleAvatar(
                     radius: 10,
@@ -435,17 +435,17 @@ void main() {
                   selected: false,
                   onSelected: (selected) {},
                   onDeleted: () {},
-                  size: AppChipSize.small,
+                  size: DSChipSize.small,
                 ),
                 const SizedBox(height: 8),
-                AppChip.choice(
+                DSChip.choice(
                   label: 'Complex 3',
                   icon: Icons.check,
                   selected: true,
                   onSelected: (selected) {},
                   color: Colors.purple,
-                  size: AppChipSize.medium,
-                  shape: AppChipShape.stadium,
+                  size: DSChipSize.medium,
+                  shape: DSChipShape.stadium,
                 ),
               ],
             ),

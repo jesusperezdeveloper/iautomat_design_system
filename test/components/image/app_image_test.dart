@@ -5,12 +5,12 @@ import 'package:iautomat_design_system/src/components/image/app_image.dart';
 import 'package:iautomat_design_system/src/components/image/app_image_config.dart';
 
 void main() {
-  group('AppImage Widget Tests', () {
+  group('DSImage Widget Tests', () {
     testWidgets('renders correctly with basic properties', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'assets/test_image.jpg',
               alt: 'Test image',
               width: 200,
@@ -20,14 +20,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppImage), findsOneWidget);
+      expect(find.byType(DSImage), findsOneWidget);
     });
 
     testWidgets('displays loading state initially', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'https://example.com/image.jpg',
               alt: 'Network image',
             ),
@@ -43,12 +43,12 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'https://example.com/image.jpg',
               alt: 'Lazy image',
-              config: const AppImageConfig(
+              config: const DSImageConfig(
                 src: 'https://example.com/image.jpg',
-                variant: AppImageVariant.lazy,
+                variant: DSImageVariant.lazy,
               ),
             ),
           ),
@@ -65,7 +65,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'assets/test_image.jpg',
               alt: 'Tappable image',
               onTap: () {},
@@ -77,7 +77,7 @@ void main() {
       await tester.pump();
 
       // Verificar que el widget se renderiza y es interactivo
-      expect(find.byType(AppImage), findsOneWidget);
+      expect(find.byType(DSImage), findsOneWidget);
       expect(find.byType(GestureDetector), findsOneWidget);
     });
 
@@ -85,7 +85,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'assets/test_image.jpg',
               alt: 'Long pressable image',
               onLongPress: () {},
@@ -97,7 +97,7 @@ void main() {
       await tester.pump();
 
       // Verificar que el widget se renderiza y es interactivo
-      expect(find.byType(AppImage), findsOneWidget);
+      expect(find.byType(DSImage), findsOneWidget);
       expect(find.byType(GestureDetector), findsOneWidget);
     });
 
@@ -105,7 +105,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'assets/test_image.jpg',
               alt: 'Hoverable image',
               onHover: (hovering) {},
@@ -117,14 +117,14 @@ void main() {
       await tester.pump();
 
       // Verificar que el widget se renderiza con el callback
-      expect(find.byType(AppImage), findsOneWidget);
+      expect(find.byType(DSImage), findsOneWidget);
     });
 
     testWidgets('has focus callback configured', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'assets/test_image.jpg',
               alt: 'Focusable image',
               onFocusChange: (focused) {},
@@ -137,14 +137,14 @@ void main() {
       await tester.pump();
 
       // Verificar que el widget se renderiza con el callback
-      expect(find.byType(AppImage), findsOneWidget);
+      expect(find.byType(DSImage), findsOneWidget);
     });
 
     testWidgets('supports keyboard navigation', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'assets/test_image.jpg',
               alt: 'Keyboard navigable image',
               onTap: () {},
@@ -156,7 +156,7 @@ void main() {
       await tester.pump();
 
       // Verificar que el widget se renderiza con soporte de teclado
-      expect(find.byType(AppImage), findsOneWidget);
+      expect(find.byType(DSImage), findsOneWidget);
       expect(find.byType(Focus), findsWidgets);
     });
 
@@ -167,16 +167,16 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'assets/test_image.jpg',
               alt: 'Custom colored image',
-              config: const AppImageConfig(
+              config: const DSImageConfig(
                 src: 'assets/test_image.jpg',
-                colors: AppImageColors(
+                colors: DSImageColors(
                   backgroundColor: customBackgroundColor,
                   borderColor: customBorderColor,
                 ),
-                spacing: AppImageSpacing(
+                spacing: DSImageSpacing(
                   borderWidth: 2.0,
                 ),
               ),
@@ -197,14 +197,14 @@ void main() {
     });
 
     testWidgets('handles different states correctly', (tester) async {
-      for (final state in AppImageState.values) {
+      for (final state in DSImageState.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppImage(
+              body: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'State test image',
-                config: AppImageConfig(
+                config: DSImageConfig(
                   src: 'assets/test_image.jpg',
                   state: state,
                 ),
@@ -216,7 +216,7 @@ void main() {
         await tester.pump();
 
         // Verificar que el widget se renderiza para cada estado
-        expect(find.byType(AppImage), findsOneWidget);
+        expect(find.byType(DSImage), findsOneWidget);
       }
     });
 
@@ -225,7 +225,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppImage(
+              body: DSImage(
                 src: 'assets/test_image.jpg',
                 alt: 'BoxFit test image',
                 fit: fit,
@@ -235,7 +235,7 @@ void main() {
         );
 
         await tester.pump();
-        expect(find.byType(AppImage), findsOneWidget);
+        expect(find.byType(DSImage), findsOneWidget);
       }
     });
 
@@ -243,7 +243,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'invalid_image_path.jpg',
               alt: 'Error image',
               onError: () {},
@@ -266,7 +266,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'https://example.com/image.jpg',
               alt: 'Image with placeholder',
               placeholder: Text(placeholderText),
@@ -286,7 +286,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'assets/test_image.jpg',
               alt: 'Aspect ratio image',
               ratio: aspectRatio,
@@ -308,12 +308,12 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'assets/test_image.jpg',
               alt: 'Disabled image',
-              config: AppImageConfig(
+              config: DSImageConfig(
                 src: 'assets/test_image.jpg',
-                state: AppImageState.disabled,
+                state: DSImageState.disabled,
               ),
             ),
           ),
@@ -332,12 +332,12 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppImage(
+            body: DSImage(
               src: 'assets/test_image.jpg',
               alt: 'Decorative image',
-              config: AppImageConfig(
+              config: DSImageConfig(
                 src: 'assets/test_image.jpg',
-                a11yConfig: AppImageA11yConfig(
+                a11yConfig: DSImageA11yConfig(
                   isDecorative: true,
                 ),
               ),
@@ -352,122 +352,122 @@ void main() {
     });
   });
 
-  group('AppImageConfig Tests', () {
+  group('DSImageConfig Tests', () {
     test('creates with default values', () {
-      const config = AppImageConfig(src: 'test.jpg');
+      const config = DSImageConfig(src: 'test.jpg');
 
-      expect(config.variant, equals(AppImageVariant.responsive));
-      expect(config.state, equals(AppImageState.defaultState));
+      expect(config.variant, equals(DSImageVariant.responsive));
+      expect(config.state, equals(DSImageState.defaultState));
       expect(config.alt, equals(''));
       expect(config.fit, equals(BoxFit.cover));
     });
 
     test('creates with custom values', () {
-      const config = AppImageConfig(
+      const config = DSImageConfig(
         src: 'test.jpg',
-        variant: AppImageVariant.lazy,
-        state: AppImageState.loading,
+        variant: DSImageVariant.lazy,
+        state: DSImageState.loading,
         alt: 'Custom alt text',
         fit: BoxFit.contain,
         ratio: 1.5,
       );
 
-      expect(config.variant, equals(AppImageVariant.lazy));
-      expect(config.state, equals(AppImageState.loading));
+      expect(config.variant, equals(DSImageVariant.lazy));
+      expect(config.state, equals(DSImageState.loading));
       expect(config.alt, equals('Custom alt text'));
       expect(config.fit, equals(BoxFit.contain));
       expect(config.ratio, equals(1.5));
     });
   });
 
-  group('AppImageState Extension Tests', () {
+  group('DSImageState Extension Tests', () {
     test('correctly identifies interactive states', () {
-      expect(AppImageState.defaultState.isInteractive, isTrue);
-      expect(AppImageState.hover.isInteractive, isTrue);
-      expect(AppImageState.pressed.isInteractive, isTrue);
-      expect(AppImageState.focus.isInteractive, isTrue);
-      expect(AppImageState.selected.isInteractive, isTrue);
+      expect(DSImageState.defaultState.isInteractive, isTrue);
+      expect(DSImageState.hover.isInteractive, isTrue);
+      expect(DSImageState.pressed.isInteractive, isTrue);
+      expect(DSImageState.focus.isInteractive, isTrue);
+      expect(DSImageState.selected.isInteractive, isTrue);
 
-      expect(AppImageState.disabled.isInteractive, isFalse);
-      expect(AppImageState.loading.isInteractive, isFalse);
-      expect(AppImageState.skeleton.isInteractive, isFalse);
+      expect(DSImageState.disabled.isInteractive, isFalse);
+      expect(DSImageState.loading.isInteractive, isFalse);
+      expect(DSImageState.skeleton.isInteractive, isFalse);
     });
 
     test('returns correct opacity values', () {
-      expect(AppImageState.defaultState.opacity, equals(1.0));
-      expect(AppImageState.disabled.opacity, equals(0.6));
-      expect(AppImageState.loading.opacity, equals(0.8));
-      expect(AppImageState.skeleton.opacity, equals(0.3));
+      expect(DSImageState.defaultState.opacity, equals(1.0));
+      expect(DSImageState.disabled.opacity, equals(0.6));
+      expect(DSImageState.loading.opacity, equals(0.8));
+      expect(DSImageState.skeleton.opacity, equals(0.3));
     });
 
     test('correctly identifies loader states', () {
-      expect(AppImageState.loading.showsLoader, isTrue);
-      expect(AppImageState.skeleton.showsSkeleton, isTrue);
+      expect(DSImageState.loading.showsLoader, isTrue);
+      expect(DSImageState.skeleton.showsSkeleton, isTrue);
 
-      expect(AppImageState.defaultState.showsLoader, isFalse);
-      expect(AppImageState.defaultState.showsSkeleton, isFalse);
+      expect(DSImageState.defaultState.showsLoader, isFalse);
+      expect(DSImageState.defaultState.showsSkeleton, isFalse);
     });
 
     test('correctly identifies interactive capability', () {
-      expect(AppImageState.defaultState.canInteract, isTrue);
-      expect(AppImageState.disabled.canInteract, isFalse);
-      expect(AppImageState.loading.canInteract, isFalse);
+      expect(DSImageState.defaultState.canInteract, isTrue);
+      expect(DSImageState.disabled.canInteract, isFalse);
+      expect(DSImageState.loading.canInteract, isFalse);
     });
 
     test('returns correct elevation multipliers', () {
-      expect(AppImageState.defaultState.elevationMultiplier, equals(1.0));
-      expect(AppImageState.hover.elevationMultiplier, equals(1.5));
-      expect(AppImageState.pressed.elevationMultiplier, equals(0.5));
-      expect(AppImageState.disabled.elevationMultiplier, equals(0.0));
+      expect(DSImageState.defaultState.elevationMultiplier, equals(1.0));
+      expect(DSImageState.hover.elevationMultiplier, equals(1.5));
+      expect(DSImageState.pressed.elevationMultiplier, equals(0.5));
+      expect(DSImageState.disabled.elevationMultiplier, equals(0.0));
     });
   });
 
-  group('AppImageVariant Extension Tests', () {
+  group('DSImageVariant Extension Tests', () {
     test('correctly identifies lazy variant', () {
-      expect(AppImageVariant.lazy.isLazy, isTrue);
-      expect(AppImageVariant.responsive.isLazy, isFalse);
+      expect(DSImageVariant.lazy.isLazy, isTrue);
+      expect(DSImageVariant.responsive.isLazy, isFalse);
     });
 
     test('correctly identifies responsive variant', () {
-      expect(AppImageVariant.responsive.isResponsive, isTrue);
-      expect(AppImageVariant.lazy.isResponsive, isFalse);
+      expect(DSImageVariant.responsive.isResponsive, isTrue);
+      expect(DSImageVariant.lazy.isResponsive, isFalse);
     });
 
     test('returns correct display names', () {
-      expect(AppImageVariant.responsive.displayName, equals('Responsive'));
-      expect(AppImageVariant.lazy.displayName, equals('Lazy'));
+      expect(DSImageVariant.responsive.displayName, equals('Responsive'));
+      expect(DSImageVariant.lazy.displayName, equals('Lazy'));
     });
 
     test('returns descriptive text', () {
-      expect(AppImageVariant.responsive.description, contains('adapta'));
-      expect(AppImageVariant.lazy.description, contains('visible'));
+      expect(DSImageVariant.responsive.description, contains('adapta'));
+      expect(DSImageVariant.lazy.description, contains('visible'));
     });
   });
 
   group('Animation Type Extension Tests', () {
     test('correctly identifies animation capability', () {
-      expect(AppImageAnimationType.none.hasAnimation, isFalse);
-      expect(AppImageAnimationType.fade.hasAnimation, isTrue);
-      expect(AppImageAnimationType.scale.hasAnimation, isTrue);
+      expect(DSImageAnimationType.none.hasAnimation, isFalse);
+      expect(DSImageAnimationType.fade.hasAnimation, isTrue);
+      expect(DSImageAnimationType.scale.hasAnimation, isTrue);
     });
 
     test('returns appropriate default curves', () {
-      expect(AppImageAnimationType.none.defaultCurve, equals(Curves.linear));
-      expect(AppImageAnimationType.fade.defaultCurve, equals(Curves.easeInOut));
-      expect(AppImageAnimationType.scale.defaultCurve, equals(Curves.elasticOut));
+      expect(DSImageAnimationType.none.defaultCurve, equals(Curves.linear));
+      expect(DSImageAnimationType.fade.defaultCurve, equals(Curves.easeInOut));
+      expect(DSImageAnimationType.scale.defaultCurve, equals(Curves.elasticOut));
     });
   });
 
   group('Clip Behavior Extension Tests', () {
     test('maps to correct Flutter clip values', () {
-      expect(AppImageClipBehavior.none.flutterClip, equals(Clip.none));
-      expect(AppImageClipBehavior.antiAlias.flutterClip, equals(Clip.antiAlias));
-      expect(AppImageClipBehavior.hardEdge.flutterClip, equals(Clip.hardEdge));
+      expect(DSImageClipBehavior.none.flutterClip, equals(Clip.none));
+      expect(DSImageClipBehavior.antiAlias.flutterClip, equals(Clip.antiAlias));
+      expect(DSImageClipBehavior.hardEdge.flutterClip, equals(Clip.hardEdge));
     });
 
     test('returns correct display names', () {
-      expect(AppImageClipBehavior.none.displayName, equals('None'));
-      expect(AppImageClipBehavior.antiAlias.displayName, equals('Anti Alias'));
+      expect(DSImageClipBehavior.none.displayName, equals('None'));
+      expect(DSImageClipBehavior.antiAlias.displayName, equals('Anti Alias'));
     });
   });
 }

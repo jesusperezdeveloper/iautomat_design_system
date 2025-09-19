@@ -4,24 +4,24 @@ import 'package:iautomat_design_system/src/components/slider/app_slider.dart';
 import 'package:iautomat_design_system/src/components/slider/slider_config.dart';
 
 void main() {
-  group('AppSlider Golden Tests', () {
+  group('DSSlider Golden Tests', () {
     final testMarks = [
-      const AppSliderMark(value: 0, label: 'Min'),
-      const AppSliderMark(value: 25, label: 'Low'),
-      const AppSliderMark(value: 50, label: 'Mid'),
-      const AppSliderMark(value: 75, label: 'High'),
-      const AppSliderMark(value: 100, label: 'Max'),
+      const DSSliderMark(value: 0, label: 'Min'),
+      const DSSliderMark(value: 25, label: 'Low'),
+      const DSSliderMark(value: 50, label: 'Mid'),
+      const DSSliderMark(value: 75, label: 'High'),
+      const DSSliderMark(value: 100, label: 'Max'),
     ];
 
     Widget buildSlider({
-      AppSliderVariant variant = AppSliderVariant.continuous,
+      DSSliderVariant variant = DSSliderVariant.continuous,
       double? value,
-      AppSliderRangeValue? rangeValue,
-      AppSliderState? overrideState,
+      DSSliderRangeValue? rangeValue,
+      DSSliderState? overrideState,
       bool enabled = true,
       String? errorText,
-      AppSliderConfig? config,
-      List<AppSliderMark> marks = const [],
+      DSSliderConfig? config,
+      List<DSSliderMark> marks = const [],
       bool showLabels = true,
       bool showTicks = true,
     }) {
@@ -31,10 +31,10 @@ void main() {
           body: Center(
             child: SizedBox(
               width: 300,
-              child: variant == AppSliderVariant.range
-                  ? AppSlider(
+              child: variant == DSSliderVariant.range
+                  ? DSSlider(
                       rangeValue: rangeValue ??
-                          const AppSliderRangeValue(start: 20.0, end: 80.0),
+                          const DSSliderRangeValue(start: 20.0, end: 80.0),
                       min: 0.0,
                       max: 100.0,
                       onRangeChanged: (_) {},
@@ -49,11 +49,11 @@ void main() {
                       showLabels: showLabels,
                       showTicks: showTicks,
                     )
-                  : AppSlider(
+                  : DSSlider(
                       value: value ?? 50.0,
                       min: 0.0,
                       max: 100.0,
-                      step: variant == AppSliderVariant.discrete ? 10.0 : null,
+                      step: variant == DSSliderVariant.discrete ? 10.0 : null,
                       onChanged: (_) {},
                       variant: variant,
                       label: 'Test Slider',
@@ -75,7 +75,7 @@ void main() {
     testWidgets('continuous default state', (tester) async {
       await tester.pumpWidget(buildSlider());
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_continuous_default.png'),
       );
     });
@@ -83,28 +83,28 @@ void main() {
     testWidgets('continuous with value', (tester) async {
       await tester.pumpWidget(buildSlider(value: 75.0));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_continuous_with_value.png'),
       );
     });
 
     testWidgets('discrete default state', (tester) async {
       await tester.pumpWidget(buildSlider(
-        variant: AppSliderVariant.discrete,
+        variant: DSSliderVariant.discrete,
         value: 50.0,
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_discrete_default.png'),
       );
     });
 
     testWidgets('range default state', (tester) async {
       await tester.pumpWidget(buildSlider(
-        variant: AppSliderVariant.range,
+        variant: DSSliderVariant.range,
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_range_default.png'),
       );
     });
@@ -112,7 +112,7 @@ void main() {
     testWidgets('disabled state', (tester) async {
       await tester.pumpWidget(buildSlider(enabled: false));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_disabled.png'),
       );
     });
@@ -122,27 +122,27 @@ void main() {
         errorText: 'Value is required',
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_error.png'),
       );
     });
 
     testWidgets('loading state', (tester) async {
       await tester.pumpWidget(buildSlider(
-        overrideState: AppSliderState.loading,
+        overrideState: DSSliderState.loading,
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_loading.png'),
       );
     });
 
     testWidgets('skeleton state', (tester) async {
       await tester.pumpWidget(buildSlider(
-        overrideState: AppSliderState.skeleton,
+        overrideState: DSSliderState.skeleton,
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_skeleton.png'),
       );
     });
@@ -153,7 +153,7 @@ void main() {
         value: 50.0,
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_with_marks.png'),
       );
     });
@@ -165,7 +165,7 @@ void main() {
         value: 50.0,
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_without_ticks.png'),
       );
     });
@@ -177,13 +177,13 @@ void main() {
         value: 50.0,
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_without_labels.png'),
       );
     });
 
     testWidgets('custom configuration', (tester) async {
-      const customConfig = AppSliderConfig(
+      const customConfig = DSSliderConfig(
         thumbRadius: 16.0,
         trackHeight: 6.0,
         activeTrackHeight: 8.0,
@@ -196,7 +196,7 @@ void main() {
         value: 75.0,
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_custom_config.png'),
       );
     });
@@ -209,12 +209,12 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppSlider(
+                child: DSSlider(
                   value: 50.0,
                   min: 0.0,
                   max: 100.0,
                   onChanged: (_) {},
-                  variant: AppSliderVariant.continuous,
+                  variant: DSSliderVariant.continuous,
                   label: 'Test Slider',
                   helperText: 'Choose a value',
                 ),
@@ -225,7 +225,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_dark_theme.png'),
       );
     });
@@ -240,18 +240,18 @@ void main() {
               body: Center(
                 child: SizedBox(
                   width: 300,
-                  child: AppSlider(
+                  child: DSSlider(
                     value: 50.0,
                     min: 0.0,
                     max: 100.0,
                     onChanged: (_) {},
-                    variant: AppSliderVariant.continuous,
+                    variant: DSSliderVariant.continuous,
                     label: 'شريط التمرير',
                     helperText: 'اختر قيمة',
                     marks: const [
-                      AppSliderMark(value: 0, label: 'أدنى'),
-                      AppSliderMark(value: 50, label: 'متوسط'),
-                      AppSliderMark(value: 100, label: 'أعلى'),
+                      DSSliderMark(value: 0, label: 'أدنى'),
+                      DSSliderMark(value: 50, label: 'متوسط'),
+                      DSSliderMark(value: 100, label: 'أعلى'),
                     ],
                   ),
                 ),
@@ -262,30 +262,30 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_rtl.png'),
       );
     });
 
     testWidgets('range slider with custom range', (tester) async {
       await tester.pumpWidget(buildSlider(
-        variant: AppSliderVariant.range,
-        rangeValue: const AppSliderRangeValue(start: 10.0, end: 90.0),
+        variant: DSSliderVariant.range,
+        rangeValue: const DSSliderRangeValue(start: 10.0, end: 90.0),
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_range_custom.png'),
       );
     });
 
     testWidgets('discrete with marks', (tester) async {
       await tester.pumpWidget(buildSlider(
-        variant: AppSliderVariant.discrete,
+        variant: DSSliderVariant.discrete,
         value: 60.0,
         marks: testMarks,
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_discrete_with_marks.png'),
       );
     });
@@ -293,7 +293,7 @@ void main() {
     testWidgets('edge case - minimum value', (tester) async {
       await tester.pumpWidget(buildSlider(value: 0.0));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_minimum_value.png'),
       );
     });
@@ -301,29 +301,29 @@ void main() {
     testWidgets('edge case - maximum value', (tester) async {
       await tester.pumpWidget(buildSlider(value: 100.0));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_maximum_value.png'),
       );
     });
 
     testWidgets('range edge case - full range', (tester) async {
       await tester.pumpWidget(buildSlider(
-        variant: AppSliderVariant.range,
-        rangeValue: const AppSliderRangeValue(start: 0.0, end: 100.0),
+        variant: DSSliderVariant.range,
+        rangeValue: const DSSliderRangeValue(start: 0.0, end: 100.0),
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_range_full.png'),
       );
     });
 
     testWidgets('range edge case - narrow range', (tester) async {
       await tester.pumpWidget(buildSlider(
-        variant: AppSliderVariant.range,
-        rangeValue: const AppSliderRangeValue(start: 45.0, end: 55.0),
+        variant: DSSliderVariant.range,
+        rangeValue: const DSSliderRangeValue(start: 45.0, end: 55.0),
       ));
       await expectLater(
-        find.byType(AppSlider),
+        find.byType(DSSlider),
         matchesGoldenFile('slider_range_narrow.png'),
       );
     });

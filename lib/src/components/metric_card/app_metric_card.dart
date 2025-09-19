@@ -4,19 +4,19 @@ import 'dart:math' as math;
 
 import 'metric_card_config.dart';
 
-class AppMetricCard extends StatefulWidget {
-  final AppMetricCardVariant variant;
-  final AppMetricCardState state;
-  final AppMetricCardSize size;
-  final AppMetricCardLayout layout;
-  final AppMetricCardAlignment alignment;
-  final AppMetricCardSpacing spacing;
+class DSMetricCard extends StatefulWidget {
+  final DSMetricCardVariant variant;
+  final DSMetricCardState state;
+  final DSMetricCardSize size;
+  final DSMetricCardLayout layout;
+  final DSMetricCardAlignment alignment;
+  final DSMetricCardSpacing spacing;
   final String title;
   final String value;
   final String? subtitle;
   final String? unit;
-  final AppMetricCardDelta? delta;
-  final List<AppMetricCardDataPoint>? trend;
+  final DSMetricCardDelta? delta;
+  final List<DSMetricCardDataPoint>? trend;
   final IconData? icon;
   final Color? iconColor;
   final Widget? prefix;
@@ -24,10 +24,10 @@ class AppMetricCard extends StatefulWidget {
   final Widget? customValueWidget;
   final Widget? customDeltaWidget;
   final Widget? customSparklineWidget;
-  final AppMetricCardStyle? style;
-  final AppMetricCardInteraction? interaction;
-  final AppMetricCardAccessibility? accessibility;
-  final AppMetricCardAnimation? animation;
+  final DSMetricCardStyle? style;
+  final DSMetricCardInteraction? interaction;
+  final DSMetricCardAccessibility? accessibility;
+  final DSMetricCardAnimation? animation;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
   final VoidCallback? onHover;
@@ -38,14 +38,14 @@ class AppMetricCard extends StatefulWidget {
   final bool skeleton;
   final bool visible;
 
-  const AppMetricCard({
+  const DSMetricCard({
     super.key,
-    this.variant = AppMetricCardVariant.delta,
-    this.state = AppMetricCardState.defaultState,
-    this.size = AppMetricCardSize.medium,
-    this.layout = AppMetricCardLayout.vertical,
-    this.alignment = AppMetricCardAlignment.start,
-    this.spacing = AppMetricCardSpacing.normal,
+    this.variant = DSMetricCardVariant.delta,
+    this.state = DSMetricCardState.defaultState,
+    this.size = DSMetricCardSize.medium,
+    this.layout = DSMetricCardLayout.vertical,
+    this.alignment = DSMetricCardAlignment.start,
+    this.spacing = DSMetricCardSpacing.normal,
     required this.title,
     required this.value,
     this.subtitle,
@@ -74,13 +74,13 @@ class AppMetricCard extends StatefulWidget {
     this.visible = true,
   });
 
-  const AppMetricCard.delta({
+  const DSMetricCard.delta({
     super.key,
-    this.state = AppMetricCardState.defaultState,
-    this.size = AppMetricCardSize.medium,
-    this.layout = AppMetricCardLayout.vertical,
-    this.alignment = AppMetricCardAlignment.start,
-    this.spacing = AppMetricCardSpacing.normal,
+    this.state = DSMetricCardState.defaultState,
+    this.size = DSMetricCardSize.medium,
+    this.layout = DSMetricCardLayout.vertical,
+    this.alignment = DSMetricCardAlignment.start,
+    this.spacing = DSMetricCardSpacing.normal,
     required this.title,
     required this.value,
     this.subtitle,
@@ -105,17 +105,17 @@ class AppMetricCard extends StatefulWidget {
     this.loading = false,
     this.skeleton = false,
     this.visible = true,
-  })  : variant = AppMetricCardVariant.delta,
+  })  : variant = DSMetricCardVariant.delta,
         trend = null,
         customSparklineWidget = null;
 
-  const AppMetricCard.sparkline({
+  const DSMetricCard.sparkline({
     super.key,
-    this.state = AppMetricCardState.defaultState,
-    this.size = AppMetricCardSize.medium,
-    this.layout = AppMetricCardLayout.vertical,
-    this.alignment = AppMetricCardAlignment.start,
-    this.spacing = AppMetricCardSpacing.normal,
+    this.state = DSMetricCardState.defaultState,
+    this.size = DSMetricCardSize.medium,
+    this.layout = DSMetricCardLayout.vertical,
+    this.alignment = DSMetricCardAlignment.start,
+    this.spacing = DSMetricCardSpacing.normal,
     required this.title,
     required this.value,
     this.subtitle,
@@ -140,15 +140,15 @@ class AppMetricCard extends StatefulWidget {
     this.loading = false,
     this.skeleton = false,
     this.visible = true,
-  })  : variant = AppMetricCardVariant.sparkline,
+  })  : variant = DSMetricCardVariant.sparkline,
         delta = null,
         customDeltaWidget = null;
 
   @override
-  State<AppMetricCard> createState() => _AppMetricCardState();
+  State<DSMetricCard> createState() => _DSMetricCardState();
 }
 
-class _AppMetricCardState extends State<AppMetricCard>
+class _DSMetricCardState extends State<DSMetricCard>
     with TickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<double> _fadeAnimation;
@@ -156,7 +156,7 @@ class _AppMetricCardState extends State<AppMetricCard>
   late final Animation<double> _scaleAnimation;
   late final Animation<double> _bounceAnimation;
 
-  AppMetricCardState _currentState = AppMetricCardState.defaultState;
+  DSMetricCardState _currentState = DSMetricCardState.defaultState;
   final FocusNode _focusNode = FocusNode();
   bool _isHovered = false;
   bool _isPressed = false;
@@ -171,7 +171,7 @@ class _AppMetricCardState extends State<AppMetricCard>
   }
 
   void _setupAnimations() {
-    final animation = widget.animation ?? const AppMetricCardAnimation();
+    final animation = widget.animation ?? const DSMetricCardAnimation();
 
     _animationController = AnimationController(
       duration: animation.duration,
@@ -228,22 +228,22 @@ class _AppMetricCardState extends State<AppMetricCard>
   }
 
   void _updateState() {
-    AppMetricCardState newState = widget.state;
+    DSMetricCardState newState = widget.state;
 
-    if (!widget.enabled || widget.state == AppMetricCardState.disabled) {
-      newState = AppMetricCardState.disabled;
-    } else if (widget.loading || widget.state == AppMetricCardState.loading) {
-      newState = AppMetricCardState.loading;
-    } else if (widget.skeleton || widget.state == AppMetricCardState.skeleton) {
-      newState = AppMetricCardState.skeleton;
+    if (!widget.enabled || widget.state == DSMetricCardState.disabled) {
+      newState = DSMetricCardState.disabled;
+    } else if (widget.loading || widget.state == DSMetricCardState.loading) {
+      newState = DSMetricCardState.loading;
+    } else if (widget.skeleton || widget.state == DSMetricCardState.skeleton) {
+      newState = DSMetricCardState.skeleton;
     } else if (_isPressed) {
-      newState = AppMetricCardState.pressed;
+      newState = DSMetricCardState.pressed;
     } else if (_isFocused) {
-      newState = AppMetricCardState.focus;
+      newState = DSMetricCardState.focus;
     } else if (_isHovered) {
-      newState = AppMetricCardState.hover;
-    } else if (widget.state == AppMetricCardState.selected) {
-      newState = AppMetricCardState.selected;
+      newState = DSMetricCardState.hover;
+    } else if (widget.state == DSMetricCardState.selected) {
+      newState = DSMetricCardState.selected;
     }
 
     if (_currentState != newState) {
@@ -324,7 +324,7 @@ class _AppMetricCardState extends State<AppMetricCard>
   bool get _isInteractive => _canInteract;
 
   @override
-  void didUpdateWidget(covariant AppMetricCard oldWidget) {
+  void didUpdateWidget(covariant DSMetricCard oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.state != widget.state ||
@@ -334,8 +334,8 @@ class _AppMetricCardState extends State<AppMetricCard>
       _updateState();
     }
 
-    final newAnimation = widget.animation ?? const AppMetricCardAnimation();
-    final oldAnimation = oldWidget.animation ?? const AppMetricCardAnimation();
+    final newAnimation = widget.animation ?? const DSMetricCardAnimation();
+    final oldAnimation = oldWidget.animation ?? const DSMetricCardAnimation();
 
     if (newAnimation.duration != oldAnimation.duration) {
       _animationController.duration = newAnimation.duration;
@@ -361,7 +361,7 @@ class _AppMetricCardState extends State<AppMetricCard>
       return const SizedBox.shrink();
     }
 
-    final config = AppMetricCardConfig(
+    final config = DSMetricCardConfig(
       variant: widget.variant,
       state: _currentState,
       size: widget.size,
@@ -400,34 +400,34 @@ class _AppMetricCardState extends State<AppMetricCard>
 
     if (widget.animation?.enabled == true) {
       final animationType =
-          widget.animation?.type ?? AppMetricCardAnimationType.fade;
+          widget.animation?.type ?? DSMetricCardAnimationType.fade;
 
       switch (animationType) {
-        case AppMetricCardAnimationType.fade:
+        case DSMetricCardAnimationType.fade:
           cardWidget = FadeTransition(
             opacity: _fadeAnimation,
             child: cardWidget,
           );
           break;
-        case AppMetricCardAnimationType.slide:
+        case DSMetricCardAnimationType.slide:
           cardWidget = SlideTransition(
             position: _slideAnimation,
             child: cardWidget,
           );
           break;
-        case AppMetricCardAnimationType.scale:
+        case DSMetricCardAnimationType.scale:
           cardWidget = ScaleTransition(
             scale: _scaleAnimation,
             child: cardWidget,
           );
           break;
-        case AppMetricCardAnimationType.bounce:
+        case DSMetricCardAnimationType.bounce:
           cardWidget = ScaleTransition(
             scale: _bounceAnimation,
             child: cardWidget,
           );
           break;
-        case AppMetricCardAnimationType.none:
+        case DSMetricCardAnimationType.none:
           break;
       }
     }
@@ -457,7 +457,7 @@ class _AppMetricCardState extends State<AppMetricCard>
     return cardWidget;
   }
 
-  Widget _buildMetricCard(BuildContext context, AppMetricCardConfig config) {
+  Widget _buildMetricCard(BuildContext context, DSMetricCardConfig config) {
     final theme = Theme.of(context);
     final effectiveStyle = _getEffectiveStyle(theme, config, _currentState);
 
@@ -468,13 +468,13 @@ class _AppMetricCardState extends State<AppMetricCard>
     Widget content;
 
     switch (config.layout) {
-      case AppMetricCardLayout.vertical:
+      case DSMetricCardLayout.vertical:
         content = _buildVerticalLayout(context, config, effectiveStyle);
         break;
-      case AppMetricCardLayout.horizontal:
+      case DSMetricCardLayout.horizontal:
         content = _buildHorizontalLayout(context, config, effectiveStyle);
         break;
-      case AppMetricCardLayout.compact:
+      case DSMetricCardLayout.compact:
         content = _buildCompactLayout(context, config, effectiveStyle);
         break;
     }
@@ -482,19 +482,19 @@ class _AppMetricCardState extends State<AppMetricCard>
     return _wrapWithInteraction(content, config, effectiveStyle);
   }
 
-  AppMetricCardStyle _getEffectiveStyle(
-      ThemeData theme, AppMetricCardConfig config, AppMetricCardState state) {
-    final baseStyle = AppMetricCardStyle(
+  DSMetricCardStyle _getEffectiveStyle(
+      ThemeData theme, DSMetricCardConfig config, DSMetricCardState state) {
+    final baseStyle = DSMetricCardStyle(
       backgroundColor: theme.colorScheme.surface,
       foregroundColor: theme.colorScheme.onSurface,
       borderColor: theme.colorScheme.outline,
       shadowColor: theme.colorScheme.shadow,
       overlayColor: theme.colorScheme.onSurface,
-      borderWidth: AppMetricCardConstants.defaultBorderWidth,
-      borderRadius: AppMetricCardConstants.defaultBorderRadius,
-      elevation: AppMetricCardConstants.defaultElevation,
+      borderWidth: DSMetricCardConstants.defaultBorderWidth,
+      borderRadius: DSMetricCardConstants.defaultBorderRadius,
+      elevation: DSMetricCardConstants.defaultElevation,
       padding: config.size.padding,
-      margin: AppMetricCardConstants.defaultMargin,
+      margin: DSMetricCardConstants.defaultMargin,
       constraints: _getConstraintsForSize(config.size),
       titleTextStyle: theme.textTheme.titleSmall?.copyWith(
         fontWeight: FontWeight.w600,
@@ -516,26 +516,26 @@ class _AppMetricCardState extends State<AppMetricCard>
       spacing: config.spacing.value,
       crossAxisAlignment: _getCrossAxisAlignment(config.alignment),
       mainAxisAlignment: MainAxisAlignment.start,
-      deltaStyle: AppMetricCardDeltaStyle(
+      deltaStyle: DSMetricCardDeltaStyle(
         backgroundColor: Colors.transparent,
         foregroundColor: theme.colorScheme.onSurface,
         positiveColor: Colors.green,
         negativeColor: Colors.red,
         neutralColor: theme.colorScheme.onSurfaceVariant,
         borderRadius: 8.0,
-        padding: AppMetricCardConstants.defaultDeltaPadding,
+        padding: DSMetricCardConstants.defaultDeltaPadding,
         textStyle: theme.textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.w600,
         ),
-        iconSize: AppMetricCardConstants.defaultDeltaIconSize,
+        iconSize: DSMetricCardConstants.defaultDeltaIconSize,
         spacing: 4.0,
       ),
-      sparklineStyle: AppMetricCardSparklineStyle(
+      sparklineStyle: DSMetricCardSparklineStyle(
         lineColor: theme.colorScheme.primary,
         fillColor: theme.colorScheme.primary.withValues(alpha: 0.1),
         gridColor: theme.colorScheme.outline.withValues(alpha: 0.2),
-        lineWidth: AppMetricCardConstants.defaultSparklineLineWidth,
-        height: AppMetricCardConstants.defaultSparklineHeight,
+        lineWidth: DSMetricCardConstants.defaultSparklineLineWidth,
+        height: DSMetricCardConstants.defaultSparklineHeight,
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         showGrid: false,
         showFill: true,
@@ -546,7 +546,7 @@ class _AppMetricCardState extends State<AppMetricCard>
       ),
     );
 
-    final customStyle = config.style ?? const AppMetricCardStyle();
+    final customStyle = config.style ?? const DSMetricCardStyle();
     final mergedStyle = baseStyle.copyWith(
       backgroundColor: customStyle.backgroundColor,
       foregroundColor: customStyle.foregroundColor,
@@ -576,30 +576,30 @@ class _AppMetricCardState extends State<AppMetricCard>
     return mergedStyle.copyWithState(state);
   }
 
-  BoxConstraints _getConstraintsForSize(AppMetricCardSize size) {
+  BoxConstraints _getConstraintsForSize(DSMetricCardSize size) {
     switch (size) {
-      case AppMetricCardSize.small:
-        return AppMetricCardConstants.smallConstraints;
-      case AppMetricCardSize.medium:
-        return AppMetricCardConstants.mediumConstraints;
-      case AppMetricCardSize.large:
-        return AppMetricCardConstants.largeConstraints;
+      case DSMetricCardSize.small:
+        return DSMetricCardConstants.smallConstraints;
+      case DSMetricCardSize.medium:
+        return DSMetricCardConstants.mediumConstraints;
+      case DSMetricCardSize.large:
+        return DSMetricCardConstants.largeConstraints;
     }
   }
 
-  CrossAxisAlignment _getCrossAxisAlignment(AppMetricCardAlignment alignment) {
+  CrossAxisAlignment _getCrossAxisAlignment(DSMetricCardAlignment alignment) {
     switch (alignment) {
-      case AppMetricCardAlignment.start:
+      case DSMetricCardAlignment.start:
         return CrossAxisAlignment.start;
-      case AppMetricCardAlignment.center:
+      case DSMetricCardAlignment.center:
         return CrossAxisAlignment.center;
-      case AppMetricCardAlignment.end:
+      case DSMetricCardAlignment.end:
         return CrossAxisAlignment.end;
     }
   }
 
-  Widget _buildVerticalLayout(BuildContext context, AppMetricCardConfig config,
-      AppMetricCardStyle style) {
+  Widget _buildVerticalLayout(BuildContext context, DSMetricCardConfig config,
+      DSMetricCardStyle style) {
     return Column(
       crossAxisAlignment: style.crossAxisAlignment ?? CrossAxisAlignment.start,
       mainAxisAlignment: style.mainAxisAlignment ?? MainAxisAlignment.start,
@@ -608,12 +608,12 @@ class _AppMetricCardState extends State<AppMetricCard>
         _buildHeader(context, config, style),
         SizedBox(height: style.spacing ?? 8.0),
         _buildMainContent(context, config, style),
-        if (config.variant == AppMetricCardVariant.delta &&
+        if (config.variant == DSMetricCardVariant.delta &&
             config.hasDelta) ...[
           SizedBox(height: style.spacing ?? 8.0),
           _buildDeltaSection(context, config, style),
         ],
-        if (config.variant == AppMetricCardVariant.sparkline &&
+        if (config.variant == DSMetricCardVariant.sparkline &&
             config.hasTrend) ...[
           SizedBox(height: style.spacing ?? 8.0),
           _buildSparklineSection(context, config, style),
@@ -623,7 +623,7 @@ class _AppMetricCardState extends State<AppMetricCard>
   }
 
   Widget _buildHorizontalLayout(BuildContext context,
-      AppMetricCardConfig config, AppMetricCardStyle style) {
+      DSMetricCardConfig config, DSMetricCardStyle style) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -636,7 +636,7 @@ class _AppMetricCardState extends State<AppMetricCard>
               _buildHeader(context, config, style),
               SizedBox(height: style.spacing ?? 4.0),
               _buildMainContent(context, config, style),
-              if (config.variant == AppMetricCardVariant.delta &&
+              if (config.variant == DSMetricCardVariant.delta &&
                   config.hasDelta) ...[
                 SizedBox(height: style.spacing ?? 4.0),
                 _buildDeltaSection(context, config, style),
@@ -644,7 +644,7 @@ class _AppMetricCardState extends State<AppMetricCard>
             ],
           ),
         ),
-        if (config.variant == AppMetricCardVariant.sparkline &&
+        if (config.variant == DSMetricCardVariant.sparkline &&
             config.hasTrend) ...[
           SizedBox(width: style.spacing ?? 16.0),
           Expanded(
@@ -656,8 +656,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildCompactLayout(BuildContext context, AppMetricCardConfig config,
-      AppMetricCardStyle style) {
+  Widget _buildCompactLayout(BuildContext context, DSMetricCardConfig config,
+      DSMetricCardStyle style) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -675,9 +675,9 @@ class _AppMetricCardState extends State<AppMetricCard>
             ],
           ),
         ),
-        if (config.variant == AppMetricCardVariant.delta && config.hasDelta)
+        if (config.variant == DSMetricCardVariant.delta && config.hasDelta)
           _buildDeltaSection(context, config, style),
-        if (config.variant == AppMetricCardVariant.sparkline && config.hasTrend)
+        if (config.variant == DSMetricCardVariant.sparkline && config.hasTrend)
           SizedBox(
             width: 60,
             height: 30,
@@ -687,8 +687,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildHeader(BuildContext context, AppMetricCardConfig config,
-      AppMetricCardStyle style) {
+  Widget _buildHeader(BuildContext context, DSMetricCardConfig config,
+      DSMetricCardStyle style) {
     return Row(
       children: [
         if (config.hasPrefix) ...[
@@ -720,8 +720,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildMainContent(BuildContext context, AppMetricCardConfig config,
-      AppMetricCardStyle style) {
+  Widget _buildMainContent(BuildContext context, DSMetricCardConfig config,
+      DSMetricCardStyle style) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
@@ -735,8 +735,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildTitle(BuildContext context, AppMetricCardConfig config,
-      AppMetricCardStyle style) {
+  Widget _buildTitle(BuildContext context, DSMetricCardConfig config,
+      DSMetricCardStyle style) {
     return Text(
       config.title,
       style: style.titleTextStyle,
@@ -745,8 +745,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildSubtitle(BuildContext context, AppMetricCardConfig config,
-      AppMetricCardStyle style) {
+  Widget _buildSubtitle(BuildContext context, DSMetricCardConfig config,
+      DSMetricCardStyle style) {
     return Text(
       config.subtitle!,
       style: style.subtitleTextStyle,
@@ -755,8 +755,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildValue(BuildContext context, AppMetricCardConfig config,
-      AppMetricCardStyle style) {
+  Widget _buildValue(BuildContext context, DSMetricCardConfig config,
+      DSMetricCardStyle style) {
     if (config.hasCustomValueWidget) {
       return config.customValueWidget!;
     }
@@ -769,16 +769,16 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildUnit(BuildContext context, AppMetricCardConfig config,
-      AppMetricCardStyle style) {
+  Widget _buildUnit(BuildContext context, DSMetricCardConfig config,
+      DSMetricCardStyle style) {
     return Text(
       config.unit!,
       style: style.unitTextStyle,
     );
   }
 
-  Widget _buildIcon(BuildContext context, AppMetricCardConfig config,
-      AppMetricCardStyle style) {
+  Widget _buildIcon(BuildContext context, DSMetricCardConfig config,
+      DSMetricCardStyle style) {
     return Icon(
       config.icon,
       size: style.iconSize,
@@ -786,8 +786,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildDeltaSection(BuildContext context, AppMetricCardConfig config,
-      AppMetricCardStyle style) {
+  Widget _buildDeltaSection(BuildContext context, DSMetricCardConfig config,
+      DSMetricCardStyle style) {
     if (config.hasCustomDeltaWidget) {
       return config.customDeltaWidget!;
     }
@@ -797,13 +797,13 @@ class _AppMetricCardState extends State<AppMetricCard>
 
     Color deltaColor;
     switch (delta.type) {
-      case AppMetricCardDeltaType.increase:
+      case DSMetricCardDeltaType.increase:
         deltaColor = delta.color ?? deltaStyle.positiveColor ?? Colors.green;
         break;
-      case AppMetricCardDeltaType.decrease:
+      case DSMetricCardDeltaType.decrease:
         deltaColor = delta.color ?? deltaStyle.negativeColor ?? Colors.red;
         break;
-      case AppMetricCardDeltaType.neutral:
+      case DSMetricCardDeltaType.neutral:
         deltaColor = delta.color ??
             deltaStyle.neutralColor ??
             Theme.of(context).colorScheme.onSurfaceVariant;
@@ -846,7 +846,7 @@ class _AppMetricCardState extends State<AppMetricCard>
   }
 
   Widget _buildSparklineSection(BuildContext context,
-      AppMetricCardConfig config, AppMetricCardStyle style) {
+      DSMetricCardConfig config, DSMetricCardStyle style) {
     if (config.hasCustomSparklineWidget) {
       return config.customSparklineWidget!;
     }
@@ -867,8 +867,8 @@ class _AppMetricCardState extends State<AppMetricCard>
     );
   }
 
-  Widget _buildSkeletonCard(BuildContext context, AppMetricCardStyle style,
-      AppMetricCardConfig config) {
+  Widget _buildSkeletonCard(BuildContext context, DSMetricCardStyle style,
+      DSMetricCardConfig config) {
     final theme = Theme.of(context);
     final shimmerColor = theme.colorScheme.surfaceContainerHighest;
 
@@ -935,7 +935,7 @@ class _AppMetricCardState extends State<AppMetricCard>
   }
 
   Widget _wrapWithInteraction(
-      Widget child, AppMetricCardConfig config, AppMetricCardStyle style) {
+      Widget child, DSMetricCardConfig config, DSMetricCardStyle style) {
     if (!_isInteractive) {
       return Container(
         padding: style.padding,
@@ -1031,8 +1031,8 @@ class _AppMetricCardState extends State<AppMetricCard>
 }
 
 class _SparklinePainter extends CustomPainter {
-  final List<AppMetricCardDataPoint> dataPoints;
-  final AppMetricCardSparklineStyle style;
+  final List<DSMetricCardDataPoint> dataPoints;
+  final DSMetricCardSparklineStyle style;
 
   _SparklinePainter({
     required this.dataPoints,

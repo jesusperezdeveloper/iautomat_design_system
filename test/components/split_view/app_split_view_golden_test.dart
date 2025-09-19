@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppSplitView Golden Tests', () {
+  group('DSSplitView Golden Tests', () {
     const startWidget = Card(
       child: Padding(
         padding: EdgeInsets.all(16.0),
@@ -33,7 +33,7 @@ void main() {
     );
 
     Widget createSplitViewTestApp({
-      required AppSplitViewConfig config,
+      required DSSplitViewConfig config,
       Widget? start,
       Widget? end,
     }) {
@@ -45,7 +45,7 @@ void main() {
             width: 600,
             height: 400,
             padding: const EdgeInsets.all(16),
-            child: AppSplitView(
+            child: DSSplitView(
               config: config,
               start: start ?? startWidget,
               end: end ?? endWidget,
@@ -58,9 +58,9 @@ void main() {
     testWidgets('resizable variant - horizontal', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
-            direction: AppSplitViewDirection.horizontal,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
+            direction: DSSplitViewDirection.horizontal,
           ),
         ),
       );
@@ -75,9 +75,9 @@ void main() {
     testWidgets('resizable variant - vertical', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
-            direction: AppSplitViewDirection.vertical,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
+            direction: DSSplitViewDirection.vertical,
           ),
         ),
       );
@@ -92,9 +92,9 @@ void main() {
     testWidgets('twoPane variant - horizontal', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.twoPane,
-            direction: AppSplitViewDirection.horizontal,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.twoPane,
+            direction: DSSplitViewDirection.horizontal,
           ),
         ),
       );
@@ -109,9 +109,9 @@ void main() {
     testWidgets('twoPane variant - vertical', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.twoPane,
-            direction: AppSplitViewDirection.vertical,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.twoPane,
+            direction: DSSplitViewDirection.vertical,
           ),
         ),
       );
@@ -126,8 +126,8 @@ void main() {
     testWidgets('loading state', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            state: AppSplitViewState.loading,
+          config: const DSSplitViewConfig(
+            state: DSSplitViewState.loading,
           ),
         ),
       );
@@ -142,8 +142,8 @@ void main() {
     testWidgets('skeleton state', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            state: AppSplitViewState.skeleton,
+          config: const DSSplitViewConfig(
+            state: DSSplitViewState.skeleton,
           ),
         ),
       );
@@ -158,8 +158,8 @@ void main() {
     testWidgets('disabled state', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            state: AppSplitViewState.disabled,
+          config: const DSSplitViewConfig(
+            state: DSSplitViewState.disabled,
           ),
         ),
       );
@@ -174,8 +174,8 @@ void main() {
     testWidgets('custom colors', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            colors: AppSplitViewColors(
+          config: const DSSplitViewConfig(
+            colors: DSSplitViewColors(
               backgroundColor: Color(0xFFF5F5F5),
               startPaneColor: Color(0xFFE3F2FD),
               endPaneColor: Color(0xFFF3E5F5),
@@ -196,8 +196,8 @@ void main() {
     testWidgets('custom spacing', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            spacing: AppSplitViewSpacing(
+          config: const DSSplitViewConfig(
+            spacing: DSSplitViewSpacing(
               dividerWidth: 4.0,
               handleWidth: 16.0,
               padding: 12.0,
@@ -220,7 +220,7 @@ void main() {
       for (int i = 0; i < ratios.length; i++) {
         await tester.pumpWidget(
           createSplitViewTestApp(
-            config: AppSplitViewConfig(
+            config: DSSplitViewConfig(
               initialRatio: ratios[i],
             ),
           ),
@@ -237,7 +237,7 @@ void main() {
     testWidgets('RTL direction', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
+          config: const DSSplitViewConfig(
             isRtl: true,
           ),
         ),
@@ -253,9 +253,9 @@ void main() {
     testWidgets('hover state simulation', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
-            state: AppSplitViewState.hover,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
+            state: DSSplitViewState.hover,
           ),
         ),
       );
@@ -270,9 +270,9 @@ void main() {
     testWidgets('focus state simulation', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
-            state: AppSplitViewState.focus,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
+            state: DSSplitViewState.focus,
           ),
         ),
       );
@@ -287,9 +287,9 @@ void main() {
     testWidgets('pressed state simulation', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            variant: AppSplitViewVariant.resizable,
-            state: AppSplitViewState.pressed,
+          config: const DSSplitViewConfig(
+            variant: DSSplitViewVariant.resizable,
+            state: DSSplitViewState.pressed,
           ),
         ),
       );
@@ -304,8 +304,8 @@ void main() {
     testWidgets('custom elevation', (tester) async {
       await tester.pumpWidget(
         createSplitViewTestApp(
-          config: const AppSplitViewConfig(
-            elevation: AppSplitViewElevation(
+          config: const DSSplitViewConfig(
+            elevation: DSSplitViewElevation(
               defaultElevation: 4.0,
               dividerElevation: 2.0,
               shadowColor: Colors.black26,

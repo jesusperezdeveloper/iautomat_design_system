@@ -3,12 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/banner/app_banner.dart';
 
 void main() {
-  group('AppBanner', () {
+  group('DSBanner', () {
     testWidgets('renders inline banner with message', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBanner(
+            body: DSBanner(
               variant: BannerVariant.inline,
               message: 'Test message',
             ),
@@ -24,7 +24,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppBanner(
+              body: DSBanner(
                 variant: BannerVariant.inline,
                 type: type,
                 message: 'Test message for ${type.name}',
@@ -45,7 +45,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppBanner(
+            body: DSBanner(
               variant: BannerVariant.inline,
               message: 'Test message',
               showDismissButton: true,
@@ -66,7 +66,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBanner(
+            body: DSBanner(
               variant: BannerVariant.inline,
               message: 'Test message',
               showDismissButton: false,
@@ -82,7 +82,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBanner(
+            body: DSBanner(
               variant: BannerVariant.inline,
               message: 'Test message',
               leading: Icon(Icons.info),
@@ -100,7 +100,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppBanner(
+            body: DSBanner(
               variant: BannerVariant.inline,
               message: 'Test message',
               actions: [
@@ -127,7 +127,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppBanner(
+            body: DSBanner(
               variant: BannerVariant.inline,
               message: 'Test message',
               actions: [
@@ -163,7 +163,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBanner(
+            body: DSBanner(
               variant: BannerVariant.inline,
               message: 'Custom styled message',
               backgroundColor: customColor,
@@ -177,10 +177,10 @@ void main() {
       expect(find.text('Custom styled message'), findsOneWidget);
 
       // Check that the banner widget exists and has the custom properties
-      final bannerFinder = find.byType(AppBanner);
+      final bannerFinder = find.byType(DSBanner);
       expect(bannerFinder, findsOneWidget);
 
-      final banner = tester.widget<AppBanner>(bannerFinder);
+      final banner = tester.widget<DSBanner>(bannerFinder);
       expect(banner.backgroundColor, equals(customColor));
       expect(banner.textColor, equals(customTextColor));
     });
@@ -194,7 +194,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppBanner(
+              body: DSBanner(
                 variant: BannerVariant.inline,
                 message: 'Test message',
                 state: state,
@@ -213,7 +213,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppBanner(
+              body: DSBanner(
                 variant: BannerVariant.inline,
                 message: 'Priority ${priority.name}',
                 priority: priority,
@@ -233,7 +233,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppBanner(
+              body: DSBanner(
                 variant: BannerVariant.inline,
                 message: 'RTL Test Message',
                 rtlSupport: true,
@@ -250,7 +250,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppBanner(
+            body: DSBanner(
               variant: BannerVariant.inline,
               message: 'Accessible banner',
               accessibilityLabel: 'Custom accessibility label',
@@ -263,14 +263,14 @@ void main() {
       expect(find.text('Accessible banner'), findsOneWidget);
 
       // Verify the banner has accessibility support enabled
-      final bannerFinder = find.byType(AppBanner);
-      final banner = tester.widget<AppBanner>(bannerFinder);
+      final bannerFinder = find.byType(DSBanner);
+      final banner = tester.widget<DSBanner>(bannerFinder);
       expect(banner.accessibilitySupport, isTrue);
       expect(banner.accessibilityLabel, equals('Custom accessibility label'));
     });
 
     testWidgets('copyWith creates correct copy', (tester) async {
-      const original = AppBanner(
+      const original = DSBanner(
         variant: BannerVariant.inline,
         message: 'Original message',
         type: BannerType.info,
@@ -287,7 +287,7 @@ void main() {
     });
   });
 
-  group('AppBannerManager', () {
+  group('DSBannerManager', () {
     testWidgets('shows and removes global banner', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -296,7 +296,7 @@ void main() {
               return Scaffold(
                 body: ElevatedButton(
                   onPressed: () {
-                    AppBanner.showGlobal(
+                    DSBanner.showGlobal(
                       context,
                       message: 'Global banner test',
                     );
@@ -324,7 +324,7 @@ void main() {
       // without throwing errors. Global banner overlay testing is complex
       // in unit tests due to the overlay system.
 
-      expect(() => AppBannerManager.removeAll(), returnsNormally);
+      expect(() => DSBannerManager.removeAll(), returnsNormally);
     });
   });
 

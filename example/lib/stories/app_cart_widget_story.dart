@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppCartWidgetStory extends StatefulWidget {
-  const AppCartWidgetStory({super.key});
+class DSCartWidgetStory extends StatefulWidget {
+  const DSCartWidgetStory({super.key});
 
   @override
-  State<AppCartWidgetStory> createState() => _AppCartWidgetStoryState();
+  State<DSCartWidgetStory> createState() => _DSCartWidgetStoryState();
 }
 
-class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
+class _DSCartWidgetStoryState extends State<DSCartWidgetStory>
     with TickerProviderStateMixin {
-  AppCartVariant _selectedVariant = AppCartVariant.full;
-  AppCartState _selectedState = AppCartState.defaultState;
+  DSCartVariant _selectedVariant = DSCartVariant.full;
+  DSCartState _selectedState = DSCartState.defaultState;
   bool _isDarkMode = false;
   bool _isRTL = false;
 
-  List<AppCartItem> _cartItems = [
-    const AppCartItem(
+  List<DSCartItem> _cartItems = [
+    const DSCartItem(
       id: '1',
       name: 'Smartphone Premium',
       price: 899.99,
@@ -24,7 +24,7 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
       imageUrl: 'https://picsum.photos/200/200?random=1',
       description: 'Último modelo con características avanzadas y diseño elegante',
     ),
-    const AppCartItem(
+    const DSCartItem(
       id: '2',
       name: 'Auriculares Bluetooth',
       price: 149.99,
@@ -32,7 +32,7 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
       imageUrl: 'https://picsum.photos/200/200?random=2',
       description: 'Audio de alta calidad con cancelación de ruido',
     ),
-    const AppCartItem(
+    const DSCartItem(
       id: '3',
       name: 'Cargador Inalámbrico',
       price: 39.99,
@@ -45,13 +45,13 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AppCartWidget Story',
+      title: 'DSCartWidget Story',
       theme: _isDarkMode ? ThemeData.dark(useMaterial3: true) : ThemeData.light(useMaterial3: true),
       home: Directionality(
         textDirection: _isRTL ? TextDirection.rtl : TextDirection.ltr,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('AppCartWidget Story'),
+            title: const Text('DSCartWidget Story'),
             actions: [
               IconButton(
                 icon: Icon(_isDarkMode ? Icons.light_mode : Icons.dark_mode),
@@ -103,21 +103,21 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
                     children: [
                       const Text('Variante:', style: TextStyle(fontWeight: FontWeight.w500)),
                       const SizedBox(height: 8),
-                      SegmentedButton<AppCartVariant>(
+                      SegmentedButton<DSCartVariant>(
                         segments: const [
                           ButtonSegment(
-                            value: AppCartVariant.mini,
+                            value: DSCartVariant.mini,
                             label: Text('Mini'),
                             icon: Icon(Icons.summarize),
                           ),
                           ButtonSegment(
-                            value: AppCartVariant.full,
+                            value: DSCartVariant.full,
                             label: Text('Full'),
                             icon: Icon(Icons.list),
                           ),
                         ],
                         selected: {_selectedVariant},
-                        onSelectionChanged: (Set<AppCartVariant> selection) {
+                        onSelectionChanged: (Set<DSCartVariant> selection) {
                           setState(() => _selectedVariant = selection.first);
                         },
                       ),
@@ -131,10 +131,10 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
                     children: [
                       const Text('Estado:', style: TextStyle(fontWeight: FontWeight.w500)),
                       const SizedBox(height: 8),
-                      DropdownButton<AppCartState>(
+                      DropdownButton<DSCartState>(
                         value: _selectedState,
                         isExpanded: true,
-                        items: AppCartState.values.map((state) {
+                        items: DSCartState.values.map((state) {
                           return DropdownMenuItem(
                             value: state,
                             child: Text(state.name),
@@ -193,14 +193,14 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
             const SizedBox(height: 16),
             Container(
               width: double.infinity,
-              height: _selectedVariant == AppCartVariant.mini ? 200 : 500,
+              height: _selectedVariant == DSCartVariant.mini ? 200 : 500,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey.shade300),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: AppCartWidget(
+                child: DSCartWidget(
                   items: _cartItems,
                   variant: _selectedVariant,
                   initialState: _selectedState,
@@ -232,9 +232,9 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
           [
             _buildExampleCard(
               'Mini - Estado por defecto',
-              AppCartWidget(
+              DSCartWidget(
                 items: _cartItems.take(2).toList(),
-                variant: AppCartVariant.mini,
+                variant: DSCartVariant.mini,
                 onQtyChange: _handleQuantityChange,
                 onCheckout: _handleCheckout,
               ),
@@ -242,9 +242,9 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
             ),
             _buildExampleCard(
               'Mini - Carrito vacío',
-              const AppCartWidget(
+              const DSCartWidget(
                 items: [],
-                variant: AppCartVariant.mini,
+                variant: DSCartVariant.mini,
               ),
               height: 150,
             ),
@@ -260,9 +260,9 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
           [
             _buildExampleCard(
               'Full - Con múltiples items',
-              AppCartWidget(
+              DSCartWidget(
                 items: _cartItems,
-                variant: AppCartVariant.full,
+                variant: DSCartVariant.full,
                 onQtyChange: _handleQuantityChange,
                 onCheckout: _handleCheckout,
               ),
@@ -270,10 +270,10 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
             ),
             _buildExampleCard(
               'Full - Estado loading',
-              AppCartWidget(
+              DSCartWidget(
                 items: _cartItems,
-                variant: AppCartVariant.full,
-                initialState: AppCartState.loading,
+                variant: DSCartVariant.full,
+                initialState: DSCartState.loading,
               ),
               height: 400,
             ),
@@ -289,11 +289,11 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
           [
             _buildExampleCard(
               'Colores personalizados',
-              AppCartWidget(
+              DSCartWidget(
                 items: _cartItems.take(2).toList(),
-                config: const AppCartWidgetConfig(
-                  variant: AppCartVariant.full,
-                  colors: AppCartColors(
+                config: const DSCartWidgetConfig(
+                  variant: DSCartVariant.full,
+                  colors: DSCartColors(
                     backgroundColor: Color(0xFFF8F9FA),
                     borderColor: Colors.grey,
                     headerColor: Colors.purple,
@@ -314,10 +314,10 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
             ),
             _buildExampleCard(
               'Estado skeleton',
-              const AppCartWidget(
+              const DSCartWidget(
                 items: [],
-                variant: AppCartVariant.full,
-                initialState: AppCartState.skeleton,
+                variant: DSCartVariant.full,
+                initialState: DSCartState.skeleton,
               ),
               height: 350,
             ),
@@ -386,7 +386,7 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
 
   void _addRandomItem() {
     final random = DateTime.now().millisecondsSinceEpoch;
-    final newItem = AppCartItem(
+    final newItem = DSCartItem(
       id: 'item_$random',
       name: 'Producto ${_cartItems.length + 1}',
       price: 50.0 + (random % 100),
@@ -419,7 +419,7 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
       final index = _cartItems.indexWhere((item) => item.id == itemId);
       if (index != -1) {
         final item = _cartItems[index];
-        _cartItems[index] = AppCartItem(
+        _cartItems[index] = DSCartItem(
           id: item.id,
           name: item.name,
           price: item.price,
@@ -444,7 +444,7 @@ class _AppCartWidgetStoryState extends State<AppCartWidgetStory>
     );
   }
 
-  void _handleCheckout(AppCartSummary summary) {
+  void _handleCheckout(DSCartSummary summary) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(

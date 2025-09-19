@@ -4,26 +4,26 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_auth_screens_config.freezed.dart';
 
-/// Configuración completa para el componente AppAuthScreens
+/// Configuración completa para el componente DSAuthScreens
 ///
 /// Utiliza Freezed para crear modelos inmutables y type-safe
 /// que definen todos los aspectos del comportamiento de las pantallas de auth
 @freezed
-class AppAuthScreensConfig with _$AppAuthScreensConfig {
-  const factory AppAuthScreensConfig({
-    @Default(AppAuthVariant.signIn) AppAuthVariant variant,
-    @Default(AppAuthState.defaultState) AppAuthState state,
-    AppAuthColors? colors,
-    AppAuthSpacing? spacing,
-    AppAuthAnimation? animation,
-    AppAuthBehavior? behavior,
-    AppAuthA11yConfig? a11yConfig,
-    AppAuthValidation? validation,
-  }) = _AppAuthScreensConfig;
+class DSAuthScreensConfig with _$DSAuthScreensConfig {
+  const factory DSAuthScreensConfig({
+    @Default(DSAuthVariant.signIn) DSAuthVariant variant,
+    @Default(DSAuthState.defaultState) DSAuthState state,
+    DSAuthColors? colors,
+    DSAuthSpacing? spacing,
+    DSAuthAnimation? animation,
+    DSAuthBehavior? behavior,
+    DSAuthA11yConfig? a11yConfig,
+    DSAuthValidation? validation,
+  }) = _DSAuthScreensConfig;
 }
 
 /// Variantes de las pantallas de autenticación
-enum AppAuthVariant {
+enum DSAuthVariant {
   /// Pantalla de inicio de sesión
   signIn,
 
@@ -38,7 +38,7 @@ enum AppAuthVariant {
 }
 
 /// Estados interactivos de las pantallas de auth
-enum AppAuthState {
+enum DSAuthState {
   /// Estado por defecto
   defaultState,
 
@@ -66,11 +66,11 @@ enum AppAuthState {
 
 /// Configuración de un campo del formulario de auth
 @freezed
-class AppAuthField with _$AppAuthField {
-  const factory AppAuthField({
+class DSAuthField with _$DSAuthField {
+  const factory DSAuthField({
     required String key,
     required String label,
-    required AppAuthFieldType type,
+    required DSAuthFieldType type,
     String? placeholder,
     String? initialValue,
     @Default(false) bool required,
@@ -89,13 +89,13 @@ class AppAuthField with _$AppAuthField {
     IconData? prefixIcon,
     IconData? suffixIcon,
     @Default(1) int flex,
-    @Default(AppAuthFieldImportance.normal) AppAuthFieldImportance importance,
+    @Default(DSAuthFieldImportance.normal) DSAuthFieldImportance importance,
     Map<String, dynamic>? metadata,
   }) = _AppAuthField;
 }
 
 /// Tipos de campos disponibles en auth
-enum AppAuthFieldType {
+enum DSAuthFieldType {
   text,
   email,
   phone,
@@ -109,7 +109,7 @@ enum AppAuthFieldType {
 }
 
 /// Importancia del campo para UX
-enum AppAuthFieldImportance {
+enum DSAuthFieldImportance {
   low,
   normal,
   high,
@@ -118,8 +118,8 @@ enum AppAuthFieldImportance {
 
 /// Proveedor de autenticación social (SSO)
 @freezed
-class AppAuthProvider with _$AppAuthProvider {
-  const factory AppAuthProvider({
+class DSAuthProvider with _$DSAuthProvider {
+  const factory DSAuthProvider({
     required String id,
     required String name,
     required String displayName,
@@ -128,13 +128,13 @@ class AppAuthProvider with _$AppAuthProvider {
     Color? textColor,
     Color? iconColor,
     @Default(true) bool enabled,
-    @Default(AppAuthProviderType.oauth) AppAuthProviderType type,
+    @Default(DSAuthProviderType.oauth) DSAuthProviderType type,
     Map<String, dynamic>? config,
   }) = _AppAuthProvider;
 }
 
 /// Tipos de proveedores de autenticación
-enum AppAuthProviderType {
+enum DSAuthProviderType {
   oauth,
   saml,
   openid,
@@ -143,8 +143,8 @@ enum AppAuthProviderType {
 
 /// Configuración de colores de las pantallas de auth
 @freezed
-class AppAuthColors with _$AppAuthColors {
-  const factory AppAuthColors({
+class DSAuthColors with _$DSAuthColors {
+  const factory DSAuthColors({
     // Colores principales
     Color? backgroundColor,
     Color? surfaceColor,
@@ -206,8 +206,8 @@ class AppAuthColors with _$AppAuthColors {
 
 /// Configuración de espaciado de las pantallas de auth
 @freezed
-class AppAuthSpacing with _$AppAuthSpacing {
-  const factory AppAuthSpacing({
+class DSAuthSpacing with _$DSAuthSpacing {
+  const factory DSAuthSpacing({
     // Espaciado general
     @Default(EdgeInsets.all(24.0)) EdgeInsets screenPadding,
     @Default(EdgeInsets.zero) EdgeInsets contentMargin,
@@ -246,8 +246,8 @@ class AppAuthSpacing with _$AppAuthSpacing {
 
 /// Configuración de animaciones
 @freezed
-class AppAuthAnimation with _$AppAuthAnimation {
-  const factory AppAuthAnimation({
+class DSAuthAnimation with _$DSAuthAnimation {
+  const factory DSAuthAnimation({
     @Default(true) bool enabled,
     @Default(Duration(milliseconds: 300)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
@@ -272,8 +272,8 @@ class AppAuthAnimation with _$AppAuthAnimation {
 
 /// Configuración de comportamiento
 @freezed
-class AppAuthBehavior with _$AppAuthBehavior {
-  const factory AppAuthBehavior({
+class DSAuthBehavior with _$DSAuthBehavior {
+  const factory DSAuthBehavior({
     // Validación
     @Default(true) bool autoValidate,
     @Default(false) bool validateOnChange,
@@ -312,21 +312,21 @@ class AppAuthBehavior with _$AppAuthBehavior {
     @Default(Duration(minutes: 5)) Duration otpTimeout,
 
     // Plataforma
-    @Default(AppAuthSubmitMode.manual) AppAuthSubmitMode submitMode,
-    @Default(AppAuthKeyboardBehavior.adaptive) AppAuthKeyboardBehavior keyboardBehavior,
-    @Default(AppAuthLayoutMode.adaptive) AppAuthLayoutMode layoutMode,
+    @Default(DSAuthSubmitMode.manual) DSAuthSubmitMode submitMode,
+    @Default(DSAuthKeyboardBehavior.adaptive) DSAuthKeyboardBehavior keyboardBehavior,
+    @Default(DSAuthLayoutMode.adaptive) DSAuthLayoutMode layoutMode,
   }) = _AppAuthBehavior;
 }
 
 /// Modos de envío del formulario
-enum AppAuthSubmitMode {
+enum DSAuthSubmitMode {
   manual,
   auto,
   onValidation,
 }
 
 /// Comportamiento del teclado
-enum AppAuthKeyboardBehavior {
+enum DSAuthKeyboardBehavior {
   adaptive,
   alwaysVisible,
   dismissOnScroll,
@@ -334,7 +334,7 @@ enum AppAuthKeyboardBehavior {
 }
 
 /// Modo de layout
-enum AppAuthLayoutMode {
+enum DSAuthLayoutMode {
   adaptive,
   mobile,
   tablet,
@@ -343,8 +343,8 @@ enum AppAuthLayoutMode {
 
 /// Configuración de accesibilidad
 @freezed
-class AppAuthA11yConfig with _$AppAuthA11yConfig {
-  const factory AppAuthA11yConfig({
+class DSAuthA11yConfig with _$DSAuthA11yConfig {
+  const factory DSAuthA11yConfig({
     @Default(true) bool enabled,
     @Default(true) bool announceErrors,
     @Default(true) bool announceSuccess,
@@ -375,13 +375,13 @@ class AppAuthA11yConfig with _$AppAuthA11yConfig {
     @Default('Continuar con') String continueWithSemanticLabel,
     @Default('Reenviar código') String resendCodeSemanticLabel,
     @Default('Volver') String backSemanticLabel,
-  }) = _AppAuthA11yConfig;
+  }) = _DSAuthA11yConfig;
 }
 
 /// Configuración de validación
 @freezed
-class AppAuthValidation with _$AppAuthValidation {
-  const factory AppAuthValidation({
+class DSAuthValidation with _$DSAuthValidation {
+  const factory DSAuthValidation({
     @Default(true) bool enabled,
     @Default(true) bool showErrorMessages,
     @Default(true) bool showSuccessIndicators,
@@ -399,10 +399,10 @@ class AppAuthValidation with _$AppAuthValidation {
 
 /// Datos del formulario de auth
 @freezed
-class AppAuthFormData with _$AppAuthFormData {
-  const factory AppAuthFormData({
+class DSAuthFormData with _$DSAuthFormData {
+  const factory DSAuthFormData({
     required Map<String, dynamic> values,
-    required Map<String, AppAuthFieldValidation> validations,
+    required Map<String, DSAuthFieldValidation> validations,
     @Default(false) bool isValid,
     @Default(false) bool isDirty,
     @Default(false) bool isSubmitting,
@@ -417,19 +417,19 @@ class AppAuthFormData with _$AppAuthFormData {
 
 /// Resultado de la validación de un campo
 @freezed
-class AppAuthFieldValidation with _$AppAuthFieldValidation {
-  const factory AppAuthFieldValidation({
+class DSAuthFieldValidation with _$DSAuthFieldValidation {
+  const factory DSAuthFieldValidation({
     required String fieldKey,
     required bool isValid,
     String? errorMessage,
     String? successMessage,
-    @Default(AppAuthValidationLevel.none) AppAuthValidationLevel level,
-    @Default(AppAuthValidationType.client) AppAuthValidationType type,
+    @Default(DSAuthValidationLevel.none) DSAuthValidationLevel level,
+    @Default(DSAuthValidationType.client) DSAuthValidationType type,
   }) = _AppAuthFieldValidation;
 }
 
 /// Niveles de validación
-enum AppAuthValidationLevel {
+enum DSAuthValidationLevel {
   none,
   info,
   warning,
@@ -438,7 +438,7 @@ enum AppAuthValidationLevel {
 }
 
 /// Tipos de validación
-enum AppAuthValidationType {
+enum DSAuthValidationType {
   client,
   server,
   realtime,
@@ -446,46 +446,46 @@ enum AppAuthValidationType {
 
 /// Resultado de la autenticación
 @freezed
-class AppAuthResult with _$AppAuthResult {
-  const factory AppAuthResult({
+class DSAuthResult with _$DSAuthResult {
+  const factory DSAuthResult({
     required bool success,
     String? token,
     String? refreshToken,
     Map<String, dynamic>? user,
     String? error,
     String? errorCode,
-    @Default(AppAuthResultType.form) AppAuthResultType type,
-    @Default(AppAuthProvider(
+    @Default(DSAuthResultType.form) DSAuthResultType type,
+    @Default(DSAuthProvider(
       id: 'form',
       name: 'form',
       displayName: 'Formulario',
       icon: Icons.login,
-    )) AppAuthProvider provider,
+    )) DSAuthProvider provider,
     DateTime? timestamp,
     Map<String, dynamic>? metadata,
   }) = _AppAuthResult;
 }
 
 /// Tipos de resultado de auth
-enum AppAuthResultType {
+enum DSAuthResultType {
   form,
   social,
   biometric,
   otp,
 }
 
-/// Extensiones para AppAuthVariant
-extension AppAuthVariantExtensions on AppAuthVariant {
+/// Extensiones para DSAuthVariant
+extension DSAuthVariantExtensions on DSAuthVariant {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppAuthVariant.signIn:
+      case DSAuthVariant.signIn:
         return 'Iniciar Sesión';
-      case AppAuthVariant.signUp:
+      case DSAuthVariant.signUp:
         return 'Crear Cuenta';
-      case AppAuthVariant.otp:
+      case DSAuthVariant.otp:
         return 'Verificación';
-      case AppAuthVariant.sso:
+      case DSAuthVariant.sso:
         return 'Autenticación Social';
     }
   }
@@ -493,13 +493,13 @@ extension AppAuthVariantExtensions on AppAuthVariant {
   /// Descripción de la variante
   String get description {
     switch (this) {
-      case AppAuthVariant.signIn:
+      case DSAuthVariant.signIn:
         return 'Pantalla para iniciar sesión con credenciales';
-      case AppAuthVariant.signUp:
+      case DSAuthVariant.signUp:
         return 'Pantalla para crear una nueva cuenta';
-      case AppAuthVariant.otp:
+      case DSAuthVariant.otp:
         return 'Pantalla para verificar código OTP';
-      case AppAuthVariant.sso:
+      case DSAuthVariant.sso:
         return 'Pantalla para autenticación con proveedores externos';
     }
   }
@@ -507,120 +507,120 @@ extension AppAuthVariantExtensions on AppAuthVariant {
   /// Icono representativo
   IconData get icon {
     switch (this) {
-      case AppAuthVariant.signIn:
+      case DSAuthVariant.signIn:
         return Icons.login;
-      case AppAuthVariant.signUp:
+      case DSAuthVariant.signUp:
         return Icons.person_add;
-      case AppAuthVariant.otp:
+      case DSAuthVariant.otp:
         return Icons.verified_user;
-      case AppAuthVariant.sso:
+      case DSAuthVariant.sso:
         return Icons.account_circle;
     }
   }
 
   /// Campos por defecto según la variante
-  List<AppAuthField> get defaultFields {
+  List<DSAuthField> get defaultFields {
     switch (this) {
-      case AppAuthVariant.signIn:
+      case DSAuthVariant.signIn:
         return _defaultSignInFields;
-      case AppAuthVariant.signUp:
+      case DSAuthVariant.signUp:
         return _defaultSignUpFields;
-      case AppAuthVariant.otp:
+      case DSAuthVariant.otp:
         return _defaultOtpFields;
-      case AppAuthVariant.sso:
+      case DSAuthVariant.sso:
         return [];
     }
   }
 }
 
 /// Campos por defecto para inicio de sesión
-const List<AppAuthField> _defaultSignInFields = [
-  AppAuthField(
+const List<DSAuthField> _defaultSignInFields = [
+  DSAuthField(
     key: 'email',
     label: 'Email',
-    type: AppAuthFieldType.email,
+    type: DSAuthFieldType.email,
     placeholder: 'ejemplo@correo.com',
     required: true,
     prefixIcon: Icons.email_outlined,
-    importance: AppAuthFieldImportance.critical,
+    importance: DSAuthFieldImportance.critical,
   ),
-  AppAuthField(
+  DSAuthField(
     key: 'password',
     label: 'Contraseña',
-    type: AppAuthFieldType.password,
+    type: DSAuthFieldType.password,
     placeholder: 'Ingresa tu contraseña',
     required: true,
     sensitive: true,
     prefixIcon: Icons.lock_outlined,
-    importance: AppAuthFieldImportance.critical,
+    importance: DSAuthFieldImportance.critical,
   ),
 ];
 
 /// Campos por defecto para registro
-const List<AppAuthField> _defaultSignUpFields = [
-  AppAuthField(
+const List<DSAuthField> _defaultSignUpFields = [
+  DSAuthField(
     key: 'name',
     label: 'Nombre completo',
-    type: AppAuthFieldType.text,
+    type: DSAuthFieldType.text,
     placeholder: 'Tu nombre completo',
     required: true,
     prefixIcon: Icons.person_outlined,
-    importance: AppAuthFieldImportance.high,
+    importance: DSAuthFieldImportance.high,
   ),
-  AppAuthField(
+  DSAuthField(
     key: 'email',
     label: 'Email',
-    type: AppAuthFieldType.email,
+    type: DSAuthFieldType.email,
     placeholder: 'ejemplo@correo.com',
     required: true,
     prefixIcon: Icons.email_outlined,
-    importance: AppAuthFieldImportance.critical,
+    importance: DSAuthFieldImportance.critical,
   ),
-  AppAuthField(
+  DSAuthField(
     key: 'password',
     label: 'Contraseña',
-    type: AppAuthFieldType.password,
+    type: DSAuthFieldType.password,
     placeholder: 'Crea una contraseña segura',
     required: true,
     sensitive: true,
     prefixIcon: Icons.lock_outlined,
-    importance: AppAuthFieldImportance.critical,
+    importance: DSAuthFieldImportance.critical,
   ),
-  AppAuthField(
+  DSAuthField(
     key: 'confirmPassword',
     label: 'Confirmar contraseña',
-    type: AppAuthFieldType.confirmPassword,
+    type: DSAuthFieldType.confirmPassword,
     placeholder: 'Confirma tu contraseña',
     required: true,
     sensitive: true,
     prefixIcon: Icons.lock_outlined,
-    importance: AppAuthFieldImportance.critical,
+    importance: DSAuthFieldImportance.critical,
   ),
-  AppAuthField(
+  DSAuthField(
     key: 'terms',
     label: 'Acepto los términos y condiciones',
-    type: AppAuthFieldType.terms,
+    type: DSAuthFieldType.terms,
     required: true,
-    importance: AppAuthFieldImportance.high,
+    importance: DSAuthFieldImportance.high,
   ),
 ];
 
 /// Campos por defecto para OTP
-const List<AppAuthField> _defaultOtpFields = [
-  AppAuthField(
+const List<DSAuthField> _defaultOtpFields = [
+  DSAuthField(
     key: 'otp',
     label: 'Código de verificación',
-    type: AppAuthFieldType.otp,
+    type: DSAuthFieldType.otp,
     placeholder: '000000',
     required: true,
     maxLength: 6,
-    importance: AppAuthFieldImportance.critical,
+    importance: DSAuthFieldImportance.critical,
   ),
 ];
 
 /// Proveedores sociales comunes
-class AppAuthProviders {
-  static const google = AppAuthProvider(
+class DSAuthProviders {
+  static const google = DSAuthProvider(
     id: 'google',
     name: 'google',
     displayName: 'Google',
@@ -629,7 +629,7 @@ class AppAuthProviders {
     textColor: Colors.black87,
   );
 
-  static const apple = AppAuthProvider(
+  static const apple = DSAuthProvider(
     id: 'apple',
     name: 'apple',
     displayName: 'Apple',
@@ -638,7 +638,7 @@ class AppAuthProviders {
     textColor: Colors.white,
   );
 
-  static const facebook = AppAuthProvider(
+  static const facebook = DSAuthProvider(
     id: 'facebook',
     name: 'facebook',
     displayName: 'Facebook',
@@ -647,7 +647,7 @@ class AppAuthProviders {
     textColor: Colors.white,
   );
 
-  static const github = AppAuthProvider(
+  static const github = DSAuthProvider(
     id: 'github',
     name: 'github',
     displayName: 'GitHub',
@@ -656,7 +656,7 @@ class AppAuthProviders {
     textColor: Colors.white,
   );
 
-  static const microsoft = AppAuthProvider(
+  static const microsoft = DSAuthProvider(
     id: 'microsoft',
     name: 'microsoft',
     displayName: 'Microsoft',
@@ -665,7 +665,7 @@ class AppAuthProviders {
     textColor: Colors.white,
   );
 
-  static const List<AppAuthProvider> common = [
+  static const List<DSAuthProvider> common = [
     google,
     apple,
     facebook,
@@ -675,25 +675,25 @@ class AppAuthProviders {
 }
 
 /// Utilidades para autenticación
-class AppAuthUtils {
+class DSAuthUtils {
   /// Valida un campo específico
-  static AppAuthFieldValidation validateField(
-    AppAuthField field,
+  static DSAuthFieldValidation validateField(
+    DSAuthField field,
     String? value, {
     Map<String, String>? customMessages,
     Map<String, RegExp>? customPatterns,
     String? confirmPasswordValue,
-    AppAuthValidation? validationConfig,
+    DSAuthValidation? validationConfig,
   }) {
-    final config = validationConfig ?? const AppAuthValidation();
+    final config = validationConfig ?? const DSAuthValidation();
 
     if (field.required && (value == null || value.trim().isEmpty)) {
-      return AppAuthFieldValidation(
+      return DSAuthFieldValidation(
         fieldKey: field.key,
         isValid: false,
         errorMessage: customMessages?['${field.key}_required'] ??
             'Este campo es requerido',
-        level: AppAuthValidationLevel.error,
+        level: DSAuthValidationLevel.error,
       );
     }
 
@@ -704,22 +704,22 @@ class AppAuthUtils {
           _getDefaultPattern(field.type);
 
       if (pattern != null && !pattern.hasMatch(value)) {
-        return AppAuthFieldValidation(
+        return DSAuthFieldValidation(
           fieldKey: field.key,
           isValid: false,
           errorMessage: customMessages?['${field.key}_invalid'] ??
               _getDefaultErrorMessage(field.type),
-          level: AppAuthValidationLevel.error,
+          level: DSAuthValidationLevel.error,
         );
       }
 
       // Validaciones específicas
       switch (field.type) {
-        case AppAuthFieldType.password:
+        case DSAuthFieldType.password:
           return _validatePassword(field, value, config, customMessages);
-        case AppAuthFieldType.confirmPassword:
+        case DSAuthFieldType.confirmPassword:
           return _validateConfirmPassword(field, value, confirmPasswordValue, customMessages);
-        case AppAuthFieldType.otp:
+        case DSAuthFieldType.otp:
           return _validateOtp(field, value, customMessages);
         default:
           break;
@@ -727,158 +727,158 @@ class AppAuthUtils {
 
       // Validar longitud máxima
       if (field.maxLength != null && value.length > field.maxLength!) {
-        return AppAuthFieldValidation(
+        return DSAuthFieldValidation(
           fieldKey: field.key,
           isValid: false,
           errorMessage: customMessages?['${field.key}_too_long'] ??
               'Máximo ${field.maxLength} caracteres',
-          level: AppAuthValidationLevel.error,
+          level: DSAuthValidationLevel.error,
         );
       }
     }
 
-    return AppAuthFieldValidation(
+    return DSAuthFieldValidation(
       fieldKey: field.key,
       isValid: true,
       successMessage: field.required ? 'Campo válido' : null,
       level: field.required
-          ? AppAuthValidationLevel.success
-          : AppAuthValidationLevel.none,
+          ? DSAuthValidationLevel.success
+          : DSAuthValidationLevel.none,
     );
   }
 
   /// Valida contraseña
-  static AppAuthFieldValidation _validatePassword(
-    AppAuthField field,
+  static DSAuthFieldValidation _validatePassword(
+    DSAuthField field,
     String value,
-    AppAuthValidation config,
+    DSAuthValidation config,
     Map<String, String>? customMessages,
   ) {
     if (value.length < config.minPasswordLength) {
-      return AppAuthFieldValidation(
+      return DSAuthFieldValidation(
         fieldKey: field.key,
         isValid: false,
         errorMessage: customMessages?['password_too_short'] ??
             'La contraseña debe tener al menos ${config.minPasswordLength} caracteres',
-        level: AppAuthValidationLevel.error,
+        level: DSAuthValidationLevel.error,
       );
     }
 
     if (config.requirePasswordUppercase && !RegExp(r'[A-Z]').hasMatch(value)) {
-      return AppAuthFieldValidation(
+      return DSAuthFieldValidation(
         fieldKey: field.key,
         isValid: false,
         errorMessage: customMessages?['password_no_uppercase'] ??
             'La contraseña debe contener al menos una mayúscula',
-        level: AppAuthValidationLevel.error,
+        level: DSAuthValidationLevel.error,
       );
     }
 
     if (config.requirePasswordLowercase && !RegExp(r'[a-z]').hasMatch(value)) {
-      return AppAuthFieldValidation(
+      return DSAuthFieldValidation(
         fieldKey: field.key,
         isValid: false,
         errorMessage: customMessages?['password_no_lowercase'] ??
             'La contraseña debe contener al menos una minúscula',
-        level: AppAuthValidationLevel.error,
+        level: DSAuthValidationLevel.error,
       );
     }
 
     if (config.requirePasswordNumber && !RegExp(r'[0-9]').hasMatch(value)) {
-      return AppAuthFieldValidation(
+      return DSAuthFieldValidation(
         fieldKey: field.key,
         isValid: false,
         errorMessage: customMessages?['password_no_number'] ??
             'La contraseña debe contener al menos un número',
-        level: AppAuthValidationLevel.error,
+        level: DSAuthValidationLevel.error,
       );
     }
 
     if (config.requirePasswordSpecialChar && !RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
-      return AppAuthFieldValidation(
+      return DSAuthFieldValidation(
         fieldKey: field.key,
         isValid: false,
         errorMessage: customMessages?['password_no_special'] ??
             'La contraseña debe contener al menos un carácter especial',
-        level: AppAuthValidationLevel.error,
+        level: DSAuthValidationLevel.error,
       );
     }
 
-    return AppAuthFieldValidation(
+    return DSAuthFieldValidation(
       fieldKey: field.key,
       isValid: true,
       successMessage: 'Contraseña válida',
-      level: AppAuthValidationLevel.success,
+      level: DSAuthValidationLevel.success,
     );
   }
 
   /// Valida confirmación de contraseña
-  static AppAuthFieldValidation _validateConfirmPassword(
-    AppAuthField field,
+  static DSAuthFieldValidation _validateConfirmPassword(
+    DSAuthField field,
     String value,
     String? passwordValue,
     Map<String, String>? customMessages,
   ) {
     if (value != passwordValue) {
-      return AppAuthFieldValidation(
+      return DSAuthFieldValidation(
         fieldKey: field.key,
         isValid: false,
         errorMessage: customMessages?['password_mismatch'] ??
             'Las contraseñas no coinciden',
-        level: AppAuthValidationLevel.error,
+        level: DSAuthValidationLevel.error,
       );
     }
 
-    return AppAuthFieldValidation(
+    return DSAuthFieldValidation(
       fieldKey: field.key,
       isValid: true,
       successMessage: 'Las contraseñas coinciden',
-      level: AppAuthValidationLevel.success,
+      level: DSAuthValidationLevel.success,
     );
   }
 
   /// Valida código OTP
-  static AppAuthFieldValidation _validateOtp(
-    AppAuthField field,
+  static DSAuthFieldValidation _validateOtp(
+    DSAuthField field,
     String value,
     Map<String, String>? customMessages,
   ) {
     if (value.length != (field.maxLength ?? 6)) {
-      return AppAuthFieldValidation(
+      return DSAuthFieldValidation(
         fieldKey: field.key,
         isValid: false,
         errorMessage: customMessages?['otp_invalid_length'] ??
             'El código debe tener ${field.maxLength ?? 6} dígitos',
-        level: AppAuthValidationLevel.error,
+        level: DSAuthValidationLevel.error,
       );
     }
 
     if (!RegExp(r'^\d+$').hasMatch(value)) {
-      return AppAuthFieldValidation(
+      return DSAuthFieldValidation(
         fieldKey: field.key,
         isValid: false,
         errorMessage: customMessages?['otp_invalid_format'] ??
             'El código solo debe contener números',
-        level: AppAuthValidationLevel.error,
+        level: DSAuthValidationLevel.error,
       );
     }
 
-    return AppAuthFieldValidation(
+    return DSAuthFieldValidation(
       fieldKey: field.key,
       isValid: true,
       successMessage: 'Código válido',
-      level: AppAuthValidationLevel.success,
+      level: DSAuthValidationLevel.success,
     );
   }
 
   /// Obtiene patrón por defecto para tipo de campo
-  static RegExp? _getDefaultPattern(AppAuthFieldType type) {
+  static RegExp? _getDefaultPattern(DSAuthFieldType type) {
     switch (type) {
-      case AppAuthFieldType.email:
+      case DSAuthFieldType.email:
         return RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-      case AppAuthFieldType.phone:
+      case DSAuthFieldType.phone:
         return RegExp(r'^\+?[\d\s\-\(\)]+$');
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         return RegExp(r'^\d{6}$');
       default:
         return null;
@@ -886,15 +886,15 @@ class AppAuthUtils {
   }
 
   /// Obtiene mensaje de error por defecto
-  static String _getDefaultErrorMessage(AppAuthFieldType type) {
+  static String _getDefaultErrorMessage(DSAuthFieldType type) {
     switch (type) {
-      case AppAuthFieldType.email:
+      case DSAuthFieldType.email:
         return 'Ingresa un email válido';
-      case AppAuthFieldType.phone:
+      case DSAuthFieldType.phone:
         return 'Ingresa un teléfono válido';
-      case AppAuthFieldType.password:
+      case DSAuthFieldType.password:
         return 'Ingresa una contraseña válida';
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         return 'Ingresa un código válido';
       default:
         return 'Valor inválido';
@@ -902,11 +902,11 @@ class AppAuthUtils {
   }
 
   /// Formatea el valor de un campo
-  static String formatFieldValue(AppAuthFieldType type, String value) {
+  static String formatFieldValue(DSAuthFieldType type, String value) {
     switch (type) {
-      case AppAuthFieldType.phone:
+      case DSAuthFieldType.phone:
         return _formatPhone(value);
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         return _formatOtp(value);
       default:
         return value;
@@ -929,21 +929,21 @@ class AppAuthUtils {
   }
 
   /// Genera configuración por defecto
-  static AppAuthScreensConfig getDefaultConfig(AppAuthVariant variant) {
-    return AppAuthScreensConfig(
+  static DSAuthScreensConfig getDefaultConfig(DSAuthVariant variant) {
+    return DSAuthScreensConfig(
       variant: variant,
-      colors: const AppAuthColors(),
-      spacing: const AppAuthSpacing(),
-      animation: const AppAuthAnimation(),
-      behavior: const AppAuthBehavior(),
-      a11yConfig: const AppAuthA11yConfig(),
-      validation: const AppAuthValidation(),
+      colors: const DSAuthColors(),
+      spacing: const DSAuthSpacing(),
+      animation: const DSAuthAnimation(),
+      behavior: const DSAuthBehavior(),
+      a11yConfig: const DSAuthA11yConfig(),
+      validation: const DSAuthValidation(),
     );
   }
 
   /// Máscara para datos sensibles en logging
   static Map<String, dynamic> maskSensitiveData(
-    List<AppAuthField> fields,
+    List<DSAuthField> fields,
     Map<String, dynamic> values,
   ) {
     final masked = <String, dynamic>{};

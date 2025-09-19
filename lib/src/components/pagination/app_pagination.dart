@@ -5,7 +5,7 @@ import 'pagination_config.dart';
 
 /// A comprehensive pagination widget based on Material Design
 ///
-/// The [AppPagination] provides flexible pagination interfaces with:
+/// The [DSPagination] provides flexible pagination interfaces with:
 /// - Page-based pagination with numbered pages
 /// - Cursor-based pagination for continuous scrolling
 /// - Platform-adaptive behavior
@@ -15,16 +15,16 @@ import 'pagination_config.dart';
 ///
 /// Example usage:
 /// ```dart
-/// AppPagination.pageBased(
+/// DSPagination.pageBased(
 ///   page: currentPage,
 ///   pageSize: 20,
 ///   total: totalItems,
 ///   onPageChanged: (page) => setState(() => currentPage = page),
 /// )
 /// ```
-class AppPagination extends StatefulWidget {
+class DSPagination extends StatefulWidget {
   /// The variant of the pagination
-  final AppPaginationVariant variant;
+  final DSPaginationVariant variant;
 
   /// Current page number (1-based)
   final int page;
@@ -45,16 +45,16 @@ class AppPagination extends StatefulWidget {
   final OnPageSizeChanged? onPageSizeChanged;
 
   /// Current state of the pagination widget
-  final AppPaginationState state;
+  final DSPaginationState state;
 
   /// Whether the pagination widget is visible
   final bool isVisible;
 
   /// Configuration for the pagination widget
-  final AppPaginationConfig? config;
+  final DSPaginationConfig? config;
 
   /// Pagination data model for complex configurations
-  final AppPaginationData? data;
+  final DSPaginationData? data;
 
   /// Next cursor for cursor-based pagination
   final String? nextCursor;
@@ -92,14 +92,14 @@ class AppPagination extends StatefulWidget {
   final FocusNode? focusNode;
 
   /// Create a page-based pagination widget
-  const AppPagination.pageBased({
+  const DSPagination.pageBased({
     super.key,
     required this.page,
     required this.pageSize,
     required this.total,
     required this.onPageChanged,
     this.onPageSizeChanged,
-    this.state = AppPaginationState.defaultState,
+    this.state = DSPaginationState.defaultState,
     this.isVisible = true,
     this.config,
     this.data,
@@ -110,7 +110,7 @@ class AppPagination extends StatefulWidget {
     this.enableHapticFeedback = true,
     this.enableSoundEffects = true,
     this.focusNode,
-  })  : variant = AppPaginationVariant.pageBased,
+  })  : variant = DSPaginationVariant.pageBased,
         onCursorChanged = null,
         nextCursor = null,
         previousCursor = null,
@@ -118,14 +118,14 @@ class AppPagination extends StatefulWidget {
         hasPreviousPage = false;
 
   /// Create a cursor-based pagination widget
-  const AppPagination.cursor({
+  const DSPagination.cursor({
     super.key,
     required this.onCursorChanged,
     this.nextCursor,
     this.previousCursor,
     this.hasNextPage = false,
     this.hasPreviousPage = false,
-    this.state = AppPaginationState.defaultState,
+    this.state = DSPaginationState.defaultState,
     this.isVisible = true,
     this.config,
     this.data,
@@ -135,7 +135,7 @@ class AppPagination extends StatefulWidget {
     this.enableHapticFeedback = true,
     this.enableSoundEffects = true,
     this.focusNode,
-  })  : variant = AppPaginationVariant.cursor,
+  })  : variant = DSPaginationVariant.cursor,
         page = 1,
         pageSize = 0,
         total = 0,
@@ -144,10 +144,10 @@ class AppPagination extends StatefulWidget {
         pageBuilder = null;
 
   @override
-  State<AppPagination> createState() => _AppPaginationState();
+  State<DSPagination> createState() => _DSPaginationState();
 }
 
-class _AppPaginationState extends State<AppPagination>
+class _DSPaginationState extends State<DSPagination>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late AnimationController _skeletonController;
@@ -161,19 +161,19 @@ class _AppPaginationState extends State<AppPagination>
   final int _focusedPage = -1;
   bool _showJumpDialog = false;
 
-  AppPaginationConfig get _effectiveConfig {
-    return widget.config ?? AppPaginationConfig.medium;
+  DSPaginationConfig get _effectiveConfig {
+    return widget.config ?? DSPaginationConfig.medium;
   }
 
-  AppPaginationData get _effectiveData {
+  DSPaginationData get _effectiveData {
     if (widget.data != null) return widget.data!;
 
-    final totalPages = AppPaginationUtils.calculateTotalPages(
+    final totalPages = DSPaginationUtils.calculateTotalPages(
       widget.total,
       widget.pageSize,
     );
 
-    return AppPaginationData(
+    return DSPaginationData(
       currentPage: widget.page,
       pageSize: widget.pageSize,
       totalItems: widget.total,
@@ -245,12 +245,12 @@ class _AppPaginationState extends State<AppPagination>
     _focusNode = widget.focusNode ?? FocusNode();
   }
 
-  void _updateState(AppPaginationState newState) {
+  void _updateState(DSPaginationState newState) {
     switch (newState) {
-      case AppPaginationState.skeleton:
+      case DSPaginationState.skeleton:
         _skeletonController.repeat();
         break;
-      case AppPaginationState.loading:
+      case DSPaginationState.loading:
         _animationController.forward();
         break;
       default:
@@ -338,7 +338,7 @@ class _AppPaginationState extends State<AppPagination>
   }
 
   @override
-  void didUpdateWidget(AppPagination oldWidget) {
+  void didUpdateWidget(DSPagination oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.state != oldWidget.state) {
       _updateState(widget.state);
@@ -384,7 +384,7 @@ class _AppPaginationState extends State<AppPagination>
 
   Widget _buildPaginationWidget(BuildContext context, ThemeData theme,
       ColorScheme colorScheme, bool isRTL) {
-    if (widget.state == AppPaginationState.skeleton) {
+    if (widget.state == DSPaginationState.skeleton) {
       return _buildSkeletonWidget(context, theme);
     }
 
@@ -406,9 +406,9 @@ class _AppPaginationState extends State<AppPagination>
   Widget _buildContent(
       BuildContext context, ColorScheme colorScheme, bool isRTL) {
     switch (widget.variant) {
-      case AppPaginationVariant.pageBased:
+      case DSPaginationVariant.pageBased:
         return _buildPageBasedPagination(context, colorScheme, isRTL);
-      case AppPaginationVariant.cursor:
+      case DSPaginationVariant.cursor:
         return _buildCursorPagination(context, colorScheme, isRTL);
     }
   }
@@ -508,19 +508,19 @@ class _AppPaginationState extends State<AppPagination>
 
   Widget _wrapWithLayout(List<Widget> children) {
     switch (_effectiveConfig.layout) {
-      case AppPaginationLayout.horizontal:
+      case DSPaginationLayout.horizontal:
         return Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: children,
         );
-      case AppPaginationLayout.vertical:
+      case DSPaginationLayout.vertical:
         return Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: children,
         );
-      case AppPaginationLayout.compact:
+      case DSPaginationLayout.compact:
         return Wrap(
           spacing: _effectiveConfig.spacing,
           runSpacing: _effectiveConfig.spacing,
@@ -590,7 +590,7 @@ class _AppPaginationState extends State<AppPagination>
     }
 
     final isHovered = _hoveredPage == page;
-    final isDisabled = widget.state == AppPaginationState.disabled;
+    final isDisabled = widget.state == DSPaginationState.disabled;
 
     Color? backgroundColor;
     Color? borderColor;
@@ -684,7 +684,7 @@ class _AppPaginationState extends State<AppPagination>
       case 'previous':
         icon = _effectiveConfig.previousIcon;
         label = _effectiveConfig.previousLabel ?? 'Previous';
-        if (widget.variant == AppPaginationVariant.pageBased) {
+        if (widget.variant == DSPaginationVariant.pageBased) {
           onPressed = enabled
               ? () => _handlePageChanged(_effectiveData.currentPage - 1)
               : null;
@@ -697,7 +697,7 @@ class _AppPaginationState extends State<AppPagination>
       case 'next':
         icon = _effectiveConfig.nextIcon;
         label = _effectiveConfig.nextLabel ?? 'Next';
-        if (widget.variant == AppPaginationVariant.pageBased) {
+        if (widget.variant == DSPaginationVariant.pageBased) {
           onPressed = enabled
               ? () => _handlePageChanged(_effectiveData.currentPage + 1)
               : null;
@@ -721,7 +721,7 @@ class _AppPaginationState extends State<AppPagination>
     }
 
     return Semantics(
-      label: AppPaginationUtils.getNavButtonSemanticLabel(action, enabled),
+      label: DSPaginationUtils.getNavButtonSemanticLabel(action, enabled),
       child: SizedBox(
         width: _effectiveConfig.buttonSize,
         height: _effectiveConfig.buttonSize,

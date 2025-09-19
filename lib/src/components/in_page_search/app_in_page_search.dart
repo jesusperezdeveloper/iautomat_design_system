@@ -7,14 +7,14 @@ import 'in_page_search_config.dart';
 
 /// Callback function type for search find operation
 typedef OnInPageSearchFind = void Function(
-    String query, List<AppSearchHighlight> highlights);
+    String query, List<DSSearchHighlight> highlights);
 
 /// Callback function type for search controller actions
-typedef OnInPageSearchAction = void Function(AppInPageSearchData data);
+typedef OnInPageSearchAction = void Function(DSInPageSearchData data);
 
 /// A comprehensive in-page search widget based on Material Design
 ///
-/// The [AppInPageSearch] provides an inline search interface with:
+/// The [DSInPageSearch] provides an inline search interface with:
 /// - Real-time search with customizable highlighting
 /// - Navigation between search results
 /// - Platform-adaptive behavior
@@ -24,15 +24,15 @@ typedef OnInPageSearchAction = void Function(AppInPageSearchData data);
 ///
 /// Example usage:
 /// ```dart
-/// AppInPageSearch.inline(
+/// DSInPageSearch.inline(
 ///   controller: searchController,
 ///   onFind: (query, highlights) => print('Found: $query'),
 ///   highlights: searchHighlights,
 /// )
 /// ```
-class AppInPageSearch extends StatefulWidget {
+class DSInPageSearch extends StatefulWidget {
   /// The variant of the in-page search
-  final AppInPageSearchVariant variant;
+  final DSInPageSearchVariant variant;
 
   /// Controller for the search functionality
   final TextEditingController? controller;
@@ -41,19 +41,19 @@ class AppInPageSearch extends StatefulWidget {
   final OnInPageSearchFind? onFind;
 
   /// Current search highlights
-  final List<AppSearchHighlight> highlights;
+  final List<DSSearchHighlight> highlights;
 
   /// Current state of the search widget
-  final AppInPageSearchState state;
+  final DSInPageSearchState state;
 
   /// Whether the search widget is visible
   final bool isVisible;
 
   /// Configuration for the search widget
-  final AppInPageSearchConfig? config;
+  final DSInPageSearchConfig? config;
 
   /// Search data model for complex configurations
-  final AppInPageSearchData? data;
+  final DSInPageSearchData? data;
 
   /// Callback when the search should be closed
   final VoidCallback? onClose;
@@ -68,7 +68,7 @@ class AppInPageSearch extends StatefulWidget {
   final VoidCallback? onClear;
 
   /// Custom search controller
-  final AppInPageSearchController? searchController;
+  final DSInPageSearchController? searchController;
 
   /// Whether to show the search bar expanded
   final bool isExpanded;
@@ -89,7 +89,7 @@ class AppInPageSearch extends StatefulWidget {
   final bool enableSoundEffects;
 
   /// Custom result builder
-  final Widget Function(BuildContext context, AppInPageSearchData data)?
+  final Widget Function(BuildContext context, DSInPageSearchData data)?
       resultBuilder;
 
   /// Custom loading builder
@@ -99,12 +99,12 @@ class AppInPageSearch extends StatefulWidget {
   final Widget Function(BuildContext context)? skeletonBuilder;
 
   /// Create an inline in-page search widget
-  const AppInPageSearch.inline({
+  const DSInPageSearch.inline({
     super.key,
     this.controller,
     this.onFind,
     this.highlights = const [],
-    this.state = AppInPageSearchState.defaultState,
+    this.state = DSInPageSearchState.defaultState,
     this.isVisible = true,
     this.config,
     this.data,
@@ -122,30 +122,30 @@ class AppInPageSearch extends StatefulWidget {
     this.resultBuilder,
     this.loadingBuilder,
     this.skeletonBuilder,
-  }) : variant = AppInPageSearchVariant.inline;
+  }) : variant = DSInPageSearchVariant.inline;
 
   @override
-  State<AppInPageSearch> createState() => _AppInPageSearchState();
+  State<DSInPageSearch> createState() => _DSInPageSearchState();
 }
 
-/// Controller for AppInPageSearch
-class AppInPageSearchController extends ChangeNotifier {
-  AppInPageSearchData _data = const AppInPageSearchData();
+/// Controller for DSInPageSearch
+class DSInPageSearchController extends ChangeNotifier {
+  DSInPageSearchData _data = const DSInPageSearchData();
 
   /// Current search data
-  AppInPageSearchData get data => _data;
+  DSInPageSearchData get data => _data;
 
   /// Current search query
   String get query => _data.query;
 
   /// Current highlights
-  List<AppSearchHighlight> get highlights => _data.highlights;
+  List<DSSearchHighlight> get highlights => _data.highlights;
 
   /// Whether search is in progress
   bool get isSearching => _data.isSearching;
 
   /// Update search data
-  void updateData(AppInPageSearchData newData) {
+  void updateData(DSInPageSearchData newData) {
     _data = newData;
     notifyListeners();
   }
@@ -161,7 +161,7 @@ class AppInPageSearchController extends ChangeNotifier {
   }
 
   /// Update search results
-  void updateResults(List<AppSearchHighlight> highlights) {
+  void updateResults(List<DSSearchHighlight> highlights) {
     _data = _data.copyWith(
       highlights: highlights,
       totalResults: highlights.length,
@@ -231,7 +231,7 @@ class AppInPageSearchController extends ChangeNotifier {
   }
 }
 
-class _AppInPageSearchState extends State<AppInPageSearch>
+class _DSInPageSearchState extends State<DSInPageSearch>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late AnimationController _skeletonController;
@@ -240,18 +240,18 @@ class _AppInPageSearchState extends State<AppInPageSearch>
   late Animation<Offset> _slideAnimation;
   late Animation<double> _skeletonAnimation;
   late TextEditingController _queryController;
-  late AppInPageSearchController _searchController;
+  late DSInPageSearchController _searchController;
   late FocusNode _focusNode;
   Timer? _debounceTimer;
 
-  AppInPageSearchConfig get _effectiveConfig {
-    return widget.config ?? AppInPageSearchConfig.medium;
+  DSInPageSearchConfig get _effectiveConfig {
+    return widget.config ?? DSInPageSearchConfig.medium;
   }
 
-  AppInPageSearchData get _effectiveData {
+  DSInPageSearchData get _effectiveData {
     return widget.searchController?.data ??
         widget.data ??
-        const AppInPageSearchData();
+        const DSInPageSearchData();
   }
 
   @override
@@ -264,7 +264,7 @@ class _AppInPageSearchState extends State<AppInPageSearch>
 
   void _initializeControllers() {
     _queryController = widget.controller ?? TextEditingController();
-    _searchController = widget.searchController ?? AppInPageSearchController();
+    _searchController = widget.searchController ?? DSInPageSearchController();
     _focusNode = widget.focusNode ?? FocusNode();
 
     if (widget.initialQuery != null) {
@@ -329,12 +329,12 @@ class _AppInPageSearchState extends State<AppInPageSearch>
     }
   }
 
-  void _updateState(AppInPageSearchState newState) {
+  void _updateState(DSInPageSearchState newState) {
     switch (newState) {
-      case AppInPageSearchState.skeleton:
+      case DSInPageSearchState.skeleton:
         _skeletonController.repeat();
         break;
-      case AppInPageSearchState.loading:
+      case DSInPageSearchState.loading:
         _animationController.forward();
         break;
       default:
@@ -363,7 +363,7 @@ class _AppInPageSearchState extends State<AppInPageSearch>
   }
 
   void _performSearch(String query) {
-    if (!AppInPageSearchUtils.isValidQuery(query,
+    if (!DSInPageSearchUtils.isValidQuery(query,
         useRegex: _effectiveData.useRegex)) {
       return;
     }
@@ -373,8 +373,8 @@ class _AppInPageSearchState extends State<AppInPageSearch>
     // Simulate search if no external highlights provided
     if (widget.highlights.isEmpty) {
       // In a real implementation, this would search through content
-      final mockHighlights = <AppSearchHighlight>[
-        AppSearchHighlight(
+      final mockHighlights = <DSSearchHighlight>[
+        DSSearchHighlight(
           start: 0,
           end: query.length,
           text: query,
@@ -426,7 +426,7 @@ class _AppInPageSearchState extends State<AppInPageSearch>
   }
 
   @override
-  void didUpdateWidget(AppInPageSearch oldWidget) {
+  void didUpdateWidget(DSInPageSearch oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.state != oldWidget.state) {
       _updateState(widget.state);
@@ -479,7 +479,7 @@ class _AppInPageSearchState extends State<AppInPageSearch>
 
   Widget _buildSearchWidget(BuildContext context, ThemeData theme,
       ColorScheme colorScheme, bool isRTL) {
-    if (widget.state == AppInPageSearchState.skeleton) {
+    if (widget.state == DSInPageSearchState.skeleton) {
       return _buildSkeletonWidget(context, theme);
     }
 
@@ -570,7 +570,7 @@ class _AppInPageSearchState extends State<AppInPageSearch>
         isDense: true,
         contentPadding: EdgeInsets.zero,
       ),
-      enabled: widget.state != AppInPageSearchState.disabled,
+      enabled: widget.state != DSInPageSearchState.disabled,
       onSubmitted: _performSearch,
     );
   }

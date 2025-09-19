@@ -1,4 +1,4 @@
-// Exporta todos los archivos relacionados con AppClipboardShare
+// Exporta todos los archivos relacionados con DSClipboardShare
 
 export 'app_clipboard_share.dart';
 export 'app_clipboard_share_config.dart';

@@ -43,7 +43,7 @@ class ToastAction {
   });
 }
 
-class AppToast extends StatefulWidget {
+class DSToast extends StatefulWidget {
   final ToastVariant variant;
   final String message;
   final ToastAction? action;
@@ -65,7 +65,7 @@ class AppToast extends StatefulWidget {
   final EdgeInsetsGeometry? padding;
   final TextStyle? textStyle;
 
-  const AppToast({
+  const DSToast({
     super.key,
     this.variant = ToastVariant.stackable,
     required this.message,
@@ -90,7 +90,7 @@ class AppToast extends StatefulWidget {
   });
 
   @override
-  State<AppToast> createState() => _AppToastState();
+  State<DSToast> createState() => _DSToastState();
 
   /// Show a toast with the given parameters
   static void show(
@@ -107,9 +107,9 @@ class AppToast extends StatefulWidget {
     Color? backgroundColor,
     Color? textColor,
   }) {
-    AppToastManager.show(
+    DSToastManager.show(
       context,
-      AppToast(
+      DSToast(
         message: message,
         variant: variant,
         action: action,
@@ -198,7 +198,7 @@ class AppToast extends StatefulWidget {
   }
 }
 
-class _AppToastState extends State<AppToast>
+class _DSToastState extends State<DSToast>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _slideAnimation;
@@ -646,11 +646,11 @@ class _AppToastState extends State<AppToast>
 }
 
 /// Toast manager to handle stackable toasts
-class AppToastManager {
+class DSToastManager {
   static final List<OverlayEntry> _entries = [];
   static final Map<ToastPosition, List<OverlayEntry>> _positionedEntries = {};
 
-  static void show(BuildContext context, AppToast toast) {
+  static void show(BuildContext context, DSToast toast) {
     final overlay = Overlay.of(context);
     late OverlayEntry entry;
 
@@ -715,7 +715,7 @@ class AppToastManager {
 }
 
 class _ToastWrapper extends StatelessWidget {
-  final AppToast toast;
+  final DSToast toast;
   final ToastPosition position;
 
   const _ToastWrapper({
@@ -730,7 +730,7 @@ class _ToastWrapper extends StatelessWidget {
 
     // Calculate position-specific entries count for stacking
     final entriesAtPosition =
-        AppToastManager._positionedEntries[position] ?? [];
+        DSToastManager._positionedEntries[position] ?? [];
     final stackIndex = entriesAtPosition.length - 1;
 
     return Positioned(
@@ -824,8 +824,8 @@ class _ToastWrapper extends StatelessWidget {
   }
 }
 
-extension AppToastCopyWith on AppToast {
-  AppToast copyWith({
+extension DSToastCopyWith on DSToast {
+  DSToast copyWith({
     ToastVariant? variant,
     String? message,
     ToastAction? action,
@@ -847,7 +847,7 @@ extension AppToastCopyWith on AppToast {
     EdgeInsetsGeometry? padding,
     TextStyle? textStyle,
   }) {
-    return AppToast(
+    return DSToast(
       variant: variant ?? this.variant,
       message: message ?? this.message,
       action: action ?? this.action,

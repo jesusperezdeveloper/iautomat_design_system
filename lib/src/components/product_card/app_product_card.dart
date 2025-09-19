@@ -18,36 +18,36 @@ import 'package:iautomat_design_system/src/components/product_card/app_product_c
 ///
 /// Ejemplo:
 /// ```dart
-/// AppProductCard(
+/// DSProductCard(
 ///   title: 'iPhone 15 Pro',
-///   price: AppProductPrice(amount: 999.99, currency: '\$'),
-///   image: AppProductImage(url: 'https://...'),
-///   variant: AppProductCardVariant.discount,
-///   discountChip: AppDiscountChip(text: '-20%'),
+///   price: DSProductPrice(amount: 999.99, currency: '\$'),
+///   image: DSProductImage(url: 'https://...'),
+///   variant: DSProductCardVariant.discount,
+///   discountChip: DSDiscountChip(text: '-20%'),
 ///   onTap: () => print('Producto seleccionado'),
 /// )
 /// ```
-class AppProductCard extends StatefulWidget {
+class DSProductCard extends StatefulWidget {
   /// Configuración completa de la tarjeta
-  final AppProductCardConfig? config;
+  final DSProductCardConfig? config;
 
   /// Título del producto
   final String title;
 
   /// Configuración del precio
-  final AppProductPrice price;
+  final DSProductPrice price;
 
   /// Configuración de la imagen
-  final AppProductImage? image;
+  final DSProductImage? image;
 
   /// Chip de descuento (solo para variante discount)
-  final AppDiscountChip? discountChip;
+  final DSDiscountChip? discountChip;
 
   /// Variante de la tarjeta
-  final AppProductCardVariant? variant;
+  final DSProductCardVariant? variant;
 
   /// Estado inicial de la tarjeta
-  final AppProductCardState? initialState;
+  final DSProductCardState? initialState;
 
   /// Callback cuando se toca la tarjeta
   final VoidCallback? onTap;
@@ -71,7 +71,7 @@ class AppProductCard extends StatefulWidget {
   final Widget? badge;
 
   /// Layout de la tarjeta
-  final AppProductCardLayout? layout;
+  final DSProductCardLayout? layout;
 
   /// Ancho de la tarjeta (opcional)
   final double? width;
@@ -79,7 +79,7 @@ class AppProductCard extends StatefulWidget {
   /// Altura de la tarjeta (opcional)
   final double? height;
 
-  const AppProductCard({
+  const DSProductCard({
     super.key,
     this.config,
     required this.title,
@@ -101,15 +101,15 @@ class AppProductCard extends StatefulWidget {
   });
 
   @override
-  State<AppProductCard> createState() => _AppProductCardState();
+  State<DSProductCard> createState() => _DSProductCardState();
 }
 
-class _AppProductCardState extends State<AppProductCard>
+class _DSProductCardState extends State<DSProductCard>
     with TickerProviderStateMixin {
-  late AppProductCardConfig _config;
-  late AppProductCardState _currentState;
-  late AppProductCardPlatformAdapter _platformAdapter;
-  late AppProductCardA11yHelper _a11yHelper;
+  late DSProductCardConfig _config;
+  late DSProductCardState _currentState;
+  late DSProductCardPlatformAdapter _platformAdapter;
+  late DSProductCardA11yHelper _a11yHelper;
 
   // Controladores de animación
   late AnimationController _stateAnimationController;
@@ -138,10 +138,10 @@ class _AppProductCardState extends State<AppProductCard>
 
   void _initializeConfig() {
     _config = widget.config ??
-        AppProductCardConfig(
-          variant: widget.variant ?? AppProductCardVariant.price,
+        DSProductCardConfig(
+          variant: widget.variant ?? DSProductCardVariant.price,
           state: widget.initialState ??
-                 (widget.enabled ? AppProductCardState.defaultState : AppProductCardState.disabled),
+                 (widget.enabled ? DSProductCardState.defaultState : DSProductCardState.disabled),
         );
 
     _currentState = _config.state;
@@ -200,9 +200,9 @@ class _AppProductCardState extends State<AppProductCard>
   }
 
   void _initializeHelpers() {
-    _platformAdapter = AppProductCardPlatformAdapter();
-    _a11yHelper = AppProductCardA11yHelper(
-      config: _config.a11yConfig ?? const AppProductCardA11yConfig(),
+    _platformAdapter = DSProductCardPlatformAdapter();
+    _a11yHelper = DSProductCardA11yHelper(
+      config: _config.a11yConfig ?? const DSProductCardA11yConfig(),
     );
   }
 
@@ -211,9 +211,9 @@ class _AppProductCardState extends State<AppProductCard>
       setState(() {
         _isFocused = _focusNode.hasFocus;
         if (_isFocused) {
-          _updateState(AppProductCardState.focus);
-        } else if (_currentState == AppProductCardState.focus) {
-          _updateState(AppProductCardState.defaultState);
+          _updateState(DSProductCardState.focus);
+        } else if (_currentState == DSProductCardState.focus) {
+          _updateState(DSProductCardState.defaultState);
         }
       });
     });
@@ -224,18 +224,18 @@ class _AppProductCardState extends State<AppProductCard>
     if (_config.animation?.enableScaleAnimation != true) return 1.0;
 
     switch (_currentState) {
-      case AppProductCardState.hover:
+      case DSProductCardState.hover:
         return _config.animation?.hoverScale ?? 1.02;
-      case AppProductCardState.pressed:
+      case DSProductCardState.pressed:
         return _config.animation?.pressScale ?? 0.98;
-      case AppProductCardState.selected:
+      case DSProductCardState.selected:
         return 1.0;
       default:
         return 1.0;
     }
   }
 
-  void _updateState(AppProductCardState newState) {
+  void _updateState(DSProductCardState newState) {
     if (_currentState == newState || !widget.enabled) return;
 
     setState(() {
@@ -251,13 +251,13 @@ class _AppProductCardState extends State<AppProductCard>
   void _handleTap() {
     if (!widget.enabled) return;
 
-    _updateState(AppProductCardState.pressed);
+    _updateState(DSProductCardState.pressed);
 
     Future.delayed(const Duration(milliseconds: 100), () {
       if (mounted) {
         _updateState(widget.selected
-            ? AppProductCardState.selected
-            : AppProductCardState.defaultState);
+            ? DSProductCardState.selected
+            : DSProductCardState.defaultState);
       }
     });
 
@@ -281,12 +281,12 @@ class _AppProductCardState extends State<AppProductCard>
     });
 
     if (isHovered) {
-      _updateState(AppProductCardState.hover);
+      _updateState(DSProductCardState.hover);
       _hoverAnimationController.forward();
     } else {
       _updateState(widget.selected
-          ? AppProductCardState.selected
-          : AppProductCardState.defaultState);
+          ? DSProductCardState.selected
+          : DSProductCardState.defaultState);
       _hoverAnimationController.reverse();
     }
   }
@@ -306,23 +306,23 @@ class _AppProductCardState extends State<AppProductCard>
   }
 
   @override
-  void didUpdateWidget(AppProductCard oldWidget) {
+  void didUpdateWidget(DSProductCard oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.selected != oldWidget.selected) {
       if (widget.selected) {
         _selectionAnimationController.forward();
-        _updateState(AppProductCardState.selected);
+        _updateState(DSProductCardState.selected);
       } else {
         _selectionAnimationController.reverse();
-        _updateState(AppProductCardState.defaultState);
+        _updateState(DSProductCardState.defaultState);
       }
     }
 
     if (widget.enabled != oldWidget.enabled) {
       _updateState(widget.enabled
-          ? AppProductCardState.defaultState
-          : AppProductCardState.disabled);
+          ? DSProductCardState.defaultState
+          : DSProductCardState.disabled);
     }
   }
 
@@ -353,7 +353,7 @@ class _AppProductCardState extends State<AppProductCard>
   Widget _buildCard(BuildContext context) {
     final spacing = _resolveSpacing();
     final colors = _resolveColors(context);
-    final layout = widget.layout ?? _config.behavior?.layout ?? AppProductCardLayout.vertical;
+    final layout = widget.layout ?? _config.behavior?.layout ?? DSProductCardLayout.vertical;
 
     return KeyboardListener(
       focusNode: _focusNode,
@@ -417,15 +417,15 @@ class _AppProductCardState extends State<AppProductCard>
     );
   }
 
-  AppProductCardSpacing _resolveSpacing() {
-    return _config.spacing ?? const AppProductCardSpacing();
+  DSProductCardSpacing _resolveSpacing() {
+    return _config.spacing ?? const DSProductCardSpacing();
   }
 
-  AppProductCardColors _resolveColors(BuildContext context) {
+  DSProductCardColors _resolveColors(BuildContext context) {
     final theme = Theme.of(context);
-    final baseColors = _config.colors ?? const AppProductCardColors();
+    final baseColors = _config.colors ?? const DSProductCardColors();
 
-    return AppProductCardColors(
+    return DSProductCardColors(
       backgroundColor: baseColors.backgroundColor ?? theme.colorScheme.surface,
       borderColor: baseColors.borderColor ?? theme.colorScheme.outline.withValues(alpha: 0.2),
       shadowColor: baseColors.shadowColor ?? theme.colorScheme.shadow,

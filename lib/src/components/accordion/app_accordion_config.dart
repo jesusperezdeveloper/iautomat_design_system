@@ -3,37 +3,37 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_accordion_config.freezed.dart';
 
-/// Configuración principal para AppAccordion
+/// Configuración principal para DSAccordion
 ///
 /// Define el comportamiento, apariencia y funcionalidad del componente
 /// accordion, incluyendo variantes single y multiple, estados, colores,
 /// espaciado y accesibilidad.
 @freezed
-class AppAccordionConfig with _$AppAccordionConfig {
-  const factory AppAccordionConfig({
+class DSAccordionConfig with _$DSAccordionConfig {
+  const factory DSAccordionConfig({
     /// Variante del accordion
-    @Default(AppAccordionVariant.single) AppAccordionVariant variant,
+    @Default(DSAccordionVariant.single) DSAccordionVariant variant,
 
     /// Estado actual del componente
-    @Default(AppAccordionState.defaultState) AppAccordionState state,
+    @Default(DSAccordionState.defaultState) DSAccordionState state,
 
     /// Configuración de colores (solo design tokens)
-    AppAccordionColors? colors,
+    DSAccordionColors? colors,
 
     /// Configuración de espaciado (solo design tokens)
-    AppAccordionSpacing? spacing,
+    DSAccordionSpacing? spacing,
 
     /// Configuración de tipografía (solo design tokens)
-    AppAccordionTypography? typography,
+    DSAccordionTypography? typography,
 
     /// Configuración de animaciones
-    AppAccordionAnimations? animations,
+    DSAccordionAnimations? animations,
 
     /// Configuración de comportamiento
-    AppAccordionBehavior? behavior,
+    DSAccordionBehavior? behavior,
 
     /// Configuración de accesibilidad
-    AppAccordionAccessibilityConfig? accessibility,
+    DSAccordionAccessibilityConfig? accessibility,
 
     /// Si permite múltiples elementos expandidos simultáneamente
     @Default(false) bool allowMultiple,
@@ -58,11 +58,11 @@ class AppAccordionConfig with _$AppAccordionConfig {
 
     /// Mensaje de error personalizado
     String? errorMessage,
-  }) = _AppAccordionConfig;
+  }) = _DSAccordionConfig;
 }
 
 /// Variantes disponibles para el accordion
-enum AppAccordionVariant {
+enum DSAccordionVariant {
   /// Solo un elemento puede estar expandido a la vez
   single,
 
@@ -71,7 +71,7 @@ enum AppAccordionVariant {
 }
 
 /// Estados disponibles del componente
-enum AppAccordionState {
+enum DSAccordionState {
   /// Estado por defecto
   defaultState,
 
@@ -99,8 +99,8 @@ enum AppAccordionState {
 
 /// Elemento individual del accordion
 @freezed
-class AppAccordionItem with _$AppAccordionItem {
-  const factory AppAccordionItem({
+class DSAccordionItem with _$DSAccordionItem {
+  const factory DSAccordionItem({
     /// Identificador único del elemento
     required String key,
 
@@ -129,13 +129,13 @@ class AppAccordionItem with _$AppAccordionItem {
     VoidCallback? onTap,
 
     /// Callback cuando cambia el estado de expansión
-    AppAccordionItemCallback? onExpansionChanged,
+    DSAccordionItemCallback? onExpansionChanged,
 
     /// Configuración de colores específica para este elemento
-    AppAccordionItemColors? colors,
+    DSAccordionItemColors? colors,
 
     /// Configuración de accesibilidad específica
-    AppAccordionItemAccessibility? accessibility,
+    DSAccordionItemAccessibility? accessibility,
 
     /// Datos adicionales asociados al elemento
     Map<String, dynamic>? metadata,
@@ -143,25 +143,25 @@ class AppAccordionItem with _$AppAccordionItem {
 }
 
 /// Extensión para obtener propiedades de los estados
-extension AppAccordionStateExtension on AppAccordionState {
+extension DSAccordionStateExtension on DSAccordionState {
   /// Obtiene el nombre del estado para mostrar
   String get displayName {
     switch (this) {
-      case AppAccordionState.defaultState:
+      case DSAccordionState.defaultState:
         return 'Default';
-      case AppAccordionState.hover:
+      case DSAccordionState.hover:
         return 'Hover';
-      case AppAccordionState.pressed:
+      case DSAccordionState.pressed:
         return 'Pressed';
-      case AppAccordionState.focus:
+      case DSAccordionState.focus:
         return 'Focus';
-      case AppAccordionState.selected:
+      case DSAccordionState.selected:
         return 'Selected';
-      case AppAccordionState.disabled:
+      case DSAccordionState.disabled:
         return 'Disabled';
-      case AppAccordionState.loading:
+      case DSAccordionState.loading:
         return 'Loading';
-      case AppAccordionState.skeleton:
+      case DSAccordionState.skeleton:
         return 'Skeleton';
     }
   }
@@ -169,9 +169,9 @@ extension AppAccordionStateExtension on AppAccordionState {
   /// Indica si el estado permite interacciones
   bool get isInteractive {
     switch (this) {
-      case AppAccordionState.disabled:
-      case AppAccordionState.loading:
-      case AppAccordionState.skeleton:
+      case DSAccordionState.disabled:
+      case DSAccordionState.loading:
+      case DSAccordionState.skeleton:
         return false;
       default:
         return true;
@@ -180,14 +180,14 @@ extension AppAccordionStateExtension on AppAccordionState {
 
   /// Indica si el estado muestra loading
   bool get isLoading {
-    return this == AppAccordionState.loading || this == AppAccordionState.skeleton;
+    return this == DSAccordionState.loading || this == DSAccordionState.skeleton;
   }
 }
 
 /// Configuración de colores (solo design tokens)
 @freezed
-class AppAccordionColors with _$AppAccordionColors {
-  const factory AppAccordionColors({
+class DSAccordionColors with _$DSAccordionColors {
+  const factory DSAccordionColors({
     /// Color de fondo del accordion
     Color? backgroundColor,
 
@@ -252,8 +252,8 @@ class AppAccordionColors with _$AppAccordionColors {
 
 /// Configuración de espaciado (solo design tokens)
 @freezed
-class AppAccordionSpacing with _$AppAccordionSpacing {
-  const factory AppAccordionSpacing({
+class DSAccordionSpacing with _$DSAccordionSpacing {
+  const factory DSAccordionSpacing({
     /// Padding interno del accordion
     @Default(EdgeInsets.zero) EdgeInsets padding,
 
@@ -292,8 +292,8 @@ class AppAccordionSpacing with _$AppAccordionSpacing {
 
 /// Configuración de tipografía (solo design tokens)
 @freezed
-class AppAccordionTypography with _$AppAccordionTypography {
-  const factory AppAccordionTypography({
+class DSAccordionTypography with _$DSAccordionTypography {
+  const factory DSAccordionTypography({
     /// Estilo del título
     TextStyle? titleStyle,
 
@@ -316,8 +316,8 @@ class AppAccordionTypography with _$AppAccordionTypography {
 
 /// Configuración de animaciones
 @freezed
-class AppAccordionAnimations with _$AppAccordionAnimations {
-  const factory AppAccordionAnimations({
+class DSAccordionAnimations with _$DSAccordionAnimations {
+  const factory DSAccordionAnimations({
     /// Duración de la animación de expansión
     @Default(Duration(milliseconds: 300)) Duration expansionDuration,
 
@@ -352,8 +352,8 @@ class AppAccordionAnimations with _$AppAccordionAnimations {
 
 /// Configuración de comportamiento
 @freezed
-class AppAccordionBehavior with _$AppAccordionBehavior {
-  const factory AppAccordionBehavior({
+class DSAccordionBehavior with _$DSAccordionBehavior {
+  const factory DSAccordionBehavior({
     /// Si debe mostrar información de debugging en desarrollo
     @Default(false) bool showDebugInfo,
 
@@ -394,8 +394,8 @@ class AppAccordionBehavior with _$AppAccordionBehavior {
 
 /// Configuración de accesibilidad
 @freezed
-class AppAccordionAccessibilityConfig with _$AppAccordionAccessibilityConfig {
-  const factory AppAccordionAccessibilityConfig({
+class DSAccordionAccessibilityConfig with _$DSAccordionAccessibilityConfig {
+  const factory DSAccordionAccessibilityConfig({
     /// Si la accesibilidad está habilitada
     @Default(true) bool enabled,
 
@@ -437,13 +437,13 @@ class AppAccordionAccessibilityConfig with _$AppAccordionAccessibilityConfig {
 
     /// Si debe usar hints para navegación por teclado
     @Default(true) bool useKeyboardHints,
-  }) = _AppAccordionAccessibilityConfig;
+  }) = _DSAccordionAccessibilityConfig;
 }
 
 /// Configuración de colores para elementos individuales
 @freezed
-class AppAccordionItemColors with _$AppAccordionItemColors {
-  const factory AppAccordionItemColors({
+class DSAccordionItemColors with _$DSAccordionItemColors {
+  const factory DSAccordionItemColors({
     /// Color de fondo del elemento
     Color? backgroundColor,
 
@@ -469,8 +469,8 @@ class AppAccordionItemColors with _$AppAccordionItemColors {
 
 /// Configuración de accesibilidad para elementos individuales
 @freezed
-class AppAccordionItemAccessibility with _$AppAccordionItemAccessibility {
-  const factory AppAccordionItemAccessibility({
+class DSAccordionItemAccessibility with _$DSAccordionItemAccessibility {
+  const factory DSAccordionItemAccessibility({
     /// Label semántico del elemento
     String? semanticLabel,
 
@@ -486,27 +486,27 @@ class AppAccordionItemAccessibility with _$AppAccordionItemAccessibility {
 }
 
 /// Typedefs para callbacks
-typedef AppAccordionCallback = void Function(List<String> expandedKeys);
-typedef AppAccordionItemCallback = void Function(String key, bool expanded);
-typedef AppAccordionValidationCallback = void Function(AppAccordionValidationError error);
-typedef AppAccordionLoadingBuilder = Widget Function(BuildContext context, AppAccordionConfig config);
-typedef AppAccordionErrorBuilder = Widget Function(BuildContext context, String error, AppAccordionConfig config);
-typedef AppAccordionEmptyBuilder = Widget Function(BuildContext context, AppAccordionConfig config);
+typedef DSAccordionCallback = void Function(List<String> expandedKeys);
+typedef DSAccordionItemCallback = void Function(String key, bool expanded);
+typedef DSAccordionValidationCallback = void Function(DSAccordionValidationError error);
+typedef DSAccordionLoadingBuilder = Widget Function(BuildContext context, DSAccordionConfig config);
+typedef DSAccordionErrorBuilder = Widget Function(BuildContext context, String error, DSAccordionConfig config);
+typedef DSAccordionEmptyBuilder = Widget Function(BuildContext context, DSAccordionConfig config);
 
 /// Error de validación del accordion
 @freezed
-class AppAccordionValidationError with _$AppAccordionValidationError {
-  const factory AppAccordionValidationError({
-    required AppAccordionErrorType type,
+class DSAccordionValidationError with _$DSAccordionValidationError {
+  const factory DSAccordionValidationError({
+    required DSAccordionErrorType type,
     required String message,
-    List<AppAccordionItem>? items,
+    List<DSAccordionItem>? items,
     List<String>? expandedKeys,
     String? itemKey,
   }) = _AppAccordionValidationError;
 }
 
 /// Tipos de error del accordion
-enum AppAccordionErrorType {
+enum DSAccordionErrorType {
   invalidConfig,
   itemNotFound,
   duplicateKeys,
@@ -516,70 +516,70 @@ enum AppAccordionErrorType {
 }
 
 /// Configuración por defecto para diferentes contextos
-class AppAccordionConfigDefaults {
+class DSAccordionConfigDefaults {
   /// Configuración por defecto estándar
-  static const standard = AppAccordionConfig();
+  static const standard = DSAccordionConfig();
 
   /// Configuración para multiple selection
-  static const multiple = AppAccordionConfig(
-    variant: AppAccordionVariant.multiple,
+  static const multiple = DSAccordionConfig(
+    variant: DSAccordionVariant.multiple,
     allowMultiple: true,
   );
 
   /// Configuración sin dividers
-  static const noDividers = AppAccordionConfig(
+  static const noDividers = DSAccordionConfig(
     showDividers: false,
   );
 
   /// Configuración con elevación
-  static const elevated = AppAccordionConfig(
+  static const elevated = DSAccordionConfig(
     elevation: 2.0,
   );
 
   /// Configuración para debugging
-  static const debug = AppAccordionConfig(
-    behavior: AppAccordionBehavior(
+  static const debug = DSAccordionConfig(
+    behavior: DSAccordionBehavior(
       showDebugInfo: true,
     ),
   );
 }
 
 /// Configuraciones predefinidas por plataforma
-class AppAccordionPlatformDefaults {
+class DSAccordionPlatformDefaults {
   /// Configuración optimizada para Android
-  static const android = AppAccordionConfig(
-    animations: AppAccordionAnimations(
+  static const android = DSAccordionConfig(
+    animations: DSAccordionAnimations(
       expansionDuration: Duration(milliseconds: 300),
       stateDuration: Duration(milliseconds: 250),
       expansionCurve: Curves.fastOutSlowIn,
       stateCurve: Curves.fastOutSlowIn,
     ),
-    behavior: AppAccordionBehavior(
+    behavior: DSAccordionBehavior(
       enableHapticFeedback: true,
     ),
   );
 
   /// Configuración optimizada para iOS
-  static const ios = AppAccordionConfig(
-    animations: AppAccordionAnimations(
+  static const ios = DSAccordionConfig(
+    animations: DSAccordionAnimations(
       expansionDuration: Duration(milliseconds: 250),
       stateDuration: Duration(milliseconds: 200),
       expansionCurve: Curves.easeInOut,
       stateCurve: Curves.easeInOut,
     ),
-    behavior: AppAccordionBehavior(
+    behavior: DSAccordionBehavior(
       enableHapticFeedback: true,
     ),
   );
 
   /// Configuración optimizada para Web
-  static const web = AppAccordionConfig(
-    behavior: AppAccordionBehavior(
+  static const web = DSAccordionConfig(
+    behavior: DSAccordionBehavior(
       enableHoverEffects: true,
       showFocusIndicator: true,
       enableHapticFeedback: false,
     ),
-    animations: AppAccordionAnimations(
+    animations: DSAccordionAnimations(
       expansionDuration: Duration(milliseconds: 200),
       stateDuration: Duration(milliseconds: 150),
       expansionCurve: Curves.easeOut,
@@ -590,18 +590,18 @@ class AppAccordionPlatformDefaults {
 
 /// Extensiones auxiliares
 
-extension AppAccordionVariantExtensions on AppAccordionVariant {
+extension DSAccordionVariantExtensions on DSAccordionVariant {
   /// Indica si permite múltiples elementos expandidos
-  bool get allowsMultiple => this == AppAccordionVariant.multiple;
+  bool get allowsMultiple => this == DSAccordionVariant.multiple;
 
   /// Indica si solo permite un elemento expandido
-  bool get allowsSingle => this == AppAccordionVariant.single;
+  bool get allowsSingle => this == DSAccordionVariant.single;
 }
 
 /// Validadores de configuración
-class AppAccordionValidators {
+class DSAccordionValidators {
   /// Valida si la lista de items es válida
-  static bool isValidItems(List<AppAccordionItem> items) {
+  static bool isValidItems(List<DSAccordionItem> items) {
     if (items.isEmpty) return true;
 
     // Verificar que no hay claves duplicadas
@@ -615,7 +615,7 @@ class AppAccordionValidators {
   /// Valida si las claves expandidas son válidas
   static bool isValidExpandedKeys(
     List<String> expandedKeys,
-    List<AppAccordionItem> items,
+    List<DSAccordionItem> items,
   ) {
     if (expandedKeys.isEmpty) return true;
 
@@ -625,17 +625,17 @@ class AppAccordionValidators {
 
   /// Valida si la configuración es coherente con la variante
   static bool isValidConfigForVariant(
-    AppAccordionConfig config,
+    DSAccordionConfig config,
     List<String> expandedKeys,
   ) {
-    if (config.variant == AppAccordionVariant.single) {
+    if (config.variant == DSAccordionVariant.single) {
       return expandedKeys.length <= 1;
     }
     return true;
   }
 
   /// Valida si el spacing es válido
-  static bool isValidSpacing(AppAccordionSpacing? spacing) {
+  static bool isValidSpacing(DSAccordionSpacing? spacing) {
     if (spacing == null) return true;
 
     return spacing.minHeaderHeight >= 0 &&
@@ -647,8 +647,8 @@ class AppAccordionValidators {
 
   /// Valida toda la configuración
   static bool isValidConfig(
-    AppAccordionConfig config,
-    List<AppAccordionItem> items,
+    DSAccordionConfig config,
+    List<DSAccordionItem> items,
     List<String> expandedKeys,
   ) {
     return isValidItems(items) &&
@@ -658,13 +658,13 @@ class AppAccordionValidators {
   }
 
   /// Valida un elemento individual
-  static bool isValidItem(AppAccordionItem item) {
+  static bool isValidItem(DSAccordionItem item) {
     return item.key.isNotEmpty;
   }
 }
 
 /// Extensiones para elementos de accordion
-extension AppAccordionItemExtensions on AppAccordionItem {
+extension DSAccordionItemExtensions on DSAccordionItem {
   /// Indica si el elemento está habilitado
   bool get isEnabled => !disabled && !loading;
 
@@ -685,21 +685,21 @@ extension AppAccordionItemExtensions on AppAccordionItem {
 }
 
 /// Extensiones para errores
-extension AppAccordionErrorTypeExtensions on AppAccordionErrorType {
+extension DSAccordionErrorTypeExtensions on DSAccordionErrorType {
   /// Obtiene el mensaje por defecto para el tipo de error
   String get defaultMessage {
     switch (this) {
-      case AppAccordionErrorType.invalidConfig:
+      case DSAccordionErrorType.invalidConfig:
         return 'Configuración inválida del accordion';
-      case AppAccordionErrorType.itemNotFound:
+      case DSAccordionErrorType.itemNotFound:
         return 'Elemento no encontrado';
-      case AppAccordionErrorType.duplicateKeys:
+      case DSAccordionErrorType.duplicateKeys:
         return 'Claves duplicadas detectadas';
-      case AppAccordionErrorType.expansionError:
+      case DSAccordionErrorType.expansionError:
         return 'Error al expandir/colapsar elemento';
-      case AppAccordionErrorType.validationError:
+      case DSAccordionErrorType.validationError:
         return 'Error de validación';
-      case AppAccordionErrorType.accessibilityError:
+      case DSAccordionErrorType.accessibilityError:
         return 'Error de accesibilidad';
     }
   }
@@ -707,8 +707,8 @@ extension AppAccordionErrorTypeExtensions on AppAccordionErrorType {
   /// Indica si es un error crítico
   bool get isCritical {
     switch (this) {
-      case AppAccordionErrorType.invalidConfig:
-      case AppAccordionErrorType.duplicateKeys:
+      case DSAccordionErrorType.invalidConfig:
+      case DSAccordionErrorType.duplicateKeys:
         return true;
       default:
         return false;

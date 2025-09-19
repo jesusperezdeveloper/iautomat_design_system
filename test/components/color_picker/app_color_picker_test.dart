@@ -4,14 +4,14 @@ import 'package:iautomat_design_system/src/components/color_picker/app_color_pic
 import 'package:iautomat_design_system/src/components/color_picker/color_picker_config.dart';
 
 void main() {
-  group('AppColorPicker', () {
+  group('DSColorPicker', () {
     late Widget testApp;
 
     setUp(() {
       testApp = MaterialApp(
         home: Scaffold(
-          body: AppColorPicker(
-            variant: AppColorPickerVariant.hsv,
+          body: DSColorPicker(
+            variant: DSColorPickerVariant.hsv,
             onChanged: (_) {},
           ),
         ),
@@ -23,7 +23,7 @@ void main() {
           (tester) async {
         await tester.pumpWidget(testApp);
 
-        expect(find.byType(AppColorPicker), findsOneWidget);
+        expect(find.byType(DSColorPicker), findsOneWidget);
         expect(find.byIcon(Icons.colorize), findsOneWidget);
       });
 
@@ -32,8 +32,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 hintText: 'Select a color',
                 onChanged: (_) {},
               ),
@@ -46,13 +46,13 @@ void main() {
 
       testWidgets('displays formatted color when value is provided',
           (tester) async {
-        final testColor = AppColorValue.fromColor(Colors.red);
+        final testColor = DSColorValue.fromColor(Colors.red);
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 value: testColor,
                 onChanged: (_) {},
               ),
@@ -64,15 +64,15 @@ void main() {
       });
 
       testWidgets('shows color preview when enabled', (tester) async {
-        final testColor = AppColorValue.fromColor(Colors.blue);
+        final testColor = DSColorValue.fromColor(Colors.blue);
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 value: testColor,
-                config: const AppColorPickerConfig(showColorPreview: true),
+                config: const DSColorPickerConfig(showColorPreview: true),
                 onChanged: (_) {},
               ),
             ),
@@ -89,8 +89,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 onChanged: (_) {},
               ),
             ),
@@ -104,8 +104,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.palette,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.palette,
                 onChanged: (_) {},
               ),
             ),
@@ -120,7 +120,7 @@ void main() {
       testWidgets('opens color picker dialog when tapped', (tester) async {
         await tester.pumpWidget(testApp);
 
-        await tester.tap(find.byType(AppColorPicker));
+        await tester.tap(find.byType(DSColorPicker));
         await tester.pumpAndSettle();
 
         // Should open the color picker dialog
@@ -128,20 +128,20 @@ void main() {
       });
 
       testWidgets('calls onChanged when color is selected', (tester) async {
-        AppColorValue? selectedColor;
+        DSColorValue? selectedColor;
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.palette,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.palette,
                 onChanged: (color) => selectedColor = color,
               ),
             ),
           ),
         );
 
-        await tester.tap(find.byType(AppColorPicker));
+        await tester.tap(find.byType(DSColorPicker));
         await tester.pumpAndSettle();
 
         // Tap on a color in the palette (first grid item)
@@ -162,8 +162,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 enabled: false,
                 onChanged: (_) {},
               ),
@@ -171,7 +171,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(AppColorPicker));
+        await tester.tap(find.byType(DSColorPicker));
         await tester.pumpAndSettle();
 
         // Should not open color picker dialog
@@ -183,15 +183,15 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 onChanged: null,
               ),
             ),
           ),
         );
 
-        await tester.tap(find.byType(AppColorPicker));
+        await tester.tap(find.byType(DSColorPicker));
         await tester.pumpAndSettle();
 
         // Should not open color picker dialog
@@ -204,9 +204,9 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
-                state: AppColorPickerState.loading,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
+                state: DSColorPickerState.loading,
                 onChanged: (_) {},
               ),
             ),
@@ -220,9 +220,9 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
-                state: AppColorPickerState.skeleton,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
+                state: DSColorPickerState.skeleton,
                 onChanged: (_) {},
               ),
             ),
@@ -237,9 +237,9 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
-                state: AppColorPickerState.disabled,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
+                state: DSColorPickerState.disabled,
                 onChanged: (_) {},
               ),
             ),
@@ -247,14 +247,14 @@ void main() {
         );
 
         final appColorPicker =
-            tester.widget<AppColorPicker>(find.byType(AppColorPicker));
-        expect(appColorPicker.state, equals(AppColorPickerState.disabled));
+            tester.widget<DSColorPicker>(find.byType(DSColorPicker));
+        expect(appColorPicker.state, equals(DSColorPickerState.disabled));
       });
     });
 
     group('Configuration Tests', () {
       testWidgets('applies custom configuration', (tester) async {
-        const customConfig = AppColorPickerConfig(
+        const customConfig = DSColorPickerConfig(
           borderRadius: 20.0,
           borderWidth: 3.0,
           minHeight: 60.0,
@@ -263,8 +263,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 config: customConfig,
                 onChanged: (_) {},
               ),
@@ -275,7 +275,7 @@ void main() {
         final container = tester.widget<Container>(
           find
               .descendant(
-                of: find.byType(AppColorPicker),
+                of: find.byType(DSColorPicker),
                 matching: find.byType(Container),
               )
               .last,
@@ -291,8 +291,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 prefixIcon: const Icon(Icons.brush),
                 suffixIcon: const Icon(Icons.arrow_drop_down),
                 onChanged: (_) {},
@@ -309,8 +309,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 onChanged: (_) {},
               ),
             ),
@@ -326,8 +326,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 semanticLabel: 'Color picker for theme',
                 labelText: 'Theme color',
                 onChanged: (_) {},
@@ -336,7 +336,7 @@ void main() {
           ),
         );
 
-        final semantics = tester.getSemantics(find.byType(AppColorPicker));
+        final semantics = tester.getSemantics(find.byType(DSColorPicker));
         expect(semantics.label, contains('Color picker for theme'));
       });
 
@@ -346,8 +346,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 focusNode: focusNode,
                 onChanged: (_) {},
               ),
@@ -370,8 +370,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 adaptivePlatform: true,
                 onChanged: (_) {},
               ),
@@ -380,7 +380,7 @@ void main() {
         );
 
         final appColorPicker =
-            tester.widget<AppColorPicker>(find.byType(AppColorPicker));
+            tester.widget<DSColorPicker>(find.byType(DSColorPicker));
         expect(appColorPicker.adaptivePlatform, isTrue);
       });
 
@@ -389,8 +389,8 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppColorPicker(
-                variant: AppColorPickerVariant.hsv,
+              body: DSColorPicker(
+                variant: DSColorPickerVariant.hsv,
                 adaptivePlatform: false,
                 onChanged: (_) {},
               ),
@@ -399,7 +399,7 @@ void main() {
         );
 
         final appColorPicker =
-            tester.widget<AppColorPicker>(find.byType(AppColorPicker));
+            tester.widget<DSColorPicker>(find.byType(DSColorPicker));
         expect(appColorPicker.adaptivePlatform, isFalse);
       });
     });
@@ -409,7 +409,7 @@ void main() {
         await tester.pumpWidget(testApp);
 
         final gesture = await tester.startGesture(
-          tester.getCenter(find.byType(AppColorPicker)),
+          tester.getCenter(find.byType(DSColorPicker)),
         );
 
         await tester.pump(const Duration(milliseconds: 100));
@@ -417,7 +417,7 @@ void main() {
         // Should have scale animation during press
         final transform = tester.widget<Transform>(
           find.descendant(
-            of: find.byType(AppColorPicker),
+            of: find.byType(DSColorPicker),
             matching: find.byType(Transform),
           ),
         );
@@ -430,9 +430,9 @@ void main() {
     });
   });
 
-  group('AppColorValue', () {
+  group('DSColorValue', () {
     test('creates color value from Color', () {
-      final colorValue = AppColorValue.fromColor(Colors.red);
+      final colorValue = DSColorValue.fromColor(Colors.red);
 
       expect(colorValue.color, equals(Colors.red));
       expect(colorValue.alpha, equals(1.0));
@@ -440,29 +440,29 @@ void main() {
     });
 
     test('formats hex string correctly', () {
-      final colorValue = AppColorValue.fromColor(const Color(0xFFFF0000));
+      final colorValue = DSColorValue.fromColor(const Color(0xFFFF0000));
 
       expect(colorValue.hexString, equals('#FF0000FF'));
     });
 
     test('formats RGB string correctly', () {
-      final colorValue = AppColorValue.fromColor(const Color(0xFFFF0000));
+      final colorValue = DSColorValue.fromColor(const Color(0xFFFF0000));
 
       expect(colorValue.rgbString, equals('rgb(255, 0, 0)'));
     });
 
     test('formats RGBA string correctly', () {
-      final colorValue = AppColorValue.fromColor(const Color(0x80FF0000));
+      final colorValue = DSColorValue.fromColor(const Color(0x80FF0000));
 
       expect(colorValue.rgbaString, contains('rgba(255, 0, 0,'));
     });
 
     test('checks transparency correctly', () {
-      final transparentColor = AppColorValue(
+      final transparentColor = DSColorValue(
         color: Colors.red,
         alpha: 0.0,
       );
-      final opaqueColor = AppColorValue(
+      final opaqueColor = DSColorValue(
         color: Colors.red,
         alpha: 1.0,
       );
@@ -474,7 +474,7 @@ void main() {
     });
 
     test('copies with new alpha', () {
-      final original = AppColorValue.fromColor(Colors.red);
+      final original = DSColorValue.fromColor(Colors.red);
       final modified = original.copyWithAlpha(0.5);
 
       expect(modified.alpha, equals(0.5));
@@ -482,7 +482,7 @@ void main() {
     });
 
     test('copies with new color', () {
-      final original = AppColorValue.fromColor(Colors.red);
+      final original = DSColorValue.fromColor(Colors.red);
       final modified = original.copyWithColor(Colors.blue);
 
       expect(modified.color, equals(Colors.blue));
@@ -490,7 +490,7 @@ void main() {
     });
 
     test('copies with new format', () {
-      final original = AppColorValue.fromColor(Colors.red);
+      final original = DSColorValue.fromColor(Colors.red);
       final modified = original.copyWithFormat(ColorFormat.rgb);
 
       expect(modified.format, equals(ColorFormat.rgb));
@@ -499,16 +499,16 @@ void main() {
 
     test('gets formatted string based on format', () {
       final hexColor =
-          AppColorValue.fromColor(Colors.red, format: ColorFormat.hex);
+          DSColorValue.fromColor(Colors.red, format: ColorFormat.hex);
       final rgbColor =
-          AppColorValue.fromColor(Colors.red, format: ColorFormat.rgb);
+          DSColorValue.fromColor(Colors.red, format: ColorFormat.rgb);
 
       expect(hexColor.getFormattedString(), contains('#'));
       expect(rgbColor.getFormattedString(), contains('rgb('));
     });
 
     test('gets color with alpha applied', () {
-      final colorValue = AppColorValue(
+      final colorValue = DSColorValue(
         color: Colors.red,
         alpha: 0.5,
       );
@@ -518,59 +518,59 @@ void main() {
     });
   });
 
-  group('AppColorPalettes', () {
+  group('DSColorPalettes', () {
     test('contains expected palettes', () {
-      expect(AppColorPalettes.all.keys, contains('Material'));
-      expect(AppColorPalettes.all.keys, contains('Basic'));
-      expect(AppColorPalettes.all.keys, contains('Pastel'));
-      expect(AppColorPalettes.all.keys, contains('Vibrant'));
+      expect(DSColorPalettes.all.keys, contains('Material'));
+      expect(DSColorPalettes.all.keys, contains('Basic'));
+      expect(DSColorPalettes.all.keys, contains('Pastel'));
+      expect(DSColorPalettes.all.keys, contains('Vibrant'));
     });
 
     test('material palette has expected colors', () {
-      expect(AppColorPalettes.material.length, greaterThan(10));
+      expect(DSColorPalettes.material.length, greaterThan(10));
       expect(
-          AppColorPalettes.material, contains(const Color(0xFFF44336))); // Red
+          DSColorPalettes.material, contains(const Color(0xFFF44336))); // Red
       expect(
-          AppColorPalettes.material, contains(const Color(0xFF2196F3))); // Blue
+          DSColorPalettes.material, contains(const Color(0xFF2196F3))); // Blue
     });
 
     test('basic palette has primary colors', () {
-      expect(AppColorPalettes.basic, contains(const Color(0xFFFF0000))); // Red
+      expect(DSColorPalettes.basic, contains(const Color(0xFFFF0000))); // Red
       expect(
-          AppColorPalettes.basic, contains(const Color(0xFF00FF00))); // Green
-      expect(AppColorPalettes.basic, contains(const Color(0xFF0000FF))); // Blue
+          DSColorPalettes.basic, contains(const Color(0xFF00FF00))); // Green
+      expect(DSColorPalettes.basic, contains(const Color(0xFF0000FF))); // Blue
     });
   });
 
-  group('AppColorValidators', () {
+  group('DSColorValidators', () {
     test('required validator works correctly', () {
-      final validator = AppColorValidators.required();
+      final validator = DSColorValidators.required();
 
       expect(validator(null), isNotNull);
-      expect(validator(AppColorValue.fromColor(Colors.red)), isNull);
+      expect(validator(DSColorValue.fromColor(Colors.red)), isNull);
     });
 
     test('hexFormat validator works correctly', () {
-      final validator = AppColorValidators.hexFormat();
-      final validColor = AppColorValue.fromColor(Colors.red);
+      final validator = DSColorValidators.hexFormat();
+      final validColor = DSColorValue.fromColor(Colors.red);
 
       expect(validator(validColor), isNull);
       expect(validator(null), isNull);
     });
 
     test('alphaRange validator works correctly', () {
-      final validator = AppColorValidators.alphaRange(0.5, 1.0);
-      final validColor = AppColorValue(color: Colors.red, alpha: 0.7);
-      final invalidColor = AppColorValue(color: Colors.red, alpha: 0.3);
+      final validator = DSColorValidators.alphaRange(0.5, 1.0);
+      final validColor = DSColorValue(color: Colors.red, alpha: 0.7);
+      final invalidColor = DSColorValue(color: Colors.red, alpha: 0.3);
 
       expect(validator(validColor), isNull);
       expect(validator(invalidColor), isNotNull);
     });
 
     test('notTransparent validator works correctly', () {
-      final validator = AppColorValidators.notTransparent();
-      final transparentColor = AppColorValue(color: Colors.red, alpha: 0.0);
-      final opaqueColor = AppColorValue(color: Colors.red, alpha: 1.0);
+      final validator = DSColorValidators.notTransparent();
+      final transparentColor = DSColorValue(color: Colors.red, alpha: 0.0);
+      final opaqueColor = DSColorValue(color: Colors.red, alpha: 1.0);
 
       expect(validator(transparentColor), isNotNull);
       expect(validator(opaqueColor), isNull);

@@ -4,19 +4,19 @@ import 'package:iautomat_design_system/src/components/product_card/app_product_c
 import 'package:iautomat_design_system/src/components/product_card/app_product_card_config.dart';
 
 void main() {
-  group('AppProductCard Golden Tests', () {
+  group('DSProductCard Golden Tests', () {
     // Configuración común
-    final testPrice = AppProductPrice(
+    final testPrice = DSProductPrice(
       amount: 99.99,
       currency: '\$',
       originalPrice: 129.99,
     );
 
-    final testImage = AppProductImage(
+    final testImage = DSProductImage(
       url: 'https://via.placeholder.com/300',
     );
 
-    final testDiscountChip = AppDiscountChip(
+    final testDiscountChip = DSDiscountChip(
       text: '-23%',
       backgroundColor: Colors.red,
       textColor: Colors.white,
@@ -37,11 +37,11 @@ void main() {
               child: SizedBox(
                 width: 250,
                 height: 350,
-                child: AppProductCard(
+                child: DSProductCard(
                   title: 'iPhone 15 Pro',
                   price: testPrice,
                   image: testImage,
-                  variant: AppProductCardVariant.price,
+                  variant: DSProductCardVariant.price,
                 ),
               ),
             ),
@@ -50,7 +50,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProductCard),
+        find.byType(DSProductCard),
         matchesGoldenFile('goldens/app_product_card_default.png'),
       );
     });
@@ -65,11 +65,11 @@ void main() {
               child: SizedBox(
                 width: 250,
                 height: 350,
-                child: AppProductCard(
+                child: DSProductCard(
                   title: 'iPhone 15 Pro',
                   price: testPrice,
                   image: testImage,
-                  variant: AppProductCardVariant.discount,
+                  variant: DSProductCardVariant.discount,
                   discountChip: testDiscountChip,
                 ),
               ),
@@ -79,20 +79,20 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProductCard),
+        find.byType(DSProductCard),
         matchesGoldenFile('goldens/app_product_card_discount.png'),
       );
     });
 
     // Tests para todos los estados
     final states = [
-      AppProductCardState.hover,
-      AppProductCardState.pressed,
-      AppProductCardState.focus,
-      AppProductCardState.selected,
-      AppProductCardState.disabled,
-      AppProductCardState.loading,
-      AppProductCardState.skeleton,
+      DSProductCardState.hover,
+      DSProductCardState.pressed,
+      DSProductCardState.focus,
+      DSProductCardState.selected,
+      DSProductCardState.disabled,
+      DSProductCardState.loading,
+      DSProductCardState.skeleton,
     ];
 
     for (final state in states) {
@@ -106,15 +106,15 @@ void main() {
                 child: SizedBox(
                   width: 250,
                   height: 350,
-                  child: AppProductCard(
+                  child: DSProductCard(
                     title: 'iPhone 15 Pro',
                     price: testPrice,
                     image: testImage,
                     initialState: state,
-                    variant: AppProductCardVariant.discount,
+                    variant: DSProductCardVariant.discount,
                     discountChip: testDiscountChip,
-                    selected: state == AppProductCardState.selected,
-                    enabled: state != AppProductCardState.disabled,
+                    selected: state == DSProductCardState.selected,
+                    enabled: state != DSProductCardState.disabled,
                   ),
                 ),
               ),
@@ -125,7 +125,7 @@ void main() {
         await tester.pumpAndSettle();
 
         await expectLater(
-          find.byType(AppProductCard),
+          find.byType(DSProductCard),
           matchesGoldenFile('goldens/app_product_card_${state.name}.png'),
         );
       });
@@ -133,10 +133,10 @@ void main() {
 
     // Tests para todos los layouts
     final layouts = [
-      AppProductCardLayout.vertical,
-      AppProductCardLayout.horizontal,
-      AppProductCardLayout.overlay,
-      AppProductCardLayout.compact,
+      DSProductCardLayout.vertical,
+      DSProductCardLayout.horizontal,
+      DSProductCardLayout.overlay,
+      DSProductCardLayout.compact,
     ];
 
     for (final layout in layouts) {
@@ -148,14 +148,14 @@ void main() {
               backgroundColor: Colors.white,
               body: Center(
                 child: SizedBox(
-                  width: layout == AppProductCardLayout.horizontal ? 400 : 250,
-                  height: layout == AppProductCardLayout.compact ? 100 : 350,
-                  child: AppProductCard(
+                  width: layout == DSProductCardLayout.horizontal ? 400 : 250,
+                  height: layout == DSProductCardLayout.compact ? 100 : 350,
+                  child: DSProductCard(
                     title: 'iPhone 15 Pro Max 256GB',
                     price: testPrice,
                     image: testImage,
                     layout: layout,
-                    variant: AppProductCardVariant.discount,
+                    variant: DSProductCardVariant.discount,
                     discountChip: testDiscountChip,
                   ),
                 ),
@@ -165,7 +165,7 @@ void main() {
         );
 
         await expectLater(
-          find.byType(AppProductCard),
+          find.byType(DSProductCard),
           matchesGoldenFile('goldens/app_product_card_layout_${layout.name}.png'),
         );
       });
@@ -181,11 +181,11 @@ void main() {
               child: SizedBox(
                 width: 250,
                 height: 350,
-                child: AppProductCard(
+                child: DSProductCard(
                   title: 'iPhone 15 Pro',
                   price: testPrice,
                   image: testImage,
-                  variant: AppProductCardVariant.discount,
+                  variant: DSProductCardVariant.discount,
                   discountChip: testDiscountChip,
                 ),
               ),
@@ -195,7 +195,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProductCard),
+        find.byType(DSProductCard),
         matchesGoldenFile('goldens/app_product_card_dark.png'),
       );
     });
@@ -210,11 +210,11 @@ void main() {
               child: SizedBox(
                 width: 250,
                 height: 350,
-                child: AppProductCard(
+                child: DSProductCard(
                   title: 'iPhone 15 Pro',
                   price: testPrice,
                   image: testImage,
-                  variant: AppProductCardVariant.discount,
+                  variant: DSProductCardVariant.discount,
                   discountChip: testDiscountChip,
                   additionalInfo: Row(
                     children: [
@@ -237,7 +237,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProductCard),
+        find.byType(DSProductCard),
         matchesGoldenFile('goldens/app_product_card_additional_info.png'),
       );
     });
@@ -252,11 +252,11 @@ void main() {
               child: SizedBox(
                 width: 250,
                 height: 350,
-                child: AppProductCard(
+                child: DSProductCard(
                   title: 'iPhone 15 Pro',
                   price: testPrice,
                   image: testImage,
-                  variant: AppProductCardVariant.discount,
+                  variant: DSProductCardVariant.discount,
                   discountChip: testDiscountChip,
                   badge: Container(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -281,7 +281,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProductCard),
+        find.byType(DSProductCard),
         matchesGoldenFile('goldens/app_product_card_badge.png'),
       );
     });
@@ -298,16 +298,16 @@ void main() {
                 child: SizedBox(
                   width: 250,
                   height: 350,
-                  child: AppProductCard(
+                  child: DSProductCard(
                     title: 'آيفون 15 برو',
-                    price: AppProductPrice(
+                    price: DSProductPrice(
                       amount: 3999,
                       currency: 'ر.س',
                       originalPrice: 4999,
                     ),
                     image: testImage,
-                    variant: AppProductCardVariant.discount,
-                    discountChip: AppDiscountChip(
+                    variant: DSProductCardVariant.discount,
+                    discountChip: DSDiscountChip(
                       text: 'خصم ٢٠٪',
                       backgroundColor: Colors.red,
                       textColor: Colors.white,
@@ -321,7 +321,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProductCard),
+        find.byType(DSProductCard),
         matchesGoldenFile('goldens/app_product_card_rtl.png'),
       );
     });
@@ -340,19 +340,19 @@ void main() {
                 crossAxisSpacing: 16,
                 childAspectRatio: 0.7,
                 children: List.generate(4, (index) {
-                  return AppProductCard(
+                  return DSProductCard(
                     title: 'Product ${index + 1}',
-                    price: AppProductPrice(
+                    price: DSProductPrice(
                       amount: 99.99 + (index * 50),
                       currency: '\$',
                       originalPrice: index % 2 == 0 ? 149.99 : null,
                     ),
                     image: testImage,
                     variant: index % 2 == 0
-                        ? AppProductCardVariant.discount
-                        : AppProductCardVariant.price,
+                        ? DSProductCardVariant.discount
+                        : DSProductCardVariant.price,
                     discountChip: index % 2 == 0
-                        ? AppDiscountChip(text: '-${(index + 1) * 10}%')
+                        ? DSDiscountChip(text: '-${(index + 1) * 10}%')
                         : null,
                   );
                 }),
@@ -378,18 +378,18 @@ void main() {
               child: SizedBox(
                 width: 250,
                 height: 350,
-                child: AppProductCard(
+                child: DSProductCard(
                   title: 'Custom Styled Product',
                   price: testPrice,
                   image: testImage,
-                  variant: AppProductCardVariant.discount,
-                  discountChip: AppDiscountChip(
+                  variant: DSProductCardVariant.discount,
+                  discountChip: DSDiscountChip(
                     text: 'HOT DEAL',
                     backgroundColor: Colors.purple,
                     textColor: Colors.yellow,
                   ),
-                  config: AppProductCardConfig(
-                    colors: AppProductCardColors(
+                  config: DSProductCardConfig(
+                    colors: DSProductCardColors(
                       backgroundColor: Colors.purple[50],
                       borderColor: Colors.purple,
                       priceColor: Colors.purple,
@@ -397,7 +397,7 @@ void main() {
                       discountBackgroundColor: Colors.orange,
                       discountTextColor: Colors.white,
                     ),
-                    spacing: AppProductCardSpacing(
+                    spacing: DSProductCardSpacing(
                       borderRadius: 20,
                       borderWidth: 2,
                       padding: EdgeInsets.all(16),
@@ -411,17 +411,17 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppProductCard),
+        find.byType(DSProductCard),
         matchesGoldenFile('goldens/app_product_card_custom_colors.png'),
       );
     });
 
     testWidgets('different discount positions golden test', (tester) async {
       final positions = [
-        AppDiscountChipPosition.topLeft,
-        AppDiscountChipPosition.topRight,
-        AppDiscountChipPosition.bottomLeft,
-        AppDiscountChipPosition.bottomRight,
+        DSDiscountChipPosition.topLeft,
+        DSDiscountChipPosition.topRight,
+        DSDiscountChipPosition.bottomLeft,
+        DSDiscountChipPosition.bottomRight,
       ];
 
       await tester.pumpWidget(
@@ -439,12 +439,12 @@ void main() {
                       padding: EdgeInsets.symmetric(horizontal: 8),
                       child: AspectRatio(
                         aspectRatio: 0.7,
-                        child: AppProductCard(
+                        child: DSProductCard(
                           title: 'Product',
                           price: testPrice,
                           image: testImage,
-                          variant: AppProductCardVariant.discount,
-                          discountChip: AppDiscountChip(
+                          variant: DSProductCardVariant.discount,
+                          discountChip: DSDiscountChip(
                             text: '-20%',
                             position: position,
                           ),

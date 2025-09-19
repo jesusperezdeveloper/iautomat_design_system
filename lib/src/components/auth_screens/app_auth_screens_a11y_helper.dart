@@ -5,15 +5,15 @@ import 'package:flutter/services.dart';
 
 import 'app_auth_screens_config.dart';
 
-/// Helper para funcionalidades de accesibilidad en AppAuthScreens
+/// Helper para funcionalidades de accesibilidad en DSAuthScreens
 ///
 /// Maneja anuncios de screen reader, navegación por teclado,
 /// y otras características de accesibilidad
-class AppAuthScreensA11yHelper {
-  final AppAuthA11yConfig config;
+class DSAuthScreensA11yHelper {
+  final DSAuthA11yConfig config;
   Timer? _announceTimer;
 
-  AppAuthScreensA11yHelper({
+  DSAuthScreensA11yHelper({
     required this.config,
   });
 
@@ -63,7 +63,7 @@ class AppAuthScreensA11yHelper {
   }
 
   /// Configura navegación por teclado para un campo
-  Map<LogicalKeySet, Intent> getKeyboardShortcuts(AppAuthField field) {
+  Map<LogicalKeySet, Intent> getKeyboardShortcuts(DSAuthField field) {
     if (!config.enabled || !config.enableKeyboardNavigation) {
       return {};
     }
@@ -85,7 +85,7 @@ class AppAuthScreensA11yHelper {
 
     // Shortcuts específicos por tipo de campo
     switch (field.type) {
-      case AppAuthFieldType.password:
+      case DSAuthFieldType.password:
         // Ctrl/Cmd + \ para toggle visibility
         shortcuts[LogicalKeySet(
           LogicalKeyboardKey.control,
@@ -93,7 +93,7 @@ class AppAuthScreensA11yHelper {
         )] = const TogglePasswordVisibilityIntent();
         break;
 
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         // Números para navegación directa
         for (int i = 1; i <= 9; i++) {
           final key = LogicalKeyboardKey(0x00000030 + i); // '1' to '9'
@@ -111,7 +111,7 @@ class AppAuthScreensA11yHelper {
 
   /// Configura acciones de teclado para un campo
   Map<Type, Action<Intent>> getKeyboardActions(
-    AppAuthField field,
+    DSAuthField field,
     VoidCallback? onSubmit,
     VoidCallback? onTogglePasswordVisibility,
     Function(int)? onOtpFieldFocus,
@@ -131,8 +131,8 @@ class AppAuthScreensA11yHelper {
 
     // Toggle password visibility
     if (onTogglePasswordVisibility != null &&
-        (field.type == AppAuthFieldType.password ||
-         field.type == AppAuthFieldType.confirmPassword)) {
+        (field.type == DSAuthFieldType.password ||
+         field.type == DSAuthFieldType.confirmPassword)) {
       actions[TogglePasswordVisibilityIntent] =
           CallbackAction<TogglePasswordVisibilityIntent>(
         onInvoke: (_) => onTogglePasswordVisibility(),
@@ -140,7 +140,7 @@ class AppAuthScreensA11yHelper {
     }
 
     // Navegación OTP
-    if (onOtpFieldFocus != null && field.type == AppAuthFieldType.otp) {
+    if (onOtpFieldFocus != null && field.type == DSAuthFieldType.otp) {
       actions[OtpFieldFocusIntent] = CallbackAction<OtpFieldFocusIntent>(
         onInvoke: (intent) => onOtpFieldFocus(intent.fieldIndex),
       );
@@ -150,7 +150,7 @@ class AppAuthScreensA11yHelper {
   }
 
   /// Genera labels semánticos para un campo
-  String getFieldSemanticLabel(AppAuthField field) {
+  String getFieldSemanticLabel(DSAuthField field) {
     if (!config.enabled || !config.enableSemanticLabels) {
       return field.label;
     }
@@ -167,13 +167,13 @@ class AppAuthScreensA11yHelper {
 
     // Tipo específico
     switch (field.type) {
-      case AppAuthFieldType.password:
+      case DSAuthFieldType.password:
         buffer.write(', campo de contraseña');
         break;
-      case AppAuthFieldType.email:
+      case DSAuthFieldType.email:
         buffer.write(', campo de email');
         break;
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         buffer.write(', campo de código de verificación');
         break;
       default:
@@ -193,7 +193,7 @@ class AppAuthScreensA11yHelper {
   }
 
   /// Genera hints semánticos para un campo
-  String? getFieldSemanticHint(AppAuthField field) {
+  String? getFieldSemanticHint(DSAuthField field) {
     if (!config.enabled || !config.enableHints) {
       return field.helperText;
     }
@@ -207,13 +207,13 @@ class AppAuthScreensA11yHelper {
 
     // Hints específicos por tipo
     switch (field.type) {
-      case AppAuthFieldType.password:
+      case DSAuthFieldType.password:
         hints.add('Presiona Control + barra invertida para mostrar u ocultar la contraseña');
         break;
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         hints.add('Ingresa ${field.maxLength ?? 6} dígitos del código de verificación');
         break;
-      case AppAuthFieldType.email:
+      case DSAuthFieldType.email:
         hints.add('Formato: ejemplo@correo.com');
         break;
       default:
@@ -229,22 +229,22 @@ class AppAuthScreensA11yHelper {
   }
 
   /// Genera valor semántico para un campo
-  String getFieldSemanticValue(AppAuthField field, String? value) {
+  String getFieldSemanticValue(DSAuthField field, String? value) {
     if (!config.enabled || value == null || value.isEmpty) {
       return '';
     }
 
     switch (field.type) {
-      case AppAuthFieldType.password:
-      case AppAuthFieldType.confirmPassword:
+      case DSAuthFieldType.password:
+      case DSAuthFieldType.confirmPassword:
         // No anunciar contraseñas por seguridad
         return 'contraseña ingresada';
 
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         // Anunciar cantidad de dígitos
         return '${value.length} de ${field.maxLength ?? 6} dígitos ingresados';
 
-      case AppAuthFieldType.email:
+      case DSAuthFieldType.email:
         // Validar formato básico para feedback
         if (value.contains('@')) {
           return 'email ingresado';
@@ -298,7 +298,7 @@ class AppAuthScreensA11yHelper {
   /// Construye wrapper semántico para campos de texto
   Widget buildSemanticTextField({
     required Widget child,
-    required AppAuthField field,
+    required DSAuthField field,
     String? value,
     String? errorMessage,
   }) {
@@ -310,8 +310,8 @@ class AppAuthScreensA11yHelper {
       textField: true,
       enabled: field.enabled,
       readOnly: field.readonly,
-      obscured: field.type == AppAuthFieldType.password ||
-                field.type == AppAuthFieldType.confirmPassword,
+      obscured: field.type == DSAuthFieldType.password ||
+                field.type == DSAuthFieldType.confirmPassword,
       label: getFieldSemanticLabel(field),
       hint: getFieldSemanticHint(field),
       value: getFieldSemanticValue(field, value),
@@ -325,7 +325,7 @@ class AppAuthScreensA11yHelper {
   /// Construye wrapper semántico para formularios
   Widget buildSemanticForm({
     required Widget child,
-    required AppAuthVariant variant,
+    required DSAuthVariant variant,
   }) {
     if (!config.enabled) {
       return child;
@@ -333,16 +333,16 @@ class AppAuthScreensA11yHelper {
 
     String label;
     switch (variant) {
-      case AppAuthVariant.signIn:
+      case DSAuthVariant.signIn:
         label = config.signInSemanticLabel;
         break;
-      case AppAuthVariant.signUp:
+      case DSAuthVariant.signUp:
         label = config.signUpSemanticLabel;
         break;
-      case AppAuthVariant.otp:
+      case DSAuthVariant.otp:
         label = config.otpSemanticLabel;
         break;
-      case AppAuthVariant.sso:
+      case DSAuthVariant.sso:
         label = config.ssoSemanticLabel;
         break;
     }
@@ -394,43 +394,43 @@ class CancelIntent extends Intent {
 
 // Extensiones auxiliares
 
-extension AppAuthFieldA11yExtensions on AppAuthField {
+extension DSAuthFieldA11yExtensions on DSAuthField {
   /// Obtiene prioridad de accesibilidad según importancia
   int get accessibilityPriority {
     switch (importance) {
-      case AppAuthFieldImportance.critical:
+      case DSAuthFieldImportance.critical:
         return 100;
-      case AppAuthFieldImportance.high:
+      case DSAuthFieldImportance.high:
         return 75;
-      case AppAuthFieldImportance.normal:
+      case DSAuthFieldImportance.normal:
         return 50;
-      case AppAuthFieldImportance.low:
+      case DSAuthFieldImportance.low:
         return 25;
     }
   }
 
   /// Verifica si el campo necesita anuncios especiales
   bool get needsSpecialAnnouncements {
-    return type == AppAuthFieldType.otp ||
-           type == AppAuthFieldType.password ||
-           importance == AppAuthFieldImportance.critical;
+    return type == DSAuthFieldType.otp ||
+           type == DSAuthFieldType.password ||
+           importance == DSAuthFieldImportance.critical;
   }
 
   /// Obtiene el rol semántico del campo
   String get semanticRole {
     switch (type) {
-      case AppAuthFieldType.password:
-      case AppAuthFieldType.confirmPassword:
+      case DSAuthFieldType.password:
+      case DSAuthFieldType.confirmPassword:
         return 'secure text field';
-      case AppAuthFieldType.email:
+      case DSAuthFieldType.email:
         return 'email field';
-      case AppAuthFieldType.phone:
+      case DSAuthFieldType.phone:
         return 'phone field';
-      case AppAuthFieldType.otp:
+      case DSAuthFieldType.otp:
         return 'verification code field';
-      case AppAuthFieldType.checkbox:
-      case AppAuthFieldType.terms:
-      case AppAuthFieldType.privacy:
+      case DSAuthFieldType.checkbox:
+      case DSAuthFieldType.terms:
+      case DSAuthFieldType.privacy:
         return 'checkbox';
       default:
         return 'text field';

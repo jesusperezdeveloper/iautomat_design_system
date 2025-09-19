@@ -4,25 +4,25 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppSkeleton', () {
+  group('DSSkeleton', () {
     testWidgets('renders correctly with default configuration', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppSkeleton(),
+            body: DSSkeleton(),
           ),
         ),
       );
 
-      expect(find.byType(AppSkeleton), findsOneWidget);
+      expect(find.byType(DSSkeleton), findsOneWidget);
     });
 
     testWidgets('displays correct shape based on configuration', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppSkeleton(
-              shape: AppSkeletonShape.circle,
+            body: DSSkeleton(
+              shape: DSSkeletonShape.circle,
               width: 50,
               height: 50,
             ),
@@ -30,7 +30,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppSkeleton), findsOneWidget);
+      expect(find.byType(DSSkeleton), findsOneWidget);
     });
 
     testWidgets('responds to tap when interactive', (tester) async {
@@ -39,7 +39,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSkeleton(
+            body: DSSkeleton(
               interactive: true,
               onTap: () {
                 tapped = true;
@@ -49,7 +49,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppSkeleton));
+      await tester.tap(find.byType(DSSkeleton));
       await tester.pump();
 
       expect(tapped, isTrue);
@@ -61,7 +61,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSkeleton(
+            body: DSSkeleton(
               interactive: false,
               onTap: () {
                 tapped = true;
@@ -71,7 +71,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppSkeleton));
+      await tester.tap(find.byType(DSSkeleton));
       await tester.pump();
 
       expect(tapped, isFalse);
@@ -81,32 +81,32 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppSkeleton(
-              config: AppSkeletonConfig(
-                state: AppSkeletonState.loading,
+            body: DSSkeleton(
+              config: DSSkeletonConfig(
+                state: DSSkeletonState.loading,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppSkeleton), findsOneWidget);
+      expect(find.byType(DSSkeleton), findsOneWidget);
     });
 
     testWidgets('displays skeleton state correctly', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppSkeleton(
-              config: AppSkeletonConfig(
-                state: AppSkeletonState.skeleton,
+            body: DSSkeleton(
+              config: DSSkeletonConfig(
+                state: DSSkeletonState.skeleton,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppSkeleton), findsOneWidget);
+      expect(find.byType(DSSkeleton), findsOneWidget);
     });
 
     testWidgets('handles long press for interactive skeleton', (tester) async {
@@ -115,7 +115,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSkeleton(
+            body: DSSkeleton(
               interactive: true,
               onLongPress: () {
                 longPressed = true;
@@ -125,19 +125,19 @@ void main() {
         ),
       );
 
-      await tester.longPress(find.byType(AppSkeleton));
+      await tester.longPress(find.byType(DSSkeleton));
       await tester.pump();
 
       expect(longPressed, isTrue);
     });
 
     testWidgets('calls onStateChanged when state changes', (tester) async {
-      AppSkeletonState? capturedState;
+      DSSkeletonState? capturedState;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSkeleton(
+            body: DSSkeleton(
               interactive: true,
               onStateChanged: (state) => capturedState = state,
             ),
@@ -150,25 +150,25 @@ void main() {
       await gesture.addPointer(location: Offset.zero);
       addTearDown(gesture.removePointer);
       await tester.pump();
-      await gesture.moveTo(tester.getCenter(find.byType(AppSkeleton)));
+      await gesture.moveTo(tester.getCenter(find.byType(DSSkeleton)));
       await tester.pump();
 
-      expect(capturedState, equals(AppSkeletonState.hover));
+      expect(capturedState, equals(DSSkeletonState.hover));
     });
 
     testWidgets('shows different shapes correctly', (tester) async {
-      for (final shape in AppSkeletonShape.values) {
+      for (final shape in DSSkeletonShape.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppSkeleton(
+              body: DSSkeleton(
                 shape: shape,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppSkeleton), findsOneWidget);
+        expect(find.byType(DSSkeleton), findsOneWidget);
         await tester.pump();
       }
     });
@@ -177,7 +177,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppSkeleton(
+            body: DSSkeleton(
               width: 200,
               height: 100,
             ),
@@ -185,16 +185,16 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppSkeleton), findsOneWidget);
+      expect(find.byType(DSSkeleton), findsOneWidget);
     });
 
     testWidgets('supports semantic labels correctly', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppSkeleton(
-              config: AppSkeletonConfig(
-                accessibility: AppSkeletonAccessibility(
+            body: DSSkeleton(
+              config: DSSkeletonConfig(
+                accessibility: DSSkeletonAccessibility(
                   enabled: true,
                   customLabel: 'Cargando contenido personalizado',
                 ),
@@ -204,53 +204,53 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppSkeleton), findsOneWidget);
+      expect(find.byType(DSSkeleton), findsOneWidget);
     });
 
-    group('AppSkeletonConfig', () {
+    group('DSSkeletonConfig', () {
       test('has correct default values', () {
-        const config = AppSkeletonConfig();
+        const config = DSSkeletonConfig();
 
-        expect(config.variant, equals(AppSkeletonVariant.universal));
-        expect(config.state, equals(AppSkeletonState.skeleton));
+        expect(config.variant, equals(DSSkeletonVariant.universal));
+        expect(config.state, equals(DSSkeletonState.skeleton));
       });
 
       test('copyWith works correctly', () {
-        const original = AppSkeletonConfig(
-          variant: AppSkeletonVariant.universal,
-          state: AppSkeletonState.skeleton,
+        const original = DSSkeletonConfig(
+          variant: DSSkeletonVariant.universal,
+          state: DSSkeletonState.skeleton,
         );
 
         final updated = original.copyWith(
-          state: AppSkeletonState.loading,
+          state: DSSkeletonState.loading,
         );
 
-        expect(updated.state, equals(AppSkeletonState.loading));
+        expect(updated.state, equals(DSSkeletonState.loading));
         expect(updated.variant, equals(original.variant));
       });
 
       test('validation works correctly', () {
-        const validConfig = AppSkeletonConfig(
-          spacing: AppSkeletonSpacing(
+        const validConfig = DSSkeletonConfig(
+          spacing: DSSkeletonSpacing(
             width: 100,
             height: 50,
             borderRadius: 8,
           ),
-          animations: AppSkeletonAnimations(
+          animations: DSSkeletonAnimations(
             duration: Duration(milliseconds: 1000),
             shimmerSpeed: 1.5,
           ),
         );
 
-        const invalidConfig1 = AppSkeletonConfig(
-          spacing: AppSkeletonSpacing(
+        const invalidConfig1 = DSSkeletonConfig(
+          spacing: DSSkeletonSpacing(
             width: -10, // Invalid
             height: 50,
           ),
         );
 
-        const invalidConfig2 = AppSkeletonConfig(
-          animations: AppSkeletonAnimations(
+        const invalidConfig2 = DSSkeletonConfig(
+          animations: DSSkeletonAnimations(
             duration: Duration(milliseconds: -100), // Invalid
           ),
         );
@@ -261,25 +261,25 @@ void main() {
       });
     });
 
-    group('AppSkeletonColors', () {
+    group('DSSkeletonColors', () {
       test('has correct default values', () {
-        const colors = AppSkeletonColors();
+        const colors = DSSkeletonColors();
 
         expect(colors.opacity, equals(0.8));
         expect(colors.shimmerOpacity, equals(0.3));
       });
 
       test('validation works correctly', () {
-        const validColors = AppSkeletonColors(
+        const validColors = DSSkeletonColors(
           opacity: 0.5,
           shimmerOpacity: 0.4,
         );
 
-        const invalidColors1 = AppSkeletonColors(
+        const invalidColors1 = DSSkeletonColors(
           opacity: 1.5, // Invalid
         );
 
-        const invalidColors2 = AppSkeletonColors(
+        const invalidColors2 = DSSkeletonColors(
           shimmerOpacity: -0.1, // Invalid
         );
 
@@ -289,9 +289,9 @@ void main() {
       });
     });
 
-    group('AppSkeletonSpacing', () {
+    group('DSSkeletonSpacing', () {
       test('has correct default values', () {
-        const spacing = AppSkeletonSpacing();
+        const spacing = DSSkeletonSpacing();
 
         expect(spacing.borderRadius, equals(8.0));
         expect(spacing.padding, equals(EdgeInsets.zero));
@@ -300,18 +300,18 @@ void main() {
       });
 
       test('validation works correctly', () {
-        const validSpacing = AppSkeletonSpacing(
+        const validSpacing = DSSkeletonSpacing(
           width: 100,
           height: 50,
           borderRadius: 8,
           elevation: 2,
         );
 
-        const invalidSpacing1 = AppSkeletonSpacing(
+        const invalidSpacing1 = DSSkeletonSpacing(
           borderRadius: -5, // Invalid
         );
 
-        const invalidSpacing2 = AppSkeletonSpacing(
+        const invalidSpacing2 = DSSkeletonSpacing(
           elevation: -1, // Invalid
         );
 
@@ -321,9 +321,9 @@ void main() {
       });
     });
 
-    group('AppSkeletonAnimations', () {
+    group('DSSkeletonAnimations', () {
       test('has correct default values', () {
-        const animations = AppSkeletonAnimations();
+        const animations = DSSkeletonAnimations();
 
         expect(animations.duration, equals(const Duration(milliseconds: 1200)));
         expect(animations.fadeInDuration, equals(const Duration(milliseconds: 300)));
@@ -335,16 +335,16 @@ void main() {
       });
 
       test('validation works correctly', () {
-        const validAnimations = AppSkeletonAnimations(
+        const validAnimations = DSSkeletonAnimations(
           duration: Duration(milliseconds: 1000),
           shimmerSpeed: 1.2,
         );
 
-        const invalidAnimations1 = AppSkeletonAnimations(
+        const invalidAnimations1 = DSSkeletonAnimations(
           duration: Duration(milliseconds: -100), // Invalid
         );
 
-        const invalidAnimations2 = AppSkeletonAnimations(
+        const invalidAnimations2 = DSSkeletonAnimations(
           shimmerSpeed: -0.5, // Invalid
         );
 
@@ -354,9 +354,9 @@ void main() {
       });
     });
 
-    group('AppSkeletonBehavior', () {
+    group('DSSkeletonBehavior', () {
       test('has correct default values', () {
-        const behavior = AppSkeletonBehavior();
+        const behavior = DSSkeletonBehavior();
 
         expect(behavior.animateOnLoad, isTrue);
         expect(behavior.hideOnContent, isFalse);
@@ -367,11 +367,11 @@ void main() {
       });
 
       test('validation works correctly', () {
-        const validBehavior = AppSkeletonBehavior(
+        const validBehavior = DSSkeletonBehavior(
           maxDuration: Duration(seconds: 5),
         );
 
-        const invalidBehavior = AppSkeletonBehavior(
+        const invalidBehavior = DSSkeletonBehavior(
           maxDuration: Duration(milliseconds: -100), // Invalid
         );
 
@@ -380,26 +380,26 @@ void main() {
       });
     });
 
-    group('AppSkeletonDefaults', () {
+    group('DSSkeletonDefaults', () {
       test('provides correct shape-specific configs', () {
-        final circleConfig = AppSkeletonDefaults.configForShape(AppSkeletonShape.circle);
+        final circleConfig = DSSkeletonDefaults.configForShape(DSSkeletonShape.circle);
         expect(circleConfig.spacing?.width, equals(40));
         expect(circleConfig.spacing?.height, equals(40));
         expect(circleConfig.spacing?.borderRadius, equals(20));
 
-        final buttonConfig = AppSkeletonDefaults.configForShape(AppSkeletonShape.button);
+        final buttonConfig = DSSkeletonDefaults.configForShape(DSSkeletonShape.button);
         expect(buttonConfig.spacing?.width, equals(120));
         expect(buttonConfig.spacing?.height, equals(36));
         expect(buttonConfig.spacing?.borderRadius, equals(8));
 
-        final textConfig = AppSkeletonDefaults.configForShape(AppSkeletonShape.text);
+        final textConfig = DSSkeletonDefaults.configForShape(DSSkeletonShape.text);
         expect(textConfig.spacing?.width, equals(double.infinity));
         expect(textConfig.spacing?.height, equals(16));
         expect(textConfig.spacing?.borderRadius, equals(4));
       });
 
       test('generates text lines correctly', () {
-        final textLines = AppSkeletonDefaults.textLines(count: 3, lastLineWidthFactor: 0.7);
+        final textLines = DSSkeletonDefaults.textLines(count: 3, lastLineWidthFactor: 0.7);
         expect(textLines.length, equals(3));
 
         final lastLine = textLines.last;
@@ -408,34 +408,34 @@ void main() {
     });
   });
 
-  group('AppSkeletonGroup', () {
+  group('DSSkeletonGroup', () {
     testWidgets('renders children correctly', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppSkeletonGroup(
+            body: DSSkeletonGroup(
               children: [
-                AppSkeleton(width: 50, height: 50),
-                AppSkeleton(width: 100, height: 20),
+                DSSkeleton(width: 50, height: 50),
+                DSSkeleton(width: 100, height: 20),
               ],
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppSkeletonGroup), findsOneWidget);
-      expect(find.byType(AppSkeleton), findsNWidgets(2));
+      expect(find.byType(DSSkeletonGroup), findsOneWidget);
+      expect(find.byType(DSSkeleton), findsNWidgets(2));
     });
 
     testWidgets('arranges children horizontally when specified', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppSkeletonGroup(
+            body: DSSkeletonGroup(
               direction: Axis.horizontal,
               children: [
-                AppSkeleton(width: 50, height: 50),
-                AppSkeleton(width: 100, height: 20),
+                DSSkeleton(width: 50, height: 50),
+                DSSkeleton(width: 100, height: 20),
               ],
             ),
           ),
@@ -443,16 +443,16 @@ void main() {
       );
 
       expect(find.byType(Row), findsOneWidget);
-      expect(find.byType(AppSkeleton), findsNWidgets(2));
+      expect(find.byType(DSSkeleton), findsNWidgets(2));
     });
   });
 
-  group('AppSkeletonText', () {
+  group('DSSkeletonText', () {
     testWidgets('renders multiple text lines correctly', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppSkeletonText(
+            body: DSSkeletonText(
               lines: 4,
               lastLineWidthFactor: 0.6,
             ),
@@ -460,17 +460,17 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppSkeletonText), findsOneWidget);
-      expect(find.byType(AppSkeleton), findsNWidgets(4));
+      expect(find.byType(DSSkeletonText), findsOneWidget);
+      expect(find.byType(DSSkeleton), findsNWidgets(4));
     });
   });
 
-  group('AppSkeletonList', () {
+  group('DSSkeletonList', () {
     testWidgets('renders list items correctly', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppSkeletonList(
+            body: DSSkeletonList(
               itemCount: 3,
               itemHeight: 60,
             ),
@@ -478,8 +478,8 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppSkeletonList), findsOneWidget);
-      expect(find.byType(AppSkeleton), findsNWidgets(3));
+      expect(find.byType(DSSkeletonList), findsOneWidget);
+      expect(find.byType(DSSkeleton), findsNWidgets(3));
     });
   });
 }

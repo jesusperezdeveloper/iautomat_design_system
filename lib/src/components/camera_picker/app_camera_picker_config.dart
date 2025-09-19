@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_camera_picker_config.freezed.dart';
 
 /// Fuentes disponibles para seleccionar imágenes
-enum AppCameraPickerSource {
+enum DSCameraPickerSource {
   /// Solo cámara
   camera,
   /// Solo galería/archivos
@@ -14,7 +14,7 @@ enum AppCameraPickerSource {
 }
 
 /// Variantes del picker adaptadas por plataforma
-enum AppCameraPickerVariant {
+enum DSCameraPickerVariant {
   /// Adaptación automática según la plataforma
   platform,
   /// Estilo específico de iOS (action sheet)
@@ -25,8 +25,8 @@ enum AppCameraPickerVariant {
   web,
 }
 
-/// Estados del componente AppCameraPicker
-enum AppCameraPickerState {
+/// Estados del componente DSCameraPicker
+enum DSCameraPickerState {
   /// Estado normal por defecto
   defaultState,
   /// Estado cuando el mouse está encima (hover)
@@ -46,7 +46,7 @@ enum AppCameraPickerState {
 }
 
 /// Tipos de archivos permitidos
-enum AppCameraPickerFileType {
+enum DSCameraPickerFileType {
   /// Solo imágenes
   image,
   /// Solo videos
@@ -58,7 +58,7 @@ enum AppCameraPickerFileType {
 }
 
 /// Calidad de imagen/video
-enum AppCameraPickerQuality {
+enum DSCameraPickerQuality {
   /// Baja calidad (más rápido, menos espacio)
   low,
   /// Calidad media (balance)
@@ -69,10 +69,10 @@ enum AppCameraPickerQuality {
   max,
 }
 
-/// Configuración de colores para AppCameraPicker
+/// Configuración de colores para DSCameraPicker
 @freezed
-class AppCameraPickerColors with _$AppCameraPickerColors {
-  const factory AppCameraPickerColors({
+class DSCameraPickerColors with _$DSCameraPickerColors {
+  const factory DSCameraPickerColors({
     /// Color de fondo principal
     Color? backgroundColor,
     /// Color de fondo cuando está hover
@@ -102,10 +102,10 @@ class AppCameraPickerColors with _$AppCameraPickerColors {
   }) = _AppCameraPickerColors;
 }
 
-/// Configuración de espaciado para AppCameraPicker
+/// Configuración de espaciado para DSCameraPicker
 @freezed
-class AppCameraPickerSpacing with _$AppCameraPickerSpacing {
-  const factory AppCameraPickerSpacing({
+class DSCameraPickerSpacing with _$DSCameraPickerSpacing {
+  const factory DSCameraPickerSpacing({
     /// Padding interno
     @Default(EdgeInsets.all(16.0)) EdgeInsets padding,
     /// Margen externo
@@ -123,10 +123,10 @@ class AppCameraPickerSpacing with _$AppCameraPickerSpacing {
   }) = _AppCameraPickerSpacing;
 }
 
-/// Configuración de elevación para AppCameraPicker
+/// Configuración de elevación para DSCameraPicker
 @freezed
-class AppCameraPickerElevation with _$AppCameraPickerElevation {
-  const factory AppCameraPickerElevation({
+class DSCameraPickerElevation with _$DSCameraPickerElevation {
+  const factory DSCameraPickerElevation({
     /// Elevación por defecto
     @Default(2.0) double defaultElevation,
     /// Elevación en hover
@@ -138,10 +138,10 @@ class AppCameraPickerElevation with _$AppCameraPickerElevation {
   }) = _AppCameraPickerElevation;
 }
 
-/// Configuración de comportamiento para AppCameraPicker
+/// Configuración de comportamiento para DSCameraPicker
 @freezed
-class AppCameraPickerBehavior with _$AppCameraPickerBehavior {
-  const factory AppCameraPickerBehavior({
+class DSCameraPickerBehavior with _$DSCameraPickerBehavior {
+  const factory DSCameraPickerBehavior({
     /// Permitir selección múltiple
     @Default(false) bool allowMultiple,
     /// Máximo número de archivos seleccionables
@@ -163,10 +163,10 @@ class AppCameraPickerBehavior with _$AppCameraPickerBehavior {
   }) = _AppCameraPickerBehavior;
 }
 
-/// Configuración de animaciones para AppCameraPicker
+/// Configuración de animaciones para DSCameraPicker
 @freezed
-class AppCameraPickerAnimation with _$AppCameraPickerAnimation {
-  const factory AppCameraPickerAnimation({
+class DSCameraPickerAnimation with _$DSCameraPickerAnimation {
+  const factory DSCameraPickerAnimation({
     /// Duración de animaciones de estado
     @Default(Duration(milliseconds: 200)) Duration stateDuration,
     /// Duración de animación de aparición
@@ -184,10 +184,10 @@ class AppCameraPickerAnimation with _$AppCameraPickerAnimation {
   }) = _AppCameraPickerAnimation;
 }
 
-/// Configuración de accesibilidad para AppCameraPicker
+/// Configuración de accesibilidad para DSCameraPicker
 @freezed
-class AppCameraPickerA11yConfig with _$AppCameraPickerA11yConfig {
-  const factory AppCameraPickerA11yConfig({
+class DSCameraPickerA11yConfig with _$DSCameraPickerA11yConfig {
+  const factory DSCameraPickerA11yConfig({
     /// Habilitar funciones de accesibilidad
     @Default(true) bool enabled,
     /// Texto de semántica principal
@@ -208,13 +208,13 @@ class AppCameraPickerA11yConfig with _$AppCameraPickerA11yConfig {
     @Default(true) bool announceStateChanges,
     /// Soporte para lectores de pantalla
     @Default(true) bool screenReaderSupport,
-  }) = _AppCameraPickerA11yConfig;
+  }) = _DSCameraPickerA11yConfig;
 }
 
 /// Configuración específica de plataforma
 @freezed
-class AppCameraPickerPlatformConfig with _$AppCameraPickerPlatformConfig {
-  const factory AppCameraPickerPlatformConfig({
+class DSCameraPickerPlatformConfig with _$DSCameraPickerPlatformConfig {
+  const factory DSCameraPickerPlatformConfig({
     /// Mostrar opciones como action sheet en iOS
     @Default(true) bool iosUseActionSheet,
     /// Mostrar opciones como bottom sheet en Android
@@ -227,13 +227,13 @@ class AppCameraPickerPlatformConfig with _$AppCameraPickerPlatformConfig {
     @Default(true) bool showPermissionRationale,
     /// Extensiones de archivo permitidas (web)
     @Default(['jpg', 'jpeg', 'png', 'gif', 'mp4', 'mov']) List<String> allowedExtensions,
-  }) = _AppCameraPickerPlatformConfig;
+  }) = _DSCameraPickerPlatformConfig;
 }
 
 /// Datos de un archivo seleccionado
 @freezed
-class AppCameraPickerFile with _$AppCameraPickerFile {
-  const factory AppCameraPickerFile({
+class DSCameraPickerFile with _$DSCameraPickerFile {
+  const factory DSCameraPickerFile({
     /// Nombre del archivo
     required String name,
     /// Ruta o URI del archivo
@@ -256,7 +256,7 @@ class AppCameraPickerFile with _$AppCameraPickerFile {
     Map<String, dynamic>? metadata,
   }) = _AppCameraPickerFile;
 
-  const AppCameraPickerFile._();
+  const DSCameraPickerFile._();
 
   /// Si es una imagen
   bool get isImage => mimeType.startsWith('image/');
@@ -281,34 +281,34 @@ class AppCameraPickerFile with _$AppCameraPickerFile {
   }
 }
 
-/// Configuración principal del AppCameraPicker
+/// Configuración principal del DSCameraPicker
 @freezed
-class AppCameraPickerConfig with _$AppCameraPickerConfig {
-  const factory AppCameraPickerConfig({
+class DSCameraPickerConfig with _$DSCameraPickerConfig {
+  const factory DSCameraPickerConfig({
     /// Variante del picker
-    @Default(AppCameraPickerVariant.platform) AppCameraPickerVariant variant,
+    @Default(DSCameraPickerVariant.platform) DSCameraPickerVariant variant,
     /// Estado actual del componente
-    @Default(AppCameraPickerState.defaultState) AppCameraPickerState state,
+    @Default(DSCameraPickerState.defaultState) DSCameraPickerState state,
     /// Fuente de selección
-    @Default(AppCameraPickerSource.both) AppCameraPickerSource source,
+    @Default(DSCameraPickerSource.both) DSCameraPickerSource source,
     /// Tipo de archivos permitidos
-    @Default(AppCameraPickerFileType.image) AppCameraPickerFileType fileType,
+    @Default(DSCameraPickerFileType.image) DSCameraPickerFileType fileType,
     /// Calidad de captura/selección
-    @Default(AppCameraPickerQuality.medium) AppCameraPickerQuality quality,
+    @Default(DSCameraPickerQuality.medium) DSCameraPickerQuality quality,
     /// Configuración de colores
-    AppCameraPickerColors? colors,
+    DSCameraPickerColors? colors,
     /// Configuración de espaciado
-    AppCameraPickerSpacing? spacing,
+    DSCameraPickerSpacing? spacing,
     /// Configuración de elevación
-    AppCameraPickerElevation? elevation,
+    DSCameraPickerElevation? elevation,
     /// Configuración de comportamiento
-    AppCameraPickerBehavior? behavior,
+    DSCameraPickerBehavior? behavior,
     /// Configuración de animaciones
-    AppCameraPickerAnimation? animation,
+    DSCameraPickerAnimation? animation,
     /// Configuración de accesibilidad
-    AppCameraPickerA11yConfig? a11yConfig,
+    DSCameraPickerA11yConfig? a11yConfig,
     /// Configuración específica de plataforma
-    AppCameraPickerPlatformConfig? platformConfig,
+    DSCameraPickerPlatformConfig? platformConfig,
     /// Texto del botón principal
     String? buttonText,
     /// Ícono del botón principal
@@ -316,23 +316,23 @@ class AppCameraPickerConfig with _$AppCameraPickerConfig {
     /// Si está habilitado
     @Default(true) bool enabled,
     /// Callbacks
-    ValueChanged<List<AppCameraPickerFile>>? onPicked,
+    ValueChanged<List<DSCameraPickerFile>>? onPicked,
     ValueChanged<String>? onError,
     VoidCallback? onPermissionDenied,
     VoidCallback? onCancelled,
-  }) = _AppCameraPickerConfig;
+  }) = _DSCameraPickerConfig;
 }
 
 /// Extensiones para los enums
-extension AppCameraPickerSourceExtension on AppCameraPickerSource {
+extension DSCameraPickerSourceExtension on DSCameraPickerSource {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCameraPickerSource.camera:
+      case DSCameraPickerSource.camera:
         return 'Cámara';
-      case AppCameraPickerSource.gallery:
+      case DSCameraPickerSource.gallery:
         return 'Galería';
-      case AppCameraPickerSource.both:
+      case DSCameraPickerSource.both:
         return 'Cámara y Galería';
     }
   }
@@ -340,51 +340,51 @@ extension AppCameraPickerSourceExtension on AppCameraPickerSource {
   /// Ícono asociado
   IconData get icon {
     switch (this) {
-      case AppCameraPickerSource.camera:
+      case DSCameraPickerSource.camera:
         return Icons.camera_alt;
-      case AppCameraPickerSource.gallery:
+      case DSCameraPickerSource.gallery:
         return Icons.photo_library;
-      case AppCameraPickerSource.both:
+      case DSCameraPickerSource.both:
         return Icons.add_a_photo;
     }
   }
 }
 
-extension AppCameraPickerVariantExtension on AppCameraPickerVariant {
+extension DSCameraPickerVariantExtension on DSCameraPickerVariant {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCameraPickerVariant.platform:
+      case DSCameraPickerVariant.platform:
         return 'Plataforma';
-      case AppCameraPickerVariant.ios:
+      case DSCameraPickerVariant.ios:
         return 'iOS';
-      case AppCameraPickerVariant.android:
+      case DSCameraPickerVariant.android:
         return 'Android';
-      case AppCameraPickerVariant.web:
+      case DSCameraPickerVariant.web:
         return 'Web';
     }
   }
 }
 
-extension AppCameraPickerStateExtension on AppCameraPickerState {
+extension DSCameraPickerStateExtension on DSCameraPickerState {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCameraPickerState.defaultState:
+      case DSCameraPickerState.defaultState:
         return 'Normal';
-      case AppCameraPickerState.hover:
+      case DSCameraPickerState.hover:
         return 'Hover';
-      case AppCameraPickerState.pressed:
+      case DSCameraPickerState.pressed:
         return 'Presionado';
-      case AppCameraPickerState.focus:
+      case DSCameraPickerState.focus:
         return 'Enfocado';
-      case AppCameraPickerState.selected:
+      case DSCameraPickerState.selected:
         return 'Seleccionado';
-      case AppCameraPickerState.disabled:
+      case DSCameraPickerState.disabled:
         return 'Deshabilitado';
-      case AppCameraPickerState.loading:
+      case DSCameraPickerState.loading:
         return 'Cargando';
-      case AppCameraPickerState.skeleton:
+      case DSCameraPickerState.skeleton:
         return 'Skeleton';
     }
   }
@@ -392,9 +392,9 @@ extension AppCameraPickerStateExtension on AppCameraPickerState {
   /// Si puede interactuar
   bool get canInteract {
     switch (this) {
-      case AppCameraPickerState.disabled:
-      case AppCameraPickerState.loading:
-      case AppCameraPickerState.skeleton:
+      case DSCameraPickerState.disabled:
+      case DSCameraPickerState.loading:
+      case DSCameraPickerState.skeleton:
         return false;
       default:
         return true;
@@ -402,17 +402,17 @@ extension AppCameraPickerStateExtension on AppCameraPickerState {
   }
 }
 
-extension AppCameraPickerFileTypeExtension on AppCameraPickerFileType {
+extension DSCameraPickerFileTypeExtension on DSCameraPickerFileType {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCameraPickerFileType.image:
+      case DSCameraPickerFileType.image:
         return 'Imágenes';
-      case AppCameraPickerFileType.video:
+      case DSCameraPickerFileType.video:
         return 'Videos';
-      case AppCameraPickerFileType.media:
+      case DSCameraPickerFileType.media:
         return 'Multimedia';
-      case AppCameraPickerFileType.any:
+      case DSCameraPickerFileType.any:
         return 'Archivos';
     }
   }
@@ -420,32 +420,32 @@ extension AppCameraPickerFileTypeExtension on AppCameraPickerFileType {
   /// Extensiones MIME permitidas
   List<String> get allowedMimeTypes {
     switch (this) {
-      case AppCameraPickerFileType.image:
+      case DSCameraPickerFileType.image:
         return ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-      case AppCameraPickerFileType.video:
+      case DSCameraPickerFileType.video:
         return ['video/mp4', 'video/mov', 'video/avi', 'video/mkv'];
-      case AppCameraPickerFileType.media:
+      case DSCameraPickerFileType.media:
         return [
           'image/jpeg', 'image/png', 'image/gif', 'image/webp',
           'video/mp4', 'video/mov', 'video/avi', 'video/mkv'
         ];
-      case AppCameraPickerFileType.any:
+      case DSCameraPickerFileType.any:
         return ['*/*'];
     }
   }
 }
 
-extension AppCameraPickerQualityExtension on AppCameraPickerQuality {
+extension DSCameraPickerQualityExtension on DSCameraPickerQuality {
   /// Nombre para mostrar
   String get displayName {
     switch (this) {
-      case AppCameraPickerQuality.low:
+      case DSCameraPickerQuality.low:
         return 'Baja';
-      case AppCameraPickerQuality.medium:
+      case DSCameraPickerQuality.medium:
         return 'Media';
-      case AppCameraPickerQuality.high:
+      case DSCameraPickerQuality.high:
         return 'Alta';
-      case AppCameraPickerQuality.max:
+      case DSCameraPickerQuality.max:
         return 'Máxima';
     }
   }
@@ -453,13 +453,13 @@ extension AppCameraPickerQualityExtension on AppCameraPickerQuality {
   /// Porcentaje de compresión (0-100)
   int get compressionQuality {
     switch (this) {
-      case AppCameraPickerQuality.low:
+      case DSCameraPickerQuality.low:
         return 30;
-      case AppCameraPickerQuality.medium:
+      case DSCameraPickerQuality.medium:
         return 70;
-      case AppCameraPickerQuality.high:
+      case DSCameraPickerQuality.high:
         return 85;
-      case AppCameraPickerQuality.max:
+      case DSCameraPickerQuality.max:
         return 95;
     }
   }

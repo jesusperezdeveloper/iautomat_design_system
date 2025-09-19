@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppTopAppBar Tests', () {
+  group('DSTopAppBar Tests', () {
     late Widget testApp;
 
     setUp(() {
@@ -13,7 +13,7 @@ void main() {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         ),
         home: Scaffold(
-          appBar: AppTopAppBar(
+          appBar: DSTopAppBar(
             title: const Text('Test Title'),
           ),
           body: const Text('Test Content'),
@@ -37,9 +37,9 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
-                variant: AppTopAppBarVariant.primary,
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
+                variant: DSTopAppBarVariant.primary,
               ),
               title: Text('Primary AppBar'),
             ),
@@ -60,9 +60,9 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
-                variant: AppTopAppBarVariant.center,
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
+                variant: DSTopAppBarVariant.center,
               ),
               title: Text('Center AppBar'),
             ),
@@ -83,9 +83,9 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
-                variant: AppTopAppBarVariant.collapsed,
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
+                variant: DSTopAppBarVariant.collapsed,
               ),
               title: Text('Collapsed AppBar'),
             ),
@@ -106,9 +106,9 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
-                state: AppTopAppBarState.loading,
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
+                state: DSTopAppBarState.loading,
               ),
             ),
             body: const Text('Content'),
@@ -128,9 +128,9 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
-                state: AppTopAppBarState.skeleton,
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
+                state: DSTopAppBarState.skeleton,
               ),
             ),
             body: const Text('Content'),
@@ -149,9 +149,9 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
-                state: AppTopAppBarState.disabled,
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
+                state: DSTopAppBarState.disabled,
               ),
               title: Text('Disabled AppBar'),
             ),
@@ -172,8 +172,8 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
                 isRtl: true,
               ),
               title: Text('RTL AppBar'),
@@ -195,9 +195,9 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
-                title: AppTopAppBarTitle(
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
+                title: DSTopAppBarTitle(
                   text: 'Config Title',
                   alignment: TextAlign.center,
                 ),
@@ -222,11 +222,11 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: AppTopAppBar(
-              config: AppTopAppBarConfig(
-                actions: AppTopAppBarActions(
+            appBar: DSTopAppBar(
+              config: DSTopAppBarConfig(
+                actions: DSTopAppBarActions(
                   primary: [
-                    AppTopAppBarAction(
+                    DSTopAppBarAction(
                       id: 'search',
                       icon: const Icon(Icons.search),
                       tooltip: 'Search',
@@ -262,10 +262,10 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: AppTopAppBar(
-              config: AppTopAppBarConfig(
-                navigationIcon: AppTopAppBarNavigationIcon(
-                  type: AppTopAppBarNavigationType.menu,
+            appBar: DSTopAppBar(
+              config: DSTopAppBarConfig(
+                navigationIcon: DSTopAppBarNavigationIcon(
+                  type: DSTopAppBarNavigationType.menu,
                   tooltip: 'Menu',
                   onPressed: () {
                     navigationPressed = true;
@@ -295,24 +295,24 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
-                actions: AppTopAppBarActions(
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
+                actions: DSTopAppBarActions(
                   maxPrimary: 2,
                   primary: [
-                    AppTopAppBarAction(
+                    DSTopAppBarAction(
                       id: 'action1',
                       icon: Icon(Icons.star),
                     ),
-                    AppTopAppBarAction(
+                    DSTopAppBarAction(
                       id: 'action2',
                       icon: Icon(Icons.favorite),
                     ),
-                    AppTopAppBarAction(
+                    DSTopAppBarAction(
                       id: 'action3',
                       icon: Icon(Icons.share),
                     ),
-                    AppTopAppBarAction(
+                    DSTopAppBarAction(
                       id: 'action4',
                       icon: Icon(Icons.download),
                     ),
@@ -338,12 +338,12 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
                 enableKeyboardSupport: true,
-                actions: AppTopAppBarActions(
+                actions: DSTopAppBarActions(
                   primary: [
-                    AppTopAppBarAction(
+                    DSTopAppBarAction(
                       id: 'search',
                       icon: Icon(Icons.search),
                       tooltip: 'Search',
@@ -369,8 +369,8 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            appBar: const AppTopAppBar(
-              config: AppTopAppBarConfig(
+            appBar: const DSTopAppBar(
+              config: DSTopAppBarConfig(
                 enableA11y: true,
               ),
               title: Text('A11y Test'),
@@ -396,8 +396,8 @@ void main() {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             ),
             home: Scaffold(
-              appBar: const AppTopAppBar(
-                config: AppTopAppBarConfig(
+              appBar: const DSTopAppBar(
+                config: DSTopAppBarConfig(
                   isAdaptive: true,
                 ),
                 title: Text('Mobile AppBar'),
@@ -422,8 +422,8 @@ void main() {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             ),
             home: Scaffold(
-              appBar: const AppTopAppBar(
-                config: AppTopAppBarConfig(
+              appBar: const DSTopAppBar(
+                config: DSTopAppBarConfig(
                   isAdaptive: true,
                 ),
                 title: Text('Tablet AppBar'),
@@ -448,8 +448,8 @@ void main() {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             ),
             home: Scaffold(
-              appBar: const AppTopAppBar(
-                config: AppTopAppBarConfig(
+              appBar: const DSTopAppBar(
+                config: DSTopAppBarConfig(
                   isAdaptive: true,
                 ),
                 title: Text('Desktop AppBar'),
@@ -473,9 +473,9 @@ void main() {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             ),
             home: Scaffold(
-              appBar: const AppTopAppBar(
-                config: AppTopAppBarConfig(
-                  state: AppTopAppBarState.defaultState,
+              appBar: const DSTopAppBar(
+                config: DSTopAppBarConfig(
+                  state: DSTopAppBarState.defaultState,
                 ),
                 title: Text('State Test'),
               ),
@@ -493,9 +493,9 @@ void main() {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             ),
             home: Scaffold(
-              appBar: const AppTopAppBar(
-                config: AppTopAppBarConfig(
-                  state: AppTopAppBarState.loading,
+              appBar: const DSTopAppBar(
+                config: DSTopAppBarConfig(
+                  state: DSTopAppBarState.loading,
                 ),
                 title: Text('State Test'),
               ),
@@ -515,9 +515,9 @@ void main() {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             ),
             home: Scaffold(
-              appBar: const AppTopAppBar(
-                config: AppTopAppBarConfig(
-                  state: AppTopAppBarState.focus,
+              appBar: const DSTopAppBar(
+                config: DSTopAppBarConfig(
+                  state: DSTopAppBarState.focus,
                 ),
                 title: Text('Focused AppBar'),
               ),
@@ -537,9 +537,9 @@ void main() {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             ),
             home: Scaffold(
-              appBar: const AppTopAppBar(
-                config: AppTopAppBarConfig(
-                  state: AppTopAppBarState.selected,
+              appBar: const DSTopAppBar(
+                config: DSTopAppBarConfig(
+                  state: DSTopAppBarState.selected,
                 ),
                 title: Text('Selected AppBar'),
               ),
@@ -553,12 +553,12 @@ void main() {
     });
   });
 
-  group('AppTopAppBarConfig Tests', () {
+  group('DSTopAppBarConfig Tests', () {
     test('should create default config', () {
-      const config = AppTopAppBarConfig();
+      const config = DSTopAppBarConfig();
 
-      expect(config.variant, AppTopAppBarVariant.primary);
-      expect(config.state, AppTopAppBarState.defaultState);
+      expect(config.variant, DSTopAppBarVariant.primary);
+      expect(config.state, DSTopAppBarState.defaultState);
       expect(config.isAdaptive, true);
       expect(config.isRtl, false);
       expect(config.enableA11y, true);
@@ -566,17 +566,17 @@ void main() {
     });
 
     test('should create config with custom values', () {
-      const config = AppTopAppBarConfig(
-        variant: AppTopAppBarVariant.center,
-        state: AppTopAppBarState.loading,
+      const config = DSTopAppBarConfig(
+        variant: DSTopAppBarVariant.center,
+        state: DSTopAppBarState.loading,
         isAdaptive: false,
         isRtl: true,
         enableA11y: false,
         enableKeyboardSupport: false,
       );
 
-      expect(config.variant, AppTopAppBarVariant.center);
-      expect(config.state, AppTopAppBarState.loading);
+      expect(config.variant, DSTopAppBarVariant.center);
+      expect(config.state, DSTopAppBarState.loading);
       expect(config.isAdaptive, false);
       expect(config.isRtl, true);
       expect(config.enableA11y, false);
@@ -584,14 +584,14 @@ void main() {
     });
 
     test('should support copyWith', () {
-      const originalConfig = AppTopAppBarConfig();
+      const originalConfig = DSTopAppBarConfig();
       final modifiedConfig = originalConfig.copyWith(
-        variant: AppTopAppBarVariant.large,
-        state: AppTopAppBarState.loading,
+        variant: DSTopAppBarVariant.large,
+        state: DSTopAppBarState.loading,
       );
 
-      expect(modifiedConfig.variant, AppTopAppBarVariant.large);
-      expect(modifiedConfig.state, AppTopAppBarState.loading);
+      expect(modifiedConfig.variant, DSTopAppBarVariant.large);
+      expect(modifiedConfig.state, DSTopAppBarState.loading);
       expect(modifiedConfig.isAdaptive, true); // unchanged
       expect(modifiedConfig.isRtl, false); // unchanged
     });
@@ -599,75 +599,75 @@ void main() {
 
   group('Variant Extension Tests', () {
     test('should provide correct display names', () {
-      expect(AppTopAppBarVariant.primary.displayName, 'Primary');
-      expect(AppTopAppBarVariant.center.displayName, 'Center');
-      expect(AppTopAppBarVariant.large.displayName, 'Large');
-      expect(AppTopAppBarVariant.collapsed.displayName, 'Collapsed');
+      expect(DSTopAppBarVariant.primary.displayName, 'Primary');
+      expect(DSTopAppBarVariant.center.displayName, 'Center');
+      expect(DSTopAppBarVariant.large.displayName, 'Large');
+      expect(DSTopAppBarVariant.collapsed.displayName, 'Collapsed');
     });
 
     test('should provide correct heights', () {
-      expect(AppTopAppBarVariant.primary.preferredHeight, 56.0);
-      expect(AppTopAppBarVariant.center.preferredHeight, 56.0);
-      expect(AppTopAppBarVariant.large.preferredHeight, 112.0);
-      expect(AppTopAppBarVariant.collapsed.preferredHeight, 48.0);
+      expect(DSTopAppBarVariant.primary.preferredHeight, 56.0);
+      expect(DSTopAppBarVariant.center.preferredHeight, 56.0);
+      expect(DSTopAppBarVariant.large.preferredHeight, 112.0);
+      expect(DSTopAppBarVariant.collapsed.preferredHeight, 48.0);
     });
 
     test('should provide correct center title behavior', () {
-      expect(AppTopAppBarVariant.primary.centerTitle, false);
-      expect(AppTopAppBarVariant.center.centerTitle, true);
-      expect(AppTopAppBarVariant.large.centerTitle, false);
-      expect(AppTopAppBarVariant.collapsed.centerTitle, false);
+      expect(DSTopAppBarVariant.primary.centerTitle, false);
+      expect(DSTopAppBarVariant.center.centerTitle, true);
+      expect(DSTopAppBarVariant.large.centerTitle, false);
+      expect(DSTopAppBarVariant.collapsed.centerTitle, false);
     });
   });
 
   group('State Extension Tests', () {
     test('should provide correct interactive states', () {
-      expect(AppTopAppBarState.defaultState.isInteractive, true);
-      expect(AppTopAppBarState.hover.isInteractive, true);
-      expect(AppTopAppBarState.pressed.isInteractive, true);
-      expect(AppTopAppBarState.focus.isInteractive, true);
-      expect(AppTopAppBarState.selected.isInteractive, true);
-      expect(AppTopAppBarState.disabled.isInteractive, false);
-      expect(AppTopAppBarState.loading.isInteractive, false);
-      expect(AppTopAppBarState.skeleton.isInteractive, false);
+      expect(DSTopAppBarState.defaultState.isInteractive, true);
+      expect(DSTopAppBarState.hover.isInteractive, true);
+      expect(DSTopAppBarState.pressed.isInteractive, true);
+      expect(DSTopAppBarState.focus.isInteractive, true);
+      expect(DSTopAppBarState.selected.isInteractive, true);
+      expect(DSTopAppBarState.disabled.isInteractive, false);
+      expect(DSTopAppBarState.loading.isInteractive, false);
+      expect(DSTopAppBarState.skeleton.isInteractive, false);
     });
 
     test('should provide correct opacity values', () {
-      expect(AppTopAppBarState.defaultState.opacity, 1.0);
-      expect(AppTopAppBarState.disabled.opacity, 0.6);
-      expect(AppTopAppBarState.loading.opacity, 0.8);
-      expect(AppTopAppBarState.skeleton.opacity, 0.3);
+      expect(DSTopAppBarState.defaultState.opacity, 1.0);
+      expect(DSTopAppBarState.disabled.opacity, 0.6);
+      expect(DSTopAppBarState.loading.opacity, 0.8);
+      expect(DSTopAppBarState.skeleton.opacity, 0.3);
     });
   });
 
   group('Action Config Tests', () {
     test('should create action config', () {
-      const action = AppTopAppBarAction(
+      const action = DSTopAppBarAction(
         id: 'test',
         text: 'Test Action',
         tooltip: 'Test Tooltip',
-        type: AppTopAppBarActionType.text,
-        priority: AppTopAppBarActionPriority.primary,
+        type: DSTopAppBarActionType.text,
+        priority: DSTopAppBarActionPriority.primary,
       );
 
       expect(action.id, 'test');
       expect(action.text, 'Test Action');
       expect(action.tooltip, 'Test Tooltip');
-      expect(action.type, AppTopAppBarActionType.text);
-      expect(action.priority, AppTopAppBarActionPriority.primary);
+      expect(action.type, DSTopAppBarActionType.text);
+      expect(action.priority, DSTopAppBarActionPriority.primary);
       expect(action.disabled, false);
     });
   });
 
   group('Navigation Icon Config Tests', () {
     test('should create navigation icon config', () {
-      const navigationIcon = AppTopAppBarNavigationIcon(
-        type: AppTopAppBarNavigationType.back,
+      const navigationIcon = DSTopAppBarNavigationIcon(
+        type: DSTopAppBarNavigationType.back,
         tooltip: 'Back',
         disabled: false,
       );
 
-      expect(navigationIcon.type, AppTopAppBarNavigationType.back);
+      expect(navigationIcon.type, DSTopAppBarNavigationType.back);
       expect(navigationIcon.tooltip, 'Back');
       expect(navigationIcon.disabled, false);
     });

@@ -5,13 +5,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'app_clipboard_share_config.dart';
 
-class AppClipboardSharePlatformAdapter {
-  static AppClipboardSharePlatformAdapter? _instance;
+class DSClipboardSharePlatformAdapter {
+  static DSClipboardSharePlatformAdapter? _instance;
 
-  AppClipboardSharePlatformAdapter._();
+  DSClipboardSharePlatformAdapter._();
 
-  factory AppClipboardSharePlatformAdapter() {
-    return _instance ??= AppClipboardSharePlatformAdapter._();
+  factory DSClipboardSharePlatformAdapter() {
+    return _instance ??= DSClipboardSharePlatformAdapter._();
   }
 
   bool get isIOS => defaultTargetPlatform == TargetPlatform.iOS;
@@ -69,7 +69,7 @@ class AppClipboardSharePlatformAdapter {
     return true;
   }
 
-  Future<void> shareViaEmail(AppShareData data, String? subject) async {
+  Future<void> shareViaEmail(DSShareData data, String? subject) async {
     final emailUri = Uri(
       scheme: 'mailto',
       query: Uri.encodeQueryComponent(
@@ -82,7 +82,7 @@ class AppClipboardSharePlatformAdapter {
     }
   }
 
-  Future<void> shareViaWhatsApp(AppShareData data) async {
+  Future<void> shareViaWhatsApp(DSShareData data) async {
     final whatsappUri = Uri.parse(
       'whatsapp://send?text=${Uri.encodeComponent(data.text ?? '')}',
     );
@@ -92,7 +92,7 @@ class AppClipboardSharePlatformAdapter {
     }
   }
 
-  Future<void> shareViaTelegram(AppShareData data) async {
+  Future<void> shareViaTelegram(DSShareData data) async {
     final telegramUri = Uri.parse(
       'tg://msg_url?url=${Uri.encodeComponent(data.url ?? '')}&text=${Uri.encodeComponent(data.text ?? '')}',
     );
@@ -102,7 +102,7 @@ class AppClipboardSharePlatformAdapter {
     }
   }
 
-  Future<void> shareViaTwitter(AppShareData data) async {
+  Future<void> shareViaTwitter(DSShareData data) async {
     final twitterUri = Uri.parse(
       'https://twitter.com/intent/tweet?text=${Uri.encodeComponent(data.text ?? '')}',
     );
@@ -112,7 +112,7 @@ class AppClipboardSharePlatformAdapter {
     }
   }
 
-  Future<void> shareViaFacebook(AppShareData data) async {
+  Future<void> shareViaFacebook(DSShareData data) async {
     final facebookUri = Uri.parse(
       'https://www.facebook.com/sharer/sharer.php?u=${Uri.encodeComponent(data.url ?? '')}',
     );
@@ -122,11 +122,11 @@ class AppClipboardSharePlatformAdapter {
     }
   }
 
-  AppClipboardShareColors getDefaultColors(BuildContext context) {
+  DSClipboardShareColors getDefaultColors(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return AppClipboardShareColors(
+    return DSClipboardShareColors(
       backgroundColor: colorScheme.surface,
       primaryButtonColor: colorScheme.primary,
       secondaryButtonColor: colorScheme.secondary,
@@ -148,8 +148,8 @@ class AppClipboardSharePlatformAdapter {
     );
   }
 
-  AppClipboardShareSpacing getDefaultSpacing() {
-    return AppClipboardShareSpacing(
+  DSClipboardShareSpacing getDefaultSpacing() {
+    return DSClipboardShareSpacing(
       containerPadding: EdgeInsets.all(isWeb ? 20.0 : 16.0),
       buttonPadding: EdgeInsets.symmetric(
         horizontal: isWeb ? 20.0 : 16.0,
@@ -168,10 +168,10 @@ class AppClipboardSharePlatformAdapter {
     );
   }
 
-  AppClipboardShareTypography getDefaultTypography(BuildContext context) {
+  DSClipboardShareTypography getDefaultTypography(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return AppClipboardShareTypography(
+    return DSClipboardShareTypography(
       titleStyle: textTheme.titleLarge,
       subtitleStyle: textTheme.titleMedium,
       bodyStyle: textTheme.bodyLarge,
@@ -185,8 +185,8 @@ class AppClipboardSharePlatformAdapter {
     );
   }
 
-  AppClipboardShareAnimations getDefaultAnimations() {
-    return AppClipboardShareAnimations(
+  DSClipboardShareAnimations getDefaultAnimations() {
+    return DSClipboardShareAnimations(
       stateDuration: Duration(
         milliseconds: isWeb
             ? 150
@@ -205,8 +205,8 @@ class AppClipboardSharePlatformAdapter {
     );
   }
 
-  AppClipboardShareBehavior getDefaultBehavior() {
-    return AppClipboardShareBehavior(
+  DSClipboardShareBehavior getDefaultBehavior() {
+    return DSClipboardShareBehavior(
       showDebugInfo: kDebugMode,
       enableHoverEffects: !isMobile,
       showFocusIndicator: !isMobile,
@@ -221,8 +221,8 @@ class AppClipboardSharePlatformAdapter {
     );
   }
 
-  AppClipboardShareAccessibility getDefaultAccessibility() {
-    return AppClipboardShareAccessibility(
+  DSClipboardShareAccessibility getDefaultAccessibility() {
+    return DSClipboardShareAccessibility(
       enabled: true,
       semanticRole: 'button',
       focusable: true,
@@ -274,7 +274,7 @@ class AppClipboardSharePlatformAdapter {
     }
   }
 
-  Duration getAnimationDuration(AppClipboardShareAnimations animations) {
+  Duration getAnimationDuration(DSClipboardShareAnimations animations) {
     if (!animations.enabled) return Duration.zero;
 
     if (animations.respectReducedMotion) {
@@ -288,7 +288,7 @@ class AppClipboardSharePlatformAdapter {
     return animations.stateDuration;
   }
 
-  Curve getAnimationCurve(AppClipboardShareAnimations animations) {
+  Curve getAnimationCurve(DSClipboardShareAnimations animations) {
     if (!animations.enabled) return Curves.linear;
     return animations.stateCurve;
   }
@@ -302,12 +302,12 @@ class AppClipboardSharePlatformAdapter {
           : isWeb
           ? 'Web'
           : 'Desktop';
-      debugPrint('[AppClipboardShare-$platform] $message');
+      debugPrint('[DSClipboardShare-$platform] $message');
     }
   }
 
-  AppClipboardShareConfig adaptConfigForPlatform(
-    AppClipboardShareConfig config,
+  DSClipboardShareConfig adaptConfigForPlatform(
+    DSClipboardShareConfig config,
     BuildContext context,
   ) {
     return config.copyWith(
@@ -339,7 +339,7 @@ class AppClipboardSharePlatformAdapter {
     );
   }
 
-  Future<bool> validateFileSize(List<AppShareFile> files, int maxSize) async {
+  Future<bool> validateFileSize(List<DSShareFile> files, int maxSize) async {
     for (final file in files) {
       if (file.size != null && file.size! > maxSize) {
         return false;
@@ -348,11 +348,11 @@ class AppClipboardSharePlatformAdapter {
     return true;
   }
 
-  Future<List<AppShareFile>> compressImages(
-    List<AppShareFile> files,
+  Future<List<DSShareFile>> compressImages(
+    List<DSShareFile> files,
     int quality,
   ) async {
-    final compressedFiles = <AppShareFile>[];
+    final compressedFiles = <DSShareFile>[];
 
     for (final file in files) {
       if (file.isImage) {

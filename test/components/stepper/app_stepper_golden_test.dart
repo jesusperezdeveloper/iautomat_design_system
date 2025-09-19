@@ -4,55 +4,55 @@ import 'package:iautomat_design_system/src/components/stepper/app_stepper.dart';
 import 'package:iautomat_design_system/src/components/stepper/stepper_config.dart';
 
 void main() {
-  group('AppStepper Golden Tests', () {
+  group('DSStepper Golden Tests', () {
     final testSteps = [
-      const AppStep(
+      const DSStep(
         title: 'Personal Information',
         subtitle: 'Enter your basic details',
-        state: AppStepState.completed,
+        state: DSStepState.completed,
       ),
-      const AppStep(
+      const DSStep(
         title: 'Address',
         subtitle: 'Add your shipping address',
-        state: AppStepState.active,
+        state: DSStepState.active,
       ),
-      const AppStep(
+      const DSStep(
         title: 'Payment',
         subtitle: 'Configure payment method',
-        state: AppStepState.inactive,
+        state: DSStepState.inactive,
       ),
-      const AppStep(
+      const DSStep(
         title: 'Confirmation',
         subtitle: 'Review and confirm',
-        state: AppStepState.inactive,
+        state: DSStepState.inactive,
         isOptional: true,
       ),
     ];
 
     final errorSteps = [
-      const AppStep(
+      const DSStep(
         title: 'Step 1',
         subtitle: 'Completed step',
-        state: AppStepState.completed,
+        state: DSStepState.completed,
       ),
-      const AppStep(
+      const DSStep(
         title: 'Step 2',
         subtitle: 'Step with error',
-        state: AppStepState.error,
+        state: DSStepState.error,
         errorText: 'This step has an error',
       ),
-      const AppStep(
+      const DSStep(
         title: 'Step 3',
         subtitle: 'Disabled step',
-        state: AppStepState.disabled,
+        state: DSStepState.disabled,
       ),
     ];
 
     final stepsWithContent = [
-      AppStep(
+      DSStep(
         title: 'Step 1',
         subtitle: 'Active step with content',
-        state: AppStepState.active,
+        state: DSStepState.active,
         content: Container(
           padding: const EdgeInsets.all(16),
           child: const Column(
@@ -69,20 +69,20 @@ void main() {
           ),
         ),
       ),
-      const AppStep(
+      const DSStep(
         title: 'Step 2',
         subtitle: 'Inactive step',
-        state: AppStepState.inactive,
+        state: DSStepState.inactive,
       ),
     ];
 
     Widget buildStepper({
-      AppStepperVariant variant = AppStepperVariant.vertical,
-      List<AppStep>? steps,
+      DSStepperVariant variant = DSStepperVariant.vertical,
+      List<DSStep>? steps,
       int currentStep = 1,
-      AppStepperState? overrideState,
+      DSStepperState? overrideState,
       bool enabled = true,
-      AppStepperConfig? config,
+      DSStepperConfig? config,
       bool showControls = true,
       bool expandActiveStep = true,
     }) {
@@ -91,9 +91,9 @@ void main() {
         home: Scaffold(
           body: Center(
             child: SizedBox(
-              width: variant == AppStepperVariant.horizontal ? 600 : 400,
-              height: variant == AppStepperVariant.horizontal ? 300 : 500,
-              child: AppStepper(
+              width: variant == DSStepperVariant.horizontal ? 600 : 400,
+              height: variant == DSStepperVariant.horizontal ? 300 : 500,
+              child: DSStepper(
                 currentStep: currentStep,
                 steps: steps ?? testSteps,
                 variant: variant,
@@ -115,17 +115,17 @@ void main() {
     testWidgets('vertical default state', (tester) async {
       await tester.pumpWidget(buildStepper());
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_vertical_default.png'),
       );
     });
 
     testWidgets('horizontal default state', (tester) async {
       await tester.pumpWidget(buildStepper(
-        variant: AppStepperVariant.horizontal,
+        variant: DSStepperVariant.horizontal,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_horizontal_default.png'),
       );
     });
@@ -133,18 +133,18 @@ void main() {
     testWidgets('vertical with first step active', (tester) async {
       await tester.pumpWidget(buildStepper(currentStep: 0));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_vertical_first_step.png'),
       );
     });
 
     testWidgets('horizontal with last step active', (tester) async {
       await tester.pumpWidget(buildStepper(
-        variant: AppStepperVariant.horizontal,
+        variant: DSStepperVariant.horizontal,
         currentStep: 3,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_horizontal_last_step.png'),
       );
     });
@@ -152,27 +152,27 @@ void main() {
     testWidgets('disabled state', (tester) async {
       await tester.pumpWidget(buildStepper(enabled: false));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_disabled.png'),
       );
     });
 
     testWidgets('loading state', (tester) async {
       await tester.pumpWidget(buildStepper(
-        overrideState: AppStepperState.loading,
+        overrideState: DSStepperState.loading,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_loading.png'),
       );
     });
 
     testWidgets('skeleton state', (tester) async {
       await tester.pumpWidget(buildStepper(
-        overrideState: AppStepperState.skeleton,
+        overrideState: DSStepperState.skeleton,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_skeleton.png'),
       );
     });
@@ -183,7 +183,7 @@ void main() {
         currentStep: 1,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_error_states.png'),
       );
     });
@@ -195,7 +195,7 @@ void main() {
         expandActiveStep: true,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_with_content.png'),
       );
     });
@@ -205,14 +205,14 @@ void main() {
         showControls: false,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_without_controls.png'),
       );
     });
 
     testWidgets('compact mode', (tester) async {
       await tester.pumpWidget(buildStepper(
-        config: const AppStepperConfig(
+        config: const DSStepperConfig(
           compactMode: true,
           minimumStepHeight: 32.0,
           stepRadius: 12.0,
@@ -221,14 +221,14 @@ void main() {
         ),
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_compact_mode.png'),
       );
     });
 
     testWidgets('custom configuration', (tester) async {
       await tester.pumpWidget(buildStepper(
-        config: const AppStepperConfig(
+        config: const DSStepperConfig(
           stepRadius: 20.0,
           stepBorderWidth: 3.0,
           horizontalSpacing: 32.0,
@@ -238,20 +238,20 @@ void main() {
         ),
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_custom_config.png'),
       );
     });
 
     testWidgets('with progress indicator', (tester) async {
       await tester.pumpWidget(buildStepper(
-        config: const AppStepperConfig(
+        config: const DSStepperConfig(
           showProgressIndicator: true,
           progressIndicatorHeight: 6.0,
         ),
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_with_progress.png'),
       );
     });
@@ -265,10 +265,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 500,
-                child: AppStepper(
+                child: DSStepper(
                   currentStep: 1,
                   steps: testSteps,
-                  variant: AppStepperVariant.vertical,
+                  variant: DSStepperVariant.vertical,
                   onStepTapped: (_) {},
                   onStepContinue: () {},
                   onStepCancel: () {},
@@ -280,7 +280,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_dark_theme.png'),
       );
     });
@@ -296,33 +296,33 @@ void main() {
                 child: SizedBox(
                   width: 400,
                   height: 500,
-                  child: AppStepper(
+                  child: DSStepper(
                     currentStep: 1,
                     steps: const [
-                      AppStep(
+                      DSStep(
                         title: 'المعلومات الشخصية',
                         subtitle: 'أدخل بياناتك الأساسية',
-                        state: AppStepState.completed,
+                        state: DSStepState.completed,
                       ),
-                      AppStep(
+                      DSStep(
                         title: 'العنوان',
                         subtitle: 'أضف عنوان الشحن',
-                        state: AppStepState.active,
+                        state: DSStepState.active,
                       ),
-                      AppStep(
+                      DSStep(
                         title: 'الدفع',
                         subtitle: 'اختر طريقة الدفع',
-                        state: AppStepState.inactive,
+                        state: DSStepState.inactive,
                       ),
-                      AppStep(
+                      DSStep(
                         title: 'التأكيد',
                         subtitle: 'راجع وأكد',
-                        state: AppStepState.inactive,
+                        state: DSStepState.inactive,
                         isOptional: true,
                       ),
                     ],
-                    variant: AppStepperVariant.vertical,
-                    config: AppStepperConfig(showOptionalBadge: true),
+                    variant: DSStepperVariant.vertical,
+                    config: DSStepperConfig(showOptionalBadge: true),
                     onStepTapped: (_) {},
                     onStepContinue: () {},
                     onStepCancel: () {},
@@ -335,52 +335,52 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_rtl.png'),
       );
     });
 
     testWidgets('horizontal with error states', (tester) async {
       await tester.pumpWidget(buildStepper(
-        variant: AppStepperVariant.horizontal,
+        variant: DSStepperVariant.horizontal,
         steps: errorSteps,
         currentStep: 1,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_horizontal_errors.png'),
       );
     });
 
     testWidgets('vertical with optional badge', (tester) async {
       await tester.pumpWidget(buildStepper(
-        config: const AppStepperConfig(showOptionalBadge: true),
+        config: const DSStepperConfig(showOptionalBadge: true),
         currentStep: 3,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_optional_badge.png'),
       );
     });
 
     testWidgets('horizontal compact', (tester) async {
       await tester.pumpWidget(buildStepper(
-        variant: AppStepperVariant.horizontal,
-        config: const AppStepperConfig(
+        variant: DSStepperVariant.horizontal,
+        config: const DSStepperConfig(
           compactMode: true,
           stepRadius: 14.0,
           horizontalSpacing: 16.0,
         ),
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_horizontal_compact.png'),
       );
     });
 
     testWidgets('all steps completed', (tester) async {
       final completedSteps = testSteps
-          .map((step) => step.copyWith(state: AppStepState.completed))
+          .map((step) => step.copyWith(state: DSStepState.completed))
           .toList();
 
       await tester.pumpWidget(buildStepper(
@@ -388,7 +388,7 @@ void main() {
         currentStep: 3,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_all_completed.png'),
       );
     });
@@ -399,17 +399,17 @@ void main() {
         currentStep: 0,
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_single_step.png'),
       );
     });
 
     testWidgets('no step headers', (tester) async {
       await tester.pumpWidget(buildStepper(
-        config: const AppStepperConfig(showStepHeaders: false),
+        config: const DSStepperConfig(showStepHeaders: false),
       ));
       await expectLater(
-        find.byType(AppStepper),
+        find.byType(DSStepper),
         matchesGoldenFile('stepper_no_headers.png'),
       );
     });

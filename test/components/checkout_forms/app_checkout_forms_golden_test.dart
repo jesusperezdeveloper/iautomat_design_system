@@ -3,15 +3,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppCheckoutForms Golden Tests', () {
-    final testAddressFields = AppCheckoutVariant.address.defaultFields.take(5).toList();
-    final testPaymentFields = AppCheckoutVariant.payment.defaultFields.take(4).toList();
+  group('DSCheckoutForms Golden Tests', () {
+    final testAddressFields = DSCheckoutVariant.address.defaultFields.take(5).toList();
+    final testPaymentFields = DSCheckoutVariant.payment.defaultFields.take(4).toList();
 
     Widget createCheckoutWidget({
-      AppCheckoutFormsConfig? config,
-      List<AppCheckoutField>? fields,
-      AppCheckoutVariant? variant,
-      AppCheckoutState? state,
+      DSCheckoutFormsConfig? config,
+      List<DSCheckoutField>? fields,
+      DSCheckoutVariant? variant,
+      DSCheckoutState? state,
       Map<String, dynamic>? initialValues,
     }) {
       return MaterialApp(
@@ -21,7 +21,7 @@ void main() {
             child: SizedBox(
               width: 600,
               height: 800,
-              child: AppCheckoutForms(
+              child: DSCheckoutForms(
                 config: config,
                 fields: fields ?? testAddressFields,
                 variant: variant,
@@ -36,103 +36,103 @@ void main() {
 
     testWidgets('address variant default state', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.address,
-        state: AppCheckoutState.defaultState,
+        variant: DSCheckoutVariant.address,
+        state: DSCheckoutState.defaultState,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_address_default.png'),
       );
     });
 
     testWidgets('payment variant default state', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.payment,
+        variant: DSCheckoutVariant.payment,
         fields: testPaymentFields,
-        state: AppCheckoutState.defaultState,
+        state: DSCheckoutState.defaultState,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_payment_default.png'),
       );
     });
 
     testWidgets('address variant hover state', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.address,
-        state: AppCheckoutState.hover,
+        variant: DSCheckoutVariant.address,
+        state: DSCheckoutState.hover,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_address_hover.png'),
       );
     });
 
     testWidgets('payment variant focus state', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.payment,
+        variant: DSCheckoutVariant.payment,
         fields: testPaymentFields,
-        state: AppCheckoutState.focus,
+        state: DSCheckoutState.focus,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_payment_focus.png'),
       );
     });
 
     testWidgets('address variant loading state', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.address,
-        state: AppCheckoutState.loading,
+        variant: DSCheckoutVariant.address,
+        state: DSCheckoutState.loading,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_address_loading.png'),
       );
     });
 
     testWidgets('payment variant skeleton state', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.payment,
+        variant: DSCheckoutVariant.payment,
         fields: testPaymentFields,
-        state: AppCheckoutState.skeleton,
+        state: DSCheckoutState.skeleton,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_payment_skeleton.png'),
       );
     });
 
     testWidgets('address variant disabled state', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.address,
-        state: AppCheckoutState.disabled,
+        variant: DSCheckoutVariant.address,
+        state: DSCheckoutState.disabled,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_address_disabled.png'),
       );
     });
 
     testWidgets('custom colors configuration', (tester) async {
-      final customConfig = AppCheckoutFormsConfig(
-        variant: AppCheckoutVariant.address,
-        state: AppCheckoutState.defaultState,
-        colors: const AppCheckoutColors(
+      final customConfig = DSCheckoutFormsConfig(
+        variant: DSCheckoutVariant.address,
+        state: DSCheckoutState.defaultState,
+        colors: const DSCheckoutColors(
           backgroundColor: Color(0xFFF5F5F5),
           borderColor: Colors.blue,
           focusedBorderColor: Colors.deepPurple,
@@ -142,7 +142,7 @@ void main() {
           headerColor: Colors.orange,
           headerTextColor: Colors.black,
         ),
-        spacing: const AppCheckoutSpacing(
+        spacing: const DSCheckoutSpacing(
           padding: 20.0,
           fieldSpacing: 16.0,
           borderRadius: 12.0,
@@ -155,14 +155,14 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_custom_colors.png'),
       );
     });
 
     testWidgets('with initial values', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.address,
+        variant: DSCheckoutVariant.address,
         initialValues: const {
           'firstName': 'John',
           'lastName': 'Doe',
@@ -174,14 +174,14 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_with_values.png'),
       );
     });
 
     testWidgets('payment variant with card data', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.payment,
+        variant: DSCheckoutVariant.payment,
         fields: testPaymentFields,
         initialValues: const {
           'cardholderName': 'John Doe',
@@ -193,7 +193,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_payment_filled.png'),
       );
     });
@@ -209,10 +209,10 @@ void main() {
                 child: SizedBox(
                   width: 600,
                   height: 800,
-                  child: AppCheckoutForms(
+                  child: DSCheckoutForms(
                     fields: testAddressFields,
-                    variant: AppCheckoutVariant.address,
-                    initialState: AppCheckoutState.defaultState,
+                    variant: DSCheckoutVariant.address,
+                    initialState: DSCheckoutState.defaultState,
                   ),
                 ),
               ),
@@ -223,7 +223,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_rtl.png'),
       );
     });
@@ -237,10 +237,10 @@ void main() {
               child: SizedBox(
                 width: 600,
                 height: 800,
-                child: AppCheckoutForms(
+                child: DSCheckoutForms(
                   fields: testAddressFields,
-                  variant: AppCheckoutVariant.address,
-                  initialState: AppCheckoutState.defaultState,
+                  variant: DSCheckoutVariant.address,
+                  initialState: DSCheckoutState.defaultState,
                 ),
               ),
             ),
@@ -250,14 +250,14 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_dark_theme.png'),
       );
     });
 
     testWidgets('validation errors state', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.address,
+        variant: DSCheckoutVariant.address,
         initialValues: const {
           'firstName': '',
           'email': 'invalid-email',
@@ -270,7 +270,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_validation_errors.png'),
       );
     });
@@ -284,10 +284,10 @@ void main() {
               child: SizedBox(
                 width: 360,
                 height: 640,
-                child: AppCheckoutForms(
+                child: DSCheckoutForms(
                   fields: testPaymentFields,
-                  variant: AppCheckoutVariant.payment,
-                  initialState: AppCheckoutState.defaultState,
+                  variant: DSCheckoutVariant.payment,
+                  initialState: DSCheckoutState.defaultState,
                 ),
               ),
             ),
@@ -297,7 +297,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_mobile.png'),
       );
     });
@@ -311,10 +311,10 @@ void main() {
               child: SizedBox(
                 width: 1200,
                 height: 800,
-                child: AppCheckoutForms(
+                child: DSCheckoutForms(
                   fields: testAddressFields,
-                  variant: AppCheckoutVariant.address,
-                  initialState: AppCheckoutState.defaultState,
+                  variant: DSCheckoutVariant.address,
+                  initialState: DSCheckoutState.defaultState,
                 ),
               ),
             ),
@@ -324,46 +324,46 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_desktop.png'),
       );
     });
 
     testWidgets('mixed field types', (tester) async {
       final mixedFields = [
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'name',
           label: 'Full Name',
-          type: AppCheckoutFieldType.text,
+          type: DSCheckoutFieldType.text,
           required: true,
           flex: 2,
         ),
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'email',
           label: 'Email',
-          type: AppCheckoutFieldType.email,
+          type: DSCheckoutFieldType.email,
           required: true,
           flex: 2,
         ),
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'country',
           label: 'Country',
-          type: AppCheckoutFieldType.dropdown,
+          type: DSCheckoutFieldType.dropdown,
           options: ['United States', 'Canada', 'Mexico'],
           required: true,
           flex: 1,
         ),
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'newsletter',
           label: 'Subscribe to newsletter',
-          type: AppCheckoutFieldType.checkbox,
+          type: DSCheckoutFieldType.checkbox,
           required: false,
           flex: 2,
         ),
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'comments',
           label: 'Comments',
-          type: AppCheckoutFieldType.text,
+          type: DSCheckoutFieldType.text,
           placeholder: 'Optional comments...',
           maxLines: 3,
           required: false,
@@ -373,62 +373,62 @@ void main() {
 
       await tester.pumpWidget(createCheckoutWidget(
         fields: mixedFields,
-        variant: AppCheckoutVariant.address,
+        variant: DSCheckoutVariant.address,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_mixed_fields.png'),
       );
     });
 
     testWidgets('pressed state', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.payment,
+        variant: DSCheckoutVariant.payment,
         fields: testPaymentFields,
-        state: AppCheckoutState.pressed,
+        state: DSCheckoutState.pressed,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_pressed.png'),
       );
     });
 
     testWidgets('selected state', (tester) async {
       await tester.pumpWidget(createCheckoutWidget(
-        variant: AppCheckoutVariant.address,
-        state: AppCheckoutState.selected,
+        variant: DSCheckoutVariant.address,
+        state: DSCheckoutState.selected,
       ));
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_selected.png'),
       );
     });
 
     testWidgets('minimal configuration', (tester) async {
       final minimalFields = [
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'email',
           label: 'Email',
-          type: AppCheckoutFieldType.email,
+          type: DSCheckoutFieldType.email,
           required: true,
         ),
-        const AppCheckoutField(
+        const DSCheckoutField(
           key: 'password',
           label: 'Password',
-          type: AppCheckoutFieldType.password,
+          type: DSCheckoutFieldType.password,
           required: true,
         ),
       ];
 
-      final minimalConfig = AppCheckoutFormsConfig(
-        variant: AppCheckoutVariant.address,
-        spacing: const AppCheckoutSpacing(
+      final minimalConfig = DSCheckoutFormsConfig(
+        variant: DSCheckoutVariant.address,
+        spacing: const DSCheckoutSpacing(
           padding: 16.0,
           fieldSpacing: 12.0,
         ),
@@ -441,7 +441,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(AppCheckoutForms),
+        find.byType(DSCheckoutForms),
         matchesGoldenFile('golden/checkout_forms_minimal.png'),
       );
     });

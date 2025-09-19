@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppInPageSearch Golden Tests', () {
+  group('DSInPageSearch Golden Tests', () {
     Widget buildTestWidget(Widget child) {
       return MaterialApp(
         theme: ThemeData.light(),
@@ -22,12 +22,12 @@ void main() {
       testWidgets('inline variant default state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppInPageSearch.inline(),
+            DSInPageSearch.inline(),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/inline_default.png'),
         );
       });
@@ -35,14 +35,14 @@ void main() {
       testWidgets('inline variant with query', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppInPageSearch.inline(
+            DSInPageSearch.inline(
               initialQuery: 'search term',
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/inline_with_query.png'),
         );
       });
@@ -52,15 +52,15 @@ void main() {
       testWidgets('disabled state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppInPageSearch.inline(
-              state: AppInPageSearchState.disabled,
+            DSInPageSearch.inline(
+              state: DSInPageSearchState.disabled,
               initialQuery: 'disabled',
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/disabled_state.png'),
         );
       });
@@ -68,15 +68,15 @@ void main() {
       testWidgets('loading state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppInPageSearch.inline(
-              state: AppInPageSearchState.loading,
+            DSInPageSearch.inline(
+              state: DSInPageSearchState.loading,
               initialQuery: 'loading...',
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/loading_state.png'),
         );
       });
@@ -84,14 +84,14 @@ void main() {
       testWidgets('skeleton state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppInPageSearch.inline(
-              state: AppInPageSearchState.skeleton,
+            DSInPageSearch.inline(
+              state: DSInPageSearchState.skeleton,
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/skeleton_state.png'),
         );
       });
@@ -101,14 +101,14 @@ void main() {
       testWidgets('small size', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppInPageSearch.inline(
-              config: AppInPageSearchConfig.small,
+            DSInPageSearch.inline(
+              config: DSInPageSearchConfig.small,
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/small_size.png'),
         );
       });
@@ -116,14 +116,14 @@ void main() {
       testWidgets('medium size', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppInPageSearch.inline(
-              config: AppInPageSearchConfig.medium,
+            DSInPageSearch.inline(
+              config: DSInPageSearchConfig.medium,
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/medium_size.png'),
         );
       });
@@ -131,14 +131,14 @@ void main() {
       testWidgets('large size', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppInPageSearch.inline(
-              config: AppInPageSearchConfig.large,
+            DSInPageSearch.inline(
+              config: DSInPageSearchConfig.large,
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/large_size.png'),
         );
       });
@@ -155,7 +155,7 @@ void main() {
                 height: 600,
                 color: Colors.grey[900],
                 child: Center(
-                  child: AppInPageSearch.inline(),
+                  child: DSInPageSearch.inline(),
                 ),
               ),
             ),
@@ -163,7 +163,7 @@ void main() {
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/dark_theme.png'),
         );
       });
@@ -171,8 +171,8 @@ void main() {
       testWidgets('custom colors', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppInPageSearch.inline(
-              config: const AppInPageSearchConfig(
+            DSInPageSearch.inline(
+              config: const DSInPageSearchConfig(
                 backgroundColor: Color(0xFFF3E5F5),
                 borderColor: Color(0xFF9C27B0),
                 borderRadius: 25.0,
@@ -182,7 +182,7 @@ void main() {
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/custom_colors.png'),
         );
       });
@@ -192,13 +192,13 @@ void main() {
       testWidgets('search with results', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppInPageSearch.inline(
-              data: const AppInPageSearchData(
+            DSInPageSearch.inline(
+              data: const DSInPageSearchData(
                 query: 'search',
                 totalResults: 5,
                 currentResultIndex: 2,
               ),
-              config: const AppInPageSearchConfig(
+              config: const DSInPageSearchConfig(
                 showResultCount: true,
                 showNavigationButtons: true,
                 showClearButton: true,
@@ -208,7 +208,7 @@ void main() {
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/with_results.png'),
         );
       });
@@ -226,8 +226,8 @@ void main() {
                   height: 600,
                   color: Colors.grey[100],
                   child: Center(
-                    child: AppInPageSearch.inline(
-                      config: const AppInPageSearchConfig(
+                    child: DSInPageSearch.inline(
+                      config: const DSInPageSearchConfig(
                         placeholder: 'بحث في المحتوى...',
                         textDirection: TextDirection.rtl,
                       ),
@@ -241,7 +241,7 @@ void main() {
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppInPageSearch),
+          find.byType(DSInPageSearch),
           matchesGoldenFile('golden/app_in_page_search/rtl_layout.png'),
         );
       });

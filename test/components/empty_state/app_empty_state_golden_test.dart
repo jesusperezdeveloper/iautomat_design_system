@@ -3,14 +3,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/empty_state/app_empty_state.dart';
 
 void main() {
-  group('AppEmptyState Golden Tests', () {
+  group('DSEmptyState Golden Tests', () {
     testWidgets('illustration empty state with default styling',
         (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppEmptyState.illustration(
+              child: DSEmptyState.illustration(
                 title: 'No items found',
                 description:
                     'There are no items to display at the moment. Try adding some or adjusting your filters.',
@@ -42,7 +42,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppEmptyState.cta(
+              child: DSEmptyState.cta(
                 title: 'Start your first project',
                 description: 'Create a new project to begin working.',
                 actions: const [
@@ -69,7 +69,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppEmptyState.illustration(
+              child: DSEmptyState.illustration(
                 title: 'Empty Folder',
                 actions: const [
                   EmptyStateAction(
@@ -95,7 +95,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppEmptyState.illustration(
+              child: DSEmptyState.illustration(
                 title: 'Processing Complete',
                 description: 'All tasks have been completed successfully.',
                 defaultIcon: Icons.check_circle_outline,
@@ -117,10 +117,10 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'Default State',
                   description: 'This is the default state',
-                  state: AppEmptyStateState.defaultState,
+                  state: DSEmptyStateState.defaultState,
                   actions: const [
                     EmptyStateAction(text: 'Action', isPrimary: true),
                   ],
@@ -141,10 +141,10 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'Hover State',
                   description: 'This shows hover effects',
-                  state: AppEmptyStateState.hover,
+                  state: DSEmptyStateState.hover,
                   actions: const [
                     EmptyStateAction(text: 'Action', isPrimary: true),
                   ],
@@ -165,10 +165,10 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'Pressed State',
                   description: 'This shows pressed effects',
-                  state: AppEmptyStateState.pressed,
+                  state: DSEmptyStateState.pressed,
                   actions: const [
                     EmptyStateAction(text: 'Action', isPrimary: true),
                   ],
@@ -189,10 +189,10 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'Focus State',
                   description: 'This shows focus border',
-                  state: AppEmptyStateState.focus,
+                  state: DSEmptyStateState.focus,
                   actions: const [
                     EmptyStateAction(text: 'Action', isPrimary: true),
                   ],
@@ -213,10 +213,10 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'Disabled State',
                   description: 'This is disabled',
-                  state: AppEmptyStateState.disabled,
+                  state: DSEmptyStateState.disabled,
                   actions: const [
                     EmptyStateAction(text: 'Action', isPrimary: true),
                   ],
@@ -237,10 +237,10 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'Selected State',
                   description: 'This shows selection',
-                  state: AppEmptyStateState.selected,
+                  state: DSEmptyStateState.selected,
                   actions: const [
                     EmptyStateAction(text: 'Action', isPrimary: true),
                   ],
@@ -261,10 +261,10 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'Loading State',
                   description: 'Currently loading',
-                  state: AppEmptyStateState.loading,
+                  state: DSEmptyStateState.loading,
                   actions: const [
                     EmptyStateAction(text: 'Action', isPrimary: true),
                   ],
@@ -285,10 +285,10 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'Skeleton State',
                   description: 'Skeleton loading',
-                  state: AppEmptyStateState.skeleton,
+                  state: DSEmptyStateState.skeleton,
                   actions: const [
                     EmptyStateAction(text: 'Action', isPrimary: true),
                   ],
@@ -310,7 +310,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppEmptyState.illustration(
+              child: DSEmptyState.illustration(
                 title: 'Custom Styled Empty State',
                 description: 'This has custom colors and spacing',
                 titleColor: Colors.purple,
@@ -342,7 +342,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Center(
-              child: AppEmptyState.illustration(
+              child: DSEmptyState.illustration(
                 title: 'Custom Illustration',
                 description: 'Features a custom illustration widget',
                 illustration: Container(
@@ -384,7 +384,7 @@ void main() {
             home: Scaffold(
               body: Padding(
                 padding: const EdgeInsets.all(32.0),
-                child: AppEmptyState.illustration(
+                child: DSEmptyState.illustration(
                   title: 'Start Aligned',
                   description: 'This content is aligned to the start',
                   alignment: CrossAxisAlignment.start,
@@ -409,7 +409,7 @@ void main() {
             home: Scaffold(
               body: Padding(
                 padding: const EdgeInsets.all(32.0),
-                child: AppEmptyState.illustration(
+                child: DSEmptyState.illustration(
                   title: 'Center Aligned',
                   description: 'This content is centered',
                   alignment: CrossAxisAlignment.center,
@@ -434,7 +434,7 @@ void main() {
             home: Scaffold(
               body: Padding(
                 padding: const EdgeInsets.all(32.0),
-                child: AppEmptyState.illustration(
+                child: DSEmptyState.illustration(
                   title: 'End Aligned',
                   description: 'This content is aligned to the end',
                   alignment: CrossAxisAlignment.end,
@@ -461,7 +461,7 @@ void main() {
             theme: ThemeData.dark(),
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.illustration(
+                child: DSEmptyState.illustration(
                   title: 'Dark Theme Empty State',
                   description: 'This demonstrates the dark theme appearance',
                   defaultIcon: Icons.nights_stay,
@@ -494,7 +494,7 @@ void main() {
             theme: ThemeData.dark(),
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'Dark CTA State',
                   description: 'CTA variant in dark theme',
                   actions: const [
@@ -525,7 +525,7 @@ void main() {
               textDirection: TextDirection.rtl,
               child: Scaffold(
                 body: Center(
-                  child: AppEmptyState.illustration(
+                  child: DSEmptyState.illustration(
                     title: 'حالة فارغة',
                     description:
                         'هذا مثال على الحالة الفارغة مع دعم النصوص من اليمين إلى اليسار.',
@@ -562,7 +562,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.illustration(
+                child: DSEmptyState.illustration(
                   title: 'Your cart is empty',
                   description:
                       'Looks like you haven\'t added anything to your cart yet. Start shopping to fill it up!',
@@ -595,7 +595,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'You\'re all caught up!',
                   description: 'No new notifications right now.',
                   defaultIcon: Icons.notifications_none,
@@ -623,7 +623,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.illustration(
+                child: DSEmptyState.illustration(
                   title: 'No tasks for today',
                   description:
                       'You\'ve completed all your tasks! Take a break or plan ahead for tomorrow.',
@@ -656,11 +656,11 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Center(
-                child: AppEmptyState.cta(
+                child: DSEmptyState.cta(
                   title: 'No internet connection',
                   description: 'Please check your connection and try again.',
                   defaultIcon: Icons.wifi_off,
-                  state: AppEmptyStateState.disabled,
+                  state: DSEmptyStateState.disabled,
                   actions: const [
                     EmptyStateAction(
                       text: 'Retry',
@@ -695,7 +695,7 @@ void main() {
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
-                    AppEmptyState.illustration(
+                    DSEmptyState.illustration(
                       title: 'Welcome to Dashboard',
                       description: 'Get started by creating a project.',
                       defaultIcon: Icons.dashboard_outlined,
@@ -713,7 +713,7 @@ void main() {
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
-                    AppEmptyState.cta(
+                    DSEmptyState.cta(
                       title: 'No messages yet',
                       description: 'Start a conversation.',
                       maxWidth: 250,

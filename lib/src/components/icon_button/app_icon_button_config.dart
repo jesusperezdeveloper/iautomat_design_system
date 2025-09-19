@@ -4,32 +4,32 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_icon_button_config.freezed.dart';
 
 @freezed
-class AppIconButtonConfig with _$AppIconButtonConfig {
-  const factory AppIconButtonConfig({
-    @Default(AppIconButtonVariant.standard) AppIconButtonVariant variant,
-    @Default(AppIconButtonState.defaultState) AppIconButtonState state,
-    @Default(AppIconButtonSize.medium) AppIconButtonSize size,
+class DSIconButtonConfig with _$DSIconButtonConfig {
+  const factory DSIconButtonConfig({
+    @Default(DSIconButtonVariant.standard) DSIconButtonVariant variant,
+    @Default(DSIconButtonState.defaultState) DSIconButtonState state,
+    @Default(DSIconButtonSize.medium) DSIconButtonSize size,
     @Default(false) bool isToggled,
     @Default(true) bool isAdaptive,
     @Default(false) bool isRtl,
     @Default(true) bool enableA11y,
     @Default(true) bool enableKeyboardSupport,
     @Default(true) bool isInteractive,
-    AppIconButtonColors? colors,
-    AppIconButtonSpacing? spacing,
-    AppIconButtonElevation? elevation,
-    AppIconButtonBehavior? behavior,
-    AppIconButtonAnimation? animation,
+    DSIconButtonColors? colors,
+    DSIconButtonSpacing? spacing,
+    DSIconButtonElevation? elevation,
+    DSIconButtonBehavior? behavior,
+    DSIconButtonAnimation? animation,
     VoidCallback? onPressed,
     ValueChanged<bool>? onToggle,
     ValueChanged<bool>? onHover,
     ValueChanged<bool>? onFocusChange,
-  }) = _AppIconButtonConfig;
+  }) = _DSIconButtonConfig;
 }
 
 @freezed
-class AppIconButtonColors with _$AppIconButtonColors {
-  const factory AppIconButtonColors({
+class DSIconButtonColors with _$DSIconButtonColors {
+  const factory DSIconButtonColors({
     Color? backgroundColor,
     Color? foregroundColor,
     Color? surfaceColor,
@@ -48,8 +48,8 @@ class AppIconButtonColors with _$AppIconButtonColors {
 }
 
 @freezed
-class AppIconButtonSpacing with _$AppIconButtonSpacing {
-  const factory AppIconButtonSpacing({
+class DSIconButtonSpacing with _$DSIconButtonSpacing {
+  const factory DSIconButtonSpacing({
     @Default(8.0) double padding,
     @Default(8.0) double borderRadius,
     @Default(24.0) double smallSize,
@@ -60,8 +60,8 @@ class AppIconButtonSpacing with _$AppIconButtonSpacing {
 }
 
 @freezed
-class AppIconButtonElevation with _$AppIconButtonElevation {
-  const factory AppIconButtonElevation({
+class DSIconButtonElevation with _$DSIconButtonElevation {
+  const factory DSIconButtonElevation({
     @Default(0.0) double defaultElevation,
     @Default(1.0) double hoveredElevation,
     @Default(3.0) double pressedElevation,
@@ -74,15 +74,15 @@ class AppIconButtonElevation with _$AppIconButtonElevation {
 }
 
 @freezed
-class AppIconButtonBehavior with _$AppIconButtonBehavior {
-  const factory AppIconButtonBehavior({
+class DSIconButtonBehavior with _$DSIconButtonBehavior {
+  const factory DSIconButtonBehavior({
     @Default(true) bool enableHapticFeedback,
     @Default(true) bool enableRipple,
     @Default(true) bool enableHover,
     @Default(true) bool enableFocus,
     @Default(true) bool maintainState,
-    @Default(AppIconButtonClipBehavior.antiAlias)
-    AppIconButtonClipBehavior clipBehavior,
+    @Default(DSIconButtonClipBehavior.antiAlias)
+    DSIconButtonClipBehavior clipBehavior,
     @Default(200) int animationDuration,
     @Default(true) bool showLoadingIndicator,
     @Default(true) bool showSkeletonAnimation,
@@ -91,9 +91,9 @@ class AppIconButtonBehavior with _$AppIconButtonBehavior {
 }
 
 @freezed
-class AppIconButtonAnimation with _$AppIconButtonAnimation {
-  const factory AppIconButtonAnimation({
-    @Default(AppIconButtonAnimationType.scale) AppIconButtonAnimationType type,
+class DSIconButtonAnimation with _$DSIconButtonAnimation {
+  const factory DSIconButtonAnimation({
+    @Default(DSIconButtonAnimationType.scale) DSIconButtonAnimationType type,
     @Default(200) int duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(true) bool enableStateTransitions,
@@ -104,13 +104,13 @@ class AppIconButtonAnimation with _$AppIconButtonAnimation {
   }) = _AppIconButtonAnimation;
 }
 
-enum AppIconButtonVariant {
+enum DSIconButtonVariant {
   standard,
   filled,
   tonal,
 }
 
-enum AppIconButtonState {
+enum DSIconButtonState {
   defaultState,
   hover,
   pressed,
@@ -121,55 +121,55 @@ enum AppIconButtonState {
   skeleton,
 }
 
-enum AppIconButtonSize {
+enum DSIconButtonSize {
   small,
   medium,
   large,
 }
 
-enum AppIconButtonClipBehavior {
+enum DSIconButtonClipBehavior {
   none,
   antiAlias,
   antiAliasWithSaveLayer,
   hardEdge,
 }
 
-enum AppIconButtonAnimationType {
+enum DSIconButtonAnimationType {
   none,
   scale,
   fade,
   rotation,
 }
 
-extension AppIconButtonVariantExtension on AppIconButtonVariant {
+extension DSIconButtonVariantExtension on DSIconButtonVariant {
   String get displayName {
     switch (this) {
-      case AppIconButtonVariant.standard:
+      case DSIconButtonVariant.standard:
         return 'Standard';
-      case AppIconButtonVariant.filled:
+      case DSIconButtonVariant.filled:
         return 'Filled';
-      case AppIconButtonVariant.tonal:
+      case DSIconButtonVariant.tonal:
         return 'Tonal';
     }
   }
 
   String get description {
     switch (this) {
-      case AppIconButtonVariant.standard:
+      case DSIconButtonVariant.standard:
         return 'Botón de icono estándar sin fondo';
-      case AppIconButtonVariant.filled:
+      case DSIconButtonVariant.filled:
         return 'Botón de icono con fondo sólido';
-      case AppIconButtonVariant.tonal:
+      case DSIconButtonVariant.tonal:
         return 'Botón de icono con fondo tonal';
     }
   }
 
   bool get hasBackground {
     switch (this) {
-      case AppIconButtonVariant.standard:
+      case DSIconButtonVariant.standard:
         return false;
-      case AppIconButtonVariant.filled:
-      case AppIconButtonVariant.tonal:
+      case DSIconButtonVariant.filled:
+      case DSIconButtonVariant.tonal:
         return true;
     }
   }
@@ -177,21 +177,21 @@ extension AppIconButtonVariantExtension on AppIconButtonVariant {
   Color getBackgroundColor(ColorScheme colorScheme, bool isToggled) {
     if (isToggled) {
       switch (this) {
-        case AppIconButtonVariant.standard:
+        case DSIconButtonVariant.standard:
           return colorScheme.inverseSurface;
-        case AppIconButtonVariant.filled:
+        case DSIconButtonVariant.filled:
           return colorScheme.primary;
-        case AppIconButtonVariant.tonal:
+        case DSIconButtonVariant.tonal:
           return colorScheme.secondaryContainer;
       }
     }
 
     switch (this) {
-      case AppIconButtonVariant.standard:
+      case DSIconButtonVariant.standard:
         return Colors.transparent;
-      case AppIconButtonVariant.filled:
+      case DSIconButtonVariant.filled:
         return colorScheme.surfaceContainerHighest;
-      case AppIconButtonVariant.tonal:
+      case DSIconButtonVariant.tonal:
         return colorScheme.secondaryContainer;
     }
   }
@@ -199,86 +199,86 @@ extension AppIconButtonVariantExtension on AppIconButtonVariant {
   Color getForegroundColor(ColorScheme colorScheme, bool isToggled) {
     if (isToggled) {
       switch (this) {
-        case AppIconButtonVariant.standard:
+        case DSIconButtonVariant.standard:
           return colorScheme.onInverseSurface;
-        case AppIconButtonVariant.filled:
+        case DSIconButtonVariant.filled:
           return colorScheme.onPrimary;
-        case AppIconButtonVariant.tonal:
+        case DSIconButtonVariant.tonal:
           return colorScheme.onSecondaryContainer;
       }
     }
 
     switch (this) {
-      case AppIconButtonVariant.standard:
+      case DSIconButtonVariant.standard:
         return colorScheme.onSurfaceVariant;
-      case AppIconButtonVariant.filled:
+      case DSIconButtonVariant.filled:
         return colorScheme.primary;
-      case AppIconButtonVariant.tonal:
+      case DSIconButtonVariant.tonal:
         return colorScheme.onSecondaryContainer;
     }
   }
 }
 
-extension AppIconButtonStateExtension on AppIconButtonState {
+extension DSIconButtonStateExtension on DSIconButtonState {
   String get displayName {
     switch (this) {
-      case AppIconButtonState.defaultState:
+      case DSIconButtonState.defaultState:
         return 'Default';
-      case AppIconButtonState.hover:
+      case DSIconButtonState.hover:
         return 'Hover';
-      case AppIconButtonState.pressed:
+      case DSIconButtonState.pressed:
         return 'Pressed';
-      case AppIconButtonState.focus:
+      case DSIconButtonState.focus:
         return 'Focus';
-      case AppIconButtonState.selected:
+      case DSIconButtonState.selected:
         return 'Selected';
-      case AppIconButtonState.disabled:
+      case DSIconButtonState.disabled:
         return 'Disabled';
-      case AppIconButtonState.loading:
+      case DSIconButtonState.loading:
         return 'Loading';
-      case AppIconButtonState.skeleton:
+      case DSIconButtonState.skeleton:
         return 'Skeleton';
     }
   }
 
   bool get isInteractive {
     switch (this) {
-      case AppIconButtonState.defaultState:
-      case AppIconButtonState.hover:
-      case AppIconButtonState.pressed:
-      case AppIconButtonState.focus:
-      case AppIconButtonState.selected:
+      case DSIconButtonState.defaultState:
+      case DSIconButtonState.hover:
+      case DSIconButtonState.pressed:
+      case DSIconButtonState.focus:
+      case DSIconButtonState.selected:
         return true;
-      case AppIconButtonState.disabled:
-      case AppIconButtonState.loading:
-      case AppIconButtonState.skeleton:
+      case DSIconButtonState.disabled:
+      case DSIconButtonState.loading:
+      case DSIconButtonState.skeleton:
         return false;
     }
   }
 
   double get opacity {
     switch (this) {
-      case AppIconButtonState.defaultState:
-      case AppIconButtonState.hover:
-      case AppIconButtonState.pressed:
-      case AppIconButtonState.focus:
-      case AppIconButtonState.selected:
+      case DSIconButtonState.defaultState:
+      case DSIconButtonState.hover:
+      case DSIconButtonState.pressed:
+      case DSIconButtonState.focus:
+      case DSIconButtonState.selected:
         return 1.0;
-      case AppIconButtonState.disabled:
+      case DSIconButtonState.disabled:
         return 0.38;
-      case AppIconButtonState.loading:
+      case DSIconButtonState.loading:
         return 0.8;
-      case AppIconButtonState.skeleton:
+      case DSIconButtonState.skeleton:
         return 0.3;
     }
   }
 
   bool get showsLoader {
-    return this == AppIconButtonState.loading;
+    return this == DSIconButtonState.loading;
   }
 
   bool get showsSkeleton {
-    return this == AppIconButtonState.skeleton;
+    return this == DSIconButtonState.skeleton;
   }
 
   bool get canInteract {
@@ -287,127 +287,127 @@ extension AppIconButtonStateExtension on AppIconButtonState {
 
   double get elevationMultiplier {
     switch (this) {
-      case AppIconButtonState.defaultState:
+      case DSIconButtonState.defaultState:
         return 1.0;
-      case AppIconButtonState.hover:
+      case DSIconButtonState.hover:
         return 1.5;
-      case AppIconButtonState.pressed:
+      case DSIconButtonState.pressed:
         return 2.0;
-      case AppIconButtonState.focus:
+      case DSIconButtonState.focus:
         return 1.5;
-      case AppIconButtonState.selected:
+      case DSIconButtonState.selected:
         return 1.8;
-      case AppIconButtonState.disabled:
+      case DSIconButtonState.disabled:
         return 0.0;
-      case AppIconButtonState.loading:
-      case AppIconButtonState.skeleton:
+      case DSIconButtonState.loading:
+      case DSIconButtonState.skeleton:
         return 1.0;
     }
   }
 }
 
-extension AppIconButtonSizeExtension on AppIconButtonSize {
+extension DSIconButtonSizeExtension on DSIconButtonSize {
   String get displayName {
     switch (this) {
-      case AppIconButtonSize.small:
+      case DSIconButtonSize.small:
         return 'Small';
-      case AppIconButtonSize.medium:
+      case DSIconButtonSize.medium:
         return 'Medium';
-      case AppIconButtonSize.large:
+      case DSIconButtonSize.large:
         return 'Large';
     }
   }
 
-  double getSize(AppIconButtonSpacing spacing) {
+  double getSize(DSIconButtonSpacing spacing) {
     switch (this) {
-      case AppIconButtonSize.small:
+      case DSIconButtonSize.small:
         return spacing.smallSize;
-      case AppIconButtonSize.medium:
+      case DSIconButtonSize.medium:
         return spacing.mediumSize;
-      case AppIconButtonSize.large:
+      case DSIconButtonSize.large:
         return spacing.largeSize;
     }
   }
 
   double get iconSize {
     switch (this) {
-      case AppIconButtonSize.small:
+      case DSIconButtonSize.small:
         return 18.0;
-      case AppIconButtonSize.medium:
+      case DSIconButtonSize.medium:
         return 24.0;
-      case AppIconButtonSize.large:
+      case DSIconButtonSize.large:
         return 32.0;
     }
   }
 
   EdgeInsetsGeometry get padding {
     switch (this) {
-      case AppIconButtonSize.small:
+      case DSIconButtonSize.small:
         return const EdgeInsets.all(4.0);
-      case AppIconButtonSize.medium:
+      case DSIconButtonSize.medium:
         return const EdgeInsets.all(8.0);
-      case AppIconButtonSize.large:
+      case DSIconButtonSize.large:
         return const EdgeInsets.all(12.0);
     }
   }
 }
 
-extension AppIconButtonClipBehaviorExtension on AppIconButtonClipBehavior {
+extension DSIconButtonClipBehaviorExtension on DSIconButtonClipBehavior {
   String get displayName {
     switch (this) {
-      case AppIconButtonClipBehavior.none:
+      case DSIconButtonClipBehavior.none:
         return 'None';
-      case AppIconButtonClipBehavior.antiAlias:
+      case DSIconButtonClipBehavior.antiAlias:
         return 'Anti Alias';
-      case AppIconButtonClipBehavior.antiAliasWithSaveLayer:
+      case DSIconButtonClipBehavior.antiAliasWithSaveLayer:
         return 'Anti Alias with Save Layer';
-      case AppIconButtonClipBehavior.hardEdge:
+      case DSIconButtonClipBehavior.hardEdge:
         return 'Hard Edge';
     }
   }
 
   Clip get flutterClip {
     switch (this) {
-      case AppIconButtonClipBehavior.none:
+      case DSIconButtonClipBehavior.none:
         return Clip.none;
-      case AppIconButtonClipBehavior.antiAlias:
+      case DSIconButtonClipBehavior.antiAlias:
         return Clip.antiAlias;
-      case AppIconButtonClipBehavior.antiAliasWithSaveLayer:
+      case DSIconButtonClipBehavior.antiAliasWithSaveLayer:
         return Clip.antiAliasWithSaveLayer;
-      case AppIconButtonClipBehavior.hardEdge:
+      case DSIconButtonClipBehavior.hardEdge:
         return Clip.hardEdge;
     }
   }
 }
 
-extension AppIconButtonAnimationTypeExtension on AppIconButtonAnimationType {
+extension DSIconButtonAnimationTypeExtension on DSIconButtonAnimationType {
   String get displayName {
     switch (this) {
-      case AppIconButtonAnimationType.none:
+      case DSIconButtonAnimationType.none:
         return 'None';
-      case AppIconButtonAnimationType.scale:
+      case DSIconButtonAnimationType.scale:
         return 'Scale';
-      case AppIconButtonAnimationType.fade:
+      case DSIconButtonAnimationType.fade:
         return 'Fade';
-      case AppIconButtonAnimationType.rotation:
+      case DSIconButtonAnimationType.rotation:
         return 'Rotation';
     }
   }
 
   Curve get defaultCurve {
     switch (this) {
-      case AppIconButtonAnimationType.none:
+      case DSIconButtonAnimationType.none:
         return Curves.linear;
-      case AppIconButtonAnimationType.scale:
+      case DSIconButtonAnimationType.scale:
         return Curves.easeInOutCubic;
-      case AppIconButtonAnimationType.fade:
+      case DSIconButtonAnimationType.fade:
         return Curves.easeInOut;
-      case AppIconButtonAnimationType.rotation:
+      case DSIconButtonAnimationType.rotation:
         return Curves.easeInOutCubic;
     }
   }
 
   bool get hasAnimation {
-    return this != AppIconButtonAnimationType.none;
+    return this != DSIconButtonAnimationType.none;
   }
 }

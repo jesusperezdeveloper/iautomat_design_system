@@ -5,21 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:iautomat_design_system/src/components/cart_widget/app_cart_widget_config.dart';
 
-/// Adaptador de plataforma para AppCartWidget
+/// Adaptador de plataforma para DSCartWidget
 ///
 /// Maneja las diferencias de renderizado entre Android, iOS y Web
 /// para proporcionar una experiencia nativa en cada plataforma
-class AppCartWidgetPlatformAdapter {
+class DSCartWidgetPlatformAdapter {
   /// Construye el carrito según la plataforma
   Widget buildCart({
     required BuildContext context,
-    required AppCartWidgetConfig config,
-    required AppCartVariant variant,
-    required AppCartState state,
-    required List<AppCartItem> items,
-    required AppCartSummary summary,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartWidgetConfig config,
+    required DSCartVariant variant,
+    required DSCartState state,
+    required List<DSCartItem> items,
+    required DSCartSummary summary,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required bool isExpanded,
     required ScrollController scrollController,
     Widget? headerWidget,
@@ -27,7 +27,7 @@ class AppCartWidgetPlatformAdapter {
     int? maxVisibleItems,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
-    required Function(AppCartItem item) onItemTap,
+    required Function(DSCartItem item) onItemTap,
     required VoidCallback onCheckout,
     required Function(String promoCode) onPromoCode,
     required VoidCallback onToggleExpand,
@@ -104,13 +104,13 @@ class AppCartWidgetPlatformAdapter {
   /// Construye el carrito para Android (Material Design)
   Widget _buildAndroidCart({
     required BuildContext context,
-    required AppCartWidgetConfig config,
-    required AppCartVariant variant,
-    required AppCartState state,
-    required List<AppCartItem> items,
-    required AppCartSummary summary,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartWidgetConfig config,
+    required DSCartVariant variant,
+    required DSCartState state,
+    required List<DSCartItem> items,
+    required DSCartSummary summary,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required bool isExpanded,
     required ScrollController scrollController,
     Widget? headerWidget,
@@ -118,7 +118,7 @@ class AppCartWidgetPlatformAdapter {
     int? maxVisibleItems,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
-    required Function(AppCartItem item) onItemTap,
+    required Function(DSCartItem item) onItemTap,
     required VoidCallback onCheckout,
     required Function(String promoCode) onPromoCode,
     required VoidCallback onToggleExpand,
@@ -129,10 +129,10 @@ class AppCartWidgetPlatformAdapter {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(spacing.borderRadius),
         side: BorderSide(
-          color: state == AppCartState.focus
+          color: state == DSCartState.focus
               ? colors.focusColor ?? Theme.of(context).colorScheme.primary
               : colors.borderColor ?? Colors.transparent,
-          width: state == AppCartState.focus ? 2.0 : spacing.borderWidth,
+          width: state == DSCartState.focus ? 2.0 : spacing.borderWidth,
         ),
       ),
       clipBehavior: Clip.antiAlias,
@@ -163,13 +163,13 @@ class AppCartWidgetPlatformAdapter {
   /// Construye el carrito para iOS (Cupertino)
   Widget _buildIOSCart({
     required BuildContext context,
-    required AppCartWidgetConfig config,
-    required AppCartVariant variant,
-    required AppCartState state,
-    required List<AppCartItem> items,
-    required AppCartSummary summary,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartWidgetConfig config,
+    required DSCartVariant variant,
+    required DSCartState state,
+    required List<DSCartItem> items,
+    required DSCartSummary summary,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required bool isExpanded,
     required ScrollController scrollController,
     Widget? headerWidget,
@@ -177,7 +177,7 @@ class AppCartWidgetPlatformAdapter {
     int? maxVisibleItems,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
-    required Function(AppCartItem item) onItemTap,
+    required Function(DSCartItem item) onItemTap,
     required VoidCallback onCheckout,
     required Function(String promoCode) onPromoCode,
     required VoidCallback onToggleExpand,
@@ -187,10 +187,10 @@ class AppCartWidgetPlatformAdapter {
         color: colors.backgroundColor,
         borderRadius: BorderRadius.circular(spacing.borderRadius),
         border: Border.all(
-          color: state == AppCartState.focus
+          color: state == DSCartState.focus
               ? colors.focusColor ?? CupertinoColors.activeBlue
               : colors.borderColor ?? CupertinoColors.systemGrey5,
-          width: state == AppCartState.focus ? 2.0 : spacing.borderWidth,
+          width: state == DSCartState.focus ? 2.0 : spacing.borderWidth,
         ),
         boxShadow: [
           BoxShadow(
@@ -229,13 +229,13 @@ class AppCartWidgetPlatformAdapter {
   /// Construye el carrito para Web
   Widget _buildWebCart({
     required BuildContext context,
-    required AppCartWidgetConfig config,
-    required AppCartVariant variant,
-    required AppCartState state,
-    required List<AppCartItem> items,
-    required AppCartSummary summary,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartWidgetConfig config,
+    required DSCartVariant variant,
+    required DSCartState state,
+    required List<DSCartItem> items,
+    required DSCartSummary summary,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required bool isExpanded,
     required ScrollController scrollController,
     Widget? headerWidget,
@@ -243,7 +243,7 @@ class AppCartWidgetPlatformAdapter {
     int? maxVisibleItems,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
-    required Function(AppCartItem item) onItemTap,
+    required Function(DSCartItem item) onItemTap,
     required VoidCallback onCheckout,
     required Function(String promoCode) onPromoCode,
     required VoidCallback onToggleExpand,
@@ -253,19 +253,19 @@ class AppCartWidgetPlatformAdapter {
         color: colors.backgroundColor,
         borderRadius: BorderRadius.circular(spacing.borderRadius),
         border: Border.all(
-          color: state == AppCartState.focus
+          color: state == DSCartState.focus
               ? colors.focusColor ?? Theme.of(context).colorScheme.primary
-              : state == AppCartState.hover
+              : state == DSCartState.hover
                   ? colors.borderColor?.withValues(alpha: 0.5) ?? Theme.of(context).colorScheme.outline
                   : colors.borderColor ?? Colors.transparent,
-          width: state == AppCartState.focus ? 2.0 : spacing.borderWidth,
+          width: state == DSCartState.focus ? 2.0 : spacing.borderWidth,
         ),
         boxShadow: [
           BoxShadow(
             color: colors.shadowColor?.withValues(alpha: 0.15) ??
                    Colors.black.withValues(alpha: 0.15),
-            blurRadius: state == AppCartState.hover ? state.elevation * 1.5 : state.elevation,
-            offset: Offset(0, state == AppCartState.hover ? state.elevation : state.elevation / 2),
+            blurRadius: state == DSCartState.hover ? state.elevation * 1.5 : state.elevation,
+            offset: Offset(0, state == DSCartState.hover ? state.elevation : state.elevation / 2),
           ),
         ],
       ),
@@ -297,13 +297,13 @@ class AppCartWidgetPlatformAdapter {
   /// Construye el contenido del carrito según la variante
   Widget _buildCartContent({
     required BuildContext context,
-    required AppCartWidgetConfig config,
-    required AppCartVariant variant,
-    required AppCartState state,
-    required List<AppCartItem> items,
-    required AppCartSummary summary,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartWidgetConfig config,
+    required DSCartVariant variant,
+    required DSCartState state,
+    required List<DSCartItem> items,
+    required DSCartSummary summary,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required bool isExpanded,
     required ScrollController scrollController,
     Widget? headerWidget,
@@ -311,13 +311,13 @@ class AppCartWidgetPlatformAdapter {
     int? maxVisibleItems,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
-    required Function(AppCartItem item) onItemTap,
+    required Function(DSCartItem item) onItemTap,
     required VoidCallback onCheckout,
     required Function(String promoCode) onPromoCode,
     required VoidCallback onToggleExpand,
   }) {
     switch (variant) {
-      case AppCartVariant.mini:
+      case DSCartVariant.mini:
         return _buildMiniCart(
           context: context,
           summary: summary,
@@ -326,7 +326,7 @@ class AppCartWidgetPlatformAdapter {
           onCheckout: onCheckout,
           onToggleExpand: onToggleExpand,
         );
-      case AppCartVariant.full:
+      case DSCartVariant.full:
         return _buildFullCart(
           context: context,
           config: config,
@@ -353,9 +353,9 @@ class AppCartWidgetPlatformAdapter {
   /// Construye la variante mini del carrito
   Widget _buildMiniCart({
     required BuildContext context,
-    required AppCartSummary summary,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartSummary summary,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required VoidCallback onCheckout,
     required VoidCallback onToggleExpand,
   }) {
@@ -443,12 +443,12 @@ class AppCartWidgetPlatformAdapter {
   /// Construye la variante completa del carrito
   Widget _buildFullCart({
     required BuildContext context,
-    required AppCartWidgetConfig config,
-    required AppCartState state,
-    required List<AppCartItem> items,
-    required AppCartSummary summary,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartWidgetConfig config,
+    required DSCartState state,
+    required List<DSCartItem> items,
+    required DSCartSummary summary,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required bool isExpanded,
     required ScrollController scrollController,
     Widget? headerWidget,
@@ -456,7 +456,7 @@ class AppCartWidgetPlatformAdapter {
     int? maxVisibleItems,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
-    required Function(AppCartItem item) onItemTap,
+    required Function(DSCartItem item) onItemTap,
     required VoidCallback onCheckout,
     required Function(String promoCode) onPromoCode,
     required VoidCallback onToggleExpand,
@@ -508,9 +508,9 @@ class AppCartWidgetPlatformAdapter {
   /// Construye el header por defecto
   Widget _buildDefaultHeader({
     required BuildContext context,
-    required AppCartSummary summary,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartSummary summary,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required bool isExpanded,
     required VoidCallback onToggleExpand,
   }) {
@@ -564,26 +564,26 @@ class AppCartWidgetPlatformAdapter {
   /// Construye la lista de items
   Widget _buildItemsList({
     required BuildContext context,
-    required AppCartWidgetConfig config,
-    required List<AppCartItem> items,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartWidgetConfig config,
+    required List<DSCartItem> items,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required ScrollController scrollController,
     int? maxVisibleItems,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
-    required Function(AppCartItem item) onItemTap,
+    required Function(DSCartItem item) onItemTap,
   }) {
     final visibleItems = maxVisibleItems != null
         ? items.take(maxVisibleItems).toList()
         : items;
 
-    final layout = config.behavior?.layout ?? AppCartLayout.list;
+    final layout = config.behavior?.layout ?? DSCartLayout.list;
 
     Widget itemsWidget;
 
     switch (layout) {
-      case AppCartLayout.list:
+      case DSCartLayout.list:
         itemsWidget = ListView.separated(
           controller: scrollController,
           shrinkWrap: true,
@@ -609,7 +609,7 @@ class AppCartWidgetPlatformAdapter {
         );
         break;
 
-      case AppCartLayout.grid:
+      case DSCartLayout.grid:
         itemsWidget = GridView.builder(
           controller: scrollController,
           shrinkWrap: true,
@@ -635,7 +635,7 @@ class AppCartWidgetPlatformAdapter {
         );
         break;
 
-      case AppCartLayout.carousel:
+      case DSCartLayout.carousel:
         itemsWidget = SizedBox(
           height: spacing.itemHeight + 20,
           child: ListView.separated(
@@ -661,7 +661,7 @@ class AppCartWidgetPlatformAdapter {
         );
         break;
 
-      case AppCartLayout.accordion:
+      case DSCartLayout.accordion:
         itemsWidget = ExpansionPanelList(
           elevation: 0,
           expandedHeaderPadding: EdgeInsets.zero,
@@ -692,7 +692,7 @@ class AppCartWidgetPlatformAdapter {
 
     return ConstrainedBox(
       constraints: BoxConstraints(
-        maxHeight: layout == AppCartLayout.carousel
+        maxHeight: layout == DSCartLayout.carousel
             ? spacing.itemHeight + 20
             : math.min(400, visibleItems.length * spacing.itemHeight),
       ),
@@ -703,12 +703,12 @@ class AppCartWidgetPlatformAdapter {
   /// Construye un item del carrito como tile (para lista)
   Widget _buildCartItemTile({
     required BuildContext context,
-    required AppCartItem item,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartItem item,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
-    required Function(AppCartItem item) onItemTap,
+    required Function(DSCartItem item) onItemTap,
   }) {
     return Container(
       padding: spacing.padding,
@@ -803,12 +803,12 @@ class AppCartWidgetPlatformAdapter {
   /// Construye un item del carrito como card (para grid/carousel)
   Widget _buildCartItemCard({
     required BuildContext context,
-    required AppCartItem item,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartItem item,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
-    required Function(AppCartItem item) onItemTap,
+    required Function(DSCartItem item) onItemTap,
   }) {
     return Card(
       color: colors.itemBackgroundColor,
@@ -893,9 +893,9 @@ class AppCartWidgetPlatformAdapter {
   /// Construye los controles de cantidad
   Widget _buildQuantityControls({
     required BuildContext context,
-    required AppCartItem item,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartItem item,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
   }) {
@@ -956,9 +956,9 @@ class AppCartWidgetPlatformAdapter {
   /// Construye controles de cantidad compactos
   Widget _buildCompactQuantityControls({
     required BuildContext context,
-    required AppCartItem item,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartItem item,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required Function(String itemId, int newQuantity) onQuantityChange,
     required Function(String itemId) onItemRemove,
   }) {
@@ -993,9 +993,9 @@ class AppCartWidgetPlatformAdapter {
   /// Construye el resumen del carrito
   Widget _buildCartSummary({
     required BuildContext context,
-    required AppCartSummary summary,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartSummary summary,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     required VoidCallback onCheckout,
     required Function(String promoCode) onPromoCode,
   }) {
@@ -1073,7 +1073,7 @@ class AppCartWidgetPlatformAdapter {
     required BuildContext context,
     required String label,
     required String value,
-    required AppCartColors colors,
+    required DSCartColors colors,
     bool isDiscount = false,
     bool isTotal = false,
   }) {
@@ -1108,15 +1108,15 @@ class AppCartWidgetPlatformAdapter {
   /// Construye el carrito vacío
   Widget buildEmptyCart({
     required BuildContext context,
-    required AppCartVariant variant,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartVariant variant,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
     Widget? emptyWidget,
   }) {
     return Container(
       padding: spacing.padding,
       constraints: BoxConstraints(
-        minHeight: variant == AppCartVariant.mini ? 80 : 200,
+        minHeight: variant == DSCartVariant.mini ? 80 : 200,
       ),
       child: emptyWidget ??
              Center(
@@ -1125,7 +1125,7 @@ class AppCartWidgetPlatformAdapter {
                  children: [
                    Icon(
                      Icons.shopping_cart_outlined,
-                     size: variant == AppCartVariant.mini ? 32 : 64,
+                     size: variant == DSCartVariant.mini ? 32 : 64,
                      color: colors.emptyStateColor,
                    ),
                    SizedBox(height: spacing.contentGap),
@@ -1136,7 +1136,7 @@ class AppCartWidgetPlatformAdapter {
                      ),
                      textAlign: TextAlign.center,
                    ),
-                   if (variant == AppCartVariant.full) ...[
+                   if (variant == DSCartVariant.full) ...[
                      SizedBox(height: spacing.contentGap / 2),
                      Text(
                        'Agrega productos para comenzar',
@@ -1155,19 +1155,19 @@ class AppCartWidgetPlatformAdapter {
   /// Construye el carrito skeleton
   Widget buildSkeletonCart({
     required BuildContext context,
-    required AppCartVariant variant,
-    required AppCartColors colors,
-    required AppCartSpacing spacing,
+    required DSCartVariant variant,
+    required DSCartColors colors,
+    required DSCartSpacing spacing,
   }) {
     return Container(
       padding: spacing.padding,
-      child: variant == AppCartVariant.mini
+      child: variant == DSCartVariant.mini
           ? _buildMiniSkeleton(colors, spacing)
           : _buildFullSkeleton(colors, spacing),
     );
   }
 
-  Widget _buildMiniSkeleton(AppCartColors colors, AppCartSpacing spacing) {
+  Widget _buildMiniSkeleton(DSCartColors colors, DSCartSpacing spacing) {
     return Row(
       children: [
         Container(
@@ -1220,7 +1220,7 @@ class AppCartWidgetPlatformAdapter {
     );
   }
 
-  Widget _buildFullSkeleton(AppCartColors colors, AppCartSpacing spacing) {
+  Widget _buildFullSkeleton(DSCartColors colors, DSCartSpacing spacing) {
     return Column(
       children: [
         // Header skeleton

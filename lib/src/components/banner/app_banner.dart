@@ -35,7 +35,7 @@ class BannerAction {
   });
 }
 
-class AppBanner extends StatefulWidget {
+class DSBanner extends StatefulWidget {
   final BannerVariant variant;
   final String message;
   final BannerAction? action;
@@ -61,7 +61,7 @@ class AppBanner extends StatefulWidget {
   final double? borderWidth;
   final BorderRadius? borderRadius;
 
-  const AppBanner({
+  const DSBanner({
     super.key,
     this.variant = BannerVariant.inline,
     required this.message,
@@ -90,7 +90,7 @@ class AppBanner extends StatefulWidget {
   });
 
   @override
-  State<AppBanner> createState() => _AppBannerState();
+  State<DSBanner> createState() => _DSBannerState();
 
   /// Show a global banner at the top of the screen
   static void showGlobal(
@@ -106,9 +106,9 @@ class AppBanner extends StatefulWidget {
     bool persistent = false,
     Duration? autoDismissDuration,
   }) {
-    AppBannerManager.show(
+    DSBannerManager.show(
       context,
-      AppBanner(
+      DSBanner(
         variant: BannerVariant.global,
         message: message,
         action: action,
@@ -205,7 +205,7 @@ class AppBanner extends StatefulWidget {
   }
 }
 
-class _AppBannerState extends State<AppBanner>
+class _DSBannerState extends State<DSBanner>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _slideAnimation;
@@ -795,11 +795,11 @@ class _AppBannerState extends State<AppBanner>
 }
 
 /// Banner manager for global banners
-class AppBannerManager {
+class DSBannerManager {
   static OverlayEntry? _currentEntry;
-  static final Map<BannerPriority, List<AppBanner>> _queue = {};
+  static final Map<BannerPriority, List<DSBanner>> _queue = {};
 
-  static void show(BuildContext context, AppBanner banner) {
+  static void show(BuildContext context, DSBanner banner) {
     // If there's a current banner, handle priority
     if (_currentEntry != null && banner.variant == BannerVariant.global) {
       _queueBanner(banner);
@@ -840,7 +840,7 @@ class AppBannerManager {
     _queue.clear();
   }
 
-  static void _queueBanner(AppBanner banner) {
+  static void _queueBanner(DSBanner banner) {
     _queue[banner.priority] ??= [];
     _queue[banner.priority]!.add(banner);
   }
@@ -864,7 +864,7 @@ class AppBannerManager {
 }
 
 class _BannerWrapper extends StatelessWidget {
-  final AppBanner banner;
+  final DSBanner banner;
 
   const _BannerWrapper({required this.banner});
 
@@ -885,8 +885,8 @@ class _BannerWrapper extends StatelessWidget {
   }
 }
 
-extension AppBannerCopyWith on AppBanner {
-  AppBanner copyWith({
+extension DSBannerCopyWith on DSBanner {
+  DSBanner copyWith({
     BannerVariant? variant,
     String? message,
     BannerAction? action,
@@ -912,7 +912,7 @@ extension AppBannerCopyWith on AppBanner {
     double? borderWidth,
     BorderRadius? borderRadius,
   }) {
-    return AppBanner(
+    return DSBanner(
       variant: variant ?? this.variant,
       message: message ?? this.message,
       action: action ?? this.action,

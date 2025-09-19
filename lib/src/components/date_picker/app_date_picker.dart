@@ -6,9 +6,9 @@ import 'package:iautomat_design_system/src/components/date_picker/date_picker_co
 /// A comprehensive date picker component with multiple variants and states.
 ///
 /// Supports three variants:
-/// - [AppDatePickerVariant.date]: Single date selection
-/// - [AppDatePickerVariant.time]: Time selection
-/// - [AppDatePickerVariant.range]: Date range selection
+/// - [DSDatePickerVariant.date]: Single date selection
+/// - [DSDatePickerVariant.time]: Time selection
+/// - [DSDatePickerVariant.range]: Date range selection
 ///
 /// Features:
 /// - Platform-adaptive UI (Material/Cupertino)
@@ -17,26 +17,26 @@ import 'package:iautomat_design_system/src/components/date_picker/date_picker_co
 /// - Accessibility built-in
 /// - Keyboard navigation
 /// - Locale support
-/// - Extensive customization through [AppDatePickerConfig]
+/// - Extensive customization through [DSDatePickerConfig]
 ///
 /// Example:
 /// ```dart
-/// AppDatePicker(
-///   variant: AppDatePickerVariant.date,
+/// DSDatePicker(
+///   variant: DSDatePickerVariant.date,
 ///   value: DateTime.now(),
 ///   onChanged: (value) => print('Selected: $value'),
 ///   firstDate: DateTime(2020),
 ///   lastDate: DateTime(2030),
 /// )
 /// ```
-class AppDatePicker extends StatefulWidget {
+class DSDatePicker extends StatefulWidget {
   /// The variant of the date picker
-  final AppDatePickerVariant variant;
+  final DSDatePickerVariant variant;
 
   /// Current selected value
-  /// - For [AppDatePickerVariant.date]: DateTime?
-  /// - For [AppDatePickerVariant.time]: TimeOfDay?
-  /// - For [AppDatePickerVariant.range]: AppDateRange?
+  /// - For [DSDatePickerVariant.date]: DateTime?
+  /// - For [DSDatePickerVariant.time]: TimeOfDay?
+  /// - For [DSDatePickerVariant.range]: DSDateRange?
   final dynamic value;
 
   /// Callback when the value changes
@@ -55,10 +55,10 @@ class AppDatePicker extends StatefulWidget {
   final bool enabled;
 
   /// Current state of the picker
-  final AppDatePickerState state;
+  final DSDatePickerState state;
 
   /// Configuration for customization
-  final AppDatePickerConfig? config;
+  final DSDatePickerConfig? config;
 
   /// Hint text to display when no value is selected
   final String? hintText;
@@ -108,7 +108,7 @@ class AppDatePicker extends StatefulWidget {
   /// Callback when the picker is tapped
   final VoidCallback? onTap;
 
-  const AppDatePicker({
+  const DSDatePicker({
     super.key,
     required this.variant,
     this.value,
@@ -117,7 +117,7 @@ class AppDatePicker extends StatefulWidget {
     this.lastDate,
     this.locale,
     this.enabled = true,
-    this.state = AppDatePickerState.defaultState,
+    this.state = DSDatePickerState.defaultState,
     this.config,
     this.hintText,
     this.errorText,
@@ -138,10 +138,10 @@ class AppDatePicker extends StatefulWidget {
   });
 
   @override
-  State<AppDatePicker> createState() => _AppDatePickerState();
+  State<DSDatePicker> createState() => _DSDatePickerState();
 }
 
-class _AppDatePickerState extends State<AppDatePicker>
+class _DSDatePickerState extends State<DSDatePicker>
     with TickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<double> _scaleAnimation;
@@ -151,11 +151,11 @@ class _AppDatePickerState extends State<AppDatePicker>
   bool _isPressed = false;
   bool _isFocused = false;
 
-  AppDatePickerConfig get _config =>
-      widget.config ?? const AppDatePickerConfig();
+  DSDatePickerConfig get _config =>
+      widget.config ?? const DSDatePickerConfig();
 
-  AppDatePickerColors get _colors =>
-      _config.colors ?? AppDatePickerColors.fromTheme(Theme.of(context));
+  DSDatePickerColors get _colors =>
+      _config.colors ?? DSDatePickerColors.fromTheme(Theme.of(context));
 
   @override
   void initState() {
@@ -193,71 +193,71 @@ class _AppDatePickerState extends State<AppDatePicker>
     widget.onFocusChanged?.call();
   }
 
-  Color _getBackgroundColor(AppDatePickerState state) {
+  Color _getBackgroundColor(DSDatePickerState state) {
     switch (state) {
-      case AppDatePickerState.defaultState:
+      case DSDatePickerState.defaultState:
         return _colors.inputFillColor;
-      case AppDatePickerState.hover:
+      case DSDatePickerState.hover:
         return _colors.hoverOverlayColor;
-      case AppDatePickerState.pressed:
+      case DSDatePickerState.pressed:
         return _colors.pressedOverlayColor;
-      case AppDatePickerState.focus:
+      case DSDatePickerState.focus:
         return _colors.focusOverlayColor;
-      case AppDatePickerState.selected:
+      case DSDatePickerState.selected:
         return _colors.selectionColor;
-      case AppDatePickerState.disabled:
+      case DSDatePickerState.disabled:
         return _colors.inputFillColor;
-      case AppDatePickerState.loading:
+      case DSDatePickerState.loading:
         return _colors.inputFillColor;
-      case AppDatePickerState.skeleton:
+      case DSDatePickerState.skeleton:
         return _colors.skeletonBaseColor;
     }
   }
 
-  Color _getBorderColor(AppDatePickerState state) {
+  Color _getBorderColor(DSDatePickerState state) {
     switch (state) {
-      case AppDatePickerState.defaultState:
+      case DSDatePickerState.defaultState:
         return _colors.inputBorderColor;
-      case AppDatePickerState.hover:
+      case DSDatePickerState.hover:
         return _colors.inputBorderColor;
-      case AppDatePickerState.pressed:
+      case DSDatePickerState.pressed:
         return _colors.inputFocusedBorderColor;
-      case AppDatePickerState.focus:
+      case DSDatePickerState.focus:
         return _colors.inputFocusedBorderColor;
-      case AppDatePickerState.selected:
+      case DSDatePickerState.selected:
         return _colors.inputFocusedBorderColor;
-      case AppDatePickerState.disabled:
+      case DSDatePickerState.disabled:
         return _colors.inputDisabledBorderColor;
-      case AppDatePickerState.loading:
+      case DSDatePickerState.loading:
         return _colors.inputBorderColor;
-      case AppDatePickerState.skeleton:
+      case DSDatePickerState.skeleton:
         return _colors.skeletonBaseColor;
     }
   }
 
-  AppDatePickerState get _currentState {
-    if (!widget.enabled || widget.state == AppDatePickerState.disabled) {
-      return AppDatePickerState.disabled;
+  DSDatePickerState get _currentState {
+    if (!widget.enabled || widget.state == DSDatePickerState.disabled) {
+      return DSDatePickerState.disabled;
     }
-    if (widget.state == AppDatePickerState.loading) {
-      return AppDatePickerState.loading;
+    if (widget.state == DSDatePickerState.loading) {
+      return DSDatePickerState.loading;
     }
-    if (widget.state == AppDatePickerState.skeleton) {
-      return AppDatePickerState.skeleton;
+    if (widget.state == DSDatePickerState.skeleton) {
+      return DSDatePickerState.skeleton;
     }
     if (_isPressed) {
-      return AppDatePickerState.pressed;
+      return DSDatePickerState.pressed;
     }
     if (_isFocused) {
-      return AppDatePickerState.focus;
+      return DSDatePickerState.focus;
     }
     if (_isHovered) {
-      return AppDatePickerState.hover;
+      return DSDatePickerState.hover;
     }
     if (widget.value != null) {
-      return AppDatePickerState.selected;
+      return DSDatePickerState.selected;
     }
-    return AppDatePickerState.defaultState;
+    return DSDatePickerState.defaultState;
   }
 
   String get _displayText {
@@ -266,14 +266,14 @@ class _AppDatePickerState extends State<AppDatePicker>
     }
 
     switch (widget.variant) {
-      case AppDatePickerVariant.date:
+      case DSDatePickerVariant.date:
         final date = widget.value as DateTime;
         return _formatDate(date);
-      case AppDatePickerVariant.time:
+      case DSDatePickerVariant.time:
         final time = widget.value as TimeOfDay;
         return _formatTime(time);
-      case AppDatePickerVariant.range:
-        final range = widget.value as AppDateRange;
+      case DSDatePickerVariant.range:
+        final range = widget.value as DSDateRange;
         final startText = _formatDate(range.start!);
         final endText = range.end != null ? _formatDate(range.end!) : '';
         return endText.isNotEmpty ? '$startText - $endText' : startText;
@@ -282,18 +282,18 @@ class _AppDatePickerState extends State<AppDatePicker>
 
   String _getDefaultHintText() {
     switch (widget.variant) {
-      case AppDatePickerVariant.date:
+      case DSDatePickerVariant.date:
         return 'Seleccionar fecha';
-      case AppDatePickerVariant.time:
+      case DSDatePickerVariant.time:
         return 'Seleccionar hora';
-      case AppDatePickerVariant.range:
+      case DSDatePickerVariant.range:
         return 'Seleccionar rango de fechas';
     }
   }
 
   Future<void> _showPicker() async {
     if (!widget.enabled ||
-        widget.state == AppDatePickerState.disabled ||
+        widget.state == DSDatePickerState.disabled ||
         widget.onChanged == null) {
       return;
     }
@@ -304,13 +304,13 @@ class _AppDatePickerState extends State<AppDatePicker>
       dynamic result;
 
       switch (widget.variant) {
-        case AppDatePickerVariant.date:
+        case DSDatePickerVariant.date:
           result = await _showDatePicker();
           break;
-        case AppDatePickerVariant.time:
+        case DSDatePickerVariant.time:
           result = await _showTimePicker();
           break;
-        case AppDatePickerVariant.range:
+        case DSDatePickerVariant.range:
           result = await _showDateRangePicker();
           break;
       }
@@ -476,8 +476,8 @@ class _AppDatePickerState extends State<AppDatePicker>
     return selectedTime;
   }
 
-  Future<AppDateRange?> _showDateRangePicker() async {
-    final currentValue = widget.value as AppDateRange?;
+  Future<DSDateRange?> _showDateRangePicker() async {
+    final currentValue = widget.value as DSDateRange?;
 
     final result = await showDateRangePicker(
       context: context,
@@ -503,7 +503,7 @@ class _AppDatePickerState extends State<AppDatePicker>
     );
 
     return result != null
-        ? AppDateRange(start: result.start, end: result.end)
+        ? DSDateRange(start: result.start, end: result.end)
         : null;
   }
 
@@ -531,11 +531,11 @@ class _AppDatePickerState extends State<AppDatePicker>
   Widget _buildContent() {
     final currentState = _currentState;
 
-    if (currentState == AppDatePickerState.loading) {
+    if (currentState == DSDatePickerState.loading) {
       return _buildLoadingState();
     }
 
-    if (currentState == AppDatePickerState.skeleton) {
+    if (currentState == DSDatePickerState.skeleton) {
       return _buildSkeletonState();
     }
 
@@ -575,11 +575,11 @@ class _AppDatePickerState extends State<AppDatePicker>
 
   IconData _getDefaultIcon() {
     switch (widget.variant) {
-      case AppDatePickerVariant.date:
+      case DSDatePickerVariant.date:
         return Icons.calendar_today;
-      case AppDatePickerVariant.time:
+      case DSDatePickerVariant.time:
         return Icons.access_time;
-      case AppDatePickerVariant.range:
+      case DSDatePickerVariant.range:
         return Icons.date_range;
     }
   }
@@ -646,7 +646,7 @@ class _AppDatePickerState extends State<AppDatePicker>
                         borderRadius:
                             BorderRadius.circular(_config.borderRadius),
                         boxShadow: _config.enableShadow &&
-                                currentState != AppDatePickerState.disabled
+                                currentState != DSDatePickerState.disabled
                             ? [
                                 BoxShadow(
                                   color: _colors.dialogShadowColor,

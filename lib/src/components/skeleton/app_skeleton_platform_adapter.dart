@@ -13,13 +13,13 @@ enum HapticFeedbackType {
   vibrate,
 }
 
-class AppSkeletonPlatformAdapter {
-  static AppSkeletonPlatformAdapter? _instance;
+class DSSkeletonPlatformAdapter {
+  static DSSkeletonPlatformAdapter? _instance;
 
-  AppSkeletonPlatformAdapter._();
+  DSSkeletonPlatformAdapter._();
 
-  factory AppSkeletonPlatformAdapter() {
-    return _instance ??= AppSkeletonPlatformAdapter._();
+  factory DSSkeletonPlatformAdapter() {
+    return _instance ??= DSSkeletonPlatformAdapter._();
   }
 
   bool get isMobile => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
@@ -62,28 +62,28 @@ class AppSkeletonPlatformAdapter {
     }
   }
 
-  double getDefaultBorderRadius(AppSkeletonShape shape) {
+  double getDefaultBorderRadius(DSSkeletonShape shape) {
     switch (shape) {
-      case AppSkeletonShape.circle:
-      case AppSkeletonShape.avatar:
+      case DSSkeletonShape.circle:
+      case DSSkeletonShape.avatar:
         return 50.0;
-      case AppSkeletonShape.button:
+      case DSSkeletonShape.button:
         if (isIOS) return 8.0;
         if (isAndroid) return 4.0;
         return 6.0;
-      case AppSkeletonShape.card:
+      case DSSkeletonShape.card:
         if (isIOS) return 12.0;
         if (isAndroid) return 8.0;
         return 10.0;
-      case AppSkeletonShape.text:
+      case DSSkeletonShape.text:
         return 4.0;
-      case AppSkeletonShape.line:
+      case DSSkeletonShape.line:
         return 0.0;
-      case AppSkeletonShape.roundedRectangle:
+      case DSSkeletonShape.roundedRectangle:
         if (isIOS) return 16.0;
         if (isAndroid) return 12.0;
         return 14.0;
-      case AppSkeletonShape.rectangle:
+      case DSSkeletonShape.rectangle:
         return 0.0;
     }
   }
@@ -290,27 +290,27 @@ class AppSkeletonPlatformAdapter {
     return TextDirection.ltr;
   }
 
-  AppSkeletonConfig getPlatformOptimizedConfig(
-    AppSkeletonShape shape,
+  DSSkeletonConfig getPlatformOptimizedConfig(
+    DSSkeletonShape shape,
     BuildContext context,
   ) {
-    return AppSkeletonConfig(
-      variant: AppSkeletonVariant.universal,
-      state: AppSkeletonState.skeleton,
-      colors: AppSkeletonColors(
+    return DSSkeletonConfig(
+      variant: DSSkeletonVariant.universal,
+      state: DSSkeletonState.skeleton,
+      colors: DSSkeletonColors(
         backgroundColor: getDefaultBackgroundColor(context),
         shimmerColor: getDefaultShimmerColor(context),
         highlightColor: getDefaultHighlightColor(context),
         opacity: getDefaultOpacity(),
         shimmerOpacity: getDefaultShimmerOpacity(),
       ),
-      spacing: AppSkeletonSpacing(
+      spacing: DSSkeletonSpacing(
         borderRadius: getDefaultBorderRadius(shape),
         padding: getDefaultPadding(),
         margin: getDefaultMargin(),
         elevation: getDefaultElevation(),
       ),
-      animations: AppSkeletonAnimations(
+      animations: DSSkeletonAnimations(
         duration: getShimmerDuration(),
         fadeInDuration: getDefaultAnimationDuration(),
         curve: getDefaultAnimationCurve(),
@@ -319,11 +319,11 @@ class AppSkeletonPlatformAdapter {
         shimmerEnabled: getDefaultShimmerEnabled(),
         pulseEnabled: getDefaultPulseEnabled(),
       ),
-      accessibility: const AppSkeletonAccessibility(
+      accessibility: const DSSkeletonAccessibility(
         enabled: true,
         focusable: false, // Skeletons are generally not focusable
       ),
-      behavior: const AppSkeletonBehavior(
+      behavior: const DSSkeletonBehavior(
         animateOnLoad: true,
         hideOnContent: true,
         maintainSize: true,
@@ -348,8 +348,8 @@ class AppSkeletonPlatformAdapter {
     return mediaQuery.accessibleNavigation;
   }
 
-  AppSkeletonConfig adjustForAccessibility(
-    AppSkeletonConfig config,
+  DSSkeletonConfig adjustForAccessibility(
+    DSSkeletonConfig config,
     BuildContext context,
   ) {
     if (shouldUseReducedMotion(context)) {

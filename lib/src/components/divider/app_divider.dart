@@ -5,19 +5,19 @@ import 'app_divider_config.dart';
 import 'app_divider_platform_adapter.dart';
 import 'app_divider_a11y_helper.dart';
 
-class AppDivider extends StatefulWidget {
-  final AppDividerConfig config;
-  final AppDividerCallback? onTap;
-  final AppDividerStateCallback? onStateChanged;
+class DSDivider extends StatefulWidget {
+  final DSDividerConfig config;
+  final DSDividerCallback? onTap;
+  final DSDividerStateCallback? onStateChanged;
   final bool enabled;
   final bool interactive;
   final Widget? child;
   final String? semanticLabel;
   final bool excludeSemantics;
 
-  const AppDivider({
+  const DSDivider({
     super.key,
-    this.config = const AppDividerConfig(),
+    this.config = const DSDividerConfig(),
     this.onTap,
     this.onStateChanged,
     this.enabled = true,
@@ -28,18 +28,18 @@ class AppDivider extends StatefulWidget {
   });
 
   @override
-  State<AppDivider> createState() => _AppDividerState();
+  State<DSDivider> createState() => _DSDividerState();
 }
 
-class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
-  late AppDividerPlatformAdapter _platformAdapter;
-  late AppDividerA11yHelper _a11yHelper;
+class _DSDividerState extends State<DSDivider> with TickerProviderStateMixin {
+  late DSDividerPlatformAdapter _platformAdapter;
+  late DSDividerA11yHelper _a11yHelper;
   late AnimationController _animationController;
   late AnimationController _skeletonAnimationController;
   late Animation<Color?> _colorAnimation;
   late Animation<double> _skeletonAnimation;
 
-  AppDividerState _currentState = AppDividerState.defaultState;
+  DSDividerState _currentState = DSDividerState.defaultState;
   bool _isHovered = false;
   bool _isFocused = false;
 
@@ -58,7 +58,7 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(AppDivider oldWidget) {
+  void didUpdateWidget(DSDivider oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.config != widget.config) {
@@ -79,11 +79,11 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
   }
 
   void _initializePlatformAdapter() {
-    _platformAdapter = AppDividerPlatformAdapter();
+    _platformAdapter = DSDividerPlatformAdapter();
   }
 
   void _initializeA11y() {
-    _a11yHelper = AppDividerA11yHelper(
+    _a11yHelper = DSDividerA11yHelper(
       config: widget.config,
       onAnnouncementRequested: _announceToScreenReader,
     );
@@ -91,7 +91,7 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
 
   void _initializeAnimations() {
     final animationConfig =
-        widget.config.animations ?? const AppDividerAnimations();
+        widget.config.animations ?? const DSDividerAnimations();
 
     _animationController = AnimationController(
       duration: animationConfig.stateDuration,
@@ -108,11 +108,11 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
 
   void _updateAnimations() {
     final animationConfig =
-        widget.config.animations ?? const AppDividerAnimations();
+        widget.config.animations ?? const DSDividerAnimations();
 
     _colorAnimation =
         ColorTween(
-          begin: _getStateColor(AppDividerState.defaultState),
+          begin: _getStateColor(DSDividerState.defaultState),
           end: _getStateColor(_currentState),
         ).animate(
           CurvedAnimation(
@@ -128,7 +128,7 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
       ),
     );
 
-    if (_currentState == AppDividerState.skeleton) {
+    if (_currentState == DSDividerState.skeleton) {
       _skeletonAnimationController.repeat(reverse: true);
     } else {
       _skeletonAnimationController.stop();
@@ -141,13 +141,13 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
 
   void _updateEnabledState() {
     if (!widget.enabled) {
-      _updateState(AppDividerState.disabled);
+      _updateState(DSDividerState.disabled);
     } else {
       _updateState(widget.config.state);
     }
   }
 
-  void _updateState(AppDividerState newState) {
+  void _updateState(DSDividerState newState) {
     if (_currentState != newState) {
       final previousState = _currentState;
       setState(() {
@@ -171,14 +171,14 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
 
     _animationController.forward();
 
-    if (_currentState == AppDividerState.skeleton) {
+    if (_currentState == DSDividerState.skeleton) {
       _skeletonAnimationController.repeat(reverse: true);
     } else {
       _skeletonAnimationController.stop();
     }
   }
 
-  Color? _getStateColor(AppDividerState state) {
+  Color? _getStateColor(DSDividerState state) {
     final colors = widget.config.colors;
 
     // Manejo seguro del theme - usar valores por defecto si no hay contexto
@@ -190,34 +190,34 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
     }
 
     switch (state) {
-      case AppDividerState.defaultState:
+      case DSDividerState.defaultState:
         return colors?.defaultColor ??
             widget.config.color ??
             theme?.dividerColor ??
             Colors.grey;
-      case AppDividerState.hover:
+      case DSDividerState.hover:
         return colors?.hoverColor ??
             theme?.colorScheme.primary.withValues(alpha: 0.1) ??
             Colors.blue.withValues(alpha: 0.1);
-      case AppDividerState.pressed:
+      case DSDividerState.pressed:
         return colors?.pressedColor ??
             theme?.colorScheme.primary.withValues(alpha: 0.2) ??
             Colors.blue.withValues(alpha: 0.2);
-      case AppDividerState.focus:
+      case DSDividerState.focus:
         return colors?.focusColor ?? theme?.colorScheme.primary ?? Colors.blue;
-      case AppDividerState.selected:
+      case DSDividerState.selected:
         return colors?.selectedColor ??
             theme?.colorScheme.primary ??
             Colors.blue;
-      case AppDividerState.disabled:
+      case DSDividerState.disabled:
         return colors?.disabledColor ??
             theme?.disabledColor ??
             Colors.grey.withValues(alpha: 0.38);
-      case AppDividerState.loading:
+      case DSDividerState.loading:
         return colors?.loadingColor ??
             theme?.colorScheme.primary.withValues(alpha: 0.6) ??
             Colors.blue.withValues(alpha: 0.6);
-      case AppDividerState.skeleton:
+      case DSDividerState.skeleton:
         return colors?.skeletonBaseColor ??
             theme?.colorScheme.surfaceContainerHighest ??
             Colors.grey.shade200;
@@ -225,29 +225,29 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
   }
 
   double _getEffectiveThickness() {
-    final spacing = widget.config.spacing ?? const AppDividerSpacing();
+    final spacing = widget.config.spacing ?? const DSDividerSpacing();
     return widget.config.thickness ?? spacing.defaultThickness;
   }
 
   double _getEffectiveHeight() {
-    final spacing = widget.config.spacing ?? const AppDividerSpacing();
+    final spacing = widget.config.spacing ?? const DSDividerSpacing();
     return widget.config.height ?? spacing.defaultHeight;
   }
 
   double _getEffectiveWidth() {
-    final spacing = widget.config.spacing ?? const AppDividerSpacing();
+    final spacing = widget.config.spacing ?? const DSDividerSpacing();
     return widget.config.width ?? spacing.defaultWidth;
   }
 
   double? _getEffectiveIndent() {
-    if (widget.config.variant != AppDividerVariant.inset) return null;
-    final spacing = widget.config.spacing ?? const AppDividerSpacing();
+    if (widget.config.variant != DSDividerVariant.inset) return null;
+    final spacing = widget.config.spacing ?? const DSDividerSpacing();
     return widget.config.indent ?? spacing.defaultIndent;
   }
 
   double? _getEffectiveEndIndent() {
-    if (widget.config.variant != AppDividerVariant.inset) return null;
-    final spacing = widget.config.spacing ?? const AppDividerSpacing();
+    if (widget.config.variant != DSDividerVariant.inset) return null;
+    final spacing = widget.config.spacing ?? const DSDividerSpacing();
     return widget.config.endIndent ?? spacing.defaultEndIndent;
   }
 
@@ -267,13 +267,13 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
   void _handleTap() {
     if (!widget.enabled || !_currentState.isInteractive) return;
 
-    _updateState(AppDividerState.pressed);
+    _updateState(DSDividerState.pressed);
 
     // Revertir al estado anterior después de un breve momento
     Future.delayed(const Duration(milliseconds: 150), () {
       if (mounted) {
         _updateState(
-          _isHovered ? AppDividerState.hover : AppDividerState.defaultState,
+          _isHovered ? DSDividerState.hover : DSDividerState.defaultState,
         );
       }
     });
@@ -292,9 +292,9 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
     });
 
     if (isHovering) {
-      _updateState(AppDividerState.hover);
+      _updateState(DSDividerState.hover);
     } else if (!_isFocused) {
-      _updateState(AppDividerState.defaultState);
+      _updateState(DSDividerState.defaultState);
     }
   }
 
@@ -309,15 +309,15 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
     });
 
     if (hasFocus) {
-      _updateState(AppDividerState.focus);
+      _updateState(DSDividerState.focus);
     } else if (!_isHovered) {
-      _updateState(AppDividerState.defaultState);
+      _updateState(DSDividerState.defaultState);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.enabled && widget.config.state != AppDividerState.disabled) {
+    if (!widget.enabled && widget.config.state != DSDividerState.disabled) {
       return const SizedBox.shrink();
     }
 
@@ -341,7 +341,7 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
       return _buildLoadingDivider();
     }
 
-    if (_currentState == AppDividerState.skeleton) {
+    if (_currentState == DSDividerState.skeleton) {
       return _buildSkeletonDivider();
     }
 
@@ -377,7 +377,7 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
 
   Widget _buildLoadingDivider() {
     final isHorizontal = widget.config.orientation.isHorizontal;
-    final color = _getStateColor(AppDividerState.loading);
+    final color = _getStateColor(DSDividerState.loading);
 
     return SizedBox(
       height: isHorizontal ? _getEffectiveHeight() : null,
@@ -438,9 +438,9 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
   }
 
   Widget _buildInteractiveDivider(Widget dividerWidget) {
-    final spacing = widget.config.spacing ?? const AppDividerSpacing();
+    final spacing = widget.config.spacing ?? const DSDividerSpacing();
     final accessibility =
-        widget.config.accessibility ?? const AppDividerAccessibilityConfig();
+        widget.config.accessibility ?? const DSDividerAccessibilityConfig();
 
     return GestureDetector(
       onTap: _handleTap,
@@ -465,7 +465,7 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
 
   Widget _buildSemanticWrapper(Widget child) {
     final accessibility =
-        widget.config.accessibility ?? const AppDividerAccessibilityConfig();
+        widget.config.accessibility ?? const DSDividerAccessibilityConfig();
 
     if (!accessibility.enabled || widget.excludeSemantics) {
       return child;
@@ -473,9 +473,9 @@ class _AppDividerState extends State<AppDivider> with TickerProviderStateMixin {
 
     String? semanticLabel = widget.semanticLabel ?? accessibility.semanticLabel;
 
-    if (_currentState == AppDividerState.loading) {
+    if (_currentState == DSDividerState.loading) {
       semanticLabel = accessibility.loadingLabel;
-    } else if (_currentState == AppDividerState.disabled) {
+    } else if (_currentState == DSDividerState.disabled) {
       semanticLabel = accessibility.disabledLabel;
     }
 

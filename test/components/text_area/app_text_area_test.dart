@@ -4,14 +4,14 @@ import 'package:iautomat_design_system/src/components/text_area/app_text_area.da
 import 'package:iautomat_design_system/src/components/text_area/text_area_config.dart';
 
 void main() {
-  group('AppTextArea', () {
+  group('DSTextArea', () {
     testWidgets('renders correctly with basic properties', (tester) async {
       final controller = TextEditingController();
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'Test Label',
               hint: 'Test Hint',
@@ -20,7 +20,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppTextArea), findsOneWidget);
+      expect(find.byType(DSTextArea), findsOneWidget);
       expect(find.text('Test Label'), findsOneWidget);
       expect(find.text('Test Hint'), findsOneWidget);
 
@@ -33,7 +33,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'Test Area',
             ),
@@ -42,7 +42,7 @@ void main() {
       );
 
       await tester.enterText(
-          find.byType(AppTextArea), 'Hello World\nMultiple lines');
+          find.byType(DSTextArea), 'Hello World\nMultiple lines');
       expect(controller.text, 'Hello World\nMultiple lines');
 
       controller.dispose();
@@ -57,10 +57,10 @@ void main() {
           home: Scaffold(
             body: Form(
               key: formKey,
-              child: AppTextArea(
+              child: DSTextArea(
                 controller: controller,
                 label: 'Required Area',
-                validator: AppTextAreaValidator.required,
+                validator: DSTextAreaValidator.required,
               ),
             ),
           ),
@@ -75,7 +75,7 @@ void main() {
       expect(find.text('Este campo es requerido'), findsOneWidget);
 
       // Enter valid text and validate again
-      await tester.enterText(find.byType(AppTextArea), 'Valid text');
+      await tester.enterText(find.byType(DSTextArea), 'Valid text');
       formKey.currentState!.validate();
       await tester.pump();
 
@@ -91,10 +91,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'Auto-Resize Area',
-              variant: AppTextAreaVariant.autoResize,
+              variant: DSTextAreaVariant.autoResize,
               minLines: 3,
               maxLines: 8,
             ),
@@ -103,7 +103,7 @@ void main() {
       );
 
       await tester.enterText(
-          find.byType(AppTextArea), 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5');
+          find.byType(DSTextArea), 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5');
       expect(controller.text, 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5');
 
       controller.dispose();
@@ -115,7 +115,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'Disabled Area',
               enabled: false,
@@ -125,7 +125,7 @@ void main() {
       );
 
       // Try to enter text
-      await tester.enterText(find.byType(AppTextArea), 'Should not work');
+      await tester.enterText(find.byType(DSTextArea), 'Should not work');
       expect(controller.text, '');
 
       controller.dispose();
@@ -137,7 +137,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'Read Only Area',
               readOnly: true,
@@ -147,7 +147,7 @@ void main() {
       );
 
       // Try to enter text
-      await tester.enterText(find.byType(AppTextArea), 'Should not change');
+      await tester.enterText(find.byType(DSTextArea), 'Should not change');
       expect(controller.text, 'Initial text');
 
       controller.dispose();
@@ -157,9 +157,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               label: 'Loading Area',
-              overrideState: AppTextAreaState.loading,
+              overrideState: DSTextAreaState.loading,
             ),
           ),
         ),
@@ -177,9 +177,9 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               label: 'Skeleton Area',
-              overrideState: AppTextAreaState.skeleton,
+              overrideState: DSTextAreaState.skeleton,
             ),
           ),
         ),
@@ -192,7 +192,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               label: 'Area with helper',
               helperText: 'This is helper text',
             ),
@@ -207,7 +207,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               label: 'Area with error',
               errorText: 'This is an error',
             ),
@@ -222,7 +222,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               label: 'Area with icons',
               prefixIcon: Icons.message,
               suffixIcon: Icons.send,
@@ -239,7 +239,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               label: 'Area with widgets',
               prefix: const Text('Pre'),
               suffix: const Text('Post'),
@@ -259,7 +259,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'Focusable Area',
               focusNode: focusNode,
@@ -286,7 +286,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'Autofocus Area',
               autoFocus: true,
@@ -297,9 +297,9 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      // Verify the AppTextArea widget has autofocus enabled
-      final appTextArea = tester.widget<AppTextArea>(
-        find.byType(AppTextArea),
+      // Verify the DSTextArea widget has autofocus enabled
+      final appTextArea = tester.widget<DSTextArea>(
+        find.byType(DSTextArea),
       );
 
       expect(appTextArea.autoFocus, true);
@@ -308,7 +308,7 @@ void main() {
     });
 
     testWidgets('applies custom configuration', (tester) async {
-      const customConfig = AppTextAreaConfig(
+      const customConfig = DSTextAreaConfig(
         borderRadius: 16,
         contentPadding: EdgeInsets.all(20),
         minimumHeight: 100,
@@ -319,7 +319,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'Custom Config Area',
               config: customConfig,
@@ -329,7 +329,7 @@ void main() {
       );
 
       // Verify configuration is applied
-      final textArea = tester.widget<AppTextArea>(find.byType(AppTextArea));
+      final textArea = tester.widget<DSTextArea>(find.byType(DSTextArea));
       expect(textArea.config?.borderRadius, 16);
       expect(textArea.config?.minimumHeight, 100);
 
@@ -337,7 +337,7 @@ void main() {
     });
 
     testWidgets('applies custom colors', (tester) async {
-      final customColors = AppTextAreaColors(
+      final customColors = DSTextAreaColors(
         borderColor: Colors.red,
         focusedBorderColor: Colors.blue,
         errorBorderColor: Colors.orange,
@@ -373,7 +373,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'Custom Colors Area',
               colors: customColors,
@@ -384,7 +384,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(AppTextArea), findsOneWidget);
+      expect(find.byType(DSTextArea), findsOneWidget);
 
       controller.dispose();
     });
@@ -396,7 +396,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'OnChanged Area',
               onChanged: (value) => changedValue = value,
@@ -405,7 +405,7 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextArea), 'test text');
+      await tester.enterText(find.byType(DSTextArea), 'test text');
       expect(changedValue, 'test text');
 
       controller.dispose();
@@ -418,7 +418,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'OnSubmitted Area',
               onSubmitted: (value) => submittedValue = value,
@@ -427,7 +427,7 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextArea), 'test text');
+      await tester.enterText(find.byType(DSTextArea), 'test text');
       await tester.testTextInput.receiveAction(TextInputAction.done);
 
       expect(submittedValue, 'test text');
@@ -441,7 +441,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppTextArea(
+            body: DSTextArea(
               controller: controller,
               label: 'Counter Area',
               maxLength: 100,
@@ -451,7 +451,7 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextArea), 'Hello');
+      await tester.enterText(find.byType(DSTextArea), 'Hello');
       await tester.pump();
 
       expect(find.text('5/100'), findsOneWidget);
@@ -469,7 +469,7 @@ void main() {
               builder: (context, setState) {
                 return Column(
                   children: [
-                    AppTextArea(
+                    DSTextArea(
                       controller: controller,
                       label: 'Rebuild Test',
                     ),
@@ -485,7 +485,7 @@ void main() {
         ),
       );
 
-      await tester.enterText(find.byType(AppTextArea), 'Persistent text');
+      await tester.enterText(find.byType(DSTextArea), 'Persistent text');
       expect(controller.text, 'Persistent text');
 
       await tester.tap(find.text('Rebuild'));
@@ -506,10 +506,10 @@ void main() {
             home: Scaffold(
               body: Form(
                 key: formKey,
-                child: AppTextArea(
+                child: DSTextArea(
                   controller: controller,
                   label: 'Required Area',
-                  validator: AppTextAreaValidator.required,
+                  validator: DSTextAreaValidator.required,
                 ),
               ),
             ),
@@ -523,7 +523,7 @@ void main() {
         expect(find.text('Este campo es requerido'), findsOneWidget);
 
         // Enter valid text and validate
-        await tester.enterText(find.byType(AppTextArea), 'Not empty');
+        await tester.enterText(find.byType(DSTextArea), 'Not empty');
         formKey.currentState!.validate();
         await tester.pump();
 
@@ -541,10 +541,10 @@ void main() {
             home: Scaffold(
               body: Form(
                 key: formKey,
-                child: AppTextArea(
+                child: DSTextArea(
                   controller: controller,
                   label: 'MinLength Area',
-                  validator: AppTextAreaValidator.minLength(10),
+                  validator: DSTextAreaValidator.minLength(10),
                 ),
               ),
             ),
@@ -552,14 +552,14 @@ void main() {
         );
 
         // Test short text
-        await tester.enterText(find.byType(AppTextArea), 'Short');
+        await tester.enterText(find.byType(DSTextArea), 'Short');
         formKey.currentState!.validate();
         await tester.pump();
 
         expect(find.text('Mínimo 10 caracteres'), findsOneWidget);
 
         // Test valid length
-        await tester.enterText(find.byType(AppTextArea), 'This is long enough');
+        await tester.enterText(find.byType(DSTextArea), 'This is long enough');
         formKey.currentState!.validate();
         await tester.pump();
 
@@ -577,10 +577,10 @@ void main() {
             home: Scaffold(
               body: Form(
                 key: formKey,
-                child: AppTextArea(
+                child: DSTextArea(
                   controller: controller,
                   label: 'MaxLength Area',
-                  validator: AppTextAreaValidator.maxLength(20),
+                  validator: DSTextAreaValidator.maxLength(20),
                 ),
               ),
             ),
@@ -588,7 +588,7 @@ void main() {
         );
 
         // Test long text
-        await tester.enterText(find.byType(AppTextArea),
+        await tester.enterText(find.byType(DSTextArea),
             'This text is way too long for the maximum limit');
         formKey.currentState!.validate();
         await tester.pump();
@@ -596,7 +596,7 @@ void main() {
         expect(find.text('Máximo 20 caracteres'), findsOneWidget);
 
         // Test valid length
-        await tester.enterText(find.byType(AppTextArea), 'Short text');
+        await tester.enterText(find.byType(DSTextArea), 'Short text');
         formKey.currentState!.validate();
         await tester.pump();
 
@@ -614,10 +614,10 @@ void main() {
             home: Scaffold(
               body: Form(
                 key: formKey,
-                child: AppTextArea(
+                child: DSTextArea(
                   controller: controller,
                   label: 'MinWords Area',
-                  validator: AppTextAreaValidator.minWords(3),
+                  validator: DSTextAreaValidator.minWords(3),
                 ),
               ),
             ),
@@ -625,14 +625,14 @@ void main() {
         );
 
         // Test few words
-        await tester.enterText(find.byType(AppTextArea), 'Two words');
+        await tester.enterText(find.byType(DSTextArea), 'Two words');
         formKey.currentState!.validate();
         await tester.pump();
 
         expect(find.text('Mínimo 3 palabras'), findsOneWidget);
 
         // Test valid word count
-        await tester.enterText(find.byType(AppTextArea), 'Three valid words');
+        await tester.enterText(find.byType(DSTextArea), 'Three valid words');
         formKey.currentState!.validate();
         await tester.pump();
 
@@ -650,10 +650,10 @@ void main() {
             home: Scaffold(
               body: Form(
                 key: formKey,
-                child: AppTextArea(
+                child: DSTextArea(
                   controller: controller,
                   label: 'MaxWords Area',
-                  validator: AppTextAreaValidator.maxWords(5),
+                  validator: DSTextAreaValidator.maxWords(5),
                 ),
               ),
             ),
@@ -661,7 +661,7 @@ void main() {
         );
 
         // Test too many words
-        await tester.enterText(find.byType(AppTextArea),
+        await tester.enterText(find.byType(DSTextArea),
             'This is a text with more than five words total');
         formKey.currentState!.validate();
         await tester.pump();
@@ -670,7 +670,7 @@ void main() {
 
         // Test valid word count
         await tester.enterText(
-            find.byType(AppTextArea), 'Five words exactly here now');
+            find.byType(DSTextArea), 'Five words exactly here now');
         formKey.currentState!.validate();
         await tester.pump();
 
@@ -688,12 +688,12 @@ void main() {
             home: Scaffold(
               body: Form(
                 key: formKey,
-                child: AppTextArea(
+                child: DSTextArea(
                   controller: controller,
                   label: 'Combined Validation Area',
-                  validator: AppTextAreaValidator.combine([
-                    AppTextAreaValidator.required,
-                    AppTextAreaValidator.minLength(10),
+                  validator: DSTextAreaValidator.combine([
+                    DSTextAreaValidator.required,
+                    DSTextAreaValidator.minLength(10),
                   ]),
                 ),
               ),
@@ -708,14 +708,14 @@ void main() {
         expect(find.text('Este campo es requerido'), findsOneWidget);
 
         // Test short text (should fail minLength)
-        await tester.enterText(find.byType(AppTextArea), 'Short');
+        await tester.enterText(find.byType(DSTextArea), 'Short');
         formKey.currentState!.validate();
         await tester.pump();
 
         expect(find.text('Mínimo 10 caracteres'), findsOneWidget);
 
         // Test valid text (should pass all)
-        await tester.enterText(find.byType(AppTextArea), 'This is long enough');
+        await tester.enterText(find.byType(DSTextArea), 'This is long enough');
         formKey.currentState!.validate();
         await tester.pump();
 

@@ -4,10 +4,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'chip_config.freezed.dart';
 
-/// Enums and types for AppChip
+/// Enums and types for DSChip
 
 /// Chip variants based on Material Design specifications
-enum AppChipVariant {
+enum DSChipVariant {
   /// Input chips represent complex pieces of information in compact form
   input,
 
@@ -22,7 +22,7 @@ enum AppChipVariant {
 }
 
 /// Chip states
-enum AppChipState {
+enum DSChipState {
   /// Default state
   defaultState,
 
@@ -49,7 +49,7 @@ enum AppChipState {
 }
 
 /// Chip size variants
-enum AppChipSize {
+enum DSChipSize {
   /// Small chip
   small,
 
@@ -61,7 +61,7 @@ enum AppChipSize {
 }
 
 /// Chip shape variants
-enum AppChipShape {
+enum DSChipShape {
   /// Rounded rectangle
   rounded,
 
@@ -72,17 +72,17 @@ enum AppChipShape {
   circular,
 }
 
-/// Configuration model for AppChip
+/// Configuration model for DSChip
 @freezed
-class AppChipConfig with _$AppChipConfig {
-  const factory AppChipConfig({
+class DSChipConfig with _$DSChipConfig {
+  const factory DSChipConfig({
     // Animation configuration
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
     @Default(Curves.easeInOut) Curve animationCurve,
 
     // Size configuration
-    @Default(AppChipSize.medium) AppChipSize size,
-    @Default(AppChipShape.rounded) AppChipShape shape,
+    @Default(DSChipSize.medium) DSChipSize size,
+    @Default(DSChipShape.rounded) DSChipShape shape,
 
     // Spacing configuration
     @Default(EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0))
@@ -99,16 +99,16 @@ class AppChipConfig with _$AppChipConfig {
     @Default(2.0) double focusBorderWidth,
 
     // Color configuration
-    AppChipColors? colors,
+    DSChipColors? colors,
 
     // Typography configuration
-    AppChipTypography? typography,
+    DSChipTypography? typography,
 
     // Icons configuration
-    AppChipIcons? icons,
+    DSChipIcons? icons,
 
     // Size configuration
-    AppChipSizes? sizes,
+    DSChipSizes? sizes,
 
     // Avatar configuration
     @Default(Size(24, 24)) Size avatarSize,
@@ -147,25 +147,25 @@ class AppChipConfig with _$AppChipConfig {
     // Deletion configuration
     @Default(true) bool showDeleteIcon,
     @Default(Duration(milliseconds: 300)) Duration deleteAnimationDuration,
-  }) = _AppChipConfig;
+  }) = _DSChipConfig;
 
-  const AppChipConfig._();
+  const DSChipConfig._();
 
   /// Create configuration from theme
-  factory AppChipConfig.fromTheme(ThemeData theme) {
-    return AppChipConfig(
-      colors: AppChipColors.fromTheme(theme),
-      typography: AppChipTypography.fromTheme(theme),
-      icons: const AppChipIcons(),
-      sizes: const AppChipSizes(),
+  factory DSChipConfig.fromTheme(ThemeData theme) {
+    return DSChipConfig(
+      colors: DSChipColors.fromTheme(theme),
+      typography: DSChipTypography.fromTheme(theme),
+      icons: const DSChipIcons(),
+      sizes: const DSChipSizes(),
     );
   }
 }
 
-/// Color configuration for AppChip
+/// Color configuration for DSChip
 @freezed
-class AppChipColors with _$AppChipColors {
-  const factory AppChipColors({
+class DSChipColors with _$DSChipColors {
+  const factory DSChipColors({
     // Background colors
     @Default(Color(0xFFF5F5F5)) Color backgroundColor,
     @Default(Color(0xFFE3F2FD)) Color hoverBackgroundColor,
@@ -235,12 +235,12 @@ class AppChipColors with _$AppChipColors {
     @Default(Color(0xFFFFF3E0)) Color assistSurfaceColor,
   }) = _AppChipColors;
 
-  const AppChipColors._();
+  const DSChipColors._();
 
-  factory AppChipColors.fromTheme(ThemeData theme) {
+  factory DSChipColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
 
-    return AppChipColors(
+    return DSChipColors(
       backgroundColor: colorScheme.surface,
       hoverBackgroundColor: colorScheme.primary.withValues(alpha: 0.08),
       pressedBackgroundColor: colorScheme.primary.withValues(alpha: 0.12),
@@ -291,10 +291,10 @@ class AppChipColors with _$AppChipColors {
   }
 }
 
-/// Typography configuration for AppChip
+/// Typography configuration for DSChip
 @freezed
-class AppChipTypography with _$AppChipTypography {
-  const factory AppChipTypography({
+class DSChipTypography with _$DSChipTypography {
+  const factory DSChipTypography({
     // Label styles
     @Default(TextStyle(fontSize: 14, fontWeight: FontWeight.w500))
     TextStyle labelStyle,
@@ -316,12 +316,12 @@ class AppChipTypography with _$AppChipTypography {
     TextStyle loadingStyle,
   }) = _AppChipTypography;
 
-  const AppChipTypography._();
+  const DSChipTypography._();
 
-  factory AppChipTypography.fromTheme(ThemeData theme) {
+  factory DSChipTypography.fromTheme(ThemeData theme) {
     final textTheme = theme.textTheme;
 
-    return AppChipTypography(
+    return DSChipTypography(
       labelStyle: textTheme.labelLarge ?? const TextStyle(),
       smallLabelStyle: textTheme.labelMedium ?? const TextStyle(),
       largeLabelStyle: textTheme.titleSmall ?? const TextStyle(),
@@ -333,10 +333,10 @@ class AppChipTypography with _$AppChipTypography {
   }
 }
 
-/// Icon configuration for AppChip
+/// Icon configuration for DSChip
 @freezed
-class AppChipIcons with _$AppChipIcons {
-  const factory AppChipIcons({
+class DSChipIcons with _$DSChipIcons {
+  const factory DSChipIcons({
     // Default icons for variants
     @Default(Icons.add) IconData inputIcon,
     @Default(Icons.filter_list) IconData filterIcon,
@@ -368,10 +368,10 @@ class AppChipIcons with _$AppChipIcons {
   }) = _AppChipIcons;
 }
 
-/// Size configuration for AppChip
+/// Size configuration for DSChip
 @freezed
-class AppChipSizes with _$AppChipSizes {
-  const factory AppChipSizes({
+class DSChipSizes with _$DSChipSizes {
+  const factory DSChipSizes({
     // Height configurations
     @Default(32.0) double smallHeight,
     @Default(40.0) double mediumHeight,
@@ -422,8 +422,8 @@ class AppChipSizes with _$AppChipSizes {
 
 /// Chip data model for complex chip configurations
 @freezed
-class AppChipData with _$AppChipData {
-  const factory AppChipData({
+class DSChipData with _$DSChipData {
+  const factory DSChipData({
     required String label,
     String? id,
     Object? value,
@@ -438,7 +438,7 @@ class AppChipData with _$AppChipData {
     Map<String, dynamic>? metadata,
   }) = _AppChipData;
 
-  const AppChipData._();
+  const DSChipData._();
 
   /// Get display text for avatar
   String get avatarDisplayText {
@@ -465,11 +465,11 @@ class AppChipData with _$AppChipData {
 }
 
 /// Chip utilities and helpers
-class AppChipUtils {
+class DSChipUtils {
   /// Generate chip data from a list of strings
-  static List<AppChipData> fromStringList(List<String> labels) {
+  static List<DSChipData> fromStringList(List<String> labels) {
     return labels
-        .map((label) => AppChipData(
+        .map((label) => DSChipData(
               label: label,
               id: label.toLowerCase().replaceAll(' ', '_'),
             ))
@@ -477,9 +477,9 @@ class AppChipUtils {
   }
 
   /// Generate chip data with avatars from a list of strings
-  static List<AppChipData> withAvatars(List<String> labels) {
+  static List<DSChipData> withAvatars(List<String> labels) {
     return labels
-        .map((label) => AppChipData(
+        .map((label) => DSChipData(
               label: label,
               id: label.toLowerCase().replaceAll(' ', '_'),
               avatarText: label.isNotEmpty ? label[0].toUpperCase() : '',
@@ -488,9 +488,9 @@ class AppChipUtils {
   }
 
   /// Generate chip data with icons from a map
-  static List<AppChipData> withIcons(Map<String, IconData> labelIconMap) {
+  static List<DSChipData> withIcons(Map<String, IconData> labelIconMap) {
     return labelIconMap.entries
-        .map((entry) => AppChipData(
+        .map((entry) => DSChipData(
               label: entry.key,
               id: entry.key.toLowerCase().replaceAll(' ', '_'),
               icon: entry.value,
@@ -499,9 +499,9 @@ class AppChipUtils {
   }
 
   /// Generate deletable chips from a list of strings
-  static List<AppChipData> deletable(List<String> labels) {
+  static List<DSChipData> deletable(List<String> labels) {
     return labels
-        .map((label) => AppChipData(
+        .map((label) => DSChipData(
               label: label,
               id: label.toLowerCase().replaceAll(' ', '_'),
               deletable: true,
@@ -510,24 +510,24 @@ class AppChipUtils {
   }
 
   /// Get appropriate colors for chip variant
-  static AppChipColors getVariantColors(
-    AppChipVariant variant,
-    AppChipColors baseColors,
+  static DSChipColors getVariantColors(
+    DSChipVariant variant,
+    DSChipColors baseColors,
   ) {
     switch (variant) {
-      case AppChipVariant.input:
+      case DSChipVariant.input:
         return baseColors.copyWith(
           backgroundColor: baseColors.inputSurfaceColor,
         );
-      case AppChipVariant.filter:
+      case DSChipVariant.filter:
         return baseColors.copyWith(
           backgroundColor: baseColors.filterSurfaceColor,
         );
-      case AppChipVariant.choice:
+      case DSChipVariant.choice:
         return baseColors.copyWith(
           backgroundColor: baseColors.choiceSurfaceColor,
         );
-      case AppChipVariant.assist:
+      case DSChipVariant.assist:
         return baseColors.copyWith(
           backgroundColor: baseColors.assistSurfaceColor,
         );
@@ -535,100 +535,100 @@ class AppChipUtils {
   }
 
   /// Get size configuration based on chip size
-  static double getHeight(AppChipSize size, AppChipSizes sizes) {
+  static double getHeight(DSChipSize size, DSChipSizes sizes) {
     switch (size) {
-      case AppChipSize.small:
+      case DSChipSize.small:
         return sizes.smallHeight;
-      case AppChipSize.medium:
+      case DSChipSize.medium:
         return sizes.mediumHeight;
-      case AppChipSize.large:
+      case DSChipSize.large:
         return sizes.largeHeight;
     }
   }
 
   /// Get padding configuration based on chip size
-  static EdgeInsets getPadding(AppChipSize size, AppChipSizes sizes) {
+  static EdgeInsets getPadding(DSChipSize size, DSChipSizes sizes) {
     switch (size) {
-      case AppChipSize.small:
+      case DSChipSize.small:
         return sizes.smallPadding;
-      case AppChipSize.medium:
+      case DSChipSize.medium:
         return sizes.mediumPadding;
-      case AppChipSize.large:
+      case DSChipSize.large:
         return sizes.largePadding;
     }
   }
 
   /// Get border radius based on chip size and shape
   static BorderRadius getBorderRadius(
-    AppChipSize size,
-    AppChipShape shape,
-    AppChipSizes sizes,
+    DSChipSize size,
+    DSChipShape shape,
+    DSChipSizes sizes,
   ) {
     switch (shape) {
-      case AppChipShape.rounded:
+      case DSChipShape.rounded:
         switch (size) {
-          case AppChipSize.small:
+          case DSChipSize.small:
             return sizes.smallBorderRadius;
-          case AppChipSize.medium:
+          case DSChipSize.medium:
             return sizes.mediumBorderRadius;
-          case AppChipSize.large:
+          case DSChipSize.large:
             return sizes.largeBorderRadius;
         }
-      case AppChipShape.stadium:
+      case DSChipShape.stadium:
         final height = getHeight(size, sizes);
         return BorderRadius.circular(height / 2);
-      case AppChipShape.circular:
+      case DSChipShape.circular:
         final height = getHeight(size, sizes);
         return BorderRadius.circular(height / 2);
     }
   }
 
   /// Get icon size based on chip size
-  static Size getIconSize(AppChipSize size, AppChipSizes sizes) {
+  static Size getIconSize(DSChipSize size, DSChipSizes sizes) {
     switch (size) {
-      case AppChipSize.small:
+      case DSChipSize.small:
         return sizes.smallIconSize;
-      case AppChipSize.medium:
+      case DSChipSize.medium:
         return sizes.mediumIconSize;
-      case AppChipSize.large:
+      case DSChipSize.large:
         return sizes.largeIconSize;
     }
   }
 
   /// Get avatar size based on chip size
-  static Size getAvatarSize(AppChipSize size, AppChipSizes sizes) {
+  static Size getAvatarSize(DSChipSize size, DSChipSizes sizes) {
     switch (size) {
-      case AppChipSize.small:
+      case DSChipSize.small:
         return sizes.smallAvatarSize;
-      case AppChipSize.medium:
+      case DSChipSize.medium:
         return sizes.mediumAvatarSize;
-      case AppChipSize.large:
+      case DSChipSize.large:
         return sizes.largeAvatarSize;
     }
   }
 
   /// Get text style based on chip size
   static TextStyle getTextStyle(
-      AppChipSize size, AppChipTypography typography) {
+      DSChipSize size, DSChipTypography typography) {
     switch (size) {
-      case AppChipSize.small:
+      case DSChipSize.small:
         return typography.smallLabelStyle;
-      case AppChipSize.medium:
+      case DSChipSize.medium:
         return typography.labelStyle;
-      case AppChipSize.large:
+      case DSChipSize.large:
         return typography.largeLabelStyle;
     }
   }
 
   /// Get avatar text style based on chip size
   static TextStyle getAvatarTextStyle(
-      AppChipSize size, AppChipTypography typography) {
+      DSChipSize size, DSChipTypography typography) {
     switch (size) {
-      case AppChipSize.small:
+      case DSChipSize.small:
         return typography.smallAvatarTextStyle;
-      case AppChipSize.medium:
+      case DSChipSize.medium:
         return typography.avatarTextStyle;
-      case AppChipSize.large:
+      case DSChipSize.large:
         return typography.largeAvatarTextStyle;
     }
   }

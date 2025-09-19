@@ -4,25 +4,25 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppButton', () {
+  group('DSButton', () {
     const labelText = 'Test Button';
     final leadingIcon = Icon(Icons.star);
     final trailingIcon = Icon(Icons.arrow_forward);
 
     Widget createButtonApp({
-      AppButtonConfig? config,
+      DSButtonConfig? config,
       String? label,
       Widget? leading,
       Widget? trailing,
-      AppButtonSize? size,
+      DSButtonSize? size,
       bool? isDanger,
       double? width,
       double? height,
     }) {
       return MaterialApp(
         home: Scaffold(
-          body: AppButton(
-            config: config ?? const AppButtonConfig(),
+          body: DSButton(
+            config: config ?? const DSButtonConfig(),
             label: label,
             leading: leading,
             trailing: trailing,
@@ -42,7 +42,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(labelText), findsOneWidget);
-      expect(find.byType(AppButton), findsOneWidget);
+      expect(find.byType(DSButton), findsOneWidget);
     });
 
     testWidgets('renders with leading and trailing widgets', (tester) async {
@@ -60,8 +60,8 @@ void main() {
 
     testWidgets('shows loading state correctly', (tester) async {
       await tester.pumpWidget(createButtonApp(
-        config: const AppButtonConfig(
-          state: AppButtonState.loading,
+        config: const DSButtonConfig(
+          state: DSButtonState.loading,
         ),
         label: labelText,
       ));
@@ -73,8 +73,8 @@ void main() {
 
     testWidgets('shows skeleton state correctly', (tester) async {
       await tester.pumpWidget(createButtonApp(
-        config: const AppButtonConfig(
-          state: AppButtonState.skeleton,
+        config: const DSButtonConfig(
+          state: DSButtonState.skeleton,
         ),
         label: labelText,
       ));
@@ -95,8 +95,8 @@ void main() {
 
       testWidgets('renders tonal variant correctly', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            variant: AppButtonVariant.tonal,
+          config: const DSButtonConfig(
+            variant: DSButtonVariant.tonal,
           ),
           label: labelText,
         ));
@@ -107,8 +107,8 @@ void main() {
 
       testWidgets('renders outline variant correctly', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            variant: AppButtonVariant.outline,
+          config: const DSButtonConfig(
+            variant: DSButtonVariant.outline,
           ),
           label: labelText,
         ));
@@ -119,8 +119,8 @@ void main() {
 
       testWidgets('renders text variant correctly', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            variant: AppButtonVariant.text,
+          config: const DSButtonConfig(
+            variant: DSButtonVariant.text,
           ),
           label: labelText,
         ));
@@ -131,8 +131,8 @@ void main() {
 
       testWidgets('renders icon variant correctly', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            variant: AppButtonVariant.icon,
+          config: const DSButtonConfig(
+            variant: DSButtonVariant.icon,
           ),
           leading: leadingIcon,
         ));
@@ -144,8 +144,8 @@ void main() {
 
       testWidgets('renders segmented variant correctly', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            variant: AppButtonVariant.segmented,
+          config: const DSButtonConfig(
+            variant: DSButtonVariant.segmented,
           ),
           label: labelText,
         ));
@@ -158,9 +158,9 @@ void main() {
 
     group('States', () {
       testWidgets('renders all states correctly', (tester) async {
-        for (final state in AppButtonState.values) {
+        for (final state in DSButtonState.values) {
           await tester.pumpWidget(createButtonApp(
-            config: AppButtonConfig(state: state),
+            config: DSButtonConfig(state: state),
             label: labelText,
           ));
           await tester.pump();
@@ -179,15 +179,15 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createButtonApp(
-          config: AppButtonConfig(
-            state: AppButtonState.disabled,
+          config: DSButtonConfig(
+            state: DSButtonState.disabled,
             onPressed: () => tapped = true,
           ),
           label: labelText,
         ));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byType(AppButton));
+        await tester.tap(find.byType(DSButton));
         await tester.pumpAndSettle();
 
         expect(tapped, isFalse);
@@ -197,8 +197,8 @@ void main() {
     group('Sizes', () {
       testWidgets('renders small size correctly', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            size: AppButtonSize.small,
+          config: const DSButtonConfig(
+            size: DSButtonSize.small,
           ),
           label: labelText,
         ));
@@ -209,8 +209,8 @@ void main() {
 
       testWidgets('renders medium size correctly', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            size: AppButtonSize.medium,
+          config: const DSButtonConfig(
+            size: DSButtonSize.medium,
           ),
           label: labelText,
         ));
@@ -221,8 +221,8 @@ void main() {
 
       testWidgets('renders large size correctly', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            size: AppButtonSize.large,
+          config: const DSButtonConfig(
+            size: DSButtonSize.large,
           ),
           label: labelText,
         ));
@@ -237,14 +237,14 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createButtonApp(
-          config: AppButtonConfig(
+          config: DSButtonConfig(
             onPressed: () => tapped = true,
           ),
           label: labelText,
         ));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byType(AppButton));
+        await tester.tap(find.byType(DSButton));
         await tester.pumpAndSettle();
 
         expect(tapped, isTrue);
@@ -254,14 +254,14 @@ void main() {
         var longPressed = false;
 
         await tester.pumpWidget(createButtonApp(
-          config: AppButtonConfig(
+          config: DSButtonConfig(
             onLongPress: () => longPressed = true,
           ),
           label: labelText,
         ));
         await tester.pumpAndSettle();
 
-        await tester.longPress(find.byType(AppButton));
+        await tester.longPress(find.byType(DSButton));
         await tester.pumpAndSettle();
 
         expect(longPressed, isTrue);
@@ -271,7 +271,7 @@ void main() {
         var hovered = false;
 
         await tester.pumpWidget(createButtonApp(
-          config: AppButtonConfig(
+          config: DSButtonConfig(
             onHover: (isHovered) => hovered = isHovered,
           ),
           label: labelText,
@@ -284,7 +284,7 @@ void main() {
         addTearDown(gesture.removePointer);
         await tester.pump();
 
-        await gesture.moveTo(tester.getCenter(find.byType(AppButton)));
+        await gesture.moveTo(tester.getCenter(find.byType(DSButton)));
         await tester.pumpAndSettle();
 
         expect(hovered, isTrue);
@@ -295,7 +295,7 @@ void main() {
       testWidgets('applies danger styling when isDanger is true',
           (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
+          config: const DSButtonConfig(
             isDanger: true,
           ),
           label: labelText,
@@ -322,7 +322,7 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createButtonApp(
-          config: AppButtonConfig(
+          config: DSButtonConfig(
             enableKeyboardSupport: true,
             onPressed: () => tapped = true,
           ),
@@ -331,7 +331,7 @@ void main() {
         await tester.pumpAndSettle();
 
         // Tap to activate the button first
-        await tester.tap(find.byType(AppButton));
+        await tester.tap(find.byType(DSButton));
         await tester.pumpAndSettle();
 
         expect(tapped, isTrue);
@@ -342,7 +342,7 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createButtonApp(
-          config: AppButtonConfig(
+          config: DSButtonConfig(
             enableKeyboardSupport: false,
             onPressed: () => tapped = true,
           ),
@@ -351,7 +351,7 @@ void main() {
         await tester.pumpAndSettle();
 
         // Button should still respond to tap even without keyboard support
-        await tester.tap(find.byType(AppButton));
+        await tester.tap(find.byType(DSButton));
         await tester.pumpAndSettle();
 
         expect(tapped, isTrue);
@@ -362,7 +362,7 @@ void main() {
       testWidgets('applies RTL directionality when isRtl is true',
           (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(isRtl: true),
+          config: const DSButtonConfig(isRtl: true),
           label: labelText,
         ));
         await tester.pumpAndSettle();
@@ -386,7 +386,7 @@ void main() {
       testWidgets('provides semantic labels when a11y is enabled',
           (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(enableA11y: true),
+          config: const DSButtonConfig(enableA11y: true),
           label: labelText,
         ));
         await tester.pumpAndSettle();
@@ -396,7 +396,7 @@ void main() {
 
       testWidgets('is focusable for keyboard navigation', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
+          config: const DSButtonConfig(
             enableKeyboardSupport: true,
           ),
           label: labelText,
@@ -410,8 +410,8 @@ void main() {
     group('Custom styling', () {
       testWidgets('applies custom colors', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            colors: AppButtonColors(
+          config: const DSButtonConfig(
+            colors: DSButtonColors(
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
             ),
@@ -425,8 +425,8 @@ void main() {
 
       testWidgets('applies custom spacing', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            spacing: AppButtonSpacing(
+          config: const DSButtonConfig(
+            spacing: DSButtonSpacing(
               horizontalPadding: 24.0,
               borderRadius: 16.0,
             ),
@@ -440,8 +440,8 @@ void main() {
 
       testWidgets('applies custom elevation', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            elevation: AppButtonElevation(
+          config: const DSButtonConfig(
+            elevation: DSButtonElevation(
               defaultElevation: 8.0,
             ),
           ),
@@ -456,8 +456,8 @@ void main() {
     group('Behavior configuration', () {
       testWidgets('enables haptic feedback when configured', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            behavior: AppButtonBehavior(
+          config: const DSButtonConfig(
+            behavior: DSButtonBehavior(
               enableHapticFeedback: true,
             ),
           ),
@@ -470,8 +470,8 @@ void main() {
 
       testWidgets('maintains state when configured', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            behavior: AppButtonBehavior(
+          config: const DSButtonConfig(
+            behavior: DSButtonBehavior(
               maintainState: true,
             ),
           ),
@@ -486,8 +486,8 @@ void main() {
     group('Animation support', () {
       testWidgets('animates state transitions when enabled', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            animation: AppButtonAnimation(
+          config: const DSButtonConfig(
+            animation: DSButtonAnimation(
               enableStateTransitions: true,
               duration: 100,
             ),
@@ -501,8 +501,8 @@ void main() {
 
       testWidgets('does not animate when disabled', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
-            animation: AppButtonAnimation(
+          config: const DSButtonConfig(
+            animation: DSButtonAnimation(
               enableStateTransitions: false,
             ),
           ),
@@ -517,7 +517,7 @@ void main() {
     group('Platform adaptive behavior', () {
       testWidgets('adapts to platform when isAdaptive is true', (tester) async {
         await tester.pumpWidget(createButtonApp(
-          config: const AppButtonConfig(
+          config: const DSButtonConfig(
             isAdaptive: true,
           ),
           label: labelText,

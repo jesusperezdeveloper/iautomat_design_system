@@ -3,19 +3,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_divider_config.freezed.dart';
 
-/// Configuración principal para AppDivider
+/// Configuración principal para DSDivider
 ///
 /// Define el comportamiento, apariencia y funcionalidad del componente
 /// divider, incluyendo variantes inset y full, estados, colores,
 /// espaciado y accesibilidad.
 @freezed
-class AppDividerConfig with _$AppDividerConfig {
-  const factory AppDividerConfig({
+class DSDividerConfig with _$DSDividerConfig {
+  const factory DSDividerConfig({
     /// Variante del divider
-    @Default(AppDividerVariant.full) AppDividerVariant variant,
+    @Default(DSDividerVariant.full) DSDividerVariant variant,
 
     /// Estado actual del componente
-    @Default(AppDividerState.defaultState) AppDividerState state,
+    @Default(DSDividerState.defaultState) DSDividerState state,
 
     /// Grosor del divider (design token)
     double? thickness,
@@ -24,23 +24,23 @@ class AppDividerConfig with _$AppDividerConfig {
     Color? color,
 
     /// Configuración de colores (solo design tokens)
-    AppDividerColors? colors,
+    DSDividerColors? colors,
 
     /// Configuración de espaciado (solo design tokens)
-    AppDividerSpacing? spacing,
+    DSDividerSpacing? spacing,
 
     /// Configuración de animaciones
-    AppDividerAnimations? animations,
+    DSDividerAnimations? animations,
 
     /// Configuración de comportamiento
-    AppDividerBehavior? behavior,
+    DSDividerBehavior? behavior,
 
     /// Configuración de accesibilidad
-    AppDividerAccessibilityConfig? accessibility,
+    DSDividerAccessibilityConfig? accessibility,
 
     /// Orientación del divider
-    @Default(AppDividerOrientation.horizontal)
-    AppDividerOrientation orientation,
+    @Default(DSDividerOrientation.horizontal)
+    DSDividerOrientation orientation,
 
     /// Si el divider es interactivo (clickeable)
     @Default(false) bool interactive,
@@ -56,11 +56,11 @@ class AppDividerConfig with _$AppDividerConfig {
 
     /// Indentación desde el borde derecho (para variant inset)
     double? endIndent,
-  }) = _AppDividerConfig;
+  }) = _DSDividerConfig;
 }
 
 /// Variantes disponibles para el divider
-enum AppDividerVariant {
+enum DSDividerVariant {
   /// Divider completo que se extiende por todo el ancho/alto
   full,
 
@@ -69,7 +69,7 @@ enum AppDividerVariant {
 }
 
 /// Estados disponibles del componente
-enum AppDividerState {
+enum DSDividerState {
   /// Estado por defecto
   defaultState,
 
@@ -96,7 +96,7 @@ enum AppDividerState {
 }
 
 /// Orientación del divider
-enum AppDividerOrientation {
+enum DSDividerOrientation {
   /// Divider horizontal
   horizontal,
 
@@ -105,25 +105,25 @@ enum AppDividerOrientation {
 }
 
 /// Extensión para obtener propiedades de los estados
-extension AppDividerStateExtension on AppDividerState {
+extension DSDividerStateExtension on DSDividerState {
   /// Obtiene el nombre del estado para mostrar
   String get displayName {
     switch (this) {
-      case AppDividerState.defaultState:
+      case DSDividerState.defaultState:
         return 'Default';
-      case AppDividerState.hover:
+      case DSDividerState.hover:
         return 'Hover';
-      case AppDividerState.pressed:
+      case DSDividerState.pressed:
         return 'Pressed';
-      case AppDividerState.focus:
+      case DSDividerState.focus:
         return 'Focus';
-      case AppDividerState.selected:
+      case DSDividerState.selected:
         return 'Selected';
-      case AppDividerState.disabled:
+      case DSDividerState.disabled:
         return 'Disabled';
-      case AppDividerState.loading:
+      case DSDividerState.loading:
         return 'Loading';
-      case AppDividerState.skeleton:
+      case DSDividerState.skeleton:
         return 'Skeleton';
     }
   }
@@ -131,9 +131,9 @@ extension AppDividerStateExtension on AppDividerState {
   /// Indica si el estado permite interacciones
   bool get isInteractive {
     switch (this) {
-      case AppDividerState.disabled:
-      case AppDividerState.loading:
-      case AppDividerState.skeleton:
+      case DSDividerState.disabled:
+      case DSDividerState.loading:
+      case DSDividerState.skeleton:
         return false;
       default:
         return true;
@@ -142,14 +142,14 @@ extension AppDividerStateExtension on AppDividerState {
 
   /// Indica si el estado muestra loading
   bool get isLoading {
-    return this == AppDividerState.loading || this == AppDividerState.skeleton;
+    return this == DSDividerState.loading || this == DSDividerState.skeleton;
   }
 }
 
 /// Configuración de colores (solo design tokens)
 @freezed
-class AppDividerColors with _$AppDividerColors {
-  const factory AppDividerColors({
+class DSDividerColors with _$DSDividerColors {
+  const factory DSDividerColors({
     /// Color por defecto del divider
     Color? defaultColor,
 
@@ -181,8 +181,8 @@ class AppDividerColors with _$AppDividerColors {
 
 /// Configuración de espaciado (solo design tokens)
 @freezed
-class AppDividerSpacing with _$AppDividerSpacing {
-  const factory AppDividerSpacing({
+class DSDividerSpacing with _$DSDividerSpacing {
+  const factory DSDividerSpacing({
     /// Indentación por defecto para variant inset
     @Default(16.0) double defaultIndent,
 
@@ -208,8 +208,8 @@ class AppDividerSpacing with _$AppDividerSpacing {
 
 /// Configuración de animaciones
 @freezed
-class AppDividerAnimations with _$AppDividerAnimations {
-  const factory AppDividerAnimations({
+class DSDividerAnimations with _$DSDividerAnimations {
+  const factory DSDividerAnimations({
     /// Duración de animaciones de estado
     @Default(Duration(milliseconds: 200)) Duration stateDuration,
 
@@ -232,8 +232,8 @@ class AppDividerAnimations with _$AppDividerAnimations {
 
 /// Configuración de comportamiento
 @freezed
-class AppDividerBehavior with _$AppDividerBehavior {
-  const factory AppDividerBehavior({
+class DSDividerBehavior with _$DSDividerBehavior {
+  const factory DSDividerBehavior({
     /// Si debe mostrar información de debugging en desarrollo
     @Default(false) bool showDebugInfo,
 
@@ -256,8 +256,8 @@ class AppDividerBehavior with _$AppDividerBehavior {
 
 /// Configuración de accesibilidad
 @freezed
-class AppDividerAccessibilityConfig with _$AppDividerAccessibilityConfig {
-  const factory AppDividerAccessibilityConfig({
+class DSDividerAccessibilityConfig with _$DSDividerAccessibilityConfig {
+  const factory DSDividerAccessibilityConfig({
     /// Si la accesibilidad está habilitada
     @Default(true) bool enabled,
 
@@ -281,67 +281,67 @@ class AppDividerAccessibilityConfig with _$AppDividerAccessibilityConfig {
 
     /// Label para estado disabled
     @Default('Disabled') String disabledLabel,
-  }) = _AppDividerAccessibilityConfig;
+  }) = _DSDividerAccessibilityConfig;
 }
 
 /// Typedefs para callbacks
-typedef AppDividerCallback = void Function();
-typedef AppDividerStateCallback = void Function(AppDividerState state);
+typedef DSDividerCallback = void Function();
+typedef DSDividerStateCallback = void Function(DSDividerState state);
 
 /// Configuración por defecto para diferentes contextos
-class AppDividerConfigDefaults {
+class DSDividerConfigDefaults {
   /// Configuración por defecto estándar
-  static const standard = AppDividerConfig();
+  static const standard = DSDividerConfig();
 
   /// Configuración para divider inset
-  static const inset = AppDividerConfig(variant: AppDividerVariant.inset);
+  static const inset = DSDividerConfig(variant: DSDividerVariant.inset);
 
   /// Configuración para divider vertical
-  static const vertical = AppDividerConfig(
-    orientation: AppDividerOrientation.vertical,
+  static const vertical = DSDividerConfig(
+    orientation: DSDividerOrientation.vertical,
   );
 
   /// Configuración para divider interactivo
-  static const interactive = AppDividerConfig(
+  static const interactive = DSDividerConfig(
     interactive: true,
-    behavior: AppDividerBehavior(
+    behavior: DSDividerBehavior(
       enableHoverEffects: true,
       showFocusIndicator: true,
     ),
-    accessibility: AppDividerAccessibilityConfig(focusable: true),
+    accessibility: DSDividerAccessibilityConfig(focusable: true),
   );
 
   /// Configuración para debugging
-  static const debug = AppDividerConfig(
-    behavior: AppDividerBehavior(showDebugInfo: true),
+  static const debug = DSDividerConfig(
+    behavior: DSDividerBehavior(showDebugInfo: true),
   );
 }
 
 /// Configuraciones predefinidas por plataforma
-class AppDividerPlatformDefaults {
+class DSDividerPlatformDefaults {
   /// Configuración optimizada para Android
-  static const android = AppDividerConfig(
-    animations: AppDividerAnimations(
+  static const android = DSDividerConfig(
+    animations: DSDividerAnimations(
       stateDuration: Duration(milliseconds: 300),
       stateCurve: Curves.fastOutSlowIn,
     ),
   );
 
   /// Configuración optimizada para iOS
-  static const ios = AppDividerConfig(
-    animations: AppDividerAnimations(
+  static const ios = DSDividerConfig(
+    animations: DSDividerAnimations(
       stateDuration: Duration(milliseconds: 200),
       stateCurve: Curves.easeInOut,
     ),
   );
 
   /// Configuración optimizada para Web
-  static const web = AppDividerConfig(
-    behavior: AppDividerBehavior(
+  static const web = DSDividerConfig(
+    behavior: DSDividerBehavior(
       enableHoverEffects: true,
       showFocusIndicator: true,
     ),
-    animations: AppDividerAnimations(
+    animations: DSDividerAnimations(
       stateDuration: Duration(milliseconds: 150),
       stateCurve: Curves.easeOut,
     ),
@@ -350,27 +350,27 @@ class AppDividerPlatformDefaults {
 
 /// Extensiones auxiliares
 
-extension AppDividerVariantExtensions on AppDividerVariant {
+extension DSDividerVariantExtensions on DSDividerVariant {
   /// Indica si es un divider inset
-  bool get isInset => this == AppDividerVariant.inset;
+  bool get isInset => this == DSDividerVariant.inset;
 
   /// Indica si es un divider full
-  bool get isFull => this == AppDividerVariant.full;
+  bool get isFull => this == DSDividerVariant.full;
 }
 
-extension AppDividerOrientationExtensions on AppDividerOrientation {
+extension DSDividerOrientationExtensions on DSDividerOrientation {
   /// Indica si es horizontal
-  bool get isHorizontal => this == AppDividerOrientation.horizontal;
+  bool get isHorizontal => this == DSDividerOrientation.horizontal;
 
   /// Indica si es vertical
-  bool get isVertical => this == AppDividerOrientation.vertical;
+  bool get isVertical => this == DSDividerOrientation.vertical;
 
   /// Obtiene el axis correspondiente
   Axis get axis => isHorizontal ? Axis.horizontal : Axis.vertical;
 }
 
 /// Validadores de configuración
-class AppDividerValidators {
+class DSDividerValidators {
   /// Valida si el grosor está en un rango válido
   static bool isValidThickness(double? thickness) {
     if (thickness == null) return true;
@@ -387,7 +387,7 @@ class AppDividerValidators {
   static bool isValidDimensions({
     double? height,
     double? width,
-    AppDividerOrientation orientation = AppDividerOrientation.horizontal,
+    DSDividerOrientation orientation = DSDividerOrientation.horizontal,
   }) {
     if (orientation.isHorizontal && height != null && height <= 0) return false;
     if (orientation.isVertical && width != null && width <= 0) return false;
@@ -395,7 +395,7 @@ class AppDividerValidators {
   }
 
   /// Valida toda la configuración
-  static bool isValidConfig(AppDividerConfig config) {
+  static bool isValidConfig(DSDividerConfig config) {
     return isValidThickness(config.thickness) &&
         isValidIndent(config.indent) &&
         isValidIndent(config.endIndent) &&

@@ -13,13 +13,13 @@ enum HapticFeedbackType {
   vibrate,
 }
 
-class AppBackToTopPlatformAdapter {
-  static AppBackToTopPlatformAdapter? _instance;
+class DSBackToTopPlatformAdapter {
+  static DSBackToTopPlatformAdapter? _instance;
 
-  AppBackToTopPlatformAdapter._();
+  DSBackToTopPlatformAdapter._();
 
-  factory AppBackToTopPlatformAdapter() {
-    return _instance ??= AppBackToTopPlatformAdapter._();
+  factory DSBackToTopPlatformAdapter() {
+    return _instance ??= DSBackToTopPlatformAdapter._();
   }
 
   bool get isMobile => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
@@ -187,27 +187,27 @@ class AppBackToTopPlatformAdapter {
     }
   }
 
-  AppBackToTopPosition getDefaultPosition() {
+  DSBackToTopPosition getDefaultPosition() {
     if (isIOS) {
-      return AppBackToTopPosition.bottomRight;
+      return DSBackToTopPosition.bottomRight;
     } else if (isAndroid) {
-      return AppBackToTopPosition.bottomRight;
+      return DSBackToTopPosition.bottomRight;
     } else if (isWeb) {
-      return AppBackToTopPosition.bottomRight;
+      return DSBackToTopPosition.bottomRight;
     } else {
-      return AppBackToTopPosition.bottomRight;
+      return DSBackToTopPosition.bottomRight;
     }
   }
 
-  AppBackToTopScrollBehavior getDefaultScrollBehavior() {
+  DSBackToTopScrollBehavior getDefaultScrollBehavior() {
     if (isIOS) {
-      return AppBackToTopScrollBehavior.easeOut;
+      return DSBackToTopScrollBehavior.easeOut;
     } else if (isAndroid) {
-      return AppBackToTopScrollBehavior.smooth;
+      return DSBackToTopScrollBehavior.smooth;
     } else if (isWeb) {
-      return AppBackToTopScrollBehavior.smooth;
+      return DSBackToTopScrollBehavior.smooth;
     } else {
-      return AppBackToTopScrollBehavior.smooth;
+      return DSBackToTopScrollBehavior.smooth;
     }
   }
 
@@ -331,16 +331,16 @@ class AppBackToTopPlatformAdapter {
     return mediaQuery.textScaler.scale(1.0);
   }
 
-  AppBackToTopConfig getPlatformOptimizedConfig(BuildContext context) {
-    return AppBackToTopConfig(
-      variant: AppBackToTopVariant.webOnly,
-      colors: AppBackToTopColors(
+  DSBackToTopConfig getPlatformOptimizedConfig(BuildContext context) {
+    return DSBackToTopConfig(
+      variant: DSBackToTopVariant.webOnly,
+      colors: DSBackToTopColors(
         backgroundColor: getDefaultBackgroundColor(context),
         foregroundColor: getDefaultForegroundColor(context),
         shadowColor: getDefaultShadowColor(context),
         opacity: getDefaultOpacity(),
       ),
-      spacing: AppBackToTopSpacing(
+      spacing: DSBackToTopSpacing(
         size: getDefaultSize(),
         iconSize: getDefaultIconSize(),
         borderRadius: getDefaultBorderRadius(),
@@ -348,18 +348,18 @@ class AppBackToTopPlatformAdapter {
         elevation: getDefaultElevation(),
         position: getDefaultPosition(),
       ),
-      animations: AppBackToTopAnimations(
+      animations: DSBackToTopAnimations(
         duration: getDefaultAnimationDuration(),
         scrollDuration: getDefaultScrollDuration(),
         curve: getDefaultAnimationCurve(),
         scrollCurve: getDefaultScrollCurve(),
         scrollBehavior: getDefaultScrollBehavior(),
       ),
-      accessibility: const AppBackToTopAccessibility(
+      accessibility: const DSBackToTopAccessibility(
         enabled: true,
         focusable: true,
       ),
-      behavior: AppBackToTopBehavior(
+      behavior: DSBackToTopBehavior(
         showAfterPixels: getDefaultShowAfterPixels(),
         autoHide: getDefaultAutoHide(),
         showOnScrollUp: getDefaultShowOnScrollUp(),
@@ -370,8 +370,8 @@ class AppBackToTopPlatformAdapter {
     );
   }
 
-  AppBackToTopConfig adjustForAccessibility(
-    AppBackToTopConfig config,
+  DSBackToTopConfig adjustForAccessibility(
+    DSBackToTopConfig config,
     BuildContext context,
   ) {
     if (shouldUseReducedMotion(context)) {

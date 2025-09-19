@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/simple_table/simple_table_
 
 /// Simple Table Stories and Examples
 ///
-/// This file provides comprehensive examples and stories for the AppSimpleTable
+/// This file provides comprehensive examples and stories for the DSSimpleTable
 /// component, showcasing different configurations, variants, and use cases.
 
 class SimpleTableStoryExample extends StatefulWidget {
@@ -17,29 +17,29 @@ class SimpleTableStoryExample extends StatefulWidget {
 
 class _SimpleTableStoryExampleState extends State<SimpleTableStoryExample> {
   // Sample data
-  final List<AppSimpleTableColumn> sampleColumns = [
-    const AppSimpleTableColumn(
+  final List<DSSimpleTableColumn> sampleColumns = [
+    const DSSimpleTableColumn(
       id: 'name',
       label: 'Nombre',
       field: 'name',
       width: 200,
       sortable: true,
     ),
-    const AppSimpleTableColumn(
+    const DSSimpleTableColumn(
       id: 'email',
       label: 'Email',
       field: 'email',
       width: 250,
       sortable: true,
     ),
-    const AppSimpleTableColumn(
+    const DSSimpleTableColumn(
       id: 'role',
       label: 'Rol',
       field: 'role',
       width: 150,
       sortable: true,
     ),
-    const AppSimpleTableColumn(
+    const DSSimpleTableColumn(
       id: 'status',
       label: 'Estado',
       field: 'status',
@@ -48,8 +48,8 @@ class _SimpleTableStoryExampleState extends State<SimpleTableStoryExample> {
     ),
   ];
 
-  final List<AppSimpleTableRow> sampleRows = [
-    AppSimpleTableRow(
+  final List<DSSimpleTableRow> sampleRows = [
+    DSSimpleTableRow(
       id: '1',
       data: {
         'name': 'Juan Pérez',
@@ -58,7 +58,7 @@ class _SimpleTableStoryExampleState extends State<SimpleTableStoryExample> {
         'status': 'Activo',
       },
     ),
-    AppSimpleTableRow(
+    DSSimpleTableRow(
       id: '2',
       data: {
         'name': 'María García',
@@ -67,7 +67,7 @@ class _SimpleTableStoryExampleState extends State<SimpleTableStoryExample> {
         'status': 'Pendiente',
       },
     ),
-    AppSimpleTableRow(
+    DSSimpleTableRow(
       id: '3',
       data: {
         'name': 'Carlos López',
@@ -117,11 +117,11 @@ class _SimpleTableStoryExampleState extends State<SimpleTableStoryExample> {
             border: Border.all(color: Colors.grey.shade300),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: AppSimpleTable.standard(
+          child: DSSimpleTable.standard(
             columns: sampleColumns,
             rows: sampleRows,
-            selection: AppSimpleTableSelection(
-              mode: AppSimpleTableSelectionMode.single,
+            selection: DSSimpleTableSelection(
+              mode: DSSimpleTableSelectionMode.single,
               selectedRows: selectedRows,
             ),
             onRowSelect: (row, selected) {
@@ -160,7 +160,7 @@ class _SimpleTableStoryExampleState extends State<SimpleTableStoryExample> {
             border: Border.all(color: Colors.grey.shade300),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: AppSimpleTable.compact(
+          child: DSSimpleTable.compact(
             columns: sampleColumns,
             rows: sampleRows,
           ),
@@ -184,10 +184,10 @@ class _SimpleTableStoryExampleState extends State<SimpleTableStoryExample> {
             border: Border.all(color: Colors.grey.shade300),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: AppSimpleTable.standard(
+          child: DSSimpleTable.standard(
             columns: sampleColumns,
             rows: const [],
-            emptyState: const AppSimpleTableEmptyState(
+            emptyState: const DSSimpleTableEmptyState(
               message: 'No hay datos disponibles',
               icon: Icons.table_chart_outlined,
             ),
@@ -203,13 +203,13 @@ class SimpleTableUsageExamples {
   /// Basic usage example
   static Widget basicExample() {
     final columns = [
-      const AppSimpleTableColumn(
+      const DSSimpleTableColumn(
         id: 'name',
         label: 'Nombre',
         field: 'name',
         width: 200,
       ),
-      const AppSimpleTableColumn(
+      const DSSimpleTableColumn(
         id: 'email',
         label: 'Email',
         field: 'email',
@@ -218,7 +218,7 @@ class SimpleTableUsageExamples {
     ];
 
     final rows = [
-      AppSimpleTableRow(
+      DSSimpleTableRow(
         id: '1',
         data: {
           'name': 'Juan Pérez',
@@ -227,7 +227,7 @@ class SimpleTableUsageExamples {
       ),
     ];
 
-    return AppSimpleTable.standard(
+    return DSSimpleTable.standard(
       columns: columns,
       rows: rows,
     );
@@ -236,13 +236,13 @@ class SimpleTableUsageExamples {
   /// Compact variant example
   static Widget compactExample() {
     final columns = [
-      const AppSimpleTableColumn(
+      const DSSimpleTableColumn(
         id: 'name',
         label: 'Nombre',
         field: 'name',
         width: 200,
       ),
-      const AppSimpleTableColumn(
+      const DSSimpleTableColumn(
         id: 'status',
         label: 'Estado',
         field: 'status',
@@ -251,7 +251,7 @@ class SimpleTableUsageExamples {
     ];
 
     final rows = [
-      AppSimpleTableRow(
+      DSSimpleTableRow(
         id: '1',
         data: {
           'name': 'Elemento 1',
@@ -260,7 +260,7 @@ class SimpleTableUsageExamples {
       ),
     ];
 
-    return AppSimpleTable.compact(
+    return DSSimpleTable.compact(
       columns: columns,
       rows: rows,
     );
@@ -269,7 +269,7 @@ class SimpleTableUsageExamples {
   /// With selection example
   static Widget selectionExample() {
     final columns = [
-      const AppSimpleTableColumn(
+      const DSSimpleTableColumn(
         id: 'name',
         label: 'Nombre',
         field: 'name',
@@ -278,7 +278,7 @@ class SimpleTableUsageExamples {
     ];
 
     final rows = [
-      AppSimpleTableRow(
+      DSSimpleTableRow(
         id: '1',
         data: {
           'name': 'Elemento seleccionable',
@@ -286,11 +286,11 @@ class SimpleTableUsageExamples {
       ),
     ];
 
-    return AppSimpleTable.standard(
+    return DSSimpleTable.standard(
       columns: columns,
       rows: rows,
-      selection: const AppSimpleTableSelection(
-        mode: AppSimpleTableSelectionMode.multiple,
+      selection: const DSSimpleTableSelection(
+        mode: DSSimpleTableSelectionMode.multiple,
       ),
     );
   }
@@ -298,14 +298,14 @@ class SimpleTableUsageExamples {
   /// With sorting example
   static Widget sortingExample() {
     final columns = [
-      const AppSimpleTableColumn(
+      const DSSimpleTableColumn(
         id: 'name',
         label: 'Nombre',
         field: 'name',
         width: 200,
         sortable: true,
       ),
-      const AppSimpleTableColumn(
+      const DSSimpleTableColumn(
         id: 'date',
         label: 'Fecha',
         field: 'date',
@@ -315,7 +315,7 @@ class SimpleTableUsageExamples {
     ];
 
     final rows = [
-      AppSimpleTableRow(
+      DSSimpleTableRow(
         id: '1',
         data: {
           'name': 'Elemento A',
@@ -324,12 +324,12 @@ class SimpleTableUsageExamples {
       ),
     ];
 
-    return AppSimpleTable.standard(
+    return DSSimpleTable.standard(
       columns: columns,
       rows: rows,
-      sorting: const AppSimpleTableSort(
+      sorting: const DSSimpleTableSort(
         columnId: 'name',
-        direction: AppSimpleTableSortDirection.ascending,
+        direction: DSSimpleTableSortDirection.ascending,
       ),
     );
   }
@@ -337,7 +337,7 @@ class SimpleTableUsageExamples {
   /// Empty state example
   static Widget emptyStateExample() {
     final columns = [
-      const AppSimpleTableColumn(
+      const DSSimpleTableColumn(
         id: 'name',
         label: 'Nombre',
         field: 'name',
@@ -345,10 +345,10 @@ class SimpleTableUsageExamples {
       ),
     ];
 
-    return AppSimpleTable.standard(
+    return DSSimpleTable.standard(
       columns: columns,
       rows: const [],
-      emptyState: const AppSimpleTableEmptyState(
+      emptyState: const DSSimpleTableEmptyState(
         message: 'No hay elementos',
         icon: Icons.inbox,
       ),

@@ -3,16 +3,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppRoleVisibility', () {
+  group('DSRoleVisibility', () {
     testWidgets('renders child when user has required role', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.user],
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.user],
               ),
-              userRoles: const [AppRolePredefined.user],
+              userRoles: const [DSRolePredefined.user],
               child: const Text('Visible Content'),
             ),
           ),
@@ -26,11 +26,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.admin],
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.admin],
               ),
-              userRoles: const [AppRolePredefined.user],
+              userRoles: const [DSRolePredefined.user],
               child: const Text('Hidden Content'),
             ),
           ),
@@ -44,11 +44,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
                 roles: [],
               ),
-              userRoles: const [AppRolePredefined.user],
+              userRoles: const [DSRolePredefined.user],
               child: const Text('Public Content'),
             ),
           ),
@@ -62,12 +62,12 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.admin, AppRolePredefined.editor],
-                evaluationMode: AppRoleEvaluationMode.any,
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.admin, DSRolePredefined.editor],
+                evaluationMode: DSRoleEvaluationMode.any,
               ),
-              userRoles: const [AppRolePredefined.editor],
+              userRoles: const [DSRolePredefined.editor],
               child: const Text('Editor Content'),
             ),
           ),
@@ -81,12 +81,12 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.admin, AppRolePredefined.editor],
-                evaluationMode: AppRoleEvaluationMode.all,
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.admin, DSRolePredefined.editor],
+                evaluationMode: DSRoleEvaluationMode.all,
               ),
-              userRoles: const [AppRolePredefined.editor],
+              userRoles: const [DSRolePredefined.editor],
               child: const Text('Restricted Content'),
             ),
           ),
@@ -100,14 +100,14 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.admin],
-                behavior: AppRoleVisibilityBehavior(
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.admin],
+                behavior: DSRoleVisibilityBehavior(
                   showErrorMessages: true,
                 ),
               ),
-              userRoles: const [AppRolePredefined.user],
+              userRoles: const [DSRolePredefined.user],
               errorBuilder: (context, error, config) {
                 return const Text('Access Denied');
               },
@@ -125,12 +125,12 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.admin],
-                state: AppRoleState.loading,
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.admin],
+                state: DSRoleState.loading,
               ),
-              userRoles: const [AppRolePredefined.admin],
+              userRoles: const [DSRolePredefined.admin],
               loadingBuilder: (context, config) {
                 return const CircularProgressIndicator();
               },
@@ -148,12 +148,12 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.user],
-                state: AppRoleState.disabled,
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.user],
+                state: DSRoleState.disabled,
               ),
-              userRoles: const [AppRolePredefined.user],
+              userRoles: const [DSRolePredefined.user],
               child: const Text('Disabled Content'),
             ),
           ),
@@ -164,16 +164,16 @@ void main() {
     });
 
     testWidgets('calls onVisibilityChanged callback', (tester) async {
-      AppRoleEvaluationResult? result;
+      DSRoleEvaluationResult? result;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.user],
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.user],
               ),
-              userRoles: const [AppRolePredefined.user],
+              userRoles: const [DSRolePredefined.user],
               onVisibilityChanged: (evaluationResult) {
                 result = evaluationResult;
               },
@@ -193,14 +193,14 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.admin],
-                behavior: AppRoleVisibilityBehavior(
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.admin],
+                behavior: DSRoleVisibilityBehavior(
                   preserveSpaceWhenHidden: true,
                 ),
               ),
-              userRoles: const [AppRolePredefined.user],
+              userRoles: const [DSRolePredefined.user],
               child: const SizedBox(
                 height: 100,
                 child: Text('Hidden Content'),
@@ -218,9 +218,9 @@ void main() {
     });
 
     testWidgets('handles role expiration', (tester) async {
-      final expiredRole = AppRole(
+      final expiredRole = DSRole(
         id: 'expired_user',
-        type: AppRoleType.user,
+        type: DSRoleType.user,
         name: 'Expired User',
         expiresAt: DateTime.now().subtract(const Duration(days: 1)),
       );
@@ -228,9 +228,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.user],
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.user],
               ),
               userRoles: [expiredRole],
               child: const Text('Expired Content'),
@@ -243,9 +243,9 @@ void main() {
     });
 
     testWidgets('supports custom role hierarchy', (tester) async {
-      final customRole = AppRole(
+      final customRole = DSRole(
         id: 'custom_admin',
-        type: AppRoleType.admin,
+        type: DSRoleType.admin,
         name: 'Custom Admin',
         level: 10,
       );
@@ -253,10 +253,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppRoleVisibility(
-              config: const AppRoleVisibilityConfig(
-                roles: [AppRolePredefined.admin],
-                hierarchyConfig: AppRoleHierarchyConfig(
+            body: DSRoleVisibility(
+              config: const DSRoleVisibilityConfig(
+                roles: [DSRolePredefined.admin],
+                hierarchyConfig: DSRoleHierarchyConfig(
                   minimumLevel: 5,
                 ),
               ),
@@ -271,43 +271,43 @@ void main() {
     });
   });
 
-  group('AppRoleVisibilityConfig', () {
+  group('DSRoleVisibilityConfig', () {
     test('creates instance with default values', () {
-      const config = AppRoleVisibilityConfig();
+      const config = DSRoleVisibilityConfig();
 
-      expect(config.variant, AppRoleVariant.helpers);
+      expect(config.variant, DSRoleVariant.helpers);
       expect(config.roles, isEmpty);
-      expect(config.state, AppRoleState.defaultState);
-      expect(config.evaluationMode, AppRoleEvaluationMode.any);
+      expect(config.state, DSRoleState.defaultState);
+      expect(config.evaluationMode, DSRoleEvaluationMode.any);
     });
 
     test('creates instance with custom values', () {
-      const config = AppRoleVisibilityConfig(
-        variant: AppRoleVariant.helpers,
-        roles: [AppRolePredefined.admin],
-        state: AppRoleState.loading,
-        evaluationMode: AppRoleEvaluationMode.all,
+      const config = DSRoleVisibilityConfig(
+        variant: DSRoleVariant.helpers,
+        roles: [DSRolePredefined.admin],
+        state: DSRoleState.loading,
+        evaluationMode: DSRoleEvaluationMode.all,
         showDebugHelpers: true,
       );
 
-      expect(config.variant, AppRoleVariant.helpers);
+      expect(config.variant, DSRoleVariant.helpers);
       expect(config.roles.length, 1);
-      expect(config.state, AppRoleState.loading);
-      expect(config.evaluationMode, AppRoleEvaluationMode.all);
+      expect(config.state, DSRoleState.loading);
+      expect(config.evaluationMode, DSRoleEvaluationMode.all);
       expect(config.showDebugHelpers, true);
     });
   });
 
-  group('AppRole', () {
+  group('DSRole', () {
     test('creates instance with required values', () {
-      const role = AppRole(
+      const role = DSRole(
         id: 'test_role',
-        type: AppRoleType.user,
+        type: DSRoleType.user,
         name: 'Test Role',
       );
 
       expect(role.id, 'test_role');
-      expect(role.type, AppRoleType.user);
+      expect(role.type, DSRoleType.user);
       expect(role.name, 'Test Role');
       expect(role.isActive, true);
       expect(role.enabled, true);
@@ -316,9 +316,9 @@ void main() {
 
     test('supports custom properties', () {
       final now = DateTime.now();
-      final role = AppRole(
+      final role = DSRole(
         id: 'custom_role',
-        type: AppRoleType.admin,
+        type: DSRoleType.admin,
         name: 'Custom Role',
         description: 'A custom role for testing',
         permissions: const ['read', 'write'],
@@ -334,56 +334,56 @@ void main() {
     });
   });
 
-  group('AppRoleValidators', () {
+  group('DSRoleValidators', () {
     test('isValidRole works correctly', () {
-      const validRole = AppRole(
+      const validRole = DSRole(
         id: 'valid',
-        type: AppRoleType.user,
+        type: DSRoleType.user,
         name: 'Valid Role',
         isActive: true,
       );
 
-      const invalidRole = AppRole(
+      const invalidRole = DSRole(
         id: '',
-        type: AppRoleType.user,
+        type: DSRoleType.user,
         name: 'Invalid Role',
         isActive: false,
       );
 
-      expect(AppRoleValidators.isValidRole(validRole), true);
-      expect(AppRoleValidators.isValidRole(invalidRole), false);
+      expect(DSRoleValidators.isValidRole(validRole), true);
+      expect(DSRoleValidators.isValidRole(invalidRole), false);
     });
 
     test('hasPermission works correctly', () {
       const roles = [
-        AppRole(
+        DSRole(
           id: 'admin',
-          type: AppRoleType.admin,
+          type: DSRoleType.admin,
           name: 'Admin',
           permissions: ['*'],
         ),
-        AppRole(
+        DSRole(
           id: 'editor',
-          type: AppRoleType.editor,
+          type: DSRoleType.editor,
           name: 'Editor',
           permissions: ['content.edit', 'content.view'],
         ),
       ];
 
-      expect(AppRoleValidators.hasPermission(roles, 'anything'), true); // Admin wildcard
-      expect(AppRoleValidators.hasPermission(roles, 'content.edit'), true);
-      expect(AppRoleValidators.hasPermission(roles, 'user.delete'), true); // Admin wildcard
-      expect(AppRoleValidators.hasPermission([roles[1]], 'user.delete'), false);
+      expect(DSRoleValidators.hasPermission(roles, 'anything'), true); // Admin wildcard
+      expect(DSRoleValidators.hasPermission(roles, 'content.edit'), true);
+      expect(DSRoleValidators.hasPermission(roles, 'user.delete'), true); // Admin wildcard
+      expect(DSRoleValidators.hasPermission([roles[1]], 'user.delete'), false);
     });
 
     test('evaluateRoles with ANY mode', () {
-      const userRoles = [AppRolePredefined.user, AppRolePredefined.editor];
-      const requiredRoles = [AppRolePredefined.admin, AppRolePredefined.editor];
+      const userRoles = [DSRolePredefined.user, DSRolePredefined.editor];
+      const requiredRoles = [DSRolePredefined.admin, DSRolePredefined.editor];
 
-      final result = AppRoleValidators.evaluateRoles(
+      final result = DSRoleValidators.evaluateRoles(
         userRoles: userRoles,
         requiredRoles: requiredRoles,
-        mode: AppRoleEvaluationMode.any,
+        mode: DSRoleEvaluationMode.any,
       );
 
       expect(result.hasAccess, true);
@@ -391,13 +391,13 @@ void main() {
     });
 
     test('evaluateRoles with ALL mode', () {
-      const userRoles = [AppRolePredefined.user];
-      const requiredRoles = [AppRolePredefined.admin, AppRolePredefined.editor];
+      const userRoles = [DSRolePredefined.user];
+      const requiredRoles = [DSRolePredefined.admin, DSRolePredefined.editor];
 
-      final result = AppRoleValidators.evaluateRoles(
+      final result = DSRoleValidators.evaluateRoles(
         userRoles: userRoles,
         requiredRoles: requiredRoles,
-        mode: AppRoleEvaluationMode.all,
+        mode: DSRoleEvaluationMode.all,
       );
 
       expect(result.hasAccess, false);
@@ -406,31 +406,31 @@ void main() {
   });
 
   group('Extension methods', () {
-    test('AppRoleStateExtension works correctly', () {
-      expect(AppRoleState.defaultState.displayName, 'Default');
-      expect(AppRoleState.loading.displayName, 'Loading');
-      expect(AppRoleState.disabled.displayName, 'Disabled');
+    test('DSRoleStateExtension works correctly', () {
+      expect(DSRoleState.defaultState.displayName, 'Default');
+      expect(DSRoleState.loading.displayName, 'Loading');
+      expect(DSRoleState.disabled.displayName, 'Disabled');
 
-      expect(AppRoleState.defaultState.isInteractive, true);
-      expect(AppRoleState.disabled.isInteractive, false);
-      expect(AppRoleState.loading.isInteractive, false);
+      expect(DSRoleState.defaultState.isInteractive, true);
+      expect(DSRoleState.disabled.isInteractive, false);
+      expect(DSRoleState.loading.isInteractive, false);
 
-      expect(AppRoleState.loading.isLoading, true);
-      expect(AppRoleState.skeleton.isLoading, true);
-      expect(AppRoleState.defaultState.isLoading, false);
+      expect(DSRoleState.loading.isLoading, true);
+      expect(DSRoleState.skeleton.isLoading, true);
+      expect(DSRoleState.defaultState.isLoading, false);
     });
 
-    test('AppRoleExtensions works correctly', () {
-      final activeRole = AppRole(
+    test('DSRoleExtensions works correctly', () {
+      final activeRole = DSRole(
         id: 'active',
-        type: AppRoleType.user,
+        type: DSRoleType.user,
         name: 'Active Role',
         isActive: true,
       );
 
-      final expiredRole = AppRole(
+      final expiredRole = DSRole(
         id: 'expired',
-        type: AppRoleType.user,
+        type: DSRoleType.user,
         name: 'Expired Role',
         expiresAt: DateTime.now().subtract(const Duration(days: 1)),
       );
@@ -442,45 +442,45 @@ void main() {
       expect(expiredRole.isEffectivelyActive, false);
     });
 
-    test('AppRoleTypeExtensions works correctly', () {
-      expect(AppRoleType.admin.accessLevel, 100);
-      expect(AppRoleType.user.accessLevel, 50);
-      expect(AppRoleType.guest.accessLevel, 25);
+    test('DSRoleTypeExtensions works correctly', () {
+      expect(DSRoleType.admin.accessLevel, 100);
+      expect(DSRoleType.user.accessLevel, 50);
+      expect(DSRoleType.guest.accessLevel, 25);
 
-      expect(AppRoleType.admin.color, Colors.red);
-      expect(AppRoleType.user.color, Colors.green);
-      expect(AppRoleType.guest.color, Colors.grey);
+      expect(DSRoleType.admin.color, Colors.red);
+      expect(DSRoleType.user.color, Colors.green);
+      expect(DSRoleType.guest.color, Colors.grey);
     });
   });
 
   group('Predefined roles', () {
     test('admin role has correct configuration', () {
-      const admin = AppRolePredefined.admin;
+      const admin = DSRolePredefined.admin;
 
       expect(admin.id, 'admin');
-      expect(admin.type, AppRoleType.admin);
+      expect(admin.type, DSRoleType.admin);
       expect(admin.permissions, contains('*'));
-      expect(admin.priority, AppRolePriority.critical);
+      expect(admin.priority, DSRolePriority.critical);
     });
 
     test('all predefined roles are valid', () {
-      for (final role in AppRolePredefined.all) {
-        expect(AppRoleValidators.isValidRole(role), true);
+      for (final role in DSRolePredefined.all) {
+        expect(DSRoleValidators.isValidRole(role), true);
       }
     });
   });
 
   group('Configuration defaults', () {
     test('standard config has correct defaults', () {
-      const config = AppRoleVisibilityConfigDefaults.standard;
+      const config = DSRoleVisibilityConfigDefaults.standard;
 
-      expect(config.variant, AppRoleVariant.helpers);
+      expect(config.variant, DSRoleVariant.helpers);
       expect(config.roles, isEmpty);
       expect(config.showDebugHelpers, false);
     });
 
     test('debug config enables debugging', () {
-      const config = AppRoleVisibilityConfigDefaults.debug;
+      const config = DSRoleVisibilityConfigDefaults.debug;
 
       expect(config.showDebugHelpers, true);
       expect(config.behavior?.enableDebugMode, true);
@@ -488,7 +488,7 @@ void main() {
     });
 
     test('production config optimizes for performance', () {
-      const config = AppRoleVisibilityConfigDefaults.production;
+      const config = DSRoleVisibilityConfigDefaults.production;
 
       expect(config.showDebugHelpers, false);
       expect(config.behavior?.enableDebugMode, false);

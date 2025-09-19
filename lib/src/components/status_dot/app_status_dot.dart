@@ -20,7 +20,7 @@ enum StatusDotVariant {
 }
 
 /// Enumeración que define los estados posibles del status dot
-enum AppStatusDotState {
+enum DSStatusDotState {
   /// Estado por defecto
   defaultState,
 
@@ -47,15 +47,15 @@ enum AppStatusDotState {
 }
 
 /// Extension para verificar si un estado puede interactuar
-extension AppStatusDotStateExtension on AppStatusDotState {
+extension DSStatusDotStateExtension on DSStatusDotState {
   /// Verifica si el estado permite interacciones
   bool get canInteract =>
-      this != AppStatusDotState.disabled && this != AppStatusDotState.loading;
+      this != DSStatusDotState.disabled && this != DSStatusDotState.loading;
 }
 
 /// Widget de status dot adaptable a diferentes plataformas
 /// con soporte para Material 3, accesibilidad y RTL
-class AppStatusDot extends StatefulWidget {
+class DSStatusDot extends StatefulWidget {
   /// Variante/tipo del status dot
   final StatusDotVariant status;
 
@@ -63,7 +63,7 @@ class AppStatusDot extends StatefulWidget {
   final String? label;
 
   /// Estado actual del componente
-  final AppStatusDotState state;
+  final DSStatusDotState state;
 
   /// Tamaño del dot
   final double size;
@@ -113,12 +113,12 @@ class AppStatusDot extends StatefulWidget {
   /// Posición de la etiqueta respecto al dot
   final MainAxisAlignment alignment;
 
-  /// Crea un AppStatusDot con configuración personalizable
-  const AppStatusDot({
+  /// Crea un DSStatusDot con configuración personalizable
+  const DSStatusDot({
     super.key,
     required this.status,
     this.label,
-    this.state = AppStatusDotState.defaultState,
+    this.state = DSStatusDotState.defaultState,
     this.size = 8.0,
     this.dotColor,
     this.labelColor,
@@ -138,10 +138,10 @@ class AppStatusDot extends StatefulWidget {
   });
 
   /// Factory constructor para crear un status dot de éxito
-  factory AppStatusDot.success({
+  factory DSStatusDot.success({
     Key? key,
     String? label,
-    AppStatusDotState state = AppStatusDotState.defaultState,
+    DSStatusDotState state = DSStatusDotState.defaultState,
     double size = 8.0,
     Color? dotColor,
     Color? labelColor,
@@ -159,7 +159,7 @@ class AppStatusDot extends StatefulWidget {
     TextStyle? labelStyle,
     MainAxisAlignment alignment = MainAxisAlignment.start,
   }) {
-    return AppStatusDot(
+    return DSStatusDot(
       key: key,
       status: StatusDotVariant.success,
       label: label,
@@ -184,10 +184,10 @@ class AppStatusDot extends StatefulWidget {
   }
 
   /// Factory constructor para crear un status dot de información
-  factory AppStatusDot.info({
+  factory DSStatusDot.info({
     Key? key,
     String? label,
-    AppStatusDotState state = AppStatusDotState.defaultState,
+    DSStatusDotState state = DSStatusDotState.defaultState,
     double size = 8.0,
     Color? dotColor,
     Color? labelColor,
@@ -205,7 +205,7 @@ class AppStatusDot extends StatefulWidget {
     TextStyle? labelStyle,
     MainAxisAlignment alignment = MainAxisAlignment.start,
   }) {
-    return AppStatusDot(
+    return DSStatusDot(
       key: key,
       status: StatusDotVariant.info,
       label: label,
@@ -230,10 +230,10 @@ class AppStatusDot extends StatefulWidget {
   }
 
   /// Factory constructor para crear un status dot de advertencia
-  factory AppStatusDot.warn({
+  factory DSStatusDot.warn({
     Key? key,
     String? label,
-    AppStatusDotState state = AppStatusDotState.defaultState,
+    DSStatusDotState state = DSStatusDotState.defaultState,
     double size = 8.0,
     Color? dotColor,
     Color? labelColor,
@@ -251,7 +251,7 @@ class AppStatusDot extends StatefulWidget {
     TextStyle? labelStyle,
     MainAxisAlignment alignment = MainAxisAlignment.start,
   }) {
-    return AppStatusDot(
+    return DSStatusDot(
       key: key,
       status: StatusDotVariant.warn,
       label: label,
@@ -276,10 +276,10 @@ class AppStatusDot extends StatefulWidget {
   }
 
   /// Factory constructor para crear un status dot de error
-  factory AppStatusDot.error({
+  factory DSStatusDot.error({
     Key? key,
     String? label,
-    AppStatusDotState state = AppStatusDotState.defaultState,
+    DSStatusDotState state = DSStatusDotState.defaultState,
     double size = 8.0,
     Color? dotColor,
     Color? labelColor,
@@ -297,7 +297,7 @@ class AppStatusDot extends StatefulWidget {
     TextStyle? labelStyle,
     MainAxisAlignment alignment = MainAxisAlignment.start,
   }) {
-    return AppStatusDot(
+    return DSStatusDot(
       key: key,
       status: StatusDotVariant.error,
       label: label,
@@ -322,10 +322,10 @@ class AppStatusDot extends StatefulWidget {
   }
 
   /// Crea una copia del widget con los valores especificados sobrescritos
-  AppStatusDot copyWith({
+  DSStatusDot copyWith({
     StatusDotVariant? status,
     String? label,
-    AppStatusDotState? state,
+    DSStatusDotState? state,
     double? size,
     Color? dotColor,
     Color? labelColor,
@@ -343,7 +343,7 @@ class AppStatusDot extends StatefulWidget {
     TextStyle? labelStyle,
     MainAxisAlignment? alignment,
   }) {
-    return AppStatusDot(
+    return DSStatusDot(
       key: key,
       status: status ?? this.status,
       label: label ?? this.label,
@@ -368,10 +368,10 @@ class AppStatusDot extends StatefulWidget {
   }
 
   @override
-  State<AppStatusDot> createState() => _AppStatusDotState();
+  State<DSStatusDot> createState() => _DSStatusDotState();
 }
 
-class _AppStatusDotState extends State<AppStatusDot>
+class _DSStatusDotState extends State<DSStatusDot>
     with TickerProviderStateMixin {
   late AnimationController _pulseAnimationController;
   late Animation<double> _pulseAnimation;
@@ -403,7 +403,7 @@ class _AppStatusDotState extends State<AppStatusDot>
   }
 
   @override
-  void didUpdateWidget(AppStatusDot oldWidget) {
+  void didUpdateWidget(DSStatusDot oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.animate != oldWidget.animate) {
       if (widget.animate) {
@@ -424,12 +424,12 @@ class _AppStatusDotState extends State<AppStatusDot>
       widget.state.canInteract &&
       (widget.onTap != null || widget.onHover != null);
 
-  AppStatusDotState get _currentState {
-    if (widget.state != AppStatusDotState.defaultState) return widget.state;
-    if (_isPressed) return AppStatusDotState.pressed;
-    if (_isFocused) return AppStatusDotState.focus;
-    if (_isHovering) return AppStatusDotState.hover;
-    return AppStatusDotState.defaultState;
+  DSStatusDotState get _currentState {
+    if (widget.state != DSStatusDotState.defaultState) return widget.state;
+    if (_isPressed) return DSStatusDotState.pressed;
+    if (_isFocused) return DSStatusDotState.focus;
+    if (_isHovering) return DSStatusDotState.hover;
+    return DSStatusDotState.defaultState;
   }
 
   @override
@@ -549,17 +549,17 @@ class _AppStatusDotState extends State<AppStatusDot>
 
   Widget _applyStateEffects(Widget child, ThemeData theme) {
     switch (_currentState) {
-      case AppStatusDotState.hover:
+      case DSStatusDotState.hover:
         return Transform.scale(
           scale: 1.1,
           child: child,
         );
-      case AppStatusDotState.pressed:
+      case DSStatusDotState.pressed:
         return Transform.scale(
           scale: 0.95,
           child: child,
         );
-      case AppStatusDotState.focus:
+      case DSStatusDotState.focus:
         return Container(
           padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
@@ -571,12 +571,12 @@ class _AppStatusDotState extends State<AppStatusDot>
           ),
           child: child,
         );
-      case AppStatusDotState.disabled:
+      case DSStatusDotState.disabled:
         return Opacity(
           opacity: 0.5,
           child: child,
         );
-      case AppStatusDotState.selected:
+      case DSStatusDotState.selected:
         return Container(
           padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
@@ -585,11 +585,11 @@ class _AppStatusDotState extends State<AppStatusDot>
           ),
           child: child,
         );
-      case AppStatusDotState.loading:
+      case DSStatusDotState.loading:
         return _buildLoadingChild(child);
-      case AppStatusDotState.skeleton:
+      case DSStatusDotState.skeleton:
         return _buildSkeletonChild(child);
-      case AppStatusDotState.defaultState:
+      case DSStatusDotState.defaultState:
         return child;
     }
   }

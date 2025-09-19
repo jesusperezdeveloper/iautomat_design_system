@@ -1,50 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-/// Página de ejemplos para el componente AppTabs
-class AppTabsStory extends StatefulWidget {
-  const AppTabsStory({super.key});
+/// Página de ejemplos para el componente DSTabs
+class DSTabsStory extends StatefulWidget {
+  const DSTabsStory({super.key});
 
   @override
-  State<AppTabsStory> createState() => _AppTabsStoryState();
+  State<DSTabsStory> createState() => _DSTabsStoryState();
 }
 
-class _AppTabsStoryState extends State<AppTabsStory>
+class _DSTabsStoryState extends State<DSTabsStory>
     with TickerProviderStateMixin {
   late TabController _tabController;
-  AppTabsVariant _selectedVariant = AppTabsVariant.fixed;
-  AppTabsState _selectedState = AppTabsState.defaultState;
+  DSTabsVariant _selectedVariant = DSTabsVariant.fixed;
+  DSTabsState _selectedState = DSTabsState.defaultState;
   bool _isRtl = false;
   bool _enableA11y = true;
   bool _showBadges = false;
-  AppTabType _selectedTabType = AppTabType.text;
+  DSTabType _selectedTabType = DSTabType.text;
 
-  final List<AppTabItem> _basicTabs = [
-    const AppTabItem(
+  final List<DSTabItem> _basicTabs = [
+    const DSTabItem(
       id: 'tab1',
       text: 'Inicio',
       icon: Icon(Icons.home),
       tooltip: 'Página principal',
     ),
-    const AppTabItem(
+    const DSTabItem(
       id: 'tab2',
       text: 'Explorar',
       icon: Icon(Icons.explore),
       tooltip: 'Explorar contenido',
     ),
-    const AppTabItem(
+    const DSTabItem(
       id: 'tab3',
       text: 'Favoritos',
       icon: Icon(Icons.favorite),
       tooltip: 'Elementos favoritos',
     ),
-    const AppTabItem(
+    const DSTabItem(
       id: 'tab4',
       text: 'Perfil',
       icon: Icon(Icons.person),
       tooltip: 'Perfil de usuario',
     ),
-    const AppTabItem(
+    const DSTabItem(
       id: 'tab5',
       text: 'Configuración',
       icon: Icon(Icons.settings),
@@ -52,27 +52,27 @@ class _AppTabsStoryState extends State<AppTabsStory>
     ),
   ];
 
-  List<AppTabBadge> get _badges {
+  List<DSTabBadge> get _badges {
     if (!_showBadges) return [];
     return [
-      const AppTabBadge(tabId: 'tab2', count: 3, type: AppTabBadgeType.count),
-      const AppTabBadge(tabId: 'tab3', type: AppTabBadgeType.dot),
-      const AppTabBadge(tabId: 'tab4', text: 'NEW', type: AppTabBadgeType.text),
+      const DSTabBadge(tabId: 'tab2', count: 3, type: DSTabBadgeType.count),
+      const DSTabBadge(tabId: 'tab3', type: DSTabBadgeType.dot),
+      const DSTabBadge(tabId: 'tab4', text: 'NEW', type: DSTabBadgeType.text),
     ];
   }
 
-  List<AppTabItem> get _displayTabs {
+  List<DSTabItem> get _displayTabs {
     return _basicTabs.map((tab) {
       switch (_selectedTabType) {
-        case AppTabType.text:
-          return tab.copyWith(type: AppTabType.text, icon: null);
-        case AppTabType.icon:
-          return tab.copyWith(type: AppTabType.icon, text: '');
-        case AppTabType.textWithIcon:
-          return tab.copyWith(type: AppTabType.textWithIcon);
-        case AppTabType.custom:
+        case DSTabType.text:
+          return tab.copyWith(type: DSTabType.text, icon: null);
+        case DSTabType.icon:
+          return tab.copyWith(type: DSTabType.icon, text: '');
+        case DSTabType.textWithIcon:
+          return tab.copyWith(type: DSTabType.textWithIcon);
+        case DSTabType.custom:
           return tab.copyWith(
-            type: AppTabType.custom,
+            type: DSTabType.custom,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -102,17 +102,17 @@ class _AppTabsStoryState extends State<AppTabsStory>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppTabs Stories'),
+        title: const Text('DSTabs Stories'),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () => setState(() {
-              _selectedVariant = AppTabsVariant.fixed;
-              _selectedState = AppTabsState.defaultState;
+              _selectedVariant = DSTabsVariant.fixed;
+              _selectedState = DSTabsState.defaultState;
               _isRtl = false;
               _enableA11y = true;
               _showBadges = false;
-              _selectedTabType = AppTabType.text;
+              _selectedTabType = DSTabType.text;
               _tabController.animateTo(0);
             }),
             tooltip: 'Resetear configuración',
@@ -150,13 +150,13 @@ class _AppTabsStoryState extends State<AppTabsStory>
         // Variante
         Text('Variante', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
-        DropdownButtonFormField<AppTabsVariant>(
+        DropdownButtonFormField<DSTabsVariant>(
           initialValue: _selectedVariant,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           ),
-          items: AppTabsVariant.values
+          items: DSTabsVariant.values
               .map(
                 (variant) => DropdownMenuItem(
                   value: variant,
@@ -184,13 +184,13 @@ class _AppTabsStoryState extends State<AppTabsStory>
         // Estado
         Text('Estado', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
-        DropdownButtonFormField<AppTabsState>(
+        DropdownButtonFormField<DSTabsState>(
           initialValue: _selectedState,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           ),
-          items: AppTabsState.values
+          items: DSTabsState.values
               .map(
                 (state) => DropdownMenuItem(
                   value: state,
@@ -208,13 +208,13 @@ class _AppTabsStoryState extends State<AppTabsStory>
         // Tipo de Tab
         Text('Tipo de Tab', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
-        DropdownButtonFormField<AppTabType>(
+        DropdownButtonFormField<DSTabType>(
           initialValue: _selectedTabType,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           ),
-          items: AppTabType.values
+          items: DSTabType.values
               .map(
                 (type) => DropdownMenuItem(
                   value: type,
@@ -345,7 +345,7 @@ class _AppTabsStoryState extends State<AppTabsStory>
             ),
           ),
 
-          // Componente AppTabs con contenido
+          // Componente DSTabs con contenido
           Expanded(child: _buildTabsExample()),
         ],
       ),
@@ -353,31 +353,31 @@ class _AppTabsStoryState extends State<AppTabsStory>
   }
 
   Widget _buildTabsExample() {
-    final config = AppTabsConfig(
+    final config = DSTabsConfig(
       variant: _selectedVariant,
       state: _selectedState,
       isRtl: _isRtl,
       enableA11y: _enableA11y,
       tabs: _displayTabs,
-      badges: _showBadges && _selectedVariant == AppTabsVariant.withBadges
+      badges: _showBadges && _selectedVariant == DSTabsVariant.withBadges
           ? _badges
           : [],
       onChanged: (index) => setState(() {
         _tabController.animateTo(index);
       }),
-      behavior: AppTabsBehavior(
+      behavior: DSTabsBehavior(
         isScrollable: _selectedVariant.isScrollable,
         showTooltips: true,
         enableHapticFeedback: true,
         tabAlignment: _selectedVariant.defaultAlignment,
       ),
-      colors: AppTabsColors(
+      colors: DSTabsColors(
         backgroundColor: Theme.of(context).colorScheme.surface,
         selectedLabelColor: Theme.of(context).colorScheme.primary,
         unselectedLabelColor: Theme.of(context).colorScheme.onSurfaceVariant,
         indicatorColor: Theme.of(context).colorScheme.primary,
       ),
-      spacing: const AppTabsSpacing(
+      spacing: const DSTabsSpacing(
         iconSize: 24.0,
         labelPadding: 8.0,
         tabPadding: 16.0,
@@ -387,14 +387,14 @@ class _AppTabsStoryState extends State<AppTabsStory>
 
     final children = _displayTabs.map((tab) => _buildTabContent(tab)).toList();
 
-    return AppTabs(
+    return DSTabs(
       config: config,
       controller: _tabController,
       children: children,
     );
   }
 
-  Widget _buildTabContent(AppTabItem tab) {
+  Widget _buildTabContent(DSTabItem tab) {
     return Container(
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -424,7 +424,7 @@ class _AppTabsStoryState extends State<AppTabsStory>
           const SizedBox(height: 24),
 
           // Información adicional según el estado
-          if (_selectedState == AppTabsState.loading)
+          if (_selectedState == DSTabsState.loading)
             const Column(
               children: [
                 CircularProgressIndicator(),
@@ -432,7 +432,7 @@ class _AppTabsStoryState extends State<AppTabsStory>
                 Text('Cargando contenido del tab...'),
               ],
             )
-          else if (_selectedState == AppTabsState.disabled)
+          else if (_selectedState == DSTabsState.disabled)
             const Column(
               children: [
                 Icon(Icons.block, size: 48, color: Colors.grey),
@@ -443,7 +443,7 @@ class _AppTabsStoryState extends State<AppTabsStory>
                 ),
               ],
             )
-          else if (_selectedState == AppTabsState.skeleton)
+          else if (_selectedState == DSTabsState.skeleton)
             Column(
               children: [
                 Container(
@@ -484,7 +484,7 @@ class _AppTabsStoryState extends State<AppTabsStory>
                     ),
                     const SizedBox(height: 16),
                     if (_showBadges &&
-                        _selectedVariant == AppTabsVariant.withBadges) ...[
+                        _selectedVariant == DSTabsVariant.withBadges) ...[
                       const Text(
                         'Badges activos:',
                         style: TextStyle(fontWeight: FontWeight.bold),
@@ -523,14 +523,14 @@ class _AppTabsStoryState extends State<AppTabsStory>
   }
 }
 
-/// Ejemplos rápidos de AppTabs
-class AppTabsExamples extends StatelessWidget {
-  const AppTabsExamples({super.key});
+/// Ejemplos rápidos de DSTabs
+class DSTabsExamples extends StatelessWidget {
+  const DSTabsExamples({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('AppTabs - Ejemplos Rápidos')),
+      appBar: AppBar(title: const Text('DSTabs - Ejemplos Rápidos')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -654,13 +654,13 @@ class __BasicFixedTabsExampleState extends State<_BasicFixedTabsExample>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Tabs Fijos Básicos')),
-      body: AppTabs(
-        config: const AppTabsConfig(
-          variant: AppTabsVariant.fixed,
+      body: DSTabs(
+        config: const DSTabsConfig(
+          variant: DSTabsVariant.fixed,
           tabs: [
-            AppTabItem(id: 'home', text: 'Inicio'),
-            AppTabItem(id: 'search', text: 'Buscar'),
-            AppTabItem(id: 'profile', text: 'Perfil'),
+            DSTabItem(id: 'home', text: 'Inicio'),
+            DSTabItem(id: 'search', text: 'Buscar'),
+            DSTabItem(id: 'profile', text: 'Perfil'),
           ],
         ),
         controller: _controller,
@@ -708,16 +708,16 @@ class __ScrollableTabsExampleState extends State<_ScrollableTabsExample>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Tabs Desplazables')),
-      body: AppTabs(
-        config: const AppTabsConfig(
-          variant: AppTabsVariant.scrollable,
+      body: DSTabs(
+        config: const DSTabsConfig(
+          variant: DSTabsVariant.scrollable,
           tabs: [
-            AppTabItem(id: 'tech', text: 'Tecnología'),
-            AppTabItem(id: 'design', text: 'Diseño'),
-            AppTabItem(id: 'business', text: 'Negocios'),
-            AppTabItem(id: 'marketing', text: 'Marketing'),
-            AppTabItem(id: 'dev', text: 'Desarrollo'),
-            AppTabItem(id: 'data', text: 'Análisis de Datos'),
+            DSTabItem(id: 'tech', text: 'Tecnología'),
+            DSTabItem(id: 'design', text: 'Diseño'),
+            DSTabItem(id: 'business', text: 'Negocios'),
+            DSTabItem(id: 'marketing', text: 'Marketing'),
+            DSTabItem(id: 'dev', text: 'Desarrollo'),
+            DSTabItem(id: 'data', text: 'Análisis de Datos'),
           ],
         ),
         controller: _controller,
@@ -778,39 +778,39 @@ class __TabsWithBadgesExampleState extends State<_TabsWithBadgesExample>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Tabs con Badges')),
-      body: AppTabs(
-        config: const AppTabsConfig(
-          variant: AppTabsVariant.withBadges,
+      body: DSTabs(
+        config: const DSTabsConfig(
+          variant: DSTabsVariant.withBadges,
           tabs: [
-            AppTabItem(id: 'inbox', text: 'Bandeja', icon: Icon(Icons.inbox)),
-            AppTabItem(
+            DSTabItem(id: 'inbox', text: 'Bandeja', icon: Icon(Icons.inbox)),
+            DSTabItem(
               id: 'messages',
               text: 'Mensajes',
               icon: Icon(Icons.message),
             ),
-            AppTabItem(
+            DSTabItem(
               id: 'notifications',
               text: 'Notificaciones',
               icon: Icon(Icons.notifications),
             ),
-            AppTabItem(
+            DSTabItem(
               id: 'updates',
               text: 'Actualizaciones',
               icon: Icon(Icons.update),
             ),
           ],
           badges: [
-            AppTabBadge(tabId: 'inbox', count: 12, type: AppTabBadgeType.count),
-            AppTabBadge(tabId: 'messages', type: AppTabBadgeType.dot),
-            AppTabBadge(
+            DSTabBadge(tabId: 'inbox', count: 12, type: DSTabBadgeType.count),
+            DSTabBadge(tabId: 'messages', type: DSTabBadgeType.dot),
+            DSTabBadge(
               tabId: 'notifications',
               count: 5,
-              type: AppTabBadgeType.count,
+              type: DSTabBadgeType.count,
             ),
-            AppTabBadge(
+            DSTabBadge(
               tabId: 'updates',
               text: 'NEW',
-              type: AppTabBadgeType.text,
+              type: DSTabBadgeType.text,
             ),
           ],
         ),
@@ -868,35 +868,35 @@ class __IconTabsExampleState extends State<_IconTabsExample>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Tabs con Iconos')),
-      body: AppTabs(
-        config: const AppTabsConfig(
-          variant: AppTabsVariant.fixed,
+      body: DSTabs(
+        config: const DSTabsConfig(
+          variant: DSTabsVariant.fixed,
           tabs: [
-            AppTabItem(
+            DSTabItem(
               id: 'dashboard',
               text: 'Dashboard',
-              type: AppTabType.icon,
+              type: DSTabType.icon,
               icon: Icon(Icons.dashboard),
               tooltip: 'Panel de control',
             ),
-            AppTabItem(
+            DSTabItem(
               id: 'analytics',
               text: 'Analytics',
-              type: AppTabType.icon,
+              type: DSTabType.icon,
               icon: Icon(Icons.analytics),
               tooltip: 'Análisis y métricas',
             ),
-            AppTabItem(
+            DSTabItem(
               id: 'reports',
               text: 'Reports',
-              type: AppTabType.icon,
+              type: DSTabType.icon,
               icon: Icon(Icons.assessment),
               tooltip: 'Reportes',
             ),
-            AppTabItem(
+            DSTabItem(
               id: 'settings',
               text: 'Settings',
-              type: AppTabType.icon,
+              type: DSTabType.icon,
               icon: Icon(Icons.settings),
               tooltip: 'Configuración',
             ),
@@ -943,26 +943,26 @@ class __TextIconTabsExampleState extends State<_TextIconTabsExample>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Tabs Texto + Icono')),
-      body: AppTabs(
-        config: const AppTabsConfig(
-          variant: AppTabsVariant.scrollable,
+      body: DSTabs(
+        config: const DSTabsConfig(
+          variant: DSTabsVariant.scrollable,
           tabs: [
-            AppTabItem(
+            DSTabItem(
               id: 'projects',
               text: 'Proyectos',
-              type: AppTabType.textWithIcon,
+              type: DSTabType.textWithIcon,
               icon: Icon(Icons.work),
             ),
-            AppTabItem(
+            DSTabItem(
               id: 'team',
               text: 'Equipo',
-              type: AppTabType.textWithIcon,
+              type: DSTabType.textWithIcon,
               icon: Icon(Icons.group),
             ),
-            AppTabItem(
+            DSTabItem(
               id: 'calendar',
               text: 'Calendario',
-              type: AppTabType.textWithIcon,
+              type: DSTabType.textWithIcon,
               icon: Icon(Icons.calendar_today),
             ),
           ],
@@ -992,7 +992,7 @@ class _SpecialStatesExample extends StatefulWidget {
 class __SpecialStatesExampleState extends State<_SpecialStatesExample>
     with TickerProviderStateMixin {
   late TabController _controller;
-  AppTabsState _currentState = AppTabsState.defaultState;
+  DSTabsState _currentState = DSTabsState.defaultState;
 
   @override
   void initState() {
@@ -1012,9 +1012,9 @@ class __SpecialStatesExampleState extends State<_SpecialStatesExample>
       appBar: AppBar(
         title: const Text('Estados Especiales'),
         actions: [
-          DropdownButton<AppTabsState>(
+          DropdownButton<DSTabsState>(
             value: _currentState,
-            items: AppTabsState.values
+            items: DSTabsState.values
                 .map(
                   (state) => DropdownMenuItem(
                     value: state,
@@ -1026,13 +1026,13 @@ class __SpecialStatesExampleState extends State<_SpecialStatesExample>
           ),
         ],
       ),
-      body: AppTabs(
-        config: AppTabsConfig(
-          variant: AppTabsVariant.fixed,
+      body: DSTabs(
+        config: DSTabsConfig(
+          variant: DSTabsVariant.fixed,
           state: _currentState,
           tabs: const [
-            AppTabItem(id: 'data', text: 'Datos'),
-            AppTabItem(id: 'charts', text: 'Gráficos'),
+            DSTabItem(id: 'data', text: 'Datos'),
+            DSTabItem(id: 'charts', text: 'Gráficos'),
           ],
         ),
         controller: _controller,

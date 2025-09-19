@@ -19,13 +19,13 @@ import 'package:iautomat_design_system/src/theme/typography.dart';
 ///
 /// ### Ejemplo básico:
 /// ```dart
-/// AppCameraPicker(
+/// DSCameraPicker(
 ///   onPicked: (files) {
 ///     print('Archivos seleccionados: ${files.length}');
 ///   },
-///   config: AppCameraPickerConfig(
-///     source: AppCameraPickerSource.both,
-///     behavior: AppCameraPickerBehavior(
+///   config: DSCameraPickerConfig(
+///     source: DSCameraPickerSource.both,
+///     behavior: DSCameraPickerBehavior(
 ///       allowMultiple: true,
 ///       maxFiles: 5,
 ///     ),
@@ -35,32 +35,32 @@ import 'package:iautomat_design_system/src/theme/typography.dart';
 ///
 /// ### Ejemplo con configuración avanzada:
 /// ```dart
-/// AppCameraPicker(
+/// DSCameraPicker(
 ///   onPicked: (files) => _handleFiles(files),
 ///   onError: (error) => _showError(error),
-///   config: AppCameraPickerConfig(
-///     variant: AppCameraPickerVariant.platform,
-///     source: AppCameraPickerSource.camera,
-///     fileType: AppCameraPickerFileType.image,
-///     quality: AppCameraPickerQuality.high,
-///     behavior: AppCameraPickerBehavior(
+///   config: DSCameraPickerConfig(
+///     variant: DSCameraPickerVariant.platform,
+///     source: DSCameraPickerSource.camera,
+///     fileType: DSCameraPickerFileType.image,
+///     quality: DSCameraPickerQuality.high,
+///     behavior: DSCameraPickerBehavior(
 ///       allowMultiple: false,
 ///       compressImages: true,
 ///       showPreview: true,
 ///     ),
-///     a11yConfig: AppCameraPickerA11yConfig(
+///     a11yConfig: DSCameraPickerA11yConfig(
 ///       semanticsLabel: 'Selector de foto de perfil',
 ///       cameraButtonLabel: 'Tomar nueva foto',
 ///     ),
 ///   ),
 /// )
 /// ```
-class AppCameraPicker extends StatefulWidget {
+class DSCameraPicker extends StatefulWidget {
   /// Configuración completa del componente
-  final AppCameraPickerConfig? config;
+  final DSCameraPickerConfig? config;
 
   /// Callback cuando se seleccionan archivos
-  final ValueChanged<List<AppCameraPickerFile>>? onPicked;
+  final ValueChanged<List<DSCameraPickerFile>>? onPicked;
 
   /// Callback cuando ocurre un error
   final ValueChanged<String>? onError;
@@ -81,12 +81,12 @@ class AppCameraPicker extends StatefulWidget {
   final bool enabled;
 
   /// Fuente de selección
-  final AppCameraPickerSource source;
+  final DSCameraPickerSource source;
 
   /// Permitir selección múltiple
   final bool allowMultiple;
 
-  const AppCameraPicker({
+  const DSCameraPicker({
     super.key,
     this.config,
     this.onPicked,
@@ -96,19 +96,19 @@ class AppCameraPicker extends StatefulWidget {
     this.buttonText,
     this.buttonIcon,
     this.enabled = true,
-    this.source = AppCameraPickerSource.both,
+    this.source = DSCameraPickerSource.both,
     this.allowMultiple = false,
   });
 
   @override
-  State<AppCameraPicker> createState() => _AppCameraPickerState();
+  State<DSCameraPicker> createState() => _DSCameraPickerState();
 }
 
-class _AppCameraPickerState extends State<AppCameraPicker>
+class _DSCameraPickerState extends State<DSCameraPicker>
     with TickerProviderStateMixin {
 
   // Configuración efectiva
-  late AppCameraPickerConfig _config;
+  late DSCameraPickerConfig _config;
 
   // Controladores de animación
   late AnimationController _stateAnimationController;
@@ -119,17 +119,17 @@ class _AppCameraPickerState extends State<AppCameraPicker>
   late Animation<double> _opacityAnimation;
 
   // Estado actual
-  AppCameraPickerState _currentState = AppCameraPickerState.defaultState;
+  DSCameraPickerState _currentState = DSCameraPickerState.defaultState;
   bool _isHovered = false;
   bool _isFocused = false;
   bool _isPressed = false;
   bool _isLoading = false;
 
   // Adaptador de plataforma
-  late AppCameraPickerPlatformAdapter _platformAdapter;
+  late DSCameraPickerPlatformAdapter _platformAdapter;
 
   // Helper de accesibilidad
-  late AppCameraPickerA11yHelper _a11yHelper;
+  late DSCameraPickerA11yHelper _a11yHelper;
 
   // Nodo de foco
   final FocusNode _focusNode = FocusNode();
@@ -146,7 +146,7 @@ class _AppCameraPickerState extends State<AppCameraPicker>
   }
 
   @override
-  void didUpdateWidget(AppCameraPicker oldWidget) {
+  void didUpdateWidget(DSCameraPicker oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.config != oldWidget.config ||
         widget.enabled != oldWidget.enabled ||
@@ -166,12 +166,12 @@ class _AppCameraPickerState extends State<AppCameraPicker>
   }
 
   void _initializeConfig() {
-    _config = widget.config ?? const AppCameraPickerConfig();
+    _config = widget.config ?? const DSCameraPickerConfig();
     _config = _config.copyWith(
       source: widget.source,
       behavior: _config.behavior?.copyWith(
         allowMultiple: widget.allowMultiple,
-      ) ?? AppCameraPickerBehavior(
+      ) ?? DSCameraPickerBehavior(
         allowMultiple: widget.allowMultiple,
       ),
       enabled: widget.enabled,
@@ -187,7 +187,7 @@ class _AppCameraPickerState extends State<AppCameraPicker>
   }
 
   void _initializeControllers() {
-    final animConfig = _config.animation ?? const AppCameraPickerAnimation();
+    final animConfig = _config.animation ?? const DSCameraPickerAnimation();
 
     _stateAnimationController = AnimationController(
       duration: animConfig.stateDuration,
@@ -201,7 +201,7 @@ class _AppCameraPickerState extends State<AppCameraPicker>
   }
 
   void _initializeAnimations() {
-    final animConfig = _config.animation ?? const AppCameraPickerAnimation();
+    final animConfig = _config.animation ?? const DSCameraPickerAnimation();
 
     _scaleAnimation = Tween<double>(
       begin: 1.0,
@@ -222,11 +222,11 @@ class _AppCameraPickerState extends State<AppCameraPicker>
   }
 
   void _initializePlatformAdapter() {
-    _platformAdapter = AppCameraPickerPlatformAdapter();
+    _platformAdapter = DSCameraPickerPlatformAdapter();
   }
 
   void _initializeA11yHelper() {
-    _a11yHelper = AppCameraPickerA11yHelper(_config.a11yConfig);
+    _a11yHelper = DSCameraPickerA11yHelper(_config.a11yConfig);
   }
 
   void _initializeFocus() {
@@ -239,22 +239,22 @@ class _AppCameraPickerState extends State<AppCameraPicker>
   }
 
   void _updateCurrentState() {
-    AppCameraPickerState newState;
+    DSCameraPickerState newState;
 
     if (!_config.enabled) {
-      newState = AppCameraPickerState.disabled;
+      newState = DSCameraPickerState.disabled;
     } else if (_isLoading) {
-      newState = AppCameraPickerState.loading;
-    } else if (_config.state == AppCameraPickerState.skeleton) {
-      newState = AppCameraPickerState.skeleton;
+      newState = DSCameraPickerState.loading;
+    } else if (_config.state == DSCameraPickerState.skeleton) {
+      newState = DSCameraPickerState.skeleton;
     } else if (_isPressed) {
-      newState = AppCameraPickerState.pressed;
+      newState = DSCameraPickerState.pressed;
     } else if (_isFocused) {
-      newState = AppCameraPickerState.focus;
+      newState = DSCameraPickerState.focus;
     } else if (_isHovered) {
-      newState = AppCameraPickerState.hover;
+      newState = DSCameraPickerState.hover;
     } else {
-      newState = AppCameraPickerState.defaultState;
+      newState = DSCameraPickerState.defaultState;
     }
 
     if (_currentState != newState) {
@@ -357,7 +357,7 @@ class _AppCameraPickerState extends State<AppCameraPicker>
 
   @override
   Widget build(BuildContext context) {
-    if (_currentState == AppCameraPickerState.skeleton) {
+    if (_currentState == DSCameraPickerState.skeleton) {
       return _buildSkeleton();
     }
 
@@ -403,7 +403,7 @@ class _AppCameraPickerState extends State<AppCameraPicker>
 
   Widget _buildButton() {
     final colors = _resolveColors();
-    final spacing = _config.spacing ?? const AppCameraPickerSpacing();
+    final spacing = _config.spacing ?? const DSCameraPickerSpacing();
     final elevation = _resolveElevation();
 
     return Container(
@@ -417,13 +417,13 @@ class _AppCameraPickerState extends State<AppCameraPicker>
         borderRadius: BorderRadius.circular(spacing.borderRadius),
         border: Border.all(
           color: _isFocused
-              ? (colors.borderFocusColor ?? AppColors.primary)
-              : (colors.borderColor ?? AppColors.outline),
+              ? (colors.borderFocusColor ?? DSColors.primary)
+              : (colors.borderColor ?? DSColors.outline),
           width: spacing.borderWidth,
         ),
         boxShadow: elevation > 0 ? [
           BoxShadow(
-            color: colors.shadowColor ?? AppColors.shadow,
+            color: colors.shadowColor ?? DSColors.shadow,
             blurRadius: elevation * 2,
             offset: Offset(0, elevation / 2),
           ),
@@ -445,7 +445,7 @@ class _AppCameraPickerState extends State<AppCameraPicker>
 
   Widget _buildButtonContent() {
     final colors = _resolveColors();
-    final spacing = _config.spacing ?? const AppCameraPickerSpacing();
+    final spacing = _config.spacing ?? const DSCameraPickerSpacing();
 
     if (_isLoading) {
       return _buildLoadingContent();
@@ -473,7 +473,7 @@ class _AppCameraPickerState extends State<AppCameraPicker>
           Flexible(
             child: Text(
               text,
-              style: AppTypography.button.copyWith(
+              style: DSTypography.button.copyWith(
                 color: colors.textColor,
               ),
               overflow: TextOverflow.ellipsis,
@@ -497,14 +497,14 @@ class _AppCameraPickerState extends State<AppCameraPicker>
           child: CircularProgressIndicator(
             strokeWidth: 2,
             valueColor: AlwaysStoppedAnimation(
-              colors.iconColor ?? AppColors.primary,
+              colors.iconColor ?? DSColors.primary,
             ),
           ),
         ),
         const SizedBox(width: 8),
         Text(
           'Cargando...',
-          style: AppTypography.button.copyWith(
+          style: DSTypography.button.copyWith(
             color: colors.textColor,
           ),
         ),
@@ -513,8 +513,8 @@ class _AppCameraPickerState extends State<AppCameraPicker>
   }
 
   Widget _buildSkeleton() {
-    final spacing = _config.spacing ?? const AppCameraPickerSpacing();
-    final colors = _config.colors ?? const AppCameraPickerColors();
+    final spacing = _config.spacing ?? const DSCameraPickerSpacing();
+    final colors = _config.colors ?? const DSCameraPickerColors();
 
     return Container(
       constraints: BoxConstraints(
@@ -523,7 +523,7 @@ class _AppCameraPickerState extends State<AppCameraPicker>
       ),
       margin: spacing.margin,
       decoration: BoxDecoration(
-        color: colors.skeletonColor ?? AppColors.gray200,
+        color: colors.skeletonColor ?? DSColors.gray200,
         borderRadius: BorderRadius.circular(spacing.borderRadius),
       ),
       child: Padding(
@@ -536,7 +536,7 @@ class _AppCameraPickerState extends State<AppCameraPicker>
               width: 24,
               height: 24,
               decoration: BoxDecoration(
-                color: AppColors.gray300,
+                color: DSColors.gray300,
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
@@ -545,7 +545,7 @@ class _AppCameraPickerState extends State<AppCameraPicker>
               width: 80,
               height: 16,
               decoration: BoxDecoration(
-                color: AppColors.gray300,
+                color: DSColors.gray300,
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
@@ -555,11 +555,11 @@ class _AppCameraPickerState extends State<AppCameraPicker>
     );
   }
 
-  AppCameraPickerColors _resolveColors() {
-    final baseColors = _config.colors ?? const AppCameraPickerColors();
+  DSCameraPickerColors _resolveColors() {
+    final baseColors = _config.colors ?? const DSCameraPickerColors();
     final theme = Theme.of(context);
 
-    return AppCameraPickerColors(
+    return DSCameraPickerColors(
       backgroundColor: _getStateColor(
         baseColors.backgroundColor ?? theme.colorScheme.surface,
         baseColors.backgroundHoverColor ?? theme.colorScheme.surfaceContainerHighest,
@@ -586,12 +586,12 @@ class _AppCameraPickerState extends State<AppCameraPicker>
 
   Color _getStateColor(Color normal, Color hover, Color pressed, Color disabled) {
     switch (_currentState) {
-      case AppCameraPickerState.disabled:
-      case AppCameraPickerState.skeleton:
+      case DSCameraPickerState.disabled:
+      case DSCameraPickerState.skeleton:
         return disabled;
-      case AppCameraPickerState.pressed:
+      case DSCameraPickerState.pressed:
         return pressed;
-      case AppCameraPickerState.hover:
+      case DSCameraPickerState.hover:
         return hover;
       default:
         return normal;
@@ -599,14 +599,14 @@ class _AppCameraPickerState extends State<AppCameraPicker>
   }
 
   double _resolveElevation() {
-    final elevation = _config.elevation ?? const AppCameraPickerElevation();
+    final elevation = _config.elevation ?? const DSCameraPickerElevation();
 
     switch (_currentState) {
-      case AppCameraPickerState.disabled:
+      case DSCameraPickerState.disabled:
         return elevation.disabledElevation;
-      case AppCameraPickerState.pressed:
+      case DSCameraPickerState.pressed:
         return elevation.pressedElevation;
-      case AppCameraPickerState.hover:
+      case DSCameraPickerState.hover:
         return elevation.hoverElevation;
       default:
         return elevation.defaultElevation;
@@ -615,11 +615,11 @@ class _AppCameraPickerState extends State<AppCameraPicker>
 
   String _getDefaultButtonText() {
     switch (_config.source) {
-      case AppCameraPickerSource.camera:
+      case DSCameraPickerSource.camera:
         return 'Tomar Foto';
-      case AppCameraPickerSource.gallery:
+      case DSCameraPickerSource.gallery:
         return 'Seleccionar';
-      case AppCameraPickerSource.both:
+      case DSCameraPickerSource.both:
         return 'Agregar Imagen';
     }
   }

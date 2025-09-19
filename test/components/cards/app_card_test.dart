@@ -5,13 +5,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppCard', () {
+  group('DSCard', () {
     const headerWidget = Text('Header');
     const bodyWidget = Text('Body Content');
     const footerWidget = Text('Footer');
 
     Widget createCardApp({
-      AppCardConfig? config,
+      DSCardConfig? config,
       Widget? header,
       Widget? body,
       Widget? footer,
@@ -23,8 +23,8 @@ void main() {
     }) {
       return MaterialApp(
         home: Scaffold(
-          body: AppCard(
-            config: config ?? const AppCardConfig(),
+          body: DSCard(
+            config: config ?? const DSCardConfig(),
             header: header,
             body: body,
             footer: footer,
@@ -45,7 +45,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Body Content'), findsOneWidget);
-      expect(find.byType(AppCard), findsOneWidget);
+      expect(find.byType(DSCard), findsOneWidget);
     });
 
     testWidgets('renders all sections when provided', (tester) async {
@@ -63,8 +63,8 @@ void main() {
 
     testWidgets('shows loading state correctly', (tester) async {
       await tester.pumpWidget(createCardApp(
-        config: const AppCardConfig(
-          state: AppCardState.loading,
+        config: const DSCardConfig(
+          state: DSCardState.loading,
         ),
         body: bodyWidget,
       ));
@@ -76,8 +76,8 @@ void main() {
 
     testWidgets('shows skeleton state correctly', (tester) async {
       await tester.pumpWidget(createCardApp(
-        config: const AppCardConfig(
-          state: AppCardState.skeleton,
+        config: const DSCardConfig(
+          state: DSCardState.skeleton,
         ),
         body: bodyWidget,
       ));
@@ -98,8 +98,8 @@ void main() {
 
       testWidgets('renders filled variant correctly', (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(
-            variant: AppCardVariant.filled,
+          config: const DSCardConfig(
+            variant: DSCardVariant.filled,
           ),
           body: bodyWidget,
         ));
@@ -110,8 +110,8 @@ void main() {
 
       testWidgets('renders outlined variant correctly', (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(
-            variant: AppCardVariant.outlined,
+          config: const DSCardConfig(
+            variant: DSCardVariant.outlined,
           ),
           body: bodyWidget,
         ));
@@ -123,9 +123,9 @@ void main() {
 
     group('States', () {
       testWidgets('renders all states correctly', (tester) async {
-        for (final state in AppCardState.values) {
+        for (final state in DSCardState.values) {
           await tester.pumpWidget(createCardApp(
-            config: AppCardConfig(state: state),
+            config: DSCardConfig(state: state),
             body: bodyWidget,
           ));
           await tester.pump();
@@ -144,15 +144,15 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createCardApp(
-          config: AppCardConfig(
-            state: AppCardState.disabled,
+          config: DSCardConfig(
+            state: DSCardState.disabled,
             onTap: () => tapped = true,
           ),
           body: bodyWidget,
         ));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byType(AppCard));
+        await tester.tap(find.byType(DSCard));
         await tester.pumpAndSettle();
 
         expect(tapped, isFalse);
@@ -164,14 +164,14 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createCardApp(
-          config: AppCardConfig(
+          config: DSCardConfig(
             onTap: () => tapped = true,
           ),
           body: bodyWidget,
         ));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byType(AppCard));
+        await tester.tap(find.byType(DSCard));
         await tester.pumpAndSettle();
 
         expect(tapped, isTrue);
@@ -181,16 +181,16 @@ void main() {
         var doubleTapped = false;
 
         await tester.pumpWidget(createCardApp(
-          config: AppCardConfig(
+          config: DSCardConfig(
             onDoubleTap: () => doubleTapped = true,
           ),
           body: bodyWidget,
         ));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byType(AppCard));
+        await tester.tap(find.byType(DSCard));
         await tester.pump(const Duration(milliseconds: 100));
-        await tester.tap(find.byType(AppCard));
+        await tester.tap(find.byType(DSCard));
         await tester.pumpAndSettle();
 
         expect(doubleTapped, isTrue);
@@ -200,14 +200,14 @@ void main() {
         var longPressed = false;
 
         await tester.pumpWidget(createCardApp(
-          config: AppCardConfig(
+          config: DSCardConfig(
             onLongPress: () => longPressed = true,
           ),
           body: bodyWidget,
         ));
         await tester.pumpAndSettle();
 
-        await tester.longPress(find.byType(AppCard));
+        await tester.longPress(find.byType(DSCard));
         await tester.pumpAndSettle();
 
         expect(longPressed, isTrue);
@@ -217,7 +217,7 @@ void main() {
         var hovered = false;
 
         await tester.pumpWidget(createCardApp(
-          config: AppCardConfig(
+          config: DSCardConfig(
             onHover: (isHovered) => hovered = isHovered,
           ),
           body: bodyWidget,
@@ -230,7 +230,7 @@ void main() {
         addTearDown(gesture.removePointer);
         await tester.pump();
 
-        await gesture.moveTo(tester.getCenter(find.byType(AppCard)));
+        await gesture.moveTo(tester.getCenter(find.byType(DSCard)));
         await tester.pumpAndSettle();
 
         expect(hovered, isTrue);
@@ -242,7 +242,7 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createCardApp(
-          config: AppCardConfig(
+          config: DSCardConfig(
             enableKeyboardSupport: true,
             onTap: () => tapped = true,
           ),
@@ -251,7 +251,7 @@ void main() {
         await tester.pumpAndSettle();
 
         // Focus the card
-        await tester.tap(find.byType(AppCard));
+        await tester.tap(find.byType(DSCard));
         await tester.pumpAndSettle();
 
         // Press Enter
@@ -265,7 +265,7 @@ void main() {
         var tapped = false;
 
         await tester.pumpWidget(createCardApp(
-          config: AppCardConfig(
+          config: DSCardConfig(
             enableKeyboardSupport: false,
             onTap: () => tapped = true,
           ),
@@ -273,7 +273,7 @@ void main() {
         ));
         await tester.pumpAndSettle();
 
-        await tester.tap(find.byType(AppCard));
+        await tester.tap(find.byType(DSCard));
         await tester.pumpAndSettle();
 
         await tester.sendKeyEvent(LogicalKeyboardKey.enter);
@@ -287,7 +287,7 @@ void main() {
       testWidgets('applies RTL directionality when isRtl is true',
           (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(isRtl: true),
+          config: const DSCardConfig(isRtl: true),
           body: bodyWidget,
         ));
         await tester.pumpAndSettle();
@@ -311,7 +311,7 @@ void main() {
       testWidgets('provides semantic labels when a11y is enabled',
           (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(enableA11y: true),
+          config: const DSCardConfig(enableA11y: true),
           body: bodyWidget,
         ));
         await tester.pumpAndSettle();
@@ -321,7 +321,7 @@ void main() {
 
       testWidgets('is focusable for keyboard navigation', (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(
+          config: const DSCardConfig(
             enableKeyboardSupport: true,
           ),
           body: bodyWidget,
@@ -335,8 +335,8 @@ void main() {
     group('Custom styling', () {
       testWidgets('applies custom colors', (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(
-            colors: AppCardColors(
+          config: const DSCardConfig(
+            colors: DSCardColors(
               backgroundColor: Colors.red,
               borderColor: Colors.blue,
             ),
@@ -350,8 +350,8 @@ void main() {
 
       testWidgets('applies custom spacing', (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(
-            spacing: AppCardSpacing(
+          config: const DSCardConfig(
+            spacing: DSCardSpacing(
               padding: 24.0,
               borderRadius: 16.0,
             ),
@@ -365,8 +365,8 @@ void main() {
 
       testWidgets('applies custom elevation', (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(
-            elevation: AppCardElevation(
+          config: const DSCardConfig(
+            elevation: DSCardElevation(
               defaultElevation: 8.0,
             ),
           ),
@@ -381,8 +381,8 @@ void main() {
     group('Behavior configuration', () {
       testWidgets('enables haptic feedback when configured', (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(
-            behavior: AppCardBehavior(
+          config: const DSCardConfig(
+            behavior: DSCardBehavior(
               enableHapticFeedback: true,
             ),
           ),
@@ -395,8 +395,8 @@ void main() {
 
       testWidgets('maintains state when configured', (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(
-            behavior: AppCardBehavior(
+          config: const DSCardConfig(
+            behavior: DSCardBehavior(
               maintainState: true,
             ),
           ),
@@ -411,8 +411,8 @@ void main() {
     group('Animation support', () {
       testWidgets('animates state transitions when enabled', (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(
-            animation: AppCardAnimation(
+          config: const DSCardConfig(
+            animation: DSCardAnimation(
               enableStateTransitions: true,
               duration: 100,
             ),
@@ -426,8 +426,8 @@ void main() {
 
       testWidgets('does not animate when disabled', (tester) async {
         await tester.pumpWidget(createCardApp(
-          config: const AppCardConfig(
-            animation: AppCardAnimation(
+          config: const DSCardConfig(
+            animation: DSCardAnimation(
               enableStateTransitions: false,
             ),
           ),

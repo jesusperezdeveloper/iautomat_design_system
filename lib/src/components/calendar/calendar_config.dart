@@ -7,12 +7,12 @@ part 'calendar_config.freezed.dart';
 
 
 /// Tipos de callback para eventos del calendario
-typedef AppCalendarEventTapCallback = void Function(AppCalendarEvent event);
-typedef AppCalendarDateTapCallback = void Function(DateTime date);
-typedef AppCalendarDateRangeSelectCallback = void Function(DateTimeRange range);
+typedef DSCalendarEventTapCallback = void Function(DSCalendarEvent event);
+typedef DSCalendarDateTapCallback = void Function(DateTime date);
+typedef DSCalendarDateRangeSelectCallback = void Function(DateTimeRange range);
 
 /// Variantes del calendario
-enum AppCalendarVariant {
+enum DSCalendarVariant {
   /// Vista de día - muestra un solo día con horarios
   day,
 
@@ -24,7 +24,7 @@ enum AppCalendarVariant {
 }
 
 /// Estados del calendario
-enum AppCalendarState {
+enum DSCalendarState {
   /// Estado por defecto
   defaultState,
 
@@ -51,7 +51,7 @@ enum AppCalendarState {
 }
 
 /// Tipo de evento en el calendario
-enum AppCalendarEventType {
+enum DSCalendarEventType {
   /// Evento normal
   event,
 
@@ -75,7 +75,7 @@ enum AppCalendarEventType {
 }
 
 /// Prioridad del evento
-enum AppCalendarEventPriority {
+enum DSCalendarEventPriority {
   /// Prioridad baja
   low,
 
@@ -91,8 +91,8 @@ enum AppCalendarEventPriority {
 
 /// Configuración de un evento del calendario
 @freezed
-class AppCalendarEvent with _$AppCalendarEvent {
-  const factory AppCalendarEvent({
+class DSCalendarEvent with _$DSCalendarEvent {
+  const factory DSCalendarEvent({
     /// ID único del evento
     required String id,
 
@@ -109,10 +109,10 @@ class AppCalendarEvent with _$AppCalendarEvent {
     required DateTime endTime,
 
     /// Tipo de evento
-    @Default(AppCalendarEventType.event) AppCalendarEventType type,
+    @Default(DSCalendarEventType.event) DSCalendarEventType type,
 
     /// Prioridad del evento
-    @Default(AppCalendarEventPriority.normal) AppCalendarEventPriority priority,
+    @Default(DSCalendarEventPriority.normal) DSCalendarEventPriority priority,
 
     /// Color del evento (si no se especifica usa el del tipo)
     Color? color,
@@ -173,8 +173,8 @@ class AppCalendarEvent with _$AppCalendarEvent {
 
 /// Configuración de un recurso del calendario (salas, personas, etc.)
 @freezed
-class AppCalendarResource with _$AppCalendarResource {
-  const factory AppCalendarResource({
+class DSCalendarResource with _$DSCalendarResource {
+  const factory DSCalendarResource({
     /// ID único del recurso
     required String id,
 
@@ -218,7 +218,7 @@ class AppCalendarResource with _$AppCalendarResource {
     @Default(<String, dynamic>{}) Map<String, dynamic> metadata,
 
     /// Horario de trabajo del recurso
-    AppCalendarWorkingHours? workingHours,
+    DSCalendarWorkingHours? workingHours,
 
     /// Días no laborables
     @Default(<DateTime>[]) List<DateTime> nonWorkingDays,
@@ -228,8 +228,8 @@ class AppCalendarResource with _$AppCalendarResource {
 
 /// Configuración de horario de trabajo
 @freezed
-class AppCalendarWorkingHours with _$AppCalendarWorkingHours {
-  const factory AppCalendarWorkingHours({
+class DSCalendarWorkingHours with _$DSCalendarWorkingHours {
+  const factory DSCalendarWorkingHours({
     /// Hora de inicio (formato 24h, ej: "09:00")
     @Default("09:00") String startTime,
 
@@ -247,8 +247,8 @@ class AppCalendarWorkingHours with _$AppCalendarWorkingHours {
 
 /// Configuración de estilo para fechas especiales
 @freezed
-class AppCalendarDateStyle with _$AppCalendarDateStyle {
-  const factory AppCalendarDateStyle({
+class DSCalendarDateStyle with _$DSCalendarDateStyle {
+  const factory DSCalendarDateStyle({
     /// Color del texto
     Color? textColor,
 
@@ -287,8 +287,8 @@ class AppCalendarDateStyle with _$AppCalendarDateStyle {
 
 /// Configuración de localización
 @freezed
-class AppCalendarLocalization with _$AppCalendarLocalization {
-  const factory AppCalendarLocalization({
+class DSCalendarLocalization with _$DSCalendarLocalization {
+  const factory DSCalendarLocalization({
     /// Idioma (es, en, etc.)
     @Default('es') String locale,
 
@@ -369,16 +369,16 @@ class AppCalendarLocalization with _$AppCalendarLocalization {
 
 /// Configuración principal del calendario
 @freezed
-class AppCalendarConfig with _$AppCalendarConfig {
-  const factory AppCalendarConfig({
+class DSCalendarConfig with _$DSCalendarConfig {
+  const factory DSCalendarConfig({
     /// Variante del calendario
-    @Default(AppCalendarVariant.month) AppCalendarVariant variant,
+    @Default(DSCalendarVariant.month) DSCalendarVariant variant,
 
     /// Lista de eventos
-    @Default(<AppCalendarEvent>[]) List<AppCalendarEvent> events,
+    @Default(<DSCalendarEvent>[]) List<DSCalendarEvent> events,
 
     /// Lista de recursos
-    @Default(<AppCalendarResource>[]) List<AppCalendarResource> resources,
+    @Default(<DSCalendarResource>[]) List<DSCalendarResource> resources,
 
     /// Fecha inicial seleccionada
     DateTime? selectedDate,
@@ -393,7 +393,7 @@ class AppCalendarConfig with _$AppCalendarConfig {
     DateTime? maxDate,
 
     /// Estado del calendario
-    @Default(AppCalendarState.defaultState) AppCalendarState state,
+    @Default(DSCalendarState.defaultState) DSCalendarState state,
 
     /// Si permite selección múltiple
     @Default(false) bool allowMultiSelect,
@@ -441,19 +441,19 @@ class AppCalendarConfig with _$AppCalendarConfig {
     @Default(true) bool showWorkingHours,
 
     /// Configuración de localización
-    AppCalendarLocalization? localization,
+    DSCalendarLocalization? localization,
 
     /// Callback cuando se toca un evento
-    @JsonKey(includeFromJson: false, includeToJson: false) AppCalendarEventTapCallback? onEventTap,
+    @JsonKey(includeFromJson: false, includeToJson: false) DSCalendarEventTapCallback? onEventTap,
 
     /// Callback cuando se toca una fecha
-    @JsonKey(includeFromJson: false, includeToJson: false) AppCalendarDateTapCallback? onDateTap,
+    @JsonKey(includeFromJson: false, includeToJson: false) DSCalendarDateTapCallback? onDateTap,
 
     /// Callback cuando se selecciona un rango
-    @JsonKey(includeFromJson: false, includeToJson: false) AppCalendarDateRangeSelectCallback? onRangeSelect,
+    @JsonKey(includeFromJson: false, includeToJson: false) DSCalendarDateRangeSelectCallback? onRangeSelect,
 
     /// Callback cuando cambia la vista
-    @JsonKey(includeFromJson: false, includeToJson: false) void Function(AppCalendarVariant variant)? onViewChange,
+    @JsonKey(includeFromJson: false, includeToJson: false) void Function(DSCalendarVariant variant)? onViewChange,
 
     /// Callback cuando cambia la fecha
     @JsonKey(includeFromJson: false, includeToJson: false) void Function(DateTime date)? onDateChange,
@@ -462,10 +462,10 @@ class AppCalendarConfig with _$AppCalendarConfig {
     @JsonKey(includeFromJson: false, includeToJson: false) void Function(DateTime start, DateTime end)? onEventCreate,
 
     /// Callback cuando se mueve un evento
-    @JsonKey(includeFromJson: false, includeToJson: false) void Function(AppCalendarEvent event, DateTime newStart)? onEventMove,
+    @JsonKey(includeFromJson: false, includeToJson: false) void Function(DSCalendarEvent event, DateTime newStart)? onEventMove,
 
     /// Callback cuando se redimensiona un evento
-    @JsonKey(includeFromJson: false, includeToJson: false) void Function(AppCalendarEvent event, DateTime newStart, DateTime newEnd)?
+    @JsonKey(includeFromJson: false, includeToJson: false) void Function(DSCalendarEvent event, DateTime newStart, DateTime newEnd)?
         onEventResize,
 
     // Propiedades de estilo usando design tokens
@@ -583,21 +583,21 @@ class AppCalendarConfig with _$AppCalendarConfig {
 
     /// Factor de zoom máximo
     @Default(2.0) double maxZoomFactor,
-  }) = _AppCalendarConfig;
+  }) = _DSCalendarConfig;
 
 }
 
 /// Helpers para crear configuraciones predefinidas
-class AppCalendarDefaults {
+class DSCalendarDefaults {
   /// Configuración por defecto para vista de mes
-  static AppCalendarConfig month({
-    List<AppCalendarEvent>? events,
+  static DSCalendarConfig month({
+    List<DSCalendarEvent>? events,
     DateTime? selectedDate,
-    AppCalendarEventTapCallback? onEventTap,
-    AppCalendarDateTapCallback? onDateTap,
+    DSCalendarEventTapCallback? onEventTap,
+    DSCalendarDateTapCallback? onDateTap,
   }) {
-    return AppCalendarConfig(
-      variant: AppCalendarVariant.month,
+    return DSCalendarConfig(
+      variant: DSCalendarVariant.month,
       events: events ?? [],
       selectedDate: selectedDate ?? DateTime.now(),
       onEventTap: onEventTap,
@@ -608,15 +608,15 @@ class AppCalendarDefaults {
   }
 
   /// Configuración por defecto para vista de semana
-  static AppCalendarConfig week({
-    List<AppCalendarEvent>? events,
-    List<AppCalendarResource>? resources,
+  static DSCalendarConfig week({
+    List<DSCalendarEvent>? events,
+    List<DSCalendarResource>? resources,
     DateTime? selectedDate,
-    AppCalendarEventTapCallback? onEventTap,
-    AppCalendarDateTapCallback? onDateTap,
+    DSCalendarEventTapCallback? onEventTap,
+    DSCalendarDateTapCallback? onDateTap,
   }) {
-    return AppCalendarConfig(
-      variant: AppCalendarVariant.week,
+    return DSCalendarConfig(
+      variant: DSCalendarVariant.week,
       events: events ?? [],
       resources: resources ?? [],
       selectedDate: selectedDate ?? DateTime.now(),
@@ -631,15 +631,15 @@ class AppCalendarDefaults {
   }
 
   /// Configuración por defecto para vista de día
-  static AppCalendarConfig day({
-    List<AppCalendarEvent>? events,
-    List<AppCalendarResource>? resources,
+  static DSCalendarConfig day({
+    List<DSCalendarEvent>? events,
+    List<DSCalendarResource>? resources,
     DateTime? selectedDate,
-    AppCalendarEventTapCallback? onEventTap,
-    AppCalendarDateTapCallback? onDateTap,
+    DSCalendarEventTapCallback? onEventTap,
+    DSCalendarDateTapCallback? onDateTap,
   }) {
-    return AppCalendarConfig(
-      variant: AppCalendarVariant.day,
+    return DSCalendarConfig(
+      variant: DSCalendarVariant.day,
       events: events ?? [],
       resources: resources ?? [],
       selectedDate: selectedDate ?? DateTime.now(),
@@ -655,8 +655,8 @@ class AppCalendarDefaults {
   }
 
   /// Localización en español
-  static AppCalendarLocalization spanish() {
-    return const AppCalendarLocalization(
+  static DSCalendarLocalization spanish() {
+    return const DSCalendarLocalization(
       locale: 'es',
       monthNames: [
         'Enero',
@@ -715,8 +715,8 @@ class AppCalendarDefaults {
   }
 
   /// Localización en inglés
-  static AppCalendarLocalization english() {
-    return const AppCalendarLocalization(
+  static DSCalendarLocalization english() {
+    return const DSCalendarLocalization(
       locale: 'en',
       monthNames: [
         'January',

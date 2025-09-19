@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppCheckoutFormsStory extends StatefulWidget {
-  const AppCheckoutFormsStory({super.key});
+class DSCheckoutFormsStory extends StatefulWidget {
+  const DSCheckoutFormsStory({super.key});
 
   @override
-  State<AppCheckoutFormsStory> createState() => _AppCheckoutFormsStoryState();
+  State<DSCheckoutFormsStory> createState() => _DSCheckoutFormsStoryState();
 }
 
-class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
+class _DSCheckoutFormsStoryState extends State<DSCheckoutFormsStory>
     with TickerProviderStateMixin {
-  AppCheckoutVariant _selectedVariant = AppCheckoutVariant.address;
-  AppCheckoutState _selectedState = AppCheckoutState.defaultState;
+  DSCheckoutVariant _selectedVariant = DSCheckoutVariant.address;
+  DSCheckoutState _selectedState = DSCheckoutState.defaultState;
   bool _isDarkMode = false;
   bool _isRTL = false;
   bool _autoValidate = true;
   bool _showSubmitButton = true;
 
-  AppCheckoutFormData? _lastSubmittedData;
+  DSCheckoutFormData? _lastSubmittedData;
   String _submitStatus = '';
 
   // Campos personalizados para demostración
-  List<AppCheckoutField> _customFields = [];
+  List<DSCheckoutField> _customFields = [];
 
   @override
   void initState() {
@@ -32,13 +32,13 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AppCheckoutForms Story',
+      title: 'DSCheckoutForms Story',
       theme: _isDarkMode ? ThemeData.dark(useMaterial3: true) : ThemeData.light(useMaterial3: true),
       home: Directionality(
         textDirection: _isRTL ? TextDirection.rtl : TextDirection.ltr,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('AppCheckoutForms Story'),
+            title: const Text('DSCheckoutForms Story'),
             actions: [
               IconButton(
                 icon: Icon(_isDarkMode ? Icons.light_mode : Icons.dark_mode),
@@ -94,21 +94,21 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
                     children: [
                       const Text('Variante:', style: TextStyle(fontWeight: FontWeight.w500)),
                       const SizedBox(height: 8),
-                      SegmentedButton<AppCheckoutVariant>(
+                      SegmentedButton<DSCheckoutVariant>(
                         segments: const [
                           ButtonSegment(
-                            value: AppCheckoutVariant.address,
+                            value: DSCheckoutVariant.address,
                             label: Text('Dirección'),
                             icon: Icon(Icons.location_on),
                           ),
                           ButtonSegment(
-                            value: AppCheckoutVariant.payment,
+                            value: DSCheckoutVariant.payment,
                             label: Text('Pago'),
                             icon: Icon(Icons.payment),
                           ),
                         ],
                         selected: {_selectedVariant},
-                        onSelectionChanged: (Set<AppCheckoutVariant> selection) {
+                        onSelectionChanged: (Set<DSCheckoutVariant> selection) {
                           setState(() {
                             _selectedVariant = selection.first;
                             _customFields = _selectedVariant.defaultFields;
@@ -125,10 +125,10 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
                     children: [
                       const Text('Estado:', style: TextStyle(fontWeight: FontWeight.w500)),
                       const SizedBox(height: 8),
-                      DropdownButton<AppCheckoutState>(
+                      DropdownButton<DSCheckoutState>(
                         value: _selectedState,
                         isExpanded: true,
-                        items: AppCheckoutState.values.map((state) {
+                        items: DSCheckoutState.values.map((state) {
                           return DropdownMenuItem(
                             value: state,
                             child: Text(state.displayName),
@@ -192,7 +192,7 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: AppCheckoutForms(
+                child: DSCheckoutForms(
                   fields: _customFields,
                   variant: _selectedVariant,
                   initialState: _selectedState,
@@ -260,16 +260,16 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
                   // Enmascarar datos sensibles para display
                   final field = _customFields.firstWhere(
                     (f) => f.key == entry.key,
-                    orElse: () => AppCheckoutField(
+                    orElse: () => DSCheckoutField(
                       key: entry.key,
                       label: entry.key,
-                      type: AppCheckoutFieldType.text,
+                      type: DSCheckoutFieldType.text,
                     ),
                   );
 
                   String displayValue = entry.value?.toString() ?? '';
                   if (field.sensitive && displayValue.isNotEmpty) {
-                    if (field.type == AppCheckoutFieldType.creditCard) {
+                    if (field.type == DSCheckoutFieldType.creditCard) {
                       displayValue = '**** **** **** ${displayValue.replaceAll(RegExp(r'\D'), '').substring(displayValue.replaceAll(RegExp(r'\D'), '').length - 4)}';
                     } else {
                       displayValue = '*' * displayValue.length;
@@ -306,7 +306,7 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
           [
             _buildExampleCard(
               'Dirección - Todos los campos',
-              AppCheckoutForms.address(
+              DSCheckoutForms.address(
                 onSubmit: _handleExampleSubmit,
               ),
               height: 500,
@@ -323,7 +323,7 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
           [
             _buildExampleCard(
               'Pago - Información de tarjeta',
-              AppCheckoutForms.payment(
+              DSCheckoutForms.payment(
                 onSubmit: _handleExampleSubmit,
               ),
               height: 450,
@@ -340,40 +340,40 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
           [
             _buildExampleCard(
               'Registro de usuario simple',
-              AppCheckoutForms(
+              DSCheckoutForms(
                 fields: const [
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'fullName',
                     label: 'Nombre completo',
-                    type: AppCheckoutFieldType.text,
+                    type: DSCheckoutFieldType.text,
                     required: true,
                     flex: 2,
                   ),
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'email',
                     label: 'Correo electrónico',
-                    type: AppCheckoutFieldType.email,
+                    type: DSCheckoutFieldType.email,
                     required: true,
                     flex: 2,
                   ),
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'password',
                     label: 'Contraseña',
-                    type: AppCheckoutFieldType.password,
+                    type: DSCheckoutFieldType.password,
                     required: true,
                     flex: 1,
                   ),
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'confirmPassword',
                     label: 'Confirmar contraseña',
-                    type: AppCheckoutFieldType.password,
+                    type: DSCheckoutFieldType.password,
                     required: true,
                     flex: 1,
                   ),
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'terms',
                     label: 'Acepto los términos y condiciones',
-                    type: AppCheckoutFieldType.checkbox,
+                    type: DSCheckoutFieldType.checkbox,
                     required: true,
                     flex: 2,
                   ),
@@ -385,30 +385,30 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
             ),
             _buildExampleCard(
               'Configuración personalizada',
-              AppCheckoutForms(
+              DSCheckoutForms(
                 fields: const [
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'company',
                     label: 'Empresa',
-                    type: AppCheckoutFieldType.text,
+                    type: DSCheckoutFieldType.text,
                     placeholder: 'Nombre de tu empresa',
                     helperText: 'Opcional para facturas corporativas',
                   ),
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'industry',
                     label: 'Industria',
-                    type: AppCheckoutFieldType.dropdown,
+                    type: DSCheckoutFieldType.dropdown,
                     options: ['Tecnología', 'Salud', 'Educación', 'Finanzas', 'Otro'],
                   ),
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'employees',
                     label: 'Número de empleados',
-                    type: AppCheckoutFieldType.dropdown,
+                    type: DSCheckoutFieldType.dropdown,
                     options: ['1-10', '11-50', '51-200', '200+'],
                   ),
                 ],
-                config: AppCheckoutFormsConfig(
-                  colors: AppCheckoutColors(
+                config: DSCheckoutFormsConfig(
+                  colors: DSCheckoutColors(
                     backgroundColor: Color(0xFFF8F9FA),
                     borderColor: Colors.blue,
                     focusedBorderColor: Colors.indigo.shade700,
@@ -416,7 +416,7 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
                     buttonPrimaryColor: Colors.green,
                     headerColor: Colors.purple,
                   ),
-                  spacing: AppCheckoutSpacing(
+                  spacing: DSCheckoutSpacing(
                     padding: 20.0,
                     fieldSpacing: 16.0,
                     borderRadius: 12.0,
@@ -439,36 +439,36 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
           [
             _buildExampleCard(
               'Estado de carga',
-              AppCheckoutForms(
+              DSCheckoutForms(
                 fields: const [
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'processing',
                     label: 'Procesando...',
-                    type: AppCheckoutFieldType.text,
+                    type: DSCheckoutFieldType.text,
                     placeholder: 'Este formulario está procesando',
                   ),
                 ],
-                initialState: AppCheckoutState.loading,
+                initialState: DSCheckoutState.loading,
                 showSubmitButton: false,
               ),
               height: 200,
             ),
             _buildExampleCard(
               'Estado skeleton',
-              AppCheckoutForms(
+              DSCheckoutForms(
                 fields: const [
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'loading1',
                     label: 'Campo 1',
-                    type: AppCheckoutFieldType.text,
+                    type: DSCheckoutFieldType.text,
                   ),
-                  AppCheckoutField(
+                  DSCheckoutField(
                     key: 'loading2',
                     label: 'Campo 2',
-                    type: AppCheckoutFieldType.email,
+                    type: DSCheckoutFieldType.email,
                   ),
                 ],
-                initialState: AppCheckoutState.skeleton,
+                initialState: DSCheckoutState.skeleton,
                 showSubmitButton: false,
               ),
               height: 200,
@@ -536,7 +536,7 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
     );
   }
 
-  void _handleSubmit(AppCheckoutFormData data) {
+  void _handleSubmit(DSCheckoutFormData data) {
     setState(() {
       _lastSubmittedData = data;
       _submitStatus = 'Formulario enviado exitosamente a las ${DateTime.now().toString().substring(11, 19)}';
@@ -577,7 +577,7 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
     );
   }
 
-  void _handleExampleSubmit(AppCheckoutFormData data) {
+  void _handleExampleSubmit(DSCheckoutFormData data) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Ejemplo enviado: ${data.values.length} campos'),
@@ -592,7 +592,7 @@ class _AppCheckoutFormsStoryState extends State<AppCheckoutFormsStory>
     debugPrint('Campo cambiado: $fieldKey = $value');
   }
 
-  void _handleValidationChanged(AppCheckoutFormData data) {
+  void _handleValidationChanged(DSCheckoutFormData data) {
     // Log cambios de validación para debugging
     final validFields = data.validations.values.where((v) => v.isValid).length;
     final totalFields = data.validations.length;

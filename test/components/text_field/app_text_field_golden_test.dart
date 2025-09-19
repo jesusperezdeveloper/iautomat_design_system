@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/text_field/app_text_field.
 import 'package:iautomat_design_system/src/components/text_field/text_field_config.dart';
 
 void main() {
-  group('AppTextField Golden Tests', () {
+  group('DSTextField Golden Tests', () {
     testWidgets('default text field', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -12,7 +12,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Default Text Field',
                   hint: 'Enter text here',
                 ),
@@ -37,7 +37,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Focused Text Field',
                   hint: 'Enter text here',
                   focusNode: focusNode,
@@ -68,7 +68,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   controller: controller,
                   label: 'Text Field with Content',
                   hint: 'Enter text here',
@@ -94,7 +94,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Disabled Text Field',
                   hint: 'This field is disabled',
                   enabled: false,
@@ -118,7 +118,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Error Text Field',
                   hint: 'This field has an error',
                   errorText: 'This field is required',
@@ -142,10 +142,10 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Password Field',
                   hint: 'Enter your password',
-                  variant: AppTextFieldVariant.password,
+                  variant: DSTextFieldVariant.password,
                 ),
               ),
             ),
@@ -168,11 +168,11 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   controller: controller,
                   label: 'Password Field',
                   hint: 'Enter your password',
-                  variant: AppTextFieldVariant.password,
+                  variant: DSTextFieldVariant.password,
                 ),
               ),
             ),
@@ -204,11 +204,11 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   controller: controller,
                   label: 'Multiline Text Field',
                   hint: 'Enter multiple lines here',
-                  variant: AppTextFieldVariant.multiline,
+                  variant: DSTextFieldVariant.multiline,
                   maxLines: 4,
                 ),
               ),
@@ -232,7 +232,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Text Field with Helper',
                   hint: 'Enter text here',
                   helperText: 'This is helpful information',
@@ -256,7 +256,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Text Field with Icons',
                   hint: 'Search here',
                   prefixIcon: Icons.search,
@@ -283,7 +283,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   controller: controller,
                   label: 'Text Field with Counter',
                   hint: 'Type here',
@@ -311,10 +311,10 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Loading Text Field',
                   hint: 'Loading...',
-                  overrideState: AppTextFieldState.loading,
+                  overrideState: DSTextFieldState.loading,
                 ),
               ),
             ),
@@ -335,11 +335,11 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Skeleton Text Field',
                   hint: 'Loading...',
                   helperText: 'Loading helper',
-                  overrideState: AppTextFieldState.skeleton,
+                  overrideState: DSTextFieldState.skeleton,
                 ),
               ),
             ),
@@ -354,7 +354,7 @@ void main() {
     });
 
     testWidgets('custom configuration', (tester) async {
-      const customConfig = AppTextFieldConfig(
+      const customConfig = DSTextFieldConfig(
         borderRadius: 16,
         contentPadding: EdgeInsets.all(20),
         minimumHeight: 60,
@@ -367,7 +367,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Custom Config Field',
                   hint: 'Custom styling',
                   config: customConfig,
@@ -392,7 +392,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextField(
+                child: DSTextField(
                   label: 'Dark Theme Field',
                   hint: 'Dark mode styling',
                   helperText: 'Helper text in dark theme',

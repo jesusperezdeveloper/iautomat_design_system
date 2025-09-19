@@ -4,17 +4,17 @@ import 'package:flutter/services.dart';
 
 import 'app_accordion_config.dart';
 
-class AppAccordionA11yHelper {
-  static AppAccordionA11yHelper? _instance;
+class DSAccordionA11yHelper {
+  static DSAccordionA11yHelper? _instance;
 
-  AppAccordionA11yHelper._();
+  DSAccordionA11yHelper._();
 
-  factory AppAccordionA11yHelper() {
-    return _instance ??= AppAccordionA11yHelper._();
+  factory DSAccordionA11yHelper() {
+    return _instance ??= DSAccordionA11yHelper._();
   }
 
-  String getAccordionSemanticLabel(AppAccordionConfig config) {
-    final variant = config.variant == AppAccordionVariant.single
+  String getAccordionSemanticLabel(DSAccordionConfig config) {
+    final variant = config.variant == DSAccordionVariant.single
         ? 'acordeón simple'
         : 'acordeón múltiple';
 
@@ -22,24 +22,24 @@ class AppAccordionA11yHelper {
   }
 
   String getItemSemanticLabel(
-    AppAccordionItem item,
+    DSAccordionItem item,
     bool isExpanded,
-    AppAccordionConfig config,
+    DSAccordionConfig config,
   ) {
     final expandedText = isExpanded ? 'expandido' : 'contraído';
     return '${item.title}, $expandedText';
   }
 
   String getItemSemanticHint(
-    AppAccordionItem item,
+    DSAccordionItem item,
     bool isExpanded,
-    AppAccordionConfig config,
+    DSAccordionConfig config,
   ) {
-    if (config.state == AppAccordionState.disabled) {
+    if (config.state == DSAccordionState.disabled) {
       return config.accessibility?.disabledLabel ?? 'Deshabilitado';
     }
 
-    if (config.state == AppAccordionState.loading) {
+    if (config.state == DSAccordionState.loading) {
       return config.accessibility?.loadingLabel ?? 'Cargando';
     }
 
@@ -48,30 +48,30 @@ class AppAccordionA11yHelper {
   }
 
   String getItemSemanticValue(
-    AppAccordionItem item,
+    DSAccordionItem item,
     bool isExpanded,
-    AppAccordionConfig config,
+    DSAccordionConfig config,
   ) {
     return isExpanded
         ? config.accessibility?.expandedLabel ?? 'Expandido'
         : config.accessibility?.collapsedLabel ?? 'Contraído';
   }
 
-  SemanticsProperties getAccordionSemantics(AppAccordionConfig config) {
+  SemanticsProperties getAccordionSemantics(DSAccordionConfig config) {
     return SemanticsProperties(label: getAccordionSemanticLabel(config));
   }
 
   SemanticsProperties getItemSemantics(
-    AppAccordionItem item,
+    DSAccordionItem item,
     bool isExpanded,
-    AppAccordionConfig config,
+    DSAccordionConfig config,
     VoidCallback? onTap,
   ) {
     final accessibility = config.accessibility!;
 
     return SemanticsProperties(
       button: accessibility.focusable,
-      enabled: config.state != AppAccordionState.disabled,
+      enabled: config.state != DSAccordionState.disabled,
       expanded: isExpanded,
       label: getItemSemanticLabel(item, isExpanded, config),
       hint: getItemSemanticHint(item, isExpanded, config),
@@ -90,20 +90,20 @@ class AppAccordionA11yHelper {
     SemanticsService.announce(message, TextDirection.ltr);
   }
 
-  void announceStateChange(AppAccordionState state) {
+  void announceStateChange(DSAccordionState state) {
     String message;
 
     switch (state) {
-      case AppAccordionState.loading:
+      case DSAccordionState.loading:
         message = 'Cargando';
         break;
-      case AppAccordionState.disabled:
+      case DSAccordionState.disabled:
         message = 'Deshabilitado';
         break;
-      case AppAccordionState.selected:
+      case DSAccordionState.selected:
         message = 'Seleccionado';
         break;
-      case AppAccordionState.focus:
+      case DSAccordionState.focus:
         message = 'Enfocado';
         break;
       default:
@@ -123,9 +123,9 @@ class AppAccordionA11yHelper {
 
   Widget wrapWithSemantics(
     Widget child,
-    AppAccordionItem item,
+    DSAccordionItem item,
     bool isExpanded,
-    AppAccordionConfig config,
+    DSAccordionConfig config,
     VoidCallback? onTap,
   ) {
     if (!config.accessibility!.enabled) {
@@ -137,7 +137,7 @@ class AppAccordionA11yHelper {
     return Semantics.fromProperties(properties: semantics, child: child);
   }
 
-  Widget wrapAccordionWithSemantics(Widget child, AppAccordionConfig config) {
+  Widget wrapAccordionWithSemantics(Widget child, DSAccordionConfig config) {
     if (!config.accessibility!.enabled) {
       return child;
     }
@@ -149,7 +149,7 @@ class AppAccordionA11yHelper {
 
   FocusNode createFocusNode(String itemKey) {
     return FocusNode(
-      debugLabel: 'AppAccordion_$itemKey',
+      debugLabel: 'DSAccordion_$itemKey',
       canRequestFocus: true,
     );
   }
@@ -163,7 +163,7 @@ class AppAccordionA11yHelper {
   void handleKeyboardNavigation(
     LogicalKeyboardKey key,
     String currentItemKey,
-    List<AppAccordionItem> items,
+    List<DSAccordionItem> items,
     Map<String, FocusNode> focusNodes,
     Function(String, bool) onExpansionChanged,
     Set<String> expandedKeys,
@@ -199,7 +199,7 @@ class AppAccordionA11yHelper {
 
   void _focusNextItem(
     String currentKey,
-    List<AppAccordionItem> items,
+    List<DSAccordionItem> items,
     Map<String, FocusNode> focusNodes,
   ) {
     final currentIndex = items.indexWhere((item) => (item.key) == currentKey);
@@ -212,7 +212,7 @@ class AppAccordionA11yHelper {
 
   void _focusPreviousItem(
     String currentKey,
-    List<AppAccordionItem> items,
+    List<DSAccordionItem> items,
     Map<String, FocusNode> focusNodes,
   ) {
     final currentIndex = items.indexWhere((item) => (item.key) == currentKey);
@@ -224,7 +224,7 @@ class AppAccordionA11yHelper {
   }
 
   void _focusFirstItem(
-    List<AppAccordionItem> items,
+    List<DSAccordionItem> items,
     Map<String, FocusNode> focusNodes,
   ) {
     if (items.isNotEmpty) {
@@ -234,7 +234,7 @@ class AppAccordionA11yHelper {
   }
 
   void _focusLastItem(
-    List<AppAccordionItem> items,
+    List<DSAccordionItem> items,
     Map<String, FocusNode> focusNodes,
   ) {
     if (items.isNotEmpty) {

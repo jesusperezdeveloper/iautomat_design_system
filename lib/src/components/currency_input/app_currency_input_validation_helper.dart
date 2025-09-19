@@ -4,15 +4,15 @@ import 'package:iautomat_design_system/src/components/currency_input/app_currenc
 ///
 /// Proporciona métodos estáticos para validar valores del input de moneda
 /// según las reglas definidas en la configuración
-class AppCurrencyInputValidationHelper {
+class DSCurrencyInputValidationHelper {
   /// Valida un valor de moneda según la configuración de validación
   static String? validate(
-    AppCurrencyInputValue value,
-    AppCurrencyInputValidation validation,
+    DSCurrencyInputValue value,
+    DSCurrencyInputValidation validation,
   ) {
     if (!validation.enabled) return null;
 
-    final result = AppCurrencyInputUtils.validateValue(value, validation);
+    final result = DSCurrencyInputUtils.validateValue(value, validation);
 
     if (!result.isValid) {
       return result.errorMessage;
@@ -56,21 +56,21 @@ class AppCurrencyInputValidationHelper {
 
   /// Obtiene el mensaje de error según el tipo de validación
   static String getErrorMessage(
-    AppCurrencyInputValidationLevel level,
+    DSCurrencyInputValidationLevel level,
     String? customMessage,
   ) {
     if (customMessage != null) return customMessage;
 
     switch (level) {
-      case AppCurrencyInputValidationLevel.error:
+      case DSCurrencyInputValidationLevel.error:
         return 'Valor inválido';
-      case AppCurrencyInputValidationLevel.warning:
+      case DSCurrencyInputValidationLevel.warning:
         return 'Advertencia en el valor';
-      case AppCurrencyInputValidationLevel.info:
+      case DSCurrencyInputValidationLevel.info:
         return 'Información del valor';
-      case AppCurrencyInputValidationLevel.success:
+      case DSCurrencyInputValidationLevel.success:
         return 'Valor válido';
-      case AppCurrencyInputValidationLevel.none:
+      case DSCurrencyInputValidationLevel.none:
         return '';
     }
   }

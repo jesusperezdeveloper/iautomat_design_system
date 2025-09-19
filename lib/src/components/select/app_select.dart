@@ -7,8 +7,8 @@ import 'package:flutter/services.dart';
 
 import 'select_config.dart';
 
-class AppSelect<T> extends StatefulWidget {
-  final List<AppSelectItem<T>> items;
+class DSSelect<T> extends StatefulWidget {
+  final List<DSSelectItem<T>> items;
   final T? value;
   final List<T>? values;
   final ValueChanged<T?>? onChanged;
@@ -19,23 +19,23 @@ class AppSelect<T> extends StatefulWidget {
   final String? errorText;
   final String? Function(T?)? validator;
   final String? Function(List<T>)? multiValidator;
-  final AppSelectVariant variant;
-  final AppSelectConfig? config;
-  final AppSelectColors? colors;
+  final DSSelectVariant variant;
+  final DSSelectConfig? config;
+  final DSSelectColors? colors;
   final bool enabled;
   final bool autoFocus;
   final FocusNode? focusNode;
   final String? semanticLabel;
-  final AppSelectState? overrideState;
+  final DSSelectState? overrideState;
   final TextDirection? textDirection;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool dense;
   final double? width;
   final String? searchHint;
-  final bool Function(AppSelectItem<T>, String)? searchMatcher;
+  final bool Function(DSSelectItem<T>, String)? searchMatcher;
 
-  const AppSelect({
+  const DSSelect({
     super.key,
     required this.items,
     this.value,
@@ -48,7 +48,7 @@ class AppSelect<T> extends StatefulWidget {
     this.errorText,
     this.validator,
     this.multiValidator,
-    this.variant = AppSelectVariant.single,
+    this.variant = DSSelectVariant.single,
     this.config,
     this.colors,
     this.enabled = true,
@@ -64,17 +64,17 @@ class AppSelect<T> extends StatefulWidget {
     this.searchHint,
     this.searchMatcher,
   }) : assert(
-          (variant == AppSelectVariant.single && onChanged != null) ||
-              (variant == AppSelectVariant.multi && onMultiChanged != null) ||
-              (variant == AppSelectVariant.searchable && onChanged != null),
+          (variant == DSSelectVariant.single && onChanged != null) ||
+              (variant == DSSelectVariant.multi && onMultiChanged != null) ||
+              (variant == DSSelectVariant.searchable && onChanged != null),
           'Value and callback must match the variant type',
         );
 
   @override
-  State<AppSelect<T>> createState() => _AppSelectState<T>();
+  State<DSSelect<T>> createState() => _DSSelectState<T>();
 }
 
-class _AppSelectState<T> extends State<AppSelect<T>>
+class _DSSelectState<T> extends State<DSSelect<T>>
     with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late AnimationController _animationController;
@@ -91,13 +91,13 @@ class _AppSelectState<T> extends State<AppSelect<T>>
   bool _isFocused = false;
   bool _isDropdownOpen = false;
   String? _errorText;
-  List<AppSelectItem<T>> _filteredItems = [];
+  List<DSSelectItem<T>> _filteredItems = [];
   String _searchQuery = '';
 
-  AppSelectConfig get _config => widget.config ?? const AppSelectConfig();
+  DSSelectConfig get _config => widget.config ?? const DSSelectConfig();
 
-  AppSelectColors get _colors =>
-      widget.colors ?? AppSelectColors.fromTheme(Theme.of(context));
+  DSSelectColors get _colors =>
+      widget.colors ?? DSSelectColors.fromTheme(Theme.of(context));
 
   bool get _isEnabled => widget.enabled;
 
@@ -105,62 +105,62 @@ class _AppSelectState<T> extends State<AppSelect<T>>
 
   String? get _effectiveErrorText => widget.errorText ?? _errorText;
 
-  AppSelectState get _currentState {
+  DSSelectState get _currentState {
     if (widget.overrideState != null) {
       return widget.overrideState!;
     }
 
     if (!_isEnabled) {
-      return AppSelectState.disabled;
+      return DSSelectState.disabled;
     }
 
     if (_hasError) {
-      return AppSelectState.error;
+      return DSSelectState.error;
     }
 
     if (_isPressed) {
-      return AppSelectState.pressed;
+      return DSSelectState.pressed;
     }
 
     if (_isFocused || _isDropdownOpen) {
-      return AppSelectState.focus;
+      return DSSelectState.focus;
     }
 
     if (_isHovered) {
-      return AppSelectState.hover;
+      return DSSelectState.hover;
     }
 
     if (_hasSelection) {
-      return AppSelectState.selected;
+      return DSSelectState.selected;
     }
 
-    return AppSelectState.defaultState;
+    return DSSelectState.defaultState;
   }
 
   bool get _hasSelection {
     switch (widget.variant) {
-      case AppSelectVariant.single:
-      case AppSelectVariant.searchable:
+      case DSSelectVariant.single:
+      case DSSelectVariant.searchable:
         return widget.value != null;
-      case AppSelectVariant.multi:
+      case DSSelectVariant.multi:
         return widget.values != null && widget.values!.isNotEmpty;
     }
   }
 
   String get _displayText {
     switch (widget.variant) {
-      case AppSelectVariant.single:
-      case AppSelectVariant.searchable:
+      case DSSelectVariant.single:
+      case DSSelectVariant.searchable:
         if (widget.value != null) {
           final item = widget.items.firstWhere(
             (item) => item.value == widget.value,
-            orElse: () => AppSelectItem(
+            orElse: () => DSSelectItem(
                 value: widget.value as T, label: widget.value.toString()),
           );
           return item.label;
         }
         return widget.placeholder ?? '';
-      case AppSelectVariant.multi:
+      case DSSelectVariant.multi:
         if (widget.values != null && widget.values!.isNotEmpty) {
           return '${widget.values!.length} seleccionado${widget.values!.length > 1 ? 's' : ''}';
         }
@@ -194,13 +194,13 @@ class _AppSelectState<T> extends State<AppSelect<T>>
       curve: Curves.easeInOut,
     ));
 
-    if (_currentState == AppSelectState.skeleton) {
+    if (_currentState == DSSelectState.skeleton) {
       _skeletonAnimationController.repeat(reverse: true);
     }
   }
 
   @override
-  void didUpdateWidget(AppSelect<T> oldWidget) {
+  void didUpdateWidget(DSSelect<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.items != widget.items) {
@@ -210,7 +210,7 @@ class _AppSelectState<T> extends State<AppSelect<T>>
     }
 
     if (oldWidget.overrideState != widget.overrideState) {
-      if (_currentState == AppSelectState.skeleton) {
+      if (_currentState == DSSelectState.skeleton) {
         _skeletonAnimationController.repeat(reverse: true);
       } else {
         _skeletonAnimationController.stop();
@@ -281,7 +281,7 @@ class _AppSelectState<T> extends State<AppSelect<T>>
     _overlayEntry = null;
 
     // Reset search
-    if (widget.variant == AppSelectVariant.searchable) {
+    if (widget.variant == DSSelectVariant.searchable) {
       _searchController.clear();
       _filteredItems = widget.items;
       _searchQuery = '';
@@ -290,12 +290,12 @@ class _AppSelectState<T> extends State<AppSelect<T>>
 
   void _handleSelection(T value) {
     switch (widget.variant) {
-      case AppSelectVariant.single:
-      case AppSelectVariant.searchable:
+      case DSSelectVariant.single:
+      case DSSelectVariant.searchable:
         widget.onChanged?.call(value);
         _closeDropdown();
         break;
-      case AppSelectVariant.multi:
+      case DSSelectVariant.multi:
         final currentValues = List<T>.from(widget.values ?? []);
         if (currentValues.contains(value)) {
           currentValues.remove(value);
@@ -328,11 +328,11 @@ class _AppSelectState<T> extends State<AppSelect<T>>
 
   @override
   Widget build(BuildContext context) {
-    if (_currentState == AppSelectState.skeleton) {
+    if (_currentState == DSSelectState.skeleton) {
       return _buildSkeleton();
     }
 
-    if (_currentState == AppSelectState.loading) {
+    if (_currentState == DSSelectState.loading) {
       return _buildLoadingField();
     }
 
@@ -525,7 +525,7 @@ class _AppSelectState<T> extends State<AppSelect<T>>
                 ],
                 Expanded(
                   child:
-                      widget.variant == AppSelectVariant.multi && _hasSelection
+                      widget.variant == DSSelectVariant.multi && _hasSelection
                           ? _buildMultiSelectChips()
                           : _buildSingleSelectText(theme),
                 ),
@@ -579,7 +579,7 @@ class _AppSelectState<T> extends State<AppSelect<T>>
       children: widget.values!.map((value) {
         final item = widget.items.firstWhere(
           (item) => item.value == value,
-          orElse: () => AppSelectItem(value: value, label: value.toString()),
+          orElse: () => DSSelectItem(value: value, label: value.toString()),
         );
 
         return Chip(
@@ -634,7 +634,7 @@ class _AppSelectState<T> extends State<AppSelect<T>>
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (widget.variant == AppSelectVariant.searchable)
+                  if (widget.variant == DSSelectVariant.searchable)
                     _buildSearchField(),
                   Flexible(
                     child: ListView.builder(
@@ -677,7 +677,7 @@ class _AppSelectState<T> extends State<AppSelect<T>>
     );
   }
 
-  Widget _buildDropdownItem(AppSelectItem<T> item) {
+  Widget _buildDropdownItem(DSSelectItem<T> item) {
     final isSelected = _isItemSelected(item);
 
     return InkWell(
@@ -696,7 +696,7 @@ class _AppSelectState<T> extends State<AppSelect<T>>
               item.leading!,
               SizedBox(width: _config.itemSpacing),
             ],
-            if (widget.variant == AppSelectVariant.multi)
+            if (widget.variant == DSSelectVariant.multi)
               Checkbox(
                 value: isSelected,
                 onChanged:
@@ -704,7 +704,7 @@ class _AppSelectState<T> extends State<AppSelect<T>>
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 visualDensity: VisualDensity.compact,
               ),
-            if (widget.variant == AppSelectVariant.multi)
+            if (widget.variant == DSSelectVariant.multi)
               SizedBox(width: _config.itemSpacing),
             Expanded(
               child: Column(
@@ -737,7 +737,7 @@ class _AppSelectState<T> extends State<AppSelect<T>>
               SizedBox(width: _config.itemSpacing),
               item.trailing!,
             ],
-            if (widget.variant != AppSelectVariant.multi && isSelected)
+            if (widget.variant != DSSelectVariant.multi && isSelected)
               Icon(
                 Icons.check,
                 size: _config.iconSize,
@@ -749,12 +749,12 @@ class _AppSelectState<T> extends State<AppSelect<T>>
     );
   }
 
-  bool _isItemSelected(AppSelectItem<T> item) {
+  bool _isItemSelected(DSSelectItem<T> item) {
     switch (widget.variant) {
-      case AppSelectVariant.single:
-      case AppSelectVariant.searchable:
+      case DSSelectVariant.single:
+      case DSSelectVariant.searchable:
         return widget.value == item.value;
-      case AppSelectVariant.multi:
+      case DSSelectVariant.multi:
         return widget.values?.contains(item.value) ?? false;
     }
   }

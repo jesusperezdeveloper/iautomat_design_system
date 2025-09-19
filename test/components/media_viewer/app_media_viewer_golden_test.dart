@@ -5,16 +5,16 @@ import 'package:iautomat_design_system/src/components/media_viewer/app_media_vie
 import 'package:iautomat_design_system/src/components/media_viewer/app_media_viewer_config.dart';
 
 void main() {
-  group('AppMediaViewer Golden Tests', () {
+  group('DSMediaViewer Golden Tests', () {
     final testImageItems = [
-      const AppMediaItem(
-        type: AppMediaType.image,
+      const DSMediaItem(
+        type: DSMediaType.image,
         src: 'assets/test_image1.jpg',
         caption: 'Test image 1',
         alt: 'First test image',
       ),
-      const AppMediaItem(
-        type: AppMediaType.image,
+      const DSMediaItem(
+        type: DSMediaType.image,
         src: 'assets/test_image2.jpg',
         caption: 'Test image 2',
         alt: 'Second test image',
@@ -22,8 +22,8 @@ void main() {
     ];
 
     final testVideoItems = [
-      const AppMediaItem(
-        type: AppMediaType.video,
+      const DSMediaItem(
+        type: DSMediaType.video,
         src: 'assets/test_video.mp4',
         thumbnail: 'assets/test_thumbnail.jpg',
         caption: 'Test video',
@@ -32,8 +32,8 @@ void main() {
     ];
 
     final testAudioItems = [
-      const AppMediaItem(
-        type: AppMediaType.audio,
+      const DSMediaItem(
+        type: DSMediaType.audio,
         src: 'assets/test_audio.mp3',
         caption: 'Test audio track',
         duration: 180.0,
@@ -49,11 +49,11 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
                   initialIndex: 0,
-                  config: const AppMediaViewerConfig(
-                    variant: AppMediaViewerVariant.image,
+                  config: const DSMediaViewerConfig(
+                    variant: DSMediaViewerVariant.image,
                   ),
                 ),
               ),
@@ -64,7 +64,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_image_default.png'),
       );
     });
@@ -78,11 +78,11 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testVideoItems,
                   initialIndex: 0,
-                  config: const AppMediaViewerConfig(
-                    variant: AppMediaViewerVariant.video,
+                  config: const DSMediaViewerConfig(
+                    variant: DSMediaViewerVariant.video,
                   ),
                 ),
               ),
@@ -93,7 +93,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_video_default.png'),
       );
     });
@@ -107,11 +107,11 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testAudioItems,
                   initialIndex: 0,
-                  config: const AppMediaViewerConfig(
-                    variant: AppMediaViewerVariant.audio,
+                  config: const DSMediaViewerConfig(
+                    variant: DSMediaViewerVariant.audio,
                   ),
                 ),
               ),
@@ -122,7 +122,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_audio_default.png'),
       );
     });
@@ -136,10 +136,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
-                  config: const AppMediaViewerConfig(
-                    state: AppMediaViewerState.loading,
+                  config: const DSMediaViewerConfig(
+                    state: DSMediaViewerState.loading,
                   ),
                 ),
               ),
@@ -150,7 +150,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_loading.png'),
       );
     });
@@ -164,10 +164,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
-                  config: const AppMediaViewerConfig(
-                    state: AppMediaViewerState.skeleton,
+                  config: const DSMediaViewerConfig(
+                    state: DSMediaViewerState.skeleton,
                   ),
                 ),
               ),
@@ -178,7 +178,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_skeleton.png'),
       );
     });
@@ -192,10 +192,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
-                  config: const AppMediaViewerConfig(
-                    state: AppMediaViewerState.disabled,
+                  config: const DSMediaViewerConfig(
+                    state: DSMediaViewerState.disabled,
                   ),
                 ),
               ),
@@ -206,7 +206,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_disabled.png'),
       );
     });
@@ -220,10 +220,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
-                  config: const AppMediaViewerConfig(
-                    state: AppMediaViewerState.hover,
+                  config: const DSMediaViewerConfig(
+                    state: DSMediaViewerState.hover,
                   ),
                 ),
               ),
@@ -234,7 +234,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_hover.png'),
       );
     });
@@ -248,10 +248,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
-                  config: const AppMediaViewerConfig(
-                    state: AppMediaViewerState.pressed,
+                  config: const DSMediaViewerConfig(
+                    state: DSMediaViewerState.pressed,
                   ),
                 ),
               ),
@@ -262,7 +262,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_pressed.png'),
       );
     });
@@ -276,10 +276,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
-                  config: const AppMediaViewerConfig(
-                    state: AppMediaViewerState.focus,
+                  config: const DSMediaViewerConfig(
+                    state: DSMediaViewerState.focus,
                   ),
                 ),
               ),
@@ -290,7 +290,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_focus.png'),
       );
     });
@@ -304,10 +304,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
-                  config: const AppMediaViewerConfig(
-                    state: AppMediaViewerState.selected,
+                  config: const DSMediaViewerConfig(
+                    state: DSMediaViewerState.selected,
                   ),
                 ),
               ),
@@ -318,7 +318,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_selected.png'),
       );
     });
@@ -332,11 +332,11 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
                   showCaptions: true,
-                  config: const AppMediaViewerConfig(
-                    variant: AppMediaViewerVariant.image,
+                  config: const DSMediaViewerConfig(
+                    variant: DSMediaViewerVariant.image,
                   ),
                 ),
               ),
@@ -347,7 +347,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_with_captions.png'),
       );
     });
@@ -361,11 +361,11 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
                   showCaptions: false,
-                  config: const AppMediaViewerConfig(
-                    variant: AppMediaViewerVariant.image,
+                  config: const DSMediaViewerConfig(
+                    variant: DSMediaViewerVariant.image,
                   ),
                 ),
               ),
@@ -376,7 +376,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_without_captions.png'),
       );
     });
@@ -390,17 +390,17 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testVideoItems,
-                  config: const AppMediaViewerConfig(
-                    variant: AppMediaViewerVariant.video,
-                    colors: AppMediaViewerColors(
+                  config: const DSMediaViewerConfig(
+                    variant: DSMediaViewerVariant.video,
+                    colors: DSMediaViewerColors(
                       backgroundColor: Colors.red,
                       controlsBackgroundColor: Colors.blue,
                       controlsIconColor: Colors.yellow,
                       activeIndicatorColor: Colors.green,
                     ),
-                    spacing: AppMediaViewerSpacing(
+                    spacing: DSMediaViewerSpacing(
                       borderWidth: 3.0,
                       borderRadius: 16.0,
                     ),
@@ -414,7 +414,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_custom_colors.png'),
       );
     });
@@ -428,10 +428,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
-                  config: const AppMediaViewerConfig(
-                    spacing: AppMediaViewerSpacing(
+                  config: const DSMediaViewerConfig(
+                    spacing: DSMediaViewerSpacing(
                       borderRadius: 24.0,
                     ),
                   ),
@@ -444,7 +444,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_rounded.png'),
       );
     });
@@ -458,10 +458,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
-                  config: const AppMediaViewerConfig(
-                    elevation: AppMediaViewerElevation(
+                  config: const DSMediaViewerConfig(
+                    elevation: DSMediaViewerElevation(
                       defaultElevation: 8.0,
                       controlsElevation: 16.0,
                     ),
@@ -475,7 +475,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_elevation.png'),
       );
     });
@@ -489,10 +489,10 @@ void main() {
               child: SizedBox(
                 width: 200,
                 height: 150,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testImageItems,
-                  config: const AppMediaViewerConfig(
-                    spacing: AppMediaViewerSpacing(
+                  config: const DSMediaViewerConfig(
+                    spacing: DSMediaViewerSpacing(
                       controlsIconSize: 16.0,
                       controlsBarHeight: 40.0,
                     ),
@@ -506,7 +506,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_small.png'),
       );
     });
@@ -520,11 +520,11 @@ void main() {
               child: SizedBox(
                 width: 800,
                 height: 600,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: testVideoItems,
-                  config: const AppMediaViewerConfig(
-                    variant: AppMediaViewerVariant.video,
-                    spacing: AppMediaViewerSpacing(
+                  config: const DSMediaViewerConfig(
+                    variant: DSMediaViewerVariant.video,
+                    spacing: DSMediaViewerSpacing(
                       controlsIconSize: 32.0,
                       controlsBarHeight: 80.0,
                     ),
@@ -538,7 +538,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_large.png'),
       );
     });
@@ -546,13 +546,13 @@ void main() {
     testWidgets('multiple items indicator golden test', (tester) async {
       final multipleItems = [
         ...testImageItems,
-        const AppMediaItem(
-          type: AppMediaType.image,
+        const DSMediaItem(
+          type: DSMediaType.image,
           src: 'assets/test_image3.jpg',
           caption: 'Test image 3',
         ),
-        const AppMediaItem(
-          type: AppMediaType.image,
+        const DSMediaItem(
+          type: DSMediaType.image,
           src: 'assets/test_image4.jpg',
           caption: 'Test image 4',
         ),
@@ -566,10 +566,10 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: multipleItems,
                   initialIndex: 1,
-                  config: const AppMediaViewerConfig(
+                  config: const DSMediaViewerConfig(
                     showIndicators: true,
                   ),
                 ),
@@ -581,13 +581,13 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_multiple_items.png'),
       );
     });
   });
 
-  group('AppMediaViewer Dark Mode Golden Tests', () {
+  group('DSMediaViewer Dark Mode Golden Tests', () {
     testWidgets('image viewer dark mode golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -598,16 +598,16 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: [
-                    const AppMediaItem(
-                      type: AppMediaType.image,
+                    const DSMediaItem(
+                      type: DSMediaType.image,
                       src: 'assets/test_image1.jpg',
                       caption: 'Dark mode image',
                     ),
                   ],
-                  config: const AppMediaViewerConfig(
-                    variant: AppMediaViewerVariant.image,
+                  config: const DSMediaViewerConfig(
+                    variant: DSMediaViewerVariant.image,
                   ),
                 ),
               ),
@@ -618,7 +618,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_dark_mode.png'),
       );
     });
@@ -633,17 +633,17 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: [
-                    const AppMediaItem(
-                      type: AppMediaType.video,
+                    const DSMediaItem(
+                      type: DSMediaType.video,
                       src: 'assets/test_video.mp4',
                       caption: 'Dark mode video',
                       duration: 90.0,
                     ),
                   ],
-                  config: const AppMediaViewerConfig(
-                    variant: AppMediaViewerVariant.video,
+                  config: const DSMediaViewerConfig(
+                    variant: DSMediaViewerVariant.video,
                   ),
                 ),
               ),
@@ -654,7 +654,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_dark_video.png'),
       );
     });
@@ -669,17 +669,17 @@ void main() {
               child: SizedBox(
                 width: 400,
                 height: 300,
-                child: AppMediaViewer(
+                child: DSMediaViewer(
                   items: [
-                    const AppMediaItem(
-                      type: AppMediaType.audio,
+                    const DSMediaItem(
+                      type: DSMediaType.audio,
                       src: 'assets/test_audio.mp3',
                       caption: 'Dark mode audio',
                       duration: 200.0,
                     ),
                   ],
-                  config: const AppMediaViewerConfig(
-                    variant: AppMediaViewerVariant.audio,
+                  config: const DSMediaViewerConfig(
+                    variant: DSMediaViewerVariant.audio,
                   ),
                 ),
               ),
@@ -690,7 +690,7 @@ void main() {
 
       await tester.pump();
       await expectLater(
-        find.byType(AppMediaViewer),
+        find.byType(DSMediaViewer),
         matchesGoldenFile('goldens/app_media_viewer_dark_audio.png'),
       );
     });

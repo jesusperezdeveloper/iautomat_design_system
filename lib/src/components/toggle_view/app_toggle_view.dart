@@ -11,7 +11,7 @@ typedef OnToggleViewOptionTap = void Function(String optionId);
 
 /// A comprehensive toggle view widget based on Material Design with multiple variants
 ///
-/// The [AppToggleView] provides a flexible toggle interface with:
+/// The [DSToggleView] provides a flexible toggle interface with:
 /// - Multiple variants: list, grid, compact
 /// - Comprehensive state support
 /// - Multi-selection and single-selection modes
@@ -23,22 +23,22 @@ typedef OnToggleViewOptionTap = void Function(String optionId);
 ///
 /// Example usage:
 /// ```dart
-/// AppToggleView(
-///   variant: AppToggleViewVariant.grid,
+/// DSToggleView(
+///   variant: DSToggleViewVariant.grid,
 ///   value: ['option1', 'option2'],
 ///   options: [
-///     AppToggleViewOption(id: 'option1', label: 'Option 1'),
-///     AppToggleViewOption(id: 'option2', label: 'Option 2'),
-///     AppToggleViewOption(id: 'option3', label: 'Option 3'),
+///     DSToggleViewOption(id: 'option1', label: 'Option 1'),
+///     DSToggleViewOption(id: 'option2', label: 'Option 2'),
+///     DSToggleViewOption(id: 'option3', label: 'Option 3'),
 ///   ],
 ///   onChanged: (selectedValues) {
 ///     print('Selected: $selectedValues');
 ///   },
 /// )
 /// ```
-class AppToggleView extends StatefulWidget {
+class DSToggleView extends StatefulWidget {
   /// The variant of the toggle view
-  final AppToggleViewVariant variant;
+  final DSToggleViewVariant variant;
 
   /// The currently selected values
   final List<String> value;
@@ -47,19 +47,19 @@ class AppToggleView extends StatefulWidget {
   final OnToggleViewChanged? onChanged;
 
   /// Available options for selection
-  final List<AppToggleViewOption> options;
+  final List<DSToggleViewOption> options;
 
   /// Current state of the toggle view
-  final AppToggleViewState state;
+  final DSToggleViewState state;
 
   /// Whether the toggle view is enabled
   final bool enabled;
 
   /// Configuration for the toggle view
-  final AppToggleViewConfig? config;
+  final DSToggleViewConfig? config;
 
   /// Toggle view data model for complex configurations
-  final AppToggleViewData? data;
+  final DSToggleViewData? data;
 
   /// Tooltip text
   final String? tooltip;
@@ -86,10 +86,10 @@ class AppToggleView extends StatefulWidget {
   final bool enableSoundEffects;
 
   /// Custom size override
-  final AppToggleViewSize? size;
+  final DSToggleViewSize? size;
 
   /// Custom orientation override
-  final AppToggleViewOrientation? orientation;
+  final DSToggleViewOrientation? orientation;
 
   /// Custom constraints
   final BoxConstraints? constraints;
@@ -109,13 +109,13 @@ class AppToggleView extends StatefulWidget {
   /// Custom error builder
   final Widget Function(BuildContext context, String error)? errorBuilder;
 
-  const AppToggleView({
+  const DSToggleView({
     super.key,
-    this.variant = AppToggleViewVariant.list,
+    this.variant = DSToggleViewVariant.list,
     this.value = const [],
     this.onChanged,
     this.options = const [],
-    this.state = AppToggleViewState.defaultState,
+    this.state = DSToggleViewState.defaultState,
     this.enabled = true,
     this.config,
     this.data,
@@ -138,12 +138,12 @@ class AppToggleView extends StatefulWidget {
   });
 
   /// Create a list toggle view
-  const AppToggleView.list({
+  const DSToggleView.list({
     super.key,
     this.value = const [],
     this.onChanged,
     this.options = const [],
-    this.state = AppToggleViewState.defaultState,
+    this.state = DSToggleViewState.defaultState,
     this.enabled = true,
     this.config,
     this.data,
@@ -163,15 +163,15 @@ class AppToggleView extends StatefulWidget {
     this.loadingBuilder,
     this.skeletonBuilder,
     this.errorBuilder,
-  }) : variant = AppToggleViewVariant.list;
+  }) : variant = DSToggleViewVariant.list;
 
   /// Create a grid toggle view
-  const AppToggleView.grid({
+  const DSToggleView.grid({
     super.key,
     this.value = const [],
     this.onChanged,
     this.options = const [],
-    this.state = AppToggleViewState.defaultState,
+    this.state = DSToggleViewState.defaultState,
     this.enabled = true,
     this.config,
     this.data,
@@ -191,15 +191,15 @@ class AppToggleView extends StatefulWidget {
     this.loadingBuilder,
     this.skeletonBuilder,
     this.errorBuilder,
-  }) : variant = AppToggleViewVariant.grid;
+  }) : variant = DSToggleViewVariant.grid;
 
   /// Create a compact toggle view
-  const AppToggleView.compact({
+  const DSToggleView.compact({
     super.key,
     this.value = const [],
     this.onChanged,
     this.options = const [],
-    this.state = AppToggleViewState.defaultState,
+    this.state = DSToggleViewState.defaultState,
     this.enabled = true,
     this.config,
     this.data,
@@ -219,13 +219,13 @@ class AppToggleView extends StatefulWidget {
     this.loadingBuilder,
     this.skeletonBuilder,
     this.errorBuilder,
-  }) : variant = AppToggleViewVariant.compact;
+  }) : variant = DSToggleViewVariant.compact;
 
   @override
-  State<AppToggleView> createState() => _AppToggleViewState();
+  State<DSToggleView> createState() => _DSToggleViewState();
 }
 
-class _AppToggleViewState extends State<AppToggleView>
+class _DSToggleViewState extends State<DSToggleView>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late AnimationController _skeletonController;
@@ -237,8 +237,8 @@ class _AppToggleViewState extends State<AppToggleView>
   late FocusNode _focusNode;
 
   int _focusIndex = -1;
-  AppToggleViewState _currentState = AppToggleViewState.defaultState;
-  AppToggleViewConfig _effectiveConfig = const AppToggleViewConfig();
+  DSToggleViewState _currentState = DSToggleViewState.defaultState;
+  DSToggleViewConfig _effectiveConfig = const DSToggleViewConfig();
 
   @override
   void initState() {
@@ -263,7 +263,7 @@ class _AppToggleViewState extends State<AppToggleView>
       vsync: this,
     );
 
-    if (widget.state == AppToggleViewState.skeleton) {
+    if (widget.state == DSToggleViewState.skeleton) {
       _skeletonController.repeat();
     }
   }
@@ -300,20 +300,20 @@ class _AppToggleViewState extends State<AppToggleView>
     _effectiveConfig = widget.config ?? _getDefaultConfig();
   }
 
-  AppToggleViewConfig _getDefaultConfig() {
-    final size = widget.size ?? AppToggleViewSize.medium;
+  DSToggleViewConfig _getDefaultConfig() {
+    final size = widget.size ?? DSToggleViewSize.medium;
     switch (size) {
-      case AppToggleViewSize.small:
-        return AppToggleViewConfig.small;
-      case AppToggleViewSize.medium:
-        return AppToggleViewConfig.medium;
-      case AppToggleViewSize.large:
-        return AppToggleViewConfig.large;
+      case DSToggleViewSize.small:
+        return DSToggleViewConfig.small;
+      case DSToggleViewSize.medium:
+        return DSToggleViewConfig.medium;
+      case DSToggleViewSize.large:
+        return DSToggleViewConfig.large;
     }
   }
 
   @override
-  void didUpdateWidget(AppToggleView oldWidget) {
+  void didUpdateWidget(DSToggleView oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.state != widget.state) {
@@ -325,16 +325,16 @@ class _AppToggleViewState extends State<AppToggleView>
     }
   }
 
-  void _updateState(AppToggleViewState newState) {
+  void _updateState(DSToggleViewState newState) {
     setState(() {
       _currentState = newState;
     });
 
     switch (newState) {
-      case AppToggleViewState.skeleton:
+      case DSToggleViewState.skeleton:
         _skeletonController.repeat();
         break;
-      case AppToggleViewState.loading:
+      case DSToggleViewState.loading:
         _animationController.forward();
         break;
       default:
@@ -394,11 +394,11 @@ class _AppToggleViewState extends State<AppToggleView>
   }
 
   Widget _buildContent(BuildContext context, ThemeData theme) {
-    if (_currentState == AppToggleViewState.skeleton) {
+    if (_currentState == DSToggleViewState.skeleton) {
       return _buildSkeletonView(context);
     }
 
-    if (_currentState == AppToggleViewState.loading) {
+    if (_currentState == DSToggleViewState.loading) {
       return _buildLoadingView(context);
     }
 
@@ -417,18 +417,18 @@ class _AppToggleViewState extends State<AppToggleView>
 
   Widget _buildVariantContent(BuildContext context, ThemeData theme) {
     switch (widget.variant) {
-      case AppToggleViewVariant.list:
+      case DSToggleViewVariant.list:
         return _buildListView(context, theme);
-      case AppToggleViewVariant.grid:
+      case DSToggleViewVariant.grid:
         return _buildGridView(context, theme);
-      case AppToggleViewVariant.compact:
+      case DSToggleViewVariant.compact:
         return _buildCompactView(context, theme);
     }
   }
 
   Widget _buildListView(BuildContext context, ThemeData theme) {
     final orientation = _getEffectiveOrientation(context);
-    final scrollDirection = orientation == AppToggleViewOrientation.horizontal
+    final scrollDirection = orientation == DSToggleViewOrientation.horizontal
         ? Axis.horizontal
         : Axis.vertical;
 
@@ -512,7 +512,7 @@ class _AppToggleViewState extends State<AppToggleView>
   Widget _buildToggleOption(
     BuildContext context,
     ThemeData theme,
-    AppToggleViewOption option,
+    DSToggleViewOption option,
     int index,
   ) {
     final isSelected = widget.value.contains(option.id);
@@ -563,19 +563,19 @@ class _AppToggleViewState extends State<AppToggleView>
     final skeletonCount = widget.options.isNotEmpty ? widget.options.length : 3;
 
     switch (widget.variant) {
-      case AppToggleViewVariant.list:
+      case DSToggleViewVariant.list:
         return Column(
           children:
               List.generate(skeletonCount, (index) => _buildSkeletonItem()),
         );
-      case AppToggleViewVariant.grid:
+      case DSToggleViewVariant.grid:
         return Wrap(
           spacing: _effectiveConfig.itemSpacing,
           runSpacing: _effectiveConfig.itemSpacing,
           children:
               List.generate(skeletonCount, (index) => _buildSkeletonItem()),
         );
-      case AppToggleViewVariant.compact:
+      case DSToggleViewVariant.compact:
         return Row(
           children:
               List.generate(skeletonCount, (index) => _buildSkeletonItem()),
@@ -608,14 +608,14 @@ class _AppToggleViewState extends State<AppToggleView>
     );
   }
 
-  AppToggleViewOrientation _getEffectiveOrientation(BuildContext context) {
+  DSToggleViewOrientation _getEffectiveOrientation(BuildContext context) {
     final orientation = widget.orientation ?? _effectiveConfig.orientation;
 
-    if (orientation == AppToggleViewOrientation.auto) {
+    if (orientation == DSToggleViewOrientation.auto) {
       final mediaQuery = MediaQuery.of(context);
       return mediaQuery.orientation == Orientation.landscape
-          ? AppToggleViewOrientation.horizontal
-          : AppToggleViewOrientation.vertical;
+          ? DSToggleViewOrientation.horizontal
+          : DSToggleViewOrientation.vertical;
     }
 
     return orientation;
@@ -623,12 +623,12 @@ class _AppToggleViewState extends State<AppToggleView>
 
   int _calculateCrossAxisCount(double availableWidth) {
     final itemWidth =
-        AppToggleViewUtils.getItemSize(_effectiveConfig.size).width;
-    return AppToggleViewUtils.calculateOptimalCrossAxisCount(
+        DSToggleViewUtils.getItemSize(_effectiveConfig.size).width;
+    return DSToggleViewUtils.calculateOptimalCrossAxisCount(
         availableWidth, itemWidth);
   }
 
-  void _handleOptionTap(AppToggleViewOption option) {
+  void _handleOptionTap(DSToggleViewOption option) {
     if (!widget.enabled || !option.enabled) return;
 
     if (widget.enableHapticFeedback) {
@@ -642,7 +642,7 @@ class _AppToggleViewState extends State<AppToggleView>
     widget.onOptionTap?.call(option.id);
 
     if (widget.onChanged != null) {
-      final newSelection = AppToggleViewUtils.toggleSelection(
+      final newSelection = DSToggleViewUtils.toggleSelection(
         widget.value,
         option.id,
         allowMultiple: widget.allowMultipleSelection,
@@ -652,11 +652,11 @@ class _AppToggleViewState extends State<AppToggleView>
     }
   }
 
-  void _handleOptionHover(AppToggleViewOption option, bool hovering) {
+  void _handleOptionHover(DSToggleViewOption option, bool hovering) {
     // Handle hover state changes if needed
   }
 
-  void _handleOptionFocus(AppToggleViewOption option, bool focused, int index) {
+  void _handleOptionFocus(DSToggleViewOption option, bool focused, int index) {
     if (focused) {
       setState(() {
         _focusIndex = index;
@@ -732,11 +732,11 @@ class _AppToggleViewState extends State<AppToggleView>
 
 /// Internal widget for rendering individual toggle options
 class _ToggleOptionWidget extends StatefulWidget {
-  final AppToggleViewOption option;
+  final DSToggleViewOption option;
   final bool isSelected;
   final bool isFocused;
   final bool isEnabled;
-  final AppToggleViewConfig config;
+  final DSToggleViewConfig config;
   final ThemeData theme;
   final VoidCallback onTap;
   final ValueChanged<bool> onHover;

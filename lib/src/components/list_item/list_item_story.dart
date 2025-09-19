@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/list_item/list_item_config
 
 /// List Item Stories and Examples
 ///
-/// This file provides comprehensive examples and stories for the AppListItem
+/// This file provides comprehensive examples and stories for the DSListItem
 /// component, showcasing different configurations, variants, and use cases.
 
 class ListItemStoryExample extends StatefulWidget {
@@ -67,35 +67,35 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
           ),
           child: Column(
             children: [
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'Simple one-line item',
                 onTap: () => _showSnackBar('Tapped: Simple one-line item'),
               ),
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'With leading icon',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.icon,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.icon,
                   icon: Icons.person,
                 ),
                 onTap: () => _showSnackBar('Tapped: With leading icon'),
               ),
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'With trailing text',
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.text,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.text,
                   text: 'Now',
                 ),
                 onTap: () => _showSnackBar('Tapped: With trailing text'),
               ),
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'Complete example',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.avatar,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.avatar,
                   avatarText: 'CE',
                   avatarBackgroundColor: Colors.blue,
                 ),
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.icon,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.icon,
                   icon: Icons.arrow_forward_ios,
                   iconSize: 16,
                 ),
@@ -124,35 +124,35 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
           ),
           child: Column(
             children: [
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'John Doe',
                 subtitle: 'Software Engineer',
                 onTap: () => _showSnackBar('Tapped: John Doe'),
               ),
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'Jane Smith',
                 subtitle: 'Product Manager',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.avatar,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.avatar,
                   avatarText: 'JS',
                   avatarBackgroundColor: Colors.green,
                 ),
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.icon,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.icon,
                   icon: Icons.favorite_border,
                 ),
                 onTap: () => _showSnackBar('Tapped: Jane Smith'),
               ),
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'Bob Johnson',
                 subtitle: 'UX Designer • Available',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.icon,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.icon,
                   icon: Icons.design_services,
                   iconColor: Colors.purple,
                 ),
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.text,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.text,
                   text: '2h ago',
                 ),
                 onTap: () => _showSnackBar('Tapped: Bob Johnson'),
@@ -180,32 +180,32 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
           ),
           child: Column(
             children: [
-              AppListItem.threeLine(
+              DSListItem.threeLine(
                 title: 'Team Meeting',
                 subtitle:
                     'Discuss project milestones and upcoming deadlines. Review current progress and plan next steps.',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.icon,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.icon,
                   icon: Icons.calendar_today,
                   iconColor: Colors.orange,
                 ),
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.text,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.text,
                   text: '10:00 AM',
                 ),
                 onTap: () => _showSnackBar('Tapped: Team Meeting'),
               ),
-              AppListItem.threeLine(
+              DSListItem.threeLine(
                 title: 'Alice Cooper',
                 subtitle:
                     'Hey, are you available for the call this afternoon? I wanted to discuss the new feature requirements...',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.avatar,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.avatar,
                   avatarText: 'AC',
                   avatarBackgroundColor: Colors.pink,
                 ),
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.icon,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.icon,
                   icon: Icons.more_vert,
                 ),
                 onTap: () => _showSnackBar('Tapped: Alice Cooper'),
@@ -233,25 +233,25 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
           ),
           child: Column(
             children: [
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'Icon leading',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.icon,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.icon,
                   icon: Icons.home,
                 ),
               ),
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'Avatar leading',
-                leading: const AppListItemLeading(
-                  type: AppListItemLeadingType.avatar,
+                leading: const DSListItemLeading(
+                  type: DSListItemLeadingType.avatar,
                   avatarText: 'AB',
                   avatarBackgroundColor: Colors.blue,
                 ),
               ),
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'Checkbox leading',
-                leading: AppListItemLeading(
-                  type: AppListItemLeadingType.checkbox,
+                leading: DSListItemLeading(
+                  type: DSListItemLeadingType.checkbox,
                   checkboxValue: selectedItems.contains('checkbox1'),
                   onTap: () {
                     setState(() {
@@ -264,10 +264,10 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
                   },
                 ),
               ),
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'Radio leading',
-                leading: AppListItemLeading(
-                  type: AppListItemLeadingType.radio,
+                leading: DSListItemLeading(
+                  type: DSListItemLeadingType.radio,
                   radioValue: selectedItem == 'radio1',
                   onTap: () {
                     setState(() {
@@ -299,24 +299,24 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
           ),
           child: Column(
             children: [
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'Icon trailing',
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.icon,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.icon,
                   icon: Icons.arrow_forward,
                 ),
               ),
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'Text trailing',
-                trailing: const AppListItemTrailing(
-                  type: AppListItemTrailingType.text,
+                trailing: const DSListItemTrailing(
+                  type: DSListItemTrailingType.text,
                   text: '125',
                 ),
               ),
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'Switch trailing',
-                trailing: AppListItemTrailing(
-                  type: AppListItemTrailingType.switchWidget,
+                trailing: DSListItemTrailing(
+                  type: DSListItemTrailingType.switchWidget,
                   switchValue: selectedItems.contains('switch1'),
                   onSwitchChanged: (value) {
                     setState(() {
@@ -329,10 +329,10 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
                   },
                 ),
               ),
-              AppListItem.oneLine(
+              DSListItem.oneLine(
                 title: 'Checkbox trailing',
-                trailing: AppListItemTrailing(
-                  type: AppListItemTrailingType.checkbox,
+                trailing: DSListItemTrailing(
+                  type: DSListItemTrailingType.checkbox,
                   checkboxValue: selectedItems.contains('checkbox2'),
                   onCheckboxChanged: (value) {
                     setState(() {
@@ -368,10 +368,10 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
           ),
           child: Column(
             children: [
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'Selectable item',
                 subtitle: 'Tap to select',
-                config: AppListItemConfig(
+                config: DSListItemConfig(
                   selected: selectedItem == 'selectable1',
                 ),
                 onTap: () {
@@ -381,16 +381,16 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
                   });
                 },
               ),
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'Long press item',
                 subtitle: 'Long press for options',
                 onTap: () => _showSnackBar('Tapped'),
                 onLongPress: () => _showDialog('Long pressed!'),
               ),
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'Disabled item',
                 subtitle: 'This item is disabled',
-                config: const AppListItemConfig(
+                config: const DSListItemConfig(
                   enabled: false,
                 ),
               ),
@@ -417,31 +417,31 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
           ),
           child: Column(
             children: [
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'Loading state',
                 subtitle: 'Processing...',
-                config: const AppListItemConfig(
+                config: const DSListItemConfig(
                   loading: true,
                 ),
               ),
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'Skeleton state',
                 subtitle: 'Loading content...',
-                config: const AppListItemConfig(
+                config: const DSListItemConfig(
                   skeleton: true,
                 ),
               ),
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'Selected state',
                 subtitle: 'This item is selected',
-                config: const AppListItemConfig(
+                config: const DSListItemConfig(
                   selected: true,
                 ),
               ),
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'With divider',
                 subtitle: 'Shows divider below',
-                config: const AppListItemConfig(
+                config: const DSListItemConfig(
                   showDivider: true,
                 ),
               ),
@@ -468,19 +468,19 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
           ),
           child: Column(
             children: [
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'Swipe me left',
                 subtitle: 'Swipe to see trailing actions',
-                swipeActions: AppListItemSwipeActions(
+                swipeActions: DSListItemSwipeActions(
                   trailing: [
-                    AppListItemSwipeAction(
+                    DSListItemSwipeAction(
                       key: 'archive',
                       label: 'Archive',
                       icon: Icons.archive,
                       backgroundColor: Colors.blue,
                       onPressed: () => _showSnackBar('Archived!'),
                     ),
-                    AppListItemSwipeAction(
+                    DSListItemSwipeAction(
                       key: 'delete',
                       label: 'Delete',
                       icon: Icons.delete,
@@ -491,12 +491,12 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
                   ],
                 ),
               ),
-              AppListItem.twoLine(
+              DSListItem.twoLine(
                 title: 'Swipe me right',
                 subtitle: 'Swipe to see leading actions',
-                swipeActions: AppListItemSwipeActions(
+                swipeActions: DSListItemSwipeActions(
                   leading: [
-                    AppListItemSwipeAction(
+                    DSListItemSwipeAction(
                       key: 'favorite',
                       label: 'Favorite',
                       icon: Icons.favorite,
@@ -540,7 +540,7 @@ class _ListItemStoryExampleState extends State<ListItemStoryExample> {
 class ListItemUsageExamples {
   /// Basic one-line example
   static Widget oneLineExample() {
-    return AppListItem.oneLine(
+    return DSListItem.oneLine(
       title: 'Simple list item',
       onTap: () {
         // Handle tap
@@ -550,15 +550,15 @@ class ListItemUsageExamples {
 
   /// Two-line with leading and trailing
   static Widget twoLineExample() {
-    return AppListItem.twoLine(
+    return DSListItem.twoLine(
       title: 'John Doe',
       subtitle: 'Software Engineer',
-      leading: const AppListItemLeading(
-        type: AppListItemLeadingType.avatar,
+      leading: const DSListItemLeading(
+        type: DSListItemLeadingType.avatar,
         avatarText: 'JD',
       ),
-      trailing: const AppListItemTrailing(
-        type: AppListItemTrailingType.icon,
+      trailing: const DSListItemTrailing(
+        type: DSListItemTrailingType.icon,
         icon: Icons.arrow_forward_ios,
       ),
       onTap: () {
@@ -569,16 +569,16 @@ class ListItemUsageExamples {
 
   /// Three-line example
   static Widget threeLineExample() {
-    return AppListItem.threeLine(
+    return DSListItem.threeLine(
       title: 'Meeting Notes',
       subtitle:
           'Weekly team sync - Discussed project progress, upcoming milestones, and resource allocation for next quarter.',
-      leading: const AppListItemLeading(
-        type: AppListItemLeadingType.icon,
+      leading: const DSListItemLeading(
+        type: DSListItemLeadingType.icon,
         icon: Icons.notes,
       ),
-      trailing: const AppListItemTrailing(
-        type: AppListItemTrailingType.text,
+      trailing: const DSListItemTrailing(
+        type: DSListItemTrailingType.text,
         text: '2h ago',
       ),
     );
@@ -586,10 +586,10 @@ class ListItemUsageExamples {
 
   /// With checkbox leading
   static Widget checkboxExample() {
-    return AppListItem.oneLine(
+    return DSListItem.oneLine(
       title: 'Task item',
-      leading: const AppListItemLeading(
-        type: AppListItemLeadingType.checkbox,
+      leading: const DSListItemLeading(
+        type: DSListItemLeadingType.checkbox,
         checkboxValue: false,
       ),
     );
@@ -597,11 +597,11 @@ class ListItemUsageExamples {
 
   /// With switch trailing
   static Widget switchExample() {
-    return AppListItem.twoLine(
+    return DSListItem.twoLine(
       title: 'Notifications',
       subtitle: 'Enable push notifications',
-      trailing: const AppListItemTrailing(
-        type: AppListItemTrailingType.switchWidget,
+      trailing: const DSListItemTrailing(
+        type: DSListItemTrailingType.switchWidget,
         switchValue: true,
       ),
     );
@@ -609,9 +609,9 @@ class ListItemUsageExamples {
 
   /// Loading state example
   static Widget loadingExample() {
-    return AppListItem.oneLine(
+    return DSListItem.oneLine(
       title: 'Loading item',
-      config: const AppListItemConfig(
+      config: const DSListItemConfig(
         loading: true,
       ),
     );
@@ -619,10 +619,10 @@ class ListItemUsageExamples {
 
   /// Skeleton state example
   static Widget skeletonExample() {
-    return AppListItem.twoLine(
+    return DSListItem.twoLine(
       title: 'Placeholder',
       subtitle: 'Loading content...',
-      config: const AppListItemConfig(
+      config: const DSListItemConfig(
         skeleton: true,
       ),
     );
@@ -630,12 +630,12 @@ class ListItemUsageExamples {
 
   /// With swipe actions
   static Widget swipeActionsExample() {
-    return AppListItem.twoLine(
+    return DSListItem.twoLine(
       title: 'Swipeable item',
       subtitle: 'Swipe left for actions',
-      swipeActions: AppListItemSwipeActions(
+      swipeActions: DSListItemSwipeActions(
         trailing: [
-          AppListItemSwipeAction(
+          DSListItemSwipeAction(
             key: 'delete',
             label: 'Delete',
             icon: Icons.delete,
@@ -651,16 +651,16 @@ class ListItemUsageExamples {
 
   /// Custom styling example
   static Widget customStyledExample() {
-    return AppListItem.twoLine(
+    return DSListItem.twoLine(
       title: 'Custom styled item',
       subtitle: 'With custom configuration',
-      config: const AppListItemConfig(
-        density: AppListItemDensity.comfortable,
-        style: AppListItemStyle(
-          contentAlignment: AppListItemContentAlignment.top,
+      config: const DSListItemConfig(
+        density: DSListItemDensity.comfortable,
+        style: DSListItemStyle(
+          contentAlignment: DSListItemContentAlignment.top,
           dense: false,
         ),
-        theme: AppListItemTheme(
+        theme: DSListItemTheme(
           backgroundColor: Colors.blue,
           borderRadius: 8.0,
         ),

@@ -3,12 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppTag Golden Tests', () {
+  group('DSTag Golden Tests', () {
     testWidgets('should render default semantic tag correctly', (tester) async {
       final widget = MaterialApp(
         home: Scaffold(
           body: Center(
-            child: AppTag.semantic(
+            child: DSTag.semantic(
               label: 'Default Tag',
             ),
           ),
@@ -29,39 +29,39 @@ void main() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Primary',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Secondary',
-                  semanticColor: AppTagSemanticColor.secondary,
+                  semanticColor: DSTagSemanticColor.secondary,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Success',
-                  semanticColor: AppTagSemanticColor.success,
+                  semanticColor: DSTagSemanticColor.success,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Warning',
-                  semanticColor: AppTagSemanticColor.warning,
+                  semanticColor: DSTagSemanticColor.warning,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Error',
-                  semanticColor: AppTagSemanticColor.error,
+                  semanticColor: DSTagSemanticColor.error,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Info',
-                  semanticColor: AppTagSemanticColor.info,
+                  semanticColor: DSTagSemanticColor.info,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Neutral',
-                  semanticColor: AppTagSemanticColor.neutral,
+                  semanticColor: DSTagSemanticColor.neutral,
                 ),
               ],
             ),
@@ -83,19 +83,19 @@ void main() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Small Tag',
-                  size: AppTagSize.small,
+                  size: DSTagSize.small,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Medium Tag',
-                  size: AppTagSize.medium,
+                  size: DSTagSize.medium,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Large Tag',
-                  size: AppTagSize.large,
+                  size: DSTagSize.large,
                 ),
               ],
             ),
@@ -117,19 +117,19 @@ void main() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Rounded Tag',
-                  shape: AppTagShape.rounded,
+                  shape: DSTagShape.rounded,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Pill Tag',
-                  shape: AppTagShape.pill,
+                  shape: DSTagShape.pill,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Square Tag',
-                  shape: AppTagShape.square,
+                  shape: DSTagShape.square,
                 ),
               ],
             ),
@@ -151,25 +151,25 @@ void main() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Filled Primary',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Outlined Primary',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                   outlined: true,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Filled Success',
-                  semanticColor: AppTagSemanticColor.success,
+                  semanticColor: DSTagSemanticColor.success,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Outlined Success',
-                  semanticColor: AppTagSemanticColor.success,
+                  semanticColor: DSTagSemanticColor.success,
                   outlined: true,
                 ),
               ],
@@ -192,23 +192,23 @@ void main() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Leading Icon',
                   leadingIcon: Icons.star,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Trailing Icon',
                   trailingIcon: Icons.arrow_forward,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Both Icons',
                   leadingIcon: Icons.star,
                   trailingIcon: Icons.arrow_forward,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Removable',
                   removable: true,
                 ),
@@ -232,14 +232,14 @@ void main() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Default State',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Selected State',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                   selected: true,
                 ),
               ],
@@ -262,14 +262,14 @@ void main() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Enabled Tag',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Disabled Tag',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                   enabled: false,
                 ),
               ],
@@ -292,20 +292,20 @@ void main() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Normal Tag',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Skeleton Tag',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                   skeleton: true,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Loading Tag',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                   loading: true,
                 ),
               ],
@@ -329,24 +329,24 @@ void main() {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Primary Dark',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Success Dark',
-                  semanticColor: AppTagSemanticColor.success,
+                  semanticColor: DSTagSemanticColor.success,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Error Dark',
-                  semanticColor: AppTagSemanticColor.error,
+                  semanticColor: DSTagSemanticColor.error,
                 ),
                 const SizedBox(height: 8),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Outlined Dark',
-                  semanticColor: AppTagSemanticColor.primary,
+                  semanticColor: DSTagSemanticColor.primary,
                   outlined: true,
                 ),
               ],
@@ -370,29 +370,29 @@ void main() {
               spacing: 8,
               runSpacing: 8,
               children: [
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Small Selected',
-                  size: AppTagSize.small,
-                  semanticColor: AppTagSemanticColor.primary,
+                  size: DSTagSize.small,
+                  semanticColor: DSTagSemanticColor.primary,
                   selected: true,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Large Outlined',
-                  size: AppTagSize.large,
-                  semanticColor: AppTagSemanticColor.success,
+                  size: DSTagSize.large,
+                  semanticColor: DSTagSemanticColor.success,
                   outlined: true,
                   leadingIcon: Icons.check_circle,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Pill Removable',
-                  shape: AppTagShape.pill,
-                  semanticColor: AppTagSemanticColor.warning,
+                  shape: DSTagShape.pill,
+                  semanticColor: DSTagSemanticColor.warning,
                   removable: true,
                 ),
-                AppTag.semantic(
+                DSTag.semantic(
                   label: 'Square Icon',
-                  shape: AppTagShape.square,
-                  semanticColor: AppTagSemanticColor.info,
+                  shape: DSTagShape.square,
+                  semanticColor: DSTagSemanticColor.info,
                   leadingIcon: Icons.info,
                   trailingIcon: Icons.arrow_forward,
                 ),

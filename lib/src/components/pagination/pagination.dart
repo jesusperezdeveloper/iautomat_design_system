@@ -1,7 +1,7 @@
 /// Pagination components barrel file
 ///
 /// Provides exports for:
-/// - AppPagination widget with page-based and cursor variants
+/// - DSPagination widget with page-based and cursor variants
 /// - Pagination configuration models
 /// - Pagination stories and examples
 library;

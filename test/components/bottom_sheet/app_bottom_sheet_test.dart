@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/bottom_sheet/app_bottom_sheet.dart';
 
 void main() {
-  group('AppBottomSheet', () {
+  group('DSBottomSheet', () {
     testWidgets('renders modal variant correctly', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -11,9 +11,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.modal(
+                    bottomSheet: DSBottomSheet.modal(
                       content: const Text('Modal content'),
                     ),
                   );
@@ -28,7 +28,7 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
       expect(find.text('Modal content'), findsOneWidget);
     });
 
@@ -39,9 +39,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Half content'),
                     ),
                   );
@@ -56,7 +56,7 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
       expect(find.text('Half content'), findsOneWidget);
     });
 
@@ -67,9 +67,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.full(
+                    bottomSheet: DSBottomSheet.full(
                       content: const Text('Full content'),
                     ),
                   );
@@ -84,7 +84,7 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
       expect(find.text('Full content'), findsOneWidget);
     });
 
@@ -95,9 +95,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Draggable content'),
                       draggable: true,
                     ),
@@ -113,12 +113,12 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
 
       // Find the drag handle container
       final containers = tester.widgetList<Container>(
         find.descendant(
-          of: find.byType(AppBottomSheet),
+          of: find.byType(DSBottomSheet),
           matching: find.byType(Container),
         ),
       );
@@ -143,9 +143,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Non-draggable content'),
                       draggable: false,
                     ),
@@ -161,7 +161,7 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
       expect(find.byType(SizedBox), findsWidgets);
     });
 
@@ -172,11 +172,11 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Disabled content'),
-                      state: AppBottomSheetState.disabled,
+                      state: DSBottomSheetState.disabled,
                     ),
                   );
                 },
@@ -190,11 +190,11 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
 
       final opacities = tester.widgetList<Opacity>(
         find.descendant(
-          of: find.byType(AppBottomSheet),
+          of: find.byType(DSBottomSheet),
           matching: find.byType(Opacity),
         ),
       );
@@ -214,11 +214,11 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Loading content'),
-                      state: AppBottomSheetState.loading,
+                      state: DSBottomSheetState.loading,
                     ),
                   );
                 },
@@ -232,7 +232,7 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
@@ -243,11 +243,11 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Skeleton content'),
-                      state: AppBottomSheetState.skeleton,
+                      state: DSBottomSheetState.skeleton,
                     ),
                   );
                 },
@@ -261,11 +261,11 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
 
       final containers = tester.widgetList<Container>(
         find.descendant(
-          of: find.byType(AppBottomSheet),
+          of: find.byType(DSBottomSheet),
           matching: find.byType(Container),
         ),
       );
@@ -277,7 +277,7 @@ void main() {
       for (final container in containers) {
         if (container.decoration is BoxDecoration) {
           final decoration = container.decoration as BoxDecoration;
-          final theme = Theme.of(tester.element(find.byType(AppBottomSheet)));
+          final theme = Theme.of(tester.element(find.byType(DSBottomSheet)));
           if (decoration.color == theme.colorScheme.surface.withValues(alpha: 0.3)) {
             foundSkeletonContainer = true;
             break;
@@ -294,11 +294,11 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Focus content'),
-                      state: AppBottomSheetState.focus,
+                      state: DSBottomSheetState.focus,
                     ),
                   );
                 },
@@ -312,11 +312,11 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
 
       final containers = tester.widgetList<Container>(
         find.descendant(
-          of: find.byType(AppBottomSheet),
+          of: find.byType(DSBottomSheet),
           matching: find.byType(Container),
         ),
       );
@@ -343,9 +343,9 @@ void main() {
               body: Builder(
                 builder: (context) => ElevatedButton(
                   onPressed: () {
-                    AppBottomSheet.showModal(
+                    DSBottomSheet.showModal(
                       context: context,
-                      bottomSheet: AppBottomSheet.half(
+                      bottomSheet: DSBottomSheet.half(
                         content: const Text('Test content'),
                         initialSnap: snap,
                       ),
@@ -361,7 +361,7 @@ void main() {
         await tester.tap(find.text('Show Bottom Sheet'));
         await tester.pump();
 
-        expect(find.byType(AppBottomSheet), findsOneWidget);
+        expect(find.byType(DSBottomSheet), findsOneWidget);
 
         // Close the bottom sheet
         await tester.tapAt(const Offset(50, 50));
@@ -376,9 +376,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Accessible content'),
                       accessibilityLabel: 'Custom accessibility label',
                     ),
@@ -395,7 +395,7 @@ void main() {
       await tester.pump();
 
       final semanticsFinders = find.descendant(
-        of: find.byType(AppBottomSheet),
+        of: find.byType(DSBottomSheet),
         matching: find.byType(Semantics),
       );
 
@@ -425,9 +425,9 @@ void main() {
               body: Builder(
                 builder: (context) => ElevatedButton(
                   onPressed: () {
-                    AppBottomSheet.showModal(
+                    DSBottomSheet.showModal(
                       context: context,
-                      bottomSheet: AppBottomSheet.half(
+                      bottomSheet: DSBottomSheet.half(
                         content: const Text('RTL content'),
                       ),
                     );
@@ -443,7 +443,7 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
       expect(find.text('RTL content'), findsOneWidget);
     });
 
@@ -458,25 +458,25 @@ void main() {
                     Widget bottomSheet;
                     switch (variant) {
                       case BottomSheetVariant.modal:
-                        bottomSheet = AppBottomSheet.modal(
+                        bottomSheet = DSBottomSheet.modal(
                           content: const Text('Test'),
                         );
                         break;
                       case BottomSheetVariant.half:
-                        bottomSheet = AppBottomSheet.half(
+                        bottomSheet = DSBottomSheet.half(
                           content: const Text('Test'),
                         );
                         break;
                       case BottomSheetVariant.full:
-                        bottomSheet = AppBottomSheet.full(
+                        bottomSheet = DSBottomSheet.full(
                           content: const Text('Test'),
                         );
                         break;
                     }
 
-                    AppBottomSheet.showModal(
+                    DSBottomSheet.showModal(
                       context: context,
-                      bottomSheet: bottomSheet as AppBottomSheet,
+                      bottomSheet: bottomSheet as DSBottomSheet,
                     );
                   },
                   child: const Text('Show Bottom Sheet'),
@@ -489,7 +489,7 @@ void main() {
         await tester.tap(find.text('Show Bottom Sheet'));
         await tester.pump();
 
-        expect(find.byType(AppBottomSheet), findsOneWidget);
+        expect(find.byType(DSBottomSheet), findsOneWidget);
 
         // Close bottom sheet
         await tester.tapAt(const Offset(50, 50));
@@ -498,16 +498,16 @@ void main() {
     });
 
     testWidgets('supports all bottom sheet states', (tester) async {
-      for (final state in AppBottomSheetState.values) {
+      for (final state in DSBottomSheetState.values) {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
               body: Builder(
                 builder: (context) => ElevatedButton(
                   onPressed: () {
-                    AppBottomSheet.showModal(
+                    DSBottomSheet.showModal(
                       context: context,
-                      bottomSheet: AppBottomSheet.half(
+                      bottomSheet: DSBottomSheet.half(
                         content: const Text('Test content'),
                         state: state,
                       ),
@@ -523,7 +523,7 @@ void main() {
         await tester.tap(find.text('Show Bottom Sheet'));
         await tester.pump();
 
-        expect(find.byType(AppBottomSheet), findsOneWidget);
+        expect(find.byType(DSBottomSheet), findsOneWidget);
 
         // Close bottom sheet
         await tester.tapAt(const Offset(50, 50));
@@ -535,7 +535,7 @@ void main() {
     });
 
     testWidgets('handles state change callbacks', (tester) async {
-      AppBottomSheetState? changedState;
+      DSBottomSheetState? changedState;
 
       await tester.pumpWidget(
         MaterialApp(
@@ -543,9 +543,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Callback content'),
                       onStateChange: (state) => changedState = state,
                     ),
@@ -561,7 +561,7 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
       // Check that the callback property is set (callback might be called later)
       expect(changedState, isNull); // Initially null until state changes
     });
@@ -575,9 +575,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Snap callback content'),
                       onSnapChange: (snap) => changedSnap = snap,
                     ),
@@ -593,7 +593,7 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
       // Check that the callback property is set (callback might be called later)
       expect(changedSnap, isNull); // Initially null until snap changes
     });
@@ -608,9 +608,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Custom colors'),
                       backgroundColor: customBackgroundColor,
                       handleColor: customHandleColor,
@@ -627,12 +627,12 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
 
       // Find Material widget with custom background color
       final materials = tester.widgetList<Material>(
         find.descendant(
-          of: find.byType(AppBottomSheet),
+          of: find.byType(DSBottomSheet),
           matching: find.byType(Material),
         ),
       );
@@ -656,9 +656,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('Custom padding'),
                       padding: customPadding,
                     ),
@@ -674,12 +674,12 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
 
       // Find Padding widget with custom padding
       final paddings = tester.widgetList<Padding>(
         find.descendant(
-          of: find.byType(AppBottomSheet),
+          of: find.byType(DSBottomSheet),
           matching: find.byType(Padding),
         ),
       );
@@ -701,9 +701,9 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppBottomSheet.showModal(
+                  DSBottomSheet.showModal(
                     context: context,
-                    bottomSheet: AppBottomSheet.half(
+                    bottomSheet: DSBottomSheet.half(
                       content: const Text('No accessibility'),
                       accessibilitySupport: false,
                     ),
@@ -719,7 +719,7 @@ void main() {
       await tester.tap(find.text('Show Bottom Sheet'));
       await tester.pump();
 
-      expect(find.byType(AppBottomSheet), findsOneWidget);
+      expect(find.byType(DSBottomSheet), findsOneWidget);
       expect(find.text('No accessibility'), findsOneWidget);
     });
   });

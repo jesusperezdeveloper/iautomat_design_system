@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/lightbox/app_lightbox.dart
 import 'package:iautomat_design_system/src/components/lightbox/app_lightbox_config.dart';
 
 void main() {
-  group('AppLightbox Golden Tests', () {
+  group('DSLightbox Golden Tests', () {
     testWidgets('zoom lightbox default state', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -13,14 +13,14 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.zoom,
+            body: DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.zoom,
                 enableCloseButton: true,
                 enableA11y: false, // Disable for golden test consistency
               ),
               images: const [
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image',
                   imageProvider: AssetImage('assets/test/test_image.png'),
                   title: 'Test Image',
@@ -49,30 +49,30 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.gallery,
+            body: DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.gallery,
                 enableCloseButton: true,
                 enableCounter: true,
                 enableThumbnails: true,
                 enableA11y: false, // Disable for golden test consistency
               ),
               images: const [
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image_1',
                   imageProvider: AssetImage('assets/test/test_image_1.png'),
                   title: 'Test Image 1',
                   description: 'First test image',
                   alt: 'First test image for lightbox',
                 ),
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image_2',
                   imageProvider: AssetImage('assets/test/test_image_2.png'),
                   title: 'Test Image 2',
                   description: 'Second test image',
                   alt: 'Second test image for lightbox',
                 ),
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image_3',
                   imageProvider: AssetImage('assets/test/test_image_3.png'),
                   title: 'Test Image 3',
@@ -101,14 +101,14 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.zoom,
+            body: DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.zoom,
                 enableCloseButton: false,
                 enableA11y: false,
               ),
               images: const [
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image',
                   imageProvider: AssetImage('assets/test/test_image.png'),
                   title: 'Test Image',
@@ -136,21 +136,21 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.gallery,
+            body: DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.gallery,
                 enableCloseButton: true,
                 enableCounter: false,
                 enableThumbnails: true,
                 enableA11y: false,
               ),
               images: const [
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image_1',
                   imageProvider: AssetImage('assets/test/test_image_1.png'),
                   title: 'Test Image 1',
                 ),
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image_2',
                   imageProvider: AssetImage('assets/test/test_image_2.png'),
                   title: 'Test Image 2',
@@ -177,21 +177,21 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.gallery,
+            body: DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.gallery,
                 enableCloseButton: true,
                 enableCounter: true,
                 enableThumbnails: false,
                 enableA11y: false,
               ),
               images: const [
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image_1',
                   imageProvider: AssetImage('assets/test/test_image_1.png'),
                   title: 'Test Image 1',
                 ),
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image_2',
                   imageProvider: AssetImage('assets/test/test_image_2.png'),
                   title: 'Test Image 2',
@@ -218,14 +218,14 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.zoom,
-                state: AppLightboxState.loading,
+            body: DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.zoom,
+                state: DSLightboxState.loading,
                 enableA11y: false,
               ),
               images: const [
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image',
                   imageProvider: AssetImage('assets/test/test_image.png'),
                   title: 'Loading Image',
@@ -253,12 +253,12 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.zoom,
+            body: DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.zoom,
                 enableCloseButton: true,
                 enableA11y: false,
-                colors: AppLightboxColors(
+                colors: DSLightboxColors(
                   backgroundColor: Color(0xFF1A1A1A),
                   overlayColor: Color(0x99000000),
                   controlsColor: Color(0xFFFFFFFF),
@@ -267,7 +267,7 @@ void main() {
                 ),
               ),
               images: const [
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image',
                   imageProvider: AssetImage('assets/test/test_image.png'),
                   title: 'Custom Colors Image',
@@ -291,21 +291,21 @@ void main() {
         MaterialApp(
           theme: ThemeData.dark(useMaterial3: true),
           home: Scaffold(
-            body: AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.gallery,
+            body: DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.gallery,
                 enableCloseButton: true,
                 enableCounter: true,
                 enableThumbnails: true,
                 enableA11y: false,
               ),
               images: const [
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image_1',
                   imageProvider: AssetImage('assets/test/test_image_1.png'),
                   title: 'Dark Theme Image 1',
                 ),
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image_2',
                   imageProvider: AssetImage('assets/test/test_image_2.png'),
                   title: 'Dark Theme Image 2',
@@ -334,22 +334,22 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppLightbox(
-                config: const AppLightboxConfig(
-                  variant: AppLightboxVariant.gallery,
+              body: DSLightbox(
+                config: const DSLightboxConfig(
+                  variant: DSLightboxVariant.gallery,
                   enableCloseButton: true,
                   enableCounter: true,
                   enableThumbnails: true,
                   enableA11y: false,
                 ),
                 images: const [
-                  AppLightboxImage(
+                  DSLightboxImage(
                     id: 'test_image_1',
                     imageProvider: AssetImage('assets/test/test_image_1.png'),
                     title: 'صورة اختبار ١',
                     description: 'هذه صورة اختبار للنص العربي',
                   ),
-                  AppLightboxImage(
+                  DSLightboxImage(
                     id: 'test_image_2',
                     imageProvider: AssetImage('assets/test/test_image_2.png'),
                     title: 'صورة اختبار ٢',
@@ -378,16 +378,16 @@ void main() {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
           home: Scaffold(
-            body: AppLightbox(
-              config: const AppLightboxConfig(
-                variant: AppLightboxVariant.zoom,
+            body: DSLightbox(
+              config: const DSLightboxConfig(
+                variant: DSLightboxVariant.zoom,
                 enableCloseButton: false,
                 enableCounter: false,
                 enableThumbnails: false,
                 enableA11y: false,
               ),
               images: const [
-                AppLightboxImage(
+                DSLightboxImage(
                   id: 'test_image',
                   imageProvider: AssetImage('assets/test/test_image.png'),
                   title: 'Minimal Image',

@@ -4,12 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppCalendar Tests', () {
+  group('DSCalendar Tests', () {
     testWidgets('renders correctly with basic configuration', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.month,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.month,
         events: [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'test-1',
             title: 'Test Event',
             startTime: DateTime(2024, 1, 15, 10, 0),
@@ -21,26 +21,26 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCalendar(config: config),
+            body: DSCalendar(config: config),
           ),
         ),
       );
 
-      expect(find.byType(AppCalendar), findsOneWidget);
+      expect(find.byType(DSCalendar), findsOneWidget);
     });
 
     testWidgets('displays events correctly in month view', (tester) async {
       final testDate = DateTime(2024, 1, 15);
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.month,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.month,
         selectedDate: testDate,
         events: [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'test-event',
             title: 'Test Meeting',
             startTime: testDate.add(const Duration(hours: 10)),
             endTime: testDate.add(const Duration(hours: 11)),
-            type: AppCalendarEventType.meeting,
+            type: DSCalendarEventType.meeting,
           ),
         ],
       );
@@ -48,7 +48,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCalendar(config: config),
+            body: DSCalendar(config: config),
           ),
         ),
       );
@@ -56,19 +56,19 @@ void main() {
       await tester.pumpAndSettle();
 
       // Verify the calendar renders
-      expect(find.byType(AppCalendar), findsOneWidget);
+      expect(find.byType(DSCalendar), findsOneWidget);
     });
 
     testWidgets('handles event tap callback', (tester) async {
-      final testEvent = AppCalendarEvent(
+      final testEvent = DSCalendarEvent(
         id: 'tap-test',
         title: 'Tappable Event',
         startTime: DateTime(2024, 1, 15, 10, 0),
         endTime: DateTime(2024, 1, 15, 11, 0),
       );
 
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.month,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.month,
         events: [testEvent],
         onEventTap: (event) => {},
       );
@@ -76,7 +76,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCalendar(config: config),
+            body: DSCalendar(config: config),
           ),
         ),
       );
@@ -85,31 +85,31 @@ void main() {
 
       // Try to find and tap an event (this would depend on the actual rendering)
       // For now, just verify the calendar renders with the callback
-      expect(find.byType(AppCalendar), findsOneWidget);
+      expect(find.byType(DSCalendar), findsOneWidget);
     });
 
     testWidgets('switches between calendar variants', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.month,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.month,
         onViewChange: (variant) => {},
       );
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCalendar(config: config),
+            body: DSCalendar(config: config),
           ),
         ),
       );
 
-      expect(find.byType(AppCalendar), findsOneWidget);
+      expect(find.byType(DSCalendar), findsOneWidget);
     });
 
     testWidgets('displays resources when provided', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.week,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.week,
         resources: [
-          AppCalendarResource(
+          DSCalendarResource(
             id: 'resource-1',
             name: 'Test Resource',
             description: 'A test resource',
@@ -121,17 +121,17 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCalendar(config: config),
+            body: DSCalendar(config: config),
           ),
         ),
       );
 
-      expect(find.byType(AppCalendar), findsOneWidget);
+      expect(find.byType(DSCalendar), findsOneWidget);
     });
 
     testWidgets('applies custom styling', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.month,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.month,
         backgroundColor: Colors.red,
         headerBackgroundColor: Colors.blue,
         headerTextColor: Colors.white,
@@ -140,38 +140,38 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCalendar(config: config),
+            body: DSCalendar(config: config),
           ),
         ),
       );
 
-      expect(find.byType(AppCalendar), findsOneWidget);
+      expect(find.byType(DSCalendar), findsOneWidget);
     });
 
     testWidgets('handles different event types', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.day,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.day,
         events: [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'meeting',
             title: 'Meeting',
             startTime: DateTime(2024, 1, 15, 9, 0),
             endTime: DateTime(2024, 1, 15, 10, 0),
-            type: AppCalendarEventType.meeting,
+            type: DSCalendarEventType.meeting,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'task',
             title: 'Task',
             startTime: DateTime(2024, 1, 15, 11, 0),
             endTime: DateTime(2024, 1, 15, 12, 0),
-            type: AppCalendarEventType.task,
+            type: DSCalendarEventType.task,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'reminder',
             title: 'Reminder',
             startTime: DateTime(2024, 1, 15, 14, 0),
             endTime: DateTime(2024, 1, 15, 14, 15),
-            type: AppCalendarEventType.reminder,
+            type: DSCalendarEventType.reminder,
           ),
         ],
       );
@@ -179,45 +179,45 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCalendar(config: config),
+            body: DSCalendar(config: config),
           ),
         ),
       );
 
-      expect(find.byType(AppCalendar), findsOneWidget);
+      expect(find.byType(DSCalendar), findsOneWidget);
     });
 
     testWidgets('handles different event priorities', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.week,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.week,
         events: [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'low',
             title: 'Low Priority',
             startTime: DateTime(2024, 1, 15, 9, 0),
             endTime: DateTime(2024, 1, 15, 10, 0),
-            priority: AppCalendarEventPriority.low,
+            priority: DSCalendarEventPriority.low,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'normal',
             title: 'Normal Priority',
             startTime: DateTime(2024, 1, 15, 11, 0),
             endTime: DateTime(2024, 1, 15, 12, 0),
-            priority: AppCalendarEventPriority.normal,
+            priority: DSCalendarEventPriority.normal,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'high',
             title: 'High Priority',
             startTime: DateTime(2024, 1, 15, 13, 0),
             endTime: DateTime(2024, 1, 15, 14, 0),
-            priority: AppCalendarEventPriority.high,
+            priority: DSCalendarEventPriority.high,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'critical',
             title: 'Critical Priority',
             startTime: DateTime(2024, 1, 15, 15, 0),
             endTime: DateTime(2024, 1, 15, 16, 0),
-            priority: AppCalendarEventPriority.critical,
+            priority: DSCalendarEventPriority.critical,
           ),
         ],
       );
@@ -225,17 +225,17 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCalendar(config: config),
+            body: DSCalendar(config: config),
           ),
         ),
       );
 
-      expect(find.byType(AppCalendar), findsOneWidget);
+      expect(find.byType(DSCalendar), findsOneWidget);
     });
 
     testWidgets('handles working hours configuration', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.day,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.day,
         showWorkingHours: true,
         startHour: 8,
         endHour: 18,
@@ -246,18 +246,18 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCalendar(config: config),
+            body: DSCalendar(config: config),
           ),
         ),
       );
 
-      expect(find.byType(AppCalendar), findsOneWidget);
+      expect(find.byType(DSCalendar), findsOneWidget);
     });
 
     testWidgets('handles localization', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.month,
-        localization: AppCalendarLocalization(
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.month,
+        localization: DSCalendarLocalization(
           monthNames: [
             'Enero',
             'Febrero',
@@ -280,19 +280,19 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppCalendar(config: config),
+            body: DSCalendar(config: config),
           ),
         ),
       );
 
-      expect(find.byType(AppCalendar), findsOneWidget);
+      expect(find.byType(DSCalendar), findsOneWidget);
     });
 
-    group('AppCalendarConfig', () {
+    group('DSCalendarConfig', () {
       test('creates with default values', () {
-        final config = AppCalendarConfig();
+        final config = DSCalendarConfig();
 
-        expect(config.variant, AppCalendarVariant.month);
+        expect(config.variant, DSCalendarVariant.month);
         expect(config.events, isEmpty);
         expect(config.resources, isEmpty);
         expect(config.showWorkingHours, true);
@@ -307,7 +307,7 @@ void main() {
 
       test('creates with custom values', () {
         final events = [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'test',
             title: 'Test',
             startTime: DateTime(2024, 1, 15),
@@ -315,15 +315,15 @@ void main() {
           ),
         ];
 
-        final config = AppCalendarConfig(
-          variant: AppCalendarVariant.week,
+        final config = DSCalendarConfig(
+          variant: DSCalendarVariant.week,
           events: events,
           startHour: 9,
           endHour: 17,
           timeSlotHeight: 80.0,
         );
 
-        expect(config.variant, AppCalendarVariant.week);
+        expect(config.variant, DSCalendarVariant.week);
         expect(config.events, events);
         expect(config.startHour, 9);
         expect(config.endHour, 17);
@@ -331,25 +331,25 @@ void main() {
       });
 
       test('copyWith works correctly', () {
-        final originalConfig = AppCalendarConfig(
-          variant: AppCalendarVariant.month,
+        final originalConfig = DSCalendarConfig(
+          variant: DSCalendarVariant.month,
           startHour: 8,
         );
 
         final newConfig = originalConfig.copyWith(
-          variant: AppCalendarVariant.week,
+          variant: DSCalendarVariant.week,
           endHour: 20,
         );
 
-        expect(newConfig.variant, AppCalendarVariant.week);
+        expect(newConfig.variant, DSCalendarVariant.week);
         expect(newConfig.startHour, 8); // unchanged
         expect(newConfig.endHour, 20); // changed
       });
     });
 
-    group('AppCalendarEvent', () {
+    group('DSCalendarEvent', () {
       test('creates with required fields', () {
-        final event = AppCalendarEvent(
+        final event = DSCalendarEvent(
           id: 'test-event',
           title: 'Test Event',
           startTime: DateTime(2024, 1, 15, 10, 0),
@@ -358,8 +358,8 @@ void main() {
 
         expect(event.id, 'test-event');
         expect(event.title, 'Test Event');
-        expect(event.type, AppCalendarEventType.event);
-        expect(event.priority, AppCalendarEventPriority.normal);
+        expect(event.type, DSCalendarEventType.event);
+        expect(event.priority, DSCalendarEventPriority.normal);
         expect(event.isAllDay, false);
         expect(event.isEditable, true);
         expect(event.isDeletable, true);
@@ -367,31 +367,31 @@ void main() {
       });
 
       test('creates with custom values', () {
-        final event = AppCalendarEvent(
+        final event = DSCalendarEvent(
           id: 'custom-event',
           title: 'Custom Event',
           description: 'A custom event',
           startTime: DateTime(2024, 1, 15, 10, 0),
           endTime: DateTime(2024, 1, 15, 11, 0),
-          type: AppCalendarEventType.meeting,
-          priority: AppCalendarEventPriority.high,
+          type: DSCalendarEventType.meeting,
+          priority: DSCalendarEventPriority.high,
           isAllDay: true,
           isEditable: false,
           backgroundColor: Colors.red,
         );
 
         expect(event.description, 'A custom event');
-        expect(event.type, AppCalendarEventType.meeting);
-        expect(event.priority, AppCalendarEventPriority.high);
+        expect(event.type, DSCalendarEventType.meeting);
+        expect(event.priority, DSCalendarEventPriority.high);
         expect(event.isAllDay, true);
         expect(event.isEditable, false);
         expect(event.backgroundColor, Colors.red);
       });
     });
 
-    group('AppCalendarResource', () {
+    group('DSCalendarResource', () {
       test('creates with required fields', () {
-        final resource = AppCalendarResource(
+        final resource = DSCalendarResource(
           id: 'resource-1',
           name: 'Test Resource',
         );
@@ -402,7 +402,7 @@ void main() {
       });
 
       test('creates with custom values', () {
-        final resource = AppCalendarResource(
+        final resource = DSCalendarResource(
           id: 'custom-resource',
           name: 'Custom Resource',
           description: 'A custom resource',
@@ -418,9 +418,9 @@ void main() {
       });
     });
 
-    group('AppCalendarLocalization', () {
+    group('DSCalendarLocalization', () {
       test('creates with default Spanish values', () {
-        final localization = AppCalendarLocalization();
+        final localization = DSCalendarLocalization();
 
         expect(localization.monthNames, isNotEmpty);
         expect(localization.dayNames, isNotEmpty);
@@ -433,7 +433,7 @@ void main() {
         final customMonths = ['Jan', 'Feb', 'Mar'];
         final customDays = ['Sun', 'Mon', 'Tue'];
 
-        final localization = AppCalendarLocalization(
+        final localization = DSCalendarLocalization(
           monthNames: customMonths,
           dayNames: customDays,
           timeFormat: 12,

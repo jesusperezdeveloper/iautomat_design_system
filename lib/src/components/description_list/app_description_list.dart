@@ -3,19 +3,19 @@ import 'package:flutter/services.dart';
 
 import 'description_list_config.dart';
 
-class AppDescriptionList extends StatefulWidget {
-  final List<AppDescriptionListItem> items;
-  final AppDescriptionListVariant variant;
-  final AppDescriptionListState state;
-  final AppDescriptionListLayout? layout;
-  final AppDescriptionListDensity? density;
-  final AppDescriptionListSpacing? spacing;
-  final AppDescriptionListAlignment? alignment;
-  final AppDescriptionListStyle? style;
-  final AppDescriptionListInteraction? interaction;
-  final AppDescriptionListAccessibility? accessibility;
-  final AppDescriptionListAnimation? animation;
-  final AppDescriptionListResponsive? responsive;
+class DSDescriptionList extends StatefulWidget {
+  final List<DSDescriptionListItem> items;
+  final DSDescriptionListVariant variant;
+  final DSDescriptionListState state;
+  final DSDescriptionListLayout? layout;
+  final DSDescriptionListDensity? density;
+  final DSDescriptionListSpacing? spacing;
+  final DSDescriptionListAlignment? alignment;
+  final DSDescriptionListStyle? style;
+  final DSDescriptionListInteraction? interaction;
+  final DSDescriptionListAccessibility? accessibility;
+  final DSDescriptionListAnimation? animation;
+  final DSDescriptionListResponsive? responsive;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
   final VoidCallback? onHover;
@@ -27,11 +27,11 @@ class AppDescriptionList extends StatefulWidget {
   final bool skeleton;
   final bool visible;
 
-  const AppDescriptionList({
+  const DSDescriptionList({
     super.key,
     required this.items,
-    this.variant = AppDescriptionListVariant.responsive,
-    this.state = AppDescriptionListState.defaultState,
+    this.variant = DSDescriptionListVariant.responsive,
+    this.state = DSDescriptionListState.defaultState,
     this.layout,
     this.density,
     this.spacing,
@@ -53,10 +53,10 @@ class AppDescriptionList extends StatefulWidget {
     this.visible = true,
   });
 
-  const AppDescriptionList.responsive({
+  const DSDescriptionList.responsive({
     super.key,
     required this.items,
-    this.state = AppDescriptionListState.defaultState,
+    this.state = DSDescriptionListState.defaultState,
     this.layout,
     this.density,
     this.spacing,
@@ -76,20 +76,20 @@ class AppDescriptionList extends StatefulWidget {
     this.loading = false,
     this.skeleton = false,
     this.visible = true,
-  }) : variant = AppDescriptionListVariant.responsive;
+  }) : variant = DSDescriptionListVariant.responsive;
 
   @override
-  State<AppDescriptionList> createState() => _AppDescriptionListState();
+  State<DSDescriptionList> createState() => _DSDescriptionListState();
 }
 
-class _AppDescriptionListState extends State<AppDescriptionList>
+class _DSDescriptionListState extends State<DSDescriptionList>
     with TickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<double> _fadeAnimation;
   late final Animation<Offset> _slideAnimation;
   late final Animation<double> _scaleAnimation;
 
-  AppDescriptionListState _currentState = AppDescriptionListState.defaultState;
+  DSDescriptionListState _currentState = DSDescriptionListState.defaultState;
   final FocusNode _focusNode = FocusNode();
   bool _isHovered = false;
   bool _isPressed = false;
@@ -104,7 +104,7 @@ class _AppDescriptionListState extends State<AppDescriptionList>
   }
 
   void _setupAnimations() {
-    final animation = widget.animation ?? const AppDescriptionListAnimation();
+    final animation = widget.animation ?? const DSDescriptionListAnimation();
 
     _animationController = AnimationController(
       duration: animation.duration,
@@ -156,24 +156,24 @@ class _AppDescriptionListState extends State<AppDescriptionList>
   }
 
   void _updateState() {
-    AppDescriptionListState newState = widget.state;
+    DSDescriptionListState newState = widget.state;
 
-    if (!widget.enabled || widget.state == AppDescriptionListState.disabled) {
-      newState = AppDescriptionListState.disabled;
+    if (!widget.enabled || widget.state == DSDescriptionListState.disabled) {
+      newState = DSDescriptionListState.disabled;
     } else if (widget.loading ||
-        widget.state == AppDescriptionListState.loading) {
-      newState = AppDescriptionListState.loading;
+        widget.state == DSDescriptionListState.loading) {
+      newState = DSDescriptionListState.loading;
     } else if (widget.skeleton ||
-        widget.state == AppDescriptionListState.skeleton) {
-      newState = AppDescriptionListState.skeleton;
+        widget.state == DSDescriptionListState.skeleton) {
+      newState = DSDescriptionListState.skeleton;
     } else if (_isPressed) {
-      newState = AppDescriptionListState.pressed;
+      newState = DSDescriptionListState.pressed;
     } else if (_isFocused) {
-      newState = AppDescriptionListState.focus;
+      newState = DSDescriptionListState.focus;
     } else if (_isHovered) {
-      newState = AppDescriptionListState.hover;
-    } else if (widget.state == AppDescriptionListState.selected) {
-      newState = AppDescriptionListState.selected;
+      newState = DSDescriptionListState.hover;
+    } else if (widget.state == DSDescriptionListState.selected) {
+      newState = DSDescriptionListState.selected;
     }
 
     if (_currentState != newState) {
@@ -256,7 +256,7 @@ class _AppDescriptionListState extends State<AppDescriptionList>
   bool get _isInteractive => _canInteract;
 
   @override
-  void didUpdateWidget(covariant AppDescriptionList oldWidget) {
+  void didUpdateWidget(covariant DSDescriptionList oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.state != widget.state ||
@@ -267,9 +267,9 @@ class _AppDescriptionListState extends State<AppDescriptionList>
     }
 
     final newAnimation =
-        widget.animation ?? const AppDescriptionListAnimation();
+        widget.animation ?? const DSDescriptionListAnimation();
     final oldAnimation =
-        oldWidget.animation ?? const AppDescriptionListAnimation();
+        oldWidget.animation ?? const DSDescriptionListAnimation();
 
     if (newAnimation.duration != oldAnimation.duration) {
       _animationController.duration = newAnimation.duration;
@@ -295,13 +295,13 @@ class _AppDescriptionListState extends State<AppDescriptionList>
       return const SizedBox.shrink();
     }
 
-    final config = AppDescriptionListConfig(
+    final config = DSDescriptionListConfig(
       variant: widget.variant,
       state: _currentState,
-      layout: widget.layout ?? AppDescriptionListLayout.adaptive,
-      density: widget.density ?? AppDescriptionListDensity.normal,
-      spacing: widget.spacing ?? AppDescriptionListSpacing.normal,
-      alignment: widget.alignment ?? AppDescriptionListAlignment.start,
+      layout: widget.layout ?? DSDescriptionListLayout.adaptive,
+      density: widget.density ?? DSDescriptionListDensity.normal,
+      spacing: widget.spacing ?? DSDescriptionListSpacing.normal,
+      alignment: widget.alignment ?? DSDescriptionListAlignment.start,
       items: widget.items,
       style: widget.style,
       interaction: widget.interaction,
@@ -323,34 +323,34 @@ class _AppDescriptionListState extends State<AppDescriptionList>
 
     if (widget.animation?.enabled == true) {
       final animationType =
-          widget.animation?.type ?? AppDescriptionListAnimationType.fade;
+          widget.animation?.type ?? DSDescriptionListAnimationType.fade;
 
       switch (animationType) {
-        case AppDescriptionListAnimationType.fade:
+        case DSDescriptionListAnimationType.fade:
           listWidget = FadeTransition(
             opacity: _fadeAnimation,
             child: listWidget,
           );
           break;
-        case AppDescriptionListAnimationType.slide:
+        case DSDescriptionListAnimationType.slide:
           listWidget = SlideTransition(
             position: _slideAnimation,
             child: listWidget,
           );
           break;
-        case AppDescriptionListAnimationType.scale:
+        case DSDescriptionListAnimationType.scale:
           listWidget = ScaleTransition(
             scale: _scaleAnimation,
             child: listWidget,
           );
           break;
-        case AppDescriptionListAnimationType.rotation:
+        case DSDescriptionListAnimationType.rotation:
           listWidget = RotationTransition(
             turns: _fadeAnimation,
             child: listWidget,
           );
           break;
-        case AppDescriptionListAnimationType.none:
+        case DSDescriptionListAnimationType.none:
           break;
       }
     }
@@ -381,10 +381,10 @@ class _AppDescriptionListState extends State<AppDescriptionList>
   }
 
   Widget _buildDescriptionList(
-      BuildContext context, AppDescriptionListConfig config) {
+      BuildContext context, DSDescriptionListConfig config) {
     final theme = Theme.of(context);
     final responsive =
-        config.responsive ?? const AppDescriptionListResponsive();
+        config.responsive ?? const DSDescriptionListResponsive();
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -400,19 +400,19 @@ class _AppDescriptionListState extends State<AppDescriptionList>
         Widget content;
 
         switch (layout) {
-          case AppDescriptionListLayout.vertical:
+          case DSDescriptionListLayout.vertical:
             content = _buildVerticalList(
                 context, config, effectiveStyle, density, spacing);
             break;
-          case AppDescriptionListLayout.horizontal:
+          case DSDescriptionListLayout.horizontal:
             content = _buildHorizontalList(
                 context, config, effectiveStyle, density, spacing);
             break;
-          case AppDescriptionListLayout.grid:
+          case DSDescriptionListLayout.grid:
             content = _buildGridList(context, config, effectiveStyle, density,
                 spacing, constraints.maxWidth, responsive);
             break;
-          case AppDescriptionListLayout.adaptive:
+          case DSDescriptionListLayout.adaptive:
             content = _buildAdaptiveList(context, config, effectiveStyle,
                 density, spacing, constraints.maxWidth, responsive);
             break;
@@ -423,45 +423,45 @@ class _AppDescriptionListState extends State<AppDescriptionList>
     );
   }
 
-  AppDescriptionListLayout _getEffectiveLayout(
+  DSDescriptionListLayout _getEffectiveLayout(
       double width,
-      AppDescriptionListResponsive responsive,
-      AppDescriptionListLayout? defaultLayout) {
-    final layout = defaultLayout ?? AppDescriptionListLayout.adaptive;
-    if (layout == AppDescriptionListLayout.adaptive) {
+      DSDescriptionListResponsive responsive,
+      DSDescriptionListLayout? defaultLayout) {
+    final layout = defaultLayout ?? DSDescriptionListLayout.adaptive;
+    if (layout == DSDescriptionListLayout.adaptive) {
       return responsive.getLayoutForWidth(width);
     }
     return layout;
   }
 
-  AppDescriptionListDensity _getEffectiveDensity(
+  DSDescriptionListDensity _getEffectiveDensity(
       double width,
-      AppDescriptionListResponsive responsive,
-      AppDescriptionListDensity? defaultDensity) {
+      DSDescriptionListResponsive responsive,
+      DSDescriptionListDensity? defaultDensity) {
     return responsive.getDensityForWidth(width);
   }
 
-  AppDescriptionListSpacing _getEffectiveSpacing(
+  DSDescriptionListSpacing _getEffectiveSpacing(
       double width,
-      AppDescriptionListResponsive responsive,
-      AppDescriptionListSpacing? defaultSpacing) {
+      DSDescriptionListResponsive responsive,
+      DSDescriptionListSpacing? defaultSpacing) {
     return responsive.getSpacingForWidth(width);
   }
 
-  AppDescriptionListStyle _getEffectiveStyle(ThemeData theme,
-      AppDescriptionListConfig config, AppDescriptionListState state) {
-    final baseStyle = AppDescriptionListStyle(
+  DSDescriptionListStyle _getEffectiveStyle(ThemeData theme,
+      DSDescriptionListConfig config, DSDescriptionListState state) {
+    final baseStyle = DSDescriptionListStyle(
       backgroundColor: theme.colorScheme.surface,
       foregroundColor: theme.colorScheme.onSurface,
       borderColor: theme.colorScheme.outline,
       shadowColor: theme.colorScheme.shadow,
       overlayColor: theme.colorScheme.onSurface,
-      borderWidth: AppDescriptionListConstants.defaultBorderWidth,
-      borderRadius: AppDescriptionListConstants.defaultBorderRadius,
-      elevation: AppDescriptionListConstants.defaultElevation,
-      padding: AppDescriptionListConstants.defaultPadding,
-      margin: AppDescriptionListConstants.defaultMargin,
-      constraints: AppDescriptionListConstants.defaultConstraints,
+      borderWidth: DSDescriptionListConstants.defaultBorderWidth,
+      borderRadius: DSDescriptionListConstants.defaultBorderRadius,
+      elevation: DSDescriptionListConstants.defaultElevation,
+      padding: DSDescriptionListConstants.defaultPadding,
+      margin: DSDescriptionListConstants.defaultMargin,
+      constraints: DSDescriptionListConstants.defaultConstraints,
       termTextStyle: theme.textTheme.titleSmall?.copyWith(
         fontWeight: FontWeight.w600,
         color: theme.colorScheme.onSurface,
@@ -472,31 +472,31 @@ class _AppDescriptionListState extends State<AppDescriptionList>
       secondaryDescriptionTextStyle: theme.textTheme.bodySmall?.copyWith(
         color: theme.colorScheme.onSurfaceVariant,
       ),
-      itemStyle: AppDescriptionListItemStyle(
+      itemStyle: DSDescriptionListItemStyle(
         backgroundColor: Colors.transparent,
         foregroundColor: theme.colorScheme.onSurface,
         borderColor: theme.colorScheme.outline,
         overlayColor: theme.colorScheme.onSurface,
         highlightColor: theme.colorScheme.primary,
         borderRadius: 8.0,
-        padding: AppDescriptionListConstants.defaultItemPadding,
-        iconSize: AppDescriptionListConstants.defaultIconSize,
+        padding: DSDescriptionListConstants.defaultItemPadding,
+        iconSize: DSDescriptionListConstants.defaultIconSize,
         iconColor: theme.colorScheme.onSurfaceVariant,
         spacing: 12.0,
-        termWidth: AppDescriptionListConstants.defaultTermWidth,
+        termWidth: DSDescriptionListConstants.defaultTermWidth,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
       ),
-      dividerStyle: AppDescriptionListDividerStyle(
+      dividerStyle: DSDescriptionListDividerStyle(
         color: theme.colorScheme.outline,
-        thickness: AppDescriptionListConstants.defaultDividerThickness,
+        thickness: DSDescriptionListConstants.defaultDividerThickness,
         height: 1.0,
         indent: 0.0,
         endIndent: 0.0,
       ),
     );
 
-    final customStyle = config.style ?? const AppDescriptionListStyle();
+    final customStyle = config.style ?? const DSDescriptionListStyle();
     final mergedStyle = baseStyle.copyWith(
       backgroundColor: customStyle.backgroundColor,
       foregroundColor: customStyle.foregroundColor,
@@ -522,10 +522,10 @@ class _AppDescriptionListState extends State<AppDescriptionList>
 
   Widget _buildVerticalList(
       BuildContext context,
-      AppDescriptionListConfig config,
-      AppDescriptionListStyle style,
-      AppDescriptionListDensity density,
-      AppDescriptionListSpacing spacing) {
+      DSDescriptionListConfig config,
+      DSDescriptionListStyle style,
+      DSDescriptionListDensity density,
+      DSDescriptionListSpacing spacing) {
     return Column(
       crossAxisAlignment: _getCrossAxisAlignment(config.alignment),
       mainAxisSize: MainAxisSize.min,
@@ -537,7 +537,7 @@ class _AppDescriptionListState extends State<AppDescriptionList>
             style.itemStyle!,
             density,
             spacing,
-            AppDescriptionListLayout.vertical,
+            DSDescriptionListLayout.vertical,
           ),
           if (i < config.items.length - 1 && config.items[i].divider)
             _buildDivider(style.dividerStyle!, spacing),
@@ -548,10 +548,10 @@ class _AppDescriptionListState extends State<AppDescriptionList>
 
   Widget _buildHorizontalList(
       BuildContext context,
-      AppDescriptionListConfig config,
-      AppDescriptionListStyle style,
-      AppDescriptionListDensity density,
-      AppDescriptionListSpacing spacing) {
+      DSDescriptionListConfig config,
+      DSDescriptionListStyle style,
+      DSDescriptionListDensity density,
+      DSDescriptionListSpacing spacing) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -563,7 +563,7 @@ class _AppDescriptionListState extends State<AppDescriptionList>
             style.itemStyle!,
             density,
             spacing,
-            AppDescriptionListLayout.horizontal,
+            DSDescriptionListLayout.horizontal,
           ),
           if (i < config.items.length - 1 && config.items[i].divider)
             _buildDivider(style.dividerStyle!, spacing),
@@ -574,12 +574,12 @@ class _AppDescriptionListState extends State<AppDescriptionList>
 
   Widget _buildGridList(
       BuildContext context,
-      AppDescriptionListConfig config,
-      AppDescriptionListStyle style,
-      AppDescriptionListDensity density,
-      AppDescriptionListSpacing spacing,
+      DSDescriptionListConfig config,
+      DSDescriptionListStyle style,
+      DSDescriptionListDensity density,
+      DSDescriptionListSpacing spacing,
       double width,
-      AppDescriptionListResponsive responsive) {
+      DSDescriptionListResponsive responsive) {
     final columns = responsive.getColumnsForWidth(width);
 
     return GridView.builder(
@@ -599,7 +599,7 @@ class _AppDescriptionListState extends State<AppDescriptionList>
           style.itemStyle!,
           density,
           spacing,
-          AppDescriptionListLayout.grid,
+          DSDescriptionListLayout.grid,
         );
       },
     );
@@ -607,57 +607,57 @@ class _AppDescriptionListState extends State<AppDescriptionList>
 
   Widget _buildAdaptiveList(
       BuildContext context,
-      AppDescriptionListConfig config,
-      AppDescriptionListStyle style,
-      AppDescriptionListDensity density,
-      AppDescriptionListSpacing spacing,
+      DSDescriptionListConfig config,
+      DSDescriptionListStyle style,
+      DSDescriptionListDensity density,
+      DSDescriptionListSpacing spacing,
       double width,
-      AppDescriptionListResponsive responsive) {
+      DSDescriptionListResponsive responsive) {
     final layout = responsive.getLayoutForWidth(width);
 
     switch (layout) {
-      case AppDescriptionListLayout.vertical:
+      case DSDescriptionListLayout.vertical:
         return _buildVerticalList(context, config, style, density, spacing);
-      case AppDescriptionListLayout.horizontal:
+      case DSDescriptionListLayout.horizontal:
         return _buildHorizontalList(context, config, style, density, spacing);
-      case AppDescriptionListLayout.grid:
+      case DSDescriptionListLayout.grid:
         return _buildGridList(
             context, config, style, density, spacing, width, responsive);
-      case AppDescriptionListLayout.adaptive:
+      case DSDescriptionListLayout.adaptive:
         return _buildHorizontalList(context, config, style, density, spacing);
     }
   }
 
   Widget _buildDescriptionListItem(
     BuildContext context,
-    AppDescriptionListItem item,
-    AppDescriptionListItemStyle style,
-    AppDescriptionListDensity density,
-    AppDescriptionListSpacing spacing,
-    AppDescriptionListLayout layout,
+    DSDescriptionListItem item,
+    DSDescriptionListItemStyle style,
+    DSDescriptionListDensity density,
+    DSDescriptionListSpacing spacing,
+    DSDescriptionListLayout layout,
   ) {
     if (config.shouldShowSkeleton) {
       return _buildSkeletonItem(style, density, layout);
     }
 
     final effectiveStyle = style.copyWithState(
-      item.state ?? AppDescriptionListItemState.defaultState,
+      item.state ?? DSDescriptionListItemState.defaultState,
       highlighted: item.highlighted,
     );
 
     Widget content;
 
     switch (layout) {
-      case AppDescriptionListLayout.vertical:
+      case DSDescriptionListLayout.vertical:
         content = _buildVerticalItem(context, item, effectiveStyle, density);
         break;
-      case AppDescriptionListLayout.horizontal:
+      case DSDescriptionListLayout.horizontal:
         content = _buildHorizontalItem(context, item, effectiveStyle, density);
         break;
-      case AppDescriptionListLayout.grid:
+      case DSDescriptionListLayout.grid:
         content = _buildGridItem(context, item, effectiveStyle, density);
         break;
-      case AppDescriptionListLayout.adaptive:
+      case DSDescriptionListLayout.adaptive:
         content = _buildHorizontalItem(context, item, effectiveStyle, density);
         break;
     }
@@ -687,8 +687,8 @@ class _AppDescriptionListState extends State<AppDescriptionList>
     );
   }
 
-  Widget _buildVerticalItem(BuildContext context, AppDescriptionListItem item,
-      AppDescriptionListItemStyle style, AppDescriptionListDensity density) {
+  Widget _buildVerticalItem(BuildContext context, DSDescriptionListItem item,
+      DSDescriptionListItemStyle style, DSDescriptionListDensity density) {
     return Column(
       crossAxisAlignment: style.crossAxisAlignment ?? CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -698,8 +698,8 @@ class _AppDescriptionListState extends State<AppDescriptionList>
     );
   }
 
-  Widget _buildHorizontalItem(BuildContext context, AppDescriptionListItem item,
-      AppDescriptionListItemStyle style, AppDescriptionListDensity density) {
+  Widget _buildHorizontalItem(BuildContext context, DSDescriptionListItem item,
+      DSDescriptionListItemStyle style, DSDescriptionListDensity density) {
     return IntrinsicHeight(
       child: Row(
         crossAxisAlignment:
@@ -719,7 +719,7 @@ class _AppDescriptionListState extends State<AppDescriptionList>
           ],
           SizedBox(
             width:
-                style.termWidth ?? AppDescriptionListConstants.defaultTermWidth,
+                style.termWidth ?? DSDescriptionListConstants.defaultTermWidth,
             child: _buildTermWidget(context, item, style),
           ),
           SizedBox(width: style.spacing ?? 12.0),
@@ -735,8 +735,8 @@ class _AppDescriptionListState extends State<AppDescriptionList>
     );
   }
 
-  Widget _buildGridItem(BuildContext context, AppDescriptionListItem item,
-      AppDescriptionListItemStyle style, AppDescriptionListDensity density) {
+  Widget _buildGridItem(BuildContext context, DSDescriptionListItem item,
+      DSDescriptionListItemStyle style, DSDescriptionListDensity density) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -748,9 +748,9 @@ class _AppDescriptionListState extends State<AppDescriptionList>
 
   Widget _buildItemContent(
       BuildContext context,
-      AppDescriptionListItem item,
-      AppDescriptionListItemStyle style,
-      AppDescriptionListDensity density,
+      DSDescriptionListItem item,
+      DSDescriptionListItemStyle style,
+      DSDescriptionListDensity density,
       bool vertical) {
     if (vertical) {
       return Column(
@@ -820,8 +820,8 @@ class _AppDescriptionListState extends State<AppDescriptionList>
     }
   }
 
-  Widget _buildTermWidget(BuildContext context, AppDescriptionListItem item,
-      AppDescriptionListItemStyle style) {
+  Widget _buildTermWidget(BuildContext context, DSDescriptionListItem item,
+      DSDescriptionListItemStyle style) {
     if (item.hasCustomTermWidget) {
       return item.termWidget!;
     }
@@ -835,7 +835,7 @@ class _AppDescriptionListState extends State<AppDescriptionList>
   }
 
   Widget _buildDescriptionWidget(BuildContext context,
-      AppDescriptionListItem item, AppDescriptionListItemStyle style) {
+      DSDescriptionListItem item, DSDescriptionListItemStyle style) {
     if (item.hasCustomDescriptionWidget) {
       return item.descriptionWidget!;
     }
@@ -859,8 +859,8 @@ class _AppDescriptionListState extends State<AppDescriptionList>
     );
   }
 
-  Widget _buildSkeletonItem(AppDescriptionListItemStyle style,
-      AppDescriptionListDensity density, AppDescriptionListLayout layout) {
+  Widget _buildSkeletonItem(DSDescriptionListItemStyle style,
+      DSDescriptionListDensity density, DSDescriptionListLayout layout) {
     final theme = Theme.of(context);
     final shimmerColor = theme.colorScheme.surfaceContainerHighest;
 
@@ -909,7 +909,7 @@ class _AppDescriptionListState extends State<AppDescriptionList>
   }
 
   Widget _buildDivider(
-      AppDescriptionListDividerStyle style, AppDescriptionListSpacing spacing) {
+      DSDescriptionListDividerStyle style, DSDescriptionListSpacing spacing) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: spacing.value / 2),
       child: Divider(
@@ -922,8 +922,8 @@ class _AppDescriptionListState extends State<AppDescriptionList>
     );
   }
 
-  Widget _wrapWithInteraction(Widget child, AppDescriptionListConfig config,
-      AppDescriptionListStyle style) {
+  Widget _wrapWithInteraction(Widget child, DSDescriptionListConfig config,
+      DSDescriptionListStyle style) {
     if (!_isInteractive) {
       return Container(
         padding: style.padding,
@@ -978,8 +978,8 @@ class _AppDescriptionListState extends State<AppDescriptionList>
     );
   }
 
-  Widget _wrapItemWithInteraction(Widget child, AppDescriptionListItem item,
-      AppDescriptionListItemStyle style) {
+  Widget _wrapItemWithInteraction(Widget child, DSDescriptionListItem item,
+      DSDescriptionListItemStyle style) {
     return MouseRegion(
       onEnter: (_) {
         // Handle item hover if needed
@@ -996,26 +996,26 @@ class _AppDescriptionListState extends State<AppDescriptionList>
   }
 
   CrossAxisAlignment _getCrossAxisAlignment(
-      AppDescriptionListAlignment? alignment) {
-    switch (alignment ?? AppDescriptionListAlignment.start) {
-      case AppDescriptionListAlignment.start:
+      DSDescriptionListAlignment? alignment) {
+    switch (alignment ?? DSDescriptionListAlignment.start) {
+      case DSDescriptionListAlignment.start:
         return CrossAxisAlignment.start;
-      case AppDescriptionListAlignment.center:
+      case DSDescriptionListAlignment.center:
         return CrossAxisAlignment.center;
-      case AppDescriptionListAlignment.end:
+      case DSDescriptionListAlignment.end:
         return CrossAxisAlignment.end;
-      case AppDescriptionListAlignment.justify:
+      case DSDescriptionListAlignment.justify:
         return CrossAxisAlignment.stretch;
     }
   }
 
-  AppDescriptionListConfig get config => AppDescriptionListConfig(
+  DSDescriptionListConfig get config => DSDescriptionListConfig(
         variant: widget.variant,
         state: _currentState,
-        layout: widget.layout ?? AppDescriptionListLayout.adaptive,
-        density: widget.density ?? AppDescriptionListDensity.normal,
-        spacing: widget.spacing ?? AppDescriptionListSpacing.normal,
-        alignment: widget.alignment ?? AppDescriptionListAlignment.start,
+        layout: widget.layout ?? DSDescriptionListLayout.adaptive,
+        density: widget.density ?? DSDescriptionListDensity.normal,
+        spacing: widget.spacing ?? DSDescriptionListSpacing.normal,
+        alignment: widget.alignment ?? DSDescriptionListAlignment.start,
         items: widget.items,
         style: widget.style,
         interaction: widget.interaction,

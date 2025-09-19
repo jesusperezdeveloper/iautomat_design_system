@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppCardStory extends StatefulWidget {
-  const AppCardStory({super.key});
+class DSCardStory extends StatefulWidget {
+  const DSCardStory({super.key});
 
   @override
-  State<AppCardStory> createState() => _AppCardStoryState();
+  State<DSCardStory> createState() => _DSCardStoryState();
 }
 
-class _AppCardStoryState extends State<AppCardStory> {
-  AppCardVariant _variant = AppCardVariant.elevated;
-  AppCardState _state = AppCardState.defaultState;
+class _DSCardStoryState extends State<DSCardStory> {
+  DSCardVariant _variant = DSCardVariant.elevated;
+  DSCardState _state = DSCardState.defaultState;
   bool _isRtl = false;
   bool _enableA11y = true;
   bool _enableKeyboard = true;
@@ -53,8 +53,8 @@ class _AppCardStoryState extends State<AppCardStory> {
     });
   }
 
-  Widget _buildSampleCard({required AppCardConfig config}) {
-    return AppCard(
+  Widget _buildSampleCard({required DSCardConfig config}) {
+    return DSCard(
       config: config,
       header: _hasHeader
           ? Row(
@@ -79,7 +79,7 @@ class _AppCardStoryState extends State<AppCardStory> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Esta es una tarjeta de ejemplo que demuestra las capacidades del componente AppCard. Incluye soporte para diferentes variantes, estados e interacciones.',
+            'Esta es una tarjeta de ejemplo que demuestra las capacidades del componente DSCard. Incluye soporte para diferentes variantes, estados e interacciones.',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 16),
@@ -112,7 +112,7 @@ class _AppCardStoryState extends State<AppCardStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppCard Stories'),
+        title: const Text('DSCard Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -138,11 +138,11 @@ class _AppCardStoryState extends State<AppCardStory> {
                       children: [
                         const Text('Variante: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppCardVariant>(
+                        DropdownButton<DSCardVariant>(
                           value: _variant,
                           onChanged: (value) =>
                               setState(() => _variant = value!),
-                          items: AppCardVariant.values.map((variant) {
+                          items: DSCardVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
                               child: Text(variant.displayName),
@@ -157,10 +157,10 @@ class _AppCardStoryState extends State<AppCardStory> {
                       children: [
                         const Text('Estado: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppCardState>(
+                        DropdownButton<DSCardState>(
                           value: _state,
                           onChanged: (value) => setState(() => _state = value!),
-                          items: AppCardState.values.map((state) {
+                          items: DSCardState.values.map((state) {
                             return DropdownMenuItem(
                               value: state,
                               child: Text(state.displayName),
@@ -335,18 +335,18 @@ class _AppCardStoryState extends State<AppCardStory> {
               width: double.infinity,
               constraints: const BoxConstraints(maxWidth: 400),
               child: _buildSampleCard(
-                config: AppCardConfig(
+                config: DSCardConfig(
                   variant: _variant,
                   state: _state,
                   isRtl: _isRtl,
                   enableA11y: _enableA11y,
                   enableKeyboardSupport: _enableKeyboard,
                   isInteractive: _isInteractive,
-                  spacing: AppCardSpacing(
+                  spacing: DSCardSpacing(
                     padding: _padding,
                     borderRadius: _borderRadius,
                   ),
-                  elevation: AppCardElevation(defaultElevation: _elevation),
+                  elevation: DSCardElevation(defaultElevation: _elevation),
                   onTap: _isInteractive ? _handleTap : null,
                   onDoubleTap: _isInteractive ? _handleDoubleTap : null,
                   onLongPress: _isInteractive ? _handleLongPress : null,
@@ -377,9 +377,9 @@ class _AppCardStoryState extends State<AppCardStory> {
                   mainAxisSpacing: 16,
                   childAspectRatio: 1.2,
                 ),
-                itemCount: AppCardVariant.values.length,
+                itemCount: DSCardVariant.values.length,
                 itemBuilder: (context, index) {
-                  final variant = AppCardVariant.values[index];
+                  final variant = DSCardVariant.values[index];
                   return _buildVariantCard(variant);
                 },
               ),
@@ -397,9 +397,9 @@ class _AppCardStoryState extends State<AppCardStory> {
                   mainAxisSpacing: 16,
                   childAspectRatio: 1.0,
                 ),
-                itemCount: AppCardState.values.length,
+                itemCount: DSCardState.values.length,
                 itemBuilder: (context, index) {
-                  final state = AppCardState.values[index];
+                  final state = DSCardState.values[index];
                   return _buildStateCard(state);
                 },
               ),
@@ -453,9 +453,9 @@ class _AppCardStoryState extends State<AppCardStory> {
     );
   }
 
-  Widget _buildVariantCard(AppCardVariant variant) {
-    return AppCard(
-      config: AppCardConfig(variant: variant),
+  Widget _buildVariantCard(DSCardVariant variant) {
+    return DSCard(
+      config: DSCardConfig(variant: variant),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -486,9 +486,9 @@ class _AppCardStoryState extends State<AppCardStory> {
     );
   }
 
-  Widget _buildStateCard(AppCardState state) {
-    return AppCard(
-      config: AppCardConfig(state: state),
+  Widget _buildStateCard(DSCardState state) {
+    return DSCard(
+      config: DSCardConfig(state: state),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -510,8 +510,8 @@ class _AppCardStoryState extends State<AppCardStory> {
     String subtitle,
     String description,
   ) {
-    return AppCard(
-      config: const AppCardConfig(variant: AppCardVariant.elevated),
+    return DSCard(
+      config: const DSCardConfig(variant: DSCardVariant.elevated),
       body: Row(
         children: [
           Container(
@@ -542,23 +542,23 @@ class _AppCardStoryState extends State<AppCardStory> {
     );
   }
 
-  IconData _getStateIcon(AppCardState state) {
+  IconData _getStateIcon(DSCardState state) {
     switch (state) {
-      case AppCardState.defaultState:
+      case DSCardState.defaultState:
         return Icons.check_circle_outline;
-      case AppCardState.hover:
+      case DSCardState.hover:
         return Icons.touch_app;
-      case AppCardState.pressed:
+      case DSCardState.pressed:
         return Icons.touch_app;
-      case AppCardState.focus:
+      case DSCardState.focus:
         return Icons.center_focus_strong;
-      case AppCardState.selected:
+      case DSCardState.selected:
         return Icons.check_circle;
-      case AppCardState.disabled:
+      case DSCardState.disabled:
         return Icons.block;
-      case AppCardState.loading:
+      case DSCardState.loading:
         return Icons.hourglass_empty;
-      case AppCardState.skeleton:
+      case DSCardState.skeleton:
         return Icons.view_module;
     }
   }

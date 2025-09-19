@@ -3,34 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/src/components/image/app_image_config.dart';
 import 'package:iautomat_design_system/src/utils/responsive.dart';
 
-/// Helper para manejar la responsividad y lazy loading del AppImage
+/// Helper para manejar la responsividad y lazy loading del DSImage
 ///
 /// Proporciona utilidades para:
 /// - Determinar la configuración apropiada según el breakpoint actual
 /// - Gestionar la carga lazy con intersection observer
 /// - Optimizar el tamaño de imagen según el dispositivo
 /// - Manejar diferentes resoluciones por densidad de píxeles
-class AppImageResponsiveHelper {
+class DSImageResponsiveHelper {
   /// Resuelve la configuración de imagen apropiada para el contexto actual
-  static AppImageBreakpointConfig resolveBreakpointConfig(
+  static DSImageBreakpointConfig resolveBreakpointConfig(
     BuildContext context,
-    AppImageResponsiveConfig? responsiveConfig,
+    DSImageResponsiveConfig? responsiveConfig,
   ) {
     if (responsiveConfig?.enabled != true) {
-      return const AppImageBreakpointConfig();
+      return const DSImageBreakpointConfig();
     }
 
     if (Responsive.isMobile(context)) {
-      return responsiveConfig?.mobile ?? const AppImageBreakpointConfig();
+      return responsiveConfig?.mobile ?? const DSImageBreakpointConfig();
     } else if (Responsive.isTablet(context)) {
       return responsiveConfig?.tablet ??
              responsiveConfig?.mobile ??
-             const AppImageBreakpointConfig();
+             const DSImageBreakpointConfig();
     } else {
       return responsiveConfig?.desktop ??
              responsiveConfig?.tablet ??
              responsiveConfig?.mobile ??
-             const AppImageBreakpointConfig();
+             const DSImageBreakpointConfig();
     }
   }
 
@@ -39,7 +39,7 @@ class AppImageResponsiveHelper {
     BuildContext context,
     double? baseWidth,
     double? baseHeight,
-    AppImageResponsiveConfig? responsiveConfig,
+    DSImageResponsiveConfig? responsiveConfig,
   ) {
     final config = resolveBreakpointConfig(context, responsiveConfig);
     final mediaQuery = MediaQuery.of(context);
@@ -72,7 +72,7 @@ class AppImageResponsiveHelper {
   static BoxFit resolveBoxFit(
     BuildContext context,
     BoxFit defaultFit,
-    AppImageResponsiveConfig? responsiveConfig,
+    DSImageResponsiveConfig? responsiveConfig,
   ) {
     final config = resolveBreakpointConfig(context, responsiveConfig);
     return config.fit ?? defaultFit;
@@ -82,7 +82,7 @@ class AppImageResponsiveHelper {
   static double? resolveAspectRatio(
     BuildContext context,
     double? defaultRatio,
-    AppImageResponsiveConfig? responsiveConfig,
+    DSImageResponsiveConfig? responsiveConfig,
   ) {
     final config = resolveBreakpointConfig(context, responsiveConfig);
     return config.ratio ?? defaultRatio;
@@ -92,7 +92,7 @@ class AppImageResponsiveHelper {
   static int resolveImageQuality(
     BuildContext context,
     int defaultQuality,
-    AppImageResponsiveConfig? responsiveConfig,
+    DSImageResponsiveConfig? responsiveConfig,
   ) {
     final config = resolveBreakpointConfig(context, responsiveConfig);
     return config.quality ?? defaultQuality;
@@ -102,7 +102,7 @@ class AppImageResponsiveHelper {
   static String buildResponsiveImageUrl(
     String baseUrl,
     BuildContext context,
-    AppImageResponsiveConfig? responsiveConfig,
+    DSImageResponsiveConfig? responsiveConfig,
     int defaultQuality,
   ) {
     if (!baseUrl.startsWith('http')) {
@@ -129,7 +129,7 @@ class AppImageResponsiveHelper {
   /// Determina si una imagen debe usar carga lazy basado en su posición
   static bool shouldUseLazyLoading(
     BuildContext context,
-    AppImageLazyConfig? lazyConfig,
+    DSImageLazyConfig? lazyConfig,
   ) {
     if (lazyConfig?.enabled != true) return false;
 
@@ -152,13 +152,13 @@ class AppImageResponsiveHelper {
 }
 
 /// Widget para manejar la visibilidad y carga lazy de imágenes
-class AppImageVisibilityDetector extends StatefulWidget {
+class DSImageVisibilityDetector extends StatefulWidget {
   final Widget child;
   final double threshold;
   final VoidCallback? onVisible;
   final VoidCallback? onHidden;
 
-  const AppImageVisibilityDetector({
+  const DSImageVisibilityDetector({
     super.key,
     required this.child,
     this.threshold = 200.0,
@@ -167,10 +167,10 @@ class AppImageVisibilityDetector extends StatefulWidget {
   });
 
   @override
-  State<AppImageVisibilityDetector> createState() => _AppImageVisibilityDetectorState();
+  State<DSImageVisibilityDetector> createState() => _DSImageVisibilityDetectorState();
 }
 
-class _AppImageVisibilityDetectorState extends State<AppImageVisibilityDetector> {
+class _DSImageVisibilityDetectorState extends State<DSImageVisibilityDetector> {
   bool _isVisible = false;
 
   @override
@@ -223,10 +223,10 @@ class _AppImageVisibilityDetectorState extends State<AppImageVisibilityDetector>
 }
 
 /// Extension para facilitar el uso de breakpoints responsivos
-extension AppImageBreakpointConfigExtension on AppImageBreakpointConfig {
+extension DSImageBreakpointConfigExtension on DSImageBreakpointConfig {
   /// Combina esta configuración con otra, dando prioridad a los valores no nulos
-  AppImageBreakpointConfig mergeWith(AppImageBreakpointConfig other) {
-    return AppImageBreakpointConfig(
+  DSImageBreakpointConfig mergeWith(DSImageBreakpointConfig other) {
+    return DSImageBreakpointConfig(
       width: width ?? other.width,
       height: height ?? other.height,
       fit: fit ?? other.fit,
@@ -246,10 +246,10 @@ extension AppImageBreakpointConfigExtension on AppImageBreakpointConfig {
 }
 
 /// Extension para facilitar el uso de configuración responsiva
-extension AppImageResponsiveConfigExtension on AppImageResponsiveConfig {
+extension DSImageResponsiveConfigExtension on DSImageResponsiveConfig {
   /// Obtiene la configuración más específica disponible para un contexto
-  AppImageBreakpointConfig getConfigForContext(BuildContext context) {
-    return AppImageResponsiveHelper.resolveBreakpointConfig(context, this);
+  DSImageBreakpointConfig getConfigForContext(BuildContext context) {
+    return DSImageResponsiveHelper.resolveBreakpointConfig(context, this);
   }
 
   /// Verifica si la configuración responsiva está habilitada y configurada

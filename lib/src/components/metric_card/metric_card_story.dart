@@ -11,10 +11,10 @@ class MetricCardStoryExample extends StatefulWidget {
 }
 
 class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
-  AppMetricCardVariant _selectedVariant = AppMetricCardVariant.delta;
-  AppMetricCardState _selectedState = AppMetricCardState.defaultState;
-  AppMetricCardSize _selectedSize = AppMetricCardSize.medium;
-  AppMetricCardLayout _selectedLayout = AppMetricCardLayout.vertical;
+  DSMetricCardVariant _selectedVariant = DSMetricCardVariant.delta;
+  DSMetricCardState _selectedState = DSMetricCardState.defaultState;
+  DSMetricCardSize _selectedSize = DSMetricCardSize.medium;
+  DSMetricCardLayout _selectedLayout = DSMetricCardLayout.vertical;
   bool _animationEnabled = true;
   bool _interactionEnabled = true;
 
@@ -24,7 +24,7 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppMetricCard Stories'),
+        title: const Text('DSMetricCard Stories'),
         backgroundColor: theme.colorScheme.surfaceContainer,
       ),
       body: SingleChildScrollView(
@@ -94,10 +94,10 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
       children: [
         const Text('Variante:'),
         const SizedBox(height: 8),
-        DropdownButton<AppMetricCardVariant>(
+        DropdownButton<DSMetricCardVariant>(
           value: _selectedVariant,
           onChanged: (value) => setState(() => _selectedVariant = value!),
-          items: AppMetricCardVariant.values.map((variant) {
+          items: DSMetricCardVariant.values.map((variant) {
             return DropdownMenuItem(
               value: variant,
               child: Text(variant.name),
@@ -114,10 +114,10 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
       children: [
         const Text('Estado:'),
         const SizedBox(height: 8),
-        DropdownButton<AppMetricCardState>(
+        DropdownButton<DSMetricCardState>(
           value: _selectedState,
           onChanged: (value) => setState(() => _selectedState = value!),
-          items: AppMetricCardState.values.map((state) {
+          items: DSMetricCardState.values.map((state) {
             return DropdownMenuItem(
               value: state,
               child: Text(state.name),
@@ -134,10 +134,10 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
       children: [
         const Text('Tamaño:'),
         const SizedBox(height: 8),
-        DropdownButton<AppMetricCardSize>(
+        DropdownButton<DSMetricCardSize>(
           value: _selectedSize,
           onChanged: (value) => setState(() => _selectedSize = value!),
-          items: AppMetricCardSize.values.map((size) {
+          items: DSMetricCardSize.values.map((size) {
             return DropdownMenuItem(
               value: size,
               child: Text(size.name),
@@ -154,10 +154,10 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
       children: [
         const Text('Layout:'),
         const SizedBox(height: 8),
-        DropdownButton<AppMetricCardLayout>(
+        DropdownButton<DSMetricCardLayout>(
           value: _selectedLayout,
           onChanged: (value) => setState(() => _selectedLayout = value!),
-          items: AppMetricCardLayout.values.map((layout) {
+          items: DSMetricCardLayout.values.map((layout) {
             return DropdownMenuItem(
               value: layout,
               child: Text(layout.name),
@@ -209,7 +209,7 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
         mainAxisSpacing: 16,
         childAspectRatio: 2.0,
         children: [
-          AppMetricCard(
+          DSMetricCard(
             variant: _selectedVariant,
             state: _selectedState,
             size: _selectedSize,
@@ -217,9 +217,9 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
             title: 'Usuarios Activos',
             value: '2,847',
             icon: Icons.people,
-            animation: AppMetricCardAnimation(
+            animation: DSMetricCardAnimation(
               enabled: _animationEnabled,
-              type: AppMetricCardAnimationType.fade,
+              type: DSMetricCardAnimationType.fade,
             ),
             onTap: _interactionEnabled
                 ? () {
@@ -230,7 +230,7 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
                   }
                 : null,
           ),
-          AppMetricCard(
+          DSMetricCard(
             variant: _selectedVariant,
             state: _selectedState,
             size: _selectedSize,
@@ -240,9 +240,9 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
             unit: 'USD',
             icon: Icons.attach_money,
             iconColor: Colors.green,
-            animation: AppMetricCardAnimation(
+            animation: DSMetricCardAnimation(
               enabled: _animationEnabled,
-              type: AppMetricCardAnimationType.slide,
+              type: DSMetricCardAnimationType.slide,
             ),
             onTap: _interactionEnabled
                 ? () {
@@ -252,7 +252,7 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
                   }
                 : null,
           ),
-          AppMetricCard(
+          DSMetricCard(
             variant: _selectedVariant,
             state: _selectedState,
             size: _selectedSize,
@@ -263,12 +263,12 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
             subtitle: 'Tasa de conversión',
             icon: Icons.trending_up,
             iconColor: Colors.blue,
-            animation: AppMetricCardAnimation(
+            animation: DSMetricCardAnimation(
               enabled: _animationEnabled,
-              type: AppMetricCardAnimationType.scale,
+              type: DSMetricCardAnimationType.scale,
             ),
           ),
-          AppMetricCard(
+          DSMetricCard(
             variant: _selectedVariant,
             state: _selectedState,
             size: _selectedSize,
@@ -278,9 +278,9 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
             unit: 'min',
             icon: Icons.timer,
             iconColor: Colors.orange,
-            animation: AppMetricCardAnimation(
+            animation: DSMetricCardAnimation(
               enabled: _animationEnabled,
-              type: AppMetricCardAnimationType.bounce,
+              type: DSMetricCardAnimationType.bounce,
             ),
           ),
         ],
@@ -300,61 +300,61 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
         mainAxisSpacing: 16,
         childAspectRatio: 1.8,
         children: [
-          AppMetricCard.delta(
+          DSMetricCard.delta(
             state: _selectedState,
             size: _selectedSize,
             layout: _selectedLayout,
             title: 'Ventas Mensuales',
             value: '\$24,567',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: 12.5,
-              type: AppMetricCardDeltaType.increase,
-              period: AppMetricCardDeltaPeriod.month,
+              type: DSMetricCardDeltaType.increase,
+              period: DSMetricCardDeltaPeriod.month,
             ),
             icon: Icons.shopping_cart,
             iconColor: Colors.green,
           ),
-          AppMetricCard.delta(
+          DSMetricCard.delta(
             state: _selectedState,
             size: _selectedSize,
             layout: _selectedLayout,
             title: 'Gastos Operativos',
             value: '\$8,234',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: -5.2,
-              type: AppMetricCardDeltaType.decrease,
-              period: AppMetricCardDeltaPeriod.month,
+              type: DSMetricCardDeltaType.decrease,
+              period: DSMetricCardDeltaPeriod.month,
               label: 'Reducción',
             ),
             icon: Icons.trending_down,
             iconColor: Colors.red,
           ),
-          AppMetricCard.delta(
+          DSMetricCard.delta(
             state: _selectedState,
             size: _selectedSize,
             layout: _selectedLayout,
             title: 'Usuarios Registrados',
             value: '1,247',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: 8.7,
-              type: AppMetricCardDeltaType.increase,
-              period: AppMetricCardDeltaPeriod.week,
+              type: DSMetricCardDeltaType.increase,
+              period: DSMetricCardDeltaPeriod.week,
               showPercentage: true,
             ),
             icon: Icons.person_add,
             iconColor: Colors.blue,
           ),
-          AppMetricCard.delta(
+          DSMetricCard.delta(
             state: _selectedState,
             size: _selectedSize,
             layout: _selectedLayout,
             title: 'Tiempo de Carga',
             value: '2.34',
             unit: 's',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: 0.0,
-              type: AppMetricCardDeltaType.neutral,
-              period: AppMetricCardDeltaPeriod.day,
+              type: DSMetricCardDeltaType.neutral,
+              period: DSMetricCardDeltaPeriod.day,
               label: 'Sin cambios',
             ),
             icon: Icons.speed,
@@ -382,7 +382,7 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
         mainAxisSpacing: 16,
         childAspectRatio: 1.8,
         children: [
-          AppMetricCard.sparkline(
+          DSMetricCard.sparkline(
             state: _selectedState,
             size: _selectedSize,
             layout: _selectedLayout,
@@ -392,7 +392,7 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
             icon: Icons.visibility,
             iconColor: Colors.blue,
           ),
-          AppMetricCard.sparkline(
+          DSMetricCard.sparkline(
             state: _selectedState,
             size: _selectedSize,
             layout: _selectedLayout,
@@ -403,7 +403,7 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
             icon: Icons.trending_up,
             iconColor: Colors.green,
           ),
-          AppMetricCard.sparkline(
+          DSMetricCard.sparkline(
             state: _selectedState,
             size: _selectedSize,
             layout: _selectedLayout,
@@ -413,7 +413,7 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
             icon: Icons.error_outline,
             iconColor: Colors.red,
           ),
-          AppMetricCard.sparkline(
+          DSMetricCard.sparkline(
             state: _selectedState,
             size: _selectedSize,
             layout: _selectedLayout,
@@ -436,27 +436,27 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
       Row(
         children: [
           Expanded(
-            child: AppMetricCard.delta(
-              size: AppMetricCardSize.small,
-              layout: AppMetricCardLayout.compact,
+            child: DSMetricCard.delta(
+              size: DSMetricCardSize.small,
+              layout: DSMetricCardLayout.compact,
               title: 'Pequeña',
               value: '123',
-              delta: const AppMetricCardDelta(
+              delta: const DSMetricCardDelta(
                 value: 5.2,
-                type: AppMetricCardDeltaType.increase,
+                type: DSMetricCardDeltaType.increase,
               ),
               icon: Icons.star,
             ),
           ),
           const SizedBox(width: 16),
           Expanded(
-            child: AppMetricCard.delta(
-              size: AppMetricCardSize.medium,
+            child: DSMetricCard.delta(
+              size: DSMetricCardSize.medium,
               title: 'Mediana',
               value: '4,567',
-              delta: const AppMetricCardDelta(
+              delta: const DSMetricCardDelta(
                 value: -2.1,
-                type: AppMetricCardDeltaType.decrease,
+                type: DSMetricCardDeltaType.decrease,
               ),
               icon: Icons.favorite,
               iconColor: Colors.red,
@@ -464,14 +464,14 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
           ),
           const SizedBox(width: 16),
           Expanded(
-            child: AppMetricCard.delta(
-              size: AppMetricCardSize.large,
+            child: DSMetricCard.delta(
+              size: DSMetricCardSize.large,
               title: 'Grande',
               value: '\$89,123',
               subtitle: 'Ingresos totales',
-              delta: const AppMetricCardDelta(
+              delta: const DSMetricCardDelta(
                 value: 15.7,
-                type: AppMetricCardDeltaType.increase,
+                type: DSMetricCardDeltaType.increase,
                 label: 'Crecimiento',
               ),
               icon: Icons.account_balance,
@@ -494,26 +494,26 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
           Row(
             children: [
               Expanded(
-                child: AppMetricCard.delta(
-                  layout: AppMetricCardLayout.vertical,
+                child: DSMetricCard.delta(
+                  layout: DSMetricCardLayout.vertical,
                   title: 'Layout Vertical',
                   value: '1,234',
-                  delta: const AppMetricCardDelta(
+                  delta: const DSMetricCardDelta(
                     value: 8.5,
-                    type: AppMetricCardDeltaType.increase,
+                    type: DSMetricCardDeltaType.increase,
                   ),
                   icon: Icons.vertical_align_top,
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: AppMetricCard.delta(
-                  layout: AppMetricCardLayout.horizontal,
+                child: DSMetricCard.delta(
+                  layout: DSMetricCardLayout.horizontal,
                   title: 'Layout Horizontal',
                   value: '5,678',
-                  delta: const AppMetricCardDelta(
+                  delta: const DSMetricCardDelta(
                     value: -3.2,
-                    type: AppMetricCardDeltaType.decrease,
+                    type: DSMetricCardDeltaType.decrease,
                   ),
                   icon: Icons.horizontal_rule,
                 ),
@@ -521,8 +521,8 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
             ],
           ),
           const SizedBox(height: 16),
-          AppMetricCard.sparkline(
-            layout: AppMetricCardLayout.compact,
+          DSMetricCard.sparkline(
+            layout: DSMetricCardLayout.compact,
             title: 'Layout Compacto con Sparkline',
             value: '9,876',
             trend: sampleTrend,
@@ -546,67 +546,67 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
         mainAxisSpacing: 16,
         childAspectRatio: 2.2,
         children: [
-          AppMetricCard.delta(
-            state: AppMetricCardState.defaultState,
+          DSMetricCard.delta(
+            state: DSMetricCardState.defaultState,
             title: 'Estado Normal',
             value: '1,234',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: 5.0,
-              type: AppMetricCardDeltaType.increase,
+              type: DSMetricCardDeltaType.increase,
             ),
             icon: Icons.check_circle,
           ),
-          AppMetricCard.delta(
-            state: AppMetricCardState.hover,
+          DSMetricCard.delta(
+            state: DSMetricCardState.hover,
             title: 'Estado Hover',
             value: '2,345',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: 3.2,
-              type: AppMetricCardDeltaType.increase,
+              type: DSMetricCardDeltaType.increase,
             ),
             icon: Icons.mouse,
             iconColor: Colors.blue,
           ),
-          AppMetricCard.delta(
-            state: AppMetricCardState.pressed,
+          DSMetricCard.delta(
+            state: DSMetricCardState.pressed,
             title: 'Estado Pressed',
             value: '3,456',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: -1.5,
-              type: AppMetricCardDeltaType.decrease,
+              type: DSMetricCardDeltaType.decrease,
             ),
             icon: Icons.touch_app,
             iconColor: Colors.orange,
           ),
-          AppMetricCard.delta(
-            state: AppMetricCardState.focus,
+          DSMetricCard.delta(
+            state: DSMetricCardState.focus,
             title: 'Estado Focus',
             value: '4,567',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: 7.8,
-              type: AppMetricCardDeltaType.increase,
+              type: DSMetricCardDeltaType.increase,
             ),
             icon: Icons.center_focus_strong,
             iconColor: Colors.purple,
           ),
-          AppMetricCard.delta(
-            state: AppMetricCardState.selected,
+          DSMetricCard.delta(
+            state: DSMetricCardState.selected,
             title: 'Estado Selected',
             value: '5,678',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: 2.1,
-              type: AppMetricCardDeltaType.increase,
+              type: DSMetricCardDeltaType.increase,
             ),
             icon: Icons.radio_button_checked,
             iconColor: Colors.green,
           ),
-          AppMetricCard.delta(
-            state: AppMetricCardState.disabled,
+          DSMetricCard.delta(
+            state: DSMetricCardState.disabled,
             title: 'Estado Disabled',
             value: '6,789',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: 0.0,
-              type: AppMetricCardDeltaType.neutral,
+              type: DSMetricCardDeltaType.neutral,
             ),
             icon: Icons.block,
             iconColor: Colors.grey,
@@ -625,20 +625,20 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
           Row(
             children: [
               Expanded(
-                child: AppMetricCard.delta(
+                child: DSMetricCard.delta(
                   title: 'Ventas Premium',
                   value: '\$156,789',
-                  delta: const AppMetricCardDelta(
+                  delta: const DSMetricCardDelta(
                     value: 23.5,
-                    type: AppMetricCardDeltaType.increase,
+                    type: DSMetricCardDeltaType.increase,
                     label: 'Este mes',
                   ),
-                  style: AppMetricCardStyle(
+                  style: DSMetricCardStyle(
                     backgroundColor: Colors.blue.withValues(alpha: 0.05),
                     borderColor: Colors.blue,
                     borderWidth: 2,
                     borderRadius: 16,
-                    deltaStyle: AppMetricCardDeltaStyle(
+                    deltaStyle: DSMetricCardDeltaStyle(
                       backgroundColor: Colors.green.withValues(alpha: 0.1),
                       foregroundColor: Colors.green.shade700,
                       borderRadius: 12,
@@ -656,7 +656,7 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: AppMetricCard(
+                child: DSMetricCard(
                   title: 'Métrica Personalizada',
                   value: 'N/A',
                   customValueWidget: Row(
@@ -692,17 +692,17 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
             ],
           ),
           const SizedBox(height: 16),
-          AppMetricCard.sparkline(
+          DSMetricCard.sparkline(
             title: 'Rendimiento del Servidor',
             value: '99.9',
             unit: '%',
             subtitle: 'Tiempo de actividad',
             trend: _generateHighPerformanceTrend(),
-            style: AppMetricCardStyle(
+            style: DSMetricCardStyle(
               backgroundColor: Colors.green.withValues(alpha: 0.05),
               borderColor: Colors.green,
               borderWidth: 1,
-              sparklineStyle: AppMetricCardSparklineStyle(
+              sparklineStyle: DSMetricCardSparklineStyle(
                 lineColor: Colors.green,
                 fillColor: Colors.green.withValues(alpha: 0.2),
                 showFill: true,
@@ -724,16 +724,16 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
       'Tarjetas con múltiples elementos y funcionalidades avanzadas.',
       Column(
         children: [
-          AppMetricCard.delta(
-            size: AppMetricCardSize.large,
+          DSMetricCard.delta(
+            size: DSMetricCardSize.large,
             title: 'Dashboard Ejecutivo',
             value: '\$2,847,392',
             unit: 'USD',
             subtitle: 'Ingresos totales del trimestre',
-            delta: const AppMetricCardDelta(
+            delta: const DSMetricCardDelta(
               value: 18.7,
-              type: AppMetricCardDeltaType.increase,
-              period: AppMetricCardDeltaPeriod.quarter,
+              type: DSMetricCardDeltaType.increase,
+              period: DSMetricCardDeltaPeriod.quarter,
               label: 'vs Q3',
               showPercentage: true,
             ),
@@ -786,16 +786,16 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
           Row(
             children: [
               Expanded(
-                child: AppMetricCard.sparkline(
-                  layout: AppMetricCardLayout.horizontal,
+                child: DSMetricCard.sparkline(
+                  layout: DSMetricCardLayout.horizontal,
                   title: 'Tráfico Web',
                   value: '45.2K',
                   subtitle: 'Visitantes únicos',
                   trend: _generateWebTrafficTrend(),
                   icon: Icons.language,
                   iconColor: Colors.blue,
-                  style: AppMetricCardStyle(
-                    sparklineStyle: AppMetricCardSparklineStyle(
+                  style: DSMetricCardStyle(
+                    sparklineStyle: DSMetricCardSparklineStyle(
                       lineColor: Colors.blue,
                       fillColor: Colors.blue.withValues(alpha: 0.1),
                       showFill: true,
@@ -806,14 +806,14 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: AppMetricCard.delta(
-                  layout: AppMetricCardLayout.compact,
+                child: DSMetricCard.delta(
+                  layout: DSMetricCardLayout.compact,
                   title: 'Conversión',
                   value: '3.8',
                   unit: '%',
-                  delta: const AppMetricCardDelta(
+                  delta: const DSMetricCardDelta(
                     value: 0.3,
-                    type: AppMetricCardDeltaType.increase,
+                    type: DSMetricCardDeltaType.increase,
                     showPercentage: false,
                     unit: 'pp',
                   ),
@@ -840,31 +840,31 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
         mainAxisSpacing: 16,
         childAspectRatio: 2.0,
         children: [
-          const AppMetricCard(
-            state: AppMetricCardState.skeleton,
+          const DSMetricCard(
+            state: DSMetricCardState.skeleton,
             title: 'Cargando...',
             value: '---',
             icon: Icons.hourglass_empty,
           ),
-          const AppMetricCard.delta(
-            state: AppMetricCardState.skeleton,
+          const DSMetricCard.delta(
+            state: DSMetricCardState.skeleton,
             title: 'Cargando...',
             value: '---',
-            delta: AppMetricCardDelta(
+            delta: DSMetricCardDelta(
               value: 0,
-              type: AppMetricCardDeltaType.neutral,
+              type: DSMetricCardDeltaType.neutral,
             ),
             icon: Icons.hourglass_empty,
           ),
-          AppMetricCard.sparkline(
-            state: AppMetricCardState.skeleton,
+          DSMetricCard.sparkline(
+            state: DSMetricCardState.skeleton,
             title: 'Cargando...',
             value: '---',
             trend: const [],
             icon: Icons.hourglass_empty,
           ),
-          const AppMetricCard(
-            state: AppMetricCardState.loading,
+          const DSMetricCard(
+            state: DSMetricCardState.loading,
             title: 'Procesando...',
             value: '...',
             icon: Icons.refresh,
@@ -903,65 +903,65 @@ class _MetricCardStoryExampleState extends State<MetricCardStoryExample> {
     );
   }
 
-  List<AppMetricCardDataPoint> _generateSampleTrend() {
+  List<DSMetricCardDataPoint> _generateSampleTrend() {
     final now = DateTime.now();
     return List.generate(15, (index) {
-      return AppMetricCardDataPoint(
+      return DSMetricCardDataPoint(
         value: 50 + (index * 5) + (index % 3) * 10,
         timestamp: now.subtract(Duration(days: 14 - index)),
       );
     });
   }
 
-  List<AppMetricCardDataPoint> _generateVolatileTrend() {
+  List<DSMetricCardDataPoint> _generateVolatileTrend() {
     final now = DateTime.now();
     return List.generate(20, (index) {
       final base = 30.0;
       final volatility = (index % 4) * 15 - 7.5;
-      return AppMetricCardDataPoint(
+      return DSMetricCardDataPoint(
         value: base + volatility,
         timestamp: now.subtract(Duration(hours: 19 - index)),
       );
     });
   }
 
-  List<AppMetricCardDataPoint> _generateGrowthTrend() {
+  List<DSMetricCardDataPoint> _generateGrowthTrend() {
     final now = DateTime.now();
     return List.generate(12, (index) {
-      return AppMetricCardDataPoint(
+      return DSMetricCardDataPoint(
         value: 20 + (index * index * 0.8),
         timestamp: now.subtract(Duration(days: 11 - index)),
       );
     });
   }
 
-  List<AppMetricCardDataPoint> _generateDeclineTrend() {
+  List<DSMetricCardDataPoint> _generateDeclineTrend() {
     final now = DateTime.now();
     return List.generate(10, (index) {
-      return AppMetricCardDataPoint(
+      return DSMetricCardDataPoint(
         value: 100 - (index * index * 1.2),
         timestamp: now.subtract(Duration(days: 9 - index)),
       );
     });
   }
 
-  List<AppMetricCardDataPoint> _generateHighPerformanceTrend() {
+  List<DSMetricCardDataPoint> _generateHighPerformanceTrend() {
     final now = DateTime.now();
     return List.generate(24, (index) {
       final base = 99.5;
       final noise = (index % 5) * 0.1;
-      return AppMetricCardDataPoint(
+      return DSMetricCardDataPoint(
         value: base + noise,
         timestamp: now.subtract(Duration(hours: 23 - index)),
       );
     });
   }
 
-  List<AppMetricCardDataPoint> _generateWebTrafficTrend() {
+  List<DSMetricCardDataPoint> _generateWebTrafficTrend() {
     final now = DateTime.now();
     return List.generate(7, (index) {
       final weekend = (index == 0 || index == 6) ? 0.7 : 1.0;
-      return AppMetricCardDataPoint(
+      return DSMetricCardDataPoint(
         value: (40000 + index * 2000) * weekend + (index % 2) * 1000,
         timestamp: now.subtract(Duration(days: 6 - index)),
       );
@@ -974,7 +974,7 @@ class MetricCardBasicStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppMetricCard(
+    return const DSMetricCard(
       title: 'Usuarios Activos',
       value: '2,847',
       icon: Icons.people,
@@ -987,13 +987,13 @@ class MetricCardDeltaStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppMetricCard.delta(
+    return const DSMetricCard.delta(
       title: 'Ingresos Mensuales',
       value: '\$24,567',
-      delta: AppMetricCardDelta(
+      delta: DSMetricCardDelta(
         value: 12.5,
-        type: AppMetricCardDeltaType.increase,
-        period: AppMetricCardDeltaPeriod.month,
+        type: DSMetricCardDeltaType.increase,
+        period: DSMetricCardDeltaPeriod.month,
       ),
       icon: Icons.attach_money,
       iconColor: Colors.green,
@@ -1007,13 +1007,13 @@ class MetricCardSparklineStory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final trend = List.generate(10, (index) {
-      return AppMetricCardDataPoint(
+      return DSMetricCardDataPoint(
         value: 50 + index * 5.0,
         timestamp: DateTime.now().subtract(Duration(days: 9 - index)),
       );
     });
 
-    return AppMetricCard.sparkline(
+    return DSMetricCard.sparkline(
       title: 'Visitas del Sitio',
       value: '12,847',
       trend: trend,
@@ -1028,8 +1028,8 @@ class MetricCardSkeletonStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppMetricCard(
-      state: AppMetricCardState.skeleton,
+    return const DSMetricCard(
+      state: DSMetricCardState.skeleton,
       title: 'Cargando...',
       value: '---',
       icon: Icons.hourglass_empty,
@@ -1042,16 +1042,16 @@ class MetricCardCustomStory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppMetricCard.delta(
+    return DSMetricCard.delta(
       title: 'Métrica Premium',
       value: '\$89,123',
       subtitle: 'Ingresos especiales',
-      delta: const AppMetricCardDelta(
+      delta: const DSMetricCardDelta(
         value: 23.5,
-        type: AppMetricCardDeltaType.increase,
+        type: DSMetricCardDeltaType.increase,
         label: 'Excelente',
       ),
-      style: AppMetricCardStyle(
+      style: DSMetricCardStyle(
         backgroundColor: Colors.blue.withValues(alpha: 0.05),
         borderColor: Colors.blue,
         borderWidth: 2,

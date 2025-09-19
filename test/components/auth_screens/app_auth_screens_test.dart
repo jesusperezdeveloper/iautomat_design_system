@@ -4,42 +4,42 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppAuthScreens', () {
+  group('DSAuthScreens', () {
     testWidgets('renders correctly with default configuration', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(),
             fields: const [
-              AppAuthField(
+              DSAuthField(
                 key: 'email',
                 label: 'Email',
-                type: AppAuthFieldType.email,
+                type: DSAuthFieldType.email,
                 required: true,
               ),
             ],
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
           ),
         ),
       );
 
-      expect(find.byType(AppAuthScreens), findsOneWidget);
+      expect(find.byType(DSAuthScreens), findsOneWidget);
       expect(find.text('Email'), findsOneWidget);
     });
 
     testWidgets('shows all sign-in fields correctly', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           required: true,
         ),
-        AppAuthField(
+        DSAuthField(
           key: 'password',
           label: 'Contraseña',
-          type: AppAuthFieldType.password,
+          type: DSAuthFieldType.password,
           required: true,
           sensitive: true,
         ),
@@ -47,11 +47,11 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(variant: AppAuthVariant.signIn),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(variant: DSAuthVariant.signIn),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
           ),
         ),
       );
@@ -63,29 +63,29 @@ void main() {
 
     testWidgets('shows sign-up fields correctly', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'name',
           label: 'Nombre',
-          type: AppAuthFieldType.text,
+          type: DSAuthFieldType.text,
           required: true,
         ),
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           required: true,
         ),
-        AppAuthField(
+        DSAuthField(
           key: 'password',
           label: 'Contraseña',
-          type: AppAuthFieldType.password,
+          type: DSAuthFieldType.password,
           required: true,
           sensitive: true,
         ),
-        AppAuthField(
+        DSAuthField(
           key: 'confirmPassword',
           label: 'Confirmar contraseña',
-          type: AppAuthFieldType.confirmPassword,
+          type: DSAuthFieldType.confirmPassword,
           required: true,
           sensitive: true,
         ),
@@ -93,11 +93,11 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(variant: AppAuthVariant.signUp),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(variant: DSAuthVariant.signUp),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
           ),
         ),
       );
@@ -111,10 +111,10 @@ void main() {
 
     testWidgets('shows OTP field correctly', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'otp',
           label: 'Código de verificación',
-          type: AppAuthFieldType.otp,
+          type: DSAuthFieldType.otp,
           required: true,
           maxLength: 6,
         ),
@@ -122,11 +122,11 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(variant: AppAuthVariant.otp),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(variant: DSAuthVariant.otp),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
             onResendOtp: () async => true,
           ),
         ),
@@ -138,13 +138,13 @@ void main() {
 
     testWidgets('shows social providers correctly', (tester) async {
       const providers = [
-        AppAuthProvider(
+        DSAuthProvider(
           id: 'google',
           name: 'google',
           displayName: 'Google',
           icon: Icons.login,
         ),
-        AppAuthProvider(
+        DSAuthProvider(
           id: 'apple',
           name: 'apple',
           displayName: 'Apple',
@@ -154,12 +154,12 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(variant: AppAuthVariant.sso),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(variant: DSAuthVariant.sso),
             fields: const [],
             providers: providers,
-            onSubmit: (data) async => const AppAuthResult(success: true),
-            onProviderAuth: (provider) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
+            onProviderAuth: (provider) async => const DSAuthResult(success: true),
           ),
         ),
       );
@@ -171,10 +171,10 @@ void main() {
 
     testWidgets('toggles password visibility', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'password',
           label: 'Contraseña',
-          type: AppAuthFieldType.password,
+          type: DSAuthFieldType.password,
           required: true,
           sensitive: true,
         ),
@@ -182,11 +182,11 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
           ),
         ),
       );
@@ -204,21 +204,21 @@ void main() {
 
     testWidgets('validates required fields', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           required: true,
         ),
       ];
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
           ),
         ),
       );
@@ -233,21 +233,21 @@ void main() {
 
     testWidgets('validates email format', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           required: true,
         ),
       ];
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
           ),
         ),
       );
@@ -266,17 +266,17 @@ void main() {
 
     testWidgets('validates password confirmation', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'password',
           label: 'Contraseña',
-          type: AppAuthFieldType.password,
+          type: DSAuthFieldType.password,
           required: true,
           sensitive: true,
         ),
-        AppAuthField(
+        DSAuthField(
           key: 'confirmPassword',
           label: 'Confirmar contraseña',
-          type: AppAuthFieldType.confirmPassword,
+          type: DSAuthFieldType.confirmPassword,
           required: true,
           sensitive: true,
         ),
@@ -284,11 +284,11 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
           ),
         ),
       );
@@ -310,27 +310,27 @@ void main() {
 
     testWidgets('handles form submission', (tester) async {
       bool submitted = false;
-      AppAuthFormData? submittedData;
+      DSAuthFormData? submittedData;
 
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           required: true,
         ),
       ];
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(),
             fields: fields,
             providers: const [],
             onSubmit: (data) async {
               submitted = true;
               submittedData = data;
-              return const AppAuthResult(success: true);
+              return const DSAuthResult(success: true);
             },
           ),
         ),
@@ -353,10 +353,10 @@ void main() {
 
     testWidgets('handles provider authentication', (tester) async {
       bool providerUsed = false;
-      AppAuthProvider? usedProvider;
+      DSAuthProvider? usedProvider;
 
       const providers = [
-        AppAuthProvider(
+        DSAuthProvider(
           id: 'google',
           name: 'google',
           displayName: 'Google',
@@ -366,15 +366,15 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(),
             fields: const [],
             providers: providers,
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
             onProviderAuth: (provider) async {
               providerUsed = true;
               usedProvider = provider;
-              return const AppAuthResult(success: true);
+              return const DSAuthResult(success: true);
             },
           ),
         ),
@@ -393,23 +393,23 @@ void main() {
 
     testWidgets('shows loading state during submission', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           required: true,
         ),
       ];
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(),
             fields: fields,
             providers: const [],
             onSubmit: (data) async {
               await Future.delayed(const Duration(seconds: 1));
-              return const AppAuthResult(success: true);
+              return const DSAuthResult(success: true);
             },
           ),
         ),
@@ -432,43 +432,43 @@ void main() {
 
     testWidgets('shows skeleton state correctly', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           required: true,
         ),
       ];
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(state: AppAuthState.skeleton),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(state: DSAuthState.skeleton),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
           ),
         ),
       );
 
       // Should show skeleton loading state
-      expect(find.byType(AppAuthScreens), findsOneWidget);
+      expect(find.byType(DSAuthScreens), findsOneWidget);
       // Note: Skeleton implementation would need more specific testing
       // based on the actual skeleton widget structure
     });
 
     testWidgets('handles keyboard navigation', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           required: true,
         ),
-        AppAuthField(
+        DSAuthField(
           key: 'password',
           label: 'Contraseña',
-          type: AppAuthFieldType.password,
+          type: DSAuthFieldType.password,
           required: true,
           sensitive: true,
         ),
@@ -476,11 +476,11 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
           ),
         ),
       );
@@ -502,24 +502,24 @@ void main() {
     });
 
     testWidgets('handles form state changes', (tester) async {
-      AppAuthFormData? changedData;
+      DSAuthFormData? changedData;
 
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           required: true,
         ),
       ];
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
             onFormChanged: (data) {
               changedData = data;
             },
@@ -537,10 +537,10 @@ void main() {
 
     testWidgets('respects disabled state', (tester) async {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           required: true,
           enabled: false,
         ),
@@ -548,11 +548,11 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: AppAuthScreens(
-            config: const AppAuthScreensConfig(state: AppAuthState.disabled),
+          home: DSAuthScreens(
+            config: const DSAuthScreensConfig(state: DSAuthState.disabled),
             fields: fields,
             providers: const [],
-            onSubmit: (data) async => const AppAuthResult(success: true),
+            onSubmit: (data) async => const DSAuthResult(success: true),
           ),
         ),
       );
@@ -562,39 +562,39 @@ void main() {
     });
   });
 
-  group('AppAuthUtils', () {
+  group('DSAuthUtils', () {
     test('validates email field correctly', () {
-      const field = AppAuthField(
+      const field = DSAuthField(
         key: 'email',
         label: 'Email',
-        type: AppAuthFieldType.email,
+        type: DSAuthFieldType.email,
         required: true,
       );
 
       // Valid email
-      final validResult = AppAuthUtils.validateField(field, 'test@example.com');
+      final validResult = DSAuthUtils.validateField(field, 'test@example.com');
       expect(validResult.isValid, true);
 
       // Invalid email
-      final invalidResult = AppAuthUtils.validateField(field, 'invalid-email');
+      final invalidResult = DSAuthUtils.validateField(field, 'invalid-email');
       expect(invalidResult.isValid, false);
       expect(invalidResult.errorMessage, 'Ingresa un email válido');
 
       // Empty required field
-      final emptyResult = AppAuthUtils.validateField(field, '');
+      final emptyResult = DSAuthUtils.validateField(field, '');
       expect(emptyResult.isValid, false);
       expect(emptyResult.errorMessage, 'Este campo es requerido');
     });
 
     test('validates password field correctly', () {
-      const field = AppAuthField(
+      const field = DSAuthField(
         key: 'password',
         label: 'Contraseña',
-        type: AppAuthFieldType.password,
+        type: DSAuthFieldType.password,
         required: true,
       );
 
-      const config = AppAuthValidation(
+      const config = DSAuthValidation(
         minPasswordLength: 8,
         requirePasswordUppercase: true,
         requirePasswordLowercase: true,
@@ -603,7 +603,7 @@ void main() {
       );
 
       // Valid password
-      final validResult = AppAuthUtils.validateField(
+      final validResult = DSAuthUtils.validateField(
         field,
         'Password123!',
         validationConfig: config,
@@ -611,7 +611,7 @@ void main() {
       expect(validResult.isValid, true);
 
       // Too short password
-      final shortResult = AppAuthUtils.validateField(
+      final shortResult = DSAuthUtils.validateField(
         field,
         'Pass1!',
         validationConfig: config,
@@ -620,7 +620,7 @@ void main() {
       expect(shortResult.errorMessage, contains('8 caracteres'));
 
       // No uppercase
-      final noUpperResult = AppAuthUtils.validateField(
+      final noUpperResult = DSAuthUtils.validateField(
         field,
         'password123!',
         validationConfig: config,
@@ -629,7 +629,7 @@ void main() {
       expect(noUpperResult.errorMessage, contains('mayúscula'));
 
       // No number
-      final noNumberResult = AppAuthUtils.validateField(
+      final noNumberResult = DSAuthUtils.validateField(
         field,
         'Password!',
         validationConfig: config,
@@ -638,7 +638,7 @@ void main() {
       expect(noNumberResult.errorMessage, contains('número'));
 
       // No special character
-      final noSpecialResult = AppAuthUtils.validateField(
+      final noSpecialResult = DSAuthUtils.validateField(
         field,
         'Password123',
         validationConfig: config,
@@ -648,15 +648,15 @@ void main() {
     });
 
     test('validates confirm password field correctly', () {
-      const field = AppAuthField(
+      const field = DSAuthField(
         key: 'confirmPassword',
         label: 'Confirmar contraseña',
-        type: AppAuthFieldType.confirmPassword,
+        type: DSAuthFieldType.confirmPassword,
         required: true,
       );
 
       // Matching passwords
-      final matchingResult = AppAuthUtils.validateField(
+      final matchingResult = DSAuthUtils.validateField(
         field,
         'password123',
         confirmPasswordValue: 'password123',
@@ -664,7 +664,7 @@ void main() {
       expect(matchingResult.isValid, true);
 
       // Non-matching passwords
-      final nonMatchingResult = AppAuthUtils.validateField(
+      final nonMatchingResult = DSAuthUtils.validateField(
         field,
         'password123',
         confirmPasswordValue: 'different',
@@ -674,25 +674,25 @@ void main() {
     });
 
     test('validates OTP field correctly', () {
-      const field = AppAuthField(
+      const field = DSAuthField(
         key: 'otp',
         label: 'Código OTP',
-        type: AppAuthFieldType.otp,
+        type: DSAuthFieldType.otp,
         required: true,
         maxLength: 6,
       );
 
       // Valid OTP
-      final validResult = AppAuthUtils.validateField(field, '123456');
+      final validResult = DSAuthUtils.validateField(field, '123456');
       expect(validResult.isValid, true);
 
       // Invalid length
-      final shortResult = AppAuthUtils.validateField(field, '1234');
+      final shortResult = DSAuthUtils.validateField(field, '1234');
       expect(shortResult.isValid, false);
       expect(shortResult.errorMessage, contains('6 dígitos'));
 
       // Non-numeric
-      final nonNumericResult = AppAuthUtils.validateField(field, '12a456');
+      final nonNumericResult = DSAuthUtils.validateField(field, '12a456');
       expect(nonNumericResult.isValid, false);
       expect(nonNumericResult.errorMessage, contains('números'));
     });
@@ -700,35 +700,35 @@ void main() {
     test('formats field values correctly', () {
       // Phone formatting
       expect(
-        AppAuthUtils.formatFieldValue(AppAuthFieldType.phone, '1234567890'),
+        DSAuthUtils.formatFieldValue(DSAuthFieldType.phone, '1234567890'),
         '(123) 456-7890',
       );
 
       // OTP formatting
       expect(
-        AppAuthUtils.formatFieldValue(AppAuthFieldType.otp, '123abc456'),
+        DSAuthUtils.formatFieldValue(DSAuthFieldType.otp, '123abc456'),
         '123456',
       );
 
       // Other types remain unchanged
       expect(
-        AppAuthUtils.formatFieldValue(AppAuthFieldType.text, 'test'),
+        DSAuthUtils.formatFieldValue(DSAuthFieldType.text, 'test'),
         'test',
       );
     });
 
     test('masks sensitive data correctly', () {
       const fields = [
-        AppAuthField(
+        DSAuthField(
           key: 'email',
           label: 'Email',
-          type: AppAuthFieldType.email,
+          type: DSAuthFieldType.email,
           sensitive: false,
         ),
-        AppAuthField(
+        DSAuthField(
           key: 'password',
           label: 'Password',
-          type: AppAuthFieldType.password,
+          type: DSAuthFieldType.password,
           sensitive: true,
         ),
       ];
@@ -738,28 +738,28 @@ void main() {
         'password': 'secretpassword',
       };
 
-      final masked = AppAuthUtils.maskSensitiveData(fields, values);
+      final masked = DSAuthUtils.maskSensitiveData(fields, values);
 
       expect(masked['email'], 'test@example.com');
       expect(masked['password'], '**************');
     });
   });
 
-  group('AppAuthVariant Extensions', () {
+  group('DSAuthVariant Extensions', () {
     test('returns correct display names', () {
-      expect(AppAuthVariant.signIn.displayName, 'Iniciar Sesión');
-      expect(AppAuthVariant.signUp.displayName, 'Crear Cuenta');
-      expect(AppAuthVariant.otp.displayName, 'Verificación');
-      expect(AppAuthVariant.sso.displayName, 'Autenticación Social');
+      expect(DSAuthVariant.signIn.displayName, 'Iniciar Sesión');
+      expect(DSAuthVariant.signUp.displayName, 'Crear Cuenta');
+      expect(DSAuthVariant.otp.displayName, 'Verificación');
+      expect(DSAuthVariant.sso.displayName, 'Autenticación Social');
     });
 
     test('returns correct default fields', () {
-      final signInFields = AppAuthVariant.signIn.defaultFields;
+      final signInFields = DSAuthVariant.signIn.defaultFields;
       expect(signInFields.length, 2);
       expect(signInFields[0].key, 'email');
       expect(signInFields[1].key, 'password');
 
-      final signUpFields = AppAuthVariant.signUp.defaultFields;
+      final signUpFields = DSAuthVariant.signUp.defaultFields;
       expect(signUpFields.length, 5);
       expect(signUpFields[0].key, 'name');
       expect(signUpFields[1].key, 'email');
@@ -767,11 +767,11 @@ void main() {
       expect(signUpFields[3].key, 'confirmPassword');
       expect(signUpFields[4].key, 'terms');
 
-      final otpFields = AppAuthVariant.otp.defaultFields;
+      final otpFields = DSAuthVariant.otp.defaultFields;
       expect(otpFields.length, 1);
       expect(otpFields[0].key, 'otp');
 
-      final ssoFields = AppAuthVariant.sso.defaultFields;
+      final ssoFields = DSAuthVariant.sso.defaultFields;
       expect(ssoFields.length, 0);
     });
   });

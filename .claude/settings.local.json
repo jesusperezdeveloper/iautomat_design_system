@@ -23,7 +23,15 @@
       "Bash(./regen.sh:*)",
       "Bash(pkill:*)",
       "WebSearch",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(git checkout:*)",
+      "Bash(rg:*)",
+      "Bash(tee:*)",
+      "Bash(/tmp/rename_app_to_ds.sh:*)",
+      "Bash(xargs sed:*)",
+      "Bash(python3:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

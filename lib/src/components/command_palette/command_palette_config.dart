@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'command_palette_config.freezed.dart';
 
 /// Command palette variant types
-enum AppCommandPaletteVariant {
+enum DSCommandPaletteVariant {
   /// Global search functionality
   globalSearch,
 
@@ -14,7 +14,7 @@ enum AppCommandPaletteVariant {
 }
 
 /// Command palette state types
-enum AppCommandPaletteState {
+enum DSCommandPaletteState {
   /// Default state
   defaultState,
 
@@ -41,7 +41,7 @@ enum AppCommandPaletteState {
 }
 
 /// Command palette size variants
-enum AppCommandPaletteSize {
+enum DSCommandPaletteSize {
   /// Small command palette
   small,
 
@@ -53,7 +53,7 @@ enum AppCommandPaletteSize {
 }
 
 /// Command palette position
-enum AppCommandPalettePosition {
+enum DSCommandPalettePosition {
   /// Center of the screen
   center,
 
@@ -65,7 +65,7 @@ enum AppCommandPalettePosition {
 }
 
 /// Command palette result type
-enum AppCommandResultType {
+enum DSCommandResultType {
   /// Command action
   command,
 
@@ -88,19 +88,19 @@ enum AppCommandResultType {
   custom,
 }
 
-/// Configuration model for AppCommandPalette
+/// Configuration model for DSCommandPalette
 @freezed
-class AppCommandPaletteConfig with _$AppCommandPaletteConfig {
-  const factory AppCommandPaletteConfig({
+class DSCommandPaletteConfig with _$DSCommandPaletteConfig {
+  const factory DSCommandPaletteConfig({
     // Animation configuration
     @Default(Duration(milliseconds: 300)) Duration animationDuration,
     @Default(Curves.easeInOutCubic) Curve animationCurve,
     @Default(Duration(milliseconds: 200)) Duration debounceDelay,
 
     // Size and positioning
-    @Default(AppCommandPaletteSize.medium) AppCommandPaletteSize size,
-    @Default(AppCommandPalettePosition.center)
-    AppCommandPalettePosition position,
+    @Default(DSCommandPaletteSize.medium) DSCommandPaletteSize size,
+    @Default(DSCommandPalettePosition.center)
+    DSCommandPalettePosition position,
     @Default(600.0) double maxWidth,
     @Default(400.0) double maxHeight,
     @Default(EdgeInsets.all(16.0)) EdgeInsets margin,
@@ -207,11 +207,11 @@ class AppCommandPaletteConfig with _$AppCommandPaletteConfig {
     BoxConstraints? constraints,
     double? minWidth,
     double? minHeight,
-  }) = _AppCommandPaletteConfig;
+  }) = _DSCommandPaletteConfig;
 
   /// Default configuration for small size
-  static const AppCommandPaletteConfig small = AppCommandPaletteConfig(
-    size: AppCommandPaletteSize.small,
+  static const DSCommandPaletteConfig small = DSCommandPaletteConfig(
+    size: DSCommandPaletteSize.small,
     maxWidth: 480.0,
     maxHeight: 320.0,
     resultHeight: 40.0,
@@ -222,8 +222,8 @@ class AppCommandPaletteConfig with _$AppCommandPaletteConfig {
   );
 
   /// Default configuration for medium size
-  static const AppCommandPaletteConfig medium = AppCommandPaletteConfig(
-    size: AppCommandPaletteSize.medium,
+  static const DSCommandPaletteConfig medium = DSCommandPaletteConfig(
+    size: DSCommandPaletteSize.medium,
     maxWidth: 600.0,
     maxHeight: 400.0,
     resultHeight: 48.0,
@@ -234,8 +234,8 @@ class AppCommandPaletteConfig with _$AppCommandPaletteConfig {
   );
 
   /// Default configuration for large size
-  static const AppCommandPaletteConfig large = AppCommandPaletteConfig(
-    size: AppCommandPaletteSize.large,
+  static const DSCommandPaletteConfig large = DSCommandPaletteConfig(
+    size: DSCommandPaletteSize.large,
     maxWidth: 720.0,
     maxHeight: 480.0,
     resultHeight: 56.0,
@@ -248,10 +248,10 @@ class AppCommandPaletteConfig with _$AppCommandPaletteConfig {
 
 /// Data model for command palette results
 @freezed
-class AppCommandResult with _$AppCommandResult {
-  const AppCommandResult._();
+class DSCommandResult with _$DSCommandResult {
+  const DSCommandResult._();
 
-  const factory AppCommandResult({
+  const factory DSCommandResult({
     /// Unique identifier for the result
     required String id,
 
@@ -265,7 +265,7 @@ class AppCommandResult with _$AppCommandResult {
     IconData? icon,
 
     /// Result type
-    @Default(AppCommandResultType.command) AppCommandResultType type,
+    @Default(DSCommandResultType.command) DSCommandResultType type,
 
     /// Optional keyboard shortcut
     List<LogicalKeyboardKey>? shortcut,
@@ -290,7 +290,7 @@ class AppCommandResult with _$AppCommandResult {
   }) = _AppCommandResult;
 
   /// Create a navigation result
-  factory AppCommandResult.navigation({
+  factory DSCommandResult.navigation({
     required String id,
     required String title,
     String? description,
@@ -298,19 +298,19 @@ class AppCommandResult with _$AppCommandResult {
     List<LogicalKeyboardKey>? shortcut,
     String? shortcutText,
   }) {
-    return AppCommandResult(
+    return DSCommandResult(
       id: id,
       title: title,
       description: description,
       icon: icon ?? Icons.navigation,
-      type: AppCommandResultType.navigation,
+      type: DSCommandResultType.navigation,
       shortcut: shortcut,
       shortcutText: shortcutText,
     );
   }
 
   /// Create a command action result
-  factory AppCommandResult.action({
+  factory DSCommandResult.action({
     required String id,
     required String title,
     String? description,
@@ -318,31 +318,31 @@ class AppCommandResult with _$AppCommandResult {
     List<LogicalKeyboardKey>? shortcut,
     String? shortcutText,
   }) {
-    return AppCommandResult(
+    return DSCommandResult(
       id: id,
       title: title,
       description: description,
       icon: icon ?? Icons.flash_on,
-      type: AppCommandResultType.command,
+      type: DSCommandResultType.command,
       shortcut: shortcut,
       shortcutText: shortcutText,
     );
   }
 
   /// Create a search result
-  factory AppCommandResult.search({
+  factory DSCommandResult.search({
     required String id,
     required String title,
     String? description,
     IconData? icon,
     double? score,
   }) {
-    return AppCommandResult(
+    return DSCommandResult(
       id: id,
       title: title,
       description: description,
       icon: icon ?? Icons.search,
-      type: AppCommandResultType.search,
+      type: DSCommandResultType.search,
       score: score ?? 1.0,
     );
   }
@@ -350,19 +350,19 @@ class AppCommandResult with _$AppCommandResult {
   /// Get icon for result type
   IconData get defaultIcon {
     switch (type) {
-      case AppCommandResultType.command:
+      case DSCommandResultType.command:
         return Icons.flash_on;
-      case AppCommandResultType.navigation:
+      case DSCommandResultType.navigation:
         return Icons.navigation;
-      case AppCommandResultType.file:
+      case DSCommandResultType.file:
         return Icons.description;
-      case AppCommandResultType.person:
+      case DSCommandResultType.person:
         return Icons.person;
-      case AppCommandResultType.setting:
+      case DSCommandResultType.setting:
         return Icons.settings;
-      case AppCommandResultType.search:
+      case DSCommandResultType.search:
         return Icons.search;
-      case AppCommandResultType.custom:
+      case DSCommandResultType.custom:
         return Icons.extension;
     }
   }
@@ -408,31 +408,31 @@ class AppCommandResult with _$AppCommandResult {
 
 /// Data model for command palette state management
 @freezed
-class AppCommandPaletteData with _$AppCommandPaletteData {
-  const AppCommandPaletteData._();
+class DSCommandPaletteData with _$DSCommandPaletteData {
+  const DSCommandPaletteData._();
 
-  const factory AppCommandPaletteData({
+  const factory DSCommandPaletteData({
     /// Current variant
-    @Default(AppCommandPaletteVariant.globalSearch)
-    AppCommandPaletteVariant variant,
+    @Default(DSCommandPaletteVariant.globalSearch)
+    DSCommandPaletteVariant variant,
 
     /// Current query
     @Default('') String query,
 
     /// Available results
-    @Default([]) List<AppCommandResult> results,
+    @Default([]) List<DSCommandResult> results,
 
     /// Filtered results
-    @Default([]) List<AppCommandResult> filteredResults,
+    @Default([]) List<DSCommandResult> filteredResults,
 
     /// Currently selected index
     @Default(-1) int selectedIndex,
 
     /// Recent commands
-    @Default([]) List<AppCommandResult> recentCommands,
+    @Default([]) List<DSCommandResult> recentCommands,
 
     /// Current state
-    @Default(AppCommandPaletteState.defaultState) AppCommandPaletteState state,
+    @Default(DSCommandPaletteState.defaultState) DSCommandPaletteState state,
 
     /// Whether the palette is visible
     @Default(false) bool isVisible,
@@ -448,7 +448,7 @@ class AppCommandPaletteData with _$AppCommandPaletteData {
   }) = _AppCommandPaletteData;
 
   /// Get currently selected result
-  AppCommandResult? get selectedResult {
+  DSCommandResult? get selectedResult {
     if (selectedIndex >= 0 && selectedIndex < filteredResults.length) {
       return filteredResults[selectedIndex];
     }
@@ -462,7 +462,7 @@ class AppCommandPaletteData with _$AppCommandPaletteData {
   bool get hasQuery => query.isNotEmpty;
 
   /// Get display results (filtered or recent)
-  List<AppCommandResult> get displayResults {
+  List<DSCommandResult> get displayResults {
     if (hasQuery) {
       return filteredResults;
     } else {
@@ -471,20 +471,20 @@ class AppCommandPaletteData with _$AppCommandPaletteData {
   }
 }
 
-/// Utility functions for AppCommandPalette
-class AppCommandPaletteUtils {
-  AppCommandPaletteUtils._();
+/// Utility functions for DSCommandPalette
+class DSCommandPaletteUtils {
+  DSCommandPaletteUtils._();
 
   /// Filter results based on query
-  static List<AppCommandResult> filterResults(
-    List<AppCommandResult> results,
+  static List<DSCommandResult> filterResults(
+    List<DSCommandResult> results,
     String query, {
     bool fuzzySearch = true,
     int maxResults = 20,
   }) {
     if (query.isEmpty) return results.take(maxResults).toList();
 
-    List<AppCommandResult> filtered;
+    List<DSCommandResult> filtered;
 
     if (fuzzySearch) {
       // Calculate scores and sort by relevance
@@ -504,23 +504,23 @@ class AppCommandPaletteUtils {
   }
 
   /// Create command palette data from simple list
-  static AppCommandPaletteData fromCommandList(
+  static DSCommandPaletteData fromCommandList(
     List<String> commands, {
-    AppCommandPaletteVariant variant = AppCommandPaletteVariant.actions,
+    DSCommandPaletteVariant variant = DSCommandPaletteVariant.actions,
   }) {
     final results = commands
         .asMap()
         .entries
-        .map((entry) => AppCommandResult(
+        .map((entry) => DSCommandResult(
               id: 'cmd_${entry.key}',
               title: entry.value,
-              type: variant == AppCommandPaletteVariant.globalSearch
-                  ? AppCommandResultType.search
-                  : AppCommandResultType.command,
+              type: variant == DSCommandPaletteVariant.globalSearch
+                  ? DSCommandResultType.search
+                  : DSCommandResultType.command,
             ))
         .toList();
 
-    return AppCommandPaletteData(
+    return DSCommandPaletteData(
       variant: variant,
       results: results,
       filteredResults: results,
@@ -528,12 +528,12 @@ class AppCommandPaletteUtils {
   }
 
   /// Add command to recent history
-  static List<AppCommandResult> addToRecent(
-    List<AppCommandResult> recentCommands,
-    AppCommandResult command,
+  static List<DSCommandResult> addToRecent(
+    List<DSCommandResult> recentCommands,
+    DSCommandResult command,
     int maxRecent,
   ) {
-    final updated = List<AppCommandResult>.from(recentCommands);
+    final updated = List<DSCommandResult>.from(recentCommands);
 
     // Remove if already exists
     updated.removeWhere((item) => item.id == command.id);
@@ -634,20 +634,20 @@ class AppCommandPaletteUtils {
   }
 
   /// Get appropriate position based on screen size
-  static AppCommandPalettePosition getOptimalPosition(BuildContext context) {
+  static DSCommandPalettePosition getOptimalPosition(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final screenHeight = mediaQuery.size.height;
 
     // On smaller screens, prefer top position
     if (screenHeight < 600) {
-      return AppCommandPalettePosition.top;
+      return DSCommandPalettePosition.top;
     }
 
-    return AppCommandPalettePosition.center;
+    return DSCommandPalettePosition.center;
   }
 
   /// Validate command palette data
-  static bool validateData(AppCommandPaletteData data) {
+  static bool validateData(DSCommandPaletteData data) {
     // Check for duplicate IDs
     final ids = data.results.map((result) => result.id).toSet();
     if (ids.length != data.results.length) return false;

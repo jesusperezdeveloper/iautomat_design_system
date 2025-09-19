@@ -6,7 +6,7 @@ import 'package:vector_math/vector_math_64.dart';
 import 'package:iautomat_design_system/src/components/camera_picker/app_camera_picker_config.dart';
 
 /// Helper para gestionar accesibilidad, RTL y navegación por teclado
-/// en el AppCameraPicker
+/// en el DSCameraPicker
 ///
 /// Proporciona:
 /// - Soporte completo para lectores de pantalla
@@ -14,16 +14,16 @@ import 'package:iautomat_design_system/src/components/camera_picker/app_camera_p
 /// - Soporte RTL automático
 /// - Anuncios de estado para accesibilidad
 /// - Semántica contextual
-class AppCameraPickerA11yHelper {
+class DSCameraPickerA11yHelper {
   /// Configuración de accesibilidad
-  final AppCameraPickerA11yConfig? config;
+  final DSCameraPickerA11yConfig? config;
 
-  const AppCameraPickerA11yHelper(this.config);
+  const DSCameraPickerA11yHelper(this.config);
 
   /// Construye wrapper de semántica para el picker
   Widget buildSemanticsWrapper({
     required BuildContext context,
-    required AppCameraPickerState state,
+    required DSCameraPickerState state,
     required Widget child,
   }) {
     if (!(config?.enabled ?? true)) {
@@ -31,7 +31,7 @@ class AppCameraPickerA11yHelper {
     }
 
     final isRtl = Directionality.of(context) == TextDirection.rtl;
-    final effectiveConfig = config ?? const AppCameraPickerA11yConfig();
+    final effectiveConfig = config ?? const DSCameraPickerA11yConfig();
 
     return Semantics(
       label: effectiveConfig.semanticsLabel ?? _getDefaultLabel(state),
@@ -78,7 +78,7 @@ class AppCameraPickerA11yHelper {
   }
 
   /// Anuncia cambios de estado para accesibilidad
-  void announceStateChange(AppCameraPickerState state) {
+  void announceStateChange(DSCameraPickerState state) {
     if (!_shouldAnnounceStateChanges()) return;
 
     final announcement = _getStateAnnouncement(state);
@@ -91,7 +91,7 @@ class AppCameraPickerA11yHelper {
   }
 
   /// Anuncia inicio de operación
-  void announceOperationStart(AppCameraPickerSource source) {
+  void announceOperationStart(DSCameraPickerSource source) {
     if (!_shouldAnnounceStateChanges()) return;
 
     final announcement = _getOperationStartAnnouncement(source);
@@ -151,77 +151,77 @@ class AppCameraPickerA11yHelper {
   }
 
   /// Obtiene label por defecto según el estado
-  String _getDefaultLabel(AppCameraPickerState state) {
+  String _getDefaultLabel(DSCameraPickerState state) {
     switch (state) {
-      case AppCameraPickerState.defaultState:
+      case DSCameraPickerState.defaultState:
         return 'Seleccionar imagen';
-      case AppCameraPickerState.hover:
+      case DSCameraPickerState.hover:
         return 'Seleccionar imagen, resaltado';
-      case AppCameraPickerState.pressed:
+      case DSCameraPickerState.pressed:
         return 'Seleccionar imagen, presionado';
-      case AppCameraPickerState.focus:
+      case DSCameraPickerState.focus:
         return 'Seleccionar imagen, enfocado';
-      case AppCameraPickerState.selected:
+      case DSCameraPickerState.selected:
         return 'Seleccionar imagen, seleccionado';
-      case AppCameraPickerState.disabled:
+      case DSCameraPickerState.disabled:
         return 'Seleccionar imagen, deshabilitado';
-      case AppCameraPickerState.loading:
+      case DSCameraPickerState.loading:
         return 'Seleccionando imagen, cargando';
-      case AppCameraPickerState.skeleton:
+      case DSCameraPickerState.skeleton:
         return 'Cargando selector de imagen';
     }
   }
 
   /// Obtiene hint por defecto según el estado
-  String _getDefaultHint(AppCameraPickerState state) {
+  String _getDefaultHint(DSCameraPickerState state) {
     switch (state) {
-      case AppCameraPickerState.defaultState:
-      case AppCameraPickerState.hover:
-      case AppCameraPickerState.focus:
+      case DSCameraPickerState.defaultState:
+      case DSCameraPickerState.hover:
+      case DSCameraPickerState.focus:
         return 'Toca para abrir opciones de selección';
-      case AppCameraPickerState.pressed:
+      case DSCameraPickerState.pressed:
         return 'Abriendo opciones';
-      case AppCameraPickerState.selected:
+      case DSCameraPickerState.selected:
         return 'Opción seleccionada';
-      case AppCameraPickerState.disabled:
+      case DSCameraPickerState.disabled:
         return 'No disponible';
-      case AppCameraPickerState.loading:
+      case DSCameraPickerState.loading:
         return 'Procesando selección';
-      case AppCameraPickerState.skeleton:
+      case DSCameraPickerState.skeleton:
         return 'Preparando selector';
     }
   }
 
   /// Obtiene descripción por defecto según el estado
-  String _getDefaultDescription(AppCameraPickerState state) {
+  String _getDefaultDescription(DSCameraPickerState state) {
     switch (state) {
-      case AppCameraPickerState.defaultState:
+      case DSCameraPickerState.defaultState:
         return 'Botón para seleccionar imágenes desde cámara o galería';
-      case AppCameraPickerState.hover:
+      case DSCameraPickerState.hover:
         return 'Botón resaltado para seleccionar imágenes';
-      case AppCameraPickerState.pressed:
+      case DSCameraPickerState.pressed:
         return 'Botón presionado, abriendo opciones';
-      case AppCameraPickerState.focus:
+      case DSCameraPickerState.focus:
         return 'Botón enfocado para seleccionar imágenes';
-      case AppCameraPickerState.selected:
+      case DSCameraPickerState.selected:
         return 'Opción seleccionada para imágenes';
-      case AppCameraPickerState.disabled:
+      case DSCameraPickerState.disabled:
         return 'Selector de imágenes no disponible';
-      case AppCameraPickerState.loading:
+      case DSCameraPickerState.loading:
         return 'Procesando selección de imágenes';
-      case AppCameraPickerState.skeleton:
+      case DSCameraPickerState.skeleton:
         return 'Cargando interfaz del selector';
     }
   }
 
   /// Obtiene anuncio de cambio de estado
-  String _getStateAnnouncement(AppCameraPickerState state) {
+  String _getStateAnnouncement(DSCameraPickerState state) {
     switch (state) {
-      case AppCameraPickerState.loading:
+      case DSCameraPickerState.loading:
         return 'Procesando selección';
-      case AppCameraPickerState.disabled:
+      case DSCameraPickerState.disabled:
         return 'Selector deshabilitado';
-      case AppCameraPickerState.focus:
+      case DSCameraPickerState.focus:
         return 'Selector enfocado';
       default:
         return '';
@@ -229,13 +229,13 @@ class AppCameraPickerA11yHelper {
   }
 
   /// Obtiene anuncio de inicio de operación
-  String _getOperationStartAnnouncement(AppCameraPickerSource source) {
+  String _getOperationStartAnnouncement(DSCameraPickerSource source) {
     switch (source) {
-      case AppCameraPickerSource.camera:
+      case DSCameraPickerSource.camera:
         return 'Abriendo cámara';
-      case AppCameraPickerSource.gallery:
+      case DSCameraPickerSource.gallery:
         return 'Abriendo galería';
-      case AppCameraPickerSource.both:
+      case DSCameraPickerSource.both:
         return 'Abriendo opciones de selección';
     }
   }
@@ -272,20 +272,20 @@ class AppCameraPickerA11yHelper {
   }
 
   /// Construye indicador de estado para lectores de pantalla
-  Widget buildStateIndicator(AppCameraPickerState state) {
+  Widget buildStateIndicator(DSCameraPickerState state) {
     if (!_shouldAnnounceStateChanges()) {
       return const SizedBox.shrink();
     }
 
     String stateText;
     switch (state) {
-      case AppCameraPickerState.loading:
+      case DSCameraPickerState.loading:
         stateText = 'Cargando';
         break;
-      case AppCameraPickerState.disabled:
+      case DSCameraPickerState.disabled:
         stateText = 'Deshabilitado';
         break;
-      case AppCameraPickerState.focus:
+      case DSCameraPickerState.focus:
         stateText = 'Enfocado';
         break;
       default:
@@ -314,7 +314,7 @@ class AppCameraPickerA11yHelper {
   }
 
   /// Construye descripción de archivos seleccionados
-  Widget buildFileDescription(List<AppCameraPickerFile> files) {
+  Widget buildFileDescription(List<DSCameraPickerFile> files) {
     if (files.isEmpty) {
       return const SizedBox.shrink();
     }
@@ -329,7 +329,7 @@ class AppCameraPickerA11yHelper {
   }
 
   /// Construye descripción textual de lista de archivos
-  String _buildFileListDescription(List<AppCameraPickerFile> files) {
+  String _buildFileListDescription(List<DSCameraPickerFile> files) {
     if (files.isEmpty) {
       return 'Ningún archivo seleccionado';
     }
@@ -357,8 +357,8 @@ class AppCameraPickerA11yHelper {
 
   /// Construye ayuda contextual para el usuario
   Widget buildContextualHelp({
-    required AppCameraPickerSource source,
-    required AppCameraPickerFileType fileType,
+    required DSCameraPickerSource source,
+    required DSCameraPickerFileType fileType,
     required bool allowMultiple,
   }) {
     final helpText = _buildHelpText(
@@ -375,21 +375,21 @@ class AppCameraPickerA11yHelper {
 
   /// Construye texto de ayuda contextual
   String _buildHelpText({
-    required AppCameraPickerSource source,
-    required AppCameraPickerFileType fileType,
+    required DSCameraPickerSource source,
+    required DSCameraPickerFileType fileType,
     required bool allowMultiple,
   }) {
     final parts = <String>[];
 
     // Fuente
     switch (source) {
-      case AppCameraPickerSource.camera:
+      case DSCameraPickerSource.camera:
         parts.add('Solo cámara disponible');
         break;
-      case AppCameraPickerSource.gallery:
+      case DSCameraPickerSource.gallery:
         parts.add('Solo galería disponible');
         break;
-      case AppCameraPickerSource.both:
+      case DSCameraPickerSource.both:
         parts.add('Cámara y galería disponibles');
         break;
     }

@@ -4,21 +4,21 @@ import 'package:iautomat_design_system/src/components/select/app_select.dart';
 import 'package:iautomat_design_system/src/components/select/select_config.dart';
 
 void main() {
-  group('AppSelect Golden Tests', () {
+  group('DSSelect Golden Tests', () {
     final testItems = [
-      AppSelectItem(value: 'item1', label: 'Item 1'),
-      AppSelectItem(value: 'item2', label: 'Item 2'),
-      AppSelectItem(value: 'item3', label: 'Item 3'),
+      DSSelectItem(value: 'item1', label: 'Item 1'),
+      DSSelectItem(value: 'item2', label: 'Item 2'),
+      DSSelectItem(value: 'item3', label: 'Item 3'),
     ];
 
     final itemsWithSubtitles = [
-      AppSelectItem(
+      DSSelectItem(
         value: 'es',
         label: 'España',
         subtitle: 'Europa',
         leading: Icon(Icons.flag, color: Colors.red),
       ),
-      AppSelectItem(
+      DSSelectItem(
         value: 'us',
         label: 'Estados Unidos',
         subtitle: 'América del Norte',
@@ -264,7 +264,7 @@ void main() {
                 items: testItems,
                 placeholder: 'Loading...',
                 label: 'Loading State',
-                overrideState: AppSelectState.loading,
+                overrideState: DSSelectState.loading,
               ),
             ),
           ),
@@ -284,7 +284,7 @@ void main() {
                 items: testItems,
                 placeholder: 'Skeleton loading...',
                 label: 'Skeleton State',
-                overrideState: AppSelectState.skeleton,
+                overrideState: DSSelectState.skeleton,
               ),
             ),
           ),
@@ -299,7 +299,7 @@ void main() {
 
     group('Custom Configuration', () {
       testWidgets('renders with custom configuration', (tester) async {
-        const customConfig = AppSelectConfig(
+        const customConfig = DSSelectConfig(
           borderRadius: 16,
           minimumHeight: 60,
           borderWidth: 3,
@@ -351,9 +351,9 @@ void main() {
     group('RTL Support', () {
       testWidgets('renders correctly in RTL direction', (tester) async {
         final rtlItems = [
-          AppSelectItem(value: 'ar', label: 'العربية'),
-          AppSelectItem(value: 'he', label: 'עברית'),
-          AppSelectItem(value: 'fa', label: 'فارسی'),
+          DSSelectItem(value: 'ar', label: 'العربية'),
+          DSSelectItem(value: 'he', label: 'עברית'),
+          DSSelectItem(value: 'fa', label: 'فارسی'),
         ];
 
         await tester.pumpWidget(
@@ -379,7 +379,7 @@ void main() {
 }
 
 Widget _buildSingleSelect({
-  required List<AppSelectItem<String>> items,
+  required List<DSSelectItem<String>> items,
   String? value,
   String? placeholder,
   String? label,
@@ -390,8 +390,8 @@ Widget _buildSingleSelect({
   bool enabled = true,
   bool dense = false,
   double? width,
-  AppSelectConfig? config,
-  AppSelectState? overrideState,
+  DSSelectConfig? config,
+  DSSelectState? overrideState,
   TextDirection? textDirection,
 }) {
   return Container(
@@ -400,7 +400,7 @@ Widget _buildSingleSelect({
     padding: const EdgeInsets.all(24),
     child: Directionality(
       textDirection: textDirection ?? TextDirection.ltr,
-      child: AppSelect<String>(
+      child: DSSelect<String>(
         items: items,
         value: value,
         onChanged: (value) {},
@@ -415,27 +415,27 @@ Widget _buildSingleSelect({
         width: width,
         config: config,
         overrideState: overrideState,
-        variant: AppSelectVariant.single,
+        variant: DSSelectVariant.single,
       ),
     ),
   );
 }
 
 Widget _buildMultiSelect({
-  required List<AppSelectItem<String>> items,
+  required List<DSSelectItem<String>> items,
   required List<String> values,
   String? placeholder,
   String? label,
   String? helperText,
   String? errorText,
   bool enabled = true,
-  AppSelectConfig? config,
+  DSSelectConfig? config,
 }) {
   return Container(
     width: 400,
     height: 200,
     padding: const EdgeInsets.all(24),
-    child: AppSelect<String>(
+    child: DSSelect<String>(
       items: items,
       values: values,
       onMultiChanged: (values) {},
@@ -445,13 +445,13 @@ Widget _buildMultiSelect({
       errorText: errorText,
       enabled: enabled,
       config: config,
-      variant: AppSelectVariant.multi,
+      variant: DSSelectVariant.multi,
     ),
   );
 }
 
 Widget _buildSearchableSelect({
-  required List<AppSelectItem<String>> items,
+  required List<DSSelectItem<String>> items,
   String? value,
   String? placeholder,
   String? label,
@@ -462,7 +462,7 @@ Widget _buildSearchableSelect({
     width: 400,
     height: 200,
     padding: const EdgeInsets.all(24),
-    child: AppSelect<String>(
+    child: DSSelect<String>(
       items: items,
       value: value,
       onChanged: (value) {},
@@ -470,7 +470,7 @@ Widget _buildSearchableSelect({
       label: label,
       searchHint: searchHint,
       enabled: enabled,
-      variant: AppSelectVariant.searchable,
+      variant: DSSelectVariant.searchable,
     ),
   );
 }

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'package:iautomat_design_system/src/components/image/app_image_config.dart';
 
-/// Helper para manejar accesibilidad y soporte RTL del AppImage
+/// Helper para manejar accesibilidad y soporte RTL del DSImage
 ///
 /// Proporciona utilidades para:
 /// - Gestión completa de accesibilidad y semántica
@@ -12,13 +12,13 @@ import 'package:iautomat_design_system/src/components/image/app_image_config.dar
 /// - Navegación por teclado optimizada
 /// - Descripción de estados para lectores de pantalla
 /// - Integración con services de accesibilidad del sistema
-class AppImageA11yHelper {
+class DSImageA11yHelper {
   /// Construye el widget de semántica apropiado para la imagen
   static Widget buildSemanticsWrapper({
     required Widget child,
     required String alt,
-    required AppImageState state,
-    required AppImageA11yConfig? a11yConfig,
+    required DSImageState state,
+    required DSImageA11yConfig? a11yConfig,
     VoidCallback? onTap,
   }) {
     if (a11yConfig?.isDecorative == true) {
@@ -38,7 +38,7 @@ class AppImageA11yHelper {
       focusable: a11yConfig?.enableKeyboardNavigation ?? true,
       enabled: state.canInteract,
       readOnly: onTap == null,
-      liveRegion: state == AppImageState.loading,
+      liveRegion: state == DSImageState.loading,
       child: child,
     );
   }
@@ -46,8 +46,8 @@ class AppImageA11yHelper {
   /// Construye la etiqueta semántica completa
   static String _buildSemanticLabel(
     String alt,
-    AppImageState state,
-    AppImageA11yConfig? a11yConfig,
+    DSImageState state,
+    DSImageA11yConfig? a11yConfig,
   ) {
     final baseLabel = a11yConfig?.semanticsLabel ?? alt;
 
@@ -66,8 +66,8 @@ class AppImageA11yHelper {
 
   /// Construye la pista semántica para interacciones
   static String? _buildSemanticHint(
-    AppImageState state,
-    AppImageA11yConfig? a11yConfig,
+    DSImageState state,
+    DSImageA11yConfig? a11yConfig,
     VoidCallback? onTap,
   ) {
     final customHint = a11yConfig?.semanticsHint;
@@ -88,8 +88,8 @@ class AppImageA11yHelper {
 
   /// Construye la descripción semántica detallada
   static String? _buildSemanticDescription(
-    AppImageState state,
-    AppImageA11yConfig? a11yConfig,
+    DSImageState state,
+    DSImageA11yConfig? a11yConfig,
   ) {
     final customDescription = a11yConfig?.semanticsDescription;
     if (customDescription != null && customDescription.isNotEmpty) {
@@ -100,33 +100,33 @@ class AppImageA11yHelper {
   }
 
   /// Obtiene la descripción del estado actual
-  static String _getStateDescription(AppImageState state) {
+  static String _getStateDescription(DSImageState state) {
     switch (state) {
-      case AppImageState.loading:
+      case DSImageState.loading:
         return 'cargando';
-      case AppImageState.skeleton:
+      case DSImageState.skeleton:
         return 'preparando imagen';
-      case AppImageState.disabled:
+      case DSImageState.disabled:
         return 'no disponible';
-      case AppImageState.selected:
+      case DSImageState.selected:
         return 'seleccionada';
-      case AppImageState.focus:
+      case DSImageState.focus:
         return 'enfocada';
-      case AppImageState.hover:
-      case AppImageState.pressed:
-      case AppImageState.defaultState:
+      case DSImageState.hover:
+      case DSImageState.pressed:
+      case DSImageState.defaultState:
         return '';
     }
   }
 
   /// Obtiene una descripción detallada del estado
-  static String? _getDetailedStateDescription(AppImageState state) {
+  static String? _getDetailedStateDescription(DSImageState state) {
     switch (state) {
-      case AppImageState.loading:
+      case DSImageState.loading:
         return 'La imagen se está cargando, por favor espera';
-      case AppImageState.skeleton:
+      case DSImageState.skeleton:
         return 'Preparando la imagen para mostrar';
-      case AppImageState.disabled:
+      case DSImageState.disabled:
         return 'Esta imagen no está disponible actualmente';
       default:
         return null;
@@ -138,7 +138,7 @@ class AppImageA11yHelper {
     FocusNode focusNode,
     KeyEvent event,
     VoidCallback? onTap,
-    AppImageA11yConfig? a11yConfig,
+    DSImageA11yConfig? a11yConfig,
   ) {
     if (!(a11yConfig?.enableKeyboardNavigation ?? true)) {
       return KeyEventResult.ignored;
@@ -159,7 +159,7 @@ class AppImageA11yHelper {
   static Widget buildKeyboardNavigationWrapper({
     required Widget child,
     required FocusNode focusNode,
-    required AppImageA11yConfig? a11yConfig,
+    required DSImageA11yConfig? a11yConfig,
     VoidCallback? onTap,
   }) {
     if (!(a11yConfig?.enableKeyboardNavigation ?? true)) {
@@ -282,26 +282,26 @@ class AppImageA11yHelper {
   /// Construye anuncios para lectores de pantalla según el estado
   static void announceStateChange(
     BuildContext context,
-    AppImageState oldState,
-    AppImageState newState,
+    DSImageState oldState,
+    DSImageState newState,
   ) {
     if (oldState == newState) return;
 
     String? announcement;
 
     switch (newState) {
-      case AppImageState.loading:
+      case DSImageState.loading:
         announcement = 'Cargando imagen';
         break;
-      case AppImageState.defaultState:
-        if (oldState == AppImageState.loading || oldState == AppImageState.skeleton) {
+      case DSImageState.defaultState:
+        if (oldState == DSImageState.loading || oldState == DSImageState.skeleton) {
           announcement = 'Imagen cargada';
         }
         break;
-      case AppImageState.disabled:
+      case DSImageState.disabled:
         announcement = 'Imagen no disponible';
         break;
-      case AppImageState.selected:
+      case DSImageState.selected:
         announcement = 'Imagen seleccionada';
         break;
       default:
@@ -322,16 +322,16 @@ class AppImageA11yHelper {
   }
 
   /// Ajusta el comportamiento según las preferencias de accesibilidad
-  static AppImageAnimation adjustAnimationForA11y(
+  static DSImageAnimation adjustAnimationForA11y(
     BuildContext context,
-    AppImageAnimation? animation,
+    DSImageAnimation? animation,
   ) {
     final mediaQuery = MediaQuery.of(context);
 
     // Reducir animaciones si el usuario prefiere menos movimiento
     if (mediaQuery.disableAnimations) {
-      return AppImageAnimation(
-        type: AppImageAnimationType.none,
+      return DSImageAnimation(
+        type: DSImageAnimationType.none,
         duration: 0,
         enableStateTransitions: false,
         enableHoverAnimation: false,
@@ -343,18 +343,18 @@ class AppImageA11yHelper {
 
     // Animaciones más lentas para mejor accesibilidad
     if (isAccessibilityEnabled(context)) {
-      return (animation ?? const AppImageAnimation()).copyWith(
+      return (animation ?? const DSImageAnimation()).copyWith(
         duration: (animation?.duration ?? 300) * 2,
         enableHoverAnimation: false, // Menos distracciones
       );
     }
 
-    return animation ?? const AppImageAnimation();
+    return animation ?? const DSImageAnimation();
   }
 
   /// Construye hints contextuales para interacciones
   static String buildInteractionHint(
-    AppImageState state,
+    DSImageState state,
     bool hasOnTap,
     bool hasOnLongPress,
   ) {
@@ -385,10 +385,10 @@ class AppImageA11yHelper {
 }
 
 /// Extension para facilitar el trabajo con configuración de accesibilidad
-extension AppImageA11yConfigExtension on AppImageA11yConfig {
+extension DSImageA11yConfigExtension on DSImageA11yConfig {
   /// Combina esta configuración con valores por defecto
-  AppImageA11yConfig withDefaults() {
-    return AppImageA11yConfig(
+  DSImageA11yConfig withDefaults() {
+    return DSImageA11yConfig(
       enabled: enabled,
       semanticsLabel: semanticsLabel,
       semanticsDescription: semanticsDescription,

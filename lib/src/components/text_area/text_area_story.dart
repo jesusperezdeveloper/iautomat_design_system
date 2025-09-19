@@ -9,7 +9,7 @@ class TextAreaStory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppTextArea Story'),
+        title: const Text('DSTextArea Story'),
         elevation: 0,
       ),
       body: ListView(
@@ -18,10 +18,10 @@ class TextAreaStory extends StatelessWidget {
           _buildStorySection(
             'Auto-Resize Text Area',
             'Default auto-resizing text area with minimum lines',
-            AppTextArea(
+            DSTextArea(
               label: 'Auto-Resize Text Area',
               hint: 'Start typing to see auto-resize in action...',
-              variant: AppTextAreaVariant.autoResize,
+              variant: DSTextAreaVariant.autoResize,
               minLines: 3,
               maxLines: 8,
             ),
@@ -29,7 +29,7 @@ class TextAreaStory extends StatelessWidget {
           _buildStorySection(
             'With Helper Text',
             'Text area with helper text and character counter',
-            AppTextArea(
+            DSTextArea(
               label: 'Text Area with Helper',
               hint: 'Type your message here',
               helperText: 'Please provide detailed information',
@@ -41,7 +41,7 @@ class TextAreaStory extends StatelessWidget {
           _buildStorySection(
             'Disabled State',
             'Disabled text area that cannot be edited',
-            AppTextArea(
+            DSTextArea(
               label: 'Disabled Text Area',
               hint: 'This field is disabled',
               enabled: false,
@@ -51,7 +51,7 @@ class TextAreaStory extends StatelessWidget {
           _buildStorySection(
             'Read-Only State',
             'Read-only text area with content',
-            AppTextArea(
+            DSTextArea(
               controller: TextEditingController(
                 text: 'This is read-only content that cannot be modified. '
                     'The user can select and copy this text but cannot edit it.',
@@ -64,7 +64,7 @@ class TextAreaStory extends StatelessWidget {
           _buildStorySection(
             'Error State',
             'Text area with error message',
-            AppTextArea(
+            DSTextArea(
               label: 'Text Area with Error',
               hint: 'Enter your message',
               errorText: 'This field is required',
@@ -74,27 +74,27 @@ class TextAreaStory extends StatelessWidget {
           _buildStorySection(
             'Loading State',
             'Text area in loading state',
-            AppTextArea(
+            DSTextArea(
               label: 'Loading Text Area',
               hint: 'Loading...',
-              overrideState: AppTextAreaState.loading,
+              overrideState: DSTextAreaState.loading,
               helperText: 'Please wait while we load the content',
             ),
           ),
           _buildStorySection(
             'Skeleton State',
             'Text area in skeleton loading state',
-            AppTextArea(
+            DSTextArea(
               label: 'Skeleton Text Area',
               hint: 'Loading...',
-              overrideState: AppTextAreaState.skeleton,
+              overrideState: DSTextAreaState.skeleton,
               helperText: 'Loading content...',
             ),
           ),
           _buildStorySection(
             'With Icons',
             'Text area with prefix and suffix icons',
-            AppTextArea(
+            DSTextArea(
               label: 'Text Area with Icons',
               hint: 'Enter your message',
               prefixIcon: Icons.message,
@@ -106,10 +106,10 @@ class TextAreaStory extends StatelessWidget {
           _buildStorySection(
             'Custom Configuration',
             'Text area with custom configuration',
-            AppTextArea(
+            DSTextArea(
               label: 'Custom Config Text Area',
               hint: 'Custom styling applied',
-              config: const AppTextAreaConfig(
+              config: const DSTextAreaConfig(
                 borderRadius: 16,
                 contentPadding: EdgeInsets.all(20),
                 minimumHeight: 100,
@@ -128,7 +128,7 @@ class TextAreaStory extends StatelessWidget {
           _buildStorySection(
             'Long Text Content',
             'Text area with pre-filled long content',
-            AppTextArea(
+            DSTextArea(
               controller: TextEditingController(
                 text:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
@@ -153,7 +153,7 @@ class TextAreaStory extends StatelessWidget {
           _buildStorySection(
             'RTL Support',
             'Text area with right-to-left text direction',
-            AppTextArea(
+            DSTextArea(
               label: 'RTL Text Area',
               hint: 'اكتب رسالتك هنا',
               textDirection: TextDirection.rtl,
@@ -199,49 +199,49 @@ class TextAreaStory extends StatelessWidget {
     return Form(
       child: Column(
         children: [
-          AppTextArea(
+          DSTextArea(
             label: 'Required Message',
             hint: 'This field is required',
-            validator: AppTextAreaValidator.required,
+            validator: DSTextAreaValidator.required,
             minLines: 3,
             maxLines: 5,
           ),
           const SizedBox(height: 16),
-          AppTextArea(
+          DSTextArea(
             label: 'Minimum 10 Characters',
             hint: 'Enter at least 10 characters',
-            validator: AppTextAreaValidator.minLength(10),
+            validator: DSTextAreaValidator.minLength(10),
             helperText: 'Must be at least 10 characters long',
             minLines: 2,
             maxLines: 4,
           ),
           const SizedBox(height: 16),
-          AppTextArea(
+          DSTextArea(
             label: 'Maximum 100 Characters',
             hint: 'Enter up to 100 characters',
-            validator: AppTextAreaValidator.maxLength(100),
+            validator: DSTextAreaValidator.maxLength(100),
             maxLength: 100,
             helperText: 'Maximum 100 characters allowed',
             minLines: 3,
             maxLines: 5,
           ),
           const SizedBox(height: 16),
-          AppTextArea(
+          DSTextArea(
             label: 'Minimum 5 Words',
             hint: 'Enter at least 5 words',
-            validator: AppTextAreaValidator.minWords(5),
+            validator: DSTextAreaValidator.minWords(5),
             helperText: 'Must contain at least 5 words',
             minLines: 2,
             maxLines: 4,
           ),
           const SizedBox(height: 16),
-          AppTextArea(
+          DSTextArea(
             label: 'Combined Validation',
             hint: 'Required field with length constraints',
-            validator: AppTextAreaValidator.combine([
-              AppTextAreaValidator.required,
-              AppTextAreaValidator.minLength(20),
-              AppTextAreaValidator.maxLength(200),
+            validator: DSTextAreaValidator.combine([
+              DSTextAreaValidator.required,
+              DSTextAreaValidator.minLength(20),
+              DSTextAreaValidator.maxLength(200),
             ]),
             maxLength: 200,
             helperText: 'Required, 20-200 characters',

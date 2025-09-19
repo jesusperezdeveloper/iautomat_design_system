@@ -4,78 +4,78 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppCalendar Golden Tests', () {
+  group('DSCalendar Golden Tests', () {
     testWidgets('basic month view calendar', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.month,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.month,
         selectedDate: DateTime(2024, 1, 15),
         events: [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'event-1',
             title: 'Team Meeting',
             startTime: DateTime(2024, 1, 15, 9, 0),
             endTime: DateTime(2024, 1, 15, 10, 0),
-            type: AppCalendarEventType.meeting,
+            type: DSCalendarEventType.meeting,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'event-2',
             title: 'Project Review',
             startTime: DateTime(2024, 1, 16, 14, 0),
             endTime: DateTime(2024, 1, 16, 15, 0),
-            type: AppCalendarEventType.task,
-            priority: AppCalendarEventPriority.high,
+            type: DSCalendarEventType.task,
+            priority: DSCalendarEventPriority.high,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'event-3',
             title: 'Client Call',
             startTime: DateTime(2024, 1, 18, 11, 0),
             endTime: DateTime(2024, 1, 18, 12, 0),
-            type: AppCalendarEventType.event,
+            type: DSCalendarEventType.event,
           ),
         ],
       );
 
       await tester.pumpWidget(
         MaterialApp(
-          theme: AppTheme.lightTheme,
+          theme: DSTheme.lightTheme,
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16),
-              child: AppCalendar(config: config),
+              child: DSCalendar(config: config),
             ),
           ),
         ),
       );
 
       await expectLater(
-        find.byType(AppCalendar),
+        find.byType(DSCalendar),
         matchesGoldenFile('app_calendar_month_basic.png'),
       );
     });
 
     testWidgets('week view calendar with events', (tester) async {
       final baseDate = DateTime(2024, 1, 15);
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.week,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.week,
         selectedDate: baseDate,
         events: [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'week-1',
             title: 'Morning Standup',
             startTime: baseDate.copyWith(hour: 9, minute: 0),
             endTime: baseDate.copyWith(hour: 9, minute: 30),
-            type: AppCalendarEventType.meeting,
+            type: DSCalendarEventType.meeting,
             isRecurring: true,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'week-2',
             title: 'Development Work',
             startTime: baseDate.copyWith(hour: 10, minute: 0),
             endTime: baseDate.copyWith(hour: 12, minute: 0),
-            type: AppCalendarEventType.task,
-            priority: AppCalendarEventPriority.high,
+            type: DSCalendarEventType.task,
+            priority: DSCalendarEventPriority.high,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'week-3',
             title: 'Code Review',
             startTime: baseDate
@@ -84,9 +84,9 @@ void main() {
             endTime: baseDate
                 .add(const Duration(days: 1))
                 .copyWith(hour: 16, minute: 0),
-            type: AppCalendarEventType.task,
+            type: DSCalendarEventType.task,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'week-4',
             title: 'Important Reminder',
             startTime: baseDate
@@ -95,8 +95,8 @@ void main() {
             endTime: baseDate
                 .add(const Duration(days: 2))
                 .copyWith(hour: 8, minute: 15),
-            type: AppCalendarEventType.reminder,
-            priority: AppCalendarEventPriority.critical,
+            type: DSCalendarEventType.reminder,
+            priority: DSCalendarEventPriority.critical,
           ),
         ],
         showWorkingHours: true,
@@ -106,13 +106,13 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          theme: AppTheme.lightTheme,
+          theme: DSTheme.lightTheme,
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16),
               child: SizedBox(
                 height: 600,
-                child: AppCalendar(config: config),
+                child: DSCalendar(config: config),
               ),
             ),
           ),
@@ -120,60 +120,60 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppCalendar),
+        find.byType(DSCalendar),
         matchesGoldenFile('app_calendar_week_events.png'),
       );
     });
 
     testWidgets('day view calendar with detailed schedule', (tester) async {
       final today = DateTime(2024, 1, 15);
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.day,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.day,
         selectedDate: today,
         events: [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'day-1',
             title: 'Morning Coffee',
             startTime: today.copyWith(hour: 8, minute: 0),
             endTime: today.copyWith(hour: 8, minute: 30),
-            type: AppCalendarEventType.event,
+            type: DSCalendarEventType.event,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'day-2',
             title: 'Sprint Planning',
             startTime: today.copyWith(hour: 9, minute: 0),
             endTime: today.copyWith(hour: 10, minute: 30),
-            type: AppCalendarEventType.meeting,
-            priority: AppCalendarEventPriority.high,
+            type: DSCalendarEventType.meeting,
+            priority: DSCalendarEventPriority.high,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'day-3',
             title: 'Focused Work Time',
             startTime: today.copyWith(hour: 11, minute: 0),
             endTime: today.copyWith(hour: 13, minute: 0),
-            type: AppCalendarEventType.busy,
+            type: DSCalendarEventType.busy,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'day-4',
             title: 'Lunch Break',
             startTime: today.copyWith(hour: 13, minute: 0),
             endTime: today.copyWith(hour: 14, minute: 0),
-            type: AppCalendarEventType.allDay,
+            type: DSCalendarEventType.allDay,
             isAllDay: false,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'day-5',
             title: 'Code Review Session',
             startTime: today.copyWith(hour: 15, minute: 0),
             endTime: today.copyWith(hour: 16, minute: 0),
-            type: AppCalendarEventType.task,
+            type: DSCalendarEventType.task,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'day-6',
             title: 'Client Call',
             startTime: today.copyWith(hour: 17, minute: 0),
             endTime: today.copyWith(hour: 17, minute: 45),
-            type: AppCalendarEventType.tentative,
+            type: DSCalendarEventType.tentative,
           ),
         ],
         startHour: 7,
@@ -184,13 +184,13 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          theme: AppTheme.lightTheme,
+          theme: DSTheme.lightTheme,
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16),
               child: SizedBox(
                 height: 600,
-                child: AppCalendar(config: config),
+                child: DSCalendar(config: config),
               ),
             ),
           ),
@@ -198,14 +198,14 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppCalendar),
+        find.byType(DSCalendar),
         matchesGoldenFile('app_calendar_day_detailed.png'),
       );
     });
 
     testWidgets('calendar with custom styling', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.month,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.month,
         selectedDate: DateTime(2024, 1, 15),
         backgroundColor: Colors.grey.shade50,
         headerBackgroundColor: Colors.indigo.shade100,
@@ -222,7 +222,7 @@ void main() {
         cellHeight: 50.0,
         eventBorderRadius: 8.0,
         events: [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'styled-1',
             title: 'Custom Event 1',
             startTime: DateTime(2024, 1, 15, 10, 0),
@@ -231,7 +231,7 @@ void main() {
             textColor: Colors.purple.shade800,
             borderColor: Colors.purple.shade300,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'styled-2',
             title: 'Custom Event 2',
             startTime: DateTime(2024, 1, 17, 14, 0),
@@ -245,28 +245,28 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          theme: AppTheme.lightTheme,
+          theme: DSTheme.lightTheme,
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16),
-              child: AppCalendar(config: config),
+              child: DSCalendar(config: config),
             ),
           ),
         ),
       );
 
       await expectLater(
-        find.byType(AppCalendar),
+        find.byType(DSCalendar),
         matchesGoldenFile('app_calendar_custom_styled.png'),
       );
     });
 
     testWidgets('calendar with resources', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.week,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.week,
         selectedDate: DateTime(2024, 1, 15),
         resources: [
-          AppCalendarResource(
+          DSCalendarResource(
             id: 'dev-1',
             name: 'María García',
             description: 'Senior Developer',
@@ -274,7 +274,7 @@ void main() {
             color: Colors.blue.shade300,
             icon: Icons.person,
           ),
-          AppCalendarResource(
+          DSCalendarResource(
             id: 'dev-2',
             name: 'Carlos López',
             description: 'Frontend Developer',
@@ -282,7 +282,7 @@ void main() {
             color: Colors.green.shade300,
             icon: Icons.person,
           ),
-          AppCalendarResource(
+          DSCalendarResource(
             id: 'room-1',
             name: 'Meeting Room A',
             description: 'Capacity for 8 people, 4K TV',
@@ -291,40 +291,40 @@ void main() {
           ),
         ],
         events: [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'resource-1',
             title: 'Team Standup',
             startTime: DateTime(2024, 1, 15, 9, 0),
             endTime: DateTime(2024, 1, 15, 9, 30),
-            type: AppCalendarEventType.meeting,
+            type: DSCalendarEventType.meeting,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'resource-2',
             title: 'Pair Programming Session',
             startTime: DateTime(2024, 1, 16, 14, 0),
             endTime: DateTime(2024, 1, 16, 17, 0),
-            type: AppCalendarEventType.task,
+            type: DSCalendarEventType.task,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'resource-3',
             title: 'Stakeholder Presentation',
             startTime: DateTime(2024, 1, 17, 16, 0),
             endTime: DateTime(2024, 1, 17, 17, 30),
-            type: AppCalendarEventType.meeting,
-            priority: AppCalendarEventPriority.high,
+            type: DSCalendarEventType.meeting,
+            priority: DSCalendarEventPriority.high,
           ),
         ],
       );
 
       await tester.pumpWidget(
         MaterialApp(
-          theme: AppTheme.lightTheme,
+          theme: DSTheme.lightTheme,
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16),
               child: SizedBox(
                 height: 600,
-                child: AppCalendar(config: config),
+                child: DSCalendar(config: config),
               ),
             ),
           ),
@@ -332,32 +332,32 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppCalendar),
+        find.byType(DSCalendar),
         matchesGoldenFile('app_calendar_with_resources.png'),
       );
     });
 
     testWidgets('empty calendar state', (tester) async {
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.month,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.month,
         selectedDate: DateTime(2024, 1, 15),
         events: [], // No events
       );
 
       await tester.pumpWidget(
         MaterialApp(
-          theme: AppTheme.lightTheme,
+          theme: DSTheme.lightTheme,
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16),
-              child: AppCalendar(config: config),
+              child: DSCalendar(config: config),
             ),
           ),
         ),
       );
 
       await expectLater(
-        find.byType(AppCalendar),
+        find.byType(DSCalendar),
         matchesGoldenFile('app_calendar_empty.png'),
       );
     });
@@ -365,118 +365,118 @@ void main() {
     testWidgets('calendar with different event types and priorities',
         (tester) async {
       final baseDate = DateTime(2024, 1, 15);
-      final config = AppCalendarConfig(
-        variant: AppCalendarVariant.month,
+      final config = DSCalendarConfig(
+        variant: DSCalendarVariant.month,
         selectedDate: baseDate,
         events: [
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'meeting-high',
             title: 'High Priority Meeting',
             startTime: baseDate.add(const Duration(days: 1, hours: 9)),
             endTime: baseDate.add(const Duration(days: 1, hours: 10)),
-            type: AppCalendarEventType.meeting,
-            priority: AppCalendarEventPriority.high,
+            type: DSCalendarEventType.meeting,
+            priority: DSCalendarEventPriority.high,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'task-normal',
             title: 'Regular Task',
             startTime: baseDate.add(const Duration(days: 2, hours: 10)),
             endTime: baseDate.add(const Duration(days: 2, hours: 12)),
-            type: AppCalendarEventType.task,
-            priority: AppCalendarEventPriority.normal,
+            type: DSCalendarEventType.task,
+            priority: DSCalendarEventPriority.normal,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'reminder-critical',
             title: 'Critical Reminder',
             startTime: baseDate.add(const Duration(days: 3, hours: 8)),
             endTime:
                 baseDate.add(const Duration(days: 3, hours: 8, minutes: 15)),
-            type: AppCalendarEventType.reminder,
-            priority: AppCalendarEventPriority.critical,
+            type: DSCalendarEventType.reminder,
+            priority: DSCalendarEventPriority.critical,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'event-low',
             title: 'Low Priority Event',
             startTime: baseDate.add(const Duration(days: 4, hours: 15)),
             endTime: baseDate.add(const Duration(days: 4, hours: 16)),
-            type: AppCalendarEventType.event,
-            priority: AppCalendarEventPriority.low,
+            type: DSCalendarEventType.event,
+            priority: DSCalendarEventPriority.low,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'busy-normal',
             title: 'Busy Time',
             startTime: baseDate.add(const Duration(days: 5, hours: 11)),
             endTime: baseDate.add(const Duration(days: 5, hours: 13)),
-            type: AppCalendarEventType.busy,
-            priority: AppCalendarEventPriority.normal,
+            type: DSCalendarEventType.busy,
+            priority: DSCalendarEventPriority.normal,
           ),
-          AppCalendarEvent(
+          DSCalendarEvent(
             id: 'tentative-low',
             title: 'Tentative Meeting',
             startTime: baseDate.add(const Duration(days: 6, hours: 14)),
             endTime: baseDate.add(const Duration(days: 6, hours: 15)),
-            type: AppCalendarEventType.tentative,
-            priority: AppCalendarEventPriority.low,
+            type: DSCalendarEventType.tentative,
+            priority: DSCalendarEventPriority.low,
           ),
         ],
       );
 
       await tester.pumpWidget(
         MaterialApp(
-          theme: AppTheme.lightTheme,
+          theme: DSTheme.lightTheme,
           home: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(16),
-              child: AppCalendar(config: config),
+              child: DSCalendar(config: config),
             ),
           ),
         ),
       );
 
       await expectLater(
-        find.byType(AppCalendar),
+        find.byType(DSCalendar),
         matchesGoldenFile('app_calendar_event_types_priorities.png'),
       );
     });
 
     group('Dark Theme', () {
       testWidgets('basic calendar in dark theme', (tester) async {
-        final config = AppCalendarConfig(
-          variant: AppCalendarVariant.month,
+        final config = DSCalendarConfig(
+          variant: DSCalendarVariant.month,
           selectedDate: DateTime(2024, 1, 15),
           events: [
-            AppCalendarEvent(
+            DSCalendarEvent(
               id: 'dark-1',
               title: 'Team Meeting',
               startTime: DateTime(2024, 1, 15, 9, 0),
               endTime: DateTime(2024, 1, 15, 10, 0),
-              type: AppCalendarEventType.meeting,
+              type: DSCalendarEventType.meeting,
             ),
-            AppCalendarEvent(
+            DSCalendarEvent(
               id: 'dark-2',
               title: 'Project Review',
               startTime: DateTime(2024, 1, 17, 14, 0),
               endTime: DateTime(2024, 1, 17, 15, 0),
-              type: AppCalendarEventType.task,
-              priority: AppCalendarEventPriority.high,
+              type: DSCalendarEventType.task,
+              priority: DSCalendarEventPriority.high,
             ),
           ],
         );
 
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.darkTheme,
+            theme: DSTheme.darkTheme,
             home: Scaffold(
               body: Padding(
                 padding: const EdgeInsets.all(16),
-                child: AppCalendar(config: config),
+                child: DSCalendar(config: config),
               ),
             ),
           ),
         );
 
         await expectLater(
-          find.byType(AppCalendar),
+          find.byType(DSCalendar),
           matchesGoldenFile('app_calendar_dark_theme.png'),
         );
       });
@@ -486,41 +486,41 @@ void main() {
       testWidgets('calendar on narrow screen', (tester) async {
         await tester.binding.setSurfaceSize(const Size(400, 600));
 
-        final config = AppCalendarConfig(
-          variant: AppCalendarVariant.month,
+        final config = DSCalendarConfig(
+          variant: DSCalendarVariant.month,
           selectedDate: DateTime(2024, 1, 15),
           events: [
-            AppCalendarEvent(
+            DSCalendarEvent(
               id: 'narrow-1',
               title: 'Meeting',
               startTime: DateTime(2024, 1, 15, 9, 0),
               endTime: DateTime(2024, 1, 15, 10, 0),
-              type: AppCalendarEventType.meeting,
+              type: DSCalendarEventType.meeting,
             ),
-            AppCalendarEvent(
+            DSCalendarEvent(
               id: 'narrow-2',
               title: 'Task',
               startTime: DateTime(2024, 1, 17, 14, 0),
               endTime: DateTime(2024, 1, 17, 15, 0),
-              type: AppCalendarEventType.task,
+              type: DSCalendarEventType.task,
             ),
           ],
         );
 
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.lightTheme,
+            theme: DSTheme.lightTheme,
             home: Scaffold(
               body: Padding(
                 padding: const EdgeInsets.all(8),
-                child: AppCalendar(config: config),
+                child: DSCalendar(config: config),
               ),
             ),
           ),
         );
 
         await expectLater(
-          find.byType(AppCalendar),
+          find.byType(DSCalendar),
           matchesGoldenFile('app_calendar_narrow_screen.png'),
         );
 

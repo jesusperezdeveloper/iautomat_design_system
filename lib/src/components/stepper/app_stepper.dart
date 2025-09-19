@@ -6,40 +6,40 @@ import 'package:flutter/services.dart';
 
 import 'stepper_config.dart';
 
-class AppStepper extends StatefulWidget {
+class DSStepper extends StatefulWidget {
   final int currentStep;
-  final List<AppStep> steps;
+  final List<DSStep> steps;
   final VoidCallback? onStepContinue;
   final VoidCallback? onStepCancel;
   final ValueChanged<int>? onStepTapped;
-  final AppStepperVariant variant;
-  final AppStepperConfig? config;
-  final AppStepperColors? colors;
+  final DSStepperVariant variant;
+  final DSStepperConfig? config;
+  final DSStepperColors? colors;
   final bool enabled;
   final bool autoFocus;
   final FocusNode? focusNode;
   final String? semanticLabel;
-  final AppStepperState? overrideState;
+  final DSStepperState? overrideState;
   final TextDirection? textDirection;
   final bool dense;
   final double? width;
   final double? height;
   final Widget? loadingWidget;
   final ScrollController? scrollController;
-  final AppStepperControlsBuilder? controlsBuilder;
+  final DSStepperControlsBuilder? controlsBuilder;
   final EdgeInsets? margin;
-  final String? Function(int, List<AppStep>)? validator;
+  final String? Function(int, List<DSStep>)? validator;
   final bool showControls;
   final bool expandActiveStep;
 
-  const AppStepper({
+  const DSStepper({
     super.key,
     required this.currentStep,
     required this.steps,
     this.onStepContinue,
     this.onStepCancel,
     this.onStepTapped,
-    this.variant = AppStepperVariant.vertical,
+    this.variant = DSStepperVariant.vertical,
     this.config,
     this.colors,
     this.enabled = true,
@@ -61,19 +61,19 @@ class AppStepper extends StatefulWidget {
   });
 
   @override
-  State<AppStepper> createState() => _AppStepperState();
+  State<DSStepper> createState() => _DSStepperState();
 }
 
-class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
+class _DSStepperState extends State<DSStepper> with TickerProviderStateMixin {
   late FocusNode _focusNode;
   late AnimationController _animationController;
   late AnimationController _shimmerController;
   late Animation<double> _shimmerAnimation;
   late ScrollController _scrollController;
 
-  AppStepperConfig? _config;
-  AppStepperColors? _colors;
-  AppStepperState _currentState = AppStepperState.defaultState;
+  DSStepperConfig? _config;
+  DSStepperColors? _colors;
+  DSStepperState _currentState = DSStepperState.defaultState;
   final bool _isPressed = false;
   final bool _isHovered = false;
   Map<int, GlobalKey> _stepKeys = <int, GlobalKey>{};
@@ -120,7 +120,7 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(AppStepper oldWidget) {
+  void didUpdateWidget(DSStepper oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.focusNode != oldWidget.focusNode) {
@@ -165,26 +165,26 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
 
   void _updateColors() {
     final theme = Theme.of(context);
-    _colors = widget.colors ?? AppStepperColors.fromTheme(theme);
-    _config = widget.config ?? const AppStepperConfig();
+    _colors = widget.colors ?? DSStepperColors.fromTheme(theme);
+    _config = widget.config ?? const DSStepperConfig();
   }
 
   void _updateState() {
     if (widget.overrideState != null) {
       _currentState = widget.overrideState!;
     } else if (!widget.enabled) {
-      _currentState = AppStepperState.disabled;
+      _currentState = DSStepperState.disabled;
     } else if (_isPressed) {
-      _currentState = AppStepperState.pressed;
+      _currentState = DSStepperState.pressed;
     } else if (_isHovered) {
-      _currentState = AppStepperState.hover;
+      _currentState = DSStepperState.hover;
     } else if (_focusNode.hasFocus) {
-      _currentState = AppStepperState.focus;
+      _currentState = DSStepperState.focus;
     } else {
-      _currentState = AppStepperState.defaultState;
+      _currentState = DSStepperState.defaultState;
     }
 
-    if (_currentState == AppStepperState.skeleton) {
+    if (_currentState == DSStepperState.skeleton) {
       _shimmerController.repeat();
     } else {
       _shimmerController.stop();
@@ -273,7 +273,7 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
       animation: _shimmerAnimation,
       builder: (context, child) {
         return Container(
-          height: widget.variant == AppStepperVariant.vertical ? 200 : 100,
+          height: widget.variant == DSStepperVariant.vertical ? 200 : 100,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(_config!.stepRadius),
             gradient: LinearGradient(
@@ -314,7 +314,7 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildStepIcon(AppStep step, int index) {
+  Widget _buildStepIcon(DSStep step, int index) {
     final isActive = index == widget.currentStep;
     final isCompleted = step.isCompleted;
     final hasError = step.hasError;
@@ -378,7 +378,7 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildStepTitle(AppStep step, int index) {
+  Widget _buildStepTitle(DSStep step, int index) {
     final isActive = index == widget.currentStep;
     final isCompleted = step.isCompleted;
     final hasError = step.hasError;
@@ -484,7 +484,7 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
       connectorColor = _colors!.connectorColor;
     }
 
-    if (widget.variant == AppStepperVariant.horizontal) {
+    if (widget.variant == DSStepperVariant.horizontal) {
       return Container(
         width: _config!.horizontalSpacing,
         height: _config!.connectorThickness,
@@ -501,7 +501,7 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
     }
   }
 
-  Widget _buildStepContent(AppStep step, int index) {
+  Widget _buildStepContent(DSStep step, int index) {
     final isActive = index == widget.currentStep;
     final shouldExpand = widget.expandActiveStep && isActive;
 
@@ -718,17 +718,17 @@ class _AppStepperState extends State<AppStepper> with TickerProviderStateMixin {
             children: [
               _buildProgressIndicator(),
               Expanded(
-                child: _currentState == AppStepperState.loading
+                child: _currentState == DSStepperState.loading
                     ? Center(
                         child: widget.loadingWidget ?? _buildLoadingIndicator(),
                       )
-                    : _currentState == AppStepperState.skeleton
+                    : _currentState == DSStepperState.skeleton
                         ? _buildSkeleton()
-                        : widget.variant == AppStepperVariant.horizontal
+                        : widget.variant == DSStepperVariant.horizontal
                             ? _buildHorizontalStepper()
                             : _buildVerticalStepper(),
               ),
-              if (widget.variant == AppStepperVariant.vertical)
+              if (widget.variant == DSStepperVariant.vertical)
                 _buildControls(),
             ],
           ),

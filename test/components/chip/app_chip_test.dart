@@ -6,19 +6,19 @@ import 'package:iautomat_design_system/src/components/chip/app_chip.dart';
 import 'package:iautomat_design_system/src/components/chip/chip_config.dart';
 
 void main() {
-  group('AppChip', () {
+  group('DSChip', () {
     group('Widget Tests', () {
       testWidgets('renders correctly with default configuration',
           (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppChip(label: 'Test Chip'),
+              body: DSChip(label: 'Test Chip'),
             ),
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
         expect(find.text('Test Chip'), findsOneWidget);
       });
 
@@ -26,7 +26,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip.input(
+              body: DSChip.input(
                 label: 'Input Chip',
                 onDeleted: () {},
               ),
@@ -34,7 +34,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
         expect(find.text('Input Chip'), findsOneWidget);
       });
 
@@ -42,7 +42,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip.filter(
+              body: DSChip.filter(
                 label: 'Filter Chip',
                 onSelected: (selected) {},
               ),
@@ -50,7 +50,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
         expect(find.text('Filter Chip'), findsOneWidget);
       });
 
@@ -58,7 +58,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip.choice(
+              body: DSChip.choice(
                 label: 'Choice Chip',
                 onSelected: (selected) {},
               ),
@@ -66,7 +66,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
         expect(find.text('Choice Chip'), findsOneWidget);
       });
 
@@ -74,7 +74,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip.assist(
+              body: DSChip.assist(
                 label: 'Assist Chip',
                 onSelected: (selected) {},
               ),
@@ -82,7 +82,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
         expect(find.text('Assist Chip'), findsOneWidget);
       });
 
@@ -90,7 +90,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Avatar Chip',
                 avatar: const CircleAvatar(child: Text('A')),
               ),
@@ -106,7 +106,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Icon Chip',
                 icon: Icons.star,
                 onSelected: (selected) {},
@@ -122,7 +122,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Avatar Text Chip',
                 avatarText: 'AT',
                 onSelected: (selected) {},
@@ -138,7 +138,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Deletable Chip',
                 deletable: true,
                 onDeleted: () {},
@@ -154,7 +154,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip.filter(
+              body: DSChip.filter(
                 label: 'Selected Filter',
                 selected: true,
                 onSelected: (selected) {},
@@ -172,7 +172,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Disabled Chip',
                 enabled: false,
               ),
@@ -180,7 +180,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
         expect(find.text('Disabled Chip'), findsOneWidget);
       });
 
@@ -188,9 +188,9 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Loading Chip',
-                state: AppChipState.loading,
+                state: DSChipState.loading,
                 onSelected: (selected) {},
               ),
             ),
@@ -204,23 +204,23 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Skeleton Chip',
-                state: AppChipState.skeleton,
+                state: DSChipState.skeleton,
                 onSelected: (selected) {},
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
 
       testWidgets('shows selected state correctly', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip.filter(
+              body: DSChip.filter(
                 label: 'Selected Chip',
                 selected: true,
                 onSelected: (selected) {},
@@ -229,7 +229,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
     });
 
@@ -238,48 +238,48 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Small Chip',
-                size: AppChipSize.small,
+                size: DSChipSize.small,
                 onSelected: (selected) {},
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
 
       testWidgets('renders medium size correctly', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Medium Chip',
-                size: AppChipSize.medium,
+                size: DSChipSize.medium,
                 onSelected: (selected) {},
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
 
       testWidgets('renders large size correctly', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Large Chip',
-                size: AppChipSize.large,
+                size: DSChipSize.large,
                 onSelected: (selected) {},
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
     });
 
@@ -288,32 +288,32 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Rounded Chip',
-                shape: AppChipShape.rounded,
+                shape: DSChipShape.rounded,
                 onSelected: (selected) {},
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
 
       testWidgets('renders stadium shape correctly', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Stadium Chip',
-                shape: AppChipShape.stadium,
+                shape: DSChipShape.stadium,
                 onSelected: (selected) {},
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
     });
 
@@ -325,7 +325,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Selectable Chip',
                 selected: wasSelected,
                 onSelected: (selected) {
@@ -337,7 +337,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(AppChip), warnIfMissed: false);
+        await tester.tap(find.byType(DSChip), warnIfMissed: false);
         await tester.pumpAndSettle();
 
         expect(callbackCalled, isTrue);
@@ -350,7 +350,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Deletable Chip',
                 deletable: true,
                 onDeleted: () {
@@ -373,7 +373,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Disabled Chip',
                 enabled: false,
                 onSelected: (selected) {
@@ -384,7 +384,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(AppChip), warnIfMissed: false);
+        await tester.tap(find.byType(DSChip), warnIfMissed: false);
         await tester.pumpAndSettle();
 
         expect(callbackCalled, isFalse);
@@ -394,7 +394,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Tooltip Chip',
                 tooltip: 'This is a tooltip',
                 onSelected: (selected) {},
@@ -409,15 +409,15 @@ void main() {
 
     group('Configuration Tests', () {
       testWidgets('applies custom configuration correctly', (tester) async {
-        final customConfig = AppChipConfig(
+        final customConfig = DSChipConfig(
           borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-          size: AppChipSize.large,
+          size: DSChipSize.large,
         );
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Custom Config Chip',
                 config: customConfig,
                 onSelected: (selected) {},
@@ -426,14 +426,14 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
 
       testWidgets('applies custom colors correctly', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Custom Color Chip',
                 backgroundColor: Colors.red,
                 color: Colors.white,
@@ -443,14 +443,14 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
 
       testWidgets('applies custom padding correctly', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Custom Padding Chip',
                 padding: const EdgeInsets.all(20),
                 onSelected: (selected) {},
@@ -459,14 +459,14 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
 
       testWidgets('applies custom border radius correctly', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Custom Border Chip',
                 borderRadius: BorderRadius.circular(20),
                 onSelected: (selected) {},
@@ -475,14 +475,14 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
 
       testWidgets('applies custom text style correctly', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Custom Text Chip',
                 textStyle: const TextStyle(fontWeight: FontWeight.bold),
                 onSelected: (selected) {},
@@ -491,7 +491,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
     });
 
@@ -500,7 +500,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Accessible Chip',
                 semanticLabel: 'Custom semantic label',
                 onSelected: (selected) {},
@@ -519,7 +519,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Button Chip',
                 onSelected: (selected) {},
               ),
@@ -534,7 +534,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Focusable Chip',
                 onSelected: (selected) {},
               ),
@@ -551,7 +551,7 @@ void main() {
 
     group('Data Model Tests', () {
       testWidgets('uses data model properties when provided', (tester) async {
-        final chipData = AppChipData(
+        final chipData = DSChipData(
           label: 'Data Chip',
           avatarText: 'D',
           selected: true,
@@ -561,7 +561,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Will be overridden',
                 data: chipData,
                 onSelected: (selected) {},
@@ -583,7 +583,7 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.rtl,
               child: Scaffold(
-                body: AppChip(
+                body: DSChip(
                   label: 'RTL Chip',
                   onSelected: (selected) {},
                 ),
@@ -593,7 +593,7 @@ void main() {
         );
 
         expect(find.text('RTL Chip'), findsOneWidget);
-        expect(find.byType(AppChip), findsOneWidget);
+        expect(find.byType(DSChip), findsOneWidget);
       });
 
       testWidgets('renders avatar correctly in RTL', (tester) async {
@@ -602,7 +602,7 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.rtl,
               child: Scaffold(
-                body: AppChip(
+                body: DSChip(
                   label: 'RTL Avatar Chip',
                   avatarText: 'R',
                   onSelected: (selected) {},
@@ -622,7 +622,7 @@ void main() {
             home: Directionality(
               textDirection: TextDirection.rtl,
               child: Scaffold(
-                body: AppChip(
+                body: DSChip(
                   label: 'RTL Delete Chip',
                   deletable: true,
                   onDeleted: () {},
@@ -641,7 +641,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Animated Chip',
                 onSelected: (selected) {},
               ),
@@ -656,7 +656,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Tap Animation Chip',
                 onSelected: (selected) {},
               ),
@@ -664,7 +664,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(AppChip), warnIfMissed: false);
+        await tester.tap(find.byType(DSChip), warnIfMissed: false);
         await tester.pump();
 
         expect(find.byType(AnimatedBuilder), findsWidgets);
@@ -674,7 +674,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppChip(
+              body: DSChip(
                 label: 'Hover Animation Chip',
                 onSelected: (selected) {},
               ),
@@ -687,7 +687,7 @@ void main() {
         await gesture.addPointer(location: Offset.zero);
         addTearDown(gesture.removePointer);
 
-        await gesture.moveTo(tester.getCenter(find.byType(AppChip)));
+        await gesture.moveTo(tester.getCenter(find.byType(DSChip)));
         await tester.pumpAndSettle();
 
         expect(find.byType(AnimatedBuilder), findsWidgets);
@@ -695,19 +695,19 @@ void main() {
     });
   });
 
-  group('AppChipData', () {
+  group('DSChipData', () {
     test('correctly identifies avatar presence', () {
-      final dataWithAvatarText = AppChipData(
+      final dataWithAvatarText = DSChipData(
         label: 'Test',
         avatarText: 'T',
       );
 
-      final dataWithAvatarUrl = AppChipData(
+      final dataWithAvatarUrl = DSChipData(
         label: 'Test',
         avatarUrl: 'https://example.com/avatar.png',
       );
 
-      final dataWithoutAvatar = AppChipData(
+      final dataWithoutAvatar = DSChipData(
         label: 'Test',
       );
 
@@ -717,12 +717,12 @@ void main() {
     });
 
     test('correctly identifies icon presence', () {
-      final dataWithIcon = AppChipData(
+      final dataWithIcon = DSChipData(
         label: 'Test',
         icon: Icons.star,
       );
 
-      final dataWithoutIcon = AppChipData(
+      final dataWithoutIcon = DSChipData(
         label: 'Test',
       );
 
@@ -731,17 +731,17 @@ void main() {
     });
 
     test('correctly identifies deletable state', () {
-      final deletableData = AppChipData(
+      final deletableData = DSChipData(
         label: 'Test',
         deletable: true,
       );
 
-      final nonDeletableData = AppChipData(
+      final nonDeletableData = DSChipData(
         label: 'Test',
         deletable: false,
       );
 
-      final defaultData = AppChipData(
+      final defaultData = DSChipData(
         label: 'Test',
       );
 
@@ -751,17 +751,17 @@ void main() {
     });
 
     test('correctly identifies enabled state', () {
-      final enabledData = AppChipData(
+      final enabledData = DSChipData(
         label: 'Test',
         enabled: true,
       );
 
-      final disabledData = AppChipData(
+      final disabledData = DSChipData(
         label: 'Test',
         enabled: false,
       );
 
-      final defaultData = AppChipData(
+      final defaultData = DSChipData(
         label: 'Test',
       );
 
@@ -771,17 +771,17 @@ void main() {
     });
 
     test('correctly identifies selected state', () {
-      final selectedData = AppChipData(
+      final selectedData = DSChipData(
         label: 'Test',
         selected: true,
       );
 
-      final unselectedData = AppChipData(
+      final unselectedData = DSChipData(
         label: 'Test',
         selected: false,
       );
 
-      final defaultData = AppChipData(
+      final defaultData = DSChipData(
         label: 'Test',
       );
 
@@ -791,16 +791,16 @@ void main() {
     });
 
     test('generates correct avatar display text', () {
-      final dataWithAvatarText = AppChipData(
+      final dataWithAvatarText = DSChipData(
         label: 'Test Label',
         avatarText: 'Custom',
       );
 
-      final dataWithoutAvatarText = AppChipData(
+      final dataWithoutAvatarText = DSChipData(
         label: 'Test Label',
       );
 
-      final dataWithEmptyLabel = AppChipData(
+      final dataWithEmptyLabel = DSChipData(
         label: '',
       );
 
@@ -810,10 +810,10 @@ void main() {
     });
   });
 
-  group('AppChipUtils', () {
+  group('DSChipUtils', () {
     test('creates chip data from string list', () {
       final labels = ['Item 1', 'Item 2', 'Item 3'];
-      final chipDataList = AppChipUtils.fromStringList(labels);
+      final chipDataList = DSChipUtils.fromStringList(labels);
 
       expect(chipDataList.length, equals(3));
       expect(chipDataList[0].label, equals('Item 1'));
@@ -824,7 +824,7 @@ void main() {
 
     test('creates chip data with avatars', () {
       final labels = ['Alice', 'Bob', 'Charlie'];
-      final chipDataList = AppChipUtils.withAvatars(labels);
+      final chipDataList = DSChipUtils.withAvatars(labels);
 
       expect(chipDataList.length, equals(3));
       expect(chipDataList[0].avatarText, equals('A'));
@@ -838,7 +838,7 @@ void main() {
         'Settings': Icons.settings,
         'Profile': Icons.person,
       };
-      final chipDataList = AppChipUtils.withIcons(labelIconMap);
+      final chipDataList = DSChipUtils.withIcons(labelIconMap);
 
       expect(chipDataList.length, equals(3));
       expect(chipDataList[0].icon, equals(Icons.home));
@@ -848,7 +848,7 @@ void main() {
 
     test('creates deletable chip data', () {
       final labels = ['Tag 1', 'Tag 2', 'Tag 3'];
-      final chipDataList = AppChipUtils.deletable(labels);
+      final chipDataList = DSChipUtils.deletable(labels);
 
       expect(chipDataList.length, equals(3));
       expect(chipDataList[0].deletable, isTrue);
@@ -857,59 +857,59 @@ void main() {
     });
 
     test('gets correct height for chip size', () {
-      const sizes = AppChipSizes();
+      const sizes = DSChipSizes();
 
       expect(
-        AppChipUtils.getHeight(AppChipSize.small, sizes),
+        DSChipUtils.getHeight(DSChipSize.small, sizes),
         equals(sizes.smallHeight),
       );
       expect(
-        AppChipUtils.getHeight(AppChipSize.medium, sizes),
+        DSChipUtils.getHeight(DSChipSize.medium, sizes),
         equals(sizes.mediumHeight),
       );
       expect(
-        AppChipUtils.getHeight(AppChipSize.large, sizes),
+        DSChipUtils.getHeight(DSChipSize.large, sizes),
         equals(sizes.largeHeight),
       );
     });
 
     test('gets correct padding for chip size', () {
-      const sizes = AppChipSizes();
+      const sizes = DSChipSizes();
 
       expect(
-        AppChipUtils.getPadding(AppChipSize.small, sizes),
+        DSChipUtils.getPadding(DSChipSize.small, sizes),
         equals(sizes.smallPadding),
       );
       expect(
-        AppChipUtils.getPadding(AppChipSize.medium, sizes),
+        DSChipUtils.getPadding(DSChipSize.medium, sizes),
         equals(sizes.mediumPadding),
       );
       expect(
-        AppChipUtils.getPadding(AppChipSize.large, sizes),
+        DSChipUtils.getPadding(DSChipSize.large, sizes),
         equals(sizes.largePadding),
       );
     });
 
     test('gets correct icon size for chip size', () {
-      const sizes = AppChipSizes();
+      const sizes = DSChipSizes();
 
       expect(
-        AppChipUtils.getIconSize(AppChipSize.small, sizes),
+        DSChipUtils.getIconSize(DSChipSize.small, sizes),
         equals(sizes.smallIconSize),
       );
       expect(
-        AppChipUtils.getIconSize(AppChipSize.medium, sizes),
+        DSChipUtils.getIconSize(DSChipSize.medium, sizes),
         equals(sizes.mediumIconSize),
       );
       expect(
-        AppChipUtils.getIconSize(AppChipSize.large, sizes),
+        DSChipUtils.getIconSize(DSChipSize.large, sizes),
         equals(sizes.largeIconSize),
       );
     });
 
     test('checks platform support correctly', () {
-      expect(AppChipUtils.supportsAdvancedInteractions, isA<bool>());
-      expect(AppChipUtils.supportsHover, isA<bool>());
+      expect(DSChipUtils.supportsAdvancedInteractions, isA<bool>());
+      expect(DSChipUtils.supportsHover, isA<bool>());
     });
   });
 }

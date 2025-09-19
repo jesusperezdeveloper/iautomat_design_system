@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/radio/app_radio.dart';
 import 'package:iautomat_design_system/src/components/radio/radio_config.dart';
 
 void main() {
-  group('AppRadio Golden Tests', () {
+  group('DSRadio Golden Tests', () {
     testWidgets('standard radio states light theme', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -16,47 +16,47 @@ void main() {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Unselected'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'option1',
                     groupValue: null,
                     onChanged: (_) {},
                   ),
                   const SizedBox(height: 16),
                   const Text('Selected'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'option2',
                     groupValue: 'option2',
                     onChanged: (_) {},
                   ),
                   const SizedBox(height: 16),
                   const Text('Disabled Unselected'),
-                  const AppRadio<String>(
+                  const DSRadio<String>(
                     value: 'option3',
                     groupValue: null,
                     onChanged: null,
                   ),
                   const SizedBox(height: 16),
                   const Text('Disabled Selected'),
-                  const AppRadio<String>(
+                  const DSRadio<String>(
                     value: 'option4',
                     groupValue: 'option4',
                     onChanged: null,
                   ),
                   const SizedBox(height: 16),
                   const Text('Loading'),
-                  const AppRadio<String>(
+                  const DSRadio<String>(
                     value: 'loading',
                     groupValue: null,
                     onChanged: null,
-                    overrideState: AppRadioState.loading,
+                    overrideState: DSRadioState.loading,
                   ),
                   const SizedBox(height: 16),
                   const Text('Skeleton'),
-                  const AppRadio<String>(
+                  const DSRadio<String>(
                     value: 'skeleton',
                     groupValue: null,
                     onChanged: null,
-                    overrideState: AppRadioState.skeleton,
+                    overrideState: DSRadioState.skeleton,
                   ),
                 ],
               ),
@@ -83,47 +83,47 @@ void main() {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Unselected'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'option1',
                     groupValue: null,
                     onChanged: (_) {},
                   ),
                   const SizedBox(height: 16),
                   const Text('Selected'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'option2',
                     groupValue: 'option2',
                     onChanged: (_) {},
                   ),
                   const SizedBox(height: 16),
                   const Text('Disabled Unselected'),
-                  const AppRadio<String>(
+                  const DSRadio<String>(
                     value: 'option3',
                     groupValue: null,
                     onChanged: null,
                   ),
                   const SizedBox(height: 16),
                   const Text('Disabled Selected'),
-                  const AppRadio<String>(
+                  const DSRadio<String>(
                     value: 'option4',
                     groupValue: 'option4',
                     onChanged: null,
                   ),
                   const SizedBox(height: 16),
                   const Text('Loading'),
-                  const AppRadio<String>(
+                  const DSRadio<String>(
                     value: 'loading',
                     groupValue: null,
                     onChanged: null,
-                    overrideState: AppRadioState.loading,
+                    overrideState: DSRadioState.loading,
                   ),
                   const SizedBox(height: 16),
                   const Text('Skeleton'),
-                  const AppRadio<String>(
+                  const DSRadio<String>(
                     value: 'skeleton',
                     groupValue: null,
                     onChanged: null,
-                    overrideState: AppRadioState.skeleton,
+                    overrideState: DSRadioState.skeleton,
                   ),
                 ],
               ),
@@ -149,28 +149,28 @@ void main() {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'small',
                     groupValue: null,
                     onChanged: (_) {},
                     label: 'Small (8oz)',
                   ),
                   const SizedBox(height: 16),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'medium',
                     groupValue: 'medium',
                     onChanged: (_) {},
                     label: 'Medium (12oz)',
                   ),
                   const SizedBox(height: 16),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'large',
                     groupValue: null,
                     onChanged: (_) {},
                     label: 'Large (16oz)',
                   ),
                   const SizedBox(height: 16),
-                  const AppRadio<String>(
+                  const DSRadio<String>(
                     value: 'extra_large',
                     groupValue: null,
                     onChanged: null,
@@ -202,30 +202,30 @@ void main() {
                 children: [
                   const Text('View Mode'),
                   const SizedBox(height: 12),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'list',
                     groupValue: 'list',
                     onChanged: (_) {},
-                    variant: AppRadioVariant.segmented,
+                    variant: DSRadioVariant.segmented,
                     options: const [
-                      AppRadioValue(value: 'list', label: 'List'),
-                      AppRadioValue(value: 'grid', label: 'Grid'),
-                      AppRadioValue(value: 'card', label: 'Card'),
+                      DSRadioValue(value: 'list', label: 'List'),
+                      DSRadioValue(value: 'grid', label: 'Grid'),
+                      DSRadioValue(value: 'card', label: 'Card'),
                     ],
                   ),
                   const SizedBox(height: 24),
                   const Text('File Format'),
                   const SizedBox(height: 12),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'pdf',
                     groupValue: 'pdf',
                     onChanged: (_) {},
-                    variant: AppRadioVariant.segmented,
+                    variant: DSRadioVariant.segmented,
                     options: const [
-                      AppRadioValue(value: 'pdf', label: 'PDF'),
-                      AppRadioValue(value: 'docx', label: 'DOCX'),
-                      AppRadioValue(value: 'txt', label: 'TXT'),
-                      AppRadioValue(value: 'csv', label: 'CSV', enabled: false),
+                      DSRadioValue(value: 'pdf', label: 'PDF'),
+                      DSRadioValue(value: 'docx', label: 'DOCX'),
+                      DSRadioValue(value: 'txt', label: 'TXT'),
+                      DSRadioValue(value: 'csv', label: 'CSV', enabled: false),
                     ],
                   ),
                 ],
@@ -254,21 +254,21 @@ void main() {
                 children: [
                   const Text('Text Alignment'),
                   const SizedBox(height: 12),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'left',
                     groupValue: 'left',
                     onChanged: (_) {},
-                    variant: AppRadioVariant.segmented,
+                    variant: DSRadioVariant.segmented,
                     options: const [
-                      AppRadioValue(
+                      DSRadioValue(
                           value: 'left',
                           label: 'Left',
                           icon: Icons.format_align_left),
-                      AppRadioValue(
+                      DSRadioValue(
                           value: 'center',
                           label: 'Center',
                           icon: Icons.format_align_center),
-                      AppRadioValue(
+                      DSRadioValue(
                           value: 'right',
                           label: 'Right',
                           icon: Icons.format_align_right),
@@ -277,19 +277,19 @@ void main() {
                   const SizedBox(height: 24),
                   const Text('Theme'),
                   const SizedBox(height: 12),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'dark',
                     groupValue: 'dark',
                     onChanged: (_) {},
-                    variant: AppRadioVariant.segmented,
+                    variant: DSRadioVariant.segmented,
                     options: const [
-                      AppRadioValue(
+                      DSRadioValue(
                           value: 'light',
                           label: 'Light',
                           icon: Icons.light_mode),
-                      AppRadioValue(
+                      DSRadioValue(
                           value: 'dark', label: 'Dark', icon: Icons.dark_mode),
-                      AppRadioValue(
+                      DSRadioValue(
                           value: 'auto',
                           label: 'Auto',
                           icon: Icons.brightness_auto),
@@ -322,33 +322,33 @@ void main() {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Large (28px)'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'large',
                     groupValue: 'large',
                     onChanged: (_) {},
-                    config: const AppRadioConfig(
+                    config: const DSRadioConfig(
                       size: 28,
                       borderWidth: 3,
                     ),
                   ),
                   const SizedBox(height: 16),
                   const Text('Small (16px)'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'small',
                     groupValue: 'small',
                     onChanged: (_) {},
-                    config: const AppRadioConfig(
+                    config: const DSRadioConfig(
                       size: 16,
                       borderWidth: 1.5,
                     ),
                   ),
                   const SizedBox(height: 16),
                   const Text('Custom Colors'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'purple',
                     groupValue: 'purple',
                     onChanged: (_) {},
-                    colors: AppRadioColors(
+                    colors: DSRadioColors(
                       borderColor: Colors.purple,
                       fillColor: Colors.purple,
                       dotColor: Colors.white,
@@ -372,16 +372,16 @@ void main() {
                   const SizedBox(height: 24),
                   const Text('Custom Segmented Style'),
                   const SizedBox(height: 12),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'rounded',
                     groupValue: 'rounded',
                     onChanged: (_) {},
-                    variant: AppRadioVariant.segmented,
-                    config: const AppRadioConfig(
+                    variant: DSRadioVariant.segmented,
+                    config: const DSRadioConfig(
                       segmentBorderRadius: 16,
                       segmentBorderWidth: 2,
                     ),
-                    colors: AppRadioColors(
+                    colors: DSRadioColors(
                       borderColor: Colors.orange,
                       fillColor: Colors.orange,
                       dotColor: Colors.white,
@@ -403,9 +403,9 @@ void main() {
                       segmentSelectedTextColor: Colors.white,
                     ),
                     options: const [
-                      AppRadioValue(value: 'rounded', label: 'Rounded'),
-                      AppRadioValue(value: 'style', label: 'Style'),
-                      AppRadioValue(value: 'custom', label: 'Custom'),
+                      DSRadioValue(value: 'rounded', label: 'Rounded'),
+                      DSRadioValue(value: 'style', label: 'Style'),
+                      DSRadioValue(value: 'custom', label: 'Custom'),
                     ],
                   ),
                 ],
@@ -433,7 +433,7 @@ void main() {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const Text('Left-to-Right (LTR)'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'ltr',
                     groupValue: 'ltr',
                     onChanged: (_) {},
@@ -442,7 +442,7 @@ void main() {
                   ),
                   const SizedBox(height: 24),
                   const Text('Right-to-Left (RTL)'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'rtl',
                     groupValue: 'rtl',
                     onChanged: (_) {},
@@ -451,16 +451,16 @@ void main() {
                   ),
                   const SizedBox(height: 24),
                   const Text('Segmented RTL'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'option2',
                     groupValue: 'option2',
                     onChanged: (_) {},
-                    variant: AppRadioVariant.segmented,
+                    variant: DSRadioVariant.segmented,
                     textDirection: TextDirection.rtl,
                     options: const [
-                      AppRadioValue(value: 'option1', label: 'خيار 1'),
-                      AppRadioValue(value: 'option2', label: 'خيار 2'),
-                      AppRadioValue(value: 'option3', label: 'خيار 3'),
+                      DSRadioValue(value: 'option1', label: 'خيار 1'),
+                      DSRadioValue(value: 'option2', label: 'خيار 2'),
+                      DSRadioValue(value: 'option3', label: 'خيار 3'),
                     ],
                   ),
                 ],
@@ -488,38 +488,38 @@ void main() {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Default'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'default',
                     groupValue: null,
                     onChanged: (_) {},
                   ),
                   const SizedBox(height: 16),
                   const Text('Hover'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'hover',
                     groupValue: null,
                     onChanged: (_) {},
-                    overrideState: AppRadioState.hover,
+                    overrideState: DSRadioState.hover,
                   ),
                   const SizedBox(height: 16),
                   const Text('Pressed'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'pressed',
                     groupValue: null,
                     onChanged: (_) {},
-                    overrideState: AppRadioState.pressed,
+                    overrideState: DSRadioState.pressed,
                   ),
                   const SizedBox(height: 16),
                   const Text('Focus'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'focus',
                     groupValue: null,
                     onChanged: (_) {},
-                    overrideState: AppRadioState.focus,
+                    overrideState: DSRadioState.focus,
                   ),
                   const SizedBox(height: 16),
                   const Text('Selected'),
-                  AppRadio<String>(
+                  DSRadio<String>(
                     value: 'selected',
                     groupValue: 'selected',
                     onChanged: (_) {},

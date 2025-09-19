@@ -4,28 +4,28 @@ import 'package:iautomat_design_system/src/components/navigation/app_navigation.
 import 'package:iautomat_design_system/src/components/navigation/app_navigation_config.dart';
 
 void main() {
-  group('AppNavigation', () {
+  group('DSNavigation', () {
     group('Basic Rendering', () {
       testWidgets('renders with default configuration', (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(),
+              body: DSNavigation(),
             ),
           ),
         );
 
-        expect(find.byType(AppNavigation), findsOneWidget);
+        expect(find.byType(DSNavigation), findsOneWidget);
       });
 
       testWidgets('renders with destinations', (tester) async {
         const destinations = [
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'home',
             label: 'Home',
             icon: Icon(Icons.home),
           ),
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'search',
             label: 'Search',
             icon: Icon(Icons.search),
@@ -35,7 +35,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(
+              body: DSNavigation(
                 destinations: destinations,
               ),
             ),
@@ -49,9 +49,9 @@ void main() {
       });
 
       testWidgets('renders with config destinations', (tester) async {
-        const config = AppNavigationComponentConfig(
+        const config = DSNavigationComponentConfig(
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'profile',
               label: 'Profile',
               icon: Icon(Icons.person),
@@ -62,7 +62,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -74,15 +74,15 @@ void main() {
 
     group('Variants', () {
       testWidgets('renders bottom bar variant', (tester) async {
-        const config = AppNavigationComponentConfig(
-          variant: AppNavigationVariant.bottomBar,
+        const config = DSNavigationComponentConfig(
+          variant: DSNavigationVariant.bottomBar,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -93,7 +93,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -102,15 +102,15 @@ void main() {
       });
 
       testWidgets('renders rail variant', (tester) async {
-        const config = AppNavigationComponentConfig(
-          variant: AppNavigationVariant.rail,
+        const config = DSNavigationComponentConfig(
+          variant: DSNavigationVariant.rail,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -121,7 +121,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -130,15 +130,15 @@ void main() {
       });
 
       testWidgets('renders drawer variant', (tester) async {
-        const config = AppNavigationComponentConfig(
-          variant: AppNavigationVariant.drawer,
+        const config = DSNavigationComponentConfig(
+          variant: DSNavigationVariant.drawer,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -149,7 +149,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -158,15 +158,15 @@ void main() {
       });
 
       testWidgets('renders permanent drawer variant', (tester) async {
-        const config = AppNavigationComponentConfig(
-          variant: AppNavigationVariant.permanentDrawer,
+        const config = DSNavigationComponentConfig(
+          variant: DSNavigationVariant.permanentDrawer,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -177,7 +177,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -188,15 +188,15 @@ void main() {
 
     group('States', () {
       testWidgets('shows loading state', (tester) async {
-        const config = AppNavigationComponentConfig(
-          state: AppNavigationState.loading,
+        const config = DSNavigationComponentConfig(
+          state: DSNavigationState.loading,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -207,7 +207,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -216,15 +216,15 @@ void main() {
       });
 
       testWidgets('shows skeleton state', (tester) async {
-        const config = AppNavigationComponentConfig(
-          state: AppNavigationState.skeleton,
+        const config = DSNavigationComponentConfig(
+          state: DSNavigationState.skeleton,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -235,7 +235,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -244,15 +244,15 @@ void main() {
       });
 
       testWidgets('disables interaction in disabled state', (tester) async {
-        const config = AppNavigationComponentConfig(
-          state: AppNavigationState.disabled,
+        const config = DSNavigationComponentConfig(
+          state: DSNavigationState.disabled,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -263,7 +263,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -276,15 +276,15 @@ void main() {
     group('Badges', () {
       testWidgets('displays count badges', (tester) async {
         const badges = [
-          AppNavigationBadge(
+          DSNavigationBadge(
             destinationId: 'messages',
             count: 3,
-            type: AppNavigationBadgeType.count,
+            type: DSNavigationBadgeType.count,
           ),
         ];
 
         const destinations = [
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'messages',
             label: 'Messages',
             icon: Icon(Icons.message),
@@ -294,7 +294,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(
+              body: DSNavigation(
                 destinations: destinations,
                 badges: badges,
               ),
@@ -308,14 +308,14 @@ void main() {
 
       testWidgets('displays dot badges', (tester) async {
         const badges = [
-          AppNavigationBadge(
+          DSNavigationBadge(
             destinationId: 'notifications',
-            type: AppNavigationBadgeType.dot,
+            type: DSNavigationBadgeType.dot,
           ),
         ];
 
         const destinations = [
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'notifications',
             label: 'Notifications',
             icon: Icon(Icons.notifications),
@@ -325,7 +325,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(
+              body: DSNavigation(
                 destinations: destinations,
                 badges: badges,
               ),
@@ -338,15 +338,15 @@ void main() {
 
       testWidgets('displays text badges', (tester) async {
         const badges = [
-          AppNavigationBadge(
+          DSNavigationBadge(
             destinationId: 'alerts',
             text: 'NEW',
-            type: AppNavigationBadgeType.text,
+            type: DSNavigationBadgeType.text,
           ),
         ];
 
         const destinations = [
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'alerts',
             label: 'Alerts',
             icon: Icon(Icons.warning),
@@ -356,7 +356,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(
+              body: DSNavigation(
                 destinations: destinations,
                 badges: badges,
               ),
@@ -374,12 +374,12 @@ void main() {
         int? selectedIndex;
 
         const destinations = [
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'home',
             label: 'Home',
             icon: Icon(Icons.home),
           ),
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'search',
             label: 'Search',
             icon: Icon(Icons.search),
@@ -389,7 +389,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppNavigation(
+              body: DSNavigation(
                 destinations: destinations,
                 onDestinationSelected: (index) => selectedIndex = index,
               ),
@@ -406,9 +406,9 @@ void main() {
       testWidgets('handles config onTap callback', (tester) async {
         int? selectedIndex;
 
-        final config = AppNavigationComponentConfig(
+        final config = DSNavigationComponentConfig(
           destinations: const [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'profile',
               label: 'Profile',
               icon: Icon(Icons.person),
@@ -420,7 +420,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -436,9 +436,9 @@ void main() {
         int? widgetSelectedIndex;
         int? configSelectedIndex;
 
-        final config = AppNavigationComponentConfig(
+        final config = DSNavigationComponentConfig(
           destinations: const [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'settings',
               label: 'Settings',
               icon: Icon(Icons.settings),
@@ -450,7 +450,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppNavigation(
+              body: DSNavigation(
                 config: config,
                 onDestinationSelected: (index) => widgetSelectedIndex = index,
               ),
@@ -470,12 +470,12 @@ void main() {
     group('Current Index', () {
       testWidgets('highlights current index from widget prop', (tester) async {
         const destinations = [
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'home',
             label: 'Home',
             icon: Icon(Icons.home),
           ),
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'search',
             label: 'Search',
             icon: Icon(Icons.search),
@@ -485,7 +485,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(
+              body: DSNavigation(
                 destinations: destinations,
                 currentIndex: 1,
               ),
@@ -501,15 +501,15 @@ void main() {
       });
 
       testWidgets('highlights current index from config', (tester) async {
-        const config = AppNavigationComponentConfig(
+        const config = DSNavigationComponentConfig(
           currentIndex: 1,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -520,7 +520,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -533,15 +533,15 @@ void main() {
 
       testWidgets('widget currentIndex overrides config currentIndex',
           (tester) async {
-        const config = AppNavigationComponentConfig(
+        const config = DSNavigationComponentConfig(
           currentIndex: 1,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -552,7 +552,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(
+              body: DSNavigation(
                 config: config,
                 currentIndex: 0, // This should override config
               ),
@@ -569,15 +569,15 @@ void main() {
 
     group('RTL Support', () {
       testWidgets('respects RTL direction', (tester) async {
-        const config = AppNavigationComponentConfig(
+        const config = DSNavigationComponentConfig(
           isRtl: true,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -588,7 +588,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -600,14 +600,14 @@ void main() {
       });
 
       testWidgets('uses LTR direction by default', (tester) async {
-        const config = AppNavigationComponentConfig(
+        const config = DSNavigationComponentConfig(
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -618,7 +618,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -632,16 +632,16 @@ void main() {
 
     group('Accessibility', () {
       testWidgets('includes semantic labels', (tester) async {
-        const config = AppNavigationComponentConfig(
+        const config = DSNavigationComponentConfig(
           enableA11y: true,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
               tooltip: 'Navigate to home screen',
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -652,7 +652,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -661,15 +661,15 @@ void main() {
       });
 
       testWidgets('disables accessibility when configured', (tester) async {
-        const config = AppNavigationComponentConfig(
+        const config = DSNavigationComponentConfig(
           enableA11y: false,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -680,7 +680,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -695,15 +695,15 @@ void main() {
 
     group('Animation', () {
       testWidgets('animates state changes', (tester) async {
-        const config = AppNavigationComponentConfig(
-          state: AppNavigationState.defaultState,
+        const config = DSNavigationComponentConfig(
+          state: DSNavigationState.defaultState,
           destinations: [
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'home',
               label: 'Home',
               icon: Icon(Icons.home),
             ),
-            AppNavigationDestination(
+            DSNavigationDestination(
               id: 'search',
               label: 'Search',
               icon: Icon(Icons.search),
@@ -714,7 +714,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(config: config),
+              body: DSNavigation(config: config),
             ),
           ),
         );
@@ -725,12 +725,12 @@ void main() {
 
       testWidgets('animates selection changes', (tester) async {
         const destinations = [
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'home',
             label: 'Home',
             icon: Icon(Icons.home),
           ),
-          AppNavigationDestination(
+          DSNavigationDestination(
             id: 'search',
             label: 'Search',
             icon: Icon(Icons.search),
@@ -740,7 +740,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: AppNavigation(
+              body: DSNavigation(
                 destinations: destinations,
                 currentIndex: 0,
               ),
@@ -754,9 +754,9 @@ void main() {
     });
   });
 
-  group('AppNavigationDestination', () {
+  group('DSNavigationDestination', () {
     test('creates with required parameters', () {
-      const destination = AppNavigationDestination(
+      const destination = DSNavigationDestination(
         id: 'test',
         label: 'Test',
         icon: Icon(Icons.star),
@@ -765,18 +765,18 @@ void main() {
       expect(destination.id, equals('test'));
       expect(destination.label, equals('Test'));
       expect(destination.disabled, isFalse);
-      expect(destination.type, equals(AppNavigationDestinationType.standard));
+      expect(destination.type, equals(DSNavigationDestinationType.standard));
     });
 
     test('creates with optional parameters', () {
-      const destination = AppNavigationDestination(
+      const destination = DSNavigationDestination(
         id: 'test',
         label: 'Test',
         icon: Icon(Icons.star),
         selectedIcon: Icon(Icons.star, color: Colors.blue),
         tooltip: 'Test tooltip',
         disabled: true,
-        type: AppNavigationDestinationType.floating,
+        type: DSNavigationDestinationType.floating,
         leading: Text('Leading'),
         trailing: Text('Trailing'),
       );
@@ -784,167 +784,167 @@ void main() {
       expect(destination.selectedIcon, isNotNull);
       expect(destination.tooltip, equals('Test tooltip'));
       expect(destination.disabled, isTrue);
-      expect(destination.type, equals(AppNavigationDestinationType.floating));
+      expect(destination.type, equals(DSNavigationDestinationType.floating));
       expect(destination.leading, isNotNull);
       expect(destination.trailing, isNotNull);
     });
   });
 
-  group('AppNavigationBadge', () {
+  group('DSNavigationBadge', () {
     test('creates count badge', () {
-      const badge = AppNavigationBadge(
+      const badge = DSNavigationBadge(
         destinationId: 'test',
         count: 5,
-        type: AppNavigationBadgeType.count,
+        type: DSNavigationBadgeType.count,
       );
 
       expect(badge.destinationId, equals('test'));
       expect(badge.count, equals(5));
-      expect(badge.type, equals(AppNavigationBadgeType.count));
+      expect(badge.type, equals(DSNavigationBadgeType.count));
       expect(badge.isVisible, isTrue);
       expect(badge.maxCount, equals(99));
     });
 
     test('creates text badge', () {
-      const badge = AppNavigationBadge(
+      const badge = DSNavigationBadge(
         destinationId: 'test',
         text: 'NEW',
-        type: AppNavigationBadgeType.text,
+        type: DSNavigationBadgeType.text,
       );
 
       expect(badge.text, equals('NEW'));
-      expect(badge.type, equals(AppNavigationBadgeType.text));
+      expect(badge.type, equals(DSNavigationBadgeType.text));
     });
 
     test('creates dot badge', () {
-      const badge = AppNavigationBadge(
+      const badge = DSNavigationBadge(
         destinationId: 'test',
-        type: AppNavigationBadgeType.dot,
+        type: DSNavigationBadgeType.dot,
       );
 
-      expect(badge.type, equals(AppNavigationBadgeType.dot));
+      expect(badge.type, equals(DSNavigationBadgeType.dot));
     });
   });
 
   group('Extensions', () {
-    group('AppNavigationVariantExtension', () {
+    group('DSNavigationVariantExtension', () {
       test('provides correct display names', () {
         expect(
-            AppNavigationVariant.bottomBar.displayName, equals('Bottom Bar'));
+            DSNavigationVariant.bottomBar.displayName, equals('Bottom Bar'));
         expect(
-            AppNavigationVariant.rail.displayName, equals('Navigation Rail'));
-        expect(AppNavigationVariant.drawer.displayName, equals('Drawer'));
-        expect(AppNavigationVariant.permanentDrawer.displayName,
+            DSNavigationVariant.rail.displayName, equals('Navigation Rail'));
+        expect(DSNavigationVariant.drawer.displayName, equals('Drawer'));
+        expect(DSNavigationVariant.permanentDrawer.displayName,
             equals('Permanent Drawer'));
       });
 
       test('provides correct descriptions', () {
-        expect(AppNavigationVariant.bottomBar.description,
+        expect(DSNavigationVariant.bottomBar.description,
             equals('Navegación inferior para pantallas móviles'));
-        expect(AppNavigationVariant.rail.description,
+        expect(DSNavigationVariant.rail.description,
             equals('Barra lateral compacta para tablet/desktop'));
-        expect(AppNavigationVariant.drawer.description,
+        expect(DSNavigationVariant.drawer.description,
             equals('Cajón de navegación modal'));
-        expect(AppNavigationVariant.permanentDrawer.description,
+        expect(DSNavigationVariant.permanentDrawer.description,
             equals('Cajón de navegación permanente'));
       });
 
       test('identifies horizontal variants correctly', () {
-        expect(AppNavigationVariant.bottomBar.isHorizontal, isTrue);
-        expect(AppNavigationVariant.rail.isHorizontal, isFalse);
-        expect(AppNavigationVariant.drawer.isHorizontal, isFalse);
-        expect(AppNavigationVariant.permanentDrawer.isHorizontal, isFalse);
+        expect(DSNavigationVariant.bottomBar.isHorizontal, isTrue);
+        expect(DSNavigationVariant.rail.isHorizontal, isFalse);
+        expect(DSNavigationVariant.drawer.isHorizontal, isFalse);
+        expect(DSNavigationVariant.permanentDrawer.isHorizontal, isFalse);
       });
 
       test('identifies modal variants correctly', () {
-        expect(AppNavigationVariant.bottomBar.isModal, isFalse);
-        expect(AppNavigationVariant.rail.isModal, isFalse);
-        expect(AppNavigationVariant.drawer.isModal, isTrue);
-        expect(AppNavigationVariant.permanentDrawer.isModal, isFalse);
+        expect(DSNavigationVariant.bottomBar.isModal, isFalse);
+        expect(DSNavigationVariant.rail.isModal, isFalse);
+        expect(DSNavigationVariant.drawer.isModal, isTrue);
+        expect(DSNavigationVariant.permanentDrawer.isModal, isFalse);
       });
 
       test('all variants support badges', () {
-        for (final variant in AppNavigationVariant.values) {
+        for (final variant in DSNavigationVariant.values) {
           expect(variant.supportsBadges, isTrue);
         }
       });
 
       test('provides correct default widths', () {
-        expect(AppNavigationVariant.bottomBar.defaultWidth,
+        expect(DSNavigationVariant.bottomBar.defaultWidth,
             equals(double.infinity));
-        expect(AppNavigationVariant.rail.defaultWidth, equals(72.0));
-        expect(AppNavigationVariant.drawer.defaultWidth, equals(256.0));
+        expect(DSNavigationVariant.rail.defaultWidth, equals(72.0));
+        expect(DSNavigationVariant.drawer.defaultWidth, equals(256.0));
         expect(
-            AppNavigationVariant.permanentDrawer.defaultWidth, equals(256.0));
+            DSNavigationVariant.permanentDrawer.defaultWidth, equals(256.0));
       });
     });
 
-    group('AppNavigationStateExtension', () {
+    group('DSNavigationStateExtension', () {
       test('provides correct display names', () {
-        expect(AppNavigationState.defaultState.displayName, equals('Default'));
-        expect(AppNavigationState.hover.displayName, equals('Hover'));
-        expect(AppNavigationState.pressed.displayName, equals('Pressed'));
-        expect(AppNavigationState.focus.displayName, equals('Focus'));
-        expect(AppNavigationState.selected.displayName, equals('Selected'));
-        expect(AppNavigationState.disabled.displayName, equals('Disabled'));
-        expect(AppNavigationState.loading.displayName, equals('Loading'));
-        expect(AppNavigationState.skeleton.displayName, equals('Skeleton'));
+        expect(DSNavigationState.defaultState.displayName, equals('Default'));
+        expect(DSNavigationState.hover.displayName, equals('Hover'));
+        expect(DSNavigationState.pressed.displayName, equals('Pressed'));
+        expect(DSNavigationState.focus.displayName, equals('Focus'));
+        expect(DSNavigationState.selected.displayName, equals('Selected'));
+        expect(DSNavigationState.disabled.displayName, equals('Disabled'));
+        expect(DSNavigationState.loading.displayName, equals('Loading'));
+        expect(DSNavigationState.skeleton.displayName, equals('Skeleton'));
       });
 
       test('identifies interactive states correctly', () {
-        expect(AppNavigationState.defaultState.isInteractive, isTrue);
-        expect(AppNavigationState.hover.isInteractive, isTrue);
-        expect(AppNavigationState.pressed.isInteractive, isTrue);
-        expect(AppNavigationState.focus.isInteractive, isTrue);
-        expect(AppNavigationState.selected.isInteractive, isTrue);
-        expect(AppNavigationState.disabled.isInteractive, isFalse);
-        expect(AppNavigationState.loading.isInteractive, isFalse);
-        expect(AppNavigationState.skeleton.isInteractive, isFalse);
+        expect(DSNavigationState.defaultState.isInteractive, isTrue);
+        expect(DSNavigationState.hover.isInteractive, isTrue);
+        expect(DSNavigationState.pressed.isInteractive, isTrue);
+        expect(DSNavigationState.focus.isInteractive, isTrue);
+        expect(DSNavigationState.selected.isInteractive, isTrue);
+        expect(DSNavigationState.disabled.isInteractive, isFalse);
+        expect(DSNavigationState.loading.isInteractive, isFalse);
+        expect(DSNavigationState.skeleton.isInteractive, isFalse);
       });
 
       test('provides correct opacity values', () {
-        expect(AppNavigationState.defaultState.opacity, equals(1.0));
-        expect(AppNavigationState.hover.opacity, equals(1.0));
-        expect(AppNavigationState.pressed.opacity, equals(1.0));
-        expect(AppNavigationState.focus.opacity, equals(1.0));
-        expect(AppNavigationState.selected.opacity, equals(1.0));
-        expect(AppNavigationState.disabled.opacity, equals(0.6));
-        expect(AppNavigationState.loading.opacity, equals(0.8));
-        expect(AppNavigationState.skeleton.opacity, equals(0.3));
+        expect(DSNavigationState.defaultState.opacity, equals(1.0));
+        expect(DSNavigationState.hover.opacity, equals(1.0));
+        expect(DSNavigationState.pressed.opacity, equals(1.0));
+        expect(DSNavigationState.focus.opacity, equals(1.0));
+        expect(DSNavigationState.selected.opacity, equals(1.0));
+        expect(DSNavigationState.disabled.opacity, equals(0.6));
+        expect(DSNavigationState.loading.opacity, equals(0.8));
+        expect(DSNavigationState.skeleton.opacity, equals(0.3));
       });
 
       test('identifies loader and skeleton states correctly', () {
-        expect(AppNavigationState.loading.showsLoader, isTrue);
-        expect(AppNavigationState.skeleton.showsSkeleton, isTrue);
+        expect(DSNavigationState.loading.showsLoader, isTrue);
+        expect(DSNavigationState.skeleton.showsSkeleton, isTrue);
 
-        for (final state in AppNavigationState.values) {
-          if (state != AppNavigationState.loading) {
+        for (final state in DSNavigationState.values) {
+          if (state != DSNavigationState.loading) {
             expect(state.showsLoader, isFalse);
           }
-          if (state != AppNavigationState.skeleton) {
+          if (state != DSNavigationState.skeleton) {
             expect(state.showsSkeleton, isFalse);
           }
         }
       });
     });
 
-    group('AppNavigationBadgeTypeExtension', () {
+    group('DSNavigationBadgeTypeExtension', () {
       test('provides correct display names', () {
-        expect(AppNavigationBadgeType.dot.displayName, equals('Dot'));
-        expect(AppNavigationBadgeType.count.displayName, equals('Count'));
-        expect(AppNavigationBadgeType.text.displayName, equals('Text'));
+        expect(DSNavigationBadgeType.dot.displayName, equals('Dot'));
+        expect(DSNavigationBadgeType.count.displayName, equals('Count'));
+        expect(DSNavigationBadgeType.text.displayName, equals('Text'));
       });
 
       test('identifies text showing types correctly', () {
-        expect(AppNavigationBadgeType.dot.showsText, isFalse);
-        expect(AppNavigationBadgeType.count.showsText, isTrue);
-        expect(AppNavigationBadgeType.text.showsText, isTrue);
+        expect(DSNavigationBadgeType.dot.showsText, isFalse);
+        expect(DSNavigationBadgeType.count.showsText, isTrue);
+        expect(DSNavigationBadgeType.text.showsText, isTrue);
       });
 
       test('identifies numeric types correctly', () {
-        expect(AppNavigationBadgeType.dot.isNumeric, isFalse);
-        expect(AppNavigationBadgeType.count.isNumeric, isTrue);
-        expect(AppNavigationBadgeType.text.isNumeric, isFalse);
+        expect(DSNavigationBadgeType.dot.isNumeric, isFalse);
+        expect(DSNavigationBadgeType.count.isNumeric, isTrue);
+        expect(DSNavigationBadgeType.text.isNumeric, isFalse);
       });
     });
   });

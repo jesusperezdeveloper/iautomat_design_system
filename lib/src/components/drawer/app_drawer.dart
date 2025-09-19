@@ -8,7 +8,7 @@ enum DrawerVariant {
   permanent,
 }
 
-enum AppDrawerState {
+enum DSDrawerState {
   defaultState,
   hover,
   pressed,
@@ -25,14 +25,14 @@ enum DrawerSide {
 }
 
 /// Widget principal del drawer
-class AppDrawer extends StatefulWidget {
+class DSDrawer extends StatefulWidget {
   /// Constructor para variante modal
-  const AppDrawer.modal({
+  const DSDrawer.modal({
     super.key,
     required this.content,
     this.side = DrawerSide.left,
     this.width = 280.0,
-    this.state = AppDrawerState.defaultState,
+    this.state = DSDrawerState.defaultState,
     this.backgroundColor,
     this.surfaceColor,
     this.shadowColor,
@@ -50,12 +50,12 @@ class AppDrawer extends StatefulWidget {
   }) : variant = DrawerVariant.modal;
 
   /// Constructor para variante permanent
-  const AppDrawer.permanent({
+  const DSDrawer.permanent({
     super.key,
     required this.content,
     this.side = DrawerSide.left,
     this.width = 280.0,
-    this.state = AppDrawerState.defaultState,
+    this.state = DSDrawerState.defaultState,
     this.backgroundColor,
     this.surfaceColor,
     this.shadowColor,
@@ -76,7 +76,7 @@ class AppDrawer extends StatefulWidget {
   final Widget content;
   final DrawerSide side;
   final double width;
-  final AppDrawerState state;
+  final DSDrawerState state;
 
   // Design tokens - Colors
   final Color? backgroundColor;
@@ -91,7 +91,7 @@ class AppDrawer extends StatefulWidget {
   final Duration animationDuration;
 
   // Callbacks
-  final void Function(AppDrawerState state)? onStateChanged;
+  final void Function(DSDrawerState state)? onStateChanged;
   final void Function(bool visible)? onVisibilityChanged;
 
   // Comportamiento
@@ -103,10 +103,10 @@ class AppDrawer extends StatefulWidget {
   final String? restorationId;
 
   @override
-  State<AppDrawer> createState() => _AppDrawerState();
+  State<DSDrawer> createState() => _DSDrawerState();
 }
 
-class _AppDrawerState extends State<AppDrawer>
+class _DSDrawerState extends State<DSDrawer>
     with SingleTickerProviderStateMixin, RestorationMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
@@ -196,37 +196,37 @@ class _AppDrawerState extends State<AppDrawer>
     });
 
     if (_isFocused) {
-      widget.onStateChanged?.call(AppDrawerState.focus);
+      widget.onStateChanged?.call(DSDrawerState.focus);
     } else {
-      widget.onStateChanged?.call(AppDrawerState.defaultState);
+      widget.onStateChanged?.call(DSDrawerState.defaultState);
     }
   }
 
   void _handleHover(bool hovering) {
-    if (widget.state == AppDrawerState.disabled) return;
+    if (widget.state == DSDrawerState.disabled) return;
 
     if (hovering) {
-      widget.onStateChanged?.call(AppDrawerState.hover);
+      widget.onStateChanged?.call(DSDrawerState.hover);
     } else if (!_isFocused) {
-      widget.onStateChanged?.call(AppDrawerState.defaultState);
+      widget.onStateChanged?.call(DSDrawerState.defaultState);
     }
   }
 
   void _handleTap() {
-    if (widget.state == AppDrawerState.disabled) return;
+    if (widget.state == DSDrawerState.disabled) return;
 
-    widget.onStateChanged?.call(AppDrawerState.pressed);
+    widget.onStateChanged?.call(DSDrawerState.pressed);
 
     // Reset to default state after a short delay
     Future.delayed(const Duration(milliseconds: 150), () {
       if (mounted) {
-        widget.onStateChanged?.call(AppDrawerState.defaultState);
+        widget.onStateChanged?.call(DSDrawerState.defaultState);
       }
     });
   }
 
   void _handleKeyEvent(KeyEvent event) {
-    if (widget.state == AppDrawerState.disabled) return;
+    if (widget.state == DSDrawerState.disabled) return;
     if (event is! KeyDownEvent) return;
 
     switch (event.logicalKey) {
@@ -354,11 +354,11 @@ class _AppDrawerState extends State<AppDrawer>
   }
 
   Widget _buildDrawerContent(BuildContext context) {
-    if (widget.state == AppDrawerState.loading) {
+    if (widget.state == DSDrawerState.loading) {
       return _buildLoadingState(context);
     }
 
-    if (widget.state == AppDrawerState.skeleton) {
+    if (widget.state == DSDrawerState.skeleton) {
       return _buildSkeletonState(context);
     }
 
@@ -422,7 +422,7 @@ class _AppDrawerState extends State<AppDrawer>
   }
 
   void _handlePanUpdate(DragUpdateDetails details) {
-    if (widget.state == AppDrawerState.disabled) return;
+    if (widget.state == DSDrawerState.disabled) return;
 
     final delta = details.primaryDelta ?? 0;
     final screenWidth = MediaQuery.of(context).size.width;
@@ -439,7 +439,7 @@ class _AppDrawerState extends State<AppDrawer>
   }
 
   void _handlePanEnd(DragEndDetails details) {
-    if (widget.state == AppDrawerState.disabled) return;
+    if (widget.state == DSDrawerState.disabled) return;
 
     final velocity = details.velocity.pixelsPerSecond.dx;
 
@@ -499,15 +499,15 @@ class _AppDrawerState extends State<AppDrawer>
     if (widget.backgroundColor != null) return widget.backgroundColor!;
 
     switch (widget.state) {
-      case AppDrawerState.hover:
+      case DSDrawerState.hover:
         return colorScheme.surface;
-      case AppDrawerState.pressed:
+      case DSDrawerState.pressed:
         return colorScheme.surfaceContainerHighest;
-      case AppDrawerState.focus:
+      case DSDrawerState.focus:
         return colorScheme.surface;
-      case AppDrawerState.selected:
+      case DSDrawerState.selected:
         return colorScheme.surfaceContainerHigh;
-      case AppDrawerState.disabled:
+      case DSDrawerState.disabled:
         return colorScheme.surface.withValues(alpha: 0.6);
       default:
         return widget.surfaceColor ?? colorScheme.surface;
@@ -521,7 +521,7 @@ class _AppDrawerState extends State<AppDrawer>
   Color _getTextColor(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    if (widget.state == AppDrawerState.disabled) {
+    if (widget.state == DSDrawerState.disabled) {
       return colorScheme.onSurface.withValues(alpha: 0.38);
     }
 
@@ -537,8 +537,8 @@ class _AppDrawerState extends State<AppDrawer>
 }
 
 /// Controller para manejar el drawer desde el exterior
-class AppDrawerController extends ChangeNotifier {
-  final GlobalKey<_AppDrawerState> _key = GlobalKey<_AppDrawerState>();
+class DSDrawerController extends ChangeNotifier {
+  final GlobalKey<_DSDrawerState> _key = GlobalKey<_DSDrawerState>();
 
   GlobalKey get key => _key;
 
@@ -568,13 +568,13 @@ class AppDrawerController extends ChangeNotifier {
 }
 
 /// Widget helper para usar el drawer en un Scaffold
-class AppDrawerHelper {
+class DSDrawerHelper {
   /// Crea un drawer modal para usar en Scaffold
   static Widget createModalDrawer({
     required Widget content,
     DrawerSide side = DrawerSide.left,
     double width = 280.0,
-    AppDrawerState state = AppDrawerState.defaultState,
+    DSDrawerState state = DSDrawerState.defaultState,
     Color? backgroundColor,
     Color? surfaceColor,
     Color? shadowColor,
@@ -583,13 +583,13 @@ class AppDrawerHelper {
     double borderRadius = 0.0,
     double scrimOpacity = 0.5,
     Duration animationDuration = const Duration(milliseconds: 250),
-    void Function(AppDrawerState state)? onStateChanged,
+    void Function(DSDrawerState state)? onStateChanged,
     void Function(bool visible)? onVisibilityChanged,
     String? semanticsLabel,
     String? restorationId,
     bool enableDragGesture = true,
   }) {
-    return AppDrawer.modal(
+    return DSDrawer.modal(
       content: content,
       side: side,
       width: width,
@@ -615,19 +615,19 @@ class AppDrawerHelper {
     required Widget content,
     DrawerSide side = DrawerSide.left,
     double width = 280.0,
-    AppDrawerState state = AppDrawerState.defaultState,
+    DSDrawerState state = DSDrawerState.defaultState,
     Color? backgroundColor,
     Color? surfaceColor,
     Color? shadowColor,
     Color? dividerColor,
     double elevation = 0.0,
     double borderRadius = 0.0,
-    void Function(AppDrawerState state)? onStateChanged,
+    void Function(DSDrawerState state)? onStateChanged,
     void Function(bool visible)? onVisibilityChanged,
     String? semanticsLabel,
     String? restorationId,
   }) {
-    return AppDrawer.permanent(
+    return DSDrawer.permanent(
       content: content,
       side: side,
       width: width,

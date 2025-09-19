@@ -1,91 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppBreadcrumbsStory extends StatefulWidget {
-  const AppBreadcrumbsStory({super.key});
+class DSBreadcrumbsStory extends StatefulWidget {
+  const DSBreadcrumbsStory({super.key});
 
   @override
-  State<AppBreadcrumbsStory> createState() => _AppBreadcrumbsStoryState();
+  State<DSBreadcrumbsStory> createState() => _DSBreadcrumbsStoryState();
 }
 
-class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
-  AppBreadcrumbsVariant _variant = AppBreadcrumbsVariant.defaultVariant;
-  AppBreadcrumbsState _state = AppBreadcrumbsState.defaultState;
-  AppBreadcrumbSeparatorType _separatorType =
-      AppBreadcrumbSeparatorType.chevron;
-  AppBreadcrumbsCollapseMode _collapseMode =
-      AppBreadcrumbsCollapseMode.ellipsis;
+class _DSBreadcrumbsStoryState extends State<DSBreadcrumbsStory> {
+  DSBreadcrumbsVariant _variant = DSBreadcrumbsVariant.defaultVariant;
+  DSBreadcrumbsState _state = DSBreadcrumbsState.defaultState;
+  DSBreadcrumbSeparatorType _separatorType =
+      DSBreadcrumbSeparatorType.chevron;
+  DSBreadcrumbsCollapseMode _collapseMode =
+      DSBreadcrumbsCollapseMode.ellipsis;
   bool _isRtl = false;
   bool _showHome = true;
   bool _enableA11y = true;
   int _maxVisibleItems = 3;
 
-  final List<AppBreadcrumbItem> _defaultItems = [
-    const AppBreadcrumbItem(
+  final List<DSBreadcrumbItem> _defaultItems = [
+    const DSBreadcrumbItem(
       id: 'products',
       title: 'Productos',
-      type: AppBreadcrumbType.text,
+      type: DSBreadcrumbType.text,
       route: '/products',
     ),
-    const AppBreadcrumbItem(
+    const DSBreadcrumbItem(
       id: 'electronics',
       title: 'Electrónicos',
-      type: AppBreadcrumbType.text,
+      type: DSBreadcrumbType.text,
       route: '/products/electronics',
     ),
-    const AppBreadcrumbItem(
+    const DSBreadcrumbItem(
       id: 'phones',
       title: 'Teléfonos',
-      type: AppBreadcrumbType.text,
+      type: DSBreadcrumbType.text,
       route: '/products/electronics/phones',
     ),
-    const AppBreadcrumbItem(
+    const DSBreadcrumbItem(
       id: 'smartphones',
       title: 'Smartphones',
-      type: AppBreadcrumbType.text,
+      type: DSBreadcrumbType.text,
       route: '/products/electronics/phones/smartphones',
     ),
-    const AppBreadcrumbItem(
+    const DSBreadcrumbItem(
       id: 'iphone',
       title: 'iPhone 15 Pro',
-      type: AppBreadcrumbType.text,
+      type: DSBreadcrumbType.text,
       route: '/products/electronics/phones/smartphones/iphone-15-pro',
     ),
   ];
 
-  final List<AppBreadcrumbItem> _iconItems = [
-    const AppBreadcrumbItem(
+  final List<DSBreadcrumbItem> _iconItems = [
+    const DSBreadcrumbItem(
       id: 'home',
       title: 'Inicio',
       icon: Icon(Icons.home, size: 16),
-      type: AppBreadcrumbType.icon,
+      type: DSBreadcrumbType.icon,
       route: '/',
     ),
-    const AppBreadcrumbItem(
+    const DSBreadcrumbItem(
       id: 'dashboard',
       title: 'Dashboard',
       icon: Icon(Icons.dashboard, size: 16),
-      type: AppBreadcrumbType.textWithIcon,
+      type: DSBreadcrumbType.textWithIcon,
       route: '/dashboard',
     ),
-    const AppBreadcrumbItem(
+    const DSBreadcrumbItem(
       id: 'analytics',
       title: 'Analytics',
       icon: Icon(Icons.analytics, size: 16),
-      type: AppBreadcrumbType.textWithIcon,
+      type: DSBreadcrumbType.textWithIcon,
       route: '/dashboard/analytics',
     ),
-    const AppBreadcrumbItem(
+    const DSBreadcrumbItem(
       id: 'reports',
       title: 'Reportes',
-      type: AppBreadcrumbType.text,
+      type: DSBreadcrumbType.text,
       route: '/dashboard/analytics/reports',
     ),
   ];
 
   String? _lastTappedItem;
 
-  void _handleBreadcrumbTap(AppBreadcrumbItem item) {
+  void _handleBreadcrumbTap(DSBreadcrumbItem item) {
     setState(() {
       _lastTappedItem = item.title;
     });
@@ -102,7 +102,7 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppBreadcrumbs Stories'),
+        title: const Text('DSBreadcrumbs Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -128,11 +128,11 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                       children: [
                         const Text('Variante: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppBreadcrumbsVariant>(
+                        DropdownButton<DSBreadcrumbsVariant>(
                           value: _variant,
                           onChanged: (value) =>
                               setState(() => _variant = value!),
-                          items: AppBreadcrumbsVariant.values.map((variant) {
+                          items: DSBreadcrumbsVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
                               child: Text(variant.displayName),
@@ -147,10 +147,10 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                       children: [
                         const Text('Estado: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppBreadcrumbsState>(
+                        DropdownButton<DSBreadcrumbsState>(
                           value: _state,
                           onChanged: (value) => setState(() => _state = value!),
-                          items: AppBreadcrumbsState.values.map((state) {
+                          items: DSBreadcrumbsState.values.map((state) {
                             return DropdownMenuItem(
                               value: state,
                               child: Text(state.displayName),
@@ -165,11 +165,11 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                       children: [
                         const Text('Separador: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppBreadcrumbSeparatorType>(
+                        DropdownButton<DSBreadcrumbSeparatorType>(
                           value: _separatorType,
                           onChanged: (value) =>
                               setState(() => _separatorType = value!),
-                          items: AppBreadcrumbSeparatorType.values.map((type) {
+                          items: DSBreadcrumbSeparatorType.values.map((type) {
                             return DropdownMenuItem(
                               value: type,
                               child: Text(type.displayName),
@@ -179,17 +179,17 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                       ],
                     ),
 
-                    if (_variant == AppBreadcrumbsVariant.collapsing) ...[
+                    if (_variant == DSBreadcrumbsVariant.collapsing) ...[
                       // Collapse Mode
                       Row(
                         children: [
                           const Text('Modo Colapso: '),
                           const SizedBox(width: 8),
-                          DropdownButton<AppBreadcrumbsCollapseMode>(
+                          DropdownButton<DSBreadcrumbsCollapseMode>(
                             value: _collapseMode,
                             onChanged: (value) =>
                                 setState(() => _collapseMode = value!),
-                            items: AppBreadcrumbsCollapseMode.values.map((
+                            items: DSBreadcrumbsCollapseMode.values.map((
                               mode,
                             ) {
                               return DropdownMenuItem(
@@ -298,16 +298,16 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 16),
-                    AppBreadcrumbs(
-                      config: AppBreadcrumbsConfig(
+                    DSBreadcrumbs(
+                      config: DSBreadcrumbsConfig(
                         variant: _variant,
                         state: _state,
                         isRtl: _isRtl,
                         showHome: _showHome,
                         enableA11y: _enableA11y,
                         maxVisibleItems: _maxVisibleItems,
-                        separator: AppBreadcrumbSeparator(type: _separatorType),
-                        behavior: AppBreadcrumbsBehavior(
+                        separator: DSBreadcrumbSeparator(type: _separatorType),
+                        behavior: DSBreadcrumbsBehavior(
                           collapseMode: _collapseMode,
                         ),
                       ),
@@ -333,8 +333,8 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 16),
-                    AppBreadcrumbs(
-                      config: const AppBreadcrumbsConfig(showHome: false),
+                    DSBreadcrumbs(
+                      config: const DSBreadcrumbsConfig(showHome: false),
                       items: _iconItems,
                       onTap: _handleBreadcrumbTap,
                     ),
@@ -358,7 +358,7 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                     ),
                     const SizedBox(height: 16),
 
-                    ...AppBreadcrumbSeparatorType.values.map((type) {
+                    ...DSBreadcrumbSeparatorType.values.map((type) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 12.0),
                         child: Column(
@@ -369,12 +369,12 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                               style: Theme.of(context).textTheme.labelMedium,
                             ),
                             const SizedBox(height: 4),
-                            AppBreadcrumbs(
-                              config: AppBreadcrumbsConfig(
-                                separator: AppBreadcrumbSeparator(
+                            DSBreadcrumbs(
+                              config: DSBreadcrumbsConfig(
+                                separator: DSBreadcrumbSeparator(
                                   type: type,
                                   text:
-                                      type == AppBreadcrumbSeparatorType.custom
+                                      type == DSBreadcrumbSeparatorType.custom
                                       ? ' | '
                                       : null,
                                 ),
@@ -407,7 +407,7 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                     ),
                     const SizedBox(height: 16),
 
-                    ...AppBreadcrumbsState.values.map((state) {
+                    ...DSBreadcrumbsState.values.map((state) {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 12.0),
                         child: Column(
@@ -418,8 +418,8 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                               style: Theme.of(context).textTheme.labelMedium,
                             ),
                             const SizedBox(height: 4),
-                            AppBreadcrumbs(
-                              config: AppBreadcrumbsConfig(
+                            DSBreadcrumbs(
+                              config: DSBreadcrumbsConfig(
                                 state: state,
                                 showHome: false,
                               ),
@@ -455,12 +455,12 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     const SizedBox(height: 4),
-                    AppBreadcrumbs(
-                      config: const AppBreadcrumbsConfig(
-                        variant: AppBreadcrumbsVariant.collapsing,
+                    DSBreadcrumbs(
+                      config: const DSBreadcrumbsConfig(
+                        variant: DSBreadcrumbsVariant.collapsing,
                         maxVisibleItems: 3,
-                        behavior: AppBreadcrumbsBehavior(
-                          collapseMode: AppBreadcrumbsCollapseMode.ellipsis,
+                        behavior: DSBreadcrumbsBehavior(
+                          collapseMode: DSBreadcrumbsCollapseMode.ellipsis,
                         ),
                         showHome: false,
                       ),
@@ -475,12 +475,12 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     const SizedBox(height: 4),
-                    AppBreadcrumbs(
-                      config: const AppBreadcrumbsConfig(
-                        variant: AppBreadcrumbsVariant.collapsing,
+                    DSBreadcrumbs(
+                      config: const DSBreadcrumbsConfig(
+                        variant: DSBreadcrumbsVariant.collapsing,
                         maxVisibleItems: 3,
-                        behavior: AppBreadcrumbsBehavior(
-                          collapseMode: AppBreadcrumbsCollapseMode.dropdown,
+                        behavior: DSBreadcrumbsBehavior(
+                          collapseMode: DSBreadcrumbsCollapseMode.dropdown,
                         ),
                         showHome: false,
                       ),
@@ -495,12 +495,12 @@ class _AppBreadcrumbsStoryState extends State<AppBreadcrumbsStory> {
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     const SizedBox(height: 4),
-                    AppBreadcrumbs(
-                      config: const AppBreadcrumbsConfig(
-                        variant: AppBreadcrumbsVariant.collapsing,
+                    DSBreadcrumbs(
+                      config: const DSBreadcrumbsConfig(
+                        variant: DSBreadcrumbsVariant.collapsing,
                         maxVisibleItems: 3,
-                        behavior: AppBreadcrumbsBehavior(
-                          collapseMode: AppBreadcrumbsCollapseMode.hidden,
+                        behavior: DSBreadcrumbsBehavior(
+                          collapseMode: DSBreadcrumbsCollapseMode.hidden,
                         ),
                         showHome: false,
                       ),

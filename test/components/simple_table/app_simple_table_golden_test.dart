@@ -4,31 +4,31 @@ import 'package:iautomat_design_system/src/components/simple_table/app_simple_ta
 import 'package:iautomat_design_system/src/components/simple_table/simple_table_config.dart';
 
 void main() {
-  group('AppSimpleTable Golden Tests', () {
-    late List<AppSimpleTableColumn> testColumns;
-    late List<AppSimpleTableRow> testRows;
+  group('DSSimpleTable Golden Tests', () {
+    late List<DSSimpleTableColumn> testColumns;
+    late List<DSSimpleTableRow> testRows;
 
     setUp(() {
       testColumns = [
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'name',
           label: 'Name',
           field: 'name',
           width: 150,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'email',
           label: 'Email',
           field: 'email',
           width: 200,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'role',
           label: 'Role',
           field: 'role',
           width: 120,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'status',
           label: 'Status',
           field: 'status',
@@ -37,7 +37,7 @@ void main() {
       ];
 
       testRows = [
-        AppSimpleTableRow(
+        DSSimpleTableRow(
           id: '1',
           data: {
             'name': 'John Doe',
@@ -46,7 +46,7 @@ void main() {
             'status': 'Active',
           },
         ),
-        AppSimpleTableRow(
+        DSSimpleTableRow(
           id: '2',
           data: {
             'name': 'Jane Smith',
@@ -55,7 +55,7 @@ void main() {
             'status': 'Pending',
           },
         ),
-        AppSimpleTableRow(
+        DSSimpleTableRow(
           id: '3',
           data: {
             'name': 'Bob Johnson',
@@ -76,7 +76,7 @@ void main() {
               width: 600,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: testRows,
               ),
@@ -86,7 +86,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_standard.png'),
       );
     });
@@ -100,7 +100,7 @@ void main() {
               width: 600,
               height: 250,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.compact(
+              child: DSSimpleTable.compact(
                 columns: testColumns,
                 rows: testRows,
               ),
@@ -110,7 +110,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_compact.png'),
       );
     });
@@ -124,11 +124,11 @@ void main() {
               width: 650,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: testRows,
-                selection: const AppSimpleTableSelection(
-                  mode: AppSimpleTableSelectionMode.multiple,
+                selection: const DSSimpleTableSelection(
+                  mode: DSSimpleTableSelectionMode.multiple,
                   selectedRows: ['1', '3'],
                 ),
               ),
@@ -138,7 +138,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_with_selection.png'),
       );
     });
@@ -152,23 +152,23 @@ void main() {
               width: 600,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: [
-                  const AppSimpleTableColumn(
+                  const DSSimpleTableColumn(
                     id: 'name',
                     label: 'Name',
                     field: 'name',
                     width: 150,
                     sortable: true,
                   ),
-                  const AppSimpleTableColumn(
+                  const DSSimpleTableColumn(
                     id: 'email',
                     label: 'Email',
                     field: 'email',
                     width: 200,
                     sortable: true,
                   ),
-                  const AppSimpleTableColumn(
+                  const DSSimpleTableColumn(
                     id: 'role',
                     label: 'Role',
                     field: 'role',
@@ -176,9 +176,9 @@ void main() {
                   ),
                 ],
                 rows: testRows,
-                sorting: const AppSimpleTableSort(
+                sorting: const DSSimpleTableSort(
                   columnId: 'name',
-                  direction: AppSimpleTableSortDirection.ascending,
+                  direction: DSSimpleTableSortDirection.ascending,
                 ),
               ),
             ),
@@ -187,7 +187,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_with_sorting.png'),
       );
     });
@@ -201,10 +201,10 @@ void main() {
               width: 600,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: const [],
-                emptyState: const AppSimpleTableEmptyState(
+                emptyState: const DSSimpleTableEmptyState(
                   message: 'No data available',
                   icon: Icons.table_chart_outlined,
                 ),
@@ -215,7 +215,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_empty_state.png'),
       );
     });
@@ -229,10 +229,10 @@ void main() {
               width: 600,
               height: 250,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppSimpleTableConfig(
+                config: const DSSimpleTableConfig(
                   showHeaders: false,
                 ),
               ),
@@ -242,7 +242,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_no_headers.png'),
       );
     });
@@ -257,10 +257,10 @@ void main() {
               width: 600,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppSimpleTableConfig(
+                config: const DSSimpleTableConfig(
                   alternateRowColors: true,
                 ),
               ),
@@ -270,7 +270,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_alternate_colors.png'),
       );
     });
@@ -284,10 +284,10 @@ void main() {
               width: 600,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppSimpleTableConfig(
+                config: const DSSimpleTableConfig(
                   showRowDividers: false,
                 ),
               ),
@@ -297,7 +297,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_no_dividers.png'),
       );
     });
@@ -311,10 +311,10 @@ void main() {
               width: 600,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppSimpleTableConfig(
+                config: const DSSimpleTableConfig(
                   showColumnDividers: true,
                 ),
               ),
@@ -324,7 +324,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_column_dividers.png'),
       );
     });
@@ -338,10 +338,10 @@ void main() {
               width: 600,
               height: 350,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: testRows,
-                config: const AppSimpleTableConfig(
+                config: const DSSimpleTableConfig(
                   rowHeight: 60.0,
                   headerHeight: 70.0,
                 ),
@@ -352,35 +352,35 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_custom_height.png'),
       );
     });
 
     testWidgets('Table with hidden columns golden test', (tester) async {
       final customColumns = [
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'name',
           label: 'Name',
           field: 'name',
           width: 150,
           visible: true,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'email',
           label: 'Email',
           field: 'email',
           width: 200,
           visible: false,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'role',
           label: 'Role',
           field: 'role',
           width: 120,
           visible: true,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'status',
           label: 'Status',
           field: 'status',
@@ -397,7 +397,7 @@ void main() {
               width: 500,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: customColumns,
                 rows: testRows,
               ),
@@ -407,7 +407,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_hidden_columns.png'),
       );
     });
@@ -415,26 +415,26 @@ void main() {
     testWidgets('Table with different column alignments golden test',
         (tester) async {
       final alignmentColumns = [
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'name',
           label: 'Name',
           field: 'name',
           width: 150,
-          alignment: AppSimpleTableColumnAlignment.left,
+          alignment: DSSimpleTableColumnAlignment.left,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'email',
           label: 'Email',
           field: 'email',
           width: 200,
-          alignment: AppSimpleTableColumnAlignment.center,
+          alignment: DSSimpleTableColumnAlignment.center,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'role',
           label: 'Role',
           field: 'role',
           width: 120,
-          alignment: AppSimpleTableColumnAlignment.right,
+          alignment: DSSimpleTableColumnAlignment.right,
         ),
       ];
 
@@ -446,7 +446,7 @@ void main() {
               width: 500,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: alignmentColumns,
                 rows: testRows,
               ),
@@ -456,7 +456,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_column_alignments.png'),
       );
     });
@@ -472,7 +472,7 @@ void main() {
                 width: 600,
                 height: 300,
                 padding: const EdgeInsets.all(16),
-                child: AppSimpleTable.standard(
+                child: DSSimpleTable.standard(
                   columns: testColumns,
                   rows: testRows,
                 ),
@@ -483,7 +483,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_rtl.png'),
       );
     });
@@ -497,7 +497,7 @@ void main() {
               width: 600,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: testRows,
               ),
@@ -507,14 +507,14 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_dark_theme.png'),
       );
     });
 
     testWidgets('Table with disabled row golden test', (tester) async {
       final disabledRows = [
-        AppSimpleTableRow(
+        DSSimpleTableRow(
           id: '1',
           data: {
             'name': 'John Doe',
@@ -523,7 +523,7 @@ void main() {
             'status': 'Active',
           },
         ),
-        AppSimpleTableRow(
+        DSSimpleTableRow(
           id: '2',
           data: {
             'name': 'Jane Smith',
@@ -533,7 +533,7 @@ void main() {
           },
           disabled: true,
         ),
-        AppSimpleTableRow(
+        DSSimpleTableRow(
           id: '3',
           data: {
             'name': 'Bob Johnson',
@@ -552,7 +552,7 @@ void main() {
               width: 600,
               height: 300,
               padding: const EdgeInsets.all(16),
-              child: AppSimpleTable.standard(
+              child: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: disabledRows,
               ),
@@ -562,7 +562,7 @@ void main() {
       );
 
       await expectLater(
-        find.byType(AppSimpleTable),
+        find.byType(DSSimpleTable),
         matchesGoldenFile('goldens/simple_table_disabled_row.png'),
       );
     });

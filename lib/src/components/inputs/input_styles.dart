@@ -52,7 +52,7 @@ enum InputState {
   success,
 }
 
-/// Sistema de estilos para AppInput
+/// Sistema de estilos para DSInput
 ///
 /// Proporciona decoraciones consistentes para todos los estados
 /// y tipos de inputs en el Design System, incluyendo:
@@ -61,21 +61,21 @@ enum InputState {
 /// - Decoraciones adaptadas al tema (light/dark)
 /// - Configuraciones espec�ficas por tipo de input
 /// - Animaciones y efectos visuales
-class AppInputStyles {
-  AppInputStyles._();
+class DSInputStyles {
+  DSInputStyles._();
 
   // ==========================================================================
   // CONFIGURACIONES GENERALES
   // ==========================================================================
 
   /// Duraci�n de las transiciones entre estados
-  static const Duration transitionDuration = AppTheme.durationFast;
+  static const Duration transitionDuration = DSTheme.durationFast;
 
   /// Curva de animaci�n para transiciones
-  static const Curve transitionCurve = AppTheme.curveStandard;
+  static const Curve transitionCurve = DSTheme.curveStandard;
 
   /// Radio de borde est�ndar para inputs
-  static const BorderRadius borderRadius = AppTheme.radiusMd;
+  static const BorderRadius borderRadius = DSTheme.radiusMd;
 
   /// Ancho del borde en estado normal
   static const double normalBorderWidth = 1.0;
@@ -187,7 +187,7 @@ class AppInputStyles {
       fillColor: colors.fillColor,
 
       // Padding
-      contentPadding: AppSpacing.inputPadding,
+      contentPadding: DSSpacing.inputPadding,
       isDense: false,
 
       // Bordes
@@ -227,23 +227,23 @@ class AppInputStyles {
 
     switch (state) {
       case InputState.error:
-        color = isDark ? AppColors.errorDarkMode : AppColors.error;
+        color = isDark ? DSColors.errorDarkMode : DSColors.error;
         break;
       case InputState.focused:
-        color = isDark ? AppColors.primaryDarkMode : AppColors.primary;
+        color = isDark ? DSColors.primaryDarkMode : DSColors.primary;
         break;
       case InputState.disabled:
-        color = isDark ? AppColors.gray500 : AppColors.gray400;
+        color = isDark ? DSColors.gray500 : DSColors.gray400;
         break;
       case InputState.success:
-        color = isDark ? AppColors.successDarkMode : AppColors.success;
+        color = isDark ? DSColors.successDarkMode : DSColors.success;
         break;
       default:
         color =
-            isDark ? AppColors.textSecondaryDarkMode : AppColors.textSecondary;
+            isDark ? DSColors.textSecondaryDarkMode : DSColors.textSecondary;
     }
 
-    return AppTypography.withColor(AppTypography.labelMedium, color);
+    return DSTypography.withColor(DSTypography.labelMedium, color);
   }
 
   /// Estilo para el floating label
@@ -252,46 +252,46 @@ class AppInputStyles {
 
     switch (state) {
       case InputState.error:
-        color = isDark ? AppColors.errorDarkMode : AppColors.error;
+        color = isDark ? DSColors.errorDarkMode : DSColors.error;
         break;
       case InputState.focused:
-        color = isDark ? AppColors.primaryDarkMode : AppColors.primary;
+        color = isDark ? DSColors.primaryDarkMode : DSColors.primary;
         break;
       case InputState.success:
-        color = isDark ? AppColors.successDarkMode : AppColors.success;
+        color = isDark ? DSColors.successDarkMode : DSColors.success;
         break;
       default:
-        color = isDark ? AppColors.primaryDarkMode : AppColors.primary;
+        color = isDark ? DSColors.primaryDarkMode : DSColors.primary;
     }
 
-    return AppTypography.withColor(AppTypography.labelSmall, color);
+    return DSTypography.withColor(DSTypography.labelSmall, color);
   }
 
   /// Estilo para el hint text
   static TextStyle _getHintStyle(bool isDark) {
     final color =
-        isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary;
-    return AppTypography.withColor(AppTypography.bodyMedium, color);
+        isDark ? DSColors.textTertiaryDarkMode : DSColors.textTertiary;
+    return DSTypography.withColor(DSTypography.bodyMedium, color);
   }
 
   /// Estilo para el helper text
   static TextStyle _getHelperStyle(bool isDark) {
     final color =
-        isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary;
-    return AppTypography.withColor(AppTypography.caption, color);
+        isDark ? DSColors.textTertiaryDarkMode : DSColors.textTertiary;
+    return DSTypography.withColor(DSTypography.caption, color);
   }
 
   /// Estilo para el error text
   static TextStyle _getErrorStyle(bool isDark) {
-    final color = isDark ? AppColors.errorDarkMode : AppColors.error;
-    return AppTypography.withColor(AppTypography.caption, color);
+    final color = isDark ? DSColors.errorDarkMode : DSColors.error;
+    return DSTypography.withColor(DSTypography.caption, color);
   }
 
   /// Estilo para prefix/suffix text
   static TextStyle _getPrefixSuffixStyle(bool isDark) {
     final color =
-        isDark ? AppColors.textSecondaryDarkMode : AppColors.textSecondary;
-    return AppTypography.withColor(AppTypography.bodyMedium, color);
+        isDark ? DSColors.textSecondaryDarkMode : DSColors.textSecondary;
+    return DSTypography.withColor(DSTypography.bodyMedium, color);
   }
 
   /// Estilo para el counter
@@ -307,12 +307,12 @@ class AppInputStyles {
         (currentLength != null &&
             maxLength != null &&
             currentLength > maxLength)) {
-      color = isDark ? AppColors.errorDarkMode : AppColors.error;
+      color = isDark ? DSColors.errorDarkMode : DSColors.error;
     } else {
-      color = isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary;
+      color = isDark ? DSColors.textTertiaryDarkMode : DSColors.textTertiary;
     }
 
-    return AppTypography.withColor(AppTypography.caption, color);
+    return DSTypography.withColor(DSTypography.caption, color);
   }
 
   // ==========================================================================
@@ -325,90 +325,90 @@ class AppInputStyles {
       case InputState.normal:
         return _InputColors(
           fillColor: isDark
-              ? AppColors.backgroundTertiaryDarkMode
-              : AppColors.surfaceVariant,
-          borderColor: isDark ? AppColors.gray600 : AppColors.gray300,
+              ? DSColors.backgroundTertiaryDarkMode
+              : DSColors.surfaceVariant,
+          borderColor: isDark ? DSColors.gray600 : DSColors.gray300,
           focusedBorderColor:
-              isDark ? AppColors.primaryDarkMode : AppColors.primary,
-          errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
-          disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
+              isDark ? DSColors.primaryDarkMode : DSColors.primary,
+          errorBorderColor: isDark ? DSColors.errorDarkMode : DSColors.error,
+          disabledBorderColor: isDark ? DSColors.gray700 : DSColors.gray200,
           textColor:
-              isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
+              isDark ? DSColors.textPrimaryDarkMode : DSColors.textPrimary,
           iconColor: isDark
-              ? AppColors.textSecondaryDarkMode
-              : AppColors.textSecondary,
+              ? DSColors.textSecondaryDarkMode
+              : DSColors.textSecondary,
         );
 
       case InputState.focused:
         return _InputColors(
           fillColor: isDark
-              ? AppColors.backgroundTertiaryDarkMode
-              : AppColors.surfaceVariant,
-          borderColor: isDark ? AppColors.primaryDarkMode : AppColors.primary,
+              ? DSColors.backgroundTertiaryDarkMode
+              : DSColors.surfaceVariant,
+          borderColor: isDark ? DSColors.primaryDarkMode : DSColors.primary,
           focusedBorderColor:
-              isDark ? AppColors.primaryDarkMode : AppColors.primary,
-          errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
-          disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
+              isDark ? DSColors.primaryDarkMode : DSColors.primary,
+          errorBorderColor: isDark ? DSColors.errorDarkMode : DSColors.error,
+          disabledBorderColor: isDark ? DSColors.gray700 : DSColors.gray200,
           textColor:
-              isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
-          iconColor: isDark ? AppColors.primaryDarkMode : AppColors.primary,
+              isDark ? DSColors.textPrimaryDarkMode : DSColors.textPrimary,
+          iconColor: isDark ? DSColors.primaryDarkMode : DSColors.primary,
         );
 
       case InputState.error:
         return _InputColors(
           fillColor: isDark
-              ? AppColors.errorDarkMode.withValues(alpha: 0.05)
-              : AppColors.errorLight.withValues(alpha: 0.05),
-          borderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
+              ? DSColors.errorDarkMode.withValues(alpha: 0.05)
+              : DSColors.errorLight.withValues(alpha: 0.05),
+          borderColor: isDark ? DSColors.errorDarkMode : DSColors.error,
           focusedBorderColor:
-              isDark ? AppColors.errorDarkMode : AppColors.error,
-          errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
-          disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
+              isDark ? DSColors.errorDarkMode : DSColors.error,
+          errorBorderColor: isDark ? DSColors.errorDarkMode : DSColors.error,
+          disabledBorderColor: isDark ? DSColors.gray700 : DSColors.gray200,
           textColor:
-              isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
-          iconColor: isDark ? AppColors.errorDarkMode : AppColors.error,
+              isDark ? DSColors.textPrimaryDarkMode : DSColors.textPrimary,
+          iconColor: isDark ? DSColors.errorDarkMode : DSColors.error,
         );
 
       case InputState.success:
         return _InputColors(
           fillColor: isDark
-              ? AppColors.successDarkMode.withValues(alpha: 0.05)
-              : AppColors.successLight.withValues(alpha: 0.05),
-          borderColor: isDark ? AppColors.successDarkMode : AppColors.success,
+              ? DSColors.successDarkMode.withValues(alpha: 0.05)
+              : DSColors.successLight.withValues(alpha: 0.05),
+          borderColor: isDark ? DSColors.successDarkMode : DSColors.success,
           focusedBorderColor:
-              isDark ? AppColors.successDarkMode : AppColors.success,
-          errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
-          disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
+              isDark ? DSColors.successDarkMode : DSColors.success,
+          errorBorderColor: isDark ? DSColors.errorDarkMode : DSColors.error,
+          disabledBorderColor: isDark ? DSColors.gray700 : DSColors.gray200,
           textColor:
-              isDark ? AppColors.textPrimaryDarkMode : AppColors.textPrimary,
-          iconColor: isDark ? AppColors.successDarkMode : AppColors.success,
+              isDark ? DSColors.textPrimaryDarkMode : DSColors.textPrimary,
+          iconColor: isDark ? DSColors.successDarkMode : DSColors.success,
         );
 
       case InputState.disabled:
         return _InputColors(
-          fillColor: isDark ? AppColors.gray700 : AppColors.gray100,
-          borderColor: isDark ? AppColors.gray600 : AppColors.gray200,
-          focusedBorderColor: isDark ? AppColors.gray600 : AppColors.gray200,
-          errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
-          disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
-          textColor: isDark ? AppColors.gray400 : AppColors.textDisabled,
-          iconColor: isDark ? AppColors.gray500 : AppColors.gray400,
+          fillColor: isDark ? DSColors.gray700 : DSColors.gray100,
+          borderColor: isDark ? DSColors.gray600 : DSColors.gray200,
+          focusedBorderColor: isDark ? DSColors.gray600 : DSColors.gray200,
+          errorBorderColor: isDark ? DSColors.errorDarkMode : DSColors.error,
+          disabledBorderColor: isDark ? DSColors.gray700 : DSColors.gray200,
+          textColor: isDark ? DSColors.gray400 : DSColors.textDisabled,
+          iconColor: isDark ? DSColors.gray500 : DSColors.gray400,
         );
 
       case InputState.readonly:
         return _InputColors(
           fillColor: isDark
-              ? AppColors.gray700.withValues(alpha: 0.5)
-              : AppColors.gray50,
-          borderColor: isDark ? AppColors.gray600 : AppColors.gray300,
-          focusedBorderColor: isDark ? AppColors.gray600 : AppColors.gray300,
-          errorBorderColor: isDark ? AppColors.errorDarkMode : AppColors.error,
-          disabledBorderColor: isDark ? AppColors.gray700 : AppColors.gray200,
+              ? DSColors.gray700.withValues(alpha: 0.5)
+              : DSColors.gray50,
+          borderColor: isDark ? DSColors.gray600 : DSColors.gray300,
+          focusedBorderColor: isDark ? DSColors.gray600 : DSColors.gray300,
+          errorBorderColor: isDark ? DSColors.errorDarkMode : DSColors.error,
+          disabledBorderColor: isDark ? DSColors.gray700 : DSColors.gray200,
           textColor: isDark
-              ? AppColors.textSecondaryDarkMode
-              : AppColors.textSecondary,
+              ? DSColors.textSecondaryDarkMode
+              : DSColors.textSecondary,
           iconColor:
-              isDark ? AppColors.textTertiaryDarkMode : AppColors.textTertiary,
+              isDark ? DSColors.textTertiaryDarkMode : DSColors.textTertiary,
         );
     }
   }

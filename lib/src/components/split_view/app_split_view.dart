@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app_split_view_config.dart';
 
-class AppSplitView extends StatefulWidget {
-  final AppSplitViewConfig config;
+class DSSplitView extends StatefulWidget {
+  final DSSplitViewConfig config;
   final Widget start;
   final Widget end;
-  final AppSplitViewMinSizes? minSizes;
+  final DSSplitViewMinSizes? minSizes;
   final double? initialRatio;
   final ValueChanged<double>? onRatioChanged;
   final double? width;
   final double? height;
   final EdgeInsetsGeometry? padding;
 
-  const AppSplitView({
+  const DSSplitView({
     super.key,
-    this.config = const AppSplitViewConfig(),
+    this.config = const DSSplitViewConfig(),
     required this.start,
     required this.end,
     this.minSizes,
@@ -27,10 +27,10 @@ class AppSplitView extends StatefulWidget {
   });
 
   @override
-  State<AppSplitView> createState() => _AppSplitViewState();
+  State<DSSplitView> createState() => _DSSplitViewState();
 }
 
-class _AppSplitViewState extends State<AppSplitView>
+class _DSSplitViewState extends State<DSSplitView>
     with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late Animation<double> _scaleAnimation;
@@ -78,7 +78,7 @@ class _AppSplitViewState extends State<AppSplitView>
   }
 
   @override
-  void didUpdateWidget(AppSplitView oldWidget) {
+  void didUpdateWidget(DSSplitView oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.config.state != oldWidget.config.state) {
@@ -96,11 +96,11 @@ class _AppSplitViewState extends State<AppSplitView>
 
   void _updateStateAnimation() {
     switch (widget.config.state) {
-      case AppSplitViewState.loading:
-      case AppSplitViewState.skeleton:
+      case DSSplitViewState.loading:
+      case DSSplitViewState.skeleton:
         _stateAnimationController.repeat(reverse: true);
         break;
-      case AppSplitViewState.disabled:
+      case DSSplitViewState.disabled:
         _stateAnimationController.animateTo(0.6);
         break;
       default:
@@ -265,9 +265,9 @@ class _AppSplitViewState extends State<AppSplitView>
 
   Widget _buildSplitViewVariant(ThemeData theme, bool isRtl) {
     switch (widget.config.variant) {
-      case AppSplitViewVariant.resizable:
+      case DSSplitViewVariant.resizable:
         return _buildResizableSplitView(theme, isRtl);
-      case AppSplitViewVariant.twoPane:
+      case DSSplitViewVariant.twoPane:
         return _buildTwoPaneSplitView(theme, isRtl);
     }
   }

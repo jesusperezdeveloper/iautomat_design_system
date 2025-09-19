@@ -4,38 +4,38 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_scaffold_config.freezed.dart';
 
 @freezed
-class AppScaffoldConfig with _$AppScaffoldConfig {
-  const factory AppScaffoldConfig({
-    @Default(AppScaffoldVariant.appShell) AppScaffoldVariant variant,
-    @Default(AppScaffoldState.defaultState) AppScaffoldState state,
+class DSScaffoldConfig with _$DSScaffoldConfig {
+  const factory DSScaffoldConfig({
+    @Default(DSScaffoldVariant.appShell) DSScaffoldVariant variant,
+    @Default(DSScaffoldState.defaultState) DSScaffoldState state,
     @Default(true) bool isResponsive,
     @Default(false) bool hasGutters,
     @Default(false) bool isRtl,
     @Default(true) bool enableKeyboardPadding,
     @Default(true) bool enableA11y,
-    AppNavigationConfig? navigation,
-    AppBarConfig? appBar,
+    DSNavigationConfig? navigation,
+    DSBarConfig? appBar,
     BodyConfig? body,
     BottomBarConfig? bottomBar,
     SidePanelConfig? sidePanel,
     FloatingActionConfig? floatingAction,
-  }) = _AppScaffoldConfig;
+  }) = _DSScaffoldConfig;
 }
 
 @freezed
-class AppNavigationConfig with _$AppNavigationConfig {
-  const factory AppNavigationConfig({
+class DSNavigationConfig with _$DSNavigationConfig {
+  const factory DSNavigationConfig({
     @Default(NavigationType.drawer) NavigationType type,
     @Default(true) bool persistent,
     @Default(320.0) double width,
     Widget? header,
     required List<NavigationItem> items,
-  }) = _AppNavigationConfig;
+  }) = _DSNavigationConfig;
 }
 
 @freezed
-class AppBarConfig with _$AppBarConfig {
-  const factory AppBarConfig({
+class DSBarConfig with _$DSBarConfig {
+  const factory DSBarConfig({
     @Default(true) bool pinned,
     @Default(true) bool floating,
     @Default(true) bool snap,
@@ -44,7 +44,7 @@ class AppBarConfig with _$AppBarConfig {
     List<Widget>? actions,
     Widget? leading,
     PreferredSizeWidget? bottom,
-  }) = _AppBarConfig;
+  }) = _DSBarConfig;
 }
 
 @freezed
@@ -119,13 +119,13 @@ class BottomBarItem with _$BottomBarItem {
   }) = _BottomBarItem;
 }
 
-enum AppScaffoldVariant {
+enum DSScaffoldVariant {
   appShell,
   gutters,
   responsive,
 }
 
-enum AppScaffoldState {
+enum DSScaffoldState {
   defaultState,
   hover,
   pressed,

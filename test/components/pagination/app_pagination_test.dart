@@ -6,13 +6,13 @@ import 'package:iautomat_design_system/src/components/pagination/app_pagination.
 import 'package:iautomat_design_system/src/components/pagination/pagination_config.dart';
 
 void main() {
-  group('AppPagination', () {
+  group('DSPagination', () {
     testWidgets('pageBased constructor creates widget with correct properties',
         (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.pageBased(
+            body: DSPagination.pageBased(
               page: 3,
               pageSize: 10,
               total: 100,
@@ -22,7 +22,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppPagination), findsOneWidget);
+      expect(find.byType(DSPagination), findsOneWidget);
       expect(find.text('3'), findsOneWidget); // Current page
       expect(find.text('21-30 of 100'),
           findsOneWidget); // Page info (page 3 = items 21-30)
@@ -33,7 +33,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.cursor(
+            body: DSPagination.cursor(
               hasNextPage: true,
               hasPreviousPage: false,
               nextCursor: 'next-token',
@@ -43,7 +43,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppPagination), findsOneWidget);
+      expect(find.byType(DSPagination), findsOneWidget);
       expect(find.byIcon(Icons.chevron_right), findsOneWidget);
     });
 
@@ -55,7 +55,7 @@ void main() {
           home: StatefulBuilder(
             builder: (context, setState) {
               return Scaffold(
-                body: AppPagination.pageBased(
+                body: DSPagination.pageBased(
                   page: currentPage,
                   pageSize: 10,
                   total: 100,
@@ -91,7 +91,7 @@ void main() {
           home: StatefulBuilder(
             builder: (context, setState) {
               return Scaffold(
-                body: AppPagination.pageBased(
+                body: DSPagination.pageBased(
                   page: currentPage,
                   pageSize: 10,
                   total: 100,
@@ -115,7 +115,7 @@ void main() {
           home: StatefulBuilder(
             builder: (context, setState) {
               return Scaffold(
-                body: AppPagination.pageBased(
+                body: DSPagination.pageBased(
                   page: currentPage,
                   pageSize: 10,
                   total: 100,
@@ -140,7 +140,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.cursor(
+            body: DSPagination.cursor(
               hasNextPage: true,
               hasPreviousPage: true,
               nextCursor: 'next-token',
@@ -171,7 +171,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.pageBased(
+            body: DSPagination.pageBased(
               page: 1,
               pageSize: 10,
               total: 100,
@@ -192,7 +192,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.pageBased(
+            body: DSPagination.pageBased(
               page: 10,
               pageSize: 10,
               total: 100,
@@ -218,7 +218,7 @@ void main() {
           home: StatefulBuilder(
             builder: (context, setState) {
               return Scaffold(
-                body: AppPagination.pageBased(
+                body: DSPagination.pageBased(
                   page: currentPage,
                   pageSize: 10,
                   total: 100,
@@ -231,7 +231,7 @@ void main() {
       );
 
       // Focus the pagination widget
-      await tester.tap(find.byType(AppPagination));
+      await tester.tap(find.byType(DSPagination));
       await tester.pumpAndSettle();
 
       // Test keyboard navigation
@@ -256,11 +256,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.pageBased(
+            body: DSPagination.pageBased(
               page: 5,
               pageSize: 10,
               total: 100,
-              data: const AppPaginationData(
+              data: const DSPaginationData(
                 currentPage: 5,
                 pageSize: 10,
                 totalItems: 100,
@@ -289,11 +289,11 @@ void main() {
           home: StatefulBuilder(
             builder: (context, setState) {
               return Scaffold(
-                body: AppPagination.pageBased(
+                body: DSPagination.pageBased(
                   page: currentPage,
                   pageSize: 10,
                   total: 100,
-                  config: const AppPaginationConfig(
+                  config: const DSPaginationConfig(
                     showJumpToPage: true,
                   ),
                   onPageChanged: (page) => setState(() => currentPage = page),
@@ -321,8 +321,8 @@ void main() {
     });
 
     testWidgets('custom configuration is applied', (tester) async {
-      const customConfig = AppPaginationConfig(
-        size: AppPaginationSize.large,
+      const customConfig = DSPaginationConfig(
+        size: DSPaginationSize.large,
         buttonSize: 60.0,
         backgroundColor: Colors.blue,
         maxVisiblePages: 7,
@@ -331,7 +331,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.pageBased(
+            body: DSPagination.pageBased(
               page: 5,
               pageSize: 10,
               total: 100,
@@ -342,7 +342,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppPagination), findsOneWidget);
+      expect(find.byType(DSPagination), findsOneWidget);
 
       // Test that configuration is applied (button size, colors, etc.)
       final buttons = find.byType(SizedBox);
@@ -353,7 +353,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.pageBased(
+            body: DSPagination.pageBased(
               page: 20,
               pageSize: 10,
               total: 1000, // 100 pages
@@ -370,7 +370,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.pageBased(
+            body: DSPagination.pageBased(
               page: 3,
               pageSize: 15,
               total: 157,
@@ -388,7 +388,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.pageBased(
+            body: DSPagination.pageBased(
               page: 1,
               pageSize: 10,
               total: 0,
@@ -405,7 +405,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppPagination.pageBased(
+            body: DSPagination.pageBased(
               page: 1,
               pageSize: 10,
               total: 100,
@@ -425,17 +425,17 @@ void main() {
       await tester.pump();
 
       // Verify hover state is applied (visual feedback)
-      expect(find.byType(AppPagination), findsOneWidget);
+      expect(find.byType(DSPagination), findsOneWidget);
     });
   });
 
-  group('AppPaginationConfig', () {
+  group('DSPaginationConfig', () {
     test('default configuration has correct values', () {
-      const config = AppPaginationConfig();
+      const config = DSPaginationConfig();
 
-      expect(config.size, AppPaginationSize.medium);
-      expect(config.layout, AppPaginationLayout.horizontal);
-      expect(config.buttonStyle, AppPageButtonStyle.outlined);
+      expect(config.size, DSPaginationSize.medium);
+      expect(config.layout, DSPaginationLayout.horizontal);
+      expect(config.buttonStyle, DSPageButtonStyle.outlined);
       expect(config.buttonSize, 40.0);
       expect(config.spacing, 8.0);
       expect(config.maxVisiblePages, 5);
@@ -445,9 +445,9 @@ void main() {
     });
 
     test('small preset configuration', () {
-      const config = AppPaginationConfig.small;
+      const config = DSPaginationConfig.small;
 
-      expect(config.size, AppPaginationSize.small);
+      expect(config.size, DSPaginationSize.small);
       expect(config.buttonSize, 32.0);
       expect(config.spacing, 4.0);
       expect(config.fontSize, 12.0);
@@ -455,9 +455,9 @@ void main() {
     });
 
     test('large preset configuration', () {
-      const config = AppPaginationConfig.large;
+      const config = DSPaginationConfig.large;
 
-      expect(config.size, AppPaginationSize.large);
+      expect(config.size, DSPaginationSize.large);
       expect(config.buttonSize, 48.0);
       expect(config.spacing, 12.0);
       expect(config.fontSize, 16.0);
@@ -465,9 +465,9 @@ void main() {
     });
   });
 
-  group('AppPaginationData', () {
+  group('DSPaginationData', () {
     test('calculates properties correctly', () {
-      const data = AppPaginationData(
+      const data = DSPaginationData(
         currentPage: 3,
         pageSize: 10,
         totalItems: 157,
@@ -485,7 +485,7 @@ void main() {
     });
 
     test('first page properties', () {
-      const data = AppPaginationData(
+      const data = DSPaginationData(
         currentPage: 1,
         pageSize: 10,
         totalItems: 100,
@@ -499,7 +499,7 @@ void main() {
     });
 
     test('last page properties', () {
-      const data = AppPaginationData(
+      const data = DSPaginationData(
         currentPage: 16,
         pageSize: 10,
         totalItems: 157,
@@ -513,7 +513,7 @@ void main() {
     });
 
     test('empty data properties', () {
-      const data = AppPaginationData(
+      const data = DSPaginationData(
         currentPage: 1,
         pageSize: 10,
         totalItems: 0,
@@ -527,7 +527,7 @@ void main() {
     });
 
     test('visible pages calculation', () {
-      const data = AppPaginationData(
+      const data = DSPaginationData(
         currentPage: 5,
         pageSize: 10,
         totalItems: 200,
@@ -544,82 +544,82 @@ void main() {
     });
   });
 
-  group('AppPaginationUtils', () {
+  group('DSPaginationUtils', () {
     test('calculateTotalPages works correctly', () {
-      expect(AppPaginationUtils.calculateTotalPages(100, 10), 10);
-      expect(AppPaginationUtils.calculateTotalPages(157, 10), 16);
-      expect(AppPaginationUtils.calculateTotalPages(150, 10), 15);
-      expect(AppPaginationUtils.calculateTotalPages(0, 10), 0);
-      expect(AppPaginationUtils.calculateTotalPages(100, 0), 0);
+      expect(DSPaginationUtils.calculateTotalPages(100, 10), 10);
+      expect(DSPaginationUtils.calculateTotalPages(157, 10), 16);
+      expect(DSPaginationUtils.calculateTotalPages(150, 10), 15);
+      expect(DSPaginationUtils.calculateTotalPages(0, 10), 0);
+      expect(DSPaginationUtils.calculateTotalPages(100, 0), 0);
     });
 
     test('validatePage works correctly', () {
-      expect(AppPaginationUtils.validatePage(5, 10), 5);
-      expect(AppPaginationUtils.validatePage(0, 10), 1);
-      expect(AppPaginationUtils.validatePage(-1, 10), 1);
-      expect(AppPaginationUtils.validatePage(15, 10), 10);
+      expect(DSPaginationUtils.validatePage(5, 10), 5);
+      expect(DSPaginationUtils.validatePage(0, 10), 1);
+      expect(DSPaginationUtils.validatePage(-1, 10), 1);
+      expect(DSPaginationUtils.validatePage(15, 10), 10);
     });
 
     test('generatePageRange works correctly', () {
-      expect(AppPaginationUtils.generatePageRange(5, 20, 5), [3, 4, 5, 6, 7]);
-      expect(AppPaginationUtils.generatePageRange(1, 20, 5), [1, 2, 3, 4, 5]);
-      expect(AppPaginationUtils.generatePageRange(20, 20, 5),
+      expect(DSPaginationUtils.generatePageRange(5, 20, 5), [3, 4, 5, 6, 7]);
+      expect(DSPaginationUtils.generatePageRange(1, 20, 5), [1, 2, 3, 4, 5]);
+      expect(DSPaginationUtils.generatePageRange(20, 20, 5),
           [16, 17, 18, 19, 20]);
-      expect(AppPaginationUtils.generatePageRange(5, 5, 5), [1, 2, 3, 4, 5]);
+      expect(DSPaginationUtils.generatePageRange(5, 5, 5), [1, 2, 3, 4, 5]);
     });
 
     test('formatNumber works correctly', () {
-      expect(AppPaginationUtils.formatNumber(999), '999');
-      expect(AppPaginationUtils.formatNumber(1000), '1.0K');
-      expect(AppPaginationUtils.formatNumber(1500), '1.5K');
-      expect(AppPaginationUtils.formatNumber(1000000), '1.0M');
-      expect(AppPaginationUtils.formatNumber(1000000000), '1.0B');
+      expect(DSPaginationUtils.formatNumber(999), '999');
+      expect(DSPaginationUtils.formatNumber(1000), '1.0K');
+      expect(DSPaginationUtils.formatNumber(1500), '1.5K');
+      expect(DSPaginationUtils.formatNumber(1000000), '1.0M');
+      expect(DSPaginationUtils.formatNumber(1000000000), '1.0B');
     });
 
     test('isValidConfig works correctly', () {
-      const validData = AppPaginationData(
+      const validData = DSPaginationData(
         currentPage: 1,
         pageSize: 10,
         totalItems: 100,
       );
-      expect(AppPaginationUtils.isValidConfig(validData), true);
+      expect(DSPaginationUtils.isValidConfig(validData), true);
 
-      const invalidPageSize = AppPaginationData(
+      const invalidPageSize = DSPaginationData(
         currentPage: 1,
         pageSize: 0,
         totalItems: 100,
       );
-      expect(AppPaginationUtils.isValidConfig(invalidPageSize), false);
+      expect(DSPaginationUtils.isValidConfig(invalidPageSize), false);
 
-      const invalidCurrentPage = AppPaginationData(
+      const invalidCurrentPage = DSPaginationData(
         currentPage: 0,
         pageSize: 10,
         totalItems: 100,
       );
-      expect(AppPaginationUtils.isValidConfig(invalidCurrentPage), false);
+      expect(DSPaginationUtils.isValidConfig(invalidCurrentPage), false);
 
-      const invalidTotalItems = AppPaginationData(
+      const invalidTotalItems = DSPaginationData(
         currentPage: 1,
         pageSize: 10,
         totalItems: -1,
       );
-      expect(AppPaginationUtils.isValidConfig(invalidTotalItems), false);
+      expect(DSPaginationUtils.isValidConfig(invalidTotalItems), false);
     });
 
     test('semantic labels are generated correctly', () {
-      final pageLabel = AppPaginationUtils.getPageButtonSemanticLabel(5, 3, 10);
+      final pageLabel = DSPaginationUtils.getPageButtonSemanticLabel(5, 3, 10);
       expect(pageLabel, 'Go to page 5 of 10');
 
       final currentPageLabel =
-          AppPaginationUtils.getPageButtonSemanticLabel(3, 3, 10);
+          DSPaginationUtils.getPageButtonSemanticLabel(3, 3, 10);
       expect(currentPageLabel, 'Page 3 of 10, current page');
 
       final nextLabel =
-          AppPaginationUtils.getNavButtonSemanticLabel('next', true);
+          DSPaginationUtils.getNavButtonSemanticLabel('next', true);
       expect(nextLabel, 'Go to next page');
 
       final disabledPrevLabel =
-          AppPaginationUtils.getNavButtonSemanticLabel('previous', false);
+          DSPaginationUtils.getNavButtonSemanticLabel('previous', false);
       expect(disabledPrevLabel, 'Go to previous page, disabled');
     });
   });

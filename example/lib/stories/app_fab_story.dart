@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppFabStory extends StatefulWidget {
-  const AppFabStory({super.key});
+class DSFabStory extends StatefulWidget {
+  const DSFabStory({super.key});
 
   @override
-  State<AppFabStory> createState() => _AppFabStoryState();
+  State<DSFabStory> createState() => _DSFabStoryState();
 }
 
-class _AppFabStoryState extends State<AppFabStory> {
-  AppFabVariant _variant = AppFabVariant.regular;
-  AppFabState _state = AppFabState.defaultState;
-  AppFabLocation _location = AppFabLocation.endFloat;
+class _DSFabStoryState extends State<DSFabStory> {
+  DSFabVariant _variant = DSFabVariant.regular;
+  DSFabState _state = DSFabState.defaultState;
+  DSFabLocation _location = DSFabLocation.endFloat;
   bool _isRtl = false;
   bool _enableA11y = true;
   bool _enableKeyboard = true;
@@ -53,8 +53,8 @@ class _AppFabStoryState extends State<AppFabStory> {
     });
   }
 
-  Widget _buildSampleFab({required AppFabConfig config}) {
-    return AppFab(
+  Widget _buildSampleFab({required DSFabConfig config}) {
+    return DSFab(
       config: config,
       icon: _hasIcon ? Icon(_iconOptions[_selectedIcon]) : null,
       label: _hasLabel ? 'Acción' : null,
@@ -67,7 +67,7 @@ class _AppFabStoryState extends State<AppFabStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppFab Stories'),
+        title: const Text('DSFab Stories'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -93,11 +93,11 @@ class _AppFabStoryState extends State<AppFabStory> {
                       children: [
                         const Text('Variante: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppFabVariant>(
+                        DropdownButton<DSFabVariant>(
                           value: _variant,
                           onChanged: (value) =>
                               setState(() => _variant = value!),
-                          items: AppFabVariant.values.map((variant) {
+                          items: DSFabVariant.values.map((variant) {
                             return DropdownMenuItem(
                               value: variant,
                               child: Text(variant.displayName),
@@ -112,10 +112,10 @@ class _AppFabStoryState extends State<AppFabStory> {
                       children: [
                         const Text('Estado: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppFabState>(
+                        DropdownButton<DSFabState>(
                           value: _state,
                           onChanged: (value) => setState(() => _state = value!),
-                          items: AppFabState.values.map((state) {
+                          items: DSFabState.values.map((state) {
                             return DropdownMenuItem(
                               value: state,
                               child: Text(state.displayName),
@@ -130,11 +130,11 @@ class _AppFabStoryState extends State<AppFabStory> {
                       children: [
                         const Text('Ubicación: '),
                         const SizedBox(width: 8),
-                        DropdownButton<AppFabLocation>(
+                        DropdownButton<DSFabLocation>(
                           value: _location,
                           onChanged: (value) =>
                               setState(() => _location = value!),
-                          items: AppFabLocation.values.map((location) {
+                          items: DSFabLocation.values.map((location) {
                             return DropdownMenuItem(
                               value: location,
                               child: Text(location.displayName),
@@ -330,7 +330,7 @@ class _AppFabStoryState extends State<AppFabStory> {
                       ),
                     ),
                     _buildSampleFab(
-                      config: AppFabConfig(
+                      config: DSFabConfig(
                         variant: _variant,
                         state: _state,
                         location: _location,
@@ -338,11 +338,11 @@ class _AppFabStoryState extends State<AppFabStory> {
                         enableA11y: _enableA11y,
                         enableKeyboardSupport: _enableKeyboard,
                         isInteractive: _isInteractive,
-                        spacing: AppFabSpacing(borderRadius: _borderRadius),
-                        elevation: AppFabElevation(
+                        spacing: DSFabSpacing(borderRadius: _borderRadius),
+                        elevation: DSFabElevation(
                           defaultElevation: _elevation,
                         ),
-                        behavior: const AppFabBehavior(
+                        behavior: const DSFabBehavior(
                           enableHover: true,
                           enableHapticFeedback: true,
                         ),
@@ -379,9 +379,9 @@ class _AppFabStoryState extends State<AppFabStory> {
                   mainAxisSpacing: 16,
                   childAspectRatio: 1.0,
                 ),
-                itemCount: AppFabVariant.values.length,
+                itemCount: DSFabVariant.values.length,
                 itemBuilder: (context, index) {
-                  final variant = AppFabVariant.values[index];
+                  final variant = DSFabVariant.values[index];
                   return _buildVariantExample(variant);
                 },
               ),
@@ -399,9 +399,9 @@ class _AppFabStoryState extends State<AppFabStory> {
                   mainAxisSpacing: 16,
                   childAspectRatio: 1.0,
                 ),
-                itemCount: AppFabState.values.length,
+                itemCount: DSFabState.values.length,
                 itemBuilder: (context, index) {
-                  final state = AppFabState.values[index];
+                  final state = DSFabState.values[index];
                   return _buildStateExample(state);
                 },
               ),
@@ -416,15 +416,15 @@ class _AppFabStoryState extends State<AppFabStory> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buildLocationExample(
-                        AppFabLocation.endFloat,
+                        DSFabLocation.endFloat,
                         'End Float',
                       ),
                       _buildLocationExample(
-                        AppFabLocation.centerFloat,
+                        DSFabLocation.centerFloat,
                         'Center Float',
                       ),
                       _buildLocationExample(
-                        AppFabLocation.startFloat,
+                        DSFabLocation.startFloat,
                         'Start Float',
                       ),
                     ],
@@ -434,15 +434,15 @@ class _AppFabStoryState extends State<AppFabStory> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buildLocationExample(
-                        AppFabLocation.endDocked,
+                        DSFabLocation.endDocked,
                         'End Docked',
                       ),
                       _buildLocationExample(
-                        AppFabLocation.centerDocked,
+                        DSFabLocation.centerDocked,
                         'Center Docked',
                       ),
                       _buildLocationExample(
-                        AppFabLocation.startDocked,
+                        DSFabLocation.startDocked,
                         'Start Docked',
                       ),
                     ],
@@ -459,22 +459,22 @@ class _AppFabStoryState extends State<AppFabStory> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppFab(
-                        config: const AppFabConfig(),
+                      DSFab(
+                        config: const DSFabConfig(),
                         icon: const Icon(Icons.add),
                         tooltip: 'Agregar elemento',
                       ),
-                      AppFab(
-                        config: const AppFabConfig(
-                          variant: AppFabVariant.extended,
+                      DSFab(
+                        config: const DSFabConfig(
+                          variant: DSFabVariant.extended,
                         ),
                         icon: const Icon(Icons.edit),
                         label: 'Editar',
                         tooltip: 'Editar elemento',
                       ),
-                      AppFab(
-                        config: const AppFabConfig(
-                          variant: AppFabVariant.small,
+                      DSFab(
+                        config: const DSFabConfig(
+                          variant: DSFabVariant.small,
                         ),
                         icon: const Icon(Icons.favorite),
                         tooltip: 'Me gusta',
@@ -485,10 +485,10 @@ class _AppFabStoryState extends State<AppFabStory> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AppFab(
-                        config: const AppFabConfig(
-                          variant: AppFabVariant.large,
-                          colors: AppFabColors(
+                      DSFab(
+                        config: const DSFabConfig(
+                          variant: DSFabVariant.large,
+                          colors: DSFabColors(
                             backgroundColor: Colors.red,
                             foregroundColor: Colors.white,
                           ),
@@ -496,10 +496,10 @@ class _AppFabStoryState extends State<AppFabStory> {
                         icon: const Icon(Icons.delete),
                         tooltip: 'Eliminar',
                       ),
-                      AppFab(
-                        config: const AppFabConfig(
-                          variant: AppFabVariant.extended,
-                          colors: AppFabColors(
+                      DSFab(
+                        config: const DSFabConfig(
+                          variant: DSFabVariant.extended,
+                          colors: DSFabColors(
                             backgroundColor: Colors.green,
                             foregroundColor: Colors.white,
                           ),
@@ -508,9 +508,9 @@ class _AppFabStoryState extends State<AppFabStory> {
                         label: 'Guardar',
                         tooltip: 'Guardar cambios',
                       ),
-                      AppFab(
-                        config: const AppFabConfig(
-                          colors: AppFabColors(
+                      DSFab(
+                        config: const DSFabConfig(
+                          colors: DSFabColors(
                             backgroundColor: Colors.blue,
                             foregroundColor: Colors.white,
                           ),
@@ -543,12 +543,12 @@ class _AppFabStoryState extends State<AppFabStory> {
     );
   }
 
-  Widget _buildVariantExample(AppFabVariant variant) {
+  Widget _buildVariantExample(DSFabVariant variant) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AppFab(
-          config: AppFabConfig(variant: variant),
+        DSFab(
+          config: DSFabConfig(variant: variant),
           icon: variant.isExtended
               ? const Icon(Icons.star)
               : const Icon(Icons.add),
@@ -564,12 +564,12 @@ class _AppFabStoryState extends State<AppFabStory> {
     );
   }
 
-  Widget _buildStateExample(AppFabState state) {
+  Widget _buildStateExample(DSFabState state) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AppFab(
-          config: AppFabConfig(state: state),
+        DSFab(
+          config: DSFabConfig(state: state),
           icon: const Icon(Icons.star),
         ),
         const SizedBox(height: 8),
@@ -582,7 +582,7 @@ class _AppFabStoryState extends State<AppFabStory> {
     );
   }
 
-  Widget _buildLocationExample(AppFabLocation location, String name) {
+  Widget _buildLocationExample(DSFabLocation location, String name) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -595,10 +595,10 @@ class _AppFabStoryState extends State<AppFabStory> {
           ),
           child: Stack(
             children: [
-              AppFab(
-                config: AppFabConfig(
+              DSFab(
+                config: DSFabConfig(
                   location: location,
-                  variant: AppFabVariant.small,
+                  variant: DSFabVariant.small,
                 ),
                 icon: const Icon(Icons.star, size: 16),
               ),

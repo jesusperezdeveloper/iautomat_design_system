@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppScaffold Tests', () {
+  group('DSScaffold Tests', () {
     late Widget testApp;
 
     setUp(() {
@@ -12,7 +12,7 @@ void main() {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         ),
-        home: const AppScaffold(
+        home: const DSScaffold(
           body: Text('Test Content'),
         ),
       );
@@ -32,9 +32,9 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
-              state: AppScaffoldState.loading,
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
+              state: DSScaffoldState.loading,
             ),
             body: Text('Test Content'),
           ),
@@ -52,9 +52,9 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
-              state: AppScaffoldState.skeleton,
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
+              state: DSScaffoldState.skeleton,
             ),
             body: Text('Test Content'),
           ),
@@ -72,9 +72,9 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
-              state: AppScaffoldState.disabled,
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
+              state: DSScaffoldState.disabled,
             ),
             body: Text('Test Content'),
           ),
@@ -92,9 +92,9 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
-              variant: AppScaffoldVariant.appShell,
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
+              variant: DSScaffoldVariant.appShell,
             ),
             body: Text('Test Content'),
           ),
@@ -112,9 +112,9 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
-              variant: AppScaffoldVariant.gutters,
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
+              variant: DSScaffoldVariant.gutters,
               hasGutters: true,
             ),
             body: Text('Test Content'),
@@ -134,9 +134,9 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
-              variant: AppScaffoldVariant.responsive,
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
+              variant: DSScaffoldVariant.responsive,
               isResponsive: true,
             ),
             body: Text('Test Content'),
@@ -155,8 +155,8 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
               isRtl: true,
             ),
             body: Text('Test Content'),
@@ -169,7 +169,7 @@ void main() {
     });
 
     testWidgets('should render with custom app bar', (tester) async {
-      const appBarConfig = AppBarConfig(
+      const appBarConfig = DSBarConfig(
         height: 64.0,
       );
 
@@ -179,8 +179,8 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
               appBar: appBarConfig,
             ),
             body: Text('Test Content'),
@@ -212,8 +212,8 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
               bottomBar: bottomBarConfig,
             ),
             body: Text('Test Content'),
@@ -238,8 +238,8 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
               floatingAction: fabConfig,
             ),
             body: Text('Test Content'),
@@ -252,7 +252,7 @@ void main() {
     });
 
     testWidgets('should handle navigation drawer', (tester) async {
-      const navigationConfig = AppNavigationConfig(
+      const navigationConfig = DSNavigationConfig(
         type: NavigationType.drawer,
         width: 280.0,
         items: [
@@ -273,8 +273,8 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
               navigation: navigationConfig,
             ),
             body: Text('Test Content'),
@@ -293,8 +293,8 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
               enableKeyboardPadding: true,
             ),
             body: Text('Test Content'),
@@ -313,8 +313,8 @@ void main() {
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           ),
-          home: const AppScaffold(
-            config: AppScaffoldConfig(
+          home: const DSScaffold(
+            config: DSScaffoldConfig(
               enableA11y: true,
             ),
             body: Text('Test Content'),
@@ -333,10 +333,10 @@ void main() {
 
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.lightTheme,
-            home: const AppScaffold(
-              config: AppScaffoldConfig(
-                variant: AppScaffoldVariant.responsive,
+            theme: DSTheme.lightTheme,
+            home: const DSScaffold(
+              config: DSScaffoldConfig(
+                variant: DSScaffoldVariant.responsive,
               ),
               body: Text('Mobile Content'),
             ),
@@ -353,10 +353,10 @@ void main() {
 
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.lightTheme,
-            home: const AppScaffold(
-              config: AppScaffoldConfig(
-                variant: AppScaffoldVariant.responsive,
+            theme: DSTheme.lightTheme,
+            home: const DSScaffold(
+              config: DSScaffoldConfig(
+                variant: DSScaffoldVariant.responsive,
               ),
               body: Text('Tablet Content'),
             ),
@@ -373,11 +373,11 @@ void main() {
 
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.lightTheme,
-            home: const AppScaffold(
-              config: AppScaffoldConfig(
-                variant: AppScaffoldVariant.responsive,
-                navigation: AppNavigationConfig(
+            theme: DSTheme.lightTheme,
+            home: const DSScaffold(
+              config: DSScaffoldConfig(
+                variant: DSScaffoldVariant.responsive,
+                navigation: DSNavigationConfig(
                   type: NavigationType.rail,
                   items: [
                     NavigationItem(
@@ -399,16 +399,16 @@ void main() {
 
     group('State Management', () {
       testWidgets('should transition between states', (tester) async {
-        const Widget testWidget = AppScaffold(
-          config: AppScaffoldConfig(
-            state: AppScaffoldState.defaultState,
+        const Widget testWidget = DSScaffold(
+          config: DSScaffoldConfig(
+            state: DSScaffoldState.defaultState,
           ),
           body: Text('Test Content'),
         );
 
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.lightTheme,
+            theme: DSTheme.lightTheme,
             home: testWidget,
           ),
         );
@@ -417,10 +417,10 @@ void main() {
 
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.lightTheme,
-            home: const AppScaffold(
-              config: AppScaffoldConfig(
-                state: AppScaffoldState.loading,
+            theme: DSTheme.lightTheme,
+            home: const DSScaffold(
+              config: DSScaffoldConfig(
+                state: DSScaffoldState.loading,
               ),
               body: Text('Test Content'),
             ),
@@ -433,10 +433,10 @@ void main() {
       testWidgets('should handle focus state', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.lightTheme,
-            home: const AppScaffold(
-              config: AppScaffoldConfig(
-                state: AppScaffoldState.focus,
+            theme: DSTheme.lightTheme,
+            home: const DSScaffold(
+              config: DSScaffoldConfig(
+                state: DSScaffoldState.focus,
               ),
               body: Text('Focused Content'),
             ),
@@ -449,10 +449,10 @@ void main() {
       testWidgets('should handle selected state', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.lightTheme,
-            home: const AppScaffold(
-              config: AppScaffoldConfig(
-                state: AppScaffoldState.selected,
+            theme: DSTheme.lightTheme,
+            home: const DSScaffold(
+              config: DSScaffoldConfig(
+                state: DSScaffoldState.selected,
               ),
               body: Text('Selected Content'),
             ),
@@ -464,12 +464,12 @@ void main() {
     });
   });
 
-  group('AppScaffoldConfig Tests', () {
+  group('DSScaffoldConfig Tests', () {
     test('should create default config', () {
-      const config = AppScaffoldConfig();
+      const config = DSScaffoldConfig();
 
-      expect(config.variant, AppScaffoldVariant.appShell);
-      expect(config.state, AppScaffoldState.defaultState);
+      expect(config.variant, DSScaffoldVariant.appShell);
+      expect(config.state, DSScaffoldState.defaultState);
       expect(config.isResponsive, true);
       expect(config.hasGutters, false);
       expect(config.isRtl, false);
@@ -478,9 +478,9 @@ void main() {
     });
 
     test('should create config with custom values', () {
-      const config = AppScaffoldConfig(
-        variant: AppScaffoldVariant.gutters,
-        state: AppScaffoldState.loading,
+      const config = DSScaffoldConfig(
+        variant: DSScaffoldVariant.gutters,
+        state: DSScaffoldState.loading,
         isResponsive: false,
         hasGutters: true,
         isRtl: true,
@@ -488,8 +488,8 @@ void main() {
         enableA11y: false,
       );
 
-      expect(config.variant, AppScaffoldVariant.gutters);
-      expect(config.state, AppScaffoldState.loading);
+      expect(config.variant, DSScaffoldVariant.gutters);
+      expect(config.state, DSScaffoldState.loading);
       expect(config.isResponsive, false);
       expect(config.hasGutters, true);
       expect(config.isRtl, true);
@@ -498,14 +498,14 @@ void main() {
     });
 
     test('should support copyWith', () {
-      const originalConfig = AppScaffoldConfig();
+      const originalConfig = DSScaffoldConfig();
       final modifiedConfig = originalConfig.copyWith(
-        variant: AppScaffoldVariant.responsive,
-        state: AppScaffoldState.loading,
+        variant: DSScaffoldVariant.responsive,
+        state: DSScaffoldState.loading,
       );
 
-      expect(modifiedConfig.variant, AppScaffoldVariant.responsive);
-      expect(modifiedConfig.state, AppScaffoldState.loading);
+      expect(modifiedConfig.variant, DSScaffoldVariant.responsive);
+      expect(modifiedConfig.state, DSScaffoldState.loading);
       expect(modifiedConfig.isResponsive, true); // unchanged
       expect(modifiedConfig.hasGutters, false); // unchanged
     });
@@ -513,7 +513,7 @@ void main() {
 
   group('Navigation Config Tests', () {
     test('should create navigation config', () {
-      const config = AppNavigationConfig(
+      const config = DSNavigationConfig(
         type: NavigationType.drawer,
         width: 320.0,
         items: [

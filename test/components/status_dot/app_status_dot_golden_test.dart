@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/status_dot/app_status_dot.dart';
 
 void main() {
-  group('AppStatusDot Golden Tests', () {
+  group('DSStatusDot Golden Tests', () {
     testWidgets('success variant golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -16,14 +16,14 @@ void main() {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppStatusDot.success(label: 'Success'),
+                  DSStatusDot.success(label: 'Success'),
                   const SizedBox(height: 16),
-                  AppStatusDot.success(
+                  DSStatusDot.success(
                     label: 'Success with custom size',
                     size: 12,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.success(),
+                  DSStatusDot.success(),
                 ],
               ),
             ),
@@ -49,14 +49,14 @@ void main() {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppStatusDot.info(label: 'Info'),
+                  DSStatusDot.info(label: 'Info'),
                   const SizedBox(height: 16),
-                  AppStatusDot.info(
+                  DSStatusDot.info(
                     label: 'Info with custom size',
                     size: 12,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.info(),
+                  DSStatusDot.info(),
                 ],
               ),
             ),
@@ -82,14 +82,14 @@ void main() {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppStatusDot.warn(label: 'Warning'),
+                  DSStatusDot.warn(label: 'Warning'),
                   const SizedBox(height: 16),
-                  AppStatusDot.warn(
+                  DSStatusDot.warn(
                     label: 'Warning with custom size',
                     size: 12,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.warn(),
+                  DSStatusDot.warn(),
                 ],
               ),
             ),
@@ -115,14 +115,14 @@ void main() {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppStatusDot.error(label: 'Error'),
+                  DSStatusDot.error(label: 'Error'),
                   const SizedBox(height: 16),
-                  AppStatusDot.error(
+                  DSStatusDot.error(
                     label: 'Error with custom size',
                     size: 12,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.error(),
+                  DSStatusDot.error(),
                 ],
               ),
             ),
@@ -148,44 +148,44 @@ void main() {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppStatusDot.success(
+                  DSStatusDot.success(
                     label: 'Default',
-                    state: AppStatusDotState.defaultState,
+                    state: DSStatusDotState.defaultState,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.success(
+                  DSStatusDot.success(
                     label: 'Hover',
-                    state: AppStatusDotState.hover,
+                    state: DSStatusDotState.hover,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.success(
+                  DSStatusDot.success(
                     label: 'Pressed',
-                    state: AppStatusDotState.pressed,
+                    state: DSStatusDotState.pressed,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.success(
+                  DSStatusDot.success(
                     label: 'Focus',
-                    state: AppStatusDotState.focus,
+                    state: DSStatusDotState.focus,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.success(
+                  DSStatusDot.success(
                     label: 'Selected',
-                    state: AppStatusDotState.selected,
+                    state: DSStatusDotState.selected,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.success(
+                  DSStatusDot.success(
                     label: 'Disabled',
-                    state: AppStatusDotState.disabled,
+                    state: DSStatusDotState.disabled,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.success(
+                  DSStatusDot.success(
                     label: 'Loading',
-                    state: AppStatusDotState.loading,
+                    state: DSStatusDotState.loading,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.success(
+                  DSStatusDot.success(
                     label: 'Skeleton',
-                    state: AppStatusDotState.skeleton,
+                    state: DSStatusDotState.skeleton,
                   ),
                 ],
               ),
@@ -214,13 +214,13 @@ void main() {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppStatusDot.success(label: 'نجاح'),
+                    DSStatusDot.success(label: 'نجاح'),
                     const SizedBox(height: 16),
-                    AppStatusDot.info(label: 'معلومات'),
+                    DSStatusDot.info(label: 'معلومات'),
                     const SizedBox(height: 16),
-                    AppStatusDot.warn(label: 'تحذير'),
+                    DSStatusDot.warn(label: 'تحذير'),
                     const SizedBox(height: 16),
-                    AppStatusDot.error(label: 'خطأ'),
+                    DSStatusDot.error(label: 'خطأ'),
                   ],
                 ),
               ),
@@ -247,17 +247,17 @@ void main() {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppStatusDot.success(
+                  DSStatusDot.success(
                     label: 'Custom dot color',
                     dotColor: Colors.purple,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.info(
+                  DSStatusDot.info(
                     label: 'Custom label color',
                     labelColor: Colors.purple,
                   ),
                   const SizedBox(height: 16),
-                  AppStatusDot.warn(
+                  DSStatusDot.warn(
                     label: 'Custom both',
                     dotColor: Colors.teal,
                     labelColor: Colors.teal,
@@ -287,13 +287,13 @@ void main() {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppStatusDot.success(label: 'Success'),
+                  DSStatusDot.success(label: 'Success'),
                   const SizedBox(height: 16),
-                  AppStatusDot.info(label: 'Info'),
+                  DSStatusDot.info(label: 'Info'),
                   const SizedBox(height: 16),
-                  AppStatusDot.warn(label: 'Warning'),
+                  DSStatusDot.warn(label: 'Warning'),
                   const SizedBox(height: 16),
-                  AppStatusDot.error(label: 'Error'),
+                  DSStatusDot.error(label: 'Error'),
                 ],
               ),
             ),

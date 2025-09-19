@@ -4,16 +4,16 @@ import 'app_accordion_config.dart';
 import 'app_accordion_platform_adapter.dart';
 import 'app_accordion_a11y_helper.dart';
 
-class AppAccordion extends StatefulWidget {
-  final List<AppAccordionItem> items;
+class DSAccordion extends StatefulWidget {
+  final List<DSAccordionItem> items;
   final Set<String> expandedKeys;
   final ValueChanged<Set<String>>? onChanged;
-  final AppAccordionConfig? config;
+  final DSAccordionConfig? config;
   final bool interactive;
   final VoidCallback? onTap;
-  final ValueChanged<AppAccordionState>? onStateChanged;
+  final ValueChanged<DSAccordionState>? onStateChanged;
 
-  const AppAccordion({
+  const DSAccordion({
     super.key,
     required this.items,
     this.expandedKeys = const {},
@@ -25,16 +25,16 @@ class AppAccordion extends StatefulWidget {
   });
 
   @override
-  State<AppAccordion> createState() => _AppAccordionState();
+  State<DSAccordion> createState() => _DSAccordionState();
 }
 
-class _AppAccordionState extends State<AppAccordion>
+class _DSAccordionState extends State<DSAccordion>
     with TickerProviderStateMixin {
-  AppAccordionConfig? _effectiveConfig;
-  late AppAccordionPlatformAdapter _platformAdapter;
-  late AppAccordionA11yHelper _a11yHelper;
+  DSAccordionConfig? _effectiveConfig;
+  late DSAccordionPlatformAdapter _platformAdapter;
+  late DSAccordionA11yHelper _a11yHelper;
   late Set<String> _expandedKeys;
-  AppAccordionState _currentState = AppAccordionState.defaultState;
+  DSAccordionState _currentState = DSAccordionState.defaultState;
   final Map<String, AnimationController> _animationControllers = {};
   final Map<String, Animation<double>> _animations = {};
   final Map<String, FocusNode> _focusNodes = {};
@@ -42,8 +42,8 @@ class _AppAccordionState extends State<AppAccordion>
   @override
   void initState() {
     super.initState();
-    _platformAdapter = AppAccordionPlatformAdapter();
-    _a11yHelper = AppAccordionA11yHelper();
+    _platformAdapter = DSAccordionPlatformAdapter();
+    _a11yHelper = DSAccordionA11yHelper();
     _expandedKeys = Set.from(widget.expandedKeys);
   }
 
@@ -55,7 +55,7 @@ class _AppAccordionState extends State<AppAccordion>
   }
 
   @override
-  void didUpdateWidget(AppAccordion oldWidget) {
+  void didUpdateWidget(DSAccordion oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.config != oldWidget.config) {
       _initializeConfig();
@@ -81,7 +81,7 @@ class _AppAccordionState extends State<AppAccordion>
 
   void _initializeConfig() {
     _effectiveConfig = _platformAdapter.adaptConfigForPlatform(
-      widget.config ?? const AppAccordionConfig(),
+      widget.config ?? const DSAccordionConfig(),
       context,
     );
   }
@@ -148,7 +148,7 @@ class _AppAccordionState extends State<AppAccordion>
 
     final newExpandedKeys = Set<String>.from(_expandedKeys);
 
-    if (_effectiveConfig!.variant == AppAccordionVariant.single) {
+    if (_effectiveConfig!.variant == DSAccordionVariant.single) {
       if (expanded) {
         newExpandedKeys.clear();
         newExpandedKeys.add(key);
@@ -181,7 +181,7 @@ class _AppAccordionState extends State<AppAccordion>
     _a11yHelper.announceExpansionChange(key, expanded);
   }
 
-  void _handleStateChange(AppAccordionState newState) {
+  void _handleStateChange(DSAccordionState newState) {
     if (_currentState != newState) {
       setState(() {
         _currentState = newState;
@@ -196,11 +196,11 @@ class _AppAccordionState extends State<AppAccordion>
       return const SizedBox.shrink();
     }
 
-    if (_currentState == AppAccordionState.skeleton) {
+    if (_currentState == DSAccordionState.skeleton) {
       return _buildSkeletonLoader();
     }
 
-    if (_currentState == AppAccordionState.loading) {
+    if (_currentState == DSAccordionState.loading) {
       return _buildLoadingState();
     }
 
@@ -232,7 +232,7 @@ class _AppAccordionState extends State<AppAccordion>
     );
   }
 
-  Widget _buildAccordionItem(AppAccordionItem item, int index) {
+  Widget _buildAccordionItem(DSAccordionItem item, int index) {
     final config = _effectiveConfig!;
     final key = item.key;
     final isExpanded = _expandedKeys.contains(key);
@@ -256,21 +256,21 @@ class _AppAccordionState extends State<AppAccordion>
                 ? (hovering) {
                     _handleStateChange(
                       hovering
-                          ? AppAccordionState.hover
-                          : AppAccordionState.defaultState,
+                          ? DSAccordionState.hover
+                          : DSAccordionState.defaultState,
                     );
                   }
                 : null,
-            onTapDown: (_) => _handleStateChange(AppAccordionState.pressed),
-            onTapUp: (_) => _handleStateChange(AppAccordionState.defaultState),
+            onTapDown: (_) => _handleStateChange(DSAccordionState.pressed),
+            onTapUp: (_) => _handleStateChange(DSAccordionState.defaultState),
             onTapCancel: () =>
-                _handleStateChange(AppAccordionState.defaultState),
+                _handleStateChange(DSAccordionState.defaultState),
             focusNode: focusNode,
             onFocusChange: (focused) {
               if (focused && behavior.showFocusIndicator) {
-                _handleStateChange(AppAccordionState.focus);
+                _handleStateChange(DSAccordionState.focus);
               } else if (!focused) {
-                _handleStateChange(AppAccordionState.defaultState);
+                _handleStateChange(DSAccordionState.defaultState);
               }
             },
             borderRadius: BorderRadius.circular(8.0),
@@ -287,7 +287,7 @@ class _AppAccordionState extends State<AppAccordion>
                           style:
                               typography.titleStyle?.copyWith(
                                 color:
-                                    _currentState == AppAccordionState.disabled
+                                    _currentState == DSAccordionState.disabled
                                     ? colors.disabledColor
                                     : colors.titleColor,
                               ) ??
@@ -301,7 +301,7 @@ class _AppAccordionState extends State<AppAccordion>
                                 typography.subtitleStyle?.copyWith(
                                   color:
                                       _currentState ==
-                                          AppAccordionState.disabled
+                                          DSAccordionState.disabled
                                       ? colors.disabledColor
                                       : colors.subtitleColor,
                                 ) ??
@@ -324,7 +324,7 @@ class _AppAccordionState extends State<AppAccordion>
                       config.useMaterialIcons
                           ? Icons.expand_more
                           : Icons.keyboard_arrow_down,
-                      color: _currentState == AppAccordionState.disabled
+                      color: _currentState == DSAccordionState.disabled
                           ? colors.disabledColor
                           : colors.expansionIconColor,
                       size: 24.0,
@@ -438,7 +438,7 @@ class _AppAccordionState extends State<AppAccordion>
   Widget _buildShimmerBox(
     double width,
     double height,
-    AppAccordionColors colors,
+    DSAccordionColors colors,
   ) {
     return TweenAnimationBuilder<double>(
       duration: _effectiveConfig!.animations!.skeletonDuration,

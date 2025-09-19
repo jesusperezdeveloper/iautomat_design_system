@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/bottom_sheet/app_bottom_sheet.dart';
 
 void main() {
-  group('AppBottomSheet Golden Tests', () {
+  group('DSBottomSheet Golden Tests', () {
     testWidgets('modal variant golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -22,7 +22,7 @@ void main() {
                   right: 0,
                   bottom: 0,
                   height: 400,
-                  child: AppBottomSheet.modal(
+                  child: DSBottomSheet.modal(
                     content: const Padding(
                       padding: EdgeInsets.all(16),
                       child: Column(
@@ -74,7 +74,7 @@ void main() {
                   right: 0,
                   bottom: 0,
                   height: 300,
-                  child: AppBottomSheet.half(
+                  child: DSBottomSheet.half(
                     content: const Padding(
                       padding: EdgeInsets.all(16),
                       child: Column(
@@ -126,7 +126,7 @@ void main() {
                   right: 0,
                   bottom: 0,
                   height: 500,
-                  child: AppBottomSheet.full(
+                  child: DSBottomSheet.full(
                     content: const Padding(
                       padding: EdgeInsets.all(16),
                       child: Column(
@@ -205,7 +205,7 @@ void main() {
                         right: 0,
                         bottom: 0,
                         height: 250,
-                        child: AppBottomSheet.half(
+                        child: DSBottomSheet.half(
                           content: const Padding(
                             padding: EdgeInsets.all(16),
                             child: Column(
@@ -238,7 +238,7 @@ void main() {
                         right: 0,
                         bottom: 0,
                         height: 250,
-                        child: AppBottomSheet.half(
+                        child: DSBottomSheet.half(
                           content: const Padding(
                             padding: EdgeInsets.all(16),
                             child: Column(
@@ -294,12 +294,12 @@ void main() {
                               right: 8,
                               bottom: 8,
                               height: 120,
-                              child: AppBottomSheet.half(
+                              child: DSBottomSheet.half(
                                 content: const Padding(
                                   padding: EdgeInsets.all(8),
                                   child: Text('Default State'),
                                 ),
-                                state: AppBottomSheetState.defaultState,
+                                state: DSBottomSheetState.defaultState,
                               ),
                             ),
                           ],
@@ -314,12 +314,12 @@ void main() {
                               right: 8,
                               bottom: 8,
                               height: 120,
-                              child: AppBottomSheet.half(
+                              child: DSBottomSheet.half(
                                 content: const Padding(
                                   padding: EdgeInsets.all(8),
                                   child: Text('Focus State'),
                                 ),
-                                state: AppBottomSheetState.focus,
+                                state: DSBottomSheetState.focus,
                               ),
                             ),
                           ],
@@ -341,12 +341,12 @@ void main() {
                               right: 8,
                               bottom: 8,
                               height: 120,
-                              child: AppBottomSheet.half(
+                              child: DSBottomSheet.half(
                                 content: const Padding(
                                   padding: EdgeInsets.all(8),
                                   child: Text('Disabled State'),
                                 ),
-                                state: AppBottomSheetState.disabled,
+                                state: DSBottomSheetState.disabled,
                               ),
                             ),
                           ],
@@ -361,12 +361,12 @@ void main() {
                               right: 8,
                               bottom: 8,
                               height: 120,
-                              child: AppBottomSheet.half(
+                              child: DSBottomSheet.half(
                                 content: const Padding(
                                   padding: EdgeInsets.all(8),
                                   child: Text('Loading State'),
                                 ),
-                                state: AppBottomSheetState.loading,
+                                state: DSBottomSheetState.loading,
                               ),
                             ),
                           ],
@@ -385,12 +385,12 @@ void main() {
                         right: 8,
                         bottom: 8,
                         height: 120,
-                        child: AppBottomSheet.half(
+                        child: DSBottomSheet.half(
                           content: const Padding(
                             padding: EdgeInsets.all(8),
                             child: Text('Skeleton State'),
                           ),
-                          state: AppBottomSheetState.skeleton,
+                          state: DSBottomSheetState.skeleton,
                         ),
                       ),
                     ],
@@ -428,7 +428,7 @@ void main() {
                         right: 8,
                         bottom: 8,
                         height: 200,
-                        child: AppBottomSheet.half(
+                        child: DSBottomSheet.half(
                           content: const Padding(
                             padding: EdgeInsets.all(16),
                             child: Column(
@@ -459,7 +459,7 @@ void main() {
                         right: 8,
                         bottom: 8,
                         height: 200,
-                        child: AppBottomSheet.half(
+                        child: DSBottomSheet.half(
                           content: const Padding(
                             padding: EdgeInsets.all(16),
                             child: Column(
@@ -508,7 +508,7 @@ void main() {
                   right: 16,
                   bottom: 16,
                   height: 200,
-                  child: AppBottomSheet.half(
+                  child: DSBottomSheet.half(
                     content: const Padding(
                       padding: EdgeInsets.all(16),
                       child: Text('Half snap position'),
@@ -551,7 +551,7 @@ void main() {
                   right: 0,
                   bottom: 0,
                   height: 300,
-                  child: AppBottomSheet.half(
+                  child: DSBottomSheet.half(
                     content: const Padding(
                       padding: EdgeInsets.all(16),
                       child: Column(
@@ -605,7 +605,7 @@ void main() {
                     right: 0,
                     bottom: 0,
                     height: 300,
-                    child: AppBottomSheet.half(
+                    child: DSBottomSheet.half(
                       content: const Padding(
                         padding: EdgeInsets.all(16),
                         child: Column(

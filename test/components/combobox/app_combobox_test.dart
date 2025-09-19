@@ -4,11 +4,11 @@ import 'package:iautomat_design_system/src/components/combobox/app_combobox.dart
 import 'package:iautomat_design_system/src/components/combobox/combobox_config.dart';
 
 void main() {
-  group('AppComboBox Unit Tests', () {
+  group('DSComboBox Unit Tests', () {
     final testSuggestions = [
-      AppComboBoxSuggestion(value: 'item1', label: 'Item 1'),
-      AppComboBoxSuggestion(value: 'item2', label: 'Item 2'),
-      AppComboBoxSuggestion(value: 'item3', label: 'Item 3'),
+      DSComboBoxSuggestion(value: 'item1', label: 'Item 1'),
+      DSComboBoxSuggestion(value: 'item2', label: 'Item 2'),
+      DSComboBoxSuggestion(value: 'item3', label: 'Item 3'),
     ];
 
     group('Widget Rendering', () {
@@ -18,18 +18,18 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Search...',
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppComboBox<String>), findsOneWidget);
+        expect(find.byType(DSComboBox<String>), findsOneWidget);
         expect(find.text('Search...'), findsOneWidget);
       });
 
@@ -40,14 +40,14 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Search...',
                 label: 'Test Label',
-                config: const AppComboBoxConfig(enableFloatingLabel: false),
-                variant: AppComboBoxVariant.typeahead,
+                config: const DSComboBoxConfig(enableFloatingLabel: false),
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -61,12 +61,12 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: 'test query',
                 onQueryChanged: (value) {},
                 suggestions: testSuggestions,
                 placeholder: 'Search...',
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -81,11 +81,11 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 controller: controller,
                 suggestions: testSuggestions,
                 placeholder: 'Search...',
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -102,13 +102,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: '',
                 onQueryChanged: (value) {},
                 suggestions: testSuggestions,
                 placeholder: 'Loading...',
-                overrideState: AppComboBoxState.loading,
-                variant: AppComboBoxVariant.typeahead,
+                overrideState: DSComboBoxState.loading,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -122,13 +122,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: '',
                 onQueryChanged: (value) {},
                 suggestions: testSuggestions,
                 placeholder: 'Loading...',
-                overrideState: AppComboBoxState.skeleton,
-                variant: AppComboBoxVariant.typeahead,
+                overrideState: DSComboBoxState.skeleton,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -143,13 +143,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Search with error',
                 errorText: 'This field is required',
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -164,13 +164,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Search with helper',
                 helperText: 'This is helpful information',
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -185,27 +185,27 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Disabled combobox',
                 enabled: false,
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
         );
 
         final combobox = tester
-            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+            .widget<DSComboBox<String>>(find.byType(DSComboBox<String>));
         expect(combobox.enabled, false);
       });
     });
 
     group('Configuration', () {
       testWidgets('applies custom configuration', (tester) async {
-        const customConfig = AppComboBoxConfig(
+        const customConfig = DSComboBoxConfig(
           borderRadius: 16,
           minimumHeight: 60,
           borderWidth: 3,
@@ -218,20 +218,20 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Custom config',
                 config: customConfig,
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
         );
 
         final combobox = tester
-            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+            .widget<DSComboBox<String>>(find.byType(DSComboBox<String>));
         expect(combobox.config?.borderRadius, 16);
         expect(combobox.config?.minimumHeight, 60);
         expect(combobox.config?.borderWidth, 3);
@@ -240,7 +240,7 @@ void main() {
       });
 
       testWidgets('accepts custom colors', (tester) async {
-        final customColors = AppComboBoxColors(
+        final customColors = DSComboBoxColors(
           borderColor: Colors.red,
           focusedBorderColor: Colors.blue,
           errorBorderColor: Colors.orange,
@@ -283,27 +283,27 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Custom colors',
                 colors: customColors,
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
         );
 
         final combobox = tester
-            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+            .widget<DSComboBox<String>>(find.byType(DSComboBox<String>));
         expect(combobox.colors, customColors);
       });
     });
 
     group('Validators', () {
       test('required validator works', () {
-        final validator = AppComboBoxValidator.required<String>;
+        final validator = DSComboBoxValidator.required<String>;
 
         expect(validator(null), 'Este campo es requerido');
         expect(validator(''), 'Este campo es requerido');
@@ -311,7 +311,7 @@ void main() {
       });
 
       test('minLength validator works', () {
-        final validator = AppComboBoxValidator.minLength(3);
+        final validator = DSComboBoxValidator.minLength(3);
 
         expect(validator(null), null);
         expect(validator(''), null);
@@ -321,7 +321,7 @@ void main() {
       });
 
       test('maxLength validator works', () {
-        final validator = AppComboBoxValidator.maxLength(5);
+        final validator = DSComboBoxValidator.maxLength(5);
 
         expect(validator(null), null);
         expect(validator(''), null);
@@ -331,7 +331,7 @@ void main() {
       });
 
       test('email validator works', () {
-        final validator = AppComboBoxValidator.email;
+        final validator = DSComboBoxValidator.email;
 
         expect(validator(null), null);
         expect(validator(''), null);
@@ -341,7 +341,7 @@ void main() {
       });
 
       test('url validator works', () {
-        final validator = AppComboBoxValidator.url;
+        final validator = DSComboBoxValidator.url;
 
         expect(validator(null), null);
         expect(validator(''), null);
@@ -351,10 +351,10 @@ void main() {
       });
 
       test('combined validators work', () {
-        final validator = AppComboBoxValidator.combine([
-          AppComboBoxValidator.required,
-          AppComboBoxValidator.minLength(3),
-          AppComboBoxValidator.email,
+        final validator = DSComboBoxValidator.combine([
+          DSComboBoxValidator.required,
+          DSComboBoxValidator.minLength(3),
+          DSComboBoxValidator.email,
         ]);
 
         expect(validator(null), 'Este campo es requerido');
@@ -369,7 +369,7 @@ void main() {
       testWidgets('handles suggestions with different properties',
           (tester) async {
         final complexSuggestions = [
-          AppComboBoxSuggestion(
+          DSComboBoxSuggestion(
             value: 'item1',
             label: 'Item 1',
             subtitle: 'Subtitle 1',
@@ -377,12 +377,12 @@ void main() {
             leading: Icon(Icons.star),
             trailing: Icon(Icons.arrow_forward),
           ),
-          AppComboBoxSuggestion(
+          DSComboBoxSuggestion(
             value: 'item2',
             label: 'Item 2 (Disabled)',
             enabled: false,
           ),
-          AppComboBoxSuggestion(
+          DSComboBoxSuggestion(
             value: 'item3',
             label: 'Item 3',
             searchableText: 'custom search text',
@@ -395,19 +395,19 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: complexSuggestions,
                 placeholder: 'Search complex items',
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
         );
 
         final combobox = tester
-            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+            .widget<DSComboBox<String>>(find.byType(DSComboBox<String>));
         expect(combobox.suggestions.length, 3);
         expect(combobox.suggestions[0].subtitle, 'Subtitle 1');
         expect(combobox.suggestions[1].enabled, false);
@@ -417,7 +417,7 @@ void main() {
 
       test('suggestion matches method works correctly', () {
         // Test suggestion without searchableText (uses label)
-        final suggestion1 = AppComboBoxSuggestion(
+        final suggestion1 = DSComboBoxSuggestion(
           value: 'test',
           label: 'Test Item',
         );
@@ -429,7 +429,7 @@ void main() {
         expect(suggestion1.matches('xyz'), false);
 
         // Test suggestion with searchableText (uses searchableText)
-        final suggestion2 = AppComboBoxSuggestion(
+        final suggestion2 = DSComboBoxSuggestion(
           value: 'test',
           label: 'Test Item',
           searchableText: 'Custom Search Text',
@@ -451,7 +451,7 @@ void main() {
       });
 
       test('suggestion getHighlightedLabel works correctly', () {
-        final suggestion = AppComboBoxSuggestion(
+        final suggestion = DSComboBoxSuggestion(
           value: 'test',
           label: 'Test Item',
         );
@@ -475,20 +475,20 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Autofocus combobox',
                 autoFocus: true,
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
         );
 
         final combobox = tester
-            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+            .widget<DSComboBox<String>>(find.byType(DSComboBox<String>));
         expect(combobox.autoFocus, true);
       });
 
@@ -498,20 +498,20 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Search with semantics',
                 semanticLabel: 'Choose an option',
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
         );
 
         final combobox = tester
-            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+            .widget<DSComboBox<String>>(find.byType(DSComboBox<String>));
         expect(combobox.semanticLabel, 'Choose an option');
       });
 
@@ -522,13 +522,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Focus node combobox',
                 focusNode: focusNode,
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -551,7 +551,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) {
                   query = value;
@@ -559,7 +559,7 @@ void main() {
                 },
                 suggestions: testSuggestions,
                 placeholder: 'Search...',
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -578,13 +578,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 onSelected: (suggestion) {},
                 placeholder: 'Search...',
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -593,7 +593,7 @@ void main() {
         // We can't easily test the actual selection without the overlay
         // but we can verify the callback is set up
         final combobox = tester
-            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+            .widget<DSComboBox<String>>(find.byType(DSComboBox<String>));
         expect(combobox.onSelected, isNotNull);
       });
 
@@ -603,20 +603,20 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Email input',
                 keyboardType: TextInputType.emailAddress,
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
         );
 
         final combobox = tester
-            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+            .widget<DSComboBox<String>>(find.byType(DSComboBox<String>));
         expect(combobox.keyboardType, TextInputType.emailAddress);
       });
     });
@@ -628,13 +628,13 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Tappable combobox',
                 onTap: () {},
-                variant: AppComboBoxVariant.typeahead,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
@@ -644,7 +644,7 @@ void main() {
         await tester.pump();
 
         // The tap gesture should be detected without errors
-        expect(find.byType(AppComboBox<String>), findsOneWidget);
+        expect(find.byType(DSComboBox<String>), findsOneWidget);
       });
 
       testWidgets('supports validation', (tester) async {
@@ -653,20 +653,20 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppComboBox<String>(
+              body: DSComboBox<String>(
                 query: query,
                 onQueryChanged: (value) => query = value,
                 suggestions: testSuggestions,
                 placeholder: 'Validated combobox',
-                validator: AppComboBoxValidator.required,
-                variant: AppComboBoxVariant.typeahead,
+                validator: DSComboBoxValidator.required,
+                variant: DSComboBoxVariant.typeahead,
               ),
             ),
           ),
         );
 
         final combobox = tester
-            .widget<AppComboBox<String>>(find.byType(AppComboBox<String>));
+            .widget<DSComboBox<String>>(find.byType(DSComboBox<String>));
         expect(combobox.validator, isNotNull);
       });
     });

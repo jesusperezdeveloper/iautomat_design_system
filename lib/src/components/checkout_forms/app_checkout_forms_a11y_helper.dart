@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/semantics.dart';
 import 'package:iautomat_design_system/src/components/checkout_forms/app_checkout_forms_config.dart';
 
-/// Helper de accesibilidad para AppCheckoutForms
+/// Helper de accesibilidad para DSCheckoutForms
 ///
 /// Proporciona soporte completo para accesibilidad, incluyendo:
 /// - Navegación por teclado
@@ -11,15 +11,15 @@ import 'package:iautomat_design_system/src/components/checkout_forms/app_checkou
 /// - Etiquetas semánticas
 /// - Anuncios de cambios de estado
 /// - Soporte RTL
-class AppCheckoutFormsA11yHelper {
+class DSCheckoutFormsA11yHelper {
   /// Construye un wrapper semántico para el formulario
   Widget buildSemanticWrapper({
-    required AppCheckoutFormsConfig config,
-    required AppCheckoutState state,
-    required AppCheckoutFormData formData,
+    required DSCheckoutFormsConfig config,
+    required DSCheckoutState state,
+    required DSCheckoutFormData formData,
     required Widget child,
   }) {
-    final a11yConfig = config.a11yConfig ?? const AppCheckoutA11yConfig();
+    final a11yConfig = config.a11yConfig ?? const DSCheckoutA11yConfig();
 
     if (!a11yConfig.enabled) {
       return child;
@@ -38,9 +38,9 @@ class AppCheckoutFormsA11yHelper {
 
   /// Construye etiquetas semánticas para un campo
   Widget buildFieldSemantics({
-    required AppCheckoutField field,
-    required AppCheckoutFormData formData,
-    required AppCheckoutA11yConfig a11yConfig,
+    required DSCheckoutField field,
+    required DSCheckoutFormData formData,
+    required DSCheckoutA11yConfig a11yConfig,
     required Widget child,
   }) {
     final validation = formData.validations[field.key];
@@ -83,7 +83,7 @@ class AppCheckoutFormsA11yHelper {
   /// Maneja la navegación por teclado
   KeyEventResult handleKeyEvent(
     KeyEvent event, {
-    required List<AppCheckoutField> fields,
+    required List<DSCheckoutField> fields,
     required Map<String, FocusNode> focusNodes,
     String? currentFocusedField,
     VoidCallback? onSubmit,
@@ -131,7 +131,7 @@ class AppCheckoutFormsA11yHelper {
   /// Maneja la navegación con Tab
   KeyEventResult _handleTabNavigation(
     KeyEvent event, {
-    required List<AppCheckoutField> fields,
+    required List<DSCheckoutField> fields,
     required Map<String, FocusNode> focusNodes,
     String? currentFocusedField,
     Function(String)? onFieldFocus,
@@ -166,7 +166,7 @@ class AppCheckoutFormsA11yHelper {
 
   /// Maneja la tecla Enter
   KeyEventResult _handleEnterKey({
-    required List<AppCheckoutField> fields,
+    required List<DSCheckoutField> fields,
     required Map<String, FocusNode> focusNodes,
     String? currentFocusedField,
     VoidCallback? onSubmit,
@@ -221,7 +221,7 @@ class AppCheckoutFormsA11yHelper {
   /// Maneja la navegación con flechas
   KeyEventResult _handleArrowNavigation(
     LogicalKeyboardKey key, {
-    required List<AppCheckoutField> fields,
+    required List<DSCheckoutField> fields,
     required Map<String, FocusNode> focusNodes,
     String? currentFocusedField,
     Function(String)? onFieldFocus,
@@ -249,20 +249,20 @@ class AppCheckoutFormsA11yHelper {
 
   /// Anuncia cambios de estado para lectores de pantalla
   void announceStateChange({
-    required AppCheckoutState state,
-    required AppCheckoutA11yConfig a11yConfig,
+    required DSCheckoutState state,
+    required DSCheckoutA11yConfig a11yConfig,
   }) {
     if (!a11yConfig.enabled || !a11yConfig.supportScreenReader) return;
 
     String announcement;
     switch (state) {
-      case AppCheckoutState.loading:
+      case DSCheckoutState.loading:
         announcement = 'Procesando formulario';
         break;
-      case AppCheckoutState.disabled:
+      case DSCheckoutState.disabled:
         announcement = 'Formulario deshabilitado';
         break;
-      case AppCheckoutState.skeleton:
+      case DSCheckoutState.skeleton:
         announcement = 'Cargando formulario';
         break;
       default:
@@ -276,7 +276,7 @@ class AppCheckoutFormsA11yHelper {
   void announceValidationError({
     required String fieldLabel,
     required String errorMessage,
-    required AppCheckoutA11yConfig a11yConfig,
+    required DSCheckoutA11yConfig a11yConfig,
   }) {
     if (!a11yConfig.enabled || !a11yConfig.announceErrors) return;
 
@@ -287,7 +287,7 @@ class AppCheckoutFormsA11yHelper {
   /// Anuncia éxito de validación
   void announceValidationSuccess({
     required String fieldLabel,
-    required AppCheckoutA11yConfig a11yConfig,
+    required DSCheckoutA11yConfig a11yConfig,
   }) {
     if (!a11yConfig.enabled || !a11yConfig.announceSuccess) return;
 
@@ -297,17 +297,17 @@ class AppCheckoutFormsA11yHelper {
 
   /// Anuncia envío del formulario
   void announceFormSubmission({
-    required AppCheckoutVariant variant,
-    required AppCheckoutA11yConfig a11yConfig,
+    required DSCheckoutVariant variant,
+    required DSCheckoutA11yConfig a11yConfig,
   }) {
     if (!a11yConfig.enabled || !a11yConfig.announceSuccess) return;
 
     String announcement;
     switch (variant) {
-      case AppCheckoutVariant.address:
+      case DSCheckoutVariant.address:
         announcement = 'Información de dirección enviada correctamente';
         break;
-      case AppCheckoutVariant.payment:
+      case DSCheckoutVariant.payment:
         announcement = 'Información de pago procesada correctamente';
         break;
     }
@@ -326,25 +326,25 @@ class AppCheckoutFormsA11yHelper {
   }
 
   /// Determina si un campo es de tipo textual
-  bool _isTextualField(AppCheckoutFieldType type) {
+  bool _isTextualField(DSCheckoutFieldType type) {
     switch (type) {
-      case AppCheckoutFieldType.text:
-      case AppCheckoutFieldType.email:
-      case AppCheckoutFieldType.phone:
-      case AppCheckoutFieldType.password:
-      case AppCheckoutFieldType.number:
-      case AppCheckoutFieldType.creditCard:
-      case AppCheckoutFieldType.expiryDate:
-      case AppCheckoutFieldType.cvv:
-      case AppCheckoutFieldType.postalCode:
+      case DSCheckoutFieldType.text:
+      case DSCheckoutFieldType.email:
+      case DSCheckoutFieldType.phone:
+      case DSCheckoutFieldType.password:
+      case DSCheckoutFieldType.number:
+      case DSCheckoutFieldType.creditCard:
+      case DSCheckoutFieldType.expiryDate:
+      case DSCheckoutFieldType.cvv:
+      case DSCheckoutFieldType.postalCode:
         return true;
-      case AppCheckoutFieldType.dropdown:
-      case AppCheckoutFieldType.checkbox:
-      case AppCheckoutFieldType.radio:
-      case AppCheckoutFieldType.datePicker:
-      case AppCheckoutFieldType.country:
-      case AppCheckoutFieldType.state:
-      case AppCheckoutFieldType.city:
+      case DSCheckoutFieldType.dropdown:
+      case DSCheckoutFieldType.checkbox:
+      case DSCheckoutFieldType.radio:
+      case DSCheckoutFieldType.datePicker:
+      case DSCheckoutFieldType.country:
+      case DSCheckoutFieldType.state:
+      case DSCheckoutFieldType.city:
         return false;
     }
   }
@@ -352,8 +352,8 @@ class AppCheckoutFormsA11yHelper {
   /// Crea un callback de focus compatible con a11y
   Function(bool) createA11yFocusCallback({
     required String fieldKey,
-    required AppCheckoutField field,
-    required AppCheckoutA11yConfig a11yConfig,
+    required DSCheckoutField field,
+    required DSCheckoutA11yConfig a11yConfig,
     Function(String, bool)? originalCallback,
   }) {
     return (bool hasFocus) {
@@ -377,7 +377,7 @@ class AppCheckoutFormsA11yHelper {
   Widget buildButtonSemantics({
     required String label,
     required bool enabled,
-    required AppCheckoutA11yConfig a11yConfig,
+    required DSCheckoutA11yConfig a11yConfig,
     required Widget child,
     String? hint,
   }) {
@@ -411,7 +411,7 @@ class AppCheckoutFormsA11yHelper {
   /// Construye overlay de carga accesible
   Widget buildAccessibleLoadingOverlay({
     required bool isLoading,
-    required AppCheckoutA11yConfig a11yConfig,
+    required DSCheckoutA11yConfig a11yConfig,
     required Widget child,
     String? loadingMessage,
   }) {
@@ -439,8 +439,8 @@ class AppCheckoutFormsA11yHelper {
 
   /// Construye indicadores de validación accesibles
   Widget buildValidationIndicator({
-    required AppCheckoutFieldValidation? validation,
-    required AppCheckoutA11yConfig a11yConfig,
+    required DSCheckoutFieldValidation? validation,
+    required DSCheckoutA11yConfig a11yConfig,
   }) {
     if (validation == null || !a11yConfig.enabled) {
       return const SizedBox.shrink();
@@ -491,7 +491,7 @@ class AppCheckoutFormsA11yHelper {
   Widget buildAccessibleTooltip({
     required String message,
     required Widget child,
-    required AppCheckoutA11yConfig a11yConfig,
+    required DSCheckoutA11yConfig a11yConfig,
   }) {
     if (!a11yConfig.enabled || !a11yConfig.enableHints) {
       return child;

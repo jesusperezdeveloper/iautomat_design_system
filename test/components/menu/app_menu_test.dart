@@ -4,39 +4,39 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/menu/app_menu.dart';
 
 void main() {
-  group('AppMenu', () {
-    late List<AppMenuItem> testItems;
+  group('DSMenu', () {
+    late List<DSMenuItem> testItems;
 
     setUp(() {
       testItems = [
-        const AppMenuItem(
+        const DSMenuItem(
           id: 'item1',
           label: 'Item 1',
           icon: Icons.star,
         ),
-        const AppMenuItem(
+        const DSMenuItem(
           id: 'item2',
           label: 'Item 2',
           icon: Icons.favorite,
           enabled: false,
         ),
-        const AppMenuItem(
+        const DSMenuItem(
           id: 'item3',
           label: 'Item 3',
           icon: Icons.home,
           selected: true,
         ),
-        const AppMenuItem(
+        const DSMenuItem(
           id: 'item4',
           label: 'Item 4',
           destructive: true,
         ),
-        const AppMenuItem(
+        const DSMenuItem(
           id: 'submenu',
           label: 'Submenu',
           children: [
-            AppMenuItem(id: 'sub1', label: 'Sub Item 1'),
-            AppMenuItem(id: 'sub2', label: 'Sub Item 2'),
+            DSMenuItem(id: 'sub1', label: 'Sub Item 1'),
+            DSMenuItem(id: 'sub2', label: 'Sub Item 2'),
           ],
         ),
       ];
@@ -44,12 +44,12 @@ void main() {
 
     testWidgets('renders context menu correctly', (tester) async {
       bool itemSelected = false;
-      AppMenuItem? selectedItem;
+      DSMenuItem? selectedItem;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {
                 itemSelected = true;
@@ -62,7 +62,7 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppMenu), findsOneWidget);
+      expect(find.byType(DSMenu), findsOneWidget);
       expect(find.text('Item 1'), findsOneWidget);
       expect(find.text('Item 2'), findsOneWidget);
       expect(find.text('Item 3'), findsOneWidget);
@@ -81,7 +81,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.submenu(
+            body: DSMenu.submenu(
               items: testItems,
               onSelected: (item) {},
             ),
@@ -91,7 +91,7 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppMenu), findsOneWidget);
+      expect(find.byType(DSMenu), findsOneWidget);
       expect(find.text('Submenu'), findsOneWidget);
       expect(find.byIcon(Icons.chevron_right), findsOneWidget);
     });
@@ -100,7 +100,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.typeahead(
+            body: DSMenu.typeahead(
               items: testItems,
               onSelected: (item) {},
               searchPlaceholder: 'Search items...',
@@ -111,7 +111,7 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppMenu), findsOneWidget);
+      expect(find.byType(DSMenu), findsOneWidget);
       expect(find.byType(TextField), findsOneWidget);
       expect(find.text('Search items...'), findsOneWidget);
       expect(find.byIcon(Icons.search), findsOneWidget);
@@ -121,7 +121,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.typeahead(
+            body: DSMenu.typeahead(
               items: testItems,
               onSelected: (item) {},
             ),
@@ -161,7 +161,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {
                 itemSelected = true;
@@ -184,7 +184,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {},
             ),
@@ -208,7 +208,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {},
             ),
@@ -231,7 +231,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {},
               enableKeyboardNavigation: true,
@@ -255,16 +255,16 @@ void main() {
       await tester.pump();
 
       // No exceptions should be thrown
-      expect(find.byType(AppMenu), findsOneWidget);
+      expect(find.byType(DSMenu), findsOneWidget);
     });
 
     testWidgets('calls state change callback', (tester) async {
-      AppMenuState? lastState;
+      DSMenuState? lastState;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {},
               onStateChanged: (state) {
@@ -282,7 +282,7 @@ void main() {
       inkWell.onHover?.call(true);
       await tester.pump();
 
-      expect(lastState, equals(AppMenuState.hover));
+      expect(lastState, equals(DSMenuState.hover));
     });
 
     testWidgets('calls visibility change callback', (tester) async {
@@ -291,7 +291,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {},
               onVisibilityChanged: (visible) {
@@ -311,7 +311,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {},
               backgroundColor: Colors.red,
@@ -324,14 +324,14 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppMenu), findsOneWidget);
+      expect(find.byType(DSMenu), findsOneWidget);
     });
 
     testWidgets('supports custom dimensions', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {},
               minWidth: 100,
@@ -347,17 +347,17 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppMenu), findsOneWidget);
+      expect(find.byType(DSMenu), findsOneWidget);
     });
 
     testWidgets('handles loading state', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {},
-              state: AppMenuState.loading,
+              state: DSMenuState.loading,
             ),
           ),
         ),
@@ -373,10 +373,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.context(
+            body: DSMenu.context(
               items: testItems,
               onSelected: (item) {},
-              state: AppMenuState.skeleton,
+              state: DSMenuState.skeleton,
             ),
           ),
         ),
@@ -393,7 +393,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.typeahead(
+            body: DSMenu.typeahead(
               items: const [],
               onSelected: (item) {},
             ),
@@ -412,7 +412,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppMenu.typeahead(
+            body: DSMenu.typeahead(
               items: testItems,
               onSelected: (item) {},
               onSearchChanged: (query) {
@@ -437,7 +437,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppMenu.context(
+              body: DSMenu.context(
                 items: testItems,
                 onSelected: (item) {},
               ),
@@ -448,7 +448,7 @@ void main() {
 
       await tester.pump();
 
-      expect(find.byType(AppMenu), findsOneWidget);
+      expect(find.byType(DSMenu), findsOneWidget);
       expect(find.text('Item 1'), findsOneWidget);
     });
 
@@ -461,10 +461,10 @@ void main() {
             body: Builder(
               builder: (context) => ElevatedButton(
                 onPressed: () {
-                  AppMenu.showMenu(
+                  DSMenu.showMenu(
                     context: context,
                     position: const Offset(100, 100),
-                    menu: AppMenu.context(
+                    menu: DSMenu.context(
                       items: testItems,
                       onSelected: (item) {
                         itemSelected = true;
@@ -494,9 +494,9 @@ void main() {
       expect(itemSelected, isTrue);
     });
 
-    group('AppMenuItem', () {
+    group('DSMenuItem', () {
       test('creates item with required properties', () {
-        const item = AppMenuItem(
+        const item = DSMenuItem(
           id: 'test',
           label: 'Test Item',
         );
@@ -510,12 +510,12 @@ void main() {
       });
 
       test('creates item with children', () {
-        const item = AppMenuItem(
+        const item = DSMenuItem(
           id: 'parent',
           label: 'Parent Item',
           children: [
-            AppMenuItem(id: 'child1', label: 'Child 1'),
-            AppMenuItem(id: 'child2', label: 'Child 2'),
+            DSMenuItem(id: 'child1', label: 'Child 1'),
+            DSMenuItem(id: 'child2', label: 'Child 2'),
           ],
         );
 
@@ -525,7 +525,7 @@ void main() {
       });
 
       test('creates item with all optional properties', () {
-        const item = AppMenuItem(
+        const item = DSMenuItem(
           id: 'full',
           label: 'Full Item',
           icon: Icons.star,
@@ -563,18 +563,18 @@ void main() {
       });
     });
 
-    group('AppMenuState', () {
+    group('DSMenuState', () {
       test('contains all expected values', () {
-        const states = AppMenuState.values;
+        const states = DSMenuState.values;
         expect(states.length, equals(8));
-        expect(states.contains(AppMenuState.defaultState), isTrue);
-        expect(states.contains(AppMenuState.hover), isTrue);
-        expect(states.contains(AppMenuState.pressed), isTrue);
-        expect(states.contains(AppMenuState.focus), isTrue);
-        expect(states.contains(AppMenuState.selected), isTrue);
-        expect(states.contains(AppMenuState.disabled), isTrue);
-        expect(states.contains(AppMenuState.loading), isTrue);
-        expect(states.contains(AppMenuState.skeleton), isTrue);
+        expect(states.contains(DSMenuState.defaultState), isTrue);
+        expect(states.contains(DSMenuState.hover), isTrue);
+        expect(states.contains(DSMenuState.pressed), isTrue);
+        expect(states.contains(DSMenuState.focus), isTrue);
+        expect(states.contains(DSMenuState.selected), isTrue);
+        expect(states.contains(DSMenuState.disabled), isTrue);
+        expect(states.contains(DSMenuState.loading), isTrue);
+        expect(states.contains(DSMenuState.skeleton), isTrue);
       });
     });
 

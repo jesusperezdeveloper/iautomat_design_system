@@ -3,28 +3,28 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppCommandPalette Golden Tests', () {
+  group('DSCommandPalette Golden Tests', () {
     final mockResults = [
-      const AppCommandResult(
+      const DSCommandResult(
         id: 'result-1',
         title: 'Search Files',
         description: 'Find files in your project',
         icon: Icons.search,
-        type: AppCommandResultType.command,
+        type: DSCommandResultType.command,
       ),
-      const AppCommandResult(
+      const DSCommandResult(
         id: 'result-2',
         title: 'Open Settings',
         description: 'Configure application preferences',
         icon: Icons.settings,
-        type: AppCommandResultType.setting,
+        type: DSCommandResultType.setting,
       ),
-      const AppCommandResult(
+      const DSCommandResult(
         id: 'result-3',
         title: 'Create New File',
         description: 'Add a new file to your project',
         icon: Icons.add,
-        type: AppCommandResultType.command,
+        type: DSCommandResultType.command,
         enabled: false,
       ),
     ];
@@ -47,7 +47,7 @@ void main() {
       testWidgets('global search variant default state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppCommandPalette.globalSearch(
+            DSCommandPalette.globalSearch(
               onQuery: (query) {},
               results: mockResults,
               onInvoke: (result) {},
@@ -56,7 +56,7 @@ void main() {
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppCommandPalette),
+          find.byType(DSCommandPalette),
           matchesGoldenFile(
               'golden/app_command_palette/global_search_default.png'),
         );
@@ -65,7 +65,7 @@ void main() {
       testWidgets('actions variant default state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppCommandPalette.actions(
+            DSCommandPalette.actions(
               results: mockResults,
               onInvoke: (result) {},
             ),
@@ -73,7 +73,7 @@ void main() {
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppCommandPalette),
+          find.byType(DSCommandPalette),
           matchesGoldenFile('golden/app_command_palette/actions_default.png'),
         );
       });
@@ -83,17 +83,17 @@ void main() {
       testWidgets('loading state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppCommandPalette.globalSearch(
+            DSCommandPalette.globalSearch(
               onQuery: (query) {},
               results: mockResults,
               onInvoke: (result) {},
-              state: AppCommandPaletteState.loading,
+              state: DSCommandPaletteState.loading,
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppCommandPalette),
+          find.byType(DSCommandPalette),
           matchesGoldenFile('golden/app_command_palette/loading_state.png'),
         );
       });
@@ -101,17 +101,17 @@ void main() {
       testWidgets('skeleton state', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppCommandPalette.globalSearch(
+            DSCommandPalette.globalSearch(
               onQuery: (query) {},
               results: [],
               onInvoke: (result) {},
-              state: AppCommandPaletteState.skeleton,
+              state: DSCommandPaletteState.skeleton,
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppCommandPalette),
+          find.byType(DSCommandPalette),
           matchesGoldenFile('golden/app_command_palette/skeleton_state.png'),
         );
       });
@@ -119,7 +119,7 @@ void main() {
       testWidgets('empty results', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppCommandPalette.globalSearch(
+            DSCommandPalette.globalSearch(
               onQuery: (query) {},
               results: [],
               onInvoke: (result) {},
@@ -128,7 +128,7 @@ void main() {
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppCommandPalette),
+          find.byType(DSCommandPalette),
           matchesGoldenFile('golden/app_command_palette/empty_results.png'),
         );
       });
@@ -138,19 +138,19 @@ void main() {
       testWidgets('small size', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppCommandPalette.globalSearch(
+            DSCommandPalette.globalSearch(
               onQuery: (query) {},
               results: mockResults,
               onInvoke: (result) {},
-              config: const AppCommandPaletteConfig(
-                size: AppCommandPaletteSize.small,
+              config: const DSCommandPaletteConfig(
+                size: DSCommandPaletteSize.small,
               ),
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppCommandPalette),
+          find.byType(DSCommandPalette),
           matchesGoldenFile('golden/app_command_palette/small_size.png'),
         );
       });
@@ -158,19 +158,19 @@ void main() {
       testWidgets('medium size', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppCommandPalette.globalSearch(
+            DSCommandPalette.globalSearch(
               onQuery: (query) {},
               results: mockResults,
               onInvoke: (result) {},
-              config: const AppCommandPaletteConfig(
-                size: AppCommandPaletteSize.medium,
+              config: const DSCommandPaletteConfig(
+                size: DSCommandPaletteSize.medium,
               ),
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppCommandPalette),
+          find.byType(DSCommandPalette),
           matchesGoldenFile('golden/app_command_palette/medium_size.png'),
         );
       });
@@ -178,19 +178,19 @@ void main() {
       testWidgets('large size', (tester) async {
         await tester.pumpWidget(
           buildTestWidget(
-            AppCommandPalette.globalSearch(
+            DSCommandPalette.globalSearch(
               onQuery: (query) {},
               results: mockResults,
               onInvoke: (result) {},
-              config: const AppCommandPaletteConfig(
-                size: AppCommandPaletteSize.large,
+              config: const DSCommandPaletteConfig(
+                size: DSCommandPaletteSize.large,
               ),
             ),
           ),
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppCommandPalette),
+          find.byType(DSCommandPalette),
           matchesGoldenFile('golden/app_command_palette/large_size.png'),
         );
       });
@@ -207,7 +207,7 @@ void main() {
                 height: 600,
                 color: Colors.grey[900],
                 child: Center(
-                  child: AppCommandPalette.globalSearch(
+                  child: DSCommandPalette.globalSearch(
                     onQuery: (query) {},
                     results: mockResults,
                     onInvoke: (result) {},
@@ -219,7 +219,7 @@ void main() {
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppCommandPalette),
+          find.byType(DSCommandPalette),
           matchesGoldenFile('golden/app_command_palette/dark_theme.png'),
         );
       });
@@ -228,39 +228,39 @@ void main() {
     group('Different Result Types', () {
       testWidgets('mixed result types', (tester) async {
         final mixedResults = [
-          const AppCommandResult(
+          const DSCommandResult(
             id: 'search-1',
             title: 'main.dart',
             description: '/lib/main.dart',
             icon: Icons.code,
-            type: AppCommandResultType.file,
+            type: DSCommandResultType.file,
           ),
-          const AppCommandResult(
+          const DSCommandResult(
             id: 'command-1',
             title: 'Open Terminal',
             description: 'Launch integrated terminal',
             icon: Icons.terminal,
-            type: AppCommandResultType.command,
+            type: DSCommandResultType.command,
           ),
-          const AppCommandResult(
+          const DSCommandResult(
             id: 'navigation-1',
             title: 'Go to Line',
             description: 'Jump to specific line number',
             icon: Icons.my_location,
-            type: AppCommandResultType.navigation,
+            type: DSCommandResultType.navigation,
           ),
-          const AppCommandResult(
+          const DSCommandResult(
             id: 'setting-1',
             title: 'Recent Files',
             description: 'widget_test.dart',
             icon: Icons.history,
-            type: AppCommandResultType.setting,
+            type: DSCommandResultType.setting,
           ),
         ];
 
         await tester.pumpWidget(
           buildTestWidget(
-            AppCommandPalette.globalSearch(
+            DSCommandPalette.globalSearch(
               onQuery: (query) {},
               results: mixedResults,
               onInvoke: (result) {},
@@ -269,7 +269,7 @@ void main() {
         );
         await tester.pump();
         await expectLater(
-          find.byType(AppCommandPalette),
+          find.byType(DSCommandPalette),
           matchesGoldenFile(
               'golden/app_command_palette/mixed_result_types.png'),
         );

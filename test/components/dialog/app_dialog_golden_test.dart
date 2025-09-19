@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/dialog/app_dialog.dart';
 
 void main() {
-  group('AppDialog Golden Tests', () {
+  group('DSDialog Golden Tests', () {
     testWidgets('sm variant golden test', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -19,7 +19,7 @@ void main() {
                     Dialog(
                       backgroundColor: Colors.transparent,
                       elevation: 0,
-                      child: AppDialog.sm(
+                      child: DSDialog.sm(
                         title: 'Small Dialog',
                         content: const Text('This is a small dialog for quick confirmations.'),
                         actions: [
@@ -66,7 +66,7 @@ void main() {
                     Dialog(
                       backgroundColor: Colors.transparent,
                       elevation: 0,
-                      child: AppDialog.md(
+                      child: DSDialog.md(
                         title: 'Medium Dialog',
                         content: const Text(
                           'This is a medium dialog with standard content. '
@@ -118,7 +118,7 @@ void main() {
                     Dialog(
                       backgroundColor: Colors.transparent,
                       elevation: 0,
-                      child: AppDialog.lg(
+                      child: DSDialog.lg(
                         title: 'Large Dialog',
                         content: const SingleChildScrollView(
                           child: Column(
@@ -197,7 +197,7 @@ void main() {
                     Dialog(
                       backgroundColor: Colors.transparent,
                       elevation: 0,
-                      child: AppDialog.destructive(
+                      child: DSDialog.destructive(
                         title: 'Delete Item',
                         content: const Text(
                           'This action cannot be undone. Are you sure you want to '
@@ -250,7 +250,7 @@ void main() {
                     Dialog(
                       backgroundColor: Colors.transparent,
                       elevation: 0,
-                      child: AppDialog.form(
+                      child: DSDialog.form(
                         title: 'Contact Form',
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -332,10 +332,10 @@ void main() {
                           child: Dialog(
                             backgroundColor: Colors.transparent,
                             elevation: 0,
-                            child: AppDialog.md(
+                            child: DSDialog.md(
                               title: 'Default State',
                               content: const Text('Normal dialog'),
-                              state: AppDialogState.defaultState,
+                              state: DSDialogState.defaultState,
                               actions: [
                                 DialogAction(label: 'OK', onPressed: () {}),
                               ],
@@ -348,10 +348,10 @@ void main() {
                           child: Dialog(
                             backgroundColor: Colors.transparent,
                             elevation: 0,
-                            child: AppDialog.md(
+                            child: DSDialog.md(
                               title: 'Focus State',
                               content: const Text('Focused dialog'),
-                              state: AppDialogState.focus,
+                              state: DSDialogState.focus,
                               actions: [
                                 DialogAction(label: 'OK', onPressed: () {}),
                               ],
@@ -364,10 +364,10 @@ void main() {
                           child: Dialog(
                             backgroundColor: Colors.transparent,
                             elevation: 0,
-                            child: AppDialog.md(
+                            child: DSDialog.md(
                               title: 'Disabled State',
                               content: const Text('Disabled dialog'),
-                              state: AppDialogState.disabled,
+                              state: DSDialogState.disabled,
                               actions: [
                                 DialogAction(label: 'OK', onPressed: () {}),
                               ],
@@ -386,10 +386,10 @@ void main() {
                           child: Dialog(
                             backgroundColor: Colors.transparent,
                             elevation: 0,
-                            child: AppDialog.md(
+                            child: DSDialog.md(
                               title: 'Loading State',
                               content: const Text('Loading dialog'),
-                              state: AppDialogState.loading,
+                              state: DSDialogState.loading,
                               actions: [
                                 DialogAction(label: 'OK', onPressed: () {}),
                               ],
@@ -402,10 +402,10 @@ void main() {
                           child: Dialog(
                             backgroundColor: Colors.transparent,
                             elevation: 0,
-                            child: AppDialog.md(
+                            child: DSDialog.md(
                               title: 'Skeleton State',
                               content: const Text('Skeleton dialog'),
-                              state: AppDialogState.skeleton,
+                              state: DSDialogState.skeleton,
                               actions: [
                                 DialogAction(label: 'OK', onPressed: () {}),
                               ],
@@ -447,7 +447,7 @@ void main() {
                       Dialog(
                         backgroundColor: Colors.transparent,
                         elevation: 0,
-                        child: AppDialog.md(
+                        child: DSDialog.md(
                           title: 'نموذج اتصال',
                           content: const Text(
                             'هذا مثال على مربع حوار يدعم اتجاه الكتابة من اليمين إلى اليسار. '
@@ -499,7 +499,7 @@ void main() {
                     Dialog(
                       backgroundColor: Colors.transparent,
                       elevation: 0,
-                      child: AppDialog.md(
+                      child: DSDialog.md(
                         title: 'Dark Theme Dialog',
                         content: const Text(
                           'This dialog demonstrates the dark theme appearance. '
@@ -550,7 +550,7 @@ void main() {
                     Dialog(
                       backgroundColor: Colors.transparent,
                       elevation: 0,
-                      child: AppDialog.md(
+                      child: DSDialog.md(
                         title: 'Action Variations',
                         content: const Text(
                           'This dialog shows different types of action buttons: '

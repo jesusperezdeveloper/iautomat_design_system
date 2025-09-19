@@ -4,31 +4,31 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  group('AppKanban', () {
-    late AppKanbanConfig basicConfig;
+  group('DSKanban', () {
+    late DSKanbanConfig basicConfig;
 
     setUp(() {
-      basicConfig = AppKanbanConfig(
-        variant: AppKanbanVariant.dragDrop,
+      basicConfig = DSKanbanConfig(
+        variant: DSKanbanVariant.dragDrop,
         columns: [
-          AppKanbanColumn(
+          DSKanbanColumn(
             id: 'todo',
             title: 'To Do',
             icon: Icons.assignment_outlined,
           ),
-          AppKanbanColumn(
+          DSKanbanColumn(
             id: 'done',
             title: 'Done',
             icon: Icons.check_circle_outline,
           ),
         ],
         cards: [
-          AppKanbanCard(
+          DSKanbanCard(
             id: 'card-1',
             title: 'Test Card 1',
             columnId: 'todo',
           ),
-          AppKanbanCard(
+          DSKanbanCard(
             id: 'card-2',
             title: 'Test Card 2',
             columnId: 'done',
@@ -42,7 +42,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: basicConfig),
+            body: DSKanban(config: basicConfig),
           ),
         ),
       );
@@ -60,7 +60,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: basicConfig),
+            body: DSKanban(config: basicConfig),
           ),
         ),
       );
@@ -71,10 +71,10 @@ void main() {
     });
 
     testWidgets('shows empty state when column has no cards', (tester) async {
-      final emptyConfig = AppKanbanConfig(
-        variant: AppKanbanVariant.dragDrop,
+      final emptyConfig = DSKanbanConfig(
+        variant: DSKanbanVariant.dragDrop,
         columns: [
-          AppKanbanColumn(
+          DSKanbanColumn(
             id: 'empty',
             title: 'Empty Column',
           ),
@@ -86,7 +86,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: emptyConfig),
+            body: DSKanban(config: emptyConfig),
           ),
         ),
       );
@@ -96,16 +96,16 @@ void main() {
     });
 
     testWidgets('renders cards with descriptions', (tester) async {
-      final configWithDescription = AppKanbanConfig(
-        variant: AppKanbanVariant.dragDrop,
+      final configWithDescription = DSKanbanConfig(
+        variant: DSKanbanVariant.dragDrop,
         columns: [
-          AppKanbanColumn(
+          DSKanbanColumn(
             id: 'todo',
             title: 'To Do',
           ),
         ],
         cards: [
-          AppKanbanCard(
+          DSKanbanCard(
             id: 'card-1',
             title: 'Test Card',
             description: 'This is a test description',
@@ -118,7 +118,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: configWithDescription),
+            body: DSKanban(config: configWithDescription),
           ),
         ),
       );
@@ -128,16 +128,16 @@ void main() {
     });
 
     testWidgets('renders cards with tags', (tester) async {
-      final configWithTags = AppKanbanConfig(
-        variant: AppKanbanVariant.dragDrop,
+      final configWithTags = DSKanbanConfig(
+        variant: DSKanbanVariant.dragDrop,
         columns: [
-          AppKanbanColumn(
+          DSKanbanColumn(
             id: 'todo',
             title: 'To Do',
           ),
         ],
         cards: [
-          AppKanbanCard(
+          DSKanbanCard(
             id: 'card-1',
             title: 'Test Card',
             tags: ['bug', 'frontend'],
@@ -150,7 +150,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: configWithTags),
+            body: DSKanban(config: configWithTags),
           ),
         ),
       );
@@ -161,16 +161,16 @@ void main() {
     });
 
     testWidgets('renders cards with assignee', (tester) async {
-      final configWithAssignee = AppKanbanConfig(
-        variant: AppKanbanVariant.dragDrop,
+      final configWithAssignee = DSKanbanConfig(
+        variant: DSKanbanVariant.dragDrop,
         columns: [
-          AppKanbanColumn(
+          DSKanbanColumn(
             id: 'todo',
             title: 'To Do',
           ),
         ],
         cards: [
-          AppKanbanCard(
+          DSKanbanCard(
             id: 'card-1',
             title: 'Test Card',
             columnId: 'todo',
@@ -182,7 +182,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: configWithAssignee),
+            body: DSKanban(config: configWithAssignee),
           ),
         ),
       );
@@ -193,16 +193,16 @@ void main() {
     testWidgets('renders cards with due date', (tester) async {
       final tomorrow = DateTime.now().add(const Duration(days: 1));
 
-      final configWithDueDate = AppKanbanConfig(
-        variant: AppKanbanVariant.dragDrop,
+      final configWithDueDate = DSKanbanConfig(
+        variant: DSKanbanVariant.dragDrop,
         columns: [
-          AppKanbanColumn(
+          DSKanbanColumn(
             id: 'todo',
             title: 'To Do',
           ),
         ],
         cards: [
-          AppKanbanCard(
+          DSKanbanCard(
             id: 'card-1',
             title: 'Test Card',
             dueDate: tomorrow,
@@ -215,7 +215,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: configWithDueDate),
+            body: DSKanban(config: configWithDueDate),
           ),
         ),
       );
@@ -228,16 +228,16 @@ void main() {
     testWidgets('renders overdue cards with correct styling', (tester) async {
       final yesterday = DateTime.now().subtract(const Duration(days: 1));
 
-      final configWithOverdue = AppKanbanConfig(
-        variant: AppKanbanVariant.dragDrop,
+      final configWithOverdue = DSKanbanConfig(
+        variant: DSKanbanVariant.dragDrop,
         columns: [
-          AppKanbanColumn(
+          DSKanbanColumn(
             id: 'todo',
             title: 'To Do',
           ),
         ],
         cards: [
-          AppKanbanCard(
+          DSKanbanCard(
             id: 'card-1',
             title: 'Overdue Card',
             dueDate: yesterday,
@@ -250,7 +250,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: configWithOverdue),
+            body: DSKanban(config: configWithOverdue),
           ),
         ),
       );
@@ -260,16 +260,16 @@ void main() {
     });
 
     testWidgets('shows comment count when provided', (tester) async {
-      final configWithComments = AppKanbanConfig(
-        variant: AppKanbanVariant.dragDrop,
+      final configWithComments = DSKanbanConfig(
+        variant: DSKanbanVariant.dragDrop,
         columns: [
-          AppKanbanColumn(
+          DSKanbanColumn(
             id: 'todo',
             title: 'To Do',
           ),
         ],
         cards: [
-          AppKanbanCard(
+          DSKanbanCard(
             id: 'card-1',
             title: 'Test Card',
             columnId: 'todo',
@@ -281,7 +281,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: configWithComments),
+            body: DSKanban(config: configWithComments),
           ),
         ),
       );
@@ -290,19 +290,19 @@ void main() {
     });
 
     testWidgets('applies custom styling when provided', (tester) async {
-      final styledConfig = AppKanbanConfig(
-        variant: AppKanbanVariant.dragDrop,
+      final styledConfig = DSKanbanConfig(
+        variant: DSKanbanVariant.dragDrop,
         padding: const EdgeInsets.all(20),
         backgroundColor: Colors.blue.shade100,
         columns: [
-          AppKanbanColumn(
+          DSKanbanColumn(
             id: 'todo',
             title: 'Styled Column',
             backgroundColor: Colors.red.shade100,
           ),
         ],
         cards: [
-          AppKanbanCard(
+          DSKanbanCard(
             id: 'card-1',
             title: 'Styled Card',
             backgroundColor: Colors.green.shade100,
@@ -315,7 +315,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: styledConfig),
+            body: DSKanban(config: styledConfig),
           ),
         ),
       );
@@ -328,7 +328,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: basicConfig),
+            body: DSKanban(config: basicConfig),
           ),
         ),
       );
@@ -341,7 +341,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(config: basicConfig),
+            body: DSKanban(config: basicConfig),
           ),
         ),
       );
@@ -356,7 +356,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppKanban(
+            body: DSKanban(
               config: basicConfig,
               onChanged: () => changeCalled = true,
             ),
@@ -372,8 +372,8 @@ void main() {
 
     group('Edge Cases', () {
       testWidgets('handles empty columns list', (tester) async {
-        final emptyColumnsConfig = AppKanbanConfig(
-          variant: AppKanbanVariant.dragDrop,
+        final emptyColumnsConfig = DSKanbanConfig(
+          variant: DSKanbanVariant.dragDrop,
           columns: [],
           cards: [],
           onMove: (cardId, fromColumn, toColumn, index) {},
@@ -382,7 +382,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppKanban(config: emptyColumnsConfig),
+              body: DSKanban(config: emptyColumnsConfig),
             ),
           ),
         );
@@ -392,16 +392,16 @@ void main() {
       });
 
       testWidgets('handles cards without column match', (tester) async {
-        final orphanCardConfig = AppKanbanConfig(
-          variant: AppKanbanVariant.dragDrop,
+        final orphanCardConfig = DSKanbanConfig(
+          variant: DSKanbanVariant.dragDrop,
           columns: [
-            AppKanbanColumn(
+            DSKanbanColumn(
               id: 'todo',
               title: 'To Do',
             ),
           ],
           cards: [
-            AppKanbanCard(
+            DSKanbanCard(
               id: 'card-1',
               title: 'Orphan Card',
               columnId: 'nonexistent',
@@ -413,7 +413,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppKanban(config: orphanCardConfig),
+              body: DSKanban(config: orphanCardConfig),
             ),
           ),
         );
@@ -424,16 +424,16 @@ void main() {
       });
 
       testWidgets('handles very long card titles', (tester) async {
-        final longTitleConfig = AppKanbanConfig(
-          variant: AppKanbanVariant.dragDrop,
+        final longTitleConfig = DSKanbanConfig(
+          variant: DSKanbanVariant.dragDrop,
           columns: [
-            AppKanbanColumn(
+            DSKanbanColumn(
               id: 'todo',
               title: 'To Do',
             ),
           ],
           cards: [
-            AppKanbanCard(
+            DSKanbanCard(
               id: 'card-1',
               title:
                   'This is a very long card title that should be truncated properly when it exceeds the maximum allowed length',
@@ -446,7 +446,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppKanban(config: longTitleConfig),
+              body: DSKanban(config: longTitleConfig),
             ),
           ),
         );
@@ -461,7 +461,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppKanban(config: basicConfig),
+              body: DSKanban(config: basicConfig),
             ),
           ),
         );

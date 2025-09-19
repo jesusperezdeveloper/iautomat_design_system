@@ -3,9 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_skeleton_config.freezed.dart';
 
-enum AppSkeletonVariant { universal }
+enum DSSkeletonVariant { universal }
 
-enum AppSkeletonShape {
+enum DSSkeletonShape {
   rectangle,
   circle,
   roundedRectangle,
@@ -16,7 +16,7 @@ enum AppSkeletonShape {
   text,
 }
 
-enum AppSkeletonState {
+enum DSSkeletonState {
   defaultState,
   hover,
   pressed,
@@ -28,19 +28,19 @@ enum AppSkeletonState {
 }
 
 @freezed
-class AppSkeletonConfig with _$AppSkeletonConfig {
-  const factory AppSkeletonConfig({
-    @Default(AppSkeletonVariant.universal) AppSkeletonVariant variant,
-    @Default(AppSkeletonState.skeleton) AppSkeletonState state,
-    AppSkeletonColors? colors,
-    AppSkeletonSpacing? spacing,
-    AppSkeletonTypography? typography,
-    AppSkeletonAnimations? animations,
-    AppSkeletonAccessibility? accessibility,
-    AppSkeletonBehavior? behavior,
-  }) = _AppSkeletonConfig;
+class DSSkeletonConfig with _$DSSkeletonConfig {
+  const factory DSSkeletonConfig({
+    @Default(DSSkeletonVariant.universal) DSSkeletonVariant variant,
+    @Default(DSSkeletonState.skeleton) DSSkeletonState state,
+    DSSkeletonColors? colors,
+    DSSkeletonSpacing? spacing,
+    DSSkeletonTypography? typography,
+    DSSkeletonAnimations? animations,
+    DSSkeletonAccessibility? accessibility,
+    DSSkeletonBehavior? behavior,
+  }) = _DSSkeletonConfig;
 
-  const AppSkeletonConfig._();
+  const DSSkeletonConfig._();
 
   bool get isValid {
     if (spacing != null) {
@@ -59,8 +59,8 @@ class AppSkeletonConfig with _$AppSkeletonConfig {
 }
 
 @freezed
-class AppSkeletonColors with _$AppSkeletonColors {
-  const factory AppSkeletonColors({
+class DSSkeletonColors with _$DSSkeletonColors {
+  const factory DSSkeletonColors({
     Color? backgroundColor,
     Color? shimmerColor,
     Color? highlightColor,
@@ -70,7 +70,7 @@ class AppSkeletonColors with _$AppSkeletonColors {
     @Default(0.3) double shimmerOpacity,
   }) = _AppSkeletonColors;
 
-  const AppSkeletonColors._();
+  const DSSkeletonColors._();
 
   bool get isValid {
     return opacity >= 0.0 &&
@@ -81,8 +81,8 @@ class AppSkeletonColors with _$AppSkeletonColors {
 }
 
 @freezed
-class AppSkeletonSpacing with _$AppSkeletonSpacing {
-  const factory AppSkeletonSpacing({
+class DSSkeletonSpacing with _$DSSkeletonSpacing {
+  const factory DSSkeletonSpacing({
     double? width,
     double? height,
     @Default(8.0) double borderRadius,
@@ -91,7 +91,7 @@ class AppSkeletonSpacing with _$AppSkeletonSpacing {
     @Default(0.0) double elevation,
   }) = _AppSkeletonSpacing;
 
-  const AppSkeletonSpacing._();
+  const DSSkeletonSpacing._();
 
   bool get isValid {
     return borderRadius >= 0 &&
@@ -102,14 +102,14 @@ class AppSkeletonSpacing with _$AppSkeletonSpacing {
 }
 
 @freezed
-class AppSkeletonTypography with _$AppSkeletonTypography {
-  const factory AppSkeletonTypography({
+class DSSkeletonTypography with _$DSSkeletonTypography {
+  const factory DSSkeletonTypography({
     TextStyle? textStyle,
     @Default(14.0) double fontSize,
     @Default(1.4) double lineHeight,
   }) = _AppSkeletonTypography;
 
-  const AppSkeletonTypography._();
+  const DSSkeletonTypography._();
 
   bool get isValid {
     return fontSize > 0 && lineHeight > 0;
@@ -117,8 +117,8 @@ class AppSkeletonTypography with _$AppSkeletonTypography {
 }
 
 @freezed
-class AppSkeletonAnimations with _$AppSkeletonAnimations {
-  const factory AppSkeletonAnimations({
+class DSSkeletonAnimations with _$DSSkeletonAnimations {
+  const factory DSSkeletonAnimations({
     @Default(Duration(milliseconds: 1200)) Duration duration,
     @Default(Duration(milliseconds: 300)) Duration fadeInDuration,
     @Default(Curves.easeInOut) Curve curve,
@@ -128,7 +128,7 @@ class AppSkeletonAnimations with _$AppSkeletonAnimations {
     @Default(false) bool pulseEnabled,
   }) = _AppSkeletonAnimations;
 
-  const AppSkeletonAnimations._();
+  const DSSkeletonAnimations._();
 
   bool get isValid {
     return duration.inMilliseconds > 0 &&
@@ -138,8 +138,8 @@ class AppSkeletonAnimations with _$AppSkeletonAnimations {
 }
 
 @freezed
-class AppSkeletonAccessibility with _$AppSkeletonAccessibility {
-  const factory AppSkeletonAccessibility({
+class DSSkeletonAccessibility with _$DSSkeletonAccessibility {
+  const factory DSSkeletonAccessibility({
     @Default(true) bool enabled,
     @Default(true) bool focusable,
     @Default('Cargando contenido') String loadingLabel,
@@ -151,8 +151,8 @@ class AppSkeletonAccessibility with _$AppSkeletonAccessibility {
 }
 
 @freezed
-class AppSkeletonBehavior with _$AppSkeletonBehavior {
-  const factory AppSkeletonBehavior({
+class DSSkeletonBehavior with _$DSSkeletonBehavior {
+  const factory DSSkeletonBehavior({
     @Default(true) bool animateOnLoad,
     @Default(false) bool hideOnContent,
     @Default(true) bool maintainSize,
@@ -161,81 +161,81 @@ class AppSkeletonBehavior with _$AppSkeletonBehavior {
     @Default(Duration(seconds: 10)) Duration maxDuration,
   }) = _AppSkeletonBehavior;
 
-  const AppSkeletonBehavior._();
+  const DSSkeletonBehavior._();
 
   bool get isValid {
     return maxDuration.inMilliseconds > 0;
   }
 }
 
-class AppSkeletonDefaults {
-  static const AppSkeletonColors colors = AppSkeletonColors();
-  static const AppSkeletonSpacing spacing = AppSkeletonSpacing();
-  static const AppSkeletonTypography typography = AppSkeletonTypography();
-  static const AppSkeletonAnimations animations = AppSkeletonAnimations();
-  static const AppSkeletonAccessibility accessibility =
-      AppSkeletonAccessibility();
-  static const AppSkeletonBehavior behavior = AppSkeletonBehavior();
+class DSSkeletonDefaults {
+  static const DSSkeletonColors colors = DSSkeletonColors();
+  static const DSSkeletonSpacing spacing = DSSkeletonSpacing();
+  static const DSSkeletonTypography typography = DSSkeletonTypography();
+  static const DSSkeletonAnimations animations = DSSkeletonAnimations();
+  static const DSSkeletonAccessibility accessibility =
+      DSSkeletonAccessibility();
+  static const DSSkeletonBehavior behavior = DSSkeletonBehavior();
 
-  static AppSkeletonConfig get defaultConfig => const AppSkeletonConfig();
+  static DSSkeletonConfig get defaultConfig => const DSSkeletonConfig();
 
-  static AppSkeletonConfig configForShape(AppSkeletonShape shape) {
+  static DSSkeletonConfig configForShape(DSSkeletonShape shape) {
     switch (shape) {
-      case AppSkeletonShape.circle:
-        return const AppSkeletonConfig(
-          spacing: AppSkeletonSpacing(width: 40, height: 40, borderRadius: 20),
+      case DSSkeletonShape.circle:
+        return const DSSkeletonConfig(
+          spacing: DSSkeletonSpacing(width: 40, height: 40, borderRadius: 20),
         );
 
-      case AppSkeletonShape.avatar:
-        return const AppSkeletonConfig(
-          spacing: AppSkeletonSpacing(width: 48, height: 48, borderRadius: 24),
+      case DSSkeletonShape.avatar:
+        return const DSSkeletonConfig(
+          spacing: DSSkeletonSpacing(width: 48, height: 48, borderRadius: 24),
         );
 
-      case AppSkeletonShape.button:
-        return const AppSkeletonConfig(
-          spacing: AppSkeletonSpacing(width: 120, height: 36, borderRadius: 8),
+      case DSSkeletonShape.button:
+        return const DSSkeletonConfig(
+          spacing: DSSkeletonSpacing(width: 120, height: 36, borderRadius: 8),
         );
 
-      case AppSkeletonShape.card:
-        return const AppSkeletonConfig(
-          spacing: AppSkeletonSpacing(
+      case DSSkeletonShape.card:
+        return const DSSkeletonConfig(
+          spacing: DSSkeletonSpacing(
             width: double.infinity,
             height: 200,
             borderRadius: 12,
           ),
         );
 
-      case AppSkeletonShape.text:
-        return const AppSkeletonConfig(
-          spacing: AppSkeletonSpacing(
+      case DSSkeletonShape.text:
+        return const DSSkeletonConfig(
+          spacing: DSSkeletonSpacing(
             width: double.infinity,
             height: 16,
             borderRadius: 4,
           ),
         );
 
-      case AppSkeletonShape.line:
-        return const AppSkeletonConfig(
-          spacing: AppSkeletonSpacing(
+      case DSSkeletonShape.line:
+        return const DSSkeletonConfig(
+          spacing: DSSkeletonSpacing(
             width: double.infinity,
             height: 1,
             borderRadius: 0,
           ),
         );
 
-      case AppSkeletonShape.roundedRectangle:
-        return const AppSkeletonConfig(
-          spacing: AppSkeletonSpacing(width: 120, height: 80, borderRadius: 16),
+      case DSSkeletonShape.roundedRectangle:
+        return const DSSkeletonConfig(
+          spacing: DSSkeletonSpacing(width: 120, height: 80, borderRadius: 16),
         );
 
-      case AppSkeletonShape.rectangle:
-        return const AppSkeletonConfig(
-          spacing: AppSkeletonSpacing(width: 120, height: 80, borderRadius: 0),
+      case DSSkeletonShape.rectangle:
+        return const DSSkeletonConfig(
+          spacing: DSSkeletonSpacing(width: 120, height: 80, borderRadius: 0),
         );
     }
   }
 
-  static List<AppSkeletonConfig> textLines({
+  static List<DSSkeletonConfig> textLines({
     int count = 3,
     double? lastLineWidthFactor,
   }) {
@@ -245,8 +245,8 @@ class AppSkeletonDefaults {
           ? lastLineWidthFactor
           : 1.0;
 
-      return AppSkeletonConfig(
-        spacing: AppSkeletonSpacing(
+      return DSSkeletonConfig(
+        spacing: DSSkeletonSpacing(
           width: widthFactor == 1.0 ? double.infinity : null,
           height: 16,
           borderRadius: 4,
@@ -259,8 +259,8 @@ class AppSkeletonDefaults {
     });
   }
 
-  static AppSkeletonConfig get listItem => const AppSkeletonConfig(
-    spacing: AppSkeletonSpacing(
+  static DSSkeletonConfig get listItem => const DSSkeletonConfig(
+    spacing: DSSkeletonSpacing(
       width: double.infinity,
       height: 60,
       borderRadius: 8,
@@ -268,8 +268,8 @@ class AppSkeletonDefaults {
     ),
   );
 
-  static AppSkeletonConfig get image => const AppSkeletonConfig(
-    spacing: AppSkeletonSpacing(
+  static DSSkeletonConfig get image => const DSSkeletonConfig(
+    spacing: DSSkeletonSpacing(
       width: double.infinity,
       height: 200,
       borderRadius: 8,

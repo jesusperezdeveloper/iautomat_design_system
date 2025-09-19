@@ -1,44 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
-class AppClipboardShareStory extends StatefulWidget {
-  const AppClipboardShareStory({super.key});
+class DSClipboardShareStory extends StatefulWidget {
+  const DSClipboardShareStory({super.key});
 
   @override
-  State<AppClipboardShareStory> createState() => _AppClipboardShareStoryState();
+  State<DSClipboardShareStory> createState() => _DSClipboardShareStoryState();
 }
 
-class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
-  AppClipboardShareVariant _selectedVariant = AppClipboardShareVariant.shareSheet;
-  AppClipboardShareState _selectedState = AppClipboardShareState.defaultState;
+class _DSClipboardShareStoryState extends State<DSClipboardShareStory> {
+  DSClipboardShareVariant _selectedVariant = DSClipboardShareVariant.shareSheet;
+  DSClipboardShareState _selectedState = DSClipboardShareState.defaultState;
   bool _interactive = true;
   bool _showDebugInfo = false;
   bool _showPreview = true;
   bool _allowEdit = false;
   bool _showConfirmation = true;
-  String _shareText = 'Hola! Estoy probando el nuevo componente AppClipboardShare del Design System de IAutomat. ¡Es increíble! 🚀';
-  String _shareSubject = 'Prueba del AppClipboardShare';
+  String _shareText = 'Hola! Estoy probando el nuevo componente DSClipboardShare del Design System de IAutomat. ¡Es increíble! 🚀';
+  String _shareSubject = 'Prueba del DSClipboardShare';
   String _shareUrl = 'https://iautomat.com';
 
-  AppShareData get _currentShareData => AppShareData(
+  DSShareData get _currentShareData => DSShareData(
     text: _shareText,
     subject: _shareSubject,
     url: _shareUrl,
     mimeType: 'text/plain',
   );
 
-  final List<AppShareFile> _sampleFiles = [
-    AppShareFile(
+  final List<DSShareFile> _sampleFiles = [
+    DSShareFile(
       name: 'documento.pdf',
       mimeType: 'application/pdf',
       size: 2458369, // ~2.3MB
     ),
-    AppShareFile(
+    DSShareFile(
       name: 'imagen.jpg',
       mimeType: 'image/jpeg',
       size: 1024576, // ~1MB
     ),
-    AppShareFile(
+    DSShareFile(
       name: 'video.mp4',
       mimeType: 'video/mp4',
       size: 15728640, // ~15MB
@@ -49,7 +49,7 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AppClipboardShare Examples'),
+        title: const Text('DSClipboardShare Examples'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
@@ -85,10 +85,10 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             const SizedBox(height: 16),
 
             // Variant Control
-            DropdownButtonFormField<AppClipboardShareVariant>(
+            DropdownButtonFormField<DSClipboardShareVariant>(
               initialValue: _selectedVariant,
               decoration: const InputDecoration(labelText: 'Variante'),
-              items: AppClipboardShareVariant.values.map((variant) {
+              items: DSClipboardShareVariant.values.map((variant) {
                 return DropdownMenuItem(
                   value: variant,
                   child: Text(variant.name),
@@ -105,10 +105,10 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             const SizedBox(height: 16),
 
             // State Control
-            DropdownButtonFormField<AppClipboardShareState>(
+            DropdownButtonFormField<DSClipboardShareState>(
               initialValue: _selectedState,
               decoration: const InputDecoration(labelText: 'Estado'),
-              items: AppClipboardShareState.values.map((state) {
+              items: DSClipboardShareState.values.map((state) {
                 return DropdownMenuItem(
                   value: state,
                   child: Text(state.displayName),
@@ -244,7 +244,7 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             const SizedBox(height: 16),
 
             Center(
-              child: AppClipboardShare(
+              child: DSClipboardShare(
                 data: _currentShareData,
                 subject: _shareSubject,
                 config: _buildCurrentConfig(),
@@ -298,14 +298,14 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
     );
   }
 
-  AppClipboardShareConfig _buildCurrentConfig() {
-    return AppClipboardShareConfig(
+  DSClipboardShareConfig _buildCurrentConfig() {
+    return DSClipboardShareConfig(
       variant: _selectedVariant,
       state: _selectedState,
       showPreview: _showPreview,
       allowEdit: _allowEdit,
       showConfirmation: _showConfirmation,
-      behavior: AppClipboardShareBehavior(
+      behavior: DSClipboardShareBehavior(
         showDebugInfo: _showDebugInfo,
         enableHoverEffects: _interactive,
         showFocusIndicator: _interactive,
@@ -355,13 +355,13 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             _buildExampleSection(
               'Share Sheet',
               'Share sheet nativo del sistema',
-              AppClipboardShare(
-                data: const AppShareData(
+              DSClipboardShare(
+                data: const DSShareData(
                   text: 'Ejemplo de share sheet nativo',
                   subject: 'Compartir con share sheet',
                 ),
-                config: const AppClipboardShareConfig(
-                  variant: AppClipboardShareVariant.shareSheet,
+                config: const DSClipboardShareConfig(
+                  variant: DSClipboardShareVariant.shareSheet,
                 ),
                 onShareCompleted: (message) => debugPrint(message),
               ),
@@ -372,13 +372,13 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             _buildExampleSection(
               'Custom Menu',
               'Menú personalizado con opciones',
-              AppClipboardShare(
-                data: const AppShareData(
+              DSClipboardShare(
+                data: const DSShareData(
                   text: 'Ejemplo de menú personalizado',
                   subject: 'Compartir con menú custom',
                 ),
-                config: const AppClipboardShareConfig(
-                  variant: AppClipboardShareVariant.customMenu,
+                config: const DSClipboardShareConfig(
+                  variant: DSClipboardShareVariant.customMenu,
                 ),
                 onShareCompleted: (message) => debugPrint(message),
               ),
@@ -389,13 +389,13 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             _buildExampleSection(
               'Quick Actions',
               'Botón con acciones rápidas',
-              AppClipboardShare(
-                data: const AppShareData(
+              DSClipboardShare(
+                data: const DSShareData(
                   text: 'Ejemplo de acciones rápidas',
                   subject: 'Compartir rápido',
                 ),
-                config: const AppClipboardShareConfig(
-                  variant: AppClipboardShareVariant.quickActions,
+                config: const DSClipboardShareConfig(
+                  variant: DSClipboardShareVariant.quickActions,
                 ),
                 onShareCompleted: (message) => debugPrint(message),
               ),
@@ -406,13 +406,13 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             _buildExampleSection(
               'Modal Preview',
               'Modal con preview del contenido',
-              AppClipboardShare(
-                data: const AppShareData(
+              DSClipboardShare(
+                data: const DSShareData(
                   text: 'Ejemplo de modal con preview del contenido antes de compartir',
                   subject: 'Compartir con preview',
                 ),
-                config: const AppClipboardShareConfig(
-                  variant: AppClipboardShareVariant.modalPreview,
+                config: const DSClipboardShareConfig(
+                  variant: DSClipboardShareVariant.modalPreview,
                   showPreview: true,
                 ),
                 onShareCompleted: (message) => debugPrint(message),
@@ -437,17 +437,17 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             Wrap(
               spacing: 16,
               runSpacing: 16,
-              children: AppClipboardShareState.values.map((state) {
+              children: DSClipboardShareState.values.map((state) {
                 return Column(
                   children: [
-                    AppClipboardShare(
-                      data: AppShareData(
+                    DSClipboardShare(
+                      data: DSShareData(
                         text: 'Ejemplo en estado ${state.displayName}',
                       ),
-                      config: AppClipboardShareConfig(
+                      config: DSClipboardShareConfig(
                         state: state,
                       ),
-                      interactive: state != AppClipboardShareState.disabled,
+                      interactive: state != DSClipboardShareState.disabled,
                       onShareCompleted: (message) => debugPrint(message),
                     ),
                     const SizedBox(height: 4),
@@ -481,12 +481,12 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             _buildExampleSection(
               'Archivo único',
               'Compartir un solo archivo',
-              AppClipboardShare(
-                data: const AppShareData(
+              DSClipboardShare(
+                data: const DSShareData(
                   text: 'Compartiendo un documento PDF',
                 ),
                 files: [_sampleFiles.first],
-                config: const AppClipboardShareConfig(
+                config: const DSClipboardShareConfig(
                   showPreview: true,
                 ),
                 onShareCompleted: (message) => debugPrint(message),
@@ -498,12 +498,12 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             _buildExampleSection(
               'Múltiples archivos',
               'Compartir varios archivos a la vez',
-              AppClipboardShare(
-                data: const AppShareData(
+              DSClipboardShare(
+                data: const DSShareData(
                   text: 'Compartiendo múltiples archivos',
                 ),
                 files: _sampleFiles,
-                config: const AppClipboardShareConfig(
+                config: const DSClipboardShareConfig(
                   showPreview: true,
                   allowMultipleFiles: true,
                 ),
@@ -516,12 +516,12 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             _buildExampleSection(
               'Solo imágenes',
               'Compartir archivos de imagen',
-              AppClipboardShare(
-                data: const AppShareData(
+              DSClipboardShare(
+                data: const DSShareData(
                   text: 'Mis fotos favoritas',
                 ),
                 files: _sampleFiles.where((f) => f.isImage).toList(),
-                config: const AppClipboardShareConfig(
+                config: const DSClipboardShareConfig(
                   showPreview: true,
                   compressImages: true,
                   imageQuality: 85,
@@ -551,12 +551,12 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             _buildExampleSection(
               'Contenido sensible',
               'Compartir contenido marcado como sensible',
-              AppClipboardShare(
-                data: const AppShareData(
+              DSClipboardShare(
+                data: const DSShareData(
                   text: 'Este es contenido sensible que requiere cuidado',
                   isSensitive: true,
                 ),
-                config: const AppClipboardShareConfig(
+                config: const DSClipboardShareConfig(
                   showConfirmation: true,
                 ),
                 onShareCompleted: (message) => debugPrint(message),
@@ -568,8 +568,8 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             _buildExampleSection(
               'Con metadata',
               'Compartir con información adicional',
-              AppClipboardShare(
-                data: const AppShareData(
+              DSClipboardShare(
+                data: const DSShareData(
                   text: 'Contenido con metadata adicional',
                   metadata: {
                     'source': 'IAutomat Design System',
@@ -577,7 +577,7 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
                     'category': 'example',
                   },
                 ),
-                config: const AppClipboardShareConfig(
+                config: const DSClipboardShareConfig(
                   showPreview: true,
                 ),
                 onShareCompleted: (message) => debugPrint(message),
@@ -589,13 +589,13 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
             _buildExampleSection(
               'Sin confirmación',
               'Compartir sin mostrar confirmación',
-              AppClipboardShare(
-                data: const AppShareData(
+              DSClipboardShare(
+                data: const DSShareData(
                   text: 'Compartir silenciosamente',
                 ),
-                config: const AppClipboardShareConfig(
+                config: const DSClipboardShareConfig(
                   showConfirmation: false,
-                  variant: AppClipboardShareVariant.quickActions,
+                  variant: DSClipboardShareVariant.quickActions,
                 ),
                 onShareCompleted: (message) => debugPrint(message),
               ),
@@ -638,12 +638,12 @@ class _AppClipboardShareStoryState extends State<AppClipboardShareStory> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    AppClipboardShare(
-                      data: const AppShareData(
+                    DSClipboardShare(
+                      data: const DSShareData(
                         text: 'flutter pub add iautomat_design_system',
                       ),
-                      config: const AppClipboardShareConfig(
-                        variant: AppClipboardShareVariant.quickActions,
+                      config: const DSClipboardShareConfig(
+                        variant: DSClipboardShareVariant.quickActions,
                       ),
                       onCopyCompleted: (message) {
                         ScaffoldMessenger.of(context).showSnackBar(

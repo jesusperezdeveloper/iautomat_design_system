@@ -1,4 +1,4 @@
-/// Barrel file para exports de AppDialog
+/// Barrel file para exports de DSDialog
 library;
 
 export 'app_dialog.dart';

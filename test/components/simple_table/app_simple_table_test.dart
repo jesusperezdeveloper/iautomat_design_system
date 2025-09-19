@@ -4,35 +4,35 @@ import 'package:iautomat_design_system/src/components/simple_table/app_simple_ta
 import 'package:iautomat_design_system/src/components/simple_table/simple_table_config.dart';
 
 void main() {
-  group('AppSimpleTable', () {
-    late List<AppSimpleTableColumn> testColumns;
-    late List<AppSimpleTableRow> testRows;
+  group('DSSimpleTable', () {
+    late List<DSSimpleTableColumn> testColumns;
+    late List<DSSimpleTableRow> testRows;
 
     setUp(() {
       testColumns = [
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'name',
           label: 'Name',
           field: 'name',
           width: 200,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'email',
           label: 'Email',
           field: 'email',
           width: 250,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'age',
           label: 'Age',
           field: 'age',
           width: 100,
-          cellType: AppSimpleTableCellType.number,
+          cellType: DSSimpleTableCellType.number,
         ),
       ];
 
       testRows = [
-        AppSimpleTableRow(
+        DSSimpleTableRow(
           id: '1',
           data: {
             'name': 'John Doe',
@@ -40,7 +40,7 @@ void main() {
             'age': 30,
           },
         ),
-        AppSimpleTableRow(
+        DSSimpleTableRow(
           id: '2',
           data: {
             'name': 'Jane Smith',
@@ -48,7 +48,7 @@ void main() {
             'age': 25,
           },
         ),
-        AppSimpleTableRow(
+        DSSimpleTableRow(
           id: '3',
           data: {
             'name': 'Bob Johnson',
@@ -63,7 +63,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.standard(
+            body: DSSimpleTable.standard(
               columns: testColumns,
               rows: testRows,
             ),
@@ -71,7 +71,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppSimpleTable), findsOneWidget);
+      expect(find.byType(DSSimpleTable), findsOneWidget);
       expect(find.text('Name'), findsOneWidget);
       expect(find.text('Email'), findsOneWidget);
       expect(find.text('Age'), findsOneWidget);
@@ -83,7 +83,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.compact(
+            body: DSSimpleTable.compact(
               columns: testColumns,
               rows: testRows,
             ),
@@ -91,7 +91,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppSimpleTable), findsOneWidget);
+      expect(find.byType(DSSimpleTable), findsOneWidget);
       expect(find.text('Name'), findsOneWidget);
       expect(find.text('Email'), findsOneWidget);
       expect(find.text('Age'), findsOneWidget);
@@ -101,10 +101,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.standard(
+            body: DSSimpleTable.standard(
               columns: testColumns,
               rows: const [],
-              emptyState: const AppSimpleTableEmptyState(
+              emptyState: const DSSimpleTableEmptyState(
                 message: 'No data available',
                 icon: Icons.inbox,
               ),
@@ -124,11 +124,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.standard(
+            body: DSSimpleTable.standard(
               columns: testColumns,
               rows: testRows,
-              selection: const AppSimpleTableSelection(
-                mode: AppSimpleTableSelectionMode.single,
+              selection: const DSSimpleTableSelection(
+                mode: DSSimpleTableSelectionMode.single,
               ),
               onRowSelect: (row, selected) {
                 lastSelectedRowId = row.id;
@@ -151,27 +151,27 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.standard(
+            body: DSSimpleTable.standard(
               columns: testColumns,
               rows: testRows,
-              selection: const AppSimpleTableSelection(
-                mode: AppSimpleTableSelectionMode.multiple,
+              selection: const DSSimpleTableSelection(
+                mode: DSSimpleTableSelectionMode.multiple,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppSimpleTable), findsOneWidget);
+      expect(find.byType(DSSimpleTable), findsOneWidget);
     });
 
     testWidgets('handles sorting configuration', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.standard(
+            body: DSSimpleTable.standard(
               columns: [
-                const AppSimpleTableColumn(
+                const DSSimpleTableColumn(
                   id: 'name',
                   label: 'Name',
                   field: 'name',
@@ -179,28 +179,28 @@ void main() {
                 ),
               ],
               rows: testRows,
-              sorting: const AppSimpleTableSort(
+              sorting: const DSSimpleTableSort(
                 columnId: 'name',
-                direction: AppSimpleTableSortDirection.ascending,
+                direction: DSSimpleTableSortDirection.ascending,
               ),
             ),
           ),
         ),
       );
 
-      expect(find.byType(AppSimpleTable), findsOneWidget);
+      expect(find.byType(DSSimpleTable), findsOneWidget);
       expect(find.text('Name'), findsOneWidget);
     });
 
     testWidgets('respects column visibility settings', (tester) async {
       final columnsWithHidden = [
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'name',
           label: 'Name',
           field: 'name',
           visible: true,
         ),
-        const AppSimpleTableColumn(
+        const DSSimpleTableColumn(
           id: 'email',
           label: 'Email',
           field: 'email',
@@ -211,7 +211,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.standard(
+            body: DSSimpleTable.standard(
               columns: columnsWithHidden,
               rows: testRows,
             ),
@@ -225,7 +225,7 @@ void main() {
 
     testWidgets('handles custom cell builders', (tester) async {
       final customColumns = [
-        AppSimpleTableColumn(
+        DSSimpleTableColumn(
           id: 'name',
           label: 'Name',
           field: 'name',
@@ -238,7 +238,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.standard(
+            body: DSSimpleTable.standard(
               columns: customColumns,
               rows: [testRows.first],
             ),
@@ -251,7 +251,7 @@ void main() {
 
     testWidgets('handles custom header builders', (tester) async {
       final customColumns = [
-        AppSimpleTableColumn(
+        DSSimpleTableColumn(
           id: 'name',
           label: 'Name',
           field: 'name',
@@ -264,7 +264,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.standard(
+            body: DSSimpleTable.standard(
               columns: customColumns,
               rows: testRows,
             ),
@@ -281,7 +281,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppSimpleTable.standard(
+              body: DSSimpleTable.standard(
                 columns: testColumns,
                 rows: testRows,
               ),
@@ -290,7 +290,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppSimpleTable), findsOneWidget);
+      expect(find.byType(DSSimpleTable), findsOneWidget);
     });
 
     testWidgets('handles horizontal scrolling', (tester) async {
@@ -299,7 +299,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.standard(
+            body: DSSimpleTable.standard(
               columns: testColumns,
               rows: testRows,
               horizontalScrollController: scrollController,
@@ -308,7 +308,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppSimpleTable), findsOneWidget);
+      expect(find.byType(DSSimpleTable), findsOneWidget);
       scrollController.dispose();
     });
 
@@ -318,7 +318,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppSimpleTable.standard(
+            body: DSSimpleTable.standard(
               columns: testColumns,
               rows: testRows,
               verticalScrollController: scrollController,
@@ -327,15 +327,15 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppSimpleTable), findsOneWidget);
+      expect(find.byType(DSSimpleTable), findsOneWidget);
       scrollController.dispose();
     });
 
-    group('AppSimpleTableConfig', () {
+    group('DSSimpleTableConfig', () {
       test('creates config with default values', () {
-        const config = AppSimpleTableConfig();
+        const config = DSSimpleTableConfig();
 
-        expect(config.variant, AppSimpleTableVariant.standard);
+        expect(config.variant, DSSimpleTableVariant.standard);
         expect(config.showHeaders, true);
         expect(config.showRowDividers, true);
         expect(config.showColumnDividers, false);
@@ -347,8 +347,8 @@ void main() {
       });
 
       test('creates config with custom values', () {
-        const config = AppSimpleTableConfig(
-          variant: AppSimpleTableVariant.compact,
+        const config = DSSimpleTableConfig(
+          variant: DSSimpleTableVariant.compact,
           showHeaders: false,
           showRowDividers: false,
           showColumnDividers: true,
@@ -359,7 +359,7 @@ void main() {
           headerHeight: 48.0,
         );
 
-        expect(config.variant, AppSimpleTableVariant.compact);
+        expect(config.variant, DSSimpleTableVariant.compact);
         expect(config.showHeaders, false);
         expect(config.showRowDividers, false);
         expect(config.showColumnDividers, true);
@@ -371,9 +371,9 @@ void main() {
       });
     });
 
-    group('AppSimpleTableColumn', () {
+    group('DSSimpleTableColumn', () {
       test('creates column with required fields', () {
-        const column = AppSimpleTableColumn(
+        const column = DSSimpleTableColumn(
           id: 'test',
           label: 'Test Column',
           field: 'test_field',
@@ -385,32 +385,32 @@ void main() {
         expect(column.flex, 1);
         expect(column.sortable, false);
         expect(column.visible, true);
-        expect(column.alignment, AppSimpleTableColumnAlignment.left);
-        expect(column.cellType, AppSimpleTableCellType.text);
+        expect(column.alignment, DSSimpleTableColumnAlignment.left);
+        expect(column.cellType, DSSimpleTableCellType.text);
       });
 
       test('has correct effective alignment for RTL', () {
-        const column = AppSimpleTableColumn(
+        const column = DSSimpleTableColumn(
           id: 'test',
           label: 'Test',
           field: 'test',
-          alignment: AppSimpleTableColumnAlignment.left,
+          alignment: DSSimpleTableColumnAlignment.left,
         );
 
         expect(
           column.getEffectiveAlignment(TextDirection.ltr),
-          AppSimpleTableColumnAlignment.left,
+          DSSimpleTableColumnAlignment.left,
         );
         expect(
           column.getEffectiveAlignment(TextDirection.rtl),
-          AppSimpleTableColumnAlignment.right,
+          DSSimpleTableColumnAlignment.right,
         );
       });
     });
 
-    group('AppSimpleTableRow', () {
+    group('DSSimpleTableRow', () {
       test('creates row with data', () {
-        final row = AppSimpleTableRow(
+        final row = DSSimpleTableRow(
           id: 'test',
           data: {'name': 'Test', 'value': 123},
         );
@@ -421,15 +421,15 @@ void main() {
         expect(row.selected, false);
         expect(row.disabled, false);
         expect(row.visible, true);
-        expect(row.state, AppSimpleTableRowState.normal);
+        expect(row.state, DSSimpleTableRowState.normal);
       });
     });
 
-    group('AppSimpleTableSelection', () {
+    group('DSSimpleTableSelection', () {
       test('creates selection config with defaults', () {
-        const selection = AppSimpleTableSelection();
+        const selection = DSSimpleTableSelection();
 
-        expect(selection.mode, AppSimpleTableSelectionMode.none);
+        expect(selection.mode, DSSimpleTableSelectionMode.none);
         expect(selection.selectedRows, isEmpty);
         expect(selection.showCheckboxes, true);
         expect(selection.allowSelectAll, true);
@@ -437,18 +437,18 @@ void main() {
       });
     });
 
-    group('AppSimpleTableSort', () {
+    group('DSSimpleTableSort', () {
       test('creates sort config with defaults', () {
-        const sort = AppSimpleTableSort();
+        const sort = DSSimpleTableSort();
 
         expect(sort.columnId, isNull);
-        expect(sort.direction, AppSimpleTableSortDirection.none);
+        expect(sort.direction, DSSimpleTableSortDirection.none);
       });
     });
 
-    group('AppSimpleTableEmptyState', () {
+    group('DSSimpleTableEmptyState', () {
       test('creates empty state with defaults', () {
-        const emptyState = AppSimpleTableEmptyState();
+        const emptyState = DSSimpleTableEmptyState();
 
         expect(emptyState.message, 'No data available');
         expect(emptyState.icon, isNull);

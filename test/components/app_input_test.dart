@@ -7,13 +7,13 @@ import 'package:iautomat_design_system/src/components/inputs/validators.dart';
 import 'package:iautomat_design_system/src/theme/app_theme.dart';
 
 void main() {
-  group('AppInput', () {
+  group('DSInput', () {
     group('Rendering', () {
       testWidgets('should render with basic properties', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Test Input',
                 hint: 'Enter text here',
               ),
@@ -21,7 +21,7 @@ void main() {
           ),
         );
 
-        expect(find.byType(AppInput), findsOneWidget);
+        expect(find.byType(DSInput), findsOneWidget);
         expect(find.byType(TextFormField), findsOneWidget);
       });
 
@@ -41,7 +41,7 @@ void main() {
           await tester.pumpWidget(
             MaterialApp(
               home: Scaffold(
-                body: AppInput(
+                body: DSInput(
                   label: 'Test ${type.name}',
                   type: type,
                 ),
@@ -49,7 +49,7 @@ void main() {
             ),
           );
 
-          expect(find.byType(AppInput), findsOneWidget);
+          expect(find.byType(DSInput), findsOneWidget);
           expect(find.byType(TextFormField), findsOneWidget);
           await tester.pumpAndSettle();
         }
@@ -59,7 +59,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'With Icon',
                 prefixIcon: Icons.email,
               ),
@@ -74,7 +74,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'With Suffix',
                 suffixIcon: Icons.info,
               ),
@@ -89,7 +89,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'With Text',
                 prefixText: r'$',
                 suffixText: '.00',
@@ -111,7 +111,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Custom Widgets',
                 prefixWidget: prefixWidget,
                 suffixWidget: suffixWidget,
@@ -130,7 +130,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput.email(
+              body: DSInput.email(
                 label: 'Email',
               ),
             ),
@@ -138,11 +138,11 @@ void main() {
         );
 
         // Tap en el input para activar el teclado
-        await tester.tap(find.byType(AppInput));
+        await tester.tap(find.byType(DSInput));
         await tester.pumpAndSettle();
 
         // Verificar que el input funciona correctamente con email
-        await tester.enterText(find.byType(AppInput), 'test@example.com');
+        await tester.enterText(find.byType(DSInput), 'test@example.com');
         expect(find.text('test@example.com'), findsOneWidget);
       });
 
@@ -150,7 +150,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput.password(
+              body: DSInput.password(
                 label: 'Password',
               ),
             ),
@@ -158,11 +158,11 @@ void main() {
         );
 
         // Verificar que el input de password está configurado correctamente
-        expect(find.byType(AppInput), findsOneWidget);
+        expect(find.byType(DSInput), findsOneWidget);
         expect(find.byType(TextFormField), findsOneWidget);
 
         // En los tests, el texto puede ser visible pero el widget debe estar configurado como password
-        await tester.enterText(find.byType(AppInput), 'password123');
+        await tester.enterText(find.byType(DSInput), 'password123');
         await tester.pumpAndSettle();
       });
 
@@ -170,7 +170,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Number',
                 type: InputType.number,
               ),
@@ -179,11 +179,11 @@ void main() {
         );
 
         // Tap en el input para activar
-        await tester.tap(find.byType(AppInput));
+        await tester.tap(find.byType(DSInput));
         await tester.pumpAndSettle();
 
         // Verificar que acepta números
-        await tester.enterText(find.byType(AppInput), '12345');
+        await tester.enterText(find.byType(DSInput), '12345');
         expect(find.text('12345'), findsOneWidget);
       });
 
@@ -192,7 +192,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput.multiline(
+              body: DSInput.multiline(
                 label: 'Multiline',
                 maxLines: 5,
               ),
@@ -202,7 +202,7 @@ void main() {
 
         // Ingresar texto con múltiples líneas
         const multilineText = 'Line 1\nLine 2\nLine 3';
-        await tester.enterText(find.byType(AppInput), multilineText);
+        await tester.enterText(find.byType(DSInput), multilineText);
         await tester.pumpAndSettle();
 
         // Verificar que el texto multilinea se muestra
@@ -215,7 +215,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput.search(
+              body: DSInput.search(
                 label: 'Search',
                 onSubmitted: (value) => submittedValue = value,
               ),
@@ -224,7 +224,7 @@ void main() {
         );
 
         // Ingresar texto y simular submit
-        await tester.enterText(find.byType(AppInput), 'search query');
+        await tester.enterText(find.byType(DSInput), 'search query');
         await tester.testTextInput.receiveAction(TextInputAction.search);
         await tester.pumpAndSettle();
 
@@ -235,7 +235,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Phone',
                 type: InputType.phone,
               ),
@@ -244,11 +244,11 @@ void main() {
         );
 
         // Tap para activar el input
-        await tester.tap(find.byType(AppInput));
+        await tester.tap(find.byType(DSInput));
         await tester.pumpAndSettle();
 
         // Verificar que acepta números de teléfono
-        await tester.enterText(find.byType(AppInput), '+1234567890');
+        await tester.enterText(find.byType(DSInput), '+1234567890');
         expect(find.text('+1234567890'), findsOneWidget);
       });
 
@@ -256,7 +256,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'URL',
                 type: InputType.url,
               ),
@@ -265,11 +265,11 @@ void main() {
         );
 
         // Tap para activar el input
-        await tester.tap(find.byType(AppInput));
+        await tester.tap(find.byType(DSInput));
         await tester.pumpAndSettle();
 
         // Verificar que acepta URLs
-        await tester.enterText(find.byType(AppInput), 'https://example.com');
+        await tester.enterText(find.byType(DSInput), 'https://example.com');
         expect(find.text('https://example.com'), findsOneWidget);
       });
     });
@@ -279,7 +279,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Enabled Input',
               ),
             ),
@@ -287,7 +287,7 @@ void main() {
         );
 
         // Verificar que puede recibir input (está habilitado)
-        await tester.enterText(find.byType(AppInput), 'test input');
+        await tester.enterText(find.byType(DSInput), 'test input');
         expect(find.text('test input'), findsOneWidget);
       });
 
@@ -295,7 +295,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Disabled Input',
                 enabled: false,
               ),
@@ -304,7 +304,7 @@ void main() {
         );
 
         // Intentar ingresar texto en input deshabilitado
-        await tester.enterText(find.byType(AppInput), 'should not work');
+        await tester.enterText(find.byType(DSInput), 'should not work');
         // El texto no debe aparecer porque está deshabilitado
         expect(find.text('should not work'), findsNothing);
       });
@@ -313,7 +313,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'ReadOnly Input',
                 readOnly: true,
                 initialValue: 'readonly text',
@@ -326,7 +326,7 @@ void main() {
         expect(find.text('readonly text'), findsOneWidget);
 
         // Intentar cambiar el texto (no debería funcionar)
-        await tester.enterText(find.byType(AppInput), 'new text');
+        await tester.enterText(find.byType(DSInput), 'new text');
         expect(find.text('new text'), findsNothing);
         expect(find.text('readonly text'), findsOneWidget);
       });
@@ -337,7 +337,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Focus Test',
                 focusNode: focusNode,
               ),
@@ -347,7 +347,7 @@ void main() {
 
         expect(focusNode.hasFocus, isFalse);
 
-        await tester.tap(find.byType(AppInput));
+        await tester.tap(find.byType(DSInput));
         await tester.pumpAndSettle();
 
         expect(focusNode.hasFocus, isTrue);
@@ -361,7 +361,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Text Input',
                 onChanged: (value) => changedValue = value,
               ),
@@ -369,7 +369,7 @@ void main() {
           ),
         );
 
-        await tester.enterText(find.byType(AppInput), 'Hello World');
+        await tester.enterText(find.byType(DSInput), 'Hello World');
         expect(changedValue, 'Hello World');
       });
 
@@ -379,7 +379,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Submit Test',
                 onSubmitted: (value) => submittedValue = value,
               ),
@@ -387,7 +387,7 @@ void main() {
           ),
         );
 
-        await tester.enterText(find.byType(AppInput), 'Submit Test');
+        await tester.enterText(find.byType(DSInput), 'Submit Test');
         await tester.testTextInput.receiveAction(TextInputAction.done);
 
         expect(submittedValue, 'Submit Test');
@@ -397,7 +397,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Initial Value',
                 initialValue: 'Initial Text',
               ),
@@ -414,7 +414,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Controller Test',
                 controller: controller,
               ),
@@ -437,7 +437,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Form(
-                child: AppInput(
+                child: DSInput(
                   label: 'Validation Test',
                   validator: (value) =>
                       value?.isEmpty == true ? 'Required field' : null,
@@ -457,7 +457,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Form(
-                child: AppInput.email(
+                child: DSInput.email(
                   label: 'Email',
                   validator: Validators.email(),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -468,13 +468,13 @@ void main() {
         );
 
         // Enter invalid email
-        await tester.enterText(find.byType(AppInput), 'invalid-email');
+        await tester.enterText(find.byType(DSInput), 'invalid-email');
         await tester.pumpAndSettle();
 
         expect(find.text('Ingresa un email válido'), findsOneWidget);
 
         // Enter valid email
-        await tester.enterText(find.byType(AppInput), 'test@example.com');
+        await tester.enterText(find.byType(DSInput), 'test@example.com');
         await tester.pumpAndSettle();
 
         expect(find.text('Ingresa un email válido'), findsNothing);
@@ -485,7 +485,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Form(
-                child: AppInput(
+                child: DSInput(
                   label: 'Required',
                   validator: Validators.required(),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -503,7 +503,7 @@ void main() {
             home: Scaffold(
               body: Form(
                 key: formKey,
-                child: AppInput(
+                child: DSInput(
                   label: 'Required',
                   validator: Validators.required(),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -514,7 +514,7 @@ void main() {
         );
 
         // Tap field, focus y luego unfocus para activar validación
-        await tester.tap(find.byType(AppInput));
+        await tester.tap(find.byType(DSInput));
         await tester.pumpAndSettle();
 
         // Enviar form para activar validación
@@ -529,7 +529,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Form(
-                child: AppInput.password(
+                child: DSInput.password(
                   label: 'Password',
                   validator: Validators.password(),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -540,7 +540,7 @@ void main() {
         );
 
         // Enter weak password
-        await tester.enterText(find.byType(AppInput), '123');
+        await tester.enterText(find.byType(DSInput), '123');
         await tester.pumpAndSettle();
 
         // Should show validation error
@@ -553,7 +553,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Form(
-                child: AppInput(
+                child: DSInput(
                   label: 'Phone',
                   type: InputType.phone,
                   validator: Validators.phone(),
@@ -565,14 +565,14 @@ void main() {
         );
 
         // Enter invalid phone
-        await tester.enterText(find.byType(AppInput), '123');
+        await tester.enterText(find.byType(DSInput), '123');
         await tester.pumpAndSettle();
 
         expect(
             find.text('Ingresa un número de teléfono válido'), findsOneWidget);
 
         // Enter valid phone
-        await tester.enterText(find.byType(AppInput), '+1234567890');
+        await tester.enterText(find.byType(DSInput), '+1234567890');
         await tester.pumpAndSettle();
 
         expect(find.text('Ingresa un número de teléfono válido'), findsNothing);
@@ -585,7 +585,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Clear Test',
                 showClearButton: true,
               ),
@@ -594,11 +594,11 @@ void main() {
         );
 
         // Enter text
-        await tester.enterText(find.byType(AppInput), 'Some text');
+        await tester.enterText(find.byType(DSInput), 'Some text');
         await tester.pumpAndSettle();
 
         // Tap to focus
-        await tester.tap(find.byType(AppInput));
+        await tester.tap(find.byType(DSInput));
         await tester.pumpAndSettle();
 
         // Should show clear button
@@ -612,7 +612,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Clear Test',
                 showClearButton: true,
                 onChanged: (value) => currentValue = value,
@@ -622,8 +622,8 @@ void main() {
         );
 
         // Enter text and focus
-        await tester.enterText(find.byType(AppInput), 'Text to clear');
-        await tester.tap(find.byType(AppInput));
+        await tester.enterText(find.byType(DSInput), 'Text to clear');
+        await tester.tap(find.byType(DSInput));
         await tester.pumpAndSettle();
 
         expect(currentValue, 'Text to clear');
@@ -640,7 +640,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'No Clear',
                 showClearButton: false,
               ),
@@ -648,8 +648,8 @@ void main() {
           ),
         );
 
-        await tester.enterText(find.byType(AppInput), 'Some text');
-        await tester.tap(find.byType(AppInput));
+        await tester.enterText(find.byType(DSInput), 'Some text');
+        await tester.tap(find.byType(DSInput));
         await tester.pumpAndSettle();
 
         expect(find.byIcon(Icons.clear), findsNothing);
@@ -662,7 +662,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput.password(
+              body: DSInput.password(
                 label: 'Password',
                 showVisibilityToggle: true,
               ),
@@ -678,7 +678,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput.password(
+              body: DSInput.password(
                 label: 'Password',
                 showVisibilityToggle: true,
               ),
@@ -687,7 +687,7 @@ void main() {
         );
 
         // Ingresar texto en el password field
-        await tester.enterText(find.byType(AppInput), 'password123');
+        await tester.enterText(find.byType(DSInput), 'password123');
         await tester.pumpAndSettle();
 
         // Verificar que existe el ícono de visibilidad
@@ -706,7 +706,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput.password(
+              body: DSInput.password(
                 label: 'Password',
                 showVisibilityToggle: false,
               ),
@@ -724,7 +724,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Counter Test',
                 maxLength: 10,
                 showCounter: true,
@@ -741,7 +741,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Counter Test',
                 maxLength: 10,
                 showCounter: true,
@@ -750,7 +750,7 @@ void main() {
           ),
         );
 
-        await tester.enterText(find.byType(AppInput), 'Hello');
+        await tester.enterText(find.byType(DSInput), 'Hello');
         await tester.pumpAndSettle();
 
         expect(find.text('5/10'), findsOneWidget);
@@ -760,7 +760,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'No Counter',
                 maxLength: 10,
                 showCounter: false,
@@ -778,7 +778,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Accessible Input',
                 semanticsLabel: 'Custom Semantic Label',
               ),
@@ -787,7 +787,7 @@ void main() {
         );
 
         // Verificar que el input tiene semantics configurado correctamente
-        expect(find.byType(AppInput), findsOneWidget);
+        expect(find.byType(DSInput), findsOneWidget);
         expect(find.byType(Semantics), findsWidgets);
       });
 
@@ -795,7 +795,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Input with Tooltip',
                 tooltip: 'This is helpful information',
               ),
@@ -816,7 +816,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Tap Test',
                 onTap: () => tapped = true,
               ),
@@ -824,7 +824,7 @@ void main() {
           ),
         );
 
-        await tester.tap(find.byType(AppInput));
+        await tester.tap(find.byType(DSInput));
         expect(tapped, isTrue);
       });
     });
@@ -834,7 +834,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Formatted Input',
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
@@ -845,7 +845,7 @@ void main() {
           ),
         );
 
-        await tester.enterText(find.byType(AppInput), 'abc123def456');
+        await tester.enterText(find.byType(DSInput), 'abc123def456');
         await tester.pumpAndSettle();
 
         // Should only keep digits and limit to 5 characters
@@ -858,7 +858,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Max Length',
                 maxLength: 5,
                 onChanged: (value) => currentValue = value,
@@ -867,7 +867,7 @@ void main() {
           ),
         );
 
-        await tester.enterText(find.byType(AppInput), '1234567890');
+        await tester.enterText(find.byType(DSInput), '1234567890');
         await tester.pumpAndSettle();
 
         // Should be limited to 5 characters
@@ -879,24 +879,24 @@ void main() {
 
     group('Input Group', () {
       testWidgets(
-          'AppInputGroup should render multiple inputs with proper spacing',
+          'DSInputGroup should render multiple inputs with proper spacing',
           (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInputGroup(
+              body: DSInputGroup(
                 spacing: 20,
                 children: [
-                  AppInput(label: 'First Input'),
-                  AppInput(label: 'Second Input'),
-                  AppInput(label: 'Third Input'),
+                  DSInput(label: 'First Input'),
+                  DSInput(label: 'Second Input'),
+                  DSInput(label: 'Third Input'),
                 ],
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppInputGroup), findsOneWidget);
+        expect(find.byType(DSInputGroup), findsOneWidget);
         expect(find.text('First Input'), findsOneWidget);
         expect(find.text('Second Input'), findsOneWidget);
         expect(find.text('Third Input'), findsOneWidget);
@@ -906,7 +906,7 @@ void main() {
     group('Extension Methods', () {
       testWidgets('copyWith should create input with modified properties',
           (tester) async {
-        final originalInput = AppInput(
+        final originalInput = DSInput(
           label: 'Original',
           type: InputType.text,
         );
@@ -925,7 +925,7 @@ void main() {
       testWidgets('should not allow both controller and initialValue',
           (tester) async {
         expect(
-          () => AppInput(
+          () => DSInput(
             controller: TextEditingController(),
             initialValue: 'Initial',
           ),
@@ -938,31 +938,31 @@ void main() {
       testWidgets('should adapt to light theme', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.lightTheme,
+            theme: DSTheme.lightTheme,
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Light Theme',
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppInput), findsOneWidget);
+        expect(find.byType(DSInput), findsOneWidget);
       });
 
       testWidgets('should adapt to dark theme', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
-            theme: AppTheme.darkTheme,
+            theme: DSTheme.darkTheme,
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Dark Theme',
               ),
             ),
           ),
         );
 
-        expect(find.byType(AppInput), findsOneWidget);
+        expect(find.byType(DSInput), findsOneWidget);
       });
     });
 
@@ -974,7 +974,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Performance Test',
                 onChanged: (value) => changeCount++,
               ),
@@ -984,7 +984,7 @@ void main() {
 
         // Rapidly change text
         for (int i = 0; i < 10; i++) {
-          await tester.enterText(find.byType(AppInput), 'Text $i');
+          await tester.enterText(find.byType(DSInput), 'Text $i');
         }
 
         // Should handle all changes
@@ -998,7 +998,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Spacing Test',
               ),
             ),
@@ -1015,7 +1015,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: AppInput(
+              body: DSInput(
                 label: 'Border Test',
               ),
             ),

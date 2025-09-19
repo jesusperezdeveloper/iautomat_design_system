@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 part 'combobox_config.freezed.dart';
 
 @freezed
-class AppComboBoxConfig with _$AppComboBoxConfig {
-  const factory AppComboBoxConfig({
+class DSComboBoxConfig with _$DSComboBoxConfig {
+  const factory DSComboBoxConfig({
     @Default(EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0))
     EdgeInsets contentPadding,
     @Default(Duration(milliseconds: 200)) Duration animationDuration,
@@ -43,14 +43,14 @@ class AppComboBoxConfig with _$AppComboBoxConfig {
     @Default(false) bool autoSelectSingle,
     @Default(true) bool dismissOnSelection,
     @Default(true) bool clearOnSelection,
-  }) = _AppComboBoxConfig;
+  }) = _DSComboBoxConfig;
 
-  const AppComboBoxConfig._();
+  const DSComboBoxConfig._();
 }
 
 @freezed
-class AppComboBoxColors with _$AppComboBoxColors {
-  const factory AppComboBoxColors({
+class DSComboBoxColors with _$DSComboBoxColors {
+  const factory DSComboBoxColors({
     required Color borderColor,
     required Color focusedBorderColor,
     required Color errorBorderColor,
@@ -88,13 +88,13 @@ class AppComboBoxColors with _$AppComboBoxColors {
     required Color noResultsTextColor,
   }) = _AppComboBoxColors;
 
-  const AppComboBoxColors._();
+  const DSComboBoxColors._();
 
-  factory AppComboBoxColors.fromTheme(ThemeData theme) {
+  factory DSComboBoxColors.fromTheme(ThemeData theme) {
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
 
-    return AppComboBoxColors(
+    return DSComboBoxColors(
       borderColor: colorScheme.outline,
       focusedBorderColor: colorScheme.primary,
       errorBorderColor: colorScheme.error,
@@ -137,7 +137,7 @@ class AppComboBoxColors with _$AppComboBoxColors {
   }
 }
 
-enum AppComboBoxState {
+enum DSComboBoxState {
   defaultState,
   hover,
   pressed,
@@ -149,13 +149,13 @@ enum AppComboBoxState {
   error,
 }
 
-enum AppComboBoxVariant {
+enum DSComboBoxVariant {
   typeahead,
 }
 
 @freezed
-class AppComboBoxSuggestion<T> with _$AppComboBoxSuggestion<T> {
-  const factory AppComboBoxSuggestion({
+class DSComboBoxSuggestion<T> with _$DSComboBoxSuggestion<T> {
+  const factory DSComboBoxSuggestion({
     required T value,
     required String label,
     String? subtitle,
@@ -166,7 +166,7 @@ class AppComboBoxSuggestion<T> with _$AppComboBoxSuggestion<T> {
     Map<String, dynamic>? metadata,
   }) = _AppComboBoxSuggestion<T>;
 
-  const AppComboBoxSuggestion._();
+  const DSComboBoxSuggestion._();
 
   /// Get the text to search against
   String get effectiveSearchText => searchableText ?? label;
@@ -240,7 +240,7 @@ class AppComboBoxSuggestion<T> with _$AppComboBoxSuggestion<T> {
   }
 }
 
-class AppComboBoxValidator {
+class DSComboBoxValidator {
   static String? required<T>(T? value) {
     if (value == null) {
       return 'Este campo es requerido';

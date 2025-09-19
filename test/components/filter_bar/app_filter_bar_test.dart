@@ -5,31 +5,31 @@ import 'package:iautomat_design_system/src/components/filter_bar/app_filter_bar.
 import 'package:iautomat_design_system/src/components/filter_bar/filter_bar_config.dart';
 
 void main() {
-  group('AppFilterBar', () {
-    late List<AppFilter> testFilters;
+  group('DSFilterBar', () {
+    late List<DSFilter> testFilters;
 
     setUp(() {
       testFilters = [
-        AppFilter(
+        DSFilter(
           id: 'status',
           label: 'Status',
           type: FilterType.single,
           options: const [
-            AppFilterOption(value: 'active', label: 'Active'),
-            AppFilterOption(value: 'inactive', label: 'Inactive'),
+            DSFilterOption(value: 'active', label: 'Active'),
+            DSFilterOption(value: 'inactive', label: 'Inactive'),
           ],
         ),
-        AppFilter(
+        DSFilter(
           id: 'category',
           label: 'Category',
           type: FilterType.multiple,
           options: const [
-            AppFilterOption(value: 'a', label: 'Category A'),
-            AppFilterOption(value: 'b', label: 'Category B'),
-            AppFilterOption(value: 'c', label: 'Category C'),
+            DSFilterOption(value: 'a', label: 'Category A'),
+            DSFilterOption(value: 'b', label: 'Category B'),
+            DSFilterOption(value: 'c', label: 'Category C'),
           ],
         ),
-        const AppFilter(
+        const DSFilter(
           id: 'search',
           label: 'Search',
           type: FilterType.text,
@@ -42,7 +42,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: testFilters,
               onChanged: (filters) {},
             ),
@@ -50,7 +50,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppFilterBar), findsOneWidget);
+      expect(find.byType(DSFilterBar), findsOneWidget);
       expect(find.text('Status'), findsOneWidget);
       expect(find.text('Category'), findsOneWidget);
       expect(find.text('Search'), findsOneWidget);
@@ -61,7 +61,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.popovers(
+            body: DSFilterBar.popovers(
               filters: testFilters,
               onChanged: (filters) {},
             ),
@@ -69,7 +69,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppFilterBar), findsOneWidget);
+      expect(find.byType(DSFilterBar), findsOneWidget);
       expect(find.text('Status'), findsOneWidget);
       expect(find.text('Category'), findsOneWidget);
     });
@@ -83,7 +83,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: filtersWithValue,
               onChanged: (filters) {},
             ),
@@ -96,12 +96,12 @@ void main() {
     });
 
     testWidgets('onChanged callback is triggered', (tester) async {
-      List<AppFilter>? changedFilters;
+      List<DSFilter>? changedFilters;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: testFilters,
               onChanged: (filters) => changedFilters = filters,
             ),
@@ -110,7 +110,7 @@ void main() {
       );
 
       // Tap on boolean filter should trigger change immediately
-      final booleanFilter = const AppFilter(
+      final booleanFilter = const DSFilter(
         id: 'test',
         label: 'Test',
         type: FilterType.boolean,
@@ -119,7 +119,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: [booleanFilter],
               onChanged: (filters) => changedFilters = filters,
             ),
@@ -142,9 +142,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: activeFilters,
-              config: const AppFilterBarConfig(
+              config: const DSFilterBarConfig(
                 enableClearAll: true,
               ),
               onChanged: (filters) {},
@@ -160,9 +160,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: const [],
-              state: AppFilterBarState.loading,
+              state: DSFilterBarState.loading,
               onChanged: (filters) {},
             ),
           ),
@@ -177,9 +177,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: const [],
-              state: AppFilterBarState.skeleton,
+              state: DSFilterBarState.skeleton,
               onChanged: (filters) {},
             ),
           ),
@@ -193,9 +193,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: testFilters,
-              state: AppFilterBarState.disabled,
+              state: DSFilterBarState.disabled,
               onChanged: (filters) {},
             ),
           ),
@@ -214,9 +214,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: testFilters,
-              config: const AppFilterBarConfig(
+              config: const DSFilterBarConfig(
                 chipHeight: 40.0,
                 fontSize: 18.0,
                 showFilterIcon: false,
@@ -228,21 +228,21 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppFilterBar), findsOneWidget);
+      expect(find.byType(DSFilterBar), findsOneWidget);
     });
 
     testWidgets('max visible chips works correctly', (tester) async {
       final manyFilters = List.generate(
         10,
-        (i) => AppFilter(id: 'filter$i', label: 'Filter $i'),
+        (i) => DSFilter(id: 'filter$i', label: 'Filter $i'),
       );
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: manyFilters,
-              config: const AppFilterBarConfig(
+              config: const DSFilterBarConfig(
                 maxVisibleChips: 3,
               ),
               onChanged: (filters) {},
@@ -262,7 +262,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: [
                 testFilters[0].copyWith(value: 'active', isActive: true),
               ],
@@ -282,7 +282,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: testFilters,
               onChanged: (filters) {},
             ),
@@ -291,7 +291,7 @@ void main() {
       );
 
       // Focus the filter bar
-      await tester.tap(find.byType(AppFilterBar));
+      await tester.tap(find.byType(DSFilterBar));
       await tester.pumpAndSettle();
 
       // Test Tab navigation
@@ -309,9 +309,9 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppFilterBar.chips(
+              body: DSFilterBar.chips(
                 filters: testFilters,
-                config: const AppFilterBarConfig(
+                config: const DSFilterBarConfig(
                   enableRTL: true,
                   textDirection: TextDirection.rtl,
                 ),
@@ -322,22 +322,22 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppFilterBar), findsOneWidget);
+      expect(find.byType(DSFilterBar), findsOneWidget);
     });
 
     testWidgets('filter groups work correctly', (tester) async {
       final groupedFilters = [
-        AppFilter(
+        DSFilter(
           id: 'filter1',
           label: 'Filter 1',
           group: 'group1',
         ),
-        AppFilter(
+        DSFilter(
           id: 'filter2',
           label: 'Filter 2',
           group: 'group1',
         ),
-        AppFilter(
+        DSFilter(
           id: 'filter3',
           label: 'Filter 3',
           group: 'group2',
@@ -347,11 +347,11 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppFilterBar.chips(
+            body: DSFilterBar.chips(
               filters: groupedFilters,
               groups: const [
-                AppFilterGroup(id: 'group1', label: 'Group 1'),
-                AppFilterGroup(id: 'group2', label: 'Group 2'),
+                DSFilterGroup(id: 'group1', label: 'Group 1'),
+                DSFilterGroup(id: 'group2', label: 'Group 2'),
               ],
               onChanged: (filters) {},
             ),
@@ -365,9 +365,9 @@ void main() {
     });
   });
 
-  group('AppFilter', () {
+  group('DSFilter', () {
     test('hasValue returns correct value', () {
-      var filter = const AppFilter(id: 'test', label: 'Test');
+      var filter = const DSFilter(id: 'test', label: 'Test');
       expect(filter.hasValue, false);
 
       filter = filter.copyWith(value: 'test');
@@ -382,28 +382,28 @@ void main() {
 
     test('displayValue formats correctly for different types', () {
       // Single selection
-      var filter = AppFilter(
+      var filter = DSFilter(
         id: 'test',
         label: 'Test',
         type: FilterType.single,
-        value: const AppFilterOption(value: 'val', label: 'Value'),
+        value: const DSFilterOption(value: 'val', label: 'Value'),
       );
       expect(filter.displayValue, 'Value');
 
       // Multiple selection
-      filter = AppFilter(
+      filter = DSFilter(
         id: 'test',
         label: 'Test',
         type: FilterType.multiple,
         value: const [
-          AppFilterOption(value: 'a', label: 'A'),
-          AppFilterOption(value: 'b', label: 'B'),
+          DSFilterOption(value: 'a', label: 'A'),
+          DSFilterOption(value: 'b', label: 'B'),
         ],
       );
       expect(filter.displayValue, 'A, B');
 
       // Range
-      filter = const AppFilter(
+      filter = const DSFilter(
         id: 'test',
         label: 'Test',
         type: FilterType.range,
@@ -412,7 +412,7 @@ void main() {
       expect(filter.displayValue, '10 - 20');
 
       // Boolean
-      filter = const AppFilter(
+      filter = const DSFilter(
         id: 'test',
         label: 'Test',
         type: FilterType.boolean,
@@ -422,7 +422,7 @@ void main() {
     });
 
     test('selectedCount returns correct count', () {
-      var filter = const AppFilter(
+      var filter = const DSFilter(
         id: 'test',
         label: 'Test',
         type: FilterType.single,
@@ -430,7 +430,7 @@ void main() {
       );
       expect(filter.selectedCount, 1);
 
-      filter = const AppFilter(
+      filter = const DSFilter(
         id: 'test',
         label: 'Test',
         type: FilterType.multiple,
@@ -440,7 +440,7 @@ void main() {
     });
 
     test('clear removes value', () {
-      var filter = const AppFilter(
+      var filter = const DSFilter(
         id: 'test',
         label: 'Test',
         value: 'value',
@@ -453,7 +453,7 @@ void main() {
     });
 
     test('apply sets value', () {
-      var filter = const AppFilter(
+      var filter = const DSFilter(
         id: 'test',
         label: 'Test',
       );
@@ -464,15 +464,15 @@ void main() {
     });
   });
 
-  group('AppFilterBarUtils', () {
+  group('DSFilterBarUtils', () {
     test('getActiveFilters returns only active filters', () {
       final filters = [
-        const AppFilter(id: '1', label: 'F1', value: 'val', isActive: true),
-        const AppFilter(id: '2', label: 'F2'),
-        const AppFilter(id: '3', label: 'F3', value: 'val', isActive: true),
+        const DSFilter(id: '1', label: 'F1', value: 'val', isActive: true),
+        const DSFilter(id: '2', label: 'F2'),
+        const DSFilter(id: '3', label: 'F3', value: 'val', isActive: true),
       ];
 
-      final active = AppFilterBarUtils.getActiveFilters(filters);
+      final active = DSFilterBarUtils.getActiveFilters(filters);
       expect(active.length, 2);
       expect(active[0].id, '1');
       expect(active[1].id, '3');
@@ -480,37 +480,37 @@ void main() {
 
     test('getFilterSummary returns correct summary', () {
       final filters = [
-        const AppFilter(id: '1', label: 'F1', value: 'val', isActive: true),
-        const AppFilter(id: '2', label: 'F2'),
+        const DSFilter(id: '1', label: 'F1', value: 'val', isActive: true),
+        const DSFilter(id: '2', label: 'F2'),
       ];
 
-      var summary = AppFilterBarUtils.getFilterSummary(filters);
+      var summary = DSFilterBarUtils.getFilterSummary(filters);
       expect(summary, '1 filter');
 
       filters.add(
-          const AppFilter(id: '3', label: 'F3', value: 'val', isActive: true));
-      summary = AppFilterBarUtils.getFilterSummary(filters);
+          const DSFilter(id: '3', label: 'F3', value: 'val', isActive: true));
+      summary = DSFilterBarUtils.getFilterSummary(filters);
       expect(summary, '2 filters');
     });
 
     test('clearAllFilters clears all filter values', () {
       final filters = [
-        const AppFilter(id: '1', label: 'F1', value: 'val', isActive: true),
-        const AppFilter(id: '2', label: 'F2', value: 'val', isActive: true),
+        const DSFilter(id: '1', label: 'F1', value: 'val', isActive: true),
+        const DSFilter(id: '2', label: 'F2', value: 'val', isActive: true),
       ];
 
-      final cleared = AppFilterBarUtils.clearAllFilters(filters);
+      final cleared = DSFilterBarUtils.clearAllFilters(filters);
       expect(cleared.every((f) => !f.hasValue), true);
       expect(cleared.every((f) => !f.isActive), true);
     });
 
     test('applyFilter updates specific filter', () {
       final filters = [
-        const AppFilter(id: '1', label: 'F1'),
-        const AppFilter(id: '2', label: 'F2'),
+        const DSFilter(id: '1', label: 'F1'),
+        const DSFilter(id: '2', label: 'F2'),
       ];
 
-      final updated = AppFilterBarUtils.applyFilter(filters, '1', 'new value');
+      final updated = DSFilterBarUtils.applyFilter(filters, '1', 'new value');
       expect(updated[0].value, 'new value');
       expect(updated[0].isActive, true);
       expect(updated[1].value, null);
@@ -518,13 +518,13 @@ void main() {
 
     test('groupFilters groups by group ID', () {
       final filters = [
-        const AppFilter(id: '1', label: 'F1', group: 'A'),
-        const AppFilter(id: '2', label: 'F2', group: 'A'),
-        const AppFilter(id: '3', label: 'F3', group: 'B'),
-        const AppFilter(id: '4', label: 'F4'),
+        const DSFilter(id: '1', label: 'F1', group: 'A'),
+        const DSFilter(id: '2', label: 'F2', group: 'A'),
+        const DSFilter(id: '3', label: 'F3', group: 'B'),
+        const DSFilter(id: '4', label: 'F4'),
       ];
 
-      final grouped = AppFilterBarUtils.groupFilters(filters);
+      final grouped = DSFilterBarUtils.groupFilters(filters);
       expect(grouped.length, 3);
       expect(grouped['A']!.length, 2);
       expect(grouped['B']!.length, 1);
@@ -533,12 +533,12 @@ void main() {
 
     test('validateFilters returns validation errors', () {
       final filters = [
-        const AppFilter(
+        const DSFilter(
           id: '1',
           label: 'Required Filter',
           isRequired: true,
         ),
-        AppFilter(
+        DSFilter(
           id: '2',
           label: 'Validated Filter',
           value: 'test',
@@ -546,7 +546,7 @@ void main() {
         ),
       ];
 
-      final errors = AppFilterBarUtils.validateFilters(filters);
+      final errors = DSFilterBarUtils.validateFilters(filters);
       expect(errors.length, 2);
       expect(errors['1'], 'Required Filter is required');
       expect(errors['2'], 'Invalid');
@@ -554,17 +554,17 @@ void main() {
 
     test('generateSummaryText creates summary string', () {
       final filters = [
-        const AppFilter(
+        const DSFilter(
             id: '1', label: 'Status', value: 'Active', isActive: true),
-        const AppFilter(
+        const DSFilter(
             id: '2', label: 'Category', value: 'Electronics', isActive: true),
       ];
 
-      final summary = AppFilterBarUtils.generateSummaryText(filters);
+      final summary = DSFilterBarUtils.generateSummaryText(filters);
       expect(summary, 'Status: Active • Category: Electronics');
 
       // Test truncation
-      final longSummary = AppFilterBarUtils.generateSummaryText(
+      final longSummary = DSFilterBarUtils.generateSummaryText(
         filters,
         maxLength: 20,
       );

@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import '../../utils/responsive.dart';
 import 'app_top_app_bar_config.dart';
 
-class AppTopAppBar extends StatefulWidget implements PreferredSizeWidget {
-  final AppTopAppBarConfig config;
+class DSTopAppBar extends StatefulWidget implements PreferredSizeWidget {
+  final DSTopAppBarConfig config;
   final Widget? title;
   final List<Widget>? actions;
   final Widget? leading;
@@ -29,9 +29,9 @@ class AppTopAppBar extends StatefulWidget implements PreferredSizeWidget {
   final bool forceMaterialTransparency;
   final Clip? clipBehavior;
 
-  const AppTopAppBar({
+  const DSTopAppBar({
     super.key,
-    this.config = const AppTopAppBarConfig(),
+    this.config = const DSTopAppBarConfig(),
     this.title,
     this.actions,
     this.leading,
@@ -67,10 +67,10 @@ class AppTopAppBar extends StatefulWidget implements PreferredSizeWidget {
   }
 
   @override
-  State<AppTopAppBar> createState() => _AppTopAppBarState();
+  State<DSTopAppBar> createState() => _DSTopAppBarState();
 }
 
-class _AppTopAppBarState extends State<AppTopAppBar>
+class _DSTopAppBarState extends State<DSTopAppBar>
     with TickerProviderStateMixin {
   late AnimationController _stateAnimationController;
   late Animation<double> _fadeAnimation;
@@ -85,7 +85,7 @@ class _AppTopAppBarState extends State<AppTopAppBar>
   }
 
   @override
-  void didUpdateWidget(AppTopAppBar oldWidget) {
+  void didUpdateWidget(DSTopAppBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.config.state != widget.config.state) {
       _handleStateChange();
@@ -123,10 +123,10 @@ class _AppTopAppBarState extends State<AppTopAppBar>
 
   void _handleInitialState() {
     switch (widget.config.state) {
-      case AppTopAppBarState.loading:
+      case DSTopAppBarState.loading:
         _setLoadingState();
         break;
-      case AppTopAppBarState.skeleton:
+      case DSTopAppBarState.skeleton:
         _stateAnimationController.forward();
         break;
       default:
@@ -136,16 +136,16 @@ class _AppTopAppBarState extends State<AppTopAppBar>
 
   void _handleStateChange() {
     switch (widget.config.state) {
-      case AppTopAppBarState.loading:
+      case DSTopAppBarState.loading:
         _setLoadingState();
         break;
-      case AppTopAppBarState.skeleton:
+      case DSTopAppBarState.skeleton:
         setState(() {
           _isLoading = false;
         });
         _stateAnimationController.forward();
         break;
-      case AppTopAppBarState.disabled:
+      case DSTopAppBarState.disabled:
         setState(() {
           _isLoading = false;
         });
@@ -197,13 +197,13 @@ class _AppTopAppBarState extends State<AppTopAppBar>
   Widget _buildAppBarVariant(
       BuildContext context, ThemeData theme, bool isRtl) {
     switch (widget.config.variant) {
-      case AppTopAppBarVariant.primary:
+      case DSTopAppBarVariant.primary:
         return _buildPrimaryAppBar(context, theme, isRtl);
-      case AppTopAppBarVariant.center:
+      case DSTopAppBarVariant.center:
         return _buildCenterAppBar(context, theme, isRtl);
-      case AppTopAppBarVariant.large:
+      case DSTopAppBarVariant.large:
         return _buildLargeAppBar(context, theme, isRtl);
-      case AppTopAppBarVariant.collapsed:
+      case DSTopAppBarVariant.collapsed:
         return _buildCollapsedAppBar(context, theme, isRtl);
     }
   }
@@ -317,7 +317,7 @@ class _AppTopAppBarState extends State<AppTopAppBar>
       return _buildLoadingTitle(context, theme);
     }
 
-    if (widget.config.state == AppTopAppBarState.skeleton) {
+    if (widget.config.state == DSTopAppBarState.skeleton) {
       return _buildSkeletonTitle(context, theme);
     }
 
@@ -331,7 +331,7 @@ class _AppTopAppBarState extends State<AppTopAppBar>
   }
 
   Widget _buildConfigTitle(
-      BuildContext context, ThemeData theme, AppTopAppBarTitle titleConfig) {
+      BuildContext context, ThemeData theme, DSTopAppBarTitle titleConfig) {
     if (titleConfig.customWidget != null) {
       return titleConfig.customWidget!;
     }
@@ -392,7 +392,7 @@ class _AppTopAppBarState extends State<AppTopAppBar>
       return _buildLoadingActions(context, theme);
     }
 
-    if (widget.config.state == AppTopAppBarState.skeleton) {
+    if (widget.config.state == DSTopAppBarState.skeleton) {
       return _buildSkeletonActions(context, theme);
     }
 
@@ -442,7 +442,7 @@ class _AppTopAppBarState extends State<AppTopAppBar>
   List<Widget> _buildConfigActions(
     BuildContext context,
     ThemeData theme,
-    AppTopAppBarActions actionsConfig,
+    DSTopAppBarActions actionsConfig,
     int? maxActions,
   ) {
     final allActions = [
@@ -506,19 +506,19 @@ class _AppTopAppBarState extends State<AppTopAppBar>
   Widget _buildAction(
     BuildContext context,
     ThemeData theme,
-    AppTopAppBarAction action,
+    DSTopAppBarAction action,
     bool isInteractive,
   ) {
     final isEnabled = !action.disabled && isInteractive;
 
     switch (action.type) {
-      case AppTopAppBarActionType.icon:
+      case DSTopAppBarActionType.icon:
         return IconButton(
           icon: action.icon ?? const Icon(Icons.help_outline),
           tooltip: action.tooltip,
           onPressed: isEnabled ? action.onPressed : null,
         );
-      case AppTopAppBarActionType.text:
+      case DSTopAppBarActionType.text:
         return TextButton(
           onPressed: isEnabled ? action.onPressed : null,
           child: Text(
@@ -528,7 +528,7 @@ class _AppTopAppBarState extends State<AppTopAppBar>
             ),
           ),
         );
-      case AppTopAppBarActionType.iconText:
+      case DSTopAppBarActionType.iconText:
         return TextButton.icon(
           icon: action.icon ?? const Icon(Icons.help_outline),
           label: Text(action.text ?? action.tooltip ?? action.id),
@@ -585,29 +585,29 @@ class _AppTopAppBarState extends State<AppTopAppBar>
   Widget _buildNavigationIcon(
     BuildContext context,
     ThemeData theme,
-    AppTopAppBarNavigationIcon navigationIcon,
+    DSTopAppBarNavigationIcon navigationIcon,
   ) {
     final isEnabled =
         !navigationIcon.disabled && widget.config.state.isInteractive;
 
     Widget icon;
     switch (navigationIcon.type) {
-      case AppTopAppBarNavigationType.auto:
+      case DSTopAppBarNavigationType.auto:
         icon = _getAutoNavigationIcon(context);
         break;
-      case AppTopAppBarNavigationType.back:
+      case DSTopAppBarNavigationType.back:
         icon = const Icon(Icons.arrow_back);
         break;
-      case AppTopAppBarNavigationType.close:
+      case DSTopAppBarNavigationType.close:
         icon = const Icon(Icons.close);
         break;
-      case AppTopAppBarNavigationType.menu:
+      case DSTopAppBarNavigationType.menu:
         icon = const Icon(Icons.menu);
         break;
-      case AppTopAppBarNavigationType.drawer:
+      case DSTopAppBarNavigationType.drawer:
         icon = const Icon(Icons.menu);
         break;
-      case AppTopAppBarNavigationType.custom:
+      case DSTopAppBarNavigationType.custom:
         icon = navigationIcon.icon ?? const Icon(Icons.arrow_back);
         break;
     }

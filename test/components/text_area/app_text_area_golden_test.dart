@@ -4,7 +4,7 @@ import 'package:iautomat_design_system/src/components/text_area/app_text_area.da
 import 'package:iautomat_design_system/src/components/text_area/text_area_config.dart';
 
 void main() {
-  group('AppTextArea Golden Tests', () {
+  group('DSTextArea Golden Tests', () {
     testWidgets('default text area', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
@@ -12,7 +12,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Default Text Area',
                   hint: 'Enter your message here',
                   minLines: 3,
@@ -37,10 +37,10 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Auto-Resize Text Area',
                   hint: 'Starts with 3 lines, grows to 8',
-                  variant: AppTextAreaVariant.autoResize,
+                  variant: DSTextAreaVariant.autoResize,
                   minLines: 3,
                   maxLines: 8,
                 ),
@@ -65,7 +65,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Focused Text Area',
                   hint: 'This area is focused',
                   focusNode: focusNode,
@@ -100,7 +100,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   controller: controller,
                   label: 'Text Area with Content',
                   hint: 'Enter text here',
@@ -128,7 +128,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Disabled Text Area',
                   hint: 'This area is disabled',
                   enabled: false,
@@ -153,7 +153,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Error Text Area',
                   hint: 'This area has an error',
                   errorText: 'This field is required',
@@ -178,7 +178,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Text Area with Helper',
                   hint: 'Enter your message',
                   helperText: 'Please provide detailed information',
@@ -204,7 +204,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Text Area with Icons',
                   hint: 'Message with icons',
                   prefixIcon: Icons.message,
@@ -233,7 +233,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   controller: controller,
                   label: 'Text Area with Counter',
                   hint: 'Type here',
@@ -273,7 +273,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   controller: controller,
                   label: 'Long Content Area',
                   hint: 'Scroll to see more',
@@ -301,10 +301,10 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Loading Text Area',
                   hint: 'Loading...',
-                  overrideState: AppTextAreaState.loading,
+                  overrideState: DSTextAreaState.loading,
                   helperText: 'Please wait',
                 ),
               ),
@@ -326,11 +326,11 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Skeleton Text Area',
                   hint: 'Loading...',
                   helperText: 'Loading content',
-                  overrideState: AppTextAreaState.skeleton,
+                  overrideState: DSTextAreaState.skeleton,
                 ),
               ),
             ),
@@ -345,7 +345,7 @@ void main() {
     });
 
     testWidgets('custom configuration', (tester) async {
-      const customConfig = AppTextAreaConfig(
+      const customConfig = DSTextAreaConfig(
         borderRadius: 16,
         contentPadding: EdgeInsets.all(20),
         minimumHeight: 120,
@@ -359,7 +359,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Custom Config Area',
                   hint: 'Custom styling',
                   config: customConfig,
@@ -390,7 +390,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   controller: controller,
                   label: 'Read-Only Text Area',
                   readOnly: true,
@@ -419,7 +419,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'Dark Theme Area',
                   hint: 'Dark mode styling',
                   helperText: 'Helper text in dark theme',
@@ -445,7 +445,7 @@ void main() {
             body: Center(
               child: SizedBox(
                 width: 300,
-                child: AppTextArea(
+                child: DSTextArea(
                   label: 'منطقة النص',
                   hint: 'اكتب رسالتك هنا',
                   textDirection: TextDirection.rtl,

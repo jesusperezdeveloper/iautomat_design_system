@@ -3,52 +3,52 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_role_visibility_config.freezed.dart';
 
-/// Configuración principal para AppRoleVisibility
+/// Configuración principal para DSRoleVisibility
 ///
 /// Define el comportamiento, apariencia y funcionalidad del componente
 /// de visibilidad basada en roles, incluyendo variantes de helpers,
 /// estados, colores, espaciado, animaciones y accesibilidad.
 @freezed
-class AppRoleVisibilityConfig with _$AppRoleVisibilityConfig {
-  const factory AppRoleVisibilityConfig({
+class DSRoleVisibilityConfig with _$DSRoleVisibilityConfig {
+  const factory DSRoleVisibilityConfig({
     /// Variante del componente
-    @Default(AppRoleVariant.helpers) AppRoleVariant variant,
+    @Default(DSRoleVariant.helpers) DSRoleVariant variant,
 
     /// Lista de roles permitidos para mostrar el contenido
-    @Default([]) List<AppRole> roles,
+    @Default([]) List<DSRole> roles,
 
     /// Estado actual del componente
-    @Default(AppRoleState.defaultState) AppRoleState state,
+    @Default(DSRoleState.defaultState) DSRoleState state,
 
     /// Configuración de colores (solo design tokens)
-    AppRoleVisibilityColors? colors,
+    DSRoleVisibilityColors? colors,
 
     /// Configuración de espaciado (solo design tokens)
-    AppRoleSpacing? spacing,
+    DSRoleSpacing? spacing,
 
     /// Configuración de tipografía (solo design tokens)
-    AppRoleTypography? typography,
+    DSRoleTypography? typography,
 
     /// Configuración de animaciones
-    AppRoleVisibilityAnimations? animations,
+    DSRoleVisibilityAnimations? animations,
 
     /// Configuración de comportamiento
-    AppRoleVisibilityBehavior? behavior,
+    DSRoleVisibilityBehavior? behavior,
 
     /// Configuración de accesibilidad
-    AppRoleAccessibilityConfig? accessibility,
+    DSRoleAccessibilityConfig? accessibility,
 
     /// Modo de evaluación de roles
-    @Default(AppRoleEvaluationMode.any) AppRoleEvaluationMode evaluationMode,
+    @Default(DSRoleEvaluationMode.any) DSRoleEvaluationMode evaluationMode,
 
     /// Lista de permisos requeridos
     @Default([]) List<String> permissions,
 
     /// Configuración de jerarquía
-    AppRoleHierarchyConfig? hierarchyConfig,
+    DSRoleHierarchyConfig? hierarchyConfig,
 
     /// Evaluador personalizado
-    AppRoleCustomEvaluator? customEvaluator,
+    DSRoleCustomEvaluator? customEvaluator,
 
     /// Mensaje cuando se niega el acceso
     String? accessDeniedMessage,
@@ -64,17 +64,17 @@ class AppRoleVisibilityConfig with _$AppRoleVisibilityConfig {
 
     /// Placeholder personalizado cuando no hay permisos
     Widget? customPlaceholder,
-  }) = _AppRoleVisibilityConfig;
+  }) = _DSRoleVisibilityConfig;
 }
 
 /// Variantes disponibles para el componente
-enum AppRoleVariant {
+enum DSRoleVariant {
   /// Vista con helpers de debugging y desarrollo
   helpers,
 }
 
 /// Estados disponibles del componente
-enum AppRoleState {
+enum DSRoleState {
   /// Estado por defecto
   defaultState,
 
@@ -101,25 +101,25 @@ enum AppRoleState {
 }
 
 /// Extensión para obtener propiedades de los estados
-extension AppRoleStateExtension on AppRoleState {
+extension DSRoleStateExtension on DSRoleState {
   /// Obtiene el nombre del estado para mostrar
   String get displayName {
     switch (this) {
-      case AppRoleState.defaultState:
+      case DSRoleState.defaultState:
         return 'Default';
-      case AppRoleState.hover:
+      case DSRoleState.hover:
         return 'Hover';
-      case AppRoleState.pressed:
+      case DSRoleState.pressed:
         return 'Pressed';
-      case AppRoleState.focus:
+      case DSRoleState.focus:
         return 'Focus';
-      case AppRoleState.selected:
+      case DSRoleState.selected:
         return 'Selected';
-      case AppRoleState.disabled:
+      case DSRoleState.disabled:
         return 'Disabled';
-      case AppRoleState.loading:
+      case DSRoleState.loading:
         return 'Loading';
-      case AppRoleState.skeleton:
+      case DSRoleState.skeleton:
         return 'Skeleton';
     }
   }
@@ -127,9 +127,9 @@ extension AppRoleStateExtension on AppRoleState {
   /// Indica si el estado permite interacciones
   bool get isInteractive {
     switch (this) {
-      case AppRoleState.disabled:
-      case AppRoleState.loading:
-      case AppRoleState.skeleton:
+      case DSRoleState.disabled:
+      case DSRoleState.loading:
+      case DSRoleState.skeleton:
         return false;
       default:
         return true;
@@ -138,12 +138,12 @@ extension AppRoleStateExtension on AppRoleState {
 
   /// Indica si el estado muestra loading
   bool get isLoading {
-    return this == AppRoleState.loading || this == AppRoleState.skeleton;
+    return this == DSRoleState.loading || this == DSRoleState.skeleton;
   }
 }
 
 /// Tipos de roles disponibles en el sistema
-enum AppRoleType {
+enum DSRoleType {
   /// Rol de administrador - acceso completo
   admin,
 
@@ -164,7 +164,7 @@ enum AppRoleType {
 }
 
 /// Niveles de prioridad para roles
-enum AppRolePriority {
+enum DSRolePriority {
   /// Prioridad crítica - siempre se evalúa primero
   critical,
 
@@ -180,13 +180,13 @@ enum AppRolePriority {
 
 /// Configuración de un rol
 @freezed
-class AppRole with _$AppRole {
-  const factory AppRole({
+class DSRole with _$DSRole {
+  const factory DSRole({
     /// ID único del rol
     required String id,
 
     /// Tipo de rol
-    required AppRoleType type,
+    required DSRoleType type,
 
     /// Nombre del rol para mostrar
     required String name,
@@ -201,10 +201,10 @@ class AppRole with _$AppRole {
     @Default([]) List<String> permissions,
 
     /// Prioridad del rol
-    @Default(AppRolePriority.normal) AppRolePriority priority,
+    @Default(DSRolePriority.normal) DSRolePriority priority,
 
     /// Importancia del rol
-    AppRoleImportance? importance,
+    DSRoleImportance? importance,
 
     /// Nivel del rol (para jerarquías)
     int? level,
@@ -216,7 +216,7 @@ class AppRole with _$AppRole {
     @Default(true) bool enabled,
 
     /// Configuración de accesibilidad
-    AppRoleAccessibility? accessibility,
+    DSRoleAccessibility? accessibility,
 
     /// Metadatos adicionales del rol
     @Default({}) Map<String, dynamic> metadata,
@@ -231,8 +231,8 @@ class AppRole with _$AppRole {
 
 /// Configuración de colores (solo design tokens)
 @freezed
-class AppRoleColors with _$AppRoleColors {
-  const factory AppRoleColors({
+class DSRoleColors with _$DSRoleColors {
+  const factory DSRoleColors({
     /// Color de fondo del componente
     Color? backgroundColor,
 
@@ -285,8 +285,8 @@ class AppRoleColors with _$AppRoleColors {
 
 /// Configuración de espaciado (solo design tokens)
 @freezed
-class AppRoleSpacing with _$AppRoleSpacing {
-  const factory AppRoleSpacing({
+class DSRoleSpacing with _$DSRoleSpacing {
+  const factory DSRoleSpacing({
     /// Padding del componente principal
     @Default(EdgeInsets.zero) EdgeInsets componentPadding,
 
@@ -324,8 +324,8 @@ class AppRoleSpacing with _$AppRoleSpacing {
 
 /// Configuración de tipografía (solo design tokens)
 @freezed
-class AppRoleTypography with _$AppRoleTypography {
-  const factory AppRoleTypography({
+class DSRoleTypography with _$DSRoleTypography {
+  const factory DSRoleTypography({
     /// Estilo para texto del placeholder
     TextStyle? placeholderTextStyle,
 
@@ -345,8 +345,8 @@ class AppRoleTypography with _$AppRoleTypography {
 
 /// Configuración de animaciones
 @freezed
-class AppRoleAnimation with _$AppRoleAnimation {
-  const factory AppRoleAnimation({
+class DSRoleAnimation with _$DSRoleAnimation {
+  const factory DSRoleAnimation({
     /// Duración de animaciones principales
     @Default(Duration(milliseconds: 300)) Duration duration,
 
@@ -372,10 +372,10 @@ class AppRoleAnimation with _$AppRoleAnimation {
 
 /// Configuración de comportamiento
 @freezed
-class AppRoleBehavior with _$AppRoleBehavior {
-  const factory AppRoleBehavior({
+class DSRoleBehavior with _$DSRoleBehavior {
+  const factory DSRoleBehavior({
     /// Modo de evaluación de roles
-    @Default(AppRoleEvaluationMode.any) AppRoleEvaluationMode evaluationMode,
+    @Default(DSRoleEvaluationMode.any) DSRoleEvaluationMode evaluationMode,
 
     /// Si debe cachear resultados de evaluación
     @Default(true) bool cacheResults,
@@ -393,7 +393,7 @@ class AppRoleBehavior with _$AppRoleBehavior {
     @Default(false) bool asyncValidation,
 
     /// Comportamiento cuando falla la validación
-    @Default(AppRoleFailureBehavior.hide) AppRoleFailureBehavior onFailure,
+    @Default(DSRoleFailureBehavior.hide) DSRoleFailureBehavior onFailure,
 
     /// Si debe mostrar loading durante validación asíncrona
     @Default(true) bool showLoadingDuringValidation,
@@ -401,7 +401,7 @@ class AppRoleBehavior with _$AppRoleBehavior {
 }
 
 /// Modos de evaluación de roles
-enum AppRoleEvaluationMode {
+enum DSRoleEvaluationMode {
   /// Cualquier rol coincidente permite acceso
   any,
 
@@ -416,7 +416,7 @@ enum AppRoleEvaluationMode {
 }
 
 /// Comportamiento en caso de fallo de validación
-enum AppRoleFailureBehavior {
+enum DSRoleFailureBehavior {
   /// Ocultar completamente el contenido
   hide,
 
@@ -432,8 +432,8 @@ enum AppRoleFailureBehavior {
 
 /// Configuración de accesibilidad
 @freezed
-class AppRoleA11yConfig with _$AppRoleA11yConfig {
-  const factory AppRoleA11yConfig({
+class DSRoleA11yConfig with _$DSRoleA11yConfig {
+  const factory DSRoleA11yConfig({
     /// Si la accesibilidad está habilitada
     @Default(true) bool enabled,
 
@@ -463,18 +463,18 @@ class AppRoleA11yConfig with _$AppRoleA11yConfig {
 
     /// Hint para explicar por qué el contenido está oculto
     @Default('No tiene los permisos necesarios para ver este contenido') String permissionDeniedHint,
-  }) = _AppRoleA11yConfig;
+  }) = _DSRoleA11yConfig;
 }
 
 /// Contexto de evaluación de roles
 @freezed
-class AppRoleContext with _$AppRoleContext {
-  const factory AppRoleContext({
+class DSRoleContext with _$DSRoleContext {
+  const factory DSRoleContext({
     /// Usuario actual
     required String userId,
 
     /// Roles del usuario actual
-    @Default([]) List<AppRole> userRoles,
+    @Default([]) List<DSRole> userRoles,
 
     /// Permisos adicionales del usuario
     @Default([]) List<String> userPermissions,
@@ -495,8 +495,8 @@ class AppRoleContext with _$AppRoleContext {
 
 /// Resultado de evaluación de roles
 @freezed
-class AppRoleEvaluationResult with _$AppRoleEvaluationResult {
-  const factory AppRoleEvaluationResult({
+class DSRoleEvaluationResult with _$DSRoleEvaluationResult {
+  const factory DSRoleEvaluationResult({
     /// Si el usuario tiene acceso
     required bool hasAccess,
 
@@ -504,13 +504,13 @@ class AppRoleEvaluationResult with _$AppRoleEvaluationResult {
     bool? isVisible,
 
     /// Error de validación si aplica
-    AppRoleValidationError? error,
+    DSRoleValidationError? error,
 
     /// Roles que coincidieron
-    @Default([]) List<AppRole> matchedRoles,
+    @Default([]) List<DSRole> matchedRoles,
 
     /// Roles que no coincidieron
-    @Default([]) List<AppRole> unmatchedRoles,
+    @Default([]) List<DSRole> unmatchedRoles,
 
     /// Permisos que coincidieron
     @Default([]) List<String> matchedPermissions,
@@ -532,23 +532,23 @@ class AppRoleEvaluationResult with _$AppRoleEvaluationResult {
 /// Funciones de utilidad para configuración
 
 /// Configuración por defecto para diferentes contextos
-class AppRoleVisibilityConfigDefaults {
+class DSRoleVisibilityConfigDefaults {
   /// Configuración por defecto estándar
-  static const standard = AppRoleVisibilityConfig();
+  static const standard = DSRoleVisibilityConfig();
 
   /// Configuración para debugging
-  static const debug = AppRoleVisibilityConfig(
+  static const debug = DSRoleVisibilityConfig(
     showDebugHelpers: true,
-    behavior: AppRoleVisibilityBehavior(
+    behavior: DSRoleVisibilityBehavior(
       enableDebugMode: true,
       enableLogging: true,
     ),
   );
 
   /// Configuración para producción
-  static const production = AppRoleVisibilityConfig(
+  static const production = DSRoleVisibilityConfig(
     showDebugHelpers: false,
-    behavior: AppRoleVisibilityBehavior(
+    behavior: DSRoleVisibilityBehavior(
       enableDebugMode: false,
       enableLogging: true,
       cacheResults: true,
@@ -556,68 +556,68 @@ class AppRoleVisibilityConfigDefaults {
   );
 
   /// Configuración con placeholder
-  static const withPlaceholder = AppRoleVisibilityConfig(
+  static const withPlaceholder = DSRoleVisibilityConfig(
     showPlaceholder: true,
-    behavior: AppRoleVisibilityBehavior(
+    behavior: DSRoleVisibilityBehavior(
       showErrorMessages: true,
     ),
   );
 }
 
 /// Roles predefinidos comunes
-class AppRolePredefined {
+class DSRolePredefined {
   /// Rol de administrador con todos los permisos
-  static const admin = AppRole(
+  static const admin = DSRole(
     id: 'admin',
-    type: AppRoleType.admin,
+    type: DSRoleType.admin,
     name: 'Administrador',
     description: 'Acceso completo a todas las funcionalidades',
     permissions: ['*'],
-    priority: AppRolePriority.critical,
+    priority: DSRolePriority.critical,
   );
 
   /// Rol de editor con permisos de contenido
-  static const editor = AppRole(
+  static const editor = DSRole(
     id: 'editor',
-    type: AppRoleType.editor,
+    type: DSRoleType.editor,
     name: 'Editor',
     description: 'Puede crear y editar contenido',
     permissions: ['content.create', 'content.edit', 'content.view'],
-    priority: AppRolePriority.high,
+    priority: DSRolePriority.high,
   );
 
   /// Rol de moderador con permisos de moderación
-  static const moderator = AppRole(
+  static const moderator = DSRole(
     id: 'moderator',
-    type: AppRoleType.moderator,
+    type: DSRoleType.moderator,
     name: 'Moderador',
     description: 'Puede moderar contenido y usuarios',
     permissions: ['content.moderate', 'users.moderate', 'content.view'],
-    priority: AppRolePriority.high,
+    priority: DSRolePriority.high,
   );
 
   /// Rol de usuario estándar
-  static const user = AppRole(
+  static const user = DSRole(
     id: 'user',
-    type: AppRoleType.user,
+    type: DSRoleType.user,
     name: 'Usuario',
     description: 'Acceso básico a la aplicación',
     permissions: ['content.view', 'profile.edit'],
-    priority: AppRolePriority.normal,
+    priority: DSRolePriority.normal,
   );
 
   /// Rol de invitado con acceso mínimo
-  static const guest = AppRole(
+  static const guest = DSRole(
     id: 'guest',
-    type: AppRoleType.guest,
+    type: DSRoleType.guest,
     name: 'Invitado',
     description: 'Acceso de solo lectura',
     permissions: ['content.view'],
-    priority: AppRolePriority.low,
+    priority: DSRolePriority.low,
   );
 
   /// Lista de todos los roles predefinidos
-  static const List<AppRole> all = [
+  static const List<DSRole> all = [
     admin,
     editor,
     moderator,
@@ -627,16 +627,16 @@ class AppRolePredefined {
 }
 
 /// Validadores de roles
-class AppRoleValidators {
+class DSRoleValidators {
   /// Valida si un rol es válido
-  static bool isValidRole(AppRole role) {
+  static bool isValidRole(DSRole role) {
     return role.id.isNotEmpty &&
            role.name.isNotEmpty &&
            role.isActive;
   }
 
   /// Valida si un usuario tiene un permiso específico
-  static bool hasPermission(List<AppRole> userRoles, String permission) {
+  static bool hasPermission(List<DSRole> userRoles, String permission) {
     for (final role in userRoles) {
       if (!role.isActive) continue;
 
@@ -659,22 +659,22 @@ class AppRoleValidators {
   }
 
   /// Evalúa si los roles del usuario coinciden con los requeridos
-  static AppRoleEvaluationResult evaluateRoles({
-    required List<AppRole> userRoles,
-    required List<AppRole> requiredRoles,
-    required AppRoleEvaluationMode mode,
-    AppRoleContext? context,
+  static DSRoleEvaluationResult evaluateRoles({
+    required List<DSRole> userRoles,
+    required List<DSRole> requiredRoles,
+    required DSRoleEvaluationMode mode,
+    DSRoleContext? context,
   }) {
     final startTime = DateTime.now();
-    final matchedRoles = <AppRole>[];
-    final unmatchedRoles = <AppRole>[];
+    final matchedRoles = <DSRole>[];
+    final unmatchedRoles = <DSRole>[];
     final matchedPermissions = <String>[];
 
     bool hasAccess = false;
     String? denialReason;
 
     switch (mode) {
-      case AppRoleEvaluationMode.any:
+      case DSRoleEvaluationMode.any:
         // Cualquier rol coincidente permite acceso
         for (final requiredRole in requiredRoles) {
           bool found = false;
@@ -696,7 +696,7 @@ class AppRoleValidators {
         }
         break;
 
-      case AppRoleEvaluationMode.all:
+      case DSRoleEvaluationMode.all:
         // Todos los roles deben coincidir
         for (final requiredRole in requiredRoles) {
           bool found = false;
@@ -718,8 +718,8 @@ class AppRoleValidators {
         }
         break;
 
-      case AppRoleEvaluationMode.groups:
-      case AppRoleEvaluationMode.custom:
+      case DSRoleEvaluationMode.groups:
+      case DSRoleEvaluationMode.custom:
         // Implementación simplificada para el ejemplo
         hasAccess = matchedRoles.isNotEmpty;
         break;
@@ -728,7 +728,7 @@ class AppRoleValidators {
     final endTime = DateTime.now();
     final evaluationTime = endTime.difference(startTime).inMilliseconds;
 
-    return AppRoleEvaluationResult(
+    return DSRoleEvaluationResult(
       hasAccess: hasAccess,
       matchedRoles: matchedRoles,
       unmatchedRoles: unmatchedRoles,
@@ -741,7 +741,7 @@ class AppRoleValidators {
   }
 
   /// Verifica si dos roles coinciden
-  static bool _rolesMatch(AppRole userRole, AppRole requiredRole) {
+  static bool _rolesMatch(DSRole userRole, DSRole requiredRole) {
     if (!userRole.isActive) return false;
 
     // Coincidencia por ID
@@ -751,7 +751,7 @@ class AppRoleValidators {
     if (userRole.type == requiredRole.type) return true;
 
     // Admin tiene acceso a todo
-    if (userRole.type == AppRoleType.admin) return true;
+    if (userRole.type == DSRoleType.admin) return true;
 
     // Verificar herencia
     if (requiredRole.inheritsFrom.contains(userRole.id)) return true;
@@ -762,7 +762,7 @@ class AppRoleValidators {
 
 /// Extensiones auxiliares
 
-extension AppRoleExtensions on AppRole {
+extension DSRoleExtensions on DSRole {
   /// Verifica si el rol ha expirado
   bool get isExpired {
     if (expiresAt == null) return false;
@@ -777,33 +777,33 @@ extension AppRoleExtensions on AppRole {
   /// Obtiene la prioridad numérica del rol
   int get priorityValue {
     switch (priority) {
-      case AppRolePriority.critical:
+      case DSRolePriority.critical:
         return 100;
-      case AppRolePriority.high:
+      case DSRolePriority.high:
         return 75;
-      case AppRolePriority.normal:
+      case DSRolePriority.normal:
         return 50;
-      case AppRolePriority.low:
+      case DSRolePriority.low:
         return 25;
     }
   }
 }
 
-extension AppRoleTypeExtensions on AppRoleType {
+extension DSRoleTypeExtensions on DSRoleType {
   /// Obtiene el nivel de acceso del tipo de rol
   int get accessLevel {
     switch (this) {
-      case AppRoleType.admin:
+      case DSRoleType.admin:
         return 100;
-      case AppRoleType.editor:
+      case DSRoleType.editor:
         return 75;
-      case AppRoleType.moderator:
+      case DSRoleType.moderator:
         return 75;
-      case AppRoleType.user:
+      case DSRoleType.user:
         return 50;
-      case AppRoleType.guest:
+      case DSRoleType.guest:
         return 25;
-      case AppRoleType.custom:
+      case DSRoleType.custom:
         return 50;
     }
   }
@@ -811,55 +811,55 @@ extension AppRoleTypeExtensions on AppRoleType {
   /// Obtiene el color asociado al tipo de rol
   Color get color {
     switch (this) {
-      case AppRoleType.admin:
+      case DSRoleType.admin:
         return Colors.red;
-      case AppRoleType.editor:
+      case DSRoleType.editor:
         return Colors.blue;
-      case AppRoleType.moderator:
+      case DSRoleType.moderator:
         return Colors.orange;
-      case AppRoleType.user:
+      case DSRoleType.user:
         return Colors.green;
-      case AppRoleType.guest:
+      case DSRoleType.guest:
         return Colors.grey;
-      case AppRoleType.custom:
+      case DSRoleType.custom:
         return Colors.purple;
     }
   }
 }
 
 // Typedefs para callbacks
-typedef AppRoleCustomEvaluator = Future<bool> Function(
-  List<AppRole> userRoles,
-  List<AppRole> requiredRoles,
-  AppRoleContext? context,
+typedef DSRoleCustomEvaluator = Future<bool> Function(
+  List<DSRole> userRoles,
+  List<DSRole> requiredRoles,
+  DSRoleContext? context,
 );
 
-typedef AppRoleVisibilityCallback = void Function(AppRoleEvaluationResult result);
-typedef AppRoleValidationCallback = void Function(AppRoleValidationError error);
-typedef AppRoleVisibilityErrorBuilder = Widget Function(
+typedef DSRoleVisibilityCallback = void Function(DSRoleEvaluationResult result);
+typedef DSRoleValidationCallback = void Function(DSRoleValidationError error);
+typedef DSRoleVisibilityErrorBuilder = Widget Function(
   BuildContext context,
-  AppRoleValidationError error,
-  AppRoleVisibilityConfig config,
+  DSRoleValidationError error,
+  DSRoleVisibilityConfig config,
 );
-typedef AppRoleVisibilityLoadingBuilder = Widget Function(
+typedef DSRoleVisibilityLoadingBuilder = Widget Function(
   BuildContext context,
-  AppRoleVisibilityConfig config,
+  DSRoleVisibilityConfig config,
 );
 
 // Clases adicionales necesarias para el componente
 @freezed
-class AppRoleValidationError with _$AppRoleValidationError {
-  const factory AppRoleValidationError({
-    required AppRoleErrorType type,
+class DSRoleValidationError with _$DSRoleValidationError {
+  const factory DSRoleValidationError({
+    required DSRoleErrorType type,
     required String message,
-    List<AppRole>? requiredRoles,
-    List<AppRole>? userRoles,
+    List<DSRole>? requiredRoles,
+    List<DSRole>? userRoles,
     String? code,
     Map<String, dynamic>? details,
   }) = _AppRoleValidationError;
 }
 
-enum AppRoleErrorType {
+enum DSRoleErrorType {
   accessDenied,
   evaluationError,
   configurationError,
@@ -869,8 +869,8 @@ enum AppRoleErrorType {
 }
 
 @freezed
-class AppRoleVisibilityColors with _$AppRoleVisibilityColors {
-  const factory AppRoleVisibilityColors({
+class DSRoleVisibilityColors with _$DSRoleVisibilityColors {
+  const factory DSRoleVisibilityColors({
     Color? primaryColor,
     Color? backgroundColor,
     Color? foregroundColor,
@@ -889,8 +889,8 @@ class AppRoleVisibilityColors with _$AppRoleVisibilityColors {
 }
 
 @freezed
-class AppRoleVisibilityAnimations with _$AppRoleVisibilityAnimations {
-  const factory AppRoleVisibilityAnimations({
+class DSRoleVisibilityAnimations with _$DSRoleVisibilityAnimations {
+  const factory DSRoleVisibilityAnimations({
     @Default(Duration(milliseconds: 300)) Duration duration,
     @Default(Curves.easeInOut) Curve curve,
     @Default(true) bool enableAnimations,
@@ -899,8 +899,8 @@ class AppRoleVisibilityAnimations with _$AppRoleVisibilityAnimations {
 }
 
 @freezed
-class AppRoleVisibilityBehavior with _$AppRoleVisibilityBehavior {
-  const factory AppRoleVisibilityBehavior({
+class DSRoleVisibilityBehavior with _$DSRoleVisibilityBehavior {
+  const factory DSRoleVisibilityBehavior({
     @Default(false) bool preserveSpaceWhenHidden,
     @Default(true) bool showErrorMessages,
     @Default(false) bool enableDebugMode,
@@ -913,19 +913,19 @@ class AppRoleVisibilityBehavior with _$AppRoleVisibilityBehavior {
 }
 
 @freezed
-class AppRoleAccessibilityConfig with _$AppRoleAccessibilityConfig {
-  const factory AppRoleAccessibilityConfig({
+class DSRoleAccessibilityConfig with _$DSRoleAccessibilityConfig {
+  const factory DSRoleAccessibilityConfig({
     @Default(true) bool enableA11yAnnouncements,
     String? accessGrantedMessage,
     String? accessDeniedMessage,
     String? roleChangeMessage,
     String? errorAnnouncementMessage,
-  }) = _AppRoleAccessibilityConfig;
+  }) = _DSRoleAccessibilityConfig;
 }
 
 @freezed
-class AppRoleAccessibility with _$AppRoleAccessibility {
-  const factory AppRoleAccessibility({
+class DSRoleAccessibility with _$DSRoleAccessibility {
+  const factory DSRoleAccessibility({
     String? label,
     String? hint,
     String? value,
@@ -933,7 +933,7 @@ class AppRoleAccessibility with _$AppRoleAccessibility {
   }) = _AppRoleAccessibility;
 }
 
-enum AppRoleImportance {
+enum DSRoleImportance {
   low,
   medium,
   high,
@@ -941,32 +941,32 @@ enum AppRoleImportance {
 }
 
 @freezed
-class AppRoleHierarchyConfig with _$AppRoleHierarchyConfig {
-  const factory AppRoleHierarchyConfig({
+class DSRoleHierarchyConfig with _$DSRoleHierarchyConfig {
+  const factory DSRoleHierarchyConfig({
     @Default(0) int minimumLevel,
     @Default(false) bool strictMode,
-  }) = _AppRoleHierarchyConfig;
+  }) = _DSRoleHierarchyConfig;
 }
 
 // Clases de styling adicionales para el platform adapter
 @freezed
-class AppRoleVisibilityPadding with _$AppRoleVisibilityPadding {
-  const factory AppRoleVisibilityPadding({
+class DSRoleVisibilityPadding with _$DSRoleVisibilityPadding {
+  const factory DSRoleVisibilityPadding({
     @Default(16.0) double horizontal,
     @Default(8.0) double vertical,
   }) = _AppRoleVisibilityPadding;
 }
 
 @freezed
-class AppRoleVisibilityBorderRadius with _$AppRoleVisibilityBorderRadius {
-  const factory AppRoleVisibilityBorderRadius({
+class DSRoleVisibilityBorderRadius with _$DSRoleVisibilityBorderRadius {
+  const factory DSRoleVisibilityBorderRadius({
     @Default(8.0) double radius,
   }) = _AppRoleVisibilityBorderRadius;
 }
 
 @freezed
-class AppRoleVisibilityTextStyle with _$AppRoleVisibilityTextStyle {
-  const factory AppRoleVisibilityTextStyle({
+class DSRoleVisibilityTextStyle with _$DSRoleVisibilityTextStyle {
+  const factory DSRoleVisibilityTextStyle({
     double? fontSize,
     FontWeight? fontWeight,
     Color? color,
@@ -976,8 +976,8 @@ class AppRoleVisibilityTextStyle with _$AppRoleVisibilityTextStyle {
 }
 
 @freezed
-class AppRoleVisibilityShadow with _$AppRoleVisibilityShadow {
-  const factory AppRoleVisibilityShadow({
+class DSRoleVisibilityShadow with _$DSRoleVisibilityShadow {
+  const factory DSRoleVisibilityShadow({
     @Default(Colors.black26) Color color,
     @Default(0.3) double opacity,
     @Default(4.0) double blurRadius,
@@ -987,8 +987,8 @@ class AppRoleVisibilityShadow with _$AppRoleVisibilityShadow {
 }
 
 @freezed
-class AppRoleVisibilityInputDecoration with _$AppRoleVisibilityInputDecoration {
-  const factory AppRoleVisibilityInputDecoration({
+class DSRoleVisibilityInputDecoration with _$DSRoleVisibilityInputDecoration {
+  const factory DSRoleVisibilityInputDecoration({
     String? labelText,
     String? hintText,
     String? helperText,
@@ -1002,6 +1002,6 @@ class AppRoleVisibilityInputDecoration with _$AppRoleVisibilityInputDecoration {
     InputBorder? focusedBorder,
     InputBorder? errorBorder,
     InputBorder? disabledBorder,
-    @Default(AppRoleVisibilityPadding()) AppRoleVisibilityPadding contentPadding,
+    @Default(DSRoleVisibilityPadding()) DSRoleVisibilityPadding contentPadding,
   }) = _AppRoleVisibilityInputDecoration;
 }

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:iautomat_design_system/src/components/charts/app_chart.dart';
 
 void main() {
-  group('AppChart', () {
+  group('DSChart', () {
     late List<ChartSeries> testSeries;
 
     setUp(() {
@@ -26,7 +26,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
             ),
@@ -34,7 +34,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppChart), findsOneWidget);
+      expect(find.byType(DSChart), findsOneWidget);
     });
 
     testWidgets('renders correctly with area variant',
@@ -42,7 +42,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.area,
               series: testSeries,
             ),
@@ -50,7 +50,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppChart), findsOneWidget);
+      expect(find.byType(DSChart), findsOneWidget);
     });
 
     testWidgets('renders correctly with bar variant',
@@ -58,7 +58,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.bar,
               series: testSeries,
             ),
@@ -66,7 +66,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppChart), findsOneWidget);
+      expect(find.byType(DSChart), findsOneWidget);
     });
 
     testWidgets('renders correctly with pie variant',
@@ -74,7 +74,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.pie,
               series: testSeries,
             ),
@@ -82,7 +82,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppChart), findsOneWidget);
+      expect(find.byType(DSChart), findsOneWidget);
     });
 
     testWidgets('renders correctly with heatmap variant',
@@ -90,7 +90,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.heatmap,
               series: testSeries,
             ),
@@ -98,14 +98,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppChart), findsOneWidget);
+      expect(find.byType(DSChart), findsOneWidget);
     });
 
     testWidgets('shows loading state correctly', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
               state: ChartState.loading,
@@ -121,7 +121,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
               state: ChartState.skeleton,
@@ -138,7 +138,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
               state: ChartState.disabled,
@@ -160,7 +160,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
               onTap: () => tapped = true,
@@ -169,7 +169,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(AppChart));
+      await tester.tap(find.byType(DSChart));
       await tester.pump();
 
       expect(tapped, isTrue);
@@ -179,7 +179,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
               legend: const ChartLegendConfig(show: true),
@@ -196,7 +196,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
               legend: const ChartLegendConfig(show: false),
@@ -215,7 +215,7 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppChart(
+              body: DSChart(
                 variant: ChartVariant.line,
                 series: testSeries,
                 rtlSupport: true,
@@ -225,7 +225,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppChart), findsOneWidget);
+      expect(find.byType(DSChart), findsOneWidget);
     });
 
     testWidgets('applies accessibility label', (WidgetTester tester) async {
@@ -234,7 +234,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
               accessibilitySupport: true,
@@ -244,7 +244,7 @@ void main() {
         ),
       );
 
-      final semantics = tester.getSemantics(find.byType(AppChart));
+      final semantics = tester.getSemantics(find.byType(DSChart));
       expect(semantics.label, accessibilityLabel);
     });
 
@@ -252,7 +252,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
             ),
@@ -261,7 +261,7 @@ void main() {
       );
 
       final focusNode = Focus.of(
-        tester.element(find.byType(AppChart)),
+        tester.element(find.byType(DSChart)),
       );
 
       focusNode.requestFocus();
@@ -293,7 +293,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: multipleSeries,
               legend: const ChartLegendConfig(show: true),
@@ -311,7 +311,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
               animate: true,
@@ -325,14 +325,14 @@ void main() {
       await tester.pump(const Duration(milliseconds: 150));
       await tester.pump(const Duration(milliseconds: 150));
 
-      expect(find.byType(AppChart), findsOneWidget);
+      expect(find.byType(DSChart), findsOneWidget);
     });
 
     testWidgets('does not animate when disabled', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
               animate: false,
@@ -342,14 +342,14 @@ void main() {
       );
 
       await tester.pump();
-      expect(find.byType(AppChart), findsOneWidget);
+      expect(find.byType(DSChart), findsOneWidget);
     });
 
     testWidgets('handles empty series gracefully', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.pie,
               series: const [],
             ),
@@ -357,7 +357,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppChart), findsOneWidget);
+      expect(find.byType(DSChart), findsOneWidget);
       expect(find.text('No data'), findsOneWidget);
     });
 
@@ -365,7 +365,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppChart(
+            body: DSChart(
               variant: ChartVariant.line,
               series: testSeries,
               width: 400,
@@ -378,7 +378,7 @@ void main() {
       final container = tester.widget<Container>(
         find
             .descendant(
-              of: find.byType(AppChart),
+              of: find.byType(DSChart),
               matching: find.byType(Container),
             )
             .first,

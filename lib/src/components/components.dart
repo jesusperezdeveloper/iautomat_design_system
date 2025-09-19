@@ -200,7 +200,7 @@ export 'bottom_sheet/bottom_sheet_story.dart';
 export 'menu/app_menu.dart';
 export 'menu/menu_story.dart';
 
-export 'drawer/app_drawer.dart' hide AppDrawerState;
+export 'drawer/app_drawer.dart' hide DSDrawerState;
 export 'drawer/app_drawer_config.dart';
 export 'drawer/drawer_story.dart' hide DrawerStoryExample;
 

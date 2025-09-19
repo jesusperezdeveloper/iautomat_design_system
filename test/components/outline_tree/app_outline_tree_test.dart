@@ -5,27 +5,27 @@ import 'package:iautomat_design_system/src/components/outline_tree/app_outline_t
 import 'package:iautomat_design_system/src/components/outline_tree/outline_tree_config.dart';
 
 void main() {
-  group('AppOutlineTree', () {
-    late List<AppTreeNode> testNodes;
+  group('DSOutlineTree', () {
+    late List<DSTreeNode> testNodes;
 
     setUp(() {
       testNodes = [
-        AppTreeNode(
+        DSTreeNode(
           id: '1',
           label: 'Root Node',
           isExpanded: true,
           children: [
-            const AppTreeNode(
+            const DSTreeNode(
               id: '1.1',
               label: 'Child 1',
               depth: 1,
             ),
-            AppTreeNode(
+            DSTreeNode(
               id: '1.2',
               label: 'Child 2',
               depth: 1,
               children: const [
-                AppTreeNode(
+                DSTreeNode(
                   id: '1.2.1',
                   label: 'Grandchild 1',
                   depth: 2,
@@ -34,7 +34,7 @@ void main() {
             ),
           ],
         ),
-        const AppTreeNode(
+        const DSTreeNode(
           id: '2',
           label: 'Second Root',
           hasChildren: true,
@@ -47,7 +47,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: testNodes,
               onAsyncLoad: (node) async => [],
             ),
@@ -55,7 +55,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppOutlineTree), findsOneWidget);
+      expect(find.byType(DSOutlineTree), findsOneWidget);
       expect(find.text('Root Node'), findsOneWidget);
       expect(find.text('Child 1'), findsOneWidget);
       expect(find.text('Second Root'), findsOneWidget);
@@ -66,10 +66,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.multiSelect(
+            body: DSOutlineTree.multiSelect(
               nodes: testNodes,
-              config: const AppOutlineTreeConfig(
-                selectionMode: AppTreeSelectionMode.multiple,
+              config: const DSOutlineTreeConfig(
+                selectionMode: DSTreeSelectionMode.multiple,
                 showSelectionCheckboxes: true,
               ),
             ),
@@ -77,24 +77,24 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppOutlineTree), findsOneWidget);
+      expect(find.byType(DSOutlineTree), findsOneWidget);
       expect(find.byIcon(Icons.circle_outlined), findsWidgets);
     });
 
     testWidgets('node toggle works correctly', (tester) async {
       bool toggleCalled = false;
-      AppTreeNode? toggledNode;
+      DSTreeNode? toggledNode;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: [
-                AppTreeNode(
+                DSTreeNode(
                   id: 'expandable',
                   label: 'Expandable Node',
                   children: const [
-                    AppTreeNode(id: 'child', label: 'Child Node'),
+                    DSTreeNode(id: 'child', label: 'Child Node'),
                   ],
                 ),
               ],
@@ -118,13 +118,13 @@ void main() {
 
     testWidgets('node selection works correctly', (tester) async {
       bool selectCalled = false;
-      AppTreeNode? selectedNode;
+      DSTreeNode? selectedNode;
       bool selectionState = false;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.multiSelect(
+            body: DSOutlineTree.multiSelect(
               nodes: testNodes,
               onSelect: (node, selected) {
                 selectCalled = true;
@@ -146,15 +146,15 @@ void main() {
     });
 
     testWidgets('async loading works correctly', (tester) async {
-      List<AppTreeNode> loadedChildren = [];
-      AppTreeNode? loadedForNode;
+      List<DSTreeNode> loadedChildren = [];
+      DSTreeNode? loadedForNode;
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: [
-                const AppTreeNode(
+                const DSTreeNode(
                   id: 'async',
                   label: 'Async Node',
                   hasChildren: true,
@@ -164,11 +164,11 @@ void main() {
                 loadedForNode = node;
                 await Future.delayed(const Duration(milliseconds: 100));
                 loadedChildren = [
-                  const AppTreeNode(
+                  const DSTreeNode(
                     id: 'loaded1',
                     label: 'Loaded Child 1',
                   ),
-                  const AppTreeNode(
+                  const DSTreeNode(
                     id: 'loaded2',
                     label: 'Loaded Child 2',
                   ),
@@ -200,9 +200,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: testNodes,
-              config: const AppOutlineTreeConfig(
+              config: const DSOutlineTreeConfig(
                 enableKeyboardNavigation: true,
               ),
               onAsyncLoad: (node) async => [],
@@ -212,7 +212,7 @@ void main() {
       );
 
       // Focus the tree
-      await tester.tap(find.byType(AppOutlineTree));
+      await tester.tap(find.byType(DSOutlineTree));
       await tester.pumpAndSettle();
 
       // Test arrow key navigation
@@ -234,9 +234,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: const [],
-              state: AppOutlineTreeState.loading,
+              state: DSOutlineTreeState.loading,
               onAsyncLoad: (node) async => [],
             ),
           ),
@@ -251,10 +251,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: const [],
-              state: AppOutlineTreeState.skeleton,
-              config: const AppOutlineTreeConfig(
+              state: DSOutlineTreeState.skeleton,
+              config: const DSOutlineTreeConfig(
                 skeletonNodeCount: 3,
               ),
               onAsyncLoad: (node) async => [],
@@ -272,9 +272,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: testNodes,
-              state: AppOutlineTreeState.disabled,
+              state: DSOutlineTreeState.disabled,
               onToggle: (node) => toggleCalled = true,
               onAsyncLoad: (node) async => [],
             ),
@@ -293,9 +293,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: testNodes,
-              config: const AppOutlineTreeConfig(
+              config: const DSOutlineTreeConfig(
                 itemHeight: 50.0,
                 fontSize: 18.0,
                 showIcons: false,
@@ -307,16 +307,16 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppOutlineTree), findsOneWidget);
+      expect(find.byType(DSOutlineTree), findsOneWidget);
     });
 
     testWidgets('empty state shows empty message', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: const [],
-              config: const AppOutlineTreeConfig(
+              config: const DSOutlineTreeConfig(
                 emptyLabel: 'No data available',
               ),
               onAsyncLoad: (node) async => [],
@@ -335,9 +335,9 @@ void main() {
           home: Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              body: AppOutlineTree.async(
+              body: DSOutlineTree.async(
                 nodes: testNodes,
-                config: const AppOutlineTreeConfig(
+                config: const DSOutlineTreeConfig(
                   enableRTL: true,
                   textDirection: TextDirection.rtl,
                 ),
@@ -348,14 +348,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppOutlineTree), findsOneWidget);
+      expect(find.byType(DSOutlineTree), findsOneWidget);
     });
 
     testWidgets('custom node builder works', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: testNodes,
               nodeBuilder: (context, node, depth) {
                 return Container(
@@ -377,7 +377,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: testNodes,
               iconBuilder: (context, node) {
                 return Icon(
@@ -399,9 +399,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: [
-                const AppTreeNode(
+                const DSTreeNode(
                   id: 'badged',
                   label: 'Node with Badge',
                   badge: '99+',
@@ -421,9 +421,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.async(
+            body: DSOutlineTree.async(
               nodes: [
-                const AppTreeNode(
+                const DSTreeNode(
                   id: 'tooltip',
                   label: 'Node with Tooltip',
                   tooltip: 'This is a helpful tooltip',
@@ -440,17 +440,17 @@ void main() {
 
     testWidgets('hierarchical selection works correctly', (tester) async {
       final nodes = [
-        AppTreeNode(
+        DSTreeNode(
           id: 'parent',
           label: 'Parent',
           isExpanded: true,
           children: const [
-            AppTreeNode(
+            DSTreeNode(
               id: 'child1',
               label: 'Child 1',
               depth: 1,
             ),
-            AppTreeNode(
+            DSTreeNode(
               id: 'child2',
               label: 'Child 2',
               depth: 1,
@@ -462,10 +462,10 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AppOutlineTree.multiSelect(
+            body: DSOutlineTree.multiSelect(
               nodes: nodes,
-              config: const AppOutlineTreeConfig(
-                selectionMode: AppTreeSelectionMode.hierarchical,
+              config: const DSOutlineTreeConfig(
+                selectionMode: DSTreeSelectionMode.hierarchical,
                 showSelectionCheckboxes: true,
               ),
             ),
@@ -485,28 +485,28 @@ void main() {
     });
   });
 
-  group('AppTreeNode', () {
+  group('DSTreeNode', () {
     test('canExpand returns correct value', () {
-      var node = const AppTreeNode(id: '1', label: 'Test', isLeaf: true);
+      var node = const DSTreeNode(id: '1', label: 'Test', isLeaf: true);
       expect(node.canExpand, false);
 
-      node = AppTreeNode(
+      node = DSTreeNode(
         id: '2',
         label: 'Test',
-        children: [const AppTreeNode(id: '2.1', label: 'Child')],
+        children: [const DSTreeNode(id: '2.1', label: 'Child')],
       );
       expect(node.canExpand, true);
 
-      node = const AppTreeNode(id: '3', label: 'Test', hasChildren: true);
+      node = const DSTreeNode(id: '3', label: 'Test', hasChildren: true);
       expect(node.canExpand, true);
     });
 
     test('isCollapsed returns correct value', () {
-      var node = AppTreeNode(
+      var node = DSTreeNode(
         id: '1',
         label: 'Test',
         isExpanded: false,
-        children: [const AppTreeNode(id: '1.1', label: 'Child')],
+        children: [const DSTreeNode(id: '1.1', label: 'Child')],
       );
       expect(node.isCollapsed, true);
 
@@ -515,40 +515,40 @@ void main() {
     });
 
     test('hasVisibleChildren returns correct value', () {
-      var node = AppTreeNode(
+      var node = DSTreeNode(
         id: '1',
         label: 'Test',
         children: [
-          const AppTreeNode(id: '1.1', label: 'Visible', isVisible: true),
-          const AppTreeNode(id: '1.2', label: 'Hidden', isVisible: false),
+          const DSTreeNode(id: '1.1', label: 'Visible', isVisible: true),
+          const DSTreeNode(id: '1.2', label: 'Hidden', isVisible: false),
         ],
       );
       expect(node.hasVisibleChildren, true);
 
-      node = AppTreeNode(
+      node = DSTreeNode(
         id: '2',
         label: 'Test',
         children: [
-          const AppTreeNode(id: '2.1', label: 'Hidden 1', isVisible: false),
-          const AppTreeNode(id: '2.2', label: 'Hidden 2', isVisible: false),
+          const DSTreeNode(id: '2.1', label: 'Hidden 1', isVisible: false),
+          const DSTreeNode(id: '2.2', label: 'Hidden 2', isVisible: false),
         ],
       );
       expect(node.hasVisibleChildren, false);
     });
 
     test('allDescendants returns all descendants', () {
-      final node = AppTreeNode(
+      final node = DSTreeNode(
         id: '1',
         label: 'Root',
         children: [
-          AppTreeNode(
+          DSTreeNode(
             id: '1.1',
             label: 'Child 1',
             children: [
-              const AppTreeNode(id: '1.1.1', label: 'Grandchild 1'),
+              const DSTreeNode(id: '1.1.1', label: 'Grandchild 1'),
             ],
           ),
-          const AppTreeNode(id: '1.2', label: 'Child 2'),
+          const DSTreeNode(id: '1.2', label: 'Child 2'),
         ],
       );
 
@@ -560,7 +560,7 @@ void main() {
     });
 
     test('withSelection updates selection state', () {
-      var node = const AppTreeNode(id: '1', label: 'Test', isSelected: false);
+      var node = const DSTreeNode(id: '1', label: 'Test', isSelected: false);
       node = node.withSelection(true);
       expect(node.isSelected, true);
 
@@ -569,49 +569,49 @@ void main() {
     });
 
     test('withExpansion updates expansion state', () {
-      var node = const AppTreeNode(id: '1', label: 'Test', isExpanded: false);
+      var node = const DSTreeNode(id: '1', label: 'Test', isExpanded: false);
       node = node.withExpansion(true);
       expect(node.isExpanded, true);
-      expect(node.state, AppTreeNodeState.expanded);
+      expect(node.state, DSTreeNodeState.expanded);
 
       node = node.withExpansion(false);
       expect(node.isExpanded, false);
-      expect(node.state, AppTreeNodeState.collapsed);
+      expect(node.state, DSTreeNodeState.collapsed);
     });
 
     test('withLoading updates loading state', () {
-      var node = const AppTreeNode(id: '1', label: 'Test', isLoading: false);
+      var node = const DSTreeNode(id: '1', label: 'Test', isLoading: false);
       node = node.withLoading(true);
       expect(node.isLoading, true);
-      expect(node.state, AppTreeNodeState.loading);
+      expect(node.state, DSTreeNodeState.loading);
 
       node = node.withLoading(false);
       expect(node.isLoading, false);
-      expect(node.state, AppTreeNodeState.collapsed);
+      expect(node.state, DSTreeNodeState.collapsed);
     });
 
     test('withError updates error state', () {
-      var node = const AppTreeNode(id: '1', label: 'Test');
+      var node = const DSTreeNode(id: '1', label: 'Test');
       node = node.withError('Network error');
       expect(node.errorMessage, 'Network error');
-      expect(node.state, AppTreeNodeState.error);
+      expect(node.state, DSTreeNodeState.error);
       expect(node.isLoading, false);
 
       node = node.withError(null);
       expect(node.errorMessage, null);
-      expect(node.state, AppTreeNodeState.collapsed);
+      expect(node.state, DSTreeNodeState.collapsed);
     });
 
     test('findNode finds correct node', () {
-      final node = AppTreeNode(
+      final node = DSTreeNode(
         id: '1',
         label: 'Root',
         children: [
-          AppTreeNode(
+          DSTreeNode(
             id: '1.1',
             label: 'Child',
             children: [
-              const AppTreeNode(id: '1.1.1', label: 'Grandchild'),
+              const DSTreeNode(id: '1.1.1', label: 'Grandchild'),
             ],
           ),
         ],
@@ -624,11 +624,11 @@ void main() {
     });
 
     test('updateNode updates correct node', () {
-      var node = AppTreeNode(
+      var node = DSTreeNode(
         id: '1',
         label: 'Root',
         children: [
-          const AppTreeNode(id: '1.1', label: 'Child'),
+          const DSTreeNode(id: '1.1', label: 'Child'),
         ],
       );
 
@@ -638,47 +638,47 @@ void main() {
     });
 
     test('selectionState returns correct state', () {
-      var node = const AppTreeNode(id: '1', label: 'Test', isSelected: true);
+      var node = const DSTreeNode(id: '1', label: 'Test', isSelected: true);
       expect(node.selectionState, TreeSelectionState.selected);
 
       node =
-          const AppTreeNode(id: '2', label: 'Test', isPartiallySelected: true);
+          const DSTreeNode(id: '2', label: 'Test', isPartiallySelected: true);
       expect(node.selectionState, TreeSelectionState.partial);
 
-      node = const AppTreeNode(id: '3', label: 'Test');
+      node = const DSTreeNode(id: '3', label: 'Test');
       expect(node.selectionState, TreeSelectionState.unselected);
     });
   });
 
-  group('AppOutlineTreeUtils', () {
-    late List<AppTreeNode> testNodes;
+  group('DSOutlineTreeUtils', () {
+    late List<DSTreeNode> testNodes;
 
     setUp(() {
       testNodes = [
-        AppTreeNode(
+        DSTreeNode(
           id: '1',
           label: 'Root 1',
           isExpanded: true,
           children: [
-            const AppTreeNode(id: '1.1', label: 'Child 1.1', depth: 1),
-            AppTreeNode(
+            const DSTreeNode(id: '1.1', label: 'Child 1.1', depth: 1),
+            DSTreeNode(
               id: '1.2',
               label: 'Child 1.2',
               depth: 1,
               isExpanded: true,
               children: [
-                const AppTreeNode(
+                const DSTreeNode(
                     id: '1.2.1', label: 'Grandchild 1.2.1', depth: 2),
               ],
             ),
           ],
         ),
-        const AppTreeNode(id: '2', label: 'Root 2'),
+        const DSTreeNode(id: '2', label: 'Root 2'),
       ];
     });
 
     test('flattenTree returns flattened list', () {
-      final flattened = AppOutlineTreeUtils.flattenTree(testNodes);
+      final flattened = DSOutlineTreeUtils.flattenTree(testNodes);
 
       expect(flattened.length, 5);
       expect(flattened[0].id, '1');
@@ -689,7 +689,7 @@ void main() {
     });
 
     test('flattenTree respects maxDepth', () {
-      final flattened = AppOutlineTreeUtils.flattenTree(testNodes, maxDepth: 1);
+      final flattened = DSOutlineTreeUtils.flattenTree(testNodes, maxDepth: 1);
 
       expect(flattened.length, 4);
       expect(flattened.map((n) => n.id), isNot(contains('1.2.1')));
@@ -697,29 +697,29 @@ void main() {
 
     test('getSelectedNodes returns only selected nodes', () {
       final nodes = [
-        const AppTreeNode(id: '1', label: 'Node 1', isSelected: true),
-        const AppTreeNode(id: '2', label: 'Node 2', isSelected: false),
-        AppTreeNode(
+        const DSTreeNode(id: '1', label: 'Node 1', isSelected: true),
+        const DSTreeNode(id: '2', label: 'Node 2', isSelected: false),
+        DSTreeNode(
           id: '3',
           label: 'Node 3',
           children: [
-            const AppTreeNode(id: '3.1', label: 'Child 3.1', isSelected: true),
+            const DSTreeNode(id: '3.1', label: 'Child 3.1', isSelected: true),
           ],
         ),
       ];
 
-      final selected = AppOutlineTreeUtils.getSelectedNodes(nodes);
+      final selected = DSOutlineTreeUtils.getSelectedNodes(nodes);
       expect(selected.length, 2);
       expect(selected.map((n) => n.id), contains('1'));
       expect(selected.map((n) => n.id), contains('3.1'));
     });
 
     test('updateSelection works for single mode', () {
-      final updated = AppOutlineTreeUtils.updateSelection(
+      final updated = DSOutlineTreeUtils.updateSelection(
         testNodes,
         '1.1',
         true,
-        AppTreeSelectionMode.single,
+        DSTreeSelectionMode.single,
       );
 
       final targetNode = updated[0].findNode('1.1');
@@ -727,11 +727,11 @@ void main() {
     });
 
     test('updateSelection works for hierarchical mode', () {
-      final updated = AppOutlineTreeUtils.updateSelection(
+      final updated = DSOutlineTreeUtils.updateSelection(
         testNodes,
         '1',
         true,
-        AppTreeSelectionMode.hierarchical,
+        DSTreeSelectionMode.hierarchical,
       );
 
       final rootNode = updated[0];
@@ -743,7 +743,7 @@ void main() {
 
     test('expandPath expands nodes in path', () {
       final path = ['1', '1.2', '1.2.1'];
-      final expanded = AppOutlineTreeUtils.expandPath(testNodes, path);
+      final expanded = DSOutlineTreeUtils.expandPath(testNodes, path);
 
       final rootNode = expanded[0];
       expect(rootNode.isExpanded, true);
@@ -753,28 +753,28 @@ void main() {
     });
 
     test('getExpandedNodeIds returns expanded nodes', () {
-      final expandedIds = AppOutlineTreeUtils.getExpandedNodeIds(testNodes);
+      final expandedIds = DSOutlineTreeUtils.getExpandedNodeIds(testNodes);
       expect(expandedIds, contains('1'));
       expect(expandedIds, contains('1.2'));
       expect(expandedIds, isNot(contains('2')));
     });
 
     test('searchNodes finds matching nodes', () {
-      final results = AppOutlineTreeUtils.searchNodes(testNodes, 'Child');
+      final results = DSOutlineTreeUtils.searchNodes(testNodes, 'Child');
       expect(results.length, 2);
       expect(results.map((n) => n.id), contains('1.1'));
       expect(results.map((n) => n.id), contains('1.2'));
     });
 
     test('searchNodes is case sensitive when specified', () {
-      final results = AppOutlineTreeUtils.searchNodes(
+      final results = DSOutlineTreeUtils.searchNodes(
         testNodes,
         'child',
         caseSensitive: true,
       );
       expect(results.length, 0);
 
-      final resultsInsensitive = AppOutlineTreeUtils.searchNodes(
+      final resultsInsensitive = DSOutlineTreeUtils.searchNodes(
         testNodes,
         'child',
         caseSensitive: false,
@@ -784,19 +784,19 @@ void main() {
 
     test('calculateStatistics returns correct stats', () {
       final nodes = [
-        AppTreeNode(
+        DSTreeNode(
           id: '1',
           label: 'Root',
           isExpanded: true,
           isSelected: true,
           children: [
-            const AppTreeNode(id: '1.1', label: 'Child', isLeaf: true),
-            const AppTreeNode(id: '1.2', label: 'Child 2', isSelected: true),
+            const DSTreeNode(id: '1.1', label: 'Child', isLeaf: true),
+            const DSTreeNode(id: '1.2', label: 'Child 2', isSelected: true),
           ],
         ),
       ];
 
-      final stats = AppOutlineTreeUtils.calculateStatistics(nodes);
+      final stats = DSOutlineTreeUtils.calculateStatistics(nodes);
       expect(stats.totalNodes, 3);
       expect(stats.selectedNodes, 2);
       expect(stats.expandedNodes, 1);
@@ -805,22 +805,22 @@ void main() {
     });
 
     test('getNodeSemanticLabel generates correct label', () {
-      const config = AppOutlineTreeConfig(
-        selectionMode: AppTreeSelectionMode.multiple,
+      const config = DSOutlineTreeConfig(
+        selectionMode: DSTreeSelectionMode.multiple,
       );
 
-      const node = AppTreeNode(
+      const node = DSTreeNode(
         id: '1',
         label: 'Test Node',
         isSelected: true,
         isExpanded: true,
         depth: 2,
         children: [
-          AppTreeNode(id: '1.1', label: 'Child'),
+          DSTreeNode(id: '1.1', label: 'Child'),
         ],
       );
 
-      final label = AppOutlineTreeUtils.getNodeSemanticLabel(node, config);
+      final label = DSOutlineTreeUtils.getNodeSemanticLabel(node, config);
       expect(label, contains('Test Node'));
       expect(label, contains('selected'));
       expect(label, contains('expanded'));
