@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "dart-code.dart-code",
+        "dart-code.flutter",
+        "alexisvt.flutter-snippets",
+        "luanpotter.dart-import",
+        "nash.awesome-flutter-snippets",
+        "robertbrunhage.flutter-riverpod-snippets",
+        "felixangelov.bloc",
+        "jeroen-meijer.pubspec-assist",
+        "circlecodesolution.ccs-flutter-color",
+        "akvelon.vscode-yaml-sort"
+    ]
+}
