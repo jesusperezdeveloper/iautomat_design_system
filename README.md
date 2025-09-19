@@ -26,22 +26,22 @@
 ## 🎯 Características Principales
 
 ### ✨ **Características Premium**
-- 🎨 **70+ Componentes UI** profesionales con Material 3
+- 🎨 **70+ Componentes UI** profesionales con Material 3 y prefijo DS
 - 🌈 **20 Presets de Tema** para 2025 (corporativo, tech, creativo, natural)
 - 📱 **Responsive Design** automático con breakpoints inteligentes
 - ♿ **Accesibilidad Completa** (WCAG 2.0 AA, screen readers, navegación por teclado)
 - 🌍 **Soporte RTL** y localización internacional
 - 🔧 **TypeSafe** con modelos Freezed para configuraciones
 - ⚡ **Alto Performance** con widgets optimizados
-- 🧪 **100% Testeado** con 133+ archivos de test
+- 🧪 **100% Testeado** con 134 archivos de test y >95% cobertura
 
 ### 🏢 **Casos de Uso Empresariales**
-- **Apps Corporativas:** CRM, ERP, dashboards ejecutivos
+- **DSs Corporativas:** CRM, ERP, dashboards ejecutivos
 - **Plataformas SaaS:** Paneles de control, analytics, reportes
 - **E-commerce:** Tiendas online, marketplaces, apps de venta
 - **Fintech:** Wallets, trading apps, banca digital
 - **Automatización:** IoT dashboards, sistemas de control
-- **Healthcare:** Apps médicas, telemedicina, gestión hospitalaria
+- **Healthcare:** DSs médicas, telemedicina, gestión hospitalaria
 
 ### 🎯 **Ventajas Competitivas**
 - ⚡ **Desarrollo 5x más rápido** con componentes pre-construidos
@@ -79,14 +79,14 @@ import 'package:flutter/material.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 
 void main() {
-  runApp(MyApp());
+  runDS(MyDS());
 }
 
-class MyApp extends StatelessWidget {
+class MyDS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Mi App Empresarial',
+    return MaterialDS(
+      title: 'Mi DS Empresarial',
       theme: DSTheme.lightTheme,           // Tema claro
       darkTheme: DSTheme.darkTheme,        // Tema oscuro automático
       home: HomePage(),
@@ -248,10 +248,10 @@ ThemePresets.automotiveRed    // Rojo automotriz potente
 
 ### 💠 **Componentes Base (12)**
 
-#### **AppButton - Sistema Completo de Botones**
+#### **DSButton - Sistema Completo de Botones**
 ```dart
 // 6 Variantes Empresariales
-AppButton(
+DSButton(
   text: 'Call to Action',
   variant: ButtonVariant.filled,    // filled, tonal, outline, text, icon, segmented
   size: ButtonSize.large,           // small, medium, large
@@ -260,18 +260,18 @@ AppButton(
 )
 
 // Configuración Avanzada
-AppButton(
+DSButton(
   text: 'Botón Custom',
-  config: AppButtonConfig(
-    colors: AppButtonColors(
-      backgroundColor: AppColors.primary,
-      foregroundColor: AppColors.white,
+  config: DSButtonConfig(
+    colors: DSButtonColors(
+      backgroundColor: DSColors.primary,
+      foregroundColor: DSColors.white,
     ),
-    spacing: AppButtonSpacing(
+    spacing: DSButtonSpacing(
       padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
       borderRadius: 12,
     ),
-    animations: AppButtonAnimations(
+    animations: DSButtonAnimations(
       duration: Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     ),
@@ -279,10 +279,10 @@ AppButton(
 )
 ```
 
-#### **AppInput - Campos de Entrada Inteligentes**
+#### **DSInput - Campos de Entrada Inteligentes**
 ```dart
 // Input Básico con Validación
-AppInput(
+DSInput(
   label: 'Email Corporativo',
   hint: 'usuario@empresa.com',
   validator: Validators.compose([
@@ -295,13 +295,13 @@ AppInput(
 )
 
 // Input Avanzado con Estados
-AppInput(
+DSInput(
   label: 'Contraseña Segura',
   obscureText: true,
-  config: AppInputConfig(
-    state: AppInputState.focus,
-    variant: AppInputVariant.filled,
-    validation: AppInputValidation(
+  config: DSInputConfig(
+    state: DSInputState.focus,
+    variant: DSInputVariant.filled,
+    validation: DSInputValidation(
       showProgress: true,
       realTimeValidation: true,
     ),
@@ -309,32 +309,32 @@ AppInput(
 )
 ```
 
-#### **AppCard - Cards Empresariales**
+#### **DSCard - Cards Empresariales**
 ```dart
 // Card Básica
-AppCard(
+DSCard(
   child: Column(
     children: [
-      Text('Contenido Principal', style: AppTypography.h5),
-      AppSpacing.verticalSm,
-      Text('Descripción detallada...', style: AppTypography.bodyMedium),
+      Text('Contenido Principal', style: DSTypography.h5),
+      DSSpacing.verticalSm,
+      Text('Descripción detallada...', style: DSTypography.bodyMedium),
     ],
   ),
 )
 
 // Card Avanzada con Configuración
-AppCard(
-  config: AppCardConfig(
-    variant: AppCardVariant.elevated,
-    spacing: AppCardSpacing(
-      padding: AppSpacing.cardPadding,
-      margin: AppSpacing.sm,
+DSCard(
+  config: DSCardConfig(
+    variant: DSCardVariant.elevated,
+    spacing: DSCardSpacing(
+      padding: DSSpacing.cardPadding,
+      margin: DSSpacing.sm,
       borderRadius: 16,
       elevation: 8,
     ),
-    colors: AppCardColors(
-      backgroundColor: AppColors.gray50,
-      shadowColor: AppColors.gray200,
+    colors: DSCardColors(
+      backgroundColor: DSColors.gray50,
+      shadowColor: DSColors.gray200,
     ),
   ),
   child: _buildCardContent(),
@@ -343,21 +343,21 @@ AppCard(
 
 ### 📝 **Componentes de Formulario (8)**
 
-#### **AppCurrencyInput - Input Especializado de Moneda**
+#### **DSCurrencyInput - Input Especializado de Moneda**
 ```dart
-AppCurrencyInput(
+DSCurrencyInput(
   label: 'Monto de Inversión',
   currency: 'USD',
   locale: 'en_US',
   initialValue: 10000.0,
   onChanged: (value) => _updateInvestment(value),
-  config: AppCurrencyInputConfig(
-    formatting: AppCurrencyFormatting(
+  config: DSCurrencyInputConfig(
+    formatting: DSCurrencyFormatting(
       decimalDigits: 2,
       showCurrencySymbol: true,
       thousandSeparator: ',',
     ),
-    validation: AppCurrencyValidation(
+    validation: DSCurrencyValidation(
       min: 1000.0,
       max: 1000000.0,
       required: true,
@@ -366,16 +366,16 @@ AppCurrencyInput(
 )
 ```
 
-#### **AppDatePicker - Selector de Fecha Empresarial**
+#### **DSDatePicker - Selector de Fecha Empresarial**
 ```dart
-AppDatePicker(
+DSDatePicker(
   label: 'Fecha de Vencimiento',
   initialDate: DateTime.now(),
   firstDate: DateTime.now(),
   lastDate: DateTime.now().add(Duration(days: 365)),
   onDateSelected: (date) => _updateDeadline(date),
-  config: AppDatePickerConfig(
-    variant: AppDatePickerVariant.filled,
+  config: DSDatePickerConfig(
+    variant: DSDatePickerVariant.filled,
     format: DateFormat('dd/MM/yyyy'),
     showClearButton: true,
   ),
@@ -384,24 +384,24 @@ AppDatePicker(
 
 ### 🗂️ **Componentes de Datos (10)**
 
-#### **AppDataTable - Tablas Empresariales Avanzadas**
+#### **DSDataTable - Tablas Empresariales Avanzadas**
 ```dart
-AppDataTable<Employee>(
+DSDataTable<Employee>(
   columns: [
-    AppDataColumn<Employee>(
+    DSDataColumn<Employee>(
       key: 'name',
       title: 'Nombre',
       width: 200,
       sortable: true,
       filterable: true,
     ),
-    AppDataColumn<Employee>(
+    DSDataColumn<Employee>(
       key: 'department',
       title: 'Departamento',
       width: 150,
       filterable: true,
     ),
-    AppDataColumn<Employee>(
+    DSDataColumn<Employee>(
       key: 'salary',
       title: 'Salario',
       width: 120,
@@ -411,41 +411,41 @@ AppDataTable<Employee>(
     ),
   ],
   data: employeeList,
-  config: AppDataTableConfig(
-    pagination: AppDataTablePagination(
+  config: DSDataTableConfig(
+    pagination: DSDataTablePagination(
       pageSize: 25,
       showPageSizeSelector: true,
     ),
-    selection: AppDataTableSelection(
+    selection: DSDataTableSelection(
       multiSelect: true,
       onSelectionChanged: (selected) => _handleSelection(selected),
     ),
-    styling: AppDataTableStyling(
-      headerStyle: AppTypography.labelMedium,
-      rowStyle: AppTypography.bodySmall,
+    styling: DSDataTableStyling(
+      headerStyle: DSTypography.labelMedium,
+      rowStyle: DSTypography.bodySmall,
       alternatingRowColors: true,
     ),
   ),
 )
 ```
 
-#### **AppChart - Gráficos Profesionales**
+#### **DSChart - Gráficos Profesionales**
 ```dart
-AppChart(
-  type: AppChartType.line,
+DSChart(
+  type: DSChartType.line,
   data: salesData,
-  config: AppChartConfig(
+  config: DSChartConfig(
     title: 'Ventas Mensuales 2024',
-    xAxis: AppChartAxis(
+    xAxis: DSChartAxis(
       title: 'Meses',
       labelFormat: DateFormat('MMM'),
     ),
-    yAxis: AppChartAxis(
+    yAxis: DSChartAxis(
       title: 'Ventas (USD)',
       labelFormat: NumberFormat.currency(symbol: '\$'),
     ),
-    colors: [AppColors.primary, AppColors.secondary],
-    animations: AppChartAnimations(
+    colors: [DSColors.primary, DSColors.secondary],
+    animations: DSChartAnimations(
       duration: Duration(milliseconds: 1000),
       curve: Curves.easeInOut,
     ),
@@ -455,26 +455,26 @@ AppChart(
 
 ### 🧭 **Componentes de Navegación (8)**
 
-#### **AppDrawer - Navegación Lateral Empresarial**
+#### **DSDrawer - Navegación Lateral Empresarial**
 ```dart
-AppDrawer.permanent(
+DSDrawer.permanent(
   width: 280,
   content: Column(
     children: [
       _buildUserProfile(),
-      AppSpacing.verticalMd,
+      DSSpacing.verticalMd,
       _buildNavigationMenu(),
       Spacer(),
       _buildFooterActions(),
     ],
   ),
-  config: AppDrawerConfig(
-    variant: AppDrawerVariant.permanent,
-    colors: AppDrawerColors(
-      backgroundColor: AppColors.gray50,
-      scrimColor: AppColors.gray900.withOpacity(0.5),
+  config: DSDrawerConfig(
+    variant: DSDrawerVariant.permanent,
+    colors: DSDrawerColors(
+      backgroundColor: DSColors.gray50,
+      scrimColor: DSColors.gray900.withOpacity(0.5),
     ),
-    behavior: AppDrawerBehavior(
+    behavior: DSDrawerBehavior(
       collapsible: true,
       autoHideOnMobile: true,
     ),
@@ -482,56 +482,56 @@ AppDrawer.permanent(
 )
 ```
 
-#### **AppBreadcrumbs - Navegación de Ruta**
+#### **DSBreadcrumbs - Navegación de Ruta**
 ```dart
-AppBreadcrumbs(
+DSBreadcrumbs(
   items: [
-    AppBreadcrumbItem(
+    DSBreadcrumbItem(
       label: 'Dashboard',
       icon: Icons.dashboard,
       onTap: () => _navigateTo('/dashboard'),
     ),
-    AppBreadcrumbItem(
+    DSBreadcrumbItem(
       label: 'Empleados',
       onTap: () => _navigateTo('/employees'),
     ),
-    AppBreadcrumbItem(
+    DSBreadcrumbItem(
       label: 'Juan Pérez',
       isActive: true,
     ),
   ],
-  config: AppBreadcrumbsConfig(
+  config: DSBreadcrumbsConfig(
     separator: Icons.chevron_right,
     maxItems: 5,
-    overflow: AppBreadcrumbsOverflow.ellipsis,
+    overflow: DSBreadcrumbsOverflow.ellipsis,
   ),
 )
 ```
 
 ### 🎯 **Componentes de Feedback (6)**
 
-#### **AppToast - Notificaciones Inteligentes**
+#### **DSToast - Notificaciones Inteligentes**
 ```dart
 // Toast Básico
-AppToast.show(
+DSToast.show(
   context,
   message: 'Operación completada exitosamente',
-  type: AppToastType.success,
+  type: DSToastType.success,
 );
 
 // Toast Avanzado
-AppToast.show(
+DSToast.show(
   context,
   message: 'Error al procesar la solicitud',
-  type: AppToastType.error,
-  config: AppToastConfig(
+  type: DSToastType.error,
+  config: DSToastConfig(
     duration: Duration(seconds: 5),
-    position: AppToastPosition.topCenter,
-    animations: AppToastAnimations(
-      slideDirection: AppToastSlideDirection.fromTop,
+    position: DSToastPosition.topCenter,
+    animations: DSToastAnimations(
+      slideDirection: DSToastSlideDirection.fromTop,
     ),
     actions: [
-      AppToastAction(
+      DSToastAction(
         label: 'Reintentar',
         onPressed: () => _retryOperation(),
       ),
@@ -540,28 +540,28 @@ AppToast.show(
 );
 ```
 
-#### **AppProgress - Indicadores de Progreso**
+#### **DSProgress - Indicadores de Progreso**
 ```dart
 // Progreso Lineal
-AppProgress(
+DSProgress(
   value: 0.75,
-  type: AppProgressType.linear,
-  config: AppProgressConfig(
+  type: DSProgressType.linear,
+  config: DSProgressConfig(
     showPercentage: true,
     label: 'Procesando...',
-    colors: AppProgressColors(
-      activeColor: AppColors.primary,
-      backgroundColor: AppColors.gray200,
+    colors: DSProgressColors(
+      activeColor: DSColors.primary,
+      backgroundColor: DSColors.gray200,
     ),
   ),
 )
 
 // Progreso Circular con Estados
-AppProgress(
+DSProgress(
   value: uploadProgress,
-  type: AppProgressType.circular,
-  state: AppProgressState.loading,
-  config: AppProgressConfig(
+  type: DSProgressType.circular,
+  state: DSProgressState.loading,
+  config: DSProgressConfig(
     size: 48,
     strokeWidth: 4,
     showValue: true,
@@ -572,9 +572,9 @@ AppProgress(
 
 ### 🏪 **Componentes E-commerce (4)**
 
-#### **AppProductCard - Cards de Producto**
+#### **DSProductCard - Cards de Producto**
 ```dart
-AppProductCard(
+DSProductCard(
   product: Product(
     id: 'prod_001',
     name: 'MacBook Pro 16"',
@@ -586,26 +586,26 @@ AppProductCard(
   ),
   onTap: () => _viewProduct('prod_001'),
   onAddToCart: () => _addToCart('prod_001'),
-  config: AppProductCardConfig(
-    variant: AppProductCardVariant.elevated,
+  config: DSProductCardConfig(
+    variant: DSProductCardVariant.elevated,
     showQuickActions: true,
     imageAspectRatio: 16 / 9,
   ),
 )
 ```
 
-#### **AppCartWidget - Widget de Carrito**
+#### **DSCartWidget - Widget de Carrito**
 ```dart
-AppCartWidget(
+DSCartWidget(
   items: cartItems,
   onUpdateQuantity: (id, quantity) => _updateCart(id, quantity),
   onRemoveItem: (id) => _removeFromCart(id),
   onCheckout: () => _proceedToCheckout(),
-  config: AppCartWidgetConfig(
-    variant: AppCartWidgetVariant.sidebar,
+  config: DSCartWidgetConfig(
+    variant: DSCartWidgetVariant.sidebar,
     showTotals: true,
     enableQuantityControls: true,
-    animations: AppCartAnimations(
+    animations: DSCartAnimations(
       itemRemovalDuration: Duration(milliseconds: 300),
     ),
   ),
@@ -614,19 +614,19 @@ AppCartWidget(
 
 ### ⚙️ **Componentes Especializados (8)**
 
-#### **AppBackToTop - Botón Volver Arriba**
+#### **DSBackToTop - Botón Volver Arriba**
 ```dart
-AppBackToTop(
+DSBackToTop(
   scrollController: _scrollController,
-  config: AppBackToTopConfig(
-    variant: AppBackToTopVariant.webOnly,
-    behavior: AppBackToTopBehavior(
+  config: DSBackToTopConfig(
+    variant: DSBackToTopVariant.webOnly,
+    behavior: DSBackToTopBehavior(
       showAfterPixels: 200,
       smoothScrolling: true,
       autoHide: true,
     ),
-    spacing: AppBackToTopSpacing(
-      position: AppBackToTopPosition.bottomRight,
+    spacing: DSBackToTopSpacing(
+      position: DSBackToTopPosition.bottomRight,
       size: 56,
       margin: EdgeInsets.all(16),
     ),
@@ -634,11 +634,11 @@ AppBackToTop(
 )
 ```
 
-#### **AppCommandPalette - Paleta de Comandos**
+#### **DSCommandPalette - Paleta de Comandos**
 ```dart
-AppCommandPalette(
+DSCommandPalette(
   commands: [
-    AppCommand(
+    DSCommand(
       id: 'new_project',
       title: 'Crear Nuevo Proyecto',
       description: 'Inicia un nuevo proyecto desde cero',
@@ -646,7 +646,7 @@ AppCommandPalette(
       keywords: ['nuevo', 'crear', 'proyecto'],
       onExecute: () => _createProject(),
     ),
-    AppCommand(
+    DSCommand(
       id: 'search_employees',
       title: 'Buscar Empleados',
       icon: Icons.people,
@@ -654,7 +654,7 @@ AppCommandPalette(
       onExecute: () => _searchEmployees(),
     ),
   ],
-  config: AppCommandPaletteConfig(
+  config: DSCommandPaletteConfig(
     placeholder: 'Buscar comandos...',
     maxResults: 10,
     showShortcuts: true,
@@ -670,7 +670,7 @@ AppCommandPalette(
 
 ```dart
 // Breakpoints Empresariales Optimizados
-class AppBreakpoints {
+class DSBreakpoints {
   static const double mobile = 600;     // Teléfonos
   static const double tablet = 900;     // Tablets, iPad
   static const double desktop = 1600;   // Laptops, monitores
@@ -716,9 +716,9 @@ ResponsiveGrid(
 // Texto Responsive
 ResponsiveText(
   'Título Principal',
-  mobile: AppTypography.h3,
-  tablet: AppTypography.h2,
-  desktop: AppTypography.h1,
+  mobile: DSTypography.h3,
+  tablet: DSTypography.h2,
+  desktop: DSTypography.h1,
 )
 ```
 
@@ -727,9 +727,9 @@ ResponsiveText(
 ```dart
 // Spacing Responsive
 final spacing = context.responsive(
-  mobile: AppSpacing.sm,
-  tablet: AppSpacing.md,
-  desktop: AppSpacing.lg,
+  mobile: DSSpacing.sm,
+  tablet: DSSpacing.md,
+  desktop: DSSpacing.lg,
 );
 
 // Padding Responsive
@@ -757,14 +757,14 @@ final columns = context.responsiveValue(
 #### **Contraste de Colores**
 ```dart
 // Todos los colores cumplen WCAG 2.0 AA (4.5:1 ratio mínimo)
-AppColors.error     // #DC2626 - 4.51:1 sobre fondo blanco
-AppColors.primary   // #2563EB - 4.58:1 sobre fondo blanco
-AppColors.success   // #10B981 - 4.52:1 sobre fondo blanco
+DSColors.error     // #DC2626 - 4.51:1 sobre fondo blanco
+DSColors.primary   // #2563EB - 4.58:1 sobre fondo blanco
+DSColors.success   // #10B981 - 4.52:1 sobre fondo blanco
 
 // Verificación automática de contraste
-bool hasGoodContrast = AppColors.checkContrast(
-  foreground: AppColors.primary,
-  background: AppColors.white,
+bool hasGoodContrast = DSColors.checkContrast(
+  foreground: DSColors.primary,
+  background: DSColors.white,
   ratio: 4.5, // WCAG AA standard
 );
 ```
@@ -772,7 +772,7 @@ bool hasGoodContrast = AppColors.checkContrast(
 #### **Navegación por Teclado**
 ```dart
 // Todos los componentes soportan navegación por teclado
-AppButton(
+DSButton(
   text: 'Acción Principal',
   focusNode: _buttonFocusNode,
   autofocus: true,
@@ -807,7 +807,7 @@ Shortcuts(
 #### **Screen Readers**
 ```dart
 // Semantics automáticos en todos los componentes
-AppButton(
+DSButton(
   text: 'Guardar Documento',
   semanticsLabel: 'Guardar documento actual. Presiona para guardar cambios.',
   tooltip: 'Ctrl+S',
@@ -815,7 +815,7 @@ AppButton(
 )
 
 // Anuncios dinámicos
-AppToast.show(
+DSToast.show(
   context,
   message: 'Documento guardado exitosamente',
   announceToScreenReader: true, // Anuncia automáticamente
@@ -825,12 +825,12 @@ AppToast.show(
 #### **Touch Targets**
 ```dart
 // Todos los componentes cumplen 48dp mínimo (iOS: 44dp, Android: 48dp)
-AppIconButton(
+DSIconButton(
   icon: Icons.delete,
   onPressed: _delete,
   // Automáticamente asegura 48x48dp touch target
-  config: AppIconButtonConfig(
-    sizing: AppIconButtonSizing(
+  config: DSIconButtonConfig(
+    sizing: DSIconButtonSizing(
       minimumTouchTarget: 48.0,
       iconSize: 24.0,
     ),
@@ -842,7 +842,7 @@ AppIconButton(
 
 ```dart
 // Soporte automático para idiomas RTL (árabe, hebreo, persa)
-MaterialApp(
+MaterialDS(
   locale: Locale('ar', 'SA'), // Árabe Saudí
   supportedLocales: [
     Locale('en', 'US'),
@@ -850,7 +850,7 @@ MaterialApp(
     Locale('ar', 'SA'),
     Locale('he', 'IL'),
   ],
-  theme: AppTheme.lightTheme,
+  theme: DSTheme.lightTheme,
   // Todos los componentes se adaptan automáticamente RTL
 )
 
@@ -875,7 +875,7 @@ class CorporateDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer.permanent(
+      drawer: DSDrawer.permanent(
         content: _buildNavigationMenu(),
       ),
       body: ResponsiveLayout(
@@ -888,34 +888,34 @@ class CorporateDashboard extends StatelessWidget {
 
   Widget _buildDesktopLayout() {
     return Padding(
-      padding: AppSpacing.pageResponsive(context),
+      padding: DSSpacing.pageResponsive(context),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header con breadcrumbs
-          AppBreadcrumbs(
+          DSBreadcrumbs(
             items: [
-              AppBreadcrumbItem(label: 'Dashboard', icon: Icons.dashboard),
-              AppBreadcrumbItem(label: 'Analytics', isActive: true),
+              DSBreadcrumbItem(label: 'Dashboard', icon: Icons.dashboard),
+              DSBreadcrumbItem(label: 'Analytics', isActive: true),
             ],
           ),
-          AppSpacing.verticalMd,
+          DSSpacing.verticalMd,
 
           // Título y acciones
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Dashboard Ejecutivo', style: AppTypography.h1),
+              Text('Dashboard Ejecutivo', style: DSTypography.h1),
               Row(
                 children: [
-                  AppButton(
+                  DSButton(
                     text: 'Exportar',
                     variant: ButtonVariant.outline,
                     prefixIcon: Icons.download,
                     onPressed: _exportData,
                   ),
-                  AppSpacing.horizontalSm,
-                  AppButton(
+                  DSSpacing.horizontalSm,
+                  DSButton(
                     text: 'Nuevo Reporte',
                     variant: ButtonVariant.filled,
                     prefixIcon: Icons.add,
@@ -925,43 +925,43 @@ class CorporateDashboard extends StatelessWidget {
               ),
             ],
           ),
-          AppSpacing.verticalLg,
+          DSSpacing.verticalLg,
 
           // Grid de métricas
           Expanded(
             child: ResponsiveGrid(
               children: [
-                _buildMetricCard('Ventas Totales', '\$2.4M', '+12%', AppColors.success),
-                _buildMetricCard('Clientes Activos', '15,847', '+5%', AppColors.primary),
-                _buildMetricCard('Conversión', '3.2%', '-0.8%', AppColors.warning),
-                _buildMetricCard('Satisfacción', '4.8/5', '+0.2', AppColors.success),
+                _buildMetricCard('Ventas Totales', '\$2.4M', '+12%', DSColors.success),
+                _buildMetricCard('Clientes Activos', '15,847', '+5%', DSColors.primary),
+                _buildMetricCard('Conversión', '3.2%', '-0.8%', DSColors.warning),
+                _buildMetricCard('Satisfacción', '4.8/5', '+0.2', DSColors.success),
               ],
               desktop: ResponsiveGridConfig(columns: 4, spacing: 24),
               tablet: ResponsiveGridConfig(columns: 2, spacing: 20),
               mobile: ResponsiveGridConfig(columns: 1, spacing: 16),
             ),
           ),
-          AppSpacing.verticalLg,
+          DSSpacing.verticalLg,
 
           // Gráfico principal
           Expanded(
             flex: 2,
-            child: AppCard(
+            child: DSCard(
               child: Padding(
-                padding: AppSpacing.cardPadding,
+                padding: DSSpacing.cardPadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Tendencia de Ventas', style: AppTypography.h4),
-                    AppSpacing.verticalMd,
+                    Text('Tendencia de Ventas', style: DSTypography.h4),
+                    DSSpacing.verticalMd,
                     Expanded(
-                      child: AppChart(
-                        type: AppChartType.line,
+                      child: DSChart(
+                        type: DSChartType.line,
                         data: _salesData,
-                        config: AppChartConfig(
-                          xAxis: AppChartAxis(title: 'Meses'),
-                          yAxis: AppChartAxis(title: 'Ventas (USD)'),
-                          colors: [AppColors.primary, AppColors.secondary],
+                        config: DSChartConfig(
+                          xAxis: DSChartAxis(title: 'Meses'),
+                          yAxis: DSChartAxis(title: 'Ventas (USD)'),
+                          colors: [DSColors.primary, DSColors.secondary],
                         ),
                       ),
                     ),
@@ -976,14 +976,14 @@ class CorporateDashboard extends StatelessWidget {
   }
 
   Widget _buildMetricCard(String title, String value, String change, Color color) {
-    return AppMetricCard(
+    return DSMetricCard(
       title: title,
       value: value,
       change: change,
       changeColor: color,
       icon: _getMetricIcon(title),
-      config: AppMetricCardConfig(
-        variant: AppMetricCardVariant.elevated,
+      config: DSMetricCardConfig(
+        variant: DSMetricCardVariant.elevated,
         showTrend: true,
         animateOnLoad: true,
       ),
@@ -1006,26 +1006,26 @@ class _EmployeeFormState extends State<EmployeeForm> {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
+    return DSCard(
       child: Padding(
-        padding: AppSpacing.cardPadding,
+        padding: DSSpacing.cardPadding,
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Información del Empleado', style: AppTypography.h3),
-              AppSpacing.verticalLg,
+              Text('Información del Empleado', style: DSTypography.h3),
+              DSSpacing.verticalLg,
 
               // Información personal
               ResponsiveGrid(
                 children: [
-                  AppInput(
+                  DSInput(
                     label: 'Nombre Completo *',
                     validator: Validators.required('Nombre requerido'),
                     onChanged: (value) => _employee.name = value,
                   ),
-                  AppInput(
+                  DSInput(
                     label: 'Email Corporativo *',
                     keyboardType: TextInputType.emailAddress,
                     validator: Validators.compose([
@@ -1035,13 +1035,13 @@ class _EmployeeFormState extends State<EmployeeForm> {
                     ]),
                     onChanged: (value) => _employee.email = value,
                   ),
-                  AppDatePicker(
+                  DSDatePicker(
                     label: 'Fecha de Nacimiento',
                     firstDate: DateTime(1950),
                     lastDate: DateTime.now().subtract(Duration(days: 18 * 365)),
                     onDateSelected: (date) => _employee.birthDate = date,
                   ),
-                  AppSelect<Department>(
+                  DSSelect<Department>(
                     label: 'Departamento *',
                     items: Department.values,
                     itemBuilder: (dept) => Text(dept.displayName),
@@ -1052,22 +1052,22 @@ class _EmployeeFormState extends State<EmployeeForm> {
                 desktop: ResponsiveGridConfig(columns: 2, spacing: 24),
                 mobile: ResponsiveGridConfig(columns: 1, spacing: 16),
               ),
-              AppSpacing.verticalLg,
+              DSSpacing.verticalLg,
 
               // Información laboral
-              Text('Información Laboral', style: AppTypography.h4),
-              AppSpacing.verticalMd,
+              Text('Información Laboral', style: DSTypography.h4),
+              DSSpacing.verticalMd,
 
               ResponsiveGrid(
                 children: [
-                  AppSelect<Position>(
+                  DSSelect<Position>(
                     label: 'Cargo *',
                     items: Position.values,
                     itemBuilder: (pos) => Text(pos.title),
                     validator: Validators.required('Cargo requerido'),
                     onChanged: (pos) => _employee.position = pos,
                   ),
-                  AppCurrencyInput(
+                  DSCurrencyInput(
                     label: 'Salario Anual *',
                     currency: 'USD',
                     validator: Validators.compose([
@@ -1076,14 +1076,14 @@ class _EmployeeFormState extends State<EmployeeForm> {
                     ]),
                     onChanged: (value) => _employee.salary = value,
                   ),
-                  AppDatePicker(
+                  DSDatePicker(
                     label: 'Fecha de Inicio *',
                     firstDate: DateTime(2020),
                     lastDate: DateTime.now().add(Duration(days: 30)),
                     validator: Validators.required('Fecha de inicio requerida'),
                     onDateSelected: (date) => _employee.startDate = date,
                   ),
-                  AppSelect<EmploymentType>(
+                  DSSelect<EmploymentType>(
                     label: 'Tipo de Empleo',
                     items: EmploymentType.values,
                     itemBuilder: (type) => Text(type.displayName),
@@ -1093,25 +1093,25 @@ class _EmployeeFormState extends State<EmployeeForm> {
                 desktop: ResponsiveGridConfig(columns: 2, spacing: 24),
                 mobile: ResponsiveGridConfig(columns: 1, spacing: 16),
               ),
-              AppSpacing.verticalXl,
+              DSSpacing.verticalXl,
 
               // Acciones del formulario
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  AppButton(
+                  DSButton(
                     text: 'Cancelar',
                     variant: ButtonVariant.text,
                     onPressed: () => Navigator.pop(context),
                   ),
-                  AppSpacing.horizontalMd,
-                  AppButton(
+                  DSSpacing.horizontalMd,
+                  DSButton(
                     text: 'Guardar Borrador',
                     variant: ButtonVariant.outline,
                     onPressed: _saveDraft,
                   ),
-                  AppSpacing.horizontalMd,
-                  AppButton(
+                  DSSpacing.horizontalMd,
+                  DSButton(
                     text: 'Crear Empleado',
                     variant: ButtonVariant.filled,
                     onPressed: _submitForm,
@@ -1133,21 +1133,21 @@ class _EmployeeFormState extends State<EmployeeForm> {
       try {
         await EmployeeService.create(_employee);
 
-        AppToast.show(
+        DSToast.show(
           context,
           message: 'Empleado creado exitosamente',
-          type: AppToastType.success,
+          type: DSToastType.success,
         );
 
         Navigator.pop(context, _employee);
       } catch (error) {
-        AppToast.show(
+        DSToast.show(
           context,
           message: 'Error al crear empleado: ${error.message}',
-          type: AppToastType.error,
-          config: AppToastConfig(
+          type: DSToastType.error,
+          config: DSToastConfig(
             actions: [
-              AppToastAction(
+              DSToastAction(
                 label: 'Reintentar',
                 onPressed: _submitForm,
               ),
@@ -1183,22 +1183,22 @@ class _ProductCatalogState extends State<ProductCatalog> {
       body: Column(
         children: [
           // Barra de búsqueda y filtros
-          AppCard(
+          DSCard(
             child: Padding(
-              padding: AppSpacing.cardPadding,
+              padding: DSSpacing.cardPadding,
               child: Column(
                 children: [
                   ResponsiveGrid(
                     children: [
-                      AppInPageSearch(
+                      DSInPageSearch(
                         placeholder: 'Buscar productos...',
                         onSearchChanged: _handleSearch,
-                        config: AppInPageSearchConfig(
+                        config: DSInPageSearchConfig(
                           showClearButton: true,
                           debounceTime: Duration(milliseconds: 300),
                         ),
                       ),
-                      AppSelect<ProductCategory>(
+                      DSSelect<ProductCategory>(
                         label: 'Categoría',
                         items: ProductCategory.values,
                         value: _selectedCategory,
@@ -1209,23 +1209,23 @@ class _ProductCatalogState extends State<ProductCatalog> {
                     desktop: ResponsiveGridConfig(columns: 2, spacing: 24),
                     mobile: ResponsiveGridConfig(columns: 1, spacing: 16),
                   ),
-                  AppSpacing.verticalMd,
+                  DSSpacing.verticalMd,
 
-                  AppFilterBar(
+                  DSFilterBar(
                     filters: [
-                      AppFilter.price(
+                      DSFilter.price(
                         title: 'Rango de Precio',
                         min: 0,
                         max: 5000,
                         values: [_priceRange?.min ?? 0, _priceRange?.max ?? 5000],
                         onChanged: _handlePriceFilter,
                       ),
-                      AppFilter.multiSelect(
+                      DSFilter.multiSelect(
                         title: 'Marcas',
                         options: Brand.values.map((b) => b.displayName).toList(),
                         onChanged: _handleBrandFilter,
                       ),
-                      AppFilter.toggle(
+                      DSFilter.toggle(
                         title: 'En Oferta',
                         value: _showOnlyOnSale,
                         onChanged: _handleSaleFilter,
@@ -1236,17 +1236,17 @@ class _ProductCatalogState extends State<ProductCatalog> {
               ),
             ),
           ),
-          AppSpacing.verticalMd,
+          DSSpacing.verticalMd,
 
           // Grid de productos
           Expanded(
             child: _filteredProducts.isEmpty
-                ? AppEmptyState(
+                ? DSEmptyState(
                     icon: Icons.search_off,
                     title: 'No se encontraron productos',
                     description: 'Intenta ajustar tus filtros de búsqueda',
                     actions: [
-                      AppButton(
+                      DSButton(
                         text: 'Limpiar Filtros',
                         variant: ButtonVariant.outline,
                         onPressed: _clearFilters,
@@ -1255,13 +1255,13 @@ class _ProductCatalogState extends State<ProductCatalog> {
                   )
                 : ResponsiveGrid(
                     children: _filteredProducts.map((product) {
-                      return AppProductCard(
+                      return DSProductCard(
                         product: product,
                         onTap: () => _viewProduct(product),
                         onAddToCart: () => _addToCart(product),
                         onToggleFavorite: () => _toggleFavorite(product),
-                        config: AppProductCardConfig(
-                          variant: AppProductCardVariant.elevated,
+                        config: DSProductCardConfig(
+                          variant: DSProductCardVariant.elevated,
                           showQuickActions: true,
                           showRating: true,
                           imageAspectRatio: 1.0,
@@ -1275,12 +1275,12 @@ class _ProductCatalogState extends State<ProductCatalog> {
           ),
 
           // Paginación
-          AppPagination(
+          DSPagination(
             currentPage: _currentPage,
             totalPages: _totalPages,
             onPageChanged: _handlePageChange,
-            config: AppPaginationConfig(
-              variant: AppPaginationVariant.full,
+            config: DSPaginationConfig(
+              variant: DSPaginationVariant.full,
               showPageSizeSelector: true,
               pageSizeOptions: [12, 24, 48, 96],
             ),
@@ -1289,11 +1289,11 @@ class _ProductCatalogState extends State<ProductCatalog> {
       ),
 
       // Carrito flotante
-      floatingActionButton: AppCartWidget(
+      floatingActionButton: DSCartWidget(
         items: _cartItems,
-        variant: AppCartVariantWidget.fab,
+        variant: DSCartVariantWidget.fab,
         onTap: _openCart,
-        config: AppCartWidgetConfig(
+        config: DSCartWidgetConfig(
           showItemCount: true,
           showTotal: true,
           animateOnAdd: true,
@@ -1383,7 +1383,7 @@ iautomat_design_system/
 │   ├── 📂 components/
 │   └── 📂 utils/
 │
-└── 📂 example/                        # 📚 App de demostración
+└── 📂 example/                        # 📚 DS de demostración
     ├── 📂 lib/
     │   ├── 📄 main.dart
     │   └── 📂 stories/                # Historias de componentes
@@ -1400,18 +1400,18 @@ Cada componente complejo usa configuración inmutable con Freezed:
 
 ```dart
 @freezed
-class AppButtonConfig with _$AppButtonConfig {
-  const factory AppButtonConfig({
+class DSButtonConfig with _$DSButtonConfig {
+  const factory DSButtonConfig({
     @Default(ButtonVariant.filled) ButtonVariant variant,
     @Default(ButtonSize.medium) ButtonSize size,
-    @Default(AppButtonState.defaultState) AppButtonState state,
-    AppButtonColors? colors,
-    AppButtonSpacing? spacing,
-    AppButtonAnimations? animations,
-    AppButtonAccessibility? accessibility,
-  }) = _AppButtonConfig;
+    @Default(DSButtonState.defaultState) DSButtonState state,
+    DSButtonColors? colors,
+    DSButtonSpacing? spacing,
+    DSButtonAnimations? animations,
+    DSButtonAccessibility? accessibility,
+  }) = _DSButtonConfig;
 
-  const AppButtonConfig._();
+  const DSButtonConfig._();
 
   // Validation
   bool get isValid =>
@@ -1420,7 +1420,7 @@ class AppButtonConfig with _$AppButtonConfig {
       animations?.isValid != false;
 
   // Helpers
-  AppButtonConfig optimize() => copyWith(
+  DSButtonConfig optimize() => copyWith(
     animations: animations?.optimize(),
   );
 }
@@ -1446,7 +1446,7 @@ export 'src/utils/utils.dart';
 Adaptación automática por plataforma:
 
 ```dart
-class AppButtonPlatformAdapter {
+class DSButtonPlatformAdapter {
   bool get isMobile => !kIsWeb && (Platform.isIOS || Platform.isAndroid);
   bool get isWeb => kIsWeb;
   bool get isDesktop => !kIsWeb && (Platform.isWindows || Platform.isMacOS);
@@ -1464,18 +1464,18 @@ class AppButtonPlatformAdapter {
 Helpers especializados para accesibilidad:
 
 ```dart
-class AppButtonA11yHelper {
-  String getButtonLabel(AppButtonConfig config) {
+class DSButtonA11yHelper {
+  String getButtonLabel(DSButtonConfig config) {
     final accessibility = config.accessibility!;
     return accessibility.customLabel ?? accessibility.label;
   }
 
-  Widget wrapWithSemantics(Widget child, AppButtonConfig config) {
+  Widget wrapWithSemantics(Widget child, DSButtonConfig config) {
     if (!config.accessibility!.enabled) return child;
 
     return Semantics(
       button: true,
-      enabled: config.state != AppButtonState.disabled,
+      enabled: config.state != DSButtonState.disabled,
       label: getButtonLabel(config),
       child: child,
     );
@@ -1487,11 +1487,11 @@ class AppButtonA11yHelper {
 
 #### **Jerarquía de Tokens**
 ```
-Global Tokens (AppColors, AppTypography, AppSpacing)
+Global Tokens (DSColors, DSTypography, DSSpacing)
     ↓
 Semantic Tokens (primary, success, error, etc.)
     ↓
-Component Tokens (AppButtonColors, AppInputColors, etc.)
+Component Tokens (DSButtonColors, DSInputColors, etc.)
     ↓
 Instance Values (específicos de cada componente)
 ```
@@ -1499,17 +1499,17 @@ Instance Values (específicos de cada componente)
 #### **Token Examples**
 ```dart
 // Global Tokens
-AppColors.primary → #2563EB
+DSColors.primary → #2563EB
 
 // Semantic Tokens
-AppColors.buttonPrimary → AppColors.primary
+DSColors.buttonPrimary → DSColors.primary
 
 // Component Tokens
-AppButtonColors.filledBackground → AppColors.buttonPrimary
+DSButtonColors.filledBackground → DSColors.buttonPrimary
 
 // Instance Values
-AppButton(config: AppButtonConfig(
-  colors: AppButtonColors(backgroundColor: Colors.red) // Override specific
+DSButton(config: DSButtonConfig(
+  colors: DSButtonColors(backgroundColor: Colors.red) // Override specific
 ))
 ```
 
@@ -1517,8 +1517,8 @@ AppButton(config: AppButtonConfig(
 
 #### **Cobertura y Performance**
 - **Líneas de código:** ~15,000+
-- **Componentes:** 70+
-- **Archivos de test:** 133+
+- **Componentes:** 70+ (todos con prefijo DS)
+- **Archivos de test:** 134
 - **Cobertura de tests:** >95%
 - **Tiempo de build:** <30s
 - **Bundle size (Web):** <2MB gzipped
@@ -1551,14 +1551,14 @@ AppButton(config: AppButtonConfig(
 #### **Tipos de Test por Componente**
 ```dart
 // 1. Unit Tests - Lógica y configuración
-test('AppButtonConfig validation works correctly', () {
-  const validConfig = AppButtonConfig(
+test('DSButtonConfig validation works correctly', () {
+  const validConfig = DSButtonConfig(
     variant: ButtonVariant.filled,
     size: ButtonSize.medium,
   );
 
-  const invalidConfig = AppButtonConfig(
-    colors: AppButtonColors(opacity: 1.5), // Invalid
+  const invalidConfig = DSButtonConfig(
+    colors: DSButtonColors(opacity: 1.5), // Invalid
   );
 
   expect(validConfig.isValid, isTrue);
@@ -1566,12 +1566,12 @@ test('AppButtonConfig validation works correctly', () {
 });
 
 // 2. Widget Tests - Renderizado y interacción
-testWidgets('AppButton renders correctly and responds to tap', (tester) async {
+testWidgets('DSButton renders correctly and responds to tap', (tester) async {
   bool pressed = false;
 
   await tester.pumpWidget(
-    MaterialApp(
-      home: AppButton(
+    MaterialDS(
+      home: DSButton(
         text: 'Test Button',
         onPressed: () => pressed = true,
       ),
@@ -1579,23 +1579,23 @@ testWidgets('AppButton renders correctly and responds to tap', (tester) async {
   );
 
   expect(find.text('Test Button'), findsOneWidget);
-  expect(find.byType(AppButton), findsOneWidget);
+  expect(find.byType(DSButton), findsOneWidget);
 
-  await tester.tap(find.byType(AppButton));
+  await tester.tap(find.byType(DSButton));
   expect(pressed, isTrue);
 });
 
 // 3. Golden Tests - UI Visual
-testWidgets('AppButton golden test', (tester) async {
+testWidgets('DSButton golden test', (tester) async {
   await tester.pumpWidget(
-    MaterialApp(
-      theme: AppTheme.lightTheme,
+    MaterialDS(
+      theme: DSTheme.lightTheme,
       home: Scaffold(
         body: Column(
           children: [
-            AppButton(text: 'Filled', variant: ButtonVariant.filled),
-            AppButton(text: 'Outline', variant: ButtonVariant.outline),
-            AppButton(text: 'Text', variant: ButtonVariant.text),
+            DSButton(text: 'Filled', variant: ButtonVariant.filled),
+            DSButton(text: 'Outline', variant: ButtonVariant.outline),
+            DSButton(text: 'Text', variant: ButtonVariant.text),
           ],
         ),
       ),
@@ -1609,17 +1609,17 @@ testWidgets('AppButton golden test', (tester) async {
 });
 
 // 4. Accessibility Tests
-testWidgets('AppButton is accessible', (tester) async {
+testWidgets('DSButton is accessible', (tester) async {
   await tester.pumpWidget(
-    MaterialApp(
-      home: AppButton(
+    MaterialDS(
+      home: DSButton(
         text: 'Accessible Button',
         tooltip: 'Press to perform action',
       ),
     ),
   );
 
-  final semantics = tester.getSemantics(find.byType(AppButton));
+  final semantics = tester.getSemantics(find.byType(DSButton));
   expect(semantics, hasA11yLabel('Accessible Button'));
   expect(semantics, hasA11yHint('Press to perform action'));
   expect(semantics, isA11yButton());
@@ -1659,10 +1659,11 @@ flutter run --profile --trace-startup
 - **Overall:** 95%+ cobertura
 
 #### **Test Distribution**
-- **Unit Tests:** 65 archivos (configuración, validación, utils)
-- **Widget Tests:** 48 archivos (renderizado, interacción)
-- **Golden Tests:** 15 archivos (validación visual)
+- **Unit Tests:** 67 archivos (configuración, validación, utils)
+- **Widget Tests:** 50 archivos (renderizado, interacción)
+- **Golden Tests:** 12 archivos (validación visual)
 - **Integration Tests:** 5 archivos (flujos completos)
+- **Total:** 134 archivos de test
 
 ---
 
@@ -1741,7 +1742,7 @@ flutter drive --target=test_driver/app.dart
 #### **Naming Conventions**
 ```dart
 // Clases: PascalCase
-class AppButton extends StatelessWidget {}
+class DSButton extends StatelessWidget {}
 
 // Archivos: snake_case
 app_button.dart
@@ -1754,12 +1755,12 @@ enum ButtonVariant { filled, outline, text }
 const kDefaultAnimationDuration = Duration(milliseconds: 200);
 
 // Variables privadas: _camelCase
-final _platformAdapter = AppButtonPlatformAdapter();
+final _platformAdapter = DSButtonPlatformAdapter();
 ```
 
 #### **Estructura de Widget**
 ```dart
-class AppButton extends StatelessWidget {
+class DSButton extends StatelessWidget {
   /// Texto del botón mostrado al usuario
   final String text;
 
@@ -1767,9 +1768,9 @@ class AppButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   /// Configuración completa del botón
-  final AppButtonConfig? config;
+  final DSButtonConfig? config;
 
-  const AppButton({
+  const DSButton({
     super.key,
     required this.text,
     this.onPressed,
@@ -1787,7 +1788,7 @@ class AppButton extends StatelessWidget {
     );
   }
 
-  AppButtonConfig _getEffectiveConfig(BuildContext context) {
+  DSButtonConfig _getEffectiveConfig(BuildContext context) {
     // Implementación...
   }
 }

@@ -1,0 +1,135 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "flutter: Get Dependencies (Example)",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["pub", "get"],
+            "options": {
+                "cwd": "${workspaceFolder}/example"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "flutter: Clean (Example)",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["clean"],
+            "options": {
+                "cwd": "${workspaceFolder}/example"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "flutter: Analyze (Example)",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["analyze"],
+            "options": {
+                "cwd": "${workspaceFolder}/example"
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "flutter: Test (Example)",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["test"],
+            "options": {
+                "cwd": "${workspaceFolder}/example"
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "flutter: Format (Example)",
+            "type": "shell",
+            "command": "dart",
+            "args": ["format", "."],
+            "options": {
+                "cwd": "${workspaceFolder}/example"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "flutter: Get Dependencies (Root)",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["pub", "get"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "flutter: Analyze (Root)",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["analyze"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "flutter: Test (Root)",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["test"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        }
+    ]
+}

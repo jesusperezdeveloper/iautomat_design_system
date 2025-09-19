@@ -1,11 +1,11 @@
 {
-    "name": "design_system_example",
-    "short_name": "design_system_example",
+    "name": "IAut DS",
+    "short_name": "IAut DS",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "IAutomat Design System - Catálogo interactivo de componentes",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
