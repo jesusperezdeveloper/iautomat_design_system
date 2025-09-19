@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../utils/responsive.dart';
-import ds_bar_config.dart';
+import 'ds_top_app_bar_config.dart';
 
 class DSTopAppBar extends StatefulWidget implements PreferredSizeWidget {
   final DSTopAppBarConfig config;
