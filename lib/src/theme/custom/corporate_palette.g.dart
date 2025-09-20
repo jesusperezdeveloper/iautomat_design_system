@@ -35,96 +35,29 @@ Map<String, dynamic> _$$CorporatePaletteConfigImplToJson(
     };
 
 const _$ContrastLevelEnumMap = {
-  ContrastLevel.aa: 'AA',
-  ContrastLevel.aaa: 'AAA',
+  ContrastLevel.aa: 'aa',
+  ContrastLevel.aaa: 'aaa',
 };
+
+// Note: CorporatePalette and CorporateThemeResult serialization disabled
+// due to Color and ThemeData fields which are not JSON serializable
 
 _$CorporatePaletteImpl _$$CorporatePaletteImplFromJson(
         Map<String, dynamic> json) =>
-    _$CorporatePaletteImpl(
-      primary: Color((json['primary'] as num).toInt()),
-      secondary: Color((json['secondary'] as num).toInt()),
-      accent: json['accent'] == null
-          ? null
-          : Color((json['accent'] as num).toInt()),
-      neutral: json['neutral'] == null
-          ? null
-          : Color((json['neutral'] as num).toInt()),
-      success: json['success'] == null
-          ? null
-          : Color((json['success'] as num).toInt()),
-      warning: json['warning'] == null
-          ? null
-          : Color((json['warning'] as num).toInt()),
-      error: json['error'] == null
-          ? null
-          : Color((json['error'] as num).toInt()),
-      info: json['info'] == null
-          ? null
-          : Color((json['info'] as num).toInt()),
-      config: json['config'] == null
-          ? CorporatePaletteConfig()
-          : CorporatePaletteConfig.fromJson(
-              json['config'] as Map<String, dynamic>),
-      generatedVariants: (json['generatedVariants'] as Map<String, dynamic>?)
-          ?.map(
-        (k, e) => MapEntry(
-            k,
-            (e as Map<String, dynamic>).map(
-              (k, e) => MapEntry(int.parse(k), Color((e as num).toInt())),
-            )),
-      ),
-      contrastValidation: (json['contrastValidation'] as Map<String, dynamic>?)
-          ?.map(
-        (k, e) => MapEntry(k, e as bool),
-      ),
-    );
+    throw UnsupportedError(
+        'CorporatePalette fromJson not supported - contains Color fields');
 
 Map<String, dynamic> _$$CorporatePaletteImplToJson(
         _$CorporatePaletteImpl instance) =>
-    <String, dynamic>{
-      'primary': instance.primary.toARGB32(),
-      'secondary': instance.secondary.toARGB32(),
-      'accent': instance.accent?.toARGB32(),
-      'neutral': instance.neutral?.toARGB32(),
-      'success': instance.success?.toARGB32(),
-      'warning': instance.warning?.toARGB32(),
-      'error': instance.error?.toARGB32(),
-      'info': instance.info?.toARGB32(),
-      'config': instance.config.toJson(),
-      'generatedVariants': instance.generatedVariants?.map((k, e) =>
-          MapEntry(k, e.map((k, e) => MapEntry(k.toString(), e.toARGB32())))),
-      'contrastValidation': instance.contrastValidation,
-    };
+    throw UnsupportedError(
+        'CorporatePalette toJson not supported - contains Color fields');
 
 _$CorporateThemeResultImpl _$$CorporateThemeResultImplFromJson(
         Map<String, dynamic> json) =>
-    _$CorporateThemeResultImpl(
-      lightTheme: ThemeData.from(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Color((json['seedColor'] as num?)?.toInt() ?? 0xFF2196F3),
-        ),
-      ),
-      darkTheme: ThemeData.from(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Color((json['seedColor'] as num?)?.toInt() ?? 0xFF2196F3),
-          brightness: Brightness.dark,
-        ),
-      ),
-      palette: CorporatePalette.fromJson(json['palette'] as Map<String, dynamic>),
-      warnings: (json['warnings'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-      generationTime: (json['generationTime'] as num?)?.toInt(),
-      metadata: json['metadata'] as Map<String, dynamic>?,
-    );
+    throw UnsupportedError(
+        'CorporateThemeResult fromJson not supported - contains ThemeData fields');
 
 Map<String, dynamic> _$$CorporateThemeResultImplToJson(
         _$CorporateThemeResultImpl instance) =>
-    <String, dynamic>{
-      'palette': instance.palette.toJson(),
-      'warnings': instance.warnings,
-      'generationTime': instance.generationTime,
-      'metadata': instance.metadata,
-    };
+    throw UnsupportedError(
+        'CorporateThemeResult toJson not supported - contains ThemeData fields');

@@ -15,12 +15,6 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-CorporatePaletteConfig _$CorporatePaletteConfigFromJson(
-  Map<String, dynamic> json,
-) {
-  return _CorporatePaletteConfig.fromJson(json);
-}
-
 /// @nodoc
 mixin _$CorporatePaletteConfig {
   /// Nombre de la marca/empresa
@@ -46,9 +40,6 @@ mixin _$CorporatePaletteConfig {
 
   /// Preservar saturación en variantes
   bool get preserveSaturation => throw _privateConstructorUsedError;
-
-  /// Serializes this CorporatePaletteConfig to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of CorporatePaletteConfig
   /// with the given fields replaced by the non-null parameter values.
@@ -228,7 +219,7 @@ class __$$CorporatePaletteConfigImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$CorporatePaletteConfigImpl implements _CorporatePaletteConfig {
   const _$CorporatePaletteConfigImpl({
     this.brandName,
@@ -240,9 +231,6 @@ class _$CorporatePaletteConfigImpl implements _CorporatePaletteConfig {
     this.variantFactor = 0.15,
     this.preserveSaturation = true,
   });
-
-  factory _$CorporatePaletteConfigImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CorporatePaletteConfigImplFromJson(json);
 
   /// Nombre de la marca/empresa
   @override
@@ -311,7 +299,6 @@ class _$CorporatePaletteConfigImpl implements _CorporatePaletteConfig {
                 other.preserveSaturation == preserveSaturation));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
@@ -336,11 +323,6 @@ class _$CorporatePaletteConfigImpl implements _CorporatePaletteConfig {
         this,
         _$identity,
       );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CorporatePaletteConfigImplToJson(this);
-  }
 }
 
 abstract class _CorporatePaletteConfig implements CorporatePaletteConfig {
@@ -354,9 +336,6 @@ abstract class _CorporatePaletteConfig implements CorporatePaletteConfig {
     final double variantFactor,
     final bool preserveSaturation,
   }) = _$CorporatePaletteConfigImpl;
-
-  factory _CorporatePaletteConfig.fromJson(Map<String, dynamic> json) =
-      _$CorporatePaletteConfigImpl.fromJson;
 
   /// Nombre de la marca/empresa
   @override
@@ -398,10 +377,6 @@ abstract class _CorporatePaletteConfig implements CorporatePaletteConfig {
   get copyWith => throw _privateConstructorUsedError;
 }
 
-CorporatePalette _$CorporatePaletteFromJson(Map<String, dynamic> json) {
-  return _CorporatePalette.fromJson(json);
-}
-
 /// @nodoc
 mixin _$CorporatePalette {
   /// Color primario de la marca (requerido)
@@ -438,9 +413,6 @@ mixin _$CorporatePalette {
   /// Resultados de validación WCAG
   Map<String, bool>? get contrastValidation =>
       throw _privateConstructorUsedError;
-
-  /// Serializes this CorporatePalette to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of CorporatePalette
   /// with the given fields replaced by the non-null parameter values.
@@ -667,7 +639,7 @@ class __$$CorporatePaletteImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$CorporatePaletteImpl extends _CorporatePalette {
   const _$CorporatePaletteImpl({
     required this.primary,
@@ -684,9 +656,6 @@ class _$CorporatePaletteImpl extends _CorporatePalette {
   }) : _generatedVariants = generatedVariants,
        _contrastValidation = contrastValidation,
        super._();
-
-  factory _$CorporatePaletteImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CorporatePaletteImplFromJson(json);
 
   /// Color primario de la marca (requerido)
   @override
@@ -783,7 +752,6 @@ class _$CorporatePaletteImpl extends _CorporatePalette {
             ));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
@@ -810,11 +778,6 @@ class _$CorporatePaletteImpl extends _CorporatePalette {
         this,
         _$identity,
       );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CorporatePaletteImplToJson(this);
-  }
 }
 
 abstract class _CorporatePalette extends CorporatePalette {
@@ -832,9 +795,6 @@ abstract class _CorporatePalette extends CorporatePalette {
     final Map<String, bool>? contrastValidation,
   }) = _$CorporatePaletteImpl;
   const _CorporatePalette._() : super._();
-
-  factory _CorporatePalette.fromJson(Map<String, dynamic> json) =
-      _$CorporatePaletteImpl.fromJson;
 
   /// Color primario de la marca (requerido)
   @override
@@ -888,10 +848,6 @@ abstract class _CorporatePalette extends CorporatePalette {
       throw _privateConstructorUsedError;
 }
 
-CorporateThemeResult _$CorporateThemeResultFromJson(Map<String, dynamic> json) {
-  return _CorporateThemeResult.fromJson(json);
-}
-
 /// @nodoc
 mixin _$CorporateThemeResult {
   /// Tema light generado
@@ -911,9 +867,6 @@ mixin _$CorporateThemeResult {
 
   /// Metadata adicional
   Map<String, dynamic>? get metadata => throw _privateConstructorUsedError;
-
-  /// Serializes this CorporateThemeResult to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of CorporateThemeResult
   /// with the given fields replaced by the non-null parameter values.
@@ -1083,7 +1036,7 @@ class __$$CorporateThemeResultImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$CorporateThemeResultImpl implements _CorporateThemeResult {
   const _$CorporateThemeResultImpl({
     required this.lightTheme,
@@ -1094,9 +1047,6 @@ class _$CorporateThemeResultImpl implements _CorporateThemeResult {
     final Map<String, dynamic>? metadata,
   }) : _warnings = warnings,
        _metadata = metadata;
-
-  factory _$CorporateThemeResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CorporateThemeResultImplFromJson(json);
 
   /// Tema light generado
   @override
@@ -1160,7 +1110,6 @@ class _$CorporateThemeResultImpl implements _CorporateThemeResult {
             const DeepCollectionEquality().equals(other._metadata, _metadata));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
@@ -1183,11 +1132,6 @@ class _$CorporateThemeResultImpl implements _CorporateThemeResult {
         this,
         _$identity,
       );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CorporateThemeResultImplToJson(this);
-  }
 }
 
 abstract class _CorporateThemeResult implements CorporateThemeResult {
@@ -1199,9 +1143,6 @@ abstract class _CorporateThemeResult implements CorporateThemeResult {
     final int? generationTime,
     final Map<String, dynamic>? metadata,
   }) = _$CorporateThemeResultImpl;
-
-  factory _CorporateThemeResult.fromJson(Map<String, dynamic> json) =
-      _$CorporateThemeResultImpl.fromJson;
 
   /// Tema light generado
   @override
