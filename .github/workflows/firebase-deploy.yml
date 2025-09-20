@@ -43,7 +43,7 @@ jobs:
     - name: Build for web
       run: |
         cd example
-        flutter build web --release --web-renderer html --base-href /
+        flutter build web --release --base-href /
 
     - name: Deploy to Firebase Hosting (Preview)
       if: github.event_name == 'pull_request'
