@@ -1,23 +1,29 @@
 {
-    "name": "IAut DS",
-    "short_name": "IAut DS",
-    "start_url": ".",
+    "name": "IAutomat Design System",
+    "short_name": "IAutomat DS",
+    "start_url": "/",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "IAutomat Design System - Catálogo interactivo de componentes",
+    "background_color": "#2563EB",
+    "theme_color": "#2563EB",
+    "description": "Professional Flutter Design System with 100+ themes and 70+ components",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
+    "categories": ["design", "development", "utilities"],
+    "lang": "es",
+    "dir": "ltr",
+    "scope": "/",
     "icons": [
         {
             "src": "icons/Icon-192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "icons/Icon-512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "icons/Icon-maskable-192.png",
@@ -30,6 +36,46 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshots/desktop.png",
+            "sizes": "1920x1080",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "screenshots/mobile.png",
+            "sizes": "390x844",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Theme Gallery",
+            "short_name": "Themes",
+            "description": "Explore 100+ professional themes",
+            "url": "/theme-showcase",
+            "icons": [
+                {
+                    "src": "icons/themes.png",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "Components",
+            "short_name": "Components",
+            "description": "View all 70+ components",
+            "url": "/components",
+            "icons": [
+                {
+                    "src": "icons/components.png",
+                    "sizes": "96x96"
+                }
+            ]
         }
     ]
 }

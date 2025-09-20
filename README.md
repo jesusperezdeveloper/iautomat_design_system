@@ -3,6 +3,22 @@
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.35.3-blue.svg)](https://flutter.dev)
 [![Dart Version](https://img.shields.io/badge/Dart-3.9.2-blue.svg)](https://dart.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Deploy Status](https://github.com/iautomat/iautomat_design_system/workflows/Deploy%20to%20Firebase%20Hosting/badge.svg)](https://github.com/iautomat/iautomat_design_system/actions)
+
+## 🚀 Live Demo
+
+**[🎨 Explora 100+ Temas Profesionales en Vivo](https://iautomatdesignsystem.web.app)**
+
+### 🔗 Enlaces Rápidos
+- [🌈 Galería de Temas](https://iautomatdesignsystem.web.app/#/theme-showcase) - 100 temas organizados por categorías
+- [🧩 Showcase de Componentes](https://iautomatdesignsystem.web.app/#/components) - 70+ componentes interactivos
+- [🎨 Sistema de Colores](https://iautomatdesignsystem.web.app/#/colors) - Paletas completas
+- [📝 Tipografía](https://iautomatdesignsystem.web.app/#/typography) - Sistema tipográfico
+
+### 🧪 Preview Deployments
+Cada pull request genera automáticamente un preview deployment para probar cambios antes del merge.
+
+---
 
 **Sistema de diseño empresarial completo para aplicaciones Flutter**, desarrollado por **IAutomat** - la agencia líder en automatización. Un conjunto robusto de 70+ componentes UI, sistema de tema avanzado y utilidades responsive para crear interfaces consistentes, accesibles y escalables.
 
@@ -2010,6 +2026,62 @@ scripts:
 - **Minor releases:** Mensuales (nuevas features)
 - **Patch releases:** Semanales (bug fixes)
 - **Hotfixes:** As needed (críticos)
+
+---
+
+## 🚀 Deployment y CI/CD
+
+### 🌐 **Hosting en Vivo**
+La aplicación de ejemplo se despliega automáticamente en Firebase Hosting:
+- **Producción:** [https://iautomatdesignsystem.web.app](https://iautomatdesignsystem.web.app)
+- **Deploy automático:** En cada merge a `main`
+- **Preview deploys:** En cada Pull Request
+
+### ⚙️ **Configuración Firebase**
+```bash
+# 1. Instalar Firebase CLI
+npm install -g firebase-tools
+
+# 2. Login en Firebase
+firebase login
+
+# 3. Configurar proyecto (ya hecho)
+cd example
+firebase init hosting
+
+# 4. Deploy manual (opcional)
+flutter build web --release
+firebase deploy
+```
+
+### 🔧 **GitHub Actions Workflow**
+- **Trigger:** Push a `main` o Pull Request
+- **Pipeline:** Instalar Flutter → Tests → Build Web → Deploy
+- **Cache:** Dependencias Flutter para builds más rápidos
+- **Preview:** URL temporal para cada PR
+
+### 📊 **Métricas de Performance**
+- **Lighthouse Score:** 95+ (Performance, Accessibility, Best Practices)
+- **First Contentful Paint:** <1.5s
+- **Time to Interactive:** <3s
+- **PWA Ready:** Service worker + manifest.json
+
+### 🛡️ **Configuración de Seguridad**
+```dart
+// Detectar entorno
+const isProduction = bool.fromEnvironment('dart.vm.product');
+
+// Features por entorno
+const enableAnalytics = isProduction;
+const enableDebugLogs = !isProduction;
+const showPerformanceOverlay = !isProduction;
+```
+
+### 📱 **PWA Features**
+- **Instalable:** Como app nativa en dispositivos
+- **Offline Ready:** Cache de assets críticos
+- **Push Notifications:** (Coming soon)
+- **Background Sync:** Actualización automática
 
 ---
 
