@@ -12,10 +12,7 @@ class ThemePreviewScreen extends StatefulWidget {
   /// Tema a previsualizar
   final DSThemePreset theme;
 
-  const ThemePreviewScreen({
-    super.key,
-    required this.theme,
-  });
+  const ThemePreviewScreen({super.key, required this.theme});
 
   @override
   State<ThemePreviewScreen> createState() => _ThemePreviewScreenState();
@@ -103,10 +100,7 @@ class _ThemePreviewScreenState extends State<ThemePreviewScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(widget.theme.displayName),
-          Text(
-            widget.theme.category.displayName,
-            style: DSTypography.caption,
-          ),
+          Text(widget.theme.category.displayName, style: DSTypography.caption),
         ],
       ),
       actions: [
@@ -130,7 +124,9 @@ class _ThemePreviewScreenState extends State<ThemePreviewScreen>
             return IconButton(
               icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
               onPressed: () => provider.toggleFavorite(widget.theme),
-              tooltip: isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos',
+              tooltip: isFavorite
+                  ? 'Quitar de favoritos'
+                  : 'Agregar a favoritos',
             );
           },
         ),
@@ -141,7 +137,7 @@ class _ThemePreviewScreenState extends State<ThemePreviewScreen>
   Widget _buildBody() {
     return Column(
       children: [
-        if (_isPreviewMode) _buildPreviewBanner(),
+        //if (_isPreviewMode) _buildPreviewBanner(),
         _buildThemeInfo(),
         _buildTabBar(),
         Expanded(
@@ -159,41 +155,6 @@ class _ThemePreviewScreenState extends State<ThemePreviewScreen>
     );
   }
 
-  Widget _buildPreviewBanner() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
-        border: Border(
-          bottom: BorderSide(
-            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
-          ),
-        ),
-      ),
-      child: Row(
-        children: [
-          Icon(
-            Icons.preview,
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
-          ),
-          const SizedBox(width: 8),
-          Text(
-            'Modo Preview ${_isDarkMode ? '(Oscuro)' : '(Claro)'}',
-            style: DSTypography.labelMedium.copyWith(
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const Spacer(),
-          TextButton(
-            onPressed: _togglePreviewMode,
-            child: const Text('Desactivar'),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildThemeInfo() {
     return Card(
@@ -223,14 +184,13 @@ class _ThemePreviewScreenState extends State<ThemePreviewScreen>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.theme.displayName,
-                        style: DSTypography.h5,
-                      ),
+                      Text(widget.theme.displayName, style: DSTypography.h5),
                       Text(
                         widget.theme.description,
                         style: DSTypography.bodyMedium.copyWith(
-                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withValues(alpha: 0.7),
                         ),
                       ),
                     ],
@@ -244,8 +204,7 @@ class _ThemePreviewScreenState extends State<ThemePreviewScreen>
                         backgroundColor: Colors.amber,
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
-                    if (widget.theme.isAccessible)
-                      const SizedBox(height: 4),
+                    if (widget.theme.isAccessible) const SizedBox(height: 4),
                     if (widget.theme.isAccessible)
                       Chip(
                         avatar: Icon(Icons.accessibility, size: 16),
@@ -510,10 +469,12 @@ class _ThemePreviewScreenState extends State<ThemePreviewScreen>
           children: [
             Text(title, style: DSTypography.h6),
             const SizedBox(height: 12),
-            ...items.map((item) => Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: Text(item, style: DSTypography.bodyMedium),
-                )),
+            ...items.map(
+              (item) => Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: Text(item, style: DSTypography.bodyMedium),
+              ),
+            ),
           ],
         ),
       ),

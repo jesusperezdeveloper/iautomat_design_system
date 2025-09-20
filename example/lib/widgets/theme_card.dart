@@ -129,9 +129,12 @@ class _ThemeCardState extends State<ThemeCard>
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     _buildColorPreview(context),
-                    _buildContent(context),
+                    Flexible(
+                      child: _buildContent(context),
+                    ),
                     _buildActions(context),
                   ],
                 ),
@@ -145,7 +148,7 @@ class _ThemeCardState extends State<ThemeCard>
 
   Widget _buildColorPreview(BuildContext context) {
     return Container(
-      height: 80,
+      height: 50,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
         gradient: LinearGradient(
@@ -235,62 +238,50 @@ class _ThemeCardState extends State<ThemeCard>
   }
 
   Widget _buildContent(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: DSSpacing.cardPadding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Nombre del tema
-            Text(
-              widget.theme.displayName,
-              style: DSTypography.labelLarge.copyWith(
-                fontWeight: FontWeight.w600,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Nombre del tema
+          Text(
+            widget.theme.displayName,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
-            DSSpacing.verticalXxs,
-            // Categoría
-            Row(
-              children: [
-                Icon(
-                  widget.theme.category.icon,
-                  size: 14,
-                  color: Theme.of(context).colorScheme.outline,
-                ),
-                const SizedBox(width: 4),
-                Expanded(
-                  child: Text(
-                    widget.theme.category.displayName,
-                    style: DSTypography.caption.copyWith(
-                      color: Theme.of(context).colorScheme.outline,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 3),
+          // Categoría
+          Row(
+            children: [
+              Icon(
+                widget.theme.category.icon,
+                size: 11,
+                color: Theme.of(context).colorScheme.outline,
+              ),
+              const SizedBox(width: 3),
+              Expanded(
+                child: Text(
+                  widget.theme.category.displayName,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Theme.of(context).colorScheme.outline,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ],
-            ),
-            DSSpacing.verticalXs,
-            // Descripción
-            Expanded(
-              child: Text(
-                widget.theme.description,
-                style: DSTypography.caption.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
-                  height: 1.3,
-                ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
               ),
-            ),
-            DSSpacing.verticalXs,
-            // Paleta de colores mini
-            _buildMiniColorPalette(context),
-          ],
-        ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          // Paleta de colores mini
+          _buildMiniColorPalette(context),
+        ],
       ),
     );
   }
@@ -300,18 +291,17 @@ class _ThemeCardState extends State<ThemeCard>
       widget.theme.lightColorScheme.primary,
       widget.theme.lightColorScheme.secondary,
       widget.theme.lightColorScheme.tertiary,
-      widget.theme.lightColorScheme.surface,
     ];
 
     return Row(
       children: colors.map((color) {
         return Container(
-          width: 16,
-          height: 16,
-          margin: const EdgeInsets.only(right: 4),
+          width: 12,
+          height: 12,
+          margin: const EdgeInsets.only(right: 2),
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(
               color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
               width: 0.5,
@@ -324,7 +314,7 @@ class _ThemeCardState extends State<ThemeCard>
 
   Widget _buildActions(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.5),
         borderRadius: const BorderRadius.vertical(bottom: Radius.circular(12)),
@@ -333,52 +323,63 @@ class _ThemeCardState extends State<ThemeCard>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Botón de favoritos
-          IconButton(
-            onPressed: () {
-              HapticFeedback.lightImpact();
-              widget.onFavorite();
-            },
-            icon: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 200),
-              child: Icon(
+          SizedBox(
+            height: 28,
+            width: 28,
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              iconSize: 16,
+              onPressed: () {
+                HapticFeedback.lightImpact();
+                widget.onFavorite();
+              },
+              icon: Icon(
                 widget.isFavorite ? Icons.favorite : Icons.favorite_border,
-                key: ValueKey(widget.isFavorite),
                 color: widget.isFavorite
                     ? Colors.red.shade400
                     : Theme.of(context).colorScheme.outline,
-                size: 20,
               ),
+              tooltip: widget.isFavorite
+                  ? 'Quitar de favoritos'
+                  : 'Agregar a favoritos',
             ),
-            tooltip: widget.isFavorite
-                ? 'Quitar de favoritos'
-                : 'Agregar a favoritos',
-            visualDensity: VisualDensity.compact,
           ),
-          // Spacer
-          const Spacer(),
           // Botón de aplicar
           if (!widget.isCurrentTheme)
-            FilledButton.tonalIcon(
-              onPressed: () {
-                HapticFeedback.mediumImpact();
-                widget.onApply();
-              },
-              icon: const Icon(Icons.palette, size: 16),
-              label: const Text('Aplicar'),
-              style: FilledButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                minimumSize: Size.zero,
-                visualDensity: VisualDensity.compact,
+            SizedBox(
+              height: 24,
+              child: FilledButton.tonal(
+                onPressed: () {
+                  HapticFeedback.mediumImpact();
+                  widget.onApply();
+                },
+                style: FilledButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                  minimumSize: Size.zero,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.palette, size: 12),
+                    const SizedBox(width: 3),
+                    const Text('Aplicar', style: TextStyle(fontSize: 11)),
+                  ],
+                ),
               ),
             )
           else
-            Chip(
-              label: const Text('APLICADO'),
-              avatar: const Icon(Icons.check, size: 16),
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              visualDensity: VisualDensity.compact,
-              backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-              side: BorderSide.none,
+            SizedBox(
+              height: 24,
+              child: Chip(
+                label: const Text('APLICADO', style: TextStyle(fontSize: 10)),
+                avatar: const Icon(Icons.check, size: 12),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                visualDensity: VisualDensity.compact,
+                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                side: BorderSide.none,
+                padding: EdgeInsets.zero,
+                labelPadding: const EdgeInsets.only(right: 2),
+              ),
             ),
         ],
       ),

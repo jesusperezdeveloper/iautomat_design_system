@@ -20,11 +20,13 @@ class DesignSystemExampleApp extends StatelessWidget {
     return Consumer<DSThemeProvider>(
       builder: (context, themeProvider, child) {
         return MaterialApp.router(
-          title: 'IAutomat Design System - 100 Temas Profesionales 2025',
+          title: 'IAutomat Design System - 100 Temas Profesionales',
           debugShowCheckedModeBanner: false,
           theme: themeProvider.lightThemeData,
           darkTheme: themeProvider.darkThemeData,
-          themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          themeMode: themeProvider.isDarkMode
+              ? ThemeMode.dark
+              : ThemeMode.light,
           routerConfig: AppRouter.router,
         );
       },

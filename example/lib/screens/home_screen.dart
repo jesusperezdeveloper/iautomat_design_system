@@ -11,16 +11,15 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: const DSTopAppBar(
         title: ThemeStatusWidget(),
-        actions: [
-          ThemeSwitcherButton(),
-          ThemePickerButton(),
-        ],
+        actions: [ThemeSwitcherButton(), ThemePickerButton()],
       ),
       body: CustomScrollView(
         slivers: [
           // Hero Section
           SliverAppBar(
-            expandedHeight: MediaQuery.of(context).size.height * 0.35, // 35% de la altura de pantalla
+            expandedHeight:
+                MediaQuery.of(context).size.height *
+                0.35, // 35% de la altura de pantalla
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
@@ -30,7 +29,9 @@ class HomeScreen extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Theme.of(context).colorScheme.primary,
-                      Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
+                      Theme.of(
+                        context,
+                      ).colorScheme.primary.withValues(alpha: 0.8),
                     ],
                   ),
                 ),
@@ -54,35 +55,69 @@ class HomeScreen extends StatelessWidget {
                                 Icon(
                                   Icons.palette,
                                   size: isMobile
-                                    ? (availableHeight < 200 ? 40 : 60)
-                                    : (availableHeight < 250 ? 60 : 80),
-                                  color: Theme.of(context).colorScheme.onPrimary,
+                                      ? (availableHeight < 200 ? 40 : 60)
+                                      : (availableHeight < 250 ? 60 : 80),
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
                                 ),
-                                SizedBox(height: availableHeight < 200 ? 8 : (isMobile ? 12 : 16)),
+                                SizedBox(
+                                  height: availableHeight < 200
+                                      ? 8
+                                      : (isMobile ? 12 : 16),
+                                ),
                                 Text(
                                   'IAutomat Design System',
-                                  style: (isMobile ? DSTypography.h3 : DSTypography.h2).copyWith(
-                                    color: Theme.of(context).colorScheme.onPrimary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style:
+                                      (isMobile
+                                              ? DSTypography.h3
+                                              : DSTypography.h2)
+                                          .copyWith(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimary,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                   textAlign: TextAlign.center,
                                 ),
-                                SizedBox(height: availableHeight < 200 ? 4 : (isMobile ? 6 : 8)),
+                                SizedBox(
+                                  height: availableHeight < 200
+                                      ? 4
+                                      : (isMobile ? 6 : 8),
+                                ),
                                 Text(
                                   'Sistema de diseño empresarial completo',
-                                  style: (isMobile ? DSTypography.bodyMedium : DSTypography.bodyLarge).copyWith(
-                                    color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.9),
-                                  ),
+                                  style:
+                                      (isMobile
+                                              ? DSTypography.bodyMedium
+                                              : DSTypography.bodyLarge)
+                                          .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary
+                                                .withValues(alpha: 0.9),
+                                          ),
                                   textAlign: TextAlign.center,
                                 ),
-                                SizedBox(height: availableHeight < 200 ? 2 : (isMobile ? 2 : 4)),
+                                SizedBox(
+                                  height: availableHeight < 200
+                                      ? 2
+                                      : (isMobile ? 2 : 4),
+                                ),
                                 Text(
                                   isMobile
-                                    ? '70+ Componentes\nMaterial 3 • 20 Temas'
-                                    : '70+ Componentes • Material 3 • 20 Temas Profesionales',
-                                  style: (isMobile ? DSTypography.bodySmall : DSTypography.bodyMedium).copyWith(
-                                    color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.8),
-                                  ),
+                                      ? '70+ Componentes\nMaterial 3 • 20 Temas'
+                                      : '70+ Componentes • Material 3 • 20 Temas Profesionales',
+                                  style:
+                                      (isMobile
+                                              ? DSTypography.bodySmall
+                                              : DSTypography.bodyMedium)
+                                          .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary
+                                                .withValues(alpha: 0.8),
+                                          ),
                                   textAlign: TextAlign.center,
                                 ),
                               ],
@@ -139,13 +174,6 @@ class HomeScreen extends StatelessWidget {
         icon: Icons.auto_awesome,
         route: '/theme-showcase',
         color: Theme.of(context).colorScheme.primary,
-      ),
-      _NavigationItem(
-        title: 'Galería de Temas',
-        description: '20 temas profesionales para 2025',
-        icon: Icons.color_lens,
-        route: '/themes',
-        color: Colors.indigo,
       ),
       _NavigationItem(
         title: 'Sistema de Colores',
@@ -225,17 +253,15 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  item.icon,
-                  size: isMobile ? 36 : 48,
-                  color: item.color,
-                ),
+                Icon(item.icon, size: isMobile ? 36 : 48, color: item.color),
                 SizedBox(height: isMobile ? 8 : 12),
                 Text(
                   item.title,
-                  style: (isMobile ? DSTypography.labelMedium : DSTypography.labelLarge).copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style:
+                      (isMobile
+                              ? DSTypography.labelMedium
+                              : DSTypography.labelLarge)
+                          .copyWith(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -244,7 +270,9 @@ class HomeScreen extends StatelessWidget {
                 Flexible(
                   child: Text(
                     item.description,
-                    style: isMobile ? DSTypography.caption : DSTypography.bodySmall,
+                    style: isMobile
+                        ? DSTypography.caption
+                        : DSTypography.bodySmall,
                     textAlign: TextAlign.center,
                     maxLines: isMobile ? 3 : 2,
                     overflow: TextOverflow.ellipsis,
@@ -286,7 +314,9 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: isMobile ? 12 : 16),
             Text(
               'IAutomat Design System es un sistema de diseño empresarial completo creado para Flutter. Incluye más de 70 componentes, 20 temas profesionales, sistema tipográfico Material 3 y cumple con los estándares de accesibilidad WCAG 2.0 AA.',
-              style: isMobile ? DSTypography.bodySmall : DSTypography.bodyMedium,
+              style: isMobile
+                  ? DSTypography.bodySmall
+                  : DSTypography.bodyMedium,
             ),
             SizedBox(height: isMobile ? 12 : 16),
             Wrap(
@@ -295,22 +325,42 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Chip(
                   avatar: Icon(Icons.flutter_dash, size: isMobile ? 14 : 16),
-                  label: Text('Flutter 3.35+', style: isMobile ? DSTypography.caption : DSTypography.labelSmall),
+                  label: Text(
+                    'Flutter 3.35+',
+                    style: isMobile
+                        ? DSTypography.caption
+                        : DSTypography.labelSmall,
+                  ),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
                 Chip(
                   avatar: Icon(Icons.design_services, size: isMobile ? 14 : 16),
-                  label: Text('Material 3', style: isMobile ? DSTypography.caption : DSTypography.labelSmall),
+                  label: Text(
+                    'Material 3',
+                    style: isMobile
+                        ? DSTypography.caption
+                        : DSTypography.labelSmall,
+                  ),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
                 Chip(
                   avatar: Icon(Icons.accessibility, size: isMobile ? 14 : 16),
-                  label: Text('WCAG 2.0 AA', style: isMobile ? DSTypography.caption : DSTypography.labelSmall),
+                  label: Text(
+                    'WCAG 2.0 AA',
+                    style: isMobile
+                        ? DSTypography.caption
+                        : DSTypography.labelSmall,
+                  ),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
                 Chip(
                   avatar: Icon(Icons.devices, size: isMobile ? 14 : 16),
-                  label: Text('Responsive', style: isMobile ? DSTypography.caption : DSTypography.labelSmall),
+                  label: Text(
+                    'Responsive',
+                    style: isMobile
+                        ? DSTypography.caption
+                        : DSTypography.labelSmall,
+                  ),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
               ],

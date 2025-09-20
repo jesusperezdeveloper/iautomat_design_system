@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iautomat_design_system/iautomat_design_system.dart';
 import '../providers/theme_provider.dart';
 import '../widgets/theme_card.dart';
@@ -115,9 +116,10 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen>
           const end = Offset.zero;
           const curve = Curves.easeInOut;
 
-          var tween = Tween(begin: begin, end: end).chain(
-            CurveTween(curve: curve),
-          );
+          var tween = Tween(
+            begin: begin,
+            end: end,
+          ).chain(CurveTween(curve: curve));
 
           return SlideTransition(
             position: animation.drive(tween),
@@ -147,6 +149,17 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen>
     DSThemeProvider themeProvider,
   ) {
     return AppBar(
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () {
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          } else {
+            context.go('/');
+          }
+        },
+        tooltip: 'Volver',
+      ),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -160,9 +173,9 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen>
       elevation: 1,
       actions: [
         IconButton(
-          icon: Icon(themeProvider.isDarkMode
-              ? Icons.light_mode
-              : Icons.dark_mode),
+          icon: Icon(
+            themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+          ),
           onPressed: themeProvider.toggleDarkMode,
           tooltip: 'Cambiar modo',
         ),
@@ -185,9 +198,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen>
           onCategoryChanged: _onCategoryChanged,
           themeCount: _filteredThemes.length,
         ),
-        Expanded(
-          child: _buildThemeGrid(context, themeProvider),
-        ),
+        Expanded(child: _buildThemeGrid(context, themeProvider)),
       ],
     );
   }
@@ -201,8 +212,12 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3),
-            Theme.of(context).colorScheme.secondaryContainer.withValues(alpha: 0.1),
+            Theme.of(
+              context,
+            ).colorScheme.primaryContainer.withValues(alpha: 0.3),
+            Theme.of(
+              context,
+            ).colorScheme.secondaryContainer.withValues(alpha: 0.1),
           ],
         ),
       ),
@@ -211,7 +226,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen>
         children: [
           Text(
             'Design System Gallery',
-            style: DSTypography.h2.copyWith(
+            style: DSTypography.h3.copyWith(
               color: Theme.of(context).colorScheme.primary,
               fontWeight: FontWeight.bold,
             ),
@@ -219,8 +234,10 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen>
           DSSpacing.verticalXs,
           Text(
             '100 Temas Profesionales para 2025',
-            style: DSTypography.bodyLarge.copyWith(
-              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+            style: DSTypography.bodyMedium.copyWith(
+              color: Theme.of(
+                context,
+              ).colorScheme.onSurface.withValues(alpha: 0.7),
             ),
           ),
         ],
@@ -272,7 +289,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen>
       padding: DSSpacing.pagePadding,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
-        childAspectRatio: 0.75,
+        childAspectRatio: 1.05,
         crossAxisSpacing: DSSpacing.md,
         mainAxisSpacing: DSSpacing.md,
       ),
@@ -315,7 +332,9 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen>
           Text(
             'Intenta cambiar los filtros o términos de búsqueda',
             style: DSTypography.bodyMedium.copyWith(
-              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+              color: Theme.of(
+                context,
+              ).colorScheme.onSurface.withValues(alpha: 0.7),
             ),
             textAlign: TextAlign.center,
           ),
@@ -360,10 +379,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen>
               style: DSTypography.bodyMedium,
             ),
             DSSpacing.verticalMd,
-            Text(
-              'Funcionalidades:',
-              style: DSTypography.labelLarge,
-            ),
+            Text('Funcionalidades:', style: DSTypography.labelLarge),
             DSSpacing.verticalSm,
             const Text('• Búsqueda inteligente por texto'),
             const Text('• Filtrado por categorías'),

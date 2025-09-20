@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../widgets/theme_switcher.dart';
 import '../screens/home_screen.dart';
-import '../screens/theme_gallery_screen.dart';
 import '../screens/theme_showcase_screen.dart';
 import '../screens/colors_screen.dart';
 import '../screens/typography_screen.dart';
@@ -25,12 +24,6 @@ class AppRouter {
         builder: (context, state) => const HomeScreen(),
       ),
 
-      // Galería de temas (original)
-      GoRoute(
-        path: '/themes',
-        name: 'themes',
-        builder: (context, state) => const ThemeGalleryScreen(),
-      ),
 
       // Theme Showcase (nueva galería completa)
       GoRoute(
