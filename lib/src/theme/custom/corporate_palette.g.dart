@@ -21,18 +21,7 @@ _$CorporatePaletteConfigImpl _$$CorporatePaletteConfigImplFromJson(
       preserveSaturation: json['preserveSaturation'] as bool? ?? true,
     );
 
-Map<String, dynamic> _$$CorporatePaletteConfigImplToJson(
-        _$CorporatePaletteConfigImpl instance) =>
-    <String, dynamic>{
-      'brandName': instance.brandName,
-      'generateDarkMode': instance.generateDarkMode,
-      'contrastLevel': _$ContrastLevelEnumMap[instance.contrastLevel]!,
-      'autoGenerateVariants': instance.autoGenerateVariants,
-      'validateContrast': instance.validateContrast,
-      'smartDarkMode': instance.smartDarkMode,
-      'variantFactor': instance.variantFactor,
-      'preserveSaturation': instance.preserveSaturation,
-    };
+// Note: _$$CorporatePaletteConfigImplToJson removed as it's not used
 
 const _$ContrastLevelEnumMap = {
   ContrastLevel.aa: 'aa',
@@ -42,22 +31,5 @@ const _$ContrastLevelEnumMap = {
 // Note: CorporatePalette and CorporateThemeResult serialization disabled
 // due to Color and ThemeData fields which are not JSON serializable
 
-_$CorporatePaletteImpl _$$CorporatePaletteImplFromJson(
-        Map<String, dynamic> json) =>
-    throw UnsupportedError(
-        'CorporatePalette fromJson not supported - contains Color fields');
-
-Map<String, dynamic> _$$CorporatePaletteImplToJson(
-        _$CorporatePaletteImpl instance) =>
-    throw UnsupportedError(
-        'CorporatePalette toJson not supported - contains Color fields');
-
-_$CorporateThemeResultImpl _$$CorporateThemeResultImplFromJson(
-        Map<String, dynamic> json) =>
-    throw UnsupportedError(
-        'CorporateThemeResult fromJson not supported - contains ThemeData fields');
-
-Map<String, dynamic> _$$CorporateThemeResultImplToJson(
-        _$CorporateThemeResultImpl instance) =>
-    throw UnsupportedError(
-        'CorporateThemeResult toJson not supported - contains ThemeData fields');
+// Note: CorporatePalette and CorporateThemeResult serialization methods
+// removed as they are not used and contain non-serializable Color/ThemeData fields
