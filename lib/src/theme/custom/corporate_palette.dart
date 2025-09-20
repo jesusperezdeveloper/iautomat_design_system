@@ -41,6 +41,8 @@ class CorporatePaletteConfig with _$CorporatePaletteConfig {
     @Default(true) bool preserveSaturation,
   }) = _CorporatePaletteConfig;
 
+  factory CorporatePaletteConfig.fromJson(Map<String, dynamic> json) =>
+      _$$CorporatePaletteConfigImplFromJson(json);
 }
 
 /// Paleta de colores corporativos personalizada
