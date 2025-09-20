@@ -157,9 +157,9 @@ secrets.json
 docs/_build/
 docs/build/
 
-# Generated files
-*.g.dart
-*.freezed.dart
+# Generated files (keep in version control for CI/CD)
+# *.g.dart
+# *.freezed.dart
 *.reflectable.dart
 *.config.dart
 
