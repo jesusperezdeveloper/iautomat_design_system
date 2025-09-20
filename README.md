@@ -1,7 +1,7 @@
 # 🎨 IAutomat Design System
 
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.35.3-blue.svg)](https://flutter.dev)
-[![Dart Version](https://img.shields.io/badge/Dart-3.9.2-blue.svg)](https://dart.dev)
+[![Dart Version](https://img.shields.io/badge/Dart-3.8.0+-blue.svg)](https://dart.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Deploy Status](https://github.com/iautomat/iautomat_design_system/workflows/Deploy%20to%20Firebase%20Hosting/badge.svg)](https://github.com/iautomat/iautomat_design_system/actions)
 
