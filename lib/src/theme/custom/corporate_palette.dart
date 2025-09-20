@@ -41,8 +41,6 @@ class CorporatePaletteConfig with _$CorporatePaletteConfig {
     @Default(true) bool preserveSaturation,
   }) = _CorporatePaletteConfig;
 
-  factory CorporatePaletteConfig.fromJson(Map<String, dynamic> json) =>
-      _$CorporatePaletteConfigFromJson(json);
 }
 
 /// Paleta de colores corporativos personalizada
@@ -85,8 +83,6 @@ class CorporatePalette with _$CorporatePalette {
     Map<String, bool>? contrastValidation,
   }) = _CorporatePalette;
 
-  factory CorporatePalette.fromJson(Map<String, dynamic> json) =>
-      _$CorporatePaletteFromJson(json);
 
   /// Constructor de conveniencia para paletas mínimas
   factory CorporatePalette.minimal({
@@ -193,6 +189,4 @@ class CorporateThemeResult with _$CorporateThemeResult {
     Map<String, dynamic>? metadata,
   }) = _CorporateThemeResult;
 
-  factory CorporateThemeResult.fromJson(Map<String, dynamic> json) =>
-      _$CorporateThemeResultFromJson(json);
 }
