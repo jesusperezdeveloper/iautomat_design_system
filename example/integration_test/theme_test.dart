@@ -28,7 +28,7 @@ void main() {
       // Test navigation still works with new theme
       await tester.tap(find.text('Galería de Temas'));
       await tester.pumpAndSettle();
-      expect(find.text('20 Temas Profesionales para 2025'), findsOneWidget);
+      expect(find.text('100 Temas Profesionales para 2025'), findsOneWidget);
 
       // Go back to home
       await tester.tap(find.byIcon(Icons.arrow_back));
@@ -147,7 +147,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Verify themes gallery loaded
-      expect(find.text('20 Temas Profesionales para 2025'), findsOneWidget);
+      expect(find.text('100 Temas Profesionales para 2025'), findsOneWidget);
 
       // Verify theme categories are present
       expect(find.text('Corporativo'), findsOneWidget);

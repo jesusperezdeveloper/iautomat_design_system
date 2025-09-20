@@ -9,7 +9,7 @@
 - **70+ componentes** implementados con prefijo DS
 - **134 archivos de test** con cobertura >95%
 - **42 archivos** en la aplicación de ejemplo
-- **20 presets de tema** profesionales
+- **100 presets de tema** profesionales
 - **0 warnings** en flutter analyze
 
 ### 🏗️ Estructura del Proyecto
@@ -79,7 +79,7 @@ iautomat_design_system/
 3. **Documentación:** README extenso con ejemplos prácticos
 4. **Accesibilidad:** WCAG 2.0 AA compliance
 5. **Modernidad:** Material 3 y Flutter 3.35.3
-6. **Profesionalismo:** 20 temas empresariales predefinidos
+6. **Profesionalismo:** 100 temas empresariales predefinidos
 7. **Consistencia:** Prefijo DS en todos los componentes
 
 ## 📌 Notas Importantes

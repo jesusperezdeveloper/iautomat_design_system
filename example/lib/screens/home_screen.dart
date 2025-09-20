@@ -106,8 +106,8 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 Text(
                                   isMobile
-                                      ? '70+ Componentes\nMaterial 3 • 20 Temas'
-                                      : '70+ Componentes • Material 3 • 20 Temas Profesionales',
+                                      ? '70+ Componentes\nMaterial 3 • 100 Temas'
+                                      : '70+ Componentes • Material 3 • 100 Temas Profesionales',
                                   style:
                                       (isMobile
                                               ? DSTypography.bodySmall
@@ -313,7 +313,7 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(height: isMobile ? 12 : 16),
             Text(
-              'IAutomat Design System es un sistema de diseño empresarial completo creado para Flutter. Incluye más de 70 componentes, 20 temas profesionales, sistema tipográfico Material 3 y cumple con los estándares de accesibilidad WCAG 2.0 AA.',
+              'IAutomat Design System es un sistema de diseño empresarial completo creado para Flutter. Incluye más de 70 componentes, 100 temas profesionales, sistema tipográfico Material 3 y cumple con los estándares de accesibilidad WCAG 2.0 AA.',
               style: isMobile
                   ? DSTypography.bodySmall
                   : DSTypography.bodyMedium,

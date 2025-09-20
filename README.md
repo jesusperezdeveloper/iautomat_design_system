@@ -43,7 +43,7 @@ Cada pull request genera automáticamente un preview deployment para probar camb
 
 ### ✨ **Características Premium**
 - 🎨 **70+ Componentes UI** profesionales con Material 3 y prefijo DS
-- 🌈 **20 Presets de Tema** para 2025 (corporativo, tech, creativo, natural)
+- 🌈 **100 Presets de Tema** para 2025 (corporativo, tech, creativo, natural)
 - 📱 **Responsive Design** automático con breakpoints inteligentes
 - ♿ **Accesibilidad Completa** (WCAG 2.0 AA, screen readers, navegación por teclado)
 - 🌍 **Soporte RTL** y localización internacional
@@ -216,7 +216,7 @@ DSSpacing.inputPadding    // Padding de campos de formulario
 DSSpacing.dialogPadding   // Padding de modales
 ```
 
-### 🎨 20 Presets de Tema Profesionales para 2025
+### 🎨 100 Presets de Tema Profesionales para 2025
 
 #### **🏢 Temas Corporativos (4)**
 ```dart

@@ -32,7 +32,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Verify themes screen loads
-      expect(find.text('20 Temas Profesionales para 2025'), findsOneWidget);
+      expect(find.text('100 Temas Profesionales para 2025'), findsOneWidget);
       expect(find.text('Corporativo'), findsOneWidget);
       expect(find.text('Moderno'), findsOneWidget);
 
