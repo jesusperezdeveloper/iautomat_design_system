@@ -1,3 +1,32 @@
+## 1.0.1
+
+### 🔧 **Mejoras y Optimizaciones**
+
+#### ✨ **Cambios en esta versión (2025-09-28)**
+* **Dependencias**: Actualización de `intl` de `^0.19.0` → `^0.20.2`
+  - Mejoras en localización e internacionalización
+  - Compatibilidad con las últimas versiones de Flutter/Dart
+  - Correcciones de seguridad y rendimiento
+* **Infraestructura**: Implementación completa de token Firebase para CI/CD
+* **Deployment**: Simplificación del proceso de despliegue
+* **Temas**: Ampliación de 20 → 100 presets de tema profesionales
+* **Build System**: Optimizaciones en el workflow de construcción
+* **Performance**: Mejoras en el pipeline de CI/CD
+
+#### 🚀 **Características Técnicas**
+* **Compatibilidad**: Flutter 3.35.3+ y Dart 3.9.2+
+* **Estabilidad**: 0 warnings en `flutter analyze`
+* **Testing**: Mantenimiento de cobertura >95%
+* **Dependencies**: Todas las dependencias actualizadas a versiones estables
+
+#### 📦 **Impacto para Desarrolladores**
+* **Sin Breaking Changes**: Actualización completamente compatible hacia atrás
+* **Mejores Localizaciones**: Mayor soporte para idiomas internacionales
+* **Mayor Estabilidad**: Dependencias actualizadas y optimizadas
+* **Más Opciones**: 100 presets de tema disponibles
+
+---
+
 ## 1.0.0
 
 ### 🚀 **BREAKING CHANGES - Migración del prefijo App* → DS***
