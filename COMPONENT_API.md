@@ -1,1010 +1,1178 @@
-# 📚 Component API Reference
+# API de Componentes - IAutomat Design System
 
-**Referencia completa y exhaustiva de la API de componentes del IAutomat Design System**
+> Documentación completa de los 70+ componentes del Design System de IAutomat
 
-> Esta guía está diseñada específicamente para que Claude Code (u otras instancias de IA) puedan usar el Design System sin ambigüedades. Cada sección incluye documentación completa de configuración, ejemplos prácticos y casos de uso reales.
+## Índice
+
+- [Introducción](#introducción)
+- [Convenciones](#convenciones)
+- [Componentes por Categoría](#componentes-por-categoría)
+
+### Categorías
+
+1. [Componentes Básicos](#1-componentes-básicos)
+   - [DSButton](#dsbutton)
+   - [DSCard](#dscard)
+   - [DSChip](#dschip)
+   - [DSBadge](#dsbadge)
+   - [DSTag](#dstag)
+   - [DSAvatar](#dsavatar)
+   - [DSDivider](#dsdivider)
+   - [DSStatusDot](#dsstatusdot)
+
+2. [Componentes de Formulario](#2-componentes-de-formulario)
+   - [DSInput](#dsinput)
+   - [DSTextField](#dstextfield)
+   - [DSTextArea](#dstextarea)
+   - [DSCheckbox](#dscheckbox)
+   - [DSRadio](#dsradio)
+   - [DSSwitch](#dsswitch)
+   - [DSSelect](#dsselect)
+   - [DSCombobox](#dscombobox)
+   - [DSSlider](#dsslider)
+   - [DSDatePicker](#dsdatepicker)
+   - [DSColorPicker](#dscolorpicker)
+   - [DSFilePicker](#dsfilepicker)
+   - [DSCurrencyInput](#dscurrencyinput)
+   - [DSCameraPicker](#dscamerapicker)
+
+3. [Componentes de Navegación](#3-componentes-de-navegación)
+   - [DSScaffold](#dsscaffold)
+   - [DSBars (AppBar/TopBar)](#dsbars-appbartopbar)
+   - [DSNavigation](#dsnavigation)
+   - [DSTabs](#dstabs)
+   - [DSBreadcrumbs](#dsbreadcrumbs)
+   - [DSDrawer](#dsdrawer)
+   - [DSMenu](#dsmenu)
+   - [DSPagination](#dspagination)
+
+4. [Componentes de Datos](#4-componentes-de-datos)
+   - [DSDataTable](#dsdatatable)
+   - [DSSimpleTable](#dssimpletable)
+   - [DSListItem](#dslistitem)
+   - [DSDescriptionList](#dsdescriptionlist)
+   - [DSMetricCard](#dsmetriccard)
+   - [DSCalendar](#dscalendar)
+   - [DSChart](#dschart)
+   - [DSTimeline](#dstimeline)
+   - [DSKanban](#dskanban)
+   - [DSOutlineTree](#dsoutlinetree)
+
+5. [Componentes de Feedback](#5-componentes-de-feedback)
+   - [DSToast](#dstoast)
+   - [DSDialog](#dsdialog)
+   - [DSBottomSheet](#dsbottomsheet)
+   - [DSBanner](#dsbanner)
+   - [DSProgress](#dsprogress)
+   - [DSEmptyState](#dsemptystate)
+   - [DSSkeleton](#dsskeleton)
+   - [DSTooltip](#dstooltip)
+
+6. [Componentes de Acción](#6-componentes-de-acción)
+   - [DSIconButton](#dsiconbutton)
+   - [DSFab](#dsfab)
+   - [DSBackToTop](#dsbacktotop)
+   - [DSStepper](#dsstepper)
+
+7. [Componentes de Layout](#7-componentes-de-layout)
+   - [DSSplitView](#dssplitview)
+   - [DSFilterBar](#dsfilterbar)
+   - [DSToggleView](#dstoggleview)
+   - [DSAccordion](#dsaccordion)
+
+8. [Componentes de Media](#8-componentes-de-media)
+   - [DSImage](#dsimage)
+   - [DSLightbox](#dslightbox)
+   - [DSMediaViewer](#dsmediaviewer)
+
+9. [Componentes Especializados](#9-componentes-especializados)
+   - [DSCommandPalette](#dscommandpalette)
+   - [DSInPageSearch](#dsinpagesearch)
+   - [DSTour](#dstour)
+   - [DSClipboardShare](#dsclipboardshare)
+   - [DSRoleVisibility](#dsrolevisibility)
+
+10. [Componentes E-commerce](#10-componentes-e-commerce)
+    - [DSProductCard](#dsproductcard)
+    - [DSCartWidget](#dscartwidget)
+    - [DSCheckoutForms](#dscheckoutforms)
+
+11. [Componentes de Autenticación](#11-componentes-de-autenticación)
+    - [DSAuthScreens](#dsauthscreens)
+    - [DSProfilePreferences](#dsprofilepreferences)
+
+12. [Componentes Auxiliares](#12-componentes-auxiliares)
+    - [DSMap](#dsmap)
 
 ---
 
-## 🎯 Información Esencial del Proyecto
+## Introducción
 
-### Versiones y Compatibilidad
-```yaml
-Flutter: ">=3.35.3"
-Dart: ">=3.9.2 <4.0.0"
-Material Design: Material 3 (Latest)
-```
+Este documento proporciona la API completa de todos los componentes del IAutomat Design System. Cada componente está documentado con:
 
-### Convenciones de Nomenclatura
-- **Prefijo universal**: Todos los componentes usan el prefijo `DS` (Design System)
-- **Clases de configuración**: Terminan en `Config` (ej: `DSButtonConfig`)
-- **Helpers de accesibilidad**: Terminan en `A11yHelper` (ej: `DSButtonA11yHelper`)
-- **Adaptadores de plataforma**: Terminan en `PlatformAdapter`
+- **Descripción**: Qué hace el componente y cuándo usarlo
+- **Import**: Cómo importar el componente
+- **Parámetros**: Lista completa de parámetros con tipos
+- **Configuración**: Objetos DSConfig disponibles
+- **Ejemplos**: Código funcional de uso básico y avanzado
+- **Helpers**: Utilidades de accesibilidad y plataforma
+- **Notas**: Consideraciones especiales
 
-### Sistema de Importación
+## Convenciones
+
+### Prefijo DS
+
+Todos los componentes principales llevan el prefijo `DS` (Design System):
 ```dart
-// Importación completa (recomendado)
-import 'package:iautomat_design_system/iautomat_design_system.dart';
-
-// Importación específica (opcional)
-import 'package:iautomat_design_system/src/components/buttons/ds_button.dart';
-import 'package:iautomat_design_system/src/theme/ds_theme.dart';
+DSButton, DSCard, DSInput, etc.
 ```
 
-### 🚀 Quick Start - Configuración Inicial
+### Configuración con Freezed
+
+Los componentes complejos usan objetos de configuración inmutables generados con Freezed:
+```dart
+DSButtonConfig, DSCardConfig, DSInputConfig, etc.
+```
+
+### Patrón de Uso
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:iautomat_design_system/iautomat_design_system.dart';
+// Patrón básico
+DSComponent(
+  config: DSComponentConfig(
+    // configuración...
+  ),
+  // parámetros directos...
+)
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Mi Aplicación Empresarial',
-      // Usar tema del Design System
-      theme: DSTheme.lightTheme,
-      darkTheme: DSTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      home: HomePage(),
-    );
-  }
-}
+// Patrón con valores por defecto
+DSComponent(
+  // solo parámetros necesarios
+)
 ```
 
-### 📊 Estadísticas del Design System
-- **Total de componentes**: 70+
-- **Variantes de tema**: 100 presets profesionales
-- **Tests**: 134 archivos con >95% cobertura
-- **Plataformas soportadas**: iOS, Android, Web, Windows, macOS, Linux
-- **Accesibilidad**: WCAG 2.0 AA compliant
+### Material 3
+
+Todos los componentes siguen las especificaciones de Material 3 y se adaptan automáticamente al tema de la aplicación.
+
+### Accesibilidad
+
+Los componentes incluyen soporte completo para accesibilidad (WCAG 2.0 AA):
+- Labels semánticos
+- Soporte de lector de pantalla
+- Navegación por teclado
+- Alto contraste
 
 ---
 
-## 📖 Documentación Completa de Componentes
+## Componentes por Categoría
 
-> **📚 NUEVO: [Referencia Completa de TODOS los Componentes](docs/COMPLETE_COMPONENTS_REFERENCE.md)**
->
-> Hemos creado un documento exhaustivo con la documentación detallada de los 70+ componentes del Design System.
-> Incluye constructores, configuraciones, ejemplos y patrones de uso para cada componente.
->
-> **[👉 Ver Referencia Completa de Componentes](docs/COMPLETE_COMPONENTS_REFERENCE.md)**
-
-### Componentes Destacados en este Documento
-
-Este documento (`COMPONENT_API.md`) se enfoca en:
-- **DSButton**: Documentación exhaustiva completa
-- **DSToast**: Sistema de notificaciones
-- **DSDataTable**: Tablas empresariales
-- **Sistema de Temas**: DSTheme, DSColors, DSTypography, DSSpacing
-- **Utilidades**: Responsive System, Validación
-- **Mejores Prácticas**: Guías de uso
-- **Troubleshooting**: Problemas comunes
-
-**Para ver TODOS los componentes detallados:** [COMPLETE_COMPONENTS_REFERENCE.md](docs/COMPLETE_COMPONENTS_REFERENCE.md)
-
----
-
-## 📋 Índice de Componentes
-
-### 💠 Base Components (12)
-- [DSButton](#dsbutton) - Sistema completo de botones
-- [DSInput](#dsinput) - Campos de entrada inteligentes
-- [DSCard](#dscard) - Cards empresariales
-- [DSFab](#dsfab) - Floating Action Button
-- [DSIconButton](#dsiconbutton) - Botones de icono
-- [DSSwitch](#dsswitch) - Interruptores
-- [DSCheckbox](#dscheckbox) - Checkboxes
-- [DSRadio](#dsradio) - Radio buttons
-- [DSTextField](#dstextfield) - Campos de texto avanzados
-- [DSTextArea](#dstextarea) - Áreas de texto
-- [DSSelect](#dsselect) - Selectores dropdown
-- [DSSlider](#dsslider) - Controles deslizantes
-
-### 📝 Form Components (8)
-- [DSCombobox](#dscombobox) - Combo boxes
-- [DSStepper](#dsstepper) - Steppers de proceso
-- [DSDatePicker](#dsdatepicker) - Selectores de fecha
-- [DSColorPicker](#dscolorpicker) - Selectores de color
-- [DSFilePicker](#dsfilepicker) - Selectores de archivo
-- [DSCurrencyInput](#dscurrencyinput) - Input de moneda
-- [DSCheckoutForms](#dscheckoutforms) - Formularios de checkout
-- [DSAuthScreens](#dsauthscreens) - Pantallas de autenticación
-
-### 🗂️ Data Components (10)
-- [DSDataTable](#dsdatatable) - Tablas de datos avanzadas
-- [DSSimpleTable](#dssimpletable) - Tablas simples
-- [DSListItem](#dslistitem) - Items de lista
-- [DSDescriptionList](#dsdescriptionlist) - Listas descriptivas
-- [DSMetricCard](#dsmetriccard) - Cards de métricas
-- [DSCalendar](#dscalendar) - Calendario
-- [DSChart](#dschart) - Gráficos
-- [DSKanban](#dskanban) - Tableros Kanban
-- [DSOutlineTree](#dsoutlinetree) - Árboles jerárquicos
-- [DSFilterBar](#dsfilterbar) - Barras de filtro
-
-### 🧭 Navigation Components (8)
-- [DSScaffold](#dsscaffold) - Scaffold personalizado
-- [DSTopAppBar](#dstopappbar) - App bars superiores
-- [DSNavigation](#dsnavigation) - Navegación principal
-- [DSTabs](#dstabs) - Sistema de pestañas
-- [DSBreadcrumbs](#dsbreadcrumbs) - Breadcrumbs
-- [DSDrawer](#dsdrawer) - Navegación lateral
-- [DSMenu](#dsmenu) - Menús contextuales
-- [DSPagination](#dspagination) - Paginación
-
-### 🎯 Feedback Components (6)
-- [DSToast](#dstoast) - Notificaciones toast
-- [DSBanner](#dsbanner) - Banners informativos
-- [DSTooltip](#dstooltip) - Tooltips
-- [DSProgress](#dsprogress) - Indicadores de progreso
-- [DSEmptyState](#dsemptystate) - Estados vacíos
-- [DSStatusDot](#dsstatusdot) - Indicadores de estado
-
-### 🎭 Display Components (8)
-- [DSBadge](#dsbadge) - Badges y contadores
-- [DSAvatar](#dsavatar) - Avatares de usuario
-- [DSTag](#dstag) - Etiquetas
-- [DSTimeline](#dstimeline) - Líneas de tiempo
-- [DSImage](#dsimage) - Gestión de imágenes
-- [DSLightbox](#dslightbox) - Visualizador de imágenes
-- [DSMediaViewer](#dsmediaviewer) - Visor multimedia
-- [DSSkeleton](#dsskeleton) - Estados de carga
-
-### 🔧 Layout Components (6)
-- [DSSplitView](#dssplitview) - Vistas divididas
-- [DSDivider](#dsdivider) - Divisores
-- [DSAccordion](#dsaccordion) - Acordeones
-- [DSChip](#dschip) - Chips informativos
-- [DSToggleView](#dstoggleview) - Vistas alternables
-- [DSCommandPalette](#dscommandpalette) - Paleta de comandos
-
-### 🏪 E-commerce Components (4)
-- [DSProductCard](#dsproductcard) - Cards de producto
-- [DSCartWidget](#dscartwidget) - Widget de carrito
-- [DSMap](#dsmap) - Mapas interactivos
-- [DSCameraPicker](#dscamerapicker) - Selector de cámara
-
-### ⚙️ Specialty Components (8)
-- [DSProfilePreferences](#dsprofilepreferences) - Configuración de perfil
-- [DSRoleVisibility](#dsrolevisibility) - Control de visibilidad por roles
-- [DSClipboardShare](#dsclipboardshare) - Compartir portapapeles
-- [DSBackToTop](#dsbacktotop) - Botón volver arriba
-- [DSInPageSearch](#dsinpagesearch) - Búsqueda en página
-- [DSDialog](#dsdialog) - Diálogos modales
-- [DSBottomSheet](#dsbottomsheet) - Bottom sheets
-- [DSTour](#dstour) - Tours guiados
-
----
-
-## 💠 Base Components
+## 1. Componentes Básicos
 
 ### DSButton
 
-**Sistema completo de botones empresariales con 6 variantes y 8 estados**
+Botón versátil con múltiples variantes, estados y animaciones.
 
-> ⚠️ **IMPORTANTE**: Este componente usa el prefijo `DS` (Design System), no `App`. El nombre correcto es `DSButton`.
+#### Import
 
-#### Constructor Principal
 ```dart
-DSButton({
-  Key? key,
-  required String text,                    // Texto del botón
-  VoidCallback? onPressed,                 // Callback de acción (null = disabled)
-  VoidCallback? onLongPress,               // Callback de presión larga
-  Widget? prefixIcon,                      // Icono antes del texto
-  Widget? suffixIcon,                      // Icono después del texto
-  bool loading = false,                    // Estado de carga con spinner
-  bool disabled = false,                   // Estado deshabilitado explícito
-  String? tooltip,                         // Tooltip accesible
-  FocusNode? focusNode,                    // Focus node personalizado
-  bool autofocus = false,                  // Auto-focus inicial
-  DSButtonConfig? config,                  // Configuración completa (ver abajo)
-})
+import 'package:iautomat_design_system/iautomat_design_system.dart';
 ```
 
-#### Variantes del Constructor
-```dart
-// Botón de icono circular
-DSButton.icon({
-  required Widget icon,
-  VoidCallback? onPressed,
-  String? tooltip,
-  DSButtonConfig? config,
-})
+#### Parámetros
 
-// Botón de texto (sin fondo)
-DSButton.text({
-  required String text,
-  VoidCallback? onPressed,
-  DSButtonConfig? config,
-})
-
-// Botón outline (con borde)
-DSButton.outline({
-  required String text,
-  VoidCallback? onPressed,
-  DSButtonConfig? config,
-})
-```
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSButtonConfig` | Configuración del botón | `DSButtonConfig()` |
+| `label` | `String?` | Texto del botón | `null` |
+| `leading` | `Widget?` | Widget antes del texto | `null` |
+| `trailing` | `Widget?` | Widget después del texto | `null` |
+| `size` | `DSButtonSize?` | Tamaño del botón | `null` |
+| `isDanger` | `bool?` | Si es un botón de peligro | `false` |
+| `width` | `double?` | Ancho personalizado | `null` |
+| `height` | `double?` | Alto personalizado | `null` |
 
 #### Configuración (DSButtonConfig)
+
 ```dart
-@freezed
-class DSButtonConfig with _$DSButtonConfig {
-  const factory DSButtonConfig({
-    @Default(DSButtonVariant.filled) DSButtonVariant variant,    // Variante del botón
-    @Default(DSButtonState.defaultState) DSButtonState state,    // Estado actual
-    @Default(DSButtonSize.medium) DSButtonSize size,             // Tamaño
-    @Default(false) bool isDanger,                               // Estilo de peligro/eliminación
-    @Default(true) bool isAdaptive,                              // Adaptar a plataforma
-    @Default(false) bool isRtl,                                  // Soporte Right-to-Left
-    @Default(true) bool enableA11y,                              // Accesibilidad habilitada
-    @Default(true) bool enableKeyboardSupport,                   // Soporte de teclado
-    @Default(true) bool isInteractive,                           // Si es interactivo
-    DSButtonColors? colors,                                      // Configuración de colores
-    DSButtonSpacing? spacing,                                    // Espaciado y dimensiones
-    DSButtonElevation? elevation,                                // Configuración de elevación
-    DSButtonBehavior? behavior,                                  // Comportamiento
-    DSButtonAnimation? animation,                                // Animaciones
-    VoidCallback? onPressed,                                     // Callback adicional
-    VoidCallback? onLongPress,                                   // Callback presión larga
-    ValueChanged<bool>? onHover,                                 // Callback hover
-    ValueChanged<bool>? onFocusChange,                          // Callback focus
-  }) = _DSButtonConfig;
-}
+DSButtonConfig({
+  DSButtonVariant variant = DSButtonVariant.filled,
+  DSButtonState state = DSButtonState.defaultState,
+  DSButtonSize size = DSButtonSize.medium,
+  bool isDanger = false,
+  bool isAdaptive = true,
+  bool isRtl = false,
+  bool enableA11y = true,
+  bool enableKeyboardSupport = true,
+  bool isInteractive = true,
+  DSButtonColors? colors,
+  DSButtonSpacing? spacing,
+  DSButtonElevation? elevation,
+  DSButtonBehavior? behavior,
+  DSButtonAnimation? animation,
+  VoidCallback? onPressed,
+  VoidCallback? onLongPress,
+  ValueChanged<bool>? onHover,
+  ValueChanged<bool>? onFocusChange,
+})
 ```
 
-#### DSButtonVariant (Variantes Disponibles)
-```dart
-enum DSButtonVariant {
-  filled,      // Botón con fondo sólido y alta prominencia
-  tonal,       // Botón con fondo tonal y prominencia media
-  outline,     // Botón con borde y fondo transparente
-  text,        // Botón sin fondo, solo texto
-  icon,        // Botón circular solo con icono
-  segmented,   // Botón para uso en grupos segmentados
-}
+**Enums:**
 
-// Propiedades útiles de la variante
-variant.displayName        // "Filled", "Tonal", etc.
-variant.description        // Descripción detallada
-variant.hasElevation       // Si tiene sombra
-variant.hasBorder          // Si tiene borde
-variant.hasBackground      // Si tiene fondo
-variant.isIconOnly         // Si es solo icono
-```
+- `DSButtonVariant`: `filled`, `tonal`, `outline`, `text`, `icon`, `segmented`
+- `DSButtonState`: `defaultState`, `hover`, `pressed`, `focus`, `selected`, `disabled`, `loading`, `skeleton`
+- `DSButtonSize`: `small`, `medium`, `large`
 
-#### DSButtonState (Estados del Botón)
-```dart
-enum DSButtonState {
-  defaultState,  // Estado por defecto
-  hover,         // Mouse sobre el botón
-  pressed,       // Botón presionado
-  focus,         // Botón enfocado (teclado)
-  selected,      // Botón seleccionado
-  disabled,      // Botón deshabilitado
-  loading,       // Estado de carga (con spinner)
-  skeleton,      // Estado skeleton (placeholder)
-}
+#### Ejemplo Básico
 
-// Propiedades útiles del estado
-state.displayName          // "Default", "Hover", etc.
-state.isInteractive        // Si permite interacción
-state.opacity              // Opacidad del estado (0.0-1.0)
-state.showsLoader          // Si muestra loader
-state.showsSkeleton        // Si muestra skeleton
-state.canInteract          // Si puede interactuar
-state.elevationMultiplier  // Multiplicador de elevación
-```
-
-#### DSButtonSize (Tamaños Disponibles)
-```dart
-enum DSButtonSize {
-  small,    // Compacto (32px altura mínima)
-  medium,   // Estándar (40px altura mínima)
-  large,    // Grande (48px altura mínima)
-}
-
-// Propiedades automáticas por tamaño
-size.displayName           // "Small", "Medium", "Large"
-size.fontSize              // 12.0, 14.0, 16.0
-size.iconSize              // 16.0, 20.0, 24.0
-size.minHeight             // 32.0, 40.0, 48.0
-size.horizontalPadding     // 12.0, 16.0, 20.0
-size.verticalPadding       // 8.0, 10.0, 12.0
-```
-
-#### DSButtonColors (Configuración de Colores)
-```dart
-@freezed
-class DSButtonColors with _$DSButtonColors {
-  const factory DSButtonColors({
-    Color? backgroundColor,           // Color de fondo
-    Color? foregroundColor,           // Color del texto/icono
-    Color? surfaceColor,              // Color de superficie
-    Color? shadowColor,               // Color de la sombra
-    Color? borderColor,               // Color del borde
-    Color? hoverColor,                // Color en hover
-    Color? pressedColor,              // Color al presionar
-    Color? focusColor,                // Color al enfocar
-    Color? selectedColor,             // Color seleccionado
-    Color? disabledColor,             // Color deshabilitado
-    Color? loadingColor,              // Color en loading
-    Color? skeletonColor,             // Color skeleton
-    Color? dangerColor,               // Color de peligro
-    Color? dangerForegroundColor,     // Color texto peligro
-    Color? textColor,                 // Color texto general
-    Color? iconColor,                 // Color icono general
-  }) = _DSButtonColors;
-}
-```
-
-#### DSButtonSpacing (Espaciado y Dimensiones)
-```dart
-@freezed
-class DSButtonSpacing with _$DSButtonSpacing {
-  const factory DSButtonSpacing({
-    @Default(16.0) double horizontalPadding,  // Padding horizontal
-    @Default(12.0) double verticalPadding,    // Padding vertical
-    @Default(8.0) double iconSpacing,         // Espacio entre icono y texto
-    @Default(12.0) double borderRadius,       // Radio de bordes
-    @Default(1.0) double borderWidth,         // Ancho del borde
-    @Default(24.0) double minHeight,          // Altura mínima
-    @Default(88.0) double minWidth,           // Ancho mínimo
-    @Default(true) bool adaptive,             // Adaptar a plataforma
-  }) = _DSButtonSpacing;
-}
-```
-
-#### DSButtonElevation (Configuración de Elevación)
-```dart
-@freezed
-class DSButtonElevation with _$DSButtonElevation {
-  const factory DSButtonElevation({
-    @Default(1.0) double defaultElevation,   // Elevación por defecto
-    @Default(4.0) double hoveredElevation,   // Elevación en hover
-    @Default(8.0) double pressedElevation,   // Elevación al presionar
-    @Default(2.0) double focusedElevation,   // Elevación enfocado
-    @Default(6.0) double selectedElevation,  // Elevación seleccionado
-    @Default(0.0) double disabledElevation,  // Elevación deshabilitado
-    Color? shadowColor,                      // Color de sombra
-    Color? surfaceTintColor,                 // Color de tinte de superficie
-  }) = _DSButtonElevation;
-}
-```
-
-#### DSButtonBehavior (Comportamiento)
-```dart
-@freezed
-class DSButtonBehavior with _$DSButtonBehavior {
-  const factory DSButtonBehavior({
-    @Default(true) bool enableHapticFeedback,    // Feedback háptico
-    @Default(true) bool enableRipple,            // Efecto ripple
-    @Default(true) bool enableHover,             // Efecto hover
-    @Default(true) bool enableFocus,             // Efecto focus
-    @Default(true) bool maintainState,           // Mantener estado
-    @Default(DSButtonClipBehavior.antiAlias) DSButtonClipBehavior clipBehavior,
-    @Default(300) int animationDuration,         // Duración animación (ms)
-    @Default(true) bool showLoadingIndicator,    // Mostrar loading
-    @Default(true) bool showSkeletonAnimation,   // Mostrar skeleton
-    @Default(true) bool autoSize,                // Auto-dimensionar
-  }) = _DSButtonBehavior;
-}
-```
-
-#### DSButtonAnimation (Animaciones)
-```dart
-@freezed
-class DSButtonAnimation with _$DSButtonAnimation {
-  const factory DSButtonAnimation({
-    @Default(DSButtonAnimationType.scale) DSButtonAnimationType type,
-    @Default(300) int duration,                          // Duración en ms
-    @Default(Curves.easeInOut) Curve curve,              // Curva de animación
-    @Default(true) bool enableStateTransitions,          // Transiciones de estado
-    @Default(true) bool enableHoverAnimation,            // Animación hover
-    @Default(true) bool enablePressAnimation,            // Animación press
-    @Default(true) bool enableLoadingAnimation,          // Animación loading
-  }) = _DSButtonAnimation;
-}
-
-enum DSButtonAnimationType {
-  none,       // Sin animación
-  scale,      // Escala (elasticOut)
-  fade,       // Fade (easeInOut)
-  slide,      // Deslizamiento (easeOutCubic)
-  elevation,  // Elevación (easeInOutQuart)
-}
-```
-
-#### Ejemplos de Uso Reales
-
-##### Ejemplo 1: Botón Básico de Guardado
 ```dart
 DSButton(
-  text: 'Guardar',
-  onPressed: () => _save(),
-)
-```
-
-##### Ejemplo 2: Botón de Descarga con Icono
-```dart
-DSButton(
-  text: 'Descargar Reporte',
-  prefixIcon: Icon(Icons.download),
-  config: DSButtonConfig(
-    variant: DSButtonVariant.outline,
-    size: DSButtonSize.large,
-    colors: DSButtonColors(
-      backgroundColor: DSColors.primary,
-      foregroundColor: Colors.white,
-    ),
-  ),
-  onPressed: () => _downloadReport(),
-)
-```
-
-##### Ejemplo 3: Botón de Carga (Loading State)
-```dart
-DSButton(
-  text: _isProcessing ? 'Procesando...' : 'Procesar',
-  loading: _isProcessing,
-  disabled: _isProcessing,
-  onPressed: () async {
-    setState(() => _isProcessing = true);
-    await _processData();
-    setState(() => _isProcessing = false);
-  },
-)
-```
-
-##### Ejemplo 4: Botón de Peligro (Eliminar)
-```dart
-DSButton(
-  text: 'Eliminar Cuenta',
-  prefixIcon: Icon(Icons.delete_forever),
-  config: DSButtonConfig(
-    isDanger: true,
-    variant: DSButtonVariant.filled,
-    behavior: DSButtonBehavior(
-      enableHapticFeedback: true,
-    ),
-  ),
-  onPressed: () => _showDeleteConfirmation(),
-)
-```
-
-##### Ejemplo 5: Botón con Configuración Completa
-```dart
-DSButton(
-  text: 'Confirmar Pago',
-  prefixIcon: Icon(Icons.payment),
-  tooltip: 'Procesar el pago de forma segura',
+  label: 'Guardar',
   config: DSButtonConfig(
     variant: DSButtonVariant.filled,
-    size: DSButtonSize.large,
+    size: DSButtonSize.medium,
+    onPressed: () {
+      print('Botón presionado');
+    },
+  ),
+)
+```
+
+#### Ejemplo Avanzado
+
+```dart
+DSButton(
+  label: 'Crear Cuenta',
+  leading: Icon(Icons.person_add),
+  trailing: Icon(Icons.arrow_forward),
+  size: DSButtonSize.large,
+  width: 200,
+  config: DSButtonConfig(
+    variant: DSButtonVariant.filled,
+    state: DSButtonState.defaultState,
     colors: DSButtonColors(
-      backgroundColor: DSColors.success,
+      backgroundColor: Colors.blue,
       foregroundColor: Colors.white,
-      hoverColor: DSColors.successDark,
     ),
     spacing: DSButtonSpacing(
       horizontalPadding: 24.0,
-      verticalPadding: 16.0,
+      verticalPadding: 12.0,
+      iconSpacing: 12.0,
       borderRadius: 16.0,
     ),
     elevation: DSButtonElevation(
       defaultElevation: 2.0,
-      hoveredElevation: 8.0,
-      pressedElevation: 12.0,
+      hoveredElevation: 6.0,
     ),
     animation: DSButtonAnimation(
       type: DSButtonAnimationType.scale,
-      duration: 200,
+      duration: 300,
       curve: Curves.easeInOut,
+      enableHoverAnimation: true,
+      enablePressAnimation: true,
     ),
     behavior: DSButtonBehavior(
       enableHapticFeedback: true,
       enableRipple: true,
     ),
+    onPressed: () async {
+      // Lógica de creación de cuenta
+    },
+    onLongPress: () {
+      // Acción alternativa
+    },
+    onHover: (isHovering) {
+      print('Hover: $isHovering');
+    },
   ),
-  onPressed: () => _processPayment(),
-  onLongPress: () => _showPaymentOptions(),
 )
 ```
 
-##### Ejemplo 6: Grupo de Botones Segmentados
-```dart
-Row(
-  children: [
-    Expanded(
-      child: DSButton(
-        text: 'Mes',
-        config: DSButtonConfig(
-          variant: DSButtonVariant.segmented,
-          state: _selectedPeriod == 'month'
-            ? DSButtonState.selected
-            : DSButtonState.defaultState,
-        ),
-        onPressed: () => setState(() => _selectedPeriod = 'month'),
-      ),
-    ),
-    Expanded(
-      child: DSButton(
-        text: 'Año',
-        config: DSButtonConfig(
-          variant: DSButtonVariant.segmented,
-          state: _selectedPeriod == 'year'
-            ? DSButtonState.selected
-            : DSButtonState.defaultState,
-        ),
-        onPressed: () => setState(() => _selectedPeriod = 'year'),
-      ),
-    ),
-  ],
-)
-```
+#### Variantes Comunes
 
-##### Ejemplo 7: Botón de Icono (FAB-like)
 ```dart
-DSButton.icon(
-  icon: Icon(Icons.add),
-  tooltip: 'Crear nuevo elemento',
+// Botón primario (filled)
+DSButton(
+  label: 'Primario',
   config: DSButtonConfig(
     variant: DSButtonVariant.filled,
-    size: DSButtonSize.large,
-    colors: DSButtonColors(
-      backgroundColor: DSColors.primary,
-      foregroundColor: Colors.white,
-    ),
-    spacing: DSButtonSpacing(
-      borderRadius: 28.0, // Circular
-    ),
-  ),
-  onPressed: () => _createNew(),
-)
-```
-
-##### Ejemplo 8: Botón Adaptativo por Plataforma
-```dart
-DSButton(
-  text: 'Compartir',
-  prefixIcon: Icon(Icons.share),
-  config: DSButtonConfig(
-    isAdaptive: true, // Se adapta automáticamente a iOS/Android/Web
-    variant: DSButtonVariant.tonal,
-  ),
-  onPressed: () => _shareContent(),
-)
-```
-
-##### Ejemplo 9: Botón con RTL Support
-```dart
-DSButton(
-  text: 'التالي', // "Siguiente" en árabe
-  suffixIcon: Icon(Icons.arrow_forward),
-  config: DSButtonConfig(
-    isRtl: true, // El icono se coloca a la izquierda automáticamente
-    variant: DSButtonVariant.outline,
-  ),
-  onPressed: () => _goNext(),
-)
-```
-
-##### Ejemplo 10: Botón Skeleton (Placeholder)
-```dart
-// Útil mientras carga data
-DSButton(
-  text: 'Cargando...',
-  config: DSButtonConfig(
-    state: DSButtonState.skeleton,
-    behavior: DSButtonBehavior(
-      showSkeletonAnimation: true,
-    ),
+    onPressed: () {},
   ),
 )
-```
 
-#### Casos de Uso Empresariales
-
-##### Dashboard Ejecutivo
-```dart
-// Botón de acción principal
+// Botón secundario (tonal)
 DSButton(
-  text: 'Generar Reporte',
-  prefixIcon: Icon(Icons.analytics),
-  config: DSButtonConfig(
-    variant: DSButtonVariant.filled,
-    size: DSButtonSize.large,
-  ),
-  onPressed: () => _generateReport(),
-)
-
-// Botón secundario
-DSButton(
-  text: 'Exportar a Excel',
-  prefixIcon: Icon(Icons.file_download),
-  config: DSButtonConfig(
-    variant: DSButtonVariant.outline,
-    size: DSButtonSize.medium,
-  ),
-  onPressed: () => _exportToExcel(),
-)
-```
-
-##### E-commerce
-```dart
-// Botón "Agregar al carrito"
-DSButton(
-  text: 'Agregar al Carrito',
-  prefixIcon: Icon(Icons.shopping_cart),
+  label: 'Secundario',
   config: DSButtonConfig(
     variant: DSButtonVariant.tonal,
-    colors: DSButtonColors(
-      backgroundColor: DSColors.primary.withOpacity(0.1),
-      foregroundColor: DSColors.primary,
-    ),
+    onPressed: () {},
   ),
-  onPressed: () => _addToCart(product),
 )
 
-// Botón "Comprar ahora"
+// Botón de borde (outline)
 DSButton(
-  text: 'Comprar Ahora',
+  label: 'Outline',
   config: DSButtonConfig(
-    variant: DSButtonVariant.filled,
-    size: DSButtonSize.large,
-    colors: DSButtonColors(
-      backgroundColor: DSColors.success,
-    ),
+    variant: DSButtonVariant.outline,
+    onPressed: () {},
   ),
-  onPressed: () => _buyNow(product),
-)
-```
-
-##### Formularios
-```dart
-// Botón submit con validación
-DSButton(
-  text: 'Crear Cuenta',
-  loading: _isCreating,
-  config: DSButtonConfig(
-    variant: DSButtonVariant.filled,
-    size: DSButtonSize.large,
-  ),
-  onPressed: _formKey.currentState?.validate() ?? false
-    ? () => _createAccount()
-    : null, // null = disabled
 )
 
-// Botón cancelar
+// Botón de texto
 DSButton(
-  text: 'Cancelar',
+  label: 'Texto',
   config: DSButtonConfig(
     variant: DSButtonVariant.text,
-  ),
-  onPressed: () => Navigator.pop(context),
-)
-```
-
----
-
-### DSInput
-
-**Campos de entrada inteligentes con validación avanzada**
-
-#### Constructor
-```dart
-DSInput({
-  Key? key,
-  String? label,                           // Etiqueta del campo
-  String? hint,                            // Texto de placeholder
-  String? helperText,                      // Texto de ayuda
-  String? errorText,                       // Texto de error
-  String? initialValue,                    // Valor inicial
-  TextEditingController? controller,       // Controlador personalizado
-  FocusNode? focusNode,                    // Focus node
-  TextInputType? keyboardType,             // Tipo de teclado
-  TextInputAction? textInputAction,        // Acción del teclado
-  ValueChanged<String>? onChanged,         // Callback de cambio
-  VoidCallback? onEditingComplete,         // Callback de edición completa
-  ValueChanged<String>? onFieldSubmitted,  // Callback de submit
-  FormFieldValidator<String>? validator,   // Validador
-  List<TextInputFormatter>? inputFormatters, // Formateadores
-  bool readOnly = false,                   // Solo lectura
-  bool obscureText = false,                // Texto oculto (password)
-  bool autocorrect = true,                 // Autocorrección
-  bool enableSuggestions = true,           // Sugerencias
-  int? maxLines = 1,                       // Máximo de líneas
-  int? minLines,                           // Mínimo de líneas
-  int? maxLength,                          // Máximo de caracteres
-  Widget? prefixIcon,                      // Icono prefijo
-  Widget? suffixIcon,                      // Icono sufijo
-  String? prefixText,                      // Texto prefijo
-  String? suffixText,                      // Texto sufijo
-  DSInputConfig? config,                  // Configuración completa
-})
-```
-
-#### Configuración (DSInputConfig)
-```dart
-@freezed
-class DSInputConfig with _$DSInputConfig {
-  const factory DSInputConfig({
-    @Default(DSInputVariant.outline) DSInputVariant variant, // outline, filled, underline
-    @Default(DSInputState.defaultState) DSInputState state,  // default, focus, error, disabled, readonly
-    DSInputColors? colors,                                     // Configuración de colores
-    DSInputSpacing? spacing,                                   // Espaciado y dimensiones
-    DSInputValidation? validation,                             // Configuración de validación
-    DSInputAccessibility? accessibility,                       // Accesibilidad
-  }) = _DSInputConfig;
-}
-```
-
-#### DSInputValidation
-```dart
-@freezed
-class DSInputValidation with _$DSInputValidation {
-  const factory DSInputValidation({
-    @Default(true) bool enabled,             // Validación habilitada
-    @Default(false) bool realTimeValidation, // Validación en tiempo real
-    @Default(false) bool showProgress,       // Mostrar progreso de validación
-    @Default(true) bool showErrorIcon,       // Mostrar icono de error
-    @Default(true) bool showSuccessIcon,     // Mostrar icono de éxito
-    int? maxLength,                          // Longitud máxima
-    int? minLength,                          // Longitud mínima
-    RegExp? pattern,                         // Patrón regex
-    List<String>? allowedDomains,            // Dominios permitidos (email)
-  }) = _DSInputValidation;
-}
-```
-
-#### Validadores Incluidos
-```dart
-// Validadores básicos
-Validators.required('Campo requerido')
-Validators.email('Email inválido')
-Validators.minLength(6, 'Mínimo 6 caracteres')
-Validators.maxLength(50, 'Máximo 50 caracteres')
-Validators.numeric('Solo números')
-Validators.alphanumeric('Solo letras y números')
-
-// Validadores avanzados
-Validators.password(
-  minLength: 8,
-  requireUppercase: true,
-  requireLowercase: true,
-  requireNumbers: true,
-  requireSpecialChars: true,
-)
-Validators.url('URL inválida')
-Validators.phone('Teléfono inválido')
-Validators.creditCard('Tarjeta de crédito inválida')
-Validators.domain(['empresa.com'], 'Debe ser email corporativo')
-
-// Combinar validadores
-Validators.compose([
-  Validators.required('Email requerido'),
-  Validators.email('Email inválido'),
-  Validators.domain(['empresa.com'], 'Debe ser email corporativo'),
-])
-```
-
-#### Ejemplos de Uso
-```dart
-// Input básico
-DSInput(
-  label: 'Email',
-  hint: 'usuario@empresa.com',
-  keyboardType: TextInputType.emailAddress,
-  validator: Validators.compose([
-    Validators.required('Email requerido'),
-    Validators.email('Email inválido'),
-  ]),
-)
-
-// Input de contraseña
-DSInput(
-  label: 'Contraseña',
-  obscureText: true,
-  validator: Validators.password(
-    minLength: 8,
-    requireUppercase: true,
-    requireNumbers: true,
-  ),
-  config: DSInputConfig(
-    validation: DSInputValidation(
-      realTimeValidation: true,
-      showProgress: true,
-    ),
+    onPressed: () {},
   ),
 )
 
-// Input con formato personalizado
-DSInput(
-  label: 'Teléfono',
-  inputFormatters: [
-    FilteringTextInputFormatter.digitsOnly,
-    LengthLimitingTextInputFormatter(10),
-    PhoneNumberFormatter(),
-  ],
-  prefixIcon: Icon(Icons.phone),
+// Botón de peligro
+DSButton(
+  label: 'Eliminar',
+  isDanger: true,
+  leading: Icon(Icons.delete),
+  config: DSButtonConfig(
+    onPressed: () {},
+  ),
+)
+
+// Botón con estado de carga
+DSButton(
+  label: 'Guardando...',
+  config: DSButtonConfig(
+    state: DSButtonState.loading,
+  ),
+)
+
+// Botón deshabilitado
+DSButton(
+  label: 'Deshabilitado',
+  config: DSButtonConfig(
+    state: DSButtonState.disabled,
+  ),
 )
 ```
+
+#### Notas
+
+- Los botones se adaptan automáticamente al tema (light/dark)
+- Soporte completo para RTL
+- Animaciones de hover, press y loading incluidas
+- Feedback háptico opcional
+- Estados de skeleton para carga progresiva
 
 ---
 
 ### DSCard
 
-**Cards empresariales con configuración avanzada**
+Tarjeta contenedora con soporte para header, body y footer.
 
-#### Constructor
+#### Import
+
 ```dart
-DSCard({
-  Key? key,
-  required Widget child,                   // Contenido de la card
-  VoidCallback? onTap,                     // Callback de tap
-  VoidCallback? onLongPress,               // Callback de presión larga
-  bool interactive = false,                // Si es interactiva
-  String? semanticsLabel,                  // Etiqueta semántica
-  DSCardConfig? config,                   // Configuración completa
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSCardConfig` | Configuración de la tarjeta | `DSCardConfig()` |
+| `header` | `Widget?` | Widget del encabezado | `null` |
+| `body` | `Widget?` | Contenido principal | `null` |
+| `footer` | `Widget?` | Widget del pie | `null` |
+| `padding` | `EdgeInsetsGeometry?` | Padding personalizado | `null` |
+| `elevation` | `double?` | Elevación de la tarjeta | `null` |
+| `width` | `double?` | Ancho | `null` |
+| `height` | `double?` | Alto | `null` |
+| `decoration` | `Decoration?` | Decoración personalizada | `null` |
+
+#### Configuración (DSCardConfig)
+
+```dart
+DSCardConfig({
+  DSCardVariant variant = DSCardVariant.elevated,
+  DSCardState state = DSCardState.defaultState,
+  bool isInteractive = false,
+  bool isRtl = false,
+  bool enableA11y = true,
+  bool enableKeyboardSupport = true,
+  DSCardColors? colors,
+  DSCardSpacing? spacing,
+  DSCardElevation? elevation,
+  DSCardBehavior? behavior,
+  DSCardAnimation? animation,
+  VoidCallback? onTap,
+  VoidCallback? onDoubleTap,
+  VoidCallback? onLongPress,
+  ValueChanged<bool>? onHover,
+  ValueChanged<bool>? onFocusChange,
 })
 ```
 
-#### Configuración (DSCardConfig)
-```dart
-@freezed
-class DSCardConfig with _$DSCardConfig {
-  const factory DSCardConfig({
-    @Default(DSCardVariant.elevated) DSCardVariant variant, // elevated, filled, outline
-    @Default(DSCardState.defaultState) DSCardState state,   // default, hover, pressed, focus, selected, disabled
-    DSCardColors? colors,                                     // Configuración de colores
-    DSCardSpacing? spacing,                                   // Espaciado y dimensiones
-    DSCardAnimations? animations,                             // Animaciones
-  }) = _DSCardConfig;
-}
-```
+**Enums:**
 
-#### DSCardSpacing
-```dart
-@freezed
-class DSCardSpacing with _$DSCardSpacing {
-  const factory DSCardSpacing({
-    EdgeInsets? padding,                     // Padding interno
-    EdgeInsets? margin,                      // Margin externo
-    @Default(12.0) double borderRadius,      // Radio de bordes
-    @Default(1.0) double borderWidth,        // Ancho del borde
-    @Default(4.0) double elevation,          // Elevación/sombra
-    @Default(double.infinity) double width,  // Ancho
-    double? height,                          // Alto
-  }) = _DSCardSpacing;
-}
-```
+- `DSCardVariant`: `elevated`, `filled`, `outlined`
+- `DSCardState`: `defaultState`, `hover`, `pressed`, `focus`, `selected`, `disabled`, `loading`, `skeleton`
 
-#### Ejemplos de Uso
+#### Ejemplo Básico
+
 ```dart
-// Card básica
 DSCard(
-  child: Padding(
-    padding: DSSpacing.cardPadding,
-    child: Column(
-      children: [
-        Text('Título', style: DSTypography.h5),
-        DSSpacing.verticalSm,
-        Text('Contenido...'),
-      ],
-    ),
+  header: Text('Título de la Tarjeta'),
+  body: Text('Contenido de la tarjeta con información relevante.'),
+  footer: Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+      DSButton(
+        label: 'Cancelar',
+        config: DSButtonConfig(
+          variant: DSButtonVariant.text,
+          onPressed: () {},
+        ),
+      ),
+      SizedBox(width: 8),
+      DSButton(
+        label: 'Aceptar',
+        config: DSButtonConfig(onPressed: () {}),
+      ),
+    ],
   ),
 )
+```
 
-// Card interactiva
+#### Ejemplo Avanzado
+
+```dart
 DSCard(
-  interactive: true,
-  onTap: () => _openDetails(),
   config: DSCardConfig(
-    variant: DSCardVariant.outline,
+    variant: DSCardVariant.elevated,
+    isInteractive: true,
+    colors: DSCardColors(
+      backgroundColor: Colors.white,
+      headerTextColor: Colors.black87,
+      bodyTextColor: Colors.black54,
+    ),
     spacing: DSCardSpacing(
-      borderRadius: 16,
-      elevation: 8,
+      padding: 16.0,
+      borderRadius: 12.0,
+      headerPadding: 16.0,
+      bodyPadding: 16.0,
+      footerPadding: 16.0,
     ),
-    animations: DSCardAnimations(
-      duration: Duration(milliseconds: 200),
-      hoverScale: 1.02,
+    elevation: DSCardElevation(
+      defaultElevation: 2.0,
+      hoveredElevation: 8.0,
     ),
+    onTap: () {
+      print('Card tapped');
+    },
+    onHover: (isHovering) {
+      print('Hover: $isHovering');
+    },
   ),
-  child: _buildCardContent(),
+  header: Row(
+    children: [
+      Icon(Icons.info_outline),
+      SizedBox(width: 8),
+      Text('Información Importante'),
+    ],
+  ),
+  body: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text('Este es el contenido principal de la tarjeta.'),
+      SizedBox(height: 8),
+      Text('Puede incluir múltiples widgets.'),
+    ],
+  ),
+  footer: Text(
+    'Última actualización: Hoy',
+    style: TextStyle(fontSize: 12, color: Colors.grey),
+  ),
+  width: 400,
+)
+```
+
+#### Notas
+
+- Las tarjetas pueden ser interactivas (clickeables) o estáticas
+- Soporte para estados de loading y skeleton
+- Transiciones animadas entre estados
+- Elevación dinámica en hover
+
+---
+
+### DSChip
+
+Chip compacto para etiquetas, filtros o selecciones.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `label` | `String` | Texto del chip | requerido |
+| `avatar` | `Widget?` | Avatar o icono inicial | `null` |
+| `onDeleted` | `VoidCallback?` | Callback al eliminar | `null` |
+| `onPressed` | `VoidCallback?` | Callback al presionar | `null` |
+| `selected` | `bool` | Si está seleccionado | `false` |
+| `enabled` | `bool` | Si está habilitado | `true` |
+
+#### Ejemplo Básico
+
+```dart
+DSChip(
+  label: 'Flutter',
+  onPressed: () {
+    print('Chip presionado');
+  },
+)
+```
+
+#### Ejemplo con Avatar y Delete
+
+```dart
+DSChip(
+  label: 'Usuario',
+  avatar: CircleAvatar(
+    child: Text('U'),
+  ),
+  onDeleted: () {
+    print('Chip eliminado');
+  },
+  selected: true,
 )
 ```
 
 ---
 
-## 📝 Form Components
+### DSBadge
 
-### DSCurrencyInput
+Badge numérico o de estado para notificaciones.
 
-**Input especializado para moneda con formateo automático**
+#### Import
 
-#### Constructor
 ```dart
-DSCurrencyInput({
-  Key? key,
-  String? label,                           // Etiqueta del campo
-  String? hint,                            // Placeholder
-  double? initialValue,                    // Valor inicial
-  String currency = 'USD',                 // Código de moneda
-  String locale = 'en_US',                 // Locale para formateo
-  ValueChanged<double>? onChanged,         // Callback de cambio
-  FormFieldValidator<double>? validator,   // Validador
-  bool readOnly = false,                   // Solo lectura
-  FocusNode? focusNode,                    // Focus node
-  DSCurrencyInputConfig? config,          // Configuración completa
-})
+import 'package:iautomat_design_system/iautomat_design_system.dart';
 ```
 
-#### Configuración (DSCurrencyInputConfig)
-```dart
-@freezed
-class DSCurrencyInputConfig with _$DSCurrencyInputConfig {
-  const factory DSCurrencyInputConfig({
-    DSCurrencyFormatting? formatting,      // Configuración de formato
-    DSCurrencyValidation? validation,      // Validación específica
-    DSCurrencyColors? colors,              // Colores personalizados
-    DSCurrencyBehavior? behavior,          // Comportamiento
-  }) = _DSCurrencyInputConfig;
-}
-```
+#### Parámetros
 
-#### DSCurrencyFormatting
-```dart
-@freezed
-class DSCurrencyFormatting with _$DSCurrencyFormatting {
-  const factory DSCurrencyFormatting({
-    @Default(2) int decimalDigits,           // Dígitos decimales
-    @Default(true) bool showCurrencySymbol,  // Mostrar símbolo
-    @Default(',') String thousandSeparator,  // Separador de miles
-    @Default('.') String decimalSeparator,   // Separador decimal
-    @Default(true) bool compactFormat,       // Formato compacto (1K, 1M)
-    @Default(false) bool showTrailingZeros,  // Mostrar ceros finales
-  }) = _DSCurrencyFormatting;
-}
-```
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `child` | `Widget` | Widget a decorar | requerido |
+| `count` | `int?` | Número a mostrar | `null` |
+| `showZero` | `bool` | Mostrar cuando es 0 | `false` |
+| `position` | `BadgePosition` | Posición del badge | `topEnd` |
+| `color` | `Color?` | Color del badge | `null` |
 
-#### Ejemplos de Uso
+#### Ejemplo Básico
+
 ```dart
-// Input básico de moneda
-DSCurrencyInput(
-  label: 'Precio',
-  currency: 'USD',
-  initialValue: 1500.00,
-  onChanged: (value) => _updatePrice(value),
+DSBadge(
+  count: 5,
+  child: Icon(Icons.notifications),
 )
+```
 
-// Input avanzado con validación
-DSCurrencyInput(
-  label: 'Salario Anual',
-  currency: 'USD',
-  locale: 'en_US',
+#### Ejemplo con Color Personalizado
+
+```dart
+DSBadge(
+  count: 99,
+  color: Colors.red,
+  position: BadgePosition.topEnd,
+  child: Icon(Icons.mail),
+)
+```
+
+---
+
+### DSTag
+
+Etiqueta coloreada para categorización.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `label` | `String` | Texto del tag | requerido |
+| `color` | `Color?` | Color del tag | `null` |
+| `size` | `TagSize` | Tamaño | `medium` |
+| `onTap` | `VoidCallback?` | Callback al tocar | `null` |
+
+#### Ejemplo Básico
+
+```dart
+DSTag(
+  label: 'Nuevo',
+  color: Colors.green,
+)
+```
+
+---
+
+### DSAvatar
+
+Avatar circular o cuadrado con imagen, iniciales o icono.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `imageUrl` | `String?` | URL de la imagen | `null` |
+| `initials` | `String?` | Iniciales a mostrar | `null` |
+| `icon` | `IconData?` | Icono a mostrar | `null` |
+| `size` | `double` | Tamaño del avatar | `40.0` |
+| `shape` | `AvatarShape` | Forma (circle/square) | `circle` |
+
+#### Ejemplo Básico
+
+```dart
+DSAvatar(
+  initials: 'JD',
+  size: 48.0,
+)
+```
+
+#### Ejemplo con Imagen
+
+```dart
+DSAvatar(
+  imageUrl: 'https://example.com/avatar.jpg',
+  size: 64.0,
+  shape: AvatarShape.circle,
+)
+```
+
+---
+
+### DSDivider
+
+Separador horizontal o vertical.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSDividerConfig` | Configuración | `DSDividerConfig()` |
+| `isVertical` | `bool` | Si es vertical | `false` |
+| `thickness` | `double?` | Grosor | `null` |
+| `color` | `Color?` | Color | `null` |
+
+#### Ejemplo Básico
+
+```dart
+DSDivider()
+```
+
+#### Ejemplo Vertical
+
+```dart
+DSDivider(
+  isVertical: true,
+  thickness: 2.0,
+  color: Colors.grey,
+)
+```
+
+---
+
+### DSStatusDot
+
+Indicador de estado con punto coloreado.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `status` | `StatusType` | Tipo de estado | requerido |
+| `label` | `String?` | Etiqueta opcional | `null` |
+| `size` | `double` | Tamaño del dot | `8.0` |
+| `animate` | `bool` | Si debe animar | `false` |
+
+#### Ejemplo Básico
+
+```dart
+DSStatusDot(
+  status: StatusType.success,
+  label: 'Conectado',
+)
+```
+
+#### Ejemplo con Animación
+
+```dart
+DSStatusDot(
+  status: StatusType.warning,
+  label: 'Procesando',
+  animate: true,
+  size: 12.0,
+)
+```
+
+---
+
+## 2. Componentes de Formulario
+
+### DSInput
+
+Input de texto base con validación y múltiples tipos.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `controller` | `TextEditingController?` | Controlador del texto | `null` |
+| `initialValue` | `String?` | Valor inicial | `null` |
+| `label` | `String?` | Etiqueta del campo | `null` |
+| `hint` | `String?` | Texto de ayuda | `null` |
+| `helper` | `String?` | Texto de ayuda inferior | `null` |
+| `type` | `InputType` | Tipo de input | `text` |
+| `validator` | `String? Function(String?)?` | Función de validación | `null` |
+| `onChanged` | `void Function(String)?` | Callback al cambiar | `null` |
+| `enabled` | `bool` | Si está habilitado | `true` |
+| `readOnly` | `bool` | Si es solo lectura | `false` |
+| `obscureText` | `bool` | Si ocultar texto | `false` |
+| `maxLength` | `int?` | Longitud máxima | `null` |
+| `maxLines` | `int?` | Líneas máximas | `1` |
+| `showCounter` | `bool` | Mostrar contador | `false` |
+| `showClearButton` | `bool` | Mostrar botón limpiar | `true` |
+| `prefixIcon` | `IconData?` | Icono prefijo | `null` |
+| `suffixIcon` | `IconData?` | Icono sufijo | `null` |
+
+#### Tipos de Input (InputType)
+
+- `text`: Texto general
+- `email`: Email con teclado apropiado
+- `password`: Contraseña con toggle de visibilidad
+- `number`: Números con teclado numérico
+- `multiline`: Área de texto multilínea
+- `search`: Búsqueda con icono
+- `url`: URLs
+- `phone`: Teléfono
+
+#### Ejemplo Básico
+
+```dart
+DSInput(
+  label: 'Nombre',
+  hint: 'Ingresa tu nombre',
+  onChanged: (value) {
+    print('Valor: $value');
+  },
+)
+```
+
+#### Ejemplo con Validación
+
+```dart
+DSInput(
+  label: 'Email',
+  type: InputType.email,
+  prefixIcon: Icons.email,
   validator: (value) {
-    if (value == null || value < 30000) {
-      return 'Salario mínimo \$30,000';
+    if (value == null || value.isEmpty) {
+      return 'El email es requerido';
+    }
+    if (!value.contains('@')) {
+      return 'Email inválido';
     }
     return null;
   },
-  config: DSCurrencyInputConfig(
-    formatting: DSCurrencyFormatting(
-      decimalDigits: 0,
-      compactFormat: true,
+  onChanged: (value) {
+    // Actualizar estado
+  },
+)
+```
+
+#### Constructores Especializados
+
+```dart
+// Input de email
+DSInput.email(
+  label: 'Email',
+  validator: (value) => value?.isEmpty == true ? 'Requerido' : null,
+)
+
+// Input de contraseña
+DSInput.password(
+  label: 'Contraseña',
+  showVisibilityToggle: true,
+)
+
+// Área de texto
+DSInput.multiline(
+  label: 'Descripción',
+  maxLines: 4,
+  showCounter: true,
+  maxLength: 500,
+)
+
+// Input de búsqueda
+DSInput.search(
+  hint: 'Buscar...',
+  onChanged: (query) {
+    // Realizar búsqueda
+  },
+)
+```
+
+#### Notas
+
+- Validación automática con FormField
+- Botón de limpiar automático cuando hay texto
+- Toggle de visibilidad para passwords
+- Contador de caracteres opcional
+- Estados visuales: normal, focused, error, disabled, success
+
+---
+
+### DSTextField
+
+Campo de texto estándar (similar a DSInput pero con configuración extendida).
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+Similar a DSInput con configuración adicional mediante `TextFieldConfig`.
+
+#### Ejemplo
+
+```dart
+DSTextField(
+  label: 'Apellido',
+  helper: 'Ingresa tu apellido completo',
+  maxLength: 50,
+)
+```
+
+---
+
+### DSTextArea
+
+Área de texto multilínea.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `label` | `String?` | Etiqueta | `null` |
+| `hint` | `String?` | Placeholder | `null` |
+| `minLines` | `int` | Líneas mínimas | `3` |
+| `maxLines` | `int?` | Líneas máximas | `null` |
+| `maxLength` | `int?` | Longitud máxima | `null` |
+| `showCounter` | `bool` | Mostrar contador | `true` |
+
+#### Ejemplo
+
+```dart
+DSTextArea(
+  label: 'Comentarios',
+  hint: 'Escribe tus comentarios aquí',
+  minLines: 3,
+  maxLines: 8,
+  maxLength: 1000,
+  showCounter: true,
+)
+```
+
+---
+
+### DSCheckbox
+
+Casilla de verificación.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `value` | `bool` | Estado del checkbox | requerido |
+| `onChanged` | `ValueChanged<bool>?` | Callback al cambiar | `null` |
+| `label` | `String?` | Etiqueta | `null` |
+| `tristate` | `bool` | Soporte para 3 estados | `false` |
+
+#### Ejemplo
+
+```dart
+bool accepted = false;
+
+DSCheckbox(
+  value: accepted,
+  label: 'Acepto los términos y condiciones',
+  onChanged: (value) {
+    setState(() {
+      accepted = value;
+    });
+  },
+)
+```
+
+---
+
+### DSRadio
+
+Botón de radio para selección única.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `value` | `T` | Valor del radio | requerido |
+| `groupValue` | `T?` | Valor del grupo | `null` |
+| `onChanged` | `ValueChanged<T>?` | Callback al cambiar | `null` |
+| `label` | `String?` | Etiqueta | `null` |
+
+#### Ejemplo
+
+```dart
+String selectedOption = 'option1';
+
+Column(
+  children: [
+    DSRadio<String>(
+      value: 'option1',
+      groupValue: selectedOption,
+      label: 'Opción 1',
+      onChanged: (value) {
+        setState(() {
+          selectedOption = value!;
+        });
+      },
     ),
-    validation: DSCurrencyValidation(
-      min: 30000,
-      max: 500000,
-      required: true,
+    DSRadio<String>(
+      value: 'option2',
+      groupValue: selectedOption,
+      label: 'Opción 2',
+      onChanged: (value) {
+        setState(() {
+          selectedOption = value!;
+        });
+      },
     ),
-  ),
+  ],
+)
+```
+
+---
+
+### DSSwitch
+
+Interruptor on/off.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSSwitchConfig` | Configuración | `DSSwitchConfig()` |
+| `value` | `bool` | Estado del switch | requerido |
+| `onChanged` | `ValueChanged<bool>?` | Callback al cambiar | `null` |
+| `label` | `String?` | Etiqueta | `null` |
+
+#### Ejemplo
+
+```dart
+bool notificationsEnabled = true;
+
+DSSwitch(
+  value: notificationsEnabled,
+  label: 'Habilitar notificaciones',
+  onChanged: (value) {
+    setState(() {
+      notificationsEnabled = value;
+    });
+  },
+)
+```
+
+---
+
+### DSSelect
+
+Selector dropdown.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `label` | `String?` | Etiqueta | `null` |
+| `hint` | `String?` | Texto placeholder | `null` |
+| `value` | `T?` | Valor seleccionado | `null` |
+| `items` | `List<SelectItem<T>>` | Items del select | requerido |
+| `onChanged` | `ValueChanged<T>?` | Callback al cambiar | `null` |
+| `enabled` | `bool` | Si está habilitado | `true` |
+
+#### Ejemplo
+
+```dart
+String? selectedCountry;
+
+DSSelect<String>(
+  label: 'País',
+  hint: 'Selecciona un país',
+  value: selectedCountry,
+  items: [
+    SelectItem(value: 'mx', label: 'México'),
+    SelectItem(value: 'us', label: 'Estados Unidos'),
+    SelectItem(value: 'es', label: 'España'),
+  ],
+  onChanged: (value) {
+    setState(() {
+      selectedCountry = value;
+    });
+  },
+)
+```
+
+---
+
+### DSCombobox
+
+Combobox con búsqueda y autocompletado.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `label` | `String?` | Etiqueta | `null` |
+| `hint` | `String?` | Placeholder | `null` |
+| `items` | `List<T>` | Items disponibles | requerido |
+| `onChanged` | `ValueChanged<T>?` | Callback al seleccionar | `null` |
+| `itemBuilder` | `Widget Function(T)` | Builder de items | requerido |
+| `searchable` | `bool` | Si permite búsqueda | `true` |
+
+#### Ejemplo
+
+```dart
+DSCombobox<String>(
+  label: 'Ciudad',
+  hint: 'Busca una ciudad',
+  items: ['Ciudad de México', 'Guadalajara', 'Monterrey'],
+  itemBuilder: (city) => Text(city),
+  searchable: true,
+  onChanged: (city) {
+    print('Seleccionado: $city');
+  },
+)
+```
+
+---
+
+### DSSlider
+
+Control deslizante de valor.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `value` | `double` | Valor actual | requerido |
+| `min` | `double` | Valor mínimo | `0.0` |
+| `max` | `double` | Valor máximo | `100.0` |
+| `divisions` | `int?` | Divisiones | `null` |
+| `label` | `String?` | Etiqueta del valor | `null` |
+| `onChanged` | `ValueChanged<double>?` | Callback al cambiar | `null` |
+
+#### Ejemplo
+
+```dart
+double volume = 50.0;
+
+DSSlider(
+  value: volume,
+  min: 0.0,
+  max: 100.0,
+  divisions: 10,
+  label: '${volume.toInt()}%',
+  onChanged: (value) {
+    setState(() {
+      volume = value;
+    });
+  },
 )
 ```
 
@@ -1012,357 +1180,369 @@ DSCurrencyInput(
 
 ### DSDatePicker
 
-**Selector de fecha empresarial**
+Selector de fecha.
 
-#### Constructor
+#### Import
+
 ```dart
-DSDatePicker({
-  Key? key,
-  String? label,                           // Etiqueta del campo
-  String? hint,                            // Placeholder
-  DateTime? initialDate,                   // Fecha inicial
-  DateTime? firstDate,                     // Fecha mínima
-  DateTime? lastDate,                      // Fecha máxima
-  ValueChanged<DateTime>? onDateSelected,  // Callback de selección
-  FormFieldValidator<DateTime>? validator, // Validador
-  DateFormat? dateFormat,                  // Formato de fecha
-  bool readOnly = false,                   // Solo lectura
-  DSDatePickerConfig? config,             // Configuración completa
-})
+import 'package:iautomat_design_system/iautomat_design_system.dart';
 ```
 
-#### Configuración (DSDatePickerConfig)
-```dart
-@freezed
-class DSDatePickerConfig with _$DSDatePickerConfig {
-  const factory DSDatePickerConfig({
-    @Default(DSDatePickerVariant.dialog) DSDatePickerVariant variant, // dialog, bottomSheet, inline
-    @Default(DSDatePickerMode.date) DSDatePickerMode mode,             // date, time, dateTime
-    DSDatePickerLocalization? localization,  // Localización
-    DSDatePickerBehavior? behavior,          // Comportamiento
-    DSDatePickerColors? colors,              // Colores personalizados
-  }) = _DSDatePickerConfig;
-}
-```
+#### Parámetros
 
-#### Ejemplos de Uso
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `label` | `String?` | Etiqueta | `null` |
+| `selectedDate` | `DateTime?` | Fecha seleccionada | `null` |
+| `firstDate` | `DateTime` | Fecha mínima | requerido |
+| `lastDate` | `DateTime` | Fecha máxima | requerido |
+| `onDateSelected` | `ValueChanged<DateTime>?` | Callback al seleccionar | `null` |
+
+#### Ejemplo
+
 ```dart
-// Selector básico
+DateTime? birthDate;
+
 DSDatePicker(
   label: 'Fecha de nacimiento',
-  firstDate: DateTime(1950),
+  selectedDate: birthDate,
+  firstDate: DateTime(1900),
   lastDate: DateTime.now(),
-  onDateSelected: (date) => _updateBirthDate(date),
+  onDateSelected: (date) {
+    setState(() {
+      birthDate = date;
+    });
+  },
 )
+```
 
-// Selector de fecha y hora
-DSDatePicker(
-  label: 'Fecha y hora de reunión',
-  initialDate: DateTime.now().add(Duration(days: 1)),
-  config: DSDatePickerConfig(
-    mode: DSDatePickerMode.dateTime,
-    variant: DSDatePickerVariant.bottomSheet,
+---
+
+### DSColorPicker
+
+Selector de color.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `color` | `Color` | Color actual | requerido |
+| `onColorChanged` | `ValueChanged<Color>?` | Callback al cambiar | `null` |
+| `showAlpha` | `bool` | Mostrar control alpha | `true` |
+
+#### Ejemplo
+
+```dart
+Color selectedColor = Colors.blue;
+
+DSColorPicker(
+  color: selectedColor,
+  showAlpha: true,
+  onColorChanged: (color) {
+    setState(() {
+      selectedColor = color;
+    });
+  },
+)
+```
+
+---
+
+### DSFilePicker
+
+Selector de archivos.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `label` | `String?` | Etiqueta | `null` |
+| `allowedExtensions` | `List<String>?` | Extensiones permitidas | `null` |
+| `allowMultiple` | `bool` | Permitir múltiples | `false` |
+| `onFileSelected` | `ValueChanged<FilePickerResult>?` | Callback | `null` |
+
+#### Ejemplo
+
+```dart
+DSFilePicker(
+  label: 'Seleccionar documento',
+  allowedExtensions: ['pdf', 'doc', 'docx'],
+  allowMultiple: false,
+  onFileSelected: (result) {
+    if (result != null) {
+      print('Archivo: ${result.files.first.name}');
+    }
+  },
+)
+```
+
+---
+
+### DSCurrencyInput
+
+Input especializado para moneda.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSCurrencyInputConfig` | Configuración | `DSCurrencyInputConfig()` |
+| `controller` | `TextEditingController?` | Controlador | `null` |
+| `label` | `String?` | Etiqueta | `null` |
+| `currency` | `String` | Símbolo de moneda | `'$'` |
+| `onChanged` | `ValueChanged<double>?` | Callback al cambiar | `null` |
+
+#### Helpers
+
+- `DSCurrencyInputA11yHelper`: Helpers de accesibilidad
+- `DSCurrencyInputValidationHelper`: Helpers de validación
+- `DSCurrencyInputPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
+```dart
+double? amount;
+
+DSCurrencyInput(
+  label: 'Monto',
+  currency: '\$',
+  config: DSCurrencyInputConfig(
+    locale: 'es_MX',
+    decimalDigits: 2,
+  ),
+  onChanged: (value) {
+    setState(() {
+      amount = value;
+    });
+  },
+)
+```
+
+---
+
+### DSCameraPicker
+
+Selector de cámara/foto.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSCameraPickerConfig` | Configuración | `DSCameraPickerConfig()` |
+| `onImageSelected` | `ValueChanged<XFile>?` | Callback al seleccionar | `null` |
+
+#### Helpers
+
+- `DSCameraPickerA11yHelper`: Helpers de accesibilidad
+- `DSCameraPickerPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
+```dart
+DSCameraPicker(
+  config: DSCameraPickerConfig(
+    preferredCameraType: CameraType.rear,
+    maxWidth: 1920,
+    maxHeight: 1080,
+    imageQuality: 85,
+  ),
+  onImageSelected: (file) {
+    print('Imagen: ${file.path}');
+  },
+)
+```
+
+---
+
+## 3. Componentes de Navegación
+
+### DSScaffold
+
+Scaffold con configuración extendida del Design System.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSScaffoldConfig` | Configuración | `DSScaffoldConfig()` |
+| `appBar` | `PreferredSizeWidget?` | AppBar | `null` |
+| `body` | `Widget` | Contenido principal | requerido |
+| `drawer` | `Widget?` | Drawer lateral | `null` |
+| `bottomNavigationBar` | `Widget?` | Barra inferior | `null` |
+| `floatingActionButton` | `Widget?` | FAB | `null` |
+
+#### Ejemplo
+
+```dart
+DSScaffold(
+  appBar: AppBar(
+    title: Text('Mi App'),
+  ),
+  body: Center(
+    child: Text('Contenido'),
+  ),
+  drawer: DSDrawer(
+    items: [],
+  ),
+  floatingActionButton: DSFab(
+    icon: Icons.add,
+    onPressed: () {},
   ),
 )
 ```
 
 ---
 
-## 🗂️ Data Components
+### DSBars (AppBar/TopBar)
 
-### DSDataTable
+Barra superior de aplicación.
 
-**Tabla de datos empresarial con funcionalidades avanzadas**
+#### Import
 
-#### Constructor
 ```dart
-DSDataTable<T>({
-  Key? key,
-  required List<DSDataColumn<T>> columns,      // Definición de columnas
-  required List<T> data,                        // Datos de la tabla
-  DSDataTableController<T>? controller,        // Controlador de tabla
-  ValueChanged<List<T>>? onSelectionChanged,    // Callback de selección
-  ValueChanged<T>? onRowTap,                    // Callback de tap en fila
-  ValueChanged<T>? onRowDoubleTap,              // Callback de doble tap
-  DSDataTableConfig<T>? config,                // Configuración completa
-})
+import 'package:iautomat_design_system/iautomat_design_system.dart';
 ```
 
-#### DSDataColumn
+#### Componentes
+
+- `DSTopAppBar`: Barra superior estándar
+- `DSBars`: Utilidades para barras
+
+#### Ejemplo
+
 ```dart
-@freezed
-class DSDataColumn<T> with _$DSDataColumn<T> {
-  const factory DSDataColumn({
-    required String key,                         // Clave de la columna
-    required String title,                       // Título de la columna
-    double? width,                               // Ancho de la columna
-    @Default(false) bool sortable,               // Si es ordenable
-    @Default(false) bool filterable,             // Si es filtrable
-    @Default(false) bool resizable,              // Si es redimensionable
-    @Default(Alignment.centerLeft) Alignment alignment, // Alineación
-    Widget Function(T item)? cellBuilder,        // Constructor de celda
-    String Function(dynamic value)? formatter,   // Formateador de valor
-    Comparator<T>? comparator,                   // Comparador para ordenar
-  }) = _DSDataColumn<T>;
-}
-```
-
-#### Configuración (DSDataTableConfig)
-```dart
-@freezed
-class DSDataTableConfig<T> with _$DSDataTableConfig<T> {
-  const factory DSDataTableConfig({
-    DSDataTablePagination? pagination,         // Configuración de paginación
-    DSDataTableSelection<T>? selection,        // Configuración de selección
-    DSDataTableSorting? sorting,               // Configuración de ordenamiento
-    DSDataTableFiltering? filtering,           // Configuración de filtros
-    DSDataTableStyling? styling,               // Estilos visuales
-    DSDataTableBehavior? behavior,             // Comportamiento
-  }) = _DSDataTableConfig<T>;
-}
-```
-
-#### Ejemplos de Uso
-```dart
-// Tabla básica
-DSDataTable<Employee>(
-  columns: [
-    DSDataColumn<Employee>(
-      key: 'name',
-      title: 'Nombre',
-      width: 200,
-      sortable: true,
-      cellBuilder: (employee) => Text(employee.fullName),
-    ),
-    DSDataColumn<Employee>(
-      key: 'email',
-      title: 'Email',
-      width: 250,
-      filterable: true,
-    ),
-    DSDataColumn<Employee>(
-      key: 'salary',
-      title: 'Salario',
-      width: 120,
-      sortable: true,
-      alignment: Alignment.centerRight,
-      formatter: (value) => NumberFormat.currency().format(value),
-    ),
-  ],
-  data: employees,
-  onRowTap: (employee) => _viewEmployeeDetails(employee),
-)
-
-// Tabla con funcionalidades avanzadas
-DSDataTable<Employee>(
-  columns: _buildColumns(),
-  data: employees,
-  config: DSDataTableConfig<Employee>(
-    pagination: DSDataTablePagination(
-      pageSize: 25,
-      showPageSizeSelector: true,
-      pageSizeOptions: [10, 25, 50, 100],
-    ),
-    selection: DSDataTableSelection<Employee>(
-      multiSelect: true,
-      selectAllVisible: true,
-      onSelectionChanged: (selected) => _handleSelection(selected),
-    ),
-    sorting: DSDataTableSorting(
-      defaultSortColumn: 'name',
-      defaultSortDirection: SortDirection.ascending,
-    ),
-    filtering: DSDataTableFiltering(
-      globalFilter: true,
-      columnFilters: true,
-      quickFilters: [
-        QuickFilter('Activos', (emp) => emp.isActive),
-        QuickFilter('Gerentes', (emp) => emp.isManager),
-      ],
-    ),
-  ),
-)
-```
-
----
-
-### DSChart
-
-**Sistema de gráficos profesionales**
-
-#### Constructor
-```dart
-DSChart({
-  Key? key,
-  required DSChartType type,               // Tipo de gráfico
-  required List<ChartData> data,            // Datos del gráfico
-  String? title,                            // Título del gráfico
-  String? subtitle,                         // Subtítulo
-  DSChartConfig? config,                   // Configuración completa
-})
-```
-
-#### Tipos de Gráfico (DSChartType)
-```dart
-enum DSChartType {
-  line,           // Gráfico de líneas
-  bar,            // Gráfico de barras
-  pie,            // Gráfico circular
-  area,           // Gráfico de área
-  scatter,        // Gráfico de dispersión
-  radar,          // Gráfico radar
-  candlestick,    // Gráfico de velas (trading)
-  gauge,          // Medidor
-}
-```
-
-#### Configuración (DSChartConfig)
-```dart
-@freezed
-class DSChartConfig with _$DSChartConfig {
-  const factory DSChartConfig({
-    DSChartAxis? xAxis,                     // Configuración eje X
-    DSChartAxis? yAxis,                     // Configuración eje Y
-    DSChartLegend? legend,                  // Configuración leyenda
-    DSChartColors? colors,                  // Colores del gráfico
-    DSChartAnimations? animations,          // Animaciones
-    DSChartInteractions? interactions,      // Interacciones
-    DSChartGrid? grid,                      // Rejilla
-    DSChartTooltip? tooltip,                // Tooltips
-  }) = _DSChartConfig;
-}
-```
-
-#### Ejemplos de Uso
-```dart
-// Gráfico de líneas básico
-DSChart(
-  type: DSChartType.line,
-  title: 'Ventas Mensuales',
-  data: salesData,
-  config: DSChartConfig(
-    xAxis: DSChartAxis(
-      title: 'Meses',
-      labelFormat: DateFormat('MMM'),
-    ),
-    yAxis: DSChartAxis(
-      title: 'Ventas (USD)',
-      labelFormat: NumberFormat.currency(symbol: '\$'),
-    ),
-    colors: DSChartColors(
-      primary: DSColors.primary,
-      secondary: DSColors.secondary,
-    ),
-    animations: DSChartAnimations(
-      duration: Duration(milliseconds: 1000),
-      curve: Curves.easeInOut,
-    ),
-  ),
-)
-
-// Gráfico circular interactivo
-DSChart(
-  type: DSChartType.pie,
-  title: 'Distribución por Departamento',
-  data: departmentData,
-  config: DSChartConfig(
-    legend: DSChartLegend(
-      position: LegendPosition.right,
-      showPercentages: true,
-    ),
-    interactions: DSChartInteractions(
-      enableSelection: true,
-      enableZoom: false,
-      onSegmentTap: (segment) => _showDetails(segment),
-    ),
-  ),
-)
-```
-
----
-
-## 🧭 Navigation Components
-
-### DSDrawer
-
-**Navegación lateral empresarial**
-
-#### Constructores
-```dart
-// Drawer permanente
-DSDrawer.permanent({
-  Key? key,
-  required Widget content,                 // Contenido del drawer
-  double? width,                           // Ancho del drawer
-  DSDrawerConfig? config,                 // Configuración
-})
-
-// Drawer modal
-DSDrawer.modal({
-  Key? key,
-  required Widget content,                 // Contenido del drawer
-  VoidCallback? onClose,                   // Callback de cierre
-  DSDrawerConfig? config,                 // Configuración
-})
-
-// Drawer temporal
-DSDrawer.temporary({
-  Key? key,
-  required Widget content,                 // Contenido del drawer
-  Duration? autoCloseDelay,                // Tiempo de auto-cierre
-  DSDrawerConfig? config,                 // Configuración
-})
-```
-
-#### Configuración (DSDrawerConfig)
-```dart
-@freezed
-class DSDrawerConfig with _$DSDrawerConfig {
-  const factory DSDrawerConfig({
-    @Default(DSDrawerVariant.permanent) DSDrawerVariant variant, // permanent, modal, temporary
-    @Default(DrawerSide.left) DrawerSide side,                     // left, right
-    DSDrawerColors? colors,                                       // Colores
-    DSDrawerBehavior? behavior,                                   // Comportamiento
-    DSDrawerAnimations? animations,                               // Animaciones
-  }) = _DSDrawerConfig;
-}
-```
-
-#### Ejemplos de Uso
-```dart
-// Drawer permanente con navegación
-DSDrawer.permanent(
-  width: 280,
-  content: Column(
-    children: [
-      _buildHeader(),
-      Expanded(child: _buildNavigationMenu()),
-      _buildFooter(),
+DSTopAppBar(
+  config: DSTopAppBarConfig(
+    title: 'Título',
+    showBackButton: true,
+    actions: [
+      IconButton(
+        icon: Icon(Icons.search),
+        onPressed: () {},
+      ),
+      IconButton(
+        icon: Icon(Icons.more_vert),
+        onPressed: () {},
+      ),
     ],
   ),
-  config: DSDrawerConfig(
-    colors: DSDrawerColors(
-      backgroundColor: DSColors.gray50,
-      selectedColor: DSColors.primary,
-    ),
-    behavior: DSDrawerBehavior(
-      collapsible: true,
-      autoHideOnMobile: true,
-    ),
-  ),
 )
+```
 
-// Drawer modal con overlay
-DSDrawer.modal(
-  content: _buildMobileMenu(),
-  onClose: () => Navigator.pop(context),
-  config: DSDrawerConfig(
-    side: DrawerSide.right,
-    animations: DSDrawerAnimations(
-      duration: Duration(milliseconds: 300),
-      curve: Curves.easeOut,
+---
+
+### DSNavigation
+
+Navegación lateral o inferior.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSNavigationConfig` | Configuración | `DSNavigationConfig()` |
+| `items` | `List<NavigationItem>` | Items de navegación | requerido |
+| `selectedIndex` | `int` | Índice seleccionado | `0` |
+| `onItemSelected` | `ValueChanged<int>?` | Callback al seleccionar | `null` |
+
+#### Ejemplo
+
+```dart
+int selectedIndex = 0;
+
+DSNavigation(
+  items: [
+    NavigationItem(
+      icon: Icons.home,
+      label: 'Inicio',
     ),
-  ),
+    NavigationItem(
+      icon: Icons.search,
+      label: 'Buscar',
+    ),
+    NavigationItem(
+      icon: Icons.person,
+      label: 'Perfil',
+    ),
+  ],
+  selectedIndex: selectedIndex,
+  onItemSelected: (index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  },
+)
+```
+
+---
+
+### DSTabs
+
+Pestañas de navegación.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSTabsConfig` | Configuración | `DSTabsConfig()` |
+| `tabs` | `List<TabItem>` | Lista de tabs | requerido |
+| `children` | `List<Widget>` | Contenido de cada tab | requerido |
+
+#### Ejemplo
+
+```dart
+DSTabs(
+  tabs: [
+    TabItem(label: 'Tab 1', icon: Icons.home),
+    TabItem(label: 'Tab 2', icon: Icons.settings),
+    TabItem(label: 'Tab 3', icon: Icons.info),
+  ],
+  children: [
+    Center(child: Text('Contenido Tab 1')),
+    Center(child: Text('Contenido Tab 2')),
+    Center(child: Text('Contenido Tab 3')),
+  ],
 )
 ```
 
@@ -1370,170 +1550,770 @@ DSDrawer.modal(
 
 ### DSBreadcrumbs
 
-**Navegación de ruta**
+Breadcrumbs de navegación jerárquica.
 
-#### Constructor
+#### Import
+
 ```dart
-DSBreadcrumbs({
-  Key? key,
-  required List<DSBreadcrumbItem> items,  // Items del breadcrumb
-  Widget? separator,                       // Separador personalizado
-  int? maxItems,                           // Máximo de items visibles
-  DSBreadcrumbsConfig? config,            // Configuración
-})
+import 'package:iautomat_design_system/iautomat_design_system.dart';
 ```
 
-#### DSBreadcrumbItem
-```dart
-@freezed
-class DSBreadcrumbItem with _$DSBreadcrumbItem {
-  const factory DSBreadcrumbItem({
-    required String label,                   // Texto del item
-    Widget? icon,                            // Icono opcional
-    VoidCallback? onTap,                     // Callback de tap
-    @Default(false) bool isActive,           // Si es el item activo
-    String? tooltip,                         // Tooltip
-  }) = _DSBreadcrumbItem;
-}
-```
+#### Parámetros
 
-#### Ejemplos de Uso
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSBreadcrumbsConfig` | Configuración | `DSBreadcrumbsConfig()` |
+| `items` | `List<BreadcrumbItem>` | Items del breadcrumb | requerido |
+
+#### Ejemplo
+
 ```dart
-// Breadcrumbs básico
 DSBreadcrumbs(
   items: [
-    DSBreadcrumbItem(
-      label: 'Dashboard',
-      icon: Icon(Icons.dashboard, size: 16),
-      onTap: () => _navigateTo('/dashboard'),
+    BreadcrumbItem(
+      label: 'Inicio',
+      onTap: () => Navigator.pushNamed(context, '/'),
     ),
-    DSBreadcrumbItem(
-      label: 'Empleados',
-      onTap: () => _navigateTo('/employees'),
+    BreadcrumbItem(
+      label: 'Productos',
+      onTap: () => Navigator.pushNamed(context, '/products'),
     ),
-    DSBreadcrumbItem(
-      label: 'Juan Pérez',
+    BreadcrumbItem(
+      label: 'Detalles',
       isActive: true,
     ),
   ],
 )
+```
 
-// Breadcrumbs con configuración avanzada
-DSBreadcrumbs(
-  items: navigationPath,
-  maxItems: 5,
-  config: DSBreadcrumbsConfig(
-    separator: Icon(Icons.chevron_right, size: 16),
-    overflow: DSBreadcrumbsOverflow.ellipsis,
-    style: DSBreadcrumbsStyle(
-      activeColor: DSColors.primary,
-      inactiveColor: DSColors.gray600,
-      fontSize: 14,
+---
+
+### DSDrawer
+
+Drawer lateral de navegación.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSDrawerConfig` | Configuración | `DSDrawerConfig()` |
+| `header` | `Widget?` | Header del drawer | `null` |
+| `items` | `List<DrawerItem>` | Items del drawer | requerido |
+| `footer` | `Widget?` | Footer del drawer | `null` |
+
+#### Ejemplo
+
+```dart
+DSDrawer(
+  config: DSDrawerConfig(
+    width: 280.0,
+  ),
+  header: UserAccountsDrawerHeader(
+    accountName: Text('Usuario'),
+    accountEmail: Text('usuario@example.com'),
+  ),
+  items: [
+    DrawerItem(
+      icon: Icons.home,
+      title: 'Inicio',
+      onTap: () {},
     ),
+    DrawerItem(
+      icon: Icons.settings,
+      title: 'Configuración',
+      onTap: () {},
+    ),
+  ],
+  footer: ListTile(
+    leading: Icon(Icons.logout),
+    title: Text('Cerrar sesión'),
+    onTap: () {},
   ),
 )
 ```
 
 ---
 
-## 🎯 Feedback Components
+### DSMenu
+
+Menú contextual o dropdown.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `items` | `List<MenuItem>` | Items del menú | requerido |
+| `child` | `Widget` | Widget que abre el menú | requerido |
+
+#### Ejemplo
+
+```dart
+DSMenu(
+  items: [
+    MenuItem(
+      icon: Icons.edit,
+      label: 'Editar',
+      onTap: () {},
+    ),
+    MenuItem(
+      icon: Icons.delete,
+      label: 'Eliminar',
+      onTap: () {},
+    ),
+  ],
+  child: IconButton(
+    icon: Icon(Icons.more_vert),
+    onPressed: () {},
+  ),
+)
+```
+
+---
+
+### DSPagination
+
+Paginación para listas y tablas.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `currentPage` | `int` | Página actual | requerido |
+| `totalPages` | `int` | Total de páginas | requerido |
+| `onPageChanged` | `ValueChanged<int>?` | Callback al cambiar | `null` |
+| `itemsPerPage` | `int` | Items por página | `10` |
+
+#### Ejemplo
+
+```dart
+int currentPage = 1;
+
+DSPagination(
+  currentPage: currentPage,
+  totalPages: 10,
+  onPageChanged: (page) {
+    setState(() {
+      currentPage = page;
+    });
+    // Cargar datos de la página
+  },
+)
+```
+
+---
+
+## 4. Componentes de Datos
+
+### DSDataTable
+
+Tabla de datos con ordenamiento, filtrado y paginación.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `columns` | `List<DataColumn>` | Columnas de la tabla | requerido |
+| `rows` | `List<DataRow>` | Filas de datos | requerido |
+| `sortable` | `bool` | Si permite ordenamiento | `true` |
+| `selectable` | `bool` | Si permite selección | `false` |
+
+#### Ejemplo
+
+```dart
+DSDataTable(
+  columns: [
+    DataColumn(label: Text('ID')),
+    DataColumn(label: Text('Nombre')),
+    DataColumn(label: Text('Email')),
+  ],
+  rows: [
+    DataRow(cells: [
+      DataCell(Text('1')),
+      DataCell(Text('Juan')),
+      DataCell(Text('juan@example.com')),
+    ]),
+    DataRow(cells: [
+      DataCell(Text('2')),
+      DataCell(Text('María')),
+      DataCell(Text('maria@example.com')),
+    ]),
+  ],
+)
+```
+
+---
+
+### DSSimpleTable
+
+Tabla simple para datos básicos.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `headers` | `List<String>` | Encabezados | requerido |
+| `data` | `List<List<String>>` | Datos | requerido |
+| `showBorders` | `bool` | Mostrar bordes | `true` |
+
+#### Ejemplo
+
+```dart
+DSSimpleTable(
+  headers: ['Producto', 'Precio', 'Stock'],
+  data: [
+    ['Laptop', '\$999', '5'],
+    ['Mouse', '\$29', '15'],
+    ['Teclado', '\$59', '8'],
+  ],
+)
+```
+
+---
+
+### DSListItem
+
+Item de lista con diseño consistente.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `title` | `String` | Título principal | requerido |
+| `subtitle` | `String?` | Subtítulo | `null` |
+| `leading` | `Widget?` | Widget inicial | `null` |
+| `trailing` | `Widget?` | Widget final | `null` |
+| `onTap` | `VoidCallback?` | Callback al tocar | `null` |
+
+#### Ejemplo
+
+```dart
+DSListItem(
+  leading: Icon(Icons.person),
+  title: 'Juan Pérez',
+  subtitle: 'juan@example.com',
+  trailing: Icon(Icons.arrow_forward_ios),
+  onTap: () {
+    // Navegar a detalles
+  },
+)
+```
+
+---
+
+### DSDescriptionList
+
+Lista de descripción clave-valor.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `items` | `List<DescriptionItem>` | Items de descripción | requerido |
+| `layout` | `DescriptionLayout` | Layout (vertical/horizontal) | `vertical` |
+
+#### Ejemplo
+
+```dart
+DSDescriptionList(
+  items: [
+    DescriptionItem(
+      term: 'Nombre',
+      description: 'Juan Pérez',
+    ),
+    DescriptionItem(
+      term: 'Email',
+      description: 'juan@example.com',
+    ),
+    DescriptionItem(
+      term: 'Teléfono',
+      description: '+52 55 1234 5678',
+    ),
+  ],
+  layout: DescriptionLayout.vertical,
+)
+```
+
+---
+
+### DSMetricCard
+
+Tarjeta para mostrar métricas/estadísticas.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `title` | `String` | Título de la métrica | requerido |
+| `value` | `String` | Valor de la métrica | requerido |
+| `icon` | `IconData?` | Icono | `null` |
+| `trend` | `TrendType?` | Tendencia (up/down) | `null` |
+| `trendValue` | `String?` | Valor de tendencia | `null` |
+
+#### Ejemplo
+
+```dart
+DSMetricCard(
+  title: 'Ventas del mes',
+  value: '\$45,231',
+  icon: Icons.attach_money,
+  trend: TrendType.up,
+  trendValue: '+12.5%',
+)
+```
+
+---
+
+### DSCalendar
+
+Calendario para selección de fechas o visualización de eventos.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `selectedDate` | `DateTime?` | Fecha seleccionada | `null` |
+| `events` | `Map<DateTime, List<Event>>?` | Eventos por fecha | `null` |
+| `onDateSelected` | `ValueChanged<DateTime>?` | Callback al seleccionar | `null` |
+
+#### Ejemplo
+
+```dart
+DSCalendar(
+  selectedDate: DateTime.now(),
+  events: {
+    DateTime.now(): [
+      Event(title: 'Reunión', time: '10:00'),
+    ],
+  },
+  onDateSelected: (date) {
+    print('Fecha seleccionada: $date');
+  },
+)
+```
+
+---
+
+### DSChart
+
+Componente de gráficos.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Tipos de Gráficos
+
+- `LineChart`: Gráfico de líneas
+- `BarChart`: Gráfico de barras
+- `PieChart`: Gráfico circular
+- `AreaChart`: Gráfico de área
+
+#### Ejemplo
+
+```dart
+DSChart.line(
+  data: [
+    ChartData(x: 'Ene', y: 30),
+    ChartData(x: 'Feb', y: 45),
+    ChartData(x: 'Mar', y: 60),
+  ],
+  title: 'Ventas mensuales',
+)
+```
+
+---
+
+### DSTimeline
+
+Timeline para mostrar eventos cronológicos.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `items` | `List<TimelineItem>` | Items del timeline | requerido |
+| `orientation` | `TimelineOrientation` | Orientación | `vertical` |
+
+#### Ejemplo
+
+```dart
+DSTimeline(
+  items: [
+    TimelineItem(
+      title: 'Pedido realizado',
+      date: '10:00 AM',
+      description: 'Tu pedido fue recibido',
+      icon: Icons.check_circle,
+    ),
+    TimelineItem(
+      title: 'En preparación',
+      date: '10:30 AM',
+      description: 'Estamos preparando tu pedido',
+      icon: Icons.hourglass_empty,
+    ),
+  ],
+)
+```
+
+---
+
+### DSKanban
+
+Tablero Kanban para gestión de tareas.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `columns` | `List<KanbanColumn>` | Columnas del tablero | requerido |
+| `onCardMoved` | `Function(String, String)?` | Callback al mover card | `null` |
+
+#### Ejemplo
+
+```dart
+DSKanban(
+  columns: [
+    KanbanColumn(
+      id: 'todo',
+      title: 'Por hacer',
+      cards: [
+        KanbanCard(id: '1', title: 'Tarea 1'),
+      ],
+    ),
+    KanbanColumn(
+      id: 'in_progress',
+      title: 'En progreso',
+      cards: [],
+    ),
+    KanbanColumn(
+      id: 'done',
+      title: 'Completado',
+      cards: [],
+    ),
+  ],
+  onCardMoved: (cardId, columnId) {
+    print('Card $cardId movido a $columnId');
+  },
+)
+```
+
+---
+
+### DSOutlineTree
+
+Árbol jerárquico desplegable.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `items` | `List<TreeNode>` | Nodos del árbol | requerido |
+| `onNodeTap` | `ValueChanged<TreeNode>?` | Callback al tocar | `null` |
+
+#### Ejemplo
+
+```dart
+DSOutlineTree(
+  items: [
+    TreeNode(
+      id: '1',
+      label: 'Carpeta 1',
+      children: [
+        TreeNode(id: '1.1', label: 'Archivo 1.1'),
+        TreeNode(id: '1.2', label: 'Archivo 1.2'),
+      ],
+    ),
+    TreeNode(
+      id: '2',
+      label: 'Carpeta 2',
+      children: [],
+    ),
+  ],
+  onNodeTap: (node) {
+    print('Node seleccionado: ${node.label}');
+  },
+)
+```
+
+---
+
+## 5. Componentes de Feedback
 
 ### DSToast
 
-**Sistema de notificaciones inteligentes**
+Notificaciones toast temporales.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
 
 #### Métodos Estáticos
-```dart
-// Mostrar toast básico
-static void show(
-  BuildContext context,
-  String message,                          // Mensaje a mostrar
-  {
-    DSToastType type = DSToastType.info,  // Tipo de toast
-    Duration? duration,                     // Duración
-    DSToastConfig? config,                 // Configuración
-  }
-)
 
+```dart
 // Mostrar toast de éxito
-static void success(BuildContext context, String message)
+DSToast.success(
+  context,
+  message: 'Operación exitosa',
+  duration: Duration(seconds: 3),
+);
 
 // Mostrar toast de error
-static void error(BuildContext context, String message)
+DSToast.error(
+  context,
+  message: 'Ocurrió un error',
+);
 
 // Mostrar toast de advertencia
-static void warning(BuildContext context, String message)
+DSToast.warning(
+  context,
+  message: 'Advertencia',
+);
 
-// Mostrar toast de información
-static void info(BuildContext context, String message)
+// Mostrar toast informativo
+DSToast.info(
+  context,
+  message: 'Información',
+);
 ```
 
-#### Tipos de Toast (DSToastType)
+#### Ejemplo
+
 ```dart
-enum DSToastType {
-  success,        // Éxito (verde)
-  error,          // Error (rojo)
-  warning,        // Advertencia (amarillo)
-  info,           // Información (azul)
-  loading,        // Cargando
-  custom,         // Personalizado
+ElevatedButton(
+  onPressed: () {
+    DSToast.success(
+      context,
+      message: 'Datos guardados correctamente',
+      duration: Duration(seconds: 2),
+    );
+  },
+  child: Text('Guardar'),
+)
+```
+
+---
+
+### DSDialog
+
+Diálogo modal.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Métodos Estáticos
+
+```dart
+// Mostrar diálogo de confirmación
+await DSDialog.confirm(
+  context,
+  title: '¿Confirmar eliminación?',
+  message: 'Esta acción no se puede deshacer',
+  confirmText: 'Eliminar',
+  cancelText: 'Cancelar',
+);
+
+// Mostrar diálogo de alerta
+await DSDialog.alert(
+  context,
+  title: 'Error',
+  message: 'No se pudo completar la operación',
+);
+
+// Mostrar diálogo personalizado
+await DSDialog.custom(
+  context,
+  child: YourCustomWidget(),
+);
+```
+
+#### Ejemplo
+
+```dart
+Future<void> _handleDelete() async {
+  final confirmed = await DSDialog.confirm(
+    context,
+    title: 'Eliminar usuario',
+    message: '¿Estás seguro de eliminar este usuario?',
+    confirmText: 'Eliminar',
+    cancelText: 'Cancelar',
+  );
+
+  if (confirmed) {
+    // Realizar eliminación
+  }
 }
 ```
 
-#### Configuración (DSToastConfig)
+---
+
+### DSBottomSheet
+
+Bottom sheet modal o persistente.
+
+#### Import
+
 ```dart
-@freezed
-class DSToastConfig with _$DSToastConfig {
-  const factory DSToastConfig({
-    @Default(Duration(seconds: 4)) Duration duration,           // Duración
-    @Default(DSToastPosition.bottom) DSToastPosition position, // Posición
-    DSToastAnimations? animations,                             // Animaciones
-    List<DSToastAction>? actions,                              // Acciones
-    bool? dismissible,                                          // Descartable
-    Widget? icon,                                               // Icono personalizado
-    EdgeInsets? margin,                                         // Margen
-  }) = _DSToastConfig;
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Métodos Estáticos
+
+```dart
+// Mostrar bottom sheet modal
+await DSBottomSheet.show(
+  context,
+  builder: (context) => YourWidget(),
+);
+
+// Mostrar bottom sheet con altura específica
+await DSBottomSheet.show(
+  context,
+  height: 400,
+  builder: (context) => YourWidget(),
+);
+```
+
+#### Ejemplo
+
+```dart
+Future<void> _showOptions() async {
+  await DSBottomSheet.show(
+    context,
+    builder: (context) => Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ListTile(
+          leading: Icon(Icons.edit),
+          title: Text('Editar'),
+          onTap: () {
+            Navigator.pop(context);
+            // Acción editar
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.delete),
+          title: Text('Eliminar'),
+          onTap: () {
+            Navigator.pop(context);
+            // Acción eliminar
+          },
+        ),
+      ],
+    ),
+  );
 }
 ```
 
-#### Ejemplos de Uso
+---
+
+### DSBanner
+
+Banner informativo en la parte superior.
+
+#### Import
+
 ```dart
-// Toast básico
-DSToast.show(
-  context,
-  'Documento guardado exitosamente',
-  type: DSToastType.success,
-)
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
 
-// Toast con acciones
-DSToast.show(
-  context,
-  'Error al subir archivo',
-  type: DSToastType.error,
-  config: DSToastConfig(
-    duration: Duration(seconds: 8),
-    actions: [
-      DSToastAction(
-        label: 'Reintentar',
-        onPressed: () => _retryUpload(),
-      ),
-      DSToastAction(
-        label: 'Ver detalles',
-        onPressed: () => _showErrorDetails(),
-      ),
-    ],
-  ),
-)
+#### Parámetros
 
-// Toast de carga
-DSToast.show(
-  context,
-  'Procesando archivo...',
-  type: DSToastType.loading,
-  config: DSToastConfig(
-    duration: Duration.zero, // No se oculta automáticamente
-    dismissible: false,
-  ),
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `message` | `String` | Mensaje del banner | requerido |
+| `type` | `BannerType` | Tipo (info/warning/error) | `info` |
+| `showCloseButton` | `bool` | Mostrar botón cerrar | `true` |
+| `onClose` | `VoidCallback?` | Callback al cerrar | `null` |
+
+#### Ejemplo
+
+```dart
+DSBanner(
+  message: 'Hay una actualización disponible',
+  type: BannerType.info,
+  showCloseButton: true,
+  onClose: () {
+    // Ocultar banner
+  },
 )
 ```
 
@@ -1541,185 +2321,925 @@ DSToast.show(
 
 ### DSProgress
 
-**Indicadores de progreso profesionales**
+Indicadores de progreso.
 
-#### Constructor
+#### Import
+
 ```dart
-DSProgress({
-  Key? key,
-  double? value,                           // Valor del progreso (0.0-1.0)
-  DSProgressType type = DSProgressType.linear, // Tipo de progreso
-  DSProgressState state = DSProgressState.active, // Estado
-  String? label,                           // Etiqueta del progreso
-  String Function(double)? formatter,      // Formateador de valor
-  DSProgressConfig? config,               // Configuración
-})
+import 'package:iautomat_design_system/iautomat_design_system.dart';
 ```
 
-#### Tipos de Progreso (DSProgressType)
+#### Tipos
+
 ```dart
-enum DSProgressType {
-  linear,         // Barra lineal
-  circular,       // Círculo
-  ring,           // Anillo
-  step,           // Por pasos
-  radial,         // Radial
-}
+// Progreso circular
+DSProgress.circular()
+
+// Progreso lineal
+DSProgress.linear(value: 0.5)
+
+// Progreso circular con valor
+DSProgress.circularWithValue(
+  value: 0.75,
+  label: '75%',
+)
 ```
 
-#### Estados (DSProgressState)
-```dart
-enum DSProgressState {
-  active,         // Activo/progresando
-  paused,         // Pausado
-  completed,      // Completado
-  error,          // Error
-  indeterminate,  // Indeterminado
-}
-```
+#### Ejemplo
 
-#### Ejemplos de Uso
 ```dart
-// Progreso lineal básico
-DSProgress(
-  value: 0.65,
-  type: DSProgressType.linear,
-  label: 'Descargando archivo...',
-  config: DSProgressConfig(
-    showPercentage: true,
-    colors: DSProgressColors(
-      activeColor: DSColors.primary,
-      backgroundColor: DSColors.gray200,
-    ),
-  ),
+// Progreso indeterminado
+Column(
+  children: [
+    DSProgress.circular(),
+    SizedBox(height: 16),
+    Text('Cargando...'),
+  ],
 )
 
-// Progreso circular con formato personalizado
-DSProgress(
-  value: uploadProgress,
-  type: DSProgressType.circular,
-  formatter: (value) => '${(value * 100).round()}% completado',
-  config: DSProgressConfig(
-    size: 80,
-    strokeWidth: 6,
-    showValue: true,
-    animations: DSProgressAnimations(
-      duration: Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    ),
-  ),
+// Progreso con valor
+Column(
+  children: [
+    DSProgress.linear(value: 0.6),
+    SizedBox(height: 8),
+    Text('60% completado'),
+  ],
 )
+```
 
-// Progreso por pasos
-DSProgress(
-  value: currentStep / totalSteps,
-  type: DSProgressType.step,
-  config: DSProgressConfig(
-    steps: totalSteps,
-    stepLabels: stepNames,
-    showStepNumbers: true,
+---
+
+### DSEmptyState
+
+Estado vacío para listas o vistas sin contenido.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `icon` | `IconData?` | Icono | `null` |
+| `title` | `String` | Título | requerido |
+| `message` | `String?` | Mensaje descriptivo | `null` |
+| `action` | `Widget?` | Botón de acción | `null` |
+
+#### Ejemplo
+
+```dart
+DSEmptyState(
+  icon: Icons.inbox,
+  title: 'No hay elementos',
+  message: 'Aún no has agregado ningún elemento a esta lista',
+  action: DSButton(
+    label: 'Agregar primero',
+    config: DSButtonConfig(
+      onPressed: () {
+        // Agregar elemento
+      },
+    ),
   ),
 )
 ```
 
 ---
 
-## 🏪 E-commerce Components
+### DSSkeleton
+
+Skeleton loader para carga progresiva.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSSkeletonConfig` | Configuración | `DSSkeletonConfig()` |
+| `width` | `double?` | Ancho | `null` |
+| `height` | `double?` | Alto | `null` |
+| `shape` | `SkeletonShape` | Forma | `rectangle` |
+
+#### Helpers
+
+- `DSSkeletonA11yHelper`: Helpers de accesibilidad
+- `DSSkeletonPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
+```dart
+// Skeleton rectangular
+DSSkeleton(
+  width: 200,
+  height: 100,
+)
+
+// Skeleton circular (para avatar)
+DSSkeleton(
+  width: 48,
+  height: 48,
+  shape: SkeletonShape.circle,
+)
+
+// Skeleton de texto
+Column(
+  children: [
+    DSSkeleton(width: double.infinity, height: 16),
+    SizedBox(height: 8),
+    DSSkeleton(width: 200, height: 16),
+    SizedBox(height: 8),
+    DSSkeleton(width: 150, height: 16),
+  ],
+)
+```
+
+---
+
+### DSTooltip
+
+Tooltip informativo.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `message` | `String` | Mensaje del tooltip | requerido |
+| `child` | `Widget` | Widget a decorar | requerido |
+| `position` | `TooltipPosition?` | Posición | `null` |
+
+#### Ejemplo
+
+```dart
+DSTooltip(
+  message: 'Información adicional',
+  child: Icon(Icons.info_outline),
+)
+```
+
+---
+
+## 6. Componentes de Acción
+
+### DSIconButton
+
+Botón circular solo con icono.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSIconButtonConfig` | Configuración | `DSIconButtonConfig()` |
+| `icon` | `IconData` | Icono | requerido |
+| `onPressed` | `VoidCallback?` | Callback al presionar | `null` |
+| `size` | `double?` | Tamaño | `null` |
+
+#### Ejemplo
+
+```dart
+DSIconButton(
+  icon: Icons.search,
+  onPressed: () {
+    // Realizar búsqueda
+  },
+)
+```
+
+---
+
+### DSFab
+
+Floating Action Button.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSFabConfig` | Configuración | `DSFabConfig()` |
+| `icon` | `IconData` | Icono | requerido |
+| `label` | `String?` | Etiqueta (FAB extendido) | `null` |
+| `onPressed` | `VoidCallback?` | Callback al presionar | `null` |
+
+#### Ejemplo
+
+```dart
+// FAB simple
+DSFab(
+  icon: Icons.add,
+  onPressed: () {
+    // Agregar item
+  },
+)
+
+// FAB extendido
+DSFab(
+  icon: Icons.add,
+  label: 'Agregar',
+  onPressed: () {
+    // Agregar item
+  },
+)
+```
+
+---
+
+### DSBackToTop
+
+Botón para volver al inicio de la página.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSBackToTopConfig` | Configuración | `DSBackToTopConfig()` |
+| `scrollController` | `ScrollController` | Controlador del scroll | requerido |
+| `showAfterScroll` | `double` | Distancia para mostrar | `300.0` |
+
+#### Helpers
+
+- `DSBackToTopA11yHelper`: Helpers de accesibilidad
+- `DSBackToTopPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
+```dart
+final ScrollController scrollController = ScrollController();
+
+Scaffold(
+  body: ListView.builder(
+    controller: scrollController,
+    itemCount: 100,
+    itemBuilder: (context, index) => ListTile(
+      title: Text('Item $index'),
+    ),
+  ),
+  floatingActionButton: DSBackToTop(
+    scrollController: scrollController,
+    showAfterScroll: 200.0,
+  ),
+)
+```
+
+---
+
+### DSStepper
+
+Stepper para procesos multi-paso.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `steps` | `List<StepItem>` | Pasos del stepper | requerido |
+| `currentStep` | `int` | Paso actual | `0` |
+| `onStepTapped` | `ValueChanged<int>?` | Callback al tocar paso | `null` |
+| `onStepContinue` | `VoidCallback?` | Callback continuar | `null` |
+| `onStepCancel` | `VoidCallback?` | Callback cancelar | `null` |
+
+#### Ejemplo
+
+```dart
+int currentStep = 0;
+
+DSStepper(
+  currentStep: currentStep,
+  steps: [
+    StepItem(
+      title: 'Información personal',
+      content: FormStep1(),
+      isActive: currentStep >= 0,
+    ),
+    StepItem(
+      title: 'Dirección',
+      content: FormStep2(),
+      isActive: currentStep >= 1,
+    ),
+    StepItem(
+      title: 'Confirmación',
+      content: FormStep3(),
+      isActive: currentStep >= 2,
+    ),
+  ],
+  onStepContinue: () {
+    if (currentStep < 2) {
+      setState(() {
+        currentStep++;
+      });
+    } else {
+      // Completar proceso
+    }
+  },
+  onStepCancel: () {
+    if (currentStep > 0) {
+      setState(() {
+        currentStep--;
+      });
+    }
+  },
+)
+```
+
+---
+
+## 7. Componentes de Layout
+
+### DSSplitView
+
+Vista dividida para layouts master-detail.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSSplitViewConfig` | Configuración | `DSSplitViewConfig()` |
+| `primary` | `Widget` | Vista principal | requerido |
+| `secondary` | `Widget` | Vista secundaria | requerido |
+| `initialRatio` | `double` | Ratio inicial | `0.3` |
+| `minRatio` | `double` | Ratio mínimo | `0.2` |
+| `maxRatio` | `double` | Ratio máximo | `0.8` |
+
+#### Ejemplo
+
+```dart
+DSSplitView(
+  primary: ListView.builder(
+    itemCount: items.length,
+    itemBuilder: (context, index) => ListTile(
+      title: Text(items[index].title),
+      onTap: () {
+        // Seleccionar item
+      },
+    ),
+  ),
+  secondary: selectedItem != null
+      ? DetailView(item: selectedItem)
+      : Center(child: Text('Selecciona un item')),
+  initialRatio: 0.3,
+)
+```
+
+---
+
+### DSFilterBar
+
+Barra de filtros para listas y tablas.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `filters` | `List<FilterItem>` | Filtros disponibles | requerido |
+| `onFiltersChanged` | `ValueChanged<Map<String, dynamic>>?` | Callback al cambiar | `null` |
+
+#### Ejemplo
+
+```dart
+DSFilterBar(
+  filters: [
+    FilterItem(
+      id: 'category',
+      label: 'Categoría',
+      type: FilterType.select,
+      options: ['Todos', 'Electrónica', 'Ropa', 'Hogar'],
+    ),
+    FilterItem(
+      id: 'price',
+      label: 'Precio',
+      type: FilterType.range,
+      min: 0,
+      max: 1000,
+    ),
+  ],
+  onFiltersChanged: (filters) {
+    print('Filtros aplicados: $filters');
+    // Aplicar filtros a datos
+  },
+)
+```
+
+---
+
+### DSToggleView
+
+Toggle entre diferentes vistas (lista/grid).
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `currentView` | `ViewType` | Vista actual | requerido |
+| `onViewChanged` | `ValueChanged<ViewType>?` | Callback al cambiar | `null` |
+
+#### Ejemplo
+
+```dart
+ViewType currentView = ViewType.list;
+
+DSToggleView(
+  currentView: currentView,
+  onViewChanged: (view) {
+    setState(() {
+      currentView = view;
+    });
+  },
+)
+```
+
+---
+
+### DSAccordion
+
+Accordion desplegable.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSAccordionConfig` | Configuración | `DSAccordionConfig()` |
+| `items` | `List<AccordionItem>` | Items del accordion | requerido |
+| `allowMultiple` | `bool` | Permitir múltiples abiertos | `false` |
+
+#### Helpers
+
+- `DSAccordionA11yHelper`: Helpers de accesibilidad
+- `DSAccordionPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
+```dart
+DSAccordion(
+  items: [
+    AccordionItem(
+      title: 'Pregunta 1',
+      content: Text('Respuesta 1'),
+    ),
+    AccordionItem(
+      title: 'Pregunta 2',
+      content: Text('Respuesta 2'),
+    ),
+  ],
+  allowMultiple: false,
+)
+```
+
+---
+
+## 8. Componentes de Media
+
+### DSImage
+
+Imagen con carga progresiva y manejo de errores.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSImageConfig` | Configuración | `DSImageConfig()` |
+| `imageUrl` | `String?` | URL de la imagen | `null` |
+| `assetPath` | `String?` | Path del asset | `null` |
+| `width` | `double?` | Ancho | `null` |
+| `height` | `double?` | Alto | `null` |
+| `fit` | `BoxFit?` | Ajuste de la imagen | `null` |
+| `placeholder` | `Widget?` | Widget de carga | `null` |
+| `errorWidget` | `Widget?` | Widget de error | `null` |
+
+#### Ejemplo
+
+```dart
+// Imagen desde URL
+DSImage(
+  imageUrl: 'https://example.com/image.jpg',
+  width: 200,
+  height: 200,
+  fit: BoxFit.cover,
+  placeholder: DSProgress.circular(),
+  errorWidget: Icon(Icons.error),
+)
+
+// Imagen desde asset
+DSImage(
+  assetPath: 'assets/images/logo.png',
+  width: 150,
+  height: 150,
+)
+```
+
+---
+
+### DSLightbox
+
+Visor de imágenes en pantalla completa.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSLightboxConfig` | Configuración | `DSLightboxConfig()` |
+| `images` | `List<String>` | URLs de imágenes | requerido |
+| `initialIndex` | `int` | Índice inicial | `0` |
+
+#### Ejemplo
+
+```dart
+// Abrir lightbox
+await DSLightbox.show(
+  context,
+  images: [
+    'https://example.com/img1.jpg',
+    'https://example.com/img2.jpg',
+    'https://example.com/img3.jpg',
+  ],
+  initialIndex: 0,
+);
+
+// En un widget
+GestureDetector(
+  onTap: () {
+    DSLightbox.show(
+      context,
+      images: imageUrls,
+    );
+  },
+  child: DSImage(imageUrl: imageUrls[0]),
+)
+```
+
+---
+
+### DSMediaViewer
+
+Visor de media (imágenes, videos, PDFs).
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSMediaViewerConfig` | Configuración | `DSMediaViewerConfig()` |
+| `mediaItems` | `List<MediaItem>` | Items de media | requerido |
+| `initialIndex` | `int` | Índice inicial | `0` |
+
+#### Helpers
+
+- `DSMediaViewerA11yHelper`: Helpers de accesibilidad
+- `DSMediaViewerControls`: Controles del visor
+- `DSMediaViewerHelpers`: Utilidades
+
+#### Ejemplo
+
+```dart
+DSMediaViewer(
+  mediaItems: [
+    MediaItem(
+      type: MediaType.image,
+      url: 'https://example.com/image.jpg',
+    ),
+    MediaItem(
+      type: MediaType.video,
+      url: 'https://example.com/video.mp4',
+    ),
+  ],
+  initialIndex: 0,
+)
+```
+
+---
+
+## 9. Componentes Especializados
+
+### DSCommandPalette
+
+Paleta de comandos estilo VS Code.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `commands` | `List<Command>` | Comandos disponibles | requerido |
+| `onCommandSelected` | `ValueChanged<Command>?` | Callback al seleccionar | `null` |
+
+#### Ejemplo
+
+```dart
+// Mostrar command palette
+await DSCommandPalette.show(
+  context,
+  commands: [
+    Command(
+      id: 'new_file',
+      label: 'Nuevo archivo',
+      icon: Icons.note_add,
+      action: () {
+        // Crear archivo
+      },
+    ),
+    Command(
+      id: 'settings',
+      label: 'Configuración',
+      icon: Icons.settings,
+      action: () {
+        // Abrir configuración
+      },
+    ),
+  ],
+);
+
+// Con shortcut
+KeyboardListener(
+  onKeyEvent: (event) {
+    if (event.isControlPressed && event.logicalKey == LogicalKeyboardKey.keyP) {
+      DSCommandPalette.show(context, commands: commands);
+    }
+  },
+  child: YourApp(),
+)
+```
+
+---
+
+### DSInPageSearch
+
+Búsqueda dentro de la página actual.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `onSearch` | `ValueChanged<String>?` | Callback de búsqueda | `null` |
+| `placeholder` | `String?` | Texto placeholder | `null` |
+
+#### Ejemplo
+
+```dart
+DSInPageSearch(
+  placeholder: 'Buscar en esta página',
+  onSearch: (query) {
+    // Realizar búsqueda en contenido
+    print('Buscando: $query');
+  },
+)
+```
+
+---
+
+### DSTour
+
+Tour guiado de la aplicación.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSTourConfig` | Configuración | `DSTourConfig()` |
+| `steps` | `List<TourStep>` | Pasos del tour | requerido |
+| `onComplete` | `VoidCallback?` | Callback al completar | `null` |
+
+#### Ejemplo
+
+```dart
+DSTour(
+  steps: [
+    TourStep(
+      targetKey: homeButtonKey,
+      title: 'Inicio',
+      description: 'Este es el botón de inicio',
+    ),
+    TourStep(
+      targetKey: settingsButtonKey,
+      title: 'Configuración',
+      description: 'Aquí puedes configurar la app',
+    ),
+  ],
+  onComplete: () {
+    print('Tour completado');
+  },
+)
+```
+
+---
+
+### DSClipboardShare
+
+Componente para copiar al portapapeles y compartir.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSClipboardShareConfig` | Configuración | `DSClipboardShareConfig()` |
+| `text` | `String` | Texto a copiar/compartir | requerido |
+| `showCopyButton` | `bool` | Mostrar botón copiar | `true` |
+| `showShareButton` | `bool` | Mostrar botón compartir | `true` |
+
+#### Helpers
+
+- `DSClipboardShareA11yHelper`: Helpers de accesibilidad
+- `DSClipboardSharePlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
+```dart
+DSClipboardShare(
+  text: 'https://example.com/share/123',
+  showCopyButton: true,
+  showShareButton: true,
+  config: DSClipboardShareConfig(
+    onCopied: () {
+      DSToast.success(context, message: 'Copiado al portapapeles');
+    },
+    onShared: () {
+      print('Compartido');
+    },
+  ),
+)
+```
+
+---
+
+### DSRoleVisibility
+
+Control de visibilidad basado en roles.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSRoleVisibilityConfig` | Configuración | `DSRoleVisibilityConfig()` |
+| `allowedRoles` | `List<String>` | Roles permitidos | requerido |
+| `child` | `Widget` | Widget a mostrar | requerido |
+| `fallback` | `Widget?` | Widget alternativo | `null` |
+
+#### Helpers
+
+- `DSRoleVisibilityA11yHelper`: Helpers de accesibilidad
+- `DSRoleVisibilityPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
+```dart
+DSRoleVisibility(
+  allowedRoles: ['admin', 'editor'],
+  child: DSButton(
+    label: 'Eliminar',
+    config: DSButtonConfig(onPressed: () {}),
+  ),
+  fallback: SizedBox.shrink(),
+)
+```
+
+---
+
+## 10. Componentes E-commerce
 
 ### DSProductCard
 
-**Cards de producto para e-commerce**
+Tarjeta de producto para e-commerce.
 
-#### Constructor
+#### Import
+
 ```dart
-DSProductCard({
-  Key? key,
-  required Product product,                // Datos del producto
-  VoidCallback? onTap,                     // Callback de tap
-  VoidCallback? onAddToCart,               // Callback agregar al carrito
-  VoidCallback? onToggleFavorite,          // Callback favorito
-  VoidCallback? onShare,                   // Callback compartir
-  DSProductCardConfig? config,            // Configuración
-})
+import 'package:iautomat_design_system/iautomat_design_system.dart';
 ```
 
-#### Product Model
-```dart
-@freezed
-class Product with _$Product {
-  const factory Product({
-    required String id,                      // ID único
-    required String name,                    // Nombre del producto
-    required double price,                   // Precio
-    String? currency,                        // Moneda
-    String? description,                     // Descripción
-    String? imageUrl,                        // URL de imagen
-    List<String>? imageUrls,                 // URLs de galería
-    double? originalPrice,                   // Precio original (descuento)
-    double? rating,                          // Calificación (0-5)
-    int? reviewCount,                        // Número de reseñas
-    String? brand,                           // Marca
-    String? category,                        // Categoría
-    List<String>? tags,                      // Etiquetas
-    bool? inStock,                           // En stock
-    int? stockQuantity,                      // Cantidad en stock
-    Map<String, dynamic>? attributes,       // Atributos personalizados
-  }) = _Product;
-}
-```
+#### Parámetros
 
-#### Configuración (DSProductCardConfig)
-```dart
-@freezed
-class DSProductCardConfig with _$DSProductCardConfig {
-  const factory DSProductCardConfig({
-    @Default(DSProductCardVariant.standard) DSProductCardVariant variant, // standard, compact, detailed
-    @Default(true) bool showRating,          // Mostrar calificación
-    @Default(true) bool showPrice,           // Mostrar precio
-    @Default(false) bool showQuickActions,   // Mostrar acciones rápidas
-    @Default(false) bool showBadges,         // Mostrar badges (nuevo, oferta)
-    @Default(16/9) double imageAspectRatio,  // Ratio de imagen
-    DSProductCardColors? colors,            // Colores personalizados
-    DSProductCardAnimations? animations,    // Animaciones
-  }) = _DSProductCardConfig;
-}
-```
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSProductCardConfig` | Configuración | `DSProductCardConfig()` |
+| `imageUrl` | `String` | URL de la imagen | requerido |
+| `name` | `String` | Nombre del producto | requerido |
+| `price` | `String` | Precio | requerido |
+| `rating` | `double?` | Calificación | `null` |
+| `onTap` | `VoidCallback?` | Callback al tocar | `null` |
+| `onAddToCart` | `VoidCallback?` | Callback agregar al carrito | `null` |
 
-#### Ejemplos de Uso
+#### Helpers
+
+- `DSProductCardA11yHelper`: Helpers de accesibilidad
+- `DSProductCardPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
 ```dart
-// Card de producto básica
 DSProductCard(
-  product: Product(
-    id: 'prod_001',
-    name: 'iPhone 15 Pro',
-    price: 999.00,
-    currency: 'USD',
-    imageUrl: 'https://example.com/iphone15.jpg',
-    rating: 4.8,
-    reviewCount: 1247,
-    brand: 'Apple',
-  ),
-  onTap: () => _viewProduct('prod_001'),
-  onAddToCart: () => _addToCart('prod_001'),
-)
-
-// Card con configuración avanzada
-DSProductCard(
-  product: product,
-  onTap: () => _viewProduct(product.id),
-  onAddToCart: () => _addToCart(product.id),
-  onToggleFavorite: () => _toggleFavorite(product.id),
-  onShare: () => _shareProduct(product.id),
-  config: DSProductCardConfig(
-    variant: DSProductCardVariant.detailed,
-    showQuickActions: true,
-    showBadges: true,
-    imageAspectRatio: 1.0,
-    animations: DSProductCardAnimations(
-      hoverScale: 1.05,
-      duration: Duration(milliseconds: 200),
-    ),
-  ),
+  imageUrl: 'https://example.com/product.jpg',
+  name: 'Laptop Gaming',
+  price: '\$999.99',
+  rating: 4.5,
+  onTap: () {
+    // Ver detalles
+  },
+  onAddToCart: () {
+    // Agregar al carrito
+    DSToast.success(context, message: 'Agregado al carrito');
+  },
 )
 ```
 
@@ -1727,1117 +3247,543 @@ DSProductCard(
 
 ### DSCartWidget
 
-**Widget de carrito de compras**
+Widget del carrito de compras.
 
-#### Constructor
+#### Import
+
 ```dart
-DSCartWidget({
-  Key? key,
-  required List<CartItem> items,           // Items del carrito
-  ValueChanged<String, int>? onUpdateQuantity, // Callback actualizar cantidad
-  ValueChanged<String>? onRemoveItem,      // Callback remover item
-  VoidCallback? onCheckout,                // Callback checkout
-  VoidCallback? onClear,                   // Callback limpiar carrito
-  DSCartWidgetConfig? config,             // Configuración
-})
+import 'package:iautomat_design_system/iautomat_design_system.dart';
 ```
 
-#### CartItem Model
-```dart
-@freezed
-class CartItem with _$CartItem {
-  const factory CartItem({
-    required String productId,              // ID del producto
-    required String name,                   // Nombre
-    required double price,                  // Precio unitario
-    required int quantity,                  // Cantidad
-    String? imageUrl,                       // URL de imagen
-    String? currency,                       // Moneda
-    Map<String, dynamic>? attributes,       // Atributos (talla, color, etc.)
-    double? discount,                       // Descuento aplicado
-  }) = _CartItem;
-}
-```
+#### Parámetros
 
-#### Configuración (DSCartWidgetConfig)
-```dart
-@freezed
-class DSCartWidgetConfig with _$DSCartWidgetConfig {
-  const factory DSCartWidgetConfig({
-    @Default(DSCartWidgetVariant.sidebar) DSCartWidgetVariant variant, // sidebar, modal, fab, mini
-    @Default(true) bool showTotals,          // Mostrar totales
-    @Default(true) bool enableQuantityControls, // Controles de cantidad
-    @Default(true) bool showImages,          // Mostrar imágenes
-    @Default(false) bool showDiscounts,      // Mostrar descuentos
-    DSCartWidgetAnimations? animations,     // Animaciones
-    DSCartWidgetColors? colors,             // Colores
-  }) = _DSCartWidgetConfig;
-}
-```
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSCartWidgetConfig` | Configuración | `DSCartWidgetConfig()` |
+| `items` | `List<CartItem>` | Items del carrito | requerido |
+| `onItemRemoved` | `ValueChanged<CartItem>?` | Callback al eliminar | `null` |
+| `onCheckout` | `VoidCallback?` | Callback al pagar | `null` |
 
-#### Ejemplos de Uso
+#### Helpers
+
+- `DSCartWidgetA11yHelper`: Helpers de accesibilidad
+- `DSCartWidgetPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
 ```dart
-// Carrito lateral
 DSCartWidget(
-  items: cartItems,
-  onUpdateQuantity: (productId, quantity) =>
-    _updateCartQuantity(productId, quantity),
-  onRemoveItem: (productId) => _removeFromCart(productId),
-  onCheckout: () => _proceedToCheckout(),
-  config: DSCartWidgetConfig(
-    variant: DSCartWidgetVariant.sidebar,
-    showTotals: true,
-    enableQuantityControls: true,
-    animations: DSCartWidgetAnimations(
-      itemAddDuration: Duration(milliseconds: 400),
-      itemRemovalDuration: Duration(milliseconds: 300),
-    ),
-  ),
-)
-
-// FAB de carrito
-DSCartWidget(
-  items: cartItems,
-  config: DSCartWidgetConfig(
-    variant: DSCartWidgetVariant.fab,
-    showTotals: false,
-  ),
-  onTap: () => _openCartSidebar(),
-)
-```
-
----
-
-## ⚙️ Specialty Components
-
-### DSBackToTop
-
-**Botón para volver al inicio**
-
-#### Constructor
-```dart
-DSBackToTop({
-  Key? key,
-  ScrollController? scrollController,      // Controlador de scroll
-  bool interactive = true,                 // Si es interactivo
-  VoidCallback? onPressed,                 // Callback personalizado
-  ValueChanged<DSBackToTopState>? onStateChanged, // Callback de estado
-  DSBackToTopConfig? config,              // Configuración
-})
-```
-
-#### Configuración (DSBackToTopConfig)
-```dart
-@freezed
-class DSBackToTopConfig with _$DSBackToTopConfig {
-  const factory DSBackToTopConfig({
-    @Default(DSBackToTopVariant.webOnly) DSBackToTopVariant variant,
-    @Default(DSBackToTopState.defaultState) DSBackToTopState state,
-    DSBackToTopColors? colors,
-    DSBackToTopSpacing? spacing,
-    DSBackToTopAnimations? animations,
-    DSBackToTopBehavior? behavior,
-    DSBackToTopAccessibility? accessibility,
-  }) = _DSBackToTopConfig;
-}
-```
-
-#### DSBackToTopBehavior
-```dart
-@freezed
-class DSBackToTopBehavior with _$DSBackToTopBehavior {
-  const factory DSBackToTopBehavior({
-    @Default(200.0) double showAfterPixels,  // Mostrar después de scroll
-    @Default(0.0) double hideAfterPixels,    // Ocultar después de scroll
-    @Default(true) bool autoHide,            // Auto-ocultar
-    @Default(true) bool showOnScrollUp,      // Mostrar al scroll arriba
-    @Default(false) bool hideOnScrollDown,   // Ocultar al scroll abajo
-    @Default(true) bool smoothScrolling,     // Scroll suave
-    @Default(true) bool hapticFeedback,      // Feedback háptico
-    @Default(true) bool showTooltip,         // Mostrar tooltip
-    Duration? autoHideDelay,                 // Delay de auto-ocultar
-  }) = _DSBackToTopBehavior;
-}
-```
-
-#### Ejemplos de Uso
-```dart
-// Botón básico
-DSBackToTop(
-  scrollController: _scrollController,
-)
-
-// Botón con configuración avanzada
-DSBackToTop(
-  scrollController: _scrollController,
-  config: DSBackToTopConfig(
-    variant: DSBackToTopVariant.webOnly,
-    behavior: DSBackToTopBehavior(
-      showAfterPixels: 300,
-      smoothScrolling: true,
-      autoHide: true,
-      autoHideDelay: Duration(seconds: 3),
-    ),
-    spacing: DSBackToTopSpacing(
-      position: DSBackToTopPosition.bottomRight,
-      size: 56,
-      margin: EdgeInsets.all(20),
-    ),
-    animations: DSBackToTopAnimations(
-      duration: Duration(milliseconds: 250),
-      scrollDuration: Duration(milliseconds: 600),
-      curve: Curves.easeInOut,
-    ),
-  ),
-)
-
-// Con overlay provider
-DSBackToTopOverlay(
-  scrollController: _scrollController,
-  child: YourPageContent(),
-)
-```
-
----
-
-### DSCommandPalette
-
-**Paleta de comandos estilo VS Code**
-
-#### Constructor
-```dart
-DSCommandPalette({
-  Key? key,
-  required List<DSCommand> commands,      // Lista de comandos
-  String? placeholder,                     // Placeholder de búsqueda
-  ValueChanged<DSCommand>? onCommandExecuted, // Callback de ejecución
-  VoidCallback? onDismiss,                 // Callback de cerrar
-  DSCommandPaletteConfig? config,         // Configuración
-})
-```
-
-#### DSCommand
-```dart
-@freezed
-class DSCommand with _$DSCommand {
-  const factory DSCommand({
-    required String id,                      // ID único
-    required String title,                   // Título del comando
-    String? description,                     // Descripción
-    Widget? icon,                            // Icono
-    List<String>? keywords,                  // Palabras clave
-    String? shortcut,                        // Atajo de teclado
-    String? category,                        // Categoría
-    VoidCallback? onExecute,                 // Callback de ejecución
-    bool? enabled,                           // Si está habilitado
-    Color? color,                            // Color personalizado
-  }) = _DSCommand;
-}
-```
-
-#### Configuración (DSCommandPaletteConfig)
-```dart
-@freezed
-class DSCommandPaletteConfig with _$DSCommandPaletteConfig {
-  const factory DSCommandPaletteConfig({
-    @Default('Buscar comandos...') String placeholder,
-    @Default(10) int maxResults,             // Máximo de resultados
-    @Default(true) bool showShortcuts,       // Mostrar atajos
-    @Default(true) bool showCategories,      // Mostrar categorías
-    @Default(true) bool fuzzySearch,         // Búsqueda difusa
-    DSCommandPaletteColors? colors,         // Colores
-    DSCommandPaletteAnimations? animations, // Animaciones
-  }) = _DSCommandPaletteConfig;
-}
-```
-
-#### Ejemplos de Uso
-```dart
-// Paleta básica
-DSCommandPalette(
-  commands: [
-    DSCommand(
-      id: 'new_project',
-      title: 'Crear Nuevo Proyecto',
-      description: 'Inicia un nuevo proyecto desde cero',
-      icon: Icon(Icons.add),
-      keywords: ['nuevo', 'crear', 'proyecto'],
-      shortcut: 'Ctrl+N',
-      onExecute: () => _createProject(),
-    ),
-    DSCommand(
-      id: 'search_files',
-      title: 'Buscar Archivos',
-      icon: Icon(Icons.search),
-      keywords: ['buscar', 'archivos', 'find'],
-      shortcut: 'Ctrl+P',
-      onExecute: () => _searchFiles(),
+  items: [
+    CartItem(
+      id: '1',
+      name: 'Producto 1',
+      price: 29.99,
+      quantity: 2,
+      imageUrl: 'https://example.com/p1.jpg',
     ),
   ],
+  onItemRemoved: (item) {
+    // Eliminar del carrito
+  },
+  onCheckout: () {
+    // Ir a checkout
+  },
 )
-
-// Integración con atajos globales
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Shortcuts(
-      shortcuts: {
-        LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyK):
-          OpenCommandPaletteIntent(),
-      },
-      child: Actions(
-        actions: {
-          OpenCommandPaletteIntent: CallbackAction<OpenCommandPaletteIntent>(
-            onInvoke: (_) => _openCommandPalette(),
-          ),
-        },
-        child: MaterialApp(/* ... */),
-      ),
-    );
-  }
-}
 ```
 
 ---
 
-## 🔧 Utilidades y Helpers
+### DSCheckoutForms
 
-### Responsive System
+Formularios de checkout.
 
-#### ResponsiveBuilder
+#### Import
+
 ```dart
-ResponsiveBuilder(
-  mobile: (context) => MobileLayout(),
-  tablet: (context) => TabletLayout(),
-  desktop: (context) => DesktopLayout(),
-  ultraWide: (context) => UltraWideLayout(),
-)
+import 'package:iautomat_design_system/iautomat_design_system.dart';
 ```
 
-#### ResponsiveValue
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSCheckoutFormsConfig` | Configuración | `DSCheckoutFormsConfig()` |
+| `onSubmit` | `ValueChanged<CheckoutData>?` | Callback al enviar | `null` |
+
+#### Helpers
+
+- `DSCheckoutFormsA11yHelper`: Helpers de accesibilidad
+- `DSCheckoutFormsPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
 ```dart
-final padding = context.responsiveValue(
-  mobile: 16.0,
-  tablet: 24.0,
-  desktop: 32.0,
-);
-```
-
-#### ResponsiveGrid
-```dart
-ResponsiveGrid(
-  children: widgets,
-  mobile: ResponsiveGridConfig(columns: 1, spacing: 16),
-  tablet: ResponsiveGridConfig(columns: 2, spacing: 20),
-  desktop: ResponsiveGridConfig(columns: 4, spacing: 24),
-)
-```
-
-### Validation System
-
-#### Validadores Básicos
-```dart
-Validators.required('Campo requerido')
-Validators.email('Email inválido')
-Validators.minLength(6, 'Mínimo 6 caracteres')
-Validators.maxLength(50, 'Máximo 50 caracteres')
-Validators.numeric('Solo números')
-Validators.alphanumeric('Solo letras y números')
-```
-
-#### Validadores Avanzados
-```dart
-Validators.password(
-  minLength: 8,
-  requireUppercase: true,
-  requireNumbers: true,
-  requireSpecialChars: true,
-)
-Validators.url('URL inválida')
-Validators.phone('Teléfono inválido')
-Validators.creditCard('Tarjeta inválida')
-```
-
-#### Composición de Validadores
-```dart
-Validators.compose([
-  Validators.required('Campo requerido'),
-  Validators.email('Email inválido'),
-  Validators.domain(['empresa.com'], 'Email corporativo requerido'),
-])
-
-Validators.any([
-  Validators.email('Debe ser email'),
-  Validators.phone('Debe ser teléfono'),
-], 'Debe ser email o teléfono')
-```
-
----
-
-## 📊 Enums y Constantes
-
-### Estados Comunes
-```dart
-enum DSComponentState {
-  defaultState,
-  hover,
-  pressed,
-  focus,
-  selected,
-  disabled,
-  loading,
-  skeleton,
-}
-```
-
-### Variantes Comunes
-```dart
-enum DSComponentVariant {
-  filled,
-  outline,
-  text,
-  elevated,
-  tonal,
-}
-
-enum DSComponentSize {
-  small,
-  medium,
-  large,
-  extraLarge,
-}
-```
-
-### Posiciones
-```dart
-enum DSPosition {
-  topLeft,
-  topCenter,
-  topRight,
-  centerLeft,
-  center,
-  centerRight,
-  bottomLeft,
-  bottomCenter,
-  bottomRight,
-}
-```
-
-### Tipos de Animación
-```dart
-enum DSAnimationType {
-  none,
-  fade,
-  scale,
-  slide,
-  rotation,
-  flip,
-}
-
-enum DSAnimationDirection {
-  left,
-  right,
-  up,
-  down,
-  center,
-}
-```
-
----
-
-## 🎨 Theming y Customización
-
-### Configuración Global de Tema
-```dart
-MaterialApp(
-  theme: DSTheme.lightTheme.copyWith(
-    // Customizaciones globales
-    primaryColor: MyColors.brand,
-    colorScheme: DSTheme.lightTheme.colorScheme.copyWith(
-      primary: MyColors.brand,
-    ),
+DSCheckoutForms(
+  config: DSCheckoutFormsConfig(
+    showShippingForm: true,
+    showPaymentForm: true,
+    showBillingForm: true,
   ),
-  darkTheme: DSTheme.darkTheme,
-  themeMode: ThemeMode.system,
+  onSubmit: (data) {
+    // Procesar checkout
+    print('Datos: ${data.toJson()}');
+  },
 )
-```
-
-### Customización de Componentes
-```dart
-// Tema global de botones
-DSButton.defaultConfig = DSButtonConfig(
-  colors: DSButtonColors(
-    backgroundColor: MyColors.brand,
-  ),
-  spacing: DSButtonSpacing(
-    borderRadius: 12,
-  ),
-);
-
-// Override por instancia
-DSButton(
-  text: 'Custom Button',
-  config: DSButtonConfig(
-    colors: DSButtonColors(
-      backgroundColor: Colors.red,
-    ),
-  ),
-)
-```
-
-### Presets de Tema
-```dart
-// Usar preset corporativo
-MaterialApp(
-  theme: ThemePresets.corporateBlue.lightTheme,
-  darkTheme: ThemePresets.corporateBlue.darkTheme,
-)
-
-// Crear preset personalizado
-final myPreset = ThemePreset(
-  name: 'My Company',
-  primaryColor: MyColors.brand,
-  secondaryColor: MyColors.accent,
-  // ... otras configuraciones
-);
 ```
 
 ---
 
-## 🎨 Sistema de Temas Completo
+## 11. Componentes de Autenticación
 
-### DSTheme - Tema Principal
+### DSAuthScreens
+
+Pantallas de autenticación (login, registro, recuperación).
+
+#### Import
 
 ```dart
-// Usar tema predefinido
-MaterialApp(
-  theme: DSTheme.lightTheme,        // Tema claro
-  darkTheme: DSTheme.darkTheme,     // Tema oscuro
-  themeMode: ThemeMode.system,      // Automático según sistema
-)
-
-// Acceder al tema en widgets
-final theme = Theme.of(context);
-final colorScheme = theme.colorScheme;
-final textTheme = theme.textTheme;
+import 'package:iautomat_design_system/iautomat_design_system.dart';
 ```
 
-### DSColors - Paleta de Colores
+#### Parámetros
 
-#### Colores Principales
-```dart
-DSColors.primary            // #2563EB - Azul profesional
-DSColors.secondary          // #E879F9 - Púrpura innovación
-DSColors.primaryDarkMode    // #60A5FA - Optimizado dark mode
-```
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSAuthScreensConfig` | Configuración | `DSAuthScreensConfig()` |
+| `onLogin` | `Function(String, String)?` | Callback login | `null` |
+| `onRegister` | `Function(Map<String, dynamic>)?` | Callback registro | `null` |
+| `onForgotPassword` | `Function(String)?` | Callback recuperar | `null` |
 
-#### Colores Semánticos (WCAG 2.0 AA)
-```dart
-DSColors.success           // #10B981 - Verde éxito
-DSColors.warning           // #F59E0B - Amarillo advertencia
-DSColors.error             // #DC2626 - Rojo error (4.5:1 contraste)
-DSColors.info              // #3B82F6 - Azul información
-```
+#### Helpers
 
-#### Escala de Grises
-```dart
-DSColors.gray50   // #FAFAFA - Fondos sutiles
-DSColors.gray100  // #F5F5F5 - Fondos de sección
-DSColors.gray200  // #E5E5E5 - Bordes suaves
-DSColors.gray300  // #D4D4D4 - Bordes normales
-DSColors.gray400  // #A3A3A3 - Texto placeholder
-DSColors.gray500  // #737373 - Texto secundario
-DSColors.gray600  // #525252 - Texto normal
-DSColors.gray700  // #404040 - Texto importante
-DSColors.gray800  // #262626 - Texto principal
-DSColors.gray900  // #171717 - Headers y títulos
-```
+- `DSAuthScreensA11yHelper`: Helpers de accesibilidad
+- `DSAuthScreensPlatformAdapter`: Adaptador de plataforma
 
-### DSTypography - Sistema Tipográfico
-
-**Basado en Inter (Google Fonts) con fallbacks del sistema**
-
-#### Headers
-```dart
-DSTypography.h1          // 48px Bold - Hero sections
-DSTypography.h2          // 40px Bold - Títulos de sección
-DSTypography.h3          // 32px SemiBold - Subtítulos
-DSTypography.h4          // 28px SemiBold - Headers de componente
-DSTypography.h5          // 24px SemiBold - Títulos menores
-DSTypography.h6          // 20px SemiBold - Headers de tabla/lista
-```
-
-#### Body Text
-```dart
-DSTypography.bodyLarge   // 18px Regular - Texto destacado
-DSTypography.bodyMedium  // 16px Regular - Texto estándar
-DSTypography.bodySmall   // 14px Regular - Texto secundario
-```
-
-#### Labels
-```dart
-DSTypography.labelLarge  // 16px Medium - Formularios principales
-DSTypography.labelMedium // 14px Medium - Navegación, tabs
-DSTypography.labelSmall  // 12px Medium - Hints, validaciones
-```
-
-#### Especiales
-```dart
-DSTypography.button      // 16px SemiBold - Botones CTA
-DSTypography.caption     // 12px Regular - Metadatos
-DSTypography.overline    // 12px SemiBold - Categorías
-```
-
-### DSSpacing - Sistema de Espaciado (8px Grid)
+#### Ejemplo
 
 ```dart
-// Escala de Espaciado
-DSSpacing.xxxs    // 2px  - Separadores mínimos
-DSSpacing.xxs     // 4px  - Padding interno pequeño
-DSSpacing.xs      // 8px  - Espaciado básico
-DSSpacing.sm      // 16px - Espaciado estándar
-DSSpacing.md      // 24px - Espaciado medio
-DSSpacing.lg      // 32px - Espaciado grande
-DSSpacing.xl      // 40px - Espaciado extra grande
-DSSpacing.xxl     // 48px - Espaciado muy grande
-DSSpacing.xxxl    // 64px - Espaciado máximo
-
-// Widgets de Espaciado Vertical
-DSSpacing.verticalXxs
-DSSpacing.verticalXs
-DSSpacing.verticalSm
-DSSpacing.verticalMd
-DSSpacing.verticalLg
-DSSpacing.verticalXl
-
-// Widgets de Espaciado Horizontal
-DSSpacing.horizontalXxs
-DSSpacing.horizontalXs
-DSSpacing.horizontalSm
-DSSpacing.horizontalMd
-DSSpacing.horizontalLg
-DSSpacing.horizontalXl
-
-// Padding Presets
-DSSpacing.pagePadding     // EdgeInsets.all(24)
-DSSpacing.cardPadding     // EdgeInsets.all(16)
-DSSpacing.buttonPadding   // EdgeInsets.symmetric(h:16, v:12)
-```
-
----
-
-## 🔧 Utilidades y Helpers
-
-### Responsive System
-
-#### Breakpoints
-```dart
-// Breakpoints del sistema
-Breakpoints.mobile      // < 600px
-Breakpoints.tablet      // 600px - 1024px
-Breakpoints.desktop     // 1024px - 1440px
-Breakpoints.ultraWide   // > 1440px
-```
-
-#### ResponsiveBuilder
-```dart
-ResponsiveBuilder(
-  mobile: (context) => MobileLayout(),
-  tablet: (context) => TabletLayout(),
-  desktop: (context) => DesktopLayout(),
-  ultraWide: (context) => UltraWideLayout(),
-)
-```
-
-#### ResponsiveValue
-```dart
-// Obtener valor responsive basado en breakpoint
-final padding = context.responsiveValue<double>(
-  mobile: 16.0,
-  tablet: 24.0,
-  desktop: 32.0,
-  ultraWide: 40.0,
-);
-
-final columns = context.responsiveValue<int>(
-  mobile: 1,
-  tablet: 2,
-  desktop: 3,
-  ultraWide: 4,
-);
-```
-
-#### ResponsiveGrid
-```dart
-ResponsiveGrid(
-  children: widgets,
-  mobile: ResponsiveGridConfig(columns: 1, spacing: 16),
-  tablet: ResponsiveGridConfig(columns: 2, spacing: 20),
-  desktop: ResponsiveGridConfig(columns: 4, spacing: 24),
-)
-```
-
-#### Helpers de Consulta
-```dart
-// Verificar tipo de dispositivo
-if (Responsive.isMobile(context)) {
-  // Código específico de móvil
-}
-
-if (Responsive.isTablet(context)) {
-  // Código específico de tablet
-}
-
-if (Responsive.isDesktop(context)) {
-  // Código específico de desktop
-}
-
-// Obtener ancho de pantalla
-final screenWidth = Responsive.screenWidth(context);
-
-// Obtener orientation
-final isPortrait = Responsive.isPortrait(context);
-final isLandscape = Responsive.isLandscape(context);
-```
-
-### Sistema de Validación
-
-#### Validadores Básicos
-```dart
-Validators.required('Campo requerido')
-Validators.email('Email inválido')
-Validators.minLength(6, 'Mínimo 6 caracteres')
-Validators.maxLength(50, 'Máximo 50 caracteres')
-Validators.numeric('Solo números')
-Validators.alphanumeric('Solo letras y números')
-Validators.alpha('Solo letras')
-```
-
-#### Validadores Avanzados
-```dart
-// Password con requisitos
-Validators.password(
-  minLength: 8,
-  requireUppercase: true,
-  requireLowercase: true,
-  requireNumbers: true,
-  requireSpecialChars: true,
-  customMessage: 'Contraseña debe tener...',
-)
-
-// URLs
-Validators.url('URL inválida')
-Validators.urlWithProtocol('Debe incluir http:// o https://')
-
-// Teléfono
-Validators.phone('Teléfono inválido')
-Validators.phoneWithCountryCode('Incluir código de país')
-
-// Tarjeta de crédito
-Validators.creditCard('Tarjeta de crédito inválida')
-Validators.cvv('CVV inválido')
-Validators.expiryDate('Fecha de expiración inválida')
-
-// Dominio de email
-Validators.domain(['empresa.com'], 'Debe ser email corporativo')
-Validators.domainBlacklist(['spam.com'], 'Dominio no permitido')
-```
-
-#### Composición de Validadores
-```dart
-// Combinar múltiples validadores (AND - todos deben pasar)
-Validators.compose([
-  Validators.required('Email requerido'),
-  Validators.email('Email inválido'),
-  Validators.domain(['empresa.com'], 'Debe ser email corporativo'),
-])
-
-// Validadores opcionales (OR - al menos uno debe pasar)
-Validators.any([
-  Validators.email('Debe ser email'),
-  Validators.phone('Debe ser teléfono'),
-], 'Debe ser email o teléfono válido')
-
-// Validador condicional
-Validators.conditional(
-  condition: () => _requiresVerification,
-  validator: Validators.minLength(10, 'Mínimo 10 caracteres'),
-  elseValidator: Validators.minLength(5, 'Mínimo 5 caracteres'),
-)
-```
-
-#### Validadores Personalizados
-```dart
-// Crear validador personalizado
-FormFieldValidator<String> customValidator(String errorMessage) {
-  return (String? value) {
-    if (value == null || value.isEmpty) {
-      return errorMessage;
+// Pantalla de login
+DSAuthScreens.login(
+  config: DSAuthScreensConfig(
+    logoUrl: 'assets/logo.png',
+    title: 'Bienvenido',
+    showSocialLogin: true,
+  ),
+  onLogin: (email, password) async {
+    // Realizar login
+    try {
+      await authService.login(email, password);
+      Navigator.pushReplacementNamed(context, '/home');
+    } catch (e) {
+      DSToast.error(context, message: 'Error al iniciar sesión');
     }
+  },
+)
 
-    // Lógica de validación personalizada
-    if (!_myCustomCheck(value)) {
-      return errorMessage;
-    }
+// Pantalla de registro
+DSAuthScreens.register(
+  onRegister: (data) async {
+    // Realizar registro
+  },
+)
 
-    return null; // null = válido
-  };
-}
-
-// Uso
-DSInput(
-  label: 'Campo personalizado',
-  validator: customValidator('Valor no válido'),
+// Pantalla de recuperación
+DSAuthScreens.forgotPassword(
+  onForgotPassword: (email) async {
+    // Enviar email de recuperación
+  },
 )
 ```
 
 ---
 
-## 🎯 Mejores Prácticas
+### DSProfilePreferences
 
-### 1. Uso de Tema y Colores
+Pantalla de perfil y preferencias.
 
-#### ✅ Hacer
+#### Import
+
 ```dart
-// Siempre obtener colores del tema
-final theme = Theme.of(context);
-final colors = theme.colorScheme;
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
 
-Container(
-  color: colors.primary,
-  child: Text(
-    'Título',
-    style: theme.textTheme.titleLarge,
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSProfilePreferencesConfig` | Configuración | `DSProfilePreferencesConfig()` |
+| `user` | `UserProfile` | Datos del usuario | requerido |
+| `onSave` | `ValueChanged<UserProfile>?` | Callback al guardar | `null` |
+
+#### Helpers
+
+- `DSProfilePreferencesA11yHelper`: Helpers de accesibilidad
+- `DSProfilePreferencesPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
+```dart
+DSProfilePreferences(
+  user: UserProfile(
+    name: 'Juan Pérez',
+    email: 'juan@example.com',
+    avatar: 'https://example.com/avatar.jpg',
+  ),
+  config: DSProfilePreferencesConfig(
+    showThemeToggle: true,
+    showLanguageSelector: true,
+    showNotificationSettings: true,
+  ),
+  onSave: (profile) {
+    // Guardar cambios
+    print('Perfil actualizado: ${profile.name}');
+  },
+)
+```
+
+---
+
+## 12. Componentes Auxiliares
+
+### DSMap
+
+Componente de mapa interactivo.
+
+#### Import
+
+```dart
+import 'package:iautomat_design_system/iautomat_design_system.dart';
+```
+
+#### Parámetros
+
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `config` | `DSMapConfig` | Configuración | `DSMapConfig()` |
+| `initialPosition` | `LatLng` | Posición inicial | requerido |
+| `markers` | `List<MapMarker>?` | Marcadores | `null` |
+| `onMarkerTapped` | `ValueChanged<MapMarker>?` | Callback al tocar marcador | `null` |
+
+#### Helpers
+
+- `DSMapA11yHelper`: Helpers de accesibilidad
+- `DSMapPlatformAdapter`: Adaptador de plataforma
+
+#### Ejemplo
+
+```dart
+DSMap(
+  initialPosition: LatLng(19.4326, -99.1332), // Ciudad de México
+  markers: [
+    MapMarker(
+      id: '1',
+      position: LatLng(19.4326, -99.1332),
+      title: 'Ubicación 1',
+    ),
+  ],
+  onMarkerTapped: (marker) {
+    print('Marcador: ${marker.title}');
+  },
+  config: DSMapConfig(
+    zoom: 15.0,
+    showMyLocation: true,
+    showCompass: true,
   ),
 )
 ```
 
-#### ❌ No Hacer
+---
+
+## Patrones Comunes
+
+### Uso de Configuración
+
+La mayoría de los componentes complejos usan objetos de configuración para mantener la API limpia:
+
 ```dart
-// No hardcodear valores
-Container(
-  color: Color(0xFF2563EB), // ❌ Hardcoded
-  child: Text(
-    'Título',
-    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold), // ❌ Hardcoded
-  ),
-)
-```
-
-### 2. Espaciado y Layout
-
-#### ✅ Hacer
-```dart
-// Usar sistema de espaciado
-Column(
-  children: [
-    Text('Título'),
-    DSSpacing.verticalMd,  // ✅ Espaciado del sistema
-    Text('Contenido'),
-  ],
-)
-
-Padding(
-  padding: DSSpacing.pagePadding,  // ✅ Preset consistente
-  child: content,
-)
-```
-
-#### ❌ No Hacer
-```dart
-// No usar valores mágicos
-Column(
-  children: [
-    Text('Título'),
-    SizedBox(height: 23),  // ❌ Valor mágico
-    Text('Contenido'),
-  ],
-)
-
-Padding(
-  padding: EdgeInsets.all(17),  // ❌ No sigue el grid de 8px
-  child: content,
-)
-```
-
-### 3. Componentes y Configuración
-
-#### ✅ Hacer
-```dart
-// Usar componentes del DS con configuración
+// En lugar de muchos parámetros
 DSButton(
-  text: 'Confirmar',
+  label: 'Click',
   config: DSButtonConfig(
     variant: DSButtonVariant.filled,
-    size: DSButtonSize.large,
+    size: DSButtonSize.medium,
+    colors: DSButtonColors(...),
+    spacing: DSButtonSpacing(...),
+    elevation: DSButtonElevation(...),
+    animation: DSButtonAnimation(...),
+    behavior: DSButtonBehavior(...),
+    onPressed: () {},
   ),
-  onPressed: () => _confirm(),
 )
 ```
 
-#### ❌ No Hacer
+### Estados de Componentes
+
+Los componentes soportan múltiples estados:
+
 ```dart
-// No recrear componentes desde cero
-ElevatedButton(
-  style: ElevatedButton.styleFrom(
-    // Recreando estilos manualmente ❌
-    backgroundColor: Colors.blue,
-    foregroundColor: Colors.white,
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+enum DSButtonState {
+  defaultState,  // Estado normal
+  hover,         // Mouse sobre el componente
+  pressed,       // Siendo presionado
+  focus,         // Tiene el foco
+  selected,      // Seleccionado
+  disabled,      // Deshabilitado
+  loading,       // Cargando
+  skeleton,      // Skeleton loader
+}
+```
+
+### Helpers de Accesibilidad
+
+Los componentes complejos incluyen helpers A11y:
+
+```dart
+// Usar helpers de accesibilidad
+DSCurrencyInputA11yHelper.announceValue(context, value);
+DSCameraPickerA11yHelper.announceCameraReady(context);
+```
+
+### Platform Adapters
+
+Adaptadores para comportamiento específico por plataforma:
+
+```dart
+// Los componentes se adaptan automáticamente
+// pero puedes personalizar:
+DSCurrencyInputPlatformAdapter.getKeyboardType(); // iOS vs Android
+```
+
+### Validación
+
+Helpers de validación integrados:
+
+```dart
+DSInput(
+  validator: (value) {
+    if (value?.isEmpty == true) {
+      return 'Campo requerido';
+    }
+    if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value!)) {
+      return 'Solo letras';
+    }
+    return null;
+  },
+)
+```
+
+---
+
+## Temas y Personalización
+
+### Aplicar Tema Global
+
+```dart
+MaterialApp(
+  theme: DSTheme.light(), // o DSTheme.dark()
+  darkTheme: DSTheme.dark(),
+  themeMode: ThemeMode.system,
+  home: MyApp(),
+)
+```
+
+### Usar Presets de Tema
+
+```dart
+// Usar uno de los 100 presets disponibles
+MaterialApp(
+  theme: DSThemePresets.modernCorporate,
+  home: MyApp(),
+)
+```
+
+### Personalizar Colores
+
+```dart
+// Personalizar colores de un componente
+DSButton(
+  label: 'Custom',
+  config: DSButtonConfig(
+    colors: DSButtonColors(
+      backgroundColor: Colors.purple,
+      foregroundColor: Colors.white,
+      hoverColor: Colors.purple.shade100,
+    ),
+    onPressed: () {},
   ),
-  child: Text('Confirmar'),
-  onPressed: () => _confirm(),
+)
+```
+
+---
+
+## Mejores Prácticas
+
+### 1. Usar const Constructors
+
+```dart
+// Bueno - usa const cuando sea posible
+const DSButton(
+  label: 'Static',
+  config: DSButtonConfig(),
+)
+
+// Evitar - sin const innecesario
+DSButton(
+  label: 'Static',
+  config: DSButtonConfig(),
+)
+```
+
+### 2. Manejar Estados de Carga
+
+```dart
+bool isLoading = false;
+
+DSButton(
+  label: 'Guardar',
+  config: DSButtonConfig(
+    state: isLoading ? DSButtonState.loading : DSButtonState.defaultState,
+    onPressed: isLoading ? null : () async {
+      setState(() => isLoading = true);
+      await saveData();
+      setState(() => isLoading = false);
+    },
+  ),
+)
+```
+
+### 3. Validación de Formularios
+
+```dart
+final formKey = GlobalKey<FormState>();
+
+Form(
+  key: formKey,
+  child: Column(
+    children: [
+      DSInput(
+        label: 'Email',
+        validator: (v) => v?.isEmpty == true ? 'Requerido' : null,
+      ),
+      DSButton(
+        label: 'Enviar',
+        config: DSButtonConfig(
+          onPressed: () {
+            if (formKey.currentState!.validate()) {
+              // Enviar formulario
+            }
+          },
+        ),
+      ),
+    ],
+  ),
 )
 ```
 
 ### 4. Responsive Design
 
-#### ✅ Hacer
 ```dart
-// Usar helpers responsive
-ResponsiveBuilder(
-  mobile: (context) => _buildMobileLayout(),
-  tablet: (context) => _buildTabletLayout(),
-  desktop: (context) => _buildDesktopLayout(),
-)
-
-final padding = context.responsiveValue<double>(
-  mobile: 16.0,
-  desktop: 32.0,
-);
-```
-
-#### ❌ No Hacer
-```dart
-// No usar MediaQuery directamente para todo
-final width = MediaQuery.of(context).size.width;
-final padding = width < 600 ? 16.0 : 32.0;  // ❌ Lógica repetida
-```
-
-### 5. Accesibilidad
-
-#### ✅ Hacer
-```dart
-// Siempre incluir labels y semántica
-DSButton(
-  text: 'Guardar',
-  tooltip: 'Guardar cambios del documento',  // ✅ Tooltip descriptivo
-  config: DSButtonConfig(
-    enableA11y: true,  // ✅ Accesibilidad habilitada
-  ),
-  onPressed: () => _save(),
-)
-
-Semantics(
-  label: 'Avatar de usuario, toca para ver perfil',  // ✅ Label descriptivo
-  button: true,
-  child: avatarWidget,
+// Adaptar según tamaño de pantalla
+LayoutBuilder(
+  builder: (context, constraints) {
+    if (constraints.maxWidth < 600) {
+      return MobileLayout();
+    } else if (constraints.maxWidth < 1200) {
+      return TabletLayout();
+    } else {
+      return DesktopLayout();
+    }
+  },
 )
 ```
 
-#### ❌ No Hacer
+### 5. Manejo de Errores
+
 ```dart
-// No omitir información de accesibilidad
-IconButton(
-  icon: Icon(Icons.delete),  // ❌ Sin tooltip ni semántica
-  onPressed: () => _delete(),
+DSInput(
+  label: 'Campo',
+  validator: (value) {
+    try {
+      // Validación compleja
+      return null;
+    } catch (e) {
+      return 'Error de validación';
+    }
+  },
 )
 ```
 
 ---
 
-## 🚨 Troubleshooting y Problemas Comunes
+## Recursos Adicionales
 
-### Problema 1: Colores no cambian en Dark Mode
+### Documentación
 
-#### Síntoma
-Los colores permanecen iguales al cambiar a modo oscuro.
+- [README.md](README.md): Documentación principal del proyecto
+- [CLAUDE.md](CLAUDE.md): Guías para desarrollo con Claude Code
 
-#### Solución
-```dart
-// ❌ Problema: Color hardcoded
-Container(
-  color: DSColors.primary,  // Este color no cambia automáticamente
-)
+### Ejemplos
 
-// ✅ Solución: Usar colorScheme del tema
-Container(
-  color: Theme.of(context).colorScheme.primary,  // Se adapta al modo
-)
+Revisa la carpeta `example/` para ver todos los componentes en acción:
+
+```bash
+cd example
+flutter run
 ```
 
-### Problema 2: Componente no es Responsive
+### Tests
 
-#### Síntoma
-El componente no se adapta a diferentes tamaños de pantalla.
+Cada componente tiene tests completos en `test/components/`:
 
-#### Solución
-```dart
-// ❌ Problema: Tamaño fijo
-Container(
-  width: 400,  // Fijo, no responsive
-  child: content,
-)
-
-// ✅ Solución 1: Usar ResponsiveBuilder
-ResponsiveBuilder(
-  mobile: (context) => Container(width: double.infinity),
-  desktop: (context) => Container(width: 400),
-)
-
-// ✅ Solución 2: Usar responsiveValue
-Container(
-  width: context.responsiveValue<double>(
-    mobile: double.infinity,
-    desktop: 400,
-  ),
-  child: content,
-)
+```bash
+flutter test
 ```
 
-### Problema 3: Imports no Funcionan
+### Contribuir
 
-#### Síntoma
-Error: "The method 'DSButton' isn't defined for the type..."
-
-#### Solución
-```dart
-// ✅ Asegurar importación correcta
-import 'package:iautomat_design_system/iautomat_design_system.dart';
-
-// Verificar que pubspec.yaml tenga:
-// dependencies:
-//   iautomat_design_system: ^1.0.0
-
-// Ejecutar:
-// flutter pub get
-```
-
-### Problema 4: Prefijo Incorrecto
-
-#### Síntoma
-Error: "Undefined name 'AppButton'"
-
-#### Solución
-```dart
-// ❌ Prefijo antiguo
-DSButton(...)
-
-// ✅ Prefijo correcto (DS = Design System)
-DSButton(...)
-```
-
-### Problema 5: Tema No se Aplica
-
-#### Síntoma
-Los componentes no usan los colores del tema.
-
-#### Solución
-```dart
-// ✅ Configurar tema correctamente en MaterialApp
-MaterialApp(
-  theme: DSTheme.lightTheme,      // ✅ Tema claro
-  darkTheme: DSTheme.darkTheme,   // ✅ Tema oscuro
-  themeMode: ThemeMode.system,    // ✅ Automático
-  home: HomePage(),
-)
-
-// ✅ Acceder al tema en widgets
-@override
-Widget build(BuildContext context) {
-  final theme = Theme.of(context);  // ✅ Obtener tema del contexto
-
-  return Container(
-    color: theme.colorScheme.surface,
-  );
-}
-```
-
-### Problema 6: Performance Issues
-
-#### Síntoma
-Lag o stuttering al usar componentes.
-
-#### Solución
-```dart
-// ✅ Usar const constructors cuando sea posible
-const DSButton(
-  text: 'Guardar',
-  // Toda la configuración constante
-)
-
-// ✅ Separar widgets complejos
-class _MyComplexWidget extends StatelessWidget {
-  const _MyComplexWidget();
-
-  @override
-  Widget build(BuildContext context) {
-    // ...
-  }
-}
-
-// ✅ Evitar rebuild innecesarios
-final theme = Theme.of(context);  // Una vez al inicio del build
-```
+Para agregar nuevos componentes, sigue el checklist en [CLAUDE.md](CLAUDE.md#checklist-para-nuevos-componentes).
 
 ---
 
-## 📚 Recursos Adicionales
+## Resumen de Componentes
 
-### Documentación Oficial
-- [Material 3 Design Guidelines](https://m3.material.io/)
-- [Flutter Best Practices](https://docs.flutter.dev/development/ui/widgets/intro)
-- [Effective Dart](https://dart.dev/guides/language/effective-dart)
+**Total de componentes documentados: 70+**
 
-### Ejemplos y Demos
-- [Live Demo](https://iautomatdesignsystem.web.app) - 100+ temas y componentes
-- [GitHub Repository](https://github.com/iautomat/iautomat_design_system)
+### Por Categoría
 
-### Soporte
-- Issues: [GitHub Issues](https://github.com/iautomat/iautomat_design_system/issues)
-- Email: support@iautomat.com
+- **Básicos**: 8 componentes
+- **Formulario**: 14 componentes
+- **Navegación**: 8 componentes
+- **Datos**: 10 componentes
+- **Feedback**: 8 componentes
+- **Acción**: 4 componentes
+- **Layout**: 4 componentes
+- **Media**: 3 componentes
+- **Especializados**: 5 componentes
+- **E-commerce**: 3 componentes
+- **Autenticación**: 2 componentes
+- **Auxiliares**: 1 componente
 
----
+### Helpers y Utilidades
 
-## 📝 Changelog y Versiones
-
-### Versión 1.0.1 (Actual)
-- ✅ 70+ componentes con prefijo DS
-- ✅ 100 presets de tema profesionales
-- ✅ Sistema de validación completo
-- ✅ Soporte responsive automático
-- ✅ Accesibilidad WCAG 2.0 AA
-- ✅ Tests exhaustivos (>95% cobertura)
-
-### Próximas Características (Roadmap)
-- 🔜 Más componentes especializados
-- 🔜 Tema builder interactivo
-- 🔜 CLI para scaffolding
-- 🔜 Más presets de tema
+- **30+ A11y Helpers**: Para accesibilidad completa
+- **30+ Platform Adapters**: Para comportamiento específico por plataforma
+- **Validation Helpers**: Para validación de formularios
+- **Theme Presets**: 100 temas predefinidos profesionales
 
 ---
 
-## 🎓 Conclusión
+## Soporte
 
-Esta documentación proporciona una referencia completa y exhaustiva para usar el IAutomat Design System.
+Para preguntas, issues o sugerencias:
 
-**Puntos clave para recordar:**
-1. ✅ Todos los componentes usan el prefijo `DS` (Design System)
-2. ✅ Siempre importar: `import 'package:iautomat_design_system/iautomat_design_system.dart';`
-3. ✅ Usar colores del tema, no hardcodear valores
-4. ✅ Usar sistema de espaciado (grid de 8px)
-5. ✅ Aprovechar el sistema responsive
-6. ✅ Siempre incluir accesibilidad
-7. ✅ Consultar esta documentación ante dudas
-
-**Para Claude Code y otras IA:**
-- Esta documentación está diseñada para ser clara y sin ambigüedades
-- Todos los ejemplos son funcionales y probados
-- Las configuraciones muestran valores por defecto explícitos
-- Los casos de uso cubren escenarios reales empresariales
+1. Revisa la documentación completa
+2. Verifica los ejemplos en `example/`
+3. Consulta los tests para casos de uso
+4. Abre un issue en el repositorio
 
 ---
 
-*Última actualización: 2025-01-03*
-*Versión del documento: 2.0.0*
-*Desarrollado con ❤️ por IAutomat*
+**Última actualización**: 2025-10-03
+**Versión del Design System**: 1.0.2
+**Compatible con**: Flutter 3.35.3+ / Dart 3.9.2+
