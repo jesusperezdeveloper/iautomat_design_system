@@ -1,7 +1,7 @@
 name: iautomat_design_system
 description: "Sistema de diseño empresarial completo para Flutter - 70+ componentes con prefijo DS, Material 3, accesibilidad WCAG 2.0"
 publish_to: none
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/iautomat/iautomat_design_system
 repository: https://github.com/iautomat/iautomat_design_system
 

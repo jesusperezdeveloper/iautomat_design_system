@@ -24,6 +24,38 @@ Cada pull request genera automáticamente un preview deployment para probar camb
 
 ---
 
+## 📚 Documentación Completa
+
+> **🎉 NUEVO: Documentación Exhaustiva para Claude Code y Desarrolladores**
+
+### 📖 Guías de Referencia
+
+1. **[📚 Referencia Completa de Componentes](docs/COMPLETE_COMPONENTS_REFERENCE.md)**
+   - Documentación detallada de los 70+ componentes
+   - Constructores, configuraciones y ejemplos
+   - Casos de uso por categoría
+   - Patrones de implementación
+
+2. **[🔧 Component API Reference](COMPONENT_API.md)**
+   - Guía exhaustiva para Claude Code y IA
+   - DSButton documentado al 100%
+   - Sistema de temas completo
+   - Utilidades y helpers
+   - Mejores prácticas y troubleshooting
+   - 2,800+ líneas de documentación
+
+3. **[👨‍💻 CLAUDE.md](CLAUDE.md)**
+   - Guías para desarrollo con Claude Code
+   - Convenciones del proyecto
+   - Checklist de componentes nuevos
+
+4. **[📝 CHANGELOG.md](CHANGELOG.md)**
+   - Historial de versiones
+   - Breaking changes y migraciones
+   - Nuevas características
+
+---
+
 ## 📋 Tabla de Contenidos
 
 - [🎯 Características Principales](#-características-principales)
